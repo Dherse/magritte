@@ -21,7 +21,7 @@ You will finally need to build the spec (in the opened docker bash)
 
 ```sh
 cd /vulkan
-./makeSpec -clean -spec all html
+./makeSpec -clean -spec all manhtmlpages
 ```
 
 ## Building the bindings
