@@ -1,0 +1,12 @@
+[package]
+name = "magritte-vk"
+version = "0.1.0"
+edition = "2021"
+license-file = "../LICENSE"
+repository = "https://github.com/Dherse/magritte"
+readme = "../README.md"
+keywords = [ "vulkan", "GFX", "GPU", "graphics", "bindings" ]
+categories = [ "api-bindings", "game-development", "graphics", "rendering" ]
+description = "Vulkan backend for Magritte"
+
+[dependencies]

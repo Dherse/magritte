@@ -1,0 +1,12 @@
+[package]
+name = "magritte-vkgen"
+version = "0.1.0"
+edition = "2021"
+license-file = "../LICENSE"
+repository = "https://github.com/Dherse/magritte"
+readme = "../README.md"
+keywords = [ "vulkan", "bindings", "generator", "codegen"]
+categories = [ "development-tools::ffi", "api-bindings" ]
+description = "Bindings generator for the Vulkan backend of Magritte"
+
+[dependencies]

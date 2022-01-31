@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "magritte-vk",
+    "magritte-vkgen",
+]
+
+[profile.release]
+# Enabling debug symbols for `flamegraph` and `perf`.
+debug = true
