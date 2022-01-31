@@ -4,6 +4,8 @@ Level(
         "VK_KHR_swapchain",
         "VK_EXT_private_data",
         "VK_KHR_synchronization2",
+        "VK_EXT_extended_dynamic_state",
+        "VK_EXT_pipeline_creation_feedback",
     ],
     features: (
 

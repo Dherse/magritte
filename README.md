@@ -131,13 +131,16 @@ Similar to the recently announced [Vulkan profiles](https://www.khronos.org/blog
 
 This abstraction will limit the number of variables the developper has to take into account as well as homogenise the features of the different platforms.
 
-Currently, the design calls for 5 levels defined based on the Vulkan API:
+Currently, the design calls for 3 levels defined based on the Vulkan API:
 
 1. Vulkan 1.1 support with a set of *basic* extensions
-2. Vulkan 1.1 support with a set of additional extensions
-3. Vulkan 1.2 support with a set of additional extensions
-4. Vulkan 1.3 support with a set of additional extensions
-5. Vulkan 1.3 support with a set of additional extensions and *with ray tracing*
+2. Vulkan 1.2 support with a set of additional extensions
+3. Vulkan 1.2 support with a set of additional extensions and *with ray tracing*
+
+These levels are expected to be similar to the capabilities of devices that would play modern titles on settings like
+1. low, medium ;
+2. high ;
+3. ultra or ray-traced.
 
 To learn more, have a look at the `level` folder containing [ron](https://github.com/ron-rs/ron) definitions of the levels.
 

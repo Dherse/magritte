@@ -1,0 +1,17 @@
+Level(
+    version: (1, 2, 0),
+    inherits: Some("levels/level3.ron"),
+    extensions: [
+        "VK_KHR_ray_tracing_pipeline",
+        "VK_KHR_acceleration_structure",
+    ],
+    features: (
+
+    ),
+    limits: (
+
+    ),
+    formats: (
+
+    ),
+)
