@@ -6,6 +6,28 @@ Magritte will exclusively target [*Vulkan*](https://www.vulkan.org/) as its back
 
 The goal of this limitation is to make it easier to support modern features such as [ray tracing](https://en.wikipedia.org/wiki/Ray_tracing_(graphics)).
 
+## Overwiew of features
+
+- Low overhead
+- Higher level
+- Easier to write
+- Memory management
+- Asynchronous
+- Supports additional data attached to handles
+- Fully documented using the official *Vulkan* documentation
+- Almost fully generated
+- Full support for **all** Vulkan extensions
+- Full support for **desktop** and **portable** platforms: Windows *(to be tested)*, Linux *(to be tested)*, macOS *(to be tested)*
+- Nice error handling
+- Idiomatic
+
+## What magritte is and is not
+
+Magritte is not really a set of bindings to *Vulkan*. It is instead a code generator that **generates** bindings to *Vulkan*. While this distinction is not really important for the user, it means that the bulk of the work is placed on the code generator (`magritte-vkgen`) rather than the bindings themselves as those are not manually written. The handwritten code is and **must** be a very small part of the library. The end goal of this library is to be easily updated along with the *Vulkan* specification which cannot be done by writing manual bindings.
+
+It is clear when looking at the generated output that it would be almost impossible for a single person to write a full set of high level bindings complete with thourough documentation. It represents hundreds of thousands of lines of code that one person could not maintain. However, it is possible to do this for a subset of *Vulkan*, this is what [*vulkano*](https://github.com/vulkano-rs/vulkano) does. However, I wanted (*almost*) full support for the *Vulkan* specification with little to no compromise, hence I created these bindings.
+
+
 ## Feature flags
 
 - `tokio`: Adds [tokio](https://tokio.rs) as a dependency ;
@@ -17,12 +39,12 @@ The goal of this limitation is to make it easier to support modern features such
 ## State of the art
 
 Currently, the rust ecosystem has a number of **great** crates for dealing with graphics and compute, this section gives a short comparison between Magritte and existing libraries. The crates compared to Magritte are the following:
-- [ash]()
-- [erupt]()
-- [vulkano]()
-- [wgpu]()
-- [gfx-hal]()
-- [glium](https://github.com/glium/glium), [glutin](https://github.com/rust-windowing/glutin) and others
+- [*ash*](https://github.com/MaikKlein/ash)
+- [*erupt*](https://crates.io/crates/erupt)
+- [*vulkano*](https://github.com/vulkano-rs/vulkano)
+- [*wgpu*](https://github.com/gfx-rs/wgpu)
+- [*gfx-hal*](https://github.com/gfx-rs/gfx)
+- [*glium*](https://github.com/glium/glium), [*glutin*](https://github.com/rust-windowing/glutin) and others
 
 ### Ash & erupt
 

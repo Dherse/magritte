@@ -26,6 +26,8 @@ cd /vulkan
 
 ## Building the bindings
 
+You will need a `nightly` installation of rust.
+
 In the main directory run
 
 ```sh
