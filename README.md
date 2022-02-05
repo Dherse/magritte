@@ -16,7 +16,7 @@ The goal of this limitation is to make it easier to support modern features such
 - Supports additional data attached to handles
 - Fully documented using the official *Vulkan* documentation
 - Almost fully generated
-- Full support for **all** Vulkan extensions
+- Full support for **all** *Vulkan *extensions
 - Full support for **desktop** and **portable** platforms: Windows *(to be tested)*, Linux *(to be tested)*, macOS *(to be tested)*
 - Nice error handling
 - Idiomatic
@@ -48,25 +48,25 @@ Currently, the rust ecosystem has a number of **great** crates for dealing with 
 
 ### Ash & erupt
 
-*Ash* and *erupt* are both low-level, unsafe bindings, mostly-generated bindings to the raw Vulkan API. This is similar to Magritte with a few notable exceptions:
+*Ash* and *erupt* are both low-level, unsafe bindings, mostly-generated bindings to the raw *Vulkan* API. This is similar to Magritte with a few notable exceptions:
 - Magritte is a *mostly* safe API ;
 - Magritte has more overhead than *ash* and *erupt* ;
 - Magritte has higher-level features ;
-- Magritte is idiomatic in the rust-sense not the Vulkan sense ;
-- Magritte's bindings (`magritte-vk`) are fully documented using the official Vulkan documentation.
+- Magritte is idiomatic in the rust-sense not the *Vulkan *sense ;
+- Magritte's bindings (`magritte-vk`) are fully documented using the official *Vulkan* documentation.
 
 ### Vulkano
 
-*Vulkano* and Magritte are very similar, they share the design of being high level while trying to keep the overhead as small as possible. In addition, both libraries try to make Vulkan a more productive (i.e easier to use) API.
+*Vulkano* and Magritte are very similar, they share the design of being high level while trying to keep the overhead as small as possible. In addition, both libraries try to make *Vulkan *a more productive (i.e easier to use) API.
 
 The main additions are the following:
 - Magritte is mostly generated, most of time is spent writing the binding generator and not hand-writing bindings ;
 - Magritte has garbage collection and will create threads something I believe vulkano does not do ;
-- Magritte has full support for **all** Vulkano extensions, although safe usage is not guaranteed for all of them.
+- Magritte has full support for **all** *Vulkano* extensions, although safe usage is not guaranteed for all of them.
 
 ### WGPU-rs
 
-*WGPU-rs* is amazing, it provides safe abstractions running on essentially every platform, while Magritte aims at only supporting Vulkan. This allows *wgpu* to run on more platforms including the web. This is **not** a goal for Magritte. However, Magritte still has a few advantages:
+*WGPU-rs* is amazing, it provides safe abstractions running on essentially every platform, while Magritte aims at only supporting *Vulkan*. This allows *wgpu* to run on more platforms including the web. This is **not** a goal for Magritte. However, Magritte still has a few advantages:
 - Magritte is single backend ;
 - Magritte provided very high level features such as a render graph ;
 - Magritte does not follow a widely-compatible spec which allows for more features ;
@@ -111,7 +111,7 @@ Magritte handles memory management by using the [*Vulkan Memory Allocator* (*VMA
 
 ### Unions (**WIP**)
 
-Magritte makes away with unions by using rust enums. This makes the code safer. There are very few unions in Vulkan and they all have hand-written implementations to make them safer.
+Magritte makes away with unions by using rust enums. This makes the code safer. There are very few unions in *Vulkan *and they all have hand-written implementations to make them safer.
 
 ### Render graph (**WIP**)
 
@@ -153,11 +153,11 @@ Similar to the recently announced [Vulkan profiles](https://www.khronos.org/blog
 
 This abstraction will limit the number of variables the developper has to take into account as well as homogenise the features of the different platforms.
 
-Currently, the design calls for 3 levels defined based on the Vulkan API:
+Currently, the design calls for 3 levels defined based on the *Vulkan *API:
 
-1. Vulkan 1.1 support with a set of *basic* extensions
-2. Vulkan 1.2 support with a set of additional extensions
-3. Vulkan 1.2 support with a set of additional extensions and *with ray tracing*
+1. *Vulkan *1.1 support with a set of *basic* extensions
+2. *Vulkan *1.2 support with a set of additional extensions
+3. *Vulkan *1.2 support with a set of additional extensions and *with ray tracing*
 
 These levels are expected to be similar to the capabilities of devices that would play modern titles on settings like
 1. low, medium ;
