@@ -35,3 +35,13 @@ cargo run --bin magritte-vkgen
 ```
 
 Once this is done you have successfully built the bindings from source.
+
+### Logging
+
+If you wish to see the logging output of `magritte-vkgen`, you can use the following command:
+
+```sh
+RUST_LOG=info cargo run --bin magritte-vkgen
+```
+
+Instead of `info`, you can use `warn`, `debug` or `trace`. Note that the last two ones produce a **very** large amount of logs.
