@@ -62,7 +62,7 @@ Currently, the rust ecosystem has a number of **great** crates for dealing with 
 The main additions are the following:
 - Magritte is mostly generated, most of time is spent writing the binding generator and not hand-writing bindings ;
 - Magritte has garbage collection and will create threads something I believe vulkano does not do ;
-- Magritte has full support for **all** *Vulkano* extensions, although safe usage is not guaranteed for all of them.
+- Magritte has full support for **all** *Vulkan* extensions, although safe usage is not guaranteed for all of them.
 
 ### WGPU-rs
 
