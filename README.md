@@ -11,8 +11,9 @@ The goal of this limitation is to make it easier to support modern features such
 - Low overhead
 - Higher level
 - Easier to write
-- Memory management
-- Asynchronous
+- Mostly safe
+- Memory management (using [*Vulkan Memory Allocator*](https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator))
+- Asynchronous (support for [*tokio*](https://tokio.rs))
 - Supports additional data attached to handles
 - Fully documented using the official *Vulkan* documentation
 - Almost fully generated
