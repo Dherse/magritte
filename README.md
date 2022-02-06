@@ -48,7 +48,7 @@ Currently, the rust ecosystem has a number of **great** crates for dealing with 
 
 ### Ash & erupt
 
-*Ash* and *erupt* are both low-level, unsafe bindings, mostly-generated bindings to the raw *Vulkan* API. This is similar to Magritte with a few notable exceptions:
+*Ash* and *erupt* are both low-level, unsafe, mostly-generated bindings to the raw *Vulkan* API. This is similar to Magritte with a few notable exceptions:
 - Magritte is a *mostly* safe API ;
 - Magritte has more overhead than *ash* and *erupt* ;
 - Magritte has higher-level features ;
