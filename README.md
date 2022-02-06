@@ -9,8 +9,8 @@ The goal of this limitation is to make it easier to support modern features such
 ## Overwiew of features
 
 - Low overhead
-- Higher level
-- Easier to write
+- Higher level (than raw *Vulkan*)
+- Easier to write (than raw *Vulkan*)
 - Mostly safe
 - Memory management (using [*Vulkan Memory Allocator*](https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator))
 - Asynchronous (support for [*tokio*](https://tokio.rs))
@@ -27,7 +27,6 @@ The goal of this limitation is to make it easier to support modern features such
 Magritte is not really a set of bindings to *Vulkan*. It is instead a code generator that **generates** bindings to *Vulkan*. While this distinction is not really important for the user, it means that the bulk of the work is placed on the code generator (`magritte-vkgen`) rather than the bindings themselves as those are not manually written. The handwritten code is and **must** be a very small part of the library. The end goal of this library is to be easily updated along with the *Vulkan* specification which cannot be done by writing manual bindings.
 
 It is clear when looking at the generated output that it would be almost impossible for a single person to write a full set of high level bindings complete with thourough documentation. It represents hundreds of thousands of lines of code that one person could not maintain. However, it is possible to do this for a subset of *Vulkan*, this is what [*vulkano*](https://github.com/vulkano-rs/vulkano) does. However, I wanted (*almost*) full support for the *Vulkan* specification with little to no compromise, hence I created these bindings.
-
 
 ## Feature flags
 
@@ -190,3 +189,7 @@ The documentation extends to all parts of the generated bindings, as in:
 ### Error handling
 
 The *Vulkan* spec (`vk.xml`) provides detailed information on each functions. These include the specific success and error codes that each function may return. Magritte uses the success codes to return a result for which the success may not be `VK_SUCCESS` but another success code such as `VK_TIMEOUT`. This means that errors returned by Magritte functions are actually hard errors and not additional results.
+
+### Native format support (future feature)
+
+One of the end goals for magritte is to support all common Vulkan formats using generated struct and code along with some crates for decoding and encoding compressed formats. All of this will be available using feature flag so that it may remain optional.
