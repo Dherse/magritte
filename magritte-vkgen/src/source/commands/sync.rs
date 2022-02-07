@@ -10,6 +10,7 @@ use nom::{
 
 use crate::expr::variable_raw;
 
+/// The external synchronization requierments
 #[derive(Debug, Clone, PartialEq)]
 pub enum ExternallySynced<'a> {
     /// The value must be externally synchronized
@@ -35,6 +36,7 @@ pub enum ExternallySynced<'a> {
 }
 
 impl<'a> ExternallySynced<'a> {
+    /// Parses an optional string into an external synchronization requierment
     pub fn new(value: Option<&'a str>) -> ExternallySynced<'a> {
         if let Some(input) = value {
             all_consuming(externally_synced)(input).unwrap().1

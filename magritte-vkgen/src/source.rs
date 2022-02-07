@@ -41,7 +41,7 @@ pub use self::{
     basetypes::Basetype,
     bitflags::{Bit, BitFlags},
     bitmasks::Bitmask,
-    commands::{BufferLevelFlags, Command, CommandAlias, Function, FunctionArgument, QueueFlags, RenderpassFlags},
+    commands::{BufferLevelFlags, Command, CommandAlias, Function, FunctionArgument, QueueFlags, RenderpassFlags, ExternallySynced},
     consts::{Const, ConstAlias},
     enums::Enum,
     extensions::{DeprecationStatus, Extension, ExtensionType},
