@@ -36,12 +36,27 @@ cargo run --bin magritte-vkgen
 
 Once this is done you have successfully built the bindings from source.
 
+You may also want to run the previous function with the `--release` flags, in my testing, this reduces the execution time by a factor of ~7.
+
 ### Logging
+
+#### On Linux/macOS
 
 If you wish to see the logging output of `magritte-vkgen`, you can use the following command:
 
 ```sh
 RUST_LOG=info cargo run --bin magritte-vkgen
+```
+
+Instead of `info`, you can use `warn`, `debug` or `trace`. Note that the last two ones produce a **very** large amount of logs.
+
+#### On Windows
+
+If you wish to see the logging output of `magritte-vkgen`, you can use the following command:
+
+```sh
+setx RUST_LOG "info"
+cargo run --bin magritte-vkgen
 ```
 
 Instead of `info`, you can use `warn`, `debug` or `trace`. Note that the last two ones produce a **very** large amount of logs.
