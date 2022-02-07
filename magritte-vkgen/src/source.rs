@@ -12,6 +12,7 @@ mod extensions;
 mod funcpointers;
 mod handles;
 mod opaque;
+pub mod reference;
 mod structs;
 mod tag;
 mod unions;
@@ -36,12 +37,16 @@ use crate::{
     ty::{Mutability, Ty},
 };
 
+use self::reference::{Ref, TypeRef};
 pub use self::{
     alias::Alias,
     basetypes::Basetype,
-    bitflags::{Bit, BitFlags},
+    bitflags::{Bit, BitFlag},
     bitmasks::Bitmask,
-    commands::{BufferLevelFlags, Command, CommandAlias, Function, FunctionArgument, QueueFlags, RenderpassFlags, ExternallySynced},
+    commands::{
+        BufferLevelFlags, Command, CommandAlias, ExternallySynced, Function, FunctionArgument, QueueFlags,
+        RenderpassFlags,
+    },
     consts::{Const, ConstAlias},
     enums::Enum,
     extensions::{DeprecationStatus, Extension, ExtensionType},
@@ -98,7 +103,7 @@ pub struct Source<'a> {
     pub constant_aliases: SymbolTable<'a, ConstAlias<'a>>,
 
     /// The bitflags defined in the Vulkan specification
-    pub bitflags: SymbolTable<'a, BitFlags<'a>>,
+    pub bitflags: SymbolTable<'a, BitFlag<'a>>,
 
     /// The enums defined in the Vulkan specification
     pub enums: SymbolTable<'a, Enum<'a>>,
@@ -145,6 +150,82 @@ impl<'a> Source<'a> {
         }
 
         this
+    }
+
+    /// Finds a value defined in the Vulkan spefification and returns it if it exists.
+    #[inline]
+    pub fn find(&self, name: &str) -> Option<Ref<'a, '_>> {
+        if let Some(vendor) = self.vendors.get_by_name(name) {
+            Some(Ref::Vendor(vendor))
+        } else if let Some(extension) = self.extensions.get_by_name(name) {
+            Some(Ref::Extension(extension))
+        } else if let Some(tag) = self.tags.get_by_name(name) {
+            Some(Ref::Tag(tag))
+        } else if let Some(opaque_type) = self.opaque_types.get_by_name(name) {
+            Some(Ref::OpaqueType(opaque_type))
+        } else if let Some(alias) = self.aliases.get_by_name(name) {
+            Some(Ref::Alias(alias))
+        } else if let Some(struct_) = self.structs.get_by_name(name) {
+            Some(Ref::Struct(struct_))
+        } else if let Some(union_) = self.unions.get_by_name(name) {
+            Some(Ref::Union(union_))
+        } else if let Some(handle) = self.handles.get_by_name(name) {
+            Some(Ref::Handle(handle))
+        } else if let Some(funcpointer) = self.funcpointers.get_by_name(name) {
+            Some(Ref::FunctionPointer(funcpointer))
+        } else if let Some(basetype) = self.basetypes.get_by_name(name) {
+            Some(Ref::Basetype(basetype))
+        } else if let Some(bitmask) = self.bitmasks.get_by_name(name) {
+            Some(Ref::Bitmask(bitmask))
+        } else if let Some(const_) = self.constants.get_by_name(name) {
+            Some(Ref::Const(const_))
+        } else if let Some(const_alias) = self.constant_aliases.get_by_name(name) {
+            Some(Ref::ConstAlias(const_alias))
+        } else if let Some(bitflag) = self.bitflags.get_by_name(name) {
+            Some(Ref::BitFlag(bitflag))
+        } else if let Some(enum_) = self.enums.get_by_name(name) {
+            Some(Ref::Enum(enum_))
+        } else if let Some(command_alias) = self.command_aliases.get_by_name(name) {
+            Some(Ref::CommandAlias(command_alias))
+        } else if let Some(function) = self.functions.get_by_name(name) {
+            Some(Ref::Function(function))
+        } else if let Some(command) = self.commands.get_by_name(name) {
+            Some(Ref::Function(command))
+        } else if let Some(origin) = self.origins.get_by_name(name) {
+            Some(Ref::Origin(origin))
+        } else {
+            None
+        }
+    }
+
+
+    /// Resolves a chain of aliases to the original reference.
+    /// 
+    /// This **never** returns [`Ref::Alias`], [`Ref::ConstAlias`], [`Ref::CommandAlias`]
+    #[inline]
+    pub fn resolve(&self, name: &str) -> Option<Ref<'a, '_>> {
+        let ref_ = self.find(name)?;
+
+        match ref_ {
+            Ref::Alias(alias) => self.resolve(alias.of()),
+            Ref::ConstAlias(alias) => self.resolve(alias.of()),
+            Ref::CommandAlias(alias) => self.resolve(alias.of()),
+            _ => Some(ref_),
+        }
+    }
+
+    /// Resolves a chain of aliases to the original type.
+    /// 
+    /// This **never** returns [`TypeRef::Alias`]
+    #[inline]
+    pub fn resolve_type(&self, name: &str) -> Option<TypeRef<'a, '_>> {
+        let ref_ = self.find(name)?;
+        let ty = ref_.as_type_ref()?;
+
+        match ty {
+            TypeRef::Alias(alias) => self.resolve_type(alias.of()),
+            _ => Some(ty),
+        }
     }
 
     fn extension(&mut self, extension: &'a vk_parse::Extension) {
@@ -738,7 +819,7 @@ impl<'a> Source<'a> {
         });
 
         self.bitflags
-            .push(BitFlags::new_no_origin(original_name, name, width as _, bits, aliases));
+            .push(BitFlag::new_no_origin(original_name, name, width as _, bits, aliases));
     }
 
     fn consts(&mut self, enums: &'a Enums) {
@@ -746,6 +827,7 @@ impl<'a> Source<'a> {
 
         // special case for dealing with API constants
         let create_fn = if name == "API Constants" {
+            self.origins.push(Origin::Core);
             |original_name, name, ty, expr| Const::new(original_name, name, ty, expr, Origin::Core)
         } else {
             |original_name, name, ty, expr| Const::new_no_origin(original_name, name, ty, expr)
@@ -821,8 +903,9 @@ impl<'a> Source<'a> {
 
                 info!("opaque type");
 
+                self.origins.push(Origin::Opaque);
                 self.opaque_types
-                    .push(OpaqueType::new_no_origin(original_name, name, requires));
+                    .push(OpaqueType::new(original_name, name, requires, Origin::Opaque));
 
                 return;
             }
@@ -856,6 +939,7 @@ impl<'a> Source<'a> {
                 debug!(name = ?ty.name.as_ref().unwrap(), "ignored enum declared in `types`")
             },
             Some("define") => debug!(name = ?ty.name, "ignored a define"),
+            Some("include") => debug!("skipped include"),
             Some(category) => error!(
                 "unknown category: `{}` (has a name? {})",
                 category,

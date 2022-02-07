@@ -27,6 +27,9 @@ pub struct Extension<'a> {
 
     /// The deprecation status
     pub deprecation_status: DeprecationStatus,
+
+    /// The origin associated with this extension
+    pub origin: Origin<'a>,
 }
 
 impl<'a> Extension<'a> {
@@ -40,6 +43,8 @@ impl<'a> Extension<'a> {
         required: SmallVec<[Cow<'a, str>; 1]>,
         deprecation_status: DeprecationStatus,
     ) -> Self {
+        let origin = Origin::Extension(name.clone(), id, disabled);
+        
         Self {
             name,
             disabled,
@@ -48,6 +53,7 @@ impl<'a> Extension<'a> {
             min_core,
             required,
             deprecation_status,
+            origin
         }
     }
 
@@ -84,6 +90,12 @@ impl<'a> Extension<'a> {
     /// Get a reference to the extension's deprecation status.
     pub fn deprecation_status(&self) -> &DeprecationStatus {
         &self.deprecation_status
+    }
+
+    /// Get a reference to the extension's origin.
+    #[inline]
+    pub const fn origin(&self) -> &Origin<'a> {
+        &self.origin
     }
 }
 

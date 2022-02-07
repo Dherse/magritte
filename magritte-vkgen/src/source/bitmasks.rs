@@ -47,7 +47,8 @@ impl<'a> Bitmask<'a> {
     }
 
     /// Get a reference to the bitmask's origin.
-    pub fn origin(&self) -> &Origin<'a> {
+    #[inline]
+    pub const fn origin(&self) -> &Origin<'a> {
         &self.origin
     }
 

@@ -7,11 +7,12 @@
     box_syntax,
     box_patterns,
     const_option_ext,
-    string_remove_matches
+    string_remove_matches,
 )]
 #![warn(clippy::pedantic, clippy::cargo)]
 #![deny(missing_docs)]
 
+pub mod codegen;
 pub mod doc;
 pub mod expr;
 pub mod imports;

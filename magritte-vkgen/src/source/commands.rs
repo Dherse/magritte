@@ -97,7 +97,8 @@ impl<'a> Function<'a> {
     }
 
     /// Get a reference to the function's origin.
-    pub fn origin(&self) -> &Origin<'a> {
+    #[inline]
+    pub const fn origin(&self) -> &Origin<'a> {
         &self.origin
     }
 
@@ -356,7 +357,8 @@ impl<'a> CommandAlias<'a> {
     }
 
     /// Get a reference to the alias's origin.
-    pub fn origin(&self) -> &Origin<'a> {
+    #[inline]
+    pub const fn origin(&self) -> &Origin<'a> {
         &self.origin
     }
 

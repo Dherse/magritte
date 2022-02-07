@@ -13,6 +13,11 @@ use crate::origin::Origin;
 pub struct Imports(pub(crate) AHashSet<String>, pub(crate) Origin<'static>);
 
 impl Imports {
+    /// Creates a new imports with an origin
+    pub fn new(origin: &Origin<'_>) -> Self {
+        Self(AHashSet::new(), origin.as_static())
+    }
+
     /// Push a new imports from its name
     pub fn push<D: Display>(&mut self, import: D) {
         self.0.insert(format!("use {};", import));

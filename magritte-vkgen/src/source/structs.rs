@@ -94,7 +94,8 @@ impl<'a> Struct<'a> {
     }
 
     /// Get a reference to the struct's origin.
-    pub fn origin(&self) -> &Origin<'a> {
+    #[inline]
+    pub const fn origin(&self) -> &Origin<'a> {
         &self.origin
     }
 

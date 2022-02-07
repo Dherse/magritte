@@ -57,7 +57,8 @@ impl<'a> Union<'a> {
     }
 
     /// Get a reference to the union's origin.
-    pub fn origin(&self) -> &Origin<'a> {
+    #[inline]
+    pub const fn origin(&self) -> &Origin<'a> {
         &self.origin
     }
 

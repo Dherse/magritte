@@ -47,7 +47,8 @@ impl<'a> Basetype<'a> {
     }
 
     /// Get a reference to the basetype's origin.
-    pub fn origin(&self) -> &Origin<'a> {
+    #[inline]
+    pub const fn origin(&self) -> &Origin<'a> {
         &self.origin
     }
 

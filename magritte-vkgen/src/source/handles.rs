@@ -52,7 +52,8 @@ impl<'a> Handle<'a> {
     }
 
     /// Get a reference to the handle's origin.
-    pub fn origin(&self) -> &Origin<'a> {
+    #[inline]
+    pub const fn origin(&self) -> &Origin<'a> {
         &self.origin
     }
 

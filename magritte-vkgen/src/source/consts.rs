@@ -51,7 +51,8 @@ impl<'a> Const<'a> {
     }
 
     /// Get a reference to the constant's origin.
-    pub fn origin(&self) -> &Origin<'a> {
+    #[inline]
+    pub const fn origin(&self) -> &Origin<'a> {
         &self.origin
     }
 
@@ -122,7 +123,8 @@ impl<'a> ConstAlias<'a> {
     }
 
     /// Get a reference to the alias's origin.
-    pub fn origin(&self) -> &Origin<'a> {
+    #[inline]
+    pub const fn origin(&self) -> &Origin<'a> {
         &self.origin
     }
 

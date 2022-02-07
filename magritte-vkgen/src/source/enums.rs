@@ -67,7 +67,8 @@ impl<'a> Enum<'a> {
     }
 
     /// Get a reference to the enum's origin.
-    pub fn origin(&self) -> &Origin<'a> {
+    #[inline]
+    pub const fn origin(&self) -> &Origin<'a> {
         &self.origin
     }
 

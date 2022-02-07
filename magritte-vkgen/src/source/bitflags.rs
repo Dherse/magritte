@@ -9,7 +9,7 @@ use super::Alias;
 
 /// A type bit flags.
 #[derive(Debug, Clone, PartialEq)]
-pub struct BitFlags<'a> {
+pub struct BitFlag<'a> {
     /// The original name of the bit flags
     pub original_name: Cow<'a, str>,
 
@@ -29,7 +29,7 @@ pub struct BitFlags<'a> {
     pub aliases: SymbolTable<'a, Alias<'a>>,
 }
 
-impl<'a> BitFlags<'a> {
+impl<'a> BitFlag<'a> {
     /// Creates a new bit flags from its flags and type
     #[inline]
     pub const fn new(
@@ -73,7 +73,8 @@ impl<'a> BitFlags<'a> {
     }
 
     /// Get a reference to the bit flags's origin.
-    pub fn origin(&self) -> &Origin<'a> {
+    #[inline]
+    pub const fn origin(&self) -> &Origin<'a> {
         &self.origin
     }
 
@@ -108,7 +109,7 @@ impl<'a> BitFlags<'a> {
     }
 }
 
-impl<'a> SymbolName<'a> for BitFlags<'a> {
+impl<'a> SymbolName<'a> for BitFlag<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.original_name.clone()
     }
