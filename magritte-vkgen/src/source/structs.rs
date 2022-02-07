@@ -1,5 +1,3 @@
-mod sync;
-
 use std::{borrow::Cow, hint::unreachable_unchecked};
 
 use ahash::AHashSet;
@@ -13,7 +11,7 @@ use crate::{
     ty::{Native, Ty},
 };
 
-use self::sync::ExternallySynced;
+use super::commands::ExternallySynced;
 
 /// A Vulkan struct
 #[derive(Debug, Clone, PartialEq)]
@@ -213,7 +211,7 @@ impl<'a> Field<'a> {
                 (true, true) => Optionality::Sometimes,
                 (false, _) => Optionality::No,
             },
-            externally_synchronized: ExternallySynced::new(member.externsync.as_ref()),
+            externally_synchronized: ExternallySynced::new(member.externsync.as_ref().map(|s| s as &str)),
             must_be_valid: member
                 .noautovalidity
                 .as_ref()

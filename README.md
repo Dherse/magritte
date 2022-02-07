@@ -68,9 +68,9 @@ The main additions are the following:
 
 *WGPU-rs* is amazing, it provides safe abstractions running on essentially every platform, while Magritte aims at only supporting *Vulkan*. This allows *wgpu* to run on more platforms including the web. This is **not** a goal for Magritte. However, Magritte still has a few advantages:
 - Magritte is single backend ;
-- Magritte provided very high level features such as a render graph ;
+- Magritte provides very high level features such as a render graph ;
 - Magritte does not follow a widely-compatible spec which allows for more features ;
-- Magritte supports a lot more features than *wgpu* such as ray-tracing ;
+- Magritte supports a lot more features than *wgpu* currently does such as ray-tracing ;
 - Magritte will (hopefully) be faster than *wgpu* due to having a single backend.
 
 ### GFX-hal
