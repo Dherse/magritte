@@ -1,5 +1,7 @@
 use std::borrow::Cow;
 
+use proc_macro2::{Ident, Span};
+
 use crate::{expr::Expr, origin::Origin, symbols::SymbolName, ty::Ty};
 
 /// A type constant.
@@ -50,6 +52,11 @@ impl<'a> Const<'a> {
         self.name.as_ref()
     }
 
+    /// Creates an identifier from the name
+    pub fn as_ident(&self) -> Ident {
+        Ident::new(self.name(), Span::call_site())
+    }
+
     /// Get a reference to the constant's origin.
     #[inline]
     pub const fn origin(&self) -> &Origin<'a> {
@@ -75,6 +82,10 @@ impl<'a> Const<'a> {
 impl<'a> SymbolName<'a> for Const<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.original_name.clone()
+    }
+
+    fn pretty_name(&self) -> String {
+        self.name().to_owned()
     }
 }
 
@@ -122,6 +133,11 @@ impl<'a> ConstAlias<'a> {
         self.name.as_ref()
     }
 
+    /// Creates an identifier from the name
+    pub fn as_ident(&self) -> Ident {
+        Ident::new(self.name(), Span::call_site())
+    }
+
     /// Get a reference to the alias's origin.
     #[inline]
     pub const fn origin(&self) -> &Origin<'a> {
@@ -142,5 +158,9 @@ impl<'a> ConstAlias<'a> {
 impl<'a> SymbolName<'a> for ConstAlias<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.original_name.clone()
+    }
+
+    fn pretty_name(&self) -> String {
+        self.name().to_owned()
     }
 }

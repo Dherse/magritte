@@ -1,5 +1,7 @@
 use std::borrow::Cow;
 
+use proc_macro2::{Ident, Span};
+
 use crate::{origin::Origin, symbols::SymbolName};
 
 /// A Vulkan handle
@@ -46,6 +48,11 @@ impl<'a> Handle<'a> {
         self.name.as_ref()
     }
 
+    /// Creates an identifier from the name
+    pub fn as_ident(&self) -> Ident {
+        Ident::new(self.name(), Span::call_site())
+    }
+
     /// Get a reference to the handle's fields.
     pub fn parent(&self) -> Option<&Cow<'a, str>> {
         self.parent.as_ref()
@@ -66,5 +73,9 @@ impl<'a> Handle<'a> {
 impl<'a> SymbolName<'a> for Handle<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.original_name.clone()
+    }
+
+    fn pretty_name(&self) -> String {
+        self.name().to_owned()
     }
 }

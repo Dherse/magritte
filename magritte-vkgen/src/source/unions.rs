@@ -1,6 +1,9 @@
 use std::borrow::Cow;
 
+use proc_macro2::{Ident, Span};
+
 use crate::{
+    doc::Queryable,
     origin::Origin,
     symbols::{SymbolName, SymbolTable},
 };
@@ -51,6 +54,11 @@ impl<'a> Union<'a> {
         self.name.as_ref()
     }
 
+    /// Creates an identifier from the name
+    pub fn as_ident(&self) -> Ident {
+        Ident::new(self.name(), Span::call_site())
+    }
+
     /// Get a reference to the union's fields.
     pub fn fields(&self) -> &SymbolTable<'a, Field<'a>> {
         &self.fields
@@ -71,5 +79,15 @@ impl<'a> Union<'a> {
 impl<'a> SymbolName<'a> for Union<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.original_name.clone()
+    }
+
+    fn pretty_name(&self) -> String {
+        self.name().to_owned()
+    }
+}
+
+impl<'a> Queryable for Union<'a> {
+    fn find(&self, name: &str) -> Option<&str> {
+        self.fields.get_by_name(name).map(Field::name)
     }
 }

@@ -44,4 +44,8 @@ impl<'a> SymbolName<'a> for Vendor<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.0.clone()
     }
+
+    fn pretty_name(&self) -> String {
+        self.name().to_string()
+    }
 }

@@ -10,6 +10,7 @@ use std::{
 use convert_case::{Case, Casing};
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, ToTokens};
+use syn::PathSegment;
 
 use crate::symbols::SymbolName;
 
@@ -200,12 +201,83 @@ impl<'a> Origin<'a> {
         }
     }
 
+    /// Turns the origin into a tokenized rust path
+    pub fn as_path(&self) -> syn::Path {
+        match self {
+            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
+            Origin::Core => syn::Path {
+                leading_colon: None,
+                segments: [
+                    PathSegment::from(Ident::new("crate", Span::call_site())),
+                    PathSegment::from(Ident::new("core", Span::call_site())),
+                ]
+                .into_iter()
+                .collect(),
+            },
+            Origin::Extension(name, _, _) => syn::Path {
+                leading_colon: None,
+                segments: [
+                    PathSegment::from(Ident::new("crate", Span::call_site())),
+                    PathSegment::from(Ident::new("extensions", Span::call_site())),
+                    PathSegment::from(Ident::new(name.as_ref(), Span::call_site())),
+                ]
+                .into_iter()
+                .collect(),
+            },
+            Origin::Vulkan1_0 => syn::Path {
+                leading_colon: None,
+                segments: [
+                    PathSegment::from(Ident::new("crate", Span::call_site())),
+                    PathSegment::from(Ident::new("vulkan1_0", Span::call_site())),
+                ]
+                .into_iter()
+                .collect(),
+            },
+            Origin::Vulkan1_1 => syn::Path {
+                leading_colon: None,
+                segments: [
+                    PathSegment::from(Ident::new("crate", Span::call_site())),
+                    PathSegment::from(Ident::new("vulkan1_1", Span::call_site())),
+                ]
+                .into_iter()
+                .collect(),
+            },
+            Origin::Vulkan1_2 => syn::Path {
+                leading_colon: None,
+                segments: [
+                    PathSegment::from(Ident::new("crate", Span::call_site())),
+                    PathSegment::from(Ident::new("vulkan1_2", Span::call_site())),
+                ]
+                .into_iter()
+                .collect(),
+            },
+            Origin::Vulkan1_3 => syn::Path {
+                leading_colon: None,
+                segments: [
+                    PathSegment::from(Ident::new("crate", Span::call_site())),
+                    PathSegment::from(Ident::new("vulkan1_3", Span::call_site())),
+                ]
+                .into_iter()
+                .collect(),
+            },
+            Origin::Opaque => syn::Path {
+                leading_colon: None,
+                segments: [
+                    PathSegment::from(Ident::new("crate", Span::call_site())),
+                    PathSegment::from(Ident::new("native", Span::call_site())),
+                ]
+                .into_iter()
+                .collect(),
+            },
+        }
+    }
+
     /// As a file path of the output file for this origin
-    pub fn as_path(&self, path: &Path) -> PathBuf {
+    pub fn as_file_path(&self, path: &Path) -> PathBuf {
         let mut path = PathBuf::from(path);
 
         match self {
-            Origin::Unknown => panic!("Unknown origin cannot be turned into a module"),
+            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
             Origin::Core => path.push("core.rs"),
             Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
             Origin::Extension(ext, _, _) => path.push(format!(
@@ -261,5 +333,9 @@ impl<'a> SymbolName<'a> for Origin<'a> {
             Origin::Vulkan1_3 => Cow::Borrowed("VULKAN_1_3"),
             Origin::Opaque => Cow::Borrowed("OPAQUE"),
         }
+    }
+
+    fn pretty_name(&self) -> String {
+        self.name().to_string()
     }
 }

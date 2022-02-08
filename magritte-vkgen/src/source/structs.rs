@@ -2,10 +2,12 @@ use std::{borrow::Cow, hint::unreachable_unchecked};
 
 use ahash::AHashSet;
 use convert_case::{Case, Casing};
+use proc_macro2::{Ident, Span};
 use tracing::{info, span, Level};
 use vk_parse::{TypeMemberDefinition, TypeMemberMarkup};
 
 use crate::{
+    doc::Queryable,
     origin::Origin,
     symbols::{SymbolName, SymbolTable},
     ty::{Native, Ty},
@@ -78,6 +80,11 @@ impl<'a> Struct<'a> {
         self.name.as_ref()
     }
 
+    /// Creates an identifier from the name
+    pub fn as_ident(&self) -> Ident {
+        Ident::new(self.name(), Span::call_site())
+    }
+
     /// Get a reference to the struct's extends.
     pub fn extends(&self) -> &AHashSet<Cow<'a, str>> {
         &self.extends
@@ -108,6 +115,16 @@ impl<'a> Struct<'a> {
 impl<'a> SymbolName<'a> for Struct<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.original_name.clone()
+    }
+
+    fn pretty_name(&self) -> String {
+        self.name().to_owned()
+    }
+}
+
+impl<'a> Queryable for Struct<'a> {
+    fn find(&self, name: &str) -> Option<&str> {
+        self.fields().get_by_either(name).map(Field::name)
     }
 }
 
@@ -220,11 +237,55 @@ impl<'a> Field<'a> {
             value: member.values.as_ref().map(|s| s as &str).map(Cow::Borrowed),
         }
     }
+
+    /// Get a reference to the field's name.
+    pub fn name(&self) -> &str {
+        self.name.as_ref()
+    }
+
+    /// Get a reference to the field's ty.
+    pub fn ty(&self) -> &Ty<'a> {
+        &self.ty
+    }
+
+    /// Get a reference to the field's selector.
+    pub fn selector(&self) -> Option<&Cow<str>> {
+        self.selector.as_ref()
+    }
+
+    /// Get a reference to the field's selection.
+    pub fn selection(&self) -> Option<&Cow<str>> {
+        self.selection.as_ref()
+    }
+
+    /// Get a reference to the field's optional.
+    pub fn optional(&self) -> Optionality {
+        self.optional
+    }
+
+    /// Get a reference to the field's externally synchronized.
+    pub fn externally_synchronized(&self) -> &ExternallySynced<'a> {
+        &self.externally_synchronized
+    }
+
+    /// Get a reference to the field's must be valid.
+    pub fn must_be_valid(&self) -> bool {
+        self.must_be_valid
+    }
+
+    /// Get a reference to the field's value.
+    pub fn value(&self) -> Option<&Cow<str>> {
+        self.value.as_ref()
+    }
 }
 
 impl<'a> SymbolName<'a> for Field<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.original_name.clone()
+    }
+
+    fn pretty_name(&self) -> String {
+        self.name().to_owned()
     }
 }
 

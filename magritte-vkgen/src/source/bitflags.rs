@@ -1,6 +1,9 @@
 use std::borrow::Cow;
 
+use proc_macro2::{Ident, Span};
+
 use crate::{
+    doc::Queryable,
     origin::Origin,
     symbols::{SymbolName, SymbolTable},
 };
@@ -72,6 +75,11 @@ impl<'a> BitFlag<'a> {
         self.name.as_ref()
     }
 
+    /// Creates an identifier from the name
+    pub fn as_ident(&self) -> Ident {
+        Ident::new(self.name(), Span::call_site())
+    }
+
     /// Get a reference to the bit flags's origin.
     #[inline]
     pub const fn origin(&self) -> &Origin<'a> {
@@ -112,6 +120,19 @@ impl<'a> BitFlag<'a> {
 impl<'a> SymbolName<'a> for BitFlag<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.original_name.clone()
+    }
+
+    fn pretty_name(&self) -> String {
+        self.name().to_owned()
+    }
+}
+
+impl<'a> Queryable for BitFlag<'a> {
+    fn find(&self, name: &str) -> Option<&str> {
+        self.bits
+            .get_by_either(name)
+            .map(Bit::name)
+            .or_else(|| self.aliases.get_by_either(name).map(Alias::name))
     }
 }
 
@@ -159,6 +180,11 @@ impl<'a> Bit<'a> {
         self.name.as_ref()
     }
 
+    /// Creates an identifier from the name
+    pub fn as_ident(&self) -> Ident {
+        Ident::new(self.name(), Span::call_site())
+    }
+
     /// Get a reference to the bit's origin.
     pub fn origin(&self) -> &Origin<'a> {
         &self.origin
@@ -178,5 +204,9 @@ impl<'a> Bit<'a> {
 impl<'a> SymbolName<'a> for Bit<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.original_name.clone()
+    }
+
+    fn pretty_name(&self) -> String {
+        self.name().to_owned()
     }
 }

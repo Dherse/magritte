@@ -1,6 +1,7 @@
 mod sync;
 
 use convert_case::{Case, Casing};
+use proc_macro2::{Ident, Span};
 pub use sync::ExternallySynced;
 use tracing::{info, span, Level};
 
@@ -12,6 +13,7 @@ use std::{
 use smallvec::SmallVec;
 
 use crate::{
+    doc::Queryable,
     origin::Origin,
     symbols::{SymbolName, SymbolTable},
     ty::Ty,
@@ -96,6 +98,11 @@ impl<'a> Function<'a> {
         self.name.as_ref()
     }
 
+    /// Creates a new identifier for the rustified name
+    pub fn as_ident(&self) -> Ident {
+        Ident::new(self.name(), Span::call_site())
+    }
+
     /// Get a reference to the function's origin.
     #[inline]
     pub const fn origin(&self) -> &Origin<'a> {
@@ -131,6 +138,16 @@ impl<'a> Function<'a> {
 impl<'a> SymbolName<'a> for Function<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.original_name.clone()
+    }
+
+    fn pretty_name(&self) -> String {
+        self.name().to_owned()
+    }
+}
+
+impl<'a> Queryable for Function<'a> {
+    fn find(&self, name: &str) -> Option<&str> {
+        self.arguments.get_by_either(name).map(FunctionArgument::name)
     }
 }
 
@@ -217,6 +234,11 @@ impl<'a> FunctionArgument<'a> {
         self.name.as_ref()
     }
 
+    /// Creates an identifier from the name
+    pub fn as_ident(&self) -> Ident {
+        Ident::new(self.name(), Span::call_site())
+    }
+
     /// Gets a reference to the argument's length.
     pub fn len(&self) -> Option<&str> {
         self.len.as_ref().map(|s| s as &str)
@@ -241,6 +263,10 @@ impl<'a> FunctionArgument<'a> {
 impl<'a> SymbolName<'a> for FunctionArgument<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.original_name.clone()
+    }
+
+    fn pretty_name(&self) -> String {
+        self.name().to_owned()
     }
 }
 
@@ -310,6 +336,10 @@ impl<'a> SymbolName<'a> for Command<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.original_name.clone()
     }
+
+    fn pretty_name(&self) -> String {
+        self.function.name().to_owned()
+    }
 }
 
 /// A command alias.
@@ -356,6 +386,11 @@ impl<'a> CommandAlias<'a> {
         self.name.as_ref()
     }
 
+    /// Creates an identifier from the name
+    pub fn as_ident(&self) -> Ident {
+        Ident::new(self.name(), Span::call_site())
+    }
+
     /// Get a reference to the alias's origin.
     #[inline]
     pub const fn origin(&self) -> &Origin<'a> {
@@ -376,6 +411,10 @@ impl<'a> CommandAlias<'a> {
 impl<'a> SymbolName<'a> for CommandAlias<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.original_name.clone()
+    }
+
+    fn pretty_name(&self) -> String {
+        self.name().to_owned()
     }
 }
 

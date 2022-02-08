@@ -1,6 +1,9 @@
 use std::borrow::Cow;
 
+use proc_macro2::{Ident, Span};
+
 use crate::{
+    doc::Queryable,
     origin::Origin,
     symbols::{SymbolName, SymbolTable},
     ty::Ty,
@@ -59,6 +62,11 @@ impl<'a> FunctionPointer<'a> {
         self.name.as_ref()
     }
 
+    /// Creates an identifier from the name
+    pub fn as_ident(&self) -> Ident {
+        Ident::new(self.name(), Span::call_site())
+    }
+
     /// Get a reference to the function pointer's arguments.
     pub fn arguments(&self) -> &SymbolTable<'a, FunctionPointerArgument<'a>> {
         &self.arguments
@@ -79,6 +87,16 @@ impl<'a> FunctionPointer<'a> {
 impl<'a> SymbolName<'a> for FunctionPointer<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.original_name.clone()
+    }
+
+    fn pretty_name(&self) -> String {
+        self.name().to_owned()
+    }
+}
+
+impl<'a> Queryable for FunctionPointer<'a> {
+    fn find(&self, name: &str) -> Option<&str> {
+        self.arguments.get_by_either(name).map(FunctionPointerArgument::name)
     }
 }
 
@@ -115,6 +133,11 @@ impl<'a> FunctionPointerArgument<'a> {
         self.name.as_ref()
     }
 
+    /// Creates an identifier from the name
+    pub fn as_ident(&self) -> Ident {
+        Ident::new(self.name(), Span::call_site())
+    }
+
     /// Get a reference to the function pointer argument's ty.
     pub fn ty(&self) -> &Ty<'a> {
         &self.ty
@@ -124,5 +147,9 @@ impl<'a> FunctionPointerArgument<'a> {
 impl<'a> SymbolName<'a> for FunctionPointerArgument<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.original_name.clone()
+    }
+
+    fn pretty_name(&self) -> String {
+        self.name().to_owned()
     }
 }

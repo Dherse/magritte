@@ -155,52 +155,51 @@ impl<'a> Source<'a> {
     /// Finds a value defined in the Vulkan spefification and returns it if it exists.
     #[inline]
     pub fn find(&self, name: &str) -> Option<Ref<'a, '_>> {
-        if let Some(vendor) = self.vendors.get_by_name(name) {
+        if let Some(vendor) = self.vendors.get_by_either(name) {
             Some(Ref::Vendor(vendor))
-        } else if let Some(extension) = self.extensions.get_by_name(name) {
+        } else if let Some(extension) = self.extensions.get_by_either(name) {
             Some(Ref::Extension(extension))
-        } else if let Some(tag) = self.tags.get_by_name(name) {
+        } else if let Some(tag) = self.tags.get_by_either(name) {
             Some(Ref::Tag(tag))
-        } else if let Some(opaque_type) = self.opaque_types.get_by_name(name) {
+        } else if let Some(opaque_type) = self.opaque_types.get_by_either(name) {
             Some(Ref::OpaqueType(opaque_type))
-        } else if let Some(alias) = self.aliases.get_by_name(name) {
+        } else if let Some(alias) = self.aliases.get_by_either(name) {
             Some(Ref::Alias(alias))
-        } else if let Some(struct_) = self.structs.get_by_name(name) {
+        } else if let Some(struct_) = self.structs.get_by_either(name) {
             Some(Ref::Struct(struct_))
-        } else if let Some(union_) = self.unions.get_by_name(name) {
+        } else if let Some(union_) = self.unions.get_by_either(name) {
             Some(Ref::Union(union_))
-        } else if let Some(handle) = self.handles.get_by_name(name) {
+        } else if let Some(handle) = self.handles.get_by_either(name) {
             Some(Ref::Handle(handle))
-        } else if let Some(funcpointer) = self.funcpointers.get_by_name(name) {
+        } else if let Some(funcpointer) = self.funcpointers.get_by_either(name) {
             Some(Ref::FunctionPointer(funcpointer))
-        } else if let Some(basetype) = self.basetypes.get_by_name(name) {
+        } else if let Some(basetype) = self.basetypes.get_by_either(name) {
             Some(Ref::Basetype(basetype))
-        } else if let Some(bitmask) = self.bitmasks.get_by_name(name) {
+        } else if let Some(bitmask) = self.bitmasks.get_by_either(name) {
             Some(Ref::Bitmask(bitmask))
-        } else if let Some(const_) = self.constants.get_by_name(name) {
+        } else if let Some(const_) = self.constants.get_by_either(name) {
             Some(Ref::Const(const_))
-        } else if let Some(const_alias) = self.constant_aliases.get_by_name(name) {
+        } else if let Some(const_alias) = self.constant_aliases.get_by_either(name) {
             Some(Ref::ConstAlias(const_alias))
-        } else if let Some(bitflag) = self.bitflags.get_by_name(name) {
+        } else if let Some(bitflag) = self.bitflags.get_by_either(name) {
             Some(Ref::BitFlag(bitflag))
-        } else if let Some(enum_) = self.enums.get_by_name(name) {
+        } else if let Some(enum_) = self.enums.get_by_either(name) {
             Some(Ref::Enum(enum_))
-        } else if let Some(command_alias) = self.command_aliases.get_by_name(name) {
+        } else if let Some(command_alias) = self.command_aliases.get_by_either(name) {
             Some(Ref::CommandAlias(command_alias))
-        } else if let Some(function) = self.functions.get_by_name(name) {
+        } else if let Some(function) = self.functions.get_by_either(name) {
             Some(Ref::Function(function))
-        } else if let Some(command) = self.commands.get_by_name(name) {
+        } else if let Some(command) = self.commands.get_by_either(name) {
             Some(Ref::Function(command))
-        } else if let Some(origin) = self.origins.get_by_name(name) {
+        } else if let Some(origin) = self.origins.get_by_either(name) {
             Some(Ref::Origin(origin))
         } else {
             None
         }
     }
 
-
     /// Resolves a chain of aliases to the original reference.
-    /// 
+    ///
     /// This **never** returns [`Ref::Alias`], [`Ref::ConstAlias`], [`Ref::CommandAlias`]
     #[inline]
     pub fn resolve(&self, name: &str) -> Option<Ref<'a, '_>> {
@@ -215,7 +214,7 @@ impl<'a> Source<'a> {
     }
 
     /// Resolves a chain of aliases to the original type.
-    /// 
+    ///
     /// This **never** returns [`TypeRef::Alias`]
     #[inline]
     pub fn resolve_type(&self, name: &str) -> Option<TypeRef<'a, '_>> {
@@ -896,7 +895,6 @@ impl<'a> Source<'a> {
         if let Some(requires) = &ty.requires {
             if requires.ends_with(".h") {
                 let original_name = ty.name.as_ref().expect("missing name for opaque type");
-                let name = type_name(original_name, &self.tags[..]);
 
                 let span = span!(Level::INFO, "opaque", ?original_name, ?requires);
                 let _guard = span.enter();
@@ -905,7 +903,7 @@ impl<'a> Source<'a> {
 
                 self.origins.push(Origin::Opaque);
                 self.opaque_types
-                    .push(OpaqueType::new(original_name, name, requires, Origin::Opaque));
+                    .push(OpaqueType::new(original_name, requires, Origin::Opaque));
 
                 return;
             }

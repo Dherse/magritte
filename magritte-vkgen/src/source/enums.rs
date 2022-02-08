@@ -1,6 +1,9 @@
 use std::borrow::Cow;
 
+use proc_macro2::{Ident, Span};
+
 use crate::{
+    doc::Queryable,
     origin::Origin,
     symbols::{SymbolName, SymbolTable},
 };
@@ -66,6 +69,11 @@ impl<'a> Enum<'a> {
         self.name.as_ref()
     }
 
+    /// Creates an identifier from the name
+    pub fn as_ident(&self) -> Ident {
+        Ident::new(self.name(), Span::call_site())
+    }
+
     /// Get a reference to the enum's origin.
     #[inline]
     pub const fn origin(&self) -> &Origin<'a> {
@@ -101,5 +109,18 @@ impl<'a> Enum<'a> {
 impl<'a> SymbolName<'a> for Enum<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.original_name.clone()
+    }
+
+    fn pretty_name(&self) -> String {
+        self.name().to_owned()
+    }
+}
+
+impl<'a> Queryable for Enum<'a> {
+    fn find(&self, name: &str) -> Option<&str> {
+        self.variants
+            .get_by_either(name)
+            .map(Bit::name)
+            .or_else(|| self.aliases.get_by_either(name).map(Alias::name))
     }
 }

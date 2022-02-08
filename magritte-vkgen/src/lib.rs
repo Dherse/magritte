@@ -8,6 +8,7 @@
     box_patterns,
     const_option_ext,
     string_remove_matches,
+    extend_one
 )]
 #![warn(clippy::pedantic, clippy::cargo)]
 #![deny(missing_docs)]
@@ -18,6 +19,7 @@ pub mod expr;
 pub mod imports;
 pub mod name;
 pub mod origin;
+pub mod rustmft;
 pub mod source;
 pub mod symbols;
 pub mod ty;
@@ -103,7 +105,7 @@ pub fn parse_documentation(root: &str) -> Result<Documentation, Box<dyn Error + 
 
     for entry in read_dir {
         let entry = entry?;
-        if entry.file_type()?.is_file() {
+        if !entry.file_type()?.is_file() {
             continue;
         }
 

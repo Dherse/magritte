@@ -20,6 +20,7 @@ where
 {
     values: SmallVec<[T; 8]>,
     symbols: AHashMap<Cow<'a, str>, usize>,
+    symbols_pretty: AHashMap<String, usize>,
 }
 
 impl<'a, T> Debug for SymbolTable<'a, T>
@@ -50,6 +51,7 @@ where
         Self {
             values: SmallVec::new(),
             symbols: AHashMap::new(),
+            symbols_pretty: AHashMap::new(),
         }
     }
 
@@ -60,6 +62,7 @@ where
         Self {
             values: SmallVec::with_capacity(cap),
             symbols: AHashMap::with_capacity(cap),
+            symbols_pretty: AHashMap::with_capacity(cap),
         }
     }
 
@@ -68,12 +71,18 @@ where
         let (min, max) = inputs.size_hint();
         let mut values = SmallVec::with_capacity(max.unwrap_or(min));
         let mut symbols = AHashMap::with_capacity(max.unwrap_or(min));
+        let mut symbols_pretty = AHashMap::with_capacity(max.unwrap_or(min));
         for (index, input) in inputs.enumerate() {
             symbols.insert(input.name(), index);
+            symbols_pretty.insert(input.pretty_name(), index);
             values.push(input);
         }
 
-        Self { values, symbols }
+        Self {
+            values,
+            symbols,
+            symbols_pretty,
+        }
     }
 
     /// Gets the number of symbols in this table
@@ -87,6 +96,7 @@ where
     pub fn reserve(&mut self, size: usize) {
         self.values.reserve(size);
         self.symbols.reserve(size);
+        self.symbols_pretty.reserve(size);
     }
 
     /// Extends this table from an iterator, appending all of its elements
@@ -96,6 +106,7 @@ where
 
         self.symbols.reserve(max.unwrap_or(min));
         self.values.reserve(max.unwrap_or(min));
+        self.symbols_pretty.reserve(max.unwrap_or(min));
 
         inputs.for_each(|input| {
             self.push(input);
@@ -111,6 +122,7 @@ where
             Some(replace(&mut self.values[*index], input))
         } else {
             self.symbols.insert(input.name(), index);
+            self.symbols_pretty.insert(input.pretty_name(), index);
             self.values.push(input);
 
             None
@@ -185,6 +197,26 @@ where
         Some(unsafe { self.values.get_mut(*index).unwrap_unchecked() })
     }
 
+    /// Gets an element from its pretty name
+    #[inline]
+    pub fn get_by_pretty(&self, name: &str) -> Option<&T> {
+        let index = self.symbols_pretty.get(name)?;
+        Some(unsafe { self.values.get(*index).unwrap_unchecked() })
+    }
+
+    /// Gets a mutable reference to an element from its pretty name
+    #[inline]
+    pub fn get_by_pretty_mut(&mut self, name: &str) -> Option<&mut T> {
+        let index = self.symbols_pretty.get(name)?;
+        Some(unsafe { self.values.get_mut(*index).unwrap_unchecked() })
+    }
+
+    /// Gets an element from either its name or its pretty name
+    #[inline]
+    pub fn get_by_either(&self, name: &str) -> Option<&T> {
+        self.get_by_name(name).or_else(|| self.get_by_pretty(name))
+    }
+
     /// Checks whether the given name exists in the symbol table
     #[inline]
     pub fn contains_name(&self, name: &str) -> bool {
@@ -206,8 +238,11 @@ where
         while i < self.len() {
             if predicate(&self.values[i]) {
                 let name = self.values[i].name();
+                let pretty = self.values[i].pretty_name();
+
                 self.values.remove(i);
                 self.symbols.remove(&name);
+                self.symbols_pretty.remove(&pretty);
             } else {
                 i += 1;
             }
@@ -359,11 +394,19 @@ where
 pub trait SymbolName<'a> {
     /// Gets the symbol name
     fn name(&self) -> Cow<'a, str>;
+
+    /// The pretty name of this symbol
+    fn pretty_name(&self) -> String;
 }
 
 impl<'a> SymbolName<'a> for Cow<'a, str> {
     #[inline]
     fn name(&self) -> Cow<'a, str> {
         self.clone()
+    }
+
+    #[inline]
+    fn pretty_name(&self) -> String {
+        self.name().to_string()
     }
 }

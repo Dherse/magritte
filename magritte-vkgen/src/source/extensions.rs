@@ -1,5 +1,6 @@
 use std::borrow::Cow;
 
+use proc_macro2::{Ident, Span};
 use smallvec::SmallVec;
 
 use crate::{origin::Origin, symbols::SymbolName};
@@ -44,7 +45,7 @@ impl<'a> Extension<'a> {
         deprecation_status: DeprecationStatus,
     ) -> Self {
         let origin = Origin::Extension(name.clone(), id, disabled);
-        
+
         Self {
             name,
             disabled,
@@ -53,13 +54,18 @@ impl<'a> Extension<'a> {
             min_core,
             required,
             deprecation_status,
-            origin
+            origin,
         }
     }
 
     /// Get a reference to the extension's name.
     pub fn name(&self) -> &str {
         self.name.as_ref()
+    }
+
+    /// Creates an identifier from the name
+    pub fn as_ident(&self) -> Ident {
+        Ident::new(self.name(), Span::call_site())
     }
 
     /// Get a reference to the extension's disabled.
@@ -102,6 +108,10 @@ impl<'a> Extension<'a> {
 impl<'a> SymbolName<'a> for Extension<'a> {
     fn name(&self) -> Cow<'a, str> {
         self.name.clone()
+    }
+
+    fn pretty_name(&self) -> String {
+        self.name().to_owned()
     }
 }
 

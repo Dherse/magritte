@@ -268,7 +268,7 @@ pub enum Native {
 }
 impl Native {
     /// Gets the default value of this native type as tokens
-    pub fn default_tokens(&self, imports: &mut Imports) -> TokenStream {
+    pub fn default_tokens(&self, imports: &Imports) -> TokenStream {
         match self {
             Native::Void => panic!("no default value for void"),
             Native::UInt(_) | Native::Int(_) | Native::USize | Native::SSize => quote! { 0 },

@@ -28,7 +28,8 @@ ahash = "0.7.6"
 smallvec = { version = "1.8.0", features = [ "union", "specialization", "const_generics", "serde", "const_new" ] }
 
 # HTML scraper (for building the doc)
-scraper = "0.12"
+scraper = "0.12.0"
+ego-tree = "^0.6"
 
 # vk.xml parser
 vk-parse = "0.7.0"

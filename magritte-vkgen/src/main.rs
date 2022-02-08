@@ -6,7 +6,7 @@
 
 use std::{error::Error, io::stderr};
 
-use magritte_vkgen::{parse_documentation, parse_registry, source::Source};
+use magritte_vkgen::{parse_documentation, parse_registry, rustmft::run_rustfmt, source::Source};
 use tracing::{info, span, Level};
 use tracing_subscriber::{fmt::time::UtcTime, EnvFilter};
 
@@ -48,7 +48,9 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
 
     info!("Got documentation");
 
-    println!("{:#?}", source);
+    for file in source.generate_code(&doc).values() {
+        println!("{}", run_rustfmt(file.to_string()).unwrap());
+    }
 
     Ok(())
 }
