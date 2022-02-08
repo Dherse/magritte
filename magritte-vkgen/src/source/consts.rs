@@ -2,7 +2,7 @@ use std::borrow::Cow;
 
 use proc_macro2::{Ident, Span};
 
-use crate::{expr::Expr, origin::Origin, symbols::SymbolName, ty::Ty, doc::Queryable};
+use crate::{doc::Queryable, expr::Expr, origin::Origin, symbols::SymbolName, ty::Ty};
 
 /// A type constant.
 #[derive(Debug, Clone, PartialEq)]

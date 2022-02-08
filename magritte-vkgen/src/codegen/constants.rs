@@ -1,9 +1,10 @@
 use proc_macro2::TokenStream;
 
 use crate::{
-    doc::{Documentation},
+    codegen::alias_of,
+    doc::Documentation,
     imports::Imports,
-    source::{Const, Source, ConstAlias}, codegen::alias_of,
+    source::{Const, ConstAlias, Source},
 };
 
 impl<'a> Const<'a> {

@@ -1,10 +1,10 @@
 //! # Code generation
 //! This module handles code generation for all types.
 
+mod basetypes;
 mod constants;
 mod expr;
 mod ty;
-mod basetypes;
 
 use ahash::AHashMap;
 use proc_macro2::TokenStream;
@@ -24,7 +24,7 @@ impl<'a> Source<'a> {
             if const_.origin().is_disabled() {
                 continue;
             }
-            
+
             let (imports, out) = per_origin.get_mut(const_.origin()).unwrap();
 
             const_.generate_code(self, doc, &imports, out);
@@ -40,7 +40,11 @@ impl<'a> Source<'a> {
             const_alias.generate_code(self, doc, &imports, out);
         }
 
-        per_origin.into_iter().filter(|(o, _)| !o.is_disabled()).map(|(o, (_, out))| (o, out)).collect()
+        per_origin
+            .into_iter()
+            .filter(|(o, _)| !o.is_disabled())
+            .map(|(o, (_, out))| (o, out))
+            .collect()
     }
 }
 
