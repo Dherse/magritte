@@ -1,17 +1,10 @@
 use proc_macro2::TokenStream;
-use quote::quote;
 
 use crate::{
-    doc::{Documentation, Queryable},
+    doc::{Documentation},
     imports::Imports,
-    source::{Const, Source},
+    source::{Const, Source, ConstAlias}, codegen::alias_of,
 };
-
-impl<'a> Queryable for Const<'a> {
-    fn find(&self, _: &str) -> Option<&str> {
-        None
-    }
-}
 
 impl<'a> Const<'a> {
     /// Generates the code for a constant
@@ -25,18 +18,8 @@ impl<'a> Const<'a> {
         // the name as an identifier
         let name = self.as_ident();
 
-        // creates a doc alias if the name has been changed
-        let alias = if self.original_name() == self.name() {
-            None
-        } else {
-            let original_name = self.original_name();
-            Some(quote! {
-                #[doc(alias = #original_name)]
-            })
-        };
-
         // the type of the constant
-        let ty = self.ty().as_ty(source, Some(imports));
+        let ty = self.ty().as_const_ty(source, Some(imports));
 
         // the value of the constant
         let value = self.value().as_const_expr(source, Some(imports));
@@ -44,10 +27,12 @@ impl<'a> Const<'a> {
         // append the doc first
         self.generate_doc(source, doc, out);
 
+        // creates a doc alias if the name has been changed
+        alias_of(self.original_name(), self.name(), out);
+
         quote::quote_each_token! {
             out
 
-            #alias
             pub const #name: #ty = #value;
         }
     }
@@ -87,5 +72,43 @@ impl<'a> Const<'a> {
         }
 
         Some(())
+    }
+}
+
+impl<'a> ConstAlias<'a> {
+    /// Generates the code for a constant
+    pub(super) fn generate_code(
+        &self,
+        source: &Source<'a>,
+        doc: &Documentation,
+        imports: &Imports,
+        mut out: &mut TokenStream,
+    ) {
+        // get the identifier of the constant
+        let name = self.as_ident();
+
+        // find the original constant
+        let of = source.constants.get_by_name(self.of()).expect("unknown constant");
+
+        // the identifier of the original constant
+        let of_ident = of.as_ident();
+
+        // imports the original constant
+        imports.push_origin(of.origin(), of.name());
+
+        // get the type of the constant
+        let ty = of.ty().as_const_ty(source, Some(imports));
+
+        // generate the documentation based on the original constant
+        of.generate_doc(source, doc, out);
+
+        // creates a doc alias if the name has been changed
+        alias_of(self.original_name(), self.name(), out);
+
+        quote::quote_each_token! {
+            out
+
+            pub const #name: #ty = #of_ident;
+        }
     }
 }

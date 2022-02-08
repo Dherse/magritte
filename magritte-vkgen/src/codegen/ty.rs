@@ -11,14 +11,14 @@ use crate::{
 
 impl<'a> Ty<'a> {
     /// Turns a type into a token stream
-    pub(super) fn as_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> Type {
+    pub(super) fn as_const_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> Type {
         match self {
             Ty::Native(native) => native.as_type(imports),
             Ty::Pointer(mutability, ty) => Type::Ptr(TypePtr {
                 star_token: Default::default(),
                 const_token: mutability.as_const_token(),
                 mutability: mutability.as_mutability_token(),
-                elem: box ty.as_ty(source, imports),
+                elem: box ty.as_const_ty(source, imports),
             }),
             Ty::Named(name) => source
                 .find(name)
@@ -33,7 +33,7 @@ impl<'a> Ty<'a> {
                 len: len.as_const_expr(source, imports),
             }),
             Ty::Array(ty, len) => {
-                let elem = box ty.as_ty(source, imports);
+                let elem = box ty.as_const_ty(source, imports);
                 let len = len.as_const_expr(source, imports);
 
                 Type::Array(TypeArray {
@@ -47,7 +47,7 @@ impl<'a> Ty<'a> {
                 star_token: Default::default(),
                 const_token: mutability.as_const_token(),
                 mutability: mutability.as_mutability_token(),
-                elem: box ty.as_ty(source, imports),
+                elem: box ty.as_const_ty(source, imports),
             }),
             Ty::NullTerminatedString(_) => Native::NullTerminatedString.as_type(imports),
         }

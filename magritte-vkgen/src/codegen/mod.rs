@@ -4,6 +4,7 @@
 mod constants;
 mod expr;
 mod ty;
+mod basetypes;
 
 use ahash::AHashMap;
 use proc_macro2::TokenStream;
@@ -16,17 +17,39 @@ impl<'a> Source<'a> {
         let mut per_origin = self
             .origins
             .iter()
-            .map(|o| (o, TokenStream::new()))
+            .map(|o| (o, (Imports::new(o), TokenStream::new())))
             .collect::<AHashMap<_, _>>();
 
         for const_ in &self.constants {
-            let imports = Imports::new(const_.origin());
-
-            let out = per_origin.get_mut(const_.origin()).unwrap();
+            if const_.origin().is_disabled() {
+                continue;
+            }
+            
+            let (imports, out) = per_origin.get_mut(const_.origin()).unwrap();
 
             const_.generate_code(self, doc, &imports, out);
         }
 
-        per_origin.into_iter().filter(|(o, _)| !o.is_disabled()).collect()
+        for const_alias in &self.constant_aliases {
+            if const_alias.origin().is_disabled() {
+                continue;
+            }
+
+            let (imports, out) = per_origin.get_mut(const_alias.origin()).unwrap();
+
+            const_alias.generate_code(self, doc, &imports, out);
+        }
+
+        per_origin.into_iter().filter(|(o, _)| !o.is_disabled()).map(|(o, (_, out))| (o, out)).collect()
+    }
+}
+
+fn alias_of(original: &str, name: &str, mut out: &mut TokenStream) {
+    if original != name {
+        quote::quote_each_token! {
+            out
+
+            #[doc(alias = #original)]
+        }
     }
 }

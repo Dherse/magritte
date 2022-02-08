@@ -2,7 +2,7 @@ use std::borrow::Cow;
 
 use proc_macro2::{Ident, Span};
 
-use crate::{expr::Expr, origin::Origin, symbols::SymbolName, ty::Ty};
+use crate::{expr::Expr, origin::Origin, symbols::SymbolName, ty::Ty, doc::Queryable};
 
 /// A type constant.
 #[derive(Debug, Clone, PartialEq)]
@@ -89,6 +89,12 @@ impl<'a> SymbolName<'a> for Const<'a> {
     }
 }
 
+impl<'a> Queryable for Const<'a> {
+    fn find(&self, _: &str) -> Option<&str> {
+        None
+    }
+}
+
 /// A type alias.
 #[derive(Debug, Clone, PartialEq)]
 pub struct ConstAlias<'a> {
@@ -152,6 +158,12 @@ impl<'a> ConstAlias<'a> {
     /// Get a reference to the alias's of.
     pub fn of(&self) -> &str {
         self.of.as_ref()
+    }
+}
+
+impl<'a> Queryable for ConstAlias<'a> {
+    fn find(&self, _: &str) -> Option<&str> {
+        None
     }
 }
 
