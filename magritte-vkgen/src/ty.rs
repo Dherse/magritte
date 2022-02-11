@@ -20,7 +20,7 @@ use quote::{quote, ToTokens};
 
 use crate::{
     expr::{parse_expr, variable_raw, Expr},
-    imports::Imports, source::Source,
+    imports::Imports,
 };
 
 /// A Vulkan C-like type
