@@ -200,21 +200,21 @@ One of the end goals for magritte is to support all common Vulkan formats using 
 
 Here are the following families that need to be implemented in the code generator:
 
--[ ] Loaders
--[ ] 
--[ ] Extensions (doc only)
--[ ] Opaque types (aliases of `c_void`)
--[ ] Type aliases
--[ ] Structs
--[ ] Struct builders
--[ ] Unions
--[ ] Function pointers
--[x] Base types
--[ ] Bit masks
--[x] Constants
--[x] Constant aliases
--[ ] Bit mask flags
--[ ] Enums
--[ ] Function/command aliases
--[ ] Functions
--[ ] Commands & command buffers
+- [ ] Loaders
+- [ ] Handles
+- [ ] Extensions (doc only)
+- [ ] Opaque types (aliases of `c_void`)
+- [ ] Type aliases
+- [ ] Structs
+- [ ] Struct builders
+- [ ] Unions
+- [ ] Function pointers
+- [x] Base types
+- [ ] Bit masks
+- [x] Constants
+- [x] Constant aliases
+- [ ] Bit mask flags
+- [ ] Enums
+- [ ] Function/command aliases
+- [ ] Functions
+- [ ] Commands & command buffers
