@@ -12,9 +12,14 @@ use proc_macro2::TokenStream;
 
 use crate::{doc::Documentation, imports::Imports, origin::Origin, source::Source};
 
+#[doc(hidden)]
+pub struct CodeOut(pub Origin<'static>, pub Imports, pub TokenStream);
+
+unsafe impl Send for CodeOut {}
+
 impl<'a> Source<'a> {
     /// Generates the code in a per-origin basis.
-    pub fn generate_code(&self, doc: &mut Documentation) -> AHashMap<&'_ Origin<'a>, (Imports, TokenStream)> {
+    pub fn generate_code(&self, doc: &mut Documentation) -> Vec<CodeOut> {
         let mut per_origin = self
             .origins
             .iter()
@@ -62,7 +67,7 @@ impl<'a> Source<'a> {
             enum_.generate_code(self, doc, &imports, out);
         }
 
-        per_origin.into_iter().collect()
+        per_origin.into_iter().map(|(key, (i, t))| CodeOut(key.as_static(), i, t)).collect()
     }
 }
 

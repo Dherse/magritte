@@ -6,9 +6,10 @@
 
 use std::{error::Error, fmt::Write, io::stderr};
 
-use magritte_vkgen::{parse_documentation, parse_registry, rustmft::run_rustfmt, source::Source};
+use magritte_vkgen::{parse_documentation, parse_registry, rustmft::run_rustfmt, source::Source, codegen::CodeOut};
 use mimalloc::MiMalloc;
 use quote::ToTokens;
+use rayon::iter::{IntoParallelIterator, ParallelIterator};
 use tracing::{info, span, Level};
 use tracing_subscriber::{fmt::time::UtcTime, EnvFilter};
 
@@ -22,7 +23,7 @@ const VK_XML_PATH: &str = "vendors/Vulkan-Headers/registry/vk.xml";
 const DOC_IN_PATH: &str = "vendors/Vulkan-Docs/gen/out/man/html/";
 
 /// The path where the generated bindings will be written to.
-const BINDING_OUT_PATH: &str = "magritte-vk/src/generated/";
+const BINDING_OUT_PATH: &str = "magritte/src/generated/";
 
 fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
     tracing_subscriber::fmt()
@@ -53,14 +54,14 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
 
     info!("Got documentation");
 
-    for (imports, code) in source.generate_code(&mut doc).values() {
+    source.generate_code(&mut doc).into_par_iter().for_each(|CodeOut(_, imports, code)| {
         let mut out = String::with_capacity(1 << 20);
 
         write!(out, "{}", imports.to_token_stream()).unwrap();
         write!(out, "{}", code).unwrap();
 
         println!("{}", run_rustfmt(out).unwrap());
-    }
+    });
 
     Ok(())
 }

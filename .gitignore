@@ -11,3 +11,8 @@ Cargo.lock
 
 # Logging file I use when debugging the code generator
 out.log
+
+# File for flamegraph
+flamegraph.svg
+perf.data
+perf.data.old
