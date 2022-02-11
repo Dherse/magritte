@@ -4,7 +4,8 @@ use std::iter::once;
 
 use proc_macro2::{Ident, Span};
 use syn::{
-    punctuated::Punctuated, Lifetime, Path, PathSegment, Token, Type, TypeArray, TypePath, TypePtr, TypeReference, PathArguments, AngleBracketedGenericArguments, GenericArgument, TypeSlice,
+    punctuated::Punctuated, AngleBracketedGenericArguments, GenericArgument, Lifetime, Path, PathArguments,
+    PathSegment, Token, Type, TypeArray, TypePath, TypePtr, TypeReference, TypeSlice,
 };
 
 use crate::{
@@ -48,30 +49,31 @@ impl<'a> Ty<'a> {
     pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
         match self {
             Ty::Pointer(_, ty) | Ty::Slice(_, ty, _) => !ty.has_opaque(source),
-            Ty::NullTerminatedString(_)  => true,
+            Ty::NullTerminatedString(_) => true,
             Ty::Native(_) | Ty::StringArray(_) => false,
             Ty::Array(ty, _) => ty.has_lifetime(source),
             Ty::Named(named) => source.resolve_type(named).expect("unknown type").has_lifetime(source),
         }
     }
 
-
     /// Turns a type into a tokenized type and an optional lifetime argument
     pub fn as_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> (Type, bool) {
         match self {
             Ty::Native(_) => (self.as_const_ty(source, imports), false),
-            Ty::Pointer(mutability, ty) => if ty.has_opaque(source) {
-                (
-                    Type::Reference(TypeReference {
-                        and_token: Default::default(),
-                        lifetime: Some(lifetime_as_lifetime()),
-                        mutability: mutability.as_mutability_token(),
-                        elem: box ty.as_ty(source, imports).0,
-                    }),
-                    true
-                )
-            } else {
-                (self.as_const_ty(source, imports), false)
+            Ty::Pointer(mutability, ty) => {
+                if ty.has_opaque(source) {
+                    (
+                        Type::Reference(TypeReference {
+                            and_token: Default::default(),
+                            lifetime: Some(lifetime_as_lifetime()),
+                            mutability: mutability.as_mutability_token(),
+                            elem: box ty.as_ty(source, imports).0,
+                        }),
+                        true,
+                    )
+                } else {
+                    (self.as_const_ty(source, imports), false)
+                }
             },
             Ty::Named(name) => source
                 .find(name)
@@ -92,7 +94,7 @@ impl<'a> Ty<'a> {
                         semi_token: Default::default(),
                         len,
                     }),
-                    lt
+                    lt,
                 )
             },
             Ty::Slice(mutability, ty, _) => {
@@ -109,7 +111,7 @@ impl<'a> Ty<'a> {
                                 elem: box ty.as_ty(source, imports).0,
                             }),
                         }),
-                        true
+                        true,
                     )
                 }
             },
@@ -164,7 +166,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     /// Turns a type reference into a tokenized type
     pub fn as_const_type(&self, source: &Source<'a>, imports: Option<&Imports>) -> Type {
         assert!(!self.has_lifetime(source), "type cannot be made into static type");
-        
+
         if let Some(imports) = imports {
             self.import(imports);
 
@@ -201,7 +203,6 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
         } else {
             self.origin().as_path()
         };
-        
 
         path.segments.push(if lt {
             PathSegment {
@@ -216,14 +217,8 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
         } else {
             PathSegment::from(self.as_ident())
         });
-        
-        (
-            Type::Path(TypePath {
-                qself: None,
-                path,
-            }),
-            lt
-        )
+
+        (Type::Path(TypePath { qself: None, path }), lt)
     }
 }
 

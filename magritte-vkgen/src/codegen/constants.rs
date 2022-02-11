@@ -44,13 +44,13 @@ impl<'a> Const<'a> {
         if let Some(mut doc) = doc.find(self.original_name()) {
             // parse the name section and write it out
             doc.name(source, self, out);
-    
+
             // parse the c spec section and write it out
             doc.specification(source, self, out);
-    
+
             // parse the related elements and write them out
             doc.related(source, out);
-    
+
             // adds the copyright of the Vulkan docs
             doc.copyright(out);
 

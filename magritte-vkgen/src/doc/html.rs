@@ -1,9 +1,11 @@
 use std::borrow::Cow;
 
+use ahash::AHashMap;
 use ego_tree::NodeRef;
 use nom::combinator::all_consuming;
 use regex::{Regex, Replacer};
-use scraper::{ElementRef, Node};
+use scraper::{ElementRef, Node, Selector};
+use tracing::error;
 
 use crate::{source::Source, ty::native_raw};
 
@@ -11,20 +13,29 @@ use super::Queryable;
 
 lazy_static::lazy_static! {
     static ref LINK_REGEX: Regex = Regex::new(r"\[`([\w0-9:_]+)`\]\s?::\s?`([\w0-9]+)`").unwrap();
+    static ref FULL_LINK_REGEX: Regex = Regex::new(r"\[`([\w0-9_]+::)?([\w0-9_]+)`\]").unwrap();
+
+    static ref DLIST_DL_DD: Selector = Selector::parse("dl > dd").unwrap();
+    static ref ULIST_UL_LI: Selector = Selector::parse("ul > li").unwrap();
+    static ref OLIST_OL_LI: Selector = Selector::parse("ol > li").unwrap();
 }
 
 /// A visitor that visits nodes in an HTML graph
-pub(super) struct Visitor<'a, 'b>
+pub(super) struct Visitor<'a, 'b, T: Queryable>
 where
     'b: 'a,
 {
     pub source: &'a Source<'b>,
-    pub this: &'a dyn Queryable,
-    pub out: &'a mut String,
+    pub this: &'a T,
+    pub out: String,
     pub code_as_transparent: bool,
+    pub in_item: bool,
+    pub found: bool,
+    pub level: u32,
+    pub variants: Option<&'a mut AHashMap<String, String>>,
 }
 
-impl<'a, 'b> Visitor<'a, 'b>
+impl<'a, 'b, T: Queryable> Visitor<'a, 'b, T>
 where
     'b: 'a,
 {
@@ -32,7 +43,7 @@ where
         match LINK_REGEX.replace_all(&*self.out, LinkReplacer(self.source)) {
             Cow::Borrowed(_) => {},
             Cow::Owned(new) => {
-                *self.out = new;
+                self.out = new;
             },
         }
     }
@@ -74,8 +85,9 @@ where
         }
     }
 
-    fn visit_table<'c>(&mut self, table: ElementRef<'c>) -> Option<()> {
-        todo!()
+    fn visit_table<'c>(&mut self, _table: ElementRef<'c>) -> Option<()> {
+        error!("need to implement table");
+        None
     }
 
     fn visit_span<'c>(&mut self, span: ElementRef<'c>) -> Option<()> {
@@ -106,9 +118,71 @@ where
             return None;
         }
 
-        for child in element.children() {
-            self.visit(child);
+        match element.value().attr("class") {
+            Some("dlist") => self.visit_list(element, |_| "*", &DLIST_DL_DD),
+            Some("ulist") => self.visit_list(element, |_| "-", &ULIST_UL_LI),
+            Some("olist arabic") => self.visit_list(element, |i| format!("{}.", i), &OLIST_OL_LI),
+            Some("olist loweralpha") => self.visit_list(element, |i| format!("{}.", i), &OLIST_OL_LI),
+            _ => {
+                for child in element.children() {
+                    self.visit(child);
+                }
+
+                Some(())
+            },
         }
+    }
+
+    fn visit_list<'c, F, A>(&mut self, div: ElementRef<'c>, index_fn: F, selector: &Selector) -> Option<()>
+    where
+        F: Fn(usize) -> A,
+        A: AsRef<str>,
+    {
+        let select = div.select(selector);
+
+        let mut temp = String::new();
+
+        self.level += 1;
+        for (i, elem) in select.enumerate() {
+            if elem.ancestors().nth(1).unwrap() != *div {
+                continue;
+            }
+
+            self.out.push('\n');
+            for _ in 1..self.level {
+                self.out.push(' ');
+            }
+
+            self.in_item = true;
+            self.found = false;
+
+            self.out.push_str(index_fn(i).as_ref());
+            self.out.push(' ');
+
+            temp.clear();
+            std::mem::swap(&mut self.out, &mut temp);
+
+            for child in elem.children() {
+                self.visit(child);
+            }
+
+            if let Some(variants) = &mut self.variants {
+                if let Some(captures) = FULL_LINK_REGEX.captures(&self.out) {
+                    let len = captures.len();
+                    let name = captures.get(len - 1).unwrap().as_str();
+
+                    if !variants.contains_key(name) {
+                        variants.insert(name.to_string(), self.out.clone());
+                    }
+                }
+            }
+
+            std::mem::swap(&mut self.out, &mut temp);
+            self.out.push_str(&temp);
+        }
+
+        self.in_item = false;
+        self.level -= 1;
 
         Some(())
     }

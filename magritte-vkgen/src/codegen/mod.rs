@@ -3,6 +3,7 @@
 
 mod basetypes;
 mod constants;
+mod enums;
 mod expr;
 pub mod ty;
 
@@ -51,9 +52,17 @@ impl<'a> Source<'a> {
             basetype.generate_code(self, doc, &imports, out);
         }
 
-        per_origin
-            .into_iter()
-            .collect()
+        for enum_ in &self.enums {
+            if enum_.origin().is_disabled() {
+                continue;
+            }
+
+            let (imports, out) = per_origin.get_mut(enum_.origin()).unwrap();
+
+            enum_.generate_code(self, doc, &imports, out);
+        }
+
+        per_origin.into_iter().collect()
     }
 }
 

@@ -4,7 +4,7 @@
 #![warn(clippy::pedantic, clippy::cargo)]
 #![deny(missing_docs)]
 
-use std::{error::Error, io::stderr, fmt::Write};
+use std::{error::Error, fmt::Write, io::stderr};
 
 use magritte_vkgen::{parse_documentation, parse_registry, rustmft::run_rustfmt, source::Source};
 use mimalloc::MiMalloc;

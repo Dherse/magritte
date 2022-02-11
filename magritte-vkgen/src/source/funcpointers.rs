@@ -85,7 +85,6 @@ impl<'a> FunctionPointer<'a> {
         self.origin = origin;
     }
 
-
     /// Checks whether the functions needs a lifetime
     pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
         self.arguments.iter().any(|a| a.has_lifetime(source))

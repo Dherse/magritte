@@ -19,6 +19,7 @@ lazy_static::lazy_static! {
     static ref SELECTOR_NAME_H2: Selector = Selector::parse("h2#_name").unwrap();
     static ref SELECTOR_SPECIFICATION_H2: Selector = Selector::parse("h2#_c_specification").unwrap();
     static ref SELECTOR_RELATED_H2: Selector = Selector::parse("h2#_see_also").unwrap();
+    static ref SELECTOR_DESCRIPTION_H2: Selector = Selector::parse("h2#_description").unwrap();
     static ref SELECTOR_SECTIONBODY: Selector = Selector::parse("div.sectionbody").unwrap();
     static ref SELECTOR_SECTIONBODY_P: Selector = Selector::parse("div.sectionbody > p").unwrap();
     static ref SELECTOR_SECTIONBODY_DIV_PARAGRAPH_P: Selector = Selector::parse("div.sectionbody > div.paragraph > p").unwrap();
@@ -26,7 +27,7 @@ lazy_static::lazy_static! {
 
 /// Documentation files for the *Vulkan* docs.
 #[derive(Default, Debug, Clone)]
-pub struct Documentation(pub(crate) AHashMap<String, Html>, pub(crate) String);
+pub struct Documentation(pub(crate) AHashMap<String, Html>);
 
 // [`Html`] contains a ton of [`std::rc::Rc`] which are not thread safe.
 // But in this case, the entire bunch of `Rc`s is sent to the main thread all at once
@@ -37,7 +38,7 @@ impl Documentation {
     /// Tries to find a documnetation element in the list of documentations
     pub fn find(&mut self, name: &str) -> Option<DocRef<'_>> {
         if let Some(doc) = self.0.get(name) {
-            Some(DocRef(doc, &mut self.1))
+            Some(DocRef(doc))
         } else {
             None
         }
@@ -76,7 +77,7 @@ impl Queryable for () {
 }
 
 /// A documentation element
-pub struct DocRef<'a>(&'a Html, &'a mut String);
+pub struct DocRef<'a>(&'a Html);
 
 impl<'a> DocRef<'a> {
     /// Gets the reference to the underlying HTML values
@@ -85,30 +86,35 @@ impl<'a> DocRef<'a> {
     }
 
     /// Gets the `C Specification` section as markdown
-    pub fn specification<'b>(&mut self, source: &Source<'b>, this: &dyn Queryable, mut out: &mut TokenStream) -> Option<()> {
-        self.1.clear();
-
+    pub fn specification<'b>(
+        &mut self,
+        source: &Source<'b>,
+        this: &impl Queryable,
+        mut out: &mut TokenStream,
+    ) -> Option<()> {
         let h2 = self.html().select(&SELECTOR_SPECIFICATION_H2).next()?;
 
         let parent = ElementRef::wrap(h2.parent()?)?;
         let div = parent.select(&SELECTOR_SECTIONBODY).next()?;
 
-        let text = &mut self.1;
-
         let mut visitor = Visitor {
             source,
             this,
-            out: text,
+            out: String::new(),
             code_as_transparent: false,
+            in_item: false,
+            found: false,
+            level: 0,
+            variants: None,
         };
 
         visitor.visit_element(div);
 
         visitor.cleanup();
 
-        text.trim_in_place();
+        visitor.out.trim_in_place();
 
-        let lines = text.split('\n');
+        let lines = visitor.out.split('\n');
         quote::quote_each_token! {
             out
 
@@ -120,21 +126,21 @@ impl<'a> DocRef<'a> {
     }
 
     /// Gets the `Name` section as markdown
-    pub fn name<'b>(&mut self, source: &Source<'b>, this: &dyn Queryable, mut out: &mut TokenStream) -> Option<()> {
-        self.1.clear();
-
+    pub fn name<'b>(&mut self, source: &Source<'b>, this: &impl Queryable, mut out: &mut TokenStream) -> Option<()> {
         let h2 = self.html().select(&SELECTOR_NAME_H2).next()?;
 
         let parent = ElementRef::wrap(h2.parent()?)?;
         let p = parent.select(&SELECTOR_SECTIONBODY).next()?;
 
-        let text = &mut self.1;
-
         let mut visitor = Visitor {
             source,
             this,
-            out: text,
+            out: String::new(),
             code_as_transparent: false,
+            in_item: false,
+            found: false,
+            level: 0,
+            variants: None,
         };
 
         visitor.visit_element(p);
@@ -142,20 +148,20 @@ impl<'a> DocRef<'a> {
         visitor.cleanup();
 
         // generate the link for the type itself
-        if let Some(index) = text.find(' ') {
-            let substr = &text[0..index];
+        if let Some(index) = visitor.out.find(' ') {
+            let substr = &visitor.out[0..index];
             let link = format!(
                 "[{0}](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/{0}.html)",
                 substr
             );
-            text.replace_range(0..index, &link);
+            visitor.out.replace_range(0..index, &link);
         }
 
-        text.trim_in_place();
+        visitor.out.trim_in_place();
 
-        let mut proc = DOUBLE_WHITE_SPACE_REGEX.replace(&text, " ");
-        let text = match &mut proc {
-            Cow::Borrowed(_) => text,
+        let proc = DOUBLE_WHITE_SPACE_REGEX.replace(&visitor.out, " ");
+        let text = match proc {
+            Cow::Borrowed(_) => visitor.out,
             Cow::Owned(text) => text,
         };
 
@@ -171,15 +177,12 @@ impl<'a> DocRef<'a> {
 
     /// Processes the related items
     pub fn related<'b>(&mut self, source: &Source<'b>, mut out: &mut TokenStream) -> Option<()> {
-        self.1.clear();
-        
         let h2 = self.html().select(&SELECTOR_RELATED_H2).next()?;
 
         let parent = ElementRef::wrap(h2.parent()?)?;
         let p = parent.select(&SELECTOR_SECTIONBODY_DIV_PARAGRAPH_P).next()?;
 
-        let text = &mut self.1;
-
+        let mut text = Some(String::new());
         let mut is_any = false;
         for child in p.children() {
             if child.value().is_element() {
@@ -187,37 +190,90 @@ impl<'a> DocRef<'a> {
 
                 let child_ref = ElementRef::wrap(child).unwrap();
 
-                text.push_str("- ");
+                text.as_mut().unwrap().push_str("- ");
 
                 let mut visitor = Visitor {
                     source,
                     this: &(),
-                    out: text,
+                    out: text.take().unwrap(),
                     code_as_transparent: false,
+                    in_item: false,
+                    found: false,
+                    level: 0,
+                    variants: None,
                 };
 
                 visitor.visit_element(child_ref);
 
                 visitor.cleanup();
 
-                text.push('\n');
+                visitor.out.push('\n');
+
+                text = Some(visitor.out);
             }
         }
 
         if is_any {
+            let text = text.take().unwrap();
             let lines = text.split('\n');
             quote::quote_each_token! {
                 out
-    
+
                 #[doc = "# Related"]
                 #(#[doc = #lines])*
             }
 
             Some(())
         } else {
-
             None
         }
+    }
+
+    /// Processes the description, optionally writing the variants to a map of variants
+    pub fn description<'b>(
+        &mut self,
+        source: &Source<'b>,
+        this: &impl Queryable,
+        mut out: &mut TokenStream,
+        variants: Option<&mut AHashMap<String, String>>,
+    ) -> Option<()> {
+        let h2 = self.html().select(&SELECTOR_DESCRIPTION_H2).next()?;
+
+        let parent = ElementRef::wrap(h2.parent()?)?;
+        let div = parent.select(&SELECTOR_SECTIONBODY).next()?;
+
+        let mut visitor = Visitor {
+            source,
+            this,
+            out: String::new(),
+            code_as_transparent: false,
+            in_item: false,
+            found: false,
+            level: 0,
+            variants,
+        };
+
+        visitor.visit_element(div);
+
+        visitor.cleanup();
+
+        visitor.out.trim_in_place();
+
+        let proc = DOUBLE_WHITE_SPACE_REGEX.replace(&visitor.out, " ");
+        let text = match proc {
+            Cow::Borrowed(_) => visitor.out,
+            Cow::Owned(text) => text,
+        };
+
+        let lines = text.split('\n');
+        quote::quote_each_token! {
+            out
+
+            #[doc = "# Description"]
+            #(#[doc = #lines])*
+        }
+
+        Some(())
     }
 
     /// Adds the copyright to the bottom of the documentation

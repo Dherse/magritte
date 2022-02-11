@@ -28,6 +28,28 @@ impl Imports {
         self.0.borrow_mut().insert(import.to_string());
     }
 
+    /// Adds conditional imports to serde
+    pub fn serde(&self) {
+        self.0.borrow_mut().insert(
+            r#"
+            #[cfg(feature = "serde")]
+            use serde::{Deserialize, Serialize};
+        "#
+            .to_string(),
+        );
+    }
+
+    /// Adds conditional imports to bytemuck
+    pub fn bytemuck(&self) {
+        self.0.borrow_mut().insert(
+            r#"
+            #[cfg(feature = "bytemuck")]
+            use bytemuck::{Pod, Zeroable};
+        "#
+            .to_string(),
+        );
+    }
+
     /// Push an imports form an origin and a name
     pub fn push_origin<D: Display>(&self, origin: &Origin<'_>, import: D) {
         if origin != &self.1 {
