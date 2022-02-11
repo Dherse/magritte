@@ -335,4 +335,27 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
             TypeRef::Enum(r) => r.as_ident(),
         }
     }
+
+    /// Does the type have a lifetime
+    pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
+        match self {
+            TypeRef::OpaqueType(_) => false,
+            TypeRef::Alias(alias) => source.resolve_type(alias.of()).expect("unknown alias").has_lifetime(source),
+            TypeRef::Struct(struct_) => struct_.has_lifetime(source),
+            TypeRef::Union(union_) => union_.has_lifetime(source),
+
+            // handles are always true because we will be using the `Writable<'a>` and `Readable<'a>` types.
+            TypeRef::Handle(_) => true,
+
+            // in the case of function pointers, one of the fields may have a lifetime requiring the following
+            // notation: `for<'a> fn(this: &'a Value)`
+            TypeRef::FunctionPointer(func) => func.has_lifetime(source),
+            TypeRef::Basetype(_) | TypeRef::Bitmask(_) | TypeRef::BitFlag(_) | TypeRef::Enum(_) => false,
+        }
+    }
+
+    /// Is the type opaque
+    pub fn is_opaque(&self) -> bool {
+        matches!(self, Self::OpaqueType(_))
+    }
 }

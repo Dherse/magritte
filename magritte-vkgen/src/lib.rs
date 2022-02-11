@@ -125,5 +125,5 @@ pub fn parse_documentation(root: &str) -> Result<Documentation, Box<dyn Error + 
         files.insert(name, html);
     }
 
-    Ok(Documentation(files))
+    Ok(Documentation(files, String::with_capacity(1 << 20)))
 }

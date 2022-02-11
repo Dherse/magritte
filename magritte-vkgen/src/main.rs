@@ -4,11 +4,16 @@
 #![warn(clippy::pedantic, clippy::cargo)]
 #![deny(missing_docs)]
 
-use std::{error::Error, io::stderr};
+use std::{error::Error, io::stderr, fmt::Write};
 
 use magritte_vkgen::{parse_documentation, parse_registry, rustmft::run_rustfmt, source::Source};
+use mimalloc::MiMalloc;
+use quote::ToTokens;
 use tracing::{info, span, Level};
 use tracing_subscriber::{fmt::time::UtcTime, EnvFilter};
+
+#[global_allocator]
+static GLOBAL: MiMalloc = MiMalloc;
 
 /// The path to `vk.xml`.
 const VK_XML_PATH: &str = "vendors/Vulkan-Headers/registry/vk.xml";
@@ -44,12 +49,17 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
 
     info!("Processed registry");
 
-    let doc = documentation_thread.join().expect("failed to wait for thread")?;
+    let mut doc = documentation_thread.join().expect("failed to wait for thread")?;
 
     info!("Got documentation");
 
-    for file in source.generate_code(&doc).values() {
-        println!("{}", run_rustfmt(file.to_string()).unwrap());
+    for (imports, code) in source.generate_code(&mut doc).values() {
+        let mut out = String::with_capacity(1 << 20);
+
+        write!(out, "{}", imports.to_token_stream()).unwrap();
+        write!(out, "{}", code).unwrap();
+
+        println!("{}", run_rustfmt(out).unwrap());
     }
 
     Ok(())

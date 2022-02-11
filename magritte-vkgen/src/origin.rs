@@ -84,7 +84,7 @@ impl<'a> Origin<'a> {
     /// Is the origin disabled
     /// If this is an extension, whether or not it is disabled
     pub const fn is_disabled(&self) -> bool {
-        matches!(self, Self::Extension(_, _, true))
+        matches!(self, Self::Unknown | Self::Extension(_, _, true))
     }
 
     /// Is the origin an opaque external type

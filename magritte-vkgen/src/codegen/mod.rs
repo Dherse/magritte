@@ -4,7 +4,7 @@
 mod basetypes;
 mod constants;
 mod expr;
-mod ty;
+pub mod ty;
 
 use ahash::AHashMap;
 use proc_macro2::TokenStream;
@@ -13,10 +13,11 @@ use crate::{doc::Documentation, imports::Imports, origin::Origin, source::Source
 
 impl<'a> Source<'a> {
     /// Generates the code in a per-origin basis.
-    pub fn generate_code(&self, doc: &Documentation) -> AHashMap<&'_ Origin<'a>, TokenStream> {
+    pub fn generate_code(&self, doc: &mut Documentation) -> AHashMap<&'_ Origin<'a>, (Imports, TokenStream)> {
         let mut per_origin = self
             .origins
             .iter()
+            .filter(|o| !o.is_disabled())
             .map(|o| (o, (Imports::new(o), TokenStream::new())))
             .collect::<AHashMap<_, _>>();
 
@@ -40,10 +41,18 @@ impl<'a> Source<'a> {
             const_alias.generate_code(self, doc, &imports, out);
         }
 
+        for basetype in &self.basetypes {
+            if basetype.origin().is_disabled() {
+                continue;
+            }
+
+            let (imports, out) = per_origin.get_mut(basetype.origin()).unwrap();
+
+            basetype.generate_code(self, doc, &imports, out);
+        }
+
         per_origin
             .into_iter()
-            .filter(|(o, _)| !o.is_disabled())
-            .map(|(o, (_, out))| (o, out))
             .collect()
     }
 }

@@ -51,3 +51,8 @@ rayon = "1.5.1"
 
 # Lazy constant evaluation
 lazy_static = "1.4"
+
+# Smoller and faster allocator
+# The `default-features = false` disables some security features
+# that are not needed for a code generator that is run manually once.
+mimalloc = { version = "0.1.27", default-features = false}

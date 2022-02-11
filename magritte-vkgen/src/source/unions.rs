@@ -8,7 +8,7 @@ use crate::{
     symbols::{SymbolName, SymbolTable},
 };
 
-use super::Field;
+use super::{Field, Source};
 
 /// A Vulkan union
 #[derive(Debug, Clone, PartialEq)]
@@ -73,6 +73,11 @@ impl<'a> Union<'a> {
     /// Set the union's origin.
     pub fn set_origin(&mut self, origin: Origin<'a>) {
         self.origin = origin;
+    }
+
+    /// Checks if this structure needs a lifetime
+    pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
+        self.fields.iter().any(|f| f.has_lifetime(source))
     }
 }
 

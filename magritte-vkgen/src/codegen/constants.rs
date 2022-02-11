@@ -1,4 +1,5 @@
 use proc_macro2::TokenStream;
+use tracing::warn;
 
 use crate::{
     codegen::alias_of,
@@ -12,7 +13,7 @@ impl<'a> Const<'a> {
     pub(super) fn generate_code(
         &self,
         source: &Source<'a>,
-        doc: &Documentation,
+        doc: &mut Documentation,
         imports: &Imports,
         mut out: &mut TokenStream,
     ) {
@@ -38,41 +39,35 @@ impl<'a> Const<'a> {
         }
     }
 
-    fn generate_doc(&self, source: &Source<'a>, doc: &Documentation, mut out: &mut TokenStream) -> Option<()> {
-        // Get the documentation element
-        let doc = doc.find(self.original_name());
+    /// Generates the documentation for a constant
+    fn generate_doc(&self, source: &Source<'a>, doc: &mut Documentation, mut out: &mut TokenStream) -> Option<()> {
+        if let Some(mut doc) = doc.find(self.original_name()) {
+            // parse the name section and write it out
+            doc.name(source, self, out);
+    
+            // parse the c spec section and write it out
+            doc.specification(source, self, out);
+    
+            // parse the related elements and write them out
+            doc.related(source, out);
+    
+            // adds the copyright of the Vulkan docs
+            doc.copyright(out);
 
-        let doc = doc?;
+            Some(())
+        } else {
+            warn!("No documentation for {}", self.original_name());
 
-        // parse the name section and write it out
-        let name = doc.name(source, self)?;
-        let names = name.split('\n');
-        quote::quote_each_token! {
-            out
-
-            #(#[doc = #names])*
-        }
-
-        // parse the c spec section and write it out if it exists
-        if let Some(specification) = doc.specification(source, self) {
-            let specs = specification.split('\n');
             quote::quote_each_token! {
                 out
 
-                #[doc = "# C Specifications"]
-                #(#[doc = #specs])*
+                #[doc = "This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)."]
+                #[doc = "See the module level documentation where a description may be given."]
+                #[doc = "You can also check the [Vulkan Specification]()."]
             }
+
+            None
         }
-
-        quote::quote_each_token! {
-            out
-
-            #[doc = "For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#VK_MAX_DRIVER_NAME_SIZE)"]
-            #[doc = "\n"]
-            #[doc = "This documentation is generated from the Vulkan specifications."]
-        }
-
-        Some(())
     }
 }
 
@@ -81,7 +76,7 @@ impl<'a> ConstAlias<'a> {
     pub(super) fn generate_code(
         &self,
         source: &Source<'a>,
-        doc: &Documentation,
+        doc: &mut Documentation,
         imports: &Imports,
         mut out: &mut TokenStream,
     ) {

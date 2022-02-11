@@ -9,6 +9,8 @@ use crate::{
     ty::Ty,
 };
 
+use super::Source;
+
 /// A Vulkan function pointer
 #[derive(Debug, Clone, PartialEq)]
 pub struct FunctionPointer<'a> {
@@ -82,6 +84,12 @@ impl<'a> FunctionPointer<'a> {
     pub fn set_origin(&mut self, origin: Origin<'a>) {
         self.origin = origin;
     }
+
+
+    /// Checks whether the functions needs a lifetime
+    pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
+        self.arguments.iter().any(|a| a.has_lifetime(source))
+    }
 }
 
 impl<'a> SymbolName<'a> for FunctionPointer<'a> {
@@ -141,6 +149,11 @@ impl<'a> FunctionPointerArgument<'a> {
     /// Get a reference to the function pointer argument's ty.
     pub fn ty(&self) -> &Ty<'a> {
         &self.ty
+    }
+
+    /// Checks whether the argument needs a lifetime
+    pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
+        self.ty().has_lifetime(source)
     }
 }
 

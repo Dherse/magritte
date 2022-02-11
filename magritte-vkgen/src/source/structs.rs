@@ -13,7 +13,7 @@ use crate::{
     ty::{Native, Ty},
 };
 
-use super::commands::ExternallySynced;
+use super::{commands::ExternallySynced, Source};
 
 /// A Vulkan struct
 #[derive(Debug, Clone, PartialEq)]
@@ -109,6 +109,11 @@ impl<'a> Struct<'a> {
     /// Set the struct's origin.
     pub fn set_origin(&mut self, origin: Origin<'a>) {
         self.origin = origin;
+    }
+
+    /// Checks if this structure needs a lifetime
+    pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
+        self.fields.iter().any(|f| f.has_lifetime(source))
     }
 }
 
@@ -276,6 +281,11 @@ impl<'a> Field<'a> {
     /// Get a reference to the field's value.
     pub fn value(&self) -> Option<&Cow<str>> {
         self.value.as_ref()
+    }
+
+    /// Does this field has a lifetime
+    pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
+        self.ty().has_lifetime(source)
     }
 }
 

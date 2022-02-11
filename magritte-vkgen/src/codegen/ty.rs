@@ -1,6 +1,10 @@
+//! Additional implementation for [`Ty`] used to generate code
+
+use std::iter::once;
+
 use proc_macro2::{Ident, Span};
 use syn::{
-    punctuated::Punctuated, Lifetime, Path, PathSegment, Token, Type, TypeArray, TypePath, TypePtr, TypeReference,
+    punctuated::Punctuated, Lifetime, Path, PathSegment, Token, Type, TypeArray, TypePath, TypePtr, TypeReference, PathArguments, AngleBracketedGenericArguments, GenericArgument, TypeSlice,
 };
 
 use crate::{
@@ -9,8 +13,110 @@ use crate::{
     ty::{Mutability, Native, Ty},
 };
 
+/// Global lifetime name
+pub const LIFETIME: &str = "this";
+
+/// Creates an identifier for the global lifetime name
+pub fn lifetime_as_ident() -> Ident {
+    Ident::new(LIFETIME, Span::call_site())
+}
+
+/// Creates a lifetime for the global lifetime name
+pub fn lifetime_as_lifetime() -> Lifetime {
+    Lifetime {
+        apostrophe: Span::call_site(),
+        ident: lifetime_as_ident(),
+    }
+}
+
+/// Creates a generic lifetime argument for the global lifetime name
+pub fn lifetime_as_generic_argument() -> GenericArgument {
+    GenericArgument::Lifetime(lifetime_as_lifetime())
+}
+
 impl<'a> Ty<'a> {
-    /// Turns a type into a token stream
+    /// Check if this type contains an opaque type (which are **always** treated as void pointers)
+    pub fn has_opaque(&self, source: &Source<'a>) -> bool {
+        match self {
+            Ty::Pointer(_, ty) | Ty::Slice(_, ty, _) | Ty::Array(ty, _) => ty.has_opaque(source),
+            Ty::Native(_) | Ty::StringArray(_) | Ty::NullTerminatedString(_) => false,
+            Ty::Named(named) => source.resolve_type(named).expect("unknown type").is_opaque(),
+        }
+    }
+
+    /// Does the type have a lifetime (with deep checking)
+    pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
+        match self {
+            Ty::Pointer(_, ty) | Ty::Slice(_, ty, _) => !ty.has_opaque(source),
+            Ty::NullTerminatedString(_)  => true,
+            Ty::Native(_) | Ty::StringArray(_) => false,
+            Ty::Array(ty, _) => ty.has_lifetime(source),
+            Ty::Named(named) => source.resolve_type(named).expect("unknown type").has_lifetime(source),
+        }
+    }
+
+
+    /// Turns a type into a tokenized type and an optional lifetime argument
+    pub fn as_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> (Type, bool) {
+        match self {
+            Ty::Native(_) => (self.as_const_ty(source, imports), false),
+            Ty::Pointer(mutability, ty) => if ty.has_opaque(source) {
+                (
+                    Type::Reference(TypeReference {
+                        and_token: Default::default(),
+                        lifetime: Some(lifetime_as_lifetime()),
+                        mutability: mutability.as_mutability_token(),
+                        elem: box ty.as_ty(source, imports).0,
+                    }),
+                    true
+                )
+            } else {
+                (self.as_const_ty(source, imports), false)
+            },
+            Ty::Named(name) => source
+                .find(name)
+                .expect("type not found")
+                .as_type_ref()
+                .expect("not a type")
+                .as_type(source, imports),
+            Ty::StringArray(_) => (self.as_const_ty(source, imports), false),
+            Ty::NullTerminatedString(_) => (Native::NullTerminatedString.as_type(imports), true),
+            Ty::Array(ty, len) => {
+                let (elem, lt) = ty.as_ty(source, imports);
+                let len = len.as_const_expr(source, imports);
+
+                (
+                    Type::Array(TypeArray {
+                        bracket_token: Default::default(),
+                        elem: box elem,
+                        semi_token: Default::default(),
+                        len,
+                    }),
+                    lt
+                )
+            },
+            Ty::Slice(mutability, ty, _) => {
+                if ty.has_opaque(source) {
+                    (self.as_const_ty(source, imports), false)
+                } else {
+                    (
+                        Type::Reference(TypeReference {
+                            and_token: Default::default(),
+                            lifetime: Some(lifetime_as_lifetime()),
+                            mutability: mutability.as_mutability_token(),
+                            elem: box Type::Slice(TypeSlice {
+                                bracket_token: Default::default(),
+                                elem: box ty.as_ty(source, imports).0,
+                            }),
+                        }),
+                        true
+                    )
+                }
+            },
+        }
+    }
+
+    /// Turns a type into a tokenized type
     pub(super) fn as_const_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> Type {
         match self {
             Ty::Native(native) => native.as_type(imports),
@@ -25,7 +131,7 @@ impl<'a> Ty<'a> {
                 .expect("type not found")
                 .as_type_ref()
                 .expect("not a type")
-                .as_type(imports),
+                .as_const_type(source, imports),
             Ty::StringArray(len) => Type::Array(TypeArray {
                 bracket_token: Default::default(),
                 elem: box Native::Char.as_type(None),
@@ -49,14 +155,16 @@ impl<'a> Ty<'a> {
                 mutability: mutability.as_mutability_token(),
                 elem: box ty.as_const_ty(source, imports),
             }),
-            Ty::NullTerminatedString(_) => Native::NullTerminatedString.as_type(imports),
+            Ty::NullTerminatedString(_) => Native::NullTerminatedString.as_const_type(imports),
         }
     }
 }
 
 impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     /// Turns a type reference into a tokenized type
-    pub fn as_type(&self, imports: Option<&Imports>) -> Type {
+    pub fn as_const_type(&self, source: &Source<'a>, imports: Option<&Imports>) -> Type {
+        assert!(!self.has_lifetime(source), "type cannot be made into static type");
+        
         if let Some(imports) = imports {
             self.import(imports);
 
@@ -76,6 +184,46 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
                 },
             })
         }
+    }
+
+    /// Turns a type reference into a tokenized type and a boolean designating whether it
+    /// has a lifetime
+    pub fn as_type(&self, source: &Source<'a>, imports: Option<&Imports>) -> (Type, bool) {
+        let lt = self.has_lifetime(source) && !self.is_opaque();
+
+        let mut path = if let Some(imports) = imports {
+            self.import(imports);
+
+            Path {
+                leading_colon: None,
+                segments: Punctuated::new(),
+            }
+        } else {
+            self.origin().as_path()
+        };
+        
+
+        path.segments.push(if lt {
+            PathSegment {
+                ident: self.as_ident(),
+                arguments: PathArguments::AngleBracketed(AngleBracketedGenericArguments {
+                    colon2_token: None,
+                    lt_token: Default::default(),
+                    args: Punctuated::from_iter(once(lifetime_as_generic_argument())),
+                    gt_token: Default::default(),
+                }),
+            }
+        } else {
+            PathSegment::from(self.as_ident())
+        });
+        
+        (
+            Type::Path(TypePath {
+                qself: None,
+                path,
+            }),
+            lt
+        )
     }
 }
 
@@ -102,8 +250,18 @@ impl Mutability {
 }
 
 impl Native {
-    /// Gets a type from this native type, imports it if needed
+    /// Gets the native type has a dynamic type that will (if needed) use the global lifetime name
     pub fn as_type(&self, imports: Option<&Imports>) -> Type {
+        self.as_type_with_lifetime(lifetime_as_ident(), imports)
+    }
+
+    /// Gets the native type has a dynamic type that will (if needed) use the static lifetime
+    pub fn as_const_type(&self, imports: Option<&Imports>) -> Type {
+        self.as_type_with_lifetime(Ident::new("static", Span::call_site()), imports)
+    }
+
+    /// Gets a type from this native type, imports it if needed
+    pub fn as_type_with_lifetime(&self, lifetime: Ident, imports: Option<&Imports>) -> Type {
         if let Some(imports) = imports {
             self.import(imports);
 
@@ -117,7 +275,7 @@ impl Native {
                     and_token: Default::default(),
                     lifetime: Some(Lifetime {
                         apostrophe: Span::call_site(),
-                        ident: Ident::new("static", Span::call_site()),
+                        ident: lifetime,
                     }),
                     mutability: None,
                     elem: box path,
@@ -130,7 +288,7 @@ impl Native {
                     and_token: Default::default(),
                     lifetime: Some(Lifetime {
                         apostrophe: Span::call_site(),
-                        ident: Ident::new("static", Span::call_site()),
+                        ident: lifetime,
                     }),
                     mutability: None,
                     elem: box Type::Path(TypePath {

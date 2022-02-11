@@ -61,9 +61,7 @@ pub fn tag_of_type<'a>(name: &str, tag_list: &'a [Tag<'a>]) -> Option<&'a Tag<'a
 
 /// Converts a Vulkan constant name into a rustified constant name.
 pub fn const_name<'a>(name: &'a str, parent_tag: Option<&Tag<'a>>) -> String {
-    let trimmed = name.trim_start_matches("VK_");
-
-    let mut trimmed = trimmed.to_case(Case::ScreamingSnake);
+    let mut trimmed = name.trim_start_matches("VK_").to_owned();
 
     if let Some(parent_tag) = parent_tag {
         let with_underscore = parent_tag.with_underscore();
@@ -71,7 +69,11 @@ pub fn const_name<'a>(name: &'a str, parent_tag: Option<&Tag<'a>>) -> String {
         trimmed.remove_matches(&with_underscore);
     }
 
-    deal_with_numbers(&mut trimmed);
+    // for constants we **DO NOT** deal with numbers being moved by `to_case`
+    // Vulkan contains a bunch of constants that were renamed to be more consistent
+    // and when calling `deal_with_numbers`, they would all be homogenized and be
+    // in conflict. This is therefore purposeful!
+    // deal_with_numbers(&mut trimmed);
 
     trimmed
 }
