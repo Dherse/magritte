@@ -6,6 +6,10 @@ Magritte will exclusively target [*Vulkan*](https://www.vulkan.org/) as its back
 
 The goal of this limitation is to make it easier to support modern features such as [ray tracing](https://en.wikipedia.org/wiki/Ray_tracing_(graphics)).
 
+## Build instructions
+
+Detailing binding generation instructions are present in `BUILD.md` and an overwiew of the project's structure is available in `STRUCTURE.md`.
+
 ## Overwiew of features
 
 - Low overhead
