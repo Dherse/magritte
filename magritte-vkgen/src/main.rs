@@ -4,7 +4,7 @@
 #![warn(clippy::pedantic, clippy::cargo)]
 #![deny(missing_docs)]
 
-use std::{error::Error, fmt::Write, io::stderr};
+use std::{error::Error, fmt::Write, io::stderr, path::PathBuf};
 
 use magritte_vkgen::{parse_documentation, parse_registry, rustmft::run_rustfmt, source::Source, codegen::CodeOut};
 use mimalloc::MiMalloc;
@@ -54,13 +54,19 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
 
     info!("Got documentation");
 
-    source.generate_code(&mut doc).into_par_iter().for_each(|CodeOut(_, imports, code)| {
+    source.generate_code(&mut doc).into_par_iter().for_each(|CodeOut(origin, imports, code)| {
         let mut out = String::with_capacity(1 << 20);
 
         write!(out, "{}", imports.to_token_stream()).unwrap();
         write!(out, "{}", code).unwrap();
 
-        println!("{}", run_rustfmt(out).unwrap());
+        let path = PathBuf::from(BINDING_OUT_PATH);
+
+        let out = run_rustfmt(out).unwrap();
+        
+        std::fs::write(origin.as_file_path(&path), &out).unwrap();
+
+        std::mem::forget(out);
     });
 
     Ok(())
