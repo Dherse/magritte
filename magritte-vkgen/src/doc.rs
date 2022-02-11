@@ -42,6 +42,16 @@ impl Documentation {
             None
         }
     }
+
+    /// Adds the default "no doc" comment to an element
+    pub fn no_doc(&self, mut out: &mut TokenStream) {
+        quote::quote_each_token! {
+            out
+
+            #[doc = "This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)."]
+            #[doc = "See the module level documentation where a description may be given."]
+        }
+    }
 }
 
 impl Deref for Documentation {

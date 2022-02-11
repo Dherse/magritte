@@ -40,7 +40,7 @@ impl<'a> Const<'a> {
     }
 
     /// Generates the documentation for a constant
-    fn generate_doc(&self, source: &Source<'a>, doc: &mut Documentation, mut out: &mut TokenStream) -> Option<()> {
+    fn generate_doc(&self, source: &Source<'a>, doc: &mut Documentation, out: &mut TokenStream) -> Option<()> {
         if let Some(mut doc) = doc.find(self.original_name()) {
             // parse the name section and write it out
             doc.name(source, self, out);
@@ -58,13 +58,8 @@ impl<'a> Const<'a> {
         } else {
             warn!("No documentation for {}", self.original_name());
 
-            quote::quote_each_token! {
-                out
-
-                #[doc = "This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)."]
-                #[doc = "See the module level documentation where a description may be given."]
-                #[doc = "You can also check the [Vulkan Specification]()."]
-            }
+            // add the default no doc comment
+            doc.no_doc(out);
 
             None
         }
