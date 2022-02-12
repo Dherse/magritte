@@ -218,7 +218,7 @@ Here are the following families that need to be implemented in the code generato
 - [x] Constants
 - [x] Constant aliases
 - [ ] Bit mask flags
-- [ ] Enums
+- [x] Enums
 - [ ] Function/command aliases
 - [ ] Functions
 - [ ] Commands & command buffers
