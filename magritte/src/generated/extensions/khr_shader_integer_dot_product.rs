@@ -20,6 +20,7 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceShaderIntegerDotProductFeaturesKHR`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceShaderIntegerDotProductPropertiesKHR`]
 //!# New constants
@@ -38,6 +39,7 @@
 //! - This extension requires
 //![`SPV_KHR_integer_dot_product`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_integer_dot_product.html).
 //! - This extension interacts with `[`VK_KHR_shader_float16_int8`]`.
+//!
 //! * No known IP claims.
 //!*
 //! - Kévin Petit, Arm Ltd.

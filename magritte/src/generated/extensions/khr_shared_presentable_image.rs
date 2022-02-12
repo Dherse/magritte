@@ -26,9 +26,11 @@
 //! - [`KHR_SHARED_PRESENTABLE_IMAGE_SPEC_VERSION`]
 //! - Extending [`ImageLayout`]:
 //! - `VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR`
+//!
 //! - Extending [`PresentModeKHR`]:
 //! - `VK_PRESENT_MODE_SHARED_CONTINUOUS_REFRESH_KHR`
 //! - `VK_PRESENT_MODE_SHARED_DEMAND_REFRESH_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_SHARED_PRESENT_SURFACE_CAPABILITIES_KHR`
 //!# Known issues & F.A.Q

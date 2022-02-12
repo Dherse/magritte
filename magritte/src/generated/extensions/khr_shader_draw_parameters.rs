@@ -1,16 +1,16 @@
 //![VK_KHR_shader_draw_parameters](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_shader_draw_parameters.html) - device extension
 //!# Description
 //!This extension adds support for the following SPIR-V extension in Vulkan:
-//! - `SPV_KHR_shader_draw_parameters`The extension provides access to three additional built-in
-//!   shader variables
+//! - `SPV_KHR_shader_draw_parameters`
+//!The extension provides access to three additional built-in shader variables
 //!in Vulkan:
 //! - `BaseInstance`, containing the `firstInstance` parameter passed
 //!to drawing commands,
 //! - `BaseVertex`, containing the `firstVertex` or `vertexOffset`
 //!parameter passed to drawing commands, and
 //! - `DrawIndex`, containing the index of the draw call currently being
-//!processed from an indirect drawing call.When using GLSL source-based shader languages, the
-//! following variables from
+//!processed from an indirect drawing call.
+//!When using GLSL source-based shader languages, the following variables from
 //!`GL_ARB_shader_draw_parameters` can map to these SPIR-V built-in
 //!decorations:
 //! - `in int gl_BaseInstanceARB;` → `BaseInstance`,
@@ -56,6 +56,7 @@
 //! - This extension provides API support for
 //![`GL_ARB_shader_draw_parameters`](https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_shader_draw_parameters.txt)
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - Daniel Koch, NVIDIA Corporation
 //! - Jeff Bolz, NVIDIA

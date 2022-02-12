@@ -27,8 +27,8 @@
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES_EXT`
 //!# Known issues & F.A.Q
-//!0. How does this extension differ from VK_EXT_robustness2?The guarantees provided by this
-//! extension are a subset of those provided by
+//!0. How does this extension differ from VK_EXT_robustness2?
+//!The guarantees provided by this extension are a subset of those provided by
 //!the robustImageAccess2 feature of VK_EXT_robustness2.
 //!Where this extension allows return values of (0, 0, 0, 0) or (0, 0, 0, 1),
 //!robustImageAccess2 requires that a particular value dependent on the image
@@ -42,6 +42,7 @@
 //! * 2020-04-27
 //!*
 //! - Promoted to Vulkan 1.3 Core
+//!
 //! * No known IP claims.
 //!*
 //! - Graeme Leese, Broadcom

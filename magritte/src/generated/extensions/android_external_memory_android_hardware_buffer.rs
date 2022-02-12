@@ -32,12 +32,17 @@
 //! - [`MemoryGetAndroidHardwareBufferInfoANDROID`]
 //! - Extending [`AndroidHardwareBufferPropertiesANDROID`]:
 //! - [`AndroidHardwareBufferFormatPropertiesANDROID`]
+//!
 //! - Extending [`ImageCreateInfo`], [`SamplerYcbcrConversionCreateInfo`]:
 //! - [`ExternalFormatANDROID`]
+//!
 //! - Extending [`ImageFormatProperties2`]:
 //! - [`AndroidHardwareBufferUsageANDROID`]
+//!
 //! - Extending [`MemoryAllocateInfo`]:
-//! - [`ImportAndroidHardwareBufferInfoANDROID`]If [`VK_KHR_format_feature_flags2`] is supported:
+//! - [`ImportAndroidHardwareBufferInfoANDROID`]
+//!
+//!If [`VK_KHR_format_feature_flags2`] is supported:
 //! - Extending [`AndroidHardwareBufferPropertiesANDROID`]:
 //! - [`AndroidHardwareBufferFormatProperties2ANDROID`]
 //!# New constants
@@ -45,14 +50,16 @@
 //! - [`ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_SPEC_VERSION`]
 //! - Extending [`ExternalMemoryHandleTypeFlagBits`]:
 //! - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID`
 //! - `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID`
 //! - `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_USAGE_ANDROID`
 //! - `VK_STRUCTURE_TYPE_EXTERNAL_FORMAT_ANDROID`
 //! - `VK_STRUCTURE_TYPE_IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID`
-//! - `VK_STRUCTURE_TYPE_MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID`If
-//!   [`VK_KHR_format_feature_flags2`] is supported:
+//! - `VK_STRUCTURE_TYPE_MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID`
+//!
+//!If [`VK_KHR_format_feature_flags2`] is supported:
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID`
 //!# Known issues & F.A.Q
@@ -137,10 +144,13 @@
 //!# Version History
 //! - Revision 4, 2021-09-30 (Jon Leech)
 //! - Add interaction with `[`VK_KHR_format_feature_flags2`]` to `vk.xml`
+//!
 //! - Revision 3, 2019-08-27 (Jon Leech)
 //! - Update revision history to correspond to XML version number
+//!
 //! - Revision 2, 2018-04-09 (Petr Kraus)
 //! - Markup fixes and remove incorrect Draft status
+//!
 //! - Revision 1, 2018-03-04 (Jesse Hall)
 //! - Initial version
 //!# Other info

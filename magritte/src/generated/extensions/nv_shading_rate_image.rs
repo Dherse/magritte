@@ -31,7 +31,8 @@
 //!pixels processed by the fragment shader.
 //! - `InvocationsPerPixel`, which indicates the maximum number of fragment
 //!shader invocations that could be spawned for the pixel(s) covered by the
-//!fragment.When using SPIR-V in conjunction with the OpenGL Shading Language (GLSL),
+//!fragment.
+//!When using SPIR-V in conjunction with the OpenGL Shading Language (GLSL),
 //!the fragment shader capabilities are provided by the
 //!`GL_NV_shading_rate_image` language extension and correspond to the built-in
 //!variables `gl_FragmentSizeNV` and `gl_InvocationsPerPixelNV`,
@@ -55,8 +56,10 @@
 //! - [`ShadingRatePaletteNV`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceShadingRateImageFeaturesNV`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceShadingRateImagePropertiesNV`]
+//!
 //! - Extending [`PipelineViewportStateCreateInfo`]:
 //! - [`PipelineViewportCoarseSampleOrderStateCreateInfoNV`]
 //! - [`PipelineViewportShadingRateImageStateCreateInfoNV`]
@@ -68,15 +71,20 @@
 //! - [`NV_SHADING_RATE_IMAGE_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits`]:
 //! - `VK_ACCESS_SHADING_RATE_IMAGE_READ_BIT_NV`
+//!
 //! - Extending [`DynamicState`]:
 //! - `VK_DYNAMIC_STATE_VIEWPORT_COARSE_SAMPLE_ORDER_NV`
 //! - `VK_DYNAMIC_STATE_VIEWPORT_SHADING_RATE_PALETTE_NV`
+//!
 //! - Extending [`ImageLayout`]:
 //! - `VK_IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV`
+//!
 //! - Extending [`ImageUsageFlagBits`]:
 //! - `VK_IMAGE_USAGE_SHADING_RATE_IMAGE_BIT_NV`
+//!
 //! - Extending [`PipelineStageFlagBits`]:
 //! - `VK_PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV`
@@ -143,8 +151,10 @@
 //!# Version History
 //! - Revision 3, 2019-07-18 (Mathias Schott)
 //! - Fully list extension interfaces in this appendix.
+//!
 //! - Revision 2, 2018-09-13 (Pat Brown)
 //! - Miscellaneous edits preparing the specification for publication.
+//!
 //! - Revision 1, 2018-08-08 (Pat Brown)
 //! - Internal revisions
 //!# Other info
@@ -154,6 +164,7 @@
 //![`SPV_NV_shading_rate`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_shading_rate.html)
 //! - This extension provides API support for
 //![`GL_NV_shading_rate_image`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nv/GLSL_NV_shading_rate_image.txt)
+//!
 //!*
 //! - Pat Brown, NVIDIA
 //! - Carsten Rohde, NVIDIA

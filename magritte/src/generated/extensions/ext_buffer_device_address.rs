@@ -29,6 +29,7 @@
 //! - [`BufferDeviceAddressInfoEXT`]
 //! - Extending [`BufferCreateInfo`]:
 //! - [`BufferDeviceAddressCreateInfoEXT`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceBufferAddressFeaturesEXT`]
 //! - [`PhysicalDeviceBufferDeviceAddressFeaturesEXT`]
@@ -37,10 +38,13 @@
 //! - [`EXT_BUFFER_DEVICE_ADDRESS_SPEC_VERSION`]
 //! - Extending [`BufferCreateFlagBits`]:
 //! - `VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT`
+//!
 //! - Extending [`BufferUsageFlagBits`]:
 //! - `VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT_EXT`
+//!
 //! - Extending [`VulkanResultCodes`]:
 //! - `VK_ERROR_INVALID_DEVICE_ADDRESS_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT`
 //! - `VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO_EXT`
@@ -57,6 +61,7 @@
 //!# Version History
 //! - Revision 1, 2018-11-01 (Jeff Bolz)
 //! - Internal revisions
+//!
 //! - Revision 2, 2019-01-06 (Jon Leech)
 //! - Minor updates to appendix for publication
 //!# Other info
@@ -69,6 +74,7 @@
 //![`GLSL_EXT_buffer_reference`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_buffer_reference.txt)
 //!and
 //![`GLSL_EXT_buffer_reference_uvec2`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_buffer_reference_uvec2.txt)
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //! - Neil Henning, AMD

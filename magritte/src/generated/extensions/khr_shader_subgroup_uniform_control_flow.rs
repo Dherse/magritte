@@ -37,6 +37,7 @@
 //![`SPV_KHR_subgroup_uniform_control_flow`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_subgroup_uniform_control_flow.html)
 //! - This extension provides API support for
 //![`GL_EXT_subgroupuniform_qualifier`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_subgroupuniform_qualifier.txt)
+//!
 //!*
 //! - Alan Baker, Google
 //! - Jeff Bolz, NVIDIA

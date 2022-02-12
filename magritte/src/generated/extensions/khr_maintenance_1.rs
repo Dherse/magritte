@@ -58,8 +58,10 @@
 //! - Extending [`FormatFeatureFlagBits`]:
 //! - `VK_FORMAT_FEATURE_TRANSFER_DST_BIT_KHR`
 //! - `VK_FORMAT_FEATURE_TRANSFER_SRC_BIT_KHR`
+//!
 //! - Extending [`ImageCreateFlagBits`]:
 //! - `VK_IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT_KHR`
+//!
 //! - Extending [`VulkanResultCodes`]:
 //! - `VK_ERROR_OUT_OF_POOL_MEMORY_KHR`
 //!# Known issues & F.A.Q
@@ -67,12 +69,14 @@
 //!# Version History
 //! - Revision 1, 2016-10-26 (Piers Daniell)
 //! - Internal revisions
+//!
 //! - Revision 2, 2018-03-13 (Jon Leech)
 //! - Add issue for zero-height viewports
 //!# Other info
 //! * 2018-03-13
 //!*
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - Dan Ginsburg, Valve
 //! - Daniel Koch, NVIDIA

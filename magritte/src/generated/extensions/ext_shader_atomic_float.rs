@@ -35,6 +35,7 @@
 //![`SPV_EXT_shader_atomic_float_add`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/EXT/SPV_EXT_shader_atomic_float_add.html)
 //! - This extension provides API support for
 //![`GL_EXT_shader_atomic_float`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_shader_atomic_float.txt)
+//!
 //!*
 //! - Vikram Kushwaha, NVIDIA
 //! - Jeff Bolz, NVIDIA

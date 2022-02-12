@@ -24,6 +24,7 @@
 //!*
 //! - This extension requires
 //![`SPV_GOOGLE_hlsl_functionality1`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/GOOGLE/SPV_GOOGLE_hlsl_functionality1.html)
+//!
 //!*
 //! - Hai Nguyen, Google
 //! - Neil Henning, AMD

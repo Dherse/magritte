@@ -22,6 +22,7 @@
 //!*
 //! - This extension requires
 //![`SPV_GOOGLE_user_type`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/GOOGLE/SPV_GOOGLE_user_type.asciidoc)
+//!
 //!*
 //! - Kaye Mason, Google
 //! - Hai Nguyen, Google

@@ -22,6 +22,7 @@
 //!*
 //! - This extension requires
 //![`SPV_GOOGLE_decorate_string`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/GOOGLE/SPV_GOOGLE_decorate_string.html)
+//!
 //!*
 //! - Hai Nguyen, Google
 //! - Neil Henning, AMD

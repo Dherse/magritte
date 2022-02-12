@@ -32,8 +32,10 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceMultiviewFeaturesKHR`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceMultiviewPropertiesKHR`]
+//!
 //! - Extending [`RenderPassCreateInfo`]:
 //! - [`RenderPassMultiviewCreateInfoKHR`]
 //!# New constants
@@ -41,6 +43,7 @@
 //! - [`KHR_MULTIVIEW_SPEC_VERSION`]
 //! - Extending [`DependencyFlagBits`]:
 //! - `VK_DEPENDENCY_VIEW_LOCAL_BIT_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES_KHR`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES_KHR`
@@ -57,6 +60,7 @@
 //![`SPV_KHR_multiview`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_multiview.html)
 //! - This extension provides API support for
 //![`GL_EXT_multiview`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_multiview.txt)
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //!# Related

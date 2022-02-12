@@ -19,6 +19,7 @@
 //! - [`IMG_FILTER_CUBIC_SPEC_VERSION`]
 //! - Extending [`Filter`]:
 //! - `VK_FILTER_CUBIC_IMG`
+//!
 //! - Extending [`FormatFeatureFlagBits`]:
 //! - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_IMG`
 //!# Version History

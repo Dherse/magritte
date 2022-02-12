@@ -21,6 +21,7 @@
 //!# New structures
 //! - Extending [`ImageViewCreateInfo`]:
 //! - [`ImageViewMinLodCreateInfoEXT`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceImageViewMinLodFeaturesEXT`]
 //!# New constants

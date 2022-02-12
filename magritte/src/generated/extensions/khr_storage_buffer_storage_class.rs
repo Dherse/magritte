@@ -1,8 +1,8 @@
 //![VK_KHR_storage_buffer_storage_class](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_storage_buffer_storage_class.html) - device extension
 //!# Description
 //!This extension adds support for the following SPIR-V extension in Vulkan:
-//! - `SPV_KHR_storage_buffer_storage_class`This extension provides a new SPIR-V `StorageBuffer`
-//!   storage class.
+//! - `SPV_KHR_storage_buffer_storage_class`
+//!This extension provides a new SPIR-V `StorageBuffer` storage class.
 //!A `Block`-decorated object in this class is equivalent to a
 //!`BufferBlock`-decorated object in the `Uniform` storage class.
 //!# Revision
@@ -29,6 +29,7 @@
 //! - This extension requires
 //![`SPV_KHR_storage_buffer_storage_class`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_storage_buffer_storage_class.html)
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - Alexander Galazin, ARM
 //! - David Neto, Google

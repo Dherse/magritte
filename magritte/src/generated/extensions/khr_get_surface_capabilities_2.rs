@@ -32,8 +32,8 @@
 //!1) What should this extension be named?**RESOLVED**: [`VK_KHR_get_surface_capabilities2`].
 //!Other alternatives:
 //! - `VK_KHR_surface2`
-//! - One extension, combining a separate display-specific query extension.2) Should additional WSI
-//!   query functions be extended?**RESOLVED**:
+//! - One extension, combining a separate display-specific query extension.
+//!2) Should additional WSI query functions be extended?**RESOLVED**:
 //! - [`GetPhysicalDeviceSurfaceCapabilitiesKHR`]: Yes.
 //!The need for this motivated the extension.
 //! - [`GetPhysicalDeviceSurfaceSupportKHR`]: No.

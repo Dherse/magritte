@@ -176,6 +176,7 @@
 //!# Version History
 //! - Revision 2, 2018-09-13 (Pat Brown)
 //! - Add issue (2) with performance tips.
+//!
 //! - Revision 1, 2018-08-12 (Pat Brown)
 //! - Initial draft
 //!# Other info
@@ -186,6 +187,7 @@
 //![`SPV_NV_shader_image_footprint`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_shader_image_footprint.html)
 //! - This extension provides API support for
 //![`GL_NV_shader_texture_footprint`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nv/GLSL_NV_shader_texture_footprint.txt)
+//!
 //!*
 //! - Pat Brown, NVIDIA
 //! - Chris Lentini, NVIDIA

@@ -44,6 +44,7 @@
 //! - Requires the
 //![`SPV_KHR_terminate_invocation`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_terminate_invocation.html)
 //!SPIR-V extension.
+//!
 //! * No known IP claims.
 //!*
 //! - Alan Baker, Google

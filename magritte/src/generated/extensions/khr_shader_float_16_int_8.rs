@@ -45,6 +45,7 @@
 //! - This extension interacts with `[`VK_KHR_shader_float_controls`]`
 //! - This extension provides API support for
 //![`GL_EXT_shader_explicit_arithmetic_types`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_shader_explicit_arithmetic_types.txt)
+//!
 //! * No known IP claims.
 //!*
 //! - Alexander Galazin, Arm

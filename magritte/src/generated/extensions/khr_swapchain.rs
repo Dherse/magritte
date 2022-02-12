@@ -23,43 +23,55 @@
 //! - [`CreateSwapchainKHR`]
 //! - [`DestroySwapchainKHR`]
 //! - [`GetSwapchainImagesKHR`]
-//! - [`QueuePresentKHR`]If [Version 1.1]() is supported:
+//! - [`QueuePresentKHR`]
+//!If [Version 1.1]() is supported:
 //! - [`AcquireNextImage2KHR`]
 //! - [`GetDeviceGroupPresentCapabilitiesKHR`]
 //! - [`GetDeviceGroupSurfacePresentModesKHR`]
 //! - [`GetPhysicalDevicePresentRectanglesKHR`]
 //!# New structures
 //! - [`PresentInfoKHR`]
-//! - [`SwapchainCreateInfoKHR`]If [Version 1.1]() is supported:
+//! - [`SwapchainCreateInfoKHR`]
+//!If [Version 1.1]() is supported:
 //! - [`AcquireNextImageInfoKHR`]
 //! - [`DeviceGroupPresentCapabilitiesKHR`]
 //! - Extending [`BindImageMemoryInfo`]:
 //! - [`BindImageMemorySwapchainInfoKHR`]
+//!
 //! - Extending [`ImageCreateInfo`]:
 //! - [`ImageSwapchainCreateInfoKHR`]
+//!
 //! - Extending [`PresentInfoKHR`]:
 //! - [`DeviceGroupPresentInfoKHR`]
+//!
 //! - Extending [`SwapchainCreateInfoKHR`]:
 //! - [`DeviceGroupSwapchainCreateInfoKHR`]
 //!# New enums
-//! - [`SwapchainCreateFlagBitsKHR`]If [Version 1.1]() is supported:
+//! - [`SwapchainCreateFlagBitsKHR`]
+//!If [Version 1.1]() is supported:
 //! - [`DeviceGroupPresentModeFlagBitsKHR`]
 //!# New bitmasks
-//! - [`SwapchainCreateFlagsKHR`]If [Version 1.1]() is supported:
+//! - [`SwapchainCreateFlagsKHR`]
+//!If [Version 1.1]() is supported:
 //! - [`DeviceGroupPresentModeFlagsKHR`]
 //!# New constants
 //! - [`KHR_SWAPCHAIN_EXTENSION_NAME`]
 //! - [`KHR_SWAPCHAIN_SPEC_VERSION`]
 //! - Extending [`ImageLayout`]:
 //! - `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`
+//!
 //! - Extending [`ObjectType`]:
 //! - `VK_OBJECT_TYPE_SWAPCHAIN_KHR`
+//!
 //! - Extending [`VulkanResultCodes`]:
 //! - `VK_ERROR_OUT_OF_DATE_KHR`
 //! - `VK_SUBOPTIMAL_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PRESENT_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR`If [Version 1.1]() is supported:
+//! - `VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR`
+//!
+//!If [Version 1.1]() is supported:
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_ACQUIRE_NEXT_IMAGE_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR`
@@ -67,6 +79,7 @@
 //! - `VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_IMAGE_SWAPCHAIN_CREATE_INFO_KHR`
+//!
 //! - Extending [`SwapchainCreateFlagBitsKHR`]:
 //! - `VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR`
 //! - `VK_SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR`
@@ -127,8 +140,8 @@
 //! - `VK_ERROR_OUT_OF_DATE_KHR` - Failure.
 //!The swapchain is no longer compatible with the surface it targets.
 //!The application must query updated surface information and recreate the
-//!swapchain before presentation will succeed.These can be returned by both [`AcquireNextImageKHR`]
-//! and
+//!swapchain before presentation will succeed.
+//!These can be returned by both [`AcquireNextImageKHR`] and
 //![`QueuePresentKHR`].10) Does the [`AcquireNextImageKHR`] command return a semaphore to the
 //!application via an output parameter, or accept a semaphore to signal from
 //!the application as an object handle parameter?**RESOLVED**: Accept a semaphore to signal as an
@@ -164,8 +177,8 @@
 //!is used to hold pending presentation requests.
 //!New requests are appended to the end of the queue, and one request is
 //!removed from the beginning of the queue and processed during each
-//!vertical blanking period in which the queue is non-emptyNot all surfaces will support all of
-//! these modes, so the modes supported
+//!vertical blanking period in which the queue is non-empty
+//!Not all surfaces will support all of these modes, so the modes supported
 //!will be returned using a surface information query.
 //!All surfaces must support the FIFO queue mode.
 //!Applications must choose one of these modes up front when creating a
@@ -352,22 +365,26 @@
 //! - Revision 1, 2015-05-20 (James Jones)
 //! - Initial draft, based on LunarG KHR spec, other KHR specs, patches
 //!attached to bugs.
+//!
 //! - Revision 2, 2015-05-22 (Ian Elliott)
 //! - Made many agreed-upon changes from 2015-05-21 KHR TSG meeting.
 //!This includes using only a queue for presentation, and having an
 //!explicit function to acquire the next image.
 //! - Fixed typos and other minor mistakes.
+//!
 //! - Revision 3, 2015-05-26 (Ian Elliott)
 //! - Improved the Description section.
 //! - Added or resolved issues that were found in improving the Description.
 //!For example, pSurfaceDescription is used consistently, instead of
 //!sometimes using pSurface.
+//!
 //! - Revision 4, 2015-05-27 (James Jones)
 //! - Fixed some grammatical errors and typos
 //! - Filled in the description of imageUseFlags when creating a swapchain.
 //! - Added a description of swapInterval.
 //! - Replaced the paragraph describing the order of operations on a queue
 //!for image ownership and presentation.
+//!
 //! - Revision 5, 2015-05-27 (James Jones)
 //! - Imported relevant issues from the (abandoned)
 //!vk_wsi_persistent_swapchain_images extension.
@@ -375,56 +392,70 @@
 //!present commands with respect to queues.
 //! - Updated spec language and examples to align with proposed resolutions
 //!to issues 6 and 7.
+//!
 //! - Revision 6, 2015-05-27 (James Jones)
 //! - Added issue 8, regarding atomic presentation of multiple swapchains
 //! - Updated spec language and examples to align with proposed resolution
 //!to issue 8.
+//!
 //! - Revision 7, 2015-05-27 (James Jones)
 //! - Fixed compilation errors in example code, and made related spec fixes.
+//!
 //! - Revision 8, 2015-05-27 (James Jones)
 //! - Added issue 9, and the related VK_SUBOPTIMAL_KHR result code.
 //! - Renamed VK_OUT_OF_DATE_KHR to VK_ERROR_OUT_OF_DATE_KHR.
+//!
 //! - Revision 9, 2015-05-27 (James Jones)
 //! - Added inline proposed resolutions (marked with [JRJ]) to some XXX
 //!questions/issues.
 //!These should be moved to the issues section in a subsequent update if
 //!the proposals are adopted.
+//!
 //! - Revision 10, 2015-05-28 (James Jones)
 //! - Converted vkAcquireNextImageKHR back to a non-queue operation that
 //!uses a VkSemaphore object for explicit synchronization.
 //! - Added issue 10 to determine whether vkAcquireNextImageKHR generates or
 //!returns semaphores, or whether it operates on a semaphore provided by
 //!the application.
+//!
 //! - Revision 11, 2015-05-28 (James Jones)
 //! - Marked issues 6, 7, and 8 resolved.
 //! - Renamed VkSurfaceCapabilityPropertiesKHR to VkSurfacePropertiesKHR to
 //!better convey the mutable nature of the information it contains.
+//!
 //! - Revision 12, 2015-05-28 (James Jones)
 //! - Added issue 11 with a proposed resolution, and the related issue 12.
 //! - Updated various sections of the spec to match the proposed resolution
 //!to issue 11.
+//!
 //! - Revision 13, 2015-06-01 (James Jones)
 //! - Moved some structures to VK_EXT_KHR_swap_chain to resolve the
 //!specification’s issues 1 and 2.
+//!
 //! - Revision 14, 2015-06-01 (James Jones)
 //! - Added code for example 4 demonstrating how an application might make
 //!use of the two different present and acquire next image KHR result
 //!codes.
 //! - Added issue 13.
+//!
 //! - Revision 15, 2015-06-01 (James Jones)
 //! - Added issues 14 - 16 and related spec language.
 //! - Fixed some spelling errors.
 //! - Added language describing the meaningful return values for
 //!vkAcquireNextImageKHR and vkQueuePresentKHR.
+//!
 //! - Revision 16, 2015-06-02 (James Jones)
 //! - Added issues 17 and 18, as well as related spec language.
 //! - Removed some erroneous text added by mistake in the last update.
+//!
 //! - Revision 17, 2015-06-15 (Ian Elliott)
 //! - Changed special value from "-1" to "0" so that the data types can be
 //!unsigned.
+//!
 //! - Revision 18, 2015-06-15 (Ian Elliott)
 //! - Clarified the values of VkSurfacePropertiesKHR::minImageCount and the
 //!timeout parameter of the vkAcquireNextImageKHR function.
+//!
 //! - Revision 19, 2015-06-17 (James Jones)
 //! - Misc.
 //!cleanup.
@@ -433,44 +464,56 @@
 //!version 18.
 //! - Added a brief "Image Ownership" definition to the list of terms used
 //!in the spec.
+//!
 //! - Revision 20, 2015-06-17 (James Jones)
 //! - Updated enum-extending values using new convention.
+//!
 //! - Revision 21, 2015-06-17 (James Jones)
 //! - Added language describing how to use
 //!VK_IMAGE_LAYOUT_PRESENT_SOURCE_KHR.
 //! - Cleaned up an XXX comment regarding the description of which queues
 //!vkQueuePresentKHR can be used on.
+//!
 //! - Revision 22, 2015-06-17 (James Jones)
 //! - Rebased on Vulkan API version 126.
+//!
 //! - Revision 23, 2015-06-18 (James Jones)
 //! - Updated language for issue 12 to read as a proposed resolution.
 //! - Marked issues 11, 12, 13, 16, and 17 resolved.
 //! - Temporarily added links to the relevant bugs under the remaining
 //!unresolved issues.
 //! - Added issues 19 and 20 as well as proposed resolutions.
+//!
 //! - Revision 24, 2015-06-19 (Ian Elliott)
 //! - Changed special value for VkSurfacePropertiesKHR::currentExtent back
 //!to “-1” from “0”.
 //!This value will never need to be unsigned, and “0” is actually a
 //!legal value.
+//!
 //! - Revision 25, 2015-06-23 (Ian Elliott)
 //! - Examples now show use of function pointers for extension functions.
 //! - Eliminated extraneous whitespace.
+//!
 //! - Revision 26, 2015-06-25 (Ian Elliott)
 //! - Resolved Issues 9 & 10 per KHR TSG meeting.
+//!
 //! - Revision 27, 2015-06-25 (James Jones)
 //! - Added oldSwapchain member to VkSwapchainCreateInfoKHR.
+//!
 //! - Revision 28, 2015-06-25 (James Jones)
 //! - Added the “inherit” bits to the rotation and mirroring flags and the
 //!associated issue 21.
+//!
 //! - Revision 29, 2015-06-25 (James Jones)
 //! - Added the “clipped” flag to VkSwapchainCreateInfoKHR, and the
 //!associated issue 22.
 //! - Specified that presenting an image does not modify it.
+//!
 //! - Revision 30, 2015-06-25 (James Jones)
 //! - Added language to the spec that clarifies the behavior of
 //!vkCreateSwapchainKHR() when the oldSwapchain field of
 //!VkSwapchainCreateInfoKHR is not NULL.
+//!
 //! - Revision 31, 2015-06-26 (Ian Elliott)
 //! - Example of new VkSwapchainCreateInfoKHR members, “oldSwapchain” and
 //!“clipped”.
@@ -479,18 +522,23 @@
 //! - Rename vkGetSurfaceInfoKHR()'s 4th parameter to “pDataSize”, for
 //!consistency with other functions.
 //! - Add macro with C-string name of extension (just to header file).
+//!
 //! - Revision 32, 2015-06-26 (James Jones)
 //! - Minor adjustments to the language describing the behavior of
 //!“oldSwapchain”
 //! - Fixed the version date on my previous two updates.
+//!
 //! - Revision 33, 2015-06-26 (Jesse Hall)
 //! - Add usage flags to VkSwapchainCreateInfoKHR
+//!
 //! - Revision 34, 2015-06-26 (Ian Elliott)
 //! - Rename vkQueuePresentKHR()'s 2nd parameter to “pPresentInfo”, for
 //!consistency with other functions.
+//!
 //! - Revision 35, 2015-06-26 (Jason Ekstrand)
 //! - Merged the VkRotationFlagBitsKHR and VkMirrorFlagBitsKHR enums into a
 //!single VkSurfaceTransformFlagBitsKHR enum.
+//!
 //! - Revision 36, 2015-06-26 (Jason Ekstrand)
 //! - Added a VkSurfaceTransformKHR enum that is not a bitmask.
 //!Each value in VkSurfaceTransformKHR corresponds directly to one of the
@@ -498,25 +546,31 @@
 //!other is easy.
 //!Having a separate enum means that currentTransform and preTransform
 //!are now unambiguous by definition.
+//!
 //! - Revision 37, 2015-06-29 (Ian Elliott)
 //! - Corrected one of the signatures of vkAcquireNextImageKHR, which had
 //!the last two parameters switched from what it is elsewhere in the
 //!specification and header files.
+//!
 //! - Revision 38, 2015-06-30 (Ian Elliott)
 //! - Corrected a typo in description of the vkGetSwapchainInfoKHR()
 //!function.
 //! - Corrected a typo in header file comment for VkPresentInfoKHR::sType.
+//!
 //! - Revision 39, 2015-07-07 (Daniel Rakos)
 //! - Added error section describing when each error is expected to be
 //!reported.
 //! - Replaced bool32_t with VkBool32.
+//!
 //! - Revision 40, 2015-07-10 (Ian Elliott)
 //! - Updated to work with version 138 of the `vulkan.h` header.
 //!This includes declaring the VkSwapchainKHR type using the new
 //!VK_DEFINE_NONDISP_HANDLE macro, and no longer extending VkObjectType
 //!(which was eliminated).
+//!
 //! - Revision 41 2015-07-09 (Mathias Heyer)
 //! - Added color space language.
+//!
 //! - Revision 42, 2015-07-10 (Daniel Rakos)
 //! - Updated query mechanism to reflect the convention changes done in the
 //!core spec.
@@ -524,14 +578,17 @@
 //!VK_STRUCTURE_TYPE_QUEUE_PRESENT_INFO_KHR to be consistent with the
 //!established naming convention.
 //! - Removed reference to the no longer existing VkObjectType enum.
+//!
 //! - Revision 43, 2015-07-17 (Daniel Rakos)
 //! - Added support for concurrent sharing of swapchain images across queue
 //!families.
 //! - Updated sample code based on recent changes
+//!
 //! - Revision 44, 2015-07-27 (Ian Elliott)
 //! - Noted that support for VK_PRESENT_MODE_FIFO_KHR is required.
 //!That is ICDs may optionally support IMMEDIATE and MAILBOX, but must
 //!support FIFO.
+//!
 //! - Revision 45, 2015-08-07 (Ian Elliott)
 //! - Corrected a typo in spec file (type and variable name had wrong case
 //!for the imageColorSpace member of the VkSwapchainCreateInfoKHR
@@ -539,6 +596,7 @@
 //! - Corrected a typo in header file (last parameter in
 //!PFN_vkGetSurfacePropertiesKHR was missing “KHR” at the end of type:
 //!VkSurfacePropertiesKHR).
+//!
 //! - Revision 46, 2015-08-20 (Ian Elliott)
 //! - Renamed this extension and all of its enumerations, types, functions,
 //!etc.
@@ -550,57 +608,78 @@
 //! - Changed the status of several issues from PROPOSED to RESOLVED,
 //!leaving no unresolved issues.
 //! - Resolved several TODOs, did miscellaneous cleanup, etc.
+//!
 //! - Revision 47, 2015-08-20 (Ian Elliott—​porting a 2015-07-29 change from
 //!James Jones)
 //! - Moved the surface transform enums to VK_WSI_swapchain so they could be
 //!reused by VK_WSI_display.
+//!
 //! - Revision 48, 2015-09-01 (James Jones)
 //! - Various minor cleanups.
+//!
 //! - Revision 49, 2015-09-01 (James Jones)
 //! - Restore single-field revision number.
+//!
 //! - Revision 50, 2015-09-01 (James Jones)
 //! - Update Example #4 to include code that illustrates how to use the
 //!oldSwapchain field.
+//!
 //! - Revision 51, 2015-09-01 (James Jones)
 //! - Fix example code compilation errors.
+//!
 //! - Revision 52, 2015-09-08 (Matthaeus G. Chajdas)
 //! - Corrected a typo.
+//!
 //! - Revision 53, 2015-09-10 (Alon Or-bach)
 //! - Removed underscore from SWAP_CHAIN left in
 //!VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR.
+//!
 //! - Revision 54, 2015-09-11 (Jesse Hall)
 //! - Described the execution and memory coherence requirements for image
 //!transitions to and from VK_IMAGE_LAYOUT_PRESENT_SOURCE_KHR.
+//!
 //! - Revision 55, 2015-09-11 (Ray Smith)
 //! - Added errors for destroying and binding memory to presentable images
+//!
 //! - Revision 56, 2015-09-18 (James Jones)
 //! - Added fence argument to vkAcquireNextImageKHR
 //! - Added example of how to meter a host thread based on presentation
 //!rate.
+//!
 //! - Revision 57, 2015-09-26 (Jesse Hall)
 //! - Replace VkSurfaceDescriptionKHR with VkSurfaceKHR.
 //! - Added issue 25 with agreed resolution.
+//!
 //! - Revision 58, 2015-09-28 (Jesse Hall)
 //! - Renamed from VK_EXT_KHR_device_swapchain to VK_EXT_KHR_swapchain.
+//!
 //! - Revision 59, 2015-09-29 (Ian Elliott)
 //! - Changed vkDestroySwapchainKHR() to return void.
+//!
 //! - Revision 60, 2015-10-01 (Jeff Vigil)
 //! - Added error result VK_ERROR_SURFACE_LOST_KHR.
+//!
 //! - Revision 61, 2015-10-05 (Jason Ekstrand)
 //! - Added the VkCompositeAlpha enum and corresponding structure fields.
+//!
 //! - Revision 62, 2015-10-12 (Daniel Rakos)
 //! - Added VK_PRESENT_MODE_FIFO_RELAXED_KHR.
+//!
 //! - Revision 63, 2015-10-15 (Daniel Rakos)
 //! - Moved surface capability queries to VK_EXT_KHR_surface.
+//!
 //! - Revision 64, 2015-10-26 (Ian Elliott)
 //! - Renamed from VK_EXT_KHR_swapchain to VK_KHR_swapchain.
+//!
 //! - Revision 65, 2015-10-28 (Ian Elliott)
 //! - Added optional pResult member to VkPresentInfoKHR, so that
 //!per-swapchain results can be obtained from vkQueuePresentKHR().
+//!
 //! - Revision 66, 2015-11-03 (Daniel Rakos)
 //! - Added allocation callbacks to create and destroy functions.
 //! - Updated resource transition language.
 //! - Updated sample code.
+//!
 //! - Revision 67, 2015-11-10 (Jesse Hall)
 //! - Add reserved flags bitmask to VkSwapchainCreateInfoKHR.
 //! - Modify naming and member ordering to match API style conventions, and
@@ -609,6 +688,7 @@
 //! - Make VkPresentInfoKHR::pResults non-const; it is an output array
 //!parameter.
 //! - Make pPresentInfo parameter to vkQueuePresentKHR const.
+//!
 //! - Revision 68, 2016-04-05 (Ian Elliott)
 //! - Moved the “validity” include for vkAcquireNextImage to be in its
 //!proper place, after the prototype and list of parameters.
@@ -617,16 +697,20 @@
 //!As part of this, removed language about “ownership” of presentable
 //!images, and replaced it with more-consistent language about
 //!presentable images being “acquired” by the application.
+//!
 //! - 2016-08-23 (Ian Elliott)
 //! - Update the example code, to use the final API command names, to not
 //!have so many characters per line, and to split out a new example to
 //!show how to obtain function pointers.
 //!This code is more similar to the LunarG “cube” demo program.
+//!
 //! - 2016-08-25 (Ian Elliott)
 //! - A note was added at the beginning of the example code, stating that it
 //!will be removed from future versions of the appendix.
+//!
 //! - Revision 69, 2017-09-07 (Tobias Hector)
 //! - Added interactions with Vulkan 1.1
+//!
 //! - Revision 70, 2017-10-06 (Ian Elliott)
 //! - Corrected interactions with Vulkan 1.1
 //!# Other info
@@ -634,6 +718,7 @@
 //! * No known IP claims.
 //!*
 //! - Interacts with Vulkan 1.1
+//!
 //!*
 //! - Patrick Doane, Blizzard
 //! - Ian Elliott, LunarG

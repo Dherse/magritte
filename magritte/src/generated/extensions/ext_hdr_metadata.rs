@@ -48,6 +48,7 @@
 //!# Version History
 //! - Revision 1, 2016-12-27 (Courtney Goeltzenleuchter)
 //! - Initial version
+//!
 //! - Revision 2, 2018-12-19 (Courtney Goeltzenleuchter)
 //! - Correct implicit validity for VkHdrMetadataEXT structure
 //!# Other info

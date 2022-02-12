@@ -17,6 +17,7 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDevicePresentIdFeaturesKHR`]
+//!
 //! - Extending [`PresentInfoKHR`]:
 //! - [`PresentIdKHR`]
 //!# New constants

@@ -42,6 +42,7 @@
 //! * 2017-09-05
 //!*
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //!# Related

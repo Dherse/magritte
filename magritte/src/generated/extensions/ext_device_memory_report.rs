@@ -22,6 +22,7 @@
 //! - [`DeviceMemoryReportCallbackDataEXT`]
 //! - Extending [`DeviceCreateInfo`]:
 //! - [`DeviceDeviceMemoryReportCreateInfoEXT`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceDeviceMemoryReportFeaturesEXT`]
 //!# New enums
@@ -134,6 +135,7 @@
 //!# Version History
 //! - Revision 1, 2020-08-26 (Yiwei Zhang)
 //! - Initial version
+//!
 //! - Revision 2, 2021-01-06 (Yiwei Zhang)
 //! - Minor description update
 //!# Other info

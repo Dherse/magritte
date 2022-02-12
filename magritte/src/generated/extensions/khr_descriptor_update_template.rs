@@ -24,7 +24,8 @@
 //!# New functions & commands
 //! - [`CreateDescriptorUpdateTemplateKHR`]
 //! - [`DestroyDescriptorUpdateTemplateKHR`]
-//! - [`UpdateDescriptorSetWithTemplateKHR`]If [`VK_KHR_push_descriptor`] is supported:
+//! - [`UpdateDescriptorSetWithTemplateKHR`]
+//!If [`VK_KHR_push_descriptor`] is supported:
 //! - [`CmdPushDescriptorSetWithTemplateKHR`]
 //!# New structures
 //! - [`DescriptorUpdateTemplateCreateInfoKHR`]
@@ -38,14 +39,18 @@
 //! - [`KHR_DESCRIPTOR_UPDATE_TEMPLATE_SPEC_VERSION`]
 //! - Extending [`DescriptorUpdateTemplateType`]:
 //! - `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR`
+//!
 //! - Extending [`ObjectType`]:
 //! - `VK_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR`
+//!
 //! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO_KHR`If [`VK_EXT_debug_report`] is
-//!   supported:
+//! - `VK_STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO_KHR`
+//!
+//!If [`VK_EXT_debug_report`] is supported:
 //! - Extending [`DebugReportObjectTypeEXT`]:
-//! - `VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR_EXT`If [`VK_KHR_push_descriptor`]
-//!   is supported:
+//! - `VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR_EXT`
+//!
+//!If [`VK_KHR_push_descriptor`] is supported:
 //! - Extending [`DescriptorUpdateTemplateType`]:
 //! - `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR`
 //!# Version History
@@ -57,6 +62,7 @@
 //!*
 //! - Interacts with `[`VK_KHR_push_descriptor`]`
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //! - Michael Worcester, Imagination Technologies

@@ -297,7 +297,8 @@ impl PointClippingBehavior {
 ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ul](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ul).
 /// - [`TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT`] specifies that the origin
 ///of the domain space is in the lower left corner, as shown in figure
-///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ll](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ll).This enum affects how the `VertexOrderCw` and `VertexOrderCcw`
+///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ll](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ll).
+///This enum affects how the `VertexOrderCw` and `VertexOrderCcw`
 ///tessellation execution modes are interpreted, since the winding is defined
 ///relative to the orientation of the domain.
 ///# Related
@@ -412,7 +413,8 @@ impl TessellationDomainOrigin {
 /// - [`SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020`] specifies the color
 ///model conversion from Y′C<sub>B</sub>C<sub>R</sub> to R′G′B′ defined in BT.2020 and
 ///described in the “BT.2020 Y′C<sub>B</sub>C<sub>R</sub> conversion” section of the
-///[Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).In the `VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_*` color models, for the
+///[Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).
+///In the `VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_*` color models, for the
 ///input to the sampler Y′C<sub>B</sub>C<sub>R</sub> range expansion and model conversion:
 /// - the Y (Y′ luma) component corresponds to the G component of an RGB
 ///image.
@@ -421,7 +423,8 @@ impl TessellationDomainOrigin {
 /// - the CR (C<sub>R</sub> or “V” red color difference) component corresponds to the
 ///R component of an RGB image.
 /// - the alpha component, if present, is not modified by color model
-///conversion.These rules reflect the mapping of components after the component swizzle
+///conversion.
+///These rules reflect the mapping of components after the component swizzle
 ///operation (controlled by
 ///[`SamplerYcbcrConversionCreateInfo::components`]).
 ///# Related
@@ -546,7 +549,8 @@ impl SamplerYcbcrModelConversion {
 /// - [`SAMPLER_YCBCR_RANGE_ITU_NARROW`] specifies that headroom and foot
 ///room are reserved in the numerical range of encoded values, and the
 ///remaining values are expanded according to the ITU “narrow range”
-///quantization rules.The formulae for these conversions is described in the
+///quantization rules.
+///The formulae for these conversions is described in the
 ///[Sampler Y′C<sub>B</sub>C<sub>R</sub> Range
 ///Expansion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-sampler-YCbCr-conversion-rangeexpand) section of the [Image Operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures) chapter.No range modification takes place if `ycbcrModel` is
 ///`VK_SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY`; the `ycbcrRange`

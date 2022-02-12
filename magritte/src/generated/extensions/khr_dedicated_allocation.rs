@@ -35,6 +35,7 @@
 //!# New structures
 //! - Extending [`MemoryAllocateInfo`]:
 //! - [`MemoryDedicatedAllocateInfoKHR`]
+//!
 //! - Extending [`MemoryRequirements2`]:
 //! - [`MemoryDedicatedRequirementsKHR`]
 //!# New constants
@@ -47,8 +48,10 @@
 //! - Revision 1, 2017-02-27 (James Jones)
 //! - Copy content from VK_NV_dedicated_allocation
 //! - Add some references to external object interactions to the overview.
+//!
 //! - Revision 2, 2017-03-27 (Jason Ekstrand)
 //! - Rework the extension to be query-based
+//!
 //! - Revision 3, 2017-07-31 (Jason Ekstrand)
 //! - Clarify that memory objects allocated with
 //!VkMemoryDedicatedAllocateInfoKHR can only have the specified resource
@@ -58,6 +61,7 @@
 //! * No known IP claims.
 //!*
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //! - Jason Ekstrand, Intel

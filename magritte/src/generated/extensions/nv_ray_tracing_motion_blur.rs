@@ -8,8 +8,8 @@
 //! - A ray pipeline trace call which takes a time parameter
 //! - Flags to enable motion support in an acceleration structure
 //! - Support for time-varying vertex positions in a geometry
-//! - Motion instances to move existing instances over timeThe motion represented here is
-//!   parameterized across a normalized timestep
+//! - Motion instances to move existing instances over time
+//!The motion represented here is parameterized across a normalized timestep
 //!between 0.0 and 1.0.
 //!A motion trace using `OpTraceRayMotionNV` provides a time within that
 //!normalized range to be used when intersecting that ray with geometry.
@@ -32,8 +32,10 @@
 //! - [`SrtDataNV`]
 //! - Extending [`AccelerationStructureCreateInfoKHR`]:
 //! - [`AccelerationStructureMotionInfoNV`]
+//!
 //! - Extending [`AccelerationStructureGeometryTrianglesDataKHR`]:
 //! - [`AccelerationStructureGeometryMotionTrianglesDataNV`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceRayTracingMotionBlurFeaturesNV`]
 //!# New enums
@@ -46,10 +48,13 @@
 //! - [`NV_RAY_TRACING_MOTION_BLUR_SPEC_VERSION`]
 //! - Extending [`AccelerationStructureCreateFlagBitsKHR`]:
 //! - `VK_ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV`
+//!
 //! - Extending [`BuildAccelerationStructureFlagBitsKHR`]:
 //! - `VK_BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV`
+//!
 //! - Extending [`PipelineCreateFlagBits`]:
 //! - `VK_PIPELINE_CREATE_RAY_TRACING_ALLOW_MOTION_BIT_NV`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV`
 //! - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MOTION_INFO_NV`
@@ -57,7 +62,8 @@
 //!# Known issues & F.A.Q
 //!(1) What size is VkAccelerationStructureMotionInstanceNV?
 //! - Added a note on the structure size and made the stride explicit in the
-//!language.(2) Allow arrayOfPointers for motion TLAS?
+//!language.
+//!(2) Allow arrayOfPointers for motion TLAS?
 //! - Yes, with a packed encoding to minimize the amount of data sent for
 //!metadata.
 //!# Version History
@@ -70,6 +76,7 @@
 //![`SPV_NV_ray_tracing_motion_blur`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_ray_tracing_motion_blur.html)
 //! - This extension provides API support for
 //![`GL_NV_ray_tracing_motion_blur`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nv/GLSL_NV_ray_tracing_motion_blur.txt)
+//!
 //!*
 //! - Eric Werness, NVIDIA
 //! - Ashwin Lele, NVIDIA

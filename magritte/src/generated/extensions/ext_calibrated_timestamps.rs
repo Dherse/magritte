@@ -79,6 +79,7 @@
 //!# Version History
 //! - Revision 2, 2021-03-16 (Lionel Landwerlin)
 //! - Specify requirement on device timestamps
+//!
 //! - Revision 1, 2018-10-04 (Daniel Rakos)
 //! - Internal revisions.
 //!# Other info
@@ -142,6 +143,7 @@ pub const EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///Timestamp values in this time domain are in units of nanoseconds and are
 ///comparable with platform timestamp values captured using the POSIX
 ///clock_gettime API as computed by this example:
+///
 ///```c
 ///struct timespec tv;
 ///clock_gettime(CLOCK_MONOTONIC, &tv);
@@ -153,6 +155,7 @@ pub const EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///Timestamp values in this time domain are in units of nanoseconds and are
 ///comparable with platform timestamp values captured using the POSIX
 ///clock_gettime API as computed by this example:
+///
 ///```c
 ///struct timespec tv;
 ///clock_gettime(CLOCK_MONOTONIC_RAW, &tv);
@@ -165,6 +168,7 @@ pub const EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///provided by the Windows QueryPerformanceCounter API and are comparable
 ///with platform timestamp values captured using that API as computed by
 ///this example:
+///
 ///```c
 ///LARGE_INTEGER counter;
 ///QueryPerformanceCounter(&counter);

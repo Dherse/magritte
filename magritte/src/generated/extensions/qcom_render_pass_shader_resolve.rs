@@ -46,14 +46,17 @@
 //!# Version History
 //! - Revision 1, 2019-06-28 (wwlk)
 //! - Initial draft
+//!
 //! - Revision 2, 2019-11-06 (wwlk)
 //! - General clean-up/spec updates
 //! - Added issues
+//!
 //! - Revision 3, 2019-11-07 (wwlk)
 //! - Typos
 //! - Additional issues
 //! - Clarified that a shader resolve subpass is the last subpass in a
 //!subpass dependency chain
+//!
 //! - Revision 4, 2020-01-06 (wwlk)
 //! - Change resolution of Issue 1 (*render_pass*, not *renderpass*)
 //!# Other info

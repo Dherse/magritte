@@ -1,8 +1,8 @@
 //![VK_NV_geometry_shader_passthrough](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_NV_geometry_shader_passthrough.html) - device extension
 //!# Description
 //!This extension adds support for the following SPIR-V extension in Vulkan:
-//! - `SPV_NV_geometry_shader_passthrough`Geometry shaders provide the ability for applications to
-//!   process each
+//! - `SPV_NV_geometry_shader_passthrough`
+//!Geometry shaders provide the ability for applications to process each
 //!primitive sent through the graphics pipeline using a programmable shader.
 //!However, one common use case treats them largely as a “passthrough”.
 //!In this use case, the bulk of the geometry shader code simply copies inputs
@@ -61,6 +61,7 @@
 //! - This extension provides API support for
 //![`GL_NV_geometry_shader_passthrough`](https://www.khronos.org/registry/OpenGL/extensions/NV/NV_geometry_shader_passthrough.txt)
 //! - This extension requires the `geometryShader` feature.
+//!
 //!*
 //! - Piers Daniell, NVIDIA
 //! - Jeff Bolz, NVIDIA

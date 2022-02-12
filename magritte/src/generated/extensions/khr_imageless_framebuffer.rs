@@ -25,8 +25,10 @@
 //! - [`FramebufferAttachmentImageInfoKHR`]
 //! - Extending [`FramebufferCreateInfo`]:
 //! - [`FramebufferAttachmentsCreateInfoKHR`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceImagelessFramebufferFeaturesKHR`]
+//!
 //! - Extending [`RenderPassBeginInfo`]:
 //! - [`RenderPassAttachmentBeginInfoKHR`]
 //!# New constants
@@ -34,6 +36,7 @@
 //! - [`KHR_IMAGELESS_FRAMEBUFFER_SPEC_VERSION`]
 //! - Extending [`FramebufferCreateFlagBits`]:
 //! - `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENTS_CREATE_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO_KHR`
@@ -46,6 +49,7 @@
 //! * 2018-12-14
 //!*
 //! - Promoted to Vulkan 1.2 Core
+//!
 //!*
 //! - Tobias Hector
 //! - Graham Wihlidal

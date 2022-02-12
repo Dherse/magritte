@@ -14,8 +14,10 @@
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the VK_KHR_push_descriptor
 //!   extension>>)
 //!# New functions & commands
-//! - [`CmdPushDescriptorSetKHR`]If [`VK_KHR_descriptor_update_template`] is supported:
-//! - [`CmdPushDescriptorSetWithTemplateKHR`]If [Version 1.1]() is supported:
+//! - [`CmdPushDescriptorSetKHR`]
+//!If [`VK_KHR_descriptor_update_template`] is supported:
+//! - [`CmdPushDescriptorSetWithTemplateKHR`]
+//!If [Version 1.1]() is supported:
 //! - [`CmdPushDescriptorSetWithTemplateKHR`]
 //!# New structures
 //! - Extending [`PhysicalDeviceProperties2`]:
@@ -25,16 +27,21 @@
 //! - [`KHR_PUSH_DESCRIPTOR_SPEC_VERSION`]
 //! - Extending [`DescriptorSetLayoutCreateFlagBits`]:
 //! - `VK_DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT_KHR`
+//!
 //! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES_KHR`If
-//!   [`VK_KHR_descriptor_update_template`] is supported:
+//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES_KHR`
+//!
+//!If [`VK_KHR_descriptor_update_template`] is supported:
 //! - Extending [`DescriptorUpdateTemplateType`]:
-//! - `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR`If [Version 1.1]() is supported:
+//! - `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR`
+//!
+//!If [Version 1.1]() is supported:
 //! - Extending [`DescriptorUpdateTemplateType`]:
 //! - `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR`
 //!# Version History
 //! - Revision 1, 2016-10-15 (Jeff Bolz)
 //! - Internal revisions
+//!
 //! - Revision 2, 2017-09-12 (Tobias Hector)
 //! - Added interactions with Vulkan 1.1
 //!# Other info

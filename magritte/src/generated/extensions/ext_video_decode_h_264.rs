@@ -11,19 +11,26 @@
 //!# New structures
 //! - Extending [`VideoCapabilitiesKHR`]:
 //! - [`VideoDecodeH264CapabilitiesEXT`]
+//!
 //! - Extending [`VideoDecodeH264PictureInfoEXT`]:
 //! - [`VideoDecodeH264MvcEXT`]
+//!
 //! - Extending [`VideoDecodeInfoKHR`]:
 //! - [`VideoDecodeH264PictureInfoEXT`]
+//!
 //! - Extending [`VideoProfileKHR`], [`QueryPoolCreateInfo`], [`FormatProperties2`],
 //!   [`ImageCreateInfo`], [`ImageViewCreateInfo`], [`BufferCreateInfo`]:
 //! - [`VideoDecodeH264ProfileEXT`]
+//!
 //! - Extending [`VideoReferenceSlotKHR`]:
 //! - [`VideoDecodeH264DpbSlotInfoEXT`]
+//!
 //! - Extending [`VideoSessionCreateInfoKHR`]:
 //! - [`VideoDecodeH264SessionCreateInfoEXT`]
+//!
 //! - Extending [`VideoSessionParametersCreateInfoKHR`]:
 //! - [`VideoDecodeH264SessionParametersCreateInfoEXT`]
+//!
 //! - Extending [`VideoSessionParametersUpdateInfoKHR`]:
 //! - [`VideoDecodeH264SessionParametersAddInfoEXT`]
 //!# New enums
@@ -43,13 +50,16 @@
 //! - `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_CREATE_INFO_EXT`
 //! - `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_PARAMETERS_ADD_INFO_EXT`
 //! - `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_EXT`
+//!
 //! - Extending [`VideoCodecOperationFlagBitsKHR`]:
 //! - `VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_EXT`
 //!# Version History
 //! - Revision 1, 2018-6-11 (Peter Fang)
 //! - Initial draft
+//!
 //! - Revision 2, March 29 2021 (Tony Zlatinski)
 //! - Spec and API Updates
+//!
 //! - Revision 3, August 1 2021 (Srinath Kumarapuram)
 //! - Rename `VkVideoDecodeH264FieldLayoutFlagsEXT` to
 //![`VideoDecodeH264PictureLayoutFlagsEXT`],

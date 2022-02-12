@@ -33,6 +33,7 @@
 //! * 2019-01-25
 //!*
 //! - Promoted to Vulkan 1.2 Core
+//!
 //!*
 //! - Graeme Leese, Broadcom
 //! - Jeff Bolz, NVIDIA

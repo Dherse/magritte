@@ -37,12 +37,14 @@
 //! * 2019-06-01
 //!*
 //! - Promoted to Vulkan 1.3 Core
+//!
 //! * No known IP claims.
 //!*
 //! - This extension requires
 //![`SPV_EXT_demote_to_helper_invocation`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/EXT/SPV_EXT_demote_to_helper_invocation.html)
 //! - This extension provides API support for
 //![`GL_EXT_demote_to_helper_invocation`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_demote_to_helper_invocation.txt)
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //!# Related

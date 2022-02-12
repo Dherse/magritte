@@ -26,14 +26,19 @@
 //!# New functions & commands
 //! - [`AcquireFullScreenExclusiveModeEXT`]
 //! - [`GetPhysicalDeviceSurfacePresentModes2EXT`]
-//! - [`ReleaseFullScreenExclusiveModeEXT`]If [`VK_KHR_device_group`] is supported:
-//! - [`GetDeviceGroupSurfacePresentModes2EXT`]If [Version 1.1]() is supported:
+//! - [`ReleaseFullScreenExclusiveModeEXT`]
+//!If [`VK_KHR_device_group`] is supported:
+//! - [`GetDeviceGroupSurfacePresentModes2EXT`]
+//!If [Version 1.1]() is supported:
 //! - [`GetDeviceGroupSurfacePresentModes2EXT`]
 //!# New structures
 //! - Extending [`PhysicalDeviceSurfaceInfo2KHR`], [`SwapchainCreateInfoKHR`]:
 //! - [`SurfaceFullScreenExclusiveInfoEXT`]
+//!
 //! - Extending [`SurfaceCapabilities2KHR`]:
-//! - [`SurfaceCapabilitiesFullScreenExclusiveEXT`]If [`VK_KHR_win32_surface`] is supported:
+//! - [`SurfaceCapabilitiesFullScreenExclusiveEXT`]
+//!
+//!If [`VK_KHR_win32_surface`] is supported:
 //! - Extending [`PhysicalDeviceSurfaceInfo2KHR`], [`SwapchainCreateInfoKHR`]:
 //! - [`SurfaceFullScreenExclusiveWin32InfoEXT`]
 //!# New enums
@@ -43,10 +48,12 @@
 //! - [`EXT_FULL_SCREEN_EXCLUSIVE_SPEC_VERSION`]
 //! - Extending [`VulkanResultCodes`]:
 //! - `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT`
-//! - `VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT`If [`VK_KHR_win32_surface`] is
-//!   supported:
+//! - `VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT`
+//!
+//!If [`VK_KHR_win32_surface`] is supported:
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT`
 //!# Known issues & F.A.Q
@@ -57,8 +64,9 @@
 //! - VK_EXT_fullscreen_preference
 //! - VK_EXT_fullscreen_hint
 //! - VK_EXT_fast_fullscreen_transition
-//! - VK_EXT_avoid_fullscreen_exclusive2) Do we need more than a boolean toggle?**RESOLVED**:
-//!   Yes.Using an enum with default/allowed/disallowed/app-controlled enables
+//! - VK_EXT_avoid_fullscreen_exclusive
+//!2) Do we need more than a boolean toggle?**RESOLVED**: Yes.Using an enum with
+//! default/allowed/disallowed/app-controlled enables
 //!applications to accept driver default behavior, specifically override it in
 //!either direction without implying the driver is ever required to use
 //!full-screen exclusive mechanisms, or manage this mode explicitly.3) Should this be a KHR or EXT
@@ -89,12 +97,15 @@
 //! - Revision 4, 2019-03-12 (Tobias Hector)
 //! - Added application-controlled mode, and related functions
 //! - Tidied up appendix
+//!
 //! - Revision 3, 2019-01-03 (James Jones)
 //! - Renamed to VK_EXT_full_screen_exclusive
 //! - Made related adjustments to the tri-state enumerant names.
+//!
 //! - Revision 2, 2018-11-27 (James Jones)
 //! - Renamed to VK_KHR_fullscreen_behavior
 //! - Switched from boolean flag to tri-state enum
+//!
 //! - Revision 1, 2018-11-06 (James Jones)
 //! - Internal revision
 //!# Other info
@@ -104,6 +115,7 @@
 //! - Interacts with Vulkan 1.1
 //! - Interacts with `[`VK_KHR_device_group`]`
 //! - Interacts with `[`VK_KHR_win32_surface`]`
+//!
 //!*
 //! - Hans-Kristian Arntzen, ARM
 //! - Slawomir Grajewski, Intel

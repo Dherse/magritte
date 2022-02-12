@@ -1,8 +1,8 @@
 //![VK_NV_viewport_array2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_NV_viewport_array2.html) - device extension
 //!# Description
 //!This extension adds support for the following SPIR-V extension in Vulkan:
-//! - `SPV_NV_viewport_array2`which allows a single primitive to be broadcast to multiple viewports
-//!   and/or
+//! - `SPV_NV_viewport_array2`
+//!which allows a single primitive to be broadcast to multiple viewports and/or
 //!multiple layers.
 //!A new shader built-in output `ViewportMaskNV` is provided, which allows a
 //!single primitive to be output to multiple viewports simultaneously.
@@ -50,6 +50,7 @@
 //! - This extension requires the `geometryShader` and `multiViewport`
 //!features.
 //! - This extension interacts with the `tessellationShader` feature.
+//!
 //!*
 //! - Piers Daniell, NVIDIA
 //! - Jeff Bolz, NVIDIA

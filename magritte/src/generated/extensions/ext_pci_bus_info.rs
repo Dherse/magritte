@@ -30,6 +30,7 @@
 //!# Version History
 //! - Revision 2, 2018-12-10 (Daniel Rakos)
 //! - Changed all members of the new structure to have the uint32_t type
+//!
 //! - Revision 1, 2018-10-11 (Daniel Rakos)
 //! - Initial revision
 //!# Other info

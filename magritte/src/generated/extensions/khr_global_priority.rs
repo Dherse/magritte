@@ -39,8 +39,10 @@
 //!# New structures
 //! - Extending [`DeviceQueueCreateInfo`]:
 //! - [`DeviceQueueGlobalPriorityCreateInfoKHR`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceGlobalPriorityQueryFeaturesKHR`]
+//!
 //! - Extending [`QueueFamilyProperties2`]:
 //! - [`QueueFamilyGlobalPriorityPropertiesKHR`]
 //!# New enums
@@ -51,6 +53,7 @@
 //! - [`MAX_GLOBAL_PRIORITY_SIZE_KHR`]
 //! - Extending [`VulkanResultCodes`]:
 //! - `VK_ERROR_NOT_PERMITTED_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR`

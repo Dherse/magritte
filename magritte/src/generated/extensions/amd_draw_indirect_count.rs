@@ -27,12 +27,14 @@
 //!# Version History
 //! - Revision 2, 2016-08-23 (Dominik Witczak)
 //! - Minor fixes
+//!
 //! - Revision 1, 2016-07-21 (Matthaeus Chajdas)
 //! - Initial draft
 //!# Other info
 //! * 2016-08-23
 //!*
 //! - Promoted to `[`VK_KHR_draw_indirect_count`]`
+//!
 //! * No known IP claims.
 //!*
 //! - Matthaeus G. Chajdas, AMD

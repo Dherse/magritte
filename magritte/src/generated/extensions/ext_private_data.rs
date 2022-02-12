@@ -31,6 +31,7 @@
 //! - [`PrivateDataSlotCreateInfoEXT`]
 //! - Extending [`DeviceCreateInfo`]:
 //! - [`DevicePrivateDataCreateInfoEXT`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDevicePrivateDataFeaturesEXT`]
 //!# New enums
@@ -42,6 +43,7 @@
 //! - [`EXT_PRIVATE_DATA_SPEC_VERSION`]
 //! - Extending [`ObjectType`]:
 //! - `VK_OBJECT_TYPE_PRIVATE_DATA_SLOT_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO_EXT`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES_EXT`
@@ -53,6 +55,7 @@
 //! * 2020-03-25
 //!*
 //! - Promoted to Vulkan 1.3 Core
+//!
 //! * No known IP claims.
 //!*
 //! - Matthew Rusch, NVIDIA

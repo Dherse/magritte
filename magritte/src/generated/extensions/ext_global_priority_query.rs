@@ -26,6 +26,7 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceGlobalPriorityQueryFeaturesEXT`]
+//!
 //! - Extending [`QueueFamilyProperties2`]:
 //! - [`QueueFamilyGlobalPriorityPropertiesEXT`]
 //!# New constants

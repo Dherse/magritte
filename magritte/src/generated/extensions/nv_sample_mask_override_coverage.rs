@@ -1,8 +1,8 @@
 //![VK_NV_sample_mask_override_coverage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_NV_sample_mask_override_coverage.html) - device extension
 //!# Description
 //!This extension adds support for the following SPIR-V extension in Vulkan:
-//! - `SPV_NV_sample_mask_override_coverage`The extension provides access to the
-//!   `OverrideCoverageNV` decoration
+//! - `SPV_NV_sample_mask_override_coverage`
+//!The extension provides access to the `OverrideCoverageNV` decoration
 //!under the `SampleMaskOverrideCoverageNV` capability.
 //!Adding this decoration to a variable with the [`SampleMask`] builtin
 //!decoration allows the shader to modify the coverage mask and affect which
@@ -36,6 +36,7 @@
 //![`SPV_NV_sample_mask_override_coverage`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_sample_mask_override_coverage.html)
 //! - This extension provides API support for
 //![`GL_NV_sample_mask_override_coverage`](https://www.khronos.org/registry/OpenGL/extensions/NV/NV_sample_mask_override_coverage.txt)
+//!
 //!*
 //! - Daniel Koch, NVIDIA
 //! - Jeff Bolz, NVIDIA

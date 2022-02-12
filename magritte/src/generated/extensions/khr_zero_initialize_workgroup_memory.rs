@@ -32,6 +32,7 @@
 //! * 2020-11-18
 //!*
 //! - Promoted to Vulkan 1.3 Core
+//!
 //! * No known IP claims.
 //!*
 //! - Alan Baker, Google

@@ -42,6 +42,7 @@
 //! - `[`VK_KHR_ray_tracing_pipeline`]` (for ray tracing pipeline and
 //!shader stages)
 //! - `[`VK_KHR_ray_query`]` (for ray queries in existing shader stages)
+//!
 //! - Update SPIRV capabilities to use `RayQueryKHR`
 //! - extension is no longer provisional
 //!# Version History
@@ -63,6 +64,7 @@
 //![`SPV_KHR_ray_query`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_ray_query.html)
 //! - This extension provides API support for
 //![`GLSL_EXT_ray_query`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_ray_query.txt)
+//!
 //!*
 //! - Matthäus Chajdas, AMD
 //! - Greg Grebe, AMD

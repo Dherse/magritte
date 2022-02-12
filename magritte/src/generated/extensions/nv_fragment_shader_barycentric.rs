@@ -1,8 +1,8 @@
 //![VK_NV_fragment_shader_barycentric](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_NV_fragment_shader_barycentric.html) - device extension
 //!# Description
 //!This extension adds support for the following SPIR-V extension in Vulkan:
-//! - [`SPV_NV_fragment_shader_barycentric`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_fragment_shader_barycentric.html)The
-//!   extension provides access to three additional fragment shader variable
+//! - [`SPV_NV_fragment_shader_barycentric`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_fragment_shader_barycentric.html)
+//!The extension provides access to three additional fragment shader variable
 //!decorations in SPIR-V:
 //! - `PerVertexNV`, which indicates that a fragment shader input will not
 //!have interpolated values, but instead must be accessed with an extra
@@ -13,13 +13,13 @@
 //!produced using perspective interpolation
 //! - `BaryCoordNoPerspNV`, which indicates that the variable is a
 //!three-component floating-point vector holding barycentric weights for
-//!the fragment produced using linear interpolationWhen using GLSL source-based shader languages,
-//! the following variables from
+//!the fragment produced using linear interpolation
+//!When using GLSL source-based shader languages, the following variables from
 //!`GL_NV_fragment_shader_barycentric` maps to these SPIR-V built-in
 //!decorations:
 //! - `in vec3 gl_BaryCoordNV;` → `BaryCoordNV`
-//! - `in vec3 gl_BaryCoordNoPerspNV;` → `BaryCoordNoPerspNV`GLSL variables declared using the
-//!   `__pervertexNV` GLSL qualifier are
+//! - `in vec3 gl_BaryCoordNoPerspNV;` → `BaryCoordNoPerspNV`
+//!GLSL variables declared using the `__pervertexNV` GLSL qualifier are
 //!expected to be decorated with `PerVertexNV` in SPIR-V.
 //!# Revision
 //!1
@@ -89,6 +89,7 @@
 //![`SPV_NV_fragment_shader_barycentric`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_fragment_shader_barycentric.html)
 //! - This extension provides API support for
 //![`GL_NV_fragment_shader_barycentric`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nv/GLSL_NV_fragment_shader_barycentric.txt)
+//!
 //!*
 //! - Pat Brown, NVIDIA
 //! - Daniel Koch, NVIDIA

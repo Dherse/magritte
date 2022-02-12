@@ -65,8 +65,10 @@
 //! * 2020-07-06
 //!*
 //! - Promoted to Vulkan 1.3 Core
+//!
 //!*
 //! - None
+//!
 //!*
 //! - Jeff Leger, Qualcomm
 //! - Tobias Hector, AMD

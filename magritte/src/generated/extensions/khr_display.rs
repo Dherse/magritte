@@ -46,6 +46,7 @@
 //! - Extending [`ObjectType`]:
 //! - `VK_OBJECT_TYPE_DISPLAY_KHR`
 //! - `VK_OBJECT_TYPE_DISPLAY_MODE_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_DISPLAY_MODE_CREATE_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR`
@@ -157,19 +158,23 @@
 //!# Version History
 //! - Revision 1, 2015-02-24 (James Jones)
 //! - Initial draft
+//!
 //! - Revision 2, 2015-03-12 (Norbert Nopper)
 //! - Added overlay enumeration for a display.
+//!
 //! - Revision 3, 2015-03-17 (Norbert Nopper)
 //! - Fixed typos and namings as discussed in Bugzilla.
 //! - Reordered and grouped functions.
 //! - Added functions to query count of display, mode and overlay.
 //! - Added native display handle, which may be needed on some platforms to
 //!create a native Window.
+//!
 //! - Revision 4, 2015-03-18 (Norbert Nopper)
 //! - Removed primary and virtualPostion members (see comment of James Jones
 //!in Bugzilla).
 //! - Added native overlay handle to information structure.
 //! - Replaced , with ; in struct.
+//!
 //! - Revision 6, 2015-03-18 (Daniel Rakos)
 //! - Added WSI extension suffix to all items.
 //! - Made the whole API more “Vulkanish”.
@@ -185,25 +190,31 @@
 //!the rest of the Vulkan API.
 //!Also this is something ISVs explicitly requested.
 //! - Added issue (6) and (7).
+//!
 //! - Revision 7, 2015-03-25 (James Jones)
 //! - Added an issues section
 //! - Added rotation and mirroring flags
+//!
 //! - Revision 8, 2015-03-25 (James Jones)
 //! - Combined the duplicate issues sections introduced in last change.
 //! - Added proposed resolutions to several issues.
+//!
 //! - Revision 9, 2015-04-01 (Daniel Rakos)
 //! - Rebased extension against Vulkan 0.82.0
+//!
 //! - Revision 10, 2015-04-01 (James Jones)
 //! - Added issues (10) and (11).
 //! - Added more straw-man issue resolutions, and cleaned up the proposed
 //!resolution for issue (4).
 //! - Updated the rotation and mirroring enums to have proper bitmask
 //!semantics.
+//!
 //! - Revision 11, 2015-04-15 (James Jones)
 //! - Added proposed resolution for issues (1) and (2).
 //! - Added issues (12), (13), (14), and (15)
 //! - Removed pNativeHandle field from overlay structure.
 //! - Fixed small compilation errors in example code.
+//!
 //! - Revision 12, 2015-07-29 (James Jones)
 //! - Rewrote the guts of the extension against the latest WSI swapchain
 //!specifications and the latest Vulkan API.
@@ -216,6 +227,7 @@
 //! - Re-used the VK_EXT_KHR_surface surface transform enumerations rather
 //!than redefining them here.
 //! - Updated the example code to use the new semantics.
+//!
 //! - Revision 13, 2015-08-21 (Ian Elliott)
 //! - Renamed this extension and all of its enumerations, types, functions,
 //!etc.
@@ -223,14 +235,18 @@
 //!extensions.
 //! - Switched from “revision” to “version”, including use of the
 //!VK_MAKE_VERSION macro in the header file.
+//!
 //! - Revision 14, 2015-09-01 (James Jones)
 //! - Restore single-field revision number.
+//!
 //! - Revision 15, 2015-09-08 (James Jones)
 //! - Added alpha flags enum.
 //! - Added premultiplied alpha support.
+//!
 //! - Revision 16, 2015-09-08 (James Jones)
 //! - Added description section to the spec.
 //! - Added issues 16 - 18.
+//!
 //! - Revision 17, 2015-10-02 (James Jones)
 //! - Planes are now a property of the entire device rather than individual
 //!displays.
@@ -245,12 +261,16 @@
 //!Other information could be added back in as an extension if it is
 //!needed in the future.
 //! - Added support for smart/persistent/buffered display devices.
+//!
 //! - Revision 18, 2015-10-26 (Ian Elliott)
 //! - Renamed from VK_EXT_KHR_display to VK_KHR_display.
+//!
 //! - Revision 19, 2015-11-02 (James Jones)
 //! - Updated example code to match revision 17 changes.
+//!
 //! - Revision 20, 2015-11-03 (Daniel Rakos)
 //! - Added allocation callbacks to creation functions.
+//!
 //! - Revision 21, 2015-11-10 (Jesse Hall)
 //! - Added VK_DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR, and use
 //!VkDisplayPlaneAlphaFlagBitsKHR for
@@ -260,9 +280,11 @@
 //! - Use VkSurfaceTransformFlagBitsKHR instead of obsolete
 //!VkSurfaceTransformKHR.
 //! - Renamed vkGetDisplayPlaneSupportedDisplaysKHR parameters for clarity.
+//!
 //! - Revision 22, 2015-12-18 (James Jones)
 //! - Added missing “planeIndex” parameter to
 //!vkGetDisplayPlaneSupportedDisplaysKHR()
+//!
 //! - Revision 23, 2017-03-13 (James Jones)
 //! - Closed all remaining issues.
 //!The specification and implementations have been shipping with the

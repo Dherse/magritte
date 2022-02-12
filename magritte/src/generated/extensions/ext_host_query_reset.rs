@@ -31,6 +31,7 @@
 //! * No known IP claims.
 //!*
 //! - Promoted to Vulkan 1.2 Core
+//!
 //!*
 //! - Bas Nieuwenhuizen, Google
 //! - Jason Ekstrand, Intel

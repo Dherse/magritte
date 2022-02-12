@@ -30,44 +30,57 @@
 //! - Extending [`AccessFlagBits2`]:
 //! - `VK_ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR`
 //! - `VK_ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR`
+//!
 //! - Extending [`BufferUsageFlagBits`]:
 //! - `VK_BUFFER_USAGE_VIDEO_ENCODE_DST_BIT_KHR`
 //! - `VK_BUFFER_USAGE_VIDEO_ENCODE_SRC_BIT_KHR`
+//!
 //! - Extending [`FormatFeatureFlagBits`]:
 //! - `VK_FORMAT_FEATURE_VIDEO_ENCODE_DPB_BIT_KHR`
 //! - `VK_FORMAT_FEATURE_VIDEO_ENCODE_INPUT_BIT_KHR`
+//!
 //! - Extending [`ImageLayout`]:
 //! - `VK_IMAGE_LAYOUT_VIDEO_ENCODE_DPB_KHR`
 //! - `VK_IMAGE_LAYOUT_VIDEO_ENCODE_DST_KHR`
 //! - `VK_IMAGE_LAYOUT_VIDEO_ENCODE_SRC_KHR`
+//!
 //! - Extending [`ImageUsageFlagBits`]:
 //! - `VK_IMAGE_USAGE_VIDEO_ENCODE_DPB_BIT_KHR`
 //! - `VK_IMAGE_USAGE_VIDEO_ENCODE_DST_BIT_KHR`
 //! - `VK_IMAGE_USAGE_VIDEO_ENCODE_SRC_BIT_KHR`
+//!
 //! - Extending [`PipelineStageFlagBits2`]:
 //! - `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
+//!
 //! - Extending [`QueryType`]:
 //! - `VK_QUERY_TYPE_VIDEO_ENCODE_BITSTREAM_BUFFER_RANGE_KHR`
+//!
 //! - Extending [`QueueFlagBits`]:
 //! - `VK_QUEUE_VIDEO_ENCODE_BIT_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_VIDEO_ENCODE_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_LAYER_INFO_KHR`If
-//!   [`VK_KHR_format_feature_flags2`] is supported:
+//! - `VK_STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_LAYER_INFO_KHR`
+//!
+//!If [`VK_KHR_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:
 //! - `VK_FORMAT_FEATURE_2_VIDEO_ENCODE_DPB_BIT_KHR`
 //! - `VK_FORMAT_FEATURE_2_VIDEO_ENCODE_INPUT_BIT_KHR`
 //!# Version History
 //! - Revision 1, 2018-07-23 (Ahmed Abdelkhalek)
 //! - Initial draft
+//!
 //! - Revision 1.1, 10/29/2019 (Tony Zlatinski)
 //! - Updated the reserved spec tokens and renamed VkVideoEncoderKHR to
 //!VkVideoSessionKHR
+//!
 //! - Revision 1.6, Jan 08 2020 (Tony Zlatinski)
 //! - API unify with the video_decode_queue spec
+//!
 //! - Revision 2, March 29 2021 (Tony Zlatinski)
 //! - Spec and API updates.
+//!
 //! - Revision 3, 2021-09-30 (Jon Leech)
 //! - Add interaction with `[`VK_KHR_format_feature_flags2`]` to `vk.xml`
 //!# Other info

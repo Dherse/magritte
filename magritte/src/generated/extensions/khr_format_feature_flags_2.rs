@@ -52,6 +52,7 @@
 //! * 2021-07-01
 //!*
 //! - Promoted to Vulkan 1.3 Core
+//!
 //! * No known IP claims.
 //!*
 //! - Lionel Landwerlin, Intel

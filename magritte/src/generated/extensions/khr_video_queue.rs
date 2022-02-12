@@ -44,9 +44,11 @@
 //! - Extending [`FormatProperties2`], [`ImageCreateInfo`], [`ImageViewCreateInfo`],
 //!   [`BufferCreateInfo`]:
 //! - [`VideoProfilesKHR`]
+//!
 //! - Extending [`QueryPoolCreateInfo`], [`FormatProperties2`], [`ImageCreateInfo`],
 //!   [`ImageViewCreateInfo`], [`BufferCreateInfo`]:
 //! - [`VideoProfileKHR`]
+//!
 //! - Extending [`QueueFamilyProperties2`]:
 //! - [`QueueFamilyQueryResultStatusProperties2KHR`]
 //! - [`VideoQueueFamilyProperties2KHR`]
@@ -75,10 +77,13 @@
 //! - Extending [`ObjectType`]:
 //! - `VK_OBJECT_TYPE_VIDEO_SESSION_KHR`
 //! - `VK_OBJECT_TYPE_VIDEO_SESSION_PARAMETERS_KHR`
+//!
 //! - Extending [`QueryResultFlagBits`]:
 //! - `VK_QUERY_RESULT_WITH_STATUS_BIT_KHR`
+//!
 //! - Extending [`QueryType`]:
 //! - `VK_QUERY_TYPE_RESULT_STATUS_ONLY_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_2_KHR`
@@ -100,10 +105,13 @@
 //!# Version History
 //! - Revision 0.1, 2019-11-21 (Tony Zlatinski)
 //! - Initial draft
+//!
 //! - Revision 0.2, 2019-11-27 (Tony Zlatinski)
 //! - Make vulkan video core common between decode and encode
+//!
 //! - Revision 1, March 29 2021 (Tony Zlatinski)
 //! - Spec and API updates.
+//!
 //! - Revision 2, August 1 2021 (Srinath Kumarapuram)
 //! - Rename `VkVideoCapabilitiesFlagBitsKHR` to
 //![`VideoCapabilityFlagBitsKHR`] (along with the names of enumerants it

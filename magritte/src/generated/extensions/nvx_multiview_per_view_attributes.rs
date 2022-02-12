@@ -43,6 +43,7 @@
 //! - [`NVX_MULTIVIEW_PER_VIEW_ATTRIBUTES_SPEC_VERSION`]
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX`
+//!
 //! - Extending [`SubpassDescriptionFlagBits`]:
 //! - `VK_SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX`
 //! - `VK_SUBPASS_DESCRIPTION_PER_VIEW_POSITION_X_ONLY_BIT_NVX`
@@ -58,6 +59,7 @@
 //! - This extension provides API support for
 //![`GL_NVX_multiview_per_view_attributes`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nvx/GL_NVX_multiview_per_view_attributes.txt)
 //! - This extension interacts with `[`VK_NV_viewport_array2`]`.
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //! - Daniel Koch, NVIDIA

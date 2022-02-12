@@ -29,6 +29,7 @@
 //! - Extending [`Format`]:
 //! - `VK_FORMAT_A4B4G4R4_UNORM_PACK16_EXT`
 //! - `VK_FORMAT_A4R4G4B4_UNORM_PACK16_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT`
 //!# Version History
@@ -38,6 +39,7 @@
 //! * 2020-07-28
 //!*
 //! - Promoted to Vulkan 1.3 Core
+//!
 //! * No known IP claims.
 //!*
 //! - Joshua Ashton, Valve

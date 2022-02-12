@@ -25,10 +25,13 @@
 //! - [`HUAWEI_INVOCATION_MASK_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits2`]:
 //! - `VK_ACCESS_2_INVOCATION_MASK_READ_BIT_HUAWEI`
+//!
 //! - Extending [`ImageUsageFlagBits`]:
 //! - `VK_IMAGE_USAGE_INVOCATION_MASK_BIT_HUAWEI`
+//!
 //! - Extending [`PipelineStageFlagBits2`]:
 //! - `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI`
 //!# Version History
@@ -41,6 +44,7 @@
 //!allow to bind an invocation mask image before the ray tracing command
 //! - This extension requires `[`VK_KHR_synchronization2`]`, which allows
 //!new pipeline stage for the invocation mask image
+//!
 //!*
 //! - Yunpeng Zhu, HuaWei
 //!# Related

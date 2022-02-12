@@ -61,6 +61,7 @@
 //!# Version History
 //! - Revision 1, 2016-09-12 (Jeff Bolz)
 //! - Internal revisions
+//!
 //! - Revision 2, 2016-11-02 (Ian Elliott)
 //! - Added ability for applications to use the physical-device components of
 //!device extensions before vkCreateDevice is called.
@@ -69,6 +70,7 @@
 //! * No known IP claims.
 //!*
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //! - Ian Elliott, Google

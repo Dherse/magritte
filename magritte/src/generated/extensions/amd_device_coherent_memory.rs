@@ -25,6 +25,7 @@
 //! - Extending [`MemoryPropertyFlagBits`]:
 //! - `VK_MEMORY_PROPERTY_DEVICE_COHERENT_BIT_AMD`
 //! - `VK_MEMORY_PROPERTY_DEVICE_UNCACHED_BIT_AMD`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD`
 //!# Version History

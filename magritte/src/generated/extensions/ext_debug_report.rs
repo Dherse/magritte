@@ -38,11 +38,15 @@
 //! - [`EXT_DEBUG_REPORT_SPEC_VERSION`]
 //! - Extending [`ObjectType`]:
 //! - `VK_OBJECT_TYPE_DEBUG_REPORT_CALLBACK_EXT`
+//!
 //! - Extending [`VulkanResultCodes`]:
 //! - `VK_ERROR_VALIDATION_FAILED_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT`
-//! - `VK_STRUCTURE_TYPE_DEBUG_REPORT_CREATE_INFO_EXT`If [Version 1.1]() is supported:
+//! - `VK_STRUCTURE_TYPE_DEBUG_REPORT_CREATE_INFO_EXT`
+//!
+//!If [Version 1.1]() is supported:
 //! - Extending [`DebugReportObjectTypeEXT`]:
 //! - `VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_EXT`
 //! - `VK_DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_EXT`
@@ -93,27 +97,36 @@
 //!# Version History
 //! - Revision 1, 2015-05-20 (Courtney Goetzenleuchter)
 //! - Initial draft, based on LunarG KHR spec, other KHR specs
+//!
 //! - Revision 2, 2016-02-16 (Courtney Goetzenleuchter)
 //! - Update usage, documentation
+//!
 //! - Revision 3, 2016-06-14 (Courtney Goetzenleuchter)
 //! - Update VK_EXT_DEBUG_REPORT_SPEC_VERSION to indicate added support for
 //!vkCreateInstance and vkDestroyInstance
+//!
 //! - Revision 4, 2016-12-08 (Mark Lobodzinski)
 //! - Added Display_KHR, DisplayModeKHR extension objects
 //! - Added ObjectTable_NVX, IndirectCommandsLayout_NVX extension objects
 //! - Bumped spec revision
 //! - Retroactively added version history
+//!
 //! - Revision 5, 2017-01-31 (Baldur Karlsson)
 //! - Moved definition of [`DebugReportObjectTypeEXT`] from debug marker
 //!chapter
+//!
 //! - Revision 6, 2017-01-31 (Baldur Karlsson)
 //! - Added VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR_EXT
+//!
 //! - Revision 7, 2017-04-20 (Courtney Goeltzenleuchter)
 //! - Clarify wording and address questions from developers.
+//!
 //! - Revision 8, 2017-04-21 (Courtney Goeltzenleuchter)
 //! - Remove unused enum VkDebugReportErrorEXT
+//!
 //! - Revision 9, 2017-09-12 (Tobias Hector)
 //! - Added interactions with Vulkan 1.1
+//!
 //! - Revision 10, 2020-12-14 (Courtney Goetzenleuchter)
 //! - Add issue 4 discussing matching handles returned by the extension,
 //!based on suggestion in public issue 368.

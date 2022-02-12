@@ -22,6 +22,7 @@
 //!# New structures
 //! - Extending [`CommandBufferInheritanceInfo`]:
 //! - [`CommandBufferInheritanceViewportScissorInfoNV`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceInheritedViewportScissorFeaturesNV`]
 //!# New constants

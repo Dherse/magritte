@@ -39,6 +39,7 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDevicePortabilitySubsetFeaturesKHR`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDevicePortabilitySubsetPropertiesKHR`]
 //!# New constants

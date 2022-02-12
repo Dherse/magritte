@@ -27,6 +27,7 @@
 //![`SPV_EXT_shader_stencil_export`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/EXT/SPV_EXT_shader_stencil_export.html)
 //! - This extension provides API support for
 //![`GL_ARB_shader_stencil_export`](https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_shader_stencil_export.txt)
+//!
 //!*
 //! - Dominik Witczak, AMD
 //! - Daniel Rakos, AMD

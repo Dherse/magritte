@@ -23,6 +23,7 @@
 //![`SPV_AMD_shader_image_load_store_lod`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/AMD/SPV_AMD_shader_image_load_store_lod.html)
 //! - This extension provides API support for
 //![`GL_AMD_shader_image_load_store_lod`](https://www.khronos.org/registry/OpenGL/extensions/AMD/AMD_shader_image_load_store_lod.txt)
+//!
 //! * No known IP claims.
 //!*
 //! - Dominik Witczak, AMD

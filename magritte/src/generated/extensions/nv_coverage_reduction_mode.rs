@@ -14,8 +14,8 @@
 //!This is the default mode.
 //! - Truncate: When there are more raster samples (N) than color samples(M),
 //!there is one to one association of the first M raster samples to the M
-//!color samples; other raster samples are ignored.When the number of raster samples is equal to
-//! the color samples, there is a
+//!color samples; other raster samples are ignored.
+//!When the number of raster samples is equal to the color samples, there is a
 //!one to one mapping between them in either of the above modes.The new command
 //![`GetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV`] can
 //!be used to query the various raster, color, depth/stencil sample count and
@@ -38,6 +38,7 @@
 //! - [`FramebufferMixedSamplesCombinationNV`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceCoverageReductionModeFeaturesNV`]
+//!
 //! - Extending [`PipelineMultisampleStateCreateInfo`]:
 //! - [`PipelineCoverageReductionStateCreateInfoNV`]
 //!# New enums

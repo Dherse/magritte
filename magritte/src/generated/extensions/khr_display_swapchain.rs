@@ -22,6 +22,7 @@
 //! - [`KHR_DISPLAY_SWAPCHAIN_SPEC_VERSION`]
 //! - Extending [`VulkanResultCodes`]:
 //! - `VK_ERROR_INCOMPATIBLE_DISPLAY_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_DISPLAY_PRESENT_INFO_KHR`
 //!# Known issues & F.A.Q
@@ -60,6 +61,7 @@
 //!# Version History
 //! - Revision 1, 2015-07-29 (James Jones)
 //! - Initial draft
+//!
 //! - Revision 2, 2015-08-21 (Ian Elliott)
 //! - Renamed this extension and all of its enumerations, types, functions,
 //!etc.
@@ -67,22 +69,30 @@
 //!extensions.
 //! - Switched from “revision” to “version”, including use of the
 //!VK_MAKE_VERSION macro in the header file.
+//!
 //! - Revision 3, 2015-09-01 (James Jones)
 //! - Restore single-field revision number.
+//!
 //! - Revision 4, 2015-09-08 (James Jones)
 //! - Allow creating multiple swap chains that share the same images using a
 //!single call to vkCreateSwapchainKHR().
+//!
 //! - Revision 5, 2015-09-10 (Alon Or-bach)
 //! - Removed underscores from SWAP_CHAIN in two enums.
+//!
 //! - Revision 6, 2015-10-02 (James Jones)
 //! - Added support for smart panels/buffered displays.
+//!
 //! - Revision 7, 2015-10-26 (Ian Elliott)
 //! - Renamed from VK_EXT_KHR_display_swapchain to VK_KHR_display_swapchain.
+//!
 //! - Revision 8, 2015-11-03 (Daniel Rakos)
 //! - Updated sample code based on the changes to VK_KHR_swapchain.
+//!
 //! - Revision 9, 2015-11-10 (Jesse Hall)
 //! - Replaced VkDisplaySwapchainCreateInfoKHR with
 //!vkCreateSharedSwapchainsKHR, changing resolution of issue #4.
+//!
 //! - Revision 10, 2017-03-13 (James Jones)
 //! - Closed all remaining issues.
 //!The specification and implementations have been shipping with the

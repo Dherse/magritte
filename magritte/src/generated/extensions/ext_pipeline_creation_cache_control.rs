@@ -27,19 +27,24 @@
 //! - [`EXT_PIPELINE_CREATION_CACHE_CONTROL_SPEC_VERSION`]
 //! - Extending [`PipelineCacheCreateFlagBits`]:
 //! - `VK_PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT_EXT`
+//!
 //! - Extending [`PipelineCreateFlagBits`]:
 //! - `VK_PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT_EXT`
 //! - `VK_PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT_EXT`
+//!
 //! - Extending [`VulkanResultCodes`]:
 //! - `VK_ERROR_PIPELINE_COMPILE_REQUIRED_EXT`
 //! - `VK_PIPELINE_COMPILE_REQUIRED_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES_EXT`
 //!# Version History
 //! - Revision 1, 2019-11-01 (Gregory Grebe)
 //! - Initial revision
+//!
 //! - Revision 2, 2020-02-24 (Gregory Grebe)
 //! - Initial public revision
+//!
 //! - Revision 3, 2020-03-23 (Tobias Hector)
 //! - Changed `VK_PIPELINE_COMPILE_REQUIRED_EXT` to a success code,
 //!adding an alias for the original
@@ -49,6 +54,7 @@
 //! * 2020-03-23
 //!*
 //! - Promoted to Vulkan 1.3 Core
+//!
 //! * No known IP claims.
 //!*
 //! - Gregory Grebe, AMD

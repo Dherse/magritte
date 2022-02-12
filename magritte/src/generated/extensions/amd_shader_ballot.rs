@@ -24,6 +24,7 @@
 //![`SPV_AMD_shader_ballot`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/AMD/SPV_AMD_shader_ballot.html)
 //! - This extension provides API support for
 //![`GL_AMD_shader_ballot`](https://www.khronos.org/registry/OpenGL/extensions/AMD/AMD_shader_ballot.txt)
+//!
 //!*
 //! - Qun Lin, AMD
 //! - Graham Sellers, AMD

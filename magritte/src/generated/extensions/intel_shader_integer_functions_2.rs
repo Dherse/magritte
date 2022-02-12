@@ -35,6 +35,7 @@
 //![`SPV_INTEL_shader_integer_functions2`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/INTEL/SPV_INTEL_shader_integer_functions2.html).
 //! - This extension provides API support for
 //![`GL_INTEL_shader_integer_functions2`](https://www.khronos.org/registry/OpenGL/extensions/INTEL/INTEL_shader_integer_functions2.txt).
+//!
 //!*
 //! - Ian Romanick, Intel
 //! - Ben Ashbaugh, Intel

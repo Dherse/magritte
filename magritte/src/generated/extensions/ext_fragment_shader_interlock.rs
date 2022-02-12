@@ -44,6 +44,7 @@
 //![`SPV_EXT_fragment_shader_interlock`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/EXT/SPV_EXT_fragment_shader_interlock.html)
 //! - This extension provides API support for
 //![`GL_ARB_fragment_shader_interlock`](https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_fragment_shader_interlock.txt)
+//!
 //!*
 //! - Daniel Koch, NVIDIA
 //! - Graeme Leese, Broadcom

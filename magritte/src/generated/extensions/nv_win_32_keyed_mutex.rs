@@ -33,6 +33,7 @@
 //! - Renamed from NVX to NV extension.
 //! - Added Overview and Description sections.
 //! - Updated sample code to use the NV external memory extensions.
+//!
 //! - Revision 1, 2016-06-14 (Carsten Rohde)
 //! - Initial draft.
 //!# Other info

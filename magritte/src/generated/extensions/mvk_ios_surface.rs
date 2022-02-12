@@ -32,9 +32,11 @@
 //!# Version History
 //! - Revision 1, 2017-02-15 (Bill Hollings)
 //! - Initial draft.
+//!
 //! - Revision 2, 2017-02-24 (Bill Hollings)
 //! - Minor syntax fix to emphasize firm requirement for `UIView` to be
 //!backed by a [`CaMetalLayer`].
+//!
 //! - Revision 3, 2020-07-31 (Bill Hollings)
 //! - Update documentation on requirements for UIView.
 //! - Mark as deprecated by [`VK_EXT_metal_surface`].

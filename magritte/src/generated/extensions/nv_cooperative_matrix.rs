@@ -26,6 +26,7 @@
 //! - [`CooperativeMatrixPropertiesNV`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceCooperativeMatrixFeaturesNV`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceCooperativeMatrixPropertiesNV`]
 //!# New enums
@@ -59,6 +60,7 @@
 //![`SPV_NV_cooperative_matrix`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_cooperative_matrix.html)
 //! - This extension provides API support for
 //![`GL_NV_cooperative_matrix`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nv/GLSL_NV_cooperative_matrix.txt)
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //! - Markus Tavenrath, NVIDIA
@@ -108,7 +110,8 @@ pub const NV_COOPERATIVE_MATRIX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// - [`SCOPE_WORKGROUP`] corresponds to SPIR-V `Workgroup` scope.
 /// - [`SCOPE_SUBGROUP`] corresponds to SPIR-V `Subgroup` scope.
 /// - [`SCOPE_QUEUE_FAMILY`] corresponds to SPIR-V `QueueFamily`
-///scope.All enum values match the corresponding SPIR-V value.
+///scope.
+///All enum values match the corresponding SPIR-V value.
 ///# Related
 /// - [`VK_NV_cooperative_matrix`]
 /// - [`CooperativeMatrixPropertiesNV`]

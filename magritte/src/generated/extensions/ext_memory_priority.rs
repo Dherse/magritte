@@ -20,6 +20,7 @@
 //!# New structures
 //! - Extending [`MemoryAllocateInfo`]:
 //! - [`MemoryPriorityAllocateInfoEXT`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceMemoryPriorityFeaturesEXT`]
 //!# New constants

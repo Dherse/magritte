@@ -25,6 +25,7 @@
 //! - Promoted to Vulkan 1.3 Core
 //! - This extension requires
 //![`SPV_KHR_non_semantic_info`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_non_semantic_info.html)
+//!
 //! * No known IP claims.
 //!*
 //! - Baldur Karlsson, Valve

@@ -35,6 +35,7 @@
 //!# New structures
 //! - Extending [`GraphicsPipelineCreateInfo`]:
 //! - [`PipelineRepresentativeFragmentTestStateCreateInfoNV`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceRepresentativeFragmentTestFeaturesNV`]
 //!# New constants
@@ -77,6 +78,7 @@
 //!# Version History
 //! - Revision 2, 2018-09-13 (pbrown)
 //! - Add issues.
+//!
 //! - Revision 1, 2018-08-22 (Kedarnath Thangudu)
 //! - Internal Revisions
 //!# Other info

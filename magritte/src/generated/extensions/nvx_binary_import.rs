@@ -32,9 +32,11 @@
 //! - Extending [`DebugReportObjectTypeEXT`]:
 //! - `VK_DEBUG_REPORT_OBJECT_TYPE_CU_FUNCTION_NVX_EXT`
 //! - `VK_DEBUG_REPORT_OBJECT_TYPE_CU_MODULE_NVX_EXT`
+//!
 //! - Extending [`ObjectType`]:
 //! - `VK_OBJECT_TYPE_CU_FUNCTION_NVX`
 //! - `VK_OBJECT_TYPE_CU_MODULE_NVX`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_CU_FUNCTION_CREATE_INFO_NVX`
 //! - `VK_STRUCTURE_TYPE_CU_LAUNCH_INFO_NVX`

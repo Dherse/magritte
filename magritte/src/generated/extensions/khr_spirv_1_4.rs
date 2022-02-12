@@ -83,6 +83,7 @@
 //!*
 //! - Requires SPIR-V 1.4.
 //! - Promoted to Vulkan 1.2 Core
+//!
 //!*
 //! - Alexander Galazin, Arm
 //! - David Neto, Google

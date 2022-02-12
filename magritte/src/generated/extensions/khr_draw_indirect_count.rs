@@ -32,6 +32,7 @@
 //! * 2017-08-25
 //!*
 //! - Promoted to Vulkan 1.2 Core
+//!
 //! * No known IP claims.
 //!*
 //! - Matthaeus G. Chajdas, AMD

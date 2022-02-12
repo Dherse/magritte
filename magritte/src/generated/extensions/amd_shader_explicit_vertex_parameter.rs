@@ -24,6 +24,7 @@
 //![`SPV_AMD_shader_explicit_vertex_parameter`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/AMD/SPV_AMD_shader_explicit_vertex_parameter.html)
 //! - This extension provides API support for
 //![`GL_AMD_shader_explicit_vertex_parameter`](https://www.khronos.org/registry/OpenGL/extensions/AMD/AMD_shader_explicit_vertex_parameter.txt)
+//!
 //!*
 //! - Matthaeus G. Chajdas, AMD
 //! - Qun Lin, AMD

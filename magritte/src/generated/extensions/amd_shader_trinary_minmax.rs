@@ -24,6 +24,7 @@
 //![`SPV_AMD_shader_trinary_minmax`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/AMD/SPV_AMD_shader_trinary_minmax.html)
 //! - This extension provides API support for
 //![`GL_AMD_shader_trinary_minmax`](https://www.khronos.org/registry/OpenGL/extensions/AMD/AMD_shader_trinary_minmax.txt)
+//!
 //!*
 //! - Matthaeus G. Chajdas, AMD
 //! - Qun Lin, AMD

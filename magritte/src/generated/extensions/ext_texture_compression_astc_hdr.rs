@@ -38,6 +38,7 @@
 //! - `VK_FORMAT_ASTC_8x5_SFLOAT_BLOCK_EXT`
 //! - `VK_FORMAT_ASTC_8x6_SFLOAT_BLOCK_EXT`
 //! - `VK_FORMAT_ASTC_8x8_SFLOAT_BLOCK_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES_EXT`
 //!# Known issues & F.A.Q
@@ -65,6 +66,7 @@
 //! * 2019-05-28
 //!*
 //! - Promoted to Vulkan 1.3 Core
+//!
 //! * No known issues.
 //!*
 //! - Jan-Harald Fredriksen, Arm

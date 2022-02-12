@@ -39,6 +39,7 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceDepthStencilResolvePropertiesKHR`]
+//!
 //! - Extending [`SubpassDescription2`]:
 //! - [`SubpassDescriptionDepthStencilResolveKHR`]
 //!# New enums
@@ -54,6 +55,7 @@
 //! - `VK_RESOLVE_MODE_MIN_BIT_KHR`
 //! - `VK_RESOLVE_MODE_NONE_KHR`
 //! - `VK_RESOLVE_MODE_SAMPLE_ZERO_BIT_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES_KHR`
 //! - `VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE_KHR`
@@ -64,6 +66,7 @@
 //! * 2018-04-09
 //!*
 //! - Promoted to Vulkan 1.2 Core
+//!
 //!*
 //! - Jan-Harald Fredriksen, Arm
 //! - Andrew Garrard, Samsung Electronics

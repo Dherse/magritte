@@ -57,6 +57,7 @@
 //! - This extension requires
 //![`SPV_KHR_variable_pointers`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_variable_pointers.html)
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - John Kessenich, Google
 //! - Neil Henning, Codeplay

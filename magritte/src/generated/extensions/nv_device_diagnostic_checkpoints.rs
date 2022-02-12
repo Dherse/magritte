@@ -31,6 +31,7 @@
 //!# Version History
 //! - Revision 1, 2018-07-16 (Nuno Subtil)
 //! - Internal revisions
+//!
 //! - Revision 2, 2018-07-16 (Nuno Subtil)
 //! - ???
 //!# Other info

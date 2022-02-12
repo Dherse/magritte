@@ -40,6 +40,7 @@
 //![`SPV_KHR_workgroup_memory_explicit_layout`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_workgroup_memory_explicit_layout.html)
 //! - This extension provides API support for
 //![`GL_EXT_shared_memory_block`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_shared_memory_block.txt)
+//!
 //!*
 //! - Caio Marcelo de Oliveira Filho, Intel
 //! - Jeff Bolz, NVIDIA

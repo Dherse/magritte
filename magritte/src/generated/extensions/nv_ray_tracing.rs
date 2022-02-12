@@ -12,7 +12,8 @@
 //! - Acceleration structure objects and build commands
 //! - A new pipeline type with new shader domains
 //! - An indirection table to link shader groups with acceleration structure
-//!itemsThis extension adds support for the following SPIR-V extension in Vulkan:
+//!items
+//!This extension adds support for the following SPIR-V extension in Vulkan:
 //! - `SPV_NV_ray_tracing`
 //!# Revision
 //!3
@@ -56,6 +57,7 @@
 //! - [`TransformMatrixNV`]
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceRayTracingPropertiesNV`]
+//!
 //! - Extending [`WriteDescriptorSet`]:
 //! - [`WriteDescriptorSetAccelerationStructureNV`]
 //!# New enums
@@ -78,52 +80,69 @@
 //! - Extending [`AccelerationStructureTypeKHR`]:
 //! - `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_NV`
 //! - `VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_NV`
+//!
 //! - Extending [`AccessFlagBits`]:
 //! - `VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_NV`
 //! - `VK_ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_NV`
+//!
 //! - Extending [`BufferUsageFlagBits`]:
 //! - `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV`
+//!
 //! - Extending [`BuildAccelerationStructureFlagBitsKHR`]:
 //! - `VK_BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_NV`
 //! - `VK_BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_NV`
 //! - `VK_BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_BIT_NV`
 //! - `VK_BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_NV`
 //! - `VK_BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_NV`
+//!
 //! - Extending [`CopyAccelerationStructureModeKHR`]:
 //! - `VK_COPY_ACCELERATION_STRUCTURE_MODE_CLONE_NV`
 //! - `VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_NV`
+//!
 //! - Extending [`DebugReportObjectTypeEXT`]:
 //! - `VK_DEBUG_REPORT_OBJECT_TYPE_ACCELERATION_STRUCTURE_NV_EXT`
+//!
 //! - Extending [`DescriptorType`]:
 //! - `VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_NV`
+//!
 //! - Extending [`GeometryFlagBitsKHR`]:
 //! - `VK_GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_NV`
 //! - `VK_GEOMETRY_OPAQUE_BIT_NV`
+//!
 //! - Extending [`GeometryInstanceFlagBitsKHR`]:
 //! - `VK_GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_BIT_NV`
 //! - `VK_GEOMETRY_INSTANCE_FORCE_OPAQUE_BIT_NV`
 //! - `VK_GEOMETRY_INSTANCE_TRIANGLE_CULL_DISABLE_BIT_NV`
 //! - `VK_GEOMETRY_INSTANCE_TRIANGLE_FRONT_COUNTERCLOCKWISE_BIT_NV`
+//!
 //! - Extending [`GeometryTypeKHR`]:
 //! - `VK_GEOMETRY_TYPE_AABBS_NV`
 //! - `VK_GEOMETRY_TYPE_TRIANGLES_NV`
+//!
 //! - Extending [`IndexType`]:
 //! - `VK_INDEX_TYPE_NONE_NV`
+//!
 //! - Extending [`ObjectType`]:
 //! - `VK_OBJECT_TYPE_ACCELERATION_STRUCTURE_NV`
+//!
 //! - Extending [`PipelineBindPoint`]:
 //! - `VK_PIPELINE_BIND_POINT_RAY_TRACING_NV`
+//!
 //! - Extending [`PipelineCreateFlagBits`]:
 //! - `VK_PIPELINE_CREATE_DEFER_COMPILE_BIT_NV`
+//!
 //! - Extending [`PipelineStageFlagBits`]:
 //! - `VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_NV`
 //! - `VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_NV`
+//!
 //! - Extending [`QueryType`]:
 //! - `VK_QUERY_TYPE_ACCELERATION_STRUCTURE_COMPACTED_SIZE_NV`
+//!
 //! - Extending [`RayTracingShaderGroupTypeKHR`]:
 //! - `VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV`
 //! - `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV`
 //! - `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_NV`
+//!
 //! - Extending [`ShaderStageFlagBits`]:
 //! - `VK_SHADER_STAGE_ANY_HIT_BIT_NV`
 //! - `VK_SHADER_STAGE_CALLABLE_BIT_NV`
@@ -131,6 +150,7 @@
 //! - `VK_SHADER_STAGE_INTERSECTION_BIT_NV`
 //! - `VK_SHADER_STAGE_MISS_BIT_NV`
 //! - `VK_SHADER_STAGE_RAYGEN_BIT_NV`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_NV`
 //! - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_INFO_NV`
@@ -148,9 +168,11 @@
 //!# Version History
 //! - Revision 1, 2018-09-11 (Robert Stepinski, Nuno Subtil, Eric Werness)
 //! - Internal revisions
+//!
 //! - Revision 2, 2018-10-19 (Eric Werness)
 //! - rename to VK_NV_ray_tracing, add support for callables.
 //! - too many updates to list
+//!
 //! - Revision 3, 2018-11-20 (Daniel Koch)
 //! - update to use InstanceId instead of InstanceIndex as implemented.
 //!# Other info
@@ -160,6 +182,7 @@
 //![`SPV_NV_ray_tracing`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_ray_tracing.html)
 //! - This extension provides API support for
 //![`GL_NV_ray_tracing`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nv/GLSL_NV_ray_tracing.txt)
+//!
 //!*
 //! - Eric Werness, NVIDIA
 //! - Ashwin Lele, NVIDIA

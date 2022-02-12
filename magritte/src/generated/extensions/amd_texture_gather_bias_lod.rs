@@ -2,8 +2,8 @@
 //!# Description
 //!This extension adds two related features.Firstly, support for the following SPIR-V extension in
 //! Vulkan is added:
-//! - `SPV_AMD_texture_gather_bias_lod`Secondly, the extension allows the application to query which
-//!   formats can be
+//! - `SPV_AMD_texture_gather_bias_lod`
+//!Secondly, the extension allows the application to query which formats can be
 //!used together with the new function prototypes introduced by the SPIR-V
 //!extension.
 //!# Revision
@@ -34,6 +34,7 @@
 //![`SPV_AMD_texture_gather_bias_lod`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/AMD/SPV_AMD_texture_gather_bias_lod.html)
 //! - This extension provides API support for
 //![`GL_AMD_texture_gather_bias_lod`](https://www.khronos.org/registry/OpenGL/extensions/AMD/AMD_texture_gather_bias_lod.txt)
+//!
 //!*
 //! - Dominik Witczak, AMD
 //! - Daniel Rakos, AMD

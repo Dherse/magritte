@@ -32,6 +32,7 @@
 //! - [`DrawMeshTasksIndirectCommandNV`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceMeshShaderFeaturesNV`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceMeshShaderPropertiesNV`]
 //!# New constants
@@ -40,9 +41,11 @@
 //! - Extending [`PipelineStageFlagBits`]:
 //! - `VK_PIPELINE_STAGE_MESH_SHADER_BIT_NV`
 //! - `VK_PIPELINE_STAGE_TASK_SHADER_BIT_NV`
+//!
 //! - Extending [`ShaderStageFlagBits`]:
 //! - `VK_SHADER_STAGE_MESH_BIT_NV`
 //! - `VK_SHADER_STAGE_TASK_BIT_NV`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV`
@@ -52,6 +55,7 @@
 //! - VK_NV_programmable_mesh_shading
 //! - VK_NV_primitive_group_shading
 //! - VK_NV_grouped_drawing
+//!
 //!1. Do we need a new VkPrimitiveTopology?**RESOLVED**: No.
 //!We skip the InputAssembler stage.
 //!2. Should we allow Instancing?**RESOLVED**: No.
@@ -67,6 +71,7 @@
 //! - CmdDrawMeshed
 //! - CmdDrawTasked
 //! - CmdDrawGrouped
+//!
 //!5. Should VK_SHADER_STAGE_ALL_GRAPHICS be updated to include the new stages?**RESOLVED**: No.
 //!If an application were to be recompiled with headers that include additional
 //!shader stage bits in VK_SHADER_STAGE_ALL_GRAPHICS, then the previously valid
@@ -86,6 +91,7 @@
 //![`SPV_NV_mesh_shader`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_mesh_shader.html)
 //! - This extension provides API support for
 //![`GLSL_NV_mesh_shader`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nv/GLSL_NV_mesh_shader.txt)
+//!
 //!*
 //! - Pat Brown, NVIDIA
 //! - Jeff Bolz, NVIDIA

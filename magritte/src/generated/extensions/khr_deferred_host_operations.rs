@@ -28,13 +28,15 @@
 //! - [`KHR_DEFERRED_HOST_OPERATIONS_SPEC_VERSION`]
 //! - Extending [`ObjectType`]:
 //! - `VK_OBJECT_TYPE_DEFERRED_OPERATION_KHR`
+//!
 //! - Extending [`VulkanResultCodes`]:
 //! - `VK_OPERATION_DEFERRED_KHR`
 //! - `VK_OPERATION_NOT_DEFERRED_KHR`
 //! - `VK_THREAD_DONE_KHR`
 //! - `VK_THREAD_IDLE_KHR`
 //!# Known issues & F.A.Q
-//!0. Should this extension have a VkPhysicalDevice*FeaturesKHR structure?**RESOLVED**: No.
+//!0. Should this extension have a VkPhysicalDevice*FeaturesKHR structure?
+//!**RESOLVED**: No.
 //!This extension does not add any functionality on its own and requires a
 //!dependent extension to actually enable functionality and thus there is no
 //!value in adding a feature structure.
@@ -43,13 +45,16 @@
 //!# Version History
 //! - Revision 1, 2019-12-05 (Josh Barczak, Daniel Koch)
 //! - Initial draft.
+//!
 //! - Revision 2, 2020-03-06 (Daniel Koch, Tobias Hector)
 //! - Add missing VK_OBJECT_TYPE_DEFERRED_OPERATION_KHR enum
 //! - fix sample code
 //! - Clarified deferred operation parameter lifetimes (#2018,!3647)
+//!
 //! - Revision 3, 2020-05-15 (Josh Barczak)
 //! - Clarify behavior of vkGetDeferredOperationMaxConcurrencyKHR, allowing
 //!it to return 0 if the operation is complete (#2036,!3850)
+//!
 //! - Revision 4, 2020-11-12 (Tobias Hector, Daniel Koch)
 //! - Remove VkDeferredOperationInfoKHR and change return value semantics
 //!when deferred host operations are in use (#2067,3813)

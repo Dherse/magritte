@@ -47,6 +47,7 @@
 //! - [`DeviceImageMemoryRequirementsKHR`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceMaintenance4FeaturesKHR`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceMaintenance4PropertiesKHR`]
 //!# New constants
@@ -54,6 +55,7 @@
 //! - [`KHR_MAINTENANCE_4_SPEC_VERSION`]
 //! - Extending [`ImageAspectFlagBits`]:
 //! - `VK_IMAGE_ASPECT_NONE_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS_KHR`
 //! - `VK_STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR`
@@ -64,6 +66,7 @@
 //!# Version History
 //! - Revision 1, 2021-08-18 (Piers Daniell)
 //! - Internal revisions
+//!
 //! - Revision 2, 2021-10-25 (Yiwei Zhang)
 //! - More guarantees on buffer memory requirements
 //!# Other info
@@ -71,6 +74,7 @@
 //!*
 //! - Promoted to Vulkan 1.3 Core
 //! - Requires SPIR-V 1.2 for `LocalSizeId`
+//!
 //!*
 //! - Lionel Duc, NVIDIA
 //! - Jason Ekstrand, Intel

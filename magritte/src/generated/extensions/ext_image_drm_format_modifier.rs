@@ -28,12 +28,15 @@
 //! - [`ImageDrmFormatModifierPropertiesEXT`]
 //! - Extending [`FormatProperties2`]:
 //! - [`DrmFormatModifierPropertiesListEXT`]
+//!
 //! - Extending [`ImageCreateInfo`]:
 //! - [`ImageDrmFormatModifierExplicitCreateInfoEXT`]
 //! - [`ImageDrmFormatModifierListCreateInfoEXT`]
+//!
 //! - Extending [`PhysicalDeviceImageFormatInfo2`]:
-//! - [`PhysicalDeviceImageDrmFormatModifierInfoEXT`]If [`VK_KHR_format_feature_flags2`] is
-//!   supported:
+//! - [`PhysicalDeviceImageDrmFormatModifierInfoEXT`]
+//!
+//!If [`VK_KHR_format_feature_flags2`] is supported:
 //! - [`DrmFormatModifierProperties2EXT`]
 //! - Extending [`FormatProperties2`]:
 //! - [`DrmFormatModifierPropertiesList2EXT`]
@@ -45,17 +48,21 @@
 //! - `VK_IMAGE_ASPECT_MEMORY_PLANE_1_BIT_EXT`
 //! - `VK_IMAGE_ASPECT_MEMORY_PLANE_2_BIT_EXT`
 //! - `VK_IMAGE_ASPECT_MEMORY_PLANE_3_BIT_EXT`
+//!
 //! - Extending [`ImageTiling`]:
 //! - `VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT`
+//!
 //! - Extending [`VulkanResultCodes`]:
 //! - `VK_ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT`
 //! - `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT`
 //! - `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT`
 //! - `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT`
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT`If
-//!   [`VK_KHR_format_feature_flags2`] is supported:
+//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT`
+//!
+//!If [`VK_KHR_format_feature_flags2`] is supported:
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT`
 //!# Known issues & F.A.Q
@@ -113,8 +120,8 @@
 //!the size of each dma_buf (or other external handle) when calculating the
 //!image’s memory layout.
 //!Even if dedication allocation were required, Vulkan cannot calculate the
-//!image’s memory layout until after the image is bound to its dma_ufs.The above differences
-//! complicate the potential inference of plane size in
+//!image’s memory layout until after the image is bound to its dma_ufs.
+//!The above differences complicate the potential inference of plane size in
 //!Vulkan.
 //!Consider the following problematic cases:
 //! - **Padding.** Some plane of the image may require implementation-dependent
@@ -125,8 +132,8 @@
 //!`VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT` for images whose
 //!`mipLevels`, `arrayLayers`, or `depth` is greater than 1.
 //!For such images with certain *modifiers*, the calculation of each
-//!plane’s size may be non-trivial.However, an application-provided plane size solves none of the
-//! above
+//!plane’s size may be non-trivial.
+//!However, an application-provided plane size solves none of the above
 //!problems.For simplicity, consider an external image with a single memory plane.
 //!The implementation is obviously capable calculating the image’s size when
 //!its tiling is `VK_IMAGE_TILING_OPTIMAL`.
@@ -182,10 +189,12 @@
 //!3. [`struct
 //!drm_mode_fb_cmd2`](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/uapi/drm/drm_mode.h?id=refs/tags/v4.10#n392)
 //!4. [`gbm.h`](https://cgit.freedesktop.org/mesa/mesa/tree/src/gbm/main/gbm.h?id=refs/tags/mesa-18.0.0-rc1)
+//!
 //!### []()Version History
 //!
 //! - Revision 1, 2018-08-29 (Chad Versace)
 //! - First stable revision
+//!
 //! - Revision 2, 2021-09-30 (Jon Leech)
 //! - Add interaction with `[`VK_KHR_format_feature_flags2`]` to `vk.xml`
 //!# Other info

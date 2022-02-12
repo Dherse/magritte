@@ -56,8 +56,8 @@
 //! - Creating then destroying a [`SwapchainKHR`] on a window object on
 //!one [`PhysicalDevice`] can prevent [`CreateSwapchainKHR`] from
 //!succeeding on the same window object, but on a different
-//![`PhysicalDevice`] that is associated with a different Vulkan ICD.In all cases the problem can
-//! be worked around by creating a new window
+//![`PhysicalDevice`] that is associated with a different Vulkan ICD.
+//!In all cases the problem can be worked around by creating a new window
 //!object.Technical details include:
 //! - Creating a DXGI swapchain over a window object can alter the object for
 //!the remainder of its lifetime.
@@ -80,14 +80,19 @@
 //! - Revision 1, 2015-09-23 (Jesse Hall)
 //! - Initial draft, based on the previous contents of VK_EXT_KHR_swapchain
 //!(later renamed VK_EXT_KHR_surface).
+//!
 //! - Revision 2, 2015-10-02 (James Jones)
 //! - Added presentation support query for win32 desktops.
+//!
 //! - Revision 3, 2015-10-26 (Ian Elliott)
 //! - Renamed from VK_EXT_KHR_win32_surface to VK_KHR_win32_surface.
+//!
 //! - Revision 4, 2015-11-03 (Daniel Rakos)
 //! - Added allocation callbacks to vkCreateWin32SurfaceKHR.
+//!
 //! - Revision 5, 2015-11-28 (Daniel Rakos)
 //! - Updated the surface create function to take a pCreateInfo structure.
+//!
 //! - Revision 6, 2017-04-24 (Jeff Juliano)
 //! - Add issue 2 addressing reuse of a native window object in a different
 //!Graphics API, or by a different Vulkan ICD.

@@ -41,8 +41,10 @@
 //!# Version History
 //! - Revision 1, 2016-02-16 (Tobias Hector)
 //! - Initial draft
+//!
 //! - Revision 2, 2019-08-14 (Jon Leech)
 //! - Add KHR-suffixed alias of non-suffixed enum.
+//!
 //! - Revision 3, 2019-08-17 (Jon Leech)
 //! - Add an issue explaining the reason for the extension API not being
 //!suffixed with KHR.
@@ -50,6 +52,7 @@
 //! * 2019-08-17
 //!*
 //! - Promoted to Vulkan 1.2 Core
+//!
 //!*
 //! - Tobias Hector, Imagination Technologies
 //! - Jon Leech, Khronos

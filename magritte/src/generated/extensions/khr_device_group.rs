@@ -22,91 +22,123 @@
 //!# New functions & commands
 //! - [`CmdDispatchBaseKHR`]
 //! - [`CmdSetDeviceMaskKHR`]
-//! - [`GetDeviceGroupPeerMemoryFeaturesKHR`]If [`VK_KHR_surface`] is supported:
+//! - [`GetDeviceGroupPeerMemoryFeaturesKHR`]
+//!If [`VK_KHR_surface`] is supported:
 //! - [`GetDeviceGroupPresentCapabilitiesKHR`]
 //! - [`GetDeviceGroupSurfacePresentModesKHR`]
-//! - [`GetPhysicalDevicePresentRectanglesKHR`]If [`VK_KHR_swapchain`] is supported:
+//! - [`GetPhysicalDevicePresentRectanglesKHR`]
+//!If [`VK_KHR_swapchain`] is supported:
 //! - [`AcquireNextImage2KHR`]
 //!# New structures
 //! - Extending [`BindSparseInfo`]:
 //! - [`DeviceGroupBindSparseInfoKHR`]
+//!
 //! - Extending [`CommandBufferBeginInfo`]:
 //! - [`DeviceGroupCommandBufferBeginInfoKHR`]
+//!
 //! - Extending [`MemoryAllocateInfo`]:
 //! - [`MemoryAllocateFlagsInfoKHR`]
+//!
 //! - Extending [`RenderPassBeginInfo`], [`RenderingInfo`]:
 //! - [`DeviceGroupRenderPassBeginInfoKHR`]
+//!
 //! - Extending [`SubmitInfo`]:
-//! - [`DeviceGroupSubmitInfoKHR`]If [`VK_KHR_bind_memory2`] is supported:
+//! - [`DeviceGroupSubmitInfoKHR`]
+//!
+//!If [`VK_KHR_bind_memory2`] is supported:
 //! - Extending [`BindBufferMemoryInfo`]:
 //! - [`BindBufferMemoryDeviceGroupInfoKHR`]
+//!
 //! - Extending [`BindImageMemoryInfo`]:
-//! - [`BindImageMemoryDeviceGroupInfoKHR`]If [`VK_KHR_surface`] is supported:
-//! - [`DeviceGroupPresentCapabilitiesKHR`]If [`VK_KHR_swapchain`] is supported:
+//! - [`BindImageMemoryDeviceGroupInfoKHR`]
+//!
+//!If [`VK_KHR_surface`] is supported:
+//! - [`DeviceGroupPresentCapabilitiesKHR`]
+//!If [`VK_KHR_swapchain`] is supported:
 //! - [`AcquireNextImageInfoKHR`]
 //! - Extending [`BindImageMemoryInfo`]:
 //! - [`BindImageMemorySwapchainInfoKHR`]
+//!
 //! - Extending [`ImageCreateInfo`]:
 //! - [`ImageSwapchainCreateInfoKHR`]
+//!
 //! - Extending [`PresentInfoKHR`]:
 //! - [`DeviceGroupPresentInfoKHR`]
+//!
 //! - Extending [`SwapchainCreateInfoKHR`]:
 //! - [`DeviceGroupSwapchainCreateInfoKHR`]
 //!# New enums
 //! - [`MemoryAllocateFlagBitsKHR`]
-//! - [`PeerMemoryFeatureFlagBitsKHR`]If [`VK_KHR_surface`] is supported:
+//! - [`PeerMemoryFeatureFlagBitsKHR`]
+//!If [`VK_KHR_surface`] is supported:
 //! - [`DeviceGroupPresentModeFlagBitsKHR`]
 //!# New bitmasks
 //! - [`MemoryAllocateFlagsKHR`]
-//! - [`PeerMemoryFeatureFlagsKHR`]If [`VK_KHR_surface`] is supported:
+//! - [`PeerMemoryFeatureFlagsKHR`]
+//!If [`VK_KHR_surface`] is supported:
 //! - [`DeviceGroupPresentModeFlagsKHR`]
 //!# New constants
 //! - [`KHR_DEVICE_GROUP_EXTENSION_NAME`]
 //! - [`KHR_DEVICE_GROUP_SPEC_VERSION`]
 //! - Extending [`DependencyFlagBits`]:
 //! - `VK_DEPENDENCY_DEVICE_GROUP_BIT_KHR`
+//!
 //! - Extending [`MemoryAllocateFlagBits`]:
 //! - `VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT_KHR`
+//!
 //! - Extending [`PeerMemoryFeatureFlagBits`]:
 //! - `VK_PEER_MEMORY_FEATURE_COPY_DST_BIT_KHR`
 //! - `VK_PEER_MEMORY_FEATURE_COPY_SRC_BIT_KHR`
 //! - `VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT_KHR`
 //! - `VK_PEER_MEMORY_FEATURE_GENERIC_SRC_BIT_KHR`
+//!
 //! - Extending [`PipelineCreateFlagBits`]:
 //! - `VK_PIPELINE_CREATE_DISPATCH_BASE_KHR`
 //! - `VK_PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO_KHR`If [`VK_KHR_bind_memory2`] is supported:
+//! - `VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO_KHR`
+//!
+//!If [`VK_KHR_bind_memory2`] is supported:
 //! - Extending [`ImageCreateFlagBits`]:
 //! - `VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHR`If [`VK_KHR_surface`] is supported:
+//! - `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHR`
+//!
+//!If [`VK_KHR_surface`] is supported:
 //! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_CAPABILITIES_KHR`If [`VK_KHR_swapchain`] is supported:
+//! - `VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_CAPABILITIES_KHR`
+//!
+//!If [`VK_KHR_swapchain`] is supported:
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_ACQUIRE_NEXT_IMAGE_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_IMAGE_SWAPCHAIN_CREATE_INFO_KHR`
+//!
 //! - Extending [`SwapchainCreateFlagBitsKHR`]:
 //! - `VK_SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR`
 //!# Version History
 //! - Revision 1, 2016-10-19 (Jeff Bolz)
 //! - Internal revisions
+//!
 //! - Revision 2, 2017-05-19 (Tobias Hector)
 //! - Removed extended memory bind functions to VK_KHR_bind_memory2, added
 //!dependency on that extension, and device-group-specific structs for
 //!those functions.
+//!
 //! - Revision 3, 2017-10-06 (Ian Elliott)
 //! - Corrected Vulkan 1.1 interactions with the WSI extensions.
 //!All Vulkan 1.1 WSI interactions are with the VK_KHR_swapchain
 //!extension.
+//!
 //! - Revision 4, 2017-10-10 (Jeff Bolz)
 //! - Rename “SFR” bits and structure members to use the phrase “split
 //!instance bind regions”.
@@ -115,6 +147,7 @@
 //! * No known IP claims.
 //!*
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //! - Tobias Hector, Imagination Technologies

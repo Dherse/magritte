@@ -20,20 +20,27 @@
 //! - [`VideoEncodeH264QpEXT`]
 //! - Extending [`VideoCapabilitiesKHR`]:
 //! - [`VideoEncodeH264CapabilitiesEXT`]
+//!
 //! - Extending [`VideoEncodeInfoKHR`]:
 //! - [`VideoEncodeH264EmitPictureParametersEXT`]
 //! - [`VideoEncodeH264VclFrameInfoEXT`]
+//!
 //! - Extending [`VideoEncodeRateControlInfoKHR`]:
 //! - [`VideoEncodeH264RateControlInfoEXT`]
+//!
 //! - Extending [`VideoEncodeRateControlLayerInfoKHR`]:
 //! - [`VideoEncodeH264RateControlLayerInfoEXT`]
+//!
 //! - Extending [`VideoProfileKHR`], [`QueryPoolCreateInfo`], [`FormatProperties2`],
 //!   [`ImageCreateInfo`], [`ImageViewCreateInfo`], [`BufferCreateInfo`]:
 //! - [`VideoEncodeH264ProfileEXT`]
+//!
 //! - Extending [`VideoSessionCreateInfoKHR`]:
 //! - [`VideoEncodeH264SessionCreateInfoEXT`]
+//!
 //! - Extending [`VideoSessionParametersCreateInfoKHR`]:
 //! - [`VideoEncodeH264SessionParametersCreateInfoEXT`]
+//!
 //! - Extending [`VideoSessionParametersUpdateInfoKHR`]:
 //! - [`VideoEncodeH264SessionParametersAddInfoEXT`]
 //!# New enums
@@ -63,24 +70,29 @@
 //! - `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_PARAMETERS_ADD_INFO_EXT`
 //! - `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_PARAMETERS_CREATE_INFO_EXT`
 //! - `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_VCL_FRAME_INFO_EXT`
+//!
 //! - Extending [`VideoCodecOperationFlagBitsKHR`]:
 //! - `VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_EXT`
 //!# Version History
 //! - Revision 0, 2018-7-23 (Ahmed Abdelkhalek)
 //! - Initial draft
+//!
 //! - Revision 0.5, 2020-02-13 (Tony Zlatinski)
 //! - General Spec cleanup
 //! - Added DPB structures
 //! - Change the VCL frame encode structure
 //! - Added a common Non-VCL Picture Paramarameters structure
+//!
 //! - Revision 1, 2021-03-29 (Tony Zlatinski)
 //! - Spec and API updates
+//!
 //! - Revision 2, August 1 2021 (Srinath Kumarapuram)
 //! - Rename `VkVideoEncodeH264CapabilitiesFlagsEXT` to
 //![`VideoEncodeH264CapabilityFlagsEXT`] and
 //!`VkVideoEncodeH264CapabilitiesFlagsEXT` to
 //![`VideoEncodeH264CapabilityFlagsEXT`], following Vulkan naming
 //!conventions.
+//!
 //! - Revision 3, 2021-12-08 (Ahmed Abdelkhalek)
 //! - Rate control updates
 //!# Other info

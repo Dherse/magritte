@@ -26,6 +26,7 @@
 //! * No known IP claims.
 //!*
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - John Kessenich, Google
 //!# Notes and documentation

@@ -46,6 +46,7 @@
 //! - `VK_DYNAMIC_STATE_STENCIL_TEST_ENABLE_EXT`
 //! - `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT`
 //! - `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT`
 //!# Version History
@@ -55,6 +56,7 @@
 //! * 2019-12-09
 //!*
 //! - Promoted to Vulkan 1.3 Core
+//!
 //! * No known IP claims.
 //!*
 //! - Dan Ginsburg, Valve Corporation

@@ -20,6 +20,7 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceTexelBufferAlignmentFeaturesEXT`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceTexelBufferAlignmentPropertiesEXT`]
 //!# New constants
@@ -35,6 +36,7 @@
 //! * 2019-06-06
 //!*
 //! - Promoted to Vulkan 1.3 Core
+//!
 //! * No known IP claims.
 //!*
 //! - Jeff Bolz, NVIDIA

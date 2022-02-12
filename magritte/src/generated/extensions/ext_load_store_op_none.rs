@@ -23,6 +23,7 @@
 //! - [`EXT_LOAD_STORE_OP_NONE_SPEC_VERSION`]
 //! - Extending [`AttachmentLoadOp`]:
 //! - `VK_ATTACHMENT_LOAD_OP_NONE_EXT`
+//!
 //! - Extending [`AttachmentStoreOp`]:
 //! - `VK_ATTACHMENT_STORE_OP_NONE_EXT`
 //!# Version History

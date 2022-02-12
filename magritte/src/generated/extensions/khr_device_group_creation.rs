@@ -28,6 +28,7 @@
 //! - [`MAX_DEVICE_GROUP_SIZE_KHR`]
 //! - Extending [`MemoryHeapFlagBits`]:
 //! - `VK_MEMORY_HEAP_MULTI_INSTANCE_BIT_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES_KHR`
@@ -39,6 +40,7 @@
 //! * No known IP claims.
 //!*
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //!# Related

@@ -41,6 +41,7 @@
 //![`SPV_KHR_8bit_storage`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_8bit_storage.html)
 //! - This extension provides API support for
 //![`GL_EXT_shader_16bit_storage`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_shader_16bit_storage.txt)
+//!
 //! * No known IP claims.
 //!*
 //! - Alexander Galazin, Arm

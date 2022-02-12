@@ -27,6 +27,7 @@
 //! - [`KHR_BIND_MEMORY_2_SPEC_VERSION`]
 //! - Extending [`ImageCreateFlagBits`]:
 //! - `VK_IMAGE_CREATE_ALIAS_BIT_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO_KHR`
@@ -38,6 +39,7 @@
 //! * No known IP claims.
 //!*
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //! - Tobias Hector, Imagination Technologies

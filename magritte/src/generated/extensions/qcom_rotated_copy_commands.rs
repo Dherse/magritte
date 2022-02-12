@@ -51,6 +51,7 @@
 //! * 2020-09-18
 //!*
 //! - None
+//!
 //!*
 //! - Jeff Leger, Qualcomm Technologies, Inc.
 //!# Related

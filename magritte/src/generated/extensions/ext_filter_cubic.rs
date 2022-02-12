@@ -17,6 +17,7 @@
 //!# New structures
 //! - Extending [`ImageFormatProperties2`]:
 //! - [`FilterCubicImageViewImageFormatPropertiesEXT`]
+//!
 //! - Extending [`PhysicalDeviceImageFormatInfo2`]:
 //! - [`PhysicalDeviceImageViewImageFormatInfoEXT`]
 //!# New constants
@@ -24,8 +25,10 @@
 //! - [`EXT_FILTER_CUBIC_SPEC_VERSION`]
 //! - Extending [`Filter`]:
 //! - `VK_FILTER_CUBIC_EXT`
+//!
 //! - Extending [`FormatFeatureFlagBits`]:
 //! - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT`
@@ -33,8 +36,10 @@
 //! - Revision 3, 2019-12-13 (wwlk)
 //! - Delete requirement to cubic filter the formats USCALED_PACKED32,
 //!SSCALED_PACKED32, UINT_PACK32, and SINT_PACK32 (cut/paste error)
+//!
 //! - Revision 2, 2019-06-05 (wwlk)
 //! - Clarify 1D optional
+//!
 //! - Revision 1, 2019-01-24 (wwlk)
 //! - Initial version
 //!# Other info

@@ -23,38 +23,51 @@
 //! - Extending [`AccessFlagBits2`]:
 //! - `VK_ACCESS_2_VIDEO_DECODE_READ_BIT_KHR`
 //! - `VK_ACCESS_2_VIDEO_DECODE_WRITE_BIT_KHR`
+//!
 //! - Extending [`BufferUsageFlagBits`]:
 //! - `VK_BUFFER_USAGE_VIDEO_DECODE_DST_BIT_KHR`
 //! - `VK_BUFFER_USAGE_VIDEO_DECODE_SRC_BIT_KHR`
+//!
 //! - Extending [`FormatFeatureFlagBits`]:
 //! - `VK_FORMAT_FEATURE_VIDEO_DECODE_DPB_BIT_KHR`
 //! - `VK_FORMAT_FEATURE_VIDEO_DECODE_OUTPUT_BIT_KHR`
+//!
 //! - Extending [`ImageLayout`]:
 //! - `VK_IMAGE_LAYOUT_VIDEO_DECODE_DPB_KHR`
 //! - `VK_IMAGE_LAYOUT_VIDEO_DECODE_DST_KHR`
 //! - `VK_IMAGE_LAYOUT_VIDEO_DECODE_SRC_KHR`
+//!
 //! - Extending [`ImageUsageFlagBits`]:
 //! - `VK_IMAGE_USAGE_VIDEO_DECODE_DPB_BIT_KHR`
 //! - `VK_IMAGE_USAGE_VIDEO_DECODE_DST_BIT_KHR`
 //! - `VK_IMAGE_USAGE_VIDEO_DECODE_SRC_BIT_KHR`
+//!
 //! - Extending [`PipelineStageFlagBits2`]:
 //! - `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
+//!
 //! - Extending [`QueueFlagBits`]:
 //! - `VK_QUEUE_VIDEO_DECODE_BIT_KHR`
+//!
 //! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_VIDEO_DECODE_INFO_KHR`If [`VK_KHR_format_feature_flags2`] is supported:
+//! - `VK_STRUCTURE_TYPE_VIDEO_DECODE_INFO_KHR`
+//!
+//!If [`VK_KHR_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:
 //! - `VK_FORMAT_FEATURE_2_VIDEO_DECODE_DPB_BIT_KHR`
 //! - `VK_FORMAT_FEATURE_2_VIDEO_DECODE_OUTPUT_BIT_KHR`
 //!# Version History
 //! - Revision 1, 2018-6-11 (Peter Fang)
 //! - Initial draft
+//!
 //! - Revision 1.5, Nov 09 2018 (Tony Zlatinski)
 //! - API Updates
+//!
 //! - Revision 1.6, Jan 08 2020 (Tony Zlatinski)
 //! - API unify with the video_encode_queue spec
+//!
 //! - Revision 1.7, March 29 2021 (Tony Zlatinski)
 //! - Spec and API updates.
+//!
 //! - Revision 2, September 30 2021 (Jon Leech)
 //! - Add interaction with `[`VK_KHR_format_feature_flags2`]` to `vk.xml`
 //!# Other info

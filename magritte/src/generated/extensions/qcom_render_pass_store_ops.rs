@@ -27,6 +27,7 @@
 //!# Version History
 //! - Revision 1, 2019-12-20 (wwlk)
 //! - Initial version
+//!
 //! - Revision 2, 2020-03-25 (wwlk)
 //! - Minor renaming
 //!# Other info

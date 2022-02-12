@@ -29,6 +29,7 @@
 //! - [`KHR_EXTERNAL_FENCE_SPEC_VERSION`]
 //! - Extending [`FenceImportFlagBits`]:
 //! - `VK_FENCE_IMPORT_TEMPORARY_BIT_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO_KHR`
 //!# Known issues & F.A.Q
@@ -43,6 +44,7 @@
 //! * No known IP claims.
 //!*
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - Jesse Hall, Google
 //! - James Jones, NVIDIA

@@ -19,7 +19,8 @@
 //!⌈dim / 2⌉ rather than ⌊dim / 2⌋.
 //!See [Image Miplevel Sizing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-miplevel-sizing).
 //! - The minimum level size is 2x2 for 2D images and 2x2x2 for 3D images.
-//!See [Image Miplevel Sizing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-miplevel-sizing).This image organization is designed to facilitate a system like Ptex with
+//!See [Image Miplevel Sizing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-miplevel-sizing).
+//!This image organization is designed to facilitate a system like Ptex with
 //!separate textures for each face of a subdivision or polygon mesh.
 //!Placing sample locations at pixel corners allows applications to maintain
 //!continuity between adjacent patches by duplicating values along shared
@@ -44,6 +45,7 @@
 //! - [`NV_CORNER_SAMPLED_IMAGE_SPEC_VERSION`]
 //! - Extending [`ImageCreateFlagBits`]:
 //! - `VK_IMAGE_CREATE_CORNER_SAMPLED_BIT_NV`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV`
 //!# Known issues & F.A.Q
@@ -68,6 +70,7 @@
 //!# Version History
 //! - Revision 1, 2018-08-14 (Daniel Koch)
 //! - Internal revisions
+//!
 //! - Revision 2, 2018-08-14 (Daniel Koch)
 //! - ???
 //!# Other info

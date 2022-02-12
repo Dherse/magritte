@@ -39,12 +39,17 @@
 //! - [`EXT_TOOLING_INFO_EXTENSION_NAME`]
 //! - [`EXT_TOOLING_INFO_SPEC_VERSION`]
 //! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT`If [`VK_EXT_debug_marker`] is
-//!   supported:
+//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT`
+//!
+//!If [`VK_EXT_debug_marker`] is supported:
 //! - Extending [`ToolPurposeFlagBits`]:
-//! - `VK_TOOL_PURPOSE_DEBUG_MARKERS_BIT_EXT`If [`VK_EXT_debug_report`] is supported:
+//! - `VK_TOOL_PURPOSE_DEBUG_MARKERS_BIT_EXT`
+//!
+//!If [`VK_EXT_debug_report`] is supported:
 //! - Extending [`ToolPurposeFlagBits`]:
-//! - `VK_TOOL_PURPOSE_DEBUG_REPORTING_BIT_EXT`If [`VK_EXT_debug_utils`] is supported:
+//! - `VK_TOOL_PURPOSE_DEBUG_REPORTING_BIT_EXT`
+//!
+//!If [`VK_EXT_debug_utils`] is supported:
 //! - Extending [`ToolPurposeFlagBits`]:
 //! - `VK_TOOL_PURPOSE_DEBUG_MARKERS_BIT_EXT`
 //! - `VK_TOOL_PURPOSE_DEBUG_REPORTING_BIT_EXT`
@@ -60,6 +65,7 @@
 //! * 2018-11-05
 //!*
 //! - Promoted to Vulkan 1.3 Core
+//!
 //!*
 //! - Rolando Caloca
 //! - Matthaeus Chajdas

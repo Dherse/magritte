@@ -19,8 +19,10 @@
 //!# New structures
 //! - Extending [`GraphicsPipelineCreateInfo`]:
 //! - [`PipelineFragmentShadingRateEnumStateCreateInfoNV`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceFragmentShadingRateEnumsFeaturesNV`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceFragmentShadingRateEnumsPropertiesNV`]
 //!# New enums
@@ -174,7 +176,8 @@ pub const NV_FRAGMENT_SHADING_RATE_ENUMS_EXTENSION_NAME: &'static CStr =
 ///per fragment.
 /// - [`FRAGMENT_SHADING_RATE_NO_INVOCATIONS`] specifies that any
 ///portions of a primitive that use that shading rate should be discarded
-///without invoking any fragment shader.To use the shading rates
+///without invoking any fragment shader.
+///To use the shading rates
 ///[`FRAGMENT_SHADING_RATE_2_INVOCATIONS_PER_PIXEL`],
 ///[`FRAGMENT_SHADING_RATE_4_INVOCATIONS_PER_PIXEL`],
 ///[`FRAGMENT_SHADING_RATE_8_INVOCATIONS_PER_PIXEL`], and

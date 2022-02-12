@@ -15,6 +15,7 @@
 //!# New structures
 //! - Extending [`DeviceCreateInfo`]:
 //! - [`DeviceDiagnosticsConfigCreateInfoNV`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceDiagnosticsConfigFeaturesNV`]
 //!# New enums

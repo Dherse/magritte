@@ -24,6 +24,7 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceRobustness2FeaturesEXT`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceRobustness2PropertiesEXT`]
 //!# New constants
@@ -37,7 +38,8 @@
 //![`PhysicalDeviceRobustness2PropertiesEXT::robust_uniform_buffer_access_size_alignment`]
 //!and
 //![`PhysicalDeviceRobustness2PropertiesEXT::robust_storage_buffer_access_size_alignment`]
-//!exist?**RESOLVED**: Some implementations cannot efficiently tightly bounds-check all
+//!exist?
+//!**RESOLVED**: Some implementations cannot efficiently tightly bounds-check all
 //!buffer accesses.
 //!Rather, the size of the bound range is padded to some power of two multiple,
 //!up to 256 bytes for uniform buffers and up to 4 bytes for storage buffers,

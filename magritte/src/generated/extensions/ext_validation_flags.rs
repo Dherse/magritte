@@ -31,6 +31,7 @@
 //!# Version History
 //! - Revision 2, 2019-08-19 (Mark Lobodzinski)
 //! - Marked as deprecated
+//!
 //! - Revision 1, 2016-08-26 (Courtney Goeltzenleuchter)
 //! - Initial draft
 //!# Other info

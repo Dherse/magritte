@@ -58,8 +58,10 @@
 //! - [`TransformMatrixKHR`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceAccelerationStructureFeaturesKHR`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceAccelerationStructurePropertiesKHR`]
+//!
 //! - Extending [`WriteDescriptorSet`]:
 //! - [`WriteDescriptorSetAccelerationStructureKHR`]
 //!# New enums
@@ -84,24 +86,33 @@
 //! - Extending [`AccessFlagBits`]:
 //! - `VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR`
 //! - `VK_ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR`
+//!
 //! - Extending [`BufferUsageFlagBits`]:
 //! - `VK_BUFFER_USAGE_ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_BIT_KHR`
 //! - `VK_BUFFER_USAGE_ACCELERATION_STRUCTURE_STORAGE_BIT_KHR`
+//!
 //! - Extending [`DebugReportObjectTypeEXT`]:
 //! - `VK_DEBUG_REPORT_OBJECT_TYPE_ACCELERATION_STRUCTURE_KHR_EXT`
+//!
 //! - Extending [`DescriptorType`]:
 //! - `VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR`
+//!
 //! - Extending [`FormatFeatureFlagBits`]:
 //! - `VK_FORMAT_FEATURE_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR`
+//!
 //! - Extending [`IndexType`]:
 //! - `VK_INDEX_TYPE_NONE_KHR`
+//!
 //! - Extending [`ObjectType`]:
 //! - `VK_OBJECT_TYPE_ACCELERATION_STRUCTURE_KHR`
+//!
 //! - Extending [`PipelineStageFlagBits`]:
 //! - `VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`
+//!
 //! - Extending [`QueryType`]:
 //! - `VK_QUERY_TYPE_ACCELERATION_STRUCTURE_COMPACTED_SIZE_KHR`
 //! - `VK_QUERY_TYPE_ACCELERATION_STRUCTURE_SERIALIZATION_SIZE_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR`
@@ -117,8 +128,9 @@
 //! - `VK_STRUCTURE_TYPE_COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR`
-//! - `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR`If
-//!   [`VK_KHR_format_feature_flags2`] is supported:
+//! - `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR`
+//!
+//!If [`VK_KHR_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:
 //! - `VK_FORMAT_FEATURE_2_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR`
 //!# Known issues & F.A.Q
@@ -145,8 +157,8 @@
 //! - add parameter for requesting memory requirements for host and/or device
 //!build
 //! - added format feature for acceleration structure build vertex formats
-//!(`VK_FORMAT_FEATURE_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR`)(2) Can you give a more
-//! detailed comparision of differences and similarities
+//!(`VK_FORMAT_FEATURE_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR`)
+//!(2) Can you give a more detailed comparision of differences and similarities
 //!between VK_NV_ray_tracing and VK_KHR_acceleration_structure?**DISCUSSION**:The following is a
 //! more detailed comparision of which commands, structures,
 //!and enums are aliased, changed, or removed.
@@ -173,6 +185,7 @@
 //! - [`AccelerationStructureInstanceNV`] ↔
 //![`AccelerationStructureInstanceKHR`] (added to VK_NV_ray_tracing
 //!for descriptive purposes)
+//!
 //! - Changed enums, structures, and commands:
 //! - renamed `VK_GEOMETRY_INSTANCE_TRIANGLE_CULL_DISABLE_BIT_NV` →
 //!`VK_GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_BIT_KHR` in
@@ -223,6 +236,7 @@
 //! - [`CmdWriteAccelerationStructuresPropertiesNV`] →
 //![`CmdWriteAccelerationStructuresPropertiesKHR`] (different
 //!acceleration structure types)
+//!
 //! - Added enums, structures and commands:
 //! - `VK_GEOMETRY_TYPE_INSTANCES_KHR` to [`GeometryTypeKHR`] enum
 //! - `VK_COPY_ACCELERATION_STRUCTURE_MODE_SERIALIZE_KHR`,
@@ -248,8 +262,9 @@
 //! - [`WriteAccelerationStructuresPropertiesKHR`] (host properties)
 //! - [`CmdCopyAccelerationStructureToMemoryKHR`] (device serialize)
 //! - [`CmdCopyMemoryToAccelerationStructureKHR`] (device deserialize)
-//! - [`GetDeviceAccelerationStructureCompatibilityKHR`] (serialization)(3) What are the changes
-//!   between the public provisional (VK_KHR_ray_tracing
+//! - [`GetDeviceAccelerationStructureCompatibilityKHR`] (serialization)
+//!
+//!(3) What are the changes between the public provisional (VK_KHR_ray_tracing
 //!v8) release and the internal provisional (VK_KHR_ray_tracing v9) release?
 //! - added `geometryFlags` to
 //!`VkAccelerationStructureCreateGeometryTypeInfoKHR` (later reworked
@@ -267,6 +282,7 @@
 //! - remove return value from
 //![`GetDeviceAccelerationStructureCompatibilityKHR`] and added return
 //!enum parameter
+//!
 //! - Require Vulkan 1.1
 //! - added creation time capture and replay flags
 //! - added [`AccelerationStructureCreateFlagBitsKHR`] and
@@ -274,6 +290,7 @@
 //! - renamed the `flags` member of
 //![`AccelerationStructureCreateInfoKHR`] to `buildFlags` (later
 //!removed) and added the `createFlags` member
+//!
 //! - change [`CmdBuildAccelerationStructuresIndirectKHR`] to use buffer
 //!device address for indirect parameter
 //! - make `[`VK_KHR_deferred_host_operations`]` an interaction instead of
@@ -282,6 +299,7 @@
 //![`AccelerationStructureBuildRangeInfoKHR`]
 //! - renamed the `ppOffsetInfos` parameter of
 //![`CmdBuildAccelerationStructuresKHR`] to `ppBuildRangeInfos`
+//!
 //! - Re-unify geometry description between build and create
 //! - remove `VkAccelerationStructureCreateGeometryTypeInfoKHR` and
 //!`VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_GEOMETRY_TYPE_INFO_KHR`
@@ -293,6 +311,7 @@
 //![`AccelerationStructureGeometryKHR`] (later removed)
 //! - added `pCreateSizeInfos` member to
 //![`AccelerationStructureCreateInfoKHR`] (later removed)
+//!
 //! - Fix ppGeometries ambiguity, add pGeometries
 //! - remove `geometryArrayOfPointers` member of
 //!VkAccelerationStructureBuildGeometryInfoKHR
@@ -300,6 +319,7 @@
 //!`pGeometries` to the
 //![`AccelerationStructureBuildGeometryInfoKHR`] structure and require
 //!one of them be `NULL`
+//!
 //! - added [nullDescriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-nullDescriptor)
 //!   support for
 //!acceleration structures
@@ -319,6 +339,7 @@
 //!implementation can modify such parameters until the deferred host
 //!operation completes
 //! - `[`VK_KHR_deferred_host_operations`]` is required again
+//!
 //! - Change acceleration structure build to always be sized
 //! - de-alias [`AccelerationStructureMemoryRequirementsTypeNV`] and
 //!`VkAccelerationStructureMemoryRequirementsTypeKHR`, and remove
@@ -335,8 +356,9 @@
 //!member
 //! - add `maxVertex` member to
 //![`AccelerationStructureGeometryTrianglesDataKHR`] structure
-//! - remove `VkAccelerationStructureCreateSizeInfoKHR` structure(4) What are the changes between
-//!   the internal provisional
+//! - remove `VkAccelerationStructureCreateSizeInfoKHR` structure
+//!
+//!(4) What are the changes between the internal provisional
 //!(VK_KHR_ray_tracing v9) release and the final (VK_KHR_acceleration_structure
 //!v11) release?
 //! - refactor VK_KHR_ray_tracing into 3 extensions, enabling implementation
@@ -346,6 +368,7 @@
 //! - `[`VK_KHR_ray_tracing_pipeline`]` (for ray tracing pipeline and
 //!shader stages)
 //! - `[`VK_KHR_ray_query`]` (for ray queries in existing shader stages)
+//!
 //! - clarify buffer usage flags for ray tracing
 //! - `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` is left alone in
 //!`[`VK_NV_ray_tracing`]` (required on `scratch` and
@@ -359,6 +382,7 @@
 //!index, transform, aabb, and instance buffer data referenced by device
 //!build commands
 //! - `VK_BUFFER_USAGE_STORAGE_BUFFER_BIT` is used for `scratchData`
+//!
 //! - add max primitive counts (`ppMaxPrimitiveCounts`) to
 //![`CmdBuildAccelerationStructuresIndirectKHR`]
 //! - Allocate acceleration structures from `VkBuffers` and add a mode to
@@ -374,6 +398,7 @@
 //!buffer usage for such buffers
 //! - add a new `VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR` acceleration
 //!structure type for layering
+//!
 //! - move `VK_GEOMETRY_TYPE_INSTANCES_KHR` to main enum instead of being
 //!added via extension
 //! - make build commands more consistent - all now build multiple
@@ -391,8 +416,9 @@
 //! - extension is no longer provisional
 //! - define synchronization requirements for builds, traces, and copies
 //! - define synchronization requirements for AS build inputs and indirect
-//!build buffer(5) What is `VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR` for?**RESOLVED**: It is
-//! primarily intended for API layering.
+//!build buffer
+//!(5) What is `VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR` for?**RESOLVED**: It is primarily
+//! intended for API layering.
 //!In DXR, the acceleration structure is basically just a buffer in a special
 //!layout, and you do not know at creation time whether it will be used as a
 //!top or bottom level acceleration structure.
@@ -402,6 +428,7 @@
 //!# Version History
 //! - Revision 1, 2019-12-05 (Members of the Vulkan Ray Tracing TSG)
 //! - Internal revisions (forked from VK_NV_ray_tracing)
+//!
 //! - Revision 2, 2019-12-20 (Daniel Koch, Eric Werness)
 //! - Add const version of DeviceOrHostAddress (!3515)
 //! - Add VU to clarify that only handles in the current pipeline are valid
@@ -419,6 +446,7 @@
 //! - list new query types for VK_KHR_ray_tracing (!3523)
 //! - Fix VU statements for VkAccelerationStructureGeometryKHR referring to
 //!correct union members and update to use more current wording (!3523)
+//!
 //! - Revision 3, 2020-01-10 (Daniel Koch, Jon Leech, Christoph Kubisch)
 //! - Fix 'instance of' and 'that/which contains/defines' markup issues
 //!(!3528)
@@ -429,6 +457,7 @@
 //!since the KHR structure is no longer equivalent
 //! - add len to pDataSize attribute for
 //!vkWriteAccelerationStructuresPropertiesKHR
+//!
 //! - Revision 4, 2020-01-23 (Daniel Koch, Eric Werness)
 //! - Improve vkWriteAccelerationStructuresPropertiesKHR, add return value
 //!and VUs (#1947)
@@ -439,6 +468,7 @@
 //! - Add scratch address validation language (#1941, !3551)
 //! - Fix definition and add hierarchy information for shader call scope
 //!(#1977, !3571)
+//!
 //! - Revision 5, 2020-02-04 (Eric Werness, Jeff Bolz, Daniel Koch)
 //! - remove vestigial accelerationStructureUUID (!3582)
 //! - update definition of repack instructions and improve memory model
@@ -461,6 +491,7 @@
 //! - Match DXR behavior for inactive primitive definition (!3592)
 //! - Use a more generic term than degenerate for inactive to avoid
 //!confusion (!3592)
+//!
 //! - Revision 6, 2020-02-20 (Daniel Koch)
 //! - fix some dangling NV references (#1996)
 //! - rename VkCmdTraceRaysIndirectCommandKHR to
@@ -468,8 +499,10 @@
 //! - update contributor list (!3611)
 //! - use uint64_t instead of VkAccelerationStructureReferenceKHR in
 //!VkAccelerationStructureInstanceKHR (#2004)
+//!
 //! - Revision 7, 2020-02-28 (Tobias Hector)
 //! - remove HitTKHR SPIR-V builtin (spirv/spirv-extensions#7)
+//!
 //! - Revision 8, 2020-03-06 (Tobias Hector, Dae Kim, Daniel Koch, Jeff Bolz,
 //!Eric Werness)
 //! - explicitly state that Tmax is updated when new closest intersection is
@@ -483,6 +516,7 @@
 //! - Say ray tracing '**should**' be watertight (#2008,!3631)
 //! - Clarify memory requirements for ray tracing buffers (#2005,!3649)
 //! - Add callable size limits (#1997,!3652)
+//!
 //! - Revision 9, 2020-04-15 (Eric Werness, Daniel Koch, Tobias Hector, Joshua
 //!Barczak)
 //! - Add geometry flags to acceleration structure creation (!3672)
@@ -518,6 +552,7 @@
 //! - Clarify deferred host ops for pipeline creation (#2067,!3813)
 //! - Change acceleration structure build to always be sized
 //!(#2131,#2197,#2198,!3854,!3883,!3880)
+//!
 //! - Revision 10, 2020-07-03 (Mathieu Robart, Daniel Koch, Eric Werness,
 //!Tobias Hector)
 //! - Decomposition of the specification, from VK_KHR_ray_tracing to
@@ -535,6 +570,7 @@
 //! - fix valid usage for arrays of geometryCount items (#2198,!4010)
 //! - define what is allowed to change on RTAS updates and relevant VUs
 //!(#2177,!3961)
+//!
 //! - Revision 11, 2020-11-12 (Eric Werness, Josh Barczak, Daniel Koch, Tobias
 //!Hector)
 //! - de-alias NV and KHR acceleration structure types and associated
@@ -561,11 +597,13 @@
 //!`VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR` applies
 //!to AS copies (#2382,#4173)
 //! - define sync for AS build inputs and indirect buffer (#2407,!4208)
+//!
 //! - Revision 12, 2021-08-06 (Samuel Bourasseau)
 //! - rename VK_GEOMETRY_INSTANCE_TRIANGLE_FRONT_COUNTERCLOCKWISE_BIT_KHR to
 //!VK_GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_BIT_KHR (keep previous as
 //!alias).
 //! - Clarify description and add note.
+//!
 //! - Revision 13, 2021-09-30 (Jon Leech)
 //! - Add interaction with `[`VK_KHR_format_feature_flags2`]` to `vk.xml`
 //!# Other info

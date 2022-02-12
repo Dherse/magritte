@@ -28,6 +28,7 @@
 //! - [`EXT_VERTEX_INPUT_DYNAMIC_STATE_SPEC_VERSION`]
 //! - Extending [`DynamicState`]:
 //! - `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT`
 //! - `VK_STRUCTURE_TYPE_VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT`
@@ -38,6 +39,7 @@
 //! - Add new [`VertexInputAttributeDescription2EXT`] struct for the
 //!`pVertexAttributeDescriptions` parameter to
 //![`CmdSetVertexInputEXT`] so it is also extensible
+//!
 //! - Revision 1, 2020-08-21 (Piers Daniell)
 //! - Internal revisions
 //!# Other info

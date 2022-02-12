@@ -23,6 +23,7 @@
 //!# Version History
 //! - Revision 2, 2019-06-25 (Matthaeus G. Chajdas)
 //! - Clarified the meaning of a few fields.
+//!
 //! - Revision 1, 2018-02-15 (Martin Dinkov)
 //! - Initial draft.
 //!# Other info

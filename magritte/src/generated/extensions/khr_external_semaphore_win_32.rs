@@ -21,6 +21,7 @@
 //! - [`SemaphoreGetWin32HandleInfoKHR`]
 //! - Extending [`SemaphoreCreateInfo`]:
 //! - [`ExportSemaphoreWin32HandleInfoKHR`]
+//!
 //! - Extending [`SubmitInfo`]:
 //! - [`D3D12FenceSubmitInfoKHR`]
 //!# New constants

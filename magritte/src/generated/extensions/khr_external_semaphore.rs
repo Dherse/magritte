@@ -29,6 +29,7 @@
 //! - [`KHR_EXTERNAL_SEMAPHORE_SPEC_VERSION`]
 //! - Extending [`SemaphoreImportFlagBits`]:
 //! - `VK_SEMAPHORE_IMPORT_TEMPORARY_BIT_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO_KHR`
 //!# Known issues & F.A.Q
@@ -56,6 +57,7 @@
 //! * No known IP claims.
 //!*
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - Jason Ekstrand, Intel
 //! - Jesse Hall, Google

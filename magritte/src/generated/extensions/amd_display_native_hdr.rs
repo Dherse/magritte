@@ -23,6 +23,7 @@
 //!# New structures
 //! - Extending [`SurfaceCapabilities2KHR`]:
 //! - [`DisplayNativeHdrSurfaceCapabilitiesAMD`]
+//!
 //! - Extending [`SwapchainCreateInfoKHR`]:
 //! - [`SwapchainDisplayNativeHdrCreateInfoAMD`]
 //!# New constants
@@ -30,6 +31,7 @@
 //! - [`AMD_DISPLAY_NATIVE_HDR_SPEC_VERSION`]
 //! - Extending [`ColorSpaceKHR`]:
 //! - `VK_COLOR_SPACE_DISPLAY_NATIVE_AMD`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD`
 //! - `VK_STRUCTURE_TYPE_SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD`

@@ -15,8 +15,8 @@
 //! - If
 //![`PhysicalDeviceBlendOperationAdvancedFeaturesEXT::advanced_blend_coherent_operations`]
 //!is [`TRUE`], advanced blend operations obey primitive order just
-//!like basic blend operations.In unextended Vulkan, the set of blending operations is limited, and
-//! **can** be
+//!like basic blend operations.
+//!In unextended Vulkan, the set of blending operations is limited, and **can** be
 //!expressed very simply.
 //!The `VK_BLEND_OP_MIN` and `VK_BLEND_OP_MAX` blend operations simply
 //!compute component-wise minimums or maximums of source and destination color
@@ -84,8 +84,10 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceBlendOperationAdvancedFeaturesEXT`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceBlendOperationAdvancedPropertiesEXT`]
+//!
 //! - Extending [`PipelineColorBlendStateCreateInfo`]:
 //! - [`PipelineColorBlendAdvancedStateCreateInfoEXT`]
 //!# New enums
@@ -95,6 +97,7 @@
 //! - [`EXT_BLEND_OPERATION_ADVANCED_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits`]:
 //! - `VK_ACCESS_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT`
+//!
 //! - Extending [`BlendOp`]:
 //! - `VK_BLEND_OP_BLUE_EXT`
 //! - `VK_BLEND_OP_COLORBURN_EXT`
@@ -142,6 +145,7 @@
 //! - `VK_BLEND_OP_VIVIDLIGHT_EXT`
 //! - `VK_BLEND_OP_XOR_EXT`
 //! - `VK_BLEND_OP_ZERO_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT`
@@ -151,6 +155,7 @@
 //!# Version History
 //! - Revision 1, 2017-06-12 (Jeff Bolz)
 //! - Internal revisions
+//!
 //! - Revision 2, 2017-06-12 (Jeff Bolz)
 //! - Internal revisions
 //!# Other info

@@ -65,6 +65,7 @@
 //! - Interacts with Vulkan 1.1.
 //! - Interacts with `[`VK_KHR_dedicated_allocation`]`.
 //! - Interacts with `[`VK_NV_dedicated_allocation`]`.
+//!
 //!*
 //! - James Jones, NVIDIA
 //!# Related

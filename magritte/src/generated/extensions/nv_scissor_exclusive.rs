@@ -21,6 +21,7 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceExclusiveScissorFeaturesNV`]
+//!
 //! - Extending [`PipelineViewportStateCreateInfo`]:
 //! - [`PipelineViewportExclusiveScissorStateCreateInfoNV`]
 //!# New constants
@@ -28,6 +29,7 @@
 //! - [`NV_SCISSOR_EXCLUSIVE_SPEC_VERSION`]
 //! - Extending [`DynamicState`]:
 //! - `VK_DYNAMIC_STATE_EXCLUSIVE_SCISSOR_NV`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV`
 //! - `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV`

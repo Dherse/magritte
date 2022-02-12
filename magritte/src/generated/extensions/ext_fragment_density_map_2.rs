@@ -16,8 +16,10 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceFragmentDensityMapFeaturesEXT`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceFragmentDensityMapPropertiesEXT`]
+//!
 //! - Extending [`RenderPassCreateInfo`], [`RenderPassCreateInfo2`]:
 //! - [`RenderPassFragmentDensityMapCreateInfoEXT`]
 //!# New constants
@@ -25,26 +27,35 @@
 //! - [`EXT_FRAGMENT_DENSITY_MAP_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits`]:
 //! - `VK_ACCESS_FRAGMENT_DENSITY_MAP_READ_BIT_EXT`
+//!
 //! - Extending [`FormatFeatureFlagBits`]:
 //! - `VK_FORMAT_FEATURE_FRAGMENT_DENSITY_MAP_BIT_EXT`
+//!
 //! - Extending [`ImageCreateFlagBits`]:
 //! - `VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT`
+//!
 //! - Extending [`ImageLayout`]:
 //! - `VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT`
+//!
 //! - Extending [`ImageUsageFlagBits`]:
 //! - `VK_IMAGE_USAGE_FRAGMENT_DENSITY_MAP_BIT_EXT`
+//!
 //! - Extending [`ImageViewCreateFlagBits`]:
 //! - `VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT`
+//!
 //! - Extending [`PipelineStageFlagBits`]:
 //! - `VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
+//!
 //! - Extending [`SamplerCreateFlagBits`]:
 //! - `VK_SAMPLER_CREATE_SUBSAMPLED_BIT_EXT`
 //! - `VK_SAMPLER_CREATE_SUBSAMPLED_COARSE_RECONSTRUCTION_BIT_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT`
-//! - `VK_STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT`If
-//!   [`VK_KHR_format_feature_flags2`] is supported:
+//! - `VK_STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT`
+//!
+//!If [`VK_KHR_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:
 //! - `VK_FORMAT_FEATURE_2_FRAGMENT_DENSITY_MAP_BIT_EXT`
 //!# Version History
@@ -54,6 +65,7 @@
 //! * 2020-06-16
 //!*
 //! - Interacts with Vulkan 1.1
+//!
 //!*
 //! - Matthew Netsch, Qualcomm Technologies, Inc.
 //! - Jonathan Tinkham, Qualcomm Technologies, Inc.

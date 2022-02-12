@@ -11,17 +11,23 @@
 //!# New structures
 //! - Extending [`VideoCapabilitiesKHR`]:
 //! - [`VideoDecodeH265CapabilitiesEXT`]
+//!
 //! - Extending [`VideoDecodeInfoKHR`]:
 //! - [`VideoDecodeH265PictureInfoEXT`]
+//!
 //! - Extending [`VideoProfileKHR`], [`QueryPoolCreateInfo`], [`FormatProperties2`],
 //!   [`ImageCreateInfo`], [`ImageViewCreateInfo`], [`BufferCreateInfo`]:
 //! - [`VideoDecodeH265ProfileEXT`]
+//!
 //! - Extending [`VideoReferenceSlotKHR`]:
 //! - [`VideoDecodeH265DpbSlotInfoEXT`]
+//!
 //! - Extending [`VideoSessionCreateInfoKHR`]:
 //! - [`VideoDecodeH265SessionCreateInfoEXT`]
+//!
 //! - Extending [`VideoSessionParametersCreateInfoKHR`]:
 //! - [`VideoDecodeH265SessionParametersCreateInfoEXT`]
+//!
 //! - Extending [`VideoSessionParametersUpdateInfoKHR`]:
 //! - [`VideoDecodeH265SessionParametersAddInfoEXT`]
 //!# New bitmasks
@@ -37,11 +43,13 @@
 //! - `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_CREATE_INFO_EXT`
 //! - `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_ADD_INFO_EXT`
 //! - `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_EXT`
+//!
 //! - Extending [`VideoCodecOperationFlagBitsKHR`]:
 //! - `VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_EXT`
 //!# Version History
 //! - Revision 1, 2018-6-11 (Peter Fang)
 //! - Initial draft
+//!
 //! - Revision 1.6, March 29 2021 (Tony Zlatinski)
 //! - Spec and API updates.
 //!# Other info

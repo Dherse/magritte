@@ -1,11 +1,12 @@
 //![VK_EXT_shader_subgroup_vote](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_shader_subgroup_vote.html) - device extension
 //!# Description
 //!This extension adds support for the following SPIR-V extension in Vulkan:
-//! - `SPV_KHR_subgroup_vote`This extension provides new SPIR-V instructions:
+//! - `SPV_KHR_subgroup_vote`
+//!This extension provides new SPIR-V instructions:
 //! - `OpSubgroupAllKHR`,
 //! - `OpSubgroupAnyKHR`, and
-//! - `OpSubgroupAllEqualKHR`.to compute the composite of a set of boolean conditions across a group
-//!   of
+//! - `OpSubgroupAllEqualKHR`.
+//!to compute the composite of a set of boolean conditions across a group of
 //!shader invocations that are running concurrently (a *subgroup*).
 //!These composite results may be used to execute shaders more efficiently on a
 //![`PhysicalDevice`].When using GLSL source-based shader languages, the following shader
@@ -13,8 +14,8 @@
 //!instructions:
 //! - `anyInvocationARB`() → `OpSubgroupAnyKHR`,
 //! - `allInvocationsARB`() → `OpSubgroupAllKHR`, and
-//! - `allInvocationsEqualARB`() → `OpSubgroupAllEqualKHR`.The subgroup across which the boolean
-//!   conditions are evaluated is
+//! - `allInvocationsEqualARB`() → `OpSubgroupAllEqualKHR`.
+//!The subgroup across which the boolean conditions are evaluated is
 //!implementation-dependent, and this extension provides no guarantee over how
 //!individual shader invocations are assigned to subgroups.
 //!In particular, a subgroup has no necessary relationship with the compute
@@ -85,6 +86,7 @@
 //![`SPV_KHR_subgroup_vote`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_subgroup_vote.html)
 //! - This extension provides API support for
 //![`GL_ARB_shader_group_vote`](https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_shader_group_vote.txt)
+//!
 //!*
 //! - Neil Henning, Codeplay
 //! - Daniel Koch, NVIDIA Corporation

@@ -38,11 +38,13 @@
 //! - Extending [`ExternalFenceFeatureFlagBits`]:
 //! - `VK_EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT_KHR`
 //! - `VK_EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT_KHR`
+//!
 //! - Extending [`ExternalFenceHandleTypeFlagBits`]:
 //! - `VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT_KHR`
 //! - `VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR`
 //! - `VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR`
 //! - `VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_EXTERNAL_FENCE_PROPERTIES_KHR`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO_KHR`
@@ -55,6 +57,7 @@
 //! * No known IP claims.
 //!*
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - Jesse Hall, Google
 //! - James Jones, NVIDIA

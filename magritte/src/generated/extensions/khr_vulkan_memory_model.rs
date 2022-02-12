@@ -26,6 +26,7 @@
 //!# Version History
 //! - Revision 1, 2018-06-24 (Jeff Bolz)
 //! - Initial draft
+//!
 //! - Revision 3, 2018-12-10 (Jeff Bolz)
 //! - Add vulkanMemoryModelAvailabilityVisibilityChains member to the
 //!VkPhysicalDeviceVulkanMemoryModelFeaturesKHR structure.
@@ -36,6 +37,7 @@
 //! - Promoted to Vulkan 1.2 Core
 //! - This extension requires
 //![`SPV_KHR_vulkan_memory_model`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_vulkan_memory_model.html)
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //! - Alan Baker, Google

@@ -26,6 +26,7 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceColorWriteEnableFeaturesEXT`]
+//!
 //! - Extending [`PipelineColorBlendStateCreateInfo`]:
 //! - [`PipelineColorWriteCreateInfoEXT`]
 //!# New constants
@@ -33,6 +34,7 @@
 //! - [`EXT_COLOR_WRITE_ENABLE_SPEC_VERSION`]
 //! - Extending [`DynamicState`]:
 //! - `VK_DYNAMIC_STATE_COLOR_WRITE_ENABLE_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT`
 //! - `VK_STRUCTURE_TYPE_PIPELINE_COLOR_WRITE_CREATE_INFO_EXT`

@@ -18,8 +18,10 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceFragmentDensityMapFeaturesEXT`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceFragmentDensityMapPropertiesEXT`]
+//!
 //! - Extending [`RenderPassCreateInfo`], [`RenderPassCreateInfo2`]:
 //! - [`RenderPassFragmentDensityMapCreateInfoEXT`]
 //!# New constants
@@ -27,31 +29,41 @@
 //! - [`EXT_FRAGMENT_DENSITY_MAP_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits`]:
 //! - `VK_ACCESS_FRAGMENT_DENSITY_MAP_READ_BIT_EXT`
+//!
 //! - Extending [`FormatFeatureFlagBits`]:
 //! - `VK_FORMAT_FEATURE_FRAGMENT_DENSITY_MAP_BIT_EXT`
+//!
 //! - Extending [`ImageCreateFlagBits`]:
 //! - `VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT`
+//!
 //! - Extending [`ImageLayout`]:
 //! - `VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT`
+//!
 //! - Extending [`ImageUsageFlagBits`]:
 //! - `VK_IMAGE_USAGE_FRAGMENT_DENSITY_MAP_BIT_EXT`
+//!
 //! - Extending [`ImageViewCreateFlagBits`]:
 //! - `VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT`
+//!
 //! - Extending [`PipelineStageFlagBits`]:
 //! - `VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
+//!
 //! - Extending [`SamplerCreateFlagBits`]:
 //! - `VK_SAMPLER_CREATE_SUBSAMPLED_BIT_EXT`
 //! - `VK_SAMPLER_CREATE_SUBSAMPLED_COARSE_RECONSTRUCTION_BIT_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT`
-//! - `VK_STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT`If
-//!   [`VK_KHR_format_feature_flags2`] is supported:
+//! - `VK_STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT`
+//!
+//!If [`VK_KHR_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:
 //! - `VK_FORMAT_FEATURE_2_FRAGMENT_DENSITY_MAP_BIT_EXT`
 //!# Version History
 //! - Revision 1, 2018-09-25 (Matthew Netsch)
 //! - Initial version
+//!
 //! - Revision 2, 2021-09-30 (Jon Leech)
 //! - Add interaction with `[`VK_KHR_format_feature_flags2`]` to `vk.xml`
 //!# Other info
@@ -61,6 +73,7 @@
 //![`SPV_EXT_fragment_invocation_density`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/EXT/SPV_EXT_fragment_invocation_density.html)
 //! - This extension provides API support for
 //![`GL_EXT_fragment_invocation_density`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_fragment_invocation_density.txt)
+//!
 //!*
 //! - Matthew Netsch, Qualcomm Technologies, Inc.
 //! - Robert VanReenen, Qualcomm Technologies, Inc.

@@ -23,6 +23,7 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceBorderColorSwizzleFeaturesEXT`]
+//!
 //! - Extending [`SamplerCreateInfo`]:
 //! - [`SamplerBorderColorComponentMappingCreateInfoEXT`]
 //!# New constants

@@ -49,6 +49,7 @@
 //! * No known IP claims.
 //!*
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - Jason Ekstrand, Intel
 //! - Jeff Bolz, NVIDIA

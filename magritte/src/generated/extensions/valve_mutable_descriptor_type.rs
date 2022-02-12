@@ -31,6 +31,7 @@
 //! - [`MutableDescriptorTypeListVALVE`]
 //! - Extending [`DescriptorSetLayoutCreateInfo`], [`DescriptorPoolCreateInfo`]:
 //! - [`MutableDescriptorTypeCreateInfoVALVE`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceMutableDescriptorTypeFeaturesVALVE`]
 //!# New constants
@@ -38,10 +39,13 @@
 //! - [`VALVE_MUTABLE_DESCRIPTOR_TYPE_SPEC_VERSION`]
 //! - Extending [`DescriptorPoolCreateFlagBits`]:
 //! - `VK_DESCRIPTOR_POOL_CREATE_HOST_ONLY_BIT_VALVE`
+//!
 //! - Extending [`DescriptorSetLayoutCreateFlagBits`]:
 //! - `VK_DESCRIPTOR_SET_LAYOUT_CREATE_HOST_ONLY_POOL_BIT_VALVE`
+//!
 //! - Extending [`DescriptorType`]:
 //! - `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_VALVE`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_VALVE`

@@ -31,6 +31,7 @@
 //! * 2018-11-14
 //!*
 //! - Promoted to Vulkan 1.2 Core
+//!
 //!*
 //! - Jeff Bolz
 //! - Jan-Harald Fredriksen

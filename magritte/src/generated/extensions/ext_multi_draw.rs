@@ -25,6 +25,7 @@
 //! - [`MultiDrawInfoEXT`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceMultiDrawFeaturesEXT`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceMultiDrawPropertiesEXT`]
 //!# New constants

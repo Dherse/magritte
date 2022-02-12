@@ -23,7 +23,8 @@
 //! - The final binding in a descriptor set layout can have a variable size
 //!(and unsized arrays of resources are allowed in the
 //!`GL_EXT_nonuniform_qualifier` and `SPV_EXT_descriptor_indexing`
-//!extensions).Note that it is valid for multiple descriptor arrays in a shader to use the
+//!extensions).
+//!Note that it is valid for multiple descriptor arrays in a shader to use the
 //!same set and binding number, as long as they are all compatible with the
 //!descriptor type in the pipeline layout.
 //!This means a single array binding in the descriptor set can serve multiple
@@ -53,12 +54,16 @@
 //!# New structures
 //! - Extending [`DescriptorSetAllocateInfo`]:
 //! - [`DescriptorSetVariableDescriptorCountAllocateInfoEXT`]
+//!
 //! - Extending [`DescriptorSetLayoutCreateInfo`]:
 //! - [`DescriptorSetLayoutBindingFlagsCreateInfoEXT`]
+//!
 //! - Extending [`DescriptorSetLayoutSupport`]:
 //! - [`DescriptorSetVariableDescriptorCountLayoutSupportEXT`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceDescriptorIndexingFeaturesEXT`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceDescriptorIndexingPropertiesEXT`]
 //!# New enums
@@ -73,12 +78,16 @@
 //! - `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT_EXT`
 //! - `VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT_EXT`
 //! - `VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT_EXT`
+//!
 //! - Extending [`DescriptorPoolCreateFlagBits`]:
 //! - `VK_DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT_EXT`
+//!
 //! - Extending [`DescriptorSetLayoutCreateFlagBits`]:
 //! - `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT_EXT`
+//!
 //! - Extending [`VulkanResultCodes`]:
 //! - `VK_ERROR_FRAGMENTATION_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO_EXT`
 //! - `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO_EXT`
@@ -88,6 +97,7 @@
 //!# Version History
 //! - Revision 1, 2017-07-26 (Jeff Bolz)
 //! - Internal revisions
+//!
 //! - Revision 2, 2017-10-02 (Jeff Bolz)
 //! - ???
 //!# Other info
@@ -98,6 +108,7 @@
 //![`SPV_EXT_descriptor_indexing`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/EXT/SPV_EXT_descriptor_indexing.html)
 //! - This extension provides API support for
 //![`GL_EXT_nonuniform_qualifier`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_nonuniform_qualifier.txt)
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //! - Daniel Rakos, AMD

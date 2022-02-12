@@ -19,6 +19,7 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceShaderSmBuiltinsFeaturesNV`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceShaderSmBuiltinsPropertiesNV`]
 //!# New constants
@@ -43,6 +44,7 @@
 //![`SPV_NV_shader_sm_builtins`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_shader_sm_builtins.html).
 //! - This extension provides API support for
 //![`GL_NV_shader_sm_builtins`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nv/GLSL_NV_shader_sm_builtins.txt)
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //! - Eric Werness, NVIDIA

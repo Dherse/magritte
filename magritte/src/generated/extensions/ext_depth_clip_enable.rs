@@ -19,6 +19,7 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceDepthClipEnableFeaturesEXT`]
+//!
 //! - Extending [`PipelineRasterizationStateCreateInfo`]:
 //! - [`PipelineRasterizationDepthClipStateCreateInfoEXT`]
 //!# New bitmasks

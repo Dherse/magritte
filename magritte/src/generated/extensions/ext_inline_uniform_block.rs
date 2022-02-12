@@ -23,10 +23,13 @@
 //!# New structures
 //! - Extending [`DescriptorPoolCreateInfo`]:
 //! - [`DescriptorPoolInlineUniformBlockCreateInfoEXT`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceInlineUniformBlockFeaturesEXT`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceInlineUniformBlockPropertiesEXT`]
+//!
 //! - Extending [`WriteDescriptorSet`]:
 //! - [`WriteDescriptorSetInlineUniformBlockEXT`]
 //!# New constants
@@ -34,6 +37,7 @@
 //! - [`EXT_INLINE_UNIFORM_BLOCK_SPEC_VERSION`]
 //! - Extending [`DescriptorType`]:
 //! - `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO_EXT`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES_EXT`
@@ -83,6 +87,7 @@
 //! * 2018-08-01
 //!*
 //! - Promoted to Vulkan 1.3 Core
+//!
 //! * No known IP claims.
 //!*
 //! - Daniel Rakos, AMD

@@ -37,6 +37,7 @@
 //![`SPV_EXT_shader_image_int64`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/EXT/SPV_EXT_shader_image_int64.html)
 //! - This extension provides API support for
 //![`GLSL_EXT_shader_image_int64`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_shader_image_int64.txt)
+//!
 //!*
 //! - Matthaeus Chajdas, AMD
 //! - Graham Wihlidal, Epic Games

@@ -21,6 +21,7 @@
 //! - [`KHR_PIPELINE_LIBRARY_SPEC_VERSION`]
 //! - Extending [`PipelineCreateFlagBits`]:
 //! - `VK_PIPELINE_CREATE_LIBRARY_BIT_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PIPELINE_LIBRARY_CREATE_INFO_KHR`
 //!# Version History

@@ -32,6 +32,7 @@
 //! - Promoted to Vulkan 1.2 Core
 //! - This extension provides API support for
 //![`GLSL_EXT_shader_subgroup_extended_types`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_shader_subgroup_extended_types.txt)
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //! - Jan-Harald Fredriksen, Arm

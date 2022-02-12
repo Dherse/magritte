@@ -32,8 +32,9 @@
 //! - [`NV_LINEAR_COLOR_ATTACHMENT_EXTENSION_NAME`]
 //! - [`NV_LINEAR_COLOR_ATTACHMENT_SPEC_VERSION`]
 //! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV`If
-//!   [`VK_KHR_format_feature_flags2`] is supported:
+//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV`
+//!
+//!If [`VK_KHR_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:
 //! - `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
 //!# Version History
@@ -43,6 +44,7 @@
 //! * 2021-12-02
 //!*
 //! - This extension requires [`VK_KHR_format_feature_flags2`]
+//!
 //!*
 //! - Pat Brown, NVIDIA
 //! - Piers Daniell, NVIDIA

@@ -36,6 +36,7 @@
 //! - This extension provides API support for
 //![`GL_ARB_gpu_shader_int64`](https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_gpu_shader_int64.txt) and
 //![`GL_EXT_shader_atomic_int64`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_shader_atomic_int64.txt)
+//!
 //!*
 //! - Aaron Hagan, AMD
 //! - Daniel Rakos, AMD

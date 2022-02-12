@@ -48,10 +48,13 @@
 //! - [`SubpassSampleLocationsEXT`]
 //! - Extending [`ImageMemoryBarrier`], [`ImageMemoryBarrier2KHR`]:
 //! - [`SampleLocationsInfoEXT`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceSampleLocationsPropertiesEXT`]
+//!
 //! - Extending [`PipelineMultisampleStateCreateInfo`]:
 //! - [`PipelineSampleLocationsStateCreateInfoEXT`]
+//!
 //! - Extending [`RenderPassBeginInfo`]:
 //! - [`RenderPassSampleLocationsBeginInfoEXT`]
 //!# New constants
@@ -59,8 +62,10 @@
 //! - [`EXT_SAMPLE_LOCATIONS_SPEC_VERSION`]
 //! - Extending [`DynamicState`]:
 //! - `VK_DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT`
+//!
 //! - Extending [`ImageCreateFlagBits`]:
 //! - `VK_IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_MULTISAMPLE_PROPERTIES_EXT`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT`

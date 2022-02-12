@@ -41,8 +41,10 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceTransformFeedbackFeaturesEXT`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceTransformFeedbackPropertiesEXT`]
+//!
 //! - Extending [`PipelineRasterizationStateCreateInfo`]:
 //! - [`PipelineRasterizationStateStreamCreateInfoEXT`]
 //!# New bitmasks
@@ -54,13 +56,17 @@
 //! - `VK_ACCESS_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT`
 //! - `VK_ACCESS_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT`
 //! - `VK_ACCESS_TRANSFORM_FEEDBACK_WRITE_BIT_EXT`
+//!
 //! - Extending [`BufferUsageFlagBits`]:
 //! - `VK_BUFFER_USAGE_TRANSFORM_FEEDBACK_BUFFER_BIT_EXT`
 //! - `VK_BUFFER_USAGE_TRANSFORM_FEEDBACK_COUNTER_BUFFER_BIT_EXT`
+//!
 //! - Extending [`PipelineStageFlagBits`]:
 //! - `VK_PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT`
+//!
 //! - Extending [`QueryType`]:
 //! - `VK_QUERY_TYPE_TRANSFORM_FEEDBACK_STREAM_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT`

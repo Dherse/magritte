@@ -37,6 +37,7 @@
 //! - This extension provides API support for
 //![`ARB_shader_clock`](https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_shader_clock.txt) and
 //![`EXT_shader_realtime_clock`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_shader_realtime_clock.txt)
+//!
 //!*
 //! - Aaron Hagan, AMD
 //! - Daniel Koch, NVIDIA

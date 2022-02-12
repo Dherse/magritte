@@ -46,8 +46,10 @@
 //! - [`INTEL_PERFORMANCE_QUERY_SPEC_VERSION`]
 //! - Extending [`ObjectType`]:
 //! - `VK_OBJECT_TYPE_PERFORMANCE_CONFIGURATION_INTEL`
+//!
 //! - Extending [`QueryType`]:
 //! - `VK_QUERY_TYPE_PERFORMANCE_QUERY_INTEL`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_INITIALIZE_PERFORMANCE_API_INFO_INTEL`
 //! - `VK_STRUCTURE_TYPE_PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL`
@@ -60,6 +62,7 @@
 //! - Revision 2, 2020-03-06 (Lionel Landwerlin)
 //! - Rename VkQueryPoolCreateInfoINTEL in
 //!VkQueryPoolPerformanceQueryCreateInfoINTEL
+//!
 //! - Revision 1, 2018-05-16 (Lionel Landwerlin)
 //! - Initial revision
 //!# Other info
@@ -394,6 +397,7 @@ impl PerformanceParameterTypeINTEL {
 ///a null-terminated UTF-8 string is returned in `data.valueString`.
 ///The pointer is valid for the lifetime of the `device` parameter
 ///passed to [`GetPerformanceParameterINTEL`].
+///
 ///```c
 ///// Provided by VK_INTEL_performance_query
 ///typedef enum VkPerformanceValueTypeINTEL {

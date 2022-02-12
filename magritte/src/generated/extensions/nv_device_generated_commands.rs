@@ -44,14 +44,14 @@
 //!compute queue, or for the purpose of re-using the data in multiple
 //!executions.
 //! - call [`CmdExecuteGeneratedCommandsNV`] to create and execute the
-//!actual device commands for all sequences based on the inputs provided.For each draw in a
-//! sequence, the following can be specified:
+//!actual device commands for all sequences based on the inputs provided.
+//!For each draw in a sequence, the following can be specified:
 //! - a different shader group
 //! - a number of vertex buffer bindings
 //! - a different index buffer, with an optional dynamic offset and index type
 //! - a number of different push constants
-//! - a flag that encodes the primitive windingWhile the GPU can be faster than a CPU to generate
-//!   the commands, it will not
+//! - a flag that encodes the primitive winding
+//!While the GPU can be faster than a CPU to generate the commands, it will not
 //!happen asynchronously to the device, therefore the primary use-case is
 //!generating “less” total work (occlusion culling, classification to use
 //!specialized shaders, etc.).
@@ -86,8 +86,10 @@
 //! - [`SetStateFlagsIndirectCommandNV`]
 //! - Extending [`GraphicsPipelineCreateInfo`]:
 //! - [`GraphicsPipelineShaderGroupsCreateInfoNV`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV`]
 //!# New enums
@@ -103,12 +105,16 @@
 //! - Extending [`AccessFlagBits`]:
 //! - `VK_ACCESS_COMMAND_PREPROCESS_READ_BIT_NV`
 //! - `VK_ACCESS_COMMAND_PREPROCESS_WRITE_BIT_NV`
+//!
 //! - Extending [`ObjectType`]:
 //! - `VK_OBJECT_TYPE_INDIRECT_COMMANDS_LAYOUT_NV`
+//!
 //! - Extending [`PipelineCreateFlagBits`]:
 //! - `VK_PIPELINE_CREATE_INDIRECT_BINDABLE_BIT_NV`
+//!
 //! - Extending [`PipelineStageFlagBits`]:
 //! - `VK_PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_GENERATED_COMMANDS_INFO_NV`
 //! - `VK_STRUCTURE_TYPE_GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV`
@@ -171,7 +177,8 @@
 //! - one could have some emulation code that parses the inputs, and generates
 //!an output command buffer, therefore copying the inputs.
 //! - one could just reference the inputs, and have the processing done in
-//!pipe at execution time.If the data is mandated to be copied, then it puts a penalty on
+//!pipe at execution time.
+//!If the data is mandated to be copied, then it puts a penalty on
 //!implementation that could process the inputs directly in pipe.
 //!If the data is “referenced”, then it allows both types of implementation.The inputs are
 //! “referenced”, and **must** not be modified after the call to
@@ -181,8 +188,8 @@
 //! - [`GeneratedCommandsInfoNV::preprocess_buffer`]
 //! - [`GeneratedCommandsInfoNV::sequences_count_buffer`]
 //! - [`GeneratedCommandsInfoNV::sequences_index_buffer`]
-//! - [`IndirectCommandsStreamNV::buffer`]12) In which pipeline stage does the device generated
-//!   command expansion
+//! - [`IndirectCommandsStreamNV::buffer`]
+//!12) In which pipeline stage does the device generated command expansion
 //!happen?[`CmdPreprocessGeneratedCommandsNV`] is treated as if it occurs in a
 //!separate logical pipeline from either graphics or compute, and that pipeline
 //!only includes `VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT`, a new stage
@@ -198,19 +205,19 @@
 //! buffers to preprocessing via
 //![`CmdPreprocessGeneratedCommandsNV`], use:
 //! - `dstStageMask` = `VK_PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV`
-//! - `dstAccessMask` = `VK_ACCESS_COMMAND_PREPROCESS_READ_BIT_NV`To synchronize from
-//!   [`CmdPreprocessGeneratedCommandsNV`] to executing
+//! - `dstAccessMask` = `VK_ACCESS_COMMAND_PREPROCESS_READ_BIT_NV`
+//!To synchronize from [`CmdPreprocessGeneratedCommandsNV`] to executing
 //!the generated commands by [`CmdExecuteGeneratedCommandsNV`], use:
 //! - `srcStageMask` = `VK_PIPELINE_STAGE_COMMAND_PREPROCESS_BIT_NV`
 //! - `srcAccessMask` = `VK_ACCESS_COMMAND_PREPROCESS_WRITE_BIT_NV`
 //! - `dstStageMask` = `VK_PIPELINE_STAGE_DRAW_INDIRECT_BIT`
-//! - `dstAccessMask` = `VK_ACCESS_INDIRECT_COMMAND_READ_BIT`When [`CmdExecuteGeneratedCommandsNV`]
-//!   is used with a
+//! - `dstAccessMask` = `VK_ACCESS_INDIRECT_COMMAND_READ_BIT`
+//!When [`CmdExecuteGeneratedCommandsNV`] is used with a
 //!`isPreprocessed` of [`FALSE`], the generated commands are implicitly
 //!preprocessed, therefore one only needs to synchronize the inputs via:
 //! - `dstStageMask` = `VK_PIPELINE_STAGE_DRAW_INDIRECT_BIT`
-//! - `dstAccessMask` = `VK_ACCESS_INDIRECT_COMMAND_READ_BIT`13) What if most token data is
-//!   “static”, but we frequently want to render
+//! - `dstAccessMask` = `VK_ACCESS_INDIRECT_COMMAND_READ_BIT`
+//!13) What if most token data is “static”, but we frequently want to render
 //!a subsection?Added “sequencesIndexBuffer”.
 //!This allows to easier sort and filter what should actually be executed.14) What are the changes
 //! compared to the previous NVX extension?
@@ -226,8 +233,8 @@
 //!explicit)
 //! - The reservation of intermediate command space is now mandatory and
 //!explicit through a preprocess buffer.
-//! - The [`IndirectStateFlagBitsNV`] were introduced15) When porting from other APIs, their
-//!   indirect buffers may use different
+//! - The [`IndirectStateFlagBitsNV`] were introduced
+//!15) When porting from other APIs, their indirect buffers may use different
 //!    enums, for example for index buffer types.
 //!    How to solve this?Added “pIndexTypeValues” to map custom `uint32_t` values to corresponding
 //![`IndexType`].16) Do we need more shader group state overrides?The NVX version allowed all PSO
@@ -252,8 +259,10 @@
 //!# Version History
 //! - Revision 1, 2020-02-20 (Christoph Kubisch)
 //! - Initial version
+//!
 //! - Revision 2, 2020-03-09 (Christoph Kubisch)
 //! - Remove VK_EXT_debug_report interactions
+//!
 //! - Revision 3, 2020-03-09 (Christoph Kubisch)
 //! - Fix naming VkPhysicalDeviceGenerated to
 //!VkPhysicalDeviceDeviceGenerated
@@ -267,6 +276,7 @@
 //! - This extension interacts with [`VK_NV_mesh_shader`].
 //!If the latter extension is not supported, remove the command token to
 //!initiate mesh tasks drawing in this extension.
+//!
 //!*
 //! - Christoph Kubisch, NVIDIA
 //! - Pierre Boudier, NVIDIA

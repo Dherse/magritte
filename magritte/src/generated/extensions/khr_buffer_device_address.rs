@@ -56,8 +56,10 @@
 //! - [`DeviceMemoryOpaqueCaptureAddressInfoKHR`]
 //! - Extending [`BufferCreateInfo`]:
 //! - [`BufferOpaqueCaptureAddressCreateInfoKHR`]
+//!
 //! - Extending [`MemoryAllocateInfo`]:
 //! - [`MemoryOpaqueCaptureAddressAllocateInfoKHR`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceBufferDeviceAddressFeaturesKHR`]
 //!# New constants
@@ -65,13 +67,17 @@
 //! - [`KHR_BUFFER_DEVICE_ADDRESS_SPEC_VERSION`]
 //! - Extending [`BufferCreateFlagBits`]:
 //! - `VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR`
+//!
 //! - Extending [`BufferUsageFlagBits`]:
 //! - `VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT_KHR`
+//!
 //! - Extending [`MemoryAllocateFlagBits`]:
 //! - `VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT_KHR`
 //! - `VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR`
+//!
 //! - Extending [`VulkanResultCodes`]:
 //! - `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO_KHR`
@@ -94,6 +100,7 @@
 //![`GL_EXT_buffer_reference2`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_buffer_reference2.txt)
 //!and
 //![`GL_EXT_buffer_reference_uvec2`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_buffer_reference_uvec2.txt)
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //! - Neil Henning, AMD

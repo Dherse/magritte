@@ -29,8 +29,10 @@
 //!# New structures
 //! - Extending [`BufferCreateInfo`]:
 //! - [`DedicatedAllocationBufferCreateInfoNV`]
+//!
 //! - Extending [`ImageCreateInfo`]:
 //! - [`DedicatedAllocationImageCreateInfoNV`]
+//!
 //! - Extending [`MemoryAllocateInfo`]:
 //! - [`DedicatedAllocationMemoryAllocateInfoNV`]
 //!# New constants

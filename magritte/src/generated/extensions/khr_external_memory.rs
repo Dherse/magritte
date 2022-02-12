@@ -21,8 +21,10 @@
 //!# New structures
 //! - Extending [`BufferCreateInfo`]:
 //! - [`ExternalMemoryBufferCreateInfoKHR`]
+//!
 //! - Extending [`ImageCreateInfo`]:
 //! - [`ExternalMemoryImageCreateInfoKHR`]
+//!
 //! - Extending [`MemoryAllocateInfo`]:
 //! - [`ExportMemoryAllocateInfoKHR`]
 //!# New constants
@@ -31,6 +33,7 @@
 //! - [`QUEUE_FAMILY_EXTERNAL_KHR`]
 //! - Extending [`VulkanResultCodes`]:
 //! - `VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO_KHR`
@@ -84,8 +87,8 @@
 //! - A new bit in [`AccessFlags`] that can be set to indicate an
 //!“external” access.
 //! - A new bit in [`DependencyFlags`]
-//! - A new special queue family that represents an “external” queue.A new structure has the
-//!   advantage that the type of external transition can
+//! - A new special queue family that represents an “external” queue.
+//!A new structure has the advantage that the type of external transition can
 //!be described in as much detail as necessary.
 //!However, there is not currently a known need for anything beyond
 //!differentiating between external and internal accesses, so this is likely an
@@ -210,6 +213,7 @@
 //! - Interacts with `[`VK_KHR_dedicated_allocation`]`.
 //! - Interacts with `[`VK_NV_dedicated_allocation`]`.
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - Jason Ekstrand, Intel
 //! - Ian Elliot, Google

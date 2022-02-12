@@ -27,10 +27,13 @@
 //! - [`PerformanceCounterKHR`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDevicePerformanceQueryFeaturesKHR`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDevicePerformanceQueryPropertiesKHR`]
+//!
 //! - Extending [`QueryPoolCreateInfo`]:
 //! - [`QueryPoolPerformanceCreateInfoKHR`]
+//!
 //! - Extending [`SubmitInfo`], [`SubmitInfo2`]:
 //! - [`PerformanceQuerySubmitInfoKHR`]
 //!# New enums
@@ -47,6 +50,7 @@
 //! - [`KHR_PERFORMANCE_QUERY_SPEC_VERSION`]
 //! - Extending [`QueryType`]:
 //! - `VK_QUERY_TYPE_PERFORMANCE_QUERY_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_ACQUIRE_PROFILING_LOCK_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_DESCRIPTION_KHR`

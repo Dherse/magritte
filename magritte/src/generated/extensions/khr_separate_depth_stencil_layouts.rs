@@ -23,8 +23,10 @@
 //!# New structures
 //! - Extending [`AttachmentDescription2`]:
 //! - [`AttachmentDescriptionStencilLayoutKHR`]
+//!
 //! - Extending [`AttachmentReference2`]:
 //! - [`AttachmentReferenceStencilLayoutKHR`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceSeparateDepthStencilLayoutsFeaturesKHR`]
 //!# New constants
@@ -35,6 +37,7 @@
 //! - `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL_KHR`
 //! - `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL_KHR`
 //! - `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT_KHR`
 //! - `VK_STRUCTURE_TYPE_ATTACHMENT_REFERENCE_STENCIL_LAYOUT_KHR`
@@ -46,6 +49,7 @@
 //! * 2019-06-25
 //!*
 //! - Promoted to Vulkan 1.2 Core
+//!
 //!*
 //! - Daniel Koch, NVIDIA
 //! - Jeff Bolz, NVIDIA

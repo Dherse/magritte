@@ -21,6 +21,7 @@
 //! - [`ConditionalRenderingBeginInfoEXT`]
 //! - Extending [`CommandBufferInheritanceInfo`]:
 //! - [`CommandBufferInheritanceConditionalRenderingInfoEXT`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceConditionalRenderingFeaturesEXT`]
 //!# New enums
@@ -32,10 +33,13 @@
 //! - [`EXT_CONDITIONAL_RENDERING_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits`]:
 //! - `VK_ACCESS_CONDITIONAL_RENDERING_READ_BIT_EXT`
+//!
 //! - Extending [`BufferUsageFlagBits`]:
 //! - `VK_BUFFER_USAGE_CONDITIONAL_RENDERING_BIT_EXT`
+//!
 //! - Extending [`PipelineStageFlagBits`]:
 //! - `VK_PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT`
 //! - `VK_STRUCTURE_TYPE_CONDITIONAL_RENDERING_BEGIN_INFO_EXT`
@@ -53,6 +57,7 @@
 //!# Version History
 //! - Revision 1, 2018-04-19 (Vikram Kushwaha)
 //! - First Version
+//!
 //! - Revision 2, 2018-05-21 (Vikram Kushwaha)
 //! - Add new pipeline stage, access flags and limit conditional rendering
 //!to a subpass or entire render pass.

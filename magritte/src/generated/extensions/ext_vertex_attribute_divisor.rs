@@ -16,8 +16,10 @@
 //! - [`VertexInputBindingDivisorDescriptionEXT`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceVertexAttributeDivisorFeaturesEXT`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceVertexAttributeDivisorPropertiesEXT`]
+//!
 //! - Extending [`PipelineVertexInputStateCreateInfo`]:
 //! - [`PipelineVertexInputDivisorStateCreateInfoEXT`]
 //!# New constants
@@ -36,10 +38,12 @@
 //!# Version History
 //! - Revision 1, 2017-12-04 (Vikram Kushwaha)
 //! - First Version
+//!
 //! - Revision 2, 2018-07-16 (Jason Ekstrand)
 //! - Adjust the interaction between `divisor` and `firstInstance`
 //!to match the OpenGL convention.
 //! - Disallow divisors of zero.
+//!
 //! - Revision 3, 2018-08-03 (Vikram Kushwaha)
 //! - Allow a zero divisor.
 //! - Add a physical device features structure to query/enable this feature.

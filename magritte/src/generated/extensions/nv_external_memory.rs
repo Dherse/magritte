@@ -25,6 +25,7 @@
 //!# New structures
 //! - Extending [`ImageCreateInfo`]:
 //! - [`ExternalMemoryImageCreateInfoNV`]
+//!
 //! - Extending [`MemoryAllocateInfo`]:
 //! - [`ExportMemoryAllocateInfoNV`]
 //!# New constants

@@ -35,6 +35,7 @@
 //!# New structures
 //! - Extending [`ImageViewCreateInfo`]:
 //! - [`ImageViewAstcDecodeModeEXT`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceAstcDecodeFeaturesEXT`]
 //!# New constants

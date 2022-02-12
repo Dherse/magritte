@@ -15,8 +15,8 @@
 //!acceleration structure items
 //! - Ray tracing commands which initiate the ray pipeline traversal and
 //!invocation of the various new shader domains depending on which
-//!traversal conditions are metThis extension adds support for the following SPIR-V extension in
-//! Vulkan:
+//!traversal conditions are met
+//!This extension adds support for the following SPIR-V extension in Vulkan:
 //! - `SPV_KHR_ray_tracing`
 //!# Revision
 //!1
@@ -44,6 +44,7 @@
 //! - [`TraceRaysIndirectCommandKHR`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceRayTracingPipelineFeaturesKHR`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceRayTracingPipelinePropertiesKHR`]
 //!# New enums
@@ -55,10 +56,13 @@
 //! - [`SHADER_UNUSED_KHR`]
 //! - Extending [`BufferUsageFlagBits`]:
 //! - `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR`
+//!
 //! - Extending [`DynamicState`]:
 //! - `VK_DYNAMIC_STATE_RAY_TRACING_PIPELINE_STACK_SIZE_KHR`
+//!
 //! - Extending [`PipelineBindPoint`]:
 //! - `VK_PIPELINE_BIND_POINT_RAY_TRACING_KHR`
+//!
 //! - Extending [`PipelineCreateFlagBits`]:
 //! - `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR`
 //! - `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR`
@@ -67,8 +71,10 @@
 //! - `VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR`
 //! - `VK_PIPELINE_CREATE_RAY_TRACING_SKIP_AABBS_BIT_KHR`
 //! - `VK_PIPELINE_CREATE_RAY_TRACING_SKIP_TRIANGLES_BIT_KHR`
+//!
 //! - Extending [`PipelineStageFlagBits`]:
 //! - `VK_PIPELINE_STAGE_RAY_TRACING_SHADER_BIT_KHR`
+//!
 //! - Extending [`ShaderStageFlagBits`]:
 //! - `VK_SHADER_STAGE_ANY_HIT_BIT_KHR`
 //! - `VK_SHADER_STAGE_CALLABLE_BIT_KHR`
@@ -76,6 +82,7 @@
 //! - `VK_SHADER_STAGE_INTERSECTION_BIT_KHR`
 //! - `VK_SHADER_STAGE_MISS_BIT_KHR`
 //! - `VK_SHADER_STAGE_RAYGEN_BIT_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR`
@@ -91,6 +98,7 @@
 //! - refer to KHR SPIR-V enums instead of NV SPIR-V enums (which are
 //!functionally equivalent and aliased to the same values).
 //! - added `RayGeometryIndexKHR` built-in
+//!
 //! - removed vkCompileDeferredNV compilation functionality and replaced with
 //![deferred host operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#deferred-host-operations) interactions for
 //!ray tracing
@@ -101,6 +109,7 @@
 //! - require `shaderGroupHandleSize` to be 32 bytes
 //! - added `maxRayDispatchInvocationCount`,
 //!`shaderGroupHandleAlignment` and `maxRayHitAttributeSize`
+//!
 //! - reworked geometry structures so they could be better shared between
 //!device, host, and indirect builds
 //! - changed SBT parameters to a structure and added size
@@ -114,8 +123,8 @@
 //!(`VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_*_SHADERS_BIT_KHR`)
 //! - added [memory model interactions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-tracing-shader-call)
 //!   with ray
-//!tracing and define how subgroups work and can be repacked(2) Can you give a more detailed
-//! comparision of differences and similarities
+//!tracing and define how subgroups work and can be repacked
+//!(2) Can you give a more detailed comparision of differences and similarities
 //!between VK_NV_ray_tracing and VK_KHR_ray_tracing_pipeline?**DISCUSSION**:The following is a more
 //! detailed comparision of which commands, structures,
 //!and enums are aliased, changed, or removed.
@@ -125,6 +134,7 @@
 //![`RayTracingShaderGroupTypeKHR`]
 //! - [`GetRayTracingShaderGroupHandlesNV`] ↔
 //![`GetRayTracingShaderGroupHandlesKHR`]
+//!
 //! - Changed enums, structures, and commands:
 //! - [`RayTracingShaderGroupCreateInfoNV`] →
 //![`RayTracingShaderGroupCreateInfoKHR`] (added
@@ -141,6 +151,7 @@
 //! - [`CreateRayTracingPipelinesNV`] →
 //![`CreateRayTracingPipelinesKHR`] (different struct, changed
 //!functionality)
+//!
 //! - Added enums, structures and commands:
 //! - `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR``VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR`,
 //!`VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR`,
@@ -161,11 +172,13 @@
 //! - [`CmdSetRayTracingPipelineStackSizeKHR`] and
 //![`GetRayTracingShaderGroupStackSizeKHR`] commands for stack size
 //!control
+//!
 //! - Functionality removed:
 //! - `VK_PIPELINE_CREATE_DEFER_COMPILE_BIT_NV`
 //! - [`CompileDeferredNV`] command (replaced with
-//!`[`VK_KHR_deferred_host_operations`]`)(3) What are the changes between the public provisional
-//! (VK_KHR_ray_tracing
+//!`[`VK_KHR_deferred_host_operations`]`)
+//!
+//!(3) What are the changes between the public provisional (VK_KHR_ray_tracing
 //!v8) release and the internal provisional (VK_KHR_ray_tracing v9) release?
 //! - Require Vulkan 1.1 and SPIR-V 1.4
 //! - Added interactions with Vulkan 1.2 and
@@ -174,6 +187,7 @@
 //! - added
 //!`VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR`
 //!to [`PipelineCreateFlagBits`]
+//!
 //! - replace `VkStridedBufferRegionKHR` with
 //![`StridedDeviceAddressRegionKHR`] and change
 //![`CmdTraceRaysKHR`], [`CmdTraceRaysIndirectKHR`], to take these
@@ -198,6 +212,7 @@
 //! - added [`GetRayTracingShaderGroupStackSizeKHR`] and
 //![`CmdSetRayTracingPipelineStackSizeKHR`] commands
 //! - added [`ShaderGroupShaderKHR`] enum
+//!
 //! - Added `maxRayDispatchInvocationCount` limit to
 //![`PhysicalDeviceRayTracingPipelinePropertiesKHR`]
 //! - Added `shaderGroupHandleAlignment` property to
@@ -211,8 +226,9 @@
 //! - change deferred host creation/return parameter behavior such that the
 //!implementation can modify such parameters until the deferred host
 //!operation completes
-//! - `[`VK_KHR_deferred_host_operations`]` is required again(4) What are the changes between the
-//!   internal provisional
+//! - `[`VK_KHR_deferred_host_operations`]` is required again
+//!
+//!(4) What are the changes between the internal provisional
 //!(VK_KHR_ray_tracing v9) release and the final (VK_KHR_acceleration_structure
 //!v11 / VK_KHR_ray_tracing_pipeline v1) release?
 //! - refactor VK_KHR_ray_tracing into 3 extensions, enabling implementation
@@ -222,18 +238,21 @@
 //! - `[`VK_KHR_ray_tracing_pipeline`]` (for ray tracing pipeline and
 //!shader stages)
 //! - `[`VK_KHR_ray_query`]` (for ray queries in existing shader stages)
+//!
 //! - Require `Volatile` for the following builtins in the ray generation,
 //!closest hit, miss, intersection, and callable shader stages:
 //! - `SubgroupSize`, `SubgroupLocalInvocationId`, `SubgroupEqMask`,
 //!`SubgroupGeMask`, `SubgroupGtMask`, `SubgroupLeMask`,
 //!`SubgroupLtMask`
 //! - `SMIDNV`, `WarpIDNV`
+//!
 //! - clarify buffer usage flags for ray tracing
 //! - `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR` is added as an alias
 //!of `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` and is required on shader
 //!binding table buffers
 //! - `VK_BUFFER_USAGE_STORAGE_BUFFER_BIT` is used in
 //!`[`VK_KHR_acceleration_structure`]` for `scratchData`
+//!
 //! - rename `maxRecursionDepth` to `maxRayPipelineRecursionDepth`
 //!(pipeline creation) and `maxRayRecursionDepth` (limit) to reduce
 //!confusion
@@ -244,7 +263,8 @@
 //! - Update SPIRV capabilities to use `RayTracingKHR`
 //! - extension is no longer provisional
 //! - define synchronization requirements for indirect trace rays and indirect
-//!buffer(5) This extension adds gl_InstanceID for the intersection, any-hit, and
+//!buffer
+//!(5) This extension adds gl_InstanceID for the intersection, any-hit, and
 //!    closest hit shaders, but in KHR_vulkan_glsl, gl_InstanceID is replaced
 //!    with gl_InstanceIndex.
 //!    Which should be used for Vulkan in this extension?**RESOLVED**: This extension uses
@@ -305,6 +325,7 @@
 //! - This extension interacts with `[`VK_KHR_pipeline_library`]`, enabling
 //!pipeline libraries to be used with ray tracing pipelines and enabling
 //!usage of [`RayTracingPipelineInterfaceCreateInfoKHR`].
+//!
 //!*
 //! - Matthäus Chajdas, AMD
 //! - Greg Grebe, AMD

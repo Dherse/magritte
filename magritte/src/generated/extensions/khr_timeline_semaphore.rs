@@ -34,10 +34,13 @@
 //! - [`SemaphoreWaitInfoKHR`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceTimelineSemaphoreFeaturesKHR`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceTimelineSemaphorePropertiesKHR`]
+//!
 //! - Extending [`SemaphoreCreateInfo`], [`PhysicalDeviceExternalSemaphoreInfo`]:
 //! - [`SemaphoreTypeCreateInfoKHR`]
+//!
 //! - Extending [`SubmitInfo`], [`BindSparseInfo`]:
 //! - [`TimelineSemaphoreSubmitInfoKHR`]
 //!# New enums
@@ -51,8 +54,10 @@
 //! - Extending [`SemaphoreType`]:
 //! - `VK_SEMAPHORE_TYPE_BINARY_KHR`
 //! - `VK_SEMAPHORE_TYPE_TIMELINE_KHR`
+//!
 //! - Extending [`SemaphoreWaitFlagBits`]:
 //! - `VK_SEMAPHORE_WAIT_ANY_BIT_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES_KHR`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES_KHR`
@@ -119,6 +124,7 @@
 //!# Version History
 //! - Revision 1, 2018-05-10 (Jason Ekstrand)
 //! - Initial version
+//!
 //! - Revision 2, 2019-06-12 (Jason Ekstrand)
 //! - Added an initialValue parameter to timeline semaphore creation
 //!# Other info
@@ -130,6 +136,7 @@
 //! - This extension interacts with `[`VK_KHR_external_semaphore`]`
 //! - This extension interacts with `[`VK_KHR_external_semaphore_win32`]`
 //! - Promoted to Vulkan 1.2 Core
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //! - Yuriy O’Donnell, Epic Games

@@ -32,6 +32,7 @@
 //![`SPV_NV_shader_subgroup_partitioned`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_shader_subgroup_partitioned.html)
 //! - This extension provides API support for
 //![`GL_NV_shader_subgroup_partitioned`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nv/GL_NV_shader_subgroup_partitioned.txt)
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //!# Notes and documentation

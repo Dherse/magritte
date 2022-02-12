@@ -28,21 +28,30 @@
 //! - [`RenderingInfoKHR`]
 //! - Extending [`CommandBufferInheritanceInfo`]:
 //! - [`CommandBufferInheritanceRenderingInfoKHR`]
+//!
 //! - Extending [`GraphicsPipelineCreateInfo`]:
 //! - [`PipelineRenderingCreateInfoKHR`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
-//! - [`PhysicalDeviceDynamicRenderingFeaturesKHR`]If [`VK_AMD_mixed_attachment_samples`] is
-//!   supported:
+//! - [`PhysicalDeviceDynamicRenderingFeaturesKHR`]
+//!
+//!If [`VK_AMD_mixed_attachment_samples`] is supported:
 //! - Extending [`CommandBufferInheritanceInfo`], [`GraphicsPipelineCreateInfo`]:
-//! - [`AttachmentSampleCountInfoAMD`]If [`VK_EXT_fragment_density_map`] is supported:
+//! - [`AttachmentSampleCountInfoAMD`]
+//!
+//!If [`VK_EXT_fragment_density_map`] is supported:
 //! - Extending [`RenderingInfo`]:
-//! - [`RenderingFragmentDensityMapAttachmentInfoEXT`]If [`VK_KHR_fragment_shading_rate`] is
-//!   supported:
+//! - [`RenderingFragmentDensityMapAttachmentInfoEXT`]
+//!
+//!If [`VK_KHR_fragment_shading_rate`] is supported:
 //! - Extending [`RenderingInfo`]:
-//! - [`RenderingFragmentShadingRateAttachmentInfoKHR`]If [`VK_NV_framebuffer_mixed_samples`] is
-//!   supported:
+//! - [`RenderingFragmentShadingRateAttachmentInfoKHR`]
+//!
+//!If [`VK_NV_framebuffer_mixed_samples`] is supported:
 //! - Extending [`CommandBufferInheritanceInfo`], [`GraphicsPipelineCreateInfo`]:
-//! - [`AttachmentSampleCountInfoNV`]If [`VK_NVX_multiview_per_view_attributes`] is supported:
+//! - [`AttachmentSampleCountInfoNV`]
+//!
+//!If [`VK_NVX_multiview_per_view_attributes`] is supported:
 //! - Extending [`CommandBufferInheritanceInfo`], [`GraphicsPipelineCreateInfo`], [`RenderingInfo`]:
 //! - [`MultiviewPerViewAttributesInfoNVX`]
 //!# New enums
@@ -54,30 +63,39 @@
 //! - [`KHR_DYNAMIC_RENDERING_SPEC_VERSION`]
 //! - Extending [`AttachmentStoreOp`]:
 //! - `VK_ATTACHMENT_STORE_OP_NONE_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDERING_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES_KHR`
 //! - `VK_STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_RENDERING_INFO_KHR`If [`VK_AMD_mixed_attachment_samples`] is supported:
+//! - `VK_STRUCTURE_TYPE_RENDERING_INFO_KHR`
+//!
+//!If [`VK_AMD_mixed_attachment_samples`] is supported:
 //! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_AMD`If [`VK_EXT_fragment_density_map`] is
-//!   supported:
+//! - `VK_STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_AMD`
+//!
+//!If [`VK_EXT_fragment_density_map`] is supported:
 //! - Extending [`PipelineCreateFlagBits`]:
 //! - `VK_PIPELINE_CREATE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT`
 //! - `VK_PIPELINE_RASTERIZATION_STATE_CREATE_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT`
+//!
 //! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT`If
-//!   [`VK_KHR_fragment_shading_rate`] is supported:
+//! - `VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT`
+//!
+//!If [`VK_KHR_fragment_shading_rate`] is supported:
 //! - Extending [`PipelineCreateFlagBits`]:
 //! - `VK_PIPELINE_CREATE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
 //! - `VK_PIPELINE_RASTERIZATION_STATE_CREATE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
+//!
 //! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR`If
-//!   [`VK_NV_framebuffer_mixed_samples`] is supported:
+//! - `VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR`
+//!
+//!If [`VK_NV_framebuffer_mixed_samples`] is supported:
 //! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_NV`If [`VK_NVX_multiview_per_view_attributes`]
-//!   is supported:
+//! - `VK_STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_NV`
+//!
+//!If [`VK_NVX_multiview_per_view_attributes`] is supported:
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX`
 //!# Version History
@@ -87,6 +105,7 @@
 //! * 2021-10-06
 //!*
 //! - Promoted to Vulkan 1.3 Core
+//!
 //!*
 //! - Tobias Hector, AMD
 //! - Arseny Kapoulkine, Roblox

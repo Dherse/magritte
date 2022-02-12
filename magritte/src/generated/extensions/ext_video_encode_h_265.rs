@@ -21,20 +21,27 @@
 //! - [`VideoEncodeH265ReferenceListsEXT`]
 //! - Extending [`VideoCapabilitiesKHR`]:
 //! - [`VideoEncodeH265CapabilitiesEXT`]
+//!
 //! - Extending [`VideoEncodeInfoKHR`]:
 //! - [`VideoEncodeH265EmitPictureParametersEXT`]
 //! - [`VideoEncodeH265VclFrameInfoEXT`]
+//!
 //! - Extending [`VideoEncodeRateControlInfoKHR`]:
 //! - [`VideoEncodeH265RateControlInfoEXT`]
+//!
 //! - Extending [`VideoEncodeRateControlLayerInfoKHR`]:
 //! - [`VideoEncodeH265RateControlLayerInfoEXT`]
+//!
 //! - Extending [`VideoProfileKHR`], [`QueryPoolCreateInfo`], [`FormatProperties2`],
 //!   [`ImageCreateInfo`], [`ImageViewCreateInfo`], [`BufferCreateInfo`]:
 //! - [`VideoEncodeH265ProfileEXT`]
+//!
 //! - Extending [`VideoSessionCreateInfoKHR`]:
 //! - [`VideoEncodeH265SessionCreateInfoEXT`]
+//!
 //! - Extending [`VideoSessionParametersCreateInfoKHR`]:
 //! - [`VideoEncodeH265SessionParametersCreateInfoEXT`]
+//!
 //! - Extending [`VideoSessionParametersUpdateInfoKHR`]:
 //! - [`VideoEncodeH265SessionParametersAddInfoEXT`]
 //!# New enums
@@ -65,18 +72,22 @@
 //! - `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_PARAMETERS_ADD_INFO_EXT`
 //! - `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_PARAMETERS_CREATE_INFO_EXT`
 //! - `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_VCL_FRAME_INFO_EXT`
+//!
 //! - Extending [`VideoCodecOperationFlagBitsKHR`]:
 //! - `VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_EXT`
 //!# Version History
 //! - Revision 0, 2019-11-14 (Ahmed Abdelkhalek)
 //! - Initial draft
+//!
 //! - Revision 0.5, 2020-02-13 (Tony Zlatinski)
 //! - General Spec cleanup
 //! - Added DPB structures
 //! - Change the VCL frame encode structure
 //! - Added a common Non-VCL Picture Paramarameters structure
+//!
 //! - Revision 2, Oct 10 2021 (Srinath Kumarapuram)
 //! - Vulkan Video Encode h.265 update and spec edits
+//!
 //! - Revision 3, 2021-12-08 (Ahmed Abdelkhalek)
 //! - Rate control updates
 //!# Other info

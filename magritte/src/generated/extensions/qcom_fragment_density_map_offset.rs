@@ -16,8 +16,10 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM`]
+//!
 //! - Extending [`SubpassEndInfo`]:
 //! - [`SubpassFragmentDensityMapOffsetEndInfoQCOM`]
 //!# New constants
@@ -25,6 +27,7 @@
 //! - [`QCOM_FRAGMENT_DENSITY_MAP_OFFSET_SPEC_VERSION`]
 //! - Extending [`ImageCreateFlagBits`]:
 //! - `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_QCOM`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_QCOM`

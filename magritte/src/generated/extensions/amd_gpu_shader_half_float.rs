@@ -21,6 +21,7 @@
 //!# Version History
 //! - Revision 2, 2019-04-11 (Tobias Hector)
 //! - Marked as deprecated
+//!
 //! - Revision 1, 2016-09-21 (Dominik Witczak)
 //! - Initial draft
 //!# Other info
@@ -31,6 +32,7 @@
 //![`SPV_AMD_gpu_shader_half_float`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/AMD/SPV_AMD_gpu_shader_half_float.html)
 //! - This extension provides API support for
 //![`GL_AMD_gpu_shader_half_float`](https://www.khronos.org/registry/OpenGL/extensions/AMD/AMD_gpu_shader_half_float.txt)
+//!
 //!*
 //! - Daniel Rakos, AMD
 //! - Dominik Witczak, AMD

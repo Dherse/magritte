@@ -41,6 +41,7 @@
 //! - `VK_DRIVER_ID_MESA_RADV_KHR`
 //! - `VK_DRIVER_ID_NVIDIA_PROPRIETARY_KHR`
 //! - `VK_DRIVER_ID_QUALCOMM_PROPRIETARY_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES_KHR`
 //!# Version History
@@ -50,6 +51,7 @@
 //! * 2018-04-11
 //!*
 //! - Promoted to Vulkan 1.2 Core
+//!
 //! * No known IP claims.
 //!*
 //! - Baldur Karlsson

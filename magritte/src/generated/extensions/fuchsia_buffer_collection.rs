@@ -43,8 +43,10 @@
 //! - [`SysmemColorSpaceFUCHSIA`]
 //! - Extending [`BufferCreateInfo`]:
 //! - [`BufferCollectionBufferCreateInfoFUCHSIA`]
+//!
 //! - Extending [`ImageCreateInfo`]:
 //! - [`BufferCollectionImageCreateInfoFUCHSIA`]
+//!
 //! - Extending [`MemoryAllocateInfo`]:
 //! - [`ImportMemoryBufferCollectionFUCHSIA`]
 //!# New enums
@@ -57,8 +59,10 @@
 //! - [`FUCHSIA_BUFFER_COLLECTION_SPEC_VERSION`]
 //! - Extending [`DebugReportObjectTypeEXT`]:
 //! - `VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA_EXT`
+//!
 //! - Extending [`ObjectType`]:
 //! - `VK_OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA`
 //! - `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA`
@@ -84,6 +88,7 @@
 //!# Version History
 //! - Revision 2, 2021-09-23 (John Rosasco)
 //! - Review passes
+//!
 //! - Revision 1, 2021-03-09 (John Rosasco)
 //! - Initial revision
 //!# Other info

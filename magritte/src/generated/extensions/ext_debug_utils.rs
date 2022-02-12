@@ -12,8 +12,8 @@
 //!improve tracking.
 //! - The ability to identify specific sections within a [`Queue`] or
 //![`CommandBuffer`] using labels to aid organization and offline
-//!analysis in external tools.The main difference between this extension and
-//! `[`VK_EXT_debug_report`]`
+//!analysis in external tools.
+//!The main difference between this extension and `[`VK_EXT_debug_report`]`
 //!and `[`VK_EXT_debug_marker`]` is that those extensions use
 //![`DebugReportObjectTypeEXT`] to identify objects.
 //!This extension uses the core [`ObjectType`] in place of
@@ -69,6 +69,7 @@
 //! - [`EXT_DEBUG_UTILS_SPEC_VERSION`]
 //! - Extending [`ObjectType`]:
 //! - `VK_OBJECT_TYPE_DEBUG_UTILS_MESSENGER_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_DEBUG_UTILS_LABEL_EXT`
 //! - `VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT`
@@ -111,6 +112,7 @@
 //! - Initial draft, based on `[`VK_EXT_debug_report`]` and
 //!`[`VK_EXT_debug_marker`]` in addition to previous feedback supplied
 //!from various companies including Valve, Epic, and Oxide games.
+//!
 //! - Revision 2, 2020-04-03 (Mark Young and Piers Daniell)
 //! - Updated to allow either `NULL` or an empty string to be passed in for
 //!`pObjectName` in [`DebugUtilsObjectNameInfoEXT`], because the
@@ -122,6 +124,7 @@
 //!*
 //! - This extension is written against version 1.0 of the Vulkan API.
 //! - Requires [`ObjectType`]
+//!
 //!*
 //! - Mark Young, LunarG
 //! - Baldur Karlsson

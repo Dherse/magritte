@@ -1,7 +1,8 @@
 //![VK_EXT_post_depth_coverage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_post_depth_coverage.html) - device extension
 //!# Description
 //!This extension adds support for the following SPIR-V extension in Vulkan:
-//! - `SPV_KHR_post_depth_coverage`which allows the fragment shader to control whether values in the
+//! - `SPV_KHR_post_depth_coverage`
+//!which allows the fragment shader to control whether values in the
 //![`SampleMask`] built-in input variable reflect the coverage after early
 //![depth](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-depth) and [stencil](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-stencil) tests are applied.This extension adds a new `PostDepthCoverage` execution mode under the
 //!`SampleMaskPostDepthCoverage` capability.
@@ -38,6 +39,7 @@
 //![`GL_ARB_post_depth_coverage`](https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_post_depth_coverage.txt)
 //!and
 //![`GL_EXT_post_depth_coverage`](https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_post_depth_coverage.txt)
+//!
 //!*
 //! - Jeff Bolz, NVIDIA
 //!# Notes and documentation

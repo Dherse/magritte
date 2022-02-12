@@ -43,6 +43,7 @@
 //! - [`KHR_SURFACE_SPEC_VERSION`]
 //! - Extending [`ObjectType`]:
 //! - `VK_OBJECT_TYPE_SURFACE_KHR`
+//!
 //! - Extending [`VulkanResultCodes`]:
 //! - `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
 //! - `VK_ERROR_SURFACE_LOST_KHR`
@@ -89,37 +90,48 @@
 //! - Revision 1, 2015-05-20 (James Jones)
 //! - Initial draft, based on LunarG KHR spec, other KHR specs, patches
 //!attached to bugs.
+//!
 //! - Revision 2, 2015-05-22 (Ian Elliott)
 //! - Created initial Description section.
 //! - Removed query for whether a platform requires the use of a queue for
 //!presentation, since it was decided that presentation will always be
 //!modeled as being part of the queue.
 //! - Fixed typos and other minor mistakes.
+//!
 //! - Revision 3, 2015-05-26 (Ian Elliott)
 //! - Improved the Description section.
+//!
 //! - Revision 4, 2015-05-27 (James Jones)
 //! - Fixed compilation errors in example code.
+//!
 //! - Revision 5, 2015-06-01 (James Jones)
 //! - Added issues 1 and 2 and made related spec updates.
+//!
 //! - Revision 6, 2015-06-01 (James Jones)
 //! - Merged the platform type mappings table previously removed from
 //!VK_KHR_swapchain with the platform description table in this spec.
 //! - Added issues 3 and 4 documenting choices made when building the
 //!initial list of native platforms supported.
+//!
 //! - Revision 7, 2015-06-11 (Ian Elliott)
 //! - Updated table 1 per input from the KHR TSG.
 //! - Updated issue 4 (GBM) per discussion with Daniel Stone.
 //!He will create a platform-specific extension sometime in the future.
+//!
 //! - Revision 8, 2015-06-17 (James Jones)
 //! - Updated enum-extending values using new convention.
 //! - Fixed the value of VK_SURFACE_PLATFORM_INFO_TYPE_SUPPORTED_KHR.
+//!
 //! - Revision 9, 2015-06-17 (James Jones)
 //! - Rebased on Vulkan API version 126.
+//!
 //! - Revision 10, 2015-06-18 (James Jones)
 //! - Marked issues 2 and 3 resolved.
+//!
 //! - Revision 11, 2015-06-23 (Ian Elliott)
 //! - Examples now show use of function pointers for extension functions.
 //! - Eliminated extraneous whitespace.
+//!
 //! - Revision 12, 2015-07-07 (Daniel Rakos)
 //! - Added error section describing when each error is expected to be
 //!reported.
@@ -127,8 +139,10 @@
 //!the spec as that is the agreed term to be used in the latest version
 //!of the core header and spec.
 //! - Replaced bool32_t with VkBool32.
+//!
 //! - Revision 13, 2015-08-06 (Daniel Rakos)
 //! - Updated spec against latest core API header version.
+//!
 //! - Revision 14, 2015-08-20 (Ian Elliott)
 //! - Renamed this extension and all of its enumerations, types, functions,
 //!etc.
@@ -137,22 +151,29 @@
 //! - Switched from “revision” to “version”, including use of the
 //!VK_MAKE_VERSION macro in the header file.
 //! - Did miscellaneous cleanup, etc.
+//!
 //! - Revision 15, 2015-08-20 (Ian Elliott—​porting a 2015-07-29 change from
 //!James Jones)
 //! - Moved the surface transform enums here from VK_WSI_swapchain so they
 //!could be reused by VK_WSI_display.
+//!
 //! - Revision 16, 2015-09-01 (James Jones)
 //! - Restore single-field revision number.
+//!
 //! - Revision 17, 2015-09-01 (James Jones)
 //! - Fix example code compilation errors.
+//!
 //! - Revision 18, 2015-09-26 (Jesse Hall)
 //! - Replaced VkSurfaceDescriptionKHR with the VkSurfaceKHR object, which
 //!is created via layered extensions.
 //!Added VkDestroySurfaceKHR.
+//!
 //! - Revision 19, 2015-09-28 (Jesse Hall)
 //! - Renamed from VK_EXT_KHR_swapchain to VK_EXT_KHR_surface.
+//!
 //! - Revision 20, 2015-09-30 (Jeff Vigil)
 //! - Add error result VK_ERROR_SURFACE_LOST_KHR.
+//!
 //! - Revision 21, 2015-10-15 (Daniel Rakos)
 //! - Updated the resolution of issue #2 and include the surface capability
 //!queries in this extension.
@@ -160,21 +181,27 @@
 //!that the values returned are the capabilities of the surface on a
 //!particular device.
 //! - Other minor cleanup and consistency changes.
+//!
 //! - Revision 22, 2015-10-26 (Ian Elliott)
 //! - Renamed from VK_EXT_KHR_surface to VK_KHR_surface.
+//!
 //! - Revision 23, 2015-11-03 (Daniel Rakos)
 //! - Added allocation callbacks to vkDestroySurfaceKHR.
+//!
 //! - Revision 24, 2015-11-10 (Jesse Hall)
 //! - Removed VkSurfaceTransformKHR.
 //!Use VkSurfaceTransformFlagBitsKHR instead.
 //! - Rename VkSurfaceCapabilitiesKHR member maxImageArraySize to
 //!maxImageArrayLayers.
+//!
 //! - Revision 25, 2016-01-14 (James Jones)
 //! - Moved VK_ERROR_NATIVE_WINDOW_IN_USE_KHR from the
 //!VK_KHR_android_surface to the VK_KHR_surface extension.
+//!
 //! - 2016-08-23 (Ian Elliott)
 //! - Update the example code, to not have so many characters per line, and
 //!to split out a new example to show how to obtain function pointers.
+//!
 //! - 2016-08-25 (Ian Elliott)
 //! - A note was added at the beginning of the example code, stating that it
 //!will be removed from future versions of the appendix.
@@ -308,7 +335,8 @@ pub const KHR_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_surfa
 ///making a presentation request, but this does not guarantee the timing of
 ///when it will be updated.
 ///This mode **may** result in visible tearing if rendering to the image is
-///not timed correctly.The supported [`ImageUsageFlagBits`] of the presentable images of a
+///not timed correctly.
+///The supported [`ImageUsageFlagBits`] of the presentable images of a
 ///swapchain created for a surface **may** differ depending on the presentation
 ///mode, and can be determined as per the table below:
 ///# Related
@@ -518,8 +546,8 @@ impl PresentModeKHR {
 /// - [`COLOR_SPACE_DISPLAY_NATIVE_AMD`] specifies support for the
 ///display’s native color space.
 ///This matches the color space expectations of AMD’s FreeSync2 standard,
-///for displays supporting it.The color components of non-linear color space swap chain images
-/// **must** have
+///for displays supporting it.
+///The color components of non-linear color space swap chain images **must** have
 ///had the appropriate transfer function applied.
 ///The color space selected for the swap chain image will not affect the
 ///processing of data written into the image by the implementation.
@@ -530,7 +558,7 @@ impl PresentModeKHR {
 ///This extension defines enums for [`ColorSpaceKHR`] that correspond to
 ///the following color spaces:The transfer functions are described in the “Transfer Functions”
 /// chapter
-///of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).Except Display-P3 OETF, which is:<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span style="height:3.30003em;vertical-align:-1.400015em;" class="strut"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.900015em;" class="vlist"><span style="top:-3.9000150000000002em;"><span style="height:3.75em;" class="pstrut"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.400015em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord"></span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.69em;" class="vlist"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9540200000000001em;"><span style="top:-3.363em;margin-right:0.05em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.8443142857142858em;" class="vlist"><span style="top:-2.656em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">.</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span><span class="mord">.</span><span class="mord">9</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord mathdefault">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.19em;" class="vlist"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.400015em;" class="vlist"><span></span></span></span></span></span></span></span></span></span></span>where L is the linear value of a color component and E is the
+///of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).Except Display-P3 OETF, which is:<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.30003em;vertical-align:-1.400015em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.900015em;" class="vlist"><span style="top:-3.9000150000000002em;"><span style="height:3.75em;" class="pstrut"></span><span class="mord"><span style="margin-right:0.05764em;" class="mord mathdefault">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.400015em;" class="vlist"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.900015em;" class="vlist"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord"></span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.69em;" class="vlist"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span style="height:0.9540200000000001em;" class="vlist"><span style="top:-3.363em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443142857142858em;"><span style="top:-2.656em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">.</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span style="border-bottom-width:0.049em;" class="frac-line mtight"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.344em;" class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span><span class="mord">.</span><span class="mord">9</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord mathdefault">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.19em;" class="vlist"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.400015em;"><span></span></span></span></span></span></span></span></span></span></span>where L is the linear value of a color component and E is the
 ///encoded value (as stored in the image in memory).
 ///# Related
 /// - [`VK_KHR_surface`]

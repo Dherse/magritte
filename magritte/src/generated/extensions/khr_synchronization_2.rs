@@ -42,6 +42,7 @@
 //!be specified by setting `oldLayout` equal to `newLayout`.
 //! - E.g. the old and new layout can both be set to
 //!`VK_IMAGE_LAYOUT_UNDEFINED`, without discarding data in the image.
+//!
 //! - Queue family ownership transfer parameters are simplified in some cases.
 //! - Where two synchronization commands need to be matched up (queue transfer
 //!operations, events), the dependency information specified in each place
@@ -74,8 +75,10 @@
 //! - [`CmdSetEvent2KHR`]
 //! - [`CmdWaitEvents2KHR`]
 //! - [`CmdWriteTimestamp2KHR`]
-//! - [`QueueSubmit2KHR`]If [`VK_AMD_buffer_marker`] is supported:
-//! - [`CmdWriteBufferMarker2AMD`]If [`VK_NV_device_diagnostic_checkpoints`] is supported:
+//! - [`QueueSubmit2KHR`]
+//!If [`VK_AMD_buffer_marker`] is supported:
+//! - [`CmdWriteBufferMarker2AMD`]
+//!If [`VK_NV_device_diagnostic_checkpoints`] is supported:
 //! - [`GetQueueCheckpointData2NV`]
 //!# New structures
 //! - [`BufferMemoryBarrier2KHR`]
@@ -86,8 +89,11 @@
 //! - [`SubmitInfo2KHR`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceSynchronization2FeaturesKHR`]
+//!
 //! - Extending [`SubpassDependency2`]:
-//! - [`MemoryBarrier2KHR`]If [`VK_NV_device_diagnostic_checkpoints`] is supported:
+//! - [`MemoryBarrier2KHR`]
+//!
+//!If [`VK_NV_device_diagnostic_checkpoints`] is supported:
 //! - [`CheckpointData2NV`]
 //! - Extending [`QueueFamilyProperties2`]:
 //! - [`QueueFamilyCheckpointProperties2NV`]
@@ -104,13 +110,17 @@
 //! - [`KHR_SYNCHRONIZATION_2_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits`]:
 //! - `VK_ACCESS_NONE_KHR`
+//!
 //! - Extending [`EventCreateFlagBits`]:
 //! - `VK_EVENT_CREATE_DEVICE_ONLY_BIT_KHR`
+//!
 //! - Extending [`ImageLayout`]:
 //! - `VK_IMAGE_LAYOUT_ATTACHMENT_OPTIMAL_KHR`
 //! - `VK_IMAGE_LAYOUT_READ_ONLY_OPTIMAL_KHR`
+//!
 //! - Extending [`PipelineStageFlagBits`]:
 //! - `VK_PIPELINE_STAGE_NONE_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER_2_KHR`
 //! - `VK_STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO_KHR`
@@ -119,61 +129,85 @@
 //! - `VK_STRUCTURE_TYPE_MEMORY_BARRIER_2_KHR`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES_KHR`
 //! - `VK_STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_SUBMIT_INFO_2_KHR`If [`VK_EXT_blend_operation_advanced`] is supported:
+//! - `VK_STRUCTURE_TYPE_SUBMIT_INFO_2_KHR`
+//!
+//!If [`VK_EXT_blend_operation_advanced`] is supported:
 //! - Extending [`AccessFlagBits2`]:
-//! - `VK_ACCESS_2_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT`If [`VK_EXT_conditional_rendering`] is
-//!   supported:
+//! - `VK_ACCESS_2_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT`
+//!
+//!If [`VK_EXT_conditional_rendering`] is supported:
 //! - Extending [`AccessFlagBits2`]:
 //! - `VK_ACCESS_2_CONDITIONAL_RENDERING_READ_BIT_EXT`
+//!
 //! - Extending [`PipelineStageFlagBits2`]:
-//! - `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`If [`VK_EXT_fragment_density_map`] is
-//!   supported:
+//! - `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`
+//!
+//!If [`VK_EXT_fragment_density_map`] is supported:
 //! - Extending [`AccessFlagBits2`]:
 //! - `VK_ACCESS_2_FRAGMENT_DENSITY_MAP_READ_BIT_EXT`
+//!
 //! - Extending [`PipelineStageFlagBits2`]:
-//! - `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`If [`VK_EXT_transform_feedback`] is
-//!   supported:
+//! - `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
+//!
+//!If [`VK_EXT_transform_feedback`] is supported:
 //! - Extending [`AccessFlagBits2`]:
 //! - `VK_ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT`
 //! - `VK_ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT`
 //! - `VK_ACCESS_2_TRANSFORM_FEEDBACK_WRITE_BIT_EXT`
+//!
 //! - Extending [`PipelineStageFlagBits2`]:
-//! - `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`If [`VK_KHR_acceleration_structure`] is
-//!   supported:
+//! - `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`
+//!
+//!If [`VK_KHR_acceleration_structure`] is supported:
 //! - Extending [`AccessFlagBits2`]:
 //! - `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`
 //! - `VK_ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_KHR`
+//!
 //! - Extending [`PipelineStageFlagBits2`]:
-//! - `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`If [`VK_KHR_fragment_shading_rate`]
-//!   is supported:
+//! - `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`
+//!
+//!If [`VK_KHR_fragment_shading_rate`] is supported:
 //! - Extending [`AccessFlagBits2`]:
 //! - `VK_ACCESS_2_FRAGMENT_SHADING_RATE_ATTACHMENT_READ_BIT_KHR`
+//!
 //! - Extending [`PipelineStageFlagBits2`]:
-//! - `VK_PIPELINE_STAGE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`If
-//!   [`VK_KHR_ray_tracing_pipeline`] is supported:
+//! - `VK_PIPELINE_STAGE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
+//!
+//!If [`VK_KHR_ray_tracing_pipeline`] is supported:
 //! - Extending [`PipelineStageFlagBits2`]:
-//! - `VK_PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_KHR`If [`VK_NV_device_diagnostic_checkpoints`] is
-//!   supported:
+//! - `VK_PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_KHR`
+//!
+//!If [`VK_NV_device_diagnostic_checkpoints`] is supported:
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_CHECKPOINT_DATA_2_NV`
-//! - `VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV`If
-//!   [`VK_NV_device_generated_commands`] is supported:
+//! - `VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV`
+//!
+//!If [`VK_NV_device_generated_commands`] is supported:
 //! - Extending [`AccessFlagBits2`]:
 //! - `VK_ACCESS_2_COMMAND_PREPROCESS_READ_BIT_NV`
 //! - `VK_ACCESS_2_COMMAND_PREPROCESS_WRITE_BIT_NV`
+//!
 //! - Extending [`PipelineStageFlagBits2`]:
-//! - `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV`If [`VK_NV_mesh_shader`] is supported:
+//! - `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV`
+//!
+//!If [`VK_NV_mesh_shader`] is supported:
 //! - Extending [`PipelineStageFlagBits2`]:
 //! - `VK_PIPELINE_STAGE_2_MESH_SHADER_BIT_NV`
-//! - `VK_PIPELINE_STAGE_2_TASK_SHADER_BIT_NV`If [`VK_NV_ray_tracing`] is supported:
+//! - `VK_PIPELINE_STAGE_2_TASK_SHADER_BIT_NV`
+//!
+//!If [`VK_NV_ray_tracing`] is supported:
 //! - Extending [`AccessFlagBits2`]:
 //! - `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_NV`
 //! - `VK_ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_NV`
+//!
 //! - Extending [`PipelineStageFlagBits2`]:
 //! - `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_NV`
-//! - `VK_PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_NV`If [`VK_NV_shading_rate_image`] is supported:
+//! - `VK_PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_NV`
+//!
+//!If [`VK_NV_shading_rate_image`] is supported:
 //! - Extending [`AccessFlagBits2`]:
 //! - `VK_ACCESS_2_SHADING_RATE_IMAGE_READ_BIT_NV`
+//!
 //! - Extending [`PipelineStageFlagBits2`]:
 //! - `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`
 //!# Version History
@@ -184,6 +218,7 @@
 //!*
 //! - Promoted to Vulkan 1.3 Core
 //! - Interacts with `[`VK_KHR_create_renderpass2`]`
+//!
 //!*
 //! - Tobias Hector
 //!# Related

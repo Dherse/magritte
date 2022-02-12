@@ -21,6 +21,7 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceDepthClipControlFeaturesEXT`]
+//!
 //! - Extending [`PipelineViewportStateCreateInfo`]:
 //! - [`PipelineViewportDepthClipControlCreateInfoEXT`]
 //!# New constants
@@ -50,6 +51,7 @@
 //!# Version History
 //! - Revision 0, 2020-10-01 (Spencer Fricke)
 //! - Internal revisions
+//!
 //! - Revision 1, 2020-11-26 (Shahbaz Youssefi)
 //! - Language fixes
 //!# Other info

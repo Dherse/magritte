@@ -26,6 +26,7 @@
 //!# Version History
 //! - Revision 2, 2020-04-03 (Piers Daniell)
 //! - Add [`GetImageViewAddressNVX`]
+//!
 //! - Revision 1, 2018-12-07 (Eric Werness)
 //! - Internal revisions
 //!# Other info

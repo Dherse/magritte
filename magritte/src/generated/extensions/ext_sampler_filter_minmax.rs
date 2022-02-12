@@ -27,6 +27,7 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceSamplerFilterMinmaxPropertiesEXT`]
+//!
 //! - Extending [`SamplerCreateInfo`]:
 //! - [`SamplerReductionModeCreateInfoEXT`]
 //!# New enums
@@ -36,22 +37,26 @@
 //! - [`EXT_SAMPLER_FILTER_MINMAX_SPEC_VERSION`]
 //! - Extending [`FormatFeatureFlagBits`]:
 //! - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT_EXT`
+//!
 //! - Extending [`SamplerReductionMode`]:
 //! - `VK_SAMPLER_REDUCTION_MODE_MAX_EXT`
 //! - `VK_SAMPLER_REDUCTION_MODE_MIN_EXT`
 //! - `VK_SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES_EXT`
 //! - `VK_STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO_EXT`
 //!# Version History
 //! - Revision 2, 2017-05-19 (Piers Daniell)
 //! - Renamed to EXT
+//!
 //! - Revision 1, 2017-03-25 (Jeff Bolz)
 //! - Internal revisions
 //!# Other info
 //! * 2017-05-19
 //!*
 //! - Promoted to Vulkan 1.2 Core
+//!
 //! * No known IP claims.
 //!*
 //! - Jeff Bolz, NVIDIA

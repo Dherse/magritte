@@ -23,6 +23,7 @@
 //!# Version History
 //! - Revision 0, 2020-09-14 (Courtney Goeltzenleuchter)
 //! - Internal revisions
+//!
 //! - Revision 1, 2021-01-11 (Shahbaz Youssefi)
 //! - Add the `primitiveTopologyPatchListRestart` feature
 //! - Internal revisions

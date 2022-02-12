@@ -30,10 +30,13 @@
 //! - [`InputAttachmentAspectReferenceKHR`]
 //! - Extending [`ImageViewCreateInfo`]:
 //! - [`ImageViewUsageCreateInfoKHR`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDevicePointClippingPropertiesKHR`]
+//!
 //! - Extending [`PipelineTessellationStateCreateInfo`]:
 //! - [`PipelineTessellationDomainOriginStateCreateInfoKHR`]
+//!
 //! - Extending [`RenderPassCreateInfo`]:
 //! - [`RenderPassInputAttachmentAspectCreateInfoKHR`]
 //!# New enums
@@ -47,17 +50,21 @@
 //! - Extending [`ImageCreateFlagBits`]:
 //! - `VK_IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT_KHR`
 //! - `VK_IMAGE_CREATE_EXTENDED_USAGE_BIT_KHR`
+//!
 //! - Extending [`ImageLayout`]:
 //! - `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL_KHR`
 //! - `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL_KHR`
+//!
 //! - Extending [`PointClippingBehavior`]:
 //! - `VK_POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES_KHR`
 //! - `VK_POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES_KHR`
 //! - `VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO_KHR`
 //! - `VK_STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO_KHR`
+//!
 //! - Extending [`TessellationDomainOrigin`]:
 //! - `VK_TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT_KHR`
 //! - `VK_TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT_KHR`
@@ -75,6 +82,7 @@
 //! * 2017-09-05
 //!*
 //! - Promoted to Vulkan 1.1 Core
+//!
 //!*
 //! - Michael Worcester, Imagination Technologies
 //! - Stuart Smith, Imagination Technologies

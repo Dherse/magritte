@@ -36,6 +36,7 @@
 //! * 2019-03-12
 //!*
 //! - Promoted to Vulkan 1.3 Core
+//!
 //! * No known IP claims.
 //!*
 //! - Jean-Francois Roy, Google

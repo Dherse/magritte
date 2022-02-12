@@ -45,11 +45,13 @@
 //! - [`EXT_GLOBAL_PRIORITY_SPEC_VERSION`]
 //! - Extending [`VulkanResultCodes`]:
 //! - `VK_ERROR_NOT_PERMITTED_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_EXT`
 //!# Version History
 //! - Revision 2, 2017-11-03 (Andres Rodriguez)
 //! - Fixed VkQueueGlobalPriorityEXT missing _EXT suffix
+//!
 //! - Revision 1, 2017-10-06 (Andres Rodriguez)
 //! - First version.
 //!# Other info

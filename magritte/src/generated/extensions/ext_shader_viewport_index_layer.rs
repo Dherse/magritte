@@ -42,6 +42,7 @@
 //!and [`GL_NV_viewport_array2`](https://www.khronos.org/registry/OpenGL/extensions/NV/NV_viewport_array2.txt)
 //! - This extension requires the `multiViewport` feature.
 //! - This extension interacts with the `tessellationShader` feature.
+//!
 //!*
 //! - Piers Daniell, NVIDIA
 //! - Jeff Bolz, NVIDIA

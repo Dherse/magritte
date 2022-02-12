@@ -36,6 +36,7 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceConservativeRasterizationPropertiesEXT`]
+//!
 //! - Extending [`PipelineRasterizationStateCreateInfo`]:
 //! - [`PipelineRasterizationConservativeStateCreateInfoEXT`]
 //!# New enums
@@ -51,6 +52,7 @@
 //!# Version History
 //! - Revision 1.1, 2020-09-06 (Piers Daniell)
 //! - Add missing SPIR-V and GLSL dependencies.
+//!
 //! - Revision 1, 2017-08-28 (Piers Daniell)
 //! - Internal revisions
 //!# Other info
@@ -74,6 +76,7 @@
 //![`PhysicalDeviceConservativeRasterizationPropertiesEXT::
 //! fully_covered_fragment_shader_input_variable`]
 //!feature is used.
+//!
 //!*
 //! - Daniel Koch, NVIDIA
 //! - Daniel Rakos, AMD

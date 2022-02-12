@@ -28,6 +28,7 @@
 //! * 2018-11-08
 //!*
 //! - Promoted to Vulkan 1.2 Core
+//!
 //! * No known IP claims.
 //!*
 //! - Daniel Rakos, AMD

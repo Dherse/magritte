@@ -28,6 +28,7 @@
 //! - `VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_32_BIT_ONLY_KHR`
 //! - `VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_ALL_KHR`
 //! - `VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE_KHR`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES_KHR`
 //!# Known issues & F.A.Q
@@ -42,9 +43,9 @@
 //!instructions may flush denormals, the final result of the sequence **must**
 //!not be denormal.
 //! - in the `DenormPreserve` execution mode, denormals must be preserved
-//!throughout the whole sequence.3) Do denorm and rounding mode controls apply to
-//! `OpSpecConstantOp`?**RESOLVED**: Yes, except when the opcode is `OpQuantizeToF16`.4) The SPIR-V
-//! specification says that `OpConvertFToU` and
+//!throughout the whole sequence.
+//!3) Do denorm and rounding mode controls apply to `OpSpecConstantOp`?**RESOLVED**: Yes, except
+//! when the opcode is `OpQuantizeToF16`.4) The SPIR-V specification says that `OpConvertFToU` and
 //!`OpConvertFToS` unconditionally round towards zero.
 //!Do the rounding mode controls specified through the execution modes apply to
 //!them?**RESOLVED**: No, these instructions unconditionally round towards zero.5) Do any of the
@@ -60,10 +61,13 @@
 //! - Modified settings restrictions, see
 //![Version 4 API
 //!incompatibility]()
+//!
 //! - Revision 3, 2018-09-11 (Alexander Galazin)
 //! - Minor restructuring
+//!
 //! - Revision 2, 2018-04-17 (Alexander Galazin)
 //! - Added issues and resolutions
+//!
 //! - Revision 1, 2018-04-11 (Alexander Galazin)
 //! - Initial draft
 //!# Other info
@@ -72,6 +76,7 @@
 //! - Promoted to Vulkan 1.2 Core
 //! - This extension requires
 //![`SPV_KHR_float_controls`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_float_controls.html)
+//!
 //! * No known IP claims.
 //!*
 //! - Alexander Galazin, Arm

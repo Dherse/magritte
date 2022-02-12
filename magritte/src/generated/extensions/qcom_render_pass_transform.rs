@@ -33,7 +33,8 @@
 //!Applications must also set the
 //![`SwapchainCreateInfoKHR::pre_transform`] equal to the
 //!`currentTransform` as returned by
-//![`GetPhysicalDeviceSurfaceCapabilitiesKHR`].The following is changed with this extension:
+//![`GetPhysicalDeviceSurfaceCapabilitiesKHR`].
+//!The following is changed with this extension:
 //! - At [`CmdBeginRenderPass`], the application provides extension struct
 //![`RenderPassTransformBeginInfoQCOM`] specifying the render pass
 //!transform parameters.
@@ -64,6 +65,7 @@
 //!# New structures
 //! - Extending [`CommandBufferInheritanceInfo`]:
 //! - [`CommandBufferInheritanceRenderPassTransformInfoQCOM`]
+//!
 //! - Extending [`RenderPassBeginInfo`]:
 //! - [`RenderPassTransformBeginInfoQCOM`]
 //!# New constants
@@ -71,6 +73,7 @@
 //! - [`QCOM_RENDER_PASS_TRANSFORM_SPEC_VERSION`]
 //! - Extending [`RenderPassCreateFlagBits`]:
 //! - `VK_RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM`
 //! - `VK_STRUCTURE_TYPE_RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM`
@@ -138,6 +141,7 @@
 //! - This extension requires `[`VK_KHR_swapchain`]`
 //! - This extension interacts with `[`VK_EXT_fragment_density_map`]`
 //! - This extension interacts with `[`VK_KHR_fragment_shading_rate`]`
+//!
 //!*
 //! - Jeff Leger, Qualcomm Technologies, Inc.
 //! - Brandon Light, Qualcomm Technologies, Inc.

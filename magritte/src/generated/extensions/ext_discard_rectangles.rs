@@ -30,6 +30,7 @@
 //!# New structures
 //! - Extending [`GraphicsPipelineCreateInfo`]:
 //! - [`PipelineDiscardRectangleStateCreateInfoEXT`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceDiscardRectanglePropertiesEXT`]
 //!# New enums
@@ -41,6 +42,7 @@
 //! - [`EXT_DISCARD_RECTANGLES_SPEC_VERSION`]
 //! - Extending [`DynamicState`]:
 //! - `VK_DYNAMIC_STATE_DISCARD_RECTANGLE_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT`
 //! - `VK_STRUCTURE_TYPE_PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT`
@@ -52,6 +54,7 @@
 //!*
 //! - Interacts with `[`VK_KHR_device_group`]`
 //! - Interacts with Vulkan 1.1
+//!
 //!*
 //! - Daniel Koch, NVIDIA
 //! - Jeff Bolz, NVIDIA

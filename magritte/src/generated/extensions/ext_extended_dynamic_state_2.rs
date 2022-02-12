@@ -32,6 +32,7 @@
 //! - `VK_DYNAMIC_STATE_PATCH_CONTROL_POINTS_EXT`
 //! - `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT`
 //! - `VK_DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT`
 //!# Version History
@@ -41,6 +42,7 @@
 //! * 2021-04-12
 //!*
 //! - Promoted to Vulkan 1.3 Core
+//!
 //! * No known IP claims.
 //!*
 //! - Vikram Kushwaha, NVIDIA

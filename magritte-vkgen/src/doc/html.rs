@@ -220,6 +220,8 @@ where
         self.in_item = false;
         self.level -= 1;
 
+        self.out.push('\n');
+
         (cnt == 0).then(|| ())
     }
 

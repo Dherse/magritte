@@ -19,8 +19,10 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceLineRasterizationFeaturesEXT`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceLineRasterizationPropertiesEXT`]
+//!
 //! - Extending [`PipelineRasterizationStateCreateInfo`]:
 //! - [`PipelineRasterizationLineStateCreateInfoEXT`]
 //!# New enums
@@ -30,6 +32,7 @@
 //! - [`EXT_LINE_RASTERIZATION_SPEC_VERSION`]
 //! - Extending [`DynamicState`]:
 //! - `VK_DYNAMIC_STATE_LINE_STIPPLE_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_EXT`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES_EXT`

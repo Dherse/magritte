@@ -37,8 +37,10 @@
 //!# New structures
 //! - Extending [`ComputePipelineCreateInfo`]:
 //! - [`SubpassShadingPipelineCreateInfoHUAWEI`]
+//!
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceSubpassShadingFeaturesHUAWEI`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceSubpassShadingPropertiesHUAWEI`]
 //!# New constants
@@ -46,10 +48,13 @@
 //! - [`HUAWEI_SUBPASS_SHADING_SPEC_VERSION`]
 //! - Extending [`PipelineBindPoint`]:
 //! - `VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI`
+//!
 //! - Extending [`PipelineStageFlagBits2`]:
 //! - `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI`
+//!
 //! - Extending [`ShaderStageFlagBits`]:
 //! - `VK_SHADER_STAGE_SUBPASS_SHADING_BIT_HUAWEI`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI`
@@ -59,6 +64,7 @@
 //! - Change vkGetSubpassShadingMaxWorkgroupSizeHUAWEI to
 //!vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI to resolve issue
 //![`pub1564`](https://github.com/KhronosGroup/Vulkan-Docs/issues/1564)
+//!
 //! - Revision 1, 2020-12-15 (Hueilong Wang)
 //! - Initial draft.
 //!# Other info
@@ -68,6 +74,7 @@
 //![`SPV_HUAWEI_subpass_shading`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/HUAWEI/SPV_HUAWEI_subpass_shading.html).
 //! - This extension provides API support for
 //![`GL_HUAWEI_subpass_shading`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/huawei/GLSL_HUAWEI_subpass_shading.txt).
+//!
 //!*
 //! - Hueilong Wang
 //!# Related

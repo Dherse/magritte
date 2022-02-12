@@ -195,6 +195,7 @@
 //!*
 //! - This extension requires `multiViewport` and `geometryShader`
 //!features to be useful.
+//!
 //!*
 //! - Daniel Koch, NVIDIA
 //! - Jeff Bolz, NVIDIA

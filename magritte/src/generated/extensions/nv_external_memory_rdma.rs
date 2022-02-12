@@ -22,8 +22,10 @@
 //! - [`NV_EXTERNAL_MEMORY_RDMA_SPEC_VERSION`]
 //! - Extending [`ExternalMemoryHandleTypeFlagBits`]:
 //! - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_RDMA_ADDRESS_BIT_NV`
+//!
 //! - Extending [`MemoryPropertyFlagBits`]:
 //! - `VK_MEMORY_PROPERTY_RDMA_CAPABLE_BIT_NV`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_MEMORY_GET_REMOTE_ADDRESS_INFO_NV`
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV`

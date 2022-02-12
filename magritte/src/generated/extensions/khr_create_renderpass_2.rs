@@ -21,8 +21,8 @@
 //!directly specified in [`RenderPassCreateInfo2KHR`].
 //! - [`InputAttachmentAspectReference::aspect_mask`] is now
 //!specified in the relevant input attachment description in
-//![`AttachmentDescription2KHR`]`::aspectMask`The details of these mappings are explained fully in
-//! the new structures.
+//![`AttachmentDescription2KHR`]`::aspectMask`
+//!The details of these mappings are explained fully in the new structures.
 //!# Revision
 //!1
 //!# Dependencies
@@ -67,6 +67,7 @@
 //! * 2018-02-07
 //!*
 //! - Promoted to Vulkan 1.2 Core
+//!
 //!*
 //! - Tobias Hector
 //! - Jeff Bolz

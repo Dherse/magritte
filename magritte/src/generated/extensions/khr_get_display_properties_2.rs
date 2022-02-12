@@ -38,8 +38,8 @@
 //!1) What should this extension be named?**RESOLVED**: [`VK_KHR_get_display_properties2`].
 //!Other alternatives:
 //! - `VK_KHR_display2`
-//! - One extension, combined with `VK_KHR_surface_capabilites2`.2) Should extensible input structs
-//!   be added for these new functions:**RESOLVED**:
+//! - One extension, combined with `VK_KHR_surface_capabilites2`.
+//!2) Should extensible input structs be added for these new functions:**RESOLVED**:
 //! - [`GetPhysicalDeviceDisplayProperties2KHR`]: No.
 //!The only current input is a [`PhysicalDevice`].
 //!Other inputs would not make sense.
@@ -49,8 +49,8 @@
 //! - [`GetDisplayModeProperties2KHR`]: No.
 //!The only current inputs are a [`PhysicalDevice`] and a
 //![`DisplayModeKHR`].
-//!Other inputs would not make sense.3) Should additional display query functions be
-//! extended?**RESOLVED**:
+//!Other inputs would not make sense.
+//!3) Should additional display query functions be extended?**RESOLVED**:
 //! - [`GetDisplayPlaneSupportedDisplaysKHR`]: No.
 //!Extensions should instead extend
 //![`GetDisplayPlaneCapabilitiesKHR`]().

@@ -18,6 +18,7 @@
 //! - [`EXT_INDEX_TYPE_UINT8_SPEC_VERSION`]
 //! - Extending [`IndexType`]:
 //! - `VK_INDEX_TYPE_UINT8_EXT`
+//!
 //! - Extending [`StructureType`]:
 //! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES_EXT`
 //!# Version History

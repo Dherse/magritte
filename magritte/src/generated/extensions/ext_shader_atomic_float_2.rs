@@ -50,6 +50,7 @@
 //![`SPV_EXT_shader_atomic_float16_add`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/EXT/SPV_EXT_shader_atomic_float16_add.html)
 //! - This extension provides API support for
 //![`GLSL_EXT_shader_atomic_float2`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_shader_atomic_float2.txt)
+//!
 //!*
 //! - Jason Ekstrand, Intel
 //!# Related

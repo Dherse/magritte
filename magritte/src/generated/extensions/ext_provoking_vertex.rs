@@ -18,8 +18,10 @@
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
 //! - [`PhysicalDeviceProvokingVertexFeaturesEXT`]
+//!
 //! - Extending [`PhysicalDeviceProperties2`]:
 //! - [`PhysicalDeviceProvokingVertexPropertiesEXT`]
+//!
 //! - Extending [`PipelineRasterizationStateCreateInfo`]:
 //! - [`PipelineRasterizationProvokingVertexStateCreateInfoEXT`]
 //!# New enums
@@ -58,11 +60,13 @@
 //! transformFeedbackPreservesTriangleFanProvokingVertex
 //!to accommodate implementations that cannot change the transform
 //!feedback vertex order for triangle fans.
+//!
 //! - Revision 1, (1b) 2020-06-14 (Jesse Hall)
 //! - Added
 //!VkPhysicalDeviceProvokingVertexFeaturesEXT::transformFeedbackPreservesProvokingVertex
 //!and required that transform feedback write vertices so as to preserve
 //!the provoking vertex of each primitive.
+//!
 //! - Revision 1, (1a) 2019-10-23 (Jesse Hall)
 //! - Initial draft, based on a proposal by Alexis Hétu
 //!# Other info
@@ -127,7 +131,8 @@ pub const EXT_PROVOKING_VERTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///vertices used by a primitive.
 /// - [`PROVOKING_VERTEX_MODE_LAST_VERTEX`] specifies that the
 ///provoking vertex is the last non-adjacency vertex in the list of
-///vertices used by a primitive.These modes are described more precisely in
+///vertices used by a primitive.
+///These modes are described more precisely in
 ///[Primitive Topologies](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-topologies).
 ///# Related
 /// - [`VK_EXT_provoking_vertex`]
