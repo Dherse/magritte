@@ -50,6 +50,7 @@ pub enum Ty<'a> {
 
 impl<'a> Ty<'a> {
     /// Creates a new type from a definition and a length
+    #[must_use]
     pub fn new(definition: &'a str, length_str: &'a str) -> (Cow<'a, str>, Self) {
         let definition = definition.trim();
         let lengths = length_str.split(',');
@@ -63,6 +64,7 @@ impl<'a> Ty<'a> {
     }
 
     /// Simplifies a type: reduces constant len to simpler expressions
+    #[must_use]
     pub fn simplify(self) -> Self {
         match self {
             Ty::Array(ty, len) => {
@@ -145,7 +147,7 @@ impl<'a> Ty<'a> {
     }
 
     /// Gets the length expression, returns some if `self` is an array or a slice
-    pub fn length(&self) -> Option<&Expr<'a>> {
+    pub fn length(&self) -> Option<&Expr<'_>> {
         match self {
             Ty::StringArray(len) | Ty::Array(_, len) | Ty::Slice(_, _, len) => Some(len),
             _ => None,
@@ -156,7 +158,7 @@ impl<'a> Ty<'a> {
     ///
     /// # Panics
     /// If `self` is not a pointer.
-    pub fn as_ptr(&self) -> (Mutability, &Ty<'a>) {
+    pub fn as_ptr(&self) -> (Mutability, &Ty<'_>) {
         match self {
             Ty::Pointer(a, b) => (*a, &**b),
             _ => panic!("not a pointer: {:?}", self),
@@ -178,7 +180,7 @@ impl<'a> Ty<'a> {
     ///
     /// # Panics
     /// If `self` is not a named type.
-    pub fn as_named(&self) -> &Cow<'a, str> {
+    pub fn as_named(&self) -> &Cow<'_, str> {
         match self {
             Ty::Named(a) => a,
             _ => panic!("not a named type: {:?}", self),
@@ -189,7 +191,7 @@ impl<'a> Ty<'a> {
     ///
     /// # Panics
     /// If `self` is not a string array.
-    pub fn as_string_array(&self) -> &Expr<'a> {
+    pub fn as_string_array(&self) -> &Expr<'_> {
         match self {
             Ty::StringArray(a) => a,
             _ => panic!("not a string array: {:?}", self),
@@ -211,7 +213,7 @@ impl<'a> Ty<'a> {
     ///
     /// # Panics
     /// If `self` is not an array.
-    pub fn as_array(&self) -> (&Ty<'a>, &Expr<'a>) {
+    pub fn as_array(&self) -> (&Ty<'_>, &Expr<'_>) {
         match self {
             Ty::Array(a, b) => (&**a, b),
             _ => panic!("not an array: {:?}", self),
@@ -222,7 +224,7 @@ impl<'a> Ty<'a> {
     ///
     /// # Panics
     /// If `self` is not a slice.
-    pub fn as_slice(&self) -> (Mutability, &Ty<'a>, &Expr<'a>) {
+    pub fn as_slice(&self) -> (Mutability, &Ty<'_>, &Expr<'_>) {
         match self {
             Ty::Slice(a, b, c) => (*a, &**b, c),
             _ => panic!("not a slice: {:?}", self),
@@ -315,7 +317,7 @@ impl ToTokens for Native {
             Native::Bool => quote! { bool },
             Native::NullTerminatedString => quote! { &std::ffi::CStr },
         }
-        .to_tokens(tokens)
+        .to_tokens(tokens);
     }
 }
 
@@ -416,7 +418,7 @@ enum BaseTy<'a> {
     Named(&'a str),
 }
 
-fn ty<'a>(input: &'a str) -> IResult<&'a str, BaseTy<'a>> {
+fn ty(input: &'_ str) -> IResult<&'_ str, BaseTy<'_>> {
     alt((
         array,
         map(
@@ -427,12 +429,12 @@ fn ty<'a>(input: &'a str) -> IResult<&'a str, BaseTy<'a>> {
     ))(input)
 }
 
-fn ty_no_ptr<'a>(input: &'a str) -> IResult<&'a str, BaseTy<'a>> {
+fn ty_no_ptr(input: &'_ str) -> IResult<&'_ str, BaseTy<'_>> {
     alt((native, named))(input)
 }
 
 /// Matches an array
-fn array<'a>(input: &'a str) -> IResult<&'a str, BaseTy<'a>> {
+fn array(input: &'_ str) -> IResult<&'_ str, BaseTy<'_>> {
     map(
         tuple((
             many0(delimited(space0, tag("const"), space0)),
@@ -463,7 +465,7 @@ fn pointer_star(input: &str) -> IResult<&str, char> {
 }
 
 /// Matches a named type name
-fn named<'a>(input: &'a str) -> IResult<&'a str, BaseTy<'a>> {
+fn named(input: &'_ str) -> IResult<&'_ str, BaseTy<'_>> {
     map(
         delimited(
             space0,
@@ -478,13 +480,13 @@ fn named<'a>(input: &'a str) -> IResult<&'a str, BaseTy<'a>> {
 }
 
 /// Matches a native C type
-fn native<'a>(input: &'a str) -> IResult<&'a str, BaseTy<'a>> {
+fn native(input: &'_ str) -> IResult<&'_ str, BaseTy<'_>> {
     map(native_raw, BaseTy::Native)(input)
 }
 
 /// Matches a native C type
 #[doc(hidden)]
-pub fn native_raw<'a>(input: &'a str) -> IResult<&'a str, Native> {
+pub fn native_raw(input: &'_ str) -> IResult<&'_ str, Native> {
     map(
         delimited(
             space0,
@@ -532,7 +534,7 @@ pub fn native_raw<'a>(input: &'a str) -> IResult<&'a str, Native> {
     )(input)
 }
 
-fn pointer<'a>(input: &'a str) -> IResult<&'a str, BaseTy<'a>> {
+fn pointer(input: &'_ str) -> IResult<&'_ str, BaseTy<'_>> {
     map(
         tuple((many0(const_keyword), ty_no_ptr, pointer_star)),
         |(const_a, ty, _)| {
@@ -548,7 +550,7 @@ fn pointer<'a>(input: &'a str) -> IResult<&'a str, BaseTy<'a>> {
     )(input)
 }
 
-fn pointer_of_pointer<'a>(input: &'a str) -> IResult<&'a str, BaseTy<'a>> {
+fn pointer_of_pointer(input: &'_ str) -> IResult<&'_ str, BaseTy<'_>> {
     map(
         tuple((
             many0(const_keyword),

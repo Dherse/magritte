@@ -3,7 +3,7 @@ use tracing::warn;
 
 use crate::{
     codegen::alias_of,
-    doc::{Documentation, Queryable},
+    doc::{DocRef, Documentation, Queryable},
     imports::Imports,
     source::{Basetype, Source},
 };
@@ -49,14 +49,14 @@ impl<'a> Basetype<'a> {
             doc.related(source, out);
 
             // adds the copyright of the Vulkan docs
-            doc.copyright(out);
+            DocRef::copyright(out);
 
             Some(())
         } else {
             warn!("No documentation for {}", self.original_name());
 
             // add the default no doc comment
-            doc.no_doc(out);
+            Documentation::no_doc(out);
 
             None
         }

@@ -52,11 +52,11 @@ where
         if child.value().is_element() {
             self.visit_element(ElementRef::wrap(child)?)
         } else if let Some(text) = child.value().as_text() {
-            if text.trim().len() == 0 {
+            if text.trim().is_empty() {
                 return None;
             }
 
-            self.out.push_str(&text);
+            self.out.push_str(text);
 
             Some(())
         } else {
@@ -64,7 +64,7 @@ where
         }
     }
 
-    pub fn visit_element<'c>(&mut self, element: ElementRef<'c>) -> Option<()> {
+    pub fn visit_element(&mut self, element: ElementRef<'_>) -> Option<()> {
         match element.value().name() {
             "a" => self.visit_link(element),
             "code" if !self.code_as_transparent => self.visit_code(element),
@@ -85,12 +85,13 @@ where
         }
     }
 
-    fn visit_table<'c>(&mut self, _table: ElementRef<'c>) -> Option<()> {
+    #[allow(clippy::unused_self)]
+    fn visit_table(&mut self, _table: ElementRef<'_>) -> Option<()> {
         error!("need to implement table");
         None
     }
 
-    fn visit_span<'c>(&mut self, span: ElementRef<'c>) -> Option<()> {
+    fn visit_span(&mut self, span: ElementRef<'_>) -> Option<()> {
         // if there is no children, return `None`
         if !span.has_children() {
             return None;
@@ -112,7 +113,7 @@ where
         self.visit_transparent(span)
     }
 
-    fn visit_transparent<'c>(&mut self, element: ElementRef<'c>) -> Option<()> {
+    fn visit_transparent(&mut self, element: ElementRef<'_>) -> Option<()> {
         // if there is no children, return `None`
         if !element.has_children() {
             return None;
@@ -133,7 +134,7 @@ where
         }
     }
 
-    fn visit_list<'c, F, A>(&mut self, div: ElementRef<'c>, index_fn: F, selector: &Selector) -> Option<()>
+    fn visit_list<F, A>(&mut self, div: ElementRef<'_>, index_fn: F, selector: &Selector) -> Option<()>
     where
         F: Fn(usize) -> A,
         A: AsRef<str>,
@@ -142,11 +143,14 @@ where
 
         let mut temp = String::new();
 
+        let mut cnt = 0;
         self.level += 1;
         for (i, elem) in select.enumerate() {
             if elem.ancestors().nth(1).unwrap() != *div {
                 continue;
             }
+
+            cnt += 1;
 
             self.out.push('\n');
             for _ in 1..self.level {
@@ -184,10 +188,10 @@ where
         self.in_item = false;
         self.level -= 1;
 
-        Some(())
+        (cnt == 0).then(|| ())
     }
 
-    fn visit_pre<'c>(&mut self, pre: ElementRef<'c>) -> Option<()> {
+    fn visit_pre(&mut self, pre: ElementRef<'_>) -> Option<()> {
         // if there is no text, return `None`
         if !pre.has_children() {
             return None;
@@ -208,7 +212,7 @@ where
         Some(())
     }
 
-    fn visit_sup<'c>(&mut self, sup: ElementRef<'c>) -> Option<()> {
+    fn visit_sup(&mut self, sup: ElementRef<'_>) -> Option<()> {
         // if there is no text, return `None`
         if !sup.has_children() {
             return None;
@@ -225,7 +229,7 @@ where
         Some(())
     }
 
-    fn visit_sub<'c>(&mut self, sub: ElementRef<'c>) -> Option<()> {
+    fn visit_sub(&mut self, sub: ElementRef<'_>) -> Option<()> {
         // if there is no text, return `None`
         if !sub.has_children() {
             return None;
@@ -242,24 +246,24 @@ where
         Some(())
     }
 
-    fn visit_em<'c>(&mut self, em: ElementRef<'c>) -> Option<()> {
+    fn visit_em(&mut self, em: ElementRef<'_>) -> Option<()> {
         // if there is no text, return `None`
         if !em.has_children() {
             return None;
         }
 
-        self.out.push_str("*");
+        self.out.push('*');
 
         for child in em.children() {
             self.visit(child);
         }
 
-        self.out.push_str("*");
+        self.out.push('*');
 
         Some(())
     }
 
-    fn visit_strong<'c>(&mut self, strong: ElementRef<'c>) -> Option<()> {
+    fn visit_strong(&mut self, strong: ElementRef<'_>) -> Option<()> {
         // if there is no text, return `None`
         if !strong.has_children() {
             return None;
@@ -276,7 +280,7 @@ where
         Some(())
     }
 
-    fn visit_code<'c>(&mut self, code: ElementRef<'c>) -> Option<()> {
+    fn visit_code(&mut self, code: ElementRef<'_>) -> Option<()> {
         // if there is no code, return `None`
         if !code.has_children() {
             return None;
@@ -316,7 +320,7 @@ where
         Some(())
     }
 
-    fn visit_link<'c>(&mut self, a: ElementRef<'c>) -> Option<()> {
+    fn visit_link(&mut self, a: ElementRef<'_>) -> Option<()> {
         // broken links in the Vulkan docs, see https://github.com/KhronosGroup/Vulkan-Docs/issues/1723
         const BUGS: &[&str] = &[
             "#renderpass",
@@ -374,8 +378,8 @@ where
         } else if trimmed == "VK_VERSION_1_2" {
             self.out.push_str("[`crate::vulkan1_2`]");
             return Some(());
-        } else if trimmed == "VK_VERSION_1_2" {
-            self.out.push_str("[`crate::vulkan1_2`]");
+        } else if trimmed == "VK_VERSION_1_3" {
+            self.out.push_str("[`crate::vulkan1_3`]");
             return Some(());
         } else if trimmed == "VK_API_VERSION_1_0" {
             self.out.push_str("[`crate::utils::Version::VULKAN1_0`]");
@@ -385,6 +389,9 @@ where
             return Some(());
         } else if trimmed == "VK_API_VERSION_1_2" {
             self.out.push_str("[`crate::utils::Version::VULKAN1_2`]");
+            return Some(());
+        } else if trimmed == "VK_API_VERSION_1_3" {
+            self.out.push_str("[`crate::utils::Version::VULKAN1_3`]");
             return Some(());
         } else if trimmed == "VK_NULL_HANDLE" {
             self.out.push_str("[`crate::utils::Handle::null`]");
@@ -430,11 +437,11 @@ fn children_count(node: &NodeRef<Node>) -> usize {
 }
 
 pub(super) trait TrimInPlace {
-    fn trim_in_place(self: &mut Self);
+    fn trim_in_place(&mut self);
 }
 
 impl TrimInPlace for String {
-    fn trim_in_place(self: &'_ mut Self) {
+    fn trim_in_place(&mut self) {
         let (start, len): (*const u8, usize) = {
             let self_trimmed: &str = self.trim();
             (self_trimmed.as_ptr(), self_trimmed.len())

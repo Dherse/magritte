@@ -174,21 +174,14 @@ impl<'a> Field<'a> {
         for item in &member.markup {
             match item {
                 TypeMemberMarkup::Name(value) => name = Some(Cow::Borrowed(value as &str)),
-                TypeMemberMarkup::Enum(_) => (),
-                TypeMemberMarkup::Type(_) => (),
-                TypeMemberMarkup::Comment(_) => (),
+                TypeMemberMarkup::Enum(_) | TypeMemberMarkup::Type(_) | TypeMemberMarkup::Comment(_) => (),
                 _ => unreachable!("Unknown type markup: {:?}", item),
             }
         }
 
         let mut ty = Ty::new(
             &member.code,
-            member
-                .altlen
-                .as_ref()
-                .or(member.len.as_ref())
-                .map(|s| s as &str)
-                .unwrap_or(""),
+            member.altlen.as_ref().or(member.len.as_ref()).map_or("", |s| s as &str),
         )
         .1
         .simplify();

@@ -140,7 +140,7 @@ pub fn parse_expr<'a>(input: &'a str) -> IResult<&'a str, Expr<'a>> {
     }
 }
 
-fn factor<'a>(input: &'a str) -> IResult<&'a str, Expr<'a>> {
+fn factor(input: &'_ str) -> IResult<&'_ str, Expr<'_>> {
     delimited(
         space0,
         alt((
@@ -219,36 +219,36 @@ fn length_info(input: &str) -> IResult<&str, &str> {
 
 /// Matches a variable (i.e `value`)
 #[doc(hidden)]
-pub fn variable<'a>(input: &'a str) -> IResult<&'a str, Expr<'a>> {
+pub fn variable(input: &'_ str) -> IResult<&'_ str, Expr<'_>> {
     map(variable_raw, |s| Expr::Variable(Cow::Borrowed(s)))(input)
 }
 
 /// Matches a variable (i.e `value`)
 #[doc(hidden)]
-pub fn variable_raw<'a>(input: &'a str) -> IResult<&'a str, &'a str> {
+pub fn variable_raw(input: &'_ str) -> IResult<&'_ str, &'_ str> {
     recognize(pair(alt((alpha1, tag("_"))), many0(alt((alphanumeric1, tag("_"))))))(input)
 }
 
 /// Matches a resolve (i.e `this->value`)
-fn bitwise_not<'a>(input: &'a str) -> IResult<&'a str, Expr<'a>> {
+fn bitwise_not(input: &'_ str) -> IResult<&'_ str, Expr<'_>> {
     map(pair(complete::char('~'), parse_expr), |(_, a)| Expr::BitwiseNot(box a))(input)
 }
 
 /// Matches a resolve (i.e `this->value`)
-fn resolve_ptr<'a>(input: &'a str) -> IResult<&'a str, Expr<'a>> {
+fn resolve_ptr(input: &'_ str) -> IResult<&'_ str, Expr<'_>> {
     map(separated_pair(variable, tag("->"), variable), |(a, b)| {
         Expr::Resolve(box a, box b)
     })(input)
 }
 
 /// Matches a resolve (i.e `this->value`)
-fn resolve_value<'a>(input: &'a str) -> IResult<&'a str, Expr<'a>> {
+fn resolve_value(input: &'_ str) -> IResult<&'_ str, Expr<'_>> {
     map(separated_pair(variable, tag("."), variable), |(a, b)| {
         Expr::Resolve(box a, box b)
     })(input)
 }
 
-fn parenthesized<'a>(input: &'a str) -> IResult<&'a str, Expr<'a>> {
+fn parenthesized(input: &'_ str) -> IResult<&'_ str, Expr<'_>> {
     delimited(
         space0,
         delimited(complete::char('('), parse_expr, complete::char(')')),
@@ -257,7 +257,7 @@ fn parenthesized<'a>(input: &'a str) -> IResult<&'a str, Expr<'a>> {
 }
 
 /// Matches a literal integer (i.e `4`)
-fn literal_integer<'a>(input: &'a str) -> IResult<&'a str, Expr<'a>> {
+fn literal_integer(input: &'_ str) -> IResult<&'_ str, Expr<'_>> {
     map(
         map_res(
             terminated(
@@ -273,7 +273,7 @@ fn literal_integer<'a>(input: &'a str) -> IResult<&'a str, Expr<'a>> {
     )(input)
 }
 
-fn literal_hexadecimal<'a>(input: &'a str) -> IResult<&'a str, Expr<'a>> {
+fn literal_hexadecimal(input: &'_ str) -> IResult<&'_ str, Expr<'_>> {
     map(
         map_res(
             preceded(
@@ -283,27 +283,27 @@ fn literal_hexadecimal<'a>(input: &'a str) -> IResult<&'a str, Expr<'a>> {
                     many0(complete::char('_')),
                 ))),
             ),
-            |out: &str| i64::from_str_radix(&str::replace(&out, "_", ""), 16),
+            |out: &str| i64::from_str_radix(&str::replace(out, "_", ""), 16),
         ),
         Expr::ConstantInt,
     )(input)
 }
 
-fn literal_binary<'a>(input: &str) -> IResult<&str, Expr<'a>> {
+fn literal_binary(input: &'_ str) -> IResult<&'_ str, Expr<'_>> {
     map(
         map_res(
             preceded(
                 alt((tag("0b"), tag("0B"))),
                 recognize(many1(terminated(one_of("01"), many0(complete::char('_'))))),
             ),
-            |out: &str| i64::from_str_radix(&str::replace(&out, "_", ""), 16),
+            |out: &str| i64::from_str_radix(&str::replace(out, "_", ""), 16),
         ),
         Expr::ConstantInt,
     )(input)
 }
 
 /// Matches a literal float (i.e `32.0`)
-fn literal_float<'a>(input: &'a str) -> IResult<&'a str, Expr<'a>> {
+fn literal_float(input: &'_ str) -> IResult<&'_ str, Expr<'_>> {
     map(
         map_res(
             terminated(
@@ -344,6 +344,7 @@ fn decimal(input: &str) -> IResult<&str, &str> {
     recognize(many1(terminated(one_of("0123456789"), many0(complete::char('_')))))(input)
 }
 
+#[allow(clippy::needless_pass_by_value)]
 fn alpha1_caps<T, E: ParseError<T>>(input: T) -> IResult<T, T, E>
 where
     T: InputTakeAtPosition<Item = char>,
@@ -351,6 +352,7 @@ where
     input.split_at_position1_complete(|item| !(item.is_alphabetic() && item.is_uppercase()), ErrorKind::Alpha)
 }
 
+#[allow(clippy::needless_pass_by_value)]
 fn alphanumeric1_caps<T, E: ParseError<T>>(input: T) -> IResult<T, T, E>
 where
     T: InputTakeAtPosition<Item = char>,

@@ -4,7 +4,7 @@ use quote::quote;
 use tracing::warn;
 
 use crate::{
-    doc::Documentation,
+    doc::{DocRef, Documentation},
     imports::Imports,
     origin::Origin,
     source::{Alias, Bit, Enum, Source},
@@ -15,10 +15,10 @@ use super::alias_of;
 impl<'a> Alias<'a> {
     fn generate_code(&self, parent: &Origin<'a>, doc: &AHashMap<String, String>) -> TokenStream {
         // get the doc of the bit
-        let doc = doc
-            .get(self.of())
-            .map(|t| quote! { #[doc = #t] })
-            .unwrap_or_else(|| quote! { #[doc = "No documentation found"]});
+        let doc = doc.get(self.of()).map_or_else(
+            || quote! { #[doc = "No documentation found"]},
+            |t| quote! { #[doc = #t] },
+        );
 
         // get the "provided by" of the bit
         let provided_by = (parent != self.origin()).then(|| {
@@ -44,10 +44,10 @@ impl<'a> Alias<'a> {
 impl<'a> Bit<'a> {
     fn generate_code(&self, parent: &Origin<'a>, doc: &AHashMap<String, String>) -> TokenStream {
         // get the doc of the bit
-        let doc = doc
-            .get(self.name())
-            .map(|t| quote! { #[doc = #t] })
-            .unwrap_or_else(|| quote! { #[doc = "No documentation found"]});
+        let doc = doc.get(self.name()).map_or_else(
+            || quote! { #[doc = "No documentation found"]},
+            |t| quote! { #[doc = #t] },
+        );
 
         // get the "provided by" of the bit
         let provided_by = (parent != self.origin()).then(|| {
@@ -191,14 +191,14 @@ impl<'a> Enum<'a> {
             doc.related(source, out);
 
             // adds the copyright of the Vulkan docs
-            doc.copyright(out);
+            DocRef::copyright(out);
 
             Some(variants)
         } else {
             warn!("No documentation for {}", self.original_name());
 
             // add the default no doc comment
-            doc.no_doc(out);
+            Documentation::no_doc(out);
 
             None
         }

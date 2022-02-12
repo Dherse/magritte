@@ -74,9 +74,8 @@ impl<'a: 'b, 'b> Ref<'a, 'b> {
     #[inline]
     pub const fn origin(&self) -> &'b Origin<'a> {
         match self {
-            Self::Vendor(_) => &Origin::Core,
+            Self::Vendor(_) | Self::Tag(_) => &Origin::Core,
             Self::Extension(r) => r.origin(),
-            Self::Tag(_) => &Origin::Core,
             Self::OpaqueType(r) => r.origin(),
             Self::Alias(r) => r.origin(),
             Self::Struct(r) => r.origin(),
@@ -244,7 +243,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
 
     pub fn find(&self, source: &'b Source<'a>, name: &str) -> Option<&'b str> {
         match self {
-            TypeRef::OpaqueType(_) => None,
+            TypeRef::OpaqueType(_) | TypeRef::Handle(_) | TypeRef::Basetype(_) => None,
             TypeRef::Alias(alias) => source
                 .find(alias.original_name())
                 .expect("alias missing")
@@ -253,9 +252,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
                 .find(source, name),
             TypeRef::Struct(struct_) => struct_.find(name),
             TypeRef::Union(union_) => union_.find(name),
-            TypeRef::Handle(_) => None,
             TypeRef::FunctionPointer(function_pointer) => function_pointer.find(name),
-            TypeRef::Basetype(_) => None,
             TypeRef::Bitmask(mask) => mask
                 .bits()
                 .and_then(|bit| source.find(bit))
@@ -339,7 +336,6 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     /// Does the type have a lifetime
     pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
         match self {
-            TypeRef::OpaqueType(_) => false,
             TypeRef::Alias(alias) => source
                 .resolve_type(alias.of())
                 .expect("unknown alias")
@@ -353,7 +349,11 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
             // in the case of function pointers, one of the fields may have a lifetime requiring the following
             // notation: `for<'a> fn(this: &'a Value)`
             TypeRef::FunctionPointer(func) => func.has_lifetime(source),
-            TypeRef::Basetype(_) | TypeRef::Bitmask(_) | TypeRef::BitFlag(_) | TypeRef::Enum(_) => false,
+            TypeRef::OpaqueType(_)
+            | TypeRef::Basetype(_)
+            | TypeRef::Bitmask(_)
+            | TypeRef::BitFlag(_)
+            | TypeRef::Enum(_) => false,
         }
     }
 

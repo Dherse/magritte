@@ -34,7 +34,7 @@ impl<'a> Source<'a> {
 
             let (imports, out) = per_origin.get_mut(const_.origin()).unwrap();
 
-            const_.generate_code(self, doc, &imports, out);
+            const_.generate_code(self, doc, imports, out);
         }
 
         for const_alias in &self.constant_aliases {
@@ -44,7 +44,7 @@ impl<'a> Source<'a> {
 
             let (imports, out) = per_origin.get_mut(const_alias.origin()).unwrap();
 
-            const_alias.generate_code(self, doc, &imports, out);
+            const_alias.generate_code(self, doc, imports, out);
         }
 
         for basetype in &self.basetypes {
@@ -54,7 +54,7 @@ impl<'a> Source<'a> {
 
             let (imports, out) = per_origin.get_mut(basetype.origin()).unwrap();
 
-            basetype.generate_code(self, doc, &imports, out);
+            basetype.generate_code(self, doc, imports, out);
         }
 
         for enum_ in &self.enums {
@@ -64,10 +64,13 @@ impl<'a> Source<'a> {
 
             let (imports, out) = per_origin.get_mut(enum_.origin()).unwrap();
 
-            enum_.generate_code(self, doc, &imports, out);
+            enum_.generate_code(self, doc, imports, out);
         }
 
-        per_origin.into_iter().map(|(key, (i, t))| CodeOut(key.as_static(), i, t)).collect()
+        per_origin
+            .into_iter()
+            .map(|(key, (i, t))| CodeOut(key.as_static(), i, t))
+            .collect()
     }
 }
 

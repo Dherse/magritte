@@ -6,7 +6,7 @@
 
 use std::{error::Error, fmt::Write, io::stderr, path::PathBuf};
 
-use magritte_vkgen::{parse_documentation, parse_registry, rustmft::run_rustfmt, source::Source, codegen::CodeOut};
+use magritte_vkgen::{codegen::CodeOut, parse_documentation, parse_registry, rustmft::run_rustfmt, source::Source};
 use mimalloc::MiMalloc;
 use quote::ToTokens;
 use rayon::iter::{IntoParallelIterator, ParallelIterator};
@@ -39,7 +39,7 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
 
     let vk_xml = std::fs::read_to_string(VK_XML_PATH)?;
 
-    let registry_thread = std::thread::spawn(move || parse_registry(vk_xml));
+    let registry_thread = std::thread::spawn(move || parse_registry(&vk_xml));
     let documentation_thread = std::thread::spawn(move || parse_documentation(DOC_IN_PATH));
 
     let registry = registry_thread.join().expect("failed to wait for thread")?;
@@ -54,20 +54,23 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
 
     info!("Got documentation");
 
-    source.generate_code(&mut doc).into_par_iter().for_each(|CodeOut(origin, imports, code)| {
-        let mut out = String::with_capacity(1 << 20);
+    source
+        .generate_code(&mut doc)
+        .into_par_iter()
+        .for_each(|CodeOut(origin, imports, code)| {
+            let mut out = String::with_capacity(1 << 20);
 
-        write!(out, "{}", imports.to_token_stream()).unwrap();
-        write!(out, "{}", code).unwrap();
+            write!(out, "{}", imports.to_token_stream()).unwrap();
+            write!(out, "{}", code).unwrap();
 
-        let path = PathBuf::from(BINDING_OUT_PATH);
+            let path = PathBuf::from(BINDING_OUT_PATH);
 
-        let out = run_rustfmt(out).unwrap();
-        
-        std::fs::write(origin.as_file_path(&path), &out).unwrap();
+            let out = run_rustfmt(out).unwrap();
 
-        std::mem::forget(out);
-    });
+            std::fs::write(origin.as_file_path(&path), &out).unwrap();
+
+            std::mem::forget(out);
+        });
 
     Ok(())
 }

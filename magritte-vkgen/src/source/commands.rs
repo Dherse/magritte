@@ -208,7 +208,7 @@ impl<'a> FunctionArgument<'a> {
         };
         info!(?optionality, "parsed optionality");
 
-        let no_auto_validity = param.noautovalidity.as_ref().map(|v| v == "true").unwrap_or(false);
+        let no_auto_validity = param.noautovalidity.as_ref().map_or(false, |v| v == "true");
         info!(?no_auto_validity, "parsed auto validity");
 
         let externally_synced = ExternallySynced::new(param.externsync.as_ref().map(|s| s as &str));

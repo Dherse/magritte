@@ -46,27 +46,27 @@ impl<'a> ExternallySynced<'a> {
     }
 }
 
-fn externally_synced<'a>(input: &'a str) -> IResult<&'a str, ExternallySynced<'a>> {
+fn externally_synced(input: &'_ str) -> IResult<&'_ str, ExternallySynced<'_>> {
     alt((yes, no, multi, single))(input)
 }
 
-fn single<'a>(input: &'a str) -> IResult<&'a str, ExternallySynced<'a>> {
+fn single(input: &'_ str) -> IResult<&'_ str, ExternallySynced<'_>> {
     alt((for_each, all, resolve, var))(input)
 }
 
-fn all<'a>(input: &'a str) -> IResult<&'a str, ExternallySynced<'a>> {
+fn all(input: &'_ str) -> IResult<&'_ str, ExternallySynced<'_>> {
     map(terminated(delimited(space0, var, space0), tag("[]")), |a| {
         ExternallySynced::All(box a)
     })(input)
 }
 
-fn var<'a>(input: &'a str) -> IResult<&'a str, ExternallySynced<'a>> {
+fn var(input: &'_ str) -> IResult<&'_ str, ExternallySynced<'_>> {
     map(delimited(space0, variable_raw, space0), |s| {
         ExternallySynced::Variable(s)
     })(input)
 }
 
-fn multi<'a>(input: &'a str) -> IResult<&'a str, ExternallySynced<'a>> {
+fn multi(input: &'_ str) -> IResult<&'_ str, ExternallySynced<'_>> {
     map(separated_list1(complete::char(','), single), |mut vals| {
         if vals.len() > 1 {
             ExternallySynced::Multiple(vals)
@@ -76,7 +76,7 @@ fn multi<'a>(input: &'a str) -> IResult<&'a str, ExternallySynced<'a>> {
     })(input)
 }
 
-fn for_each<'a>(input: &'a str) -> IResult<&'a str, ExternallySynced<'a>> {
+fn for_each(input: &'_ str) -> IResult<&'_ str, ExternallySynced<'_>> {
     map(
         separated_pair(
             delimited(space0, var, space0),
@@ -87,7 +87,7 @@ fn for_each<'a>(input: &'a str) -> IResult<&'a str, ExternallySynced<'a>> {
     )(input)
 }
 
-fn resolve<'a>(input: &'a str) -> IResult<&'a str, ExternallySynced<'a>> {
+fn resolve(input: &'_ str) -> IResult<&'_ str, ExternallySynced<'_>> {
     map(
         separated_pair(
             delimited(space0, var, space0),

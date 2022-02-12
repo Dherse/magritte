@@ -11,6 +11,14 @@
     extend_one
 )]
 #![warn(clippy::pedantic, clippy::cargo)]
+#![allow(
+    clippy::missing_errors_doc,
+    clippy::must_use_candidate,
+    clippy::missing_panics_doc,
+    clippy::too_many_lines,
+    clippy::module_name_repetitions,
+    clippy::default_trait_access
+)]
 #![deny(missing_docs)]
 
 pub mod codegen;
@@ -46,7 +54,7 @@ pub fn process_registry_into_source<'a>(registry: &'a Registry) -> Result<Source
 }
 
 /// Parses the registry from its XML source.
-pub fn parse_registry(code: String) -> Result<Registry, String> {
+pub fn parse_registry(code: &str) -> Result<Registry, String> {
     let span = span!(Level::INFO, "registry parsing");
     let _guard = span.enter();
 

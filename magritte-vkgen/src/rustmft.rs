@@ -28,7 +28,7 @@ pub fn run_rustfmt(source: String) -> Result<String, io::Error> {
     // thread. This keeps the child from blocking on writing to its stdout which
     // might block us from writing to its stdin.
     let stdin_handle = std::thread::spawn(move || {
-        let _ = child_stdin.write_all(source.as_bytes());
+        child_stdin.write_all(source.as_bytes()).unwrap();
 
         std::mem::forget(source);
     });

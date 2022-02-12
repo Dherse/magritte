@@ -130,7 +130,6 @@ impl<'a> Source<'a> {
         for child in &registry.0 {
             match child {
                 RegistryChild::VendorIds(vendor) => this.vendors(vendor),
-                RegistryChild::Platforms(_) => {},
                 RegistryChild::Tags(tags) => this.tags(tags),
                 RegistryChild::Types(types) => this.types(types),
                 RegistryChild::Enums(enums) => this.enums(enums),
@@ -139,11 +138,12 @@ impl<'a> Source<'a> {
                 RegistryChild::Extensions(extensions) => this.extensions(extensions),
 
                 // TODO: deal with formats
-                RegistryChild::Formats(_) => {},
-
                 // TODO: use SPIR-V stuff to generate code for `magritte-shader`
-                RegistryChild::SpirvExtensions(_) => {},
-                RegistryChild::SpirvCapabilities(_) => {},
+                RegistryChild::Platforms(_)
+                | RegistryChild::Formats(_)
+                | RegistryChild::SpirvExtensions(_)
+                | RegistryChild::SpirvCapabilities(_) => {},
+
                 RegistryChild::Comment(comment) => debug!(?comment, "comment"),
                 child => error!(?child, "unknown registry child"),
             }
@@ -155,47 +155,27 @@ impl<'a> Source<'a> {
     /// Finds a value defined in the Vulkan spefification and returns it if it exists.
     #[inline]
     pub fn find(&self, name: &str) -> Option<Ref<'a, '_>> {
-        if let Some(vendor) = self.vendors.get_by_either(name) {
-            Some(Ref::Vendor(vendor))
-        } else if let Some(extension) = self.extensions.get_by_either(name) {
-            Some(Ref::Extension(extension))
-        } else if let Some(tag) = self.tags.get_by_either(name) {
-            Some(Ref::Tag(tag))
-        } else if let Some(opaque_type) = self.opaque_types.get_by_either(name) {
-            Some(Ref::OpaqueType(opaque_type))
-        } else if let Some(alias) = self.aliases.get_by_either(name) {
-            Some(Ref::Alias(alias))
-        } else if let Some(struct_) = self.structs.get_by_either(name) {
-            Some(Ref::Struct(struct_))
-        } else if let Some(union_) = self.unions.get_by_either(name) {
-            Some(Ref::Union(union_))
-        } else if let Some(handle) = self.handles.get_by_either(name) {
-            Some(Ref::Handle(handle))
-        } else if let Some(funcpointer) = self.funcpointers.get_by_either(name) {
-            Some(Ref::FunctionPointer(funcpointer))
-        } else if let Some(basetype) = self.basetypes.get_by_either(name) {
-            Some(Ref::Basetype(basetype))
-        } else if let Some(bitmask) = self.bitmasks.get_by_either(name) {
-            Some(Ref::Bitmask(bitmask))
-        } else if let Some(const_) = self.constants.get_by_either(name) {
-            Some(Ref::Const(const_))
-        } else if let Some(const_alias) = self.constant_aliases.get_by_either(name) {
-            Some(Ref::ConstAlias(const_alias))
-        } else if let Some(bitflag) = self.bitflags.get_by_either(name) {
-            Some(Ref::BitFlag(bitflag))
-        } else if let Some(enum_) = self.enums.get_by_either(name) {
-            Some(Ref::Enum(enum_))
-        } else if let Some(command_alias) = self.command_aliases.get_by_either(name) {
-            Some(Ref::CommandAlias(command_alias))
-        } else if let Some(function) = self.functions.get_by_either(name) {
-            Some(Ref::Function(function))
-        } else if let Some(command) = self.commands.get_by_either(name) {
-            Some(Ref::Function(command))
-        } else if let Some(origin) = self.origins.get_by_either(name) {
-            Some(Ref::Origin(origin))
-        } else {
-            None
-        }
+        self.vendors
+            .get_by_either(name)
+            .map(Ref::Vendor)
+            .or_else(|| self.extensions.get_by_either(name).map(Ref::Extension))
+            .or_else(|| self.tags.get_by_either(name).map(Ref::Tag))
+            .or_else(|| self.opaque_types.get_by_either(name).map(Ref::OpaqueType))
+            .or_else(|| self.aliases.get_by_either(name).map(Ref::Alias))
+            .or_else(|| self.structs.get_by_either(name).map(Ref::Struct))
+            .or_else(|| self.unions.get_by_either(name).map(Ref::Union))
+            .or_else(|| self.handles.get_by_either(name).map(Ref::Handle))
+            .or_else(|| self.funcpointers.get_by_either(name).map(Ref::FunctionPointer))
+            .or_else(|| self.basetypes.get_by_either(name).map(Ref::Basetype))
+            .or_else(|| self.bitmasks.get_by_either(name).map(Ref::Bitmask))
+            .or_else(|| self.constants.get_by_either(name).map(Ref::Const))
+            .or_else(|| self.constant_aliases.get_by_either(name).map(Ref::ConstAlias))
+            .or_else(|| self.bitflags.get_by_either(name).map(Ref::BitFlag))
+            .or_else(|| self.enums.get_by_either(name).map(Ref::Enum))
+            .or_else(|| self.command_aliases.get_by_either(name).map(Ref::CommandAlias))
+            .or_else(|| self.functions.get_by_either(name).map(Ref::Function))
+            .or_else(|| self.commands.get_by_either(name).map(|f| Ref::Function(f)))
+            .or_else(|| self.origins.get_by_either(name).map(Ref::Origin))
     }
 
     /// Resolves a chain of aliases to the original reference.
@@ -294,12 +274,13 @@ impl<'a> Source<'a> {
 
         self.origins.push(origin.clone());
 
-        extension.children.iter().for_each(|child| match child {
-            ExtensionChild::Require { items, .. } => items
-                .iter()
-                .for_each(|item| self.assign_origin_item(origin.clone(), item)),
-            _ => {},
-        })
+        extension.children.iter().for_each(|child| {
+            if let ExtensionChild::Require { items, .. } = child {
+                items
+                    .iter()
+                    .for_each(|item| self.assign_origin_item(origin.clone(), item));
+            }
+        });
     }
 
     fn assign_origin_item(&mut self, origin: Origin<'a>, item: &'a InterfaceItem) {
@@ -404,7 +385,7 @@ impl<'a> Source<'a> {
                         let base = extnumber.unwrap_or(origin.id()) - 1;
                         let negative = !dir;
 
-                        let value = if negative { -1 } else { 1 } * (1000000000 + base * 1000 + offset);
+                        let value = if negative { -1 } else { 1 } * (1_000_000_000 + base * 1_000 + offset);
                         if let Some(item) = self.bitflags.get_by_name_mut(extends) {
                             info!(?name, "added bit to bitflag");
 
@@ -559,11 +540,12 @@ impl<'a> Source<'a> {
 
         self.origins.push(version.clone());
 
-        feature.children.iter().for_each(|child| match child {
-            ExtensionChild::Require { items, .. } => items
-                .iter()
-                .for_each(|item| self.assign_origin_item(version.clone(), item)),
-            _ => {},
+        feature.children.iter().for_each(|child| {
+            if let ExtensionChild::Require { items, .. } = child {
+                items
+                    .iter()
+                    .for_each(|item| self.assign_origin_item(version.clone(), item));
+            }
         });
     }
 
@@ -573,7 +555,7 @@ impl<'a> Source<'a> {
         let span = span!(Level::INFO, "command", ?original_name);
         let _guard = span.enter();
 
-        let name = funcpointer_name(&original_name, &self.tags[..]);
+        let name = funcpointer_name(original_name, &self.tags[..]);
         info!(?name, "generated rustified name");
 
         let (_, return_type) = Ty::new(def_.proto.type_name.as_ref().expect("no return type for command"), "");
@@ -582,25 +564,23 @@ impl<'a> Source<'a> {
         let success_codes = def_
             .successcodes
             .as_ref()
-            .map(|c| c.split(',').map(Cow::Borrowed).collect())
-            .unwrap_or_else(SmallVec::<[_; 1]>::new);
+            .map_or_else(SmallVec::<[_; 1]>::new, |c| c.split(',').map(Cow::Borrowed).collect());
 
         info!(?success_codes, "parsed the success codes");
 
         let error_codes = def_
             .errorcodes
             .as_ref()
-            .map(|c| c.split(',').map(Cow::Borrowed).collect())
-            .unwrap_or_else(SmallVec::<[_; 1]>::new);
+            .map_or_else(SmallVec::<[_; 1]>::new, |c| c.split(',').map(Cow::Borrowed).collect());
 
         info!(?error_codes, "parsed the error codes");
 
         let code = def_
             .code
-            .split("(")
+            .split('(')
             .nth(1)
             .expect("command without parameters")
-            .split(",");
+            .split(',');
 
         let arguments = def_
             .params
@@ -627,38 +607,30 @@ impl<'a> Source<'a> {
                 .fold(BufferLevelFlags::empty(), |a, b| a | b);
             info!(?buffer_level, "parsed buffer level");
 
-            let renderpass = def_
-                .renderpass
-                .as_ref()
-                .map(|s| {
-                    s.split(',')
-                        .map(|s| match s {
-                            "outside" => RenderpassFlags::OUTSIDE,
-                            "inside" => RenderpassFlags::INSIDE,
-                            "both" => RenderpassFlags::BOTH,
-                            e => unreachable!("Unknown renderpass: {}", e),
-                        })
-                        .fold(RenderpassFlags::empty(), |a, b| a | b)
-                })
-                .unwrap_or_else(|| RenderpassFlags::empty());
+            let renderpass = def_.renderpass.as_ref().map_or_else(RenderpassFlags::empty, |s| {
+                s.split(',')
+                    .map(|s| match s {
+                        "outside" => RenderpassFlags::OUTSIDE,
+                        "inside" => RenderpassFlags::INSIDE,
+                        "both" => RenderpassFlags::BOTH,
+                        e => unreachable!("Unknown renderpass: {}", e),
+                    })
+                    .fold(RenderpassFlags::empty(), |a, b| a | b)
+            });
             info!(?renderpass, "parsed renderpass requierments");
 
-            let queues = def_
-                .queues
-                .as_ref()
-                .map(|s| {
-                    s.split(',')
-                        .map(|s| match s {
-                            "transfer" => QueueFlags::TRANSFER,
-                            "graphics" => QueueFlags::GRAPHICS,
-                            "compute" => QueueFlags::COMPUTE,
-                            "decode" => QueueFlags::DECODE,
-                            "encode" => QueueFlags::ENCODE,
-                            e => unreachable!("Unknown queue: {}", e),
-                        })
-                        .fold(QueueFlags::empty(), |a, b| a | b)
-                })
-                .unwrap_or_else(|| QueueFlags::empty());
+            let queues = def_.queues.as_ref().map_or_else(QueueFlags::empty, |s| {
+                s.split(',')
+                    .map(|s| match s {
+                        "transfer" => QueueFlags::TRANSFER,
+                        "graphics" => QueueFlags::GRAPHICS,
+                        "compute" => QueueFlags::COMPUTE,
+                        "decode" => QueueFlags::DECODE,
+                        "encode" => QueueFlags::ENCODE,
+                        e => unreachable!("Unknown queue: {}", e),
+                    })
+                    .fold(QueueFlags::empty(), |a, b| a | b)
+            });
             info!(?queues, "parsed queue types");
 
             self.commands
@@ -685,10 +657,10 @@ impl<'a> Source<'a> {
             },
             vk_parse::Command::Definition(def_) => self.command(def_),
             other => unreachable!("unsupported command type: {:?}", other),
-        })
+        });
     }
 
-    fn enum_(&mut self, enums: &'a Enums) {
+    fn en(&mut self, enums: &'a Enums) {
         let original_name = enums.name.as_ref().expect("found nameless flag bits");
 
         let span = span!(Level::INFO, "flag bits", ?original_name);
@@ -703,32 +675,32 @@ impl<'a> Source<'a> {
 
         // compute the values of all non-alias bits
         enums.children.iter().for_each(|child| match child {
-            EnumsChild::Enum(enum_) => match &enum_.spec {
+            EnumsChild::Enum(en) => match &en.spec {
                 EnumSpec::Bitpos { bitpos, .. } => {
-                    let span = span!(Level::INFO, "variant", original_name = ?enum_.name, ?bitpos);
+                    let span = span!(Level::INFO, "variant", original_name = ?en.name, ?bitpos);
                     let _guard = span.enter();
 
-                    let original_name = &enum_.name;
+                    let original_name = &en.name;
                     let name = const_name(original_name, tag);
                     info!(?name, "computed rustified name");
 
                     variants.push(Bit::new_no_origin(original_name, name, 1 << *bitpos));
                 },
                 EnumSpec::Alias { alias, .. } => {
-                    let span = span!(Level::INFO, "variant alias", original_name = ?enum_.name, ?alias);
+                    let span = span!(Level::INFO, "variant alias", original_name = ?en.name, ?alias);
                     let _guard = span.enter();
 
-                    let original_name = &enum_.name;
+                    let original_name = &en.name;
                     let name = const_name(original_name, tag);
                     info!(?name, "computed rustified name");
 
                     aliases.push(Alias::new_no_origin(original_name, name, alias));
                 },
                 EnumSpec::Value { value, .. } => {
-                    let span = span!(Level::INFO, "variant", original_name = ?enum_.name, ?value);
+                    let span = span!(Level::INFO, "variant", original_name = ?en.name, ?value);
                     let _guard = span.enter();
 
-                    let original_name = &enum_.name;
+                    let original_name = &en.name;
                     let name = const_name(original_name, tag);
                     info!(?name, "computed rustified name");
 
@@ -740,10 +712,9 @@ impl<'a> Source<'a> {
 
                     variants.push(Bit::new_no_origin(original_name, name, value));
                 },
-                _ => unreachable!("unexpected enum value: {:?}", enum_),
+                _ => unreachable!("unexpected enum value: {:?}", en),
             },
-            EnumsChild::Unused(_) => (),
-            EnumsChild::Comment(_) => (),
+            EnumsChild::Unused(_) | EnumsChild::Comment(_) => (),
             other => panic!("unknown child type: {:?}", other),
         });
 
@@ -773,32 +744,32 @@ impl<'a> Source<'a> {
 
         // compute the values of all non-alias bits
         enums.children.iter().for_each(|child| match child {
-            EnumsChild::Enum(enum_) => match &enum_.spec {
+            EnumsChild::Enum(en) => match &en.spec {
                 EnumSpec::Bitpos { bitpos, .. } => {
-                    let span = span!(Level::INFO, "bit", original_name = ?enum_.name, ?bitpos);
+                    let span = span!(Level::INFO, "bit", original_name = ?en.name, ?bitpos);
                     let _guard = span.enter();
 
-                    let original_name = &enum_.name;
+                    let original_name = &en.name;
                     let name = const_name(original_name, tag);
                     info!(?name, "computed rustified name");
 
                     bits.push(Bit::new_no_origin(original_name, name, 1 << *bitpos));
                 },
                 EnumSpec::Alias { alias, .. } => {
-                    let span = span!(Level::INFO, "bit alias", original_name = ?enum_.name, ?alias);
+                    let span = span!(Level::INFO, "bit alias", original_name = ?en.name, ?alias);
                     let _guard = span.enter();
 
-                    let original_name = &enum_.name;
+                    let original_name = &en.name;
                     let name = const_name(original_name, tag);
                     info!(?name, "computed rustified name");
 
                     aliases.push(Alias::new_no_origin(original_name, name, alias));
                 },
                 EnumSpec::Value { value, .. } => {
-                    let span = span!(Level::INFO, "bit", original_name = ?enum_.name, ?value);
+                    let span = span!(Level::INFO, "bit", original_name = ?en.name, ?value);
                     let _guard = span.enter();
 
-                    let original_name = &enum_.name;
+                    let original_name = &en.name;
                     let name = const_name(original_name, tag);
                     info!(?name, "computed rustified name");
 
@@ -810,15 +781,19 @@ impl<'a> Source<'a> {
 
                     bits.push(Bit::new_no_origin(original_name, name, value));
                 },
-                _ => unreachable!("unexpected enum value: {:?}", enum_),
+                _ => unreachable!("unexpected enum value: {:?}", en),
             },
-            EnumsChild::Unused(_) => (),
-            EnumsChild::Comment(_) => (),
+            EnumsChild::Unused(_) | EnumsChild::Comment(_) => (),
             other => panic!("unknown child type: {:?}", other),
         });
 
-        self.bitflags
-            .push(BitFlag::new_no_origin(original_name, name, width as _, bits, aliases));
+        self.bitflags.push(BitFlag::new_no_origin(
+            original_name,
+            name,
+            (width & 0xFF) as u8,
+            bits,
+            aliases,
+        ));
     }
 
     fn consts(&mut self, enums: &'a Enums) {
@@ -829,13 +804,13 @@ impl<'a> Source<'a> {
             self.origins.push(Origin::Core);
             |original_name, name, ty, expr| Const::new(original_name, name, ty, expr, Origin::Core)
         } else {
-            |original_name, name, ty, expr| Const::new_no_origin(original_name, name, ty, expr)
+            Const::new_no_origin
         };
 
         enums.children.iter().for_each(|child| match child {
-            EnumsChild::Enum(enum_) => match &enum_.spec {
+            EnumsChild::Enum(en) => match &en.spec {
                 EnumSpec::Alias { alias, .. } => {
-                    let original_name = &enum_.name;
+                    let original_name = &en.name;
 
                     let span = span!(Level::INFO, "const alias", ?original_name);
                     let _guard = span.enter();
@@ -852,7 +827,7 @@ impl<'a> Source<'a> {
                     ));
                 },
                 EnumSpec::Value { value, .. } => {
-                    let original_name = &enum_.name;
+                    let original_name = &en.name;
 
                     let span = span!(Level::INFO, "const", ?original_name);
                     let _guard = span.enter();
@@ -860,7 +835,7 @@ impl<'a> Source<'a> {
                     let name = const_name(original_name, None);
                     info!(?name, "generated rustified name");
 
-                    let ty = Ty::new(enum_.type_suffix.as_ref().unwrap(), "").1;
+                    let ty = Ty::new(en.type_suffix.as_ref().unwrap(), "").1;
                     info!(?ty, "parsed type");
 
                     let expr = Expr::new(value);
@@ -871,8 +846,7 @@ impl<'a> Source<'a> {
                 },
                 other => unreachable!("const spec: {:?}", other),
             },
-            EnumsChild::Unused(_) => (),
-            EnumsChild::Comment(_) => (),
+            EnumsChild::Unused(_) | EnumsChild::Comment(_) => (),
             other => panic!("unknown child type: {:?}", other),
         });
     }
@@ -884,12 +858,13 @@ impl<'a> Source<'a> {
         // determines the type of enums/consts to generate
         match enums.kind.as_ref().map(|s| s as &str) {
             Some("bitmask") => self.flagbits(enums),
-            Some("enum") => self.enum_(enums),
+            Some("enum") => self.en(enums),
             None => self.consts(enums),
             Some(kind) => panic!("unknown enums kind: `{}`", kind),
         }
     }
 
+    #[allow(clippy::case_sensitive_file_extension_comparisons)]
     fn type_(&mut self, ty: &'a Type) {
         // treats the special case of opaque types
         if let Some(requires) = &ty.requires {
@@ -934,7 +909,7 @@ impl<'a> Source<'a> {
             Some("basetype") => self.base_type(ty),
             Some("bitmask") => self.bitmask(ty),
             Some("enum") if ty.name.is_some() => {
-                debug!(name = ?ty.name.as_ref().unwrap(), "ignored enum declared in `types`")
+                debug!(name = ?ty.name.as_ref().unwrap(), "ignored enum declared in `types`");
             },
             Some("define") => debug!(name = ?ty.name, "ignored a define"),
             Some("include") => debug!("skipped include"),
@@ -996,8 +971,7 @@ impl<'a> Source<'a> {
                             None
                         }
                     })
-                    .map(|(_, ty)| ty)
-                    .unwrap_or_else(Ty::void),
+                    .map_or_else(Ty::void, |(_, ty)| ty),
             )
         } else {
             panic!("a base type must have a code snippet");
@@ -1216,6 +1190,6 @@ impl<'a> Source<'a> {
 
     #[inline]
     fn tags(&mut self, tags: &'a CommentedChildren<vk_parse::Tag>) {
-        self.tags.extend(tags.children.iter().map(From::from))
+        self.tags.extend(tags.children.iter().map(From::from));
     }
 }

@@ -37,15 +37,11 @@ unsafe impl Send for Documentation {}
 impl Documentation {
     /// Tries to find a documnetation element in the list of documentations
     pub fn find(&mut self, name: &str) -> Option<DocRef<'_>> {
-        if let Some(doc) = self.0.get(name) {
-            Some(DocRef(doc))
-        } else {
-            None
-        }
+        self.0.get(name).map(DocRef)
     }
 
     /// Adds the default "no doc" comment to an element
-    pub fn no_doc(&self, mut out: &mut TokenStream) {
+    pub fn no_doc(mut out: &mut TokenStream) {
         quote::quote_each_token! {
             out
 
@@ -277,7 +273,7 @@ impl<'a> DocRef<'a> {
     }
 
     /// Adds the copyright to the bottom of the documentation
-    pub fn copyright(&self, mut out: &mut TokenStream) {
+    pub fn copyright(mut out: &mut TokenStream) {
         quote::quote_each_token! {
             out
 

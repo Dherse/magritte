@@ -45,11 +45,10 @@ pub enum Origin<'a> {
 impl<'a> Origin<'a> {
     /// Checks whether a string matches a Vulkan core version string or not
     pub fn match_version(s: &str) -> bool {
-        match s {
-            "VK_VERSION_1_0" | "1.0" | "VK_VERSION_1_1" | "1.1" | "VK_VERSION_1_2" | "1.2" | "VK_VERSION_1_3"
-            | "1.3" => true,
-            _ => false,
-        }
+        matches!(
+            s,
+            "VK_VERSION_1_0" | "1.0" | "VK_VERSION_1_1" | "1.1" | "VK_VERSION_1_2" | "1.2" | "VK_VERSION_1_3" | "1.3"
+        )
     }
 
     /// Creates a new origin from a core version string
@@ -144,7 +143,9 @@ impl<'a> Origin<'a> {
     /// As a boolean check whether the origin is enabled or not
     pub fn as_bool_tokens(&self, var: &Ident) -> TokenStream {
         match self {
-            Origin::Unknown => quote! { true },
+            Origin::Unknown | Origin::Opaque | Origin::Core | Origin::Vulkan1_0 => quote::quote! {
+                true
+            },
             Origin::Extension(ext, _, _) => {
                 let ext_name = ext.trim_start_matches("VK_").to_case(Case::Snake);
                 let check = Ident::new(&ext_name, Span::call_site());
@@ -152,9 +153,6 @@ impl<'a> Origin<'a> {
                 quote! {
                     #var.#check()
                 }
-            },
-            Origin::Core | Origin::Vulkan1_0 => quote::quote! {
-                true
             },
             Origin::Vulkan1_1 => quote::quote! {
                 #var.version() >= Version::new(1, 1, 0)
@@ -165,16 +163,12 @@ impl<'a> Origin<'a> {
             Origin::Vulkan1_3 => quote::quote! {
                 #var.version() >= Version::new(1, 3, 0)
             },
-            Origin::Opaque => quote::quote! {
-                true
-            },
         }
     }
 
     /// As a result check whether the origin is enabled or not
     pub fn as_try_tokens(&self, var: &Ident) -> TokenStream {
         match self {
-            Origin::Unknown => quote! { Ok(()) },
             Origin::Extension(ext, _, _) => {
                 let ext_name = ext.trim_start_matches("VK_").to_case(Case::Snake);
                 let check = Ident::new(&format!("is_{}", ext_name), Span::call_site());
@@ -183,7 +177,7 @@ impl<'a> Origin<'a> {
                     #var.#check()
                 }
             },
-            Origin::Core | Origin::Vulkan1_0 => quote::quote! {
+            Origin::Core | Origin::Vulkan1_0 | Origin::Unknown | Origin::Opaque => quote::quote! {
                 Ok(())
             },
             Origin::Vulkan1_1 => quote::quote! {
@@ -194,9 +188,6 @@ impl<'a> Origin<'a> {
             },
             Origin::Vulkan1_3 => quote::quote! {
                 #var.min_version(Version::new(1, 3, 0))
-            },
-            Origin::Opaque => quote::quote! {
-                Ok(())
             },
         }
     }
@@ -311,7 +302,7 @@ impl<'a> Origin<'a> {
 
 impl<'a> ToTokens for Origin<'a> {
     fn to_tokens(&self, tokens: &mut proc_macro2::TokenStream) {
-        tokens.extend(self.as_path_tokens())
+        tokens.extend(self.as_path_tokens());
     }
 }
 

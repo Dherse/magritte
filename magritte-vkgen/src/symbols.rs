@@ -165,12 +165,6 @@ where
         self.values.iter_mut().map(|value| (value.name(), value))
     }
 
-    /// Turns the symbol table into an iterator
-    #[inline]
-    pub fn into_iter(self) -> smallvec::IntoIter<[T; 8]> {
-        self.values.into_iter()
-    }
-
     /// Gets an element from its index
     #[inline]
     pub fn get(&self, index: usize) -> Option<&T> {
@@ -364,7 +358,7 @@ where
     type IntoIter = smallvec::IntoIter<[T; 8]>;
 
     fn into_iter(self) -> Self::IntoIter {
-        self.into_iter()
+        self.values.into_iter()
     }
 }
 
@@ -373,7 +367,7 @@ where
     T: SymbolName<'a>,
 {
     fn extend<A: IntoIterator<Item = T>>(&mut self, inputs: A) {
-        self.extend(inputs.into_iter())
+        self.extend(inputs.into_iter());
     }
 }
 

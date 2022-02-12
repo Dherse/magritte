@@ -18,7 +18,7 @@ pub fn type_name<'a>(name: &'a str, tag_list: &[Tag<'a>]) -> String {
 
     let mut index_tag = None;
     for tag in tag_list {
-        if let Some(index) = trimmed.rfind(&tag as &str) {
+        if let Some(index) = trimmed.rfind(tag as &str) {
             index_tag = Some(index);
         }
     }
@@ -51,7 +51,7 @@ pub fn type_name<'a>(name: &'a str, tag_list: &[Tag<'a>]) -> String {
 #[inline]
 pub fn tag_of_type<'a>(name: &str, tag_list: &'a [Tag<'a>]) -> Option<&'a Tag<'a>> {
     for tag in tag_list {
-        if name.contains(&tag as &str) {
+        if name.contains(tag as &str) {
             return Some(tag);
         }
     }
@@ -87,7 +87,7 @@ pub fn funcpointer_name<'a>(name: &'a str, tag_list: &[Tag<'a>]) -> String {
 
     let mut index_tag = None;
     for tag in tag_list {
-        if let Some(index) = trimmed.rfind(&tag as &str) {
+        if let Some(index) = trimmed.rfind(tag as &str) {
             index_tag = Some(index);
         }
     }

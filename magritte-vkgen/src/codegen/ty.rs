@@ -59,7 +59,7 @@ impl<'a> Ty<'a> {
     /// Turns a type into a tokenized type and an optional lifetime argument
     pub fn as_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> (Type, bool) {
         match self {
-            Ty::Native(_) => (self.as_const_ty(source, imports), false),
+            Ty::Native(_) | Ty::StringArray(_) => (self.as_const_ty(source, imports), false),
             Ty::Pointer(mutability, ty) => {
                 if ty.has_opaque(source) {
                     (
@@ -81,7 +81,6 @@ impl<'a> Ty<'a> {
                 .as_type_ref()
                 .expect("not a type")
                 .as_type(source, imports),
-            Ty::StringArray(_) => (self.as_const_ty(source, imports), false),
             Ty::NullTerminatedString(_) => (Native::NullTerminatedString.as_type(imports), true),
             Ty::Array(ty, len) => {
                 let (elem, lt) = ty.as_ty(source, imports);
@@ -122,7 +121,7 @@ impl<'a> Ty<'a> {
     pub(super) fn as_const_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> Type {
         match self {
             Ty::Native(native) => native.as_type(imports),
-            Ty::Pointer(mutability, ty) => Type::Ptr(TypePtr {
+            Ty::Pointer(mutability, ty) | Ty::Slice(mutability, ty, _) => Type::Ptr(TypePtr {
                 star_token: Default::default(),
                 const_token: mutability.as_const_token(),
                 mutability: mutability.as_mutability_token(),
@@ -151,12 +150,6 @@ impl<'a> Ty<'a> {
                     len,
                 })
             },
-            Ty::Slice(mutability, ty, _) => Type::Ptr(TypePtr {
-                star_token: Default::default(),
-                const_token: mutability.as_const_token(),
-                mutability: mutability.as_mutability_token(),
-                elem: box ty.as_const_ty(source, imports),
-            }),
             Ty::NullTerminatedString(_) => Native::NullTerminatedString.as_const_type(imports),
         }
     }
@@ -210,7 +203,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
                 arguments: PathArguments::AngleBracketed(AngleBracketedGenericArguments {
                     colon2_token: None,
                     lt_token: Default::default(),
-                    args: Punctuated::from_iter(once(lifetime_as_generic_argument())),
+                    args: once(lifetime_as_generic_argument()).collect(),
                     gt_token: Default::default(),
                 }),
             }
@@ -290,14 +283,13 @@ impl Native {
                         qself: None,
                         path: Path {
                             leading_colon: None,
-                            segments: Punctuated::from_iter(
-                                [
-                                    PathSegment::from(Ident::new("std", Span::call_site())),
-                                    PathSegment::from(Ident::new("ffi", Span::call_site())),
-                                    PathSegment::from(Ident::new("CStr", Span::call_site())),
-                                ]
-                                .into_iter(),
-                            ),
+                            segments: [
+                                PathSegment::from(Ident::new("std", Span::call_site())),
+                                PathSegment::from(Ident::new("ffi", Span::call_site())),
+                                PathSegment::from(Ident::new("CStr", Span::call_site())),
+                            ]
+                            .into_iter()
+                            .collect(),
                         },
                     }),
                 }),
@@ -353,58 +345,54 @@ impl Native {
                 qself: None,
                 path: Path {
                     leading_colon: None,
-                    segments: Punctuated::from_iter(
-                        [
-                            PathSegment::from(Ident::new("std", Span::call_site())),
-                            PathSegment::from(Ident::new("ffi", Span::call_site())),
-                            PathSegment::from(Ident::new("c_void", Span::call_site())),
-                        ]
-                        .into_iter(),
-                    ),
+                    segments: [
+                        PathSegment::from(Ident::new("std", Span::call_site())),
+                        PathSegment::from(Ident::new("ffi", Span::call_site())),
+                        PathSegment::from(Ident::new("c_void", Span::call_site())),
+                    ]
+                    .into_iter()
+                    .collect(),
                 },
             },
             Native::Char => TypePath {
                 qself: None,
                 path: Path {
                     leading_colon: None,
-                    segments: Punctuated::from_iter(
-                        [
-                            PathSegment::from(Ident::new("std", Span::call_site())),
-                            PathSegment::from(Ident::new("os", Span::call_site())),
-                            PathSegment::from(Ident::new("raw", Span::call_site())),
-                            PathSegment::from(Ident::new("c_char", Span::call_site())),
-                        ]
-                        .into_iter(),
-                    ),
+                    segments: [
+                        PathSegment::from(Ident::new("std", Span::call_site())),
+                        PathSegment::from(Ident::new("os", Span::call_site())),
+                        PathSegment::from(Ident::new("raw", Span::call_site())),
+                        PathSegment::from(Ident::new("c_char", Span::call_site())),
+                    ]
+                    .into_iter()
+                    .collect(),
                 },
             },
             Native::UChar => TypePath {
                 qself: None,
                 path: Path {
                     leading_colon: None,
-                    segments: Punctuated::from_iter(
-                        [
-                            PathSegment::from(Ident::new("std", Span::call_site())),
-                            PathSegment::from(Ident::new("os", Span::call_site())),
-                            PathSegment::from(Ident::new("raw", Span::call_site())),
-                            PathSegment::from(Ident::new("c_uchar", Span::call_site())),
-                        ]
-                        .into_iter(),
-                    ),
+                    segments: [
+                        PathSegment::from(Ident::new("std", Span::call_site())),
+                        PathSegment::from(Ident::new("os", Span::call_site())),
+                        PathSegment::from(Ident::new("raw", Span::call_site())),
+                        PathSegment::from(Ident::new("c_uchar", Span::call_site())),
+                    ]
+                    .into_iter()
+                    .collect(),
                 },
             },
             Native::NullTerminatedString => TypePath {
                 qself: None,
                 path: Path {
                     leading_colon: None,
-                    segments: Punctuated::from_iter(
-                        [
-                            PathSegment::from(Ident::new("std", Span::call_site())),
-                            PathSegment::from(Ident::new("ffi", Span::call_site())),
-                            PathSegment::from(Ident::new("CStr", Span::call_site())),
-                        ]
-                        .into_iter(),
-                    ),
+                    segments: [
+                        PathSegment::from(Ident::new("std", Span::call_site())),
+                        PathSegment::from(Ident::new("ffi", Span::call_site())),
+                        PathSegment::from(Ident::new("CStr", Span::call_site())),
+                    ]
+                    .into_iter()
+                    .collect(),
                 },
             },
             _ => TypePath {
