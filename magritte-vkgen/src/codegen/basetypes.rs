@@ -3,7 +3,7 @@ use tracing::warn;
 
 use crate::{
     codegen::alias_of,
-    doc::{DocRef, Documentation, Queryable},
+    doc::{Documentation, Queryable},
     imports::Imports,
     source::{Basetype, Source},
 };
@@ -49,7 +49,7 @@ impl<'a> Basetype<'a> {
             doc.related(source, out);
 
             // adds the copyright of the Vulkan docs
-            DocRef::copyright(out);
+            doc.copyright(out);
 
             Some(())
         } else {

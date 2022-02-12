@@ -71,18 +71,50 @@ where
             "code" if self.code_as_transparent => self.visit_transparent(element),
             "pre" => self.visit_pre(element),
             "strong" => self.visit_strong(element),
-            "em" => self.visit_em(element),
+            "em" | "i" => self.visit_em(element),
             "sub" => self.visit_sub(element),
             "sup" => self.visit_sup(element),
             "div" | "p" => self.visit_transparent(element),
             "span" => self.visit_span(element),
             "table" => self.visit_table(element),
+            "h1" => self.visit_title(element, 1),
+            "h2" => self.visit_title(element, 2),
+            "h3" => self.visit_title(element, 3),
+            "h4" => self.visit_title(element, 4),
+            "h5" => self.visit_title(element, 5),
+            "h6" => self.visit_title(element, 6),
             "br" => {
                 self.out.push('\n');
                 Some(())
             },
             other => unreachable!("unsupported element: {}", other),
         }
+    }
+
+    fn visit_title(&mut self, element: ElementRef<'_>, height: u32) -> Option<()> {
+        // if there is no children, return `None`
+        if !element.has_children() {
+            return None;
+        }
+
+        match height {
+            1 => self.out.push_str("\n# "),
+            2 => self.out.push_str("\n## "),
+            3 => self.out.push_str("\n### "),
+            _ => self.out.push_str("\n** "),
+        }
+
+        for child in element.children() {
+            self.visit(child);
+        }
+
+        if height > 3 {
+            self.out.push_str("**\n");
+        } else {
+            self.out.push('\n');
+        }
+
+        Some(())
     }
 
     #[allow(clippy::unused_self)]

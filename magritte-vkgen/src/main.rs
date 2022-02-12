@@ -54,12 +54,20 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
 
     info!("Got documentation");
 
+    rayon::ThreadPoolBuilder::new()
+        .stack_size(64 << 20)
+        .build_global()
+        .unwrap();
+
+    info!("Built the thread pool");
+
     source
         .generate_code(&mut doc)
         .into_par_iter()
-        .for_each(|CodeOut(origin, imports, code)| {
+        .for_each(|CodeOut(origin, imports, header, code)| {
             let mut out = String::with_capacity(1 << 20);
 
+            write!(out, "{}", header.to_token_stream()).unwrap();
             write!(out, "{}", imports.to_token_stream()).unwrap();
             write!(out, "{}", code).unwrap();
 

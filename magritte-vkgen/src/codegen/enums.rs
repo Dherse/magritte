@@ -4,7 +4,7 @@ use quote::quote;
 use tracing::warn;
 
 use crate::{
-    doc::{DocRef, Documentation},
+    doc::Documentation,
     imports::Imports,
     origin::Origin,
     source::{Alias, Bit, Enum, Source},
@@ -197,7 +197,7 @@ impl<'a> Enum<'a> {
             doc.related(source, out);
 
             // adds the copyright of the Vulkan docs
-            DocRef::copyright(out);
+            doc.copyright(out);
 
             Some(variants)
         } else {

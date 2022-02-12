@@ -245,7 +245,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
         match self {
             TypeRef::OpaqueType(_) | TypeRef::Handle(_) | TypeRef::Basetype(_) => None,
             TypeRef::Alias(alias) => source
-                .find(alias.original_name())
+                .find(alias.of())
                 .expect("alias missing")
                 .as_type_ref()
                 .expect("alias is not a type")
