@@ -166,7 +166,7 @@ impl DescriptorUpdateTemplateType {
     ///
     ///Provided by [`crate::extensions::khr_descriptor_update_template`]
     pub const DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR: Self =
-        Self::VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET;
+        Self::DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -254,12 +254,12 @@ impl PointClippingBehavior {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_maintenance_2`]
-    pub const POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES_KHR: Self = Self::VK_POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES;
+    pub const POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES_KHR: Self = Self::POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_maintenance_2`]
     pub const POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY_KHR: Self =
-        Self::VK_POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY;
+        Self::POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -345,11 +345,11 @@ impl TessellationDomainOrigin {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_maintenance_2`]
-    pub const TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT_KHR: Self = Self::VK_TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT;
+    pub const TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT_KHR: Self = Self::TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_maintenance_2`]
-    pub const TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT_KHR: Self = Self::VK_TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT;
+    pub const TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT_KHR: Self = Self::TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -488,25 +488,24 @@ impl SamplerYcbcrModelConversion {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_sampler_ycbcr_conversion`]
-    pub const SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY_KHR: Self =
-        Self::VK_SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY;
+    pub const SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY_KHR: Self = Self::SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_sampler_ycbcr_conversion`]
     pub const SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_IDENTITY_KHR: Self =
-        Self::VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_IDENTITY;
+        Self::SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_IDENTITY;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_sampler_ycbcr_conversion`]
-    pub const SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_709_KHR: Self = Self::VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_709;
+    pub const SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_709_KHR: Self = Self::SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_709;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_sampler_ycbcr_conversion`]
-    pub const SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_601_KHR: Self = Self::VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_601;
+    pub const SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_601_KHR: Self = Self::SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_601;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_sampler_ycbcr_conversion`]
-    pub const SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020_KHR: Self = Self::VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020;
+    pub const SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020_KHR: Self = Self::SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -601,11 +600,11 @@ impl SamplerYcbcrRange {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_sampler_ycbcr_conversion`]
-    pub const SAMPLER_YCBCR_RANGE_ITU_FULL_KHR: Self = Self::VK_SAMPLER_YCBCR_RANGE_ITU_FULL;
+    pub const SAMPLER_YCBCR_RANGE_ITU_FULL_KHR: Self = Self::SAMPLER_YCBCR_RANGE_ITU_FULL;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_sampler_ycbcr_conversion`]
-    pub const SAMPLER_YCBCR_RANGE_ITU_NARROW_KHR: Self = Self::VK_SAMPLER_YCBCR_RANGE_ITU_NARROW;
+    pub const SAMPLER_YCBCR_RANGE_ITU_NARROW_KHR: Self = Self::SAMPLER_YCBCR_RANGE_ITU_NARROW;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -690,11 +689,11 @@ impl ChromaLocation {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_sampler_ycbcr_conversion`]
-    pub const CHROMA_LOCATION_COSITED_EVEN_KHR: Self = Self::VK_CHROMA_LOCATION_COSITED_EVEN;
+    pub const CHROMA_LOCATION_COSITED_EVEN_KHR: Self = Self::CHROMA_LOCATION_COSITED_EVEN;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_sampler_ycbcr_conversion`]
-    pub const CHROMA_LOCATION_MIDPOINT_KHR: Self = Self::VK_CHROMA_LOCATION_MIDPOINT;
+    pub const CHROMA_LOCATION_MIDPOINT_KHR: Self = Self::CHROMA_LOCATION_MIDPOINT;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {

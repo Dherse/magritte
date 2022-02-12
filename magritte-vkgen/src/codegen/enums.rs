@@ -1,5 +1,5 @@
 use ahash::AHashMap;
-use proc_macro2::{Ident, Literal, Span, TokenStream};
+use proc_macro2::{Literal, TokenStream};
 use quote::quote;
 use tracing::warn;
 
@@ -13,7 +13,7 @@ use crate::{
 use super::alias_of;
 
 impl<'a> Alias<'a> {
-    fn generate_code(&self, parent: &Origin<'a>, doc: &AHashMap<String, String>) -> TokenStream {
+    fn generate_code(&self, parent: &Enum<'a>, doc: &AHashMap<String, String>) -> TokenStream {
         // get the doc of the bit
         let doc = doc.get(self.of()).map_or_else(
             || quote! { #[doc = "No documentation found"]},
@@ -21,7 +21,7 @@ impl<'a> Alias<'a> {
         );
 
         // get the "provided by" of the bit
-        let provided_by = (parent != self.origin()).then(|| {
+        let provided_by = (parent.origin() != self.origin()).then(|| {
             let path = self.origin().as_path_str();
             let doc = format!("\nProvided by [`{}`]", path);
             quote! {
@@ -31,7 +31,13 @@ impl<'a> Alias<'a> {
 
         // get the name
         let name = self.as_ident();
-        let of = Ident::new(self.of(), Span::call_site());
+
+        let of = parent
+            .variants()
+            .get_by_either(self.of())
+            .map(Bit::as_ident)
+            .or_else(|| parent.aliases.get_by_either(self.of()).map(Alias::as_ident))
+            .unwrap();
 
         quote! {
             #doc
@@ -113,7 +119,7 @@ impl<'a> Enum<'a> {
             .aliases()
             .iter()
             .filter(|v| !v.origin().is_disabled())
-            .map(|v| v.generate_code(self.origin(), &variant_docs));
+            .map(|v| v.generate_code(self, &variant_docs));
 
         // generate the debug match arms of each bit
         let debugs = self

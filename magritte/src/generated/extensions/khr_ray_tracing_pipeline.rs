@@ -130,17 +130,17 @@ impl RayTracingShaderGroupTypeKHR {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing`]
-    pub const RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV: Self = Self::VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_KHR;
+    pub const RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV: Self = Self::RAY_TRACING_SHADER_GROUP_TYPE_GENERAL;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing`]
     pub const RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_NV: Self =
-        Self::VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR;
+        Self::RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing`]
     pub const RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV: Self =
-        Self::VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR;
+        Self::RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {

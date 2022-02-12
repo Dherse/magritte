@@ -84,11 +84,11 @@ impl PerformanceCounterScopeKHR {
     ///scope is zero or more commands.
     pub const PERFORMANCE_COUNTER_SCOPE_COMMAND: Self = Self(2);
     ///No documentation found
-    pub const QUERY_SCOPE_COMMAND_BUFFER: Self = Self::VK_PERFORMANCE_COUNTER_SCOPE_COMMAND_BUFFER_KHR;
+    pub const QUERY_SCOPE_COMMAND_BUFFER: Self = Self::PERFORMANCE_COUNTER_SCOPE_COMMAND_BUFFER;
     ///No documentation found
-    pub const QUERY_SCOPE_RENDER_PASS: Self = Self::VK_PERFORMANCE_COUNTER_SCOPE_RENDER_PASS_KHR;
+    pub const QUERY_SCOPE_RENDER_PASS: Self = Self::PERFORMANCE_COUNTER_SCOPE_RENDER_PASS;
     ///No documentation found
-    pub const QUERY_SCOPE_COMMAND: Self = Self::VK_PERFORMANCE_COUNTER_SCOPE_COMMAND_KHR;
+    pub const QUERY_SCOPE_COMMAND: Self = Self::PERFORMANCE_COUNTER_SCOPE_COMMAND;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {

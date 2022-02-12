@@ -29,8 +29,6 @@ pub const NV_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME: &'static CStr = crate::cs
 ///    VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_TASKS_NV = 7,
 ///} VkIndirectCommandsTokenTypeNV;
 ///```
-///# Description
-///
 ///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`IndirectCommandsLayoutTokenNV`]

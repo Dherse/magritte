@@ -126,11 +126,11 @@ impl CopyAccelerationStructureModeKHR {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing`]
-    pub const COPY_ACCELERATION_STRUCTURE_MODE_CLONE_NV: Self = Self::VK_COPY_ACCELERATION_STRUCTURE_MODE_CLONE_KHR;
+    pub const COPY_ACCELERATION_STRUCTURE_MODE_CLONE_NV: Self = Self::COPY_ACCELERATION_STRUCTURE_MODE_CLONE;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing`]
-    pub const COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_NV: Self = Self::VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR;
+    pub const COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_NV: Self = Self::COPY_ACCELERATION_STRUCTURE_MODE_COMPACT;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -300,11 +300,11 @@ impl AccelerationStructureTypeKHR {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing`]
-    pub const ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_NV: Self = Self::VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR;
+    pub const ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_NV: Self = Self::ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing`]
-    pub const ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_NV: Self = Self::VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_KHR;
+    pub const ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_NV: Self = Self::ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -392,11 +392,11 @@ impl GeometryTypeKHR {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing`]
-    pub const GEOMETRY_TYPE_TRIANGLES_NV: Self = Self::VK_GEOMETRY_TYPE_TRIANGLES_KHR;
+    pub const GEOMETRY_TYPE_TRIANGLES_NV: Self = Self::GEOMETRY_TYPE_TRIANGLES;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing`]
-    pub const GEOMETRY_TYPE_AABBS_NV: Self = Self::VK_GEOMETRY_TYPE_AABBS_KHR;
+    pub const GEOMETRY_TYPE_AABBS_NV: Self = Self::GEOMETRY_TYPE_AABBS;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {

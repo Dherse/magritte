@@ -110,6 +110,10 @@ impl<'a> DocRef<'a> {
 
         visitor.out.trim_in_place();
 
+        if visitor.out.is_empty() {
+            return None;
+        }
+
         let lines = visitor.out.split('\n');
         quote::quote_each_token! {
             out
@@ -161,6 +165,10 @@ impl<'a> DocRef<'a> {
             Cow::Owned(text) => text,
         };
 
+        if text.is_empty() {
+            return None;
+        }
+
         let lines = text.split('\n');
         quote::quote_each_token! {
             out
@@ -211,6 +219,11 @@ impl<'a> DocRef<'a> {
 
         if is_any {
             let text = text.take().unwrap();
+
+            if text.is_empty() {
+                return None;
+            }
+
             let lines = text.split('\n');
             quote::quote_each_token! {
                 out
@@ -260,6 +273,10 @@ impl<'a> DocRef<'a> {
             Cow::Borrowed(_) => visitor.out,
             Cow::Owned(text) => text,
         };
+
+        if text.is_empty() {
+            return None;
+        }
 
         let lines = text.split('\n');
         quote::quote_each_token! {

@@ -133,11 +133,11 @@ impl SemaphoreType {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_timeline_semaphore`]
-    pub const SEMAPHORE_TYPE_BINARY_KHR: Self = Self::VK_SEMAPHORE_TYPE_BINARY;
+    pub const SEMAPHORE_TYPE_BINARY_KHR: Self = Self::SEMAPHORE_TYPE_BINARY;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_timeline_semaphore`]
-    pub const SEMAPHORE_TYPE_TIMELINE_KHR: Self = Self::VK_SEMAPHORE_TYPE_TIMELINE;
+    pub const SEMAPHORE_TYPE_TIMELINE_KHR: Self = Self::SEMAPHORE_TYPE_TIMELINE;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -235,15 +235,15 @@ impl SamplerReductionMode {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_sampler_filter_minmax`]
-    pub const SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE_EXT: Self = Self::VK_SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE;
+    pub const SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE_EXT: Self = Self::SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_sampler_filter_minmax`]
-    pub const SAMPLER_REDUCTION_MODE_MIN_EXT: Self = Self::VK_SAMPLER_REDUCTION_MODE_MIN;
+    pub const SAMPLER_REDUCTION_MODE_MIN_EXT: Self = Self::SAMPLER_REDUCTION_MODE_MIN;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_sampler_filter_minmax`]
-    pub const SAMPLER_REDUCTION_MODE_MAX_EXT: Self = Self::VK_SAMPLER_REDUCTION_MODE_MAX;
+    pub const SAMPLER_REDUCTION_MODE_MAX_EXT: Self = Self::SAMPLER_REDUCTION_MODE_MAX;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -315,8 +315,6 @@ impl SamplerReductionMode {
 ///// Provided by VK_KHR_driver_properties
 ///typedef VkDriverId VkDriverIdKHR;
 ///```
-///# Description
-///
 ///# Related
 /// - [`VK_KHR_driver_properties`]
 /// - [`crate::vulkan1_2`]
@@ -420,51 +418,51 @@ impl DriverId {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_driver_properties`]
-    pub const DRIVER_ID_AMD_PROPRIETARY_KHR: Self = Self::VK_DRIVER_ID_AMD_PROPRIETARY;
+    pub const DRIVER_ID_AMD_PROPRIETARY_KHR: Self = Self::DRIVER_ID_AMD_PROPRIETARY;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_driver_properties`]
-    pub const DRIVER_ID_AMD_OPEN_SOURCE_KHR: Self = Self::VK_DRIVER_ID_AMD_OPEN_SOURCE;
+    pub const DRIVER_ID_AMD_OPEN_SOURCE_KHR: Self = Self::DRIVER_ID_AMD_OPEN_SOURCE;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_driver_properties`]
-    pub const DRIVER_ID_MESA_RADV_KHR: Self = Self::VK_DRIVER_ID_MESA_RADV;
+    pub const DRIVER_ID_MESA_RADV_KHR: Self = Self::DRIVER_ID_MESA_RADV;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_driver_properties`]
-    pub const DRIVER_ID_NVIDIA_PROPRIETARY_KHR: Self = Self::VK_DRIVER_ID_NVIDIA_PROPRIETARY;
+    pub const DRIVER_ID_NVIDIA_PROPRIETARY_KHR: Self = Self::DRIVER_ID_NVIDIA_PROPRIETARY;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_driver_properties`]
-    pub const DRIVER_ID_INTEL_PROPRIETARY_WINDOWS_KHR: Self = Self::VK_DRIVER_ID_INTEL_PROPRIETARY_WINDOWS;
+    pub const DRIVER_ID_INTEL_PROPRIETARY_WINDOWS_KHR: Self = Self::DRIVER_ID_INTEL_PROPRIETARY_WINDOWS;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_driver_properties`]
-    pub const DRIVER_ID_INTEL_OPEN_SOURCE_MESA_KHR: Self = Self::VK_DRIVER_ID_INTEL_OPEN_SOURCE_MESA;
+    pub const DRIVER_ID_INTEL_OPEN_SOURCE_MESA_KHR: Self = Self::DRIVER_ID_INTEL_OPEN_SOURCE_MESA;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_driver_properties`]
-    pub const DRIVER_ID_IMAGINATION_PROPRIETARY_KHR: Self = Self::VK_DRIVER_ID_IMAGINATION_PROPRIETARY;
+    pub const DRIVER_ID_IMAGINATION_PROPRIETARY_KHR: Self = Self::DRIVER_ID_IMAGINATION_PROPRIETARY;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_driver_properties`]
-    pub const DRIVER_ID_QUALCOMM_PROPRIETARY_KHR: Self = Self::VK_DRIVER_ID_QUALCOMM_PROPRIETARY;
+    pub const DRIVER_ID_QUALCOMM_PROPRIETARY_KHR: Self = Self::DRIVER_ID_QUALCOMM_PROPRIETARY;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_driver_properties`]
-    pub const DRIVER_ID_ARM_PROPRIETARY_KHR: Self = Self::VK_DRIVER_ID_ARM_PROPRIETARY;
+    pub const DRIVER_ID_ARM_PROPRIETARY_KHR: Self = Self::DRIVER_ID_ARM_PROPRIETARY;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_driver_properties`]
-    pub const DRIVER_ID_GOOGLE_SWIFTSHADER_KHR: Self = Self::VK_DRIVER_ID_GOOGLE_SWIFTSHADER;
+    pub const DRIVER_ID_GOOGLE_SWIFTSHADER_KHR: Self = Self::DRIVER_ID_GOOGLE_SWIFTSHADER;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_driver_properties`]
-    pub const DRIVER_ID_GGP_PROPRIETARY_KHR: Self = Self::VK_DRIVER_ID_GGP_PROPRIETARY;
+    pub const DRIVER_ID_GGP_PROPRIETARY_KHR: Self = Self::DRIVER_ID_GGP_PROPRIETARY;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_driver_properties`]
-    pub const DRIVER_ID_BROADCOM_PROPRIETARY_KHR: Self = Self::VK_DRIVER_ID_BROADCOM_PROPRIETARY;
+    pub const DRIVER_ID_BROADCOM_PROPRIETARY_KHR: Self = Self::DRIVER_ID_BROADCOM_PROPRIETARY;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -562,15 +560,15 @@ impl ShaderFloatControlsIndependence {
     ///
     ///Provided by [`crate::extensions::khr_shader_float_controls`]
     pub const SHADER_FLOAT_CONTROLS_INDEPENDENCE_32_BIT_ONLY_KHR: Self =
-        Self::VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_32_BIT_ONLY;
+        Self::SHADER_FLOAT_CONTROLS_INDEPENDENCE_32_BIT_ONLY;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_shader_float_controls`]
-    pub const SHADER_FLOAT_CONTROLS_INDEPENDENCE_ALL_KHR: Self = Self::VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_ALL;
+    pub const SHADER_FLOAT_CONTROLS_INDEPENDENCE_ALL_KHR: Self = Self::SHADER_FLOAT_CONTROLS_INDEPENDENCE_ALL;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_shader_float_controls`]
-    pub const SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE_KHR: Self = Self::VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE;
+    pub const SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE_KHR: Self = Self::SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {

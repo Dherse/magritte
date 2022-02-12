@@ -120,13 +120,13 @@ impl QueueGlobalPriorityKHR {
     ///Useful for critical tasks.
     pub const QUEUE_GLOBAL_PRIORITY_REALTIME: Self = Self(1024);
     ///No documentation found
-    pub const QUEUE_GLOBAL_PRIORITY_LOW_EXT: Self = Self::VK_QUEUE_GLOBAL_PRIORITY_LOW_KHR;
+    pub const QUEUE_GLOBAL_PRIORITY_LOW_EXT: Self = Self::QUEUE_GLOBAL_PRIORITY_LOW;
     ///No documentation found
-    pub const QUEUE_GLOBAL_PRIORITY_MEDIUM_EXT: Self = Self::VK_QUEUE_GLOBAL_PRIORITY_MEDIUM_KHR;
+    pub const QUEUE_GLOBAL_PRIORITY_MEDIUM_EXT: Self = Self::QUEUE_GLOBAL_PRIORITY_MEDIUM;
     ///No documentation found
-    pub const QUEUE_GLOBAL_PRIORITY_HIGH_EXT: Self = Self::VK_QUEUE_GLOBAL_PRIORITY_HIGH_KHR;
+    pub const QUEUE_GLOBAL_PRIORITY_HIGH_EXT: Self = Self::QUEUE_GLOBAL_PRIORITY_HIGH;
     ///No documentation found
-    pub const QUEUE_GLOBAL_PRIORITY_REALTIME_EXT: Self = Self::VK_QUEUE_GLOBAL_PRIORITY_REALTIME_KHR;
+    pub const QUEUE_GLOBAL_PRIORITY_REALTIME_EXT: Self = Self::QUEUE_GLOBAL_PRIORITY_REALTIME;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {

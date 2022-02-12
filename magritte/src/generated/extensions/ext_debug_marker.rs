@@ -79,8 +79,6 @@ pub const EXT_DEBUG_MARKER_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 /// VK_DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_EXT,
 ///} VkDebugReportObjectTypeEXT;
 ///```
-///# Description
-///
 ///# Related
 /// - [`VK_EXT_debug_marker`]
 /// - [`VK_EXT_debug_report`]
@@ -328,23 +326,21 @@ impl DebugReportObjectTypeEXT {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT: Self =
-        Self::VK_DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_CALLBACK_EXT_EXT;
+    pub const DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT: Self = Self::DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_CALLBACK;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE: Self =
-        Self::VK_DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT_EXT;
+    pub const DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE: Self = Self::DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_descriptor_update_template`]
     pub const DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR: Self =
-        Self::VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_EXT;
+        Self::DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE;
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_sampler_ycbcr_conversion`]
     pub const DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_KHR: Self =
-        Self::VK_DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_EXT;
+        Self::DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
