@@ -149,6 +149,26 @@ impl<'a> Source<'a> {
             }
         }
 
+        info!("Source read:");
+        info!(" - {:3} vendors", this.vendors.len());
+        info!(" - {:3} tags", this.tags.len());
+        info!(" - {:3} extensions", this.extensions.len());
+        info!(" - {:3} opaque types", this.opaque_types.len());
+        info!(" - {:3} type aliases", this.aliases.len());
+        info!(" - {:3} structs", this.structs.len());
+        info!(" - {:3} unions", this.unions.len());
+        info!(" - {:3} function pointers", this.funcpointers.len());
+        info!(" - {:3} basetypes", this.basetypes.len());
+        info!(" - {:3} bitmasks", this.bitmasks.len());
+        info!(" - {:3} constants", this.constants.len());
+        info!(" - {:3} constant aliases", this.constant_aliases.len());
+        info!(" - {:3} bitflags", this.bitflags.len());
+        info!(" - {:3} enums", this.enums.len());
+        info!(" - {:3} command aliases", this.command_aliases.len());
+        info!(" - {:3} functions", this.functions.len());
+        info!(" - {:3} commands", this.commands.len());
+        info!(" - {:3} origins", this.origins.len());
+
         this
     }
 

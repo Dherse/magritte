@@ -14,7 +14,8 @@ You will need to close this repository recursively in order to get the `vendors`
 You will then need to run a docker bash:
 
 ```sh
-docker run --user `id -u`:`id -g` -it --rm -v {path-to-vendors}/Vulkan-Docs:/vulkan khronosgroup/docker-images:asciidoctor-spec /bin bash
+cd vendors
+docker run --user `id -u`:`id -g` -it --rm -v Vulkan-Docs:/vulkan khronosgroup/docker-images:asciidoctor-spec /bin bash
 ```
 
 You will finally need to build the spec (in the opened docker bash)
