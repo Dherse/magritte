@@ -2,7 +2,7 @@ use std::borrow::Cow;
 
 use proc_macro2::{Ident, Span};
 
-use crate::{origin::Origin, symbols::SymbolName};
+use crate::{doc::Queryable, origin::Origin, symbols::SymbolName};
 
 /// A Vulkan handle
 #[derive(Debug, Clone, PartialEq)]
@@ -16,26 +16,47 @@ pub struct Handle<'a> {
     /// The parent (owner) of this type
     pub parent: Option<Cow<'a, str>>,
 
+    /// Is the handle dispatchable?
+    pub dispatchable: bool,
+
     /// The origin (extension or Vulkan version)
     pub origin: Origin<'a>,
+}
+
+impl<'a> Queryable for Handle<'a> {
+    fn find(&self, _: &str) -> Option<&str> {
+        None
+    }
 }
 
 impl<'a> Handle<'a> {
     /// Creates a new handle from its parent and name
     #[inline]
-    pub fn new(original_name: &'a str, name: String, parent: Option<Cow<'a, str>>, origin: Origin<'a>) -> Self {
+    pub fn new(
+        original_name: &'a str,
+        name: String,
+        parent: Option<Cow<'a, str>>,
+        dispatchable: bool,
+        origin: Origin<'a>,
+    ) -> Self {
         Self {
             original_name: Cow::Borrowed(original_name),
             name,
             parent,
+            dispatchable,
             origin,
         }
     }
 
     /// Creates a new handle from its parent with a default origin
     #[inline]
-    pub fn new_no_origin(original_name: &'a str, name: String, parent: Option<Cow<'a, str>>) -> Self {
-        Self::new(original_name, name, parent, Origin::Unknown)
+    pub fn new_no_origin(
+        original_name: &'a str,
+        name: String,
+        dispatchable: bool,
+        parent: Option<Cow<'a, str>>,
+    ) -> Self {
+        Self::new(original_name, name, parent, dispatchable, Origin::Unknown)
     }
 
     /// Get a reference to the handle's original name.
@@ -56,6 +77,12 @@ impl<'a> Handle<'a> {
     /// Get a reference to the handle's fields.
     pub fn parent(&self) -> Option<&Cow<'a, str>> {
         self.parent.as_ref()
+    }
+
+    /// Is the handle dispatchable (an opaque pointer) or non-dispatchable (a 64 bit integer)
+    #[inline]
+    pub fn dispatchable(&self) -> bool {
+        self.dispatchable
     }
 
     /// Get a reference to the handle's origin.

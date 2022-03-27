@@ -187,3 +187,60 @@ impl<'lt> DebugReportCallbackCreateInfoEXT<'lt> {
         self
     }
 }
+///[VkDebugReportCallbackEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugReportCallbackEXT.html) - Opaque handle to a debug report callback object
+///# C Specifications
+///Debug report callbacks are represented by [`DebugReportCallbackEXT`]
+///handles:
+///```c
+///// Provided by VK_EXT_debug_report
+///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDebugReportCallbackEXT)
+///```
+///# Related
+/// - [`VK_EXT_debug_report`]
+/// - [`CreateDebugReportCallbackEXT`]
+/// - [`DestroyDebugReportCallbackEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(transparent)]
+pub struct DebugReportCallbackEXT(pub u64);
+impl DebugReportCallbackEXT {
+    ///Creates a new null handle
+    #[inline]
+    pub const fn null() -> Self {
+        Self(0)
+    }
+    ///Checks if this is a null handle
+    #[inline]
+    pub const fn is_null(&self) -> bool {
+        self == &Self::null()
+    }
+    ///Gets the raw value
+    #[inline]
+    pub fn raw(&self) -> u64 {
+        self.0
+    }
+}
+unsafe impl Send for DebugReportCallbackEXT {}
+impl Default for DebugReportCallbackEXT {
+    fn default() -> Self {
+        Self::default()
+    }
+}
+impl std::fmt::Pointer for DebugReportCallbackEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl std::fmt::Debug for DebugReportCallbackEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}

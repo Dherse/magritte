@@ -1163,3 +1163,64 @@ impl<'lt> PerformanceConfigurationAcquireInfoINTEL<'lt> {
         self
     }
 }
+///[VkPerformanceConfigurationINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceConfigurationINTEL.html) - Device configuration for performance queries
+///# C Specifications
+///Before submitting command buffers containing performance queries commands to
+///a device queue, the application must acquire and set a performance query
+///configuration.
+///The configuration can be released once all command buffers containing
+///performance query commands are not in a pending state.
+///```c
+///// Provided by VK_INTEL_performance_query
+///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkPerformanceConfigurationINTEL)
+///```
+///# Related
+/// - [`VK_INTEL_performance_query`]
+/// - [`AcquirePerformanceConfigurationINTEL`]
+/// - [`QueueSetPerformanceConfigurationINTEL`]
+/// - [`ReleasePerformanceConfigurationINTEL`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(transparent)]
+pub struct PerformanceConfigurationINTEL(pub u64);
+impl PerformanceConfigurationINTEL {
+    ///Creates a new null handle
+    #[inline]
+    pub const fn null() -> Self {
+        Self(0)
+    }
+    ///Checks if this is a null handle
+    #[inline]
+    pub const fn is_null(&self) -> bool {
+        self == &Self::null()
+    }
+    ///Gets the raw value
+    #[inline]
+    pub fn raw(&self) -> u64 {
+        self.0
+    }
+}
+unsafe impl Send for PerformanceConfigurationINTEL {}
+impl Default for PerformanceConfigurationINTEL {
+    fn default() -> Self {
+        Self::default()
+    }
+}
+impl std::fmt::Pointer for PerformanceConfigurationINTEL {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl std::fmt::Debug for PerformanceConfigurationINTEL {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}

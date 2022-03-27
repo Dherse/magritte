@@ -3011,3 +3011,124 @@ impl<'lt> VideoCodingControlInfoKHR<'lt> {
         self
     }
 }
+///[VkVideoSessionKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoSessionKHR.html) - Opaque handle to a video session object
+///# C Specifications
+///Video session objects are abstracted and represented by
+///[`VideoSessionKHR`] handles:
+///```c
+///// Provided by VK_KHR_video_queue
+///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkVideoSessionKHR)
+///```
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoBeginCodingInfoKHR`]
+/// - [`VideoSessionParametersCreateInfoKHR`]
+/// - [`BindVideoSessionMemoryKHR`]
+/// - [`CreateVideoSessionKHR`]
+/// - [`DestroyVideoSessionKHR`]
+/// - [`GetVideoSessionMemoryRequirementsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(transparent)]
+pub struct VideoSessionKHR(pub u64);
+impl VideoSessionKHR {
+    ///Creates a new null handle
+    #[inline]
+    pub const fn null() -> Self {
+        Self(0)
+    }
+    ///Checks if this is a null handle
+    #[inline]
+    pub const fn is_null(&self) -> bool {
+        self == &Self::null()
+    }
+    ///Gets the raw value
+    #[inline]
+    pub fn raw(&self) -> u64 {
+        self.0
+    }
+}
+unsafe impl Send for VideoSessionKHR {}
+impl Default for VideoSessionKHR {
+    fn default() -> Self {
+        Self::default()
+    }
+}
+impl std::fmt::Pointer for VideoSessionKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl std::fmt::Debug for VideoSessionKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+///[VkVideoSessionParametersKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoSessionParametersKHR.html) - Opaque handle to a video video session parameters object
+///# C Specifications
+///Video session parameter objects are represented by
+///[`VideoSessionParametersKHR`] handles:
+///```c
+///// Provided by VK_KHR_video_queue
+///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkVideoSessionParametersKHR)
+///```
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoBeginCodingInfoKHR`]
+/// - [`VideoSessionParametersCreateInfoKHR`]
+/// - [`CreateVideoSessionParametersKHR`]
+/// - [`DestroyVideoSessionParametersKHR`]
+/// - [`UpdateVideoSessionParametersKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(transparent)]
+pub struct VideoSessionParametersKHR(pub u64);
+impl VideoSessionParametersKHR {
+    ///Creates a new null handle
+    #[inline]
+    pub const fn null() -> Self {
+        Self(0)
+    }
+    ///Checks if this is a null handle
+    #[inline]
+    pub const fn is_null(&self) -> bool {
+        self == &Self::null()
+    }
+    ///Gets the raw value
+    #[inline]
+    pub fn raw(&self) -> u64 {
+        self.0
+    }
+}
+unsafe impl Send for VideoSessionParametersKHR {}
+impl Default for VideoSessionParametersKHR {
+    fn default() -> Self {
+        Self::default()
+    }
+}
+impl std::fmt::Pointer for VideoSessionParametersKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl std::fmt::Debug for VideoSessionParametersKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}

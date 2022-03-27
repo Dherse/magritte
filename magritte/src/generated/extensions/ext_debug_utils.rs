@@ -1211,3 +1211,60 @@ impl<'lt> DebugUtilsMessengerCallbackDataEXT<'lt> {
         self
     }
 }
+///[VkDebugUtilsMessengerEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessengerEXT.html) - Opaque handle to a debug messenger object
+///# C Specifications
+///A [`DebugUtilsMessengerEXT`] is a messenger object which handles passing
+///along debug messages to a provided debug callback.
+///```c
+///// Provided by VK_EXT_debug_utils
+///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDebugUtilsMessengerEXT)
+///```
+///# Related
+/// - [`VK_EXT_debug_utils`]
+/// - [`CreateDebugUtilsMessengerEXT`]
+/// - [`DestroyDebugUtilsMessengerEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(transparent)]
+pub struct DebugUtilsMessengerEXT(pub u64);
+impl DebugUtilsMessengerEXT {
+    ///Creates a new null handle
+    #[inline]
+    pub const fn null() -> Self {
+        Self(0)
+    }
+    ///Checks if this is a null handle
+    #[inline]
+    pub const fn is_null(&self) -> bool {
+        self == &Self::null()
+    }
+    ///Gets the raw value
+    #[inline]
+    pub fn raw(&self) -> u64 {
+        self.0
+    }
+}
+unsafe impl Send for DebugUtilsMessengerEXT {}
+impl Default for DebugUtilsMessengerEXT {
+    fn default() -> Self {
+        Self::default()
+    }
+}
+impl std::fmt::Pointer for DebugUtilsMessengerEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl std::fmt::Debug for DebugUtilsMessengerEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}

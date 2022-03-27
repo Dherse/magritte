@@ -12018,3 +12018,140 @@ impl<'lt> PhysicalDeviceShaderDrawParametersFeatures<'lt> {
         self
     }
 }
+///[VkDescriptorUpdateTemplate](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorUpdateTemplate.html) - Opaque handle to a descriptor update template
+///# C Specifications
+///A descriptor update template specifies a mapping from descriptor update
+///information in host memory to descriptors in a descriptor set.
+///It is designed to avoid passing redundant information to the driver when
+///frequently updating the same set of descriptors in descriptor sets.Descriptor update template
+/// objects are represented by
+///[`DescriptorUpdateTemplate`] handles:
+///```c
+///// Provided by VK_VERSION_1_1
+///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDescriptorUpdateTemplate)
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_descriptor_update_template
+///typedef VkDescriptorUpdateTemplate VkDescriptorUpdateTemplateKHR;
+///```
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`CmdPushDescriptorSetWithTemplateKHR`]
+/// - [`CreateDescriptorUpdateTemplate`]
+/// - [`CreateDescriptorUpdateTemplateKHR`]
+/// - [`DestroyDescriptorUpdateTemplate`]
+/// - [`DestroyDescriptorUpdateTemplateKHR`]
+/// - [`UpdateDescriptorSetWithTemplate`]
+/// - [`UpdateDescriptorSetWithTemplateKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(transparent)]
+pub struct DescriptorUpdateTemplate(pub u64);
+impl DescriptorUpdateTemplate {
+    ///Creates a new null handle
+    #[inline]
+    pub const fn null() -> Self {
+        Self(0)
+    }
+    ///Checks if this is a null handle
+    #[inline]
+    pub const fn is_null(&self) -> bool {
+        self == &Self::null()
+    }
+    ///Gets the raw value
+    #[inline]
+    pub fn raw(&self) -> u64 {
+        self.0
+    }
+}
+unsafe impl Send for DescriptorUpdateTemplate {}
+impl Default for DescriptorUpdateTemplate {
+    fn default() -> Self {
+        Self::default()
+    }
+}
+impl std::fmt::Pointer for DescriptorUpdateTemplate {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl std::fmt::Debug for DescriptorUpdateTemplate {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+///[VkSamplerYcbcrConversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerYcbcrConversion.html) - Opaque handle to a device-specific sampler Y′C<sub>B</sub>C<sub>R</sub> conversion description
+///# C Specifications
+///A sampler Y′C<sub>B</sub>C<sub>R</sub> conversion is an opaque representation of a
+///device-specific sampler Y′C<sub>B</sub>C<sub>R</sub> conversion description, represented as a
+///[`SamplerYcbcrConversion`] handle:
+///```c
+///// Provided by VK_VERSION_1_1
+///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkSamplerYcbcrConversion)
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_sampler_ycbcr_conversion
+///typedef VkSamplerYcbcrConversion VkSamplerYcbcrConversionKHR;
+///```
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`SamplerYcbcrConversionInfo`]
+/// - [`CreateSamplerYcbcrConversion`]
+/// - [`CreateSamplerYcbcrConversionKHR`]
+/// - [`DestroySamplerYcbcrConversion`]
+/// - [`DestroySamplerYcbcrConversionKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(transparent)]
+pub struct SamplerYcbcrConversion(pub u64);
+impl SamplerYcbcrConversion {
+    ///Creates a new null handle
+    #[inline]
+    pub const fn null() -> Self {
+        Self(0)
+    }
+    ///Checks if this is a null handle
+    #[inline]
+    pub const fn is_null(&self) -> bool {
+        self == &Self::null()
+    }
+    ///Gets the raw value
+    #[inline]
+    pub fn raw(&self) -> u64 {
+        self.0
+    }
+}
+unsafe impl Send for SamplerYcbcrConversion {}
+impl Default for SamplerYcbcrConversion {
+    fn default() -> Self {
+        Self::default()
+    }
+}
+impl std::fmt::Pointer for SamplerYcbcrConversion {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl std::fmt::Debug for SamplerYcbcrConversion {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}

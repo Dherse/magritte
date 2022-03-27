@@ -1268,7 +1268,19 @@ impl<'a> Source<'a> {
             info!(?parent, "parent");
         }
 
-        self.handles.push(Handle::new_no_origin(original_name, name, parent));
+        let dispatchable = match &ty.spec {
+            TypeSpec::Code(code) => !code.code.contains("VK_DEFINE_NON_DISPATCHABLE_HANDLE"),
+            other => unreachable!("does not make sense for a handle: {:?}", other),
+        };
+
+        info!(
+            ?dispatchable,
+            "the handle is {}dispatchable",
+            if dispatchable { "" } else { "non-" }
+        );
+
+        self.handles
+            .push(Handle::new_no_origin(original_name, name, dispatchable, parent));
     }
 
     fn handle(&mut self, ty: &'a Type) {
@@ -1293,7 +1305,19 @@ impl<'a> Source<'a> {
             info!(?parent, "parent");
         }
 
-        self.handles.push(Handle::new_no_origin(original_name, name, parent));
+        let dispatchable = match &ty.spec {
+            TypeSpec::Code(code) => !code.code.contains("VK_DEFINE_NON_DISPATCHABLE_HANDLE"),
+            other => unreachable!("does not make sense for a handle: {:?}", other),
+        };
+
+        info!(
+            ?dispatchable,
+            "the handle is {}dispatchable",
+            if dispatchable { "" } else { "non-" }
+        );
+
+        self.handles
+            .push(Handle::new_no_origin(original_name, name, dispatchable, parent));
     }
 
     fn union_(&mut self, ty: &'a Type) {

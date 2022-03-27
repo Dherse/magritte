@@ -2769,3 +2769,67 @@ impl<'lt> PhysicalDeviceRayTracingPropertiesNV<'lt> {
         self
     }
 }
+///[VkAccelerationStructureNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureNV.html) - Opaque handle to an acceleration structure object
+///# C Specifications
+///Acceleration structures for the [`VK_NV_ray_tracing`] extension are
+///represented by the similar [`AccelerationStructureNV`] handles:
+///```c
+///// Provided by VK_NV_ray_tracing
+///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkAccelerationStructureNV)
+///```
+///# Related
+/// - [`VK_NV_ray_tracing`]
+/// - [`AccelerationStructureMemoryRequirementsInfoNV`]
+/// - [`BindAccelerationStructureMemoryInfoNV`]
+/// - [`WriteDescriptorSetAccelerationStructureNV`]
+/// - [`CmdBuildAccelerationStructureNV`]
+/// - [`CmdCopyAccelerationStructureNV`]
+/// - [`CmdWriteAccelerationStructuresPropertiesNV`]
+/// - [`CreateAccelerationStructureNV`]
+/// - [`DestroyAccelerationStructureNV`]
+/// - [`GetAccelerationStructureHandleNV`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(transparent)]
+pub struct AccelerationStructureNV(pub u64);
+impl AccelerationStructureNV {
+    ///Creates a new null handle
+    #[inline]
+    pub const fn null() -> Self {
+        Self(0)
+    }
+    ///Checks if this is a null handle
+    #[inline]
+    pub const fn is_null(&self) -> bool {
+        self == &Self::null()
+    }
+    ///Gets the raw value
+    #[inline]
+    pub fn raw(&self) -> u64 {
+        self.0
+    }
+}
+unsafe impl Send for AccelerationStructureNV {}
+impl Default for AccelerationStructureNV {
+    fn default() -> Self {
+        Self::default()
+    }
+}
+impl std::fmt::Pointer for AccelerationStructureNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl std::fmt::Debug for AccelerationStructureNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}

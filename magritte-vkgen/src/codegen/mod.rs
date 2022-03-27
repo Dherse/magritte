@@ -2,10 +2,12 @@
 //! This module handles code generation for all types.
 
 mod basetypes;
+mod bitflags;
 mod constants;
 mod enums;
 mod expr;
 mod extensions;
+mod handles;
 mod structs;
 pub mod ty;
 
@@ -67,6 +69,16 @@ impl<'a> Source<'a> {
             let (imports, out) = per_origin.get_mut(struct_.origin()).unwrap();
 
             struct_.generate_raw_code(self, doc, imports, out);
+        }
+
+        for handle in &self.handles {
+            if handle.origin().is_disabled() {
+                continue;
+            }
+
+            let (_, out) = per_origin.get_mut(handle.origin()).unwrap();
+
+            handle.generate_code(self, doc, out);
         }
 
         per_origin

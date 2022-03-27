@@ -1,7 +1,7 @@
 use std::borrow::Cow;
 
 use ahash::AHashMap;
-use proc_macro2::{TokenStream, Span};
+use proc_macro2::{Span, TokenStream};
 use quote::{quote, quote_each_token};
 use syn::{Ident, Token};
 use tracing::warn;
@@ -9,8 +9,10 @@ use tracing::warn;
 use crate::{
     codegen::ty::{lifetime_as_generic_argument, lifetime_as_lifetime},
     doc::Documentation,
+    expr::Expr,
     imports::Imports,
-    source::{Field, Source, Struct}, ty::{Mutability, Ty}, expr::Expr,
+    source::{Field, Source, Struct},
+    ty::{Mutability, Ty},
 };
 
 impl<'a> Struct<'a> {
@@ -32,7 +34,9 @@ impl<'a> Struct<'a> {
             .then(|| quote! { #[derive(PartialEq, PartialOrd)] });
         let eq_ord = self.is_eq(source).then(|| quote! { #[derive(Eq, Ord)] });
         let hash = self.is_hash(source).then(|| quote! { #[derive(Hash)] });
-        let serde = self.is_serde(source).then(|| quote! { #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))] });
+        let serde = self
+            .is_serde(source)
+            .then(|| quote! { #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))] });
 
         // create the lifetime generic argument
         let lt = lifetime_as_generic_argument();
@@ -51,9 +55,11 @@ impl<'a> Struct<'a> {
                 _lifetime: PhantomData<&#lt ()>,
             }
         });
-        
-        let lifetime_default = self.has_lifetime(source).then(|| quote! {
-            _lifetime: PhantomData,
+
+        let lifetime_default = self.has_lifetime(source).then(|| {
+            quote! {
+                _lifetime: PhantomData,
+            }
         });
 
         // get the documentation and the documentation of each field
@@ -65,12 +71,27 @@ impl<'a> Struct<'a> {
             .iter()
             .map(|field| field.generate_raw_code(source, imports, &field_doc));
 
-        let raw_getters = self.fields().iter().filter_map(|field| field.generate_raw_getter(source, imports));
-        let raw_setters = self.fields().iter().filter_map(|field| field.generate_raw_setter(source, imports));
-        let pretty_getters = self.fields().iter().map(|field| field.generate_getter(self, source, imports));
-        let pretty_mut_getters = self.fields().iter().filter_map(|field| field.generate_mut_getter(source, imports, self));
+        let raw_getters = self
+            .fields()
+            .iter()
+            .filter_map(|field| field.generate_raw_getter(source, imports));
+        let raw_setters = self
+            .fields()
+            .iter()
+            .filter_map(|field| field.generate_raw_setter(source, imports));
+        let pretty_getters = self
+            .fields()
+            .iter()
+            .map(|field| field.generate_getter(self, source, imports));
+        let pretty_mut_getters = self
+            .fields()
+            .iter()
+            .filter_map(|field| field.generate_mut_getter(source, imports, self));
         let pretty_setters = self.fields().iter().map(|field| field.generate_setter(source, self));
-        let field_defaults = self.fields().iter().map(|field| field.generate_default(source, imports));
+        let field_defaults = self
+            .fields()
+            .iter()
+            .map(|field| field.generate_default(source, imports));
 
         quote_each_token! {
             out
@@ -151,7 +172,12 @@ impl<'a> Struct<'a> {
 
 impl<'a> Field<'a> {
     /// Generates the code for the raw C-compatible struct
-    pub(super) fn generate_raw_code(&self, source: &Source<'a>, imports: &Imports, doc: &AHashMap<String, String>) -> TokenStream {
+    pub(super) fn generate_raw_code(
+        &self,
+        source: &Source<'a>,
+        imports: &Imports,
+        doc: &AHashMap<String, String>,
+    ) -> TokenStream {
         // get the name as an identifier of the field
         let name = self.as_ident();
 
@@ -200,7 +226,7 @@ impl<'a> Field<'a> {
             }
         })
     }
-    
+
     /// Generates the prettified getter for this field
     pub(super) fn generate_getter(&self, owner: &Struct<'a>, source: &Source<'a>, imports: &Imports) -> TokenStream {
         // get the name as an identifier of the field
@@ -217,10 +243,12 @@ impl<'a> Field<'a> {
         let unsafe_ = is_unsafe.then(|| quote! { unsafe });
 
         // generate some documentation in case the function is unsafe
-        let safety_doc = is_unsafe.then(|| quote! {
-            #[doc = "# Safety"]
-            #[doc = "This function converts a pointer into a value which may be invalid, make sure"]
-            #[doc = "that the pointer is valid before dereferencing."]
+        let safety_doc = is_unsafe.then(|| {
+            quote! {
+                #[doc = "# Safety"]
+                #[doc = "This function converts a pointer into a value which may be invalid, make sure"]
+                #[doc = "that the pointer is valid before dereferencing."]
+            }
         });
 
         // get the length expression if needed
@@ -228,17 +256,24 @@ impl<'a> Field<'a> {
             if self.ty().length().map(Expr::variables).map_or(true, |v| v.is_empty()) {
                 None
             } else {
-                Some(self.ty().length().unwrap().as_expr(source, &|name| {
-                    let ident = owner.get_field(name).expect("unknown field").as_ident();
-                    quote! {
-                        self.#ident
-                    }
-                }, Some(imports)))
+                Some(self.ty().length().unwrap().as_expr(
+                    source,
+                    &|name| {
+                        let ident = owner.get_field(name).expect("unknown field").as_ident();
+                        quote! {
+                            self.#ident
+                        }
+                    },
+                    Some(imports),
+                ))
             }
         };
 
         // create the converter
-        let (converter, ref_) = self.ty().c_to_rust_converter(source, Mutability::Const, quote! { self.#name }, len).expect("failed to created const converter");
+        let (converter, ref_) = self
+            .ty()
+            .c_to_rust_converter(source, Mutability::Const, quote! { self.#name }, len)
+            .expect("failed to created const converter");
 
         // if the output is a reference, get it
         let ref_ = ref_.then(|| Token![&](Span::call_site()));
@@ -251,9 +286,14 @@ impl<'a> Field<'a> {
             }
         }
     }
-    
+
     /// Generates the prettified getter for this field
-    pub(super) fn generate_mut_getter(&self, source: &Source<'a>, imports: &Imports, owner: &Struct<'a>) -> Option<TokenStream> {
+    pub(super) fn generate_mut_getter(
+        &self,
+        source: &Source<'a>,
+        imports: &Imports,
+        owner: &Struct<'a>,
+    ) -> Option<TokenStream> {
         // get the name as an identifier of the field
         let fn_name = format!("{}_mut", self.name());
         let ident = Ident::new(&fn_name, Span::call_site());
@@ -271,10 +311,12 @@ impl<'a> Field<'a> {
         let unsafe_ = is_unsafe.then(|| quote! { unsafe });
 
         // generate some documentation in case the function is unsafe
-        let safety_doc = is_unsafe.then(|| quote! {
-            #[doc = "# Safety"]
-            #[doc = "This function converts a pointer into a value which may be invalid, make sure"]
-            #[doc = "that the pointer is valid before dereferencing."]
+        let safety_doc = is_unsafe.then(|| {
+            quote! {
+                #[doc = "# Safety"]
+                #[doc = "This function converts a pointer into a value which may be invalid, make sure"]
+                #[doc = "that the pointer is valid before dereferencing."]
+            }
         });
 
         // get the length expression if needed
@@ -282,17 +324,23 @@ impl<'a> Field<'a> {
             if self.ty().length().map(Expr::variables).map_or(true, |v| v.is_empty()) {
                 None
             } else {
-                Some(self.ty().length().unwrap().as_expr(source, &|name| {
-                    let ident = owner.get_field(name).expect("unknown field").as_ident();
-                    quote! {
-                        self.#ident
-                    }
-                }, Some(imports)))
+                Some(self.ty().length().unwrap().as_expr(
+                    source,
+                    &|name| {
+                        let ident = owner.get_field(name).expect("unknown field").as_ident();
+                        quote! {
+                            self.#ident
+                        }
+                    },
+                    Some(imports),
+                ))
             }
         };
 
         // create the converter
-        let (converter, ref_) = self.ty().c_to_rust_converter(source, Mutability::Mutable, quote! { self.#name }, len)?;
+        let (converter, ref_) =
+            self.ty()
+                .c_to_rust_converter(source, Mutability::Mutable, quote! { self.#name }, len)?;
 
         // if the output is a reference, get it
         let ref_ = ref_.then(|| quote! { &mut });
@@ -352,12 +400,17 @@ impl<'a> Field<'a> {
             None
         };
 
-        let (fields, tokens) = self.ty().rust_to_c_converter(source, &|field, ident| {
-            let field = owner.get_field(field).unwrap().as_ident();
-            quote! {
-                self.#field = #ident;
-            }
-        }, self.name(), len_field.as_ref().map(|s| s as &str));
+        let (fields, tokens) = self.ty().rust_to_c_converter(
+            source,
+            &|field, ident| {
+                let field = owner.get_field(field).unwrap().as_ident();
+                quote! {
+                    self.#field = #ident;
+                }
+            },
+            self.name(),
+            len_field.as_ref().map(|s| s as &str),
+        );
 
         Some(quote! {
             #[doc = #doc]
@@ -370,7 +423,7 @@ impl<'a> Field<'a> {
     }
 
     /// Generate the default value
-    pub(super) fn generate_default(&self, source: &Source<'a>, imports: &Imports) -> TokenStream { 
+    pub(super) fn generate_default(&self, source: &Source<'a>, imports: &Imports) -> TokenStream {
         let name = self.as_ident();
 
         let default = self.ty().default_tokens(source, Some(imports));

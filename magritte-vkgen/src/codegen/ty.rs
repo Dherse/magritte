@@ -1,6 +1,6 @@
 //! Additional implementation for [`Ty`] used to generate code
 
-use std::{iter::once, borrow::Cow};
+use std::{borrow::Cow, iter::once};
 
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, ToTokens};
@@ -172,13 +172,9 @@ impl<'a> Ty<'a> {
     }*/
 
     /// Default tokens for a type
-    pub fn default_tokens(
-        &self,
-        source: &Source<'a>,
-        imports: Option<&Imports>,
-    ) -> TokenStream {
+    pub fn default_tokens(&self, source: &Source<'a>, imports: Option<&Imports>) -> TokenStream {
         match self {
-            Ty::Pointer(mut_, _) | Ty::Slice(mut_, _, _)  => match mut_ {
+            Ty::Pointer(mut_, _) | Ty::Slice(mut_, _, _) => match mut_ {
                 Mutability::Mutable => quote! { std::ptr::null_mut() },
                 Mutability::Const => quote! { std::ptr::null() },
             },
@@ -192,10 +188,14 @@ impl<'a> Ty<'a> {
                 quote! { [0; #len]}
             },
             Ty::NullTerminatedString(_) => quote! {
-                std::ptr::null() 
+                std::ptr::null()
             },
             Ty::Array(ty, len) => {
-                assert!(ty.is_copy(source), "cannot create a default value of a non-copy type: {:#?}", self);
+                assert!(
+                    ty.is_copy(source),
+                    "cannot create a default value of a non-copy type: {:#?}",
+                    self
+                );
 
                 let len = len.as_const_expr(source, imports);
                 let default = ty.default_tokens(source, imports);
@@ -214,12 +214,15 @@ impl<'a> Ty<'a> {
         setter: &F,
         field: &str,
         len_field: Option<&str>,
-    ) -> (Vec<TokenStream>, TokenStream) where F: Fn(&str, TokenStream) -> TokenStream {
+    ) -> (Vec<TokenStream>, TokenStream)
+    where
+        F: Fn(&str, TokenStream) -> TokenStream,
+    {
         let mut fields = Vec::with_capacity(1);
 
         let value_ident = Ident::new("value", Span::call_site());
         let lt = lifetime_as_lifetime();
-       
+
         let out = match self {
             Ty::Named(Cow::Borrowed("VkBool32")) => {
                 fields.push(quote! { value: bool });
@@ -228,7 +231,7 @@ impl<'a> Ty<'a> {
             Ty::Native(_) | Ty::Named(_) | Ty::StringArray(_) | Ty::NullTerminatedString(_) | Ty::Array(_, _) => {
                 let ty = self.as_raw_ty(source, None).0;
                 fields.push(quote! { value: #ty });
-                
+
                 setter(field, value_ident.to_token_stream())
             },
             Ty::Pointer(mutability, ty) => {
@@ -238,9 +241,12 @@ impl<'a> Ty<'a> {
 
                 let ptr_mut = mutability.as_ptr_token();
 
-                setter(field, quote! {
-                   #value_ident as *#ptr_mut _
-                })
+                setter(
+                    field,
+                    quote! {
+                       #value_ident as *#ptr_mut _
+                    },
+                )
             },
             Ty::Slice(mutability, ty, len) => {
                 let ty = ty.as_raw_ty(source, None).0;
@@ -248,14 +254,17 @@ impl<'a> Ty<'a> {
 
                 fields.push(quote! { value: &#lt #mut_ [#ty]});
 
-                let value_setter = setter(field, match mutability {
-                    Mutability::Mutable => quote! {
-                        #value_ident.as_mut_ptr()
+                let value_setter = setter(
+                    field,
+                    match mutability {
+                        Mutability::Mutable => quote! {
+                            #value_ident.as_mut_ptr()
+                        },
+                        Mutability::Const => quote! {
+                            #value_ident.as_ptr()
+                        },
                     },
-                    Mutability::Const => quote! {
-                        #value_ident.as_ptr()
-                    },
-                });
+                );
 
                 let vars = len.variables();
                 if vars.is_empty() {
@@ -269,12 +278,15 @@ impl<'a> Ty<'a> {
                     assert_eq!(vars.len(), 1, "more than one variable");
 
                     let len_expr = len.pivot("len_").as_expr(source, &|_| quote! { len_ }, None);
-                    let len_setter = setter(len_field.unwrap_or_else(|| &vars[0]), Ident::new("len_", Span::call_site()).to_token_stream());
+                    let len_setter = setter(
+                        len_field.unwrap_or_else(|| &vars[0]),
+                        Ident::new("len_", Span::call_site()).to_token_stream(),
+                    );
 
                     quote! {
                         let len_ = value.len() as u32;
                         let len_ = #len_expr;
-    
+
                         #value_setter
                         #len_setter
                     }
@@ -297,10 +309,12 @@ impl<'a> Ty<'a> {
         let mut_ = mutability.as_mutability_token();
 
         match self {
-            Ty::Native(_) => if mutability.is_const() {
-                Some((getter, false))
-            } else {
-                Some((quote! { &#mut_ getter }, true))
+            Ty::Native(_) => {
+                if mutability.is_const() {
+                    Some((getter, false))
+                } else {
+                    Some((quote! { &#mut_ getter }, true))
+                }
             },
             Ty::Named(Cow::Borrowed("VkBool32")) => {
                 match mutability {
@@ -309,7 +323,7 @@ impl<'a> Ty<'a> {
                             unsafe {
                                 if cfg!(target_endian = "little") {
                                     &mut *(#getter as *mut Bool32).cast::<u32>().cast::<u8>().cast::<bool>()
-    
+
                                 } else {
                                     // TODO: check that this is actually correct on a big endian system
                                     // don't even know if those exist in the wild, a problem for a future me
@@ -318,24 +332,19 @@ impl<'a> Ty<'a> {
                                 }
                             }
                         },
-                        true
+                        true,
                     )),
-                    Mutability::Const => Some((
-                        quote! { unsafe { std::mem::transmute(#getter as u8) }},
-                        false,
-                    ))
+                    Mutability::Const => Some((quote! { unsafe { std::mem::transmute(#getter as u8) }}, false)),
                 }
             },
-            Ty::Named(_) => {
-                Some( if self.is_copy(source) && mutability.is_const() {
-                    (getter, false)
-                } else {
-                    match mutability {
-                        Mutability::Mutable => (quote! { &mut #getter}, true),
-                        Mutability::Const => (quote! { &#getter}, true),
-                    }
-                })
-            },
+            Ty::Named(_) => Some(if self.is_copy(source) && mutability.is_const() {
+                (getter, false)
+            } else {
+                match mutability {
+                    Mutability::Mutable => (quote! { &mut #getter}, true),
+                    Mutability::Const => (quote! { &#getter}, true),
+                }
+            }),
             Ty::Pointer(this_mut, _) => Some((
                 match (this_mut, mutability) {
                     (Mutability::Mutable, Mutability::Const) | (Mutability::Const, Mutability::Const) => quote! {
@@ -429,14 +438,14 @@ impl<'a> Ty<'a> {
     pub fn as_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> (Type, bool) {
         match self {
             Ty::Native(_) | Ty::StringArray(_) => (self.as_const_ty(source, imports), false),
-            Ty::Pointer(_, ty) => (
-                ty.as_raw_ty(source, imports).0,
-                true,
+            Ty::Pointer(_, ty) => (ty.as_raw_ty(source, imports).0, true),
+            Ty::Named(Cow::Borrowed("VkBool32")) => (
+                Type::Path(TypePath {
+                    qself: None,
+                    path: Path::from(PathSegment::from(Ident::new("bool", Span::call_site()))),
+                }),
+                false,
             ),
-            Ty::Named(Cow::Borrowed("VkBool32")) => (Type::Path(TypePath {
-                qself: None,
-                path: Path::from(PathSegment::from(Ident::new("bool", Span::call_site()))),
-            }), false),
             Ty::Named(name) => source
                 .find(name)
                 .expect("type not found")

@@ -106,31 +106,38 @@ impl<'a> Expr<'a> {
     pub fn pivot(&self, replace: &'a str) -> Expr<'a> {
         let as_string = format!("{} - {}", self.to_string(), replace);
 
-        let result = Box::leak(box Python::with_gil(|py| {
-            let mut code = "import sympy\n".to_string();
+        let result = Box::leak(
+            box Python::with_gil(|py| {
+                let mut code = "import sympy\n".to_string();
 
-            writeln!(code, "{0} = sympy.Symbol('{0}')", replace).unwrap();
+                writeln!(code, "{0} = sympy.Symbol('{0}')", replace).unwrap();
 
-            for variable in self.variables() {
-                writeln!(code, "{0} = sympy.Symbol('{0}')", variable).unwrap();
-            }
+                for variable in self.variables() {
+                    writeln!(code, "{0} = sympy.Symbol('{0}')", variable).unwrap();
+                }
 
-            for constant in self.constants() {
-                writeln!(code, "{0} = sympy.Symbol('{0}')", constant).unwrap();
-            }
+                for constant in self.constants() {
+                    writeln!(code, "{0} = sympy.Symbol('{0}')", constant).unwrap();
+                }
 
-            writeln!(code, "eq = {}", as_string).unwrap();
-    
-            py.run(&code, None, None)?;
+                writeln!(code, "eq = {}", as_string).unwrap();
 
-            py.eval(&format!("str(sympy.solveset(eq, {}))", replace), None, None)?.extract::<String>()
-        }).expect("failed to pivot the expression"));
-        
+                py.run(&code, None, None)?;
+
+                py.eval(&format!("str(sympy.solveset(eq, {}))", replace), None, None)?
+                    .extract::<String>()
+            })
+            .expect("failed to pivot the expression"),
+        );
+
         Expr::new(&result[1..result.len() - 1])
     }
 
     /// Turns an expression into a tokenized  evaluable rust expression.
-    pub fn as_expr<F>(&self, source: &Source<'a>, getter: &F, imports: Option<&Imports>) -> TokenStream where F: Fn(&str) -> TokenStream {
+    pub fn as_expr<F>(&self, source: &Source<'a>, getter: &F, imports: Option<&Imports>) -> TokenStream
+    where
+        F: Fn(&str) -> TokenStream,
+    {
         match self {
             Expr::String(value) => quote! {
                 crate::cstr!(#value)

@@ -3598,7 +3598,7 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`
 /// - [`p_next`]**must** be `NULL`
 /// - [`version_data`]**must** be a valid pointer to an array of <span class="katex"><span
-///   aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="katex-html" aria-hidden="true"><span class="base"><span
 ///   style="height:0.72777em;vertical-align:-0.08333em;" class="strut"></span><span
 ///   class="mord">2</span><span class="mspace"
 ///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
@@ -4348,5 +4348,82 @@ impl<'lt> AccelerationStructureBuildSizesInfoKHR<'lt> {
     pub fn set_build_scratch_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
         self.build_scratch_size = value;
         self
+    }
+}
+///[VkAccelerationStructureKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureKHR.html) - Opaque handle to an acceleration structure object
+///# C Specifications
+///Acceleration structures are opaque data structures that are built by the
+///implementation to more efficiently perform spatial queries on the provided
+///geometric data.
+///For this extension, an acceleration structure is either a top-level
+///acceleration structure containing a set of bottom-level acceleration
+///structures or a bottom-level acceleration structure containing either a set
+///of axis-aligned bounding boxes for custom geometry or a set of triangles.Each instance in the
+/// top-level acceleration structure contains a reference
+///to a bottom-level acceleration structure as well as an instance transform
+///plus information required to index into the shader bindings.
+///The top-level acceleration structure is what is bound to the acceleration
+///descriptor, for example to trace inside the shader in the ray tracing
+///pipeline.Acceleration structures are represented by [`AccelerationStructureKHR`]
+///handles:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkAccelerationStructureKHR)
+///```
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`AccelerationStructureBuildGeometryInfoKHR`]
+/// - [`AccelerationStructureDeviceAddressInfoKHR`]
+/// - [`CopyAccelerationStructureInfoKHR`]
+/// - [`CopyAccelerationStructureToMemoryInfoKHR`]
+/// - [`CopyMemoryToAccelerationStructureInfoKHR`]
+/// - [`WriteDescriptorSetAccelerationStructureKHR`]
+/// - [`CmdWriteAccelerationStructuresPropertiesKHR`]
+/// - [`CreateAccelerationStructureKHR`]
+/// - [`DestroyAccelerationStructureKHR`]
+/// - [`WriteAccelerationStructuresPropertiesKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(transparent)]
+pub struct AccelerationStructureKHR(pub u64);
+impl AccelerationStructureKHR {
+    ///Creates a new null handle
+    #[inline]
+    pub const fn null() -> Self {
+        Self(0)
+    }
+    ///Checks if this is a null handle
+    #[inline]
+    pub const fn is_null(&self) -> bool {
+        self == &Self::null()
+    }
+    ///Gets the raw value
+    #[inline]
+    pub fn raw(&self) -> u64 {
+        self.0
+    }
+}
+unsafe impl Send for AccelerationStructureKHR {}
+impl Default for AccelerationStructureKHR {
+    fn default() -> Self {
+        Self::default()
+    }
+}
+impl std::fmt::Pointer for AccelerationStructureKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl std::fmt::Debug for AccelerationStructureKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
     }
 }

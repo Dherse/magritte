@@ -1184,3 +1184,131 @@ impl<'lt> DisplaySurfaceCreateInfoKHR<'lt> {
         self
     }
 }
+///[VkDisplayKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayKHR.html) - Opaque handle to a display object
+///# C Specifications
+///Displays are represented by [`DisplayKHR`] handles:
+///```c
+///// Provided by VK_KHR_display
+///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDisplayKHR)
+///```
+///# Related
+/// - [`VK_KHR_display`]
+/// - [`DisplayPlanePropertiesKHR`]
+/// - [`DisplayPropertiesKHR`]
+/// - [`AcquireDrmDisplayEXT`]
+/// - [`AcquireWinrtDisplayNV`]
+/// - [`AcquireXlibDisplayEXT`]
+/// - [`CreateDisplayModeKHR`]
+/// - [`DisplayPowerControlEXT`]
+/// - [`GetDisplayModeProperties2KHR`]
+/// - [`GetDisplayModePropertiesKHR`]
+/// - [`GetDisplayPlaneSupportedDisplaysKHR`]
+/// - [`GetDrmDisplayEXT`]
+/// - [`GetRandROutputDisplayEXT`]
+/// - [`GetWinrtDisplayNV`]
+/// - [`RegisterDisplayEventEXT`]
+/// - [`ReleaseDisplayEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(transparent)]
+pub struct DisplayKHR(pub u64);
+impl DisplayKHR {
+    ///Creates a new null handle
+    #[inline]
+    pub const fn null() -> Self {
+        Self(0)
+    }
+    ///Checks if this is a null handle
+    #[inline]
+    pub const fn is_null(&self) -> bool {
+        self == &Self::null()
+    }
+    ///Gets the raw value
+    #[inline]
+    pub fn raw(&self) -> u64 {
+        self.0
+    }
+}
+unsafe impl Send for DisplayKHR {}
+impl Default for DisplayKHR {
+    fn default() -> Self {
+        Self::default()
+    }
+}
+impl std::fmt::Pointer for DisplayKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl std::fmt::Debug for DisplayKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+///[VkDisplayModeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayModeKHR.html) - Opaque handle to a display mode object
+///# C Specifications
+///Display modes are represented by [`DisplayModeKHR`] handles:
+///```c
+///// Provided by VK_KHR_display
+///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDisplayModeKHR)
+///```
+///# Related
+/// - [`VK_KHR_display`]
+/// - [`DisplayModePropertiesKHR`]
+/// - [`DisplayPlaneInfo2KHR`]
+/// - [`DisplaySurfaceCreateInfoKHR`]
+/// - [`CreateDisplayModeKHR`]
+/// - [`GetDisplayPlaneCapabilitiesKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(transparent)]
+pub struct DisplayModeKHR(pub u64);
+impl DisplayModeKHR {
+    ///Creates a new null handle
+    #[inline]
+    pub const fn null() -> Self {
+        Self(0)
+    }
+    ///Checks if this is a null handle
+    #[inline]
+    pub const fn is_null(&self) -> bool {
+        self == &Self::null()
+    }
+    ///Gets the raw value
+    #[inline]
+    pub fn raw(&self) -> u64 {
+        self.0
+    }
+}
+unsafe impl Send for DisplayModeKHR {}
+impl Default for DisplayModeKHR {
+    fn default() -> Self {
+        Self::default()
+    }
+}
+impl std::fmt::Pointer for DisplayModeKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl std::fmt::Debug for DisplayModeKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}

@@ -1917,3 +1917,75 @@ impl<'lt> BufferCollectionConstraintsInfoFUCHSIA<'lt> {
         self
     }
 }
+///[VkBufferCollectionFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferCollectionFUCHSIA.html) - Opaque handle to a buffer collection object
+///# C Specifications
+///Fuchsia’s FIDL-based Sysmem service interoperates with Vulkan via the
+///`[`VK_FUCHSIA_buffer_collection`]` extension.A buffer collection is a set of one or more buffers
+/// which were allocated
+///together as a group and which all have the same properties.
+///These properties describe the buffers' internal representation, such as its
+///dimensions and memory layout.
+///This ensures that all of the buffers can be used interchangeably by tasks
+///that require swapping among multiple buffers, such as double-buffered
+///graphics rendering.On Fuchsia, the Sysmem service uses buffer collections as a core construct
+///in its design.Buffer collections are represented by [`BufferCollectionFUCHSIA`]
+///handles:
+///```c
+///// Provided by VK_FUCHSIA_buffer_collection
+///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkBufferCollectionFUCHSIA)
+///```
+///# Related
+/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`BufferCollectionBufferCreateInfoFUCHSIA`]
+/// - [`BufferCollectionImageCreateInfoFUCHSIA`]
+/// - [`ImportMemoryBufferCollectionFUCHSIA`]
+/// - [`CreateBufferCollectionFUCHSIA`]
+/// - [`DestroyBufferCollectionFUCHSIA`]
+/// - [`GetBufferCollectionPropertiesFUCHSIA`]
+/// - [`SetBufferCollectionBufferConstraintsFUCHSIA`]
+/// - [`SetBufferCollectionImageConstraintsFUCHSIA`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(transparent)]
+pub struct BufferCollectionFUCHSIA(pub u64);
+impl BufferCollectionFUCHSIA {
+    ///Creates a new null handle
+    #[inline]
+    pub const fn null() -> Self {
+        Self(0)
+    }
+    ///Checks if this is a null handle
+    #[inline]
+    pub const fn is_null(&self) -> bool {
+        self == &Self::null()
+    }
+    ///Gets the raw value
+    #[inline]
+    pub fn raw(&self) -> u64 {
+        self.0
+    }
+}
+unsafe impl Send for BufferCollectionFUCHSIA {}
+impl Default for BufferCollectionFUCHSIA {
+    fn default() -> Self {
+        Self::default()
+    }
+}
+impl std::fmt::Pointer for BufferCollectionFUCHSIA {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl std::fmt::Debug for BufferCollectionFUCHSIA {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}

@@ -1,6 +1,6 @@
 # Magritte
 
-Magritte will be a single-backend, asynchronous graphics API for rust. Inspired by [`wgpu-rs`](https://github.com/gfx-rs/wgpu) but designed for native Desktop use instead of compatibility with [*WebGPU*](https://www.w3.org/TR/webgpu/). The final API will be designed to enabled high performance graphics and compute applications with the latest features.
+Magritte will be a single-backend, asynchronous rendering API for rust. Inspired by [`wgpu-rs`](https://github.com/gfx-rs/wgpu) but designed for native Desktop use instead of compatibility with [*WebGPU*](https://www.w3.org/TR/webgpu/). The final API will be designed to enabled high performance graphics and compute applications with the latest features.
 
 Magritte will exclusively target [*Vulkan*](https://www.vulkan.org/) as its backend. In the future, if *WebGPU* reaches similar features to *Vulkan*, I may work on supporting them as well. 
 
@@ -9,22 +9,20 @@ The goal of this limitation is to make it easier to support modern features such
 ## Build instructions
 
 Detailing binding generation instructions are present in `BUILD.md` and an overwiew of the project's structure is available in `STRUCTURE.md`.
+Note that to generate the bindings, you will need docker and python. However, for Magritte itself, you don't need anything.
 
 ## Overwiew of features
 
 - Low overhead
 - Higher level (than raw *Vulkan*)
 - Easier to write (than raw *Vulkan*)
-- Mostly safe
 - Memory management (using [*Vulkan Memory Allocator*](https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator))
 - Asynchronous (support for [*tokio*](https://tokio.rs))
-- Supports additional data attached to handles
 - Fully documented using the official *Vulkan* documentation
 - Almost fully generated
 - Full support for **all** *Vulkan* extensions
 - Full support for **desktop** and **portable** platforms: Windows *(to be tested)*, Linux *(to be tested)*, macOS *(to be tested)*
-- Nice error handling
-- Idiomatic
+- Nicer error handling
 
 ## What magritte is and is not
 
@@ -38,7 +36,6 @@ It is clear when looking at the generated output that it would be almost impossi
 - `futures`: Adds [futures](https://docs.rs/futures/latest/futures/) as a dependency ;
 - `async`: Enables asynchronous code, enables the `tokio` and `futures` features ;
 - `render-graph`: Enables the render graph, enables the `async` feature ;
-- `private-data`: Enables the the generic arguments for data types, `get(&self) -> Option<&T>`, `get_mut(&mut self) -> Option<&mut T>` and `set(&mut self, value: T)` functions that enables arbitrary data.
 
 ## State of the art
 
@@ -53,25 +50,23 @@ Currently, the rust ecosystem has a number of **great** crates for dealing with 
 ### Ash & erupt
 
 *Ash* and *erupt* are both low-level, unsafe, mostly-generated bindings to the raw *Vulkan* API. This is similar to Magritte with a few notable exceptions:
-- Magritte is a *mostly* safe API ;
-- Magritte has more overhead than *ash* and *erupt* ;
 - Magritte has higher-level features ;
-- Magritte is idiomatic in the rust-sense not the *Vulkan* sense ;
+- Magritte is a rendering library, not just raw bindings ;
 - Magritte's bindings (`magritte-vk`) are fully documented using the official *Vulkan* documentation.
 
 ### Vulkano
 
-*Vulkano* and Magritte are very similar, they share the design of being high level while trying to keep the overhead as small as possible. In addition, both libraries try to make *Vulkan* a more productive (i.e easier to use) API.
+*Vulkano* and Magritte are very similar, they share the design of being higher level while trying to keep the overhead as small as possible. In addition, both libraries try to make *Vulkan* a more productive (i.e easier to use) API.
 
 The main additions are the following:
 - Magritte is mostly generated, most of time is spent writing the binding generator and not hand-writing bindings ;
-- Magritte has garbage collection and will create threads something I believe vulkano does not do ;
+- Magritte can automate synchronizations, allocations, shader compilations and more using `magritte` with `magritte-vk` ;
 - Magritte has full support for **all** *Vulkan* extensions, although safe usage is not guaranteed for all of them.
 
 ### WGPU-rs
 
 *WGPU-rs* is amazing, it provides safe abstractions running on essentially every platform, while Magritte aims at only supporting *Vulkan*. This allows *wgpu* to run on more platforms including the web. This is **not** a goal for Magritte. However, Magritte still has a few advantages:
-- Magritte is single backend ;
+- Magritte is single backend and therefore should be more uniform across targets ;
 - Magritte provides very high level features such as a render graph ;
 - Magritte does not follow a widely-compatible spec which allows for more features ;
 - Magritte supports a lot more features than *wgpu* currently does such as ray-tracing ;
@@ -80,7 +75,7 @@ The main additions are the following:
 ### GFX-hal
 
 *GFX-hal* is a deprecated, unsafe, low-level, generic astraction over common graphics API. It is the foundation that led to the development of *wgpu-hal* that powers *wgpu*. It was quite powerful but differences between the different graphics API led to its development being difficult and eventually halted. Magritte has a few advantages compared to *GFX-hal*:
-- Magritte is activelly developped, single backend, safe, high level ;
+- Magritte is activelly developped, single backend, high level ;
 - Magritte is fully documented thanks to its documentation generator ;
 - Magritte only follows a single API making it easier to make ;
 - Magritte is mostly generated code.
@@ -95,37 +90,17 @@ Those are [OpenGL](https://www.opengl.org//) bindings and not *Vulkan* bindings.
 
 ## Features
 
-### Registry (**WIP**)
-
-All handles are placed in a registry. This registry tracks the lifetime of this objects and allows garbage collection of the object when needed.
-
-This means that handles provided by Magritte are IDs rather than the actual *Vulkan* handles. The specifics of synchronization of handles is handled by the registry itself. The registry also follows the uses of objects to allows rigorous garbage collection of objects.
-
-In practice, you do not need to care about the lifetime of objects as the registry keeps track of ownership and lifetimes for you. The registry even takes into account the binding of handles to queue submissions. Allowing for garbage collection to occur when the handle is no longer used on both the CPU-side (your code) and the GPU-side. This is done by tracking [fences](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFence.html).
-
-The registry therefore ensures that lifetimes defined by the *Vulkan* specifications are respected and that your usage of the API is always valid (from a lifetime perspective).
-
-### Garbage collection (**WIP**)
-
-Using the registry and fences, Magritte handles garbage collection of objects for you. This means that resources are deallocated in a timely manner and cannot be destroyed before it is valid to do so.
-
 ### Memory management
 
 Magritte handles memory management by using the [*Vulkan Memory Allocator* (*VMA*)](https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator) using a set of custom bindings. *VMA* makes it easier to manage memory and handle allocations *properly*.
 
-### Unions (**WIP**)
-
-Magritte makes away with unions by using rust enums. This makes the code safer. There are very few unions in *Vulkan* and they all have hand-written implementations to make them safer.
-
 ### Render graph (**WIP**)
 
-Magritte will come with a capable, multithreaded render graph. This render graph will be setup at runtime, with tasks being created using the [*tokio*](https://tokio.rs/) runtime.
+Magritte will comes with a capable, multithreaded render graph. This render graph will be setup at runtime, with tasks being created using the [*tokio*](https://tokio.rs/) runtime.
 
 This render graph will automatically handle inter-node synchronization, parallelism, access to resources, allocation of transient resources and resource layout transitions. Note that nodes must do all of this themselves for internal resources.
 
 The render graph also handles framebuffer creation, optionally handles swapchain creation and recreation, swapchain and renderpass caches. It also makes the data from caches easily available to be stored into files.
-
-The render graph is an optional feature enabled using the `render-graph` feature flag.
 
 ### Resource synchronization and layout changes
 
@@ -135,21 +110,7 @@ Helpers for handling resource synchronization and layout changes within a single
 
 Most features blocking features in the API will be made optionally asynchronous. This will make it clearer when the API blocks or calls long functions and will make it easier to multithread the application.
 
-[Queues](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#devsandqueues-queues) are always asynchronous and handled in their own threads. This **guarantees** that queues are always access synchronously. It also makes dealing with synchronization of queues a bit easier.
-
-Asynchronous code can be disabled disabling the `async` feature flag.
-
-### Shader agnostic (SPIRV) (**WIP**)
-
-Magritte is shader agnostic. Meaning that you can use whathever shading language you prefer and pass-in [SPIR-V](https://www.khronos.org/spir/) to Magritte.
-
-### `VK_EXT_private_data` (**WIP**)
-
-Magritte expects the platform to have the [`VK_EXT_private_data`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_private_data.html) extension. This allows the API to have arbitrary data storage attached to *Vulkan* handles without the need for heavier data structures. This data is shared between all copies of the handle. 
-
-This data will always contain an optional label for easier debugging. It will also enable the storage of arbitrary data passed using generic parameters.
-
-The reason why the API uses this extension instead of [`VK_EXT_debug_utils`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_debug_utils.html) is due to its much wider platform support. Almost all recent GPUs with recent drivers support this feature. It has also been promoted to *Vulkan 1.3* which will further aid in its adoption. The only platform that has a poor track record of supporting this extension is *Android*. As Magritte targets desktop use, this is not a major issue.
+Asynchronous code can be disabled by disabling the `async` feature flag.
 
 ### Levels (**WIP**)
 
@@ -179,6 +140,7 @@ All structs in Magritte are highly generic and use the builder pattern to make t
 The generated bindings are fully documented using the [*Vulkan* docs](https://github.com/KhronosGroup/Vulkan-Docs). They are formatted using [*rustfmt*](https://github.com/rust-lang/rustfmt). This ensures that the code is readable and understandable. The API is therefore transparent and can be understood clearly. The adds an extrea layer of complexity to the binding generator but makes working with the API much easier.
 
 The documentation extends to all parts of the generated bindings, as in:
+- vulkan versions ;
 - structs and their generators ;
 - handles ;
 - extensions ;
@@ -202,23 +164,26 @@ One of the end goals for magritte is to support all common Vulkan formats using 
 
 ### Code generation
 
-Here are the following families that need to be implemented in the code generator:
+Here are the following families that need to be implemented in the code generator (crossed items refer to deliberately unsupported features):
 
+- [ ] Documentation for Vulkan version
+- [ ] Documentation for extensions
+- [x] Handles
+- [ ] Higher level handles (wrappers)
 - [ ] Loaders
-- [ ] Handles
 - [x] Extensions (doc only)
 - [ ] Opaque types (aliases of `c_void`)
-- [ ] Type aliases
-- [ ] Structs
-- [ ] Struct builders
+- [x] ~Type aliases~
+- [x] Structs
+- [x] ~Struct builders~
 - [ ] Unions
 - [ ] Function pointers
 - [x] Base types
-- [ ] Bit masks
 - [x] Constants
 - [x] Constant aliases - no code generated since we ignore all aliases
-- [ ] Bit mask flags
 - [x] Enums
-- [ ] Function/command aliases
+- [ ] Bit masks
+- [ ] Bit mask flags
+- [x] ~Function/command aliases~ 
 - [ ] Functions
 - [ ] Commands & command buffers

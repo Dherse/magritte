@@ -676,3 +676,121 @@ impl<'lt> CuLaunchInfoNVX<'lt> {
         self
     }
 }
+///[VkCuModuleNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCuModuleNVX.html) - Stub description of VkCuModuleNVX
+///# C Specifications
+///There is currently no specification language written for this type.
+///This section acts only as placeholder and to avoid dead links in the
+///specification and reference pages.
+///```c
+///// Provided by VK_NVX_binary_import
+///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkCuModuleNVX)
+///```
+///# Related
+/// - [`VK_NVX_binary_import`]
+/// - [`CuFunctionCreateInfoNVX`]
+/// - [`CreateCuModuleNVX`]
+/// - [`DestroyCuModuleNVX`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(transparent)]
+pub struct CuModuleNVX(pub u64);
+impl CuModuleNVX {
+    ///Creates a new null handle
+    #[inline]
+    pub const fn null() -> Self {
+        Self(0)
+    }
+    ///Checks if this is a null handle
+    #[inline]
+    pub const fn is_null(&self) -> bool {
+        self == &Self::null()
+    }
+    ///Gets the raw value
+    #[inline]
+    pub fn raw(&self) -> u64 {
+        self.0
+    }
+}
+unsafe impl Send for CuModuleNVX {}
+impl Default for CuModuleNVX {
+    fn default() -> Self {
+        Self::default()
+    }
+}
+impl std::fmt::Pointer for CuModuleNVX {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl std::fmt::Debug for CuModuleNVX {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+///[VkCuFunctionNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCuFunctionNVX.html) - Stub description of VkCuFunctionNVX
+///# C Specifications
+///There is currently no specification language written for this type.
+///This section acts only as placeholder and to avoid dead links in the
+///specification and reference pages.
+///```c
+///// Provided by VK_NVX_binary_import
+///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkCuFunctionNVX)
+///```
+///# Related
+/// - [`VK_NVX_binary_import`]
+/// - [`CuLaunchInfoNVX`]
+/// - [`CreateCuFunctionNVX`]
+/// - [`DestroyCuFunctionNVX`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(transparent)]
+pub struct CuFunctionNVX(pub u64);
+impl CuFunctionNVX {
+    ///Creates a new null handle
+    #[inline]
+    pub const fn null() -> Self {
+        Self(0)
+    }
+    ///Checks if this is a null handle
+    #[inline]
+    pub const fn is_null(&self) -> bool {
+        self == &Self::null()
+    }
+    ///Gets the raw value
+    #[inline]
+    pub fn raw(&self) -> u64 {
+        self.0
+    }
+}
+unsafe impl Send for CuFunctionNVX {}
+impl Default for CuFunctionNVX {
+    fn default() -> Self {
+        Self::default()
+    }
+}
+impl std::fmt::Pointer for CuFunctionNVX {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
+impl std::fmt::Debug for CuFunctionNVX {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "0x{:x}", self.0)
+    }
+}
