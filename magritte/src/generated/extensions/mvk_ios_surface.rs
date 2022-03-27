@@ -1,63 +1,8 @@
-//![VK_MVK_ios_surface](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_MVK_ios_surface.html) - instance extension
-//!# Description
-//!The [`VK_MVK_ios_surface`] extension is an instance extension.
-//!It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-//!the `[`VK_KHR_surface`]` extension) based on a `UIView`, the native
-//!surface type of iOS, which is underpinned by a [`CaMetalLayer`], to
-//!support rendering to the surface using Apple’s Metal framework.
-//!# Revision
-//!3
-//!# Dependencies
-//! - *Deprecated* by
-//!`[`VK_EXT_metal_surface`]`
-//!extension
-//!# Dependencies
-//! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_surface`]`
-//!# Contacts
-//! - Bill Hollings [billhollings](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_MVK_ios_surface]
-//!   @billhollings%0A<<Here describe the issue or question you have about the VK_MVK_ios_surface
-//!   extension>>)
-//!# New functions & commands
-//! - [`CreateIosSurfaceMVK`]
-//!# New structures
-//! - [`IosSurfaceCreateInfoMVK`]
-//!# New bitmasks
-//! - [`IosSurfaceCreateFlagsMVK`]
-//!# New constants
-//! - [`MVK_IOS_SURFACE_EXTENSION_NAME`]
-//! - [`MVK_IOS_SURFACE_SPEC_VERSION`]
-//! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_IOS_SURFACE_CREATE_INFO_MVK`
-//!# Version History
-//! - Revision 1, 2017-02-15 (Bill Hollings)
-//! - Initial draft.
-//!
-//! - Revision 2, 2017-02-24 (Bill Hollings)
-//! - Minor syntax fix to emphasize firm requirement for `UIView` to be
-//!backed by a [`CaMetalLayer`].
-//!
-//! - Revision 3, 2020-07-31 (Bill Hollings)
-//! - Update documentation on requirements for UIView.
-//! - Mark as deprecated by [`VK_EXT_metal_surface`].
-//!# Other info
-//! * 2020-07-31
-//! * No known IP claims.
-//!*
-//! - Bill Hollings, The Brenwill Workshop Ltd.
-//!# Related
-//! - [`IosSurfaceCreateFlagsMVK`]
-//! - [`IosSurfaceCreateInfoMVK`]
-//! - [`CreateIosSurfaceMVK`]
-//!
-//!# Notes and documentation
-//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-//!
-//!This documentation is generated from the Vulkan specification and documentation.
-//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-//! Commons Attribution 4.0 International*.
-//!This license explicitely allows adapting the source material as long as proper credit is given.
-use std::ffi::CStr;
+use crate::vulkan1_0::{BaseInStructure, StructureType};
+use std::{
+    ffi::{c_void, CStr},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_MVK_IOS_SURFACE_SPEC_VERSION")]
@@ -66,3 +11,60 @@ pub const MVK_IOS_SURFACE_SPEC_VERSION: u32 = 3;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_MVK_IOS_SURFACE_EXTENSION_NAME")]
 pub const MVK_IOS_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_MVK_ios_surface");
+///[VkIOSSurfaceCreateInfoMVK](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIOSSurfaceCreateInfoMVK.html) - Structure specifying parameters of a newly created iOS surface object
+///# C Specifications
+///The [`IosSurfaceCreateInfoMVK`] structure is defined as:
+///```c
+///// Provided by VK_MVK_ios_surface
+///typedef struct VkIOSSurfaceCreateInfoMVK {
+///    VkStructureType               sType;
+///    const void*                   pNext;
+///    VkIOSSurfaceCreateFlagsMVK    flags;
+///    const void*                   pView;
+///} VkIOSSurfaceCreateInfoMVK;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`flags`] is reserved for future use.
+/// - [`p_view`] is a reference to either a [`CaMetalLayer`] object or a `UIView` object.
+///# Description
+///Valid Usage
+/// - If [`p_view`] is a [`CaMetalLayer`] object, it **must** be a valid [`CaMetalLayer`]
+/// - If [`p_view`] is a `UIView` object, it **must** be a valid `UIView`, **must** be backed by a
+///   `CALayer` object of type [`CaMetalLayer`], and [`CreateIosSurfaceMVK`]**must** be called on
+///   the main thread
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IOS_SURFACE_CREATE_INFO_MVK`
+/// - [`p_next`]**must** be `NULL`
+/// - [`flags`]**must** be `0`
+///# Related
+/// - [`VK_MVK_ios_surface`]
+/// - [`IosSurfaceCreateFlagsMVK`]
+/// - [`StructureType`]
+/// - [`CreateIosSurfaceMVK`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct IosSurfaceCreateInfoMVK<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`flags`] is reserved for future use.
+    flags: IosSurfaceCreateFlagsMVK,
+    ///[`p_view`] is a reference to either a [`CaMetalLayer`] object or a
+    ///`UIView` object.
+    p_view: *mut c_void,
+}

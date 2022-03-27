@@ -1,723 +1,11 @@
-//![VK_KHR_acceleration_structure](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_acceleration_structure.html) - device extension
-//!# Description
-//!In order to be efficient, rendering techniques such as ray tracing need a
-//!quick way to identify which primitives may be intersected by a ray
-//!traversing the geometries.
-//!Acceleration structures are the most common way to represent the geometry
-//!spatially sorted, in order to quickly identify such potential intersections.This extension adds
-//! new functionalities:
-//! - Acceleration structure objects and build commands
-//! - Structures to describe geometry inputs to acceleration structure builds
-//! - Acceleration structure copy commands
-//!# Revision
-//!13
-//!# Dependencies
-//! - Requires Vulkan 1.1
-//! - Requires `[`VK_EXT_descriptor_indexing`]`
-//! - Requires `[`VK_KHR_buffer_device_address`]`
-//! - Requires `[`VK_KHR_deferred_host_operations`]`
-//!# Contacts
-//! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_acceleration_structure]
-//!   @dgkoch%0A<<Here describe the issue or question you have about the
-//!   VK_KHR_acceleration_structure extension>>)
-//!# New handles
-//! - [`AccelerationStructureKHR`]
-//!# New functions & commands
-//! - [`BuildAccelerationStructuresKHR`]
-//! - [`CmdBuildAccelerationStructuresIndirectKHR`]
-//! - [`CmdBuildAccelerationStructuresKHR`]
-//! - [`CmdCopyAccelerationStructureKHR`]
-//! - [`CmdCopyAccelerationStructureToMemoryKHR`]
-//! - [`CmdCopyMemoryToAccelerationStructureKHR`]
-//! - [`CmdWriteAccelerationStructuresPropertiesKHR`]
-//! - [`CopyAccelerationStructureKHR`]
-//! - [`CopyAccelerationStructureToMemoryKHR`]
-//! - [`CopyMemoryToAccelerationStructureKHR`]
-//! - [`CreateAccelerationStructureKHR`]
-//! - [`DestroyAccelerationStructureKHR`]
-//! - [`GetAccelerationStructureBuildSizesKHR`]
-//! - [`GetAccelerationStructureDeviceAddressKHR`]
-//! - [`GetDeviceAccelerationStructureCompatibilityKHR`]
-//! - [`WriteAccelerationStructuresPropertiesKHR`]
-//!# New structures
-//! - [`AabbPositionsKHR`]
-//! - [`AccelerationStructureBuildGeometryInfoKHR`]
-//! - [`AccelerationStructureBuildRangeInfoKHR`]
-//! - [`AccelerationStructureBuildSizesInfoKHR`]
-//! - [`AccelerationStructureCreateInfoKHR`]
-//! - [`AccelerationStructureDeviceAddressInfoKHR`]
-//! - [`AccelerationStructureGeometryAabbsDataKHR`]
-//! - [`AccelerationStructureGeometryInstancesDataKHR`]
-//! - [`AccelerationStructureGeometryKHR`]
-//! - [`AccelerationStructureGeometryTrianglesDataKHR`]
-//! - [`AccelerationStructureInstanceKHR`]
-//! - [`AccelerationStructureVersionInfoKHR`]
-//! - [`CopyAccelerationStructureInfoKHR`]
-//! - [`CopyAccelerationStructureToMemoryInfoKHR`]
-//! - [`CopyMemoryToAccelerationStructureInfoKHR`]
-//! - [`TransformMatrixKHR`]
-//! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
-//! - [`PhysicalDeviceAccelerationStructureFeaturesKHR`]
-//!
-//! - Extending [`PhysicalDeviceProperties2`]:
-//! - [`PhysicalDeviceAccelerationStructurePropertiesKHR`]
-//!
-//! - Extending [`WriteDescriptorSet`]:
-//! - [`WriteDescriptorSetAccelerationStructureKHR`]
-//!# New enums
-//! - [`AccelerationStructureBuildTypeKHR`]
-//! - [`AccelerationStructureCompatibilityKHR`]
-//! - [`AccelerationStructureCreateFlagBitsKHR`]
-//! - [`AccelerationStructureTypeKHR`]
-//! - [`BuildAccelerationStructureFlagBitsKHR`]
-//! - [`BuildAccelerationStructureModeKHR`]
-//! - [`CopyAccelerationStructureModeKHR`]
-//! - [`GeometryFlagBitsKHR`]
-//! - [`GeometryInstanceFlagBitsKHR`]
-//! - [`GeometryTypeKHR`]
-//!# New bitmasks
-//! - [`AccelerationStructureCreateFlagsKHR`]
-//! - [`BuildAccelerationStructureFlagsKHR`]
-//! - [`GeometryFlagsKHR`]
-//! - [`GeometryInstanceFlagsKHR`]
-//!# New constants
-//! - [`KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME`]
-//! - [`KHR_ACCELERATION_STRUCTURE_SPEC_VERSION`]
-//! - Extending [`AccessFlagBits`]:
-//! - `VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR`
-//! - `VK_ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR`
-//!
-//! - Extending [`BufferUsageFlagBits`]:
-//! - `VK_BUFFER_USAGE_ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_BIT_KHR`
-//! - `VK_BUFFER_USAGE_ACCELERATION_STRUCTURE_STORAGE_BIT_KHR`
-//!
-//! - Extending [`DebugReportObjectTypeEXT`]:
-//! - `VK_DEBUG_REPORT_OBJECT_TYPE_ACCELERATION_STRUCTURE_KHR_EXT`
-//!
-//! - Extending [`DescriptorType`]:
-//! - `VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR`
-//!
-//! - Extending [`FormatFeatureFlagBits`]:
-//! - `VK_FORMAT_FEATURE_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR`
-//!
-//! - Extending [`IndexType`]:
-//! - `VK_INDEX_TYPE_NONE_KHR`
-//!
-//! - Extending [`ObjectType`]:
-//! - `VK_OBJECT_TYPE_ACCELERATION_STRUCTURE_KHR`
-//!
-//! - Extending [`PipelineStageFlagBits`]:
-//! - `VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`
-//!
-//! - Extending [`QueryType`]:
-//! - `VK_QUERY_TYPE_ACCELERATION_STRUCTURE_COMPACTED_SIZE_KHR`
-//! - `VK_QUERY_TYPE_ACCELERATION_STRUCTURE_SERIALIZATION_SIZE_KHR`
-//!
-//! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR`
-//! - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR`
-//! - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_KHR`
-//! - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR`
-//! - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR`
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR`
-//! - `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR`
-//!
-//!If [`VK_KHR_format_feature_flags2`] is supported:
-//! - Extending [`FormatFeatureFlagBits2`]:
-//! - `VK_FORMAT_FEATURE_2_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR`
-//!# Known issues & F.A.Q
-//!(1) How does this extension differ from VK_NV_ray_tracing?**DISCUSSION**:The following is a
-//! summary of the main functional differences between
-//!VK_KHR_acceleration_structure and VK_NV_ray_tracing:
-//! - added acceleration structure serialization / deserialization
-//!(`VK_COPY_ACCELERATION_STRUCTURE_MODE_SERIALIZE_KHR`,
-//!`VK_COPY_ACCELERATION_STRUCTURE_MODE_DESERIALIZE_KHR`,
-//![`CmdCopyAccelerationStructureToMemoryKHR`],
-//![`CmdCopyMemoryToAccelerationStructureKHR`])
-//! - document [inactive primitives and
-//!instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-inactive-prims)
-//! - added [`PhysicalDeviceAccelerationStructureFeaturesKHR`] structure
-//! - added indirect and batched acceleration structure builds
-//!([`CmdBuildAccelerationStructuresIndirectKHR`])
-//! - added [host acceleration structure](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#host-acceleration-structure)
-//!commands
-//! - reworked geometry structures so they could be better shared between
-//!device, host, and indirect builds
-//! - explicitly made [`AccelerationStructureKHR`] use device addresses
-//! - added acceleration structure compatibility check function
-//!([`GetDeviceAccelerationStructureCompatibilityKHR`])
-//! - add parameter for requesting memory requirements for host and/or device
-//!build
-//! - added format feature for acceleration structure build vertex formats
-//!(`VK_FORMAT_FEATURE_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR`)
-//!(2) Can you give a more detailed comparision of differences and similarities
-//!between VK_NV_ray_tracing and VK_KHR_acceleration_structure?**DISCUSSION**:The following is a
-//! more detailed comparision of which commands, structures,
-//!and enums are aliased, changed, or removed.
-//! - Aliased functionality — enums, structures, and commands that are
-//!considered equivalent:
-//! - [`GeometryTypeNV`] ↔ [`GeometryTypeKHR`]
-//! - [`AccelerationStructureTypeNV`] ↔
-//![`AccelerationStructureTypeKHR`]
-//! - [`CopyAccelerationStructureModeNV`] ↔
-//![`CopyAccelerationStructureModeKHR`]
-//! - [`GeometryFlagsNV`] ↔ [`GeometryFlagsKHR`]
-//! - [`GeometryFlagBitsNV`] ↔ [`GeometryFlagBitsKHR`]
-//! - [`GeometryInstanceFlagsNV`] ↔ [`GeometryInstanceFlagsKHR`]
-//! - [`GeometryInstanceFlagBitsNV`] ↔
-//![`GeometryInstanceFlagBitsKHR`]
-//! - [`BuildAccelerationStructureFlagsNV`] ↔
-//![`BuildAccelerationStructureFlagsKHR`]
-//! - [`BuildAccelerationStructureFlagBitsNV`] ↔
-//![`BuildAccelerationStructureFlagBitsKHR`]
-//! - [`TransformMatrixNV`] ↔ [`TransformMatrixKHR`] (added to
-//!VK_NV_ray_tracing for descriptive purposes)
-//! - [`AabbPositionsNV`] ↔ [`AabbPositionsKHR`] (added to
-//!VK_NV_ray_tracing for descriptive purposes)
-//! - [`AccelerationStructureInstanceNV`] ↔
-//![`AccelerationStructureInstanceKHR`] (added to VK_NV_ray_tracing
-//!for descriptive purposes)
-//!
-//! - Changed enums, structures, and commands:
-//! - renamed `VK_GEOMETRY_INSTANCE_TRIANGLE_CULL_DISABLE_BIT_NV` →
-//!`VK_GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_BIT_KHR` in
-//![`GeometryInstanceFlagBitsKHR`]
-//! - [`GeometryTrianglesNV`] →
-//![`AccelerationStructureGeometryTrianglesDataKHR`] (device or host
-//!address instead of buffer+offset)
-//! - [`GeometryAabbNV`] →
-//![`AccelerationStructureGeometryAabbsDataKHR`] (device or host
-//!address instead of buffer+offset)
-//! - [`GeometryDataNV`] → [`AccelerationStructureGeometryDataKHR`]
-//!(union of triangle/aabbs/instances)
-//! - [`GeometryNV`] → [`AccelerationStructureGeometryKHR`] (changed
-//!type of geometry)
-//! - [`AccelerationStructureCreateInfoNV`] →
-//![`AccelerationStructureCreateInfoKHR`] (reshuffle geometry
-//!layout/information)
-//! - [`PhysicalDeviceRayTracingPropertiesNV`] →
-//![`PhysicalDeviceAccelerationStructurePropertiesKHR`] (for
-//!acceleration structure properties, renamed `maxTriangleCount` to
-//!`maxPrimitiveCount`, added per stage and update after bind limits)
-//!and [`PhysicalDeviceRayTracingPipelinePropertiesKHR`] (for ray
-//!tracing pipeline properties)
-//! - [`AccelerationStructureMemoryRequirementsInfoNV`] (deleted -
-//!replaced by allocating on top of [`Buffer`])
-//! - [`WriteDescriptorSetAccelerationStructureNV`] →
-//![`WriteDescriptorSetAccelerationStructureKHR`] (different
-//!acceleration structure type)
-//! - [`CreateAccelerationStructureNV`] →
-//![`CreateAccelerationStructureKHR`] (device address, different
-//!geometry layout/information)
-//! - [`GetAccelerationStructureMemoryRequirementsNV`] (deleted -
-//!replaced by allocating on top of [`Buffer`])
-//! - [`CmdBuildAccelerationStructureNV`] →
-//![`CmdBuildAccelerationStructuresKHR`] (params moved to structs,
-//!layout differences)
-//! - [`CmdCopyAccelerationStructureNV`] →
-//![`CmdCopyAccelerationStructureKHR`] (params to struct, extendable)
-//! - [`GetAccelerationStructureHandleNV`] →
-//![`GetAccelerationStructureDeviceAddressKHR`] (device address
-//!instead of handle)
-//! - [`AccelerationStructureMemoryRequirementsTypeNV`] → size queries
-//!for scratch space moved to
-//![`GetAccelerationStructureBuildSizesKHR`]
-//! - [`DestroyAccelerationStructureNV`] →
-//![`DestroyAccelerationStructureKHR`] (different acceleration
-//!structure types)
-//! - [`CmdWriteAccelerationStructuresPropertiesNV`] →
-//![`CmdWriteAccelerationStructuresPropertiesKHR`] (different
-//!acceleration structure types)
-//!
-//! - Added enums, structures and commands:
-//! - `VK_GEOMETRY_TYPE_INSTANCES_KHR` to [`GeometryTypeKHR`] enum
-//! - `VK_COPY_ACCELERATION_STRUCTURE_MODE_SERIALIZE_KHR`,
-//!`VK_COPY_ACCELERATION_STRUCTURE_MODE_DESERIALIZE_KHR` to
-//![`CopyAccelerationStructureModeKHR`] enum
-//! - [`PhysicalDeviceAccelerationStructureFeaturesKHR`] structure
-//! - [`AccelerationStructureBuildTypeKHR`] enum
-//! - [`BuildAccelerationStructureModeKHR`] enum
-//! - [`DeviceOrHostAddressKHR`] and [`DeviceOrHostAddressConstKHR`]
-//!unions
-//! - [`AccelerationStructureBuildRangeInfoKHR`] struct
-//! - [`AccelerationStructureGeometryInstancesDataKHR`] struct
-//! - [`AccelerationStructureDeviceAddressInfoKHR`] struct
-//! - [`AccelerationStructureVersionInfoKHR`] struct
-//! - [`StridedDeviceAddressRegionKHR`] struct
-//! - [`CopyAccelerationStructureToMemoryInfoKHR`] struct
-//! - [`CopyMemoryToAccelerationStructureInfoKHR`] struct
-//! - [`CopyAccelerationStructureInfoKHR`] struct
-//! - [`BuildAccelerationStructuresKHR`] command (host build)
-//! - [`CopyAccelerationStructureKHR`] command (host copy)
-//! - [`CopyAccelerationStructureToMemoryKHR`] (host serialize)
-//! - [`CopyMemoryToAccelerationStructureKHR`] (host deserialize)
-//! - [`WriteAccelerationStructuresPropertiesKHR`] (host properties)
-//! - [`CmdCopyAccelerationStructureToMemoryKHR`] (device serialize)
-//! - [`CmdCopyMemoryToAccelerationStructureKHR`] (device deserialize)
-//! - [`GetDeviceAccelerationStructureCompatibilityKHR`] (serialization)
-//!
-//!(3) What are the changes between the public provisional (VK_KHR_ray_tracing
-//!v8) release and the internal provisional (VK_KHR_ray_tracing v9) release?
-//! - added `geometryFlags` to
-//!`VkAccelerationStructureCreateGeometryTypeInfoKHR` (later reworked
-//!to obsolete this)
-//! - added `minAccelerationStructureScratchOffsetAlignment` property to
-//!VkPhysicalDeviceRayTracingPropertiesKHR
-//! - fix naming and return enum from
-//![`GetDeviceAccelerationStructureCompatibilityKHR`]
-//! - renamed `VkAccelerationStructureVersionKHR` to
-//![`AccelerationStructureVersionInfoKHR`]
-//! - renamed `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_KHR` to
-//!`VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`
-//! - removed `VK_ERROR_INCOMPATIBLE_VERSION_KHR`
-//! - added [`AccelerationStructureCompatibilityKHR`] enum
-//! - remove return value from
-//![`GetDeviceAccelerationStructureCompatibilityKHR`] and added return
-//!enum parameter
-//!
-//! - Require Vulkan 1.1
-//! - added creation time capture and replay flags
-//! - added [`AccelerationStructureCreateFlagBitsKHR`] and
-//![`AccelerationStructureCreateFlagsKHR`]
-//! - renamed the `flags` member of
-//![`AccelerationStructureCreateInfoKHR`] to `buildFlags` (later
-//!removed) and added the `createFlags` member
-//!
-//! - change [`CmdBuildAccelerationStructuresIndirectKHR`] to use buffer
-//!device address for indirect parameter
-//! - make `[`VK_KHR_deferred_host_operations`]` an interaction instead of
-//!a required extension (later went back on this)
-//! - renamed `VkAccelerationStructureBuildOffsetInfoKHR` to
-//![`AccelerationStructureBuildRangeInfoKHR`]
-//! - renamed the `ppOffsetInfos` parameter of
-//![`CmdBuildAccelerationStructuresKHR`] to `ppBuildRangeInfos`
-//!
-//! - Re-unify geometry description between build and create
-//! - remove `VkAccelerationStructureCreateGeometryTypeInfoKHR` and
-//!`VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_GEOMETRY_TYPE_INFO_KHR`
-//! - added `VkAccelerationStructureCreateSizeInfoKHR` structure (later
-//!removed)
-//! - change type of the `pGeometryInfos` member of
-//![`AccelerationStructureCreateInfoKHR`] from
-//!`VkAccelerationStructureCreateGeometryTypeInfoKHR` to
-//![`AccelerationStructureGeometryKHR`] (later removed)
-//! - added `pCreateSizeInfos` member to
-//![`AccelerationStructureCreateInfoKHR`] (later removed)
-//!
-//! - Fix ppGeometries ambiguity, add pGeometries
-//! - remove `geometryArrayOfPointers` member of
-//!VkAccelerationStructureBuildGeometryInfoKHR
-//! - disambiguate two meanings of `ppGeometries` by explicitly adding
-//!`pGeometries` to the
-//![`AccelerationStructureBuildGeometryInfoKHR`] structure and require
-//!one of them be `NULL`
-//!
-//! - added [nullDescriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-nullDescriptor)
-//!   support for
-//!acceleration structures
-//! - changed the `update` member of
-//![`AccelerationStructureBuildGeometryInfoKHR`] from a bool to the
-//!`mode`[`BuildAccelerationStructureModeKHR`] enum which allows
-//!future extensibility in update types
-//! - Clarify deferred host ops for pipeline creation
-//! - [`DeferredOperationKHR`] is now a top-level parameter for
-//![`BuildAccelerationStructuresKHR`],
-//![`CreateRayTracingPipelinesKHR`],
-//![`CopyAccelerationStructureToMemoryKHR`],
-//![`CopyAccelerationStructureKHR`], and
-//![`CopyMemoryToAccelerationStructureKHR`]
-//! - removed `VkDeferredOperationInfoKHR` structure
-//! - change deferred host creation/return parameter behavior such that the
-//!implementation can modify such parameters until the deferred host
-//!operation completes
-//! - `[`VK_KHR_deferred_host_operations`]` is required again
-//!
-//! - Change acceleration structure build to always be sized
-//! - de-alias [`AccelerationStructureMemoryRequirementsTypeNV`] and
-//!`VkAccelerationStructureMemoryRequirementsTypeKHR`, and remove
-//!`VkAccelerationStructureMemoryRequirementsTypeKHR`
-//! - add [`GetAccelerationStructureBuildSizesKHR`] command and
-//![`AccelerationStructureBuildSizesInfoKHR`] structure and
-//!`VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR`
-//!enum to query sizes for acceleration structures and scratch storage
-//! - move size queries for scratch space to
-//![`GetAccelerationStructureBuildSizesKHR`]
-//! - remove `compactedSize`, `buildFlags`, `maxGeometryCount`,
-//!`pGeometryInfos`, `pCreateSizeInfos` members of
-//![`AccelerationStructureCreateInfoKHR`] and add the `size`
-//!member
-//! - add `maxVertex` member to
-//![`AccelerationStructureGeometryTrianglesDataKHR`] structure
-//! - remove `VkAccelerationStructureCreateSizeInfoKHR` structure
-//!
-//!(4) What are the changes between the internal provisional
-//!(VK_KHR_ray_tracing v9) release and the final (VK_KHR_acceleration_structure
-//!v11) release?
-//! - refactor VK_KHR_ray_tracing into 3 extensions, enabling implementation
-//!flexibility and decoupling ray query support from ray pipelines:
-//! - `[`VK_KHR_acceleration_structure`]` (for acceleration structure
-//!operations)
-//! - `[`VK_KHR_ray_tracing_pipeline`]` (for ray tracing pipeline and
-//!shader stages)
-//! - `[`VK_KHR_ray_query`]` (for ray queries in existing shader stages)
-//!
-//! - clarify buffer usage flags for ray tracing
-//! - `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` is left alone in
-//!`[`VK_NV_ray_tracing`]` (required on `scratch` and
-//!`instanceData`)
-//! - `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR` is added as an alias
-//!of `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` in
-//!`[`VK_KHR_ray_tracing_pipeline`]` and is required on shader binding
-//!table buffers
-//! - `VK_BUFFER_USAGE_ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_BIT_KHR`
-//!is added in `[`VK_KHR_acceleration_structure`]` for all vertex,
-//!index, transform, aabb, and instance buffer data referenced by device
-//!build commands
-//! - `VK_BUFFER_USAGE_STORAGE_BUFFER_BIT` is used for `scratchData`
-//!
-//! - add max primitive counts (`ppMaxPrimitiveCounts`) to
-//![`CmdBuildAccelerationStructuresIndirectKHR`]
-//! - Allocate acceleration structures from `VkBuffers` and add a mode to
-//!constrain the device address
-//! - de-alias [`BindAccelerationStructureMemoryInfoNV`] and
-//![`BindAccelerationStructureMemoryNV`], and remove
-//!`VkBindAccelerationStructureMemoryInfoKHR`,
-//!`VkAccelerationStructureMemoryRequirementsInfoKHR`, and
-//!`vkGetAccelerationStructureMemoryRequirementsKHR`
-//! - acceleration structures now take a [`Buffer`] and offset at
-//!creation time for memory placement
-//! - add a new `VK_BUFFER_USAGE_ACCELERATION_STRUCTURE_STORAGE_BIT_KHR`
-//!buffer usage for such buffers
-//! - add a new `VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR` acceleration
-//!structure type for layering
-//!
-//! - move `VK_GEOMETRY_TYPE_INSTANCES_KHR` to main enum instead of being
-//!added via extension
-//! - make build commands more consistent - all now build multiple
-//!acceleration structures and are named plurally
-//!([`CmdBuildAccelerationStructuresIndirectKHR`],
-//![`CmdBuildAccelerationStructuresKHR`],
-//![`BuildAccelerationStructuresKHR`])
-//! - add interactions with
-//!`VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` for
-//!acceleration structures, including a new feature
-//!(`descriptorBindingAccelerationStructureUpdateAfterBind`) and 3 new
-//!properties (`maxPerStageDescriptorAccelerationStructures`,
-//!`maxPerStageDescriptorUpdateAfterBindAccelerationStructures`,
-//!`maxDescriptorSetUpdateAfterBindAccelerationStructures`)
-//! - extension is no longer provisional
-//! - define synchronization requirements for builds, traces, and copies
-//! - define synchronization requirements for AS build inputs and indirect
-//!build buffer
-//!(5) What is `VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR` for?**RESOLVED**: It is primarily
-//! intended for API layering.
-//!In DXR, the acceleration structure is basically just a buffer in a special
-//!layout, and you do not know at creation time whether it will be used as a
-//!top or bottom level acceleration structure.
-//!We thus added a generic acceleration structure type whose type is unknown at
-//!creation time, but is specified at build time instead.
-//!Applications which are written directly for Vulkan should not use it.
-//!# Version History
-//! - Revision 1, 2019-12-05 (Members of the Vulkan Ray Tracing TSG)
-//! - Internal revisions (forked from VK_NV_ray_tracing)
-//!
-//! - Revision 2, 2019-12-20 (Daniel Koch, Eric Werness)
-//! - Add const version of DeviceOrHostAddress (!3515)
-//! - Add VU to clarify that only handles in the current pipeline are valid
-//!(!3518)
-//! - Restore some missing VUs and add in-place update language (#1902,
-//!!3522)
-//! - rename VkAccelerationStructureInstanceKHR member from
-//!accelerationStructure to accelerationStructureReference to better
-//!match its type (!3523)
-//! - Allow VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS for pipeline creation if
-//!shader group handles cannot be reused (!3523)
-//! - update documentation for the VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS
-//!error code and add missing documentation for new return codes from
-//!VK_KHR_deferred_host_operations (!3523)
-//! - list new query types for VK_KHR_ray_tracing (!3523)
-//! - Fix VU statements for VkAccelerationStructureGeometryKHR referring to
-//!correct union members and update to use more current wording (!3523)
-//!
-//! - Revision 3, 2020-01-10 (Daniel Koch, Jon Leech, Christoph Kubisch)
-//! - Fix 'instance of' and 'that/which contains/defines' markup issues
-//!(!3528)
-//! - factor out VK_KHR_pipeline_library as stand-alone extension (!3540)
-//! - Resolve Vulkan-hpp issues (!3543)
-//! - add missing require for VkGeometryInstanceFlagsKHR
-//! - de-alias VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_NV
-//!since the KHR structure is no longer equivalent
-//! - add len to pDataSize attribute for
-//!vkWriteAccelerationStructuresPropertiesKHR
-//!
-//! - Revision 4, 2020-01-23 (Daniel Koch, Eric Werness)
-//! - Improve vkWriteAccelerationStructuresPropertiesKHR, add return value
-//!and VUs (#1947)
-//! - Clarify language to allow multiple raygen shaders (#1959)
-//! - Various editorial feedback (!3556)
-//! - Add language to help deal with looped self-intersecting fans (#1901)
-//! - Change vkCmdTraceRays{Indirect}KHR args to pointers (!3559)
-//! - Add scratch address validation language (#1941, !3551)
-//! - Fix definition and add hierarchy information for shader call scope
-//!(#1977, !3571)
-//!
-//! - Revision 5, 2020-02-04 (Eric Werness, Jeff Bolz, Daniel Koch)
-//! - remove vestigial accelerationStructureUUID (!3582)
-//! - update definition of repack instructions and improve memory model
-//!interactions (#1910, #1913, !3584)
-//! - Fix wrong sType for VkPhysicalDeviceRayTracingFeaturesKHR (#1988)
-//! - Use provisional SPIR-V capabilities (#1987)
-//! - require rayTraversalPrimitiveCulling if rayQuery is supported (#1927)
-//! - Miss shaders do not have object parameters (!3592)
-//! - Fix missing required types in XML (!3592)
-//! - clarify matching conditions for update (!3592)
-//! - add goal that host and device builds be similar (!3592)
-//! - clarify that `maxPrimitiveCount` limit should apply to triangles
-//!and AABBs (!3592)
-//! - Require alignment for instance arrayOfPointers (!3592)
-//! - Zero is a valid value for instance flags (!3592)
-//! - Add some alignment VUs that got lost in refactoring (!3592)
-//! - Recommend TMin epsilon rather than culling (!3592)
-//! - Get angle from dot product not cross product (!3592)
-//! - Clarify that AH can access the payload and attributes (!3592)
-//! - Match DXR behavior for inactive primitive definition (!3592)
-//! - Use a more generic term than degenerate for inactive to avoid
-//!confusion (!3592)
-//!
-//! - Revision 6, 2020-02-20 (Daniel Koch)
-//! - fix some dangling NV references (#1996)
-//! - rename VkCmdTraceRaysIndirectCommandKHR to
-//!VkTraceRaysIndirectCommandKHR (!3607)
-//! - update contributor list (!3611)
-//! - use uint64_t instead of VkAccelerationStructureReferenceKHR in
-//!VkAccelerationStructureInstanceKHR (#2004)
-//!
-//! - Revision 7, 2020-02-28 (Tobias Hector)
-//! - remove HitTKHR SPIR-V builtin (spirv/spirv-extensions#7)
-//!
-//! - Revision 8, 2020-03-06 (Tobias Hector, Dae Kim, Daniel Koch, Jeff Bolz,
-//!Eric Werness)
-//! - explicitly state that Tmax is updated when new closest intersection is
-//!accepted (#2020,!3536)
-//! - Made references to min and max t values consistent (!3644)
-//! - finish enumerating differences relative to VK_NV_ray_tracing in issues
-//!(1) and (2) (#1974,!3642)
-//! - fix formatting in some math equations (!3642)
-//! - Restrict the Hit Kind operand of `OpReportIntersectionKHR` to
-//!7-bits (spirv/spirv-extensions#8,!3646)
-//! - Say ray tracing '**should**' be watertight (#2008,!3631)
-//! - Clarify memory requirements for ray tracing buffers (#2005,!3649)
-//! - Add callable size limits (#1997,!3652)
-//!
-//! - Revision 9, 2020-04-15 (Eric Werness, Daniel Koch, Tobias Hector, Joshua
-//!Barczak)
-//! - Add geometry flags to acceleration structure creation (!3672)
-//! - add build scratch memory alignment
-//!(minAccelerationStructureScratchOffsetAlignment) (#2065,!3725)
-//! - fix naming and return enum from
-//!vkGetDeviceAccelerationStructureCompatibilityKHR (#2051,!3726)
-//! - require SPIR-V 1.4 (#2096,!3777)
-//! - added creation time capture/replay flags (#2104,!3774)
-//! - require Vulkan 1.1 (#2133,!3806)
-//! - use device addresses instead of VkBuffers for ray tracing commands
-//!(#2074,!3815)
-//! - add interactions with Vulkan 1.2 and VK_KHR_vulkan_memory_model
-//!(#2133,!3830)
-//! - make VK_KHR_pipeline_library an interaction instead of required
-//!(#2045,#2108,!3830)
-//! - make VK_KHR_deferred_host_operations an interaction instead of
-//!required (#2045,!3830)
-//! - removed maxCallableSize and added explicit stack size management for
-//!ray pipelines (#1997,!3817,!3772,!3844)
-//! - improved documentation for VkAccelerationStructureVersionInfoKHR
-//!(#2135,3835)
-//! - rename VkAccelerationStructureBuildOffsetInfoKHR to
-//!VkAccelerationStructureBuildRangeInfoKHR (#2058,!3754)
-//! - Re-unify geometry description between build and create (!3754)
-//! - Fix ppGeometries ambiguity, add pGeometries (#2032,!3811)
-//! - add interactions with VK_EXT_robustness2 and allow nullDescriptor
-//!support for acceleration structures (#1920,!3848)
-//! - added future extensibility for AS updates (#2114,!3849)
-//! - Fix VU for dispatchrays and add a limit on the size of the full grid
-//!(#2160,!3851)
-//! - Add shaderGroupHandleAlignment property (#2180,!3875)
-//! - Clarify deferred host ops for pipeline creation (#2067,!3813)
-//! - Change acceleration structure build to always be sized
-//!(#2131,#2197,#2198,!3854,!3883,!3880)
-//!
-//! - Revision 10, 2020-07-03 (Mathieu Robart, Daniel Koch, Eric Werness,
-//!Tobias Hector)
-//! - Decomposition of the specification, from VK_KHR_ray_tracing to
-//!VK_KHR_acceleration_structure (#1918,!3912)
-//! - clarify buffer usage flags for ray tracing (#2181,!3939)
-//! - add max primitive counts to build indirect command (#2233,!3944)
-//! - Allocate acceleration structures from VkBuffers and add a mode to
-//!constrain the device address (#2131,!3936)
-//! - Move VK_GEOMETRY_TYPE_INSTANCES_KHR to main enum (#2243,!3952)
-//! - make build commands more consistent (#2247,!3958)
-//! - add interactions with UPDATE_AFTER_BIND (#2128,!3986)
-//! - correct and expand build command VUs (!4020)
-//! - fix copy command VUs (!4018)
-//! - added various alignment requirements (#2229,!3943)
-//! - fix valid usage for arrays of geometryCount items (#2198,!4010)
-//! - define what is allowed to change on RTAS updates and relevant VUs
-//!(#2177,!3961)
-//!
-//! - Revision 11, 2020-11-12 (Eric Werness, Josh Barczak, Daniel Koch, Tobias
-//!Hector)
-//! - de-alias NV and KHR acceleration structure types and associated
-//!commands (#2271,!4035)
-//! - specify alignment for host copy commands (#2273,!4037)
-//! - document
-//!`VK_FORMAT_FEATURE_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR`
-//! - specify that acceleration structures are non-linear (#2289,!4068)
-//! - add several missing VUs for strides, vertexFormat, and indexType
-//!(#2315,!4069)
-//! - restore VUs for VkAccelerationStructureBuildGeometryInfoKHR
-//!(#2337,!4098)
-//! - ban multi-instance memory for host operations (#2324,!4102)
-//! - allow dstAccelerationStructure to be null for
-//!vkGetAccelerationStructureBuildSizesKHR (#2330,!4111)
-//! - more build VU cleanup (#2138,#4130)
-//! - specify host endianness for AS serialization (#2261,!4136)
-//! - add invertible transform matrix VU (#1710,!4140)
-//! - require geometryCount to be 1 for TLAS builds (!4145)
-//! - improved validity conditions for build addresses (#4142)
-//! - add single statement SPIR-V VUs, build limit VUs (!4158)
-//! - document limits for vertex and aabb strides (#2390,!4184)
-//! - specify that
-//!`VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR` applies
-//!to AS copies (#2382,#4173)
-//! - define sync for AS build inputs and indirect buffer (#2407,!4208)
-//!
-//! - Revision 12, 2021-08-06 (Samuel Bourasseau)
-//! - rename VK_GEOMETRY_INSTANCE_TRIANGLE_FRONT_COUNTERCLOCKWISE_BIT_KHR to
-//!VK_GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_BIT_KHR (keep previous as
-//!alias).
-//! - Clarify description and add note.
-//!
-//! - Revision 13, 2021-09-30 (Jon Leech)
-//! - Add interaction with `[`VK_KHR_format_feature_flags2`]` to `vk.xml`
-//!# Other info
-//! * 2021-09-30
-//!*
-//! - Samuel Bourasseau, Adobe
-//! - Matthäus Chajdas, AMD
-//! - Greg Grebe, AMD
-//! - Nicolai Hähnle, AMD
-//! - Tobias Hector, AMD
-//! - Dave Oldcorn, AMD
-//! - Skyler Saleh, AMD
-//! - Mathieu Robart, Arm
-//! - Marius Bjorge, Arm
-//! - Tom Olson, Arm
-//! - Sebastian Tafuri, EA
-//! - Henrik Rydgard, Embark
-//! - Juan Cañada, Epic Games
-//! - Patrick Kelly, Epic Games
-//! - Yuriy O’Donnell, Epic Games
-//! - Michael Doggett, Facebook/Oculus
-//! - Ricardo Garcia, Igalia
-//! - Andrew Garrard, Imagination
-//! - Don Scorgie, Imagination
-//! - Dae Kim, Imagination
-//! - Joshua Barczak, Intel
-//! - Slawek Grajewski, Intel
-//! - Jeff Bolz, NVIDIA
-//! - Pascal Gautron, NVIDIA
-//! - Daniel Koch, NVIDIA
-//! - Christoph Kubisch, NVIDIA
-//! - Ashwin Lele, NVIDIA
-//! - Robert Stepinski, NVIDIA
-//! - Martin Stich, NVIDIA
-//! - Nuno Subtil, NVIDIA
-//! - Eric Werness, NVIDIA
-//! - Jon Leech, Khronos
-//! - Jeroen van Schijndel, OTOY
-//! - Juul Joosten, OTOY
-//! - Alex Bourd, Qualcomm
-//! - Roman Larionov, Qualcomm
-//! - David McAllister, Qualcomm
-//! - Lewis Gordon, Samsung
-//! - Ralph Potter, Samsung
-//! - Jasper Bekkers, Traverse Research
-//! - Jesse Barker, Unity
-//! - Baldur Karlsson, Valve
-//!# Related
-//! - [`AabbPositionsKHR`]
-//! - [`AccelerationStructureBuildGeometryInfoKHR`]
-//! - [`AccelerationStructureBuildRangeInfoKHR`]
-//! - [`AccelerationStructureBuildSizesInfoKHR`]
-//! - [`AccelerationStructureBuildTypeKHR`]
-//! - [`AccelerationStructureCompatibilityKHR`]
-//! - [`AccelerationStructureCreateFlagBitsKHR`]
-//! - [`AccelerationStructureCreateFlagsKHR`]
-//! - [`AccelerationStructureCreateInfoKHR`]
-//! - [`AccelerationStructureDeviceAddressInfoKHR`]
-//! - [`AccelerationStructureGeometryAabbsDataKHR`]
-//! - [`AccelerationStructureGeometryDataKHR`]
-//! - [`AccelerationStructureGeometryInstancesDataKHR`]
-//! - [`AccelerationStructureGeometryKHR`]
-//! - [`AccelerationStructureGeometryTrianglesDataKHR`]
-//! - [`AccelerationStructureInstanceKHR`]
-//! - [`AccelerationStructureKHR`]
-//! - [`AccelerationStructureTypeKHR`]
-//! - [`AccelerationStructureVersionInfoKHR`]
-//! - [`BuildAccelerationStructureFlagBitsKHR`]
-//! - [`BuildAccelerationStructureFlagsKHR`]
-//! - [`BuildAccelerationStructureModeKHR`]
-//! - [`CopyAccelerationStructureInfoKHR`]
-//! - [`CopyAccelerationStructureModeKHR`]
-//! - [`CopyAccelerationStructureToMemoryInfoKHR`]
-//! - [`CopyMemoryToAccelerationStructureInfoKHR`]
-//! - [`DeviceOrHostAddressConstKHR`]
-//! - [`DeviceOrHostAddressKHR`]
-//! - [`GeometryFlagBitsKHR`]
-//! - [`GeometryFlagsKHR`]
-//! - [`GeometryInstanceFlagBitsKHR`]
-//! - [`GeometryInstanceFlagsKHR`]
-//! - [`GeometryTypeKHR`]
-//! - [`PhysicalDeviceAccelerationStructureFeaturesKHR`]
-//! - [`PhysicalDeviceAccelerationStructurePropertiesKHR`]
-//! - [`TransformMatrixKHR`]
-//! - [`WriteDescriptorSetAccelerationStructureKHR`]
-//! - [`BuildAccelerationStructuresKHR`]
-//! - [`CmdBuildAccelerationStructuresIndirectKHR`]
-//! - [`CmdBuildAccelerationStructuresKHR`]
-//! - [`CmdCopyAccelerationStructureKHR`]
-//! - [`CmdCopyAccelerationStructureToMemoryKHR`]
-//! - [`CmdCopyMemoryToAccelerationStructureKHR`]
-//! - [`CmdWriteAccelerationStructuresPropertiesKHR`]
-//! - [`CopyAccelerationStructureKHR`]
-//! - [`CopyAccelerationStructureToMemoryKHR`]
-//! - [`CopyMemoryToAccelerationStructureKHR`]
-//! - [`CreateAccelerationStructureKHR`]
-//! - [`DestroyAccelerationStructureKHR`]
-//! - [`GetAccelerationStructureBuildSizesKHR`]
-//! - [`GetAccelerationStructureDeviceAddressKHR`]
-//! - [`GetDeviceAccelerationStructureCompatibilityKHR`]
-//! - [`WriteAccelerationStructuresPropertiesKHR`]
-//!
-//!# Notes and documentation
-//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-//!
-//!This documentation is generated from the Vulkan specification and documentation.
-//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-//! Commons Attribution 4.0 International*.
-//!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::vulkan1_0::{
+    BaseInStructure, BaseOutStructure, Bool32, Buffer, DeviceAddress, DeviceSize, Format, IndexType, StructureType,
+};
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::ffi::CStr;
+use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_ACCELERATION_STRUCTURE_SPEC_VERSION")]
@@ -750,28 +38,20 @@ pub const KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME: &'static CStr = crate::cstr
 ///typedef VkCopyAccelerationStructureModeKHR VkCopyAccelerationStructureModeNV;
 ///```
 ///# Description
-/// - [`COPY_ACCELERATION_STRUCTURE_MODE_CLONE`] creates a direct
-///copy of the acceleration structure specified in `src` into the one
-///specified by `dst`.
-///The `dst` acceleration structure **must** have been created with the
-///same parameters as `src`.
-///If `src` contains references to other acceleration structures,
-///`dst` will reference the same acceleration structures.
-/// - [`COPY_ACCELERATION_STRUCTURE_MODE_COMPACT`] creates a more
-///compact version of an acceleration structure `src` into `dst`.
-///The acceleration structure `dst`**must** have been created with a size
-///at least as large as that returned by
-///[`CmdWriteAccelerationStructuresPropertiesKHR`]
-///or [`WriteAccelerationStructuresPropertiesKHR`]
-///after the build of the acceleration structure specified by `src`.
-///If `src` contains references to other acceleration structures,
-///`dst` will reference the same acceleration structures.
-/// - [`COPY_ACCELERATION_STRUCTURE_MODE_SERIALIZE`] serializes the
-///acceleration structure to a semi-opaque format which can be reloaded on
-///a compatible implementation.
-/// - [`COPY_ACCELERATION_STRUCTURE_MODE_DESERIALIZE`] deserializes
-///the semi-opaque serialization format in the buffer to the acceleration
-///structure.
+/// - [`CopyAccelerationStructureModeCloneKhr`] creates a direct copy of the acceleration structure
+///   specified in `src` into the one specified by `dst`. The `dst` acceleration structure **must**
+///   have been created with the same parameters as `src`. If `src` contains references to other
+///   acceleration structures, `dst` will reference the same acceleration structures.
+/// - [`CopyAccelerationStructureModeCompactKhr`] creates a more compact version of an acceleration
+///   structure `src` into `dst`. The acceleration structure `dst`**must** have been created with a
+///   size at least as large as that returned by [`CmdWriteAccelerationStructuresPropertiesKHR`] or
+///   [`WriteAccelerationStructuresPropertiesKHR`] after the build of the acceleration structure
+///   specified by `src`. If `src` contains references to other acceleration structures, `dst` will
+///   reference the same acceleration structures.
+/// - [`CopyAccelerationStructureModeSerializeKhr`] serializes the acceleration structure to a
+///   semi-opaque format which can be reloaded on a compatible implementation.
+/// - [`CopyAccelerationStructureModeDeserializeKhr`] deserializes the semi-opaque serialization
+///   format in the buffer to the acceleration structure.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`VK_NV_ray_tracing`]
@@ -788,39 +68,20 @@ pub const KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME: &'static CStr = crate::cstr
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCopyAccelerationStructureModeKHR")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct CopyAccelerationStructureModeKHR(i32);
-impl const Default for CopyAccelerationStructureModeKHR {
-    fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for CopyAccelerationStructureModeKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("CopyAccelerationStructureModeKHR")
-            .field(match *self {
-                Self::COPY_ACCELERATION_STRUCTURE_MODE_CLONE => &"COPY_ACCELERATION_STRUCTURE_MODE_CLONE",
-                Self::COPY_ACCELERATION_STRUCTURE_MODE_COMPACT => &"COPY_ACCELERATION_STRUCTURE_MODE_COMPACT",
-                Self::COPY_ACCELERATION_STRUCTURE_MODE_SERIALIZE => &"COPY_ACCELERATION_STRUCTURE_MODE_SERIALIZE",
-                Self::COPY_ACCELERATION_STRUCTURE_MODE_DESERIALIZE => &"COPY_ACCELERATION_STRUCTURE_MODE_DESERIALIZE",
-                other => unreachable!("invalid value for `CopyAccelerationStructureModeKHR`: {:?}", other),
-            })
-            .finish()
-    }
-}
-impl CopyAccelerationStructureModeKHR {
-    ///[`COPY_ACCELERATION_STRUCTURE_MODE_CLONE`] creates a direct
+#[repr(i32)]
+pub enum CopyAccelerationStructureModeKHR {
+    ///[`CopyAccelerationStructureModeCloneKhr`] creates a direct
     ///copy of the acceleration structure specified in `src` into the one
     ///specified by `dst`.
     ///The `dst` acceleration structure **must** have been created with the
     ///same parameters as `src`.
     ///If `src` contains references to other acceleration structures,
     ///`dst` will reference the same acceleration structures.
-    pub const COPY_ACCELERATION_STRUCTURE_MODE_CLONE: Self = Self(0);
-    ///[`COPY_ACCELERATION_STRUCTURE_MODE_COMPACT`] creates a more
+    CopyAccelerationStructureModeCloneKhr = 0,
+    ///[`CopyAccelerationStructureModeCompactKhr`] creates a more
     ///compact version of an acceleration structure `src` into `dst`.
     ///The acceleration structure `dst`**must** have been created with a size
     ///at least as large as that returned by
@@ -829,23 +90,22 @@ impl CopyAccelerationStructureModeKHR {
     ///after the build of the acceleration structure specified by `src`.
     ///If `src` contains references to other acceleration structures,
     ///`dst` will reference the same acceleration structures.
-    pub const COPY_ACCELERATION_STRUCTURE_MODE_COMPACT: Self = Self(1);
-    ///[`COPY_ACCELERATION_STRUCTURE_MODE_SERIALIZE`] serializes the
+    CopyAccelerationStructureModeCompactKhr = 1,
+    ///[`CopyAccelerationStructureModeSerializeKhr`] serializes the
     ///acceleration structure to a semi-opaque format which can be reloaded on
     ///a compatible implementation.
-    pub const COPY_ACCELERATION_STRUCTURE_MODE_SERIALIZE: Self = Self(2);
-    ///[`COPY_ACCELERATION_STRUCTURE_MODE_DESERIALIZE`] deserializes
+    CopyAccelerationStructureModeSerializeKhr = 2,
+    ///[`CopyAccelerationStructureModeDeserializeKhr`] deserializes
     ///the semi-opaque serialization format in the buffer to the acceleration
     ///structure.
-    pub const COPY_ACCELERATION_STRUCTURE_MODE_DESERIALIZE: Self = Self(3);
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::nv_ray_tracing`]
-    pub const COPY_ACCELERATION_STRUCTURE_MODE_CLONE_NV: Self = Self::COPY_ACCELERATION_STRUCTURE_MODE_CLONE;
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::nv_ray_tracing`]
-    pub const COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_NV: Self = Self::COPY_ACCELERATION_STRUCTURE_MODE_COMPACT;
+    CopyAccelerationStructureModeDeserializeKhr = 3,
+}
+impl const Default for CopyAccelerationStructureModeKHR {
+    fn default() -> Self {
+        CopyAccelerationStructureModeCloneKhr
+    }
+}
+impl CopyAccelerationStructureModeKHR {
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -854,7 +114,12 @@ impl CopyAccelerationStructureModeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
     }
 }
 ///[VkBuildAccelerationStructureModeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuildAccelerationStructureModeKHR.html) - Enum specifying the type of build operation to perform
@@ -868,12 +133,11 @@ impl CopyAccelerationStructureModeKHR {
 ///} VkBuildAccelerationStructureModeKHR;
 ///```
 ///# Description
-/// - [`BUILD_ACCELERATION_STRUCTURE_MODE_BUILD`] specifies that the
-///destination acceleration structure will be built using the specified
-///geometries.
-/// - [`BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE`] specifies that the
-///destination acceleration structure will be built using data in a source
-///acceleration structure, updated by the specified geometries.
+/// - [`BuildAccelerationStructureModeBuildKhr`] specifies that the destination acceleration
+///   structure will be built using the specified geometries.
+/// - [`BuildAccelerationStructureModeUpdateKhr`] specifies that the destination acceleration
+///   structure will be built using data in a source acceleration structure, updated by the
+///   specified geometries.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`AccelerationStructureBuildGeometryInfoKHR`]
@@ -886,36 +150,26 @@ impl CopyAccelerationStructureModeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBuildAccelerationStructureModeKHR")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct BuildAccelerationStructureModeKHR(i32);
+#[repr(i32)]
+pub enum BuildAccelerationStructureModeKHR {
+    ///[`BuildAccelerationStructureModeBuildKhr`] specifies that the
+    ///destination acceleration structure will be built using the specified
+    ///geometries.
+    BuildAccelerationStructureModeBuildKhr = 0,
+    ///[`BuildAccelerationStructureModeUpdateKhr`] specifies that the
+    ///destination acceleration structure will be built using data in a source
+    ///acceleration structure, updated by the specified geometries.
+    BuildAccelerationStructureModeUpdateKhr = 1,
+}
 impl const Default for BuildAccelerationStructureModeKHR {
     fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for BuildAccelerationStructureModeKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("BuildAccelerationStructureModeKHR")
-            .field(match *self {
-                Self::BUILD_ACCELERATION_STRUCTURE_MODE_BUILD => &"BUILD_ACCELERATION_STRUCTURE_MODE_BUILD",
-                Self::BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE => &"BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE",
-                other => unreachable!("invalid value for `BuildAccelerationStructureModeKHR`: {:?}", other),
-            })
-            .finish()
+        BuildAccelerationStructureModeBuildKhr
     }
 }
 impl BuildAccelerationStructureModeKHR {
-    ///[`BUILD_ACCELERATION_STRUCTURE_MODE_BUILD`] specifies that the
-    ///destination acceleration structure will be built using the specified
-    ///geometries.
-    pub const BUILD_ACCELERATION_STRUCTURE_MODE_BUILD: Self = Self(0);
-    ///[`BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE`] specifies that the
-    ///destination acceleration structure will be built using data in a source
-    ///acceleration structure, updated by the specified geometries.
-    pub const BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -924,7 +178,12 @@ impl BuildAccelerationStructureModeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
     }
 }
 ///[VkAccelerationStructureTypeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureTypeKHR.html) - Type of acceleration structure
@@ -953,15 +212,12 @@ impl BuildAccelerationStructureModeKHR {
 ///typedef VkAccelerationStructureTypeKHR VkAccelerationStructureTypeNV;
 ///```
 ///# Description
-/// - [`ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL`] is a top-level
-///acceleration structure containing instance data referring to
-///bottom-level acceleration structures.
-/// - [`ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL`] is a bottom-level
-///acceleration structure containing the AABBs or geometry to be
-///intersected.
-/// - [`ACCELERATION_STRUCTURE_TYPE_GENERIC`] is an acceleration
-///structure whose type is determined at build time used for special
-///circumstances.
+/// - [`AccelerationStructureTypeTopLevelKhr`] is a top-level acceleration structure containing
+///   instance data referring to bottom-level acceleration structures.
+/// - [`AccelerationStructureTypeBottomLevelKhr`] is a bottom-level acceleration structure
+///   containing the AABBs or geometry to be intersected.
+/// - [`AccelerationStructureTypeGenericKhr`] is an acceleration structure whose type is determined
+///   at build time used for special circumstances.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`VK_NV_ray_tracing`]
@@ -977,49 +233,30 @@ impl BuildAccelerationStructureModeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureTypeKHR")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct AccelerationStructureTypeKHR(i32);
+#[repr(i32)]
+pub enum AccelerationStructureTypeKHR {
+    ///[`AccelerationStructureTypeTopLevelKhr`] is a top-level
+    ///acceleration structure containing instance data referring to
+    ///bottom-level acceleration structures.
+    AccelerationStructureTypeTopLevelKhr = 0,
+    ///[`AccelerationStructureTypeBottomLevelKhr`] is a bottom-level
+    ///acceleration structure containing the AABBs or geometry to be
+    ///intersected.
+    AccelerationStructureTypeBottomLevelKhr = 1,
+    ///[`AccelerationStructureTypeGenericKhr`] is an acceleration
+    ///structure whose type is determined at build time used for special
+    ///circumstances.
+    AccelerationStructureTypeGenericKhr = 2,
+}
 impl const Default for AccelerationStructureTypeKHR {
     fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for AccelerationStructureTypeKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("AccelerationStructureTypeKHR")
-            .field(match *self {
-                Self::ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL => &"ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL",
-                Self::ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL => &"ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL",
-                Self::ACCELERATION_STRUCTURE_TYPE_GENERIC => &"ACCELERATION_STRUCTURE_TYPE_GENERIC",
-                other => unreachable!("invalid value for `AccelerationStructureTypeKHR`: {:?}", other),
-            })
-            .finish()
+        AccelerationStructureTypeTopLevelKhr
     }
 }
 impl AccelerationStructureTypeKHR {
-    ///[`ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL`] is a top-level
-    ///acceleration structure containing instance data referring to
-    ///bottom-level acceleration structures.
-    pub const ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL: Self = Self(0);
-    ///[`ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL`] is a bottom-level
-    ///acceleration structure containing the AABBs or geometry to be
-    ///intersected.
-    pub const ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL: Self = Self(1);
-    ///[`ACCELERATION_STRUCTURE_TYPE_GENERIC`] is an acceleration
-    ///structure whose type is determined at build time used for special
-    ///circumstances.
-    pub const ACCELERATION_STRUCTURE_TYPE_GENERIC: Self = Self(2);
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::nv_ray_tracing`]
-    pub const ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_NV: Self = Self::ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL;
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::nv_ray_tracing`]
-    pub const ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_NV: Self = Self::ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1028,7 +265,12 @@ impl AccelerationStructureTypeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
     }
 }
 ///[VkGeometryTypeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryTypeKHR.html) - Enum specifying which type of geometry is provided
@@ -1052,12 +294,10 @@ impl AccelerationStructureTypeKHR {
 ///typedef VkGeometryTypeKHR VkGeometryTypeNV;
 ///```
 ///# Description
-/// - [`GEOMETRY_TYPE_TRIANGLES`] specifies a geometry type
-///consisting of triangles.
-/// - [`GEOMETRY_TYPE_AABBS`] specifies a geometry type consisting of
-///axis-aligned bounding boxes.
-/// - [`GEOMETRY_TYPE_INSTANCES`] specifies a geometry type
-///consisting of acceleration structure instances.
+/// - [`GeometryTypeTrianglesKhr`] specifies a geometry type consisting of triangles.
+/// - [`GeometryTypeAabbsKhr`] specifies a geometry type consisting of axis-aligned bounding boxes.
+/// - [`GeometryTypeInstancesKhr`] specifies a geometry type consisting of acceleration structure
+///   instances.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`VK_NV_ray_tracing`]
@@ -1072,46 +312,27 @@ impl AccelerationStructureTypeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeometryTypeKHR")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct GeometryTypeKHR(i32);
+#[repr(i32)]
+pub enum GeometryTypeKHR {
+    ///[`GeometryTypeTrianglesKhr`] specifies a geometry type
+    ///consisting of triangles.
+    GeometryTypeTrianglesKhr = 0,
+    ///[`GeometryTypeAabbsKhr`] specifies a geometry type consisting of
+    ///axis-aligned bounding boxes.
+    GeometryTypeAabbsKhr = 1,
+    ///[`GeometryTypeInstancesKhr`] specifies a geometry type
+    ///consisting of acceleration structure instances.
+    GeometryTypeInstancesKhr = 2,
+}
 impl const Default for GeometryTypeKHR {
     fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for GeometryTypeKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("GeometryTypeKHR")
-            .field(match *self {
-                Self::GEOMETRY_TYPE_TRIANGLES => &"GEOMETRY_TYPE_TRIANGLES",
-                Self::GEOMETRY_TYPE_AABBS => &"GEOMETRY_TYPE_AABBS",
-                Self::GEOMETRY_TYPE_INSTANCES => &"GEOMETRY_TYPE_INSTANCES",
-                other => unreachable!("invalid value for `GeometryTypeKHR`: {:?}", other),
-            })
-            .finish()
+        GeometryTypeTrianglesKhr
     }
 }
 impl GeometryTypeKHR {
-    ///[`GEOMETRY_TYPE_TRIANGLES`] specifies a geometry type
-    ///consisting of triangles.
-    pub const GEOMETRY_TYPE_TRIANGLES: Self = Self(0);
-    ///[`GEOMETRY_TYPE_AABBS`] specifies a geometry type consisting of
-    ///axis-aligned bounding boxes.
-    pub const GEOMETRY_TYPE_AABBS: Self = Self(1);
-    ///[`GEOMETRY_TYPE_INSTANCES`] specifies a geometry type
-    ///consisting of acceleration structure instances.
-    pub const GEOMETRY_TYPE_INSTANCES: Self = Self(2);
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::nv_ray_tracing`]
-    pub const GEOMETRY_TYPE_TRIANGLES_NV: Self = Self::GEOMETRY_TYPE_TRIANGLES;
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::nv_ray_tracing`]
-    pub const GEOMETRY_TYPE_AABBS_NV: Self = Self::GEOMETRY_TYPE_AABBS;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1120,7 +341,12 @@ impl GeometryTypeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
     }
 }
 ///[VkAccelerationStructureBuildTypeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureBuildTypeKHR.html) - Acceleration structure build type
@@ -1136,13 +362,12 @@ impl GeometryTypeKHR {
 ///} VkAccelerationStructureBuildTypeKHR;
 ///```
 ///# Description
-/// - [`ACCELERATION_STRUCTURE_BUILD_TYPE_HOST`] requests the memory
-///requirement for operations performed by the host.
-/// - [`ACCELERATION_STRUCTURE_BUILD_TYPE_DEVICE`] requests the
-///memory requirement for operations performed by the device.
-/// - [`ACCELERATION_STRUCTURE_BUILD_TYPE_HOST_OR_DEVICE`] requests
-///the memory requirement for operations performed by either the host, or
-///the device.
+/// - [`AccelerationStructureBuildTypeHostKhr`] requests the memory requirement for operations
+///   performed by the host.
+/// - [`AccelerationStructureBuildTypeDeviceKhr`] requests the memory requirement for operations
+///   performed by the device.
+/// - [`AccelerationStructureBuildTypeHostOrDeviceKhr`] requests the memory requirement for
+///   operations performed by either the host, or the device.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`GetAccelerationStructureBuildSizesKHR`]
@@ -1155,41 +380,28 @@ impl GeometryTypeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureBuildTypeKHR")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct AccelerationStructureBuildTypeKHR(i32);
+#[repr(i32)]
+pub enum AccelerationStructureBuildTypeKHR {
+    ///[`AccelerationStructureBuildTypeHostKhr`] requests the memory
+    ///requirement for operations performed by the host.
+    AccelerationStructureBuildTypeHostKhr = 0,
+    ///[`AccelerationStructureBuildTypeDeviceKhr`] requests the
+    ///memory requirement for operations performed by the device.
+    AccelerationStructureBuildTypeDeviceKhr = 1,
+    ///[`AccelerationStructureBuildTypeHostOrDeviceKhr`] requests
+    ///the memory requirement for operations performed by either the host, or
+    ///the device.
+    AccelerationStructureBuildTypeHostOrDeviceKhr = 2,
+}
 impl const Default for AccelerationStructureBuildTypeKHR {
     fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for AccelerationStructureBuildTypeKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("AccelerationStructureBuildTypeKHR")
-            .field(match *self {
-                Self::ACCELERATION_STRUCTURE_BUILD_TYPE_HOST => &"ACCELERATION_STRUCTURE_BUILD_TYPE_HOST",
-                Self::ACCELERATION_STRUCTURE_BUILD_TYPE_DEVICE => &"ACCELERATION_STRUCTURE_BUILD_TYPE_DEVICE",
-                Self::ACCELERATION_STRUCTURE_BUILD_TYPE_HOST_OR_DEVICE => {
-                    &"ACCELERATION_STRUCTURE_BUILD_TYPE_HOST_OR_DEVICE"
-                },
-                other => unreachable!("invalid value for `AccelerationStructureBuildTypeKHR`: {:?}", other),
-            })
-            .finish()
+        AccelerationStructureBuildTypeHostKhr
     }
 }
 impl AccelerationStructureBuildTypeKHR {
-    ///[`ACCELERATION_STRUCTURE_BUILD_TYPE_HOST`] requests the memory
-    ///requirement for operations performed by the host.
-    pub const ACCELERATION_STRUCTURE_BUILD_TYPE_HOST: Self = Self(0);
-    ///[`ACCELERATION_STRUCTURE_BUILD_TYPE_DEVICE`] requests the
-    ///memory requirement for operations performed by the device.
-    pub const ACCELERATION_STRUCTURE_BUILD_TYPE_DEVICE: Self = Self(1);
-    ///[`ACCELERATION_STRUCTURE_BUILD_TYPE_HOST_OR_DEVICE`] requests
-    ///the memory requirement for operations performed by either the host, or
-    ///the device.
-    pub const ACCELERATION_STRUCTURE_BUILD_TYPE_HOST_OR_DEVICE: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1198,7 +410,12 @@ impl AccelerationStructureBuildTypeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
     }
 }
 ///[VkAccelerationStructureCompatibilityKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureCompatibilityKHR.html) - Acceleration structure compatibility
@@ -1213,12 +430,10 @@ impl AccelerationStructureBuildTypeKHR {
 ///} VkAccelerationStructureCompatibilityKHR;
 ///```
 ///# Description
-/// - [`ACCELERATION_STRUCTURE_COMPATIBILITY_COMPATIBLE`] if the
-///`pVersionData` version acceleration structure is compatible with
-///`device`.
-/// - [`ACCELERATION_STRUCTURE_COMPATIBILITY_INCOMPATIBLE`] if the
-///`pVersionData` version acceleration structure is not compatible with
-///`device`.
+/// - [`AccelerationStructureCompatibilityCompatibleKhr`] if the `pVersionData` version acceleration
+///   structure is compatible with `device`.
+/// - [`AccelerationStructureCompatibilityIncompatibleKhr`] if the `pVersionData` version
+///   acceleration structure is not compatible with `device`.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`GetDeviceAccelerationStructureCompatibilityKHR`]
@@ -1231,40 +446,26 @@ impl AccelerationStructureBuildTypeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureCompatibilityKHR")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct AccelerationStructureCompatibilityKHR(i32);
+#[repr(i32)]
+pub enum AccelerationStructureCompatibilityKHR {
+    ///[`AccelerationStructureCompatibilityCompatibleKhr`] if the
+    ///`pVersionData` version acceleration structure is compatible with
+    ///`device`.
+    AccelerationStructureCompatibilityCompatibleKhr = 0,
+    ///[`AccelerationStructureCompatibilityIncompatibleKhr`] if the
+    ///`pVersionData` version acceleration structure is not compatible with
+    ///`device`.
+    AccelerationStructureCompatibilityIncompatibleKhr = 1,
+}
 impl const Default for AccelerationStructureCompatibilityKHR {
     fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for AccelerationStructureCompatibilityKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("AccelerationStructureCompatibilityKHR")
-            .field(match *self {
-                Self::ACCELERATION_STRUCTURE_COMPATIBILITY_COMPATIBLE => {
-                    &"ACCELERATION_STRUCTURE_COMPATIBILITY_COMPATIBLE"
-                },
-                Self::ACCELERATION_STRUCTURE_COMPATIBILITY_INCOMPATIBLE => {
-                    &"ACCELERATION_STRUCTURE_COMPATIBILITY_INCOMPATIBLE"
-                },
-                other => unreachable!("invalid value for `AccelerationStructureCompatibilityKHR`: {:?}", other),
-            })
-            .finish()
+        AccelerationStructureCompatibilityCompatibleKhr
     }
 }
 impl AccelerationStructureCompatibilityKHR {
-    ///[`ACCELERATION_STRUCTURE_COMPATIBILITY_COMPATIBLE`] if the
-    ///`pVersionData` version acceleration structure is compatible with
-    ///`device`.
-    pub const ACCELERATION_STRUCTURE_COMPATIBILITY_COMPATIBLE: Self = Self(0);
-    ///[`ACCELERATION_STRUCTURE_COMPATIBILITY_INCOMPATIBLE`] if the
-    ///`pVersionData` version acceleration structure is not compatible with
-    ///`device`.
-    pub const ACCELERATION_STRUCTURE_COMPATIBILITY_INCOMPATIBLE: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1273,6 +474,1607 @@ impl AccelerationStructureCompatibilityKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
     }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkWriteDescriptorSetAccelerationStructureKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWriteDescriptorSetAccelerationStructureKHR.html) - Structure specifying acceleration structure descriptor information
+///# C Specifications
+///The [`WriteDescriptorSetAccelerationStructureKHR`] structure is defined
+///as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkWriteDescriptorSetAccelerationStructureKHR {
+///    VkStructureType                      sType;
+///    const void*                          pNext;
+///    uint32_t                             accelerationStructureCount;
+///    const VkAccelerationStructureKHR*    pAccelerationStructures;
+///} VkWriteDescriptorSetAccelerationStructureKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`acceleration_structure_count`] is the number of elements in [`p_acceleration_structures`].
+/// - [`p_acceleration_structures`] is a pointer to an array of [`AccelerationStructureKHR`]
+///   structures specifying the acceleration structures to update.
+///# Description
+///Valid Usage
+/// - [`acceleration_structure_count`]**must** be equal to `descriptorCount` in the extended
+///   structure
+/// - Each acceleration structure in [`p_acceleration_structures`]**must** have been created with a
+///   `type` of `VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR` or
+///   `VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR`
+/// - If the [nullDescriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-nullDescriptor)
+///   feature is not enabled, each element of [`p_acceleration_structures`]**must** not be
+///   [`crate::utils::Handle::null`]
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR`
+/// - [`p_acceleration_structures`]**must** be a valid pointer to an array of
+///   [`acceleration_structure_count`] valid or
+///   [`crate::utils::Handle::null`][`AccelerationStructureKHR`] handles
+/// - [`acceleration_structure_count`]**must** be greater than `0`
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`AccelerationStructureKHR`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct WriteDescriptorSetAccelerationStructureKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`acceleration_structure_count`] is the number of elements in
+    ///[`p_acceleration_structures`].
+    acceleration_structure_count: u32,
+    ///[`p_acceleration_structures`] is a pointer to an array of
+    ///[`AccelerationStructureKHR`] structures specifying the acceleration
+    ///structures to update.
+    p_acceleration_structures: *mut AccelerationStructureKHR,
+}
+///[VkPhysicalDeviceAccelerationStructureFeaturesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceAccelerationStructureFeaturesKHR.html) - Structure describing the acceleration structure features that can be supported by an implementation
+///# C Specifications
+///The [`PhysicalDeviceAccelerationStructureFeaturesKHR`] structure is
+///defined as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkPhysicalDeviceAccelerationStructureFeaturesKHR {
+///    VkStructureType    sType;
+///    void*              pNext;
+///    VkBool32           accelerationStructure;
+///    VkBool32           accelerationStructureCaptureReplay;
+///    VkBool32           accelerationStructureIndirectBuild;
+///    VkBool32           accelerationStructureHostCommands;
+///    VkBool32           descriptorBindingAccelerationStructureUpdateAfterBind;
+///} VkPhysicalDeviceAccelerationStructureFeaturesKHR;
+///```
+///# Members
+///This structure describes the following features:
+///# Description
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`acceleration_structure`] indicates whether the implementation supports the acceleration structure functionality. See [Acceleration Structures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure).
+/// - [`acceleration_structure_capture_replay`] indicates whether the implementation supports saving
+///   and reusing acceleration structure device addresses, e.g. for trace capture and replay.
+/// - [`acceleration_structure_indirect_build`] indicates whether the implementation supports
+///   indirect acceleration structure build commands, e.g.
+///   [`CmdBuildAccelerationStructuresIndirectKHR`].
+/// - [`acceleration_structure_host_commands`] indicates whether the implementation supports host
+///   side acceleration structure commands, e.g. [`BuildAccelerationStructuresKHR`],
+///   [`CopyAccelerationStructureKHR`], [`CopyAccelerationStructureToMemoryKHR`],
+///   [`CopyMemoryToAccelerationStructureKHR`], [`WriteAccelerationStructuresPropertiesKHR`].
+/// - [`descriptor_binding_acceleration_structure_update_after_bind`] indicates whether the
+///   implementation supports updating acceleration structure descriptors after a set is bound. If
+///   this feature is not enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used
+///   with `VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR`.
+///If the [`PhysicalDeviceAccelerationStructureFeaturesKHR`] structure is included in the
+/// [`p_next`] chain of the
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceAccelerationStructureFeaturesKHR`]**can** also be used in the [`p_next`] chain
+/// of
+///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR`
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`Bool32`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PhysicalDeviceAccelerationStructureFeaturesKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *const BaseOutStructure<'lt>,
+    ///[`acceleration_structure`] indicates
+    ///whether the implementation supports the acceleration structure
+    ///functionality.
+    ///See [Acceleration Structures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure).
+    acceleration_structure: Bool32,
+    ///[`acceleration_structure_capture_replay`] indicates whether the
+    ///implementation supports saving and reusing acceleration structure device
+    ///addresses, e.g. for trace capture and replay.
+    acceleration_structure_capture_replay: Bool32,
+    ///[`acceleration_structure_indirect_build`] indicates whether the
+    ///implementation supports indirect acceleration structure build commands,
+    ///e.g. [`CmdBuildAccelerationStructuresIndirectKHR`].
+    acceleration_structure_indirect_build: Bool32,
+    ///[`acceleration_structure_host_commands`] indicates whether the
+    ///implementation supports host side acceleration structure commands, e.g.
+    ///[`BuildAccelerationStructuresKHR`],
+    ///[`CopyAccelerationStructureKHR`],
+    ///[`CopyAccelerationStructureToMemoryKHR`],
+    ///[`CopyMemoryToAccelerationStructureKHR`],
+    ///[`WriteAccelerationStructuresPropertiesKHR`].
+    acceleration_structure_host_commands: Bool32,
+    ///[`descriptor_binding_acceleration_structure_update_after_bind`] indicates
+    ///whether the implementation supports updating acceleration structure
+    ///descriptors after a set is bound.
+    ///If this feature is not enabled,
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+    ///`VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR`.
+    descriptor_binding_acceleration_structure_update_after_bind: Bool32,
+}
+///[VkPhysicalDeviceAccelerationStructurePropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceAccelerationStructurePropertiesKHR.html) - Properties of the physical device for acceleration structure
+///# C Specifications
+///The [`PhysicalDeviceAccelerationStructurePropertiesKHR`] structure is
+///defined as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkPhysicalDeviceAccelerationStructurePropertiesKHR {
+///    VkStructureType    sType;
+///    void*              pNext;
+///    uint64_t           maxGeometryCount;
+///    uint64_t           maxInstanceCount;
+///    uint64_t           maxPrimitiveCount;
+///    uint32_t           maxPerStageDescriptorAccelerationStructures;
+///    uint32_t           maxPerStageDescriptorUpdateAfterBindAccelerationStructures;
+///    uint32_t           maxDescriptorSetAccelerationStructures;
+///    uint32_t           maxDescriptorSetUpdateAfterBindAccelerationStructures;
+///    uint32_t           minAccelerationStructureScratchOffsetAlignment;
+///} VkPhysicalDeviceAccelerationStructurePropertiesKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`max_geometry_count`] is the maximum number of geometries in the bottom level acceleration
+///   structure.
+/// - [`max_instance_count`] is the maximum number of instances in the top level acceleration
+///   structure.
+/// - [`max_primitive_count`] is the maximum number of triangles or AABBs in all geometries in the
+///   bottom level acceleration structure.
+/// - [`max_per_stage_descriptor_acceleration_structures`] is the maximum number of acceleration
+///   structure bindings that **can** be accessible to a single shader stage in a pipeline layout.
+///   Descriptor bindings with a descriptor type of `VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR`
+///   count against this limit. Only descriptor bindings in descriptor set layouts created without
+///   the `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set count against this
+///   limit.
+/// - [`max_per_stage_descriptor_update_after_bind_acceleration_structures`] is similar to
+///   [`max_per_stage_descriptor_acceleration_structures`] but counts descriptor bindings from
+///   descriptor sets created with or without the
+///   `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set.
+/// - [`max_descriptor_set_acceleration_structures`] is the maximum number of acceleration structure
+///   descriptors that **can** be included in descriptor bindings in a pipeline layout across all
+///   pipeline shader stages and descriptor set numbers. Descriptor bindings with a descriptor type
+///   of `VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR` count against this limit. Only descriptor
+///   bindings in descriptor set layouts created without the
+///   `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set count against this limit.
+/// - [`max_descriptor_set_update_after_bind_acceleration_structures`] is similar to
+///   [`max_descriptor_set_acceleration_structures`] but counts descriptor bindings from descriptor
+///   sets created with or without the `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT`
+///   bit set.
+/// - [`min_acceleration_structure_scratch_offset_alignment`] is the minimum **required** alignment,
+///   in bytes, for scratch data passed in to an acceleration structure build command. The value
+///   **must** be a power of two.
+///# Description
+///Due to the fact that the geometry, instance, and primitive counts are
+///specified at acceleration structure creation as 32-bit values,
+///[[`max_geometry_count`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxGeometryCount),
+///[[`max_instance_count`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInstanceCount), and
+///[[`max_primitive_count`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxPrimitiveCount)**must** not exceed
+///2<sup>32</sup>-1.If the [`PhysicalDeviceAccelerationStructurePropertiesKHR`] structure is
+/// included in the [`p_next`] chain of the
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`GetPhysicalDeviceProperties2`], it is filled in with each
+///corresponding implementation-dependent property.Limits specified by this structure **must**
+/// match those specified with the same
+///name in [`PhysicalDeviceRayTracingPropertiesNV`].Valid Usage (Implicit)
+/// - [`s_type`]**must** be
+///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR`
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *const BaseOutStructure<'lt>,
+    ///[`max_geometry_count`] is the maximum number
+    ///of geometries in the bottom level acceleration structure.
+    max_geometry_count: u64,
+    ///[`max_instance_count`] is the maximum number
+    ///of instances in the top level acceleration structure.
+    max_instance_count: u64,
+    ///[`max_primitive_count`] is the maximum
+    ///number of triangles or AABBs in all geometries in the bottom level
+    ///acceleration structure.
+    max_primitive_count: u64,
+    ///[`max_per_stage_descriptor_acceleration_structures`] is the maximum number
+    ///of acceleration structure bindings that **can** be accessible to a single
+    ///shader stage in a pipeline layout.
+    ///Descriptor bindings with a descriptor type of
+    ///`VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR` count against this
+    ///limit.
+    ///Only descriptor bindings in descriptor set layouts created without the
+    ///`VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set
+    ///count against this limit.
+    max_per_stage_descriptor_acceleration_structures: u32,
+    ///[`max_per_stage_descriptor_update_after_bind_acceleration_structures`] is
+    ///similar to [`max_per_stage_descriptor_acceleration_structures`] but counts
+    ///descriptor bindings from descriptor sets created with or without the
+    ///`VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit
+    ///set.
+    max_per_stage_descriptor_update_after_bind_acceleration_structures: u32,
+    ///[`max_descriptor_set_acceleration_structures`] is the maximum number of
+    ///acceleration structure descriptors that **can** be included in descriptor
+    ///bindings in a pipeline layout across all pipeline shader stages and
+    ///descriptor set numbers.
+    ///Descriptor bindings with a descriptor type of
+    ///`VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR` count against this
+    ///limit.
+    ///Only descriptor bindings in descriptor set layouts created without the
+    ///`VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set
+    ///count against this limit.
+    max_descriptor_set_acceleration_structures: u32,
+    ///[`max_descriptor_set_update_after_bind_acceleration_structures`] is similar
+    ///to [`max_descriptor_set_acceleration_structures`] but counts descriptor
+    ///bindings from descriptor sets created with or without the
+    ///`VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit
+    ///set.
+    max_descriptor_set_update_after_bind_acceleration_structures: u32,
+    ///[`min_acceleration_structure_scratch_offset_alignment`] is the minimum
+    ///**required** alignment, in bytes, for scratch data passed in to an
+    ///acceleration structure build command.
+    ///The value **must** be a power of two.
+    min_acceleration_structure_scratch_offset_alignment: u32,
+}
+///[VkAccelerationStructureGeometryTrianglesDataKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureGeometryTrianglesDataKHR.html) - Structure specifying a triangle geometry in a bottom-level acceleration structure
+///# C Specifications
+///The [`AccelerationStructureGeometryTrianglesDataKHR`] structure is
+///defined as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkAccelerationStructureGeometryTrianglesDataKHR {
+///    VkStructureType                  sType;
+///    const void*                      pNext;
+///    VkFormat                         vertexFormat;
+///    VkDeviceOrHostAddressConstKHR    vertexData;
+///    VkDeviceSize                     vertexStride;
+///    uint32_t                         maxVertex;
+///    VkIndexType                      indexType;
+///    VkDeviceOrHostAddressConstKHR    indexData;
+///    VkDeviceOrHostAddressConstKHR    transformData;
+///} VkAccelerationStructureGeometryTrianglesDataKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`vertex_format`] is the [`Format`] of each vertex element.
+/// - [`vertex_data`] is a device or host address to memory containing vertex data for this
+///   geometry.
+/// - [`max_vertex`] is the highest index of a vertex that will be addressed by a build command
+///   using this structure.
+/// - [`vertex_stride`] is the stride in bytes between each vertex.
+/// - [`index_type`] is the [`IndexType`] of each index element.
+/// - [`index_data`] is a device or host address to memory containing index data for this geometry.
+/// - [`transform_data`] is a device or host address to memory containing an optional reference to a
+///   [`TransformMatrixKHR`] structure describing a transformation from the space in which the
+///   vertices in this geometry are described to the space in which the acceleration structure is
+///   defined.
+///# Description
+///Valid Usage
+/// - [`vertex_stride`]**must** be a multiple of the size in bytes of the smallest component of
+///   [`vertex_format`]
+/// - [`vertex_stride`]**must** be less than or equal to 2<sup>32</sup>-1
+/// - [`vertex_format`]**must** support the
+///   `VK_FORMAT_FEATURE_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR` in
+///   [`FormatProperties::buffer_features`] as returned by [`GetPhysicalDeviceFormatProperties2`]
+/// - [`index_type`]**must** be `VK_INDEX_TYPE_UINT16`, `VK_INDEX_TYPE_UINT32`, or
+///   `VK_INDEX_TYPE_NONE_KHR`
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR`
+/// - [`p_next`]**must** be `NULL` or a pointer to a valid instance of
+///   [`AccelerationStructureGeometryMotionTrianglesDataNV`]
+/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
+/// - [`vertex_format`]**must** be a valid [`Format`] value
+/// - [`index_type`]**must** be a valid [`IndexType`] value
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`AccelerationStructureGeometryDataKHR`]
+/// - [`DeviceOrHostAddressConstKHR`]
+/// - [`DeviceSize`]
+/// - [`Format`]
+/// - [`IndexType`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct AccelerationStructureGeometryTrianglesDataKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`vertex_format`] is the [`Format`] of each vertex element.
+    vertex_format: Format,
+    ///[`vertex_data`] is a device or host address to memory containing vertex
+    ///data for this geometry.
+    vertex_data: DeviceOrHostAddressConstKHR<'lt>,
+    ///[`vertex_stride`] is the stride in bytes between each vertex.
+    vertex_stride: DeviceSize,
+    ///[`max_vertex`] is the highest index of a vertex that will be addressed
+    ///by a build command using this structure.
+    max_vertex: u32,
+    ///[`index_type`] is the [`IndexType`] of each index element.
+    index_type: IndexType,
+    ///[`index_data`] is a device or host address to memory containing index
+    ///data for this geometry.
+    index_data: DeviceOrHostAddressConstKHR<'lt>,
+    ///[`transform_data`] is a device or host address to memory containing an
+    ///optional reference to a [`TransformMatrixKHR`] structure describing
+    ///a transformation from the space in which the vertices in this geometry
+    ///are described to the space in which the acceleration structure is
+    ///defined.
+    transform_data: DeviceOrHostAddressConstKHR<'lt>,
+}
+///[VkAccelerationStructureGeometryAabbsDataKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureGeometryAabbsDataKHR.html) - Structure specifying axis-aligned bounding box geometry in a bottom-level acceleration structure
+///# C Specifications
+///The [`AccelerationStructureGeometryAabbsDataKHR`] structure is defined
+///as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkAccelerationStructureGeometryAabbsDataKHR {
+///    VkStructureType                  sType;
+///    const void*                      pNext;
+///    VkDeviceOrHostAddressConstKHR    data;
+///    VkDeviceSize                     stride;
+///} VkAccelerationStructureGeometryAabbsDataKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`data`] is a device or host address to memory containing [`AabbPositionsKHR`] structures
+///   containing position data for each axis-aligned bounding box in the geometry.
+/// - [`stride`] is the stride in bytes between each entry in [`data`]. The stride **must** be a
+///   multiple of `8`.
+///# Description
+///Valid Usage
+/// - [`stride`]**must** be a multiple of `8`
+/// - [`stride`]**must** be less than or equal to 2<sup>32</sup>-1
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR`
+/// - [`p_next`]**must** be `NULL`
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`AccelerationStructureGeometryDataKHR`]
+/// - [`DeviceOrHostAddressConstKHR`]
+/// - [`DeviceSize`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct AccelerationStructureGeometryAabbsDataKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`data`] is a device or host address to memory containing
+    ///[`AabbPositionsKHR`] structures containing position data for each
+    ///axis-aligned bounding box in the geometry.
+    data: DeviceOrHostAddressConstKHR<'lt>,
+    ///[`stride`] is the stride in bytes between each entry in [`data`].
+    ///The stride **must** be a multiple of `8`.
+    stride: DeviceSize,
+}
+///[VkAccelerationStructureGeometryInstancesDataKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureGeometryInstancesDataKHR.html) - Structure specifying a geometry consisting of instances of other acceleration structures
+///# C Specifications
+///The [`AccelerationStructureGeometryInstancesDataKHR`] structure is
+///defined as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkAccelerationStructureGeometryInstancesDataKHR {
+///    VkStructureType                  sType;
+///    const void*                      pNext;
+///    VkBool32                         arrayOfPointers;
+///    VkDeviceOrHostAddressConstKHR    data;
+///} VkAccelerationStructureGeometryInstancesDataKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`array_of_pointers`] specifies whether [`data`] is used as an array of addresses or just an
+///   array.
+/// - [`data`] is either the address of an array of device or host addresses referencing individual [`AccelerationStructureInstanceKHR`] structures or packed motion instance information as described in [motion instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-motion-instances) if [`array_of_pointers`] is [`TRUE`], or the address of an array of [`AccelerationStructureInstanceKHR`] or [`AccelerationStructureMotionInstanceNV`] structures. Addresses and [`AccelerationStructureInstanceKHR`] structures are tightly packed. [`AccelerationStructureMotionInstanceNV`] structures have a stride of 160 bytes.
+///# Description
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR`
+/// - [`p_next`]**must** be `NULL`
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`AccelerationStructureGeometryDataKHR`]
+/// - [`Bool32`]
+/// - [`DeviceOrHostAddressConstKHR`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct AccelerationStructureGeometryInstancesDataKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`array_of_pointers`] specifies whether [`data`] is used as an array
+    ///of addresses or just an array.
+    array_of_pointers: Bool32,
+    ///[`data`] is either the address of an array of device or host addresses
+    ///referencing individual [`AccelerationStructureInstanceKHR`]
+    ///structures
+    ///or packed motion instance information as described in
+    ///[motion instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-motion-instances)
+    ///if [`array_of_pointers`] is [`TRUE`], or the address of an array of
+    ///[`AccelerationStructureInstanceKHR`]
+    ///or [`AccelerationStructureMotionInstanceNV`]
+    ///structures.
+    ///Addresses and [`AccelerationStructureInstanceKHR`] structures are
+    ///tightly packed.
+    ///[`AccelerationStructureMotionInstanceNV`] structures have a stride
+    ///of 160 bytes.
+    data: DeviceOrHostAddressConstKHR<'lt>,
+}
+///[VkAccelerationStructureGeometryKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureGeometryKHR.html) - Structure specifying geometries to be built into an acceleration structure
+///# C Specifications
+///The [`AccelerationStructureGeometryKHR`] structure is defined as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkAccelerationStructureGeometryKHR {
+///    VkStructureType                           sType;
+///    const void*                               pNext;
+///    VkGeometryTypeKHR                         geometryType;
+///    VkAccelerationStructureGeometryDataKHR    geometry;
+///    VkGeometryFlagsKHR                        flags;
+///} VkAccelerationStructureGeometryKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`geometry_type`] describes which type of geometry this [`AccelerationStructureGeometryKHR`]
+///   refers to.
+/// - [`geometry`] is a [`AccelerationStructureGeometryDataKHR`] union describing the geometry data
+///   for the relevant geometry type.
+/// - [`flags`] is a bitmask of [`GeometryFlagBitsKHR`] values describing additional properties of
+///   how the geometry should be built.
+///# Description
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_KHR`
+/// - [`p_next`]**must** be `NULL`
+/// - [`geometry_type`]**must** be a valid [`GeometryTypeKHR`] value
+/// - If [`geometry_type`] is `VK_GEOMETRY_TYPE_TRIANGLES_KHR`, the `triangles` member of
+///   [`geometry`]**must** be a valid [`AccelerationStructureGeometryTrianglesDataKHR`] structure
+/// - If [`geometry_type`] is `VK_GEOMETRY_TYPE_AABBS_KHR`, the `aabbs` member of
+///   [`geometry`]**must** be a valid [`AccelerationStructureGeometryAabbsDataKHR`] structure
+/// - If [`geometry_type`] is `VK_GEOMETRY_TYPE_INSTANCES_KHR`, the `instances` member of
+///   [`geometry`]**must** be a valid [`AccelerationStructureGeometryInstancesDataKHR`] structure
+/// - [`flags`]**must** be a valid combination of [`GeometryFlagBitsKHR`] values
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`AccelerationStructureBuildGeometryInfoKHR`]
+/// - [`AccelerationStructureGeometryDataKHR`]
+/// - [`GeometryFlagsKHR`]
+/// - [`GeometryTypeKHR`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct AccelerationStructureGeometryKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`geometry_type`] describes which type of geometry this
+    ///[`AccelerationStructureGeometryKHR`] refers to.
+    geometry_type: GeometryTypeKHR,
+    ///[`geometry`] is a [`AccelerationStructureGeometryDataKHR`] union
+    ///describing the geometry data for the relevant geometry type.
+    geometry: AccelerationStructureGeometryDataKHR<'lt>,
+    ///[`flags`] is a bitmask of [`GeometryFlagBitsKHR`] values
+    ///describing additional properties of how the geometry should be built.
+    flags: GeometryFlagsKHR,
+}
+///[VkAccelerationStructureBuildGeometryInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureBuildGeometryInfoKHR.html) - Structure specifying the geometry data used to build an acceleration structure
+///# C Specifications
+///The [`AccelerationStructureBuildGeometryInfoKHR`] structure is defined
+///as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkAccelerationStructureBuildGeometryInfoKHR {
+///    VkStructureType                                     sType;
+///    const void*                                         pNext;
+///    VkAccelerationStructureTypeKHR                      type;
+///    VkBuildAccelerationStructureFlagsKHR                flags;
+///    VkBuildAccelerationStructureModeKHR                 mode;
+///    VkAccelerationStructureKHR                          srcAccelerationStructure;
+///    VkAccelerationStructureKHR                          dstAccelerationStructure;
+///    uint32_t                                            geometryCount;
+///    const VkAccelerationStructureGeometryKHR*           pGeometries;
+///    const VkAccelerationStructureGeometryKHR* const*    ppGeometries;
+///    VkDeviceOrHostAddressKHR                            scratchData;
+///} VkAccelerationStructureBuildGeometryInfoKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`type_`] is a [`AccelerationStructureTypeKHR`] value specifying the type of acceleration
+///   structure being built.
+/// - [`flags`] is a bitmask of [`BuildAccelerationStructureFlagBitsKHR`] specifying additional
+///   parameters of the acceleration structure.
+/// - [`mode`] is a [`BuildAccelerationStructureModeKHR`] value specifying the type of operation to
+///   perform.
+/// - [`src_acceleration_structure`] is a pointer to an existing acceleration structure that is to
+///   be used to update the `dst` acceleration structure when [`mode`] is
+///   `VK_BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR`.
+/// - [`dst_acceleration_structure`] is a pointer to the target acceleration structure for the
+///   build.
+/// - [`geometry_count`] specifies the number of geometries that will be built into
+///   [`dst_acceleration_structure`].
+/// - [`p_geometries`] is a pointer to an array of [`AccelerationStructureGeometryKHR`] structures.
+/// - [`pp_geometries`] is a pointer to an array of pointers to [`AccelerationStructureGeometryKHR`]
+///   structures.
+/// - [`scratch_data`] is the device or host address to memory that will be used as scratch memory
+///   for the build.
+///# Description
+///Only one of [`p_geometries`] or [`pp_geometries`]**can** be a valid pointer,
+///the other **must** be `NULL`.
+///Each element of the non-`NULL` array describes the data used to build each
+///acceleration structure geometry.The index of each element of the [`p_geometries`] or
+/// [`pp_geometries`]
+///members of [`AccelerationStructureBuildGeometryInfoKHR`] is used as the
+///*geometry index* during ray traversal.
+///The geometry index is available in ray shaders via the
+///[`RayGeometryIndexKHR`
+///built-in](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#interfaces-builtin-variables-raygeometryindex), and is [used to
+///determine hit and intersection shaders executed during traversal](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shader-binding-table-hit-shader-indexing).
+///The geometry index is available to ray queries via the
+///`OpRayQueryGetIntersectionGeometryIndexKHR` instruction.Setting
+/// `VK_BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV` in [`flags`]
+///indicates that this build is a motion top level acceleration structure.
+///A motion top level uses instances of format
+///[`AccelerationStructureMotionInstanceNV`] if
+///[`AccelerationStructureGeometryInstancesDataKHR::array_of_pointers`]
+///is [`FALSE`].If
+///[`AccelerationStructureGeometryInstancesDataKHR::array_of_pointers`]
+///is [`TRUE`], the pointer for any given element of the array of instance
+///pointers consists of 4 bits of
+///[`AccelerationStructureMotionInstanceTypeNV`] in the low 4 bits of the
+///pointer identifying the type of structure at the pointer.
+///The device address accessed is the value in the array with the low 4 bits
+///set to zero.
+///The structure at the pointer is one of
+///[`AccelerationStructureInstanceKHR`],
+///[`AccelerationStructureMatrixMotionInstanceNV`] or
+///[`AccelerationStructureSrtMotionInstanceNV`], depending on the type
+///value encoded in the low 4 bits.A top level acceleration structure with either motion instances
+/// or vertex
+///motion in its instances **must** set
+///`VK_BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV` in [`flags`].Members
+/// [`src_acceleration_structure`] and [`dst_acceleration_structure`]**may** be the same or
+/// different for an update operation (when [`mode`] is
+///`VK_BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR`).
+///If they are the same, the update happens in-place.
+///Otherwise, the target acceleration structure is updated and the source is
+///not modified.Valid Usage
+/// - [`type_`]**must** not be `VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR`
+/// - Only one of [`p_geometries`] or [`pp_geometries`]**can** be a valid pointer, the other
+///   **must** be `NULL`
+/// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR`, the `geometryType` member of
+///   elements of either [`p_geometries`] or [`pp_geometries`]**must** be
+///   `VK_GEOMETRY_TYPE_INSTANCES_KHR`
+/// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR`, [`geometry_count`]**must** be
+///   `1`
+/// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_KHR` the `geometryType` member of
+///   elements of either [`p_geometries`] or [`pp_geometries`]**must** not be
+///   `VK_GEOMETRY_TYPE_INSTANCES_KHR`
+/// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_KHR` then the `geometryType`
+///   member of each geometry in either [`p_geometries`] or [`pp_geometries`]**must** be the same
+/// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_KHR` then
+///   [`geometry_count`]**must** be less than or equal to
+///   [`PhysicalDeviceAccelerationStructurePropertiesKHR::max_geometry_count`]
+/// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_KHR` and the `geometryType`
+///   member of either [`p_geometries`] or [`pp_geometries`] is `VK_GEOMETRY_TYPE_AABBS_KHR`, the
+///   total number of AABBs in all geometries **must** be less than or equal to
+///   [`PhysicalDeviceAccelerationStructurePropertiesKHR::max_primitive_count`]
+/// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_KHR` and the `geometryType`
+///   member of either [`p_geometries`] or [`pp_geometries`] is `VK_GEOMETRY_TYPE_TRIANGLES_KHR`,
+///   the total number of triangles in all geometries **must** be less than or equal to
+///   [`PhysicalDeviceAccelerationStructurePropertiesKHR::max_primitive_count`]
+/// - If [`flags`] has the `VK_BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_KHR` bit set, then
+///   it **must** not have the `VK_BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_KHR` bit set
+/// - If [`dst_acceleration_structure`] was created with
+///   `VK_ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV` set in
+///   [`AccelerationStructureCreateInfoKHR`]::[`flags`],
+///   `VK_BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV`**must** be set in [`flags`]
+/// - If `VK_BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV` is set in [`flags`],
+///   [`dst_acceleration_structure`]**must** have been created with
+///   `VK_ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV` set in
+///   [`AccelerationStructureCreateInfoKHR`]::[`flags`]
+/// - If `VK_BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV` is set in [`flags`], [`type_`]**must** not
+///   be `VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR`
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR`
+/// - [`p_next`]**must** be `NULL`
+/// - [`type_`]**must** be a valid [`AccelerationStructureTypeKHR`] value
+/// - [`flags`]**must** be a valid combination of [`BuildAccelerationStructureFlagBitsKHR`] values
+/// - If [`geometry_count`] is not `0`, and [`p_geometries`] is not `NULL`, [`p_geometries`]**must**
+///   be a valid pointer to an array of [`geometry_count`] valid
+///   [`AccelerationStructureGeometryKHR`] structures
+/// - If [`geometry_count`] is not `0`, and [`pp_geometries`] is not `NULL`,
+///   [`pp_geometries`]**must** be a valid pointer to an array of [`geometry_count`] valid pointers
+///   to valid [`AccelerationStructureGeometryKHR`] structures
+/// - Both of [`dst_acceleration_structure`], and [`src_acceleration_structure`] that are valid
+///   handles of non-ignored parameters **must** have been created, allocated, or retrieved from the
+///   same [`Device`]
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`AccelerationStructureGeometryKHR`]
+/// - [`AccelerationStructureKHR`]
+/// - [`AccelerationStructureTypeKHR`]
+/// - [`BuildAccelerationStructureFlagsKHR`]
+/// - [`BuildAccelerationStructureModeKHR`]
+/// - [`DeviceOrHostAddressKHR`]
+/// - [`StructureType`]
+/// - [`BuildAccelerationStructuresKHR`]
+/// - [`CmdBuildAccelerationStructuresIndirectKHR`]
+/// - [`CmdBuildAccelerationStructuresKHR`]
+/// - [`GetAccelerationStructureBuildSizesKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct AccelerationStructureBuildGeometryInfoKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`type_`] is a [`AccelerationStructureTypeKHR`] value specifying
+    ///the type of acceleration structure being built.
+    type_: AccelerationStructureTypeKHR,
+    ///[`flags`] is a bitmask of
+    ///[`BuildAccelerationStructureFlagBitsKHR`] specifying additional
+    ///parameters of the acceleration structure.
+    flags: BuildAccelerationStructureFlagsKHR,
+    ///[`mode`] is a [`BuildAccelerationStructureModeKHR`] value
+    ///specifying the type of operation to perform.
+    mode: BuildAccelerationStructureModeKHR,
+    ///[`src_acceleration_structure`] is a pointer to an existing acceleration
+    ///structure that is to be used to update the `dst` acceleration
+    ///structure when [`mode`] is
+    ///`VK_BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR`.
+    src_acceleration_structure: AccelerationStructureKHR,
+    ///[`dst_acceleration_structure`] is a pointer to the target acceleration
+    ///structure for the build.
+    dst_acceleration_structure: AccelerationStructureKHR,
+    ///[`geometry_count`] specifies the number of geometries that will be
+    ///built into [`dst_acceleration_structure`].
+    geometry_count: u32,
+    ///[`p_geometries`] is a pointer to an array of
+    ///[`AccelerationStructureGeometryKHR`] structures.
+    p_geometries: *mut AccelerationStructureGeometryKHR<'lt>,
+    ///[`pp_geometries`] is a pointer to an array of pointers to
+    ///[`AccelerationStructureGeometryKHR`] structures.
+    pp_geometries: *mut *mut AccelerationStructureGeometryKHR<'lt>,
+    ///[`scratch_data`] is the device or host address to memory that will be
+    ///used as scratch memory for the build.
+    scratch_data: DeviceOrHostAddressKHR<'lt>,
+}
+///[VkAccelerationStructureBuildRangeInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureBuildRangeInfoKHR.html) - Structure specifying build offsets and counts for acceleration structure builds
+///# C Specifications
+///[`AccelerationStructureBuildRangeInfoKHR`] is defined as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkAccelerationStructureBuildRangeInfoKHR {
+///    uint32_t    primitiveCount;
+///    uint32_t    primitiveOffset;
+///    uint32_t    firstVertex;
+///    uint32_t    transformOffset;
+///} VkAccelerationStructureBuildRangeInfoKHR;
+///```
+///# Members
+/// - [`primitive_count`] defines the number of primitives for a corresponding acceleration
+///   structure geometry.
+/// - [`primitive_offset`] defines an offset in bytes into the memory where primitive data is
+///   defined.
+/// - [`first_vertex`] is the index of the first vertex to build from for triangle geometry.
+/// - [`transform_offset`] defines an offset in bytes into the memory where a transform matrix is
+///   defined.
+///# Description
+///The primitive count and primitive offset are interpreted differently
+///depending on the [`GeometryTypeKHR`] used:
+/// - For geometries of type `VK_GEOMETRY_TYPE_TRIANGLES_KHR`, [`primitive_count`] is the number of
+///   triangles to be built, where each triangle is treated as 3 vertices.  - If the geometry uses
+///   indices, [`primitive_count`] × 3 indices are consumed from
+///   [`AccelerationStructureGeometryTrianglesDataKHR::index_data`], starting at an offset of
+///   [`primitive_offset`]. The value of [`first_vertex`] is added to the index values before
+///   fetching vertices.  - If the geometry does not use indices, [`primitive_count`] × 3 vertices
+///   are consumed from [`AccelerationStructureGeometryTrianglesDataKHR::vertex_data`], starting at
+///   an offset of [`primitive_offset`] +
+///   [`AccelerationStructureGeometryTrianglesDataKHR::vertex_stride`] × [`first_vertex`].  - If
+///   [`AccelerationStructureGeometryTrianglesDataKHR::transform_data`] is not `NULL`, a single
+///   [`TransformMatrixKHR`] structure is consumed from
+///   [`AccelerationStructureGeometryTrianglesDataKHR::transform_data`], at an offset of
+///   [`transform_offset`]. This matrix describes a transformation from the space in which the
+///   vertices for all triangles in this geometry are described to the space in which the
+///   acceleration structure is defined.
+/// - For geometries of type `VK_GEOMETRY_TYPE_AABBS_KHR`, [`primitive_count`] is the number of
+///   axis-aligned bounding boxes. [`primitive_count`][`AabbPositionsKHR`] structures are consumed
+///   from [`AccelerationStructureGeometryAabbsDataKHR::data`], starting at an offset of
+///   [`primitive_offset`].
+/// - For geometries of type `VK_GEOMETRY_TYPE_INSTANCES_KHR`, [`primitive_count`] is the number of
+///   acceleration structures. [`primitive_count`][`AccelerationStructureInstanceKHR`] or
+///   [`AccelerationStructureMotionInstanceNV`] structures are consumed from
+///   [`AccelerationStructureGeometryInstancesDataKHR::data`], starting at an offset of
+///   [`primitive_offset`].
+///Valid Usage
+/// - For geometries of type `VK_GEOMETRY_TYPE_TRIANGLES_KHR`, if the geometry uses indices, the
+///   offset [`primitive_offset`] from
+///   [`AccelerationStructureGeometryTrianglesDataKHR::index_data`]**must** be a multiple of the
+///   element size of [`AccelerationStructureGeometryTrianglesDataKHR::index_type`]
+/// - For geometries of type `VK_GEOMETRY_TYPE_TRIANGLES_KHR`, if the geometry does not use indices,
+///   the offset [`primitive_offset`] from
+///   [`AccelerationStructureGeometryTrianglesDataKHR::vertex_data`]**must** be a multiple of the
+///   component size of [`AccelerationStructureGeometryTrianglesDataKHR::vertex_format`]
+/// - For geometries of type `VK_GEOMETRY_TYPE_TRIANGLES_KHR`, the offset [`transform_offset`] from
+///   [`AccelerationStructureGeometryTrianglesDataKHR::transform_data`]**must** be a multiple of 16
+/// - For geometries of type `VK_GEOMETRY_TYPE_AABBS_KHR`, the offset [`primitive_offset`] from
+///   [`AccelerationStructureGeometryAabbsDataKHR::data`]**must** be a multiple of 8
+/// - For geometries of type `VK_GEOMETRY_TYPE_INSTANCES_KHR`, the offset [`primitive_offset`] from
+///   [`AccelerationStructureGeometryInstancesDataKHR::data`]**must** be a multiple of 16
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`BuildAccelerationStructuresKHR`]
+/// - [`CmdBuildAccelerationStructuresKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct AccelerationStructureBuildRangeInfoKHR {
+    ///[`primitive_count`] defines the number of primitives for a
+    ///corresponding acceleration structure geometry.
+    primitive_count: u32,
+    ///[`primitive_offset`] defines an offset in bytes into the memory where
+    ///primitive data is defined.
+    primitive_offset: u32,
+    ///[`first_vertex`] is the index of the first vertex to build from for
+    ///triangle geometry.
+    first_vertex: u32,
+    ///[`transform_offset`] defines an offset in bytes into the memory where a
+    ///transform matrix is defined.
+    transform_offset: u32,
+}
+///[VkAccelerationStructureCreateInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureCreateInfoKHR.html) - Structure specifying the parameters of a newly created acceleration structure object
+///# C Specifications
+///The [`AccelerationStructureCreateInfoKHR`] structure is defined as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkAccelerationStructureCreateInfoKHR {
+///    VkStructureType                          sType;
+///    const void*                              pNext;
+///    VkAccelerationStructureCreateFlagsKHR    createFlags;
+///    VkBuffer                                 buffer;
+///    VkDeviceSize                             offset;
+///    VkDeviceSize                             size;
+///    VkAccelerationStructureTypeKHR           type;
+///    VkDeviceAddress                          deviceAddress;
+///} VkAccelerationStructureCreateInfoKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`create_flags`] is a bitmask of [`AccelerationStructureCreateFlagBitsKHR`] specifying
+///   additional creation parameters of the acceleration structure.
+/// - [`buffer`] is the buffer on which the acceleration structure will be stored.
+/// - [`offset`] is an offset in bytes from the base address of the buffer at which the acceleration
+///   structure will be stored, and **must** be a multiple of `256`.
+/// - [`size`] is the size required for the acceleration structure.
+/// - [`type_`] is a [`AccelerationStructureTypeKHR`] value specifying the type of acceleration
+///   structure that will be created.
+/// - [`device_address`] is the device address requested for the acceleration structure if the [`accelerationStructureCaptureReplay`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-accelerationStructureCaptureReplay)
+///   feature is being used.
+///# Description
+///If [`device_address`] is zero, no specific address is requested.If [`device_address`] is not
+/// zero, [`device_address`]**must** be an address
+///retrieved from an identically created acceleration structure on the same
+///implementation.
+///The acceleration structure **must** also be placed on an identically created
+///[`buffer`] and at the same [`offset`].Applications **should** avoid creating acceleration
+/// structures with
+///application-provided addresses and implementation-provided addresses in the
+///same process, to reduce the likelihood of
+///`VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR` errors.Applications **should** create an
+/// acceleration structure with a specific
+///[`AccelerationStructureTypeKHR`] other than
+///`VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR`.If the acceleration structure will be the target of
+/// a build operation, the
+///required size for an acceleration structure **can** be queried with
+///[`GetAccelerationStructureBuildSizesKHR`].
+///If the acceleration structure is going to be the target of a compacting
+///copy, [`CmdWriteAccelerationStructuresPropertiesKHR`] or
+///[`WriteAccelerationStructuresPropertiesKHR`]**can** be used to obtain the
+///compacted size required.If the acceleration structure will be the target of a build operation
+/// with
+///`VK_BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV` it **must** include
+///`VK_ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV` in `flags` and
+///include [`AccelerationStructureMotionInfoNV`] as an extension structure
+///in [`p_next`] with the number of instances as metadata for the object.Valid Usage
+/// - If [`device_address`] is not zero, [`create_flags`]**must** include
+///   `VK_ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR`
+/// - If [`create_flags`] includes
+///   `VK_ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR`,
+///   [`PhysicalDeviceAccelerationStructureFeaturesKHR::acceleration_structure_capture_replay`]**
+///   must** be [`TRUE`]
+/// - [`buffer`]**must** have been created with a `usage` value containing
+///   `VK_BUFFER_USAGE_ACCELERATION_STRUCTURE_STORAGE_BIT_KHR`
+/// - [`buffer`]**must** not have been created with `VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT`
+/// - The sum of [`offset`] and [`size`]**must** be less than the size of [`buffer`]
+/// - [`offset`]**must** be a multiple of `256` bytes
+/// - If `VK_ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV` is set in    `flags` and [`type_`] is
+///   `VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR`, one member of the [`p_next`] chain **must** be
+///   a pointer to a valid instance of [`AccelerationStructureMotionInfoNV`]
+/// - If any geometry includes [`AccelerationStructureGeometryMotionTrianglesDataNV`] then
+///   `flags`**must** contain `VK_ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV`
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_KHR`
+/// - [`p_next`]**must** be `NULL` or a pointer to a valid instance of
+///   [`AccelerationStructureMotionInfoNV`]
+/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
+/// - [`create_flags`]**must** be a valid combination of [`AccelerationStructureCreateFlagBitsKHR`]
+///   values
+/// - [`buffer`]**must** be a valid [`Buffer`] handle
+/// - [`type_`]**must** be a valid [`AccelerationStructureTypeKHR`] value
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`AccelerationStructureCreateFlagsKHR`]
+/// - [`AccelerationStructureTypeKHR`]
+/// - [`Buffer`]
+/// - [`DeviceAddress`]
+/// - [`DeviceSize`]
+/// - [`StructureType`]
+/// - [`CreateAccelerationStructureKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct AccelerationStructureCreateInfoKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`create_flags`] is a bitmask of
+    ///[`AccelerationStructureCreateFlagBitsKHR`] specifying additional
+    ///creation parameters of the acceleration structure.
+    create_flags: AccelerationStructureCreateFlagsKHR,
+    ///[`buffer`] is the buffer on which the acceleration structure will be
+    ///stored.
+    buffer: Buffer,
+    ///[`offset`] is an offset in bytes from the base address of the buffer
+    ///at which the acceleration structure will be stored, and **must** be a
+    ///multiple of `256`.
+    offset: DeviceSize,
+    ///[`size`] is the size required for the acceleration structure.
+    size: DeviceSize,
+    ///[`type_`] is a [`AccelerationStructureTypeKHR`] value specifying
+    ///the type of acceleration structure that will be created.
+    type_: AccelerationStructureTypeKHR,
+    ///[`device_address`] is the device address requested for the acceleration
+    ///structure if the [`accelerationStructureCaptureReplay`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-accelerationStructureCaptureReplay) feature is being used.
+    device_address: DeviceAddress,
+}
+///[VkAabbPositionsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAabbPositionsKHR.html) - Structure specifying two opposing corners of an axis-aligned bounding box
+///# C Specifications
+///The [`AabbPositionsKHR`] structure is defined as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkAabbPositionsKHR {
+///    float    minX;
+///    float    minY;
+///    float    minZ;
+///    float    maxX;
+///    float    maxY;
+///    float    maxZ;
+///} VkAabbPositionsKHR;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_NV_ray_tracing
+///typedef VkAabbPositionsKHR VkAabbPositionsNV;
+///```
+///# Members
+/// - [`min_x`] is the x position of one opposing corner of a bounding box.
+/// - [`min_y`] is the y position of one opposing corner of a bounding box.
+/// - [`min_z`] is the z position of one opposing corner of a bounding box.
+/// - [`max_x`] is the x position of the other opposing corner of a bounding box.
+/// - [`max_y`] is the y position of the other opposing corner of a bounding box.
+/// - [`max_z`] is the z position of the other opposing corner of a bounding box.
+///# Description
+///Valid Usage
+/// - [`min_x`]**must** be less than or equal to [`max_x`]
+/// - [`min_y`]**must** be less than or equal to [`max_y`]
+/// - [`min_z`]**must** be less than or equal to [`max_z`]
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`VK_NV_ray_tracing`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct AabbPositionsKHR {
+    ///[`min_x`] is the x position of one opposing corner of a bounding box.
+    min_x: f32,
+    ///[`min_y`] is the y position of one opposing corner of a bounding box.
+    min_y: f32,
+    ///[`min_z`] is the z position of one opposing corner of a bounding box.
+    min_z: f32,
+    ///[`max_x`] is the x position of the other opposing corner of a bounding
+    ///box.
+    max_x: f32,
+    ///[`max_y`] is the y position of the other opposing corner of a bounding
+    ///box.
+    max_y: f32,
+    ///[`max_z`] is the z position of the other opposing corner of a bounding
+    ///box.
+    max_z: f32,
+}
+///[VkTransformMatrixKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkTransformMatrixKHR.html) - Structure specifying a 3x4 affine transformation matrix
+///# C Specifications
+///The [`TransformMatrixKHR`] structure is defined as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkTransformMatrixKHR {
+///    float    matrix[3][4];
+///} VkTransformMatrixKHR;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_NV_ray_tracing
+///typedef VkTransformMatrixKHR VkTransformMatrixNV;
+///```
+///# Members
+/// - [`matrix`] is a 3x4 row-major affine transformation matrix.
+///# Description
+///Valid Usage
+/// - The first three columns of [`matrix`]**must** define an invertible 3x3 matrix
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`VK_NV_ray_tracing`]
+/// - [`AccelerationStructureInstanceKHR`]
+/// - [`AccelerationStructureMatrixMotionInstanceNV`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct TransformMatrixKHR {
+    ///[`matrix`] is a 3x4 row-major affine transformation matrix.
+    matrix: [f32; 3],
+}
+///[VkAccelerationStructureInstanceKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureInstanceKHR.html) - Structure specifying a single acceleration structure instance for building into an acceleration structure geometry
+///# C Specifications
+///*Acceleration structure instances***can** be built into top-level acceleration
+///structures.
+///Each acceleration structure instance is a separate entry in the top-level
+///acceleration structure which includes all the geometry of a bottom-level
+///acceleration structure at a transformed location.
+///Multiple instances **can** point to the same bottom level acceleration
+///structure.An acceleration structure instance is defined by the structure:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkAccelerationStructureInstanceKHR {
+///    VkTransformMatrixKHR          transform;
+///    uint32_t                      instanceCustomIndex:24;
+///    uint32_t                      mask:8;
+///    uint32_t                      instanceShaderBindingTableRecordOffset:24;
+///    VkGeometryInstanceFlagsKHR    flags:8;
+///    uint64_t                      accelerationStructureReference;
+///} VkAccelerationStructureInstanceKHR;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_NV_ray_tracing
+///typedef VkAccelerationStructureInstanceKHR VkAccelerationStructureInstanceNV;
+///```
+///# Members
+/// - [`transform`] is a [`TransformMatrixKHR`] structure describing a transformation to be applied
+///   to the acceleration structure.
+/// - [`instance_custom_index`] is a 24-bit user-specified index value accessible to ray shaders in
+///   the `InstanceCustomIndexKHR` built-in.
+/// - [`mask`] is an 8-bit visibility mask for the geometry. The instance **may** only be hit if
+///   `Cull Mask & instance.mask != 0`
+/// - [`instance_shader_binding_table_record_offset`] is a 24-bit offset used in calculating the hit
+///   shader binding table index.
+/// - [`flags`] is an 8-bit mask of [`GeometryInstanceFlagBitsKHR`] values to apply to this
+///   instance.
+/// - [`acceleration_structure_reference`] is either:  - a device address containing the value
+///   obtained from [`GetAccelerationStructureDeviceAddressKHR`] or
+///   [`GetAccelerationStructureHandleNV`]      (used by device operations which reference
+///   acceleration structures) or,  - a [`AccelerationStructureKHR`] object (used by host operations
+///   which reference acceleration structures).
+///# Description
+///The C language specification does not define the ordering of bit-fields, but
+///in practice, this struct produces the correct layout with existing
+///compilers.
+///The intended bit pattern is for the following:
+/// - [`instance_custom_index`] and [`mask`] occupy the same memory as if a single `uint32_t` was
+///   specified in their place  - [`instance_custom_index`] occupies the 24 least significant bits
+///   of that memory  - [`mask`] occupies the 8 most significant bits of that memory
+/// - [`instance_shader_binding_table_record_offset`] and [`flags`] occupy the same memory as if a
+///   single `uint32_t` was specified in their place  -
+///   [`instance_shader_binding_table_record_offset`] occupies the 24 least significant bits of that
+///   memory  - [`flags`] occupies the 8 most significant bits of that memory
+///If a compiler produces code that diverges from that pattern, applications
+///**must** employ another method to set values according to the correct bit
+///pattern.Valid Usage (Implicit)
+/// - [`flags`]**must** be a valid combination of [`GeometryInstanceFlagBitsKHR`] values
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`VK_NV_ray_tracing`]
+/// - [`AccelerationStructureMotionInstanceDataNV`]
+/// - [`GeometryInstanceFlagsKHR`]
+/// - [`TransformMatrixKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct AccelerationStructureInstanceKHR {
+    ///[`transform`] is a [`TransformMatrixKHR`] structure describing a
+    ///transformation to be applied to the acceleration structure.
+    transform: TransformMatrixKHR,
+    ///[`instance_custom_index`] is a 24-bit user-specified index value
+    ///accessible to ray shaders in the `InstanceCustomIndexKHR` built-in.
+    instance_custom_index: u32,
+    ///[`mask`] is an 8-bit visibility mask for the geometry.
+    ///The instance **may** only be hit if `Cull Mask & instance.mask != 0`
+    mask: u32,
+    ///[`instance_shader_binding_table_record_offset`] is a 24-bit offset used in
+    ///calculating the hit shader binding table index.
+    instance_shader_binding_table_record_offset: u32,
+    ///[`flags`] is an 8-bit mask of [`GeometryInstanceFlagBitsKHR`]
+    ///values to apply to this instance.
+    flags: GeometryInstanceFlagsKHR,
+    ///[`acceleration_structure_reference`] is either:
+    /// - a device address containing the value obtained from
+    ///   [`GetAccelerationStructureDeviceAddressKHR`] or [`GetAccelerationStructureHandleNV`]
+    ///   (used by device operations which reference acceleration structures) or,
+    /// - a [`AccelerationStructureKHR`] object (used by host operations which reference
+    ///   acceleration structures).
+    acceleration_structure_reference: u64,
+}
+///[VkAccelerationStructureDeviceAddressInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureDeviceAddressInfoKHR.html) - Structure specifying the acceleration structure to query an address for
+///# C Specifications
+///The [`AccelerationStructureDeviceAddressInfoKHR`] structure is defined
+///as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkAccelerationStructureDeviceAddressInfoKHR {
+///    VkStructureType               sType;
+///    const void*                   pNext;
+///    VkAccelerationStructureKHR    accelerationStructure;
+///} VkAccelerationStructureDeviceAddressInfoKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`acceleration_structure`] specifies the acceleration structure whose address is being
+///   queried.
+///# Description
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR`
+/// - [`p_next`]**must** be `NULL`
+/// - [`acceleration_structure`]**must** be a valid [`AccelerationStructureKHR`] handle
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`AccelerationStructureKHR`]
+/// - [`StructureType`]
+/// - [`GetAccelerationStructureDeviceAddressKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct AccelerationStructureDeviceAddressInfoKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`acceleration_structure`] specifies the acceleration structure whose
+    ///address is being queried.
+    acceleration_structure: AccelerationStructureKHR,
+}
+///[VkAccelerationStructureVersionInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureVersionInfoKHR.html) - Acceleration structure version information
+///# C Specifications
+///The [`AccelerationStructureVersionInfoKHR`] structure is defined as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkAccelerationStructureVersionInfoKHR {
+///    VkStructureType    sType;
+///    const void*        pNext;
+///    const uint8_t*     pVersionData;
+///} VkAccelerationStructureVersionInfoKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`p_version_data`] is a pointer to the version header of an acceleration structure as defined
+///   in [`CmdCopyAccelerationStructureToMemoryKHR`]
+///# Description
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`
+/// - [`p_next`]**must** be `NULL`
+/// - [`p_version_data`]**must** be a valid pointer to an array of <span class="katex"><span
+///   class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:0.72777em;vertical-align:-0.08333em;" class="strut"></span><span
+///   class="mord">2</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+///   class="base"><span style="height:0.70625em;vertical-align:-0.09514em;"
+///   class="strut"></span><span class="mord"><span class="mord mathtt">V</span><span class="mord
+///   mathtt">K</span><span class="mord mathtt">_</span><span class="mord mathtt">U</span><span
+///   class="mord mathtt">U</span><span class="mord mathtt">I</span><span class="mord
+///   mathtt">D</span><span class="mord mathtt">_</span><span class="mord mathtt">S</span><span
+///   class="mord mathtt">I</span><span class="mord mathtt">Z</span><span class="mord
+///   mathtt">E</span></span></span></span></span>`uint8_t` values
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`StructureType`]
+/// - [`GetDeviceAccelerationStructureCompatibilityKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct AccelerationStructureVersionInfoKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`p_version_data`] is a pointer to the version header of an acceleration
+    ///structure as defined in [`CmdCopyAccelerationStructureToMemoryKHR`]
+    p_version_data: *mut u8,
+}
+///[VkCopyAccelerationStructureInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyAccelerationStructureInfoKHR.html) - Parameters for copying an acceleration structure
+///# C Specifications
+///The [`CopyAccelerationStructureInfoKHR`] structure is defined as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkCopyAccelerationStructureInfoKHR {
+///    VkStructureType                       sType;
+///    const void*                           pNext;
+///    VkAccelerationStructureKHR            src;
+///    VkAccelerationStructureKHR            dst;
+///    VkCopyAccelerationStructureModeKHR    mode;
+///} VkCopyAccelerationStructureInfoKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`src`] is the source acceleration structure for the copy.
+/// - [`dst`] is the target acceleration structure for the copy.
+/// - [`mode`] is a [`CopyAccelerationStructureModeKHR`] value specifying additional operations to
+///   perform during the copy.
+///# Description
+///Valid Usage
+/// - [`mode`]**must** be `VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR` or
+///   `VK_COPY_ACCELERATION_STRUCTURE_MODE_CLONE_KHR`
+/// - The source acceleration structure [`src`]**must** have been constructed prior to the execution
+///   of this command
+/// - If [`mode`] is `VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR`, [`src`]**must** have been
+///   constructed with `VK_BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_KHR` in the build
+/// - The `buffer` used to create [`src`]**must** be bound to device memory
+/// - The `buffer` used to create [`dst`]**must** be bound to device memory
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_INFO_KHR`
+/// - [`p_next`]**must** be `NULL`
+/// - [`src`]**must** be a valid [`AccelerationStructureKHR`] handle
+/// - [`dst`]**must** be a valid [`AccelerationStructureKHR`] handle
+/// - [`mode`]**must** be a valid [`CopyAccelerationStructureModeKHR`] value
+/// - Both of [`dst`], and [`src`]**must** have been created, allocated, or retrieved from the same
+///   [`Device`]
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`AccelerationStructureKHR`]
+/// - [`CopyAccelerationStructureModeKHR`]
+/// - [`StructureType`]
+/// - [`CmdCopyAccelerationStructureKHR`]
+/// - [`CopyAccelerationStructureKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct CopyAccelerationStructureInfoKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`src`] is the source acceleration structure for the copy.
+    src: AccelerationStructureKHR,
+    ///[`dst`] is the target acceleration structure for the copy.
+    dst: AccelerationStructureKHR,
+    ///[`mode`] is a [`CopyAccelerationStructureModeKHR`] value
+    ///specifying additional operations to perform during the copy.
+    mode: CopyAccelerationStructureModeKHR,
+}
+///[VkCopyAccelerationStructureToMemoryInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyAccelerationStructureToMemoryInfoKHR.html) - Parameters for serializing an acceleration structure
+///# C Specifications
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkCopyAccelerationStructureToMemoryInfoKHR {
+///    VkStructureType                       sType;
+///    const void*                           pNext;
+///    VkAccelerationStructureKHR            src;
+///    VkDeviceOrHostAddressKHR              dst;
+///    VkCopyAccelerationStructureModeKHR    mode;
+///} VkCopyAccelerationStructureToMemoryInfoKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`src`] is the source acceleration structure for the copy
+/// - [`dst`] is the device or host address to memory which is the target for the copy
+/// - [`mode`] is a [`CopyAccelerationStructureModeKHR`] value specifying additional operations to
+///   perform during the copy.
+///# Description
+///Valid Usage
+/// - The source acceleration structure [`src`]**must** have been constructed prior to the execution
+///   of this command
+/// - The memory pointed to by [`dst`]**must** be at least as large as the serialization size of
+///   [`src`], as reported by [`WriteAccelerationStructuresPropertiesKHR`] or
+///   [`CmdWriteAccelerationStructuresPropertiesKHR`] with a query type of
+///   `VK_QUERY_TYPE_ACCELERATION_STRUCTURE_SERIALIZATION_SIZE_KHR`
+/// - [`mode`]**must** be `VK_COPY_ACCELERATION_STRUCTURE_MODE_SERIALIZE_KHR`
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR`
+/// - [`p_next`]**must** be `NULL`
+/// - [`src`]**must** be a valid [`AccelerationStructureKHR`] handle
+/// - [`mode`]**must** be a valid [`CopyAccelerationStructureModeKHR`] value
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`AccelerationStructureKHR`]
+/// - [`CopyAccelerationStructureModeKHR`]
+/// - [`DeviceOrHostAddressKHR`]
+/// - [`StructureType`]
+/// - [`CmdCopyAccelerationStructureToMemoryKHR`]
+/// - [`CopyAccelerationStructureToMemoryKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct CopyAccelerationStructureToMemoryInfoKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`src`] is the source acceleration structure for the copy
+    src: AccelerationStructureKHR,
+    ///[`dst`] is the device or host address to memory which is the target
+    ///for the copy
+    dst: DeviceOrHostAddressKHR<'lt>,
+    ///[`mode`] is a [`CopyAccelerationStructureModeKHR`] value
+    ///specifying additional operations to perform during the copy.
+    mode: CopyAccelerationStructureModeKHR,
+}
+///[VkCopyMemoryToAccelerationStructureInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCopyMemoryToAccelerationStructureInfoKHR.html) - Parameters for deserializing an acceleration structure
+///# C Specifications
+///The [`CopyMemoryToAccelerationStructureInfoKHR`] structure is defined
+///as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkCopyMemoryToAccelerationStructureInfoKHR {
+///    VkStructureType                       sType;
+///    const void*                           pNext;
+///    VkDeviceOrHostAddressConstKHR         src;
+///    VkAccelerationStructureKHR            dst;
+///    VkCopyAccelerationStructureModeKHR    mode;
+///} VkCopyMemoryToAccelerationStructureInfoKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`src`] is the device or host address to memory containing the source data for the copy.
+/// - [`dst`] is the target acceleration structure for the copy.
+/// - [`mode`] is a [`CopyAccelerationStructureModeKHR`] value specifying additional operations to
+///   perform during the copy.
+///# Description
+///Valid Usage
+/// - The source memory pointed to by [`src`]**must** contain data previously serialized using
+///   [`CmdCopyAccelerationStructureToMemoryKHR`], potentially modified to relocate acceleration
+///   structure references as described in that command
+/// - [`mode`]**must** be `VK_COPY_ACCELERATION_STRUCTURE_MODE_DESERIALIZE_KHR`
+/// - The data in [`src`]**must** have a format compatible with the destination physical device as
+///   returned by [`GetDeviceAccelerationStructureCompatibilityKHR`]
+/// - [`dst`]**must** have been created with a `size` greater than or equal to that used to
+///   serialize the data in [`src`]
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR`
+/// - [`p_next`]**must** be `NULL`
+/// - [`dst`]**must** be a valid [`AccelerationStructureKHR`] handle
+/// - [`mode`]**must** be a valid [`CopyAccelerationStructureModeKHR`] value
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`AccelerationStructureKHR`]
+/// - [`CopyAccelerationStructureModeKHR`]
+/// - [`DeviceOrHostAddressConstKHR`]
+/// - [`StructureType`]
+/// - [`CmdCopyMemoryToAccelerationStructureKHR`]
+/// - [`CopyMemoryToAccelerationStructureKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct CopyMemoryToAccelerationStructureInfoKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`src`] is the device or host address to memory containing the source
+    ///data for the copy.
+    src: DeviceOrHostAddressConstKHR<'lt>,
+    ///[`dst`] is the target acceleration structure for the copy.
+    dst: AccelerationStructureKHR,
+    ///[`mode`] is a [`CopyAccelerationStructureModeKHR`] value
+    ///specifying additional operations to perform during the copy.
+    mode: CopyAccelerationStructureModeKHR,
+}
+///[VkAccelerationStructureBuildSizesInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureBuildSizesInfoKHR.html) - Structure specifying build sizes for an acceleration structure
+///# C Specifications
+///The [`AccelerationStructureBuildSizesInfoKHR`] structure describes the
+///required build sizes for an acceleration structure and scratch buffers and
+///is defined as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef struct VkAccelerationStructureBuildSizesInfoKHR {
+///    VkStructureType    sType;
+///    const void*        pNext;
+///    VkDeviceSize       accelerationStructureSize;
+///    VkDeviceSize       updateScratchSize;
+///    VkDeviceSize       buildScratchSize;
+///} VkAccelerationStructureBuildSizesInfoKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`acceleration_structure_size`] is the size in bytes required in a
+///   [`AccelerationStructureKHR`] for a build or update operation.
+/// - [`update_scratch_size`] is the size in bytes required in a scratch buffer for an update
+///   operation.
+/// - [`build_scratch_size`] is the size in bytes required in a scratch buffer for a build
+///   operation.
+///# Description
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR`
+/// - [`p_next`]**must** be `NULL`
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`DeviceSize`]
+/// - [`StructureType`]
+/// - [`GetAccelerationStructureBuildSizesKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct AccelerationStructureBuildSizesInfoKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`acceleration_structure_size`] is the size in bytes required in a
+    ///[`AccelerationStructureKHR`] for a build or update operation.
+    acceleration_structure_size: DeviceSize,
+    ///[`update_scratch_size`] is the size in bytes required in a scratch
+    ///buffer for an update operation.
+    update_scratch_size: DeviceSize,
+    ///[`build_scratch_size`] is the size in bytes required in a scratch buffer
+    ///for a build operation.
+    build_scratch_size: DeviceSize,
 }

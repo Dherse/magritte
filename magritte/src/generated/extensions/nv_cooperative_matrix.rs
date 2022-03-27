@@ -1,90 +1,9 @@
-//![VK_NV_cooperative_matrix](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_NV_cooperative_matrix.html) - device extension
-//!# Description
-//!This extension adds support for using cooperative matrix types in SPIR-V.
-//!Cooperative matrix types are medium-sized matrices that are primarily
-//!supported in compute shaders, where the storage for the matrix is spread
-//!across all invocations in some scope (usually a subgroup) and those
-//!invocations cooperate to efficiently perform matrix multiplies.Cooperative matrix types are
-//! defined by the
-//![`SPV_NV_cooperative_matrix`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_cooperative_matrix.html)
-//!SPIR-V extension and can be used with the
-//![`GL_NV_cooperative_matrix`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nv/GLSL_NV_cooperative_matrix.txt)
-//!GLSL extension.This extension includes support for enumerating the matrix types and
-//!dimensions that are supported by the implementation.
-//!# Revision
-//!1
-//!# Dependencies
-//! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
-//!# Contacts
-//! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_cooperative_matrix]
-//!   @jeffbolznv%0A<<Here describe the issue or question you have about the
-//!   VK_NV_cooperative_matrix extension>>)
-//!# New functions & commands
-//! - [`GetPhysicalDeviceCooperativeMatrixPropertiesNV`]
-//!# New structures
-//! - [`CooperativeMatrixPropertiesNV`]
-//! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
-//! - [`PhysicalDeviceCooperativeMatrixFeaturesNV`]
-//!
-//! - Extending [`PhysicalDeviceProperties2`]:
-//! - [`PhysicalDeviceCooperativeMatrixPropertiesNV`]
-//!# New enums
-//! - [`ComponentTypeNV`]
-//! - [`ScopeNV`]
-//!# New constants
-//! - [`NV_COOPERATIVE_MATRIX_EXTENSION_NAME`]
-//! - [`NV_COOPERATIVE_MATRIX_SPEC_VERSION`]
-//! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_COOPERATIVE_MATRIX_PROPERTIES_NV`
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV`
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV`
-//!# Known issues & F.A.Q
-//!(1) What matrix properties will be supported in practice?**RESOLVED**: In NVIDIA’s initial
-//! implementation, we will support:
-//! - AType = BType = fp16 CType = DType = fp16 MxNxK = 16x8x16 scope =
-//!Subgroup
-//! - AType = BType = fp16 CType = DType = fp16 MxNxK = 16x8x8 scope =
-//!Subgroup
-//! - AType = BType = fp16 CType = DType = fp32 MxNxK = 16x8x16 scope =
-//!Subgroup
-//! - AType = BType = fp16 CType = DType = fp32 MxNxK = 16x8x8 scope =
-//!Subgroup
-//!# Version History
-//! - Revision 1, 2019-02-05 (Jeff Bolz)
-//! - Internal revisions
-//!# Other info
-//! * 2019-02-05
-//!*
-//! - This extension requires
-//![`SPV_NV_cooperative_matrix`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_cooperative_matrix.html)
-//! - This extension provides API support for
-//![`GL_NV_cooperative_matrix`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nv/GLSL_NV_cooperative_matrix.txt)
-//!
-//!*
-//! - Jeff Bolz, NVIDIA
-//! - Markus Tavenrath, NVIDIA
-//! - Daniel Koch, NVIDIA
-//!# Related
-//! - [`ComponentTypeNV`]
-//! - [`CooperativeMatrixPropertiesNV`]
-//! - [`PhysicalDeviceCooperativeMatrixFeaturesNV`]
-//! - [`PhysicalDeviceCooperativeMatrixPropertiesNV`]
-//! - [`ScopeNV`]
-//! - [`GetPhysicalDeviceCooperativeMatrixPropertiesNV`]
-//!
-//!# Notes and documentation
-//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-//!
-//!This documentation is generated from the Vulkan specification and documentation.
-//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-//! Commons Attribution 4.0 International*.
-//!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::vulkan1_0::{BaseOutStructure, Bool32, ShaderStageFlags, StructureType};
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::ffi::CStr;
+use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_NV_COOPERATIVE_MATRIX_SPEC_VERSION")]
@@ -106,11 +25,10 @@ pub const NV_COOPERATIVE_MATRIX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///} VkScopeNV;
 ///```
 ///# Description
-/// - [`SCOPE_DEVICE`] corresponds to SPIR-V [`Device`] scope.
-/// - [`SCOPE_WORKGROUP`] corresponds to SPIR-V `Workgroup` scope.
-/// - [`SCOPE_SUBGROUP`] corresponds to SPIR-V `Subgroup` scope.
-/// - [`SCOPE_QUEUE_FAMILY`] corresponds to SPIR-V `QueueFamily`
-///scope.
+/// - [`ScopeDeviceNv`] corresponds to SPIR-V [`Device`] scope.
+/// - [`ScopeWorkgroupNv`] corresponds to SPIR-V `Workgroup` scope.
+/// - [`ScopeSubgroupNv`] corresponds to SPIR-V `Subgroup` scope.
+/// - [`ScopeQueueFamilyNv`] corresponds to SPIR-V `QueueFamily` scope.
 ///All enum values match the corresponding SPIR-V value.
 ///# Related
 /// - [`VK_NV_cooperative_matrix`]
@@ -124,39 +42,29 @@ pub const NV_COOPERATIVE_MATRIX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkScopeNV")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct ScopeNV(i32);
+#[repr(i32)]
+pub enum ScopeNV {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`ScopeDeviceNv`] corresponds to SPIR-V [`Device`] scope.
+    ScopeDeviceNv = 1,
+    ///[`ScopeWorkgroupNv`] corresponds to SPIR-V `Workgroup` scope.
+    ScopeWorkgroupNv = 2,
+    ///[`ScopeSubgroupNv`] corresponds to SPIR-V `Subgroup` scope.
+    ScopeSubgroupNv = 3,
+    ///[`ScopeQueueFamilyNv`] corresponds to SPIR-V `QueueFamily`
+    ///scope.
+    ScopeQueueFamilyNv = 5,
+}
 impl const Default for ScopeNV {
     fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for ScopeNV {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("ScopeNV")
-            .field(match *self {
-                Self::SCOPE_DEVICE => &"SCOPE_DEVICE",
-                Self::SCOPE_WORKGROUP => &"SCOPE_WORKGROUP",
-                Self::SCOPE_SUBGROUP => &"SCOPE_SUBGROUP",
-                Self::SCOPE_QUEUE_FAMILY => &"SCOPE_QUEUE_FAMILY",
-                other => unreachable!("invalid value for `ScopeNV`: {:?}", other),
-            })
-            .finish()
+        Empty
     }
 }
 impl ScopeNV {
-    ///[`SCOPE_DEVICE`] corresponds to SPIR-V [`Device`] scope.
-    pub const SCOPE_DEVICE: Self = Self(1);
-    ///[`SCOPE_WORKGROUP`] corresponds to SPIR-V `Workgroup` scope.
-    pub const SCOPE_WORKGROUP: Self = Self(2);
-    ///[`SCOPE_SUBGROUP`] corresponds to SPIR-V `Subgroup` scope.
-    pub const SCOPE_SUBGROUP: Self = Self(3);
-    ///[`SCOPE_QUEUE_FAMILY`] corresponds to SPIR-V `QueueFamily`
-    ///scope.
-    pub const SCOPE_QUEUE_FAMILY: Self = Self(5);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -165,7 +73,12 @@ impl ScopeNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
     }
 }
 ///[VkComponentTypeNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkComponentTypeNV.html) - Specify SPIR-V cooperative matrix component type
@@ -188,26 +101,17 @@ impl ScopeNV {
 ///} VkComponentTypeNV;
 ///```
 ///# Description
-/// - [`COMPONENT_TYPE_FLOAT16`] corresponds to SPIR-V
-///`OpTypeFloat` 16.
-/// - [`COMPONENT_TYPE_FLOAT32`] corresponds to SPIR-V
-///`OpTypeFloat` 32.
-/// - [`COMPONENT_TYPE_FLOAT64`] corresponds to SPIR-V
-///`OpTypeFloat` 64.
-/// - [`COMPONENT_TYPE_SINT8`] corresponds to SPIR-V `OpTypeInt` 8 1.
-/// - [`COMPONENT_TYPE_SINT16`] corresponds to SPIR-V `OpTypeInt`
-///16 1.
-/// - [`COMPONENT_TYPE_SINT32`] corresponds to SPIR-V `OpTypeInt`
-///32 1.
-/// - [`COMPONENT_TYPE_SINT64`] corresponds to SPIR-V `OpTypeInt`
-///64 1.
-/// - [`COMPONENT_TYPE_UINT8`] corresponds to SPIR-V `OpTypeInt` 8 0.
-/// - [`COMPONENT_TYPE_UINT16`] corresponds to SPIR-V `OpTypeInt`
-///16 0.
-/// - [`COMPONENT_TYPE_UINT32`] corresponds to SPIR-V `OpTypeInt`
-///32 0.
-/// - [`COMPONENT_TYPE_UINT64`] corresponds to SPIR-V `OpTypeInt`
-///64 0.
+/// - [`ComponentTypeFloat16Nv`] corresponds to SPIR-V `OpTypeFloat` 16.
+/// - [`ComponentTypeFloat32Nv`] corresponds to SPIR-V `OpTypeFloat` 32.
+/// - [`ComponentTypeFloat64Nv`] corresponds to SPIR-V `OpTypeFloat` 64.
+/// - [`ComponentTypeSint8Nv`] corresponds to SPIR-V `OpTypeInt` 8 1.
+/// - [`ComponentTypeSint16Nv`] corresponds to SPIR-V `OpTypeInt` 16 1.
+/// - [`ComponentTypeSint32Nv`] corresponds to SPIR-V `OpTypeInt` 32 1.
+/// - [`ComponentTypeSint64Nv`] corresponds to SPIR-V `OpTypeInt` 64 1.
+/// - [`ComponentTypeUint8Nv`] corresponds to SPIR-V `OpTypeInt` 8 0.
+/// - [`ComponentTypeUint16Nv`] corresponds to SPIR-V `OpTypeInt` 16 0.
+/// - [`ComponentTypeUint32Nv`] corresponds to SPIR-V `OpTypeInt` 32 0.
+/// - [`ComponentTypeUint64Nv`] corresponds to SPIR-V `OpTypeInt` 64 0.
 ///# Related
 /// - [`VK_NV_cooperative_matrix`]
 /// - [`CooperativeMatrixPropertiesNV`]
@@ -220,68 +124,49 @@ impl ScopeNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkComponentTypeNV")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct ComponentTypeNV(i32);
+#[repr(i32)]
+pub enum ComponentTypeNV {
+    ///[`ComponentTypeFloat16Nv`] corresponds to SPIR-V
+    ///`OpTypeFloat` 16.
+    ComponentTypeFloat16Nv = 0,
+    ///[`ComponentTypeFloat32Nv`] corresponds to SPIR-V
+    ///`OpTypeFloat` 32.
+    ComponentTypeFloat32Nv = 1,
+    ///[`ComponentTypeFloat64Nv`] corresponds to SPIR-V
+    ///`OpTypeFloat` 64.
+    ComponentTypeFloat64Nv = 2,
+    ///[`ComponentTypeSint8Nv`] corresponds to SPIR-V `OpTypeInt` 8 1.
+    ComponentTypeSint8Nv = 3,
+    ///[`ComponentTypeSint16Nv`] corresponds to SPIR-V `OpTypeInt`
+    ///16 1.
+    ComponentTypeSint16Nv = 4,
+    ///[`ComponentTypeSint32Nv`] corresponds to SPIR-V `OpTypeInt`
+    ///32 1.
+    ComponentTypeSint32Nv = 5,
+    ///[`ComponentTypeSint64Nv`] corresponds to SPIR-V `OpTypeInt`
+    ///64 1.
+    ComponentTypeSint64Nv = 6,
+    ///[`ComponentTypeUint8Nv`] corresponds to SPIR-V `OpTypeInt` 8 0.
+    ComponentTypeUint8Nv = 7,
+    ///[`ComponentTypeUint16Nv`] corresponds to SPIR-V `OpTypeInt`
+    ///16 0.
+    ComponentTypeUint16Nv = 8,
+    ///[`ComponentTypeUint32Nv`] corresponds to SPIR-V `OpTypeInt`
+    ///32 0.
+    ComponentTypeUint32Nv = 9,
+    ///[`ComponentTypeUint64Nv`] corresponds to SPIR-V `OpTypeInt`
+    ///64 0.
+    ComponentTypeUint64Nv = 10,
+}
 impl const Default for ComponentTypeNV {
     fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for ComponentTypeNV {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("ComponentTypeNV")
-            .field(match *self {
-                Self::COMPONENT_TYPE_FLOAT16 => &"COMPONENT_TYPE_FLOAT16",
-                Self::COMPONENT_TYPE_FLOAT32 => &"COMPONENT_TYPE_FLOAT32",
-                Self::COMPONENT_TYPE_FLOAT64 => &"COMPONENT_TYPE_FLOAT64",
-                Self::COMPONENT_TYPE_SINT8 => &"COMPONENT_TYPE_SINT8",
-                Self::COMPONENT_TYPE_SINT16 => &"COMPONENT_TYPE_SINT16",
-                Self::COMPONENT_TYPE_SINT32 => &"COMPONENT_TYPE_SINT32",
-                Self::COMPONENT_TYPE_SINT64 => &"COMPONENT_TYPE_SINT64",
-                Self::COMPONENT_TYPE_UINT8 => &"COMPONENT_TYPE_UINT8",
-                Self::COMPONENT_TYPE_UINT16 => &"COMPONENT_TYPE_UINT16",
-                Self::COMPONENT_TYPE_UINT32 => &"COMPONENT_TYPE_UINT32",
-                Self::COMPONENT_TYPE_UINT64 => &"COMPONENT_TYPE_UINT64",
-                other => unreachable!("invalid value for `ComponentTypeNV`: {:?}", other),
-            })
-            .finish()
+        ComponentTypeFloat16Nv
     }
 }
 impl ComponentTypeNV {
-    ///[`COMPONENT_TYPE_FLOAT16`] corresponds to SPIR-V
-    ///`OpTypeFloat` 16.
-    pub const COMPONENT_TYPE_FLOAT16: Self = Self(0);
-    ///[`COMPONENT_TYPE_FLOAT32`] corresponds to SPIR-V
-    ///`OpTypeFloat` 32.
-    pub const COMPONENT_TYPE_FLOAT32: Self = Self(1);
-    ///[`COMPONENT_TYPE_FLOAT64`] corresponds to SPIR-V
-    ///`OpTypeFloat` 64.
-    pub const COMPONENT_TYPE_FLOAT64: Self = Self(2);
-    ///[`COMPONENT_TYPE_SINT8`] corresponds to SPIR-V `OpTypeInt` 8 1.
-    pub const COMPONENT_TYPE_SINT8: Self = Self(3);
-    ///[`COMPONENT_TYPE_SINT16`] corresponds to SPIR-V `OpTypeInt`
-    ///16 1.
-    pub const COMPONENT_TYPE_SINT16: Self = Self(4);
-    ///[`COMPONENT_TYPE_SINT32`] corresponds to SPIR-V `OpTypeInt`
-    ///32 1.
-    pub const COMPONENT_TYPE_SINT32: Self = Self(5);
-    ///[`COMPONENT_TYPE_SINT64`] corresponds to SPIR-V `OpTypeInt`
-    ///64 1.
-    pub const COMPONENT_TYPE_SINT64: Self = Self(6);
-    ///[`COMPONENT_TYPE_UINT8`] corresponds to SPIR-V `OpTypeInt` 8 0.
-    pub const COMPONENT_TYPE_UINT8: Self = Self(7);
-    ///[`COMPONENT_TYPE_UINT16`] corresponds to SPIR-V `OpTypeInt`
-    ///16 0.
-    pub const COMPONENT_TYPE_UINT16: Self = Self(8);
-    ///[`COMPONENT_TYPE_UINT32`] corresponds to SPIR-V `OpTypeInt`
-    ///32 0.
-    pub const COMPONENT_TYPE_UINT32: Self = Self(9);
-    ///[`COMPONENT_TYPE_UINT64`] corresponds to SPIR-V `OpTypeInt`
-    ///64 0.
-    pub const COMPONENT_TYPE_UINT64: Self = Self(10);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -290,6 +175,235 @@ impl ComponentTypeNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
     }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkPhysicalDeviceCooperativeMatrixFeaturesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceCooperativeMatrixFeaturesNV.html) - Structure describing cooperative matrix features that can be supported by an implementation
+///# C Specifications
+///The [`PhysicalDeviceCooperativeMatrixFeaturesNV`] structure is defined
+///as:
+///```c
+///// Provided by VK_NV_cooperative_matrix
+///typedef struct VkPhysicalDeviceCooperativeMatrixFeaturesNV {
+///    VkStructureType    sType;
+///    void*              pNext;
+///    VkBool32           cooperativeMatrix;
+///    VkBool32           cooperativeMatrixRobustBufferAccess;
+///} VkPhysicalDeviceCooperativeMatrixFeaturesNV;
+///```
+///# Members
+///This structure describes the following features:
+///# Description
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`cooperative_matrix`] indicates that the implementation supports the `CooperativeMatrixNV`
+///   SPIR-V capability.
+/// - [`cooperative_matrix_robust_buffer_access`] indicates that the implementation supports robust
+///   buffer access for SPIR-V `OpCooperativeMatrixLoadNV` and `OpCooperativeMatrixStoreNV`
+///   instructions.
+///If the [`PhysicalDeviceCooperativeMatrixFeaturesNV`] structure is included in the [`p_next`]
+/// chain of the
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceCooperativeMatrixFeaturesNV`]**can** also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV`
+///# Related
+/// - [`VK_NV_cooperative_matrix`]
+/// - [`Bool32`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *const BaseOutStructure<'lt>,
+    ///[`cooperative_matrix`] indicates that
+    ///the implementation supports the `CooperativeMatrixNV` SPIR-V
+    ///capability.
+    cooperative_matrix: Bool32,
+    ///[`cooperative_matrix_robust_buffer_access`] indicates that the
+    ///implementation supports robust buffer access for SPIR-V
+    ///`OpCooperativeMatrixLoadNV` and `OpCooperativeMatrixStoreNV`
+    ///instructions.
+    cooperative_matrix_robust_buffer_access: Bool32,
+}
+///[VkPhysicalDeviceCooperativeMatrixPropertiesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceCooperativeMatrixPropertiesNV.html) - Structure describing cooperative matrix properties supported by an implementation
+///# C Specifications
+///The [`PhysicalDeviceCooperativeMatrixPropertiesNV`] structure is defined
+///as:
+///```c
+///// Provided by VK_NV_cooperative_matrix
+///typedef struct VkPhysicalDeviceCooperativeMatrixPropertiesNV {
+///    VkStructureType       sType;
+///    void*                 pNext;
+///    VkShaderStageFlags    cooperativeMatrixSupportedStages;
+///} VkPhysicalDeviceCooperativeMatrixPropertiesNV;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`cooperative_matrix_supported_stages`] is a bitfield of [`ShaderStageFlagBits`] describing
+///   the shader stages that cooperative matrix instructions are supported in.
+///   [`cooperative_matrix_supported_stages`] will have the `VK_SHADER_STAGE_COMPUTE_BIT` bit set if
+///   any of the physical device’s queues support `VK_QUEUE_COMPUTE_BIT`.
+///# Description
+///If the [`PhysicalDeviceCooperativeMatrixPropertiesNV`] structure is included in the [`p_next`]
+/// chain of the
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`GetPhysicalDeviceProperties2`], it is filled in with each
+///corresponding implementation-dependent property.Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV`
+///# Related
+/// - [`VK_NV_cooperative_matrix`]
+/// - [`ShaderStageFlags`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *const BaseOutStructure<'lt>,
+    ///[`cooperative_matrix_supported_stages`] is a bitfield of
+    ///[`ShaderStageFlagBits`] describing the shader stages that
+    ///cooperative matrix instructions are supported in.
+    ///[`cooperative_matrix_supported_stages`] will have the
+    ///`VK_SHADER_STAGE_COMPUTE_BIT` bit set if any of the physical
+    ///device’s queues support `VK_QUEUE_COMPUTE_BIT`.
+    cooperative_matrix_supported_stages: ShaderStageFlags,
+}
+///[VkCooperativeMatrixPropertiesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCooperativeMatrixPropertiesNV.html) - Structure specifying cooperative matrix properties
+///# C Specifications
+///Each [`CooperativeMatrixPropertiesNV`] structure describes a single
+///supported combination of types for a matrix multiply/add operation
+///(`OpCooperativeMatrixMulAddNV`).
+///The multiply **can** be described in terms of the following variables and types
+///(in SPIR-V pseudocode):
+///```c
+///    %A is of type OpTypeCooperativeMatrixNV %AType %scope %MSize %KSize
+///    %B is of type OpTypeCooperativeMatrixNV %BType %scope %KSize %NSize
+///    %C is of type OpTypeCooperativeMatrixNV %CType %scope %MSize %NSize
+///    %D is of type OpTypeCooperativeMatrixNV %DType %scope %MSize %NSize
+///
+///    %D = %A * %B + %C // using OpCooperativeMatrixMulAddNV
+///```
+///A matrix multiply with these dimensions is known as an *MxNxK* matrix
+///multiply.The [`CooperativeMatrixPropertiesNV`] structure is defined as:
+///```c
+///// Provided by VK_NV_cooperative_matrix
+///typedef struct VkCooperativeMatrixPropertiesNV {
+///    VkStructureType      sType;
+///    void*                pNext;
+///    uint32_t             MSize;
+///    uint32_t             NSize;
+///    uint32_t             KSize;
+///    VkComponentTypeNV    AType;
+///    VkComponentTypeNV    BType;
+///    VkComponentTypeNV    CType;
+///    VkComponentTypeNV    DType;
+///    VkScopeNV            scope;
+///} VkCooperativeMatrixPropertiesNV;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`m_size`] is the number of rows in matrices A, C, and D.
+/// - [`k_size`] is the number of columns in matrix A and rows in matrix B.
+/// - [`n_size`] is the number of columns in matrices B, C, D.
+/// - [`a_type`] is the component type of matrix A, of type [`ComponentTypeNV`].
+/// - [`b_type`] is the component type of matrix B, of type [`ComponentTypeNV`].
+/// - [`c_type`] is the component type of matrix C, of type [`ComponentTypeNV`].
+/// - [`d_type`] is the component type of matrix D, of type [`ComponentTypeNV`].
+/// - [`scope`] is the scope of all the matrix types, of type [`ScopeNV`].
+///# Description
+///If some types are preferred over other types (e.g. for performance), they
+///**should** appear earlier in the list enumerated by
+///[`GetPhysicalDeviceCooperativeMatrixPropertiesNV`].At least one entry in the list **must** have
+/// power of two values for all of
+///[`m_size`], [`k_size`], and [`n_size`].Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_COOPERATIVE_MATRIX_PROPERTIES_NV`
+/// - [`p_next`]**must** be `NULL`
+/// - [`a_type`]**must** be a valid [`ComponentTypeNV`] value
+/// - [`b_type`]**must** be a valid [`ComponentTypeNV`] value
+/// - [`c_type`]**must** be a valid [`ComponentTypeNV`] value
+/// - [`d_type`]**must** be a valid [`ComponentTypeNV`] value
+/// - [`scope`]**must** be a valid [`ScopeNV`] value
+///# Related
+/// - [`VK_NV_cooperative_matrix`]
+/// - [`ComponentTypeNV`]
+/// - [`ScopeNV`]
+/// - [`StructureType`]
+/// - [`GetPhysicalDeviceCooperativeMatrixPropertiesNV`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct CooperativeMatrixPropertiesNV<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *const BaseOutStructure<'lt>,
+    ///[`m_size`] is the number of rows in matrices A, C, and D.
+    m_size: u32,
+    ///[`n_size`] is the number of columns in matrices B, C, D.
+    n_size: u32,
+    ///[`k_size`] is the number of columns in matrix A and rows in matrix B.
+    k_size: u32,
+    ///[`a_type`] is the component type of matrix A, of type
+    ///[`ComponentTypeNV`].
+    a_type: ComponentTypeNV,
+    ///[`b_type`] is the component type of matrix B, of type
+    ///[`ComponentTypeNV`].
+    b_type: ComponentTypeNV,
+    ///[`c_type`] is the component type of matrix C, of type
+    ///[`ComponentTypeNV`].
+    c_type: ComponentTypeNV,
+    ///[`d_type`] is the component type of matrix D, of type
+    ///[`ComponentTypeNV`].
+    d_type: ComponentTypeNV,
+    ///[`scope`] is the scope of all the matrix types, of type
+    ///[`ScopeNV`].
+    scope: ScopeNV,
 }

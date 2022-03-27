@@ -87,6 +87,8 @@ where
                 self.out.push('\n');
                 Some(())
             },
+            // there is a bug where the `glossary` tag gets misgenerated
+            "glossary" | "glossary," => self.visit_transparent(element),
             other => unreachable!("unsupported element: {}", other),
         }
     }
@@ -208,10 +210,13 @@ where
                     let name = captures.get(len - 1).unwrap().as_str();
 
                     if !variants.contains_key(name) {
-                        variants.insert(name.to_string(), self.out.clone());
+                        variants.insert(name.to_string(), self.out.trim().to_string());
                     }
                 }
             }
+
+            // just trying to avoid useless empty lines
+            self.out = self.out.replace('\n', " ").to_string();
 
             std::mem::swap(&mut self.out, &mut temp);
             self.out.push_str(&temp);

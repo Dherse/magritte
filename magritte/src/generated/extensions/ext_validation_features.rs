@@ -1,76 +1,9 @@
-//![VK_EXT_validation_features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_validation_features.html) - instance extension
-//!# Description
-//!This extension provides the [`ValidationFeaturesEXT`] struct that can be
-//!included in the `pNext` chain of the [`InstanceCreateInfo`]
-//!structure passed as the `pCreateInfo` parameter of
-//![`CreateInstance`].
-//!The structure contains an array of [`ValidationFeatureEnableEXT`] enum
-//!values that enable specific validation features that are disabled by
-//!default.
-//!The structure also contains an array of [`ValidationFeatureDisableEXT`]
-//!enum values that disable specific validation layer features that are enabled
-//!by default.
-//!# Revision
-//!5
-//!# Dependencies
-//! - Requires Vulkan 1.0
-//!# Contacts
-//! - Karl Schultz [karl-lunarg](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_validation_features]
-//!   @karl-lunarg%0A<<Here describe the issue or question you have about the
-//!   VK_EXT_validation_features extension>>)
-//!# New structures
-//! - Extending [`InstanceCreateInfo`]:
-//! - [`ValidationFeaturesEXT`]
-//!# New enums
-//! - [`ValidationFeatureDisableEXT`]
-//! - [`ValidationFeatureEnableEXT`]
-//!# New constants
-//! - [`EXT_VALIDATION_FEATURES_EXTENSION_NAME`]
-//! - [`EXT_VALIDATION_FEATURES_SPEC_VERSION`]
-//! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_VALIDATION_FEATURES_EXT`
-//!# Version History
-//! - Revision 1, 2018-11-14 (Karl Schultz)
-//! - Initial revision
-//!
-//! - Revision 2, 2019-08-06 (Mark Lobodzinski)
-//! - Add Best Practices enable
-//!
-//! - Revision 3, 2020-03-04 (Tony Barbour)
-//! - Add Debug Printf enable
-//!
-//! - Revision 4, 2020-07-29 (John Zulauf)
-//! - Add Synchronization Validation enable
-//!
-//! - Revision 5, 2021-05-18 (Tony Barbour)
-//! - Add Shader Validation Cache disable
-//!# Other info
-//! * 2018-11-14
-//! * No known IP claims.
-//!*
-//! - Karl Schultz, LunarG
-//! - Dave Houlton, LunarG
-//! - Mark Lobodzinski, LunarG
-//! - Camden Stocker, LunarG
-//! - Tony Barbour, LunarG
-//! - John Zulauf, LunarG
-//!# Related
-//! - [`ValidationFeatureDisableEXT`]
-//! - [`ValidationFeatureEnableEXT`]
-//! - [`ValidationFeaturesEXT`]
-//!
-//!# Notes and documentation
-//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-//!
-//!This documentation is generated from the Vulkan specification and documentation.
-//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-//! Commons Attribution 4.0 International*.
-//!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::vulkan1_0::{BaseInStructure, StructureType};
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::ffi::CStr;
+use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_VALIDATION_FEATURES_SPEC_VERSION")]
@@ -95,36 +28,25 @@ pub const EXT_VALIDATION_FEATURES_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///} VkValidationFeatureEnableEXT;
 ///```
 ///# Description
-/// - [`VALIDATION_FEATURE_ENABLE_GPU_ASSISTED`] specifies that
-///GPU-assisted validation is enabled.
-///Activating this feature instruments shader programs to generate
-///additional diagnostic data.
-///This feature is disabled by default.
-/// - [`VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_RESERVE_BINDING_SLOT`]
-///specifies that the validation layers reserve a descriptor set binding
-///slot for their own use.
-///The layer reports a value for
-///[`PhysicalDeviceLimits::max_bound_descriptor_sets`] that is one
-///less than the value reported by the device.
-///If the device supports the binding of only one descriptor set, the
-///validation layer does not perform GPU-assisted validation.
-///This feature is disabled by default.
-/// - [`VALIDATION_FEATURE_ENABLE_BEST_PRACTICES`] specifies that
-///Vulkan best-practices validation is enabled.
-///Activating this feature enables the output of warnings related to common
-///misuse of the API, but which are not explicitly prohibited by the
-///specification.
-///This feature is disabled by default.
-/// - [`VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF`] specifies that the
-///layers will process `debugPrintfEXT` operations in shaders and send
-///the resulting output to the debug callback.
-///This feature is disabled by default.
-/// - [`VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION`]
-///specifies that Vulkan synchronization validation is enabled.
-///This feature reports resource access conflicts due to missing or
-///incorrect synchronization operations between actions (Draw, Copy,
-///Dispatch, Blit) reading or writing the same regions of memory.
-///This feature is disabled by default.
+/// - [`ValidationFeatureEnableGpuAssistedExt`] specifies that GPU-assisted validation is enabled.
+///   Activating this feature instruments shader programs to generate additional diagnostic data.
+///   This feature is disabled by default.
+/// - [`ValidationFeatureEnableGpuAssistedReserveBindingSlotExt`] specifies that the validation
+///   layers reserve a descriptor set binding slot for their own use. The layer reports a value for
+///   [`PhysicalDeviceLimits::max_bound_descriptor_sets`] that is one less than the value reported
+///   by the device. If the device supports the binding of only one descriptor set, the validation
+///   layer does not perform GPU-assisted validation. This feature is disabled by default.
+/// - [`ValidationFeatureEnableBestPracticesExt`] specifies that Vulkan best-practices validation is
+///   enabled. Activating this feature enables the output of warnings related to common misuse of
+///   the API, but which are not explicitly prohibited by the specification. This feature is
+///   disabled by default.
+/// - [`ValidationFeatureEnableDebugPrintfExt`] specifies that the layers will process
+///   `debugPrintfEXT` operations in shaders and send the resulting output to the debug callback.
+///   This feature is disabled by default.
+/// - [`ValidationFeatureEnableSynchronizationValidationExt`] specifies that Vulkan synchronization
+///   validation is enabled. This feature reports resource access conflicts due to missing or
+///   incorrect synchronization operations between actions (Draw, Copy, Dispatch, Blit) reading or
+///   writing the same regions of memory. This feature is disabled by default.
 ///# Related
 /// - [`VK_EXT_validation_features`]
 /// - [`ValidationFeaturesEXT`]
@@ -137,42 +59,18 @@ pub const EXT_VALIDATION_FEATURES_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkValidationFeatureEnableEXT")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct ValidationFeatureEnableEXT(i32);
-impl const Default for ValidationFeatureEnableEXT {
-    fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for ValidationFeatureEnableEXT {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("ValidationFeatureEnableEXT")
-            .field(match *self {
-                Self::VALIDATION_FEATURE_ENABLE_GPU_ASSISTED => &"VALIDATION_FEATURE_ENABLE_GPU_ASSISTED",
-                Self::VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_RESERVE_BINDING_SLOT => {
-                    &"VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_RESERVE_BINDING_SLOT"
-                },
-                Self::VALIDATION_FEATURE_ENABLE_BEST_PRACTICES => &"VALIDATION_FEATURE_ENABLE_BEST_PRACTICES",
-                Self::VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF => &"VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF",
-                Self::VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION => {
-                    &"VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION"
-                },
-                other => unreachable!("invalid value for `ValidationFeatureEnableEXT`: {:?}", other),
-            })
-            .finish()
-    }
-}
-impl ValidationFeatureEnableEXT {
-    ///[`VALIDATION_FEATURE_ENABLE_GPU_ASSISTED`] specifies that
+#[repr(i32)]
+pub enum ValidationFeatureEnableEXT {
+    ///[`ValidationFeatureEnableGpuAssistedExt`] specifies that
     ///GPU-assisted validation is enabled.
     ///Activating this feature instruments shader programs to generate
     ///additional diagnostic data.
     ///This feature is disabled by default.
-    pub const VALIDATION_FEATURE_ENABLE_GPU_ASSISTED: Self = Self(0);
-    ///[`VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_RESERVE_BINDING_SLOT`]
+    ValidationFeatureEnableGpuAssistedExt = 0,
+    ///[`ValidationFeatureEnableGpuAssistedReserveBindingSlotExt`]
     ///specifies that the validation layers reserve a descriptor set binding
     ///slot for their own use.
     ///The layer reports a value for
@@ -181,26 +79,33 @@ impl ValidationFeatureEnableEXT {
     ///If the device supports the binding of only one descriptor set, the
     ///validation layer does not perform GPU-assisted validation.
     ///This feature is disabled by default.
-    pub const VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_RESERVE_BINDING_SLOT: Self = Self(1);
-    ///[`VALIDATION_FEATURE_ENABLE_BEST_PRACTICES`] specifies that
+    ValidationFeatureEnableGpuAssistedReserveBindingSlotExt = 1,
+    ///[`ValidationFeatureEnableBestPracticesExt`] specifies that
     ///Vulkan best-practices validation is enabled.
     ///Activating this feature enables the output of warnings related to common
     ///misuse of the API, but which are not explicitly prohibited by the
     ///specification.
     ///This feature is disabled by default.
-    pub const VALIDATION_FEATURE_ENABLE_BEST_PRACTICES: Self = Self(2);
-    ///[`VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF`] specifies that the
+    ValidationFeatureEnableBestPracticesExt = 2,
+    ///[`ValidationFeatureEnableDebugPrintfExt`] specifies that the
     ///layers will process `debugPrintfEXT` operations in shaders and send
     ///the resulting output to the debug callback.
     ///This feature is disabled by default.
-    pub const VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF: Self = Self(3);
-    ///[`VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION`]
+    ValidationFeatureEnableDebugPrintfExt = 3,
+    ///[`ValidationFeatureEnableSynchronizationValidationExt`]
     ///specifies that Vulkan synchronization validation is enabled.
     ///This feature reports resource access conflicts due to missing or
     ///incorrect synchronization operations between actions (Draw, Copy,
     ///Dispatch, Blit) reading or writing the same regions of memory.
     ///This feature is disabled by default.
-    pub const VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION: Self = Self(4);
+    ValidationFeatureEnableSynchronizationValidationExt = 4,
+}
+impl const Default for ValidationFeatureEnableEXT {
+    fn default() -> Self {
+        ValidationFeatureEnableGpuAssistedExt
+    }
+}
+impl ValidationFeatureEnableEXT {
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -209,7 +114,12 @@ impl ValidationFeatureEnableEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
     }
 }
 ///[VkValidationFeatureDisableEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkValidationFeatureDisableEXT.html) - Specify validation features to disable
@@ -231,33 +141,23 @@ impl ValidationFeatureEnableEXT {
 ///} VkValidationFeatureDisableEXT;
 ///```
 ///# Description
-/// - [`VALIDATION_FEATURE_DISABLE_ALL`] specifies that all
-///validation checks are disabled.
-/// - [`VALIDATION_FEATURE_DISABLE_SHADERS`] specifies that shader
-///validation is disabled.
-///This feature is enabled by default.
-/// - [`VALIDATION_FEATURE_DISABLE_THREAD_SAFETY`] specifies that
-///thread safety validation is disabled.
-///This feature is enabled by default.
-/// - [`VALIDATION_FEATURE_DISABLE_API_PARAMETERS`] specifies that
-///stateless parameter validation is disabled.
-///This feature is enabled by default.
-/// - [`VALIDATION_FEATURE_DISABLE_OBJECT_LIFETIMES`] specifies that
-///object lifetime validation is disabled.
-///This feature is enabled by default.
-/// - [`VALIDATION_FEATURE_DISABLE_CORE_CHECKS`] specifies that core
-///validation checks are disabled.
-///This feature is enabled by default.
-///If this feature is disabled, the shader validation and GPU-assisted
-///validation features are also disabled.
-/// - [`VALIDATION_FEATURE_DISABLE_UNIQUE_HANDLES`] specifies that
-///protection against duplicate non-dispatchable object handles is
-///disabled.
-///This feature is enabled by default.
-/// - [`VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE`]
-///specifies that there will be no caching of shader validation results and
-///every shader will be validated on every application execution.
-///Shader validation caching is enabled by default.
+/// - [`ValidationFeatureDisableAllExt`] specifies that all validation checks are disabled.
+/// - [`ValidationFeatureDisableShadersExt`] specifies that shader validation is disabled. This
+///   feature is enabled by default.
+/// - [`ValidationFeatureDisableThreadSafetyExt`] specifies that thread safety validation is
+///   disabled. This feature is enabled by default.
+/// - [`ValidationFeatureDisableApiParametersExt`] specifies that stateless parameter validation is
+///   disabled. This feature is enabled by default.
+/// - [`ValidationFeatureDisableObjectLifetimesExt`] specifies that object lifetime validation is
+///   disabled. This feature is enabled by default.
+/// - [`ValidationFeatureDisableCoreChecksExt`] specifies that core validation checks are disabled.
+///   This feature is enabled by default. If this feature is disabled, the shader validation and
+///   GPU-assisted validation features are also disabled.
+/// - [`ValidationFeatureDisableUniqueHandlesExt`] specifies that protection against duplicate
+///   non-dispatchable object handles is disabled. This feature is enabled by default.
+/// - [`ValidationFeatureDisableShaderValidationCacheExt`] specifies that there will be no caching
+///   of shader validation results and every shader will be validated on every application
+///   execution. Shader validation caching is enabled by default.
 ///# Related
 /// - [`VK_EXT_validation_features`]
 /// - [`ValidationFeaturesEXT`]
@@ -270,71 +170,53 @@ impl ValidationFeatureEnableEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkValidationFeatureDisableEXT")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct ValidationFeatureDisableEXT(i32);
-impl const Default for ValidationFeatureDisableEXT {
-    fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for ValidationFeatureDisableEXT {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("ValidationFeatureDisableEXT")
-            .field(match *self {
-                Self::VALIDATION_FEATURE_DISABLE_ALL => &"VALIDATION_FEATURE_DISABLE_ALL",
-                Self::VALIDATION_FEATURE_DISABLE_SHADERS => &"VALIDATION_FEATURE_DISABLE_SHADERS",
-                Self::VALIDATION_FEATURE_DISABLE_THREAD_SAFETY => &"VALIDATION_FEATURE_DISABLE_THREAD_SAFETY",
-                Self::VALIDATION_FEATURE_DISABLE_API_PARAMETERS => &"VALIDATION_FEATURE_DISABLE_API_PARAMETERS",
-                Self::VALIDATION_FEATURE_DISABLE_OBJECT_LIFETIMES => &"VALIDATION_FEATURE_DISABLE_OBJECT_LIFETIMES",
-                Self::VALIDATION_FEATURE_DISABLE_CORE_CHECKS => &"VALIDATION_FEATURE_DISABLE_CORE_CHECKS",
-                Self::VALIDATION_FEATURE_DISABLE_UNIQUE_HANDLES => &"VALIDATION_FEATURE_DISABLE_UNIQUE_HANDLES",
-                Self::VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE => {
-                    &"VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE"
-                },
-                other => unreachable!("invalid value for `ValidationFeatureDisableEXT`: {:?}", other),
-            })
-            .finish()
-    }
-}
-impl ValidationFeatureDisableEXT {
-    ///[`VALIDATION_FEATURE_DISABLE_ALL`] specifies that all
+#[repr(i32)]
+pub enum ValidationFeatureDisableEXT {
+    ///[`ValidationFeatureDisableAllExt`] specifies that all
     ///validation checks are disabled.
-    pub const VALIDATION_FEATURE_DISABLE_ALL: Self = Self(0);
-    ///[`VALIDATION_FEATURE_DISABLE_SHADERS`] specifies that shader
+    ValidationFeatureDisableAllExt = 0,
+    ///[`ValidationFeatureDisableShadersExt`] specifies that shader
     ///validation is disabled.
     ///This feature is enabled by default.
-    pub const VALIDATION_FEATURE_DISABLE_SHADERS: Self = Self(1);
-    ///[`VALIDATION_FEATURE_DISABLE_THREAD_SAFETY`] specifies that
+    ValidationFeatureDisableShadersExt = 1,
+    ///[`ValidationFeatureDisableThreadSafetyExt`] specifies that
     ///thread safety validation is disabled.
     ///This feature is enabled by default.
-    pub const VALIDATION_FEATURE_DISABLE_THREAD_SAFETY: Self = Self(2);
-    ///[`VALIDATION_FEATURE_DISABLE_API_PARAMETERS`] specifies that
+    ValidationFeatureDisableThreadSafetyExt = 2,
+    ///[`ValidationFeatureDisableApiParametersExt`] specifies that
     ///stateless parameter validation is disabled.
     ///This feature is enabled by default.
-    pub const VALIDATION_FEATURE_DISABLE_API_PARAMETERS: Self = Self(3);
-    ///[`VALIDATION_FEATURE_DISABLE_OBJECT_LIFETIMES`] specifies that
+    ValidationFeatureDisableApiParametersExt = 3,
+    ///[`ValidationFeatureDisableObjectLifetimesExt`] specifies that
     ///object lifetime validation is disabled.
     ///This feature is enabled by default.
-    pub const VALIDATION_FEATURE_DISABLE_OBJECT_LIFETIMES: Self = Self(4);
-    ///[`VALIDATION_FEATURE_DISABLE_CORE_CHECKS`] specifies that core
+    ValidationFeatureDisableObjectLifetimesExt = 4,
+    ///[`ValidationFeatureDisableCoreChecksExt`] specifies that core
     ///validation checks are disabled.
     ///This feature is enabled by default.
     ///If this feature is disabled, the shader validation and GPU-assisted
     ///validation features are also disabled.
-    pub const VALIDATION_FEATURE_DISABLE_CORE_CHECKS: Self = Self(5);
-    ///[`VALIDATION_FEATURE_DISABLE_UNIQUE_HANDLES`] specifies that
+    ValidationFeatureDisableCoreChecksExt = 5,
+    ///[`ValidationFeatureDisableUniqueHandlesExt`] specifies that
     ///protection against duplicate non-dispatchable object handles is
     ///disabled.
     ///This feature is enabled by default.
-    pub const VALIDATION_FEATURE_DISABLE_UNIQUE_HANDLES: Self = Self(6);
-    ///[`VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE`]
+    ValidationFeatureDisableUniqueHandlesExt = 6,
+    ///[`ValidationFeatureDisableShaderValidationCacheExt`]
     ///specifies that there will be no caching of shader validation results and
     ///every shader will be validated on every application execution.
     ///Shader validation caching is enabled by default.
-    pub const VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE: Self = Self(7);
+    ValidationFeatureDisableShaderValidationCacheExt = 7,
+}
+impl const Default for ValidationFeatureDisableEXT {
+    fn default() -> Self {
+        ValidationFeatureDisableAllExt
+    }
+}
+impl ValidationFeatureDisableEXT {
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -343,6 +225,91 @@ impl ValidationFeatureDisableEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
     }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkValidationFeaturesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkValidationFeaturesEXT.html) - Specify validation features to enable or disable for a Vulkan instance
+///# C Specifications
+///When creating a Vulkan instance for which you wish to enable or disable
+///specific validation features, add a [`ValidationFeaturesEXT`] structure
+///to the [`p_next`] chain of the [`InstanceCreateInfo`] structure,
+///specifying the features to be enabled or disabled.
+///```c
+///// Provided by VK_EXT_validation_features
+///typedef struct VkValidationFeaturesEXT {
+///    VkStructureType                         sType;
+///    const void*                             pNext;
+///    uint32_t                                enabledValidationFeatureCount;
+///    const VkValidationFeatureEnableEXT*     pEnabledValidationFeatures;
+///    uint32_t                                disabledValidationFeatureCount;
+///    const VkValidationFeatureDisableEXT*    pDisabledValidationFeatures;
+///} VkValidationFeaturesEXT;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`enabled_validation_feature_count`] is the number of features to enable.
+/// - [`p_enabled_validation_features`] is a pointer to an array of [`ValidationFeatureEnableEXT`]
+///   values specifying the validation features to be enabled.
+/// - [`disabled_validation_feature_count`] is the number of features to disable.
+/// - [`p_disabled_validation_features`] is a pointer to an array of [`ValidationFeatureDisableEXT`]
+///   values specifying the validation features to be disabled.
+///# Description
+///Valid Usage
+/// - If the [`p_enabled_validation_features`] array contains
+///   `VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT`, then it **must** also
+///   contain `VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT`
+/// - If the [`p_enabled_validation_features`] array contains
+///   `VK_VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT`, then it **must** not contain
+///   `VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT`
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VALIDATION_FEATURES_EXT`
+/// - If [`enabled_validation_feature_count`] is not `0`, [`p_enabled_validation_features`]**must**
+///   be a valid pointer to an array of [`enabled_validation_feature_count`] valid
+///   [`ValidationFeatureEnableEXT`] values
+/// - If [`disabled_validation_feature_count`] is not `0`,
+///   [`p_disabled_validation_features`]**must** be a valid pointer to an array of
+///   [`disabled_validation_feature_count`] valid [`ValidationFeatureDisableEXT`] values
+///# Related
+/// - [`VK_EXT_validation_features`]
+/// - [`StructureType`]
+/// - [`ValidationFeatureDisableEXT`]
+/// - [`ValidationFeatureEnableEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct ValidationFeaturesEXT<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`enabled_validation_feature_count`] is the number of features to enable.
+    enabled_validation_feature_count: u32,
+    ///[`p_enabled_validation_features`] is a pointer to an array of
+    ///[`ValidationFeatureEnableEXT`] values specifying the validation
+    ///features to be enabled.
+    p_enabled_validation_features: *mut ValidationFeatureEnableEXT,
+    ///[`disabled_validation_feature_count`] is the number of features to
+    ///disable.
+    disabled_validation_feature_count: u32,
+    ///[`p_disabled_validation_features`] is a pointer to an array of
+    ///[`ValidationFeatureDisableEXT`] values specifying the validation
+    ///features to be disabled.
+    p_disabled_validation_features: *mut ValidationFeatureDisableEXT,
 }

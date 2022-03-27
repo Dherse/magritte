@@ -1,60 +1,8 @@
-//![VK_KHR_external_fence_fd](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_external_fence_fd.html) - device extension
-//!# Description
-//!An application using external memory may wish to synchronize access to that
-//!memory using fences.
-//!This extension enables an application to export fence payload to and import
-//!fence payload from POSIX file descriptors.
-//!# Revision
-//!1
-//!# Dependencies
-//! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_external_fence`]`
-//!# Contacts
-//! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_fence_fd]
-//!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_external_fence_fd
-//!   extension>>)
-//!# New functions & commands
-//! - [`GetFenceFdKHR`]
-//! - [`ImportFenceFdKHR`]
-//!# New structures
-//! - [`FenceGetFdInfoKHR`]
-//! - [`ImportFenceFdInfoKHR`]
-//!# New constants
-//! - [`KHR_EXTERNAL_FENCE_FD_EXTENSION_NAME`]
-//! - [`KHR_EXTERNAL_FENCE_FD_SPEC_VERSION`]
-//! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR`
-//!# Known issues & F.A.Q
-//!This extension borrows concepts, semantics, and language from
-//!`[`VK_KHR_external_semaphore_fd`]`.
-//!That extension’s issues apply equally to this extension.
-//!# Version History
-//! - Revision 1, 2017-05-08 (Jesse Hall)
-//! - Initial revision
-//!# Other info
-//! * 2017-05-08
-//! * No known IP claims.
-//!*
-//! - Jesse Hall, Google
-//! - James Jones, NVIDIA
-//! - Jeff Juliano, NVIDIA
-//! - Cass Everitt, Oculus
-//! - Contributors to `[`VK_KHR_external_semaphore_fd`]`
-//!# Related
-//! - [`FenceGetFdInfoKHR`]
-//! - [`ImportFenceFdInfoKHR`]
-//! - [`GetFenceFdKHR`]
-//! - [`ImportFenceFdKHR`]
-//!
-//!# Notes and documentation
-//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-//!
-//!This documentation is generated from the Vulkan specification and documentation.
-//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-//! Commons Attribution 4.0 International*.
-//!This license explicitely allows adapting the source material as long as proper credit is given.
-use std::ffi::CStr;
+use crate::{
+    vulkan1_0::{BaseInStructure, Fence, StructureType},
+    vulkan1_1::{ExternalFenceHandleTypeFlagBits, FenceImportFlags},
+};
+use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_EXTERNAL_FENCE_FD_SPEC_VERSION")]
@@ -63,3 +11,144 @@ pub const KHR_EXTERNAL_FENCE_FD_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_EXTERNAL_FENCE_FD_EXTENSION_NAME")]
 pub const KHR_EXTERNAL_FENCE_FD_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_external_fence_fd");
+///[VkImportFenceFdInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportFenceFdInfoKHR.html) - (None)
+///# C Specifications
+///The [`ImportFenceFdInfoKHR`] structure is defined as:
+///```c
+///// Provided by VK_KHR_external_fence_fd
+///typedef struct VkImportFenceFdInfoKHR {
+///    VkStructureType                      sType;
+///    const void*                          pNext;
+///    VkFence                              fence;
+///    VkFenceImportFlags                   flags;
+///    VkExternalFenceHandleTypeFlagBits    handleType;
+///    int                                  fd;
+///} VkImportFenceFdInfoKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`fence`] is the fence into which the payload will be imported.
+/// - [`flags`] is a bitmask of [`FenceImportFlagBits`] specifying additional parameters for the
+///   fence payload import operation.
+/// - [`handle_type`] is a [`ExternalFenceHandleTypeFlagBits`] value specifying the type of [`fd`].
+/// - [`fd`] is the external handle to import.
+///# Description
+///The handle types supported by [`handle_type`] are:Valid Usage
+/// - [`handle_type`]**must** be a value included in the [Handle Types Supported by [`ImportFenceFdInfoKHR`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fence-handletypes-fd)
+///   table
+/// -  [`fd`]**must** obey any requirements listed for [`handle_type`] in [external fence handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-fence-handle-types-compatibility)
+///If [`handle_type`] is `VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT`, the
+///special value `-1` for [`fd`] is treated like a valid sync file descriptor
+///referring to an object that has already signaled.
+///The import operation will succeed and the [`Fence`] will have a
+///temporarily imported payload as if a valid file descriptor had been
+///provided.Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR`
+/// - [`p_next`]**must** be `NULL`
+/// - [`fence`]**must** be a valid [`Fence`] handle
+/// - [`flags`]**must** be a valid combination of [`FenceImportFlagBits`] values
+/// - [`handle_type`]**must** be a valid [`ExternalFenceHandleTypeFlagBits`] value
+///Host Synchronization
+/// - Host access to [`fence`]**must** be externally synchronized
+///# Related
+/// - [`VK_KHR_external_fence_fd`]
+/// - [`ExternalFenceHandleTypeFlagBits`]
+/// - [`Fence`]
+/// - [`FenceImportFlags`]
+/// - [`StructureType`]
+/// - [`ImportFenceFdKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct ImportFenceFdInfoKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`fence`] is the fence into which the payload will be imported.
+    fence: Fence,
+    ///[`flags`] is a bitmask of [`FenceImportFlagBits`] specifying
+    ///additional parameters for the fence payload import operation.
+    flags: FenceImportFlags,
+    ///[`handle_type`] is a [`ExternalFenceHandleTypeFlagBits`] value
+    ///specifying the type of [`fd`].
+    handle_type: ExternalFenceHandleTypeFlagBits,
+    ///[`fd`] is the external handle to import.
+    fd: i32,
+}
+///[VkFenceGetFdInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFenceGetFdInfoKHR.html) - Structure describing a POSIX FD fence export operation
+///# C Specifications
+///The [`FenceGetFdInfoKHR`] structure is defined as:
+///```c
+///// Provided by VK_KHR_external_fence_fd
+///typedef struct VkFenceGetFdInfoKHR {
+///    VkStructureType                      sType;
+///    const void*                          pNext;
+///    VkFence                              fence;
+///    VkExternalFenceHandleTypeFlagBits    handleType;
+///} VkFenceGetFdInfoKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`fence`] is the fence from which state will be exported.
+/// - [`handle_type`] is a [`ExternalFenceHandleTypeFlagBits`] value specifying the type of handle
+///   requested.
+///# Description
+///The properties of the file descriptor returned depend on the value of
+///[`handle_type`].
+///See [`ExternalFenceHandleTypeFlagBits`] for a description of the
+///properties of the defined external fence handle types.Valid Usage
+/// - [`handle_type`]**must** have been included in [`ExportFenceCreateInfo::handle_types`] when
+///   [`fence`]’s current payload was created
+/// -    If [`handle_type`] refers to a handle type with copy payload transference semantics, [`fence`]**must** be signaled, or have an associated [fence signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-signaling) pending execution
+/// -  [`fence`]**must** not currently have its payload replaced by an imported payload as described below in [Importing Fence Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-importing) unless that imported payload’s handle type was included in [`ExternalFenceProperties::export_from_imported_handle_types`] for [`handle_type`]
+/// - [`handle_type`]**must** be defined as a POSIX file descriptor handle
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR`
+/// - [`p_next`]**must** be `NULL`
+/// - [`fence`]**must** be a valid [`Fence`] handle
+/// - [`handle_type`]**must** be a valid [`ExternalFenceHandleTypeFlagBits`] value
+///# Related
+/// - [`VK_KHR_external_fence_fd`]
+/// - [`ExternalFenceHandleTypeFlagBits`]
+/// - [`Fence`]
+/// - [`StructureType`]
+/// - [`GetFenceFdKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct FenceGetFdInfoKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`fence`] is the fence from which state will be exported.
+    fence: Fence,
+    ///[`handle_type`] is a [`ExternalFenceHandleTypeFlagBits`] value
+    ///specifying the type of handle requested.
+    handle_type: ExternalFenceHandleTypeFlagBits,
+}

@@ -1,145 +1,5 @@
-//![VK_EXT_transform_feedback](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_transform_feedback.html) - device extension
-//!# Description
-//!This extension adds transform feedback to the Vulkan API by exposing the
-//!SPIR-V `TransformFeedback` and `GeometryStreams` capabilities to
-//!capture vertex, tessellation or geometry shader outputs to one or more
-//!buffers.
-//!It adds API functionality to bind transform feedback buffers to capture the
-//!primitives emitted by the graphics pipeline from SPIR-V outputs decorated
-//!for transform feedback.
-//!The transform feedback capture can be paused and resumed by way of storing
-//!and retrieving a byte counter.
-//!The captured data can be drawn again where the vertex count is derived from
-//!the byte counter without CPU intervention.
-//!If the implementation is capable, a vertex stream other than zero can be
-//!rasterized.All these features are designed to match the full capabilities of OpenGL
-//!core transform feedback functionality and beyond.
-//!Many of the features are optional to allow base OpenGL ES GPUs to also
-//!implement this extension.The primary purpose of the functionality exposed by this extension is
-//! to
-//!support translation layers from other 3D APIs.
-//!This functionality is not considered forward looking, and is not expected to
-//!be promoted to a KHR extension or to core Vulkan.
-//!Unless this is needed for translation, it is recommended that developers use
-//!alternative techniques of using the GPU to process and capture vertex data.
-//!# Revision
-//!1
-//!# Dependencies
-//! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
-//!# Contacts
-//! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_transform_feedback]
-//!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
-//!   VK_EXT_transform_feedback extension>>)
-//!# New functions & commands
-//! - [`CmdBeginQueryIndexedEXT`]
-//! - [`CmdBeginTransformFeedbackEXT`]
-//! - [`CmdBindTransformFeedbackBuffersEXT`]
-//! - [`CmdDrawIndirectByteCountEXT`]
-//! - [`CmdEndQueryIndexedEXT`]
-//! - [`CmdEndTransformFeedbackEXT`]
-//!# New structures
-//! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
-//! - [`PhysicalDeviceTransformFeedbackFeaturesEXT`]
-//!
-//! - Extending [`PhysicalDeviceProperties2`]:
-//! - [`PhysicalDeviceTransformFeedbackPropertiesEXT`]
-//!
-//! - Extending [`PipelineRasterizationStateCreateInfo`]:
-//! - [`PipelineRasterizationStateStreamCreateInfoEXT`]
-//!# New bitmasks
-//! - [`PipelineRasterizationStateStreamCreateFlagsEXT`]
-//!# New constants
-//! - [`EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME`]
-//! - [`EXT_TRANSFORM_FEEDBACK_SPEC_VERSION`]
-//! - Extending [`AccessFlagBits`]:
-//! - `VK_ACCESS_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT`
-//! - `VK_ACCESS_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT`
-//! - `VK_ACCESS_TRANSFORM_FEEDBACK_WRITE_BIT_EXT`
-//!
-//! - Extending [`BufferUsageFlagBits`]:
-//! - `VK_BUFFER_USAGE_TRANSFORM_FEEDBACK_BUFFER_BIT_EXT`
-//! - `VK_BUFFER_USAGE_TRANSFORM_FEEDBACK_COUNTER_BUFFER_BIT_EXT`
-//!
-//! - Extending [`PipelineStageFlagBits`]:
-//! - `VK_PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT`
-//!
-//! - Extending [`QueryType`]:
-//! - `VK_QUERY_TYPE_TRANSFORM_FEEDBACK_STREAM_EXT`
-//!
-//! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT`
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT`
-//! - `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT`
-//!# Known issues & F.A.Q
-//!1) Should we include pause/resume functionality?**RESOLVED**: Yes, this is needed to ease
-//! layering other APIs which have this
-//!functionality.
-//!To pause use [`CmdEndTransformFeedbackEXT`] and provide valid buffer
-//!handles in the `pCounterBuffers` array and offsets in the
-//!`pCounterBufferOffsets` array for the implementation to save the resume
-//!points.
-//!Then to resume use [`CmdBeginTransformFeedbackEXT`] with the previous
-//!`pCounterBuffers` and `pCounterBufferOffsets` values.
-//!Between the pause and resume there needs to be a memory barrier for the
-//!counter buffers with a source access of
-//!`VK_ACCESS_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT` at pipeline stage
-//!`VK_PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT` to a destination access
-//!of `VK_ACCESS_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT` at pipeline stage
-//!`VK_PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT`.2) How does this interact with
-//! multiview?**RESOLVED**: Transform feedback cannot be made active in a render pass with
-//!multiview enabled.3) How should queries be done?**RESOLVED**: There is a new query type
-//!`VK_QUERY_TYPE_TRANSFORM_FEEDBACK_STREAM_EXT`.
-//!A query pool created with this type will capture 2 integers -
-//!numPrimitivesWritten and numPrimitivesNeeded - for the specified vertex
-//!stream output from the last
-//![pre-rasterization shader
-//!stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipeline-graphics-subsets-pre-rasterization).
-//!The vertex stream output queried is zero by default, but can be specified
-//!with the new [`CmdBeginQueryIndexedEXT`] and
-//![`CmdEndQueryIndexedEXT`] commands.
-//!# Version History
-//! - Revision 1, 2018-10-09 (Piers Daniell)
-//! - Internal revisions
-//!# Other info
-//! * 2018-10-09
-//!*
-//! - Baldur Karlsson, Valve
-//! - Boris Zanin, Mobica
-//! - Daniel Rakos, AMD
-//! - Donald Scorgie, Imagination
-//! - Henri Verbeet, CodeWeavers
-//! - Jan-Harald Fredriksen, Arm
-//! - Jason Ekstrand, Intel
-//! - Jeff Bolz, NVIDIA
-//! - Jesse Barker, Unity
-//! - Jesse Hall, Google
-//! - Pierre-Loup Griffais, Valve
-//! - Philip Rebohle, DXVK
-//! - Ruihao Zhang, Qualcomm
-//! - Samuel Pitoiset, Valve
-//! - Slawomir Grajewski, Intel
-//! - Stu Smith, Imagination Technologies
-//!# Related
-//! - [`PhysicalDeviceTransformFeedbackFeaturesEXT`]
-//! - [`PhysicalDeviceTransformFeedbackPropertiesEXT`]
-//! - [`PipelineRasterizationStateStreamCreateFlagsEXT`]
-//! - [`PipelineRasterizationStateStreamCreateInfoEXT`]
-//! - [`CmdBeginQueryIndexedEXT`]
-//! - [`CmdBeginTransformFeedbackEXT`]
-//! - [`CmdBindTransformFeedbackBuffersEXT`]
-//! - [`CmdDrawIndirectByteCountEXT`]
-//! - [`CmdEndQueryIndexedEXT`]
-//! - [`CmdEndTransformFeedbackEXT`]
-//!
-//!# Notes and documentation
-//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-//!
-//!This documentation is generated from the Vulkan specification and documentation.
-//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-//! Commons Attribution 4.0 International*.
-//!This license explicitely allows adapting the source material as long as proper credit is given.
-use std::ffi::CStr;
+use crate::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, DeviceSize, StructureType};
+use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_TRANSFORM_FEEDBACK_SPEC_VERSION")]
@@ -148,3 +8,266 @@ pub const EXT_TRANSFORM_FEEDBACK_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME")]
 pub const EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_transform_feedback");
+///[VkPhysicalDeviceTransformFeedbackFeaturesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceTransformFeedbackFeaturesEXT.html) - Structure describing transform feedback features that can be supported by an implementation
+///# C Specifications
+///The [`PhysicalDeviceTransformFeedbackFeaturesEXT`] structure is defined
+///as:
+///```c
+///// Provided by VK_EXT_transform_feedback
+///typedef struct VkPhysicalDeviceTransformFeedbackFeaturesEXT {
+///    VkStructureType    sType;
+///    void*              pNext;
+///    VkBool32           transformFeedback;
+///    VkBool32           geometryStreams;
+///} VkPhysicalDeviceTransformFeedbackFeaturesEXT;
+///```
+///# Members
+///This structure describes the following features:
+///# Description
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`transform_feedback`] indicates whether the implementation supports transform feedback and
+///   shader modules **can** declare the `TransformFeedback` capability.
+/// - [`geometry_streams`] indicates whether the implementation supports the `GeometryStreams`
+///   SPIR-V capability.
+///If the [`PhysicalDeviceTransformFeedbackFeaturesEXT`] structure is included in the [`p_next`]
+/// chain of the
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceTransformFeedbackFeaturesEXT`]**can** also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT`
+///# Related
+/// - [`VK_EXT_transform_feedback`]
+/// - [`Bool32`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *const BaseOutStructure<'lt>,
+    ///[`transform_feedback`] indicates whether
+    ///the implementation supports transform feedback and shader modules **can**
+    ///declare the `TransformFeedback` capability.
+    transform_feedback: Bool32,
+    ///[`geometry_streams`] indicates whether the
+    ///implementation supports the `GeometryStreams` SPIR-V capability.
+    geometry_streams: Bool32,
+}
+///[VkPhysicalDeviceTransformFeedbackPropertiesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceTransformFeedbackPropertiesEXT.html) - Structure describing transform feedback properties that can be supported by an implementation
+///# C Specifications
+///The [`PhysicalDeviceTransformFeedbackPropertiesEXT`] structure is
+///defined as:
+///```c
+///// Provided by VK_EXT_transform_feedback
+///typedef struct VkPhysicalDeviceTransformFeedbackPropertiesEXT {
+///    VkStructureType    sType;
+///    void*              pNext;
+///    uint32_t           maxTransformFeedbackStreams;
+///    uint32_t           maxTransformFeedbackBuffers;
+///    VkDeviceSize       maxTransformFeedbackBufferSize;
+///    uint32_t           maxTransformFeedbackStreamDataSize;
+///    uint32_t           maxTransformFeedbackBufferDataSize;
+///    uint32_t           maxTransformFeedbackBufferDataStride;
+///    VkBool32           transformFeedbackQueries;
+///    VkBool32           transformFeedbackStreamsLinesTriangles;
+///    VkBool32           transformFeedbackRasterizationStreamSelect;
+///    VkBool32           transformFeedbackDraw;
+///} VkPhysicalDeviceTransformFeedbackPropertiesEXT;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`max_transform_feedback_streams`] is the maximum number of vertex streams that can be output
+///   from geometry shaders declared with the `GeometryStreams` capability. If the implementation
+///   does not support [`PhysicalDeviceTransformFeedbackFeaturesEXT::geometry_streams`] then
+///   [`max_transform_feedback_streams`]**must** be set to `1`.
+/// - [`max_transform_feedback_buffers`] is the maximum number of transform feedback buffers that can be bound for capturing shader outputs from the last [pre-rasterization shader stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipeline-graphics-subsets-pre-rasterization).
+/// - [`max_transform_feedback_buffer_size`] is the maximum size that can be specified when binding
+///   a buffer for transform feedback in [`CmdBindTransformFeedbackBuffersEXT`].
+/// - [`max_transform_feedback_stream_data_size`] is the maximum amount of data in bytes for each
+///   vertex that captured to one or more transform feedback buffers associated with a specific
+///   vertex stream.
+/// - [`max_transform_feedback_buffer_data_size`] is the maximum amount of data in bytes for each
+///   vertex that can be captured to a specific transform feedback buffer.
+/// - [`max_transform_feedback_buffer_data_stride`] is the maximum stride between each capture of
+///   vertex data to the buffer.
+/// - [`transform_feedback_queries`] is [`TRUE`] if the implementation supports the
+///   `VK_QUERY_TYPE_TRANSFORM_FEEDBACK_STREAM_EXT` query type. [`transform_feedback_queries`] is
+///   [`FALSE`] if queries of this type **cannot** be created.
+/// - [`transform_feedback_streams_lines_triangles`] is [`TRUE`] if the implementation supports the
+///   geometry shader `OpExecutionMode` of `OutputLineStrip` and `OutputTriangleStrip` in addition
+///   to `OutputPoints` when more than one vertex stream is output. If
+///   [`transform_feedback_streams_lines_triangles`] is [`FALSE`] the implementation only supports
+///   an `OpExecutionMode` of `OutputPoints` when more than one vertex stream is output from the
+///   geometry shader.
+/// - [`transform_feedback_rasterization_stream_select`] is [`TRUE`] if the implementation supports
+///   the `GeometryStreams` SPIR-V capability and the application can use
+///   [`PipelineRasterizationStateStreamCreateInfoEXT`] to modify which vertex stream output is used
+///   for rasterization. Otherwise vertex stream `0`**must** always be used for rasterization.
+/// - [`transform_feedback_draw`] is [`TRUE`] if the implementation supports the
+///   [`CmdDrawIndirectByteCountEXT`] function otherwise the function **must** not be called.
+///# Description
+///If the [`PhysicalDeviceTransformFeedbackPropertiesEXT`] structure is included in the [`p_next`]
+/// chain of the
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`GetPhysicalDeviceProperties2`], it is filled in with each
+///corresponding implementation-dependent property.Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT`
+///# Related
+/// - [`VK_EXT_transform_feedback`]
+/// - [`Bool32`]
+/// - [`DeviceSize`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *const BaseOutStructure<'lt>,
+    ///[`max_transform_feedback_streams`]
+    ///is the maximum number of vertex streams that can be output from geometry
+    ///shaders declared with the `GeometryStreams` capability.
+    ///If the implementation does not support
+    ///[`PhysicalDeviceTransformFeedbackFeaturesEXT`]::`geometryStreams`
+    ///then [`max_transform_feedback_streams`]**must** be set to `1`.
+    max_transform_feedback_streams: u32,
+    ///[`max_transform_feedback_buffers`]
+    ///is the maximum number of transform feedback buffers that can be bound
+    ///for capturing shader outputs from the last
+    ///[pre-rasterization shader
+    ///stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipeline-graphics-subsets-pre-rasterization).
+    max_transform_feedback_buffers: u32,
+    ///[`max_transform_feedback_buffer_size`] is the maximum size that can be
+    ///specified when binding a buffer for transform feedback in
+    ///[`CmdBindTransformFeedbackBuffersEXT`].
+    max_transform_feedback_buffer_size: DeviceSize,
+    ///[`max_transform_feedback_stream_data_size`] is the maximum amount of data
+    ///in bytes for each vertex that captured to one or more transform feedback
+    ///buffers associated with a specific vertex stream.
+    max_transform_feedback_stream_data_size: u32,
+    ///[`max_transform_feedback_buffer_data_size`] is the maximum amount of data
+    ///in bytes for each vertex that can be captured to a specific transform
+    ///feedback buffer.
+    max_transform_feedback_buffer_data_size: u32,
+    ///[`max_transform_feedback_buffer_data_stride`] is the maximum stride between
+    ///each capture of vertex data to the buffer.
+    max_transform_feedback_buffer_data_stride: u32,
+    ///[`transform_feedback_queries`] is
+    ///[`TRUE`] if the implementation supports the
+    ///`VK_QUERY_TYPE_TRANSFORM_FEEDBACK_STREAM_EXT` query type.
+    ///[`transform_feedback_queries`] is [`FALSE`] if queries of this type
+    ///**cannot** be created.
+    transform_feedback_queries: Bool32,
+    ///[`transform_feedback_streams_lines_triangles`] is [`TRUE`] if the
+    ///implementation supports the geometry shader `OpExecutionMode` of
+    ///`OutputLineStrip` and `OutputTriangleStrip` in addition to
+    ///`OutputPoints` when more than one vertex stream is output.
+    ///If [`transform_feedback_streams_lines_triangles`] is [`FALSE`] the
+    ///implementation only supports an `OpExecutionMode` of
+    ///`OutputPoints` when more than one vertex stream is output from the
+    ///geometry shader.
+    transform_feedback_streams_lines_triangles: Bool32,
+    ///[`transform_feedback_rasterization_stream_select`] is [`TRUE`] if the
+    ///implementation supports the `GeometryStreams` SPIR-V capability and
+    ///the application can use
+    ///[`PipelineRasterizationStateStreamCreateInfoEXT`] to modify which
+    ///vertex stream output is used for rasterization.
+    ///Otherwise vertex stream `0`**must** always be used for rasterization.
+    transform_feedback_rasterization_stream_select: Bool32,
+    ///[`transform_feedback_draw`] is
+    ///[`TRUE`] if the implementation supports the
+    ///[`CmdDrawIndirectByteCountEXT`] function otherwise the function
+    ///**must** not be called.
+    transform_feedback_draw: Bool32,
+}
+///[VkPipelineRasterizationStateStreamCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineRasterizationStateStreamCreateInfoEXT.html) - Structure defining the geometry stream used for rasterization
+///# C Specifications
+///The vertex stream used for rasterization is specified by adding a
+///[`PipelineRasterizationStateStreamCreateInfoEXT`] structure to the
+///[`p_next`] chain of a [`PipelineRasterizationStateCreateInfo`]
+///structure.The [`PipelineRasterizationStateStreamCreateInfoEXT`] structure is
+///defined as:
+///```c
+///// Provided by VK_EXT_transform_feedback
+///typedef struct VkPipelineRasterizationStateStreamCreateInfoEXT {
+///    VkStructureType                                     sType;
+///    const void*                                         pNext;
+///    VkPipelineRasterizationStateStreamCreateFlagsEXT    flags;
+///    uint32_t                                            rasterizationStream;
+///} VkPipelineRasterizationStateStreamCreateInfoEXT;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`flags`] is reserved for future use.
+/// - [`rasterization_stream`] is the vertex stream selected for rasterization.
+///# Description
+///If this structure is not present, [`rasterization_stream`] is assumed to be
+///zero.Valid Usage
+/// - [`PhysicalDeviceTransformFeedbackFeaturesEXT::geometry_streams`]**must** be enabled
+/// - [`rasterization_stream`]**must** be less than
+///   [`PhysicalDeviceTransformFeedbackPropertiesEXT::max_transform_feedback_streams`]
+/// - [`rasterization_stream`]**must** be zero if
+///   [`PhysicalDeviceTransformFeedbackPropertiesEXT::
+///   transform_feedback_rasterization_stream_select`] is [`FALSE`]
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT`
+/// - [`flags`]**must** be `0`
+///# Related
+/// - [`VK_EXT_transform_feedback`]
+/// - [`PipelineRasterizationStateStreamCreateFlagsEXT`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PipelineRasterizationStateStreamCreateInfoEXT<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`flags`] is reserved for future use.
+    flags: PipelineRasterizationStateStreamCreateFlagsEXT,
+    ///[`rasterization_stream`] is the vertex stream selected for
+    ///rasterization.
+    rasterization_stream: u32,
+}

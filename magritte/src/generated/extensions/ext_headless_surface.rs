@@ -1,63 +1,5 @@
-//![VK_EXT_headless_surface](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_headless_surface.html) - instance extension
-//!# Description
-//!The [`VK_EXT_headless_surface`] extension is an instance extension.
-//!It provides a mechanism to create [`SurfaceKHR`] objects independently
-//!of any window system or display device.
-//!The presentation operation for a swapchain created from a headless surface
-//!is by default a no-op, resulting in no externally-visible result.Because there is no real
-//! presentation target, future extensions can layer on
-//!top of the headless surface to introduce arbitrary or customisable sets of
-//!restrictions or features.
-//!These could include features like saving to a file or restrictions to
-//!emulate a particular presentation target.This functionality is expected to be useful for
-//! application and driver
-//!development because it allows any platform to expose an arbitrary or
-//!customisable set of restrictions and features of a presentation engine.
-//!This makes it a useful portable test target for applications targeting a
-//!wide range of presentation engines where the actual target presentation
-//!engines might be scarce, unavailable or otherwise undesirable or
-//!inconvenient to use for general Vulkan application development.
-//!# Revision
-//!1
-//!# Dependencies
-//! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_surface`]`
-//!# Contacts
-//! - Lisa Wu [chengtianww](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_headless_surface]
-//!   @chengtianww%0A<<Here describe the issue or question you have about the
-//!   VK_EXT_headless_surface extension>>)
-//!# New functions & commands
-//! - [`CreateHeadlessSurfaceEXT`]
-//!# New structures
-//! - [`HeadlessSurfaceCreateInfoEXT`]
-//!# New bitmasks
-//! - [`HeadlessSurfaceCreateFlagsEXT`]
-//!# New constants
-//! - [`EXT_HEADLESS_SURFACE_EXTENSION_NAME`]
-//! - [`EXT_HEADLESS_SURFACE_SPEC_VERSION`]
-//! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_HEADLESS_SURFACE_CREATE_INFO_EXT`
-//!# Version History
-//! - Revision 1, 2019-03-21 (Ray Smith)
-//! - Initial draft
-//!# Other info
-//! * 2019-03-21
-//! * No known IP claims.
-//!*
-//! - Ray Smith, Arm
-//!# Related
-//! - [`HeadlessSurfaceCreateFlagsEXT`]
-//! - [`HeadlessSurfaceCreateInfoEXT`]
-//! - [`CreateHeadlessSurfaceEXT`]
-//!
-//!# Notes and documentation
-//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-//!
-//!This documentation is generated from the Vulkan specification and documentation.
-//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-//! Commons Attribution 4.0 International*.
-//!This license explicitely allows adapting the source material as long as proper credit is given.
-use std::ffi::CStr;
+use crate::vulkan1_0::{BaseInStructure, StructureType};
+use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_HEADLESS_SURFACE_SPEC_VERSION")]
@@ -66,3 +8,50 @@ pub const EXT_HEADLESS_SURFACE_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_HEADLESS_SURFACE_EXTENSION_NAME")]
 pub const EXT_HEADLESS_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_headless_surface");
+///[VkHeadlessSurfaceCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkHeadlessSurfaceCreateInfoEXT.html) - Structure specifying parameters of a newly created headless surface object
+///# C Specifications
+///The [`HeadlessSurfaceCreateInfoEXT`] structure is defined as:
+///```c
+///// Provided by VK_EXT_headless_surface
+///typedef struct VkHeadlessSurfaceCreateInfoEXT {
+///    VkStructureType                    sType;
+///    const void*                        pNext;
+///    VkHeadlessSurfaceCreateFlagsEXT    flags;
+///} VkHeadlessSurfaceCreateInfoEXT;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`flags`] is reserved for future use.
+///# Description
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_HEADLESS_SURFACE_CREATE_INFO_EXT`
+/// - [`p_next`]**must** be `NULL`
+/// - [`flags`]**must** be `0`
+///# Related
+/// - [`VK_EXT_headless_surface`]
+/// - [`HeadlessSurfaceCreateFlagsEXT`]
+/// - [`StructureType`]
+/// - [`CreateHeadlessSurfaceEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct HeadlessSurfaceCreateInfoEXT<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`flags`] is reserved for future use.
+    flags: HeadlessSurfaceCreateFlagsEXT,
+}

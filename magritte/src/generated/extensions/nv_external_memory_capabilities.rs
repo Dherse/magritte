@@ -1,88 +1,4 @@
-//![VK_NV_external_memory_capabilities](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_NV_external_memory_capabilities.html) - instance extension
-//!# Description
-//!Applications may wish to import memory from the Direct 3D API, or export
-//!memory to other Vulkan instances.
-//!This extension provides a set of capability queries that allow applications
-//!determine what types of win32 memory handles an implementation supports for
-//!a given set of use cases.
-//!# Revision
-//!1
-//!# Dependencies
-//! - *Deprecated* by
-//!`[`VK_KHR_external_memory_capabilities`]`
-//!extension
-//! - Which in turn was *promoted* to
-//![Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-//!# Dependencies
-//! - Requires Vulkan 1.0
-//!# Contacts
-//! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_external_memory_capabilities]
-//!   @cubanismo%0A<<Here describe the issue or question you have about the
-//!   VK_NV_external_memory_capabilities extension>>)
-//!# New functions & commands
-//! - [`GetPhysicalDeviceExternalImageFormatPropertiesNV`]
-//!# New structures
-//! - [`ExternalImageFormatPropertiesNV`]
-//!# New enums
-//! - [`ExternalMemoryFeatureFlagBitsNV`]
-//! - [`ExternalMemoryHandleTypeFlagBitsNV`]
-//!# New bitmasks
-//! - [`ExternalMemoryFeatureFlagsNV`]
-//! - [`ExternalMemoryHandleTypeFlagsNV`]
-//!# New constants
-//! - [`NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME`]
-//! - [`NV_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION`]
-//!# Known issues & F.A.Q
-//!1) Why do so many external memory capabilities need to be queried on a
-//!per-memory-handle-type basis?**RESOLVED**: This is because some handle types are based on
-//! OS-native objects
-//!that have far more limited capabilities than the very generic Vulkan memory
-//!objects.
-//!Not all memory handle types can name memory objects that support 3D images,
-//!for example.
-//!Some handle types cannot even support the deferred image and memory binding
-//!behavior of Vulkan and require specifying the image when allocating or
-//!importing the memory object.2) Does the [`ExternalImageFormatPropertiesNV`] struct need to
-//! include a
-//!list of memory type bits that support the given handle type?**RESOLVED**: No.
-//!The memory types that do not support the handle types will simply be
-//!filtered out of the results returned by [`GetImageMemoryRequirements`]
-//!when a set of handle types was specified at image creation time.3) Should the non-opaque handle
-//! types be moved to their own extension?**RESOLVED**: Perhaps.
-//!However, defining the handle type bits does very little and does not require
-//!any platform-specific types on its own, and it is easier to maintain the
-//!bitmask values in a single extension for now.
-//!Presumably more handle types could be added by separate extensions though,
-//!and it would be midly weird to have some platform-specific ones defined in
-//!the core spec and some in extensions
-//!# Version History
-//! - Revision 1, 2016-08-19 (James Jones)
-//! - Initial version
-//!# Other info
-//! * 2016-08-19
-//! * No known IP claims.
-//!*
-//! - Interacts with Vulkan 1.1.
-//! - Interacts with `[`VK_KHR_dedicated_allocation`]`.
-//! - Interacts with `[`VK_NV_dedicated_allocation`]`.
-//!
-//!*
-//! - James Jones, NVIDIA
-//!# Related
-//! - [`ExternalImageFormatPropertiesNV`]
-//! - [`ExternalMemoryFeatureFlagBitsNV`]
-//! - [`ExternalMemoryFeatureFlagsNV`]
-//! - [`ExternalMemoryHandleTypeFlagBitsNV`]
-//! - [`ExternalMemoryHandleTypeFlagsNV`]
-//! - [`GetPhysicalDeviceExternalImageFormatPropertiesNV`]
-//!
-//!# Notes and documentation
-//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-//!
-//!This documentation is generated from the Vulkan specification and documentation.
-//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-//! Commons Attribution 4.0 International*.
-//!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::vulkan1_0::ImageFormatProperties;
 use std::ffi::CStr;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -93,3 +9,80 @@ pub const NV_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME")]
 pub const NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &'static CStr =
     crate::cstr!("VK_NV_external_memory_capabilities");
+///[VkExternalImageFormatPropertiesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalImageFormatPropertiesNV.html) - Structure specifying external image format properties
+///# C Specifications
+///The [`ExternalImageFormatPropertiesNV`] structure is defined as:
+///```c
+///// Provided by VK_NV_external_memory_capabilities
+///typedef struct VkExternalImageFormatPropertiesNV {
+///    VkImageFormatProperties              imageFormatProperties;
+///    VkExternalMemoryFeatureFlagsNV       externalMemoryFeatures;
+///    VkExternalMemoryHandleTypeFlagsNV    exportFromImportedHandleTypes;
+///    VkExternalMemoryHandleTypeFlagsNV    compatibleHandleTypes;
+///} VkExternalImageFormatPropertiesNV;
+///```
+///# Members
+/// - [`image_format_properties`] will be filled in as when calling
+///   [`GetPhysicalDeviceImageFormatProperties`], but the values returned **may** vary depending on
+///   the external handle type requested.
+/// - [`external_memory_features`] is a bitmask of [`ExternalMemoryFeatureFlagBitsNV`], indicating
+///   properties of the external memory handle type
+///   ([`GetPhysicalDeviceExternalImageFormatPropertiesNV`]`::externalHandleType`) being queried, or
+///   0 if the external memory handle type is 0.
+/// - [`export_from_imported_handle_types`] is a bitmask of [`ExternalMemoryHandleTypeFlagBitsNV`]
+///   containing a bit set for every external handle type that **may** be used to create memory from
+///   which the handles of the type specified in
+///   [`GetPhysicalDeviceExternalImageFormatPropertiesNV`]`::externalHandleType`**can** be exported,
+///   or 0 if the external memory handle type is 0.
+/// - [`compatible_handle_types`] is a bitmask of [`ExternalMemoryHandleTypeFlagBitsNV`] containing
+///   a bit set for every external handle type that **may** be specified simultaneously with the
+///   handle type specified by
+///   [`GetPhysicalDeviceExternalImageFormatPropertiesNV`]`::externalHandleType` when calling
+///   [`AllocateMemory`], or 0 if the external memory handle type is 0. [`compatible_handle_types`]
+///   will always contain [`GetPhysicalDeviceExternalImageFormatPropertiesNV`]`::externalHandleType`
+///# Related
+/// - [`VK_NV_external_memory_capabilities`]
+/// - [`ExternalMemoryFeatureFlagsNV`]
+/// - [`ExternalMemoryHandleTypeFlagsNV`]
+/// - [`ImageFormatProperties`]
+/// - [`GetPhysicalDeviceExternalImageFormatPropertiesNV`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct ExternalImageFormatPropertiesNV {
+    ///[`image_format_properties`] will be filled in as when calling
+    ///[`GetPhysicalDeviceImageFormatProperties`], but the values returned
+    ///**may** vary depending on the external handle type requested.
+    image_format_properties: ImageFormatProperties,
+    ///[`external_memory_features`] is a bitmask of
+    ///[`ExternalMemoryFeatureFlagBitsNV`], indicating properties of the
+    ///external memory handle type
+    ///([`GetPhysicalDeviceExternalImageFormatPropertiesNV`]::`externalHandleType`)
+    ///being queried, or 0 if the external memory handle type is 0.
+    external_memory_features: ExternalMemoryFeatureFlagsNV,
+    ///[`export_from_imported_handle_types`] is a bitmask of
+    ///[`ExternalMemoryHandleTypeFlagBitsNV`] containing a bit set for
+    ///every external handle type that **may** be used to create memory from which
+    ///the handles of the type specified in
+    ///[`GetPhysicalDeviceExternalImageFormatPropertiesNV`]::`externalHandleType`**can** be exported, or 0 if the external memory handle type is 0.
+    export_from_imported_handle_types: ExternalMemoryHandleTypeFlagsNV,
+    ///[`compatible_handle_types`] is a bitmask of
+    ///[`ExternalMemoryHandleTypeFlagBitsNV`] containing a bit set for
+    ///every external handle type that **may** be specified simultaneously with
+    ///the handle type specified by
+    ///[`GetPhysicalDeviceExternalImageFormatPropertiesNV`]::`externalHandleType`
+    ///when calling [`AllocateMemory`], or 0 if the external memory handle
+    ///type is 0.
+    ///[`compatible_handle_types`] will always contain
+    ///[`GetPhysicalDeviceExternalImageFormatPropertiesNV`]::`externalHandleType`
+    compatible_handle_types: ExternalMemoryHandleTypeFlagsNV,
+}

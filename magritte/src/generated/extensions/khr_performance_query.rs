@@ -1,149 +1,12 @@
-//![VK_KHR_performance_query](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_performance_query.html) - device extension
-//!# Description
-//!The [`VK_KHR_performance_query`] extension adds a mechanism to allow querying
-//!of performance counters for use in applications and by profiling tools.Each queue family **may**
-//! expose counters that **can** be enabled on a queue of
-//!that family.
-//!We extend [`QueryType`] to add a new query type for performance queries,
-//!and chain a structure on [`QueryPoolCreateInfo`] to specify the
-//!performance queries to enable.
-//!# Revision
-//!1
-//!# Dependencies
-//! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
-//!# Contacts
-//! - Alon Or-bach [alonorbach](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_performance_query]
-//!   @alonorbach%0A<<Here describe the issue or question you have about the
-//!   VK_KHR_performance_query extension>>)
-//!# New functions & commands
-//! - [`AcquireProfilingLockKHR`]
-//! - [`EnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR`]
-//! - [`GetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR`]
-//! - [`ReleaseProfilingLockKHR`]
-//!# New structures
-//! - [`AcquireProfilingLockInfoKHR`]
-//! - [`PerformanceCounterDescriptionKHR`]
-//! - [`PerformanceCounterKHR`]
-//! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
-//! - [`PhysicalDevicePerformanceQueryFeaturesKHR`]
-//!
-//! - Extending [`PhysicalDeviceProperties2`]:
-//! - [`PhysicalDevicePerformanceQueryPropertiesKHR`]
-//!
-//! - Extending [`QueryPoolCreateInfo`]:
-//! - [`QueryPoolPerformanceCreateInfoKHR`]
-//!
-//! - Extending [`SubmitInfo`], [`SubmitInfo2`]:
-//! - [`PerformanceQuerySubmitInfoKHR`]
-//!# New enums
-//! - [`AcquireProfilingLockFlagBitsKHR`]
-//! - [`PerformanceCounterDescriptionFlagBitsKHR`]
-//! - [`PerformanceCounterScopeKHR`]
-//! - [`PerformanceCounterStorageKHR`]
-//! - [`PerformanceCounterUnitKHR`]
-//!# New bitmasks
-//! - [`AcquireProfilingLockFlagsKHR`]
-//! - [`PerformanceCounterDescriptionFlagsKHR`]
-//!# New constants
-//! - [`KHR_PERFORMANCE_QUERY_EXTENSION_NAME`]
-//! - [`KHR_PERFORMANCE_QUERY_SPEC_VERSION`]
-//! - Extending [`QueryType`]:
-//! - `VK_QUERY_TYPE_PERFORMANCE_QUERY_KHR`
-//!
-//! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_ACQUIRE_PROFILING_LOCK_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_DESCRIPTION_KHR`
-//! - `VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_KHR`
-//! - `VK_STRUCTURE_TYPE_PERFORMANCE_QUERY_SUBMIT_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR`
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR`
-//! - `VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR`
-//!# Known issues & F.A.Q
-//!1) Should this extension include a mechanism to begin a query in command
-//!buffer *A* and end the query in command buffer *B*?**RESOLVED** No - queries are tied to command
-//! buffer creation and thus have to
-//!be encapsulated within a single command buffer.2) Should this extension include a mechanism to
-//! begin and end queries
-//!globally on the queue, not using the existing command buffer commands?**RESOLVED** No - for the
-//! same reasoning as the resolution of 1).3) Should this extension expose counters that require
-//! multiple passes?**RESOLVED** Yes - users should re-submit a command buffer with the same
-//!commands in it multiple times, specifying the pass to count as the query
-//!parameter in VkPerformanceQuerySubmitInfoKHR.4) How to handle counters across parallel
-//! workloads?**RESOLVED** In the spirit of Vulkan, a counter description flag
-//!`VK_PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR`
-//!denotes that the accuracy of a counter result is affected by parallel
-//!workloads.5) How to handle secondary command buffers?**RESOLVED** Secondary command buffers
-//! inherit any counter pass index
-//!specified in the parent primary command buffer.
-//!Note: this is no longer an issue after change from issue 10 resolution6) What commands does the
-//! profiling lock have to be held for?**RESOLVED** For any command buffer that is being queried
-//! with a performance
-//!query pool, the profiling lock **must** be held while that command buffer is in
-//!the *recording*, *executable*, or *pending state*.7) Should we support
-//! [`CmdCopyQueryPoolResults`]?**RESOLVED** Yes.8) Should we allow performance queries to interact
-//! with multiview?**RESOLVED** Yes, but the performance queries must be performed once for each
-//!pass per view.9) Should a `queryCount > 1` be usable for performance queries?**RESOLVED** Yes.
-//!Some vendors will have costly performance counter query pool creation, and
-//!would rather if a certain set of counters were to be used multiple times
-//!that a `queryCount > 1` can be used to amortize the instantiation cost.10) Should we introduce
-//! an indirect mechanism to set the counter pass index?**RESOLVED** Specify the counter pass index
-//! at submit time instead, to avoid
-//!requiring re-recording of command buffers when multiple counter passes are
-//!needed.
-//!# Version History
-//! - Revision 1, 2019-10-08
-//!# Other info
-//! * 2019-10-08
-//! * No known IP claims.
-//!*
-//! - Jesse Barker, Unity Technologies
-//! - Kenneth Benzie, Codeplay
-//! - Jan-Harald Fredriksen, ARM
-//! - Jeff Leger, Qualcomm
-//! - Jesse Hall, Google
-//! - Tobias Hector, AMD
-//! - Neil Henning, Codeplay
-//! - Baldur Karlsson
-//! - Lionel Landwerlin, Intel
-//! - Peter Lohrmann, AMD
-//! - Alon Or-bach, Samsung
-//! - Daniel Rakos, AMD
-//! - Niklas Smedberg, Unity Technologies
-//! - Igor Ostrowski, Intel
-//!# Related
-//! - [`AcquireProfilingLockFlagBitsKHR`]
-//! - [`AcquireProfilingLockFlagsKHR`]
-//! - [`AcquireProfilingLockInfoKHR`]
-//! - [`PerformanceCounterDescriptionFlagBitsKHR`]
-//! - [`PerformanceCounterDescriptionFlagsKHR`]
-//! - [`PerformanceCounterDescriptionKHR`]
-//! - [`PerformanceCounterKHR`]
-//! - [`PerformanceCounterResultKHR`]
-//! - [`PerformanceCounterScopeKHR`]
-//! - [`PerformanceCounterStorageKHR`]
-//! - [`PerformanceCounterUnitKHR`]
-//! - [`PerformanceQuerySubmitInfoKHR`]
-//! - [`PhysicalDevicePerformanceQueryFeaturesKHR`]
-//! - [`PhysicalDevicePerformanceQueryPropertiesKHR`]
-//! - [`QueryPoolPerformanceCreateInfoKHR`]
-//! - [`AcquireProfilingLockKHR`]
-//! - [`EnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR`]
-//! - [`GetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR`]
-//! - [`ReleaseProfilingLockKHR`]
-//!
-//!# Notes and documentation
-//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-//!
-//!This documentation is generated from the Vulkan specification and documentation.
-//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-//! Commons Attribution 4.0 International*.
-//!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::{
+    core::{MAX_DESCRIPTION_SIZE, UUID_SIZE},
+    vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType},
+};
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::ffi::CStr;
+use std::{ffi::CStr, marker::PhantomData, os::raw::c_char};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_PERFORMANCE_QUERY_SPEC_VERSION")]
@@ -170,14 +33,13 @@ pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///} VkPerformanceCounterScopeKHR;
 ///```
 ///# Description
-/// - [`PERFORMANCE_COUNTER_SCOPE_COMMAND_BUFFER`] - the performance
-///counter scope is a single complete command buffer.
-/// - [`PERFORMANCE_COUNTER_SCOPE_RENDER_PASS`] - the performance
-///counter scope is zero or more complete render passes.
-///The performance query containing the performance counter **must** begin and
-///end outside a render pass instance.
-/// - [`PERFORMANCE_COUNTER_SCOPE_COMMAND`] - the performance counter
-///scope is zero or more commands.
+/// - [`PerformanceCounterScopeCommandBufferKhr`] - the performance counter scope is a single
+///   complete command buffer.
+/// - [`PerformanceCounterScopeRenderPassKhr`] - the performance counter scope is zero or more
+///   complete render passes. The performance query containing the performance counter **must**
+///   begin and end outside a render pass instance.
+/// - [`PerformanceCounterScopeCommandKhr`] - the performance counter scope is zero or more
+///   commands.
 ///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterKHR`]
@@ -190,46 +52,29 @@ pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterScopeKHR")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct PerformanceCounterScopeKHR(i32);
-impl const Default for PerformanceCounterScopeKHR {
-    fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for PerformanceCounterScopeKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("PerformanceCounterScopeKHR")
-            .field(match *self {
-                Self::PERFORMANCE_COUNTER_SCOPE_COMMAND_BUFFER => &"PERFORMANCE_COUNTER_SCOPE_COMMAND_BUFFER",
-                Self::PERFORMANCE_COUNTER_SCOPE_RENDER_PASS => &"PERFORMANCE_COUNTER_SCOPE_RENDER_PASS",
-                Self::PERFORMANCE_COUNTER_SCOPE_COMMAND => &"PERFORMANCE_COUNTER_SCOPE_COMMAND",
-                other => unreachable!("invalid value for `PerformanceCounterScopeKHR`: {:?}", other),
-            })
-            .finish()
-    }
-}
-impl PerformanceCounterScopeKHR {
-    ///[`PERFORMANCE_COUNTER_SCOPE_COMMAND_BUFFER`] - the performance
+#[repr(i32)]
+pub enum PerformanceCounterScopeKHR {
+    ///[`PerformanceCounterScopeCommandBufferKhr`] - the performance
     ///counter scope is a single complete command buffer.
-    pub const PERFORMANCE_COUNTER_SCOPE_COMMAND_BUFFER: Self = Self(0);
-    ///[`PERFORMANCE_COUNTER_SCOPE_RENDER_PASS`] - the performance
+    PerformanceCounterScopeCommandBufferKhr = 0,
+    ///[`PerformanceCounterScopeRenderPassKhr`] - the performance
     ///counter scope is zero or more complete render passes.
     ///The performance query containing the performance counter **must** begin and
     ///end outside a render pass instance.
-    pub const PERFORMANCE_COUNTER_SCOPE_RENDER_PASS: Self = Self(1);
-    ///[`PERFORMANCE_COUNTER_SCOPE_COMMAND`] - the performance counter
+    PerformanceCounterScopeRenderPassKhr = 1,
+    ///[`PerformanceCounterScopeCommandKhr`] - the performance counter
     ///scope is zero or more commands.
-    pub const PERFORMANCE_COUNTER_SCOPE_COMMAND: Self = Self(2);
-    ///No documentation found
-    pub const QUERY_SCOPE_COMMAND_BUFFER: Self = Self::PERFORMANCE_COUNTER_SCOPE_COMMAND_BUFFER;
-    ///No documentation found
-    pub const QUERY_SCOPE_RENDER_PASS: Self = Self::PERFORMANCE_COUNTER_SCOPE_RENDER_PASS;
-    ///No documentation found
-    pub const QUERY_SCOPE_COMMAND: Self = Self::PERFORMANCE_COUNTER_SCOPE_COMMAND;
+    PerformanceCounterScopeCommandKhr = 2,
+}
+impl const Default for PerformanceCounterScopeKHR {
+    fn default() -> Self {
+        PerformanceCounterScopeCommandBufferKhr
+    }
+}
+impl PerformanceCounterScopeKHR {
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -238,7 +83,12 @@ impl PerformanceCounterScopeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
     }
 }
 ///[VkPerformanceCounterUnitKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterUnitKHR.html) - Supported counter unit types
@@ -264,28 +114,20 @@ impl PerformanceCounterScopeKHR {
 ///} VkPerformanceCounterUnitKHR;
 ///```
 ///# Description
-/// - [`PERFORMANCE_COUNTER_UNIT_GENERIC`] - the performance counter
-///unit is a generic data point.
-/// - [`PERFORMANCE_COUNTER_UNIT_PERCENTAGE`] - the performance
-///counter unit is a percentage (%).
-/// - [`PERFORMANCE_COUNTER_UNIT_NANOSECONDS`] - the performance
-///counter unit is a value of nanoseconds (ns).
-/// - [`PERFORMANCE_COUNTER_UNIT_BYTES`] - the performance counter
-///unit is a value of bytes.
-/// - [`PERFORMANCE_COUNTER_UNIT_BYTES_PER_SECOND`] - the performance
-///counter unit is a value of bytes/s.
-/// - [`PERFORMANCE_COUNTER_UNIT_KELVIN`] - the performance counter
-///unit is a temperature reported in Kelvin.
-/// - [`PERFORMANCE_COUNTER_UNIT_WATTS`] - the performance counter
-///unit is a value of watts (W).
-/// - [`PERFORMANCE_COUNTER_UNIT_VOLTS`] - the performance counter
-///unit is a value of volts (V).
-/// - [`PERFORMANCE_COUNTER_UNIT_AMPS`] - the performance counter
-///unit is a value of amps (A).
-/// - [`PERFORMANCE_COUNTER_UNIT_HERTZ`] - the performance counter
-///unit is a value of hertz (Hz).
-/// - [`PERFORMANCE_COUNTER_UNIT_CYCLES`] - the performance counter
-///unit is a value of cycles.
+/// - [`PerformanceCounterUnitGenericKhr`] - the performance counter unit is a generic data point.
+/// - [`PerformanceCounterUnitPercentageKhr`] - the performance counter unit is a percentage (%).
+/// - [`PerformanceCounterUnitNanosecondsKhr`] - the performance counter unit is a value of
+///   nanoseconds (ns).
+/// - [`PerformanceCounterUnitBytesKhr`] - the performance counter unit is a value of bytes.
+/// - [`PerformanceCounterUnitBytesPerSecondKhr`] - the performance counter unit is a value of
+///   bytes/s.
+/// - [`PerformanceCounterUnitKelvinKhr`] - the performance counter unit is a temperature reported
+///   in Kelvin.
+/// - [`PerformanceCounterUnitWattsKhr`] - the performance counter unit is a value of watts (W).
+/// - [`PerformanceCounterUnitVoltsKhr`] - the performance counter unit is a value of volts (V).
+/// - [`PerformanceCounterUnitAmpsKhr`] - the performance counter unit is a value of amps (A).
+/// - [`PerformanceCounterUnitHertzKhr`] - the performance counter unit is a value of hertz (Hz).
+/// - [`PerformanceCounterUnitCyclesKhr`] - the performance counter unit is a value of cycles.
 ///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterKHR`]
@@ -298,70 +140,51 @@ impl PerformanceCounterScopeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterUnitKHR")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct PerformanceCounterUnitKHR(i32);
+#[repr(i32)]
+pub enum PerformanceCounterUnitKHR {
+    ///[`PerformanceCounterUnitGenericKhr`] - the performance counter
+    ///unit is a generic data point.
+    PerformanceCounterUnitGenericKhr = 0,
+    ///[`PerformanceCounterUnitPercentageKhr`] - the performance
+    ///counter unit is a percentage (%).
+    PerformanceCounterUnitPercentageKhr = 1,
+    ///[`PerformanceCounterUnitNanosecondsKhr`] - the performance
+    ///counter unit is a value of nanoseconds (ns).
+    PerformanceCounterUnitNanosecondsKhr = 2,
+    ///[`PerformanceCounterUnitBytesKhr`] - the performance counter
+    ///unit is a value of bytes.
+    PerformanceCounterUnitBytesKhr = 3,
+    ///[`PerformanceCounterUnitBytesPerSecondKhr`] - the performance
+    ///counter unit is a value of bytes/s.
+    PerformanceCounterUnitBytesPerSecondKhr = 4,
+    ///[`PerformanceCounterUnitKelvinKhr`] - the performance counter
+    ///unit is a temperature reported in Kelvin.
+    PerformanceCounterUnitKelvinKhr = 5,
+    ///[`PerformanceCounterUnitWattsKhr`] - the performance counter
+    ///unit is a value of watts (W).
+    PerformanceCounterUnitWattsKhr = 6,
+    ///[`PerformanceCounterUnitVoltsKhr`] - the performance counter
+    ///unit is a value of volts (V).
+    PerformanceCounterUnitVoltsKhr = 7,
+    ///[`PerformanceCounterUnitAmpsKhr`] - the performance counter
+    ///unit is a value of amps (A).
+    PerformanceCounterUnitAmpsKhr = 8,
+    ///[`PerformanceCounterUnitHertzKhr`] - the performance counter
+    ///unit is a value of hertz (Hz).
+    PerformanceCounterUnitHertzKhr = 9,
+    ///[`PerformanceCounterUnitCyclesKhr`] - the performance counter
+    ///unit is a value of cycles.
+    PerformanceCounterUnitCyclesKhr = 10,
+}
 impl const Default for PerformanceCounterUnitKHR {
     fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for PerformanceCounterUnitKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("PerformanceCounterUnitKHR")
-            .field(match *self {
-                Self::PERFORMANCE_COUNTER_UNIT_GENERIC => &"PERFORMANCE_COUNTER_UNIT_GENERIC",
-                Self::PERFORMANCE_COUNTER_UNIT_PERCENTAGE => &"PERFORMANCE_COUNTER_UNIT_PERCENTAGE",
-                Self::PERFORMANCE_COUNTER_UNIT_NANOSECONDS => &"PERFORMANCE_COUNTER_UNIT_NANOSECONDS",
-                Self::PERFORMANCE_COUNTER_UNIT_BYTES => &"PERFORMANCE_COUNTER_UNIT_BYTES",
-                Self::PERFORMANCE_COUNTER_UNIT_BYTES_PER_SECOND => &"PERFORMANCE_COUNTER_UNIT_BYTES_PER_SECOND",
-                Self::PERFORMANCE_COUNTER_UNIT_KELVIN => &"PERFORMANCE_COUNTER_UNIT_KELVIN",
-                Self::PERFORMANCE_COUNTER_UNIT_WATTS => &"PERFORMANCE_COUNTER_UNIT_WATTS",
-                Self::PERFORMANCE_COUNTER_UNIT_VOLTS => &"PERFORMANCE_COUNTER_UNIT_VOLTS",
-                Self::PERFORMANCE_COUNTER_UNIT_AMPS => &"PERFORMANCE_COUNTER_UNIT_AMPS",
-                Self::PERFORMANCE_COUNTER_UNIT_HERTZ => &"PERFORMANCE_COUNTER_UNIT_HERTZ",
-                Self::PERFORMANCE_COUNTER_UNIT_CYCLES => &"PERFORMANCE_COUNTER_UNIT_CYCLES",
-                other => unreachable!("invalid value for `PerformanceCounterUnitKHR`: {:?}", other),
-            })
-            .finish()
+        PerformanceCounterUnitGenericKhr
     }
 }
 impl PerformanceCounterUnitKHR {
-    ///[`PERFORMANCE_COUNTER_UNIT_GENERIC`] - the performance counter
-    ///unit is a generic data point.
-    pub const PERFORMANCE_COUNTER_UNIT_GENERIC: Self = Self(0);
-    ///[`PERFORMANCE_COUNTER_UNIT_PERCENTAGE`] - the performance
-    ///counter unit is a percentage (%).
-    pub const PERFORMANCE_COUNTER_UNIT_PERCENTAGE: Self = Self(1);
-    ///[`PERFORMANCE_COUNTER_UNIT_NANOSECONDS`] - the performance
-    ///counter unit is a value of nanoseconds (ns).
-    pub const PERFORMANCE_COUNTER_UNIT_NANOSECONDS: Self = Self(2);
-    ///[`PERFORMANCE_COUNTER_UNIT_BYTES`] - the performance counter
-    ///unit is a value of bytes.
-    pub const PERFORMANCE_COUNTER_UNIT_BYTES: Self = Self(3);
-    ///[`PERFORMANCE_COUNTER_UNIT_BYTES_PER_SECOND`] - the performance
-    ///counter unit is a value of bytes/s.
-    pub const PERFORMANCE_COUNTER_UNIT_BYTES_PER_SECOND: Self = Self(4);
-    ///[`PERFORMANCE_COUNTER_UNIT_KELVIN`] - the performance counter
-    ///unit is a temperature reported in Kelvin.
-    pub const PERFORMANCE_COUNTER_UNIT_KELVIN: Self = Self(5);
-    ///[`PERFORMANCE_COUNTER_UNIT_WATTS`] - the performance counter
-    ///unit is a value of watts (W).
-    pub const PERFORMANCE_COUNTER_UNIT_WATTS: Self = Self(6);
-    ///[`PERFORMANCE_COUNTER_UNIT_VOLTS`] - the performance counter
-    ///unit is a value of volts (V).
-    pub const PERFORMANCE_COUNTER_UNIT_VOLTS: Self = Self(7);
-    ///[`PERFORMANCE_COUNTER_UNIT_AMPS`] - the performance counter
-    ///unit is a value of amps (A).
-    pub const PERFORMANCE_COUNTER_UNIT_AMPS: Self = Self(8);
-    ///[`PERFORMANCE_COUNTER_UNIT_HERTZ`] - the performance counter
-    ///unit is a value of hertz (Hz).
-    pub const PERFORMANCE_COUNTER_UNIT_HERTZ: Self = Self(9);
-    ///[`PERFORMANCE_COUNTER_UNIT_CYCLES`] - the performance counter
-    ///unit is a value of cycles.
-    pub const PERFORMANCE_COUNTER_UNIT_CYCLES: Self = Self(10);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -370,7 +193,12 @@ impl PerformanceCounterUnitKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
     }
 }
 ///[VkPerformanceCounterStorageKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterStorageKHR.html) - Supported counter storage types
@@ -391,18 +219,18 @@ impl PerformanceCounterUnitKHR {
 ///} VkPerformanceCounterStorageKHR;
 ///```
 ///# Description
-/// - [`PERFORMANCE_COUNTER_STORAGE_INT32`] - the performance counter
-///storage is a 32-bit signed integer.
-/// - [`PERFORMANCE_COUNTER_STORAGE_INT64`] - the performance counter
-///storage is a 64-bit signed integer.
-/// - [`PERFORMANCE_COUNTER_STORAGE_UINT32`] - the performance
-///counter storage is a 32-bit unsigned integer.
-/// - [`PERFORMANCE_COUNTER_STORAGE_UINT64`] - the performance
-///counter storage is a 64-bit unsigned integer.
-/// - [`PERFORMANCE_COUNTER_STORAGE_FLOAT32`] - the performance
-///counter storage is a 32-bit floating-point.
-/// - [`PERFORMANCE_COUNTER_STORAGE_FLOAT64`] - the performance
-///counter storage is a 64-bit floating-point.
+/// - [`PerformanceCounterStorageInt32Khr`] - the performance counter storage is a 32-bit signed
+///   integer.
+/// - [`PerformanceCounterStorageInt64Khr`] - the performance counter storage is a 64-bit signed
+///   integer.
+/// - [`PerformanceCounterStorageUint32Khr`] - the performance counter storage is a 32-bit unsigned
+///   integer.
+/// - [`PerformanceCounterStorageUint64Khr`] - the performance counter storage is a 64-bit unsigned
+///   integer.
+/// - [`PerformanceCounterStorageFloat32Khr`] - the performance counter storage is a 32-bit
+///   floating-point.
+/// - [`PerformanceCounterStorageFloat64Khr`] - the performance counter storage is a 64-bit
+///   floating-point.
 ///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterKHR`]
@@ -415,50 +243,36 @@ impl PerformanceCounterUnitKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterStorageKHR")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct PerformanceCounterStorageKHR(i32);
+#[repr(i32)]
+pub enum PerformanceCounterStorageKHR {
+    ///[`PerformanceCounterStorageInt32Khr`] - the performance counter
+    ///storage is a 32-bit signed integer.
+    PerformanceCounterStorageInt32Khr = 0,
+    ///[`PerformanceCounterStorageInt64Khr`] - the performance counter
+    ///storage is a 64-bit signed integer.
+    PerformanceCounterStorageInt64Khr = 1,
+    ///[`PerformanceCounterStorageUint32Khr`] - the performance
+    ///counter storage is a 32-bit unsigned integer.
+    PerformanceCounterStorageUint32Khr = 2,
+    ///[`PerformanceCounterStorageUint64Khr`] - the performance
+    ///counter storage is a 64-bit unsigned integer.
+    PerformanceCounterStorageUint64Khr = 3,
+    ///[`PerformanceCounterStorageFloat32Khr`] - the performance
+    ///counter storage is a 32-bit floating-point.
+    PerformanceCounterStorageFloat32Khr = 4,
+    ///[`PerformanceCounterStorageFloat64Khr`] - the performance
+    ///counter storage is a 64-bit floating-point.
+    PerformanceCounterStorageFloat64Khr = 5,
+}
 impl const Default for PerformanceCounterStorageKHR {
     fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for PerformanceCounterStorageKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("PerformanceCounterStorageKHR")
-            .field(match *self {
-                Self::PERFORMANCE_COUNTER_STORAGE_INT32 => &"PERFORMANCE_COUNTER_STORAGE_INT32",
-                Self::PERFORMANCE_COUNTER_STORAGE_INT64 => &"PERFORMANCE_COUNTER_STORAGE_INT64",
-                Self::PERFORMANCE_COUNTER_STORAGE_UINT32 => &"PERFORMANCE_COUNTER_STORAGE_UINT32",
-                Self::PERFORMANCE_COUNTER_STORAGE_UINT64 => &"PERFORMANCE_COUNTER_STORAGE_UINT64",
-                Self::PERFORMANCE_COUNTER_STORAGE_FLOAT32 => &"PERFORMANCE_COUNTER_STORAGE_FLOAT32",
-                Self::PERFORMANCE_COUNTER_STORAGE_FLOAT64 => &"PERFORMANCE_COUNTER_STORAGE_FLOAT64",
-                other => unreachable!("invalid value for `PerformanceCounterStorageKHR`: {:?}", other),
-            })
-            .finish()
+        PerformanceCounterStorageInt32Khr
     }
 }
 impl PerformanceCounterStorageKHR {
-    ///[`PERFORMANCE_COUNTER_STORAGE_INT32`] - the performance counter
-    ///storage is a 32-bit signed integer.
-    pub const PERFORMANCE_COUNTER_STORAGE_INT32: Self = Self(0);
-    ///[`PERFORMANCE_COUNTER_STORAGE_INT64`] - the performance counter
-    ///storage is a 64-bit signed integer.
-    pub const PERFORMANCE_COUNTER_STORAGE_INT64: Self = Self(1);
-    ///[`PERFORMANCE_COUNTER_STORAGE_UINT32`] - the performance
-    ///counter storage is a 32-bit unsigned integer.
-    pub const PERFORMANCE_COUNTER_STORAGE_UINT32: Self = Self(2);
-    ///[`PERFORMANCE_COUNTER_STORAGE_UINT64`] - the performance
-    ///counter storage is a 64-bit unsigned integer.
-    pub const PERFORMANCE_COUNTER_STORAGE_UINT64: Self = Self(3);
-    ///[`PERFORMANCE_COUNTER_STORAGE_FLOAT32`] - the performance
-    ///counter storage is a 32-bit floating-point.
-    pub const PERFORMANCE_COUNTER_STORAGE_FLOAT32: Self = Self(4);
-    ///[`PERFORMANCE_COUNTER_STORAGE_FLOAT64`] - the performance
-    ///counter storage is a 64-bit floating-point.
-    pub const PERFORMANCE_COUNTER_STORAGE_FLOAT64: Self = Self(5);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -467,6 +281,435 @@ impl PerformanceCounterStorageKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
     }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkPhysicalDevicePerformanceQueryFeaturesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePerformanceQueryFeaturesKHR.html) - Structure describing performance query support for an implementation
+///# C Specifications
+///The [`PhysicalDevicePerformanceQueryFeaturesKHR`] structure is defined
+///as:
+///```c
+///// Provided by VK_KHR_performance_query
+///typedef struct VkPhysicalDevicePerformanceQueryFeaturesKHR {
+///    VkStructureType    sType;
+///    void*              pNext;
+///    VkBool32           performanceCounterQueryPools;
+///    VkBool32           performanceCounterMultipleQueryPools;
+///} VkPhysicalDevicePerformanceQueryFeaturesKHR;
+///```
+///# Members
+///This structure describes the following features:
+///# Description
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`performance_counter_query_pools`] indicates whether the implementation supports performance
+///   counter query pools.
+/// - [`performance_counter_multiple_query_pools`] indicates whether the implementation supports
+///   using multiple performance query pools in a primary command buffer and secondary command
+///   buffers executed within it.
+///If the [`PhysicalDevicePerformanceQueryFeaturesKHR`] structure is included in the [`p_next`]
+/// chain of the
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDevicePerformanceQueryFeaturesKHR`]**can** also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR`
+///# Related
+/// - [`VK_KHR_performance_query`]
+/// - [`Bool32`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *const BaseOutStructure<'lt>,
+    ///[`performance_counter_query_pools`] indicates whether the implementation
+    ///supports performance counter query pools.
+    performance_counter_query_pools: Bool32,
+    ///[`performance_counter_multiple_query_pools`] indicates whether the
+    ///implementation supports using multiple performance query pools in a
+    ///primary command buffer and secondary command buffers executed within it.
+    performance_counter_multiple_query_pools: Bool32,
+}
+///[VkPhysicalDevicePerformanceQueryPropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePerformanceQueryPropertiesKHR.html) - Structure describing performance query properties for an implementation
+///# C Specifications
+///The [`PhysicalDevicePerformanceQueryPropertiesKHR`] structure is defined
+///as:
+///```c
+///// Provided by VK_KHR_performance_query
+///typedef struct VkPhysicalDevicePerformanceQueryPropertiesKHR {
+///    VkStructureType    sType;
+///    void*              pNext;
+///    VkBool32           allowCommandBufferQueryCopies;
+///} VkPhysicalDevicePerformanceQueryPropertiesKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`allow_command_buffer_query_copies`] is [`TRUE`] if the performance query pools are allowed
+///   to be used with [`CmdCopyQueryPoolResults`].
+///# Description
+///If the [`PhysicalDevicePerformanceQueryPropertiesKHR`] structure is included in the [`p_next`]
+/// chain of the
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`GetPhysicalDeviceProperties2`], it is filled in with each
+///corresponding implementation-dependent property.Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR`
+///# Related
+/// - [`VK_KHR_performance_query`]
+/// - [`Bool32`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *const BaseOutStructure<'lt>,
+    ///[`allow_command_buffer_query_copies`] is [`TRUE`] if the performance
+    ///query pools are allowed to be used with [`CmdCopyQueryPoolResults`].
+    allow_command_buffer_query_copies: Bool32,
+}
+///[VkPerformanceCounterKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterKHR.html) - Structure providing information about a counter
+///# C Specifications
+///The [`PerformanceCounterKHR`] structure is defined as:
+///```c
+///// Provided by VK_KHR_performance_query
+///typedef struct VkPerformanceCounterKHR {
+///    VkStructureType                   sType;
+///    void*                             pNext;
+///    VkPerformanceCounterUnitKHR       unit;
+///    VkPerformanceCounterScopeKHR      scope;
+///    VkPerformanceCounterStorageKHR    storage;
+///    uint8_t                           uuid[VK_UUID_SIZE];
+///} VkPerformanceCounterKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`unit`] is a [`PerformanceCounterUnitKHR`] specifying the unit that the counter data will
+///   record.
+/// - [`scope`] is a [`PerformanceCounterScopeKHR`] specifying the scope that the counter belongs
+///   to.
+/// - [`storage`] is a [`PerformanceCounterStorageKHR`] specifying the storage type that the
+///   counter’s data uses.
+/// - [`uuid`] is an array of size [`UUID_SIZE`], containing 8-bit values that represent a
+///   universally unique identifier for the counter of the physical device.
+///# Description
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_KHR`
+/// - [`p_next`]**must** be `NULL`
+///# Related
+/// - [`VK_KHR_performance_query`]
+/// - [`PerformanceCounterScopeKHR`]
+/// - [`PerformanceCounterStorageKHR`]
+/// - [`PerformanceCounterUnitKHR`]
+/// - [`StructureType`]
+/// - [`EnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PerformanceCounterKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *const BaseOutStructure<'lt>,
+    ///[`unit`] is a [`PerformanceCounterUnitKHR`] specifying the unit
+    ///that the counter data will record.
+    unit: PerformanceCounterUnitKHR,
+    ///[`scope`] is a [`PerformanceCounterScopeKHR`] specifying the scope
+    ///that the counter belongs to.
+    scope: PerformanceCounterScopeKHR,
+    ///[`storage`] is a [`PerformanceCounterStorageKHR`] specifying the
+    ///storage type that the counter’s data uses.
+    storage: PerformanceCounterStorageKHR,
+    ///[`uuid`] is an array of size [`UUID_SIZE`], containing 8-bit
+    ///values that represent a universally unique identifier for the counter of
+    ///the physical device.
+    uuid: [u8; UUID_SIZE],
+}
+///[VkPerformanceCounterDescriptionKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterDescriptionKHR.html) - Structure providing more detailed information about a counter
+///# C Specifications
+///The [`PerformanceCounterDescriptionKHR`] structure is defined as:
+///```c
+///// Provided by VK_KHR_performance_query
+///typedef struct VkPerformanceCounterDescriptionKHR {
+///    VkStructureType                            sType;
+///    void*                                      pNext;
+///    VkPerformanceCounterDescriptionFlagsKHR    flags;
+///    char                                       name[VK_MAX_DESCRIPTION_SIZE];
+///    char                                       category[VK_MAX_DESCRIPTION_SIZE];
+///    char                                       description[VK_MAX_DESCRIPTION_SIZE];
+///} VkPerformanceCounterDescriptionKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`flags`] is a bitmask of [`PerformanceCounterDescriptionFlagBitsKHR`] indicating the usage
+///   behavior for the counter.
+/// - [`name`] is an array of size [`MAX_DESCRIPTION_SIZE`], containing a null-terminated UTF-8
+///   string specifying the name of the counter.
+/// - [`category`] is an array of size [`MAX_DESCRIPTION_SIZE`], containing a null-terminated UTF-8
+///   string specifying the category of the counter.
+/// - [`description`] is an array of size [`MAX_DESCRIPTION_SIZE`], containing a null-terminated
+///   UTF-8 string specifying the description of the counter.
+///# Description
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_DESCRIPTION_KHR`
+/// - [`p_next`]**must** be `NULL`
+///# Related
+/// - [`VK_KHR_performance_query`]
+/// - [`PerformanceCounterDescriptionFlagsKHR`]
+/// - [`StructureType`]
+/// - [`EnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PerformanceCounterDescriptionKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *const BaseOutStructure<'lt>,
+    ///[`flags`] is a bitmask of
+    ///[`PerformanceCounterDescriptionFlagBitsKHR`] indicating the usage
+    ///behavior for the counter.
+    flags: PerformanceCounterDescriptionFlagsKHR,
+    ///[`name`] is an array of size [`MAX_DESCRIPTION_SIZE`], containing
+    ///a null-terminated UTF-8 string specifying the name of the counter.
+    name: [c_schar; MAX_DESCRIPTION_SIZE],
+    ///[`category`] is an array of size [`MAX_DESCRIPTION_SIZE`],
+    ///containing a null-terminated UTF-8 string specifying the category of the
+    ///counter.
+    category: [c_schar; MAX_DESCRIPTION_SIZE],
+    ///[`description`] is an array of size [`MAX_DESCRIPTION_SIZE`],
+    ///containing a null-terminated UTF-8 string specifying the description of
+    ///the counter.
+    description: [c_schar; MAX_DESCRIPTION_SIZE],
+}
+///[VkQueryPoolPerformanceCreateInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueryPoolPerformanceCreateInfoKHR.html) - Structure specifying parameters of a newly created performance query pool
+///# C Specifications
+///The [`QueryPoolPerformanceCreateInfoKHR`] structure is defined as:
+///```c
+///// Provided by VK_KHR_performance_query
+///typedef struct VkQueryPoolPerformanceCreateInfoKHR {
+///    VkStructureType    sType;
+///    const void*        pNext;
+///    uint32_t           queueFamilyIndex;
+///    uint32_t           counterIndexCount;
+///    const uint32_t*    pCounterIndices;
+///} VkQueryPoolPerformanceCreateInfoKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`queue_family_index`] is the queue family index to create this performance query pool for.
+/// - [`counter_index_count`] is the length of the [`p_counter_indices`] array.
+/// - [`p_counter_indices`] is a pointer to an array of indices into the
+///   [`EnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR`]`::pCounters` to enable in
+///   this performance query pool.
+///# Description
+///Valid Usage
+/// - [`queue_family_index`]**must** be a valid queue family index of the device
+/// - The [`performanceCounterQueryPools`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-performanceCounterQueryPools)
+///   feature **must** be enabled
+/// - Each element of [`p_counter_indices`]**must** be in the range of counters reported by
+///   [`EnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR`] for the queue family
+///   specified in [`queue_family_index`]
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR`
+/// - [`p_counter_indices`]**must** be a valid pointer to an array of
+///   [`counter_index_count`]`uint32_t` values
+/// - [`counter_index_count`]**must** be greater than `0`
+///# Related
+/// - [`VK_KHR_performance_query`]
+/// - [`StructureType`]
+/// - [`GetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct QueryPoolPerformanceCreateInfoKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`queue_family_index`] is the queue family index to create this
+    ///performance query pool for.
+    queue_family_index: u32,
+    ///[`counter_index_count`] is the length of the [`p_counter_indices`]
+    ///array.
+    counter_index_count: u32,
+    ///[`p_counter_indices`] is a pointer to an array of indices into the
+    ///[`EnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR`]::`pCounters`
+    ///to enable in this performance query pool.
+    p_counter_indices: *mut u32,
+}
+///[VkAcquireProfilingLockInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAcquireProfilingLockInfoKHR.html) - Structure specifying parameters to acquire the profiling lock
+///# C Specifications
+///The [`AcquireProfilingLockInfoKHR`] structure is defined as:
+///```c
+///// Provided by VK_KHR_performance_query
+///typedef struct VkAcquireProfilingLockInfoKHR {
+///    VkStructureType                   sType;
+///    const void*                       pNext;
+///    VkAcquireProfilingLockFlagsKHR    flags;
+///    uint64_t                          timeout;
+///} VkAcquireProfilingLockInfoKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`flags`] is reserved for future use.
+/// - [`timeout`] indicates how long the function waits, in nanoseconds, if the profiling lock is
+///   not available.
+///# Description
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACQUIRE_PROFILING_LOCK_INFO_KHR`
+/// - [`p_next`]**must** be `NULL`
+/// - [`flags`]**must** be `0`
+///If [`timeout`] is 0, [`AcquireProfilingLockKHR`] will not block while
+///attempting to acquire the profling lock.
+///If [`timeout`] is `UINT64_MAX`, the function will not return until the
+///profiling lock was acquired.
+///# Related
+/// - [`VK_KHR_performance_query`]
+/// - [`AcquireProfilingLockFlagsKHR`]
+/// - [`StructureType`]
+/// - [`AcquireProfilingLockKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct AcquireProfilingLockInfoKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`flags`] is reserved for future use.
+    flags: AcquireProfilingLockFlagsKHR,
+    ///[`timeout`] indicates how long the function waits, in nanoseconds, if
+    ///the profiling lock is not available.
+    timeout: u64,
+}
+///[VkPerformanceQuerySubmitInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceQuerySubmitInfoKHR.html) - Structure indicating which counter pass index is active for performance queries
+///# C Specifications
+///The [`PerformanceQuerySubmitInfoKHR`] structure is defined as:
+///```c
+///// Provided by VK_KHR_performance_query
+///typedef struct VkPerformanceQuerySubmitInfoKHR {
+///    VkStructureType    sType;
+///    const void*        pNext;
+///    uint32_t           counterPassIndex;
+///} VkPerformanceQuerySubmitInfoKHR;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`counter_pass_index`] specifies which counter pass index is active.
+///# Description
+///If the [`SubmitInfo`]::[`p_next`] chain does not include this
+///structure, the batch defaults to use counter pass index 0.Valid Usage
+/// - [`counter_pass_index`]**must** be less than the number of counter passes required by any
+///   queries within the batch. The required number of counter passes for a performance query is
+///   obtained by calling [`GetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR`]
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PERFORMANCE_QUERY_SUBMIT_INFO_KHR`
+///# Related
+/// - [`VK_KHR_performance_query`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PerformanceQuerySubmitInfoKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`counter_pass_index`] specifies which counter pass index is active.
+    counter_pass_index: u32,
 }

@@ -1,105 +1,9 @@
-//![VK_KHR_global_priority](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_global_priority.html) - device extension
-//!# Description
-//!In Vulkan, users can specify device-scope queue priorities.
-//!In some cases it may be useful to extend this concept to a system-wide
-//!scope.
-//!This device extension allows applications to query the global queue
-//!priorities supported by a queue family, and then set a priority when
-//!creating queues.
-//!The default queue priority is `VK_QUEUE_GLOBAL_PRIORITY_MEDIUM_EXT`.Implementations can report
-//! which global priority levels are treated
-//!differently by the implementation.
-//!It is intended primarily for use in system integration along with certain
-//!platform-specific priority enforcement rules.The driver implementation will attempt to skew
-//! hardware resource allocation
-//!in favour of the higher-priority task.
-//!Therefore, higher-priority work may retain similar latency and throughput
-//!characteristics even if the system is congested with lower priority work.The global priority
-//! level of a queue shall take precedence over the
-//!per-process queue priority
-//!([`DeviceQueueCreateInfo::p_queue_priorities`]).Abuse of this feature may result in starving the
-//! rest of the system from
-//!hardware resources.
-//!Therefore, the driver implementation may deny requests to acquire a priority
-//!above the default priority (`VK_QUEUE_GLOBAL_PRIORITY_MEDIUM_EXT`) if
-//!the caller does not have sufficient privileges.
-//!In this scenario `VK_ERROR_NOT_PERMITTED_EXT` is returned.The driver implementation may fail the
-//! queue allocation request if resources
-//!required to complete the operation have been exhausted (either by the same
-//!process or a different process).
-//!In this scenario `VK_ERROR_INITIALIZATION_FAILED` is returned.
-//!# Revision
-//!1
-//!# Dependencies
-//! - Requires Vulkan 1.0
-//!# Contacts
-//! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_global_priority]
-//!   @tobski%0A<<Here describe the issue or question you have about the VK_KHR_global_priority
-//!   extension>>)
-//!# New structures
-//! - Extending [`DeviceQueueCreateInfo`]:
-//! - [`DeviceQueueGlobalPriorityCreateInfoKHR`]
-//!
-//! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
-//! - [`PhysicalDeviceGlobalPriorityQueryFeaturesKHR`]
-//!
-//! - Extending [`QueueFamilyProperties2`]:
-//! - [`QueueFamilyGlobalPriorityPropertiesKHR`]
-//!# New enums
-//! - [`QueueGlobalPriorityKHR`]
-//!# New constants
-//! - [`KHR_GLOBAL_PRIORITY_EXTENSION_NAME`]
-//! - [`KHR_GLOBAL_PRIORITY_SPEC_VERSION`]
-//! - [`MAX_GLOBAL_PRIORITY_SIZE_KHR`]
-//! - Extending [`VulkanResultCodes`]:
-//! - `VK_ERROR_NOT_PERMITTED_KHR`
-//!
-//! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR`
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR`
-//! - `VK_STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_KHR`
-//!# Known issues & F.A.Q
-//!1) Can we additionally query whether a caller is permitted to acquire a
-//!specific global queue priority in this extension?**RESOLVED**: No.
-//!Whether a caller has enough privilege goes with the OS, and the Vulkan
-//!driver cannot really guarantee that the privilege will not change in between
-//!this query and the actual queue creation call.2) If more than 1 queue using global priority is
-//! requested, is there a good
-//!way to know which queue is failing the device creation?**RESOLVED**: No.
-//!There is not a good way at this moment, and it is also not quite actionable
-//!for the applications to know that because the information may not be
-//!accurate.
-//!Queue creation can fail because of runtime constraints like insufficient
-//!privilege or lack of resource, and the failure is not necessarily tied to
-//!that particular queue configuration requested.
-//!# Version History
-//! - Revision 1, 2021-10-22 (Tobias Hector)
-//! - Initial draft
-//!# Other info
-//! * 2021-10-22
-//!*
-//! - Tobias Hector, AMD
-//! - Contributors to [`VK_EXT_global_priority`]
-//! - Contributors to [`VK_EXT_global_priority_query`]
-//!# Related
-//! - [`MAX_GLOBAL_PRIORITY_SIZE_KHR`]
-//! - [`DeviceQueueGlobalPriorityCreateInfoKHR`]
-//! - [`PhysicalDeviceGlobalPriorityQueryFeaturesKHR`]
-//! - [`QueueFamilyGlobalPriorityPropertiesKHR`]
-//! - [`QueueGlobalPriorityKHR`]
-//!
-//!# Notes and documentation
-//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-//!
-//!This documentation is generated from the Vulkan specification and documentation.
-//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-//! Commons Attribution 4.0 International*.
-//!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType};
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::ffi::CStr;
+use std::{ffi::CStr, marker::PhantomData};
 ///[VK_MAX_GLOBAL_PRIORITY_SIZE_KHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_MAX_GLOBAL_PRIORITY_SIZE_KHR.html) - Length of an array of global queue priorities
 ///# C Specifications
 ///[`MAX_GLOBAL_PRIORITY_SIZE_KHR`] is the length of an array of
@@ -160,13 +64,10 @@ pub const KHR_GLOBAL_PRIORITY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_K
 ///Priority values are sorted in ascending order.
 ///A comparison operation on the enum values can be used to determine the
 ///priority order.
-/// - [`QUEUE_GLOBAL_PRIORITY_LOW`] is below the system default.
-///Useful for non-interactive tasks.
-/// - [`QUEUE_GLOBAL_PRIORITY_MEDIUM`] is the system default
-///priority.
-/// - [`QUEUE_GLOBAL_PRIORITY_HIGH`] is above the system default.
-/// - [`QUEUE_GLOBAL_PRIORITY_REALTIME`] is the highest priority.
-///Useful for critical tasks.
+/// - [`QueueGlobalPriorityLowKhr`] is below the system default. Useful for non-interactive tasks.
+/// - [`QueueGlobalPriorityMediumKhr`] is the system default priority.
+/// - [`QueueGlobalPriorityHighKhr`] is above the system default.
+/// - [`QueueGlobalPriorityRealtimeKhr`] is the highest priority. Useful for critical tasks.
 ///# Related
 /// - [`VK_EXT_global_priority`]
 /// - [`VK_KHR_global_priority`]
@@ -181,49 +82,31 @@ pub const KHR_GLOBAL_PRIORITY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_K
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueueGlobalPriorityKHR")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct QueueGlobalPriorityKHR(i32);
+#[repr(i32)]
+pub enum QueueGlobalPriorityKHR {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`QueueGlobalPriorityLowKhr`] is below the system default.
+    ///Useful for non-interactive tasks.
+    QueueGlobalPriorityLowKhr = 128,
+    ///[`QueueGlobalPriorityMediumKhr`] is the system default
+    ///priority.
+    QueueGlobalPriorityMediumKhr = 256,
+    ///[`QueueGlobalPriorityHighKhr`] is above the system default.
+    QueueGlobalPriorityHighKhr = 512,
+    ///[`QueueGlobalPriorityRealtimeKhr`] is the highest priority.
+    ///Useful for critical tasks.
+    QueueGlobalPriorityRealtimeKhr = 1024,
+}
 impl const Default for QueueGlobalPriorityKHR {
     fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for QueueGlobalPriorityKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("QueueGlobalPriorityKHR")
-            .field(match *self {
-                Self::QUEUE_GLOBAL_PRIORITY_LOW => &"QUEUE_GLOBAL_PRIORITY_LOW",
-                Self::QUEUE_GLOBAL_PRIORITY_MEDIUM => &"QUEUE_GLOBAL_PRIORITY_MEDIUM",
-                Self::QUEUE_GLOBAL_PRIORITY_HIGH => &"QUEUE_GLOBAL_PRIORITY_HIGH",
-                Self::QUEUE_GLOBAL_PRIORITY_REALTIME => &"QUEUE_GLOBAL_PRIORITY_REALTIME",
-                other => unreachable!("invalid value for `QueueGlobalPriorityKHR`: {:?}", other),
-            })
-            .finish()
+        Empty
     }
 }
 impl QueueGlobalPriorityKHR {
-    ///[`QUEUE_GLOBAL_PRIORITY_LOW`] is below the system default.
-    ///Useful for non-interactive tasks.
-    pub const QUEUE_GLOBAL_PRIORITY_LOW: Self = Self(128);
-    ///[`QUEUE_GLOBAL_PRIORITY_MEDIUM`] is the system default
-    ///priority.
-    pub const QUEUE_GLOBAL_PRIORITY_MEDIUM: Self = Self(256);
-    ///[`QUEUE_GLOBAL_PRIORITY_HIGH`] is above the system default.
-    pub const QUEUE_GLOBAL_PRIORITY_HIGH: Self = Self(512);
-    ///[`QUEUE_GLOBAL_PRIORITY_REALTIME`] is the highest priority.
-    ///Useful for critical tasks.
-    pub const QUEUE_GLOBAL_PRIORITY_REALTIME: Self = Self(1024);
-    ///No documentation found
-    pub const QUEUE_GLOBAL_PRIORITY_LOW_EXT: Self = Self::QUEUE_GLOBAL_PRIORITY_LOW;
-    ///No documentation found
-    pub const QUEUE_GLOBAL_PRIORITY_MEDIUM_EXT: Self = Self::QUEUE_GLOBAL_PRIORITY_MEDIUM;
-    ///No documentation found
-    pub const QUEUE_GLOBAL_PRIORITY_HIGH_EXT: Self = Self::QUEUE_GLOBAL_PRIORITY_HIGH;
-    ///No documentation found
-    pub const QUEUE_GLOBAL_PRIORITY_REALTIME_EXT: Self = Self::QUEUE_GLOBAL_PRIORITY_REALTIME;
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -232,6 +115,197 @@ impl QueueGlobalPriorityKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
     }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkDeviceQueueGlobalPriorityCreateInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueGlobalPriorityCreateInfoKHR.html) - Specify a system wide priority
+///# C Specifications
+///A queue **can** be created with a system-wide priority by adding a
+///[`DeviceQueueGlobalPriorityCreateInfoKHR`] structure to the [`p_next`]
+///chain of [`DeviceQueueCreateInfo`].The [`DeviceQueueGlobalPriorityCreateInfoKHR`] structure is
+/// defined as:
+///```c
+///// Provided by VK_KHR_global_priority
+///typedef struct VkDeviceQueueGlobalPriorityCreateInfoKHR {
+///    VkStructureType             sType;
+///    const void*                 pNext;
+///    VkQueueGlobalPriorityKHR    globalPriority;
+///} VkDeviceQueueGlobalPriorityCreateInfoKHR;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_EXT_global_priority
+///typedef VkDeviceQueueGlobalPriorityCreateInfoKHR VkDeviceQueueGlobalPriorityCreateInfoEXT;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`global_priority`] is the system-wide priority associated to this queue as specified by
+///   [`QueueGlobalPriorityEXT`]
+///# Description
+///A queue created without specifying
+///[`DeviceQueueGlobalPriorityCreateInfoKHR`] will default to
+///`VK_QUEUE_GLOBAL_PRIORITY_MEDIUM_KHR`.Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR`
+/// - [`global_priority`]**must** be a valid [`QueueGlobalPriorityKHR`] value
+///# Related
+/// - [`VK_EXT_global_priority`]
+/// - [`VK_KHR_global_priority`]
+/// - [`QueueGlobalPriorityKHR`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct DeviceQueueGlobalPriorityCreateInfoKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`global_priority`] is the system-wide priority associated to this
+    ///queue as specified by [`QueueGlobalPriorityEXT`]
+    global_priority: QueueGlobalPriorityKHR,
+}
+///[VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR.html) - Structure describing whether global priority query can be supported by an implementation
+///# C Specifications
+///The [`PhysicalDeviceGlobalPriorityQueryFeaturesKHR`] structure is
+///defined as:
+///```c
+///// Provided by VK_KHR_global_priority
+///typedef struct VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR {
+///    VkStructureType    sType;
+///    void*              pNext;
+///    VkBool32           globalPriorityQuery;
+///} VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_EXT_global_priority_query
+///typedef VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR
+/// VkPhysicalDeviceGlobalPriorityQueryFeaturesEXT;
+///```
+///# Members
+///The members of the [`PhysicalDeviceGlobalPriorityQueryFeaturesEXT`]
+///structure describe the following features:
+///# Description
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`global_priority_query`] indicates whether the implementation supports the ability to query
+///   global queue priorities.
+///If the [`PhysicalDeviceGlobalPriorityQueryFeaturesKHR`] structure is included in the [`p_next`]
+/// chain of the
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceGlobalPriorityQueryFeaturesKHR`]**can** also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR`
+///# Related
+/// - [`VK_KHR_global_priority`]
+/// - [`Bool32`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *const BaseOutStructure<'lt>,
+    ///[`global_priority_query`] indicates
+    ///whether the implementation supports the ability to query global queue
+    ///priorities.
+    global_priority_query: Bool32,
+}
+///[VkQueueFamilyGlobalPriorityPropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueueFamilyGlobalPriorityPropertiesKHR.html) - Return structure for queue family global priority information query
+///# C Specifications
+///The definition of [`QueueFamilyGlobalPriorityPropertiesKHR`] is:
+///```c
+///// Provided by VK_KHR_global_priority
+///typedef struct VkQueueFamilyGlobalPriorityPropertiesKHR {
+///    VkStructureType             sType;
+///    void*                       pNext;
+///    uint32_t                    priorityCount;
+///    VkQueueGlobalPriorityKHR    priorities[VK_MAX_GLOBAL_PRIORITY_SIZE_KHR];
+///} VkQueueFamilyGlobalPriorityPropertiesKHR;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_EXT_global_priority_query
+///typedef VkQueueFamilyGlobalPriorityPropertiesKHR VkQueueFamilyGlobalPriorityPropertiesEXT;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`priority_count`] is the number of supported global queue priorities in this queue family,
+///   and it **must** be greater than 0.
+/// - [`priorities`] is an array of [`MAX_GLOBAL_PRIORITY_SIZE_EXT`][`QueueGlobalPriorityEXT`] enums
+///   representing all supported global queue priorities in this queue family. The first
+///   [`priority_count`] elements of the array will be valid.
+///# Description
+///If the [`QueueFamilyGlobalPriorityPropertiesKHR`] structure is included
+///in the [`p_next`] chain of the [`QueueFamilyProperties2`] structure
+///passed to [`GetPhysicalDeviceQueueFamilyProperties2`], it is filled in
+///with the list of supported global queue priorities for the indicated family.The valid elements
+/// of [`priorities`]**must** not contain any duplicate
+///values.The valid elements of [`priorities`]**must** be a continuous sequence of
+///[`QueueGlobalPriorityKHR`] enums in the ascending order.Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_KHR`
+/// - Any given element of [`priorities`]**must** be a valid [`QueueGlobalPriorityKHR`] value
+///# Related
+/// - [`VK_KHR_global_priority`]
+/// - [`QueueGlobalPriorityKHR`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct QueueFamilyGlobalPriorityPropertiesKHR<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *const BaseOutStructure<'lt>,
+    ///[`priority_count`] is the number of supported global queue priorities
+    ///in this queue family, and it **must** be greater than 0.
+    priority_count: u32,
+    ///[`priorities`] is an array of [`MAX_GLOBAL_PRIORITY_SIZE_EXT`][`QueueGlobalPriorityEXT`]
+    /// enums representing all supported global queue priorities in this queue family.
+    ///The first [`priority_count`] elements of the array will be valid.
+    priorities: [QueueGlobalPriorityKHR; MAX_GLOBAL_PRIORITY_SIZE_KHR],
 }

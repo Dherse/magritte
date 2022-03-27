@@ -75,9 +75,14 @@ impl<'a> Union<'a> {
         self.origin = origin;
     }
 
-    /// Checks if this structure needs a lifetime
+    /// Checks if this union needs a lifetime
     pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
         self.fields.iter().any(|f| f.has_lifetime(source))
+    }
+
+    /// Checks if this union is copy
+    pub fn is_copy(&self, source: &Source<'a>) -> bool {
+        self.fields().iter().all(|f| f.is_copy(source))
     }
 }
 

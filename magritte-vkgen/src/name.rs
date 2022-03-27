@@ -78,6 +78,26 @@ pub fn const_name<'a>(name: &'a str, parent_tag: Option<&Tag<'a>>) -> String {
     trimmed
 }
 
+/// Converts a Vulkan enum name into a rustified enum name
+pub fn enum_name<'a>(name: &'a str, parent_tag: Option<&Tag<'a>>, parent: Option<&str>) -> String {
+    let trimmed = name.trim_start_matches("VK_").to_owned();
+
+    let cases = if let Some(parent_tag) = parent_tag {
+        let with_underscore = parent_tag.with_underscore();
+
+        trimmed.trim_start_matches(&with_underscore)
+    } else {
+        &trimmed
+    }
+    .to_case(Case::UpperCamel);
+
+    if let Some(parent) = parent {
+        cases.trim_start_matches(parent.trim_start_matches("Vk")).to_string()
+    } else {
+        cases
+    }
+}
+
 /// Converts a Vulkan function pointer name into a rustified function pointer name
 pub fn funcpointer_name<'a>(name: &'a str, tag_list: &[Tag<'a>]) -> String {
     let no_pfn = name.trim_start_matches("PFN_");

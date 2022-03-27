@@ -1,65 +1,5 @@
-//![VK_NV_shader_sm_builtins](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_NV_shader_sm_builtins.html) - device extension
-//!# Description
-//!This extension provides the ability to determine device-specific properties
-//!on NVIDIA GPUs.
-//!It provides the number of streaming multiprocessors (SMs), the maximum
-//!number of warps (subgroups) that can run on an SM, and shader builtins to
-//!enable invocations to identify which SM and warp a shader invocation is
-//!executing on.This extension enables support for the SPIR-V `ShaderSMBuiltinsNV`
-//!capability.These properties and built-ins **should** typically only be used for debugging
-//!purposes.
-//!# Revision
-//!1
-//!# Dependencies
-//! - Requires Vulkan 1.1
-//!# Contacts
-//! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_shader_sm_builtins]
-//!   @dgkoch%0A<<Here describe the issue or question you have about the VK_NV_shader_sm_builtins
-//!   extension>>)
-//!# New structures
-//! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
-//! - [`PhysicalDeviceShaderSmBuiltinsFeaturesNV`]
-//!
-//! - Extending [`PhysicalDeviceProperties2`]:
-//! - [`PhysicalDeviceShaderSmBuiltinsPropertiesNV`]
-//!# New constants
-//! - [`NV_SHADER_SM_BUILTINS_EXTENSION_NAME`]
-//! - [`NV_SHADER_SM_BUILTINS_SPEC_VERSION`]
-//! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV`
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV`
-//!# Known issues & F.A.Q
-//!0. What should we call this extension?**RESOLVED**: `NV_shader_sm_builtins`.
-//!Other options considered included:
-//! - `NV_shader_smid` - but SMID is really easy to typo/confuse as SIMD.
-//! - `NV_shader_sm_info` - but **Info** is typically reserved for input
-//!structures
-//!# Version History
-//! - Revision 1, 2019-05-28 (Daniel Koch)
-//! - Internal revisions
-//!# Other info
-//! * 2019-05-28
-//!*
-//! - This extension requires
-//![`SPV_NV_shader_sm_builtins`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_shader_sm_builtins.html).
-//! - This extension provides API support for
-//![`GL_NV_shader_sm_builtins`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nv/GLSL_NV_shader_sm_builtins.txt)
-//!
-//!*
-//! - Jeff Bolz, NVIDIA
-//! - Eric Werness, NVIDIA
-//!# Related
-//! - [`PhysicalDeviceShaderSmBuiltinsFeaturesNV`]
-//! - [`PhysicalDeviceShaderSmBuiltinsPropertiesNV`]
-//!
-//!# Notes and documentation
-//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-//!
-//!This documentation is generated from the Vulkan specification and documentation.
-//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-//! Commons Attribution 4.0 International*.
-//!This license explicitely allows adapting the source material as long as proper credit is given.
-use std::ffi::CStr;
+use crate::vulkan1_0::{BaseOutStructure, Bool32, StructureType};
+use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_NV_SHADER_SM_BUILTINS_SPEC_VERSION")]
@@ -68,3 +8,112 @@ pub const NV_SHADER_SM_BUILTINS_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_NV_SHADER_SM_BUILTINS_EXTENSION_NAME")]
 pub const NV_SHADER_SM_BUILTINS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_shader_sm_builtins");
+///[VkPhysicalDeviceShaderSMBuiltinsPropertiesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShaderSMBuiltinsPropertiesNV.html) - Structure describing shader SM Builtins properties supported by an implementation
+///# C Specifications
+///The [`PhysicalDeviceShaderSmBuiltinsPropertiesNV`] structure is defined
+///as:
+///```c
+///// Provided by VK_NV_shader_sm_builtins
+///typedef struct VkPhysicalDeviceShaderSMBuiltinsPropertiesNV {
+///    VkStructureType    sType;
+///    void*              pNext;
+///    uint32_t           shaderSMCount;
+///    uint32_t           shaderWarpsPerSM;
+///} VkPhysicalDeviceShaderSMBuiltinsPropertiesNV;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`shader_sm_count`] is the number of SMs on the device.
+/// - [`shader_warps_per_sm`] is the maximum number of simultaneously executing warps on an SM.
+///# Description
+///If the [`PhysicalDeviceShaderSmBuiltinsPropertiesNV`] structure is included in the [`p_next`]
+/// chain of the
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`GetPhysicalDeviceProperties2`], it is filled in with each
+///corresponding implementation-dependent property.Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV`
+///# Related
+/// - [`VK_NV_shader_sm_builtins`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *const BaseOutStructure<'lt>,
+    ///[`shader_sm_count`] is the number of SMs on the
+    ///device.
+    shader_sm_count: u32,
+    ///[`shader_warps_per_sm`] is the maximum number
+    ///of simultaneously executing warps on an SM.
+    shader_warps_per_sm: u32,
+}
+///[VkPhysicalDeviceShaderSMBuiltinsFeaturesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShaderSMBuiltinsFeaturesNV.html) - Structure describing the shader SM Builtins features that can be supported by an implementation
+///# C Specifications
+///The [`PhysicalDeviceShaderSmBuiltinsFeaturesNV`] structure is defined
+///as:
+///```c
+///// Provided by VK_NV_shader_sm_builtins
+///typedef struct VkPhysicalDeviceShaderSMBuiltinsFeaturesNV {
+///    VkStructureType    sType;
+///    void*              pNext;
+///    VkBool32           shaderSMBuiltins;
+///} VkPhysicalDeviceShaderSMBuiltinsFeaturesNV;
+///```
+///# Members
+///This structure describes the following feature:
+///# Description
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`shader_sm_builtins`] indicates whether the implementation supports the SPIR-V
+///   `ShaderSMBuiltinsNV` capability.
+///If the [`PhysicalDeviceShaderSmBuiltinsFeaturesNV`] structure is included in the [`p_next`]
+/// chain of the
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceShaderSmBuiltinsFeaturesNV`]**can** also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV`
+///# Related
+/// - [`VK_NV_shader_sm_builtins`]
+/// - [`Bool32`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PhysicalDeviceShaderSmBuiltinsFeaturesNV<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *const BaseOutStructure<'lt>,
+    ///[`shader_sm_builtins`] indicates whether
+    ///the implementation supports the SPIR-V `ShaderSMBuiltinsNV`
+    ///capability.
+    shader_sm_builtins: Bool32,
+}

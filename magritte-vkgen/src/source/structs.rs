@@ -115,6 +115,30 @@ impl<'a> Struct<'a> {
     pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
         self.fields.iter().any(|f| f.has_lifetime(source))
     }
+
+    /// Checks if this structure is copy
+    pub fn is_copy(&self, source: &Source<'a>) -> bool {
+        self.fields.iter().all(|f| f.is_copy(source))
+    }
+
+    /// Checks if this field is partial_eq
+    pub fn is_partial_eq(&self, source: &Source<'a>) -> bool {
+        self.fields.iter().all(|f| f.is_partial_eq(source))
+    }
+    /// Checks if this structure is eq
+    pub fn is_eq(&self, source: &Source<'a>) -> bool {
+        self.fields.iter().all(|f| f.is_eq(source))
+    }
+
+    /// Checks if this structure is hash
+    pub fn is_hash(&self, source: &Source<'a>) -> bool {
+        self.fields.iter().all(|f| f.is_hash(source))
+    }
+
+    /*/// Checks if this structure needs one or more generic type arguments
+    pub fn has_generics(&self, source: &Source<'a>) -> bool {
+        self.fields.iter().any(|f| f.has_generics(source))
+    }*/
 }
 
 impl<'a> SymbolName<'a> for Struct<'a> {
@@ -241,6 +265,16 @@ impl<'a> Field<'a> {
         self.name.as_ref()
     }
 
+    /// Get a reference to the field's original name.
+    pub fn original_name(&self) -> &str {
+        self.original_name.as_ref()
+    }
+
+    /// Creates an identifier from the name
+    pub fn as_ident(&self) -> Ident {
+        Ident::new(self.name(), Span::call_site())
+    }
+
     /// Get a reference to the field's ty.
     pub fn ty(&self) -> &Ty<'a> {
         &self.ty
@@ -280,6 +314,31 @@ impl<'a> Field<'a> {
     pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
         self.ty().has_lifetime(source)
     }
+
+    /// Checks if this field is copy
+    pub fn is_copy(&self, source: &Source<'a>) -> bool {
+        self.ty().is_copy(source)
+    }
+
+    /// Checks if this field is copy
+    pub fn is_partial_eq(&self, source: &Source<'a>) -> bool {
+        self.ty().is_partial_eq(source)
+    }
+
+    /// Checks if this field is copy
+    pub fn is_eq(&self, source: &Source<'a>) -> bool {
+        self.ty().is_eq(source)
+    }
+
+    /// Checks if this field is copy
+    pub fn is_hash(&self, source: &Source<'a>) -> bool {
+        self.ty().is_hash(source)
+    }
+
+    /*/// Does this field have a generic type argument
+    pub fn has_generics(&self, source: &Source<'a>) -> bool {
+        self.ty().has_generics(source)
+    }*/
 }
 
 impl<'a> SymbolName<'a> for Field<'a> {

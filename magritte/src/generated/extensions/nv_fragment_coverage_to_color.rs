@@ -1,53 +1,5 @@
-//![VK_NV_fragment_coverage_to_color](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_NV_fragment_coverage_to_color.html) - device extension
-//!# Description
-//!This extension allows the fragment coverage value, represented as an integer
-//!bitmask, to be substituted for a color output being written to a
-//!single-component color attachment with integer components (e.g.
-//!`VK_FORMAT_R8_UINT`).
-//!The functionality provided by this extension is different from simply
-//!writing the [`SampleMask`] fragment shader output, in that the coverage
-//!value written to the framebuffer is taken after stencil test and depth test,
-//!as well as after fragment operations such as alpha-to-coverage.This functionality may be useful
-//! for deferred rendering algorithms, where
-//!the second pass needs to know which samples belong to which original
-//!fragments.
-//!# Revision
-//!1
-//!# Dependencies
-//! - Requires Vulkan 1.0
-//!# Contacts
-//! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_fragment_coverage_to_color]
-//!   @jeffbolznv%0A<<Here describe the issue or question you have about the
-//!   VK_NV_fragment_coverage_to_color extension>>)
-//!# New structures
-//! - Extending [`PipelineMultisampleStateCreateInfo`]:
-//! - [`PipelineCoverageToColorStateCreateInfoNV`]
-//!# New bitmasks
-//! - [`PipelineCoverageToColorStateCreateFlagsNV`]
-//!# New constants
-//! - [`NV_FRAGMENT_COVERAGE_TO_COLOR_EXTENSION_NAME`]
-//! - [`NV_FRAGMENT_COVERAGE_TO_COLOR_SPEC_VERSION`]
-//! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV`
-//!# Version History
-//! - Revision 1, 2017-05-21 (Jeff Bolz)
-//! - Internal revisions
-//!# Other info
-//! * 2017-05-21
-//!*
-//! - Jeff Bolz, NVIDIA
-//!# Related
-//! - [`PipelineCoverageToColorStateCreateFlagsNV`]
-//! - [`PipelineCoverageToColorStateCreateInfoNV`]
-//!
-//!# Notes and documentation
-//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-//!
-//!This documentation is generated from the Vulkan specification and documentation.
-//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-//! Commons Attribution 4.0 International*.
-//!This license explicitely allows adapting the source material as long as proper credit is given.
-use std::ffi::CStr;
+use crate::vulkan1_0::{BaseInStructure, Bool32, StructureType};
+use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_NV_FRAGMENT_COVERAGE_TO_COLOR_SPEC_VERSION")]
@@ -57,3 +9,84 @@ pub const NV_FRAGMENT_COVERAGE_TO_COLOR_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_NV_FRAGMENT_COVERAGE_TO_COLOR_EXTENSION_NAME")]
 pub const NV_FRAGMENT_COVERAGE_TO_COLOR_EXTENSION_NAME: &'static CStr =
     crate::cstr!("VK_NV_fragment_coverage_to_color");
+///[VkPipelineCoverageToColorStateCreateInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineCoverageToColorStateCreateInfoNV.html) - Structure specifying whether fragment coverage replaces a color
+///# C Specifications
+///The [`PipelineCoverageToColorStateCreateInfoNV`] structure is defined
+///as:
+///```c
+///// Provided by VK_NV_fragment_coverage_to_color
+///typedef struct VkPipelineCoverageToColorStateCreateInfoNV {
+///    VkStructureType                                sType;
+///    const void*                                    pNext;
+///    VkPipelineCoverageToColorStateCreateFlagsNV    flags;
+///    VkBool32                                       coverageToColorEnable;
+///    uint32_t                                       coverageToColorLocation;
+///} VkPipelineCoverageToColorStateCreateInfoNV;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`flags`] is reserved for future use.
+/// - [`coverage_to_color_enable`] controls whether the fragment coverage value replaces a fragment
+///   color output.
+/// - [`coverage_to_color_location`] controls which fragment shader color output value is replaced.
+///# Description
+///If the [`p_next`] chain of [`PipelineMultisampleStateCreateInfo`]
+///includes a [`PipelineCoverageToColorStateCreateInfoNV`] structure, then
+///that structure controls whether the fragment coverage is substituted for a
+///fragment color output and, if so, which output is replaced.If [`coverage_to_color_enable`] is
+/// [`TRUE`], the
+///[coverage mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask) replaces the first
+///component of the color value corresponding to the fragment shader output
+///location with `Location` equal to [`coverage_to_color_location`] and
+///`Index` equal to zero.
+///If the color attachment format has fewer bits than the coverage mask, the
+///low bits of the sample coverage mask are taken without any clamping.
+///If the color attachment format has more bits than the coverage mask, the
+///high bits of the sample coverage mask are filled with zeros.If [`coverage_to_color_enable`] is
+/// [`FALSE`], these operations are
+///skipped.
+///If this structure is not included in the [`p_next`] chain, it is as if
+///[`coverage_to_color_enable`] is [`FALSE`].Valid Usage
+/// - If [`coverage_to_color_enable`] is [`TRUE`], then the render pass subpass indicated by
+///   [`GraphicsPipelineCreateInfo::render_pass`] and
+///   [`GraphicsPipelineCreateInfo::subpass`]**must** have a color attachment at the location
+///   selected by [`coverage_to_color_location`], with a [`Format`] of `VK_FORMAT_R8_UINT`,
+///   `VK_FORMAT_R8_SINT`, `VK_FORMAT_R16_UINT`, `VK_FORMAT_R16_SINT`, `VK_FORMAT_R32_UINT`, or
+///   `VK_FORMAT_R32_SINT`
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV`
+/// - [`flags`]**must** be `0`
+///# Related
+/// - [`VK_NV_fragment_coverage_to_color`]
+/// - [`Bool32`]
+/// - [`PipelineCoverageToColorStateCreateFlagsNV`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PipelineCoverageToColorStateCreateInfoNV<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`flags`] is reserved for future use.
+    flags: PipelineCoverageToColorStateCreateFlagsNV,
+    ///[`coverage_to_color_enable`] controls whether the fragment coverage value
+    ///replaces a fragment color output.
+    coverage_to_color_enable: Bool32,
+    ///[`coverage_to_color_location`] controls which fragment shader color
+    ///output value is replaced.
+    coverage_to_color_location: u32,
+}

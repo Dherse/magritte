@@ -1,101 +1,5 @@
-//![VK_EXT_buffer_device_address](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_buffer_device_address.html) - device extension
-//!# Description
-//!This extension allows the application to query a 64-bit buffer device
-//!address value for a buffer, which can be used to access the buffer memory
-//!via the `PhysicalStorageBufferEXT` storage class in the
-//![`GL_EXT_buffer_reference`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_buffer_reference.txt)
-//!GLSL extension and
-//![`SPV_EXT_physical_storage_buffer`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/EXT/SPV_EXT_physical_storage_buffer.html)
-//!SPIR-V extension.It also allows buffer device addresses to be provided by a trace replay
-//!tool, so that it matches the address used when the trace was captured.
-//!# Revision
-//!2
-//!# Dependencies
-//! - *Deprecated* by
-//!`[`VK_KHR_buffer_device_address`]`
-//!extension
-//! - Which in turn was *promoted* to
-//![Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-//!# Dependencies
-//! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
-//!# Contacts
-//! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_buffer_device_address]
-//!   @jeffbolznv%0A<<Here describe the issue or question you have about the
-//!   VK_EXT_buffer_device_address extension>>)
-//!# New functions & commands
-//! - [`GetBufferDeviceAddressEXT`]
-//!# New structures
-//! - [`BufferDeviceAddressInfoEXT`]
-//! - Extending [`BufferCreateInfo`]:
-//! - [`BufferDeviceAddressCreateInfoEXT`]
-//!
-//! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:
-//! - [`PhysicalDeviceBufferAddressFeaturesEXT`]
-//! - [`PhysicalDeviceBufferDeviceAddressFeaturesEXT`]
-//!# New constants
-//! - [`EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME`]
-//! - [`EXT_BUFFER_DEVICE_ADDRESS_SPEC_VERSION`]
-//! - Extending [`BufferCreateFlagBits`]:
-//! - `VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT`
-//!
-//! - Extending [`BufferUsageFlagBits`]:
-//! - `VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT_EXT`
-//!
-//! - Extending [`VulkanResultCodes`]:
-//! - `VK_ERROR_INVALID_DEVICE_ADDRESS_EXT`
-//!
-//! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT`
-//! - `VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO_EXT`
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_ADDRESS_FEATURES_EXT`
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT`
-//!# Known issues & F.A.Q
-//!1) Where is VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_ADDRESS_FEATURES_EXT
-//!and VkPhysicalDeviceBufferAddressFeaturesEXT?**RESOLVED**: They were renamed as
-//!`VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT`
-//!and [`PhysicalDeviceBufferDeviceAddressFeaturesEXT`] accordingly for
-//!consistency.
-//!Even though, the old names can still be found in the generated header files
-//!for compatibility.
-//!# Version History
-//! - Revision 1, 2018-11-01 (Jeff Bolz)
-//! - Internal revisions
-//!
-//! - Revision 2, 2019-01-06 (Jon Leech)
-//! - Minor updates to appendix for publication
-//!# Other info
-//! * 2019-01-06
-//! * No known IP claims.
-//!*
-//! - This extension requires
-//![`SPV_EXT_physical_storage_buffer`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/EXT/SPV_EXT_physical_storage_buffer.html)
-//! - This extension provides API support for
-//![`GLSL_EXT_buffer_reference`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_buffer_reference.txt)
-//!and
-//![`GLSL_EXT_buffer_reference_uvec2`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_buffer_reference_uvec2.txt)
-//!
-//!*
-//! - Jeff Bolz, NVIDIA
-//! - Neil Henning, AMD
-//! - Tobias Hector, AMD
-//! - Jason Ekstrand, Intel
-//! - Baldur Karlsson, Valve
-//!# Related
-//! - [`BufferDeviceAddressCreateInfoEXT`]
-//! - [`BufferDeviceAddressInfoEXT`]
-//! - [`PhysicalDeviceBufferAddressFeaturesEXT`]
-//! - [`PhysicalDeviceBufferDeviceAddressFeaturesEXT`]
-//! - [`GetBufferDeviceAddressEXT`]
-//!
-//!# Notes and documentation
-//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-//!
-//!This documentation is generated from the Vulkan specification and documentation.
-//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-//! Commons Attribution 4.0 International*.
-//!This license explicitely allows adapting the source material as long as proper credit is given.
-use std::ffi::CStr;
+use crate::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, DeviceAddress, StructureType};
+use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_BUFFER_DEVICE_ADDRESS_SPEC_VERSION")]
@@ -104,3 +8,137 @@ pub const EXT_BUFFER_DEVICE_ADDRESS_SPEC_VERSION: u32 = 2;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME")]
 pub const EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_buffer_device_address");
+///[VkPhysicalDeviceBufferDeviceAddressFeaturesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceBufferDeviceAddressFeaturesEXT.html) - Structure describing buffer address features that can be supported by an implementation
+///# C Specifications
+///The [`PhysicalDeviceBufferDeviceAddressFeaturesEXT`] structure is
+///defined as:
+///```c
+///// Provided by VK_EXT_buffer_device_address
+///typedef struct VkPhysicalDeviceBufferDeviceAddressFeaturesEXT {
+///    VkStructureType    sType;
+///    void*              pNext;
+///    VkBool32           bufferDeviceAddress;
+///    VkBool32           bufferDeviceAddressCaptureReplay;
+///    VkBool32           bufferDeviceAddressMultiDevice;
+///} VkPhysicalDeviceBufferDeviceAddressFeaturesEXT;
+///```
+///
+///```c
+///// Provided by VK_EXT_buffer_device_address
+///typedef VkPhysicalDeviceBufferDeviceAddressFeaturesEXT VkPhysicalDeviceBufferAddressFeaturesEXT;
+///```
+///# Members
+///This structure describes the following features:
+///# Description
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`buffer_device_address`] indicates that the implementation supports accessing buffer memory
+///   in shaders as storage buffers via an address queried from [`GetBufferDeviceAddressEXT`].
+/// - [`buffer_device_address_capture_replay`] indicates that the implementation supports saving and
+///   reusing buffer addresses, e.g. for trace capture and replay.
+/// - [`buffer_device_address_multi_device`] indicates that the implementation supports the
+///   [`buffer_device_address`] feature for logical devices created with multiple physical devices.
+///   If this feature is not supported, buffer addresses **must** not be queried on a logical device
+///   created with more than one physical device.
+///If the [`PhysicalDeviceBufferDeviceAddressFeaturesEXT`] structure is included in the [`p_next`]
+/// chain of the
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceBufferDeviceAddressFeaturesEXT`]**can** also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT`
+///# Related
+/// - [`VK_EXT_buffer_device_address`]
+/// - [`Bool32`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PhysicalDeviceBufferDeviceAddressFeaturesEXT<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *const BaseOutStructure<'lt>,
+    ///[`buffer_device_address`] indicates
+    ///that the implementation supports accessing buffer memory in shaders as
+    ///storage buffers via an address queried from
+    ///[`GetBufferDeviceAddressEXT`].
+    buffer_device_address: Bool32,
+    ///[`buffer_device_address_capture_replay`] indicates that the implementation
+    ///supports saving and reusing buffer addresses, e.g. for trace capture and
+    ///replay.
+    buffer_device_address_capture_replay: Bool32,
+    ///[`buffer_device_address_multi_device`] indicates that the implementation
+    ///supports the [`buffer_device_address`] feature for logical devices
+    ///created with multiple physical devices.
+    ///If this feature is not supported, buffer addresses **must** not be queried
+    ///on a logical device created with more than one physical device.
+    buffer_device_address_multi_device: Bool32,
+}
+///[VkBufferDeviceAddressCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferDeviceAddressCreateInfoEXT.html) - Request a specific address for a buffer
+///# C Specifications
+///Alternatively, to
+///request a specific device address for a buffer, add a
+///[`BufferDeviceAddressCreateInfoEXT`] structure to the [`p_next`] chain
+///of the [`BufferCreateInfo`] structure.
+///The [`BufferDeviceAddressCreateInfoEXT`] structure is defined as:
+///```c
+///// Provided by VK_EXT_buffer_device_address
+///typedef struct VkBufferDeviceAddressCreateInfoEXT {
+///    VkStructureType    sType;
+///    const void*        pNext;
+///    VkDeviceAddress    deviceAddress;
+///} VkBufferDeviceAddressCreateInfoEXT;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`device_address`] is the device address requested for the buffer.
+///# Description
+///If [`device_address`] is zero, no specific address is requested.If [`device_address`] is not
+/// zero, then it **must** be an address retrieved
+///from an identically created buffer on the same implementation.
+///The buffer **must** also be bound to an identically created
+///[`DeviceMemory`] object.If this structure is not present, it is as if [`device_address`] is
+/// zero.Apps **should** avoid creating buffers with app-provided addresses and
+///implementation-provided addresses in the same process, to reduce the
+///likelihood of `VK_ERROR_INVALID_DEVICE_ADDRESS_EXT` errors.Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT`
+///# Related
+/// - [`VK_EXT_buffer_device_address`]
+/// - [`DeviceAddress`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct BufferDeviceAddressCreateInfoEXT<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`device_address`] is the device address requested for the buffer.
+    device_address: DeviceAddress,
+}

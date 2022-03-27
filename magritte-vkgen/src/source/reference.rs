@@ -343,19 +343,111 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
             TypeRef::Struct(struct_) => struct_.has_lifetime(source),
             TypeRef::Union(union_) => union_.has_lifetime(source),
 
-            // handles are always true because we will be using the `Writable<'a>` and `Readable<'a>` types.
-            TypeRef::Handle(_) => true,
-
             // in the case of function pointers, one of the fields may have a lifetime requiring the following
             // notation: `for<'a> fn(this: &'a Value)`
             TypeRef::FunctionPointer(func) => func.has_lifetime(source),
             TypeRef::OpaqueType(_)
+            | TypeRef::Handle(_)
             | TypeRef::Basetype(_)
             | TypeRef::Bitmask(_)
             | TypeRef::BitFlag(_)
             | TypeRef::Enum(_) => false,
         }
     }
+
+    /// Checks if the type is copy
+    pub fn is_copy(&self, source: &Source<'a>) -> bool {
+        match self {
+            TypeRef::OpaqueType(_) => false,
+            TypeRef::Alias(alias) => source.resolve_type(alias.of()).expect("unknown alias").is_copy(source),
+            TypeRef::Struct(struct_) => struct_.is_copy(source),
+            TypeRef::Union(union_) => union_.is_copy(source),
+            TypeRef::Handle(_)
+            | TypeRef::Basetype(_)
+            | TypeRef::Bitmask(_)
+            | TypeRef::BitFlag(_)
+            | TypeRef::Enum(_) => true,
+            TypeRef::FunctionPointer(_) => false,
+        }
+    }
+
+    /// Checks if the type is eq/ord
+    pub fn is_partial_eq(&self, source: &Source<'a>) -> bool {
+        match self {
+            TypeRef::OpaqueType(_) => false,
+            TypeRef::Alias(alias) => source
+                .resolve_type(alias.of())
+                .expect("unknown alias")
+                .is_partial_eq(source),
+            TypeRef::Struct(struct_) => struct_.is_partial_eq(source),
+            TypeRef::Handle(_)
+            | TypeRef::Basetype(_)
+            | TypeRef::Bitmask(_)
+            | TypeRef::BitFlag(_)
+            | TypeRef::Enum(_)
+            | TypeRef::FunctionPointer(_) => true,
+
+            // unions are not eq because we cannot know the variant, would require bitwise comparison
+            TypeRef::Union(_) => false,
+        }
+    }
+
+    /// Checks if the type is eq/ord
+    pub fn is_eq(&self, source: &Source<'a>) -> bool {
+        match self {
+            TypeRef::OpaqueType(_) => false,
+            TypeRef::Alias(alias) => source.resolve_type(alias.of()).expect("unknown alias").is_eq(source),
+            TypeRef::Struct(struct_) => struct_.is_eq(source),
+            TypeRef::Handle(_)
+            | TypeRef::Basetype(_)
+            | TypeRef::Bitmask(_)
+            | TypeRef::BitFlag(_)
+            | TypeRef::Enum(_)
+            | TypeRef::FunctionPointer(_) => true,
+
+            // unions are not eq because we cannot know the variant, would require bitwise comparison
+            TypeRef::Union(_) => false,
+        }
+    }
+
+    /// Checks if the type is hash
+    pub fn is_hash(&self, source: &Source<'a>) -> bool {
+        match self {
+            TypeRef::OpaqueType(_) => false,
+            TypeRef::Alias(alias) => source.resolve_type(alias.of()).expect("unknown alias").is_hash(source),
+            TypeRef::Struct(struct_) => struct_.is_hash(source),
+            TypeRef::Handle(_)
+            | TypeRef::Basetype(_)
+            | TypeRef::Bitmask(_)
+            | TypeRef::BitFlag(_)
+            | TypeRef::Enum(_)
+            | TypeRef::FunctionPointer(_) => true,
+
+            // unions are not hash because we cannot know the variant
+            TypeRef::Union(_) => false,
+        }
+    }
+
+    /*/// Does the type have a generic type parameter
+    pub fn has_generics(&self, source: &Source<'a>) -> bool {
+        match self {
+            TypeRef::Alias(alias) => source
+                .resolve_type(alias.of())
+                .expect("unknown alias")
+                .has_generics(source),
+            TypeRef::Struct(struct_) => struct_.has_generics(source),
+
+            // handles are always true because we will be using the `Writable<'a>` and `Readable<'a>` types.
+            TypeRef::Handle(_) => true,
+            TypeRef::OpaqueType(_)
+            | TypeRef::Basetype(_)
+            | TypeRef::Bitmask(_)
+            | TypeRef::BitFlag(_)
+            | TypeRef::Enum(_)
+            | TypeRef::FunctionPointer(_)
+            | TypeRef::Union(_) => false,
+        }
+    }*/
 
     /// Is the type opaque
     pub fn is_opaque(&self) -> bool {

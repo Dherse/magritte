@@ -1,63 +1,8 @@
-//![VK_EXT_memory_budget](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_memory_budget.html) - device extension
-//!# Description
-//!While running a Vulkan application, other processes on the machine might
-//!also be attempting to use the same device memory, which can pose problems.
-//!This extension adds support for querying the amount of memory used and the
-//!total memory budget for a memory heap.
-//!The values returned by this query are implementation-dependent and can
-//!depend on a variety of factors including operating system and system load.The
-//! [`PhysicalDeviceMemoryBudgetPropertiesEXT::heap_budget`] values
-//!can be used as a guideline for how much total memory from each heap the
-//!**current process** can use at any given time, before allocations may start
-//!failing or causing performance degradation.
-//!The values may change based on other activity in the system that is outside
-//!the scope and control of the Vulkan implementation.The
-//! [`PhysicalDeviceMemoryBudgetPropertiesEXT::heap_usage`] will
-//!display the **current process** estimated heap usage.With this information, the idea is for an
-//! application at some interval (once
-//!per frame, per few seconds, etc) to query `heapBudget` and
-//!`heapUsage`.
-//!From here the application can notice if it is over budget and decide how it
-//!wants to handle the memory situation (free it, move to host memory, changing
-//!mipmap levels, etc).
-//!This extension is designed to be used in concert with
-//!`[`VK_EXT_memory_priority`]` to help with this part of memory management.
-//!# Revision
-//!1
-//!# Dependencies
-//! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
-//!# Contacts
-//! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_memory_budget]
-//!   @jeffbolznv%0A<<Here describe the issue or question you have about the VK_EXT_memory_budget
-//!   extension>>)
-//!# New structures
-//! - Extending [`PhysicalDeviceMemoryProperties2`]:
-//! - [`PhysicalDeviceMemoryBudgetPropertiesEXT`]
-//!# New constants
-//! - [`EXT_MEMORY_BUDGET_EXTENSION_NAME`]
-//! - [`EXT_MEMORY_BUDGET_SPEC_VERSION`]
-//! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT`
-//!# Version History
-//! - Revision 1, 2018-10-08 (Jeff Bolz)
-//! - Initial revision
-//!# Other info
-//! * 2018-10-08
-//!*
-//! - Jeff Bolz, NVIDIA
-//! - Jeff Juliano, NVIDIA
-//!# Related
-//! - [`PhysicalDeviceMemoryBudgetPropertiesEXT`]
-//!
-//!# Notes and documentation
-//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-//!
-//!This documentation is generated from the Vulkan specification and documentation.
-//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-//! Commons Attribution 4.0 International*.
-//!This license explicitely allows adapting the source material as long as proper credit is given.
-use std::ffi::CStr;
+use crate::{
+    core::MAX_MEMORY_HEAPS,
+    vulkan1_0::{BaseOutStructure, DeviceSize, StructureType},
+};
+use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_MEMORY_BUDGET_SPEC_VERSION")]
@@ -66,3 +11,75 @@ pub const EXT_MEMORY_BUDGET_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_MEMORY_BUDGET_EXTENSION_NAME")]
 pub const EXT_MEMORY_BUDGET_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_memory_budget");
+///[VkPhysicalDeviceMemoryBudgetPropertiesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMemoryBudgetPropertiesEXT.html) - Structure specifying physical device memory budget and usage
+///# C Specifications
+///If the [`PhysicalDeviceMemoryBudgetPropertiesEXT`] structure is included
+///in the [`p_next`] chain of [`PhysicalDeviceMemoryProperties2`], it is
+///filled with the current memory budgets and usages.The
+/// [`PhysicalDeviceMemoryBudgetPropertiesEXT`] structure is defined as:
+///```c
+///// Provided by VK_EXT_memory_budget
+///typedef struct VkPhysicalDeviceMemoryBudgetPropertiesEXT {
+///    VkStructureType    sType;
+///    void*              pNext;
+///    VkDeviceSize       heapBudget[VK_MAX_MEMORY_HEAPS];
+///    VkDeviceSize       heapUsage[VK_MAX_MEMORY_HEAPS];
+///} VkPhysicalDeviceMemoryBudgetPropertiesEXT;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`heap_budget`] is an array of [`MAX_MEMORY_HEAPS`][`DeviceSize`] values in which memory
+///   budgets are returned, with one element for each memory heap. A heap’s budget is a rough
+///   estimate of how much memory the process **can** allocate from that heap before allocations
+///   **may** fail or cause performance degradation. The budget includes any currently allocated
+///   device memory.
+/// - [`heap_usage`] is an array of [`MAX_MEMORY_HEAPS`][`DeviceSize`] values in which memory usages
+///   are returned, with one element for each memory heap. A heap’s usage is an estimate of how much
+///   memory the process is currently using in that heap.
+///# Description
+///The values returned in this structure are not invariant.
+///The [`heap_budget`] and [`heap_usage`] values **must** be zero for array
+///elements greater than or equal to
+///[`PhysicalDeviceMemoryProperties::memory_heap_count`].
+///The [`heap_budget`] value **must** be non-zero for array elements less than
+///[`PhysicalDeviceMemoryProperties::memory_heap_count`].
+///The [`heap_budget`] value **must** be less than or equal to
+///[`MemoryHeap::size`] for each heap.Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT`
+///# Related
+/// - [`VK_EXT_memory_budget`]
+/// - [`DeviceSize`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PhysicalDeviceMemoryBudgetPropertiesEXT<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *const BaseOutStructure<'lt>,
+    ///[`heap_budget`] is an array of [`MAX_MEMORY_HEAPS`][`DeviceSize`] values in which memory
+    /// budgets are returned, with one element for each memory heap.
+    ///A heap’s budget is a rough estimate of how much memory the process **can**
+    ///allocate from that heap before allocations **may** fail or cause
+    ///performance degradation.
+    ///The budget includes any currently allocated device memory.
+    heap_budget: [DeviceSize; MAX_MEMORY_HEAPS],
+    ///[`heap_usage`] is an array of [`MAX_MEMORY_HEAPS`][`DeviceSize`] values in which memory
+    /// usages are returned, with one element for each memory heap.
+    ///A heap’s usage is an estimate of how much memory the process is
+    ///currently using in that heap.
+    heap_usage: [DeviceSize; MAX_MEMORY_HEAPS],
+}

@@ -182,7 +182,11 @@ impl<'a> Bit<'a> {
 
     /// Creates an identifier from the name
     pub fn as_ident(&self) -> Ident {
-        Ident::new(self.name(), Span::call_site())
+        if self.name().starts_with(char::is_numeric) {
+            Ident::new(&format!("_{}", self.name()), Span::call_site())
+        } else {
+            Ident::new(self.name(), Span::call_site())
+        }
     }
 
     /// Get a reference to the bit's origin.

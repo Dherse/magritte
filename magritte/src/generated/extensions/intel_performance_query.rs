@@ -1,114 +1,12 @@
-//![VK_INTEL_performance_query](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_INTEL_performance_query.html) - device extension
-//!# Description
-//!This extension allows an application to capture performance data to be
-//!interpreted by a external application or library.Such a library is available at : [https://github.com/intel/metrics-discovery](https://github.com/intel/metrics-discovery)Performance analysis tools such as
-//![Graphics
-//!Performance Analyzers](https://software.intel.com/content/www/us/en/develop/tools/graphics-performance-analyzers.html) make use of this extension and the metrics-discovery
-//!library to present the data in a human readable way.
-//!# Revision
-//!2
-//!# Dependencies
-//! - Requires Vulkan 1.0
-//!# Contacts
-//! - Lionel Landwerlin [llandwerlin](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_INTEL_performance_query]
-//!   @llandwerlin%0A<<Here describe the issue or question you have about the
-//!   VK_INTEL_performance_query extension>>)
-//!# New handles
-//! - [`PerformanceConfigurationINTEL`]
-//!# New functions & commands
-//! - [`AcquirePerformanceConfigurationINTEL`]
-//! - [`CmdSetPerformanceMarkerINTEL`]
-//! - [`CmdSetPerformanceOverrideINTEL`]
-//! - [`CmdSetPerformanceStreamMarkerINTEL`]
-//! - [`GetPerformanceParameterINTEL`]
-//! - [`InitializePerformanceApiINTEL`]
-//! - [`QueueSetPerformanceConfigurationINTEL`]
-//! - [`ReleasePerformanceConfigurationINTEL`]
-//! - [`UninitializePerformanceApiINTEL`]
-//!# New structures
-//! - [`InitializePerformanceApiInfoINTEL`]
-//! - [`PerformanceConfigurationAcquireInfoINTEL`]
-//! - [`PerformanceMarkerInfoINTEL`]
-//! - [`PerformanceOverrideInfoINTEL`]
-//! - [`PerformanceStreamMarkerInfoINTEL`]
-//! - [`PerformanceValueINTEL`]
-//! - Extending [`QueryPoolCreateInfo`]:
-//! - [`QueryPoolCreateInfoINTEL`]
-//! - [`QueryPoolPerformanceQueryCreateInfoINTEL`]
-//!# New enums
-//! - [`PerformanceConfigurationTypeINTEL`]
-//! - [`PerformanceOverrideTypeINTEL`]
-//! - [`PerformanceParameterTypeINTEL`]
-//! - [`PerformanceValueTypeINTEL`]
-//! - [`QueryPoolSamplingModeINTEL`]
-//!# New constants
-//! - [`INTEL_PERFORMANCE_QUERY_EXTENSION_NAME`]
-//! - [`INTEL_PERFORMANCE_QUERY_SPEC_VERSION`]
-//! - Extending [`ObjectType`]:
-//! - `VK_OBJECT_TYPE_PERFORMANCE_CONFIGURATION_INTEL`
-//!
-//! - Extending [`QueryType`]:
-//! - `VK_QUERY_TYPE_PERFORMANCE_QUERY_INTEL`
-//!
-//! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_INITIALIZE_PERFORMANCE_API_INFO_INTEL`
-//! - `VK_STRUCTURE_TYPE_PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL`
-//! - `VK_STRUCTURE_TYPE_PERFORMANCE_MARKER_INFO_INTEL`
-//! - `VK_STRUCTURE_TYPE_PERFORMANCE_OVERRIDE_INFO_INTEL`
-//! - `VK_STRUCTURE_TYPE_PERFORMANCE_STREAM_MARKER_INFO_INTEL`
-//! - `VK_STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO_INTEL`
-//! - `VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL`
-//!# Version History
-//! - Revision 2, 2020-03-06 (Lionel Landwerlin)
-//! - Rename VkQueryPoolCreateInfoINTEL in
-//!VkQueryPoolPerformanceQueryCreateInfoINTEL
-//!
-//! - Revision 1, 2018-05-16 (Lionel Landwerlin)
-//! - Initial revision
-//!# Other info
-//! * 2018-05-16
-//! * No known IP claims.
-//!*
-//! - Lionel Landwerlin, Intel
-//! - Piotr Maciejewski, Intel
-//!# Related
-//! - [`InitializePerformanceApiInfoINTEL`]
-//! - [`PerformanceConfigurationAcquireInfoINTEL`]
-//! - [`PerformanceConfigurationINTEL`]
-//! - [`PerformanceConfigurationTypeINTEL`]
-//! - [`PerformanceMarkerInfoINTEL`]
-//! - [`PerformanceOverrideInfoINTEL`]
-//! - [`PerformanceOverrideTypeINTEL`]
-//! - [`PerformanceParameterTypeINTEL`]
-//! - [`PerformanceStreamMarkerInfoINTEL`]
-//! - [`PerformanceValueDataINTEL`]
-//! - [`PerformanceValueINTEL`]
-//! - [`PerformanceValueTypeINTEL`]
-//! - [`QueryPoolCreateInfoINTEL`]
-//! - [`QueryPoolPerformanceQueryCreateInfoINTEL`]
-//! - [`QueryPoolSamplingModeINTEL`]
-//! - [`AcquirePerformanceConfigurationINTEL`]
-//! - [`CmdSetPerformanceMarkerINTEL`]
-//! - [`CmdSetPerformanceOverrideINTEL`]
-//! - [`CmdSetPerformanceStreamMarkerINTEL`]
-//! - [`GetPerformanceParameterINTEL`]
-//! - [`InitializePerformanceApiINTEL`]
-//! - [`QueueSetPerformanceConfigurationINTEL`]
-//! - [`ReleasePerformanceConfigurationINTEL`]
-//! - [`UninitializePerformanceApiINTEL`]
-//!
-//!# Notes and documentation
-//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-//!
-//!This documentation is generated from the Vulkan specification and documentation.
-//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-//! Commons Attribution 4.0 International*.
-//!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::vulkan1_0::{BaseInStructure, Bool32, StructureType};
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::ffi::CStr;
+use std::{
+    ffi::{c_void, CStr},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_INTEL_PERFORMANCE_QUERY_SPEC_VERSION")]
@@ -140,31 +38,20 @@ pub const INTEL_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceConfigurationTypeINTEL")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct PerformanceConfigurationTypeINTEL(i32);
+#[repr(i32)]
+pub enum PerformanceConfigurationTypeINTEL {
+    ///No documentation found
+    PerformanceConfigurationTypeCommandQueueMetricsDiscoveryActivatedIntel = 0,
+}
 impl const Default for PerformanceConfigurationTypeINTEL {
     fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for PerformanceConfigurationTypeINTEL {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("PerformanceConfigurationTypeINTEL")
-            .field(match *self {
-                Self::PERFORMANCE_CONFIGURATION_TYPE_COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED => {
-                    &"PERFORMANCE_CONFIGURATION_TYPE_COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED"
-                },
-                other => unreachable!("invalid value for `PerformanceConfigurationTypeINTEL`: {:?}", other),
-            })
-            .finish()
+        PerformanceConfigurationTypeCommandQueueMetricsDiscoveryActivatedIntel
     }
 }
 impl PerformanceConfigurationTypeINTEL {
-    ///No documentation found
-    pub const PERFORMANCE_CONFIGURATION_TYPE_COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED: Self = Self(0);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -173,7 +60,12 @@ impl PerformanceConfigurationTypeINTEL {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
     }
 }
 ///[VkQueryPoolSamplingModeINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueryPoolSamplingModeINTEL.html) - Enum specifying how performance queries should be captured
@@ -188,9 +80,8 @@ impl PerformanceConfigurationTypeINTEL {
 ///} VkQueryPoolSamplingModeINTEL;
 ///```
 ///# Description
-/// - [`QUERY_POOL_SAMPLING_MODE_MANUAL`] is the default mode in
-///which the application calls [`CmdBeginQuery`] and
-///[`CmdEndQuery`] to record performance data.
+/// - [`QueryPoolSamplingModeManualIntel`] is the default mode in which the application calls
+///   [`CmdBeginQuery`] and [`CmdEndQuery`] to record performance data.
 ///# Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`QueryPoolPerformanceQueryCreateInfoINTEL`]
@@ -203,31 +94,22 @@ impl PerformanceConfigurationTypeINTEL {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueryPoolSamplingModeINTEL")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct QueryPoolSamplingModeINTEL(i32);
+#[repr(i32)]
+pub enum QueryPoolSamplingModeINTEL {
+    ///[`QueryPoolSamplingModeManualIntel`] is the default mode in
+    ///which the application calls [`CmdBeginQuery`] and
+    ///[`CmdEndQuery`] to record performance data.
+    QueryPoolSamplingModeManualIntel = 0,
+}
 impl const Default for QueryPoolSamplingModeINTEL {
     fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for QueryPoolSamplingModeINTEL {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("QueryPoolSamplingModeINTEL")
-            .field(match *self {
-                Self::QUERY_POOL_SAMPLING_MODE_MANUAL => &"QUERY_POOL_SAMPLING_MODE_MANUAL",
-                other => unreachable!("invalid value for `QueryPoolSamplingModeINTEL`: {:?}", other),
-            })
-            .finish()
+        QueryPoolSamplingModeManualIntel
     }
 }
 impl QueryPoolSamplingModeINTEL {
-    ///[`QUERY_POOL_SAMPLING_MODE_MANUAL`] is the default mode in
-    ///which the application calls [`CmdBeginQuery`] and
-    ///[`CmdEndQuery`] to record performance data.
-    pub const QUERY_POOL_SAMPLING_MODE_MANUAL: Self = Self(0);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -236,7 +118,12 @@ impl QueryPoolSamplingModeINTEL {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
     }
 }
 ///[VkPerformanceOverrideTypeINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceOverrideTypeINTEL.html) - Performance override type
@@ -251,11 +138,9 @@ impl QueryPoolSamplingModeINTEL {
 ///} VkPerformanceOverrideTypeINTEL;
 ///```
 ///# Description
-/// - [`PERFORMANCE_OVERRIDE_TYPE_NULL_HARDWARE`] turns all
-///rendering operations into noop.
-/// - [`PERFORMANCE_OVERRIDE_TYPE_FLUSH_GPU_CACHES`] stalls the
-///stream of commands until all previously emitted commands have completed
-///and all caches been flushed and invalidated.
+/// - [`PerformanceOverrideTypeNullHardwareIntel`] turns all rendering operations into noop.
+/// - [`PerformanceOverrideTypeFlushGpuCachesIntel`] stalls the stream of commands until all
+///   previously emitted commands have completed and all caches been flushed and invalidated.
 ///# Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`PerformanceOverrideInfoINTEL`]
@@ -268,35 +153,25 @@ impl QueryPoolSamplingModeINTEL {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceOverrideTypeINTEL")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct PerformanceOverrideTypeINTEL(i32);
+#[repr(i32)]
+pub enum PerformanceOverrideTypeINTEL {
+    ///[`PerformanceOverrideTypeNullHardwareIntel`] turns all
+    ///rendering operations into noop.
+    PerformanceOverrideTypeNullHardwareIntel = 0,
+    ///[`PerformanceOverrideTypeFlushGpuCachesIntel`] stalls the
+    ///stream of commands until all previously emitted commands have completed
+    ///and all caches been flushed and invalidated.
+    PerformanceOverrideTypeFlushGpuCachesIntel = 1,
+}
 impl const Default for PerformanceOverrideTypeINTEL {
     fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for PerformanceOverrideTypeINTEL {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("PerformanceOverrideTypeINTEL")
-            .field(match *self {
-                Self::PERFORMANCE_OVERRIDE_TYPE_NULL_HARDWARE => &"PERFORMANCE_OVERRIDE_TYPE_NULL_HARDWARE",
-                Self::PERFORMANCE_OVERRIDE_TYPE_FLUSH_GPU_CACHES => &"PERFORMANCE_OVERRIDE_TYPE_FLUSH_GPU_CACHES",
-                other => unreachable!("invalid value for `PerformanceOverrideTypeINTEL`: {:?}", other),
-            })
-            .finish()
+        PerformanceOverrideTypeNullHardwareIntel
     }
 }
 impl PerformanceOverrideTypeINTEL {
-    ///[`PERFORMANCE_OVERRIDE_TYPE_NULL_HARDWARE`] turns all
-    ///rendering operations into noop.
-    pub const PERFORMANCE_OVERRIDE_TYPE_NULL_HARDWARE: Self = Self(0);
-    ///[`PERFORMANCE_OVERRIDE_TYPE_FLUSH_GPU_CACHES`] stalls the
-    ///stream of commands until all previously emitted commands have completed
-    ///and all caches been flushed and invalidated.
-    pub const PERFORMANCE_OVERRIDE_TYPE_FLUSH_GPU_CACHES: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -305,7 +180,12 @@ impl PerformanceOverrideTypeINTEL {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
     }
 }
 ///[VkPerformanceParameterTypeINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceParameterTypeINTEL.html) - Parameters that can be queried
@@ -320,11 +200,10 @@ impl PerformanceOverrideTypeINTEL {
 ///} VkPerformanceParameterTypeINTEL;
 ///```
 ///# Description
-/// - [`PERFORMANCE_PARAMETER_TYPE_HW_COUNTERS_SUPPORTED`] has a
-///boolean result which tells whether hardware counters can be captured.
-/// - [`PERFORMANCE_PARAMETER_TYPE_STREAM_MARKER_VALID_BITS`] has a
-///32 bits integer result which tells how many bits can be written into the
-///[`PerformanceValueINTEL`] value.
+/// - [`PerformanceParameterTypeHwCountersSupportedIntel`] has a boolean result which tells whether
+///   hardware counters can be captured.
+/// - [`PerformanceParameterTypeStreamMarkerValidBitsIntel`] has a 32 bits integer result which
+///   tells how many bits can be written into the [`PerformanceValueINTEL`] value.
 ///# Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`GetPerformanceParameterINTEL`]
@@ -337,39 +216,25 @@ impl PerformanceOverrideTypeINTEL {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceParameterTypeINTEL")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct PerformanceParameterTypeINTEL(i32);
+#[repr(i32)]
+pub enum PerformanceParameterTypeINTEL {
+    ///[`PerformanceParameterTypeHwCountersSupportedIntel`] has a
+    ///boolean result which tells whether hardware counters can be captured.
+    PerformanceParameterTypeHwCountersSupportedIntel = 0,
+    ///[`PerformanceParameterTypeStreamMarkerValidBitsIntel`] has a
+    ///32 bits integer result which tells how many bits can be written into the
+    ///[`PerformanceValueINTEL`] value.
+    PerformanceParameterTypeStreamMarkerValidBitsIntel = 1,
+}
 impl const Default for PerformanceParameterTypeINTEL {
     fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for PerformanceParameterTypeINTEL {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("PerformanceParameterTypeINTEL")
-            .field(match *self {
-                Self::PERFORMANCE_PARAMETER_TYPE_HW_COUNTERS_SUPPORTED => {
-                    &"PERFORMANCE_PARAMETER_TYPE_HW_COUNTERS_SUPPORTED"
-                },
-                Self::PERFORMANCE_PARAMETER_TYPE_STREAM_MARKER_VALID_BITS => {
-                    &"PERFORMANCE_PARAMETER_TYPE_STREAM_MARKER_VALID_BITS"
-                },
-                other => unreachable!("invalid value for `PerformanceParameterTypeINTEL`: {:?}", other),
-            })
-            .finish()
+        PerformanceParameterTypeHwCountersSupportedIntel
     }
 }
 impl PerformanceParameterTypeINTEL {
-    ///[`PERFORMANCE_PARAMETER_TYPE_HW_COUNTERS_SUPPORTED`] has a
-    ///boolean result which tells whether hardware counters can be captured.
-    pub const PERFORMANCE_PARAMETER_TYPE_HW_COUNTERS_SUPPORTED: Self = Self(0);
-    ///[`PERFORMANCE_PARAMETER_TYPE_STREAM_MARKER_VALID_BITS`] has a
-    ///32 bits integer result which tells how many bits can be written into the
-    ///[`PerformanceValueINTEL`] value.
-    pub const PERFORMANCE_PARAMETER_TYPE_STREAM_MARKER_VALID_BITS: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -378,25 +243,29 @@ impl PerformanceParameterTypeINTEL {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
     }
 }
 ///[VkPerformanceValueTypeINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceValueTypeINTEL.html) - Type of the parameters that can be queried
 ///# C Specifications
 ///Possible values of [`PerformanceValueINTEL::type_`], specifying the
 ///type of the data returned in [`PerformanceValueINTEL::data`], are:
-/// - [`PERFORMANCE_VALUE_TYPE_UINT32`] specifies that unsigned
-///32-bit integer data is returned in `data.value32`.
-/// - [`PERFORMANCE_VALUE_TYPE_UINT64`] specifies that unsigned
-///64-bit integer data is returned in `data.value64`.
-/// - [`PERFORMANCE_VALUE_TYPE_FLOAT`] specifies that
-///floating-point data is returned in `data.valueFloat`.
-/// - [`PERFORMANCE_VALUE_TYPE_BOOL`] specifies that
-///[`Bool32`] data is returned in `data.valueBool`.
-/// - [`PERFORMANCE_VALUE_TYPE_STRING`] specifies that a pointer to
-///a null-terminated UTF-8 string is returned in `data.valueString`.
-///The pointer is valid for the lifetime of the `device` parameter
-///passed to [`GetPerformanceParameterINTEL`].
+/// - [`PerformanceValueTypeUint32Intel`] specifies that unsigned 32-bit integer data is returned in
+///   `data.value32`.
+/// - [`PerformanceValueTypeUint64Intel`] specifies that unsigned 64-bit integer data is returned in
+///   `data.value64`.
+/// - [`PerformanceValueTypeFloatIntel`] specifies that floating-point data is returned in
+///   `data.valueFloat`.
+/// - [`PerformanceValueTypeBoolIntel`] specifies that [`Bool32`] data is returned in
+///   `data.valueBool`.
+/// - [`PerformanceValueTypeStringIntel`] specifies that a pointer to a null-terminated UTF-8 string
+///   is returned in `data.valueString`. The pointer is valid for the lifetime of the `device`
+///   parameter passed to [`GetPerformanceParameterINTEL`].
 ///
 ///```c
 ///// Provided by VK_INTEL_performance_query
@@ -420,41 +289,28 @@ impl PerformanceParameterTypeINTEL {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceValueTypeINTEL")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct PerformanceValueTypeINTEL(i32);
+#[repr(i32)]
+pub enum PerformanceValueTypeINTEL {
+    ///No documentation found
+    PerformanceValueTypeUint32Intel = 0,
+    ///No documentation found
+    PerformanceValueTypeUint64Intel = 1,
+    ///No documentation found
+    PerformanceValueTypeFloatIntel = 2,
+    ///No documentation found
+    PerformanceValueTypeBoolIntel = 3,
+    ///No documentation found
+    PerformanceValueTypeStringIntel = 4,
+}
 impl const Default for PerformanceValueTypeINTEL {
     fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for PerformanceValueTypeINTEL {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("PerformanceValueTypeINTEL")
-            .field(match *self {
-                Self::PERFORMANCE_VALUE_TYPE_UINT32 => &"PERFORMANCE_VALUE_TYPE_UINT32",
-                Self::PERFORMANCE_VALUE_TYPE_UINT64 => &"PERFORMANCE_VALUE_TYPE_UINT64",
-                Self::PERFORMANCE_VALUE_TYPE_FLOAT => &"PERFORMANCE_VALUE_TYPE_FLOAT",
-                Self::PERFORMANCE_VALUE_TYPE_BOOL => &"PERFORMANCE_VALUE_TYPE_BOOL",
-                Self::PERFORMANCE_VALUE_TYPE_STRING => &"PERFORMANCE_VALUE_TYPE_STRING",
-                other => unreachable!("invalid value for `PerformanceValueTypeINTEL`: {:?}", other),
-            })
-            .finish()
+        PerformanceValueTypeUint32Intel
     }
 }
 impl PerformanceValueTypeINTEL {
-    ///No documentation found
-    pub const PERFORMANCE_VALUE_TYPE_UINT32: Self = Self(0);
-    ///No documentation found
-    pub const PERFORMANCE_VALUE_TYPE_UINT64: Self = Self(1);
-    ///No documentation found
-    pub const PERFORMANCE_VALUE_TYPE_FLOAT: Self = Self(2);
-    ///No documentation found
-    pub const PERFORMANCE_VALUE_TYPE_BOOL: Self = Self(3);
-    ///No documentation found
-    pub const PERFORMANCE_VALUE_TYPE_STRING: Self = Self(4);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -463,6 +319,358 @@ impl PerformanceValueTypeINTEL {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
     }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkPerformanceValueINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceValueINTEL.html) - Container for value and types of parameters that can be queried
+///# C Specifications
+///The [`PerformanceValueINTEL`] structure is defined as:
+///```c
+///// Provided by VK_INTEL_performance_query
+///typedef struct VkPerformanceValueINTEL {
+///    VkPerformanceValueTypeINTEL    type;
+///    VkPerformanceValueDataINTEL    data;
+///} VkPerformanceValueINTEL;
+///```
+///# Members
+/// - [`type_`] is a [`PerformanceValueTypeINTEL`] value specifying the type of the returned data.
+/// - [`data`] is a [`PerformanceValueDataINTEL`] union specifying the value of the returned data.
+///# Description
+///Valid Usage (Implicit)
+/// - [`type_`]**must** be a valid [`PerformanceValueTypeINTEL`] value
+/// - If [`type_`] is `VK_PERFORMANCE_VALUE_TYPE_STRING_INTEL`, the `valueString` member of
+///   [`data`]**must** be a null-terminated UTF-8 string
+///# Related
+/// - [`VK_INTEL_performance_query`]
+/// - [`PerformanceValueDataINTEL`]
+/// - [`PerformanceValueTypeINTEL`]
+/// - [`GetPerformanceParameterINTEL`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PerformanceValueINTEL<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`type_`] is a [`PerformanceValueTypeINTEL`] value specifying the
+    ///type of the returned data.
+    type_: PerformanceValueTypeINTEL,
+    ///[`data`] is a [`PerformanceValueDataINTEL`] union specifying the
+    ///value of the returned data.
+    data: PerformanceValueDataINTEL<'lt>,
+}
+///[VkInitializePerformanceApiInfoINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkInitializePerformanceApiInfoINTEL.html) - Structure specifying parameters of initialize of the device
+///# C Specifications
+///The [`InitializePerformanceApiInfoINTEL`] structure is defined as :
+///```c
+///// Provided by VK_INTEL_performance_query
+///typedef struct VkInitializePerformanceApiInfoINTEL {
+///    VkStructureType    sType;
+///    const void*        pNext;
+///    void*              pUserData;
+///} VkInitializePerformanceApiInfoINTEL;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`p_user_data`] is a pointer for application data.
+///# Description
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_INITIALIZE_PERFORMANCE_API_INFO_INTEL`
+/// - [`p_next`]**must** be `NULL`
+///# Related
+/// - [`VK_INTEL_performance_query`]
+/// - [`StructureType`]
+/// - [`InitializePerformanceApiINTEL`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct InitializePerformanceApiInfoINTEL<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`p_user_data`] is a pointer for application data.
+    p_user_data: *const c_void,
+}
+///[VkQueryPoolPerformanceQueryCreateInfoINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueryPoolPerformanceQueryCreateInfoINTEL.html) - Structure specifying parameters to create a pool of performance queries
+///# C Specifications
+///The [`QueryPoolPerformanceQueryCreateInfoINTEL`] structure is defined
+///as:
+///```c
+///// Provided by VK_INTEL_performance_query
+///typedef struct VkQueryPoolPerformanceQueryCreateInfoINTEL {
+///    VkStructureType                 sType;
+///    const void*                     pNext;
+///    VkQueryPoolSamplingModeINTEL    performanceCountersSampling;
+///} VkQueryPoolPerformanceQueryCreateInfoINTEL;
+///```
+///
+///```c
+///// Provided by VK_INTEL_performance_query
+///typedef VkQueryPoolPerformanceQueryCreateInfoINTEL VkQueryPoolCreateInfoINTEL;
+///```
+///# Members
+///To create a pool for Intel performance queries, set
+///[`QueryPoolCreateInfo::query_type`] to
+///`VK_QUERY_TYPE_PERFORMANCE_QUERY_INTEL` and add a
+///[`QueryPoolPerformanceQueryCreateInfoINTEL`] structure to the
+///[`p_next`] chain of the [`QueryPoolCreateInfo`] structure.
+///# Description
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`performance_counters_sampling`] describe how performance queries should be captured.
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL`
+/// - [`performance_counters_sampling`]**must** be a valid [`QueryPoolSamplingModeINTEL`] value
+///# Related
+/// - [`VK_INTEL_performance_query`]
+/// - [`QueryPoolSamplingModeINTEL`]
+/// - [`StructureType`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`performance_counters_sampling`] describe how performance queries
+    ///should be captured.
+    performance_counters_sampling: QueryPoolSamplingModeINTEL,
+}
+///[VkPerformanceMarkerInfoINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceMarkerInfoINTEL.html) - Structure specifying performance markers
+///# C Specifications
+///The [`PerformanceMarkerInfoINTEL`] structure is defined as:
+///```c
+///// Provided by VK_INTEL_performance_query
+///typedef struct VkPerformanceMarkerInfoINTEL {
+///    VkStructureType    sType;
+///    const void*        pNext;
+///    uint64_t           marker;
+///} VkPerformanceMarkerInfoINTEL;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`marker`] is the marker value that will be recorded into the opaque query results.
+///# Description
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PERFORMANCE_MARKER_INFO_INTEL`
+/// - [`p_next`]**must** be `NULL`
+///# Related
+/// - [`VK_INTEL_performance_query`]
+/// - [`StructureType`]
+/// - [`CmdSetPerformanceMarkerINTEL`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PerformanceMarkerInfoINTEL<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`marker`] is the marker value that will be recorded into the opaque
+    ///query results.
+    marker: u64,
+}
+///[VkPerformanceStreamMarkerInfoINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceStreamMarkerInfoINTEL.html) - Structure specifying stream performance markers
+///# C Specifications
+///The [`PerformanceStreamMarkerInfoINTEL`] structure is defined as:
+///```c
+///// Provided by VK_INTEL_performance_query
+///typedef struct VkPerformanceStreamMarkerInfoINTEL {
+///    VkStructureType    sType;
+///    const void*        pNext;
+///    uint32_t           marker;
+///} VkPerformanceStreamMarkerInfoINTEL;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`marker`] is the marker value that will be recorded into the reports consumed by an external
+///   application.
+///# Description
+///Valid Usage
+/// - The value written by the application into [`marker`]**must** only used the valid bits as
+///   reported by [`GetPerformanceParameterINTEL`] with the
+///   `VK_PERFORMANCE_PARAMETER_TYPE_STREAM_MARKER_VALID_BITS_INTEL`
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PERFORMANCE_STREAM_MARKER_INFO_INTEL`
+/// - [`p_next`]**must** be `NULL`
+///# Related
+/// - [`VK_INTEL_performance_query`]
+/// - [`StructureType`]
+/// - [`CmdSetPerformanceStreamMarkerINTEL`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PerformanceStreamMarkerInfoINTEL<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`marker`] is the marker value that will be recorded into the reports
+    ///consumed by an external application.
+    marker: u32,
+}
+///[VkPerformanceOverrideInfoINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceOverrideInfoINTEL.html) - Performance override information
+///# C Specifications
+///The [`PerformanceOverrideInfoINTEL`] structure is defined as:
+///```c
+///// Provided by VK_INTEL_performance_query
+///typedef struct VkPerformanceOverrideInfoINTEL {
+///    VkStructureType                   sType;
+///    const void*                       pNext;
+///    VkPerformanceOverrideTypeINTEL    type;
+///    VkBool32                          enable;
+///    uint64_t                          parameter;
+///} VkPerformanceOverrideInfoINTEL;
+///```
+///# Members
+/// - [`type_`] is the particular [`PerformanceOverrideTypeINTEL`] to set.
+/// - [`enable`] defines whether the override is enabled.
+/// - [`parameter`] is a potential required parameter for the override.
+///# Description
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PERFORMANCE_OVERRIDE_INFO_INTEL`
+/// - [`p_next`]**must** be `NULL`
+/// - [`type_`]**must** be a valid [`PerformanceOverrideTypeINTEL`] value
+///# Related
+/// - [`VK_INTEL_performance_query`]
+/// - [`Bool32`]
+/// - [`PerformanceOverrideTypeINTEL`]
+/// - [`StructureType`]
+/// - [`CmdSetPerformanceOverrideINTEL`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PerformanceOverrideInfoINTEL<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///No documentation found
+    s_type: StructureType,
+    ///No documentation found
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`type_`] is the particular [`PerformanceOverrideTypeINTEL`] to
+    ///set.
+    type_: PerformanceOverrideTypeINTEL,
+    ///[`enable`] defines whether the override is enabled.
+    enable: Bool32,
+    ///[`parameter`] is a potential required parameter for the override.
+    parameter: u64,
+}
+///[VkPerformanceConfigurationAcquireInfoINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceConfigurationAcquireInfoINTEL.html) - Acquire a configuration to capture performance data
+///# C Specifications
+///The [`PerformanceConfigurationAcquireInfoINTEL`] structure is defined
+///as:
+///```c
+///// Provided by VK_INTEL_performance_query
+///typedef struct VkPerformanceConfigurationAcquireInfoINTEL {
+///    VkStructureType                        sType;
+///    const void*                            pNext;
+///    VkPerformanceConfigurationTypeINTEL    type;
+///} VkPerformanceConfigurationAcquireInfoINTEL;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`type_`] is one of the [`PerformanceConfigurationTypeINTEL`] type of performance
+///   configuration that will be acquired.
+///# Description
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL`
+/// - [`p_next`]**must** be `NULL`
+/// - [`type_`]**must** be a valid [`PerformanceConfigurationTypeINTEL`] value
+///# Related
+/// - [`VK_INTEL_performance_query`]
+/// - [`PerformanceConfigurationTypeINTEL`]
+/// - [`StructureType`]
+/// - [`AcquirePerformanceConfigurationINTEL`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct PerformanceConfigurationAcquireInfoINTEL<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`type_`] is one of the [`PerformanceConfigurationTypeINTEL`] type
+    ///of performance configuration that will be acquired.
+    type_: PerformanceConfigurationTypeINTEL,
 }

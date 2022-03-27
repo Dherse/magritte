@@ -206,7 +206,7 @@ Here are the following families that need to be implemented in the code generato
 
 - [ ] Loaders
 - [ ] Handles
-- [ ] Extensions (doc only)
+- [x] Extensions (doc only)
 - [ ] Opaque types (aliases of `c_void`)
 - [ ] Type aliases
 - [ ] Structs
@@ -216,7 +216,7 @@ Here are the following families that need to be implemented in the code generato
 - [x] Base types
 - [ ] Bit masks
 - [x] Constants
-- [x] Constant aliases
+- [x] Constant aliases - no code generated since we ignore all aliases
 - [ ] Bit mask flags
 - [x] Enums
 - [ ] Function/command aliases

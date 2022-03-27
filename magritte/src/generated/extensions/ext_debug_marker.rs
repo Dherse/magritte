@@ -1,111 +1,12 @@
-//![VK_EXT_debug_marker](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_debug_marker.html) - device extension
-//!# Description
-//!The [`VK_EXT_debug_marker`] extension is a device extension.
-//!It introduces concepts of object naming and tagging, for better tracking of
-//!Vulkan objects, as well as additional commands for recording annotations of
-//!named sections of a workload to aid organization and offline analysis in
-//!external tools.
-//!# Revision
-//!4
-//!# Dependencies
-//! - *Promoted* to
-//!`[`VK_EXT_debug_utils`]`
-//!extension
-//!# Dependencies
-//! - Requires Vulkan 1.0
-//! - Requires `[`VK_EXT_debug_report`]`
-//!# Contacts
-//! - Baldur Karlsson [baldurk](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_debug_marker]
-//!   @baldurk%0A<<Here describe the issue or question you have about the VK_EXT_debug_marker
-//!   extension>>)
-//!# New functions & commands
-//! - [`CmdDebugMarkerBeginEXT`]
-//! - [`CmdDebugMarkerEndEXT`]
-//! - [`CmdDebugMarkerInsertEXT`]
-//! - [`DebugMarkerSetObjectNameEXT`]
-//! - [`DebugMarkerSetObjectTagEXT`]
-//!# New structures
-//! - [`DebugMarkerMarkerInfoEXT`]
-//! - [`DebugMarkerObjectNameInfoEXT`]
-//! - [`DebugMarkerObjectTagInfoEXT`]
-//!# New enums
-//! - [`DebugReportObjectTypeEXT`]
-//!# New constants
-//! - [`EXT_DEBUG_MARKER_EXTENSION_NAME`]
-//! - [`EXT_DEBUG_MARKER_SPEC_VERSION`]
-//! - Extending [`StructureType`]:
-//! - `VK_STRUCTURE_TYPE_DEBUG_MARKER_MARKER_INFO_EXT`
-//! - `VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_NAME_INFO_EXT`
-//! - `VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_TAG_INFO_EXT`
-//!# Known issues & F.A.Q
-//!1) Should the tag or name for an object be specified using the `pNext`
-//!parameter in the object’s `Vk*CreateInfo` structure?**RESOLVED**: No.
-//!While this fits with other Vulkan patterns and would allow more type safety
-//!and future proofing against future objects, it has notable downsides.
-//!In particular passing the name at `Vk*CreateInfo` time does not allow
-//!renaming, prevents late binding of naming information, and does not allow
-//!naming of implicitly created objects such as queues and swapchain images.2) Should the command
-//! annotation functions [`CmdDebugMarkerBeginEXT`]
-//!and [`CmdDebugMarkerEndEXT`] support the ability to specify a color?**RESOLVED**: Yes.
-//!The functions have been expanded to take an optional color which can be used
-//!at will by implementations consuming the command buffer annotations in their
-//!visualisation.3) Should the functions added in this extension accept an extensible
-//!structure as their parameter for a more flexible API, as opposed to direct
-//!function parameters? If so, which functions?**RESOLVED**: Yes.
-//!All functions have been modified to take a structure type with extensible
-//!`pNext` pointer, to allow future extensions to add additional annotation
-//!information in the same commands.
-//!# Version History
-//! - Revision 1, 2016-02-24 (Baldur Karlsson)
-//! - Initial draft, based on LunarG marker spec
-//!
-//! - Revision 2, 2016-02-26 (Baldur Karlsson)
-//! - Renamed Dbg to DebugMarker in function names
-//! - Allow markers in secondary command buffers under certain circumstances
-//! - Minor language tweaks and edits
-//!
-//! - Revision 3, 2016-04-23 (Baldur Karlsson)
-//! - Reorganise spec layout to closer match desired organisation
-//! - Added optional color to markers (both regions and inserted labels)
-//! - Changed functions to take extensible structs instead of direct function
-//!parameters
-//!
-//! - Revision 4, 2017-01-31 (Baldur Karlsson)
-//! - Added explicit dependency on VK_EXT_debug_report
-//! - Moved definition of [`DebugReportObjectTypeEXT`] to debug report
-//!chapter.
-//! - Fixed typo in dates in revision history
-//!# Other info
-//! * 2017-01-31
-//! * No known IP claims.
-//!*
-//! - Baldur Karlsson
-//! - Dan Ginsburg, Valve
-//! - Jon Ashburn, LunarG
-//! - Kyle Spagnoli, NVIDIA
-//!# Related
-//! - [`DebugMarkerMarkerInfoEXT`]
-//! - [`DebugMarkerObjectNameInfoEXT`]
-//! - [`DebugMarkerObjectTagInfoEXT`]
-//! - [`DebugReportObjectTypeEXT`]
-//! - [`CmdDebugMarkerBeginEXT`]
-//! - [`CmdDebugMarkerEndEXT`]
-//! - [`CmdDebugMarkerInsertEXT`]
-//! - [`DebugMarkerSetObjectNameEXT`]
-//! - [`DebugMarkerSetObjectTagEXT`]
-//!
-//!# Notes and documentation
-//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-//!
-//!This documentation is generated from the Vulkan specification and documentation.
-//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-//! Commons Attribution 4.0 International*.
-//!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::vulkan1_0::{BaseInStructure, StructureType};
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::ffi::CStr;
+use std::{
+    ffi::{c_void, CStr},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_DEBUG_MARKER_SPEC_VERSION")]
@@ -197,253 +98,174 @@ pub const EXT_DEBUG_MARKER_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugReportObjectTypeEXT")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(C)]
-pub struct DebugReportObjectTypeEXT(i32);
-impl const Default for DebugReportObjectTypeEXT {
-    fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for DebugReportObjectTypeEXT {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple("DebugReportObjectTypeEXT")
-            .field(match *self {
-                Self::DEBUG_REPORT_OBJECT_TYPE_UNKNOWN => &"DEBUG_REPORT_OBJECT_TYPE_UNKNOWN",
-                Self::DEBUG_REPORT_OBJECT_TYPE_INSTANCE => &"DEBUG_REPORT_OBJECT_TYPE_INSTANCE",
-                Self::DEBUG_REPORT_OBJECT_TYPE_PHYSICAL_DEVICE => &"DEBUG_REPORT_OBJECT_TYPE_PHYSICAL_DEVICE",
-                Self::DEBUG_REPORT_OBJECT_TYPE_DEVICE => &"DEBUG_REPORT_OBJECT_TYPE_DEVICE",
-                Self::DEBUG_REPORT_OBJECT_TYPE_QUEUE => &"DEBUG_REPORT_OBJECT_TYPE_QUEUE",
-                Self::DEBUG_REPORT_OBJECT_TYPE_SEMAPHORE => &"DEBUG_REPORT_OBJECT_TYPE_SEMAPHORE",
-                Self::DEBUG_REPORT_OBJECT_TYPE_COMMAND_BUFFER => &"DEBUG_REPORT_OBJECT_TYPE_COMMAND_BUFFER",
-                Self::DEBUG_REPORT_OBJECT_TYPE_FENCE => &"DEBUG_REPORT_OBJECT_TYPE_FENCE",
-                Self::DEBUG_REPORT_OBJECT_TYPE_DEVICE_MEMORY => &"DEBUG_REPORT_OBJECT_TYPE_DEVICE_MEMORY",
-                Self::DEBUG_REPORT_OBJECT_TYPE_BUFFER => &"DEBUG_REPORT_OBJECT_TYPE_BUFFER",
-                Self::DEBUG_REPORT_OBJECT_TYPE_IMAGE => &"DEBUG_REPORT_OBJECT_TYPE_IMAGE",
-                Self::DEBUG_REPORT_OBJECT_TYPE_EVENT => &"DEBUG_REPORT_OBJECT_TYPE_EVENT",
-                Self::DEBUG_REPORT_OBJECT_TYPE_QUERY_POOL => &"DEBUG_REPORT_OBJECT_TYPE_QUERY_POOL",
-                Self::DEBUG_REPORT_OBJECT_TYPE_BUFFER_VIEW => &"DEBUG_REPORT_OBJECT_TYPE_BUFFER_VIEW",
-                Self::DEBUG_REPORT_OBJECT_TYPE_IMAGE_VIEW => &"DEBUG_REPORT_OBJECT_TYPE_IMAGE_VIEW",
-                Self::DEBUG_REPORT_OBJECT_TYPE_SHADER_MODULE => &"DEBUG_REPORT_OBJECT_TYPE_SHADER_MODULE",
-                Self::DEBUG_REPORT_OBJECT_TYPE_PIPELINE_CACHE => &"DEBUG_REPORT_OBJECT_TYPE_PIPELINE_CACHE",
-                Self::DEBUG_REPORT_OBJECT_TYPE_PIPELINE_LAYOUT => &"DEBUG_REPORT_OBJECT_TYPE_PIPELINE_LAYOUT",
-                Self::DEBUG_REPORT_OBJECT_TYPE_RENDER_PASS => &"DEBUG_REPORT_OBJECT_TYPE_RENDER_PASS",
-                Self::DEBUG_REPORT_OBJECT_TYPE_PIPELINE => &"DEBUG_REPORT_OBJECT_TYPE_PIPELINE",
-                Self::DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT => {
-                    &"DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT"
-                },
-                Self::DEBUG_REPORT_OBJECT_TYPE_SAMPLER => &"DEBUG_REPORT_OBJECT_TYPE_SAMPLER",
-                Self::DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_POOL => &"DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_POOL",
-                Self::DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET => &"DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET",
-                Self::DEBUG_REPORT_OBJECT_TYPE_FRAMEBUFFER => &"DEBUG_REPORT_OBJECT_TYPE_FRAMEBUFFER",
-                Self::DEBUG_REPORT_OBJECT_TYPE_COMMAND_POOL => &"DEBUG_REPORT_OBJECT_TYPE_COMMAND_POOL",
-                Self::DEBUG_REPORT_OBJECT_TYPE_SURFACE_KHR => &"DEBUG_REPORT_OBJECT_TYPE_SURFACE_KHR",
-                Self::DEBUG_REPORT_OBJECT_TYPE_SWAPCHAIN_KHR => &"DEBUG_REPORT_OBJECT_TYPE_SWAPCHAIN_KHR",
-                Self::DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_CALLBACK => {
-                    &"DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_CALLBACK"
-                },
-                Self::DEBUG_REPORT_OBJECT_TYPE_DISPLAY_KHR => &"DEBUG_REPORT_OBJECT_TYPE_DISPLAY_KHR",
-                Self::DEBUG_REPORT_OBJECT_TYPE_DISPLAY_MODE_KHR => &"DEBUG_REPORT_OBJECT_TYPE_DISPLAY_MODE_KHR",
-                Self::DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE => &"DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE",
-                Self::DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION => {
-                    &"DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION"
-                },
-                Self::DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE => {
-                    &"DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE"
-                },
-                Self::DEBUG_REPORT_OBJECT_TYPE_CU_MODULE_NVX => &"DEBUG_REPORT_OBJECT_TYPE_CU_MODULE_NVX",
-                Self::DEBUG_REPORT_OBJECT_TYPE_CU_FUNCTION_NVX => &"DEBUG_REPORT_OBJECT_TYPE_CU_FUNCTION_NVX",
-                Self::DEBUG_REPORT_OBJECT_TYPE_ACCELERATION_STRUCTURE_KHR => {
-                    &"DEBUG_REPORT_OBJECT_TYPE_ACCELERATION_STRUCTURE_KHR"
-                },
-                Self::DEBUG_REPORT_OBJECT_TYPE_ACCELERATION_STRUCTURE_NV => {
-                    &"DEBUG_REPORT_OBJECT_TYPE_ACCELERATION_STRUCTURE_NV"
-                },
-                Self::DEBUG_REPORT_OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA => {
-                    &"DEBUG_REPORT_OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA"
-                },
-                other => unreachable!("invalid value for `DebugReportObjectTypeEXT`: {:?}", other),
-            })
-            .finish()
-    }
-}
-impl DebugReportObjectTypeEXT {
+#[repr(i32)]
+pub enum DebugReportObjectTypeEXT {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_UNKNOWN: Self = Self(0);
+    DebugReportObjectTypeUnknownExt = 0,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_INSTANCE: Self = Self(1);
+    DebugReportObjectTypeInstanceExt = 1,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_PHYSICAL_DEVICE: Self = Self(2);
+    DebugReportObjectTypePhysicalDeviceExt = 2,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_DEVICE: Self = Self(3);
+    DebugReportObjectTypeDeviceExt = 3,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_QUEUE: Self = Self(4);
+    DebugReportObjectTypeQueueExt = 4,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_SEMAPHORE: Self = Self(5);
+    DebugReportObjectTypeSemaphoreExt = 5,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_COMMAND_BUFFER: Self = Self(6);
+    DebugReportObjectTypeCommandBufferExt = 6,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_FENCE: Self = Self(7);
+    DebugReportObjectTypeFenceExt = 7,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_DEVICE_MEMORY: Self = Self(8);
+    DebugReportObjectTypeDeviceMemoryExt = 8,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_BUFFER: Self = Self(9);
+    DebugReportObjectTypeBufferExt = 9,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_IMAGE: Self = Self(10);
+    DebugReportObjectTypeImageExt = 10,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_EVENT: Self = Self(11);
+    DebugReportObjectTypeEventExt = 11,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_QUERY_POOL: Self = Self(12);
+    DebugReportObjectTypeQueryPoolExt = 12,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_BUFFER_VIEW: Self = Self(13);
+    DebugReportObjectTypeBufferViewExt = 13,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_IMAGE_VIEW: Self = Self(14);
+    DebugReportObjectTypeImageViewExt = 14,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_SHADER_MODULE: Self = Self(15);
+    DebugReportObjectTypeShaderModuleExt = 15,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_PIPELINE_CACHE: Self = Self(16);
+    DebugReportObjectTypePipelineCacheExt = 16,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_PIPELINE_LAYOUT: Self = Self(17);
+    DebugReportObjectTypePipelineLayoutExt = 17,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_RENDER_PASS: Self = Self(18);
+    DebugReportObjectTypeRenderPassExt = 18,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_PIPELINE: Self = Self(19);
+    DebugReportObjectTypePipelineExt = 19,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT: Self = Self(20);
+    DebugReportObjectTypeDescriptorSetLayoutExt = 20,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_SAMPLER: Self = Self(21);
+    DebugReportObjectTypeSamplerExt = 21,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_POOL: Self = Self(22);
+    DebugReportObjectTypeDescriptorPoolExt = 22,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET: Self = Self(23);
+    DebugReportObjectTypeDescriptorSetExt = 23,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_FRAMEBUFFER: Self = Self(24);
+    DebugReportObjectTypeFramebufferExt = 24,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_COMMAND_POOL: Self = Self(25);
+    DebugReportObjectTypeCommandPoolExt = 25,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_SURFACE_KHR: Self = Self(26);
+    DebugReportObjectTypeSurfaceKhrExt = 26,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_SWAPCHAIN_KHR: Self = Self(27);
+    DebugReportObjectTypeSwapchainKhrExt = 27,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_CALLBACK: Self = Self(28);
+    DebugReportObjectTypeDebugReportCallbackExtExt = 28,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_DISPLAY_KHR: Self = Self(29);
+    DebugReportObjectTypeDisplayKhrExt = 29,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_DISPLAY_MODE_KHR: Self = Self(30);
+    DebugReportObjectTypeDisplayModeKhrExt = 30,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE: Self = Self(33);
+    DebugReportObjectTypeValidationCacheExtExt = 33,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_sampler_ycbcr_conversion`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION: Self = Self(1000156000);
+    DebugReportObjectTypeSamplerYcbcrConversionExt = 1000156000,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE: Self = Self(1000085000);
+    DebugReportObjectTypeDescriptorUpdateTemplateExt = 1000085000,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nvx_binary_import`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_CU_MODULE_NVX: Self = Self(1000029000);
+    DebugReportObjectTypeCuModuleNvxExt = 1000029000,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nvx_binary_import`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_CU_FUNCTION_NVX: Self = Self(1000029001);
+    DebugReportObjectTypeCuFunctionNvxExt = 1000029001,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_acceleration_structure`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_ACCELERATION_STRUCTURE_KHR: Self = Self(1000150000);
+    DebugReportObjectTypeAccelerationStructureKhrExt = 1000150000,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_ACCELERATION_STRUCTURE_NV: Self = Self(1000165000);
+    DebugReportObjectTypeAccelerationStructureNvExt = 1000165000,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::fuchsia_buffer_collection`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA: Self = Self(1000366000);
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT: Self = Self::DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_CALLBACK;
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::ext_debug_report`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE: Self = Self::DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE;
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::khr_descriptor_update_template`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR: Self =
-        Self::DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE;
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::khr_sampler_ycbcr_conversion`]
-    pub const DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_KHR: Self =
-        Self::DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION;
+    DebugReportObjectTypeBufferCollectionFuchsiaExt = 1000366000,
+}
+impl const Default for DebugReportObjectTypeEXT {
+    fn default() -> Self {
+        DebugReportObjectTypeUnknownExt
+    }
+}
+impl DebugReportObjectTypeEXT {
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -452,6 +274,214 @@ impl DebugReportObjectTypeEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self.0
+        self as i32
     }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: i32) -> i32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkDebugMarkerObjectNameInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugMarkerObjectNameInfoEXT.html) - Specify parameters of a name to give to an object
+///# C Specifications
+///The [`DebugMarkerObjectNameInfoEXT`] structure is defined as:
+///```c
+///// Provided by VK_EXT_debug_marker
+///typedef struct VkDebugMarkerObjectNameInfoEXT {
+///    VkStructureType               sType;
+///    const void*                   pNext;
+///    VkDebugReportObjectTypeEXT    objectType;
+///    uint64_t                      object;
+///    const char*                   pObjectName;
+///} VkDebugMarkerObjectNameInfoEXT;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`object_type`] is a [`DebugReportObjectTypeEXT`] specifying the type of the object to be
+///   named.
+/// - [`object`] is the object to be named.
+/// - [`p_object_name`] is a null-terminated UTF-8 string specifying the name to apply to
+///   [`object`].
+///# Description
+///Applications **may** change the name associated with an object simply by
+///calling [`DebugMarkerSetObjectNameEXT`] again with a new string.
+///To remove a previously set name, [`p_object_name`]**should** be set to an
+///empty string.Valid Usage
+/// - [`object_type`]**must** not be `VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT`
+/// - [`object`]**must** not be [`crate::utils::Handle::null`]
+/// -  [`object`]**must** be a Vulkan object of the type associated with [`object_type`] as defined in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types)
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_NAME_INFO_EXT`
+/// - [`p_next`]**must** be `NULL`
+/// - [`object_type`]**must** be a valid [`DebugReportObjectTypeEXT`] value
+/// - [`p_object_name`]**must** be a null-terminated UTF-8 string
+///# Related
+/// - [`VK_EXT_debug_marker`]
+/// - [`DebugReportObjectTypeEXT`]
+/// - [`StructureType`]
+/// - [`DebugMarkerSetObjectNameEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct DebugMarkerObjectNameInfoEXT<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`object_type`] is a [`DebugReportObjectTypeEXT`] specifying the
+    ///type of the object to be named.
+    object_type: DebugReportObjectTypeEXT,
+    ///[`object`] is the object to be named.
+    object: u64,
+    ///[`p_object_name`] is a null-terminated UTF-8 string specifying the name
+    ///to apply to [`object`].
+    p_object_name: &'lt CStr,
+}
+///[VkDebugMarkerObjectTagInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugMarkerObjectTagInfoEXT.html) - Specify parameters of a tag to attach to an object
+///# C Specifications
+///The [`DebugMarkerObjectTagInfoEXT`] structure is defined as:
+///```c
+///// Provided by VK_EXT_debug_marker
+///typedef struct VkDebugMarkerObjectTagInfoEXT {
+///    VkStructureType               sType;
+///    const void*                   pNext;
+///    VkDebugReportObjectTypeEXT    objectType;
+///    uint64_t                      object;
+///    uint64_t                      tagName;
+///    size_t                        tagSize;
+///    const void*                   pTag;
+///} VkDebugMarkerObjectTagInfoEXT;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`object_type`] is a [`DebugReportObjectTypeEXT`] specifying the type of the object to be
+///   named.
+/// - [`object`] is the object to be tagged.
+/// - [`tag_name`] is a numerical identifier of the tag.
+/// - [`tag_size`] is the number of bytes of data to attach to the object.
+/// - [`p_tag`] is a pointer to an array of [`tag_size`] bytes containing the data to be associated
+///   with the object.
+///# Description
+///The [`tag_name`] parameter gives a name or identifier to the type of data
+///being tagged.
+///This can be used by debugging layers to easily filter for only data that can
+///be used by that implementation.Valid Usage
+/// - [`object_type`]**must** not be `VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT`
+/// - [`object`]**must** not be [`crate::utils::Handle::null`]
+/// -  [`object`]**must** be a Vulkan object of the type associated with [`object_type`] as defined in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types)
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_TAG_INFO_EXT`
+/// - [`p_next`]**must** be `NULL`
+/// - [`object_type`]**must** be a valid [`DebugReportObjectTypeEXT`] value
+/// - [`p_tag`]**must** be a valid pointer to an array of [`tag_size`] bytes
+/// - [`tag_size`]**must** be greater than `0`
+///# Related
+/// - [`VK_EXT_debug_marker`]
+/// - [`DebugReportObjectTypeEXT`]
+/// - [`StructureType`]
+/// - [`DebugMarkerSetObjectTagEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct DebugMarkerObjectTagInfoEXT<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`object_type`] is a [`DebugReportObjectTypeEXT`] specifying the
+    ///type of the object to be named.
+    object_type: DebugReportObjectTypeEXT,
+    ///[`object`] is the object to be tagged.
+    object: u64,
+    ///[`tag_name`] is a numerical identifier of the tag.
+    tag_name: u64,
+    ///[`tag_size`] is the number of bytes of data to attach to the object.
+    tag_size: usize,
+    ///[`p_tag`] is a pointer to an array of [`tag_size`] bytes containing
+    ///the data to be associated with the object.
+    p_tag: *mut c_void,
+}
+///[VkDebugMarkerMarkerInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugMarkerMarkerInfoEXT.html) - Specify parameters of a command buffer marker region
+///# C Specifications
+///The [`DebugMarkerMarkerInfoEXT`] structure is defined as:
+///```c
+///// Provided by VK_EXT_debug_marker
+///typedef struct VkDebugMarkerMarkerInfoEXT {
+///    VkStructureType    sType;
+///    const void*        pNext;
+///    const char*        pMarkerName;
+///    float              color[4];
+///} VkDebugMarkerMarkerInfoEXT;
+///```
+///# Members
+/// - [`s_type`] is the type of this structure.
+/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`p_marker_name`] is a pointer to a null-terminated UTF-8 string containing the name of the
+///   marker.
+/// - [`color`] is an **optional** RGBA color value that can be associated with the marker. A
+///   particular implementation **may** choose to ignore this color value. The values contain RGBA
+///   values in order, in the range 0.0 to 1.0. If all elements in [`color`] are set to 0.0 then it
+///   is ignored.
+///# Description
+///Valid Usage (Implicit)
+/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEBUG_MARKER_MARKER_INFO_EXT`
+/// - [`p_next`]**must** be `NULL`
+/// - [`p_marker_name`]**must** be a null-terminated UTF-8 string
+///# Related
+/// - [`VK_EXT_debug_marker`]
+/// - [`StructureType`]
+/// - [`CmdDebugMarkerBeginEXT`]
+/// - [`CmdDebugMarkerInsertEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(C)]
+pub struct DebugMarkerMarkerInfoEXT<'lt> {
+    _lifetime: PhantomData<&'lt ()>,
+    ///[`s_type`] is the type of this structure.
+    s_type: StructureType,
+    ///[`p_next`] is `NULL` or a pointer to a structure extending this
+    ///structure.
+    p_next: *mut BaseInStructure<'lt>,
+    ///[`p_marker_name`] is a pointer to a null-terminated UTF-8 string
+    ///containing the name of the marker.
+    p_marker_name: &'lt CStr,
+    ///[`color`] is an **optional** RGBA color value that can be associated with
+    ///the marker.
+    ///A particular implementation **may** choose to ignore this color value.
+    ///The values contain RGBA values in order, in the range 0.0 to 1.0.
+    ///If all elements in [`color`] are set to 0.0 then it is ignored.
+    color: [f32; 4],
 }

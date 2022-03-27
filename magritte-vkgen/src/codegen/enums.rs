@@ -1,5 +1,5 @@
 use ahash::AHashMap;
-use proc_macro2::{Literal, TokenStream};
+use proc_macro2::{Ident, Literal, Span, TokenStream};
 use quote::quote;
 use tracing::warn;
 
@@ -7,48 +7,13 @@ use crate::{
     doc::Documentation,
     imports::Imports,
     origin::Origin,
-    source::{Alias, Bit, Enum, Source},
+    source::{Bit, Enum, Source},
 };
 
 use super::alias_of;
 
-impl<'a> Alias<'a> {
-    fn generate_code(&self, parent: &Enum<'a>, doc: &AHashMap<String, String>) -> TokenStream {
-        // get the doc of the bit
-        let doc = doc.get(self.of()).map_or_else(
-            || quote! { #[doc = "No documentation found"]},
-            |t| quote! { #[doc = #t] },
-        );
-
-        // get the "provided by" of the bit
-        let provided_by = (parent.origin() != self.origin()).then(|| {
-            let path = self.origin().as_path_str();
-            let doc = format!("\nProvided by [`{}`]", path);
-            quote! {
-                #[doc = #doc]
-            }
-        });
-
-        // get the name
-        let name = self.as_ident();
-
-        let of = parent
-            .variants()
-            .get_by_either(self.of())
-            .map(Bit::as_ident)
-            .or_else(|| parent.aliases.get_by_either(self.of()).map(Alias::as_ident))
-            .unwrap();
-
-        quote! {
-            #doc
-            #provided_by
-            pub const #name: Self = Self::#of;
-        }
-    }
-}
-
 impl<'a> Bit<'a> {
-    fn generate_code(&self, parent: &Origin<'a>, doc: &AHashMap<String, String>) -> TokenStream {
+    fn generate_enum_variant(&self, parent: &Origin<'a>, doc: &AHashMap<String, String>) -> TokenStream {
         // get the doc of the bit
         let doc = doc.get(self.name()).map_or_else(
             || quote! { #[doc = "No documentation found"]},
@@ -71,22 +36,13 @@ impl<'a> Bit<'a> {
         quote! {
             #doc
             #provided_by
-            pub const #name: Self = Self(#value);
-        }
-    }
-
-    fn as_debug_match_arm(&self) -> TokenStream {
-        let ident = self.as_ident();
-        let name = self.name();
-
-        quote! {
-            Self::#ident => &#name
+            #name = #value,
         }
     }
 }
 
 impl<'a> Enum<'a> {
-    /// Generates the code for a constant
+    /// Generates the code for an enum
     pub(super) fn generate_code(
         &self,
         source: &Source<'a>,
@@ -107,59 +63,49 @@ impl<'a> Enum<'a> {
         // creates a doc alias if the name has been changed
         alias_of(self.original_name(), self.name(), out);
 
+        let has_empty = self.variants().iter().any(|v| v.value() == 0);
+
+        // create an empty declaration if none exists
+        let empty_decl = (!has_empty).then(|| {
+            quote! {
+                #[doc(hidden)]
+                Empty = 0,
+            }
+        });
+
+        // get the default (empty) value or use the empty declaration if non exists
+        let default = self
+            .variants()
+            .iter()
+            .find(|v| v.value() == 0)
+            .map_or_else(|| Ident::new("Empty", Span::call_site()), |v| v.as_ident());
+
         // generate the code for each bit
         let bits = self
             .variants()
             .iter()
             .filter(|v| !v.origin().is_disabled())
-            .map(|v| v.generate_code(self.origin(), &variant_docs));
+            .map(|v| v.generate_enum_variant(self.origin(), &variant_docs));
 
-        // generate the code for each alias
-        let aliases = self
-            .aliases()
-            .iter()
-            .filter(|v| !v.origin().is_disabled())
-            .map(|v| v.generate_code(self, &variant_docs));
-
-        // generate the debug match arms of each bit
-        let debugs = self
-            .variants()
-            .iter()
-            .filter(|v| !v.origin().is_disabled())
-            .map(Bit::as_debug_match_arm);
-
-        let name_as_str = self.name();
-        let invalid_value_str = format!("invalid value for `{}`: {{:?}}", name_as_str);
         quote::quote_each_token! {
             out
 
-            #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+            #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
             #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
             #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-            #[repr(C)]
-            pub struct #name(i32);
+            #[repr(i32)]
+            pub enum #name {
+                #empty_decl
+                #(#bits)*
+            }
 
             impl const Default for #name {
                 fn default() -> Self {
-                    Self(0)
-                }
-            }
-
-            impl std::fmt::Debug for #name {
-                fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-                    f.debug_tuple(#name_as_str)
-                        .field(match *self {
-                            #(#debugs,)*
-                            other => unreachable!(#invalid_value_str, other),
-                        })
-                        .finish()
+                    #default
                 }
             }
 
             impl #name {
-                #(#bits)*
-                #(#aliases)*
-
                 #[doc = "Default empty value"]
                 #[inline]
                 pub const fn empty() -> Self {
@@ -169,7 +115,13 @@ impl<'a> Enum<'a> {
                 #[doc = "Gets the raw underlying value"]
                 #[inline]
                 pub const fn bits(&self) -> i32 {
-                    self.0
+                    self as i32
+                }
+
+                #[doc = "Gets a value from a raw underlying value, unchecked and therefore unsafe"]
+                #[inline]
+                pub const unsafe fn from_bits(bits: i32) -> i32 {
+                    std::mem::transmute(bits)
                 }
             }
         }

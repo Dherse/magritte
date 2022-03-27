@@ -20,7 +20,10 @@ impl<'a> Expr<'a> {
                 let (origin, ident) = match ref_ {
                     Ref::Const(const_) => (const_.origin(), const_.as_ident()),
                     Ref::ConstAlias(const_) => (const_.origin(), const_.as_ident()),
-                    other => unreachable!("a constant should be a constant, found: {:?}", other),
+                    other => unreachable!(
+                        "a constant should be a constant or a constant alias, found: {:?}",
+                        other
+                    ),
                 };
 
                 if let Some(imports) = imports {

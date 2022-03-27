@@ -6,6 +6,7 @@ mod constants;
 mod enums;
 mod expr;
 mod extensions;
+mod structs;
 pub mod ty;
 
 use ahash::AHashMap;
@@ -14,7 +15,7 @@ use proc_macro2::TokenStream;
 use crate::{doc::Documentation, imports::Imports, origin::Origin, source::Source};
 
 #[doc(hidden)]
-pub struct CodeOut(pub Origin<'static>, pub Imports, pub TokenStream, pub TokenStream);
+pub struct CodeOut(pub Origin<'static>, pub Imports, pub TokenStream);
 
 unsafe impl Send for CodeOut {}
 
@@ -25,7 +26,7 @@ impl<'a> Source<'a> {
             .origins
             .iter()
             .filter(|o| !o.is_disabled())
-            .map(|o| (o, (Imports::new(o), TokenStream::new(), TokenStream::new())))
+            .map(|o| (o, (Imports::new(o), TokenStream::new())))
             .collect::<AHashMap<_, _>>();
 
         for const_ in &self.constants {
@@ -33,19 +34,9 @@ impl<'a> Source<'a> {
                 continue;
             }
 
-            let (imports, _, out) = per_origin.get_mut(const_.origin()).unwrap();
+            let (imports, out) = per_origin.get_mut(const_.origin()).unwrap();
 
             const_.generate_code(self, doc, imports, out);
-        }
-
-        for const_alias in &self.constant_aliases {
-            if const_alias.origin().is_disabled() {
-                continue;
-            }
-
-            let (imports, _, out) = per_origin.get_mut(const_alias.origin()).unwrap();
-
-            const_alias.generate_code(self, doc, imports, out);
         }
 
         for basetype in &self.basetypes {
@@ -53,7 +44,7 @@ impl<'a> Source<'a> {
                 continue;
             }
 
-            let (imports, _, out) = per_origin.get_mut(basetype.origin()).unwrap();
+            let (imports, out) = per_origin.get_mut(basetype.origin()).unwrap();
 
             basetype.generate_code(self, doc, imports, out);
         }
@@ -63,24 +54,24 @@ impl<'a> Source<'a> {
                 continue;
             }
 
-            let (imports, _, out) = per_origin.get_mut(enum_.origin()).unwrap();
+            let (imports, out) = per_origin.get_mut(enum_.origin()).unwrap();
 
             enum_.generate_code(self, doc, imports, out);
         }
 
-        for ext in &self.extensions {
-            if ext.origin().is_disabled() {
+        for struct_ in &self.structs {
+            if struct_.origin().is_disabled() {
                 continue;
             }
 
-            let (_, header, _) = per_origin.get_mut(ext.origin()).unwrap();
+            let (imports, out) = per_origin.get_mut(struct_.origin()).unwrap();
 
-            ext.generate_mod_doc(self, doc, header);
+            struct_.generate_raw_code(self, doc, imports, out);
         }
 
         per_origin
             .into_iter()
-            .map(|(key, (i, h, t))| CodeOut(key.as_static(), i, h, t))
+            .map(|(key, (i, t))| CodeOut(key.as_static(), i, t))
             .collect()
     }
 }

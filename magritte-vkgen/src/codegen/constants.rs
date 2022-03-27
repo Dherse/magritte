@@ -5,7 +5,7 @@ use crate::{
     codegen::alias_of,
     doc::Documentation,
     imports::Imports,
-    source::{Const, ConstAlias, Source},
+    source::{Const, Source},
 };
 
 impl<'a> Const<'a> {
@@ -66,7 +66,7 @@ impl<'a> Const<'a> {
     }
 }
 
-impl<'a> ConstAlias<'a> {
+/*impl<'a> ConstAlias<'a> {
     /// Generates the code for a constant
     pub(super) fn generate_code(
         &self,
@@ -102,4 +102,4 @@ impl<'a> ConstAlias<'a> {
             pub const #name: #ty = #of_ident;
         }
     }
-}
+}*/

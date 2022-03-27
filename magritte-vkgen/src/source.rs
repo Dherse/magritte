@@ -31,9 +31,9 @@ use vk_parse::{
 
 use crate::{
     expr::Expr,
-    name::{const_name, funcpointer_name, tag_of_type, type_name},
+    name::{const_name, enum_name, funcpointer_name, tag_of_type, type_name},
     origin::Origin,
-    symbols::SymbolTable,
+    symbols::{SymbolName, SymbolTable},
     ty::{Mutability, Ty},
 };
 
@@ -63,6 +63,9 @@ pub use self::{
 /// for easier code generation.
 #[derive(Debug, Clone, PartialEq, Default)]
 pub struct Source<'a> {
+    /// Global symbol table
+    global: SymbolTable<'a, (Cow<'a, str>, String, SourceType, usize)>,
+
     /// The vendors defined in the Vulkan specification
     pub vendors: SymbolTable<'a, Vendor<'a>>,
 
@@ -169,33 +172,208 @@ impl<'a> Source<'a> {
         info!(" - {:3} commands", this.commands.len());
         info!(" - {:3} origins", this.origins.len());
 
+        this.global.extend(this.commands.iter().enumerate().map(|(idx, value)| {
+            (
+                SymbolName::name(value),
+                SymbolName::pretty_name(value),
+                SourceType::Command,
+                idx,
+            )
+        }));
+
+        this.global
+            .extend(this.functions.iter().enumerate().map(|(idx, value)| {
+                (
+                    SymbolName::name(value),
+                    SymbolName::pretty_name(value),
+                    SourceType::Function,
+                    idx,
+                )
+            }));
+
+        this.global
+            .extend(this.command_aliases.iter().enumerate().map(|(idx, value)| {
+                (
+                    SymbolName::name(value),
+                    SymbolName::pretty_name(value),
+                    SourceType::CommandAlias,
+                    idx,
+                )
+            }));
+
+        this.global.extend(this.enums.iter().enumerate().map(|(idx, value)| {
+            (
+                SymbolName::name(value),
+                SymbolName::pretty_name(value),
+                SourceType::Enum,
+                idx,
+            )
+        }));
+
+        this.global.extend(this.bitflags.iter().enumerate().map(|(idx, value)| {
+            (
+                SymbolName::name(value),
+                SymbolName::pretty_name(value),
+                SourceType::Bitflag,
+                idx,
+            )
+        }));
+
+        this.global
+            .extend(this.constant_aliases.iter().enumerate().map(|(idx, value)| {
+                (
+                    SymbolName::name(value),
+                    SymbolName::pretty_name(value),
+                    SourceType::ConstantAlias,
+                    idx,
+                )
+            }));
+
+        this.global
+            .extend(this.constants.iter().enumerate().map(|(idx, value)| {
+                (
+                    SymbolName::name(value),
+                    SymbolName::pretty_name(value),
+                    SourceType::Constant,
+                    idx,
+                )
+            }));
+
+        this.global.extend(this.bitmasks.iter().enumerate().map(|(idx, value)| {
+            (
+                SymbolName::name(value),
+                SymbolName::pretty_name(value),
+                SourceType::Bitmask,
+                idx,
+            )
+        }));
+
+        this.global
+            .extend(this.basetypes.iter().enumerate().map(|(idx, value)| {
+                (
+                    SymbolName::name(value),
+                    SymbolName::pretty_name(value),
+                    SourceType::BaseType,
+                    idx,
+                )
+            }));
+
+        this.global
+            .extend(this.funcpointers.iter().enumerate().map(|(idx, value)| {
+                (
+                    SymbolName::name(value),
+                    SymbolName::pretty_name(value),
+                    SourceType::FunctionPointer,
+                    idx,
+                )
+            }));
+
+        this.global.extend(this.unions.iter().enumerate().map(|(idx, value)| {
+            (
+                SymbolName::name(value),
+                SymbolName::pretty_name(value),
+                SourceType::Union,
+                idx,
+            )
+        }));
+
+        this.global.extend(this.handles.iter().enumerate().map(|(idx, value)| {
+            (
+                SymbolName::name(value),
+                SymbolName::pretty_name(value),
+                SourceType::Handle,
+                idx,
+            )
+        }));
+
+        this.global.extend(this.structs.iter().enumerate().map(|(idx, value)| {
+            (
+                SymbolName::name(value),
+                SymbolName::pretty_name(value),
+                SourceType::Struct,
+                idx,
+            )
+        }));
+
+        this.global.extend(this.aliases.iter().enumerate().map(|(idx, value)| {
+            (
+                SymbolName::name(value),
+                SymbolName::pretty_name(value),
+                SourceType::Alias,
+                idx,
+            )
+        }));
+
+        this.global
+            .extend(this.opaque_types.iter().enumerate().map(|(idx, value)| {
+                (
+                    SymbolName::name(value),
+                    SymbolName::pretty_name(value),
+                    SourceType::Opaque,
+                    idx,
+                )
+            }));
+
+        this.global
+            .extend(this.extensions.iter().enumerate().map(|(idx, value)| {
+                (
+                    SymbolName::name(value),
+                    SymbolName::pretty_name(value),
+                    SourceType::Extension,
+                    idx,
+                )
+            }));
+
+        this.global.extend(this.tags.iter().enumerate().map(|(idx, value)| {
+            (
+                SymbolName::name(value),
+                SymbolName::pretty_name(value),
+                SourceType::Tag,
+                idx,
+            )
+        }));
+
+        this.global.extend(this.vendors.iter().enumerate().map(|(idx, value)| {
+            (
+                SymbolName::name(value),
+                SymbolName::pretty_name(value),
+                SourceType::Vendor,
+                idx,
+            )
+        }));
+
         this
     }
 
     /// Finds a value defined in the Vulkan spefification and returns it if it exists.
     #[inline]
     pub fn find(&self, name: &str) -> Option<Ref<'a, '_>> {
-        self.vendors
-            .get_by_either(name)
-            .map(Ref::Vendor)
-            .or_else(|| self.extensions.get_by_either(name).map(Ref::Extension))
-            .or_else(|| self.tags.get_by_either(name).map(Ref::Tag))
-            .or_else(|| self.opaque_types.get_by_either(name).map(Ref::OpaqueType))
-            .or_else(|| self.aliases.get_by_either(name).map(Ref::Alias))
-            .or_else(|| self.structs.get_by_either(name).map(Ref::Struct))
-            .or_else(|| self.unions.get_by_either(name).map(Ref::Union))
-            .or_else(|| self.handles.get_by_either(name).map(Ref::Handle))
-            .or_else(|| self.funcpointers.get_by_either(name).map(Ref::FunctionPointer))
-            .or_else(|| self.basetypes.get_by_either(name).map(Ref::Basetype))
-            .or_else(|| self.bitmasks.get_by_either(name).map(Ref::Bitmask))
-            .or_else(|| self.constants.get_by_either(name).map(Ref::Const))
-            .or_else(|| self.constant_aliases.get_by_either(name).map(Ref::ConstAlias))
-            .or_else(|| self.bitflags.get_by_either(name).map(Ref::BitFlag))
-            .or_else(|| self.enums.get_by_either(name).map(Ref::Enum))
-            .or_else(|| self.command_aliases.get_by_either(name).map(Ref::CommandAlias))
-            .or_else(|| self.functions.get_by_either(name).map(Ref::Function))
-            .or_else(|| self.commands.get_by_either(name).map(|f| Ref::Function(f)))
-            .or_else(|| self.origins.get_by_either(name).map(Ref::Origin))
+        if let Some((_, _, ty, idx)) = self.global.get_by_either(name) {
+            match ty {
+                SourceType::Vendor => self.vendors.get(*idx).map(Ref::Vendor),
+                SourceType::Extension => self.extensions.get(*idx).map(Ref::Extension),
+                SourceType::Tag => self.tags.get(*idx).map(Ref::Tag),
+                SourceType::Opaque => self.opaque_types.get(*idx).map(Ref::OpaqueType),
+                SourceType::Alias => self.aliases.get(*idx).map(Ref::Alias),
+                SourceType::Struct => self.structs.get(*idx).map(Ref::Struct),
+                SourceType::Union => self.unions.get(*idx).map(Ref::Union),
+                SourceType::Handle => self.handles.get(*idx).map(Ref::Handle),
+                SourceType::FunctionPointer => self.funcpointers.get(*idx).map(Ref::FunctionPointer),
+                SourceType::BaseType => self.basetypes.get(*idx).map(Ref::Basetype),
+                SourceType::Bitmask => self.bitmasks.get(*idx).map(Ref::Bitmask),
+                SourceType::Constant => self.constants.get(*idx).map(Ref::Const),
+                SourceType::ConstantAlias => self.constant_aliases.get(*idx).map(Ref::ConstAlias),
+                SourceType::Bitflag => self.bitflags.get(*idx).map(Ref::BitFlag),
+                SourceType::Enum => self.enums.get(*idx).map(Ref::Enum),
+                SourceType::CommandAlias => self.command_aliases.get(*idx).map(Ref::CommandAlias),
+                SourceType::Function => self.functions.get(*idx).map(Ref::Function),
+                SourceType::Command => self.commands.get(*idx).map(|f| Ref::Function(f)),
+            }
+        } else if let Some(v) = self.origins.get_by_either(name) {
+            Some(Ref::Origin(v))
+        } else {
+            None
+        }
     }
 
     /// Resolves a chain of aliases to the original reference.
@@ -268,7 +446,7 @@ impl<'a> Source<'a> {
         );
 
         self.extensions.push(Extension::new(
-            name,
+            name.clone(),
             disabled,
             id,
             ty,
@@ -381,7 +559,7 @@ impl<'a> Source<'a> {
                                 let tag = tag_of_type(item.original_name(), &self.tags[..]);
 
                                 let original_name = name;
-                                let name = const_name(original_name, tag);
+                                let name = enum_name(original_name, tag, Some(extends));
 
                                 item.aliases_mut().push(Alias::new(original_name, name, alias, origin));
                             } else {
@@ -421,7 +599,7 @@ impl<'a> Source<'a> {
                             let tag = tag_of_type(item.original_name(), &self.tags[..]);
 
                             let original_name = name;
-                            let name = const_name(original_name, tag);
+                            let name = enum_name(original_name, tag, Some(extends));
 
                             item.variants_mut().push(Bit::new(original_name, name, value, origin));
                         } else {
@@ -447,7 +625,7 @@ impl<'a> Source<'a> {
                                 let tag = tag_of_type(item.original_name(), &self.tags[..]);
 
                                 let original_name = name;
-                                let name = const_name(original_name, tag);
+                                let name = enum_name(original_name, tag, Some(extends));
 
                                 item.variants_mut().push(Bit::new(original_name, name, value, origin));
                             } else {
@@ -487,7 +665,7 @@ impl<'a> Source<'a> {
                                 let tag = tag_of_type(item.original_name(), &self.tags[..]);
 
                                 let original_name = name;
-                                let name = const_name(original_name, tag);
+                                let name = enum_name(original_name, tag, Some(extends));
 
                                 item.variants_mut()
                                     .push(Bit::new(original_name, name, value.compute(), origin));
@@ -701,7 +879,7 @@ impl<'a> Source<'a> {
                     let _guard = span.enter();
 
                     let original_name = &en.name;
-                    let name = const_name(original_name, tag);
+                    let name = enum_name(original_name, tag, Some(&name));
                     info!(?name, "computed rustified name");
 
                     variants.push(Bit::new_no_origin(original_name, name, 1 << *bitpos));
@@ -711,7 +889,7 @@ impl<'a> Source<'a> {
                     let _guard = span.enter();
 
                     let original_name = &en.name;
-                    let name = const_name(original_name, tag);
+                    let name = enum_name(original_name, tag, Some(&name));
                     info!(?name, "computed rustified name");
 
                     aliases.push(Alias::new_no_origin(original_name, name, alias));
@@ -721,7 +899,7 @@ impl<'a> Source<'a> {
                     let _guard = span.enter();
 
                     let original_name = &en.name;
-                    let name = const_name(original_name, tag);
+                    let name = enum_name(original_name, tag, Some(&name));
                     info!(?name, "computed rustified name");
 
                     let expr = Expr::new(value);
@@ -1211,5 +1389,37 @@ impl<'a> Source<'a> {
     #[inline]
     fn tags(&mut self, tags: &'a CommentedChildren<vk_parse::Tag>) {
         self.tags.extend(tags.children.iter().map(From::from));
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
+enum SourceType {
+    Vendor,
+    Extension,
+    Tag,
+    Opaque,
+    Alias,
+    Struct,
+    Union,
+    Handle,
+    FunctionPointer,
+    BaseType,
+    Bitmask,
+    Constant,
+    ConstantAlias,
+    Bitflag,
+    Enum,
+    CommandAlias,
+    Function,
+    Command,
+}
+
+impl<'a> SymbolName<'a> for (Cow<'a, str>, String, SourceType, usize) {
+    fn name(&self) -> Cow<'a, str> {
+        self.0.clone()
+    }
+
+    fn pretty_name(&self) -> String {
+        self.1.clone()
     }
 }

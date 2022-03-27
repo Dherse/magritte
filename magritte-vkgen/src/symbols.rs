@@ -114,18 +114,18 @@ where
     }
 
     /// Inserts an element in the table.
-    pub fn push(&mut self, input: T) -> Option<T> {
+    pub fn push(&mut self, input: T) -> (Option<T>, usize) {
         let index = self.len();
 
         let name = input.name();
         if let Some(index) = self.symbols.get(&name) {
-            Some(replace(&mut self.values[*index], input))
+            (Some(replace(&mut self.values[*index], input)), *index)
         } else {
             self.symbols.insert(input.name(), index);
             self.symbols_pretty.insert(input.pretty_name(), index);
             self.values.push(input);
 
-            None
+            (None, index)
         }
     }
 

@@ -15,7 +15,7 @@ use crate::{
 };
 
 /// Global lifetime name
-pub const LIFETIME: &str = "this";
+pub const LIFETIME: &str = "lt";
 
 /// Creates an identifier for the global lifetime name
 pub fn lifetime_as_ident() -> Ident {
@@ -56,25 +56,138 @@ impl<'a> Ty<'a> {
         }
     }
 
+    /// Checks whether the type is copy
+    pub fn is_copy(&self, source: &Source<'a>) -> bool {
+        match self {
+            Ty::Pointer(Mutability::Const, _)
+            | Ty::Native(_)
+            | Ty::StringArray(_)
+            | Ty::NullTerminatedString(_)
+            | Ty::Slice(Mutability::Const, _, _) => true,
+            Ty::Named(name) => source.resolve_type(name).expect("unknown type").is_copy(source),
+            Ty::Array(ty, _) => ty.is_copy(source),
+            Ty::Pointer(Mutability::Mutable, _) | Ty::Slice(Mutability::Mutable, _, _) => false,
+        }
+    }
+
+    /// Checks whether a type is PartialEq and PartialOrd
+    pub fn is_partial_eq(&self, source: &Source<'a>) -> bool {
+        match self {
+            Ty::Pointer(_, _) | Ty::Native(_) | Ty::StringArray(_) | Ty::NullTerminatedString(_) => true,
+            Ty::Named(name) => source.resolve_type(name).expect("unknown type").is_partial_eq(source),
+            Ty::Array(ty, _) => ty.is_partial_eq(source),
+
+            // slice **are** eq because while only their pointers are compared, structures always also
+            // contain a "length" field which will also be compared, therefore slices of different lengths
+            // will not be equal but their containers won't.
+            Ty::Slice(_, _, _) => true,
+        }
+    }
+
+    /// Checks whether a type is Eq and Ord
+    pub fn is_eq(&self, source: &Source<'a>) -> bool {
+        // additional case, shouldn't be necessary tho
+        // TODO: remove this?
+        if !self.is_partial_eq(source) {
+            return false;
+        }
+
+        match self {
+            Ty::Native(Native::Float) | Ty::Native(Native::Double) => false,
+            Ty::Pointer(_, _) | Ty::Native(_) | Ty::StringArray(_) | Ty::NullTerminatedString(_) => true,
+            Ty::Named(name) => source.resolve_type(name).expect("unknown type").is_eq(source),
+            Ty::Array(ty, _) => ty.is_eq(source),
+
+            // slice **are** eq because while only their pointers are compared, structures always also
+            // contain a "length" field which will also be compared, therefore slices of different lengths
+            // will not be equal but their containers won't.
+            Ty::Slice(_, _, _) => true,
+        }
+    }
+
+    /// Checks whether the type is Hash
+    pub fn is_hash(&self, source: &Source<'a>) -> bool {
+        match self {
+            // floats are not hash
+            Ty::Native(Native::Float) | Ty::Native(Native::Double) => false,
+            Ty::Pointer(_, _) | Ty::Native(_) | Ty::StringArray(_) | Ty::NullTerminatedString(_) => true,
+            Ty::Named(name) => source.resolve_type(name).expect("unknown type").is_hash(source),
+            Ty::Array(ty, _) => ty.is_hash(source),
+
+            // slices are just raw pointers which impl hash!
+            Ty::Slice(_, _, _) => true,
+        }
+    }
+
+    /*/// Does the type have a generic (with deep checking)
+    pub fn has_generics(&self, source: &Source<'a>) -> bool {
+        match self {
+            Ty::Pointer(_, ty) | Ty::Slice(_, ty, _) => !ty.has_opaque(source) && ty.has_generics(source),
+            Ty::NullTerminatedString(_) | Ty::Native(_) | Ty::StringArray(_) => false,
+            Ty::Array(ty, _) => !ty.has_opaque(source) && ty.has_generics(source),
+            Ty::Named(named) => source.resolve_type(named).expect("unknown type").has_generics(source),
+        }
+    }*/
+
+    /// Turns a type into a tokenized raw C-compatible type and an optional lifetime argument
+    pub fn as_raw_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> (Type, bool) {
+        match self {
+            Ty::Native(_) | Ty::StringArray(_) => (self.as_const_ty(source, imports), false),
+            Ty::Pointer(mutability, ty) => (
+                Type::Ptr(TypePtr {
+                    star_token: Default::default(),
+                    const_token: mutability.as_const_token(),
+                    mutability: mutability.as_mutability_token(),
+                    elem: box ty.as_raw_ty(source, imports).0,
+                }),
+                true,
+            ),
+            Ty::Named(name) => source
+                .find(name)
+                .expect("type not found")
+                .as_type_ref()
+                .expect("not a type")
+                .as_type(source, imports),
+            Ty::NullTerminatedString(_) => (Native::NullTerminatedString.as_type(imports), true),
+            Ty::Array(ty, len) => {
+                let (elem, lt) = ty.as_raw_ty(source, imports);
+                let len = len.as_const_expr(source, imports);
+
+                (
+                    Type::Array(TypeArray {
+                        bracket_token: Default::default(),
+                        elem: box elem,
+                        semi_token: Default::default(),
+                        len,
+                    }),
+                    lt,
+                )
+            },
+            Ty::Slice(mutability, ty, _) => (
+                Type::Ptr(TypePtr {
+                    star_token: Default::default(),
+                    const_token: mutability.as_const_token(),
+                    mutability: mutability.as_mutability_token(),
+                    elem: box ty.as_raw_ty(source, imports).0,
+                }),
+                true,
+            ),
+        }
+    }
+
     /// Turns a type into a tokenized type and an optional lifetime argument
     pub fn as_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> (Type, bool) {
         match self {
             Ty::Native(_) | Ty::StringArray(_) => (self.as_const_ty(source, imports), false),
-            Ty::Pointer(mutability, ty) => {
-                if ty.has_opaque(source) {
-                    (
-                        Type::Reference(TypeReference {
-                            and_token: Default::default(),
-                            lifetime: Some(lifetime_as_lifetime()),
-                            mutability: mutability.as_mutability_token(),
-                            elem: box ty.as_ty(source, imports).0,
-                        }),
-                        true,
-                    )
-                } else {
-                    (self.as_const_ty(source, imports), false)
-                }
-            },
+            Ty::Pointer(mutability, ty) => (
+                Type::Reference(TypeReference {
+                    and_token: Default::default(),
+                    lifetime: Some(lifetime_as_lifetime()),
+                    mutability: mutability.as_mutability_token(),
+                    elem: box ty.as_ty(source, imports).0,
+                }),
+                true,
+            ),
             Ty::Named(name) => source
                 .find(name)
                 .expect("type not found")
@@ -96,24 +209,18 @@ impl<'a> Ty<'a> {
                     lt,
                 )
             },
-            Ty::Slice(mutability, ty, _) => {
-                if ty.has_opaque(source) {
-                    (self.as_const_ty(source, imports), false)
-                } else {
-                    (
-                        Type::Reference(TypeReference {
-                            and_token: Default::default(),
-                            lifetime: Some(lifetime_as_lifetime()),
-                            mutability: mutability.as_mutability_token(),
-                            elem: box Type::Slice(TypeSlice {
-                                bracket_token: Default::default(),
-                                elem: box ty.as_ty(source, imports).0,
-                            }),
-                        }),
-                        true,
-                    )
-                }
-            },
+            Ty::Slice(mutability, ty, _) => (
+                Type::Reference(TypeReference {
+                    and_token: Default::default(),
+                    lifetime: Some(lifetime_as_lifetime()),
+                    mutability: mutability.as_mutability_token(),
+                    elem: box Type::Slice(TypeSlice {
+                        bracket_token: Default::default(),
+                        elem: box ty.as_ty(source, imports).0,
+                    }),
+                }),
+                true,
+            ),
         }
     }
 
@@ -213,6 +320,21 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
 
         (Type::Path(TypePath { qself: None, path }), lt)
     }
+
+    /*/// Gets the list of generic type parameters
+    pub fn generics(&self, source: &Source<'a>) -> SmallVec<[Ident; 1]> {
+        match self {
+            TypeRef::OpaqueType(_) | TypeRef::Union(_) => SmallVec::with_capacity(0),
+            TypeRef::Alias(_) => todo!(),
+            TypeRef::Struct(_) => todo!(),
+            TypeRef::Handle(handle) => smallvec::smallvec![],
+            TypeRef::FunctionPointer(_) => todo!(),
+            TypeRef::Basetype(_) => todo!(),
+            TypeRef::Bitmask(_) => todo!(),
+            TypeRef::BitFlag(_) => todo!(),
+            TypeRef::Enum(_) => todo!(),
+        }
+    }*/
 }
 
 impl Mutability {
