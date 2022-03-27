@@ -47,9 +47,8 @@ pub const EXT_COLOR_WRITE_ENABLE_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -57,11 +56,100 @@ pub struct PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`color_write_enable`] indicates that the
     ///implementation supports the dynamic state
     ///`VK_DYNAMIC_STATE_COLOR_WRITE_ENABLE_EXT`.
     color_write_enable: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            color_write_enable: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::color_write_enable`]
+    pub fn color_write_enable_raw(&self) -> Bool32 {
+        self.color_write_enable
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::color_write_enable`]
+    pub fn set_color_write_enable_raw(&mut self, value: Bool32) -> &mut Self {
+        self.color_write_enable = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::color_write_enable`]
+    pub fn color_write_enable(&self) -> bool {
+        unsafe { std::mem::transmute(self.color_write_enable as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::color_write_enable`]
+    pub fn color_write_enable_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.color_write_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.color_write_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::color_write_enable`]
+    pub fn set_color_write_enable(&mut self, value: bool) -> &mut Self {
+        self.color_write_enable = value as u8 as u32;
+        self
+    }
 }
 ///[VkPipelineColorWriteCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineColorWriteCreateInfoEXT.html) - Structure specifying color write state of a newly created pipeline
 ///# C Specifications
@@ -78,8 +166,8 @@ pub struct PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`attachment_count`] is the number of [`Bool32`] elements in [`p_color_write_enables`].
-/// - [`p_color_write_enables`] is a pointer to an array of per target attachment boolean values
+/// - [`attachment_count`] is the number of [`Bool32`] elements in [`color_write_enables`].
+/// - [`color_write_enables`] is a pointer to an array of per target attachment boolean values
 ///   specifying whether color writes are enabled for the given attachment.
 ///# Description
 ///When this structure is included in the [`p_next`] chain of
@@ -88,11 +176,10 @@ pub struct PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
 ///If this structure is not included in the [`p_next`] chain, it is equivalent
 ///to specifying this structure with [`attachment_count`] equal to the
 ///[`attachment_count`] member of [`PipelineColorBlendStateCreateInfo`],
-///and [`p_color_write_enables`] pointing to an array of as many [`TRUE`]
+///and [`color_write_enables`] pointing to an array of as many [`TRUE`]
 ///values.If the [colorWriteEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-colorWriteEnable) feature is not enabled
 ///on the device, all [`Bool32`] elements in the
-///[`p_color_write_enables`] array **must** be [`TRUE`].Color Write Enable interacts with the
-/// [Color
+///[`color_write_enables`] array **must** be [`TRUE`].Color Write Enable interacts with the [Color
 ///Write Mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-color-write-mask) as follows:
 /// - If `colorWriteEnable` is [`TRUE`], writes to the attachment are determined by the
 ///   `colorWriteMask`.
@@ -101,12 +188,12 @@ pub struct PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
 ///   of 0.
 ///Valid Usage
 /// - If the [colorWriteEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-colorWriteEnable)
-///   feature is not enabled, all elements of [`p_color_write_enables`]**must** be [`TRUE`]
+///   feature is not enabled, all elements of [`color_write_enables`]**must** be [`TRUE`]
 /// - [`attachment_count`]**must** be equal to the [`attachment_count`] member of the
 ///   [`PipelineColorBlendStateCreateInfo`] structure specified during pipeline creation
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_COLOR_WRITE_CREATE_INFO_EXT`
-/// - If [`attachment_count`] is not `0`, [`p_color_write_enables`]**must** be a valid pointer to an
+/// - If [`attachment_count`] is not `0`, [`color_write_enables`]**must** be a valid pointer to an
 ///   array of [`attachment_count`][`Bool32`] values
 ///# Related
 /// - [`VK_EXT_color_write_enable`]
@@ -120,9 +207,8 @@ pub struct PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PipelineColorWriteCreateInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -130,12 +216,105 @@ pub struct PipelineColorWriteCreateInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`attachment_count`] is the number of [`Bool32`] elements in
-    ///[`p_color_write_enables`].
+    ///[`color_write_enables`].
     attachment_count: u32,
-    ///[`p_color_write_enables`] is a pointer to an array of per target
+    ///[`color_write_enables`] is a pointer to an array of per target
     ///attachment boolean values specifying whether color writes are enabled
     ///for the given attachment.
-    p_color_write_enables: *mut Bool32,
+    color_write_enables: *const Bool32,
+}
+impl<'lt> Default for PipelineColorWriteCreateInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            attachment_count: 0,
+            color_write_enables: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> PipelineColorWriteCreateInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::attachment_count`]
+    pub fn attachment_count_raw(&self) -> u32 {
+        self.attachment_count
+    }
+    ///Gets the raw value of [`Self::color_write_enables`]
+    pub fn color_write_enables_raw(&self) -> *const Bool32 {
+        self.color_write_enables
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::attachment_count`]
+    pub fn set_attachment_count_raw(&mut self, value: u32) -> &mut Self {
+        self.attachment_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::color_write_enables`]
+    pub fn set_color_write_enables_raw(&mut self, value: *const Bool32) -> &mut Self {
+        self.color_write_enables = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::attachment_count`]
+    pub fn attachment_count(&self) -> u32 {
+        self.attachment_count
+    }
+    ///Gets the value of [`Self::color_write_enables`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn color_write_enables(&self) -> &[Bool32] {
+        std::slice::from_raw_parts(self.color_write_enables, self.attachment_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::attachment_count`]
+    pub fn attachment_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::attachment_count`]
+    pub fn set_attachment_count(&mut self, value: u32) -> &mut Self {
+        self.attachment_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::color_write_enables`]
+    pub fn set_color_write_enables(&mut self, value: &'lt [crate::vulkan1_0::Bool32]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.color_write_enables = value.as_ptr();
+        self.attachment_count = len_;
+        self
+    }
 }

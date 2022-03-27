@@ -50,9 +50,8 @@ pub const HUAWEI_SUBPASS_SHADING_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -60,7 +59,7 @@ pub struct SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`render_pass`] is a handle to a render pass object describing the
     ///environment in which the pipeline will be used.
     ///The pipeline **must** only be used with a render pass instance compatible
@@ -71,6 +70,95 @@ pub struct SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
     ///[`subpass`] is the index of the subpass in the render pass where this
     ///pipeline will be used.
     subpass: u32,
+}
+impl<'lt> Default for SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            render_pass: Default::default(),
+            subpass: 0,
+        }
+    }
+}
+impl<'lt> SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::subpass`]
+    pub fn subpass_raw(&self) -> u32 {
+        self.subpass
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::subpass`]
+    pub fn set_subpass_raw(&mut self, value: u32) -> &mut Self {
+        self.subpass = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::render_pass`]
+    pub fn render_pass(&self) -> RenderPass {
+        self.render_pass
+    }
+    ///Gets the value of [`Self::subpass`]
+    pub fn subpass(&self) -> u32 {
+        self.subpass
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::render_pass`]
+    pub fn render_pass_mut(&mut self) -> &mut RenderPass {
+        &mut self.render_pass
+    }
+    ///Gets a mutable reference to the value of [`Self::subpass`]
+    pub fn subpass_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::render_pass`]
+    pub fn set_render_pass(&mut self, value: crate::vulkan1_0::RenderPass) -> &mut Self {
+        self.render_pass = value;
+        self
+    }
+    ///Sets the raw value of [`Self::subpass`]
+    pub fn set_subpass(&mut self, value: u32) -> &mut Self {
+        self.subpass = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceSubpassShadingPropertiesHUAWEI](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSubpassShadingPropertiesHUAWEI.html) - Structure describing subpass shading properties supported by an implementation
 ///# C Specifications
@@ -110,9 +198,8 @@ pub struct SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -120,7 +207,7 @@ pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`max_subpass_shading_workgroup_size_aspect_ratio`] indicates the maximum
     ///ratio between the width and height of the portion of the subpass shading
     ///shader workgroup size.
@@ -128,6 +215,82 @@ pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
     ///value, and **must** be less than or equal to max(`WorkgroupSize.x` /
     ///`WorkgroupSize.y`, `WorkgroupSize.y` / `WorkgroupSize.x`).
     max_subpass_shading_workgroup_size_aspect_ratio: u32,
+}
+impl<'lt> Default for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            max_subpass_shading_workgroup_size_aspect_ratio: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::max_subpass_shading_workgroup_size_aspect_ratio`]
+    pub fn max_subpass_shading_workgroup_size_aspect_ratio_raw(&self) -> u32 {
+        self.max_subpass_shading_workgroup_size_aspect_ratio
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_subpass_shading_workgroup_size_aspect_ratio`]
+    pub fn set_max_subpass_shading_workgroup_size_aspect_ratio_raw(&mut self, value: u32) -> &mut Self {
+        self.max_subpass_shading_workgroup_size_aspect_ratio = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::max_subpass_shading_workgroup_size_aspect_ratio`]
+    pub fn max_subpass_shading_workgroup_size_aspect_ratio(&self) -> u32 {
+        self.max_subpass_shading_workgroup_size_aspect_ratio
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::max_subpass_shading_workgroup_size_aspect_ratio`]
+    pub fn max_subpass_shading_workgroup_size_aspect_ratio_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::max_subpass_shading_workgroup_size_aspect_ratio`]
+    pub fn set_max_subpass_shading_workgroup_size_aspect_ratio(&mut self, value: u32) -> &mut Self {
+        self.max_subpass_shading_workgroup_size_aspect_ratio = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceSubpassShadingFeaturesHUAWEI](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSubpassShadingFeaturesHUAWEI.html) - Structure describing whether subpass shading is enabled
 ///# C Specifications
@@ -167,9 +330,8 @@ pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceSubpassShadingFeaturesHUAWEI<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -177,8 +339,97 @@ pub struct PhysicalDeviceSubpassShadingFeaturesHUAWEI<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`subpass_shading`] specifies whether
     ///subpass shading is supported.
     subpass_shading: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            subpass_shading: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceSubpassShadingFeaturesHUAWEI<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::subpass_shading`]
+    pub fn subpass_shading_raw(&self) -> Bool32 {
+        self.subpass_shading
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::subpass_shading`]
+    pub fn set_subpass_shading_raw(&mut self, value: Bool32) -> &mut Self {
+        self.subpass_shading = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::subpass_shading`]
+    pub fn subpass_shading(&self) -> bool {
+        unsafe { std::mem::transmute(self.subpass_shading as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::subpass_shading`]
+    pub fn subpass_shading_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.subpass_shading as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.subpass_shading as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::subpass_shading`]
+    pub fn set_subpass_shading(&mut self, value: bool) -> &mut Self {
+        self.subpass_shading = value as u8 as u32;
+        self
+    }
 }

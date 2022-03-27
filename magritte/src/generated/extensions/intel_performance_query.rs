@@ -358,9 +358,8 @@ impl PerformanceValueTypeINTEL {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PerformanceValueINTEL<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -370,6 +369,49 @@ pub struct PerformanceValueINTEL<'lt> {
     ///[`data`] is a [`PerformanceValueDataINTEL`] union specifying the
     ///value of the returned data.
     data: PerformanceValueDataINTEL<'lt>,
+}
+impl<'lt> Default for PerformanceValueINTEL<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            type_: Default::default(),
+            data: Default::default(),
+        }
+    }
+}
+impl<'lt> PerformanceValueINTEL<'lt> {
+    ///Gets the value of [`Self::type_`]
+    pub fn type_(&self) -> PerformanceValueTypeINTEL {
+        self.type_
+    }
+    ///Gets the value of [`Self::data`]
+    pub fn data(&self) -> PerformanceValueDataINTEL<'lt> {
+        self.data
+    }
+    ///Gets a mutable reference to the value of [`Self::type_`]
+    pub fn type__mut(&mut self) -> &mut PerformanceValueTypeINTEL {
+        &mut self.type_
+    }
+    ///Gets a mutable reference to the value of [`Self::data`]
+    pub fn data_mut(&mut self) -> &mut PerformanceValueDataINTEL<'lt> {
+        &mut self.data
+    }
+    ///Sets the raw value of [`Self::type_`]
+    pub fn set_type_(
+        &mut self,
+        value: crate::extensions::intel_performance_query::PerformanceValueTypeINTEL,
+    ) -> &mut Self {
+        self.type_ = value;
+        self
+    }
+    ///Sets the raw value of [`Self::data`]
+    pub fn set_data(
+        &mut self,
+        value: crate::extensions::intel_performance_query::PerformanceValueDataINTEL<'lt>,
+    ) -> &mut Self {
+        self.data = value;
+        self
+    }
 }
 ///[VkInitializePerformanceApiInfoINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkInitializePerformanceApiInfoINTEL.html) - Structure specifying parameters of initialize of the device
 ///# C Specifications
@@ -385,7 +427,7 @@ pub struct PerformanceValueINTEL<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`p_user_data`] is a pointer for application data.
+/// - [`user_data`] is a pointer for application data.
 ///# Description
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_INITIALIZE_PERFORMANCE_API_INFO_INTEL`
@@ -402,9 +444,8 @@ pub struct PerformanceValueINTEL<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct InitializePerformanceApiInfoINTEL<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -412,9 +453,83 @@ pub struct InitializePerformanceApiInfoINTEL<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
-    ///[`p_user_data`] is a pointer for application data.
-    p_user_data: *const c_void,
+    p_next: *const BaseInStructure<'lt>,
+    ///[`user_data`] is a pointer for application data.
+    user_data: *mut c_void,
+}
+impl<'lt> Default for InitializePerformanceApiInfoINTEL<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            user_data: std::ptr::null_mut(),
+        }
+    }
+}
+impl<'lt> InitializePerformanceApiInfoINTEL<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::user_data`]
+    pub fn user_data_raw(&self) -> &*mut c_void {
+        &self.user_data
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::user_data`]
+    pub fn set_user_data_raw(&mut self, value: *mut c_void) -> &mut Self {
+        self.user_data = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::user_data`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn user_data(&self) -> &c_void {
+        &*self.user_data
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::user_data`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn user_data_mut(&mut self) -> &mut c_void {
+        &mut *self.user_data
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::user_data`]
+    pub fn set_user_data(&mut self, value: &'lt mut std::ffi::c_void) -> &mut Self {
+        self.user_data = value as *mut _;
+        self
+    }
 }
 ///[VkQueryPoolPerformanceQueryCreateInfoINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueryPoolPerformanceQueryCreateInfoINTEL.html) - Structure specifying parameters to create a pool of performance queries
 ///# C Specifications
@@ -458,9 +573,8 @@ pub struct InitializePerformanceApiInfoINTEL<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -468,10 +582,72 @@ pub struct QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`performance_counters_sampling`] describe how performance queries
     ///should be captured.
     performance_counters_sampling: QueryPoolSamplingModeINTEL,
+}
+impl<'lt> Default for QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            performance_counters_sampling: Default::default(),
+        }
+    }
+}
+impl<'lt> QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::performance_counters_sampling`]
+    pub fn performance_counters_sampling(&self) -> QueryPoolSamplingModeINTEL {
+        self.performance_counters_sampling
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::performance_counters_sampling`]
+    pub fn performance_counters_sampling_mut(&mut self) -> &mut QueryPoolSamplingModeINTEL {
+        &mut self.performance_counters_sampling
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::performance_counters_sampling`]
+    pub fn set_performance_counters_sampling(
+        &mut self,
+        value: crate::extensions::intel_performance_query::QueryPoolSamplingModeINTEL,
+    ) -> &mut Self {
+        self.performance_counters_sampling = value;
+        self
+    }
 }
 ///[VkPerformanceMarkerInfoINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceMarkerInfoINTEL.html) - Structure specifying performance markers
 ///# C Specifications
@@ -504,9 +680,8 @@ pub struct QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PerformanceMarkerInfoINTEL<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -514,10 +689,78 @@ pub struct PerformanceMarkerInfoINTEL<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`marker`] is the marker value that will be recorded into the opaque
     ///query results.
     marker: u64,
+}
+impl<'lt> Default for PerformanceMarkerInfoINTEL<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            marker: 0,
+        }
+    }
+}
+impl<'lt> PerformanceMarkerInfoINTEL<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::marker`]
+    pub fn marker_raw(&self) -> u64 {
+        self.marker
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::marker`]
+    pub fn set_marker_raw(&mut self, value: u64) -> &mut Self {
+        self.marker = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::marker`]
+    pub fn marker(&self) -> u64 {
+        self.marker
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::marker`]
+    pub fn marker_mut(&mut self) -> &mut u64 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::marker`]
+    pub fn set_marker(&mut self, value: u64) -> &mut Self {
+        self.marker = value;
+        self
+    }
 }
 ///[VkPerformanceStreamMarkerInfoINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceStreamMarkerInfoINTEL.html) - Structure specifying stream performance markers
 ///# C Specifications
@@ -555,9 +798,8 @@ pub struct PerformanceMarkerInfoINTEL<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PerformanceStreamMarkerInfoINTEL<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -565,10 +807,78 @@ pub struct PerformanceStreamMarkerInfoINTEL<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`marker`] is the marker value that will be recorded into the reports
     ///consumed by an external application.
     marker: u32,
+}
+impl<'lt> Default for PerformanceStreamMarkerInfoINTEL<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            marker: 0,
+        }
+    }
+}
+impl<'lt> PerformanceStreamMarkerInfoINTEL<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::marker`]
+    pub fn marker_raw(&self) -> u32 {
+        self.marker
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::marker`]
+    pub fn set_marker_raw(&mut self, value: u32) -> &mut Self {
+        self.marker = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::marker`]
+    pub fn marker(&self) -> u32 {
+        self.marker
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::marker`]
+    pub fn marker_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::marker`]
+    pub fn set_marker(&mut self, value: u32) -> &mut Self {
+        self.marker = value;
+        self
+    }
 }
 ///[VkPerformanceOverrideInfoINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceOverrideInfoINTEL.html) - Performance override information
 ///# C Specifications
@@ -606,16 +916,15 @@ pub struct PerformanceStreamMarkerInfoINTEL<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PerformanceOverrideInfoINTEL<'lt> {
     _lifetime: PhantomData<&'lt ()>,
     ///No documentation found
     s_type: StructureType,
     ///No documentation found
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`type_`] is the particular [`PerformanceOverrideTypeINTEL`] to
     ///set.
     type_: PerformanceOverrideTypeINTEL,
@@ -623,6 +932,125 @@ pub struct PerformanceOverrideInfoINTEL<'lt> {
     enable: Bool32,
     ///[`parameter`] is a potential required parameter for the override.
     parameter: u64,
+}
+impl<'lt> Default for PerformanceOverrideInfoINTEL<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            type_: Default::default(),
+            enable: 0,
+            parameter: 0,
+        }
+    }
+}
+impl<'lt> PerformanceOverrideInfoINTEL<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::enable`]
+    pub fn enable_raw(&self) -> Bool32 {
+        self.enable
+    }
+    ///Gets the raw value of [`Self::parameter`]
+    pub fn parameter_raw(&self) -> u64 {
+        self.parameter
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::enable`]
+    pub fn set_enable_raw(&mut self, value: Bool32) -> &mut Self {
+        self.enable = value;
+        self
+    }
+    ///Sets the raw value of [`Self::parameter`]
+    pub fn set_parameter_raw(&mut self, value: u64) -> &mut Self {
+        self.parameter = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::type_`]
+    pub fn type_(&self) -> PerformanceOverrideTypeINTEL {
+        self.type_
+    }
+    ///Gets the value of [`Self::enable`]
+    pub fn enable(&self) -> bool {
+        unsafe { std::mem::transmute(self.enable as u8) }
+    }
+    ///Gets the value of [`Self::parameter`]
+    pub fn parameter(&self) -> u64 {
+        self.parameter
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::type_`]
+    pub fn type__mut(&mut self) -> &mut PerformanceOverrideTypeINTEL {
+        &mut self.type_
+    }
+    ///Gets a mutable reference to the value of [`Self::enable`]
+    pub fn enable_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.enable as *mut Bool32).cast::<u32>().cast::<u8>().cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::parameter`]
+    pub fn parameter_mut(&mut self) -> &mut u64 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::type_`]
+    pub fn set_type_(
+        &mut self,
+        value: crate::extensions::intel_performance_query::PerformanceOverrideTypeINTEL,
+    ) -> &mut Self {
+        self.type_ = value;
+        self
+    }
+    ///Sets the raw value of [`Self::enable`]
+    pub fn set_enable(&mut self, value: bool) -> &mut Self {
+        self.enable = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::parameter`]
+    pub fn set_parameter(&mut self, value: u64) -> &mut Self {
+        self.parameter = value;
+        self
+    }
 }
 ///[VkPerformanceConfigurationAcquireInfoINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceConfigurationAcquireInfoINTEL.html) - Acquire a configuration to capture performance data
 ///# C Specifications
@@ -659,9 +1087,8 @@ pub struct PerformanceOverrideInfoINTEL<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PerformanceConfigurationAcquireInfoINTEL<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -669,8 +1096,70 @@ pub struct PerformanceConfigurationAcquireInfoINTEL<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`type_`] is one of the [`PerformanceConfigurationTypeINTEL`] type
     ///of performance configuration that will be acquired.
     type_: PerformanceConfigurationTypeINTEL,
+}
+impl<'lt> Default for PerformanceConfigurationAcquireInfoINTEL<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            type_: Default::default(),
+        }
+    }
+}
+impl<'lt> PerformanceConfigurationAcquireInfoINTEL<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::type_`]
+    pub fn type_(&self) -> PerformanceConfigurationTypeINTEL {
+        self.type_
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::type_`]
+    pub fn type__mut(&mut self) -> &mut PerformanceConfigurationTypeINTEL {
+        &mut self.type_
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::type_`]
+    pub fn set_type_(
+        &mut self,
+        value: crate::extensions::intel_performance_query::PerformanceConfigurationTypeINTEL,
+    ) -> &mut Self {
+        self.type_ = value;
+        self
+    }
 }

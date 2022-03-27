@@ -71,9 +71,8 @@ pub const KHR_DYNAMIC_RENDERING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -81,7 +80,7 @@ pub struct RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`image_view`] is the image view that will be used as a fragment
     ///shading rate attachment.
     image_view: ImageView,
@@ -91,6 +90,93 @@ pub struct RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
     ///[`shading_rate_attachment_texel_size`] specifies the number of pixels
     ///corresponding to each texel in [`image_view`].
     shading_rate_attachment_texel_size: Extent2D,
+}
+impl<'lt> Default for RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            image_view: Default::default(),
+            image_layout: Default::default(),
+            shading_rate_attachment_texel_size: Default::default(),
+        }
+    }
+}
+impl<'lt> RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::image_view`]
+    pub fn image_view(&self) -> ImageView {
+        self.image_view
+    }
+    ///Gets the value of [`Self::image_layout`]
+    pub fn image_layout(&self) -> ImageLayout {
+        self.image_layout
+    }
+    ///Gets the value of [`Self::shading_rate_attachment_texel_size`]
+    pub fn shading_rate_attachment_texel_size(&self) -> Extent2D {
+        self.shading_rate_attachment_texel_size
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::image_view`]
+    pub fn image_view_mut(&mut self) -> &mut ImageView {
+        &mut self.image_view
+    }
+    ///Gets a mutable reference to the value of [`Self::image_layout`]
+    pub fn image_layout_mut(&mut self) -> &mut ImageLayout {
+        &mut self.image_layout
+    }
+    ///Gets a mutable reference to the value of [`Self::shading_rate_attachment_texel_size`]
+    pub fn shading_rate_attachment_texel_size_mut(&mut self) -> &mut Extent2D {
+        &mut self.shading_rate_attachment_texel_size
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::image_view`]
+    pub fn set_image_view(&mut self, value: crate::vulkan1_0::ImageView) -> &mut Self {
+        self.image_view = value;
+        self
+    }
+    ///Sets the raw value of [`Self::image_layout`]
+    pub fn set_image_layout(&mut self, value: crate::vulkan1_0::ImageLayout) -> &mut Self {
+        self.image_layout = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_attachment_texel_size`]
+    pub fn set_shading_rate_attachment_texel_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.shading_rate_attachment_texel_size = value;
+        self
+    }
 }
 ///[VkRenderingFragmentDensityMapAttachmentInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderingFragmentDensityMapAttachmentInfoEXT.html) - Structure specifying fragment shading rate attachment information
 ///# C Specifications
@@ -139,9 +225,8 @@ pub struct RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -149,13 +234,86 @@ pub struct RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`image_view`] is the image view that will be used as a fragment
     ///shading rate attachment.
     image_view: ImageView,
     ///[`image_layout`] is the layout that [`image_view`] will be in during
     ///rendering.
     image_layout: ImageLayout,
+}
+impl<'lt> Default for RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            image_view: Default::default(),
+            image_layout: Default::default(),
+        }
+    }
+}
+impl<'lt> RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::image_view`]
+    pub fn image_view(&self) -> ImageView {
+        self.image_view
+    }
+    ///Gets the value of [`Self::image_layout`]
+    pub fn image_layout(&self) -> ImageLayout {
+        self.image_layout
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::image_view`]
+    pub fn image_view_mut(&mut self) -> &mut ImageView {
+        &mut self.image_view
+    }
+    ///Gets a mutable reference to the value of [`Self::image_layout`]
+    pub fn image_layout_mut(&mut self) -> &mut ImageLayout {
+        &mut self.image_layout
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::image_view`]
+    pub fn set_image_view(&mut self, value: crate::vulkan1_0::ImageView) -> &mut Self {
+        self.image_view = value;
+        self
+    }
+    ///Sets the raw value of [`Self::image_layout`]
+    pub fn set_image_layout(&mut self, value: crate::vulkan1_0::ImageLayout) -> &mut Self {
+        self.image_layout = value;
+        self
+    }
 }
 ///[VkAttachmentSampleCountInfoAMD](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentSampleCountInfoAMD.html) - Structure specifying command buffer inheritance info for dynamic render pass instances
 ///# C Specifications
@@ -184,7 +342,7 @@ pub struct RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure
 /// - [`color_attachment_count`] is the number of color attachments specified in a render pass
 ///   instance.
-/// - [`p_color_attachment_samples`] is a pointer to an array of [`SampleCountFlagBits`] values
+/// - [`color_attachment_samples`] is a pointer to an array of [`SampleCountFlagBits`] values
 ///   defining the sample count of color attachments.
 /// - [`depth_stencil_attachment_samples`] is a [`SampleCountFlagBits`] value defining the sample
 ///   count of a depth/stencil attachment.
@@ -215,7 +373,7 @@ pub struct RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
 ///If a graphics pipeline is created with a valid [`RenderPass`],
 ///parameters of this structure are ignored.Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_AMD`
-/// - If [`color_attachment_count`] is not `0`, [`p_color_attachment_samples`]**must** be a valid
+/// - If [`color_attachment_count`] is not `0`, [`color_attachment_samples`]**must** be a valid
 ///   pointer to an array of [`color_attachment_count`] valid [`SampleCountFlagBits`] values
 /// - If [`depth_stencil_attachment_samples`] is not `0`,
 ///   [`depth_stencil_attachment_samples`]**must** be a valid [`SampleCountFlagBits`] value
@@ -233,9 +391,8 @@ pub struct RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct AttachmentSampleCountInfoAMD<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -243,17 +400,124 @@ pub struct AttachmentSampleCountInfoAMD<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`color_attachment_count`] is the number of color attachments specified
     ///in a render pass instance.
     color_attachment_count: u32,
-    ///[`p_color_attachment_samples`] is a pointer to an array of
+    ///[`color_attachment_samples`] is a pointer to an array of
     ///[`SampleCountFlagBits`] values defining the sample count of color
     ///attachments.
-    p_color_attachment_samples: *mut SampleCountFlagBits,
+    color_attachment_samples: *const SampleCountFlagBits,
     ///[`depth_stencil_attachment_samples`] is a [`SampleCountFlagBits`]
     ///value defining the sample count of a depth/stencil attachment.
     depth_stencil_attachment_samples: SampleCountFlagBits,
+}
+impl<'lt> Default for AttachmentSampleCountInfoAMD<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            color_attachment_count: 0,
+            color_attachment_samples: std::ptr::null(),
+            depth_stencil_attachment_samples: Default::default(),
+        }
+    }
+}
+impl<'lt> AttachmentSampleCountInfoAMD<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::color_attachment_count`]
+    pub fn color_attachment_count_raw(&self) -> u32 {
+        self.color_attachment_count
+    }
+    ///Gets the raw value of [`Self::color_attachment_samples`]
+    pub fn color_attachment_samples_raw(&self) -> *const SampleCountFlagBits {
+        self.color_attachment_samples
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::color_attachment_count`]
+    pub fn set_color_attachment_count_raw(&mut self, value: u32) -> &mut Self {
+        self.color_attachment_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::color_attachment_samples`]
+    pub fn set_color_attachment_samples_raw(&mut self, value: *const SampleCountFlagBits) -> &mut Self {
+        self.color_attachment_samples = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::color_attachment_count`]
+    pub fn color_attachment_count(&self) -> u32 {
+        self.color_attachment_count
+    }
+    ///Gets the value of [`Self::color_attachment_samples`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn color_attachment_samples(&self) -> &[SampleCountFlagBits] {
+        std::slice::from_raw_parts(self.color_attachment_samples, self.color_attachment_count as usize)
+    }
+    ///Gets the value of [`Self::depth_stencil_attachment_samples`]
+    pub fn depth_stencil_attachment_samples(&self) -> SampleCountFlagBits {
+        self.depth_stencil_attachment_samples
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::color_attachment_count`]
+    pub fn color_attachment_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::depth_stencil_attachment_samples`]
+    pub fn depth_stencil_attachment_samples_mut(&mut self) -> &mut SampleCountFlagBits {
+        &mut self.depth_stencil_attachment_samples
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::color_attachment_count`]
+    pub fn set_color_attachment_count(&mut self, value: u32) -> &mut Self {
+        self.color_attachment_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::color_attachment_samples`]
+    pub fn set_color_attachment_samples(&mut self, value: &'lt [crate::vulkan1_0::SampleCountFlagBits]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.color_attachment_samples = value.as_ptr();
+        self.color_attachment_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::depth_stencil_attachment_samples`]
+    pub fn set_depth_stencil_attachment_samples(&mut self, value: crate::vulkan1_0::SampleCountFlagBits) -> &mut Self {
+        self.depth_stencil_attachment_samples = value;
+        self
+    }
 }
 ///[VkMultiviewPerViewAttributesInfoNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMultiviewPerViewAttributesInfoNVX.html) - Structure specifying the multiview per-attribute properties
 ///# C Specifications
@@ -306,9 +570,8 @@ pub struct AttachmentSampleCountInfoAMD<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct MultiviewPerViewAttributesInfoNVX<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -316,7 +579,7 @@ pub struct MultiviewPerViewAttributesInfoNVX<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`per_view_attributes`] specifies that shaders compiled for this
     ///pipeline write the attributes for all views in a single invocation of
     ///each vertex processing stage.
@@ -329,4 +592,123 @@ pub struct MultiviewPerViewAttributesInfoNVX<'lt> {
     ///component.
     ///Per-view viewport mask **can** also be used.
     per_view_attributes_position_x_only: Bool32,
+}
+impl<'lt> Default for MultiviewPerViewAttributesInfoNVX<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            per_view_attributes: 0,
+            per_view_attributes_position_x_only: 0,
+        }
+    }
+}
+impl<'lt> MultiviewPerViewAttributesInfoNVX<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::per_view_attributes`]
+    pub fn per_view_attributes_raw(&self) -> Bool32 {
+        self.per_view_attributes
+    }
+    ///Gets the raw value of [`Self::per_view_attributes_position_x_only`]
+    pub fn per_view_attributes_position_x_only_raw(&self) -> Bool32 {
+        self.per_view_attributes_position_x_only
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::per_view_attributes`]
+    pub fn set_per_view_attributes_raw(&mut self, value: Bool32) -> &mut Self {
+        self.per_view_attributes = value;
+        self
+    }
+    ///Sets the raw value of [`Self::per_view_attributes_position_x_only`]
+    pub fn set_per_view_attributes_position_x_only_raw(&mut self, value: Bool32) -> &mut Self {
+        self.per_view_attributes_position_x_only = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::per_view_attributes`]
+    pub fn per_view_attributes(&self) -> bool {
+        unsafe { std::mem::transmute(self.per_view_attributes as u8) }
+    }
+    ///Gets the value of [`Self::per_view_attributes_position_x_only`]
+    pub fn per_view_attributes_position_x_only(&self) -> bool {
+        unsafe { std::mem::transmute(self.per_view_attributes_position_x_only as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::per_view_attributes`]
+    pub fn per_view_attributes_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.per_view_attributes as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.per_view_attributes as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::per_view_attributes_position_x_only`]
+    pub fn per_view_attributes_position_x_only_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.per_view_attributes_position_x_only as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.per_view_attributes_position_x_only as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::per_view_attributes`]
+    pub fn set_per_view_attributes(&mut self, value: bool) -> &mut Self {
+        self.per_view_attributes = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::per_view_attributes_position_x_only`]
+    pub fn set_per_view_attributes_position_x_only(&mut self, value: bool) -> &mut Self {
+        self.per_view_attributes_position_x_only = value as u8 as u32;
+        self
+    }
 }

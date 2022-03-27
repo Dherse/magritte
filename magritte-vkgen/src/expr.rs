@@ -13,6 +13,7 @@ use nom::{
     IResult, InputTakeAtPosition,
 };
 
+use smallvec::SmallVec;
 use string::parse_string;
 
 pub mod string;
@@ -88,6 +89,50 @@ impl<'a> Expr<'a> {
             Expr::BitwiseNot(a) => !a.compute(),
 
             _ => unreachable!("Expression cannot be computed: {:?}", self),
+        }
+    }
+
+    /// List the **variables** (not constants) used in this expression
+    pub fn variables(&self) -> SmallVec<[Cow<'a, str>; 1]> {
+        let mut out = SmallVec::default();
+
+        self.variables_internal(&mut out);
+
+        out
+    }
+
+    fn variables_internal(&self, out: &mut SmallVec<[Cow<'a, str>; 1]>) {
+        match self {
+            Expr::Variable(var) => out.push(var.clone()),
+            Expr::Resolve(var, _) => var.variables_internal(out),
+            Expr::Divide(a, b) | Expr::Multiply(a, b) | Expr::Add(a, b) | Expr::Subtract(a, b) => {
+                a.variables_internal(out);
+                b.variables_internal(out);
+            },
+            Expr::BitwiseNot(var) | Expr::Neg(var) => var.variables_internal(out),
+            _ => (),
+        }
+    }
+
+    /// List the **constants** (not variables) used in this expression
+    pub fn constants(&self) -> SmallVec<[Cow<'a, str>; 1]> {
+        let mut out = SmallVec::default();
+
+        self.constants_internal(&mut out);
+
+        out
+    }
+
+    fn constants_internal(&self, out: &mut SmallVec<[Cow<'a, str>; 1]>) {
+        match self {
+            Expr::Constant(var) => out.push(var.clone()),
+            Expr::Resolve(var, _) => var.constants_internal(out),
+            Expr::Divide(a, b) | Expr::Multiply(a, b) | Expr::Add(a, b) | Expr::Subtract(a, b) => {
+                a.constants_internal(out);
+                b.constants_internal(out);
+            },
+            Expr::BitwiseNot(var) | Expr::Neg(var) => var.constants_internal(out),
+            _ => (),
         }
     }
 }

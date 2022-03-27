@@ -47,9 +47,8 @@ pub const NV_SCISSOR_EXCLUSIVE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -57,10 +56,99 @@ pub struct PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`exclusive_scissor`] indicates that the
     ///implementation supports the exclusive scissor test.
     exclusive_scissor: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            exclusive_scissor: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::exclusive_scissor`]
+    pub fn exclusive_scissor_raw(&self) -> Bool32 {
+        self.exclusive_scissor
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::exclusive_scissor`]
+    pub fn set_exclusive_scissor_raw(&mut self, value: Bool32) -> &mut Self {
+        self.exclusive_scissor = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::exclusive_scissor`]
+    pub fn exclusive_scissor(&self) -> bool {
+        unsafe { std::mem::transmute(self.exclusive_scissor as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::exclusive_scissor`]
+    pub fn exclusive_scissor_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.exclusive_scissor as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.exclusive_scissor as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::exclusive_scissor`]
+    pub fn set_exclusive_scissor(&mut self, value: bool) -> &mut Self {
+        self.exclusive_scissor = value as u8 as u32;
+        self
+    }
 }
 ///[VkPipelineViewportExclusiveScissorStateCreateInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportExclusiveScissorStateCreateInfoNV.html) - Structure specifying parameters controlling exclusive scissor testing
 ///# C Specifications
@@ -79,12 +167,12 @@ pub struct PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`exclusive_scissor_count`] is the number of exclusive scissor rectangles.
-/// - [`p_exclusive_scissors`] is a pointer to an array of [`Rect2D`] structures defining exclusive
+/// - [`exclusive_scissors`] is a pointer to an array of [`Rect2D`] structures defining exclusive
 ///   scissor rectangles.
 ///# Description
 ///If the `VK_DYNAMIC_STATE_EXCLUSIVE_SCISSOR_NV` dynamic state is enabled
-///for a pipeline, the [`p_exclusive_scissors`] member is ignored.When this structure is included
-/// in the [`p_next`] chain of
+///for a pipeline, the [`exclusive_scissors`] member is ignored.When this structure is included in
+/// the [`p_next`] chain of
 ///[`GraphicsPipelineCreateInfo`], it defines parameters of the exclusive
 ///scissor test.
 ///If this structure is not included in the [`p_next`] chain, it is equivalent
@@ -110,9 +198,8 @@ pub struct PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PipelineViewportExclusiveScissorStateCreateInfoNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -120,11 +207,104 @@ pub struct PipelineViewportExclusiveScissorStateCreateInfoNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`exclusive_scissor_count`] is the number of exclusive scissor
     ///rectangles.
     exclusive_scissor_count: u32,
-    ///[`p_exclusive_scissors`] is a pointer to an array of [`Rect2D`]
+    ///[`exclusive_scissors`] is a pointer to an array of [`Rect2D`]
     ///structures defining exclusive scissor rectangles.
-    p_exclusive_scissors: *mut Rect2D,
+    exclusive_scissors: *const Rect2D,
+}
+impl<'lt> Default for PipelineViewportExclusiveScissorStateCreateInfoNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            exclusive_scissor_count: 0,
+            exclusive_scissors: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> PipelineViewportExclusiveScissorStateCreateInfoNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::exclusive_scissor_count`]
+    pub fn exclusive_scissor_count_raw(&self) -> u32 {
+        self.exclusive_scissor_count
+    }
+    ///Gets the raw value of [`Self::exclusive_scissors`]
+    pub fn exclusive_scissors_raw(&self) -> *const Rect2D {
+        self.exclusive_scissors
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::exclusive_scissor_count`]
+    pub fn set_exclusive_scissor_count_raw(&mut self, value: u32) -> &mut Self {
+        self.exclusive_scissor_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::exclusive_scissors`]
+    pub fn set_exclusive_scissors_raw(&mut self, value: *const Rect2D) -> &mut Self {
+        self.exclusive_scissors = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::exclusive_scissor_count`]
+    pub fn exclusive_scissor_count(&self) -> u32 {
+        self.exclusive_scissor_count
+    }
+    ///Gets the value of [`Self::exclusive_scissors`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn exclusive_scissors(&self) -> &[Rect2D] {
+        std::slice::from_raw_parts(self.exclusive_scissors, self.exclusive_scissor_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::exclusive_scissor_count`]
+    pub fn exclusive_scissor_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::exclusive_scissor_count`]
+    pub fn set_exclusive_scissor_count(&mut self, value: u32) -> &mut Self {
+        self.exclusive_scissor_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::exclusive_scissors`]
+    pub fn set_exclusive_scissors(&mut self, value: &'lt [crate::vulkan1_0::Rect2D]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.exclusive_scissors = value.as_ptr();
+        self.exclusive_scissor_count = len_;
+        self
+    }
 }

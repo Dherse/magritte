@@ -166,9 +166,8 @@ impl QueueGlobalPriorityKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct DeviceQueueGlobalPriorityCreateInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -176,10 +175,72 @@ pub struct DeviceQueueGlobalPriorityCreateInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`global_priority`] is the system-wide priority associated to this
     ///queue as specified by [`QueueGlobalPriorityEXT`]
     global_priority: QueueGlobalPriorityKHR,
+}
+impl<'lt> Default for DeviceQueueGlobalPriorityCreateInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            global_priority: Default::default(),
+        }
+    }
+}
+impl<'lt> DeviceQueueGlobalPriorityCreateInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::global_priority`]
+    pub fn global_priority(&self) -> QueueGlobalPriorityKHR {
+        self.global_priority
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::global_priority`]
+    pub fn global_priority_mut(&mut self) -> &mut QueueGlobalPriorityKHR {
+        &mut self.global_priority
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::global_priority`]
+    pub fn set_global_priority(
+        &mut self,
+        value: crate::extensions::khr_global_priority::QueueGlobalPriorityKHR,
+    ) -> &mut Self {
+        self.global_priority = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR.html) - Structure describing whether global priority query can be supported by an implementation
 ///# C Specifications
@@ -227,9 +288,8 @@ pub struct DeviceQueueGlobalPriorityCreateInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -237,11 +297,100 @@ pub struct PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`global_priority_query`] indicates
     ///whether the implementation supports the ability to query global queue
     ///priorities.
     global_priority_query: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            global_priority_query: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::global_priority_query`]
+    pub fn global_priority_query_raw(&self) -> Bool32 {
+        self.global_priority_query
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::global_priority_query`]
+    pub fn set_global_priority_query_raw(&mut self, value: Bool32) -> &mut Self {
+        self.global_priority_query = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::global_priority_query`]
+    pub fn global_priority_query(&self) -> bool {
+        unsafe { std::mem::transmute(self.global_priority_query as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::global_priority_query`]
+    pub fn global_priority_query_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.global_priority_query as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.global_priority_query as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::global_priority_query`]
+    pub fn set_global_priority_query(&mut self, value: bool) -> &mut Self {
+        self.global_priority_query = value as u8 as u32;
+        self
+    }
 }
 ///[VkQueueFamilyGlobalPriorityPropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueueFamilyGlobalPriorityPropertiesKHR.html) - Return structure for queue family global priority information query
 ///# C Specifications
@@ -290,9 +439,8 @@ pub struct PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct QueueFamilyGlobalPriorityPropertiesKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -300,7 +448,7 @@ pub struct QueueFamilyGlobalPriorityPropertiesKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`priority_count`] is the number of supported global queue priorities
     ///in this queue family, and it **must** be greater than 0.
     priority_count: u32,
@@ -308,4 +456,97 @@ pub struct QueueFamilyGlobalPriorityPropertiesKHR<'lt> {
     /// enums representing all supported global queue priorities in this queue family.
     ///The first [`priority_count`] elements of the array will be valid.
     priorities: [QueueGlobalPriorityKHR; MAX_GLOBAL_PRIORITY_SIZE_KHR],
+}
+impl<'lt> Default for QueueFamilyGlobalPriorityPropertiesKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            priority_count: 0,
+            priorities: [Default::default(); MAX_GLOBAL_PRIORITY_SIZE_KHR],
+        }
+    }
+}
+impl<'lt> QueueFamilyGlobalPriorityPropertiesKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::priority_count`]
+    pub fn priority_count_raw(&self) -> u32 {
+        self.priority_count
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::priority_count`]
+    pub fn set_priority_count_raw(&mut self, value: u32) -> &mut Self {
+        self.priority_count = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::priority_count`]
+    pub fn priority_count(&self) -> u32 {
+        self.priority_count
+    }
+    ///Gets the value of [`Self::priorities`]
+    pub fn priorities(&self) -> &[QueueGlobalPriorityKHR; MAX_GLOBAL_PRIORITY_SIZE_KHR] {
+        &getter
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::priority_count`]
+    pub fn priority_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::priorities`]
+    pub fn priorities_mut(&mut self) -> &mut [QueueGlobalPriorityKHR; MAX_GLOBAL_PRIORITY_SIZE_KHR] {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::priority_count`]
+    pub fn set_priority_count(&mut self, value: u32) -> &mut Self {
+        self.priority_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::priorities`]
+    pub fn set_priorities(
+        &mut self,
+        value: [crate::extensions::khr_global_priority::QueueGlobalPriorityKHR;
+            crate::extensions::khr_global_priority::MAX_GLOBAL_PRIORITY_SIZE_KHR],
+    ) -> &mut Self {
+        self.priorities = value;
+        self
+    }
 }

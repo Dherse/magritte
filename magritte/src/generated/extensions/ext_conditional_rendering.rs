@@ -63,9 +63,8 @@ pub const EXT_CONDITIONAL_RENDERING_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ConditionalRenderingBeginInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -73,7 +72,7 @@ pub struct ConditionalRenderingBeginInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`buffer`] is a buffer containing the predicate for conditional
     ///rendering.
     buffer: Buffer,
@@ -83,6 +82,96 @@ pub struct ConditionalRenderingBeginInfoEXT<'lt> {
     ///[`flags`] is a bitmask of [`ConditionalRenderingFlagsEXT`]
     ///specifying the behavior of conditional rendering.
     flags: ConditionalRenderingFlagsEXT,
+}
+impl<'lt> Default for ConditionalRenderingBeginInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            buffer: Default::default(),
+            offset: Default::default(),
+            flags: Default::default(),
+        }
+    }
+}
+impl<'lt> ConditionalRenderingBeginInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::buffer`]
+    pub fn buffer(&self) -> Buffer {
+        self.buffer
+    }
+    ///Gets the value of [`Self::offset`]
+    pub fn offset(&self) -> DeviceSize {
+        self.offset
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> ConditionalRenderingFlagsEXT {
+        self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::buffer`]
+    pub fn buffer_mut(&mut self) -> &mut Buffer {
+        &mut self.buffer
+    }
+    ///Gets a mutable reference to the value of [`Self::offset`]
+    pub fn offset_mut(&mut self) -> &mut DeviceSize {
+        &mut self.offset
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut ConditionalRenderingFlagsEXT {
+        &mut self.flags
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::buffer`]
+    pub fn set_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+        self.buffer = value;
+        self
+    }
+    ///Sets the raw value of [`Self::offset`]
+    pub fn set_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.offset = value;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::ext_conditional_rendering::ConditionalRenderingFlagsEXT,
+    ) -> &mut Self {
+        self.flags = value;
+        self
+    }
 }
 ///[VkCommandBufferInheritanceConditionalRenderingInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandBufferInheritanceConditionalRenderingInfoEXT.html) - Structure specifying command buffer inheritance information
 ///# C Specifications
@@ -128,9 +217,8 @@ pub struct ConditionalRenderingBeginInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -138,7 +226,7 @@ pub struct CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`conditional_rendering_enable`] specifies whether the command buffer
     ///**can** be executed while conditional rendering is active in the primary
     ///command buffer.
@@ -148,6 +236,88 @@ pub struct CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
     ///If this is [`FALSE`], then the primary command buffer **must** not
     ///have conditional rendering active.
     conditional_rendering_enable: Bool32,
+}
+impl<'lt> Default for CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            conditional_rendering_enable: 0,
+        }
+    }
+}
+impl<'lt> CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::conditional_rendering_enable`]
+    pub fn conditional_rendering_enable_raw(&self) -> Bool32 {
+        self.conditional_rendering_enable
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::conditional_rendering_enable`]
+    pub fn set_conditional_rendering_enable_raw(&mut self, value: Bool32) -> &mut Self {
+        self.conditional_rendering_enable = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::conditional_rendering_enable`]
+    pub fn conditional_rendering_enable(&self) -> bool {
+        unsafe { std::mem::transmute(self.conditional_rendering_enable as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::conditional_rendering_enable`]
+    pub fn conditional_rendering_enable_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.conditional_rendering_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.conditional_rendering_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::conditional_rendering_enable`]
+    pub fn set_conditional_rendering_enable(&mut self, value: bool) -> &mut Self {
+        self.conditional_rendering_enable = value as u8 as u32;
+        self
+    }
 }
 ///[VkPhysicalDeviceConditionalRenderingFeaturesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceConditionalRenderingFeaturesEXT.html) - Structure describing if a secondary command buffer can be executed if conditional rendering is active in the primary command buffer
 ///# C Specifications
@@ -190,9 +360,8 @@ pub struct CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceConditionalRenderingFeaturesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -200,7 +369,7 @@ pub struct PhysicalDeviceConditionalRenderingFeaturesEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`conditional_rendering`] specifies
     ///whether conditional rendering is supported.
     conditional_rendering: Bool32,
@@ -208,4 +377,130 @@ pub struct PhysicalDeviceConditionalRenderingFeaturesEXT<'lt> {
     ///command buffer **can** be executed while conditional rendering is active in
     ///the primary command buffer.
     inherited_conditional_rendering: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceConditionalRenderingFeaturesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            conditional_rendering: 0,
+            inherited_conditional_rendering: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceConditionalRenderingFeaturesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::conditional_rendering`]
+    pub fn conditional_rendering_raw(&self) -> Bool32 {
+        self.conditional_rendering
+    }
+    ///Gets the raw value of [`Self::inherited_conditional_rendering`]
+    pub fn inherited_conditional_rendering_raw(&self) -> Bool32 {
+        self.inherited_conditional_rendering
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::conditional_rendering`]
+    pub fn set_conditional_rendering_raw(&mut self, value: Bool32) -> &mut Self {
+        self.conditional_rendering = value;
+        self
+    }
+    ///Sets the raw value of [`Self::inherited_conditional_rendering`]
+    pub fn set_inherited_conditional_rendering_raw(&mut self, value: Bool32) -> &mut Self {
+        self.inherited_conditional_rendering = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::conditional_rendering`]
+    pub fn conditional_rendering(&self) -> bool {
+        unsafe { std::mem::transmute(self.conditional_rendering as u8) }
+    }
+    ///Gets the value of [`Self::inherited_conditional_rendering`]
+    pub fn inherited_conditional_rendering(&self) -> bool {
+        unsafe { std::mem::transmute(self.inherited_conditional_rendering as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::conditional_rendering`]
+    pub fn conditional_rendering_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.conditional_rendering as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.conditional_rendering as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::inherited_conditional_rendering`]
+    pub fn inherited_conditional_rendering_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.inherited_conditional_rendering as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.inherited_conditional_rendering as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::conditional_rendering`]
+    pub fn set_conditional_rendering(&mut self, value: bool) -> &mut Self {
+        self.conditional_rendering = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::inherited_conditional_rendering`]
+    pub fn set_inherited_conditional_rendering(&mut self, value: bool) -> &mut Self {
+        self.inherited_conditional_rendering = value as u8 as u32;
+        self
+    }
 }

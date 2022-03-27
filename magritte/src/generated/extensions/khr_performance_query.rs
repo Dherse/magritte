@@ -332,9 +332,8 @@ impl PerformanceCounterStorageKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -342,7 +341,7 @@ pub struct PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`performance_counter_query_pools`] indicates whether the implementation
     ///supports performance counter query pools.
     performance_counter_query_pools: Bool32,
@@ -350,6 +349,132 @@ pub struct PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
     ///implementation supports using multiple performance query pools in a
     ///primary command buffer and secondary command buffers executed within it.
     performance_counter_multiple_query_pools: Bool32,
+}
+impl<'lt> Default for PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            performance_counter_query_pools: 0,
+            performance_counter_multiple_query_pools: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::performance_counter_query_pools`]
+    pub fn performance_counter_query_pools_raw(&self) -> Bool32 {
+        self.performance_counter_query_pools
+    }
+    ///Gets the raw value of [`Self::performance_counter_multiple_query_pools`]
+    pub fn performance_counter_multiple_query_pools_raw(&self) -> Bool32 {
+        self.performance_counter_multiple_query_pools
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::performance_counter_query_pools`]
+    pub fn set_performance_counter_query_pools_raw(&mut self, value: Bool32) -> &mut Self {
+        self.performance_counter_query_pools = value;
+        self
+    }
+    ///Sets the raw value of [`Self::performance_counter_multiple_query_pools`]
+    pub fn set_performance_counter_multiple_query_pools_raw(&mut self, value: Bool32) -> &mut Self {
+        self.performance_counter_multiple_query_pools = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::performance_counter_query_pools`]
+    pub fn performance_counter_query_pools(&self) -> bool {
+        unsafe { std::mem::transmute(self.performance_counter_query_pools as u8) }
+    }
+    ///Gets the value of [`Self::performance_counter_multiple_query_pools`]
+    pub fn performance_counter_multiple_query_pools(&self) -> bool {
+        unsafe { std::mem::transmute(self.performance_counter_multiple_query_pools as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::performance_counter_query_pools`]
+    pub fn performance_counter_query_pools_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.performance_counter_query_pools as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.performance_counter_query_pools as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::performance_counter_multiple_query_pools`]
+    pub fn performance_counter_multiple_query_pools_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.performance_counter_multiple_query_pools as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.performance_counter_multiple_query_pools as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::performance_counter_query_pools`]
+    pub fn set_performance_counter_query_pools(&mut self, value: bool) -> &mut Self {
+        self.performance_counter_query_pools = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::performance_counter_multiple_query_pools`]
+    pub fn set_performance_counter_multiple_query_pools(&mut self, value: bool) -> &mut Self {
+        self.performance_counter_multiple_query_pools = value as u8 as u32;
+        self
+    }
 }
 ///[VkPhysicalDevicePerformanceQueryPropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePerformanceQueryPropertiesKHR.html) - Structure describing performance query properties for an implementation
 ///# C Specifications
@@ -387,9 +512,8 @@ pub struct PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -397,10 +521,99 @@ pub struct PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`allow_command_buffer_query_copies`] is [`TRUE`] if the performance
     ///query pools are allowed to be used with [`CmdCopyQueryPoolResults`].
     allow_command_buffer_query_copies: Bool32,
+}
+impl<'lt> Default for PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            allow_command_buffer_query_copies: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::allow_command_buffer_query_copies`]
+    pub fn allow_command_buffer_query_copies_raw(&self) -> Bool32 {
+        self.allow_command_buffer_query_copies
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::allow_command_buffer_query_copies`]
+    pub fn set_allow_command_buffer_query_copies_raw(&mut self, value: Bool32) -> &mut Self {
+        self.allow_command_buffer_query_copies = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::allow_command_buffer_query_copies`]
+    pub fn allow_command_buffer_query_copies(&self) -> bool {
+        unsafe { std::mem::transmute(self.allow_command_buffer_query_copies as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::allow_command_buffer_query_copies`]
+    pub fn allow_command_buffer_query_copies_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.allow_command_buffer_query_copies as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.allow_command_buffer_query_copies as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::allow_command_buffer_query_copies`]
+    pub fn set_allow_command_buffer_query_copies(&mut self, value: bool) -> &mut Self {
+        self.allow_command_buffer_query_copies = value as u8 as u32;
+        self
+    }
 }
 ///[VkPerformanceCounterKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterKHR.html) - Structure providing information about a counter
 ///# C Specifications
@@ -446,9 +659,8 @@ pub struct PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PerformanceCounterKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -456,7 +668,7 @@ pub struct PerformanceCounterKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`unit`] is a [`PerformanceCounterUnitKHR`] specifying the unit
     ///that the counter data will record.
     unit: PerformanceCounterUnitKHR,
@@ -470,6 +682,132 @@ pub struct PerformanceCounterKHR<'lt> {
     ///values that represent a universally unique identifier for the counter of
     ///the physical device.
     uuid: [u8; UUID_SIZE],
+}
+impl<'lt> Default for PerformanceCounterKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            unit: Default::default(),
+            scope: Default::default(),
+            storage: Default::default(),
+            uuid: [0; UUID_SIZE],
+        }
+    }
+}
+impl<'lt> PerformanceCounterKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::uuid`]
+    pub fn uuid_raw(&self) -> [u8; UUID_SIZE] {
+        self.uuid
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::uuid`]
+    pub fn set_uuid_raw(&mut self, value: [u8; UUID_SIZE]) -> &mut Self {
+        self.uuid = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::unit`]
+    pub fn unit(&self) -> PerformanceCounterUnitKHR {
+        self.unit
+    }
+    ///Gets the value of [`Self::scope`]
+    pub fn scope(&self) -> PerformanceCounterScopeKHR {
+        self.scope
+    }
+    ///Gets the value of [`Self::storage`]
+    pub fn storage(&self) -> PerformanceCounterStorageKHR {
+        self.storage
+    }
+    ///Gets the value of [`Self::uuid`]
+    pub fn uuid(&self) -> &[u8; UUID_SIZE] {
+        &getter
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::unit`]
+    pub fn unit_mut(&mut self) -> &mut PerformanceCounterUnitKHR {
+        &mut self.unit
+    }
+    ///Gets a mutable reference to the value of [`Self::scope`]
+    pub fn scope_mut(&mut self) -> &mut PerformanceCounterScopeKHR {
+        &mut self.scope
+    }
+    ///Gets a mutable reference to the value of [`Self::storage`]
+    pub fn storage_mut(&mut self) -> &mut PerformanceCounterStorageKHR {
+        &mut self.storage
+    }
+    ///Gets a mutable reference to the value of [`Self::uuid`]
+    pub fn uuid_mut(&mut self) -> &mut [u8; UUID_SIZE] {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::unit`]
+    pub fn set_unit(
+        &mut self,
+        value: crate::extensions::khr_performance_query::PerformanceCounterUnitKHR,
+    ) -> &mut Self {
+        self.unit = value;
+        self
+    }
+    ///Sets the raw value of [`Self::scope`]
+    pub fn set_scope(
+        &mut self,
+        value: crate::extensions::khr_performance_query::PerformanceCounterScopeKHR,
+    ) -> &mut Self {
+        self.scope = value;
+        self
+    }
+    ///Sets the raw value of [`Self::storage`]
+    pub fn set_storage(
+        &mut self,
+        value: crate::extensions::khr_performance_query::PerformanceCounterStorageKHR,
+    ) -> &mut Self {
+        self.storage = value;
+        self
+    }
+    ///Sets the raw value of [`Self::uuid`]
+    pub fn set_uuid(&mut self, value: [u8; crate::core::UUID_SIZE]) -> &mut Self {
+        self.uuid = value;
+        self
+    }
 }
 ///[VkPerformanceCounterDescriptionKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterDescriptionKHR.html) - Structure providing more detailed information about a counter
 ///# C Specifications
@@ -513,9 +851,8 @@ pub struct PerformanceCounterKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PerformanceCounterDescriptionKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -523,7 +860,7 @@ pub struct PerformanceCounterDescriptionKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`flags`] is a bitmask of
     ///[`PerformanceCounterDescriptionFlagBitsKHR`] indicating the usage
     ///behavior for the counter.
@@ -539,6 +876,144 @@ pub struct PerformanceCounterDescriptionKHR<'lt> {
     ///containing a null-terminated UTF-8 string specifying the description of
     ///the counter.
     description: [c_schar; MAX_DESCRIPTION_SIZE],
+}
+impl<'lt> Default for PerformanceCounterDescriptionKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            flags: Default::default(),
+            name: [b'\0' as i8; MAX_DESCRIPTION_SIZE],
+            category: [b'\0' as i8; MAX_DESCRIPTION_SIZE],
+            description: [b'\0' as i8; MAX_DESCRIPTION_SIZE],
+        }
+    }
+}
+impl<'lt> PerformanceCounterDescriptionKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::name`]
+    pub fn name_raw(&self) -> [c_schar; MAX_DESCRIPTION_SIZE] {
+        self.name
+    }
+    ///Gets the raw value of [`Self::category`]
+    pub fn category_raw(&self) -> [c_schar; MAX_DESCRIPTION_SIZE] {
+        self.category
+    }
+    ///Gets the raw value of [`Self::description`]
+    pub fn description_raw(&self) -> [c_schar; MAX_DESCRIPTION_SIZE] {
+        self.description
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::name`]
+    pub fn set_name_raw(&mut self, value: [c_schar; MAX_DESCRIPTION_SIZE]) -> &mut Self {
+        self.name = value;
+        self
+    }
+    ///Sets the raw value of [`Self::category`]
+    pub fn set_category_raw(&mut self, value: [c_schar; MAX_DESCRIPTION_SIZE]) -> &mut Self {
+        self.category = value;
+        self
+    }
+    ///Sets the raw value of [`Self::description`]
+    pub fn set_description_raw(&mut self, value: [c_schar; MAX_DESCRIPTION_SIZE]) -> &mut Self {
+        self.description = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> PerformanceCounterDescriptionFlagsKHR {
+        self.flags
+    }
+    ///Gets the value of [`Self::name`]
+    pub fn name(&self) -> &[c_schar; MAX_DESCRIPTION_SIZE] {
+        &getter
+    }
+    ///Gets the value of [`Self::category`]
+    pub fn category(&self) -> &[c_schar; MAX_DESCRIPTION_SIZE] {
+        &getter
+    }
+    ///Gets the value of [`Self::description`]
+    pub fn description(&self) -> &[c_schar; MAX_DESCRIPTION_SIZE] {
+        &getter
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut PerformanceCounterDescriptionFlagsKHR {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::name`]
+    pub fn name_mut(&mut self) -> &mut [c_schar; MAX_DESCRIPTION_SIZE] {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::category`]
+    pub fn category_mut(&mut self) -> &mut [c_schar; MAX_DESCRIPTION_SIZE] {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::description`]
+    pub fn description_mut(&mut self) -> &mut [c_schar; MAX_DESCRIPTION_SIZE] {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::khr_performance_query::PerformanceCounterDescriptionFlagsKHR,
+    ) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::name`]
+    pub fn set_name(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE]) -> &mut Self {
+        self.name = value;
+        self
+    }
+    ///Sets the raw value of [`Self::category`]
+    pub fn set_category(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE]) -> &mut Self {
+        self.category = value;
+        self
+    }
+    ///Sets the raw value of [`Self::description`]
+    pub fn set_description(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE]) -> &mut Self {
+        self.description = value;
+        self
+    }
 }
 ///[VkQueryPoolPerformanceCreateInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueryPoolPerformanceCreateInfoKHR.html) - Structure specifying parameters of a newly created performance query pool
 ///# C Specifications
@@ -557,8 +1032,8 @@ pub struct PerformanceCounterDescriptionKHR<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`queue_family_index`] is the queue family index to create this performance query pool for.
-/// - [`counter_index_count`] is the length of the [`p_counter_indices`] array.
-/// - [`p_counter_indices`] is a pointer to an array of indices into the
+/// - [`counter_index_count`] is the length of the [`counter_indices`] array.
+/// - [`counter_indices`] is a pointer to an array of indices into the
 ///   [`EnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR`]`::pCounters` to enable in
 ///   this performance query pool.
 ///# Description
@@ -566,12 +1041,12 @@ pub struct PerformanceCounterDescriptionKHR<'lt> {
 /// - [`queue_family_index`]**must** be a valid queue family index of the device
 /// - The [`performanceCounterQueryPools`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-performanceCounterQueryPools)
 ///   feature **must** be enabled
-/// - Each element of [`p_counter_indices`]**must** be in the range of counters reported by
+/// - Each element of [`counter_indices`]**must** be in the range of counters reported by
 ///   [`EnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR`] for the queue family
 ///   specified in [`queue_family_index`]
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR`
-/// - [`p_counter_indices`]**must** be a valid pointer to an array of
+/// - [`counter_indices`]**must** be a valid pointer to an array of
 ///   [`counter_index_count`]`uint32_t` values
 /// - [`counter_index_count`]**must** be greater than `0`
 ///# Related
@@ -586,9 +1061,8 @@ pub struct PerformanceCounterDescriptionKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct QueryPoolPerformanceCreateInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -596,17 +1070,133 @@ pub struct QueryPoolPerformanceCreateInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`queue_family_index`] is the queue family index to create this
     ///performance query pool for.
     queue_family_index: u32,
-    ///[`counter_index_count`] is the length of the [`p_counter_indices`]
+    ///[`counter_index_count`] is the length of the [`counter_indices`]
     ///array.
     counter_index_count: u32,
-    ///[`p_counter_indices`] is a pointer to an array of indices into the
+    ///[`counter_indices`] is a pointer to an array of indices into the
     ///[`EnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR`]::`pCounters`
     ///to enable in this performance query pool.
-    p_counter_indices: *mut u32,
+    counter_indices: *const u32,
+}
+impl<'lt> Default for QueryPoolPerformanceCreateInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            queue_family_index: 0,
+            counter_index_count: 0,
+            counter_indices: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> QueryPoolPerformanceCreateInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::queue_family_index`]
+    pub fn queue_family_index_raw(&self) -> u32 {
+        self.queue_family_index
+    }
+    ///Gets the raw value of [`Self::counter_index_count`]
+    pub fn counter_index_count_raw(&self) -> u32 {
+        self.counter_index_count
+    }
+    ///Gets the raw value of [`Self::counter_indices`]
+    pub fn counter_indices_raw(&self) -> *const u32 {
+        self.counter_indices
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::queue_family_index`]
+    pub fn set_queue_family_index_raw(&mut self, value: u32) -> &mut Self {
+        self.queue_family_index = value;
+        self
+    }
+    ///Sets the raw value of [`Self::counter_index_count`]
+    pub fn set_counter_index_count_raw(&mut self, value: u32) -> &mut Self {
+        self.counter_index_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::counter_indices`]
+    pub fn set_counter_indices_raw(&mut self, value: *const u32) -> &mut Self {
+        self.counter_indices = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::queue_family_index`]
+    pub fn queue_family_index(&self) -> u32 {
+        self.queue_family_index
+    }
+    ///Gets the value of [`Self::counter_index_count`]
+    pub fn counter_index_count(&self) -> u32 {
+        self.counter_index_count
+    }
+    ///Gets the value of [`Self::counter_indices`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn counter_indices(&self) -> &[u32] {
+        std::slice::from_raw_parts(self.counter_indices, self.counter_index_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::queue_family_index`]
+    pub fn queue_family_index_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::counter_index_count`]
+    pub fn counter_index_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::queue_family_index`]
+    pub fn set_queue_family_index(&mut self, value: u32) -> &mut Self {
+        self.queue_family_index = value;
+        self
+    }
+    ///Sets the raw value of [`Self::counter_index_count`]
+    pub fn set_counter_index_count(&mut self, value: u32) -> &mut Self {
+        self.counter_index_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::counter_indices`]
+    pub fn set_counter_indices(&mut self, value: &'lt [u32]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.counter_indices = value.as_ptr();
+        self.counter_index_count = len_;
+        self
+    }
 }
 ///[VkAcquireProfilingLockInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAcquireProfilingLockInfoKHR.html) - Structure specifying parameters to acquire the profiling lock
 ///# C Specifications
@@ -648,9 +1238,8 @@ pub struct QueryPoolPerformanceCreateInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct AcquireProfilingLockInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -658,12 +1247,97 @@ pub struct AcquireProfilingLockInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
     flags: AcquireProfilingLockFlagsKHR,
     ///[`timeout`] indicates how long the function waits, in nanoseconds, if
     ///the profiling lock is not available.
     timeout: u64,
+}
+impl<'lt> Default for AcquireProfilingLockInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            flags: Default::default(),
+            timeout: 0,
+        }
+    }
+}
+impl<'lt> AcquireProfilingLockInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::timeout`]
+    pub fn timeout_raw(&self) -> u64 {
+        self.timeout
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::timeout`]
+    pub fn set_timeout_raw(&mut self, value: u64) -> &mut Self {
+        self.timeout = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> AcquireProfilingLockFlagsKHR {
+        self.flags
+    }
+    ///Gets the value of [`Self::timeout`]
+    pub fn timeout(&self) -> u64 {
+        self.timeout
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut AcquireProfilingLockFlagsKHR {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::timeout`]
+    pub fn timeout_mut(&mut self) -> &mut u64 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::khr_performance_query::AcquireProfilingLockFlagsKHR,
+    ) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::timeout`]
+    pub fn set_timeout(&mut self, value: u64) -> &mut Self {
+        self.timeout = value;
+        self
+    }
 }
 ///[VkPerformanceQuerySubmitInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceQuerySubmitInfoKHR.html) - Structure indicating which counter pass index is active for performance queries
 ///# C Specifications
@@ -699,9 +1373,8 @@ pub struct AcquireProfilingLockInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PerformanceQuerySubmitInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -709,7 +1382,75 @@ pub struct PerformanceQuerySubmitInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`counter_pass_index`] specifies which counter pass index is active.
     counter_pass_index: u32,
+}
+impl<'lt> Default for PerformanceQuerySubmitInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            counter_pass_index: 0,
+        }
+    }
+}
+impl<'lt> PerformanceQuerySubmitInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::counter_pass_index`]
+    pub fn counter_pass_index_raw(&self) -> u32 {
+        self.counter_pass_index
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::counter_pass_index`]
+    pub fn set_counter_pass_index_raw(&mut self, value: u32) -> &mut Self {
+        self.counter_pass_index = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::counter_pass_index`]
+    pub fn counter_pass_index(&self) -> u32 {
+        self.counter_pass_index
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::counter_pass_index`]
+    pub fn counter_pass_index_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::counter_pass_index`]
+    pub fn set_counter_pass_index(&mut self, value: u32) -> &mut Self {
+        self.counter_pass_index = value;
+        self
+    }
 }

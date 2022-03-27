@@ -46,9 +46,8 @@ pub const AMD_SHADER_CORE_PROPERTIES_2_EXTENSION_NAME: &'static CStr = crate::cs
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderCoreProperties2AMD<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -56,7 +55,7 @@ pub struct PhysicalDeviceShaderCoreProperties2AMD<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_core_features`] is a bitmask of
     ///[`ShaderCorePropertiesFlagBitsAMD`] indicating the set of features
     ///supported by the shader core.
@@ -65,4 +64,96 @@ pub struct PhysicalDeviceShaderCoreProperties2AMD<'lt> {
     ///unsigned integer value indicating the number of compute units that have
     ///been enabled.
     active_compute_unit_count: u32,
+}
+impl<'lt> Default for PhysicalDeviceShaderCoreProperties2AMD<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            shader_core_features: Default::default(),
+            active_compute_unit_count: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceShaderCoreProperties2AMD<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::active_compute_unit_count`]
+    pub fn active_compute_unit_count_raw(&self) -> u32 {
+        self.active_compute_unit_count
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::active_compute_unit_count`]
+    pub fn set_active_compute_unit_count_raw(&mut self, value: u32) -> &mut Self {
+        self.active_compute_unit_count = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::shader_core_features`]
+    pub fn shader_core_features(&self) -> ShaderCorePropertiesFlagsAMD {
+        self.shader_core_features
+    }
+    ///Gets the value of [`Self::active_compute_unit_count`]
+    pub fn active_compute_unit_count(&self) -> u32 {
+        self.active_compute_unit_count
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::shader_core_features`]
+    pub fn shader_core_features_mut(&mut self) -> &mut ShaderCorePropertiesFlagsAMD {
+        &mut self.shader_core_features
+    }
+    ///Gets a mutable reference to the value of [`Self::active_compute_unit_count`]
+    pub fn active_compute_unit_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_core_features`]
+    pub fn set_shader_core_features(
+        &mut self,
+        value: crate::extensions::amd_shader_core_properties_2::ShaderCorePropertiesFlagsAMD,
+    ) -> &mut Self {
+        self.shader_core_features = value;
+        self
+    }
+    ///Sets the raw value of [`Self::active_compute_unit_count`]
+    pub fn set_active_compute_unit_count(&mut self, value: u32) -> &mut Self {
+        self.active_compute_unit_count = value;
+        self
+    }
 }

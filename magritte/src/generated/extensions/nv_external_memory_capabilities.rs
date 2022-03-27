@@ -54,7 +54,7 @@ pub const NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -85,4 +85,77 @@ pub struct ExternalImageFormatPropertiesNV {
     ///[`compatible_handle_types`] will always contain
     ///[`GetPhysicalDeviceExternalImageFormatPropertiesNV`]::`externalHandleType`
     compatible_handle_types: ExternalMemoryHandleTypeFlagsNV,
+}
+impl Default for ExternalImageFormatPropertiesNV {
+    fn default() -> Self {
+        Self {
+            image_format_properties: Default::default(),
+            external_memory_features: Default::default(),
+            export_from_imported_handle_types: Default::default(),
+            compatible_handle_types: Default::default(),
+        }
+    }
+}
+impl ExternalImageFormatPropertiesNV {
+    ///Gets the value of [`Self::image_format_properties`]
+    pub fn image_format_properties(&self) -> ImageFormatProperties {
+        self.image_format_properties
+    }
+    ///Gets the value of [`Self::external_memory_features`]
+    pub fn external_memory_features(&self) -> ExternalMemoryFeatureFlagsNV {
+        self.external_memory_features
+    }
+    ///Gets the value of [`Self::export_from_imported_handle_types`]
+    pub fn export_from_imported_handle_types(&self) -> ExternalMemoryHandleTypeFlagsNV {
+        self.export_from_imported_handle_types
+    }
+    ///Gets the value of [`Self::compatible_handle_types`]
+    pub fn compatible_handle_types(&self) -> ExternalMemoryHandleTypeFlagsNV {
+        self.compatible_handle_types
+    }
+    ///Gets a mutable reference to the value of [`Self::image_format_properties`]
+    pub fn image_format_properties_mut(&mut self) -> &mut ImageFormatProperties {
+        &mut self.image_format_properties
+    }
+    ///Gets a mutable reference to the value of [`Self::external_memory_features`]
+    pub fn external_memory_features_mut(&mut self) -> &mut ExternalMemoryFeatureFlagsNV {
+        &mut self.external_memory_features
+    }
+    ///Gets a mutable reference to the value of [`Self::export_from_imported_handle_types`]
+    pub fn export_from_imported_handle_types_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlagsNV {
+        &mut self.export_from_imported_handle_types
+    }
+    ///Gets a mutable reference to the value of [`Self::compatible_handle_types`]
+    pub fn compatible_handle_types_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlagsNV {
+        &mut self.compatible_handle_types
+    }
+    ///Sets the raw value of [`Self::image_format_properties`]
+    pub fn set_image_format_properties(&mut self, value: crate::vulkan1_0::ImageFormatProperties) -> &mut Self {
+        self.image_format_properties = value;
+        self
+    }
+    ///Sets the raw value of [`Self::external_memory_features`]
+    pub fn set_external_memory_features(
+        &mut self,
+        value: crate::extensions::nv_external_memory_capabilities::ExternalMemoryFeatureFlagsNV,
+    ) -> &mut Self {
+        self.external_memory_features = value;
+        self
+    }
+    ///Sets the raw value of [`Self::export_from_imported_handle_types`]
+    pub fn set_export_from_imported_handle_types(
+        &mut self,
+        value: crate::extensions::nv_external_memory_capabilities::ExternalMemoryHandleTypeFlagsNV,
+    ) -> &mut Self {
+        self.export_from_imported_handle_types = value;
+        self
+    }
+    ///Sets the raw value of [`Self::compatible_handle_types`]
+    pub fn set_compatible_handle_types(
+        &mut self,
+        value: crate::extensions::nv_external_memory_capabilities::ExternalMemoryHandleTypeFlagsNV,
+    ) -> &mut Self {
+        self.compatible_handle_types = value;
+        self
+    }
 }

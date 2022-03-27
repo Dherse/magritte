@@ -50,9 +50,8 @@ pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -60,11 +59,100 @@ pub struct PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`vertex_input_dynamic_state`]
     ///indicates that the implementation supports the following dynamic states:
     /// - `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
     vertex_input_dynamic_state: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            vertex_input_dynamic_state: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::vertex_input_dynamic_state`]
+    pub fn vertex_input_dynamic_state_raw(&self) -> Bool32 {
+        self.vertex_input_dynamic_state
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::vertex_input_dynamic_state`]
+    pub fn set_vertex_input_dynamic_state_raw(&mut self, value: Bool32) -> &mut Self {
+        self.vertex_input_dynamic_state = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::vertex_input_dynamic_state`]
+    pub fn vertex_input_dynamic_state(&self) -> bool {
+        unsafe { std::mem::transmute(self.vertex_input_dynamic_state as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::vertex_input_dynamic_state`]
+    pub fn vertex_input_dynamic_state_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.vertex_input_dynamic_state as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.vertex_input_dynamic_state as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::vertex_input_dynamic_state`]
+    pub fn set_vertex_input_dynamic_state(&mut self, value: bool) -> &mut Self {
+        self.vertex_input_dynamic_state = value as u8 as u32;
+        self
+    }
 }
 ///[VkVertexInputBindingDescription2EXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVertexInputBindingDescription2EXT.html) - Structure specifying the extended vertex input binding description
 ///# C Specifications
@@ -117,9 +205,8 @@ pub struct PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct VertexInputBindingDescription2EXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -127,7 +214,7 @@ pub struct VertexInputBindingDescription2EXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`binding`] is the binding number that this structure describes.
     binding: u32,
     ///[`stride`] is the byte stride between consecutive elements within the
@@ -153,6 +240,141 @@ pub struct VertexInputBindingDescription2EXT<'lt> {
     ///In this case, the same vertex attribute will be applied to all
     ///instances.
     divisor: u32,
+}
+impl<'lt> Default for VertexInputBindingDescription2EXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            binding: 0,
+            stride: 0,
+            input_rate: Default::default(),
+            divisor: 0,
+        }
+    }
+}
+impl<'lt> VertexInputBindingDescription2EXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::binding`]
+    pub fn binding_raw(&self) -> u32 {
+        self.binding
+    }
+    ///Gets the raw value of [`Self::stride`]
+    pub fn stride_raw(&self) -> u32 {
+        self.stride
+    }
+    ///Gets the raw value of [`Self::divisor`]
+    pub fn divisor_raw(&self) -> u32 {
+        self.divisor
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::binding`]
+    pub fn set_binding_raw(&mut self, value: u32) -> &mut Self {
+        self.binding = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stride`]
+    pub fn set_stride_raw(&mut self, value: u32) -> &mut Self {
+        self.stride = value;
+        self
+    }
+    ///Sets the raw value of [`Self::divisor`]
+    pub fn set_divisor_raw(&mut self, value: u32) -> &mut Self {
+        self.divisor = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::binding`]
+    pub fn binding(&self) -> u32 {
+        self.binding
+    }
+    ///Gets the value of [`Self::stride`]
+    pub fn stride(&self) -> u32 {
+        self.stride
+    }
+    ///Gets the value of [`Self::input_rate`]
+    pub fn input_rate(&self) -> VertexInputRate {
+        self.input_rate
+    }
+    ///Gets the value of [`Self::divisor`]
+    pub fn divisor(&self) -> u32 {
+        self.divisor
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::binding`]
+    pub fn binding_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::stride`]
+    pub fn stride_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::input_rate`]
+    pub fn input_rate_mut(&mut self) -> &mut VertexInputRate {
+        &mut self.input_rate
+    }
+    ///Gets a mutable reference to the value of [`Self::divisor`]
+    pub fn divisor_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::binding`]
+    pub fn set_binding(&mut self, value: u32) -> &mut Self {
+        self.binding = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stride`]
+    pub fn set_stride(&mut self, value: u32) -> &mut Self {
+        self.stride = value;
+        self
+    }
+    ///Sets the raw value of [`Self::input_rate`]
+    pub fn set_input_rate(&mut self, value: crate::vulkan1_0::VertexInputRate) -> &mut Self {
+        self.input_rate = value;
+        self
+    }
+    ///Sets the raw value of [`Self::divisor`]
+    pub fn set_divisor(&mut self, value: u32) -> &mut Self {
+        self.divisor = value;
+        self
+    }
 }
 ///[VkVertexInputAttributeDescription2EXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVertexInputAttributeDescription2EXT.html) - Structure specifying the extended vertex input attribute description
 ///# C Specifications
@@ -206,9 +428,8 @@ pub struct VertexInputBindingDescription2EXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct VertexInputAttributeDescription2EXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -216,7 +437,7 @@ pub struct VertexInputAttributeDescription2EXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`location`] is the shader input location number for this attribute.
     location: u32,
     ///[`binding`] is the binding number which this attribute takes its data
@@ -227,4 +448,139 @@ pub struct VertexInputAttributeDescription2EXT<'lt> {
     ///[`offset`] is a byte offset of this attribute relative to the start of
     ///an element in the vertex input binding.
     offset: u32,
+}
+impl<'lt> Default for VertexInputAttributeDescription2EXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            location: 0,
+            binding: 0,
+            format: Default::default(),
+            offset: 0,
+        }
+    }
+}
+impl<'lt> VertexInputAttributeDescription2EXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::location`]
+    pub fn location_raw(&self) -> u32 {
+        self.location
+    }
+    ///Gets the raw value of [`Self::binding`]
+    pub fn binding_raw(&self) -> u32 {
+        self.binding
+    }
+    ///Gets the raw value of [`Self::offset`]
+    pub fn offset_raw(&self) -> u32 {
+        self.offset
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::location`]
+    pub fn set_location_raw(&mut self, value: u32) -> &mut Self {
+        self.location = value;
+        self
+    }
+    ///Sets the raw value of [`Self::binding`]
+    pub fn set_binding_raw(&mut self, value: u32) -> &mut Self {
+        self.binding = value;
+        self
+    }
+    ///Sets the raw value of [`Self::offset`]
+    pub fn set_offset_raw(&mut self, value: u32) -> &mut Self {
+        self.offset = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::location`]
+    pub fn location(&self) -> u32 {
+        self.location
+    }
+    ///Gets the value of [`Self::binding`]
+    pub fn binding(&self) -> u32 {
+        self.binding
+    }
+    ///Gets the value of [`Self::format`]
+    pub fn format(&self) -> Format {
+        self.format
+    }
+    ///Gets the value of [`Self::offset`]
+    pub fn offset(&self) -> u32 {
+        self.offset
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::location`]
+    pub fn location_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::binding`]
+    pub fn binding_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::format`]
+    pub fn format_mut(&mut self) -> &mut Format {
+        &mut self.format
+    }
+    ///Gets a mutable reference to the value of [`Self::offset`]
+    pub fn offset_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::location`]
+    pub fn set_location(&mut self, value: u32) -> &mut Self {
+        self.location = value;
+        self
+    }
+    ///Sets the raw value of [`Self::binding`]
+    pub fn set_binding(&mut self, value: u32) -> &mut Self {
+        self.binding = value;
+        self
+    }
+    ///Sets the raw value of [`Self::format`]
+    pub fn set_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+        self.format = value;
+        self
+    }
+    ///Sets the raw value of [`Self::offset`]
+    pub fn set_offset(&mut self, value: u32) -> &mut Self {
+        self.offset = value;
+        self
+    }
 }

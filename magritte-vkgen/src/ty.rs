@@ -18,10 +18,7 @@ use nom::{
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, ToTokens};
 
-use crate::{
-    expr::{parse_expr, variable_raw, Expr},
-    imports::Imports,
-};
+use crate::expr::{parse_expr, variable_raw, Expr};
 
 /// A Vulkan C-like type
 #[derive(Debug, Clone, PartialEq)]
@@ -147,7 +144,7 @@ impl<'a> Ty<'a> {
     }
 
     /// Gets the length expression, returns some if `self` is an array or a slice
-    pub fn length(&self) -> Option<&Expr<'_>> {
+    pub fn length(&self) -> Option<&Expr<'a>> {
         match self {
             Ty::StringArray(len) | Ty::Array(_, len) | Ty::Slice(_, _, len) => Some(len),
             _ => None,
@@ -270,7 +267,7 @@ pub enum Native {
 }
 impl Native {
     /// Gets the default value of this native type as tokens
-    pub fn default_tokens(&self, imports: &Imports) -> TokenStream {
+    pub fn default_tokens(&self) -> TokenStream {
         match self {
             Native::Void => panic!("no default value for void"),
             Native::UInt(_) | Native::Int(_) | Native::USize | Native::SSize => quote! { 0 },
@@ -278,11 +275,7 @@ impl Native {
             Native::UChar => quote! { b'\0' },
             Native::Float | Native::Double => quote! { 0.0 },
             Native::Bool => quote! { false },
-            Native::NullTerminatedString => {
-                imports.push("std::ptr::null");
-
-                quote! { null() }
-            },
+            Native::NullTerminatedString => quote! { std::ptr::null() },
         }
     }
 }

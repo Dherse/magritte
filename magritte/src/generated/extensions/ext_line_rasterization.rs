@@ -144,9 +144,8 @@ impl LineRasterizationModeEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -154,7 +153,7 @@ pub struct PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`rectangular_lines`] indicates whether
     ///the implementation supports [rectangular line
     ///rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines).
@@ -184,6 +183,280 @@ pub struct PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
     ///line rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-stipple) with
     ///`VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT` lines.
     stippled_smooth_lines: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            rectangular_lines: 0,
+            bresenham_lines: 0,
+            smooth_lines: 0,
+            stippled_rectangular_lines: 0,
+            stippled_bresenham_lines: 0,
+            stippled_smooth_lines: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::rectangular_lines`]
+    pub fn rectangular_lines_raw(&self) -> Bool32 {
+        self.rectangular_lines
+    }
+    ///Gets the raw value of [`Self::bresenham_lines`]
+    pub fn bresenham_lines_raw(&self) -> Bool32 {
+        self.bresenham_lines
+    }
+    ///Gets the raw value of [`Self::smooth_lines`]
+    pub fn smooth_lines_raw(&self) -> Bool32 {
+        self.smooth_lines
+    }
+    ///Gets the raw value of [`Self::stippled_rectangular_lines`]
+    pub fn stippled_rectangular_lines_raw(&self) -> Bool32 {
+        self.stippled_rectangular_lines
+    }
+    ///Gets the raw value of [`Self::stippled_bresenham_lines`]
+    pub fn stippled_bresenham_lines_raw(&self) -> Bool32 {
+        self.stippled_bresenham_lines
+    }
+    ///Gets the raw value of [`Self::stippled_smooth_lines`]
+    pub fn stippled_smooth_lines_raw(&self) -> Bool32 {
+        self.stippled_smooth_lines
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::rectangular_lines`]
+    pub fn set_rectangular_lines_raw(&mut self, value: Bool32) -> &mut Self {
+        self.rectangular_lines = value;
+        self
+    }
+    ///Sets the raw value of [`Self::bresenham_lines`]
+    pub fn set_bresenham_lines_raw(&mut self, value: Bool32) -> &mut Self {
+        self.bresenham_lines = value;
+        self
+    }
+    ///Sets the raw value of [`Self::smooth_lines`]
+    pub fn set_smooth_lines_raw(&mut self, value: Bool32) -> &mut Self {
+        self.smooth_lines = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stippled_rectangular_lines`]
+    pub fn set_stippled_rectangular_lines_raw(&mut self, value: Bool32) -> &mut Self {
+        self.stippled_rectangular_lines = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stippled_bresenham_lines`]
+    pub fn set_stippled_bresenham_lines_raw(&mut self, value: Bool32) -> &mut Self {
+        self.stippled_bresenham_lines = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stippled_smooth_lines`]
+    pub fn set_stippled_smooth_lines_raw(&mut self, value: Bool32) -> &mut Self {
+        self.stippled_smooth_lines = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::rectangular_lines`]
+    pub fn rectangular_lines(&self) -> bool {
+        unsafe { std::mem::transmute(self.rectangular_lines as u8) }
+    }
+    ///Gets the value of [`Self::bresenham_lines`]
+    pub fn bresenham_lines(&self) -> bool {
+        unsafe { std::mem::transmute(self.bresenham_lines as u8) }
+    }
+    ///Gets the value of [`Self::smooth_lines`]
+    pub fn smooth_lines(&self) -> bool {
+        unsafe { std::mem::transmute(self.smooth_lines as u8) }
+    }
+    ///Gets the value of [`Self::stippled_rectangular_lines`]
+    pub fn stippled_rectangular_lines(&self) -> bool {
+        unsafe { std::mem::transmute(self.stippled_rectangular_lines as u8) }
+    }
+    ///Gets the value of [`Self::stippled_bresenham_lines`]
+    pub fn stippled_bresenham_lines(&self) -> bool {
+        unsafe { std::mem::transmute(self.stippled_bresenham_lines as u8) }
+    }
+    ///Gets the value of [`Self::stippled_smooth_lines`]
+    pub fn stippled_smooth_lines(&self) -> bool {
+        unsafe { std::mem::transmute(self.stippled_smooth_lines as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::rectangular_lines`]
+    pub fn rectangular_lines_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.rectangular_lines as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.rectangular_lines as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::bresenham_lines`]
+    pub fn bresenham_lines_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.bresenham_lines as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.bresenham_lines as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::smooth_lines`]
+    pub fn smooth_lines_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.smooth_lines as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.smooth_lines as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::stippled_rectangular_lines`]
+    pub fn stippled_rectangular_lines_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.stippled_rectangular_lines as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.stippled_rectangular_lines as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::stippled_bresenham_lines`]
+    pub fn stippled_bresenham_lines_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.stippled_bresenham_lines as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.stippled_bresenham_lines as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::stippled_smooth_lines`]
+    pub fn stippled_smooth_lines_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.stippled_smooth_lines as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.stippled_smooth_lines as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::rectangular_lines`]
+    pub fn set_rectangular_lines(&mut self, value: bool) -> &mut Self {
+        self.rectangular_lines = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::bresenham_lines`]
+    pub fn set_bresenham_lines(&mut self, value: bool) -> &mut Self {
+        self.bresenham_lines = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::smooth_lines`]
+    pub fn set_smooth_lines(&mut self, value: bool) -> &mut Self {
+        self.smooth_lines = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::stippled_rectangular_lines`]
+    pub fn set_stippled_rectangular_lines(&mut self, value: bool) -> &mut Self {
+        self.stippled_rectangular_lines = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::stippled_bresenham_lines`]
+    pub fn set_stippled_bresenham_lines(&mut self, value: bool) -> &mut Self {
+        self.stippled_bresenham_lines = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::stippled_smooth_lines`]
+    pub fn set_stippled_smooth_lines(&mut self, value: bool) -> &mut Self {
+        self.stippled_smooth_lines = value as u8 as u32;
+        self
+    }
 }
 ///[VkPhysicalDeviceLineRasterizationPropertiesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceLineRasterizationPropertiesEXT.html) - Structure describing line rasterization properties supported by an implementation
 ///# C Specifications
@@ -219,9 +492,8 @@ pub struct PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -229,12 +501,87 @@ pub struct PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`line_sub_pixel_precision_bits`] is
     ///the number of bits of subpixel precision in framebuffer coordinates
     ///x<sub>f</sub> and y<sub>f</sub> when rasterizing [line
     ///segments](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines).
     line_sub_pixel_precision_bits: u32,
+}
+impl<'lt> Default for PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            line_sub_pixel_precision_bits: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::line_sub_pixel_precision_bits`]
+    pub fn line_sub_pixel_precision_bits_raw(&self) -> u32 {
+        self.line_sub_pixel_precision_bits
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::line_sub_pixel_precision_bits`]
+    pub fn set_line_sub_pixel_precision_bits_raw(&mut self, value: u32) -> &mut Self {
+        self.line_sub_pixel_precision_bits = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::line_sub_pixel_precision_bits`]
+    pub fn line_sub_pixel_precision_bits(&self) -> u32 {
+        self.line_sub_pixel_precision_bits
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::line_sub_pixel_precision_bits`]
+    pub fn line_sub_pixel_precision_bits_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::line_sub_pixel_precision_bits`]
+    pub fn set_line_sub_pixel_precision_bits(&mut self, value: u32) -> &mut Self {
+        self.line_sub_pixel_precision_bits = value;
+        self
+    }
 }
 ///[VkPipelineRasterizationLineStateCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineRasterizationLineStateCreateInfoEXT.html) - Structure specifying parameters of a newly created pipeline line rasterization state
 ///# C Specifications
@@ -289,9 +636,8 @@ pub struct PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PipelineRasterizationLineStateCreateInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -299,7 +645,7 @@ pub struct PipelineRasterizationLineStateCreateInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`line_rasterization_mode`] is a [`LineRasterizationModeEXT`] value
     ///selecting the style of line rasterization.
     line_rasterization_mode: LineRasterizationModeEXT,
@@ -312,4 +658,149 @@ pub struct PipelineRasterizationLineStateCreateInfoEXT<'lt> {
     ///[`line_stipple_pattern`] is the bit pattern used in stippled line
     ///rasterization.
     line_stipple_pattern: u16,
+}
+impl<'lt> Default for PipelineRasterizationLineStateCreateInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            line_rasterization_mode: Default::default(),
+            stippled_line_enable: 0,
+            line_stipple_factor: 0,
+            line_stipple_pattern: 0,
+        }
+    }
+}
+impl<'lt> PipelineRasterizationLineStateCreateInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::stippled_line_enable`]
+    pub fn stippled_line_enable_raw(&self) -> Bool32 {
+        self.stippled_line_enable
+    }
+    ///Gets the raw value of [`Self::line_stipple_factor`]
+    pub fn line_stipple_factor_raw(&self) -> u32 {
+        self.line_stipple_factor
+    }
+    ///Gets the raw value of [`Self::line_stipple_pattern`]
+    pub fn line_stipple_pattern_raw(&self) -> u16 {
+        self.line_stipple_pattern
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stippled_line_enable`]
+    pub fn set_stippled_line_enable_raw(&mut self, value: Bool32) -> &mut Self {
+        self.stippled_line_enable = value;
+        self
+    }
+    ///Sets the raw value of [`Self::line_stipple_factor`]
+    pub fn set_line_stipple_factor_raw(&mut self, value: u32) -> &mut Self {
+        self.line_stipple_factor = value;
+        self
+    }
+    ///Sets the raw value of [`Self::line_stipple_pattern`]
+    pub fn set_line_stipple_pattern_raw(&mut self, value: u16) -> &mut Self {
+        self.line_stipple_pattern = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::line_rasterization_mode`]
+    pub fn line_rasterization_mode(&self) -> LineRasterizationModeEXT {
+        self.line_rasterization_mode
+    }
+    ///Gets the value of [`Self::stippled_line_enable`]
+    pub fn stippled_line_enable(&self) -> bool {
+        unsafe { std::mem::transmute(self.stippled_line_enable as u8) }
+    }
+    ///Gets the value of [`Self::line_stipple_factor`]
+    pub fn line_stipple_factor(&self) -> u32 {
+        self.line_stipple_factor
+    }
+    ///Gets the value of [`Self::line_stipple_pattern`]
+    pub fn line_stipple_pattern(&self) -> u16 {
+        self.line_stipple_pattern
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::line_rasterization_mode`]
+    pub fn line_rasterization_mode_mut(&mut self) -> &mut LineRasterizationModeEXT {
+        &mut self.line_rasterization_mode
+    }
+    ///Gets a mutable reference to the value of [`Self::stippled_line_enable`]
+    pub fn stippled_line_enable_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.stippled_line_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.stippled_line_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::line_stipple_factor`]
+    pub fn line_stipple_factor_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::line_stipple_pattern`]
+    pub fn line_stipple_pattern_mut(&mut self) -> &mut u16 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::line_rasterization_mode`]
+    pub fn set_line_rasterization_mode(
+        &mut self,
+        value: crate::extensions::ext_line_rasterization::LineRasterizationModeEXT,
+    ) -> &mut Self {
+        self.line_rasterization_mode = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stippled_line_enable`]
+    pub fn set_stippled_line_enable(&mut self, value: bool) -> &mut Self {
+        self.stippled_line_enable = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::line_stipple_factor`]
+    pub fn set_line_stipple_factor(&mut self, value: u32) -> &mut Self {
+        self.line_stipple_factor = value;
+        self
+    }
+    ///Sets the raw value of [`Self::line_stipple_pattern`]
+    pub fn set_line_stipple_pattern(&mut self, value: u16) -> &mut Self {
+        self.line_stipple_pattern = value;
+        self
+    }
 }

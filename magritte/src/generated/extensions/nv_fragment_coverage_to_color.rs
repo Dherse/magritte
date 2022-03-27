@@ -70,9 +70,8 @@ pub const NV_FRAGMENT_COVERAGE_TO_COLOR_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PipelineCoverageToColorStateCreateInfoNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -80,7 +79,7 @@ pub struct PipelineCoverageToColorStateCreateInfoNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
     flags: PipelineCoverageToColorStateCreateFlagsNV,
     ///[`coverage_to_color_enable`] controls whether the fragment coverage value
@@ -89,4 +88,126 @@ pub struct PipelineCoverageToColorStateCreateInfoNV<'lt> {
     ///[`coverage_to_color_location`] controls which fragment shader color
     ///output value is replaced.
     coverage_to_color_location: u32,
+}
+impl<'lt> Default for PipelineCoverageToColorStateCreateInfoNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            flags: Default::default(),
+            coverage_to_color_enable: 0,
+            coverage_to_color_location: 0,
+        }
+    }
+}
+impl<'lt> PipelineCoverageToColorStateCreateInfoNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::coverage_to_color_enable`]
+    pub fn coverage_to_color_enable_raw(&self) -> Bool32 {
+        self.coverage_to_color_enable
+    }
+    ///Gets the raw value of [`Self::coverage_to_color_location`]
+    pub fn coverage_to_color_location_raw(&self) -> u32 {
+        self.coverage_to_color_location
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::coverage_to_color_enable`]
+    pub fn set_coverage_to_color_enable_raw(&mut self, value: Bool32) -> &mut Self {
+        self.coverage_to_color_enable = value;
+        self
+    }
+    ///Sets the raw value of [`Self::coverage_to_color_location`]
+    pub fn set_coverage_to_color_location_raw(&mut self, value: u32) -> &mut Self {
+        self.coverage_to_color_location = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> PipelineCoverageToColorStateCreateFlagsNV {
+        self.flags
+    }
+    ///Gets the value of [`Self::coverage_to_color_enable`]
+    pub fn coverage_to_color_enable(&self) -> bool {
+        unsafe { std::mem::transmute(self.coverage_to_color_enable as u8) }
+    }
+    ///Gets the value of [`Self::coverage_to_color_location`]
+    pub fn coverage_to_color_location(&self) -> u32 {
+        self.coverage_to_color_location
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut PipelineCoverageToColorStateCreateFlagsNV {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::coverage_to_color_enable`]
+    pub fn coverage_to_color_enable_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.coverage_to_color_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.coverage_to_color_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::coverage_to_color_location`]
+    pub fn coverage_to_color_location_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::nv_fragment_coverage_to_color::PipelineCoverageToColorStateCreateFlagsNV,
+    ) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::coverage_to_color_enable`]
+    pub fn set_coverage_to_color_enable(&mut self, value: bool) -> &mut Self {
+        self.coverage_to_color_enable = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::coverage_to_color_location`]
+    pub fn set_coverage_to_color_location(&mut self, value: u32) -> &mut Self {
+        self.coverage_to_color_location = value;
+        self
+    }
 }

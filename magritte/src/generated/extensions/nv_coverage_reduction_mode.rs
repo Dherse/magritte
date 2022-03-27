@@ -122,9 +122,8 @@ impl CoverageReductionModeNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -132,11 +131,100 @@ pub struct PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`coverage_reduction_mode`] indicates
     ///whether the implementation supports coverage reduction modes.
     ///See [Coverage Reduction](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-coverage-reduction).
     coverage_reduction_mode: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            coverage_reduction_mode: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::coverage_reduction_mode`]
+    pub fn coverage_reduction_mode_raw(&self) -> Bool32 {
+        self.coverage_reduction_mode
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::coverage_reduction_mode`]
+    pub fn set_coverage_reduction_mode_raw(&mut self, value: Bool32) -> &mut Self {
+        self.coverage_reduction_mode = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::coverage_reduction_mode`]
+    pub fn coverage_reduction_mode(&self) -> bool {
+        unsafe { std::mem::transmute(self.coverage_reduction_mode as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::coverage_reduction_mode`]
+    pub fn coverage_reduction_mode_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.coverage_reduction_mode as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.coverage_reduction_mode as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::coverage_reduction_mode`]
+    pub fn set_coverage_reduction_mode(&mut self, value: bool) -> &mut Self {
+        self.coverage_reduction_mode = value as u8 as u32;
+        self
+    }
 }
 ///[VkPipelineCoverageReductionStateCreateInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineCoverageReductionStateCreateInfoNV.html) - Structure specifying parameters controlling coverage reduction
 ///# C Specifications
@@ -184,9 +272,8 @@ pub struct PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PipelineCoverageReductionStateCreateInfoNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -194,12 +281,91 @@ pub struct PipelineCoverageReductionStateCreateInfoNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
     flags: PipelineCoverageReductionStateCreateFlagsNV,
     ///[`coverage_reduction_mode`] is a [`CoverageReductionModeNV`] value
     ///controlling how color sample coverage is generated from pixel coverage.
     coverage_reduction_mode: CoverageReductionModeNV,
+}
+impl<'lt> Default for PipelineCoverageReductionStateCreateInfoNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            flags: Default::default(),
+            coverage_reduction_mode: Default::default(),
+        }
+    }
+}
+impl<'lt> PipelineCoverageReductionStateCreateInfoNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> PipelineCoverageReductionStateCreateFlagsNV {
+        self.flags
+    }
+    ///Gets the value of [`Self::coverage_reduction_mode`]
+    pub fn coverage_reduction_mode(&self) -> CoverageReductionModeNV {
+        self.coverage_reduction_mode
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut PipelineCoverageReductionStateCreateFlagsNV {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::coverage_reduction_mode`]
+    pub fn coverage_reduction_mode_mut(&mut self) -> &mut CoverageReductionModeNV {
+        &mut self.coverage_reduction_mode
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::nv_coverage_reduction_mode::PipelineCoverageReductionStateCreateFlagsNV,
+    ) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::coverage_reduction_mode`]
+    pub fn set_coverage_reduction_mode(
+        &mut self,
+        value: crate::extensions::nv_coverage_reduction_mode::CoverageReductionModeNV,
+    ) -> &mut Self {
+        self.coverage_reduction_mode = value;
+        self
+    }
 }
 ///[VkFramebufferMixedSamplesCombinationNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFramebufferMixedSamplesCombinationNV.html) - Structure specifying a supported sample count combination
 ///# C Specifications
@@ -246,9 +412,8 @@ pub struct PipelineCoverageReductionStateCreateInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct FramebufferMixedSamplesCombinationNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -256,7 +421,7 @@ pub struct FramebufferMixedSamplesCombinationNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`coverage_reduction_mode`] is a [`CoverageReductionModeNV`] value
     ///specifying the coverage reduction mode.
     coverage_reduction_mode: CoverageReductionModeNV,
@@ -272,4 +437,115 @@ pub struct FramebufferMixedSamplesCombinationNV<'lt> {
     ///attachment in the supported combination.
     ///A value of 0 indicates the combination does not have a color attachment.
     color_samples: SampleCountFlags,
+}
+impl<'lt> Default for FramebufferMixedSamplesCombinationNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            coverage_reduction_mode: Default::default(),
+            rasterization_samples: Default::default(),
+            depth_stencil_samples: Default::default(),
+            color_samples: Default::default(),
+        }
+    }
+}
+impl<'lt> FramebufferMixedSamplesCombinationNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::coverage_reduction_mode`]
+    pub fn coverage_reduction_mode(&self) -> CoverageReductionModeNV {
+        self.coverage_reduction_mode
+    }
+    ///Gets the value of [`Self::rasterization_samples`]
+    pub fn rasterization_samples(&self) -> SampleCountFlagBits {
+        self.rasterization_samples
+    }
+    ///Gets the value of [`Self::depth_stencil_samples`]
+    pub fn depth_stencil_samples(&self) -> SampleCountFlags {
+        self.depth_stencil_samples
+    }
+    ///Gets the value of [`Self::color_samples`]
+    pub fn color_samples(&self) -> SampleCountFlags {
+        self.color_samples
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::coverage_reduction_mode`]
+    pub fn coverage_reduction_mode_mut(&mut self) -> &mut CoverageReductionModeNV {
+        &mut self.coverage_reduction_mode
+    }
+    ///Gets a mutable reference to the value of [`Self::rasterization_samples`]
+    pub fn rasterization_samples_mut(&mut self) -> &mut SampleCountFlagBits {
+        &mut self.rasterization_samples
+    }
+    ///Gets a mutable reference to the value of [`Self::depth_stencil_samples`]
+    pub fn depth_stencil_samples_mut(&mut self) -> &mut SampleCountFlags {
+        &mut self.depth_stencil_samples
+    }
+    ///Gets a mutable reference to the value of [`Self::color_samples`]
+    pub fn color_samples_mut(&mut self) -> &mut SampleCountFlags {
+        &mut self.color_samples
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::coverage_reduction_mode`]
+    pub fn set_coverage_reduction_mode(
+        &mut self,
+        value: crate::extensions::nv_coverage_reduction_mode::CoverageReductionModeNV,
+    ) -> &mut Self {
+        self.coverage_reduction_mode = value;
+        self
+    }
+    ///Sets the raw value of [`Self::rasterization_samples`]
+    pub fn set_rasterization_samples(&mut self, value: crate::vulkan1_0::SampleCountFlagBits) -> &mut Self {
+        self.rasterization_samples = value;
+        self
+    }
+    ///Sets the raw value of [`Self::depth_stencil_samples`]
+    pub fn set_depth_stencil_samples(&mut self, value: crate::vulkan1_0::SampleCountFlags) -> &mut Self {
+        self.depth_stencil_samples = value;
+        self
+    }
+    ///Sets the raw value of [`Self::color_samples`]
+    pub fn set_color_samples(&mut self, value: crate::vulkan1_0::SampleCountFlags) -> &mut Self {
+        self.color_samples = value;
+        self
+    }
 }

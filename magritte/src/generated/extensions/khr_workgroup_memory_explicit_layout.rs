@@ -65,9 +65,8 @@ pub const KHR_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -75,7 +74,7 @@ pub struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`workgroup_memory_explicit_layout`] indicates whether the implementation
     ///supports the SPIR-V `WorkgroupMemoryExplicitLayoutKHR` capability.
     workgroup_memory_explicit_layout: Bool32,
@@ -99,4 +98,207 @@ pub struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
     ///This also indicates whether shader modules **can** declare the
     ///`WorkgroupMemoryExplicitLayout16BitAccessKHR` capability.
     workgroup_memory_explicit_layout_16_bit_access: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            workgroup_memory_explicit_layout: 0,
+            workgroup_memory_explicit_layout_scalar_block_layout: 0,
+            workgroup_memory_explicit_layout_8_bit_access: 0,
+            workgroup_memory_explicit_layout_16_bit_access: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::workgroup_memory_explicit_layout`]
+    pub fn workgroup_memory_explicit_layout_raw(&self) -> Bool32 {
+        self.workgroup_memory_explicit_layout
+    }
+    ///Gets the raw value of [`Self::workgroup_memory_explicit_layout_scalar_block_layout`]
+    pub fn workgroup_memory_explicit_layout_scalar_block_layout_raw(&self) -> Bool32 {
+        self.workgroup_memory_explicit_layout_scalar_block_layout
+    }
+    ///Gets the raw value of [`Self::workgroup_memory_explicit_layout_8_bit_access`]
+    pub fn workgroup_memory_explicit_layout_8_bit_access_raw(&self) -> Bool32 {
+        self.workgroup_memory_explicit_layout_8_bit_access
+    }
+    ///Gets the raw value of [`Self::workgroup_memory_explicit_layout_16_bit_access`]
+    pub fn workgroup_memory_explicit_layout_16_bit_access_raw(&self) -> Bool32 {
+        self.workgroup_memory_explicit_layout_16_bit_access
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::workgroup_memory_explicit_layout`]
+    pub fn set_workgroup_memory_explicit_layout_raw(&mut self, value: Bool32) -> &mut Self {
+        self.workgroup_memory_explicit_layout = value;
+        self
+    }
+    ///Sets the raw value of [`Self::workgroup_memory_explicit_layout_scalar_block_layout`]
+    pub fn set_workgroup_memory_explicit_layout_scalar_block_layout_raw(&mut self, value: Bool32) -> &mut Self {
+        self.workgroup_memory_explicit_layout_scalar_block_layout = value;
+        self
+    }
+    ///Sets the raw value of [`Self::workgroup_memory_explicit_layout_8_bit_access`]
+    pub fn set_workgroup_memory_explicit_layout_8_bit_access_raw(&mut self, value: Bool32) -> &mut Self {
+        self.workgroup_memory_explicit_layout_8_bit_access = value;
+        self
+    }
+    ///Sets the raw value of [`Self::workgroup_memory_explicit_layout_16_bit_access`]
+    pub fn set_workgroup_memory_explicit_layout_16_bit_access_raw(&mut self, value: Bool32) -> &mut Self {
+        self.workgroup_memory_explicit_layout_16_bit_access = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::workgroup_memory_explicit_layout`]
+    pub fn workgroup_memory_explicit_layout(&self) -> bool {
+        unsafe { std::mem::transmute(self.workgroup_memory_explicit_layout as u8) }
+    }
+    ///Gets the value of [`Self::workgroup_memory_explicit_layout_scalar_block_layout`]
+    pub fn workgroup_memory_explicit_layout_scalar_block_layout(&self) -> bool {
+        unsafe { std::mem::transmute(self.workgroup_memory_explicit_layout_scalar_block_layout as u8) }
+    }
+    ///Gets the value of [`Self::workgroup_memory_explicit_layout_8_bit_access`]
+    pub fn workgroup_memory_explicit_layout_8_bit_access(&self) -> bool {
+        unsafe { std::mem::transmute(self.workgroup_memory_explicit_layout_8_bit_access as u8) }
+    }
+    ///Gets the value of [`Self::workgroup_memory_explicit_layout_16_bit_access`]
+    pub fn workgroup_memory_explicit_layout_16_bit_access(&self) -> bool {
+        unsafe { std::mem::transmute(self.workgroup_memory_explicit_layout_16_bit_access as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::workgroup_memory_explicit_layout`]
+    pub fn workgroup_memory_explicit_layout_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.workgroup_memory_explicit_layout as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.workgroup_memory_explicit_layout as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::workgroup_memory_explicit_layout_scalar_block_layout`]
+    pub fn workgroup_memory_explicit_layout_scalar_block_layout_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.workgroup_memory_explicit_layout_scalar_block_layout as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.workgroup_memory_explicit_layout_scalar_block_layout as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::workgroup_memory_explicit_layout_8_bit_access`]
+    pub fn workgroup_memory_explicit_layout_8_bit_access_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.workgroup_memory_explicit_layout_8_bit_access as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.workgroup_memory_explicit_layout_8_bit_access as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::workgroup_memory_explicit_layout_16_bit_access`]
+    pub fn workgroup_memory_explicit_layout_16_bit_access_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.workgroup_memory_explicit_layout_16_bit_access as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.workgroup_memory_explicit_layout_16_bit_access as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::workgroup_memory_explicit_layout`]
+    pub fn set_workgroup_memory_explicit_layout(&mut self, value: bool) -> &mut Self {
+        self.workgroup_memory_explicit_layout = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::workgroup_memory_explicit_layout_scalar_block_layout`]
+    pub fn set_workgroup_memory_explicit_layout_scalar_block_layout(&mut self, value: bool) -> &mut Self {
+        self.workgroup_memory_explicit_layout_scalar_block_layout = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::workgroup_memory_explicit_layout_8_bit_access`]
+    pub fn set_workgroup_memory_explicit_layout_8_bit_access(&mut self, value: bool) -> &mut Self {
+        self.workgroup_memory_explicit_layout_8_bit_access = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::workgroup_memory_explicit_layout_16_bit_access`]
+    pub fn set_workgroup_memory_explicit_layout_16_bit_access(&mut self, value: bool) -> &mut Self {
+        self.workgroup_memory_explicit_layout_16_bit_access = value as u8 as u32;
+        self
+    }
 }

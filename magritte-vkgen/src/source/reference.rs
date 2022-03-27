@@ -428,6 +428,17 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
         }
     }
 
+    /// Checks if the type is (de)serializable
+    pub(crate) fn is_serde(&self, source: &Source<'a>) -> bool {
+        match self {
+            TypeRef::OpaqueType(_) => false,
+            TypeRef::Alias(alias) => source.resolve_type(alias.of()).expect("unknown alias").is_serde(source),
+            TypeRef::Struct(struct_) => struct_.is_serde(source),
+            TypeRef::Basetype(_) | TypeRef::Bitmask(_) | TypeRef::BitFlag(_) | TypeRef::Enum(_) => true,
+            TypeRef::Handle(_) | TypeRef::FunctionPointer(_) | TypeRef::Union(_) => false,
+        }
+    }
+
     /*/// Does the type have a generic type parameter
     pub fn has_generics(&self, source: &Source<'a>) -> bool {
         match self {

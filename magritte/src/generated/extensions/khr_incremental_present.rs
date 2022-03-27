@@ -35,10 +35,10 @@ pub const KHR_INCREMENTAL_PRESENT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`swapchain_count`] is the number of swapchains being presented to by this command.
-/// - [`p_regions`] is `NULL` or a pointer to an array of [`PresentRegionKHR`] elements with
-///   [`swapchain_count`] entries. If not `NULL`, each element of [`p_regions`] contains the region
+/// - [`regions`] is `NULL` or a pointer to an array of [`PresentRegionKHR`] elements with
+///   [`swapchain_count`] entries. If not `NULL`, each element of [`regions`] contains the region
 ///   that has changed since the last present to the swapchain in the corresponding entry in the
-///   [`PresentInfoKHR::p_swapchains`] array.
+///   [`PresentInfoKHR::swapchains`] array.
 ///# Description
 ///Valid Usage
 /// - [`swapchain_count`]**must** be the same value as [`PresentInfoKHR`]::[`swapchain_count`],
@@ -46,7 +46,7 @@ pub const KHR_INCREMENTAL_PRESENT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///   structure
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PRESENT_REGIONS_KHR`
-/// - If [`p_regions`] is not `NULL`, [`p_regions`]**must** be a valid pointer to an array of
+/// - If [`regions`] is not `NULL`, [`regions`]**must** be a valid pointer to an array of
 ///   [`swapchain_count`] valid [`PresentRegionKHR`] structures
 /// - [`swapchain_count`]**must** be greater than `0`
 ///# Related
@@ -61,9 +61,8 @@ pub const KHR_INCREMENTAL_PRESENT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PresentRegionsKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -71,16 +70,112 @@ pub struct PresentRegionsKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`swapchain_count`] is the number of swapchains being presented to by
     ///this command.
     swapchain_count: u32,
-    ///[`p_regions`] is `NULL` or a pointer to an array of
+    ///[`regions`] is `NULL` or a pointer to an array of
     ///[`PresentRegionKHR`] elements with [`swapchain_count`] entries.
-    ///If not `NULL`, each element of [`p_regions`] contains the region that
+    ///If not `NULL`, each element of [`regions`] contains the region that
     ///has changed since the last present to the swapchain in the corresponding
     ///entry in the [`PresentInfoKHR`]::`pSwapchains` array.
-    p_regions: *mut PresentRegionKHR<'lt>,
+    regions: *const PresentRegionKHR<'lt>,
+}
+impl<'lt> Default for PresentRegionsKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            swapchain_count: 0,
+            regions: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> PresentRegionsKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::swapchain_count`]
+    pub fn swapchain_count_raw(&self) -> u32 {
+        self.swapchain_count
+    }
+    ///Gets the raw value of [`Self::regions`]
+    pub fn regions_raw(&self) -> *const PresentRegionKHR<'lt> {
+        self.regions
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::swapchain_count`]
+    pub fn set_swapchain_count_raw(&mut self, value: u32) -> &mut Self {
+        self.swapchain_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::regions`]
+    pub fn set_regions_raw(&mut self, value: *const PresentRegionKHR<'lt>) -> &mut Self {
+        self.regions = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::swapchain_count`]
+    pub fn swapchain_count(&self) -> u32 {
+        self.swapchain_count
+    }
+    ///Gets the value of [`Self::regions`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn regions(&self) -> &[PresentRegionKHR<'lt>] {
+        std::slice::from_raw_parts(self.regions, self.swapchain_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::swapchain_count`]
+    pub fn swapchain_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::swapchain_count`]
+    pub fn set_swapchain_count(&mut self, value: u32) -> &mut Self {
+        self.swapchain_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::regions`]
+    pub fn set_regions(
+        &mut self,
+        value: &'lt [crate::extensions::khr_incremental_present::PresentRegionKHR<'lt>],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.regions = value.as_ptr();
+        self.swapchain_count = len_;
+        self
+    }
 }
 ///[VkPresentRegionKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPresentRegionKHR.html) - Structure containing rectangular region changed by vkQueuePresentKHR for a given VkImage
 ///# C Specifications
@@ -94,21 +189,20 @@ pub struct PresentRegionsKHR<'lt> {
 ///} VkPresentRegionKHR;
 ///```
 ///# Members
-/// - [`rectangle_count`] is the number of rectangles in [`p_rectangles`], or zero if the entire
-///   image has changed and should be presented.
-/// - [`p_rectangles`] is either `NULL` or a pointer to an array of [`RectLayerKHR`] structures. The
+/// - [`rectangle_count`] is the number of rectangles in [`rectangles`], or zero if the entire image
+///   has changed and should be presented.
+/// - [`rectangles`] is either `NULL` or a pointer to an array of [`RectLayerKHR`] structures. The
 ///   [`RectLayerKHR`] structure is the framebuffer coordinates, plus layer, of a portion of a
 ///   presentable image that has changed and **must** be presented. If non-`NULL`, each entry in
-///   [`p_rectangles`] is a rectangle of the given image that has changed since the last image was
+///   [`rectangles`] is a rectangle of the given image that has changed since the last image was
 ///   presented to the given swapchain. The rectangles **must** be specified relative to
 ///   [`SurfaceCapabilitiesKHR::current_transform`], regardless of the swapchain’s `preTransform`.
 ///   The presentation engine will apply the `preTransform` transformation to the rectangles, along
 ///   with any further transformation it applies to the image content.
 ///# Description
 ///Valid Usage (Implicit)
-/// - If [`rectangle_count`] is not `0`, and [`p_rectangles`] is not `NULL`,
-///   [`p_rectangles`]**must** be a valid pointer to an array of [`rectangle_count`] valid
-///   [`RectLayerKHR`] structures
+/// - If [`rectangle_count`] is not `0`, and [`rectangles`] is not `NULL`, [`rectangles`]**must** be
+///   a valid pointer to an array of [`rectangle_count`] valid [`RectLayerKHR`] structures
 ///# Related
 /// - [`VK_KHR_incremental_present`]
 /// - [`PresentRegionsKHR`]
@@ -121,21 +215,20 @@ pub struct PresentRegionsKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PresentRegionKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
-    ///[`rectangle_count`] is the number of rectangles in [`p_rectangles`],
+    ///[`rectangle_count`] is the number of rectangles in [`rectangles`],
     ///or zero if the entire image has changed and should be presented.
     rectangle_count: u32,
-    ///[`p_rectangles`] is either `NULL` or a pointer to an array of
+    ///[`rectangles`] is either `NULL` or a pointer to an array of
     ///[`RectLayerKHR`] structures.
     ///The [`RectLayerKHR`] structure is the framebuffer coordinates, plus
     ///layer, of a portion of a presentable image that has changed and **must** be
     ///presented.
-    ///If non-`NULL`, each entry in [`p_rectangles`] is a rectangle of the
+    ///If non-`NULL`, each entry in [`rectangles`] is a rectangle of the
     ///given image that has changed since the last image was presented to the
     ///given swapchain.
     ///The rectangles **must** be specified relative to
@@ -144,7 +237,67 @@ pub struct PresentRegionKHR<'lt> {
     ///The presentation engine will apply the `preTransform` transformation
     ///to the rectangles, along with any further transformation it applies to
     ///the image content.
-    p_rectangles: *mut RectLayerKHR,
+    rectangles: *const RectLayerKHR,
+}
+impl<'lt> Default for PresentRegionKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            rectangle_count: 0,
+            rectangles: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> PresentRegionKHR<'lt> {
+    ///Gets the raw value of [`Self::rectangle_count`]
+    pub fn rectangle_count_raw(&self) -> u32 {
+        self.rectangle_count
+    }
+    ///Gets the raw value of [`Self::rectangles`]
+    pub fn rectangles_raw(&self) -> *const RectLayerKHR {
+        self.rectangles
+    }
+    ///Sets the raw value of [`Self::rectangle_count`]
+    pub fn set_rectangle_count_raw(&mut self, value: u32) -> &mut Self {
+        self.rectangle_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::rectangles`]
+    pub fn set_rectangles_raw(&mut self, value: *const RectLayerKHR) -> &mut Self {
+        self.rectangles = value;
+        self
+    }
+    ///Gets the value of [`Self::rectangle_count`]
+    pub fn rectangle_count(&self) -> u32 {
+        self.rectangle_count
+    }
+    ///Gets the value of [`Self::rectangles`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn rectangles(&self) -> &[RectLayerKHR] {
+        std::slice::from_raw_parts(self.rectangles, self.rectangle_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::rectangle_count`]
+    pub fn rectangle_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::rectangle_count`]
+    pub fn set_rectangle_count(&mut self, value: u32) -> &mut Self {
+        self.rectangle_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::rectangles`]
+    pub fn set_rectangles(
+        &mut self,
+        value: &'lt [crate::extensions::khr_incremental_present::RectLayerKHR],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.rectangles = value.as_ptr();
+        self.rectangle_count = len_;
+        self
+    }
 }
 ///[VkRectLayerKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRectLayerKHR.html) - Structure containing a rectangle, including layer, changed by vkQueuePresentKHR for a given VkImage
 ///# C Specifications
@@ -186,7 +339,7 @@ pub struct PresentRegionKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -198,4 +351,63 @@ pub struct RectLayerKHR {
     ///[`layer`] is the layer of the image.
     ///For images with only one layer, the value of [`layer`]**must** be 0.
     layer: u32,
+}
+impl Default for RectLayerKHR {
+    fn default() -> Self {
+        Self {
+            offset: Default::default(),
+            extent: Default::default(),
+            layer: 0,
+        }
+    }
+}
+impl RectLayerKHR {
+    ///Gets the raw value of [`Self::layer`]
+    pub fn layer_raw(&self) -> u32 {
+        self.layer
+    }
+    ///Sets the raw value of [`Self::layer`]
+    pub fn set_layer_raw(&mut self, value: u32) -> &mut Self {
+        self.layer = value;
+        self
+    }
+    ///Gets the value of [`Self::offset`]
+    pub fn offset(&self) -> Offset2D {
+        self.offset
+    }
+    ///Gets the value of [`Self::extent`]
+    pub fn extent(&self) -> Extent2D {
+        self.extent
+    }
+    ///Gets the value of [`Self::layer`]
+    pub fn layer(&self) -> u32 {
+        self.layer
+    }
+    ///Gets a mutable reference to the value of [`Self::offset`]
+    pub fn offset_mut(&mut self) -> &mut Offset2D {
+        &mut self.offset
+    }
+    ///Gets a mutable reference to the value of [`Self::extent`]
+    pub fn extent_mut(&mut self) -> &mut Extent2D {
+        &mut self.extent
+    }
+    ///Gets a mutable reference to the value of [`Self::layer`]
+    pub fn layer_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::offset`]
+    pub fn set_offset(&mut self, value: crate::vulkan1_0::Offset2D) -> &mut Self {
+        self.offset = value;
+        self
+    }
+    ///Sets the raw value of [`Self::extent`]
+    pub fn set_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.extent = value;
+        self
+    }
+    ///Sets the raw value of [`Self::layer`]
+    pub fn set_layer(&mut self, value: u32) -> &mut Self {
+        self.layer = value;
+        self
+    }
 }

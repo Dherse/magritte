@@ -30,7 +30,7 @@ pub const EXT_DEBUG_REPORT_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 /// - [`flags`] is a bitmask of [`DebugReportFlagBitsEXT`] specifying which event(s) will cause this
 ///   callback to be called.
 /// - [`pfn_callback`] is the application callback function to call.
-/// - [`p_user_data`] is user data to be passed to the callback.
+/// - [`user_data`] is user data to be passed to the callback.
 ///# Description
 ///For each [`DebugReportCallbackEXT`] that is created the
 ///[`DebugReportCallbackCreateInfoEXT`]::[`flags`] determine when that
@@ -64,9 +64,8 @@ pub const EXT_DEBUG_REPORT_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct DebugReportCallbackCreateInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -74,12 +73,117 @@ pub struct DebugReportCallbackCreateInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`DebugReportFlagBitsEXT`] specifying
     ///which event(s) will cause this callback to be called.
     flags: DebugReportFlagsEXT,
     ///[`pfn_callback`] is the application callback function to call.
     pfn_callback: PFNDebugReportCallbackEXT<'lt>,
-    ///[`p_user_data`] is user data to be passed to the callback.
-    p_user_data: *const c_void,
+    ///[`user_data`] is user data to be passed to the callback.
+    user_data: *mut c_void,
+}
+impl<'lt> Default for DebugReportCallbackCreateInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            flags: Default::default(),
+            pfn_callback: Default::default(),
+            user_data: std::ptr::null_mut(),
+        }
+    }
+}
+impl<'lt> DebugReportCallbackCreateInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::user_data`]
+    pub fn user_data_raw(&self) -> &*mut c_void {
+        &self.user_data
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::user_data`]
+    pub fn set_user_data_raw(&mut self, value: *mut c_void) -> &mut Self {
+        self.user_data = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> DebugReportFlagsEXT {
+        self.flags
+    }
+    ///Gets the value of [`Self::pfn_callback`]
+    pub fn pfn_callback(&self) -> &PFNDebugReportCallbackEXT<'lt> {
+        &self.pfn_callback
+    }
+    ///Gets the value of [`Self::user_data`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn user_data(&self) -> &c_void {
+        &*self.user_data
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut DebugReportFlagsEXT {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::pfn_callback`]
+    pub fn pfn_callback_mut(&mut self) -> &mut PFNDebugReportCallbackEXT<'lt> {
+        &mut self.pfn_callback
+    }
+    ///Gets a mutable reference to the value of [`Self::user_data`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn user_data_mut(&mut self) -> &mut c_void {
+        &mut *self.user_data
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(&mut self, value: crate::extensions::ext_debug_report::DebugReportFlagsEXT) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::pfn_callback`]
+    pub fn set_pfn_callback(
+        &mut self,
+        value: crate::extensions::ext_debug_report::PFNDebugReportCallbackEXT<'lt>,
+    ) -> &mut Self {
+        self.pfn_callback = value;
+        self
+    }
+    ///Sets the raw value of [`Self::user_data`]
+    pub fn set_user_data(&mut self, value: &'lt mut std::ffi::c_void) -> &mut Self {
+        self.user_data = value as *mut _;
+        self
+    }
 }

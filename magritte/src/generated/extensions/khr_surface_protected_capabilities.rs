@@ -53,9 +53,8 @@ pub const KHR_SURFACE_PROTECTED_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct SurfaceProtectedCapabilitiesKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -63,7 +62,7 @@ pub struct SurfaceProtectedCapabilitiesKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`supports_protected`] specifies whether a protected swapchain created
     ///from [`PhysicalDeviceSurfaceInfo2KHR`]::`surface` for a
     ///particular windowing system **can** be displayed on screen or not.
@@ -71,4 +70,86 @@ pub struct SurfaceProtectedCapabilitiesKHR<'lt> {
     ///with the `VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR` flag set **must** be
     ///supported for `surface`.
     supports_protected: Bool32,
+}
+impl<'lt> Default for SurfaceProtectedCapabilitiesKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            supports_protected: 0,
+        }
+    }
+}
+impl<'lt> SurfaceProtectedCapabilitiesKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::supports_protected`]
+    pub fn supports_protected_raw(&self) -> Bool32 {
+        self.supports_protected
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::supports_protected`]
+    pub fn set_supports_protected_raw(&mut self, value: Bool32) -> &mut Self {
+        self.supports_protected = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::supports_protected`]
+    pub fn supports_protected(&self) -> bool {
+        unsafe { std::mem::transmute(self.supports_protected as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::supports_protected`]
+    pub fn supports_protected_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.supports_protected as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.supports_protected as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::supports_protected`]
+    pub fn set_supports_protected(&mut self, value: bool) -> &mut Self {
+        self.supports_protected = value as u8 as u32;
+        self
+    }
 }

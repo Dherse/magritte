@@ -121,31 +121,31 @@ impl FragmentShadingRateCombinerOpKHR {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`p_fragment_shading_rate_attachment`] is `NULL` or a pointer to a [`AttachmentReference2`]
+/// - [`fragment_shading_rate_attachment`] is `NULL` or a pointer to a [`AttachmentReference2`]
 ///   structure defining the fragment shading rate attachment for this subpass.
 /// - [`shading_rate_attachment_texel_size`] specifies the size of the portion of the framebuffer
-///   corresponding to each texel in [`p_fragment_shading_rate_attachment`].
+///   corresponding to each texel in [`fragment_shading_rate_attachment`].
 ///# Description
 ///If no shading rate attachment is specified, or if this structure is not
 ///specified, the implementation behaves as if a valid shading rate attachment
 ///was specified with all texels specifying a single pixel per fragment.Valid Usage
-/// - If [`p_fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not
+/// - If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not
 ///   [`ATTACHMENT_UNUSED`], its `layout` member **must** be equal to `VK_IMAGE_LAYOUT_GENERAL` or
 ///   `VK_IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR`
-/// - If [`p_fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not
+/// - If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not
 ///   [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.width`**must** be a power of two value
-/// -    If [`p_fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.width`**must** be less than or equal to [`maxFragmentShadingRateAttachmentTexelSize.width`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSize)
-/// -    If [`p_fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.width`**must** be greater than or equal to [`minFragmentShadingRateAttachmentTexelSize.width`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minFragmentShadingRateAttachmentTexelSize)
-/// - If [`p_fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not
+/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.width`**must** be less than or equal to [`maxFragmentShadingRateAttachmentTexelSize.width`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSize)
+/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.width`**must** be greater than or equal to [`minFragmentShadingRateAttachmentTexelSize.width`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minFragmentShadingRateAttachmentTexelSize)
+/// - If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not
 ///   [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.height`**must** be a power of two value
-/// -    If [`p_fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.height`**must** be less than or equal to [`maxFragmentShadingRateAttachmentTexelSize.height`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSize)
-/// -    If [`p_fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.height`**must** be greater than or equal to [`minFragmentShadingRateAttachmentTexelSize.height`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minFragmentShadingRateAttachmentTexelSize)
-/// -    If [`p_fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], the quotient of `shadingRateAttachmentTexelSize.width` and `shadingRateAttachmentTexelSize.height`**must** be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
-/// -    If [`p_fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], the quotient of `shadingRateAttachmentTexelSize.height` and `shadingRateAttachmentTexelSize.width`**must** be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
+/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.height`**must** be less than or equal to [`maxFragmentShadingRateAttachmentTexelSize.height`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSize)
+/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.height`**must** be greater than or equal to [`minFragmentShadingRateAttachmentTexelSize.height`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minFragmentShadingRateAttachmentTexelSize)
+/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], the quotient of `shadingRateAttachmentTexelSize.width` and `shadingRateAttachmentTexelSize.height`**must** be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
+/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], the quotient of `shadingRateAttachmentTexelSize.height` and `shadingRateAttachmentTexelSize.width`**must** be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR`
-/// - If [`p_fragment_shading_rate_attachment`] is not `NULL`,
-///   [`p_fragment_shading_rate_attachment`]**must** be a valid pointer to a valid
+/// - If [`fragment_shading_rate_attachment`] is not `NULL`,
+///   [`fragment_shading_rate_attachment`]**must** be a valid pointer to a valid
 ///   [`AttachmentReference2`] structure
 ///# Related
 /// - [`VK_KHR_fragment_shading_rate`]
@@ -160,9 +160,8 @@ impl FragmentShadingRateCombinerOpKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct FragmentShadingRateAttachmentInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -170,15 +169,99 @@ pub struct FragmentShadingRateAttachmentInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
-    ///[`p_fragment_shading_rate_attachment`] is `NULL` or a pointer to a
+    p_next: *const BaseInStructure<'lt>,
+    ///[`fragment_shading_rate_attachment`] is `NULL` or a pointer to a
     ///[`AttachmentReference2`] structure defining the fragment shading
     ///rate attachment for this subpass.
-    p_fragment_shading_rate_attachment: *mut AttachmentReference2<'lt>,
+    fragment_shading_rate_attachment: *const AttachmentReference2<'lt>,
     ///[`shading_rate_attachment_texel_size`] specifies the size of the portion
     ///of the framebuffer corresponding to each texel in
-    ///[`p_fragment_shading_rate_attachment`].
+    ///[`fragment_shading_rate_attachment`].
     shading_rate_attachment_texel_size: Extent2D,
+}
+impl<'lt> Default for FragmentShadingRateAttachmentInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            fragment_shading_rate_attachment: std::ptr::null(),
+            shading_rate_attachment_texel_size: Default::default(),
+        }
+    }
+}
+impl<'lt> FragmentShadingRateAttachmentInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::fragment_shading_rate_attachment`]
+    pub fn fragment_shading_rate_attachment_raw(&self) -> *const AttachmentReference2<'lt> {
+        self.fragment_shading_rate_attachment
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_attachment`]
+    pub fn set_fragment_shading_rate_attachment_raw(&mut self, value: *const AttachmentReference2<'lt>) -> &mut Self {
+        self.fragment_shading_rate_attachment = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::fragment_shading_rate_attachment`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn fragment_shading_rate_attachment(&self) -> &AttachmentReference2<'lt> {
+        &*self.fragment_shading_rate_attachment
+    }
+    ///Gets the value of [`Self::shading_rate_attachment_texel_size`]
+    pub fn shading_rate_attachment_texel_size(&self) -> Extent2D {
+        self.shading_rate_attachment_texel_size
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::shading_rate_attachment_texel_size`]
+    pub fn shading_rate_attachment_texel_size_mut(&mut self) -> &mut Extent2D {
+        &mut self.shading_rate_attachment_texel_size
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_attachment`]
+    pub fn set_fragment_shading_rate_attachment(
+        &mut self,
+        value: &'lt crate::vulkan1_2::AttachmentReference2<'lt>,
+    ) -> &mut Self {
+        self.fragment_shading_rate_attachment = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_attachment_texel_size`]
+    pub fn set_shading_rate_attachment_texel_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.shading_rate_attachment_texel_size = value;
+        self
+    }
 }
 ///[VkPipelineFragmentShadingRateStateCreateInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineFragmentShadingRateStateCreateInfoKHR.html) - Structure specifying parameters controlling the fragment shading rate
 ///# C Specifications
@@ -226,9 +309,8 @@ pub struct FragmentShadingRateAttachmentInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PipelineFragmentShadingRateStateCreateInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -236,7 +318,7 @@ pub struct PipelineFragmentShadingRateStateCreateInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`fragment_size`] specifies a [`Extent2D`] structure containing the
     ///fragment size used to define the pipeline fragment shading rate for
     ///drawing commands using this pipeline.
@@ -249,6 +331,82 @@ pub struct PipelineFragmentShadingRateStateCreateInfoKHR<'lt> {
     ///are [combined](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-combining) for fragments
     ///generated by drawing commands using the created pipeline.
     combiner_ops: [FragmentShadingRateCombinerOpKHR; 2],
+}
+impl<'lt> Default for PipelineFragmentShadingRateStateCreateInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            fragment_size: Default::default(),
+            combiner_ops: [Default::default(); 2],
+        }
+    }
+}
+impl<'lt> PipelineFragmentShadingRateStateCreateInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::fragment_size`]
+    pub fn fragment_size(&self) -> Extent2D {
+        self.fragment_size
+    }
+    ///Gets the value of [`Self::combiner_ops`]
+    pub fn combiner_ops(&self) -> &[FragmentShadingRateCombinerOpKHR; 2] {
+        &getter
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::fragment_size`]
+    pub fn fragment_size_mut(&mut self) -> &mut Extent2D {
+        &mut self.fragment_size
+    }
+    ///Gets a mutable reference to the value of [`Self::combiner_ops`]
+    pub fn combiner_ops_mut(&mut self) -> &mut [FragmentShadingRateCombinerOpKHR; 2] {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_size`]
+    pub fn set_fragment_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.fragment_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::combiner_ops`]
+    pub fn set_combiner_ops(
+        &mut self,
+        value: [crate::extensions::khr_fragment_shading_rate::FragmentShadingRateCombinerOpKHR; 2],
+    ) -> &mut Self {
+        self.combiner_ops = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceFragmentShadingRateFeaturesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShadingRateFeaturesKHR.html) - Structure indicating support for variable rate fragment shading
 ///# C Specifications
@@ -292,9 +450,8 @@ pub struct PipelineFragmentShadingRateStateCreateInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateFeaturesKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -302,7 +459,7 @@ pub struct PhysicalDeviceFragmentShadingRateFeaturesKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`pipeline_fragment_shading_rate`] indicates that the implementation
     ///supports the [pipeline
     ///fragment shading rate](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-pipeline).
@@ -315,6 +472,169 @@ pub struct PhysicalDeviceFragmentShadingRateFeaturesKHR<'lt> {
     ///supports the [attachment
     ///fragment shading rate](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment).
     attachment_fragment_shading_rate: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceFragmentShadingRateFeaturesKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            pipeline_fragment_shading_rate: 0,
+            primitive_fragment_shading_rate: 0,
+            attachment_fragment_shading_rate: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceFragmentShadingRateFeaturesKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::pipeline_fragment_shading_rate`]
+    pub fn pipeline_fragment_shading_rate_raw(&self) -> Bool32 {
+        self.pipeline_fragment_shading_rate
+    }
+    ///Gets the raw value of [`Self::primitive_fragment_shading_rate`]
+    pub fn primitive_fragment_shading_rate_raw(&self) -> Bool32 {
+        self.primitive_fragment_shading_rate
+    }
+    ///Gets the raw value of [`Self::attachment_fragment_shading_rate`]
+    pub fn attachment_fragment_shading_rate_raw(&self) -> Bool32 {
+        self.attachment_fragment_shading_rate
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::pipeline_fragment_shading_rate`]
+    pub fn set_pipeline_fragment_shading_rate_raw(&mut self, value: Bool32) -> &mut Self {
+        self.pipeline_fragment_shading_rate = value;
+        self
+    }
+    ///Sets the raw value of [`Self::primitive_fragment_shading_rate`]
+    pub fn set_primitive_fragment_shading_rate_raw(&mut self, value: Bool32) -> &mut Self {
+        self.primitive_fragment_shading_rate = value;
+        self
+    }
+    ///Sets the raw value of [`Self::attachment_fragment_shading_rate`]
+    pub fn set_attachment_fragment_shading_rate_raw(&mut self, value: Bool32) -> &mut Self {
+        self.attachment_fragment_shading_rate = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::pipeline_fragment_shading_rate`]
+    pub fn pipeline_fragment_shading_rate(&self) -> bool {
+        unsafe { std::mem::transmute(self.pipeline_fragment_shading_rate as u8) }
+    }
+    ///Gets the value of [`Self::primitive_fragment_shading_rate`]
+    pub fn primitive_fragment_shading_rate(&self) -> bool {
+        unsafe { std::mem::transmute(self.primitive_fragment_shading_rate as u8) }
+    }
+    ///Gets the value of [`Self::attachment_fragment_shading_rate`]
+    pub fn attachment_fragment_shading_rate(&self) -> bool {
+        unsafe { std::mem::transmute(self.attachment_fragment_shading_rate as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::pipeline_fragment_shading_rate`]
+    pub fn pipeline_fragment_shading_rate_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.pipeline_fragment_shading_rate as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.pipeline_fragment_shading_rate as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::primitive_fragment_shading_rate`]
+    pub fn primitive_fragment_shading_rate_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.primitive_fragment_shading_rate as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.primitive_fragment_shading_rate as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::attachment_fragment_shading_rate`]
+    pub fn attachment_fragment_shading_rate_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.attachment_fragment_shading_rate as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.attachment_fragment_shading_rate as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::pipeline_fragment_shading_rate`]
+    pub fn set_pipeline_fragment_shading_rate(&mut self, value: bool) -> &mut Self {
+        self.pipeline_fragment_shading_rate = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::primitive_fragment_shading_rate`]
+    pub fn set_primitive_fragment_shading_rate(&mut self, value: bool) -> &mut Self {
+        self.primitive_fragment_shading_rate = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::attachment_fragment_shading_rate`]
+    pub fn set_attachment_fragment_shading_rate(&mut self, value: bool) -> &mut Self {
+        self.attachment_fragment_shading_rate = value as u8 as u32;
+        self
+    }
 }
 ///[VkPhysicalDeviceFragmentShadingRatePropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShadingRatePropertiesKHR.html) - Structure describing variable fragment shading rate limits that can be supported by an implementation
 ///# C Specifications
@@ -376,7 +696,7 @@ pub struct PhysicalDeviceFragmentShadingRateFeaturesKHR<'lt> {
 ///   multi-pixel fragments. If this value is [`FALSE`], writing to those built-ins will clamp the
 ///   fragment shading rate to (1,1).
 /// - [`fragment_shading_rate_with_sample_mask`] specifies whether the the implementation supports
-///   setting valid bits of [`PipelineMultisampleStateCreateInfo::p_sample_mask`] to `0` for
+///   setting valid bits of [`PipelineMultisampleStateCreateInfo::sample_mask`] to `0` for
 ///   multi-pixel fragments. If this value is [`FALSE`], zeroing valid bits in the sample mask will
 ///   clamp the fragment shading rate to (1,1).
 /// - [`fragment_shading_rate_with_shader_sample_mask`] specifies whether the implementation
@@ -413,9 +733,8 @@ pub struct PhysicalDeviceFragmentShadingRateFeaturesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -423,7 +742,7 @@ pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`min_fragment_shading_rate_attachment_texel_size`] indicates minimum
     ///supported width and height of the portion of the framebuffer
     ///corresponding to each texel in a fragment shading rate attachment.
@@ -572,6 +891,575 @@ pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
     ///implementations **should** report this as [`TRUE`].
     fragment_shading_rate_strict_multiply_combiner: Bool32,
 }
+impl<'lt> Default for PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            min_fragment_shading_rate_attachment_texel_size: Default::default(),
+            max_fragment_shading_rate_attachment_texel_size: Default::default(),
+            max_fragment_shading_rate_attachment_texel_size_aspect_ratio: 0,
+            primitive_fragment_shading_rate_with_multiple_viewports: 0,
+            layered_shading_rate_attachments: 0,
+            fragment_shading_rate_non_trivial_combiner_ops: 0,
+            max_fragment_size: Default::default(),
+            max_fragment_size_aspect_ratio: 0,
+            max_fragment_shading_rate_coverage_samples: 0,
+            max_fragment_shading_rate_rasterization_samples: Default::default(),
+            fragment_shading_rate_with_shader_depth_stencil_writes: 0,
+            fragment_shading_rate_with_sample_mask: 0,
+            fragment_shading_rate_with_shader_sample_mask: 0,
+            fragment_shading_rate_with_conservative_rasterization: 0,
+            fragment_shading_rate_with_fragment_shader_interlock: 0,
+            fragment_shading_rate_with_custom_sample_locations: 0,
+            fragment_shading_rate_strict_multiply_combiner: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::max_fragment_shading_rate_attachment_texel_size_aspect_ratio`]
+    pub fn max_fragment_shading_rate_attachment_texel_size_aspect_ratio_raw(&self) -> u32 {
+        self.max_fragment_shading_rate_attachment_texel_size_aspect_ratio
+    }
+    ///Gets the raw value of [`Self::primitive_fragment_shading_rate_with_multiple_viewports`]
+    pub fn primitive_fragment_shading_rate_with_multiple_viewports_raw(&self) -> Bool32 {
+        self.primitive_fragment_shading_rate_with_multiple_viewports
+    }
+    ///Gets the raw value of [`Self::layered_shading_rate_attachments`]
+    pub fn layered_shading_rate_attachments_raw(&self) -> Bool32 {
+        self.layered_shading_rate_attachments
+    }
+    ///Gets the raw value of [`Self::fragment_shading_rate_non_trivial_combiner_ops`]
+    pub fn fragment_shading_rate_non_trivial_combiner_ops_raw(&self) -> Bool32 {
+        self.fragment_shading_rate_non_trivial_combiner_ops
+    }
+    ///Gets the raw value of [`Self::max_fragment_size_aspect_ratio`]
+    pub fn max_fragment_size_aspect_ratio_raw(&self) -> u32 {
+        self.max_fragment_size_aspect_ratio
+    }
+    ///Gets the raw value of [`Self::max_fragment_shading_rate_coverage_samples`]
+    pub fn max_fragment_shading_rate_coverage_samples_raw(&self) -> u32 {
+        self.max_fragment_shading_rate_coverage_samples
+    }
+    ///Gets the raw value of [`Self::fragment_shading_rate_with_shader_depth_stencil_writes`]
+    pub fn fragment_shading_rate_with_shader_depth_stencil_writes_raw(&self) -> Bool32 {
+        self.fragment_shading_rate_with_shader_depth_stencil_writes
+    }
+    ///Gets the raw value of [`Self::fragment_shading_rate_with_sample_mask`]
+    pub fn fragment_shading_rate_with_sample_mask_raw(&self) -> Bool32 {
+        self.fragment_shading_rate_with_sample_mask
+    }
+    ///Gets the raw value of [`Self::fragment_shading_rate_with_shader_sample_mask`]
+    pub fn fragment_shading_rate_with_shader_sample_mask_raw(&self) -> Bool32 {
+        self.fragment_shading_rate_with_shader_sample_mask
+    }
+    ///Gets the raw value of [`Self::fragment_shading_rate_with_conservative_rasterization`]
+    pub fn fragment_shading_rate_with_conservative_rasterization_raw(&self) -> Bool32 {
+        self.fragment_shading_rate_with_conservative_rasterization
+    }
+    ///Gets the raw value of [`Self::fragment_shading_rate_with_fragment_shader_interlock`]
+    pub fn fragment_shading_rate_with_fragment_shader_interlock_raw(&self) -> Bool32 {
+        self.fragment_shading_rate_with_fragment_shader_interlock
+    }
+    ///Gets the raw value of [`Self::fragment_shading_rate_with_custom_sample_locations`]
+    pub fn fragment_shading_rate_with_custom_sample_locations_raw(&self) -> Bool32 {
+        self.fragment_shading_rate_with_custom_sample_locations
+    }
+    ///Gets the raw value of [`Self::fragment_shading_rate_strict_multiply_combiner`]
+    pub fn fragment_shading_rate_strict_multiply_combiner_raw(&self) -> Bool32 {
+        self.fragment_shading_rate_strict_multiply_combiner
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_fragment_shading_rate_attachment_texel_size_aspect_ratio`]
+    pub fn set_max_fragment_shading_rate_attachment_texel_size_aspect_ratio_raw(&mut self, value: u32) -> &mut Self {
+        self.max_fragment_shading_rate_attachment_texel_size_aspect_ratio = value;
+        self
+    }
+    ///Sets the raw value of [`Self::primitive_fragment_shading_rate_with_multiple_viewports`]
+    pub fn set_primitive_fragment_shading_rate_with_multiple_viewports_raw(&mut self, value: Bool32) -> &mut Self {
+        self.primitive_fragment_shading_rate_with_multiple_viewports = value;
+        self
+    }
+    ///Sets the raw value of [`Self::layered_shading_rate_attachments`]
+    pub fn set_layered_shading_rate_attachments_raw(&mut self, value: Bool32) -> &mut Self {
+        self.layered_shading_rate_attachments = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_non_trivial_combiner_ops`]
+    pub fn set_fragment_shading_rate_non_trivial_combiner_ops_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_shading_rate_non_trivial_combiner_ops = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_fragment_size_aspect_ratio`]
+    pub fn set_max_fragment_size_aspect_ratio_raw(&mut self, value: u32) -> &mut Self {
+        self.max_fragment_size_aspect_ratio = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_fragment_shading_rate_coverage_samples`]
+    pub fn set_max_fragment_shading_rate_coverage_samples_raw(&mut self, value: u32) -> &mut Self {
+        self.max_fragment_shading_rate_coverage_samples = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_with_shader_depth_stencil_writes`]
+    pub fn set_fragment_shading_rate_with_shader_depth_stencil_writes_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_shading_rate_with_shader_depth_stencil_writes = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_with_sample_mask`]
+    pub fn set_fragment_shading_rate_with_sample_mask_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_shading_rate_with_sample_mask = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_with_shader_sample_mask`]
+    pub fn set_fragment_shading_rate_with_shader_sample_mask_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_shading_rate_with_shader_sample_mask = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_with_conservative_rasterization`]
+    pub fn set_fragment_shading_rate_with_conservative_rasterization_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_shading_rate_with_conservative_rasterization = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_with_fragment_shader_interlock`]
+    pub fn set_fragment_shading_rate_with_fragment_shader_interlock_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_shading_rate_with_fragment_shader_interlock = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_with_custom_sample_locations`]
+    pub fn set_fragment_shading_rate_with_custom_sample_locations_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_shading_rate_with_custom_sample_locations = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_strict_multiply_combiner`]
+    pub fn set_fragment_shading_rate_strict_multiply_combiner_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_shading_rate_strict_multiply_combiner = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::min_fragment_shading_rate_attachment_texel_size`]
+    pub fn min_fragment_shading_rate_attachment_texel_size(&self) -> Extent2D {
+        self.min_fragment_shading_rate_attachment_texel_size
+    }
+    ///Gets the value of [`Self::max_fragment_shading_rate_attachment_texel_size`]
+    pub fn max_fragment_shading_rate_attachment_texel_size(&self) -> Extent2D {
+        self.max_fragment_shading_rate_attachment_texel_size
+    }
+    ///Gets the value of [`Self::max_fragment_shading_rate_attachment_texel_size_aspect_ratio`]
+    pub fn max_fragment_shading_rate_attachment_texel_size_aspect_ratio(&self) -> u32 {
+        self.max_fragment_shading_rate_attachment_texel_size_aspect_ratio
+    }
+    ///Gets the value of [`Self::primitive_fragment_shading_rate_with_multiple_viewports`]
+    pub fn primitive_fragment_shading_rate_with_multiple_viewports(&self) -> bool {
+        unsafe { std::mem::transmute(self.primitive_fragment_shading_rate_with_multiple_viewports as u8) }
+    }
+    ///Gets the value of [`Self::layered_shading_rate_attachments`]
+    pub fn layered_shading_rate_attachments(&self) -> bool {
+        unsafe { std::mem::transmute(self.layered_shading_rate_attachments as u8) }
+    }
+    ///Gets the value of [`Self::fragment_shading_rate_non_trivial_combiner_ops`]
+    pub fn fragment_shading_rate_non_trivial_combiner_ops(&self) -> bool {
+        unsafe { std::mem::transmute(self.fragment_shading_rate_non_trivial_combiner_ops as u8) }
+    }
+    ///Gets the value of [`Self::max_fragment_size`]
+    pub fn max_fragment_size(&self) -> Extent2D {
+        self.max_fragment_size
+    }
+    ///Gets the value of [`Self::max_fragment_size_aspect_ratio`]
+    pub fn max_fragment_size_aspect_ratio(&self) -> u32 {
+        self.max_fragment_size_aspect_ratio
+    }
+    ///Gets the value of [`Self::max_fragment_shading_rate_coverage_samples`]
+    pub fn max_fragment_shading_rate_coverage_samples(&self) -> u32 {
+        self.max_fragment_shading_rate_coverage_samples
+    }
+    ///Gets the value of [`Self::max_fragment_shading_rate_rasterization_samples`]
+    pub fn max_fragment_shading_rate_rasterization_samples(&self) -> SampleCountFlagBits {
+        self.max_fragment_shading_rate_rasterization_samples
+    }
+    ///Gets the value of [`Self::fragment_shading_rate_with_shader_depth_stencil_writes`]
+    pub fn fragment_shading_rate_with_shader_depth_stencil_writes(&self) -> bool {
+        unsafe { std::mem::transmute(self.fragment_shading_rate_with_shader_depth_stencil_writes as u8) }
+    }
+    ///Gets the value of [`Self::fragment_shading_rate_with_sample_mask`]
+    pub fn fragment_shading_rate_with_sample_mask(&self) -> bool {
+        unsafe { std::mem::transmute(self.fragment_shading_rate_with_sample_mask as u8) }
+    }
+    ///Gets the value of [`Self::fragment_shading_rate_with_shader_sample_mask`]
+    pub fn fragment_shading_rate_with_shader_sample_mask(&self) -> bool {
+        unsafe { std::mem::transmute(self.fragment_shading_rate_with_shader_sample_mask as u8) }
+    }
+    ///Gets the value of [`Self::fragment_shading_rate_with_conservative_rasterization`]
+    pub fn fragment_shading_rate_with_conservative_rasterization(&self) -> bool {
+        unsafe { std::mem::transmute(self.fragment_shading_rate_with_conservative_rasterization as u8) }
+    }
+    ///Gets the value of [`Self::fragment_shading_rate_with_fragment_shader_interlock`]
+    pub fn fragment_shading_rate_with_fragment_shader_interlock(&self) -> bool {
+        unsafe { std::mem::transmute(self.fragment_shading_rate_with_fragment_shader_interlock as u8) }
+    }
+    ///Gets the value of [`Self::fragment_shading_rate_with_custom_sample_locations`]
+    pub fn fragment_shading_rate_with_custom_sample_locations(&self) -> bool {
+        unsafe { std::mem::transmute(self.fragment_shading_rate_with_custom_sample_locations as u8) }
+    }
+    ///Gets the value of [`Self::fragment_shading_rate_strict_multiply_combiner`]
+    pub fn fragment_shading_rate_strict_multiply_combiner(&self) -> bool {
+        unsafe { std::mem::transmute(self.fragment_shading_rate_strict_multiply_combiner as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::min_fragment_shading_rate_attachment_texel_size`]
+    pub fn min_fragment_shading_rate_attachment_texel_size_mut(&mut self) -> &mut Extent2D {
+        &mut self.min_fragment_shading_rate_attachment_texel_size
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::max_fragment_shading_rate_attachment_texel_size`]
+    pub fn max_fragment_shading_rate_attachment_texel_size_mut(&mut self) -> &mut Extent2D {
+        &mut self.max_fragment_shading_rate_attachment_texel_size
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::max_fragment_shading_rate_attachment_texel_size_aspect_ratio`]
+    pub fn max_fragment_shading_rate_attachment_texel_size_aspect_ratio_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::primitive_fragment_shading_rate_with_multiple_viewports`]
+    pub fn primitive_fragment_shading_rate_with_multiple_viewports_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.primitive_fragment_shading_rate_with_multiple_viewports as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.primitive_fragment_shading_rate_with_multiple_viewports as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::layered_shading_rate_attachments`]
+    pub fn layered_shading_rate_attachments_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.layered_shading_rate_attachments as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.layered_shading_rate_attachments as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::fragment_shading_rate_non_trivial_combiner_ops`]
+    pub fn fragment_shading_rate_non_trivial_combiner_ops_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.fragment_shading_rate_non_trivial_combiner_ops as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.fragment_shading_rate_non_trivial_combiner_ops as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::max_fragment_size`]
+    pub fn max_fragment_size_mut(&mut self) -> &mut Extent2D {
+        &mut self.max_fragment_size
+    }
+    ///Gets a mutable reference to the value of [`Self::max_fragment_size_aspect_ratio`]
+    pub fn max_fragment_size_aspect_ratio_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::max_fragment_shading_rate_coverage_samples`]
+    pub fn max_fragment_shading_rate_coverage_samples_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::max_fragment_shading_rate_rasterization_samples`]
+    pub fn max_fragment_shading_rate_rasterization_samples_mut(&mut self) -> &mut SampleCountFlagBits {
+        &mut self.max_fragment_shading_rate_rasterization_samples
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::fragment_shading_rate_with_shader_depth_stencil_writes`]
+    pub fn fragment_shading_rate_with_shader_depth_stencil_writes_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.fragment_shading_rate_with_shader_depth_stencil_writes as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.fragment_shading_rate_with_shader_depth_stencil_writes as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::fragment_shading_rate_with_sample_mask`]
+    pub fn fragment_shading_rate_with_sample_mask_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.fragment_shading_rate_with_sample_mask as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.fragment_shading_rate_with_sample_mask as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::fragment_shading_rate_with_shader_sample_mask`]
+    pub fn fragment_shading_rate_with_shader_sample_mask_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.fragment_shading_rate_with_shader_sample_mask as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.fragment_shading_rate_with_shader_sample_mask as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::fragment_shading_rate_with_conservative_rasterization`]
+    pub fn fragment_shading_rate_with_conservative_rasterization_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.fragment_shading_rate_with_conservative_rasterization as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.fragment_shading_rate_with_conservative_rasterization as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::fragment_shading_rate_with_fragment_shader_interlock`]
+    pub fn fragment_shading_rate_with_fragment_shader_interlock_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.fragment_shading_rate_with_fragment_shader_interlock as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.fragment_shading_rate_with_fragment_shader_interlock as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::fragment_shading_rate_with_custom_sample_locations`]
+    pub fn fragment_shading_rate_with_custom_sample_locations_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.fragment_shading_rate_with_custom_sample_locations as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.fragment_shading_rate_with_custom_sample_locations as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::fragment_shading_rate_strict_multiply_combiner`]
+    pub fn fragment_shading_rate_strict_multiply_combiner_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.fragment_shading_rate_strict_multiply_combiner as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.fragment_shading_rate_strict_multiply_combiner as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::min_fragment_shading_rate_attachment_texel_size`]
+    pub fn set_min_fragment_shading_rate_attachment_texel_size(
+        &mut self,
+        value: crate::vulkan1_0::Extent2D,
+    ) -> &mut Self {
+        self.min_fragment_shading_rate_attachment_texel_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_fragment_shading_rate_attachment_texel_size`]
+    pub fn set_max_fragment_shading_rate_attachment_texel_size(
+        &mut self,
+        value: crate::vulkan1_0::Extent2D,
+    ) -> &mut Self {
+        self.max_fragment_shading_rate_attachment_texel_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_fragment_shading_rate_attachment_texel_size_aspect_ratio`]
+    pub fn set_max_fragment_shading_rate_attachment_texel_size_aspect_ratio(&mut self, value: u32) -> &mut Self {
+        self.max_fragment_shading_rate_attachment_texel_size_aspect_ratio = value;
+        self
+    }
+    ///Sets the raw value of [`Self::primitive_fragment_shading_rate_with_multiple_viewports`]
+    pub fn set_primitive_fragment_shading_rate_with_multiple_viewports(&mut self, value: bool) -> &mut Self {
+        self.primitive_fragment_shading_rate_with_multiple_viewports = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::layered_shading_rate_attachments`]
+    pub fn set_layered_shading_rate_attachments(&mut self, value: bool) -> &mut Self {
+        self.layered_shading_rate_attachments = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_non_trivial_combiner_ops`]
+    pub fn set_fragment_shading_rate_non_trivial_combiner_ops(&mut self, value: bool) -> &mut Self {
+        self.fragment_shading_rate_non_trivial_combiner_ops = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::max_fragment_size`]
+    pub fn set_max_fragment_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.max_fragment_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_fragment_size_aspect_ratio`]
+    pub fn set_max_fragment_size_aspect_ratio(&mut self, value: u32) -> &mut Self {
+        self.max_fragment_size_aspect_ratio = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_fragment_shading_rate_coverage_samples`]
+    pub fn set_max_fragment_shading_rate_coverage_samples(&mut self, value: u32) -> &mut Self {
+        self.max_fragment_shading_rate_coverage_samples = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_fragment_shading_rate_rasterization_samples`]
+    pub fn set_max_fragment_shading_rate_rasterization_samples(
+        &mut self,
+        value: crate::vulkan1_0::SampleCountFlagBits,
+    ) -> &mut Self {
+        self.max_fragment_shading_rate_rasterization_samples = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_with_shader_depth_stencil_writes`]
+    pub fn set_fragment_shading_rate_with_shader_depth_stencil_writes(&mut self, value: bool) -> &mut Self {
+        self.fragment_shading_rate_with_shader_depth_stencil_writes = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_with_sample_mask`]
+    pub fn set_fragment_shading_rate_with_sample_mask(&mut self, value: bool) -> &mut Self {
+        self.fragment_shading_rate_with_sample_mask = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_with_shader_sample_mask`]
+    pub fn set_fragment_shading_rate_with_shader_sample_mask(&mut self, value: bool) -> &mut Self {
+        self.fragment_shading_rate_with_shader_sample_mask = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_with_conservative_rasterization`]
+    pub fn set_fragment_shading_rate_with_conservative_rasterization(&mut self, value: bool) -> &mut Self {
+        self.fragment_shading_rate_with_conservative_rasterization = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_with_fragment_shader_interlock`]
+    pub fn set_fragment_shading_rate_with_fragment_shader_interlock(&mut self, value: bool) -> &mut Self {
+        self.fragment_shading_rate_with_fragment_shader_interlock = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_with_custom_sample_locations`]
+    pub fn set_fragment_shading_rate_with_custom_sample_locations(&mut self, value: bool) -> &mut Self {
+        self.fragment_shading_rate_with_custom_sample_locations = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_strict_multiply_combiner`]
+    pub fn set_fragment_shading_rate_strict_multiply_combiner(&mut self, value: bool) -> &mut Self {
+        self.fragment_shading_rate_strict_multiply_combiner = value as u8 as u32;
+        self
+    }
+}
 ///[VkPhysicalDeviceFragmentShadingRateKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShadingRateKHR.html) - Structure returning information about sample count specific additional multisampling capabilities
 ///# C Specifications
 ///The [`PhysicalDeviceFragmentShadingRateKHR`] structure is defined as
@@ -609,9 +1497,8 @@ pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -619,11 +1506,91 @@ pub struct PhysicalDeviceFragmentShadingRateKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`sample_counts`] is a bitmask of sample counts for which the shading
     ///rate described by [`fragment_size`] is supported.
     sample_counts: SampleCountFlags,
     ///[`fragment_size`] is a [`Extent2D`] describing the width and height
     ///of a supported shading rate.
     fragment_size: Extent2D,
+}
+impl<'lt> Default for PhysicalDeviceFragmentShadingRateKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            sample_counts: Default::default(),
+            fragment_size: Default::default(),
+        }
+    }
+}
+impl<'lt> PhysicalDeviceFragmentShadingRateKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::sample_counts`]
+    pub fn sample_counts(&self) -> SampleCountFlags {
+        self.sample_counts
+    }
+    ///Gets the value of [`Self::fragment_size`]
+    pub fn fragment_size(&self) -> Extent2D {
+        self.fragment_size
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::sample_counts`]
+    pub fn sample_counts_mut(&mut self) -> &mut SampleCountFlags {
+        &mut self.sample_counts
+    }
+    ///Gets a mutable reference to the value of [`Self::fragment_size`]
+    pub fn fragment_size_mut(&mut self) -> &mut Extent2D {
+        &mut self.fragment_size
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_counts`]
+    pub fn set_sample_counts(&mut self, value: crate::vulkan1_0::SampleCountFlags) -> &mut Self {
+        self.sample_counts = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_size`]
+    pub fn set_fragment_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.fragment_size = value;
+        self
+    }
 }

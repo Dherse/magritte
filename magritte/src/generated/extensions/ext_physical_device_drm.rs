@@ -52,9 +52,8 @@ pub const EXT_PHYSICAL_DEVICE_DRM_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceDrmPropertiesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -62,7 +61,7 @@ pub struct PhysicalDeviceDrmPropertiesEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`has_primary`] is a boolean indicating whether the physical device has
     ///a DRM primary node.
     has_primary: Bool32,
@@ -77,4 +76,222 @@ pub struct PhysicalDeviceDrmPropertiesEXT<'lt> {
     render_major: i64,
     ///[`render_minor`] is the DRM render node minor number, if any.
     render_minor: i64,
+}
+impl<'lt> Default for PhysicalDeviceDrmPropertiesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            has_primary: 0,
+            has_render: 0,
+            primary_major: 0,
+            primary_minor: 0,
+            render_major: 0,
+            render_minor: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceDrmPropertiesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::has_primary`]
+    pub fn has_primary_raw(&self) -> Bool32 {
+        self.has_primary
+    }
+    ///Gets the raw value of [`Self::has_render`]
+    pub fn has_render_raw(&self) -> Bool32 {
+        self.has_render
+    }
+    ///Gets the raw value of [`Self::primary_major`]
+    pub fn primary_major_raw(&self) -> i64 {
+        self.primary_major
+    }
+    ///Gets the raw value of [`Self::primary_minor`]
+    pub fn primary_minor_raw(&self) -> i64 {
+        self.primary_minor
+    }
+    ///Gets the raw value of [`Self::render_major`]
+    pub fn render_major_raw(&self) -> i64 {
+        self.render_major
+    }
+    ///Gets the raw value of [`Self::render_minor`]
+    pub fn render_minor_raw(&self) -> i64 {
+        self.render_minor
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::has_primary`]
+    pub fn set_has_primary_raw(&mut self, value: Bool32) -> &mut Self {
+        self.has_primary = value;
+        self
+    }
+    ///Sets the raw value of [`Self::has_render`]
+    pub fn set_has_render_raw(&mut self, value: Bool32) -> &mut Self {
+        self.has_render = value;
+        self
+    }
+    ///Sets the raw value of [`Self::primary_major`]
+    pub fn set_primary_major_raw(&mut self, value: i64) -> &mut Self {
+        self.primary_major = value;
+        self
+    }
+    ///Sets the raw value of [`Self::primary_minor`]
+    pub fn set_primary_minor_raw(&mut self, value: i64) -> &mut Self {
+        self.primary_minor = value;
+        self
+    }
+    ///Sets the raw value of [`Self::render_major`]
+    pub fn set_render_major_raw(&mut self, value: i64) -> &mut Self {
+        self.render_major = value;
+        self
+    }
+    ///Sets the raw value of [`Self::render_minor`]
+    pub fn set_render_minor_raw(&mut self, value: i64) -> &mut Self {
+        self.render_minor = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::has_primary`]
+    pub fn has_primary(&self) -> bool {
+        unsafe { std::mem::transmute(self.has_primary as u8) }
+    }
+    ///Gets the value of [`Self::has_render`]
+    pub fn has_render(&self) -> bool {
+        unsafe { std::mem::transmute(self.has_render as u8) }
+    }
+    ///Gets the value of [`Self::primary_major`]
+    pub fn primary_major(&self) -> i64 {
+        self.primary_major
+    }
+    ///Gets the value of [`Self::primary_minor`]
+    pub fn primary_minor(&self) -> i64 {
+        self.primary_minor
+    }
+    ///Gets the value of [`Self::render_major`]
+    pub fn render_major(&self) -> i64 {
+        self.render_major
+    }
+    ///Gets the value of [`Self::render_minor`]
+    pub fn render_minor(&self) -> i64 {
+        self.render_minor
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::has_primary`]
+    pub fn has_primary_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.has_primary as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.has_primary as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::has_render`]
+    pub fn has_render_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.has_render as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.has_render as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::primary_major`]
+    pub fn primary_major_mut(&mut self) -> &mut i64 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::primary_minor`]
+    pub fn primary_minor_mut(&mut self) -> &mut i64 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::render_major`]
+    pub fn render_major_mut(&mut self) -> &mut i64 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::render_minor`]
+    pub fn render_minor_mut(&mut self) -> &mut i64 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::has_primary`]
+    pub fn set_has_primary(&mut self, value: bool) -> &mut Self {
+        self.has_primary = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::has_render`]
+    pub fn set_has_render(&mut self, value: bool) -> &mut Self {
+        self.has_render = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::primary_major`]
+    pub fn set_primary_major(&mut self, value: i64) -> &mut Self {
+        self.primary_major = value;
+        self
+    }
+    ///Sets the raw value of [`Self::primary_minor`]
+    pub fn set_primary_minor(&mut self, value: i64) -> &mut Self {
+        self.primary_minor = value;
+        self
+    }
+    ///Sets the raw value of [`Self::render_major`]
+    pub fn set_render_major(&mut self, value: i64) -> &mut Self {
+        self.render_major = value;
+        self
+    }
+    ///Sets the raw value of [`Self::render_minor`]
+    pub fn set_render_minor(&mut self, value: i64) -> &mut Self {
+        self.render_minor = value;
+        self
+    }
 }

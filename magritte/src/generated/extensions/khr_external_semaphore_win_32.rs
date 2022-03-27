@@ -84,9 +84,8 @@ pub const KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME: &'static CStr = crate::cs
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug)]
+#[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ImportSemaphoreWin32HandleInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -94,7 +93,7 @@ pub struct ImportSemaphoreWin32HandleInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`semaphore`] is the semaphore into which the payload will be
     ///imported.
     semaphore: Semaphore,
@@ -109,6 +108,139 @@ pub struct ImportSemaphoreWin32HandleInfoKHR<'lt> {
     ///[`name`] is `NULL` or a null-terminated UTF-16 string naming the
     ///underlying synchronization primitive to import.
     name: LPCWSTR,
+}
+impl<'lt> Default for ImportSemaphoreWin32HandleInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            semaphore: Default::default(),
+            flags: Default::default(),
+            handle_type: Default::default(),
+            handle: Default::default(),
+            name: Default::default(),
+        }
+    }
+}
+impl<'lt> ImportSemaphoreWin32HandleInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::handle`]
+    pub fn handle_raw(&self) -> &HANDLE {
+        &self.handle
+    }
+    ///Gets the raw value of [`Self::name`]
+    pub fn name_raw(&self) -> &LPCWSTR {
+        &self.name
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::handle`]
+    pub fn set_handle_raw(&mut self, value: HANDLE) -> &mut Self {
+        self.handle = value;
+        self
+    }
+    ///Sets the raw value of [`Self::name`]
+    pub fn set_name_raw(&mut self, value: LPCWSTR) -> &mut Self {
+        self.name = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::semaphore`]
+    pub fn semaphore(&self) -> Semaphore {
+        self.semaphore
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> SemaphoreImportFlags {
+        self.flags
+    }
+    ///Gets the value of [`Self::handle_type`]
+    pub fn handle_type(&self) -> ExternalSemaphoreHandleTypeFlagBits {
+        self.handle_type
+    }
+    ///Gets the value of [`Self::handle`]
+    pub fn handle(&self) -> &HANDLE {
+        &self.handle
+    }
+    ///Gets the value of [`Self::name`]
+    pub fn name(&self) -> &LPCWSTR {
+        &self.name
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::semaphore`]
+    pub fn semaphore_mut(&mut self) -> &mut Semaphore {
+        &mut self.semaphore
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut SemaphoreImportFlags {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_type`]
+    pub fn handle_type_mut(&mut self) -> &mut ExternalSemaphoreHandleTypeFlagBits {
+        &mut self.handle_type
+    }
+    ///Gets a mutable reference to the value of [`Self::handle`]
+    pub fn handle_mut(&mut self) -> &mut HANDLE {
+        &mut self.handle
+    }
+    ///Gets a mutable reference to the value of [`Self::name`]
+    pub fn name_mut(&mut self) -> &mut LPCWSTR {
+        &mut self.name
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::semaphore`]
+    pub fn set_semaphore(&mut self, value: crate::vulkan1_0::Semaphore) -> &mut Self {
+        self.semaphore = value;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(&mut self, value: crate::vulkan1_1::SemaphoreImportFlags) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_type`]
+    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlagBits) -> &mut Self {
+        self.handle_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::handle`]
+    pub fn set_handle(&mut self, value: crate::native::HANDLE) -> &mut Self {
+        self.handle = value;
+        self
+    }
+    ///Sets the raw value of [`Self::name`]
+    pub fn set_name(&mut self, value: crate::native::LPCWSTR) -> &mut Self {
+        self.name = value;
+        self
+    }
 }
 ///[VkExportSemaphoreWin32HandleInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExportSemaphoreWin32HandleInfoKHR.html) - Structure specifying additional attributes of Windows handles exported from a semaphore
 ///# C Specifications
@@ -129,8 +261,8 @@ pub struct ImportSemaphoreWin32HandleInfoKHR<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`p_attributes`] is a pointer to a Windows [`SECURITY_ATTRIBUTES`] structure specifying
-///   security attributes of the handle.
+/// - [`attributes`] is a pointer to a Windows [`SECURITY_ATTRIBUTES`] structure specifying security
+///   attributes of the handle.
 /// - [`dw_access`] is a [`DWORD`] specifying access rights of the handle.
 /// - [`name`] is a null-terminated UTF-16 string to associate with the underlying synchronization
 ///   primitive referenced by NT handles exported from the created semaphore.
@@ -140,7 +272,7 @@ pub struct ImportSemaphoreWin32HandleInfoKHR<'lt> {
 /// chain of
 ///[`SemaphoreCreateInfo`] with a Windows `handleType`, but either
 ///[`ExportSemaphoreWin32HandleInfoKHR`] is not included in the [`p_next`]
-///chain, or if it is but [`p_attributes`] is set to `NULL`, default security
+///chain, or if it is but [`attributes`] is set to `NULL`, default security
 ///descriptor values will be used, and child processes created by the
 ///application will not inherit the handle, as described in the MSDN
 ///documentation for “Synchronization Object Security and Access Rights”<sup>1</sup>.
@@ -160,7 +292,7 @@ pub struct ImportSemaphoreWin32HandleInfoKHR<'lt> {
 ///   [`SemaphoreCreateInfo`]
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR`
-/// - If [`p_attributes`] is not `NULL`, [`p_attributes`]**must** be a valid pointer to a valid
+/// - If [`attributes`] is not `NULL`, [`attributes`]**must** be a valid pointer to a valid
 ///   [`SECURITY_ATTRIBUTES`] value
 ///# Related
 /// - [`VK_KHR_external_semaphore_win32`]
@@ -173,9 +305,8 @@ pub struct ImportSemaphoreWin32HandleInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug)]
+#[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ExportSemaphoreWin32HandleInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -183,16 +314,120 @@ pub struct ExportSemaphoreWin32HandleInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
-    ///[`p_attributes`] is a pointer to a Windows [`SECURITY_ATTRIBUTES`]
+    p_next: *const BaseInStructure<'lt>,
+    ///[`attributes`] is a pointer to a Windows [`SECURITY_ATTRIBUTES`]
     ///structure specifying security attributes of the handle.
-    p_attributes: *mut SECURITY_ATTRIBUTES,
+    attributes: *const SECURITY_ATTRIBUTES,
     ///[`dw_access`] is a [`DWORD`] specifying access rights of the handle.
     dw_access: DWORD,
     ///[`name`] is a null-terminated UTF-16 string to associate with the
     ///underlying synchronization primitive referenced by NT handles exported
     ///from the created semaphore.
     name: LPCWSTR,
+}
+impl<'lt> Default for ExportSemaphoreWin32HandleInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            attributes: std::ptr::null(),
+            dw_access: Default::default(),
+            name: Default::default(),
+        }
+    }
+}
+impl<'lt> ExportSemaphoreWin32HandleInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::dw_access`]
+    pub fn dw_access_raw(&self) -> &DWORD {
+        &self.dw_access
+    }
+    ///Gets the raw value of [`Self::name`]
+    pub fn name_raw(&self) -> &LPCWSTR {
+        &self.name
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::dw_access`]
+    pub fn set_dw_access_raw(&mut self, value: DWORD) -> &mut Self {
+        self.dw_access = value;
+        self
+    }
+    ///Sets the raw value of [`Self::name`]
+    pub fn set_name_raw(&mut self, value: LPCWSTR) -> &mut Self {
+        self.name = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::attributes`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn attributes(&self) -> &SECURITY_ATTRIBUTES {
+        &*self.attributes
+    }
+    ///Gets the value of [`Self::dw_access`]
+    pub fn dw_access(&self) -> &DWORD {
+        &self.dw_access
+    }
+    ///Gets the value of [`Self::name`]
+    pub fn name(&self) -> &LPCWSTR {
+        &self.name
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::dw_access`]
+    pub fn dw_access_mut(&mut self) -> &mut DWORD {
+        &mut self.dw_access
+    }
+    ///Gets a mutable reference to the value of [`Self::name`]
+    pub fn name_mut(&mut self) -> &mut LPCWSTR {
+        &mut self.name
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::attributes`]
+    pub fn set_attributes(&mut self, value: &'lt crate::native::SECURITY_ATTRIBUTES) -> &mut Self {
+        self.attributes = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::dw_access`]
+    pub fn set_dw_access(&mut self, value: crate::native::DWORD) -> &mut Self {
+        self.dw_access = value;
+        self
+    }
+    ///Sets the raw value of [`Self::name`]
+    pub fn set_name(&mut self, value: crate::native::LPCWSTR) -> &mut Self {
+        self.name = value;
+        self
+    }
 }
 ///[VkD3D12FenceSubmitInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkD3D12FenceSubmitInfoKHR.html) - Structure specifying values for Direct3D 12 fence-backed semaphores
 ///# C Specifications
@@ -216,21 +451,21 @@ pub struct ExportSemaphoreWin32HandleInfoKHR<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`wait_semaphore_values_count`] is the number of semaphore wait values specified in
-///   [`p_wait_semaphore_values`].
-/// - [`p_wait_semaphore_values`] is a pointer to an array of [`wait_semaphore_values_count`] values
-///   for the corresponding semaphores in [`SubmitInfo::p_wait_semaphores`] to wait for.
+///   [`wait_semaphore_values`].
+/// - [`wait_semaphore_values`] is a pointer to an array of [`wait_semaphore_values_count`] values
+///   for the corresponding semaphores in [`SubmitInfo::wait_semaphores`] to wait for.
 /// - [`signal_semaphore_values_count`] is the number of semaphore signal values specified in
-///   [`p_signal_semaphore_values`].
-/// - [`p_signal_semaphore_values`] is a pointer to an array of [`signal_semaphore_values_count`]
-///   values for the corresponding semaphores in [`SubmitInfo::p_signal_semaphores`] to set when
+///   [`signal_semaphore_values`].
+/// - [`signal_semaphore_values`] is a pointer to an array of [`signal_semaphore_values_count`]
+///   values for the corresponding semaphores in [`SubmitInfo::signal_semaphores`] to set when
 ///   signaled.
 ///# Description
-///If the semaphore in [`SubmitInfo::p_wait_semaphores`] or
-///[`SubmitInfo::p_signal_semaphores`] corresponding to an entry in
-///[`p_wait_semaphore_values`] or [`p_signal_semaphore_values`] respectively does
+///If the semaphore in [`SubmitInfo::wait_semaphores`] or
+///[`SubmitInfo::signal_semaphores`] corresponding to an entry in
+///[`wait_semaphore_values`] or [`signal_semaphore_values`] respectively does
 ///not currently have a [payload](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-payloads)
 ///referring to a Direct3D 12 fence, the implementation **must** ignore the value
-///in the [`p_wait_semaphore_values`] or [`p_signal_semaphore_values`] entry.Valid Usage
+///in the [`wait_semaphore_values`] or [`signal_semaphore_values`] entry.Valid Usage
 /// - [`wait_semaphore_values_count`]**must** be the same value as
 ///   [`SubmitInfo::wait_semaphore_count`], where [`SubmitInfo`] is in the [`p_next`] chain of this
 ///   [`D3D12FenceSubmitInfoKHR`] structure
@@ -239,11 +474,11 @@ pub struct ExportSemaphoreWin32HandleInfoKHR<'lt> {
 ///   this [`D3D12FenceSubmitInfoKHR`] structure
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_D3D12_FENCE_SUBMIT_INFO_KHR`
-/// - If [`wait_semaphore_values_count`] is not `0`, and [`p_wait_semaphore_values`] is not `NULL`,
-///   [`p_wait_semaphore_values`]**must** be a valid pointer to an array of
+/// - If [`wait_semaphore_values_count`] is not `0`, and [`wait_semaphore_values`] is not `NULL`,
+///   [`wait_semaphore_values`]**must** be a valid pointer to an array of
 ///   [`wait_semaphore_values_count`]`uint64_t` values
-/// - If [`signal_semaphore_values_count`] is not `0`, and [`p_signal_semaphore_values`] is not
-///   `NULL`, [`p_signal_semaphore_values`]**must** be a valid pointer to an array of
+/// - If [`signal_semaphore_values_count`] is not `0`, and [`signal_semaphore_values`] is not
+///   `NULL`, [`signal_semaphore_values`]**must** be a valid pointer to an array of
 ///   [`signal_semaphore_values_count`]`uint64_t` values
 ///# Related
 /// - [`VK_KHR_external_semaphore_win32`]
@@ -256,9 +491,8 @@ pub struct ExportSemaphoreWin32HandleInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct D3D12FenceSubmitInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -266,21 +500,165 @@ pub struct D3D12FenceSubmitInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`wait_semaphore_values_count`] is the number of semaphore wait values
-    ///specified in [`p_wait_semaphore_values`].
+    ///specified in [`wait_semaphore_values`].
     wait_semaphore_values_count: u32,
-    ///[`p_wait_semaphore_values`] is a pointer to an array of
+    ///[`wait_semaphore_values`] is a pointer to an array of
     ///[`wait_semaphore_values_count`] values for the corresponding semaphores
     ///in [`SubmitInfo`]::`pWaitSemaphores` to wait for.
-    p_wait_semaphore_values: *mut u64,
+    wait_semaphore_values: *const u64,
     ///[`signal_semaphore_values_count`] is the number of semaphore signal
-    ///values specified in [`p_signal_semaphore_values`].
+    ///values specified in [`signal_semaphore_values`].
     signal_semaphore_values_count: u32,
-    ///[`p_signal_semaphore_values`] is a pointer to an array of
+    ///[`signal_semaphore_values`] is a pointer to an array of
     ///[`signal_semaphore_values_count`] values for the corresponding semaphores
     ///in [`SubmitInfo`]::`pSignalSemaphores` to set when signaled.
-    p_signal_semaphore_values: *mut u64,
+    signal_semaphore_values: *const u64,
+}
+impl<'lt> Default for D3D12FenceSubmitInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            wait_semaphore_values_count: 0,
+            wait_semaphore_values: std::ptr::null(),
+            signal_semaphore_values_count: 0,
+            signal_semaphore_values: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> D3D12FenceSubmitInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::wait_semaphore_values_count`]
+    pub fn wait_semaphore_values_count_raw(&self) -> u32 {
+        self.wait_semaphore_values_count
+    }
+    ///Gets the raw value of [`Self::wait_semaphore_values`]
+    pub fn wait_semaphore_values_raw(&self) -> *const u64 {
+        self.wait_semaphore_values
+    }
+    ///Gets the raw value of [`Self::signal_semaphore_values_count`]
+    pub fn signal_semaphore_values_count_raw(&self) -> u32 {
+        self.signal_semaphore_values_count
+    }
+    ///Gets the raw value of [`Self::signal_semaphore_values`]
+    pub fn signal_semaphore_values_raw(&self) -> *const u64 {
+        self.signal_semaphore_values
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::wait_semaphore_values_count`]
+    pub fn set_wait_semaphore_values_count_raw(&mut self, value: u32) -> &mut Self {
+        self.wait_semaphore_values_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::wait_semaphore_values`]
+    pub fn set_wait_semaphore_values_raw(&mut self, value: *const u64) -> &mut Self {
+        self.wait_semaphore_values = value;
+        self
+    }
+    ///Sets the raw value of [`Self::signal_semaphore_values_count`]
+    pub fn set_signal_semaphore_values_count_raw(&mut self, value: u32) -> &mut Self {
+        self.signal_semaphore_values_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::signal_semaphore_values`]
+    pub fn set_signal_semaphore_values_raw(&mut self, value: *const u64) -> &mut Self {
+        self.signal_semaphore_values = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::wait_semaphore_values_count`]
+    pub fn wait_semaphore_values_count(&self) -> u32 {
+        self.wait_semaphore_values_count
+    }
+    ///Gets the value of [`Self::wait_semaphore_values`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn wait_semaphore_values(&self) -> &[u64] {
+        std::slice::from_raw_parts(self.wait_semaphore_values, self.wait_semaphore_values_count as usize)
+    }
+    ///Gets the value of [`Self::signal_semaphore_values_count`]
+    pub fn signal_semaphore_values_count(&self) -> u32 {
+        self.signal_semaphore_values_count
+    }
+    ///Gets the value of [`Self::signal_semaphore_values`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn signal_semaphore_values(&self) -> &[u64] {
+        std::slice::from_raw_parts(
+            self.signal_semaphore_values,
+            self.signal_semaphore_values_count as usize,
+        )
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::wait_semaphore_values_count`]
+    pub fn wait_semaphore_values_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::signal_semaphore_values_count`]
+    pub fn signal_semaphore_values_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::wait_semaphore_values_count`]
+    pub fn set_wait_semaphore_values_count(&mut self, value: u32) -> &mut Self {
+        self.wait_semaphore_values_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::wait_semaphore_values`]
+    pub fn set_wait_semaphore_values(&mut self, value: &'lt [u64]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.wait_semaphore_values = value.as_ptr();
+        self.wait_semaphore_values_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::signal_semaphore_values_count`]
+    pub fn set_signal_semaphore_values_count(&mut self, value: u32) -> &mut Self {
+        self.signal_semaphore_values_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::signal_semaphore_values`]
+    pub fn set_signal_semaphore_values(&mut self, value: &'lt [u64]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.signal_semaphore_values = value.as_ptr();
+        self.signal_semaphore_values_count = len_;
+        self
+    }
 }
 ///[VkSemaphoreGetWin32HandleInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreGetWin32HandleInfoKHR.html) - Structure describing a Win32 handle semaphore export operation
 ///# C Specifications
@@ -333,9 +711,8 @@ pub struct D3D12FenceSubmitInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct SemaphoreGetWin32HandleInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -343,10 +720,83 @@ pub struct SemaphoreGetWin32HandleInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`semaphore`] is the semaphore from which state will be exported.
     semaphore: Semaphore,
     ///[`handle_type`] is a [`ExternalSemaphoreHandleTypeFlagBits`] value
     ///specifying the type of handle requested.
     handle_type: ExternalSemaphoreHandleTypeFlagBits,
+}
+impl<'lt> Default for SemaphoreGetWin32HandleInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            semaphore: Default::default(),
+            handle_type: Default::default(),
+        }
+    }
+}
+impl<'lt> SemaphoreGetWin32HandleInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::semaphore`]
+    pub fn semaphore(&self) -> Semaphore {
+        self.semaphore
+    }
+    ///Gets the value of [`Self::handle_type`]
+    pub fn handle_type(&self) -> ExternalSemaphoreHandleTypeFlagBits {
+        self.handle_type
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::semaphore`]
+    pub fn semaphore_mut(&mut self) -> &mut Semaphore {
+        &mut self.semaphore
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_type`]
+    pub fn handle_type_mut(&mut self) -> &mut ExternalSemaphoreHandleTypeFlagBits {
+        &mut self.handle_type
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::semaphore`]
+    pub fn set_semaphore(&mut self, value: crate::vulkan1_0::Semaphore) -> &mut Self {
+        self.semaphore = value;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_type`]
+    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlagBits) -> &mut Self {
+        self.handle_type = value;
+        self
+    }
 }

@@ -42,7 +42,7 @@ pub const EXT_SAMPLE_LOCATIONS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -51,6 +51,57 @@ pub struct SampleLocationEXT {
     x: f32,
     ///[`y`] is the vertical coordinate of the sample’s location.
     y: f32,
+}
+impl Default for SampleLocationEXT {
+    fn default() -> Self {
+        Self { x: 0.0, y: 0.0 }
+    }
+}
+impl SampleLocationEXT {
+    ///Gets the raw value of [`Self::x`]
+    pub fn x_raw(&self) -> f32 {
+        self.x
+    }
+    ///Gets the raw value of [`Self::y`]
+    pub fn y_raw(&self) -> f32 {
+        self.y
+    }
+    ///Sets the raw value of [`Self::x`]
+    pub fn set_x_raw(&mut self, value: f32) -> &mut Self {
+        self.x = value;
+        self
+    }
+    ///Sets the raw value of [`Self::y`]
+    pub fn set_y_raw(&mut self, value: f32) -> &mut Self {
+        self.y = value;
+        self
+    }
+    ///Gets the value of [`Self::x`]
+    pub fn x(&self) -> f32 {
+        self.x
+    }
+    ///Gets the value of [`Self::y`]
+    pub fn y(&self) -> f32 {
+        self.y
+    }
+    ///Gets a mutable reference to the value of [`Self::x`]
+    pub fn x_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::y`]
+    pub fn y_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::x`]
+    pub fn set_x(&mut self, value: f32) -> &mut Self {
+        self.x = value;
+        self
+    }
+    ///Sets the raw value of [`Self::y`]
+    pub fn set_y(&mut self, value: f32) -> &mut Self {
+        self.y = value;
+        self
+    }
 }
 ///[VkSampleLocationsInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSampleLocationsInfoEXT.html) - Structure specifying a set of sample locations
 ///# C Specifications
@@ -73,8 +124,8 @@ pub struct SampleLocationEXT {
 ///   sample locations per pixel.
 /// - [`sample_location_grid_size`] is the size of the sample location grid to select custom sample
 ///   locations for.
-/// - [`sample_locations_count`] is the number of sample locations in [`p_sample_locations`].
-/// - [`p_sample_locations`] is a pointer to an array of
+/// - [`sample_locations_count`] is the number of sample locations in [`sample_locations`].
+/// - [`sample_locations`] is a pointer to an array of
 ///   [`sample_locations_count`][`SampleLocationEXT`] structures.
 ///# Description
 ///This structure **can** be used either to specify the sample locations to be
@@ -82,22 +133,22 @@ pub struct SampleLocationEXT {
 ///subresource has been last rendered with for the purposes of layout
 ///transitions of depth/stencil images created with
 ///`VK_IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT`.The sample locations in
-/// [`p_sample_locations`] specify
+/// [`sample_locations`] specify
 ///[`sample_locations_per_pixel`] number of sample locations for each pixel in
 ///the grid of the size specified in [`sample_location_grid_size`].
 ///The sample location for sample i at the pixel grid location
-///(x,y) is taken from [`p_sample_locations`][(x +  y ×
+///(x,y) is taken from [`sample_locations`][(x +  y ×
 ///`sampleLocationGridSize.width`) × [`sample_locations_per_pixel`]
 ///+  i].If the render pass has a fragment density map, the implementation will
 ///choose the sample locations for the fragment and the contents of
-///[`p_sample_locations`]**may** be ignored.Valid Usage
+///[`sample_locations`]**may** be ignored.Valid Usage
 /// - [`sample_locations_per_pixel`]**must** be a bit value that is set in
 ///   [`PhysicalDeviceSampleLocationsPropertiesEXT::sample_location_sample_counts`]
 /// - [`sample_locations_count`]**must** equal [`sample_locations_per_pixel`] ×
 ///   `sampleLocationGridSize.width` × `sampleLocationGridSize.height`
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SAMPLE_LOCATIONS_INFO_EXT`
-/// - If [`sample_locations_count`] is not `0`, [`p_sample_locations`]**must** be a valid pointer to
+/// - If [`sample_locations_count`] is not `0`, [`sample_locations`]**must** be a valid pointer to
 ///   an array of [`sample_locations_count`][`SampleLocationEXT`] structures
 ///# Related
 /// - [`VK_EXT_sample_locations`]
@@ -117,9 +168,8 @@ pub struct SampleLocationEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct SampleLocationsInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -127,7 +177,7 @@ pub struct SampleLocationsInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`sample_locations_per_pixel`] is a [`SampleCountFlagBits`] value
     ///specifying the number of sample locations per pixel.
     sample_locations_per_pixel: SampleCountFlagBits,
@@ -135,11 +185,135 @@ pub struct SampleLocationsInfoEXT<'lt> {
     ///select custom sample locations for.
     sample_location_grid_size: Extent2D,
     ///[`sample_locations_count`] is the number of sample locations in
-    ///[`p_sample_locations`].
+    ///[`sample_locations`].
     sample_locations_count: u32,
-    ///[`p_sample_locations`] is a pointer to an array of
+    ///[`sample_locations`] is a pointer to an array of
     ///[`sample_locations_count`][`SampleLocationEXT`] structures.
-    p_sample_locations: *mut SampleLocationEXT,
+    sample_locations: *const SampleLocationEXT,
+}
+impl<'lt> Default for SampleLocationsInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            sample_locations_per_pixel: Default::default(),
+            sample_location_grid_size: Default::default(),
+            sample_locations_count: 0,
+            sample_locations: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> SampleLocationsInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::sample_locations_count`]
+    pub fn sample_locations_count_raw(&self) -> u32 {
+        self.sample_locations_count
+    }
+    ///Gets the raw value of [`Self::sample_locations`]
+    pub fn sample_locations_raw(&self) -> *const SampleLocationEXT {
+        self.sample_locations
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_locations_count`]
+    pub fn set_sample_locations_count_raw(&mut self, value: u32) -> &mut Self {
+        self.sample_locations_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_locations`]
+    pub fn set_sample_locations_raw(&mut self, value: *const SampleLocationEXT) -> &mut Self {
+        self.sample_locations = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::sample_locations_per_pixel`]
+    pub fn sample_locations_per_pixel(&self) -> SampleCountFlagBits {
+        self.sample_locations_per_pixel
+    }
+    ///Gets the value of [`Self::sample_location_grid_size`]
+    pub fn sample_location_grid_size(&self) -> Extent2D {
+        self.sample_location_grid_size
+    }
+    ///Gets the value of [`Self::sample_locations_count`]
+    pub fn sample_locations_count(&self) -> u32 {
+        self.sample_locations_count
+    }
+    ///Gets the value of [`Self::sample_locations`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn sample_locations(&self) -> &[SampleLocationEXT] {
+        std::slice::from_raw_parts(self.sample_locations, self.sample_locations_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::sample_locations_per_pixel`]
+    pub fn sample_locations_per_pixel_mut(&mut self) -> &mut SampleCountFlagBits {
+        &mut self.sample_locations_per_pixel
+    }
+    ///Gets a mutable reference to the value of [`Self::sample_location_grid_size`]
+    pub fn sample_location_grid_size_mut(&mut self) -> &mut Extent2D {
+        &mut self.sample_location_grid_size
+    }
+    ///Gets a mutable reference to the value of [`Self::sample_locations_count`]
+    pub fn sample_locations_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_locations_per_pixel`]
+    pub fn set_sample_locations_per_pixel(&mut self, value: crate::vulkan1_0::SampleCountFlagBits) -> &mut Self {
+        self.sample_locations_per_pixel = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_location_grid_size`]
+    pub fn set_sample_location_grid_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.sample_location_grid_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_locations_count`]
+    pub fn set_sample_locations_count(&mut self, value: u32) -> &mut Self {
+        self.sample_locations_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_locations`]
+    pub fn set_sample_locations(
+        &mut self,
+        value: &'lt [crate::extensions::ext_sample_locations::SampleLocationEXT],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.sample_locations = value.as_ptr();
+        self.sample_locations_count = len_;
+        self
+    }
 }
 ///[VkAttachmentSampleLocationsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentSampleLocationsEXT.html) - Structure specifying the sample locations state to use in the initial layout transition of attachments
 ///# C Specifications
@@ -179,9 +353,8 @@ pub struct SampleLocationsInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct AttachmentSampleLocationsEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -193,6 +366,55 @@ pub struct AttachmentSampleLocationsEXT<'lt> {
     ///attachment to the image layout specified for the attachment in the first
     ///subpass using it.
     sample_locations_info: SampleLocationsInfoEXT<'lt>,
+}
+impl<'lt> Default for AttachmentSampleLocationsEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            attachment_index: 0,
+            sample_locations_info: Default::default(),
+        }
+    }
+}
+impl<'lt> AttachmentSampleLocationsEXT<'lt> {
+    ///Gets the raw value of [`Self::attachment_index`]
+    pub fn attachment_index_raw(&self) -> u32 {
+        self.attachment_index
+    }
+    ///Sets the raw value of [`Self::attachment_index`]
+    pub fn set_attachment_index_raw(&mut self, value: u32) -> &mut Self {
+        self.attachment_index = value;
+        self
+    }
+    ///Gets the value of [`Self::attachment_index`]
+    pub fn attachment_index(&self) -> u32 {
+        self.attachment_index
+    }
+    ///Gets the value of [`Self::sample_locations_info`]
+    pub fn sample_locations_info(&self) -> SampleLocationsInfoEXT<'lt> {
+        self.sample_locations_info
+    }
+    ///Gets a mutable reference to the value of [`Self::attachment_index`]
+    pub fn attachment_index_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::sample_locations_info`]
+    pub fn sample_locations_info_mut(&mut self) -> &mut SampleLocationsInfoEXT<'lt> {
+        &mut self.sample_locations_info
+    }
+    ///Sets the raw value of [`Self::attachment_index`]
+    pub fn set_attachment_index(&mut self, value: u32) -> &mut Self {
+        self.attachment_index = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_locations_info`]
+    pub fn set_sample_locations_info(
+        &mut self,
+        value: crate::extensions::ext_sample_locations::SampleLocationsInfoEXT<'lt>,
+    ) -> &mut Self {
+        self.sample_locations_info = value;
+        self
+    }
 }
 ///[VkSubpassSampleLocationsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassSampleLocationsEXT.html) - Structure specifying the sample locations state to use for layout transitions of attachments performed after a given subpass
 ///# C Specifications
@@ -235,9 +457,8 @@ pub struct AttachmentSampleLocationsEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct SubpassSampleLocationsEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -249,6 +470,55 @@ pub struct SubpassSampleLocationsEXT<'lt> {
     ///layout the attachment is used with in the subpass specified in
     ///[`subpass_index`].
     sample_locations_info: SampleLocationsInfoEXT<'lt>,
+}
+impl<'lt> Default for SubpassSampleLocationsEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            subpass_index: 0,
+            sample_locations_info: Default::default(),
+        }
+    }
+}
+impl<'lt> SubpassSampleLocationsEXT<'lt> {
+    ///Gets the raw value of [`Self::subpass_index`]
+    pub fn subpass_index_raw(&self) -> u32 {
+        self.subpass_index
+    }
+    ///Sets the raw value of [`Self::subpass_index`]
+    pub fn set_subpass_index_raw(&mut self, value: u32) -> &mut Self {
+        self.subpass_index = value;
+        self
+    }
+    ///Gets the value of [`Self::subpass_index`]
+    pub fn subpass_index(&self) -> u32 {
+        self.subpass_index
+    }
+    ///Gets the value of [`Self::sample_locations_info`]
+    pub fn sample_locations_info(&self) -> SampleLocationsInfoEXT<'lt> {
+        self.sample_locations_info
+    }
+    ///Gets a mutable reference to the value of [`Self::subpass_index`]
+    pub fn subpass_index_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::sample_locations_info`]
+    pub fn sample_locations_info_mut(&mut self) -> &mut SampleLocationsInfoEXT<'lt> {
+        &mut self.sample_locations_info
+    }
+    ///Sets the raw value of [`Self::subpass_index`]
+    pub fn set_subpass_index(&mut self, value: u32) -> &mut Self {
+        self.subpass_index = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_locations_info`]
+    pub fn set_sample_locations_info(
+        &mut self,
+        value: crate::extensions::ext_sample_locations::SampleLocationsInfoEXT<'lt>,
+    ) -> &mut Self {
+        self.sample_locations_info = value;
+        self
+    }
 }
 ///[VkRenderPassSampleLocationsBeginInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassSampleLocationsBeginInfoEXT.html) - Structure specifying sample locations to use for the layout transition of custom sample locations compatible depth/stencil attachments
 ///# C Specifications
@@ -278,37 +548,37 @@ pub struct SubpassSampleLocationsEXT<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`attachment_initial_sample_locations_count`] is the number of elements in the
-///   [`p_attachment_initial_sample_locations`] array.
-/// - [`p_attachment_initial_sample_locations`] is a pointer to an array of
+///   [`attachment_initial_sample_locations`] array.
+/// - [`attachment_initial_sample_locations`] is a pointer to an array of
 ///   [`attachment_initial_sample_locations_count`][`AttachmentSampleLocationsEXT`] structures
 ///   specifying the attachment indices and their corresponding sample location state. Each element
-///   of [`p_attachment_initial_sample_locations`]**can** specify the sample location state to use
-///   in the automatic layout transition performed to transition a depth/stencil attachment from the
+///   of [`attachment_initial_sample_locations`]**can** specify the sample location state to use in
+///   the automatic layout transition performed to transition a depth/stencil attachment from the
 ///   initial layout of the attachment to the image layout specified for the attachment in the first
 ///   subpass using it.
 /// - [`post_subpass_sample_locations_count`] is the number of elements in the
-///   [`p_post_subpass_sample_locations`] array.
-/// - [`p_post_subpass_sample_locations`] is a pointer to an array of
+///   [`post_subpass_sample_locations`] array.
+/// - [`post_subpass_sample_locations`] is a pointer to an array of
 ///   [`post_subpass_sample_locations_count`][`SubpassSampleLocationsEXT`] structures specifying the
 ///   subpass indices and their corresponding sample location state. Each element of
-///   [`p_post_subpass_sample_locations`]**can** specify the sample location state to use in the
+///   [`post_subpass_sample_locations`]**can** specify the sample location state to use in the
 ///   automatic layout transition performed to transition the depth/stencil attachment used by the
 ///   specified subpass to the image layout specified in a dependent subpass or to the final layout
 ///   of the attachment in case the specified subpass is the last subpass using that attachment. In
 ///   addition, if [`PhysicalDeviceSampleLocationsPropertiesEXT::variable_sample_locations`] is
-///   [`FALSE`], each element of [`p_post_subpass_sample_locations`]**must** specify the sample
+///   [`FALSE`], each element of [`post_subpass_sample_locations`]**must** specify the sample
 ///   location state that matches the sample locations used by all pipelines that will be bound to a
 ///   command buffer during the specified subpass. If `variableSampleLocations` is [`TRUE`], the
-///   sample locations used for rasterization do not depend on [`p_post_subpass_sample_locations`].
+///   sample locations used for rasterization do not depend on [`post_subpass_sample_locations`].
 ///# Description
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT`
 /// - If [`attachment_initial_sample_locations_count`] is not `0`,
-///   [`p_attachment_initial_sample_locations`]**must** be a valid pointer to an array of
+///   [`attachment_initial_sample_locations`]**must** be a valid pointer to an array of
 ///   [`attachment_initial_sample_locations_count`] valid [`AttachmentSampleLocationsEXT`]
 ///   structures
 /// - If [`post_subpass_sample_locations_count`] is not `0`,
-///   [`p_post_subpass_sample_locations`]**must** be a valid pointer to an array of
+///   [`post_subpass_sample_locations`]**must** be a valid pointer to an array of
 ///   [`post_subpass_sample_locations_count`] valid [`SubpassSampleLocationsEXT`] structures
 ///# Related
 /// - [`VK_EXT_sample_locations`]
@@ -323,9 +593,8 @@ pub struct SubpassSampleLocationsEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct RenderPassSampleLocationsBeginInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -333,27 +602,27 @@ pub struct RenderPassSampleLocationsBeginInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`attachment_initial_sample_locations_count`] is the number of elements in
-    ///the [`p_attachment_initial_sample_locations`] array.
+    ///the [`attachment_initial_sample_locations`] array.
     attachment_initial_sample_locations_count: u32,
-    ///[`p_attachment_initial_sample_locations`] is a pointer to an array of
+    ///[`attachment_initial_sample_locations`] is a pointer to an array of
     ///[`attachment_initial_sample_locations_count`][`AttachmentSampleLocationsEXT`] structures
     /// specifying the attachment indices and their corresponding sample location state.
-    ///Each element of [`p_attachment_initial_sample_locations`]**can** specify the
+    ///Each element of [`attachment_initial_sample_locations`]**can** specify the
     ///sample location state to use in the automatic layout transition
     ///performed to transition a depth/stencil attachment from the initial
     ///layout of the attachment to the image layout specified for the
     ///attachment in the first subpass using it.
-    p_attachment_initial_sample_locations: *mut AttachmentSampleLocationsEXT<'lt>,
+    attachment_initial_sample_locations: *const AttachmentSampleLocationsEXT<'lt>,
     ///[`post_subpass_sample_locations_count`] is the number of elements in the
-    ///[`p_post_subpass_sample_locations`] array.
+    ///[`post_subpass_sample_locations`] array.
     post_subpass_sample_locations_count: u32,
-    ///[`p_post_subpass_sample_locations`] is a pointer to an array of
+    ///[`post_subpass_sample_locations`] is a pointer to an array of
     ///[`post_subpass_sample_locations_count`][`SubpassSampleLocationsEXT`]
     ///structures specifying the subpass indices and their corresponding sample
     ///location state.
-    ///Each element of [`p_post_subpass_sample_locations`]**can** specify the
+    ///Each element of [`post_subpass_sample_locations`]**can** specify the
     ///sample location state to use in the automatic layout transition
     ///performed to transition the depth/stencil attachment used by the
     ///specified subpass to the image layout specified in a dependent subpass
@@ -361,13 +630,169 @@ pub struct RenderPassSampleLocationsBeginInfoEXT<'lt> {
     ///is the last subpass using that attachment.
     ///In addition, if
     ///[`PhysicalDeviceSampleLocationsPropertiesEXT`]::`variableSampleLocations`
-    ///is [`FALSE`], each element of [`p_post_subpass_sample_locations`]**must** specify the sample
+    ///is [`FALSE`], each element of [`post_subpass_sample_locations`]**must** specify the sample
     /// location state that matches the sample locations used by all pipelines that will be
     /// bound to a command buffer during the specified subpass.
     ///If `variableSampleLocations` is [`TRUE`], the sample locations
     ///used for rasterization do not depend on
-    ///[`p_post_subpass_sample_locations`].
-    p_post_subpass_sample_locations: *mut SubpassSampleLocationsEXT<'lt>,
+    ///[`post_subpass_sample_locations`].
+    post_subpass_sample_locations: *const SubpassSampleLocationsEXT<'lt>,
+}
+impl<'lt> Default for RenderPassSampleLocationsBeginInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            attachment_initial_sample_locations_count: 0,
+            attachment_initial_sample_locations: std::ptr::null(),
+            post_subpass_sample_locations_count: 0,
+            post_subpass_sample_locations: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> RenderPassSampleLocationsBeginInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::attachment_initial_sample_locations_count`]
+    pub fn attachment_initial_sample_locations_count_raw(&self) -> u32 {
+        self.attachment_initial_sample_locations_count
+    }
+    ///Gets the raw value of [`Self::attachment_initial_sample_locations`]
+    pub fn attachment_initial_sample_locations_raw(&self) -> *const AttachmentSampleLocationsEXT<'lt> {
+        self.attachment_initial_sample_locations
+    }
+    ///Gets the raw value of [`Self::post_subpass_sample_locations_count`]
+    pub fn post_subpass_sample_locations_count_raw(&self) -> u32 {
+        self.post_subpass_sample_locations_count
+    }
+    ///Gets the raw value of [`Self::post_subpass_sample_locations`]
+    pub fn post_subpass_sample_locations_raw(&self) -> *const SubpassSampleLocationsEXT<'lt> {
+        self.post_subpass_sample_locations
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::attachment_initial_sample_locations_count`]
+    pub fn set_attachment_initial_sample_locations_count_raw(&mut self, value: u32) -> &mut Self {
+        self.attachment_initial_sample_locations_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::attachment_initial_sample_locations`]
+    pub fn set_attachment_initial_sample_locations_raw(
+        &mut self,
+        value: *const AttachmentSampleLocationsEXT<'lt>,
+    ) -> &mut Self {
+        self.attachment_initial_sample_locations = value;
+        self
+    }
+    ///Sets the raw value of [`Self::post_subpass_sample_locations_count`]
+    pub fn set_post_subpass_sample_locations_count_raw(&mut self, value: u32) -> &mut Self {
+        self.post_subpass_sample_locations_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::post_subpass_sample_locations`]
+    pub fn set_post_subpass_sample_locations_raw(&mut self, value: *const SubpassSampleLocationsEXT<'lt>) -> &mut Self {
+        self.post_subpass_sample_locations = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::attachment_initial_sample_locations_count`]
+    pub fn attachment_initial_sample_locations_count(&self) -> u32 {
+        self.attachment_initial_sample_locations_count
+    }
+    ///Gets the value of [`Self::attachment_initial_sample_locations`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn attachment_initial_sample_locations(&self) -> &[AttachmentSampleLocationsEXT<'lt>] {
+        std::slice::from_raw_parts(
+            self.attachment_initial_sample_locations,
+            self.attachment_initial_sample_locations_count as usize,
+        )
+    }
+    ///Gets the value of [`Self::post_subpass_sample_locations_count`]
+    pub fn post_subpass_sample_locations_count(&self) -> u32 {
+        self.post_subpass_sample_locations_count
+    }
+    ///Gets the value of [`Self::post_subpass_sample_locations`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn post_subpass_sample_locations(&self) -> &[SubpassSampleLocationsEXT<'lt>] {
+        std::slice::from_raw_parts(
+            self.post_subpass_sample_locations,
+            self.post_subpass_sample_locations_count as usize,
+        )
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::attachment_initial_sample_locations_count`]
+    pub fn attachment_initial_sample_locations_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::post_subpass_sample_locations_count`]
+    pub fn post_subpass_sample_locations_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::attachment_initial_sample_locations_count`]
+    pub fn set_attachment_initial_sample_locations_count(&mut self, value: u32) -> &mut Self {
+        self.attachment_initial_sample_locations_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::attachment_initial_sample_locations`]
+    pub fn set_attachment_initial_sample_locations(
+        &mut self,
+        value: &'lt [crate::extensions::ext_sample_locations::AttachmentSampleLocationsEXT<'lt>],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.attachment_initial_sample_locations = value.as_ptr();
+        self.attachment_initial_sample_locations_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::post_subpass_sample_locations_count`]
+    pub fn set_post_subpass_sample_locations_count(&mut self, value: u32) -> &mut Self {
+        self.post_subpass_sample_locations_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::post_subpass_sample_locations`]
+    pub fn set_post_subpass_sample_locations(
+        &mut self,
+        value: &'lt [crate::extensions::ext_sample_locations::SubpassSampleLocationsEXT<'lt>],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.post_subpass_sample_locations = value.as_ptr();
+        self.post_subpass_sample_locations_count = len_;
+        self
+    }
 }
 ///[VkPipelineSampleLocationsStateCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineSampleLocationsStateCreateInfoEXT.html) - Structure specifying sample locations for a pipeline
 ///# C Specifications
@@ -413,9 +838,8 @@ pub struct RenderPassSampleLocationsBeginInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PipelineSampleLocationsStateCreateInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -423,7 +847,7 @@ pub struct PipelineSampleLocationsStateCreateInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`sample_locations_enable`] controls whether custom sample locations are
     ///used.
     ///If [`sample_locations_enable`] is [`FALSE`], the default sample
@@ -435,6 +859,105 @@ pub struct PipelineSampleLocationsStateCreateInfoEXT<'lt> {
     ///graphics pipeline is not created with
     ///`VK_DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT`.
     sample_locations_info: SampleLocationsInfoEXT<'lt>,
+}
+impl<'lt> Default for PipelineSampleLocationsStateCreateInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            sample_locations_enable: 0,
+            sample_locations_info: Default::default(),
+        }
+    }
+}
+impl<'lt> PipelineSampleLocationsStateCreateInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::sample_locations_enable`]
+    pub fn sample_locations_enable_raw(&self) -> Bool32 {
+        self.sample_locations_enable
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_locations_enable`]
+    pub fn set_sample_locations_enable_raw(&mut self, value: Bool32) -> &mut Self {
+        self.sample_locations_enable = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::sample_locations_enable`]
+    pub fn sample_locations_enable(&self) -> bool {
+        unsafe { std::mem::transmute(self.sample_locations_enable as u8) }
+    }
+    ///Gets the value of [`Self::sample_locations_info`]
+    pub fn sample_locations_info(&self) -> SampleLocationsInfoEXT<'lt> {
+        self.sample_locations_info
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::sample_locations_enable`]
+    pub fn sample_locations_enable_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.sample_locations_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.sample_locations_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::sample_locations_info`]
+    pub fn sample_locations_info_mut(&mut self) -> &mut SampleLocationsInfoEXT<'lt> {
+        &mut self.sample_locations_info
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_locations_enable`]
+    pub fn set_sample_locations_enable(&mut self, value: bool) -> &mut Self {
+        self.sample_locations_enable = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_locations_info`]
+    pub fn set_sample_locations_info(
+        &mut self,
+        value: crate::extensions::ext_sample_locations::SampleLocationsInfoEXT<'lt>,
+    ) -> &mut Self {
+        self.sample_locations_info = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceSampleLocationsPropertiesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSampleLocationsPropertiesEXT.html) - Structure describing sample location limits that can be supported by an implementation
 ///# C Specifications
@@ -488,9 +1011,8 @@ pub struct PipelineSampleLocationsStateCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug)]
+#[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -498,7 +1020,7 @@ pub struct PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`sample_location_sample_counts`]
     ///is a bitmask of [`SampleCountFlagBits`] indicating the sample counts
     ///supporting custom sample locations.
@@ -522,6 +1044,169 @@ pub struct PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
     ///If set to [`FALSE`], then the sample locations **must** stay constant
     ///in each subpass.
     variable_sample_locations: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            sample_location_sample_counts: Default::default(),
+            max_sample_location_grid_size: Default::default(),
+            sample_location_coordinate_range: [0.0; 2],
+            sample_location_sub_pixel_bits: 0,
+            variable_sample_locations: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::sample_location_coordinate_range`]
+    pub fn sample_location_coordinate_range_raw(&self) -> [f32; 2] {
+        self.sample_location_coordinate_range
+    }
+    ///Gets the raw value of [`Self::sample_location_sub_pixel_bits`]
+    pub fn sample_location_sub_pixel_bits_raw(&self) -> u32 {
+        self.sample_location_sub_pixel_bits
+    }
+    ///Gets the raw value of [`Self::variable_sample_locations`]
+    pub fn variable_sample_locations_raw(&self) -> Bool32 {
+        self.variable_sample_locations
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_location_coordinate_range`]
+    pub fn set_sample_location_coordinate_range_raw(&mut self, value: [f32; 2]) -> &mut Self {
+        self.sample_location_coordinate_range = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_location_sub_pixel_bits`]
+    pub fn set_sample_location_sub_pixel_bits_raw(&mut self, value: u32) -> &mut Self {
+        self.sample_location_sub_pixel_bits = value;
+        self
+    }
+    ///Sets the raw value of [`Self::variable_sample_locations`]
+    pub fn set_variable_sample_locations_raw(&mut self, value: Bool32) -> &mut Self {
+        self.variable_sample_locations = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::sample_location_sample_counts`]
+    pub fn sample_location_sample_counts(&self) -> SampleCountFlags {
+        self.sample_location_sample_counts
+    }
+    ///Gets the value of [`Self::max_sample_location_grid_size`]
+    pub fn max_sample_location_grid_size(&self) -> Extent2D {
+        self.max_sample_location_grid_size
+    }
+    ///Gets the value of [`Self::sample_location_coordinate_range`]
+    pub fn sample_location_coordinate_range(&self) -> &[f32; 2] {
+        &getter
+    }
+    ///Gets the value of [`Self::sample_location_sub_pixel_bits`]
+    pub fn sample_location_sub_pixel_bits(&self) -> u32 {
+        self.sample_location_sub_pixel_bits
+    }
+    ///Gets the value of [`Self::variable_sample_locations`]
+    pub fn variable_sample_locations(&self) -> bool {
+        unsafe { std::mem::transmute(self.variable_sample_locations as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::sample_location_sample_counts`]
+    pub fn sample_location_sample_counts_mut(&mut self) -> &mut SampleCountFlags {
+        &mut self.sample_location_sample_counts
+    }
+    ///Gets a mutable reference to the value of [`Self::max_sample_location_grid_size`]
+    pub fn max_sample_location_grid_size_mut(&mut self) -> &mut Extent2D {
+        &mut self.max_sample_location_grid_size
+    }
+    ///Gets a mutable reference to the value of [`Self::sample_location_coordinate_range`]
+    pub fn sample_location_coordinate_range_mut(&mut self) -> &mut [f32; 2] {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::sample_location_sub_pixel_bits`]
+    pub fn sample_location_sub_pixel_bits_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::variable_sample_locations`]
+    pub fn variable_sample_locations_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.variable_sample_locations as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.variable_sample_locations as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_location_sample_counts`]
+    pub fn set_sample_location_sample_counts(&mut self, value: crate::vulkan1_0::SampleCountFlags) -> &mut Self {
+        self.sample_location_sample_counts = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_sample_location_grid_size`]
+    pub fn set_max_sample_location_grid_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.max_sample_location_grid_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_location_coordinate_range`]
+    pub fn set_sample_location_coordinate_range(&mut self, value: [f32; 2]) -> &mut Self {
+        self.sample_location_coordinate_range = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_location_sub_pixel_bits`]
+    pub fn set_sample_location_sub_pixel_bits(&mut self, value: u32) -> &mut Self {
+        self.sample_location_sub_pixel_bits = value;
+        self
+    }
+    ///Sets the raw value of [`Self::variable_sample_locations`]
+    pub fn set_variable_sample_locations(&mut self, value: bool) -> &mut Self {
+        self.variable_sample_locations = value as u8 as u32;
+        self
+    }
 }
 ///[VkMultisamplePropertiesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMultisamplePropertiesEXT.html) - Structure returning information about sample count specific additional multisampling capabilities
 ///# C Specifications
@@ -556,9 +1241,8 @@ pub struct PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct MultisamplePropertiesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -566,8 +1250,74 @@ pub struct MultisamplePropertiesEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`max_sample_location_grid_size`] is the maximum size of the pixel grid in
     ///which sample locations **can** vary.
     max_sample_location_grid_size: Extent2D,
+}
+impl<'lt> Default for MultisamplePropertiesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            max_sample_location_grid_size: Default::default(),
+        }
+    }
+}
+impl<'lt> MultisamplePropertiesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::max_sample_location_grid_size`]
+    pub fn max_sample_location_grid_size(&self) -> Extent2D {
+        self.max_sample_location_grid_size
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::max_sample_location_grid_size`]
+    pub fn max_sample_location_grid_size_mut(&mut self) -> &mut Extent2D {
+        &mut self.max_sample_location_grid_size
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::max_sample_location_grid_size`]
+    pub fn set_max_sample_location_grid_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.max_sample_location_grid_size = value;
+        self
+    }
 }

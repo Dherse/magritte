@@ -135,6 +135,16 @@ impl<'a> Struct<'a> {
         self.fields.iter().all(|f| f.is_hash(source))
     }
 
+    /// Checks whether the struct can be (de)serialized
+    pub fn is_serde(&self, source: &Source<'a>) -> bool {
+        self.fields.iter().all(|f| f.is_serde(source))
+    }
+
+    /// Gets a field by either its original name or its pretty name
+    pub fn get_field(&self, name: &str) -> Option<&Field<'a>> {
+        self.fields().get_by_either(name)
+    }
+
     /*/// Checks if this structure needs one or more generic type arguments
     pub fn has_generics(&self, source: &Source<'a>) -> bool {
         self.fields.iter().any(|f| f.has_generics(source))
@@ -232,6 +242,8 @@ impl<'a> Field<'a> {
                     box Ty::Named(Cow::Borrowed("VkBaseInStructure"))
                 },
             );
+        } else if name.starts_with("p_") {
+            name = name.trim_start_matches("p_").to_string();
         }
 
         info!("processed field");
@@ -333,6 +345,11 @@ impl<'a> Field<'a> {
     /// Checks if this field is copy
     pub fn is_hash(&self, source: &Source<'a>) -> bool {
         self.ty().is_hash(source)
+    }
+
+    /// Checks whether the field can be (de)serialized
+    pub fn is_serde(&self, source: &Source<'a>) -> bool {
+        self.ty().is_serde(source)
     }
 
     /*/// Does this field have a generic type argument

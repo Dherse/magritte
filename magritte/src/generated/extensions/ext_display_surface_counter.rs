@@ -100,9 +100,8 @@ pub const EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME: &'static CStr = crate::cst
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct SurfaceCapabilities2EXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -110,7 +109,7 @@ pub struct SurfaceCapabilities2EXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`min_image_count`] is the minimum number of images the specified device
     ///supports for a swapchain created for the surface, and will be at least
     ///one.
@@ -179,4 +178,249 @@ pub struct SurfaceCapabilities2EXT<'lt> {
     ///[`SurfaceCounterFlagBitsEXT`] indicating the supported surface
     ///counter types.
     supported_surface_counters: SurfaceCounterFlagsEXT,
+}
+impl<'lt> Default for SurfaceCapabilities2EXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            min_image_count: 0,
+            max_image_count: 0,
+            current_extent: Default::default(),
+            min_image_extent: Default::default(),
+            max_image_extent: Default::default(),
+            max_image_array_layers: 0,
+            supported_transforms: Default::default(),
+            current_transform: Default::default(),
+            supported_composite_alpha: Default::default(),
+            supported_usage_flags: Default::default(),
+            supported_surface_counters: Default::default(),
+        }
+    }
+}
+impl<'lt> SurfaceCapabilities2EXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::min_image_count`]
+    pub fn min_image_count_raw(&self) -> u32 {
+        self.min_image_count
+    }
+    ///Gets the raw value of [`Self::max_image_count`]
+    pub fn max_image_count_raw(&self) -> u32 {
+        self.max_image_count
+    }
+    ///Gets the raw value of [`Self::max_image_array_layers`]
+    pub fn max_image_array_layers_raw(&self) -> u32 {
+        self.max_image_array_layers
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::min_image_count`]
+    pub fn set_min_image_count_raw(&mut self, value: u32) -> &mut Self {
+        self.min_image_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_image_count`]
+    pub fn set_max_image_count_raw(&mut self, value: u32) -> &mut Self {
+        self.max_image_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_image_array_layers`]
+    pub fn set_max_image_array_layers_raw(&mut self, value: u32) -> &mut Self {
+        self.max_image_array_layers = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::min_image_count`]
+    pub fn min_image_count(&self) -> u32 {
+        self.min_image_count
+    }
+    ///Gets the value of [`Self::max_image_count`]
+    pub fn max_image_count(&self) -> u32 {
+        self.max_image_count
+    }
+    ///Gets the value of [`Self::current_extent`]
+    pub fn current_extent(&self) -> Extent2D {
+        self.current_extent
+    }
+    ///Gets the value of [`Self::min_image_extent`]
+    pub fn min_image_extent(&self) -> Extent2D {
+        self.min_image_extent
+    }
+    ///Gets the value of [`Self::max_image_extent`]
+    pub fn max_image_extent(&self) -> Extent2D {
+        self.max_image_extent
+    }
+    ///Gets the value of [`Self::max_image_array_layers`]
+    pub fn max_image_array_layers(&self) -> u32 {
+        self.max_image_array_layers
+    }
+    ///Gets the value of [`Self::supported_transforms`]
+    pub fn supported_transforms(&self) -> SurfaceTransformFlagsKHR {
+        self.supported_transforms
+    }
+    ///Gets the value of [`Self::current_transform`]
+    pub fn current_transform(&self) -> SurfaceTransformFlagBitsKHR {
+        self.current_transform
+    }
+    ///Gets the value of [`Self::supported_composite_alpha`]
+    pub fn supported_composite_alpha(&self) -> CompositeAlphaFlagsKHR {
+        self.supported_composite_alpha
+    }
+    ///Gets the value of [`Self::supported_usage_flags`]
+    pub fn supported_usage_flags(&self) -> ImageUsageFlags {
+        self.supported_usage_flags
+    }
+    ///Gets the value of [`Self::supported_surface_counters`]
+    pub fn supported_surface_counters(&self) -> SurfaceCounterFlagsEXT {
+        self.supported_surface_counters
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::min_image_count`]
+    pub fn min_image_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_image_count`]
+    pub fn max_image_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::current_extent`]
+    pub fn current_extent_mut(&mut self) -> &mut Extent2D {
+        &mut self.current_extent
+    }
+    ///Gets a mutable reference to the value of [`Self::min_image_extent`]
+    pub fn min_image_extent_mut(&mut self) -> &mut Extent2D {
+        &mut self.min_image_extent
+    }
+    ///Gets a mutable reference to the value of [`Self::max_image_extent`]
+    pub fn max_image_extent_mut(&mut self) -> &mut Extent2D {
+        &mut self.max_image_extent
+    }
+    ///Gets a mutable reference to the value of [`Self::max_image_array_layers`]
+    pub fn max_image_array_layers_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::supported_transforms`]
+    pub fn supported_transforms_mut(&mut self) -> &mut SurfaceTransformFlagsKHR {
+        &mut self.supported_transforms
+    }
+    ///Gets a mutable reference to the value of [`Self::current_transform`]
+    pub fn current_transform_mut(&mut self) -> &mut SurfaceTransformFlagBitsKHR {
+        &mut self.current_transform
+    }
+    ///Gets a mutable reference to the value of [`Self::supported_composite_alpha`]
+    pub fn supported_composite_alpha_mut(&mut self) -> &mut CompositeAlphaFlagsKHR {
+        &mut self.supported_composite_alpha
+    }
+    ///Gets a mutable reference to the value of [`Self::supported_usage_flags`]
+    pub fn supported_usage_flags_mut(&mut self) -> &mut ImageUsageFlags {
+        &mut self.supported_usage_flags
+    }
+    ///Gets a mutable reference to the value of [`Self::supported_surface_counters`]
+    pub fn supported_surface_counters_mut(&mut self) -> &mut SurfaceCounterFlagsEXT {
+        &mut self.supported_surface_counters
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::min_image_count`]
+    pub fn set_min_image_count(&mut self, value: u32) -> &mut Self {
+        self.min_image_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_image_count`]
+    pub fn set_max_image_count(&mut self, value: u32) -> &mut Self {
+        self.max_image_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::current_extent`]
+    pub fn set_current_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.current_extent = value;
+        self
+    }
+    ///Sets the raw value of [`Self::min_image_extent`]
+    pub fn set_min_image_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.min_image_extent = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_image_extent`]
+    pub fn set_max_image_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.max_image_extent = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_image_array_layers`]
+    pub fn set_max_image_array_layers(&mut self, value: u32) -> &mut Self {
+        self.max_image_array_layers = value;
+        self
+    }
+    ///Sets the raw value of [`Self::supported_transforms`]
+    pub fn set_supported_transforms(
+        &mut self,
+        value: crate::extensions::khr_display::SurfaceTransformFlagsKHR,
+    ) -> &mut Self {
+        self.supported_transforms = value;
+        self
+    }
+    ///Sets the raw value of [`Self::current_transform`]
+    pub fn set_current_transform(
+        &mut self,
+        value: crate::extensions::khr_surface::SurfaceTransformFlagBitsKHR,
+    ) -> &mut Self {
+        self.current_transform = value;
+        self
+    }
+    ///Sets the raw value of [`Self::supported_composite_alpha`]
+    pub fn set_supported_composite_alpha(
+        &mut self,
+        value: crate::extensions::khr_surface::CompositeAlphaFlagsKHR,
+    ) -> &mut Self {
+        self.supported_composite_alpha = value;
+        self
+    }
+    ///Sets the raw value of [`Self::supported_usage_flags`]
+    pub fn set_supported_usage_flags(&mut self, value: crate::vulkan1_0::ImageUsageFlags) -> &mut Self {
+        self.supported_usage_flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::supported_surface_counters`]
+    pub fn set_supported_surface_counters(
+        &mut self,
+        value: crate::extensions::ext_display_surface_counter::SurfaceCounterFlagsEXT,
+    ) -> &mut Self {
+        self.supported_surface_counters = value;
+        self
+    }
 }

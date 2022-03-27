@@ -130,9 +130,8 @@ pub const EXT_VIDEO_ENCODE_H265_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct VideoEncodeH265CapabilitiesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -140,7 +139,7 @@ pub struct VideoEncodeH265CapabilitiesEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`VideoEncodeH265CapabilityFlagBitsEXT`]
     ///describing supported encoding tools.
     flags: VideoEncodeH265CapabilityFlagsEXT,
@@ -222,6 +221,499 @@ pub struct VideoEncodeH265CapabilitiesEXT<'lt> {
     ///implementation are returned.
     std_extension_version: ExtensionProperties,
 }
+impl<'lt> Default for VideoEncodeH265CapabilitiesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            flags: Default::default(),
+            input_mode_flags: Default::default(),
+            output_mode_flags: Default::default(),
+            ctb_sizes: Default::default(),
+            transform_block_sizes: Default::default(),
+            max_p_picture_l_0_reference_count: 0,
+            max_b_picture_l_0_reference_count: 0,
+            max_l_1_reference_count: 0,
+            max_sub_layers_count: 0,
+            min_log_2_min_luma_coding_block_size_minus_3: 0,
+            max_log_2_min_luma_coding_block_size_minus_3: 0,
+            min_log_2_min_luma_transform_block_size_minus_2: 0,
+            max_log_2_min_luma_transform_block_size_minus_2: 0,
+            min_max_transform_hierarchy_depth_inter: 0,
+            max_max_transform_hierarchy_depth_inter: 0,
+            min_max_transform_hierarchy_depth_intra: 0,
+            max_max_transform_hierarchy_depth_intra: 0,
+            max_diff_cu_qp_delta_depth: 0,
+            min_max_num_merge_cand: 0,
+            max_max_num_merge_cand: 0,
+            std_extension_version: Default::default(),
+        }
+    }
+}
+impl<'lt> VideoEncodeH265CapabilitiesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::max_p_picture_l_0_reference_count`]
+    pub fn max_p_picture_l_0_reference_count_raw(&self) -> u8 {
+        self.max_p_picture_l_0_reference_count
+    }
+    ///Gets the raw value of [`Self::max_b_picture_l_0_reference_count`]
+    pub fn max_b_picture_l_0_reference_count_raw(&self) -> u8 {
+        self.max_b_picture_l_0_reference_count
+    }
+    ///Gets the raw value of [`Self::max_l_1_reference_count`]
+    pub fn max_l_1_reference_count_raw(&self) -> u8 {
+        self.max_l_1_reference_count
+    }
+    ///Gets the raw value of [`Self::max_sub_layers_count`]
+    pub fn max_sub_layers_count_raw(&self) -> u8 {
+        self.max_sub_layers_count
+    }
+    ///Gets the raw value of [`Self::min_log_2_min_luma_coding_block_size_minus_3`]
+    pub fn min_log_2_min_luma_coding_block_size_minus_3_raw(&self) -> u8 {
+        self.min_log_2_min_luma_coding_block_size_minus_3
+    }
+    ///Gets the raw value of [`Self::max_log_2_min_luma_coding_block_size_minus_3`]
+    pub fn max_log_2_min_luma_coding_block_size_minus_3_raw(&self) -> u8 {
+        self.max_log_2_min_luma_coding_block_size_minus_3
+    }
+    ///Gets the raw value of [`Self::min_log_2_min_luma_transform_block_size_minus_2`]
+    pub fn min_log_2_min_luma_transform_block_size_minus_2_raw(&self) -> u8 {
+        self.min_log_2_min_luma_transform_block_size_minus_2
+    }
+    ///Gets the raw value of [`Self::max_log_2_min_luma_transform_block_size_minus_2`]
+    pub fn max_log_2_min_luma_transform_block_size_minus_2_raw(&self) -> u8 {
+        self.max_log_2_min_luma_transform_block_size_minus_2
+    }
+    ///Gets the raw value of [`Self::min_max_transform_hierarchy_depth_inter`]
+    pub fn min_max_transform_hierarchy_depth_inter_raw(&self) -> u8 {
+        self.min_max_transform_hierarchy_depth_inter
+    }
+    ///Gets the raw value of [`Self::max_max_transform_hierarchy_depth_inter`]
+    pub fn max_max_transform_hierarchy_depth_inter_raw(&self) -> u8 {
+        self.max_max_transform_hierarchy_depth_inter
+    }
+    ///Gets the raw value of [`Self::min_max_transform_hierarchy_depth_intra`]
+    pub fn min_max_transform_hierarchy_depth_intra_raw(&self) -> u8 {
+        self.min_max_transform_hierarchy_depth_intra
+    }
+    ///Gets the raw value of [`Self::max_max_transform_hierarchy_depth_intra`]
+    pub fn max_max_transform_hierarchy_depth_intra_raw(&self) -> u8 {
+        self.max_max_transform_hierarchy_depth_intra
+    }
+    ///Gets the raw value of [`Self::max_diff_cu_qp_delta_depth`]
+    pub fn max_diff_cu_qp_delta_depth_raw(&self) -> u8 {
+        self.max_diff_cu_qp_delta_depth
+    }
+    ///Gets the raw value of [`Self::min_max_num_merge_cand`]
+    pub fn min_max_num_merge_cand_raw(&self) -> u8 {
+        self.min_max_num_merge_cand
+    }
+    ///Gets the raw value of [`Self::max_max_num_merge_cand`]
+    pub fn max_max_num_merge_cand_raw(&self) -> u8 {
+        self.max_max_num_merge_cand
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_p_picture_l_0_reference_count`]
+    pub fn set_max_p_picture_l_0_reference_count_raw(&mut self, value: u8) -> &mut Self {
+        self.max_p_picture_l_0_reference_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_b_picture_l_0_reference_count`]
+    pub fn set_max_b_picture_l_0_reference_count_raw(&mut self, value: u8) -> &mut Self {
+        self.max_b_picture_l_0_reference_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_l_1_reference_count`]
+    pub fn set_max_l_1_reference_count_raw(&mut self, value: u8) -> &mut Self {
+        self.max_l_1_reference_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_sub_layers_count`]
+    pub fn set_max_sub_layers_count_raw(&mut self, value: u8) -> &mut Self {
+        self.max_sub_layers_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::min_log_2_min_luma_coding_block_size_minus_3`]
+    pub fn set_min_log_2_min_luma_coding_block_size_minus_3_raw(&mut self, value: u8) -> &mut Self {
+        self.min_log_2_min_luma_coding_block_size_minus_3 = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_log_2_min_luma_coding_block_size_minus_3`]
+    pub fn set_max_log_2_min_luma_coding_block_size_minus_3_raw(&mut self, value: u8) -> &mut Self {
+        self.max_log_2_min_luma_coding_block_size_minus_3 = value;
+        self
+    }
+    ///Sets the raw value of [`Self::min_log_2_min_luma_transform_block_size_minus_2`]
+    pub fn set_min_log_2_min_luma_transform_block_size_minus_2_raw(&mut self, value: u8) -> &mut Self {
+        self.min_log_2_min_luma_transform_block_size_minus_2 = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_log_2_min_luma_transform_block_size_minus_2`]
+    pub fn set_max_log_2_min_luma_transform_block_size_minus_2_raw(&mut self, value: u8) -> &mut Self {
+        self.max_log_2_min_luma_transform_block_size_minus_2 = value;
+        self
+    }
+    ///Sets the raw value of [`Self::min_max_transform_hierarchy_depth_inter`]
+    pub fn set_min_max_transform_hierarchy_depth_inter_raw(&mut self, value: u8) -> &mut Self {
+        self.min_max_transform_hierarchy_depth_inter = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_max_transform_hierarchy_depth_inter`]
+    pub fn set_max_max_transform_hierarchy_depth_inter_raw(&mut self, value: u8) -> &mut Self {
+        self.max_max_transform_hierarchy_depth_inter = value;
+        self
+    }
+    ///Sets the raw value of [`Self::min_max_transform_hierarchy_depth_intra`]
+    pub fn set_min_max_transform_hierarchy_depth_intra_raw(&mut self, value: u8) -> &mut Self {
+        self.min_max_transform_hierarchy_depth_intra = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_max_transform_hierarchy_depth_intra`]
+    pub fn set_max_max_transform_hierarchy_depth_intra_raw(&mut self, value: u8) -> &mut Self {
+        self.max_max_transform_hierarchy_depth_intra = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_diff_cu_qp_delta_depth`]
+    pub fn set_max_diff_cu_qp_delta_depth_raw(&mut self, value: u8) -> &mut Self {
+        self.max_diff_cu_qp_delta_depth = value;
+        self
+    }
+    ///Sets the raw value of [`Self::min_max_num_merge_cand`]
+    pub fn set_min_max_num_merge_cand_raw(&mut self, value: u8) -> &mut Self {
+        self.min_max_num_merge_cand = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_max_num_merge_cand`]
+    pub fn set_max_max_num_merge_cand_raw(&mut self, value: u8) -> &mut Self {
+        self.max_max_num_merge_cand = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> VideoEncodeH265CapabilityFlagsEXT {
+        self.flags
+    }
+    ///Gets the value of [`Self::input_mode_flags`]
+    pub fn input_mode_flags(&self) -> VideoEncodeH265InputModeFlagsEXT {
+        self.input_mode_flags
+    }
+    ///Gets the value of [`Self::output_mode_flags`]
+    pub fn output_mode_flags(&self) -> VideoEncodeH265OutputModeFlagsEXT {
+        self.output_mode_flags
+    }
+    ///Gets the value of [`Self::ctb_sizes`]
+    pub fn ctb_sizes(&self) -> VideoEncodeH265CtbSizeFlagsEXT {
+        self.ctb_sizes
+    }
+    ///Gets the value of [`Self::transform_block_sizes`]
+    pub fn transform_block_sizes(&self) -> VideoEncodeH265TransformBlockSizeFlagsEXT {
+        self.transform_block_sizes
+    }
+    ///Gets the value of [`Self::max_p_picture_l_0_reference_count`]
+    pub fn max_p_picture_l_0_reference_count(&self) -> u8 {
+        self.max_p_picture_l_0_reference_count
+    }
+    ///Gets the value of [`Self::max_b_picture_l_0_reference_count`]
+    pub fn max_b_picture_l_0_reference_count(&self) -> u8 {
+        self.max_b_picture_l_0_reference_count
+    }
+    ///Gets the value of [`Self::max_l_1_reference_count`]
+    pub fn max_l_1_reference_count(&self) -> u8 {
+        self.max_l_1_reference_count
+    }
+    ///Gets the value of [`Self::max_sub_layers_count`]
+    pub fn max_sub_layers_count(&self) -> u8 {
+        self.max_sub_layers_count
+    }
+    ///Gets the value of [`Self::min_log_2_min_luma_coding_block_size_minus_3`]
+    pub fn min_log_2_min_luma_coding_block_size_minus_3(&self) -> u8 {
+        self.min_log_2_min_luma_coding_block_size_minus_3
+    }
+    ///Gets the value of [`Self::max_log_2_min_luma_coding_block_size_minus_3`]
+    pub fn max_log_2_min_luma_coding_block_size_minus_3(&self) -> u8 {
+        self.max_log_2_min_luma_coding_block_size_minus_3
+    }
+    ///Gets the value of [`Self::min_log_2_min_luma_transform_block_size_minus_2`]
+    pub fn min_log_2_min_luma_transform_block_size_minus_2(&self) -> u8 {
+        self.min_log_2_min_luma_transform_block_size_minus_2
+    }
+    ///Gets the value of [`Self::max_log_2_min_luma_transform_block_size_minus_2`]
+    pub fn max_log_2_min_luma_transform_block_size_minus_2(&self) -> u8 {
+        self.max_log_2_min_luma_transform_block_size_minus_2
+    }
+    ///Gets the value of [`Self::min_max_transform_hierarchy_depth_inter`]
+    pub fn min_max_transform_hierarchy_depth_inter(&self) -> u8 {
+        self.min_max_transform_hierarchy_depth_inter
+    }
+    ///Gets the value of [`Self::max_max_transform_hierarchy_depth_inter`]
+    pub fn max_max_transform_hierarchy_depth_inter(&self) -> u8 {
+        self.max_max_transform_hierarchy_depth_inter
+    }
+    ///Gets the value of [`Self::min_max_transform_hierarchy_depth_intra`]
+    pub fn min_max_transform_hierarchy_depth_intra(&self) -> u8 {
+        self.min_max_transform_hierarchy_depth_intra
+    }
+    ///Gets the value of [`Self::max_max_transform_hierarchy_depth_intra`]
+    pub fn max_max_transform_hierarchy_depth_intra(&self) -> u8 {
+        self.max_max_transform_hierarchy_depth_intra
+    }
+    ///Gets the value of [`Self::max_diff_cu_qp_delta_depth`]
+    pub fn max_diff_cu_qp_delta_depth(&self) -> u8 {
+        self.max_diff_cu_qp_delta_depth
+    }
+    ///Gets the value of [`Self::min_max_num_merge_cand`]
+    pub fn min_max_num_merge_cand(&self) -> u8 {
+        self.min_max_num_merge_cand
+    }
+    ///Gets the value of [`Self::max_max_num_merge_cand`]
+    pub fn max_max_num_merge_cand(&self) -> u8 {
+        self.max_max_num_merge_cand
+    }
+    ///Gets the value of [`Self::std_extension_version`]
+    pub fn std_extension_version(&self) -> ExtensionProperties {
+        self.std_extension_version
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut VideoEncodeH265CapabilityFlagsEXT {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::input_mode_flags`]
+    pub fn input_mode_flags_mut(&mut self) -> &mut VideoEncodeH265InputModeFlagsEXT {
+        &mut self.input_mode_flags
+    }
+    ///Gets a mutable reference to the value of [`Self::output_mode_flags`]
+    pub fn output_mode_flags_mut(&mut self) -> &mut VideoEncodeH265OutputModeFlagsEXT {
+        &mut self.output_mode_flags
+    }
+    ///Gets a mutable reference to the value of [`Self::ctb_sizes`]
+    pub fn ctb_sizes_mut(&mut self) -> &mut VideoEncodeH265CtbSizeFlagsEXT {
+        &mut self.ctb_sizes
+    }
+    ///Gets a mutable reference to the value of [`Self::transform_block_sizes`]
+    pub fn transform_block_sizes_mut(&mut self) -> &mut VideoEncodeH265TransformBlockSizeFlagsEXT {
+        &mut self.transform_block_sizes
+    }
+    ///Gets a mutable reference to the value of [`Self::max_p_picture_l_0_reference_count`]
+    pub fn max_p_picture_l_0_reference_count_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_b_picture_l_0_reference_count`]
+    pub fn max_b_picture_l_0_reference_count_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_l_1_reference_count`]
+    pub fn max_l_1_reference_count_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_sub_layers_count`]
+    pub fn max_sub_layers_count_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::min_log_2_min_luma_coding_block_size_minus_3`]
+    pub fn min_log_2_min_luma_coding_block_size_minus_3_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::max_log_2_min_luma_coding_block_size_minus_3`]
+    pub fn max_log_2_min_luma_coding_block_size_minus_3_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::min_log_2_min_luma_transform_block_size_minus_2`]
+    pub fn min_log_2_min_luma_transform_block_size_minus_2_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::max_log_2_min_luma_transform_block_size_minus_2`]
+    pub fn max_log_2_min_luma_transform_block_size_minus_2_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::min_max_transform_hierarchy_depth_inter`]
+    pub fn min_max_transform_hierarchy_depth_inter_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_max_transform_hierarchy_depth_inter`]
+    pub fn max_max_transform_hierarchy_depth_inter_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::min_max_transform_hierarchy_depth_intra`]
+    pub fn min_max_transform_hierarchy_depth_intra_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_max_transform_hierarchy_depth_intra`]
+    pub fn max_max_transform_hierarchy_depth_intra_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_diff_cu_qp_delta_depth`]
+    pub fn max_diff_cu_qp_delta_depth_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::min_max_num_merge_cand`]
+    pub fn min_max_num_merge_cand_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_max_num_merge_cand`]
+    pub fn max_max_num_merge_cand_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::std_extension_version`]
+    pub fn std_extension_version_mut(&mut self) -> &mut ExtensionProperties {
+        &mut self.std_extension_version
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::ext_video_encode_h_265::VideoEncodeH265CapabilityFlagsEXT,
+    ) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::input_mode_flags`]
+    pub fn set_input_mode_flags(
+        &mut self,
+        value: crate::extensions::ext_video_encode_h_265::VideoEncodeH265InputModeFlagsEXT,
+    ) -> &mut Self {
+        self.input_mode_flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::output_mode_flags`]
+    pub fn set_output_mode_flags(
+        &mut self,
+        value: crate::extensions::ext_video_encode_h_265::VideoEncodeH265OutputModeFlagsEXT,
+    ) -> &mut Self {
+        self.output_mode_flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::ctb_sizes`]
+    pub fn set_ctb_sizes(
+        &mut self,
+        value: crate::extensions::ext_video_encode_h_265::VideoEncodeH265CtbSizeFlagsEXT,
+    ) -> &mut Self {
+        self.ctb_sizes = value;
+        self
+    }
+    ///Sets the raw value of [`Self::transform_block_sizes`]
+    pub fn set_transform_block_sizes(
+        &mut self,
+        value: crate::extensions::ext_video_encode_h_265::VideoEncodeH265TransformBlockSizeFlagsEXT,
+    ) -> &mut Self {
+        self.transform_block_sizes = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_p_picture_l_0_reference_count`]
+    pub fn set_max_p_picture_l_0_reference_count(&mut self, value: u8) -> &mut Self {
+        self.max_p_picture_l_0_reference_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_b_picture_l_0_reference_count`]
+    pub fn set_max_b_picture_l_0_reference_count(&mut self, value: u8) -> &mut Self {
+        self.max_b_picture_l_0_reference_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_l_1_reference_count`]
+    pub fn set_max_l_1_reference_count(&mut self, value: u8) -> &mut Self {
+        self.max_l_1_reference_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_sub_layers_count`]
+    pub fn set_max_sub_layers_count(&mut self, value: u8) -> &mut Self {
+        self.max_sub_layers_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::min_log_2_min_luma_coding_block_size_minus_3`]
+    pub fn set_min_log_2_min_luma_coding_block_size_minus_3(&mut self, value: u8) -> &mut Self {
+        self.min_log_2_min_luma_coding_block_size_minus_3 = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_log_2_min_luma_coding_block_size_minus_3`]
+    pub fn set_max_log_2_min_luma_coding_block_size_minus_3(&mut self, value: u8) -> &mut Self {
+        self.max_log_2_min_luma_coding_block_size_minus_3 = value;
+        self
+    }
+    ///Sets the raw value of [`Self::min_log_2_min_luma_transform_block_size_minus_2`]
+    pub fn set_min_log_2_min_luma_transform_block_size_minus_2(&mut self, value: u8) -> &mut Self {
+        self.min_log_2_min_luma_transform_block_size_minus_2 = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_log_2_min_luma_transform_block_size_minus_2`]
+    pub fn set_max_log_2_min_luma_transform_block_size_minus_2(&mut self, value: u8) -> &mut Self {
+        self.max_log_2_min_luma_transform_block_size_minus_2 = value;
+        self
+    }
+    ///Sets the raw value of [`Self::min_max_transform_hierarchy_depth_inter`]
+    pub fn set_min_max_transform_hierarchy_depth_inter(&mut self, value: u8) -> &mut Self {
+        self.min_max_transform_hierarchy_depth_inter = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_max_transform_hierarchy_depth_inter`]
+    pub fn set_max_max_transform_hierarchy_depth_inter(&mut self, value: u8) -> &mut Self {
+        self.max_max_transform_hierarchy_depth_inter = value;
+        self
+    }
+    ///Sets the raw value of [`Self::min_max_transform_hierarchy_depth_intra`]
+    pub fn set_min_max_transform_hierarchy_depth_intra(&mut self, value: u8) -> &mut Self {
+        self.min_max_transform_hierarchy_depth_intra = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_max_transform_hierarchy_depth_intra`]
+    pub fn set_max_max_transform_hierarchy_depth_intra(&mut self, value: u8) -> &mut Self {
+        self.max_max_transform_hierarchy_depth_intra = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_diff_cu_qp_delta_depth`]
+    pub fn set_max_diff_cu_qp_delta_depth(&mut self, value: u8) -> &mut Self {
+        self.max_diff_cu_qp_delta_depth = value;
+        self
+    }
+    ///Sets the raw value of [`Self::min_max_num_merge_cand`]
+    pub fn set_min_max_num_merge_cand(&mut self, value: u8) -> &mut Self {
+        self.min_max_num_merge_cand = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_max_num_merge_cand`]
+    pub fn set_max_max_num_merge_cand(&mut self, value: u8) -> &mut Self {
+        self.max_max_num_merge_cand = value;
+        self
+    }
+    ///Sets the raw value of [`Self::std_extension_version`]
+    pub fn set_std_extension_version(&mut self, value: crate::vulkan1_0::ExtensionProperties) -> &mut Self {
+        self.std_extension_version = value;
+        self
+    }
+}
 ///[VkVideoEncodeH265SessionCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265SessionCreateInfoEXT.html) - Structure specifies H.265 encoder creation parameters
 ///# C Specifications
 ///When creating a Video Session object with
@@ -245,13 +737,13 @@ pub struct VideoEncodeH265CapabilitiesEXT<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
-/// - [`p_std_extension_version`] is a pointer to a [`ExtensionProperties`] structure specifying the
+/// - [`std_extension_version`] is a pointer to a [`ExtensionProperties`] structure specifying the
 ///   H.265 codec extension version.
 ///# Description
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_CREATE_INFO_EXT`
 /// - [`flags`]**must** be `0`
-/// - [`p_std_extension_version`]**must** be a valid pointer to a valid [`ExtensionProperties`]
+/// - [`std_extension_version`]**must** be a valid pointer to a valid [`ExtensionProperties`]
 ///   structure
 ///# Related
 /// - [`VK_EXT_video_encode_h265`]
@@ -266,9 +758,8 @@ pub struct VideoEncodeH265CapabilitiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct VideoEncodeH265SessionCreateInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -276,12 +767,96 @@ pub struct VideoEncodeH265SessionCreateInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
     flags: VideoEncodeH265CreateFlagsEXT,
-    ///[`p_std_extension_version`] is a pointer to a [`ExtensionProperties`]
+    ///[`std_extension_version`] is a pointer to a [`ExtensionProperties`]
     ///structure specifying the H.265 codec extension version.
-    p_std_extension_version: *mut ExtensionProperties,
+    std_extension_version: *const ExtensionProperties,
+}
+impl<'lt> Default for VideoEncodeH265SessionCreateInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            flags: Default::default(),
+            std_extension_version: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> VideoEncodeH265SessionCreateInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::std_extension_version`]
+    pub fn std_extension_version_raw(&self) -> *const ExtensionProperties {
+        self.std_extension_version
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::std_extension_version`]
+    pub fn set_std_extension_version_raw(&mut self, value: *const ExtensionProperties) -> &mut Self {
+        self.std_extension_version = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> VideoEncodeH265CreateFlagsEXT {
+        self.flags
+    }
+    ///Gets the value of [`Self::std_extension_version`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn std_extension_version(&self) -> &ExtensionProperties {
+        &*self.std_extension_version
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut VideoEncodeH265CreateFlagsEXT {
+        &mut self.flags
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::ext_video_encode_h_265::VideoEncodeH265CreateFlagsEXT,
+    ) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::std_extension_version`]
+    pub fn set_std_extension_version(&mut self, value: &'lt crate::vulkan1_0::ExtensionProperties) -> &mut Self {
+        self.std_extension_version = value as *const _;
+        self
+    }
 }
 ///[VkVideoEncodeH265SessionParametersAddInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265SessionParametersAddInfoEXT.html) - Structure specifies H.265 encoder parameter set info
 ///# C Specifications
@@ -303,24 +878,23 @@ pub struct VideoEncodeH265SessionCreateInfoEXT<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`vps_std_count`] is the number of VPS elements in [`p_vps_std`].
-/// - [`p_vps_std`] is a pointer to an array of [`vps_std_count`][`StdVideoH265VideoParameterSet`]
+/// - [`vps_std_count`] is the number of VPS elements in [`vps_std`].
+/// - [`vps_std`] is a pointer to an array of [`vps_std_count`][`StdVideoH265VideoParameterSet`]
 ///   structures representing H.265 video parameter sets.
-/// - [`sps_std_count`] is the number of SPS elements in [`p_sps_std`].
-/// - [`p_sps_std`] is a pointer to an array of
-///   [`sps_std_count`][`StdVideoH265SequenceParameterSet`] structures representing H.265 sequence
-///   parameter sets.
-/// - [`pps_std_count`] is the number of PPS elements in [`p_pps_std`].
-/// - [`p_pps_std`] is a pointer to an array of [`pps_std_count`][`StdVideoH265PictureParameterSet`]
+/// - [`sps_std_count`] is the number of SPS elements in [`sps_std`].
+/// - [`sps_std`] is a pointer to an array of [`sps_std_count`][`StdVideoH265SequenceParameterSet`]
+///   structures representing H.265 sequence parameter sets.
+/// - [`pps_std_count`] is the number of PPS elements in [`pps_std`].
+/// - [`pps_std`] is a pointer to an array of [`pps_std_count`][`StdVideoH265PictureParameterSet`]
 ///   structures representing H.265 picture parameter sets.
 ///# Description
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_PARAMETERS_ADD_INFO_EXT`
-/// - If [`p_vps_std`] is not `NULL`, [`p_vps_std`]**must** be a valid pointer to an array of
+/// - If [`vps_std`] is not `NULL`, [`vps_std`]**must** be a valid pointer to an array of
 ///   [`vps_std_count`][`StdVideoH265VideoParameterSet`] values
-/// - If [`p_sps_std`] is not `NULL`, [`p_sps_std`]**must** be a valid pointer to an array of
+/// - If [`sps_std`] is not `NULL`, [`sps_std`]**must** be a valid pointer to an array of
 ///   [`sps_std_count`][`StdVideoH265SequenceParameterSet`] values
-/// - If [`p_pps_std`] is not `NULL`, [`p_pps_std`]**must** be a valid pointer to an array of
+/// - If [`pps_std`] is not `NULL`, [`pps_std`]**must** be a valid pointer to an array of
 ///   [`pps_std_count`][`StdVideoH265PictureParameterSet`] values
 /// - [`vps_std_count`]**must** be greater than `0`
 /// - [`sps_std_count`]**must** be greater than `0`
@@ -331,11 +905,10 @@ pub struct VideoEncodeH265SessionCreateInfoEXT<'lt> {
 ///   [`VideoEncodeH265SessionParametersCreateInfoEXT::max_vps_std_count`],
 ///   [`VideoEncodeH265SessionParametersCreateInfoEXT`]:`maxSpsStdCount`, and
 ///   [`VideoEncodeH265SessionParametersCreateInfoEXT`]:`maxPpsStdCount`, respectively
-/// - Each [`StdVideoH265VideoParameterSet`] entry in [`p_vps_std`]**must** have a unique H.265 VPS
-///   ID
-/// - Each [`StdVideoH265SequenceParameterSet`] entry in [`p_sps_std`]**must** have a unique H.265
+/// - Each [`StdVideoH265VideoParameterSet`] entry in [`vps_std`]**must** have a unique H.265 VPS ID
+/// - Each [`StdVideoH265SequenceParameterSet`] entry in [`sps_std`]**must** have a unique H.265
 ///   VPS-SPS ID pair
-/// - Each [`StdVideoH265PictureParameterSet`] entry in [`p_pps_std`]**must** have a unique H.265
+/// - Each [`StdVideoH265PictureParameterSet`] entry in [`pps_std`]**must** have a unique H.265
 ///   VPS-SPS-PPS ID tuple
 /// - Each entry to be added **must** have a unique, to the rest of the parameter array entries and
 ///   the existing parameters in the Video Session Parameters Object that is being updated,
@@ -358,9 +931,8 @@ pub struct VideoEncodeH265SessionCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct VideoEncodeH265SessionParametersAddInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -368,24 +940,185 @@ pub struct VideoEncodeH265SessionParametersAddInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
-    ///[`vps_std_count`] is the number of VPS elements in [`p_vps_std`].
+    p_next: *const BaseInStructure<'lt>,
+    ///[`vps_std_count`] is the number of VPS elements in [`vps_std`].
     vps_std_count: u32,
-    ///[`p_vps_std`] is a pointer to an array of [`vps_std_count`][`StdVideoH265VideoParameterSet`]
+    ///[`vps_std`] is a pointer to an array of [`vps_std_count`][`StdVideoH265VideoParameterSet`]
     /// structures representing H.265 video parameter sets.
-    p_vps_std: *mut StdVideoH265VideoParameterSet,
-    ///[`sps_std_count`] is the number of SPS elements in [`p_sps_std`].
+    vps_std: *const StdVideoH265VideoParameterSet,
+    ///[`sps_std_count`] is the number of SPS elements in [`sps_std`].
     sps_std_count: u32,
-    ///[`p_sps_std`] is a pointer to an array of
+    ///[`sps_std`] is a pointer to an array of
     /// [`sps_std_count`][`StdVideoH265SequenceParameterSet`] structures representing H.265
     /// sequence parameter sets.
-    p_sps_std: *mut StdVideoH265SequenceParameterSet,
-    ///[`pps_std_count`] is the number of PPS elements in [`p_pps_std`].
+    sps_std: *const StdVideoH265SequenceParameterSet,
+    ///[`pps_std_count`] is the number of PPS elements in [`pps_std`].
     pps_std_count: u32,
-    ///[`p_pps_std`] is a pointer to an array of
-    /// [`pps_std_count`][`StdVideoH265PictureParameterSet`] structures representing H.265
-    /// picture parameter sets.
-    p_pps_std: *mut StdVideoH265PictureParameterSet,
+    ///[`pps_std`] is a pointer to an array of [`pps_std_count`][`StdVideoH265PictureParameterSet`]
+    /// structures representing H.265 picture parameter sets.
+    pps_std: *const StdVideoH265PictureParameterSet,
+}
+impl<'lt> Default for VideoEncodeH265SessionParametersAddInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            vps_std_count: 0,
+            vps_std: std::ptr::null(),
+            sps_std_count: 0,
+            sps_std: std::ptr::null(),
+            pps_std_count: 0,
+            pps_std: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> VideoEncodeH265SessionParametersAddInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::vps_std_count`]
+    pub fn vps_std_count_raw(&self) -> u32 {
+        self.vps_std_count
+    }
+    ///Gets the raw value of [`Self::sps_std_count`]
+    pub fn sps_std_count_raw(&self) -> u32 {
+        self.sps_std_count
+    }
+    ///Gets the raw value of [`Self::pps_std_count`]
+    pub fn pps_std_count_raw(&self) -> u32 {
+        self.pps_std_count
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::vps_std_count`]
+    pub fn set_vps_std_count_raw(&mut self, value: u32) -> &mut Self {
+        self.vps_std_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sps_std_count`]
+    pub fn set_sps_std_count_raw(&mut self, value: u32) -> &mut Self {
+        self.sps_std_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::pps_std_count`]
+    pub fn set_pps_std_count_raw(&mut self, value: u32) -> &mut Self {
+        self.pps_std_count = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::vps_std_count`]
+    pub fn vps_std_count(&self) -> u32 {
+        self.vps_std_count
+    }
+    ///Gets the value of [`Self::vps_std`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn vps_std(&self) -> &[StdVideoH265VideoParameterSet] {
+        std::slice::from_raw_parts(self.vps_std, self.vps_std_count as usize)
+    }
+    ///Gets the value of [`Self::sps_std_count`]
+    pub fn sps_std_count(&self) -> u32 {
+        self.sps_std_count
+    }
+    ///Gets the value of [`Self::sps_std`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn sps_std(&self) -> &[StdVideoH265SequenceParameterSet] {
+        std::slice::from_raw_parts(self.sps_std, self.sps_std_count as usize)
+    }
+    ///Gets the value of [`Self::pps_std_count`]
+    pub fn pps_std_count(&self) -> u32 {
+        self.pps_std_count
+    }
+    ///Gets the value of [`Self::pps_std`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn pps_std(&self) -> &[StdVideoH265PictureParameterSet] {
+        std::slice::from_raw_parts(self.pps_std, self.pps_std_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::vps_std_count`]
+    pub fn vps_std_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::sps_std_count`]
+    pub fn sps_std_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::pps_std_count`]
+    pub fn pps_std_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::vps_std_count`]
+    pub fn set_vps_std_count(&mut self, value: u32) -> &mut Self {
+        self.vps_std_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::vps_std`]
+    pub fn set_vps_std(&mut self, value: &'lt [crate::native::StdVideoH265VideoParameterSet]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.vps_std = value.as_ptr();
+        self.vps_std_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::sps_std_count`]
+    pub fn set_sps_std_count(&mut self, value: u32) -> &mut Self {
+        self.sps_std_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sps_std`]
+    pub fn set_sps_std(&mut self, value: &'lt [crate::native::StdVideoH265SequenceParameterSet]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.sps_std = value.as_ptr();
+        self.sps_std_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::pps_std_count`]
+    pub fn set_pps_std_count(&mut self, value: u32) -> &mut Self {
+        self.pps_std_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::pps_std`]
+    pub fn set_pps_std(&mut self, value: &'lt [crate::native::StdVideoH265PictureParameterSet]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.pps_std = value.as_ptr();
+        self.pps_std_count = len_;
+        self
+    }
 }
 ///[VkVideoEncodeH265SessionParametersCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265SessionParametersCreateInfoEXT.html) - Structure specifies H.265 encoder parameter set info
 ///# C Specifications
@@ -411,7 +1144,7 @@ pub struct VideoEncodeH265SessionParametersAddInfoEXT<'lt> {
 ///   [`StdVideoH265SequenceParameterSet`] within [`VideoSessionParametersKHR`].
 /// - [`max_pps_std_count`] is the maximum number of entries of type
 ///   [`StdVideoH265PictureParameterSet`] within [`VideoSessionParametersKHR`].
-/// - [`p_parameters_add_info`] is `NULL` or a pointer to a
+/// - [`parameters_add_info`] is `NULL` or a pointer to a
 ///   [`VideoEncodeH265SessionParametersAddInfoEXT`] structure specifying the video session
 ///   parameters to add upon creation of this object.
 ///# Description
@@ -431,8 +1164,8 @@ pub struct VideoEncodeH265SessionParametersAddInfoEXT<'lt> {
 ///and `VK_ERROR_TOO_MANY_OBJECTS` will be returned if an attempt is made
 ///to add these entries.Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_PARAMETERS_CREATE_INFO_EXT`
-/// - If [`p_parameters_add_info`] is not `NULL`, [`p_parameters_add_info`]**must** be a valid
-///   pointer to a valid [`VideoEncodeH265SessionParametersAddInfoEXT`] structure
+/// - If [`parameters_add_info`] is not `NULL`, [`parameters_add_info`]**must** be a valid pointer
+///   to a valid [`VideoEncodeH265SessionParametersAddInfoEXT`] structure
 ///# Related
 /// - [`VK_EXT_video_encode_h265`]
 /// - [`StructureType`]
@@ -445,9 +1178,8 @@ pub struct VideoEncodeH265SessionParametersAddInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct VideoEncodeH265SessionParametersCreateInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -455,7 +1187,7 @@ pub struct VideoEncodeH265SessionParametersCreateInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`max_vps_std_count`] is the maximum number of entries of type
     ///[`StdVideoH265VideoParameterSet`] within
     ///[`VideoSessionParametersKHR`].
@@ -468,10 +1200,152 @@ pub struct VideoEncodeH265SessionParametersCreateInfoEXT<'lt> {
     ///[`StdVideoH265PictureParameterSet`] within
     ///[`VideoSessionParametersKHR`].
     max_pps_std_count: u32,
-    ///[`p_parameters_add_info`] is `NULL` or a pointer to a
+    ///[`parameters_add_info`] is `NULL` or a pointer to a
     ///[`VideoEncodeH265SessionParametersAddInfoEXT`] structure specifying
     ///the video session parameters to add upon creation of this object.
-    p_parameters_add_info: *mut VideoEncodeH265SessionParametersAddInfoEXT<'lt>,
+    parameters_add_info: *const VideoEncodeH265SessionParametersAddInfoEXT<'lt>,
+}
+impl<'lt> Default for VideoEncodeH265SessionParametersCreateInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            max_vps_std_count: 0,
+            max_sps_std_count: 0,
+            max_pps_std_count: 0,
+            parameters_add_info: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> VideoEncodeH265SessionParametersCreateInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::max_vps_std_count`]
+    pub fn max_vps_std_count_raw(&self) -> u32 {
+        self.max_vps_std_count
+    }
+    ///Gets the raw value of [`Self::max_sps_std_count`]
+    pub fn max_sps_std_count_raw(&self) -> u32 {
+        self.max_sps_std_count
+    }
+    ///Gets the raw value of [`Self::max_pps_std_count`]
+    pub fn max_pps_std_count_raw(&self) -> u32 {
+        self.max_pps_std_count
+    }
+    ///Gets the raw value of [`Self::parameters_add_info`]
+    pub fn parameters_add_info_raw(&self) -> *const VideoEncodeH265SessionParametersAddInfoEXT<'lt> {
+        self.parameters_add_info
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_vps_std_count`]
+    pub fn set_max_vps_std_count_raw(&mut self, value: u32) -> &mut Self {
+        self.max_vps_std_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_sps_std_count`]
+    pub fn set_max_sps_std_count_raw(&mut self, value: u32) -> &mut Self {
+        self.max_sps_std_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_pps_std_count`]
+    pub fn set_max_pps_std_count_raw(&mut self, value: u32) -> &mut Self {
+        self.max_pps_std_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::parameters_add_info`]
+    pub fn set_parameters_add_info_raw(
+        &mut self,
+        value: *const VideoEncodeH265SessionParametersAddInfoEXT<'lt>,
+    ) -> &mut Self {
+        self.parameters_add_info = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::max_vps_std_count`]
+    pub fn max_vps_std_count(&self) -> u32 {
+        self.max_vps_std_count
+    }
+    ///Gets the value of [`Self::max_sps_std_count`]
+    pub fn max_sps_std_count(&self) -> u32 {
+        self.max_sps_std_count
+    }
+    ///Gets the value of [`Self::max_pps_std_count`]
+    pub fn max_pps_std_count(&self) -> u32 {
+        self.max_pps_std_count
+    }
+    ///Gets the value of [`Self::parameters_add_info`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn parameters_add_info(&self) -> &VideoEncodeH265SessionParametersAddInfoEXT<'lt> {
+        &*self.parameters_add_info
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::max_vps_std_count`]
+    pub fn max_vps_std_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_sps_std_count`]
+    pub fn max_sps_std_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_pps_std_count`]
+    pub fn max_pps_std_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::max_vps_std_count`]
+    pub fn set_max_vps_std_count(&mut self, value: u32) -> &mut Self {
+        self.max_vps_std_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_sps_std_count`]
+    pub fn set_max_sps_std_count(&mut self, value: u32) -> &mut Self {
+        self.max_sps_std_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_pps_std_count`]
+    pub fn set_max_pps_std_count(&mut self, value: u32) -> &mut Self {
+        self.max_pps_std_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::parameters_add_info`]
+    pub fn set_parameters_add_info(
+        &mut self,
+        value: &'lt crate::extensions::ext_video_encode_h_265::VideoEncodeH265SessionParametersAddInfoEXT<'lt>,
+    ) -> &mut Self {
+        self.parameters_add_info = value as *const _;
+        self
+    }
 }
 ///[VkVideoEncodeH265VclFrameInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265VclFrameInfoEXT.html) - Structure specifies H.265 encode frame parameters
 ///# C Specifications
@@ -491,23 +1365,23 @@ pub struct VideoEncodeH265SessionParametersCreateInfoEXT<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`p_reference_final_lists`] is `NULL` or a pointer to a [`VideoEncodeH265ReferenceListsEXT`]
+/// - [`reference_final_lists`] is `NULL` or a pointer to a [`VideoEncodeH265ReferenceListsEXT`]
 ///   structure specifying the reference lists to be used for the current picture.
 /// - [`nalu_slice_segment_entry_count`] is the number of slice segment NALUs in the frame.
-/// - [`p_nalu_slice_segment_entries`] is a pointer to an array of
+/// - [`nalu_slice_segment_entries`] is a pointer to an array of
 ///   [`VideoEncodeH265NaluSliceSegmentEXT`] structures specifying the division of the current
 ///   picture into slice segments and the properties of these slice segments.
-/// - [`p_current_picture_info`] is a pointer to a [`StdVideoEncodeH265PictureInfo`] structure
+/// - [`current_picture_info`] is a pointer to a [`StdVideoEncodeH265PictureInfo`] structure
 ///   specifying the syntax and other codec-specific information from the H.265 specification,
 ///   associated with this picture.
 ///# Description
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_VCL_FRAME_INFO_EXT`
-/// - If [`p_reference_final_lists`] is not `NULL`, [`p_reference_final_lists`]**must** be a valid
+/// - If [`reference_final_lists`] is not `NULL`, [`reference_final_lists`]**must** be a valid
 ///   pointer to a valid [`VideoEncodeH265ReferenceListsEXT`] structure
-/// - [`p_nalu_slice_segment_entries`]**must** be a valid pointer to an array of
+/// - [`nalu_slice_segment_entries`]**must** be a valid pointer to an array of
 ///   [`nalu_slice_segment_entry_count`] valid [`VideoEncodeH265NaluSliceSegmentEXT`] structures
-/// - [`p_current_picture_info`]**must** be a valid pointer to a valid
+/// - [`current_picture_info`]**must** be a valid pointer to a valid
 ///   [`StdVideoEncodeH265PictureInfo`] value
 /// - [`nalu_slice_segment_entry_count`]**must** be greater than `0`
 ///# Related
@@ -523,9 +1397,8 @@ pub struct VideoEncodeH265SessionParametersCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct VideoEncodeH265VclFrameInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -533,24 +1406,164 @@ pub struct VideoEncodeH265VclFrameInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
-    ///[`p_reference_final_lists`] is `NULL` or a pointer to a
+    p_next: *const BaseInStructure<'lt>,
+    ///[`reference_final_lists`] is `NULL` or a pointer to a
     ///[`VideoEncodeH265ReferenceListsEXT`] structure specifying the
     ///reference lists to be used for the current picture.
-    p_reference_final_lists: *mut VideoEncodeH265ReferenceListsEXT<'lt>,
+    reference_final_lists: *const VideoEncodeH265ReferenceListsEXT<'lt>,
     ///[`nalu_slice_segment_entry_count`] is the number of slice segment NALUs in
     ///the frame.
     nalu_slice_segment_entry_count: u32,
-    ///[`p_nalu_slice_segment_entries`] is a pointer to an array of
+    ///[`nalu_slice_segment_entries`] is a pointer to an array of
     ///[`VideoEncodeH265NaluSliceSegmentEXT`] structures specifying the
     ///division of the current picture into slice segments and the properties
     ///of these slice segments.
-    p_nalu_slice_segment_entries: *mut VideoEncodeH265NaluSliceSegmentEXT<'lt>,
-    ///[`p_current_picture_info`] is a pointer to a
+    nalu_slice_segment_entries: *const VideoEncodeH265NaluSliceSegmentEXT<'lt>,
+    ///[`current_picture_info`] is a pointer to a
     ///[`StdVideoEncodeH265PictureInfo`] structure specifying the syntax and
     ///other codec-specific information from the H.265 specification,
     ///associated with this picture.
-    p_current_picture_info: *mut StdVideoEncodeH265PictureInfo,
+    current_picture_info: *const StdVideoEncodeH265PictureInfo,
+}
+impl<'lt> Default for VideoEncodeH265VclFrameInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            reference_final_lists: std::ptr::null(),
+            nalu_slice_segment_entry_count: 0,
+            nalu_slice_segment_entries: std::ptr::null(),
+            current_picture_info: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> VideoEncodeH265VclFrameInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::reference_final_lists`]
+    pub fn reference_final_lists_raw(&self) -> *const VideoEncodeH265ReferenceListsEXT<'lt> {
+        self.reference_final_lists
+    }
+    ///Gets the raw value of [`Self::nalu_slice_segment_entry_count`]
+    pub fn nalu_slice_segment_entry_count_raw(&self) -> u32 {
+        self.nalu_slice_segment_entry_count
+    }
+    ///Gets the raw value of [`Self::nalu_slice_segment_entries`]
+    pub fn nalu_slice_segment_entries_raw(&self) -> *const VideoEncodeH265NaluSliceSegmentEXT<'lt> {
+        self.nalu_slice_segment_entries
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::reference_final_lists`]
+    pub fn set_reference_final_lists_raw(&mut self, value: *const VideoEncodeH265ReferenceListsEXT<'lt>) -> &mut Self {
+        self.reference_final_lists = value;
+        self
+    }
+    ///Sets the raw value of [`Self::nalu_slice_segment_entry_count`]
+    pub fn set_nalu_slice_segment_entry_count_raw(&mut self, value: u32) -> &mut Self {
+        self.nalu_slice_segment_entry_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::nalu_slice_segment_entries`]
+    pub fn set_nalu_slice_segment_entries_raw(
+        &mut self,
+        value: *const VideoEncodeH265NaluSliceSegmentEXT<'lt>,
+    ) -> &mut Self {
+        self.nalu_slice_segment_entries = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::reference_final_lists`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn reference_final_lists(&self) -> &VideoEncodeH265ReferenceListsEXT<'lt> {
+        &*self.reference_final_lists
+    }
+    ///Gets the value of [`Self::nalu_slice_segment_entry_count`]
+    pub fn nalu_slice_segment_entry_count(&self) -> u32 {
+        self.nalu_slice_segment_entry_count
+    }
+    ///Gets the value of [`Self::nalu_slice_segment_entries`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn nalu_slice_segment_entries(&self) -> &[VideoEncodeH265NaluSliceSegmentEXT<'lt>] {
+        std::slice::from_raw_parts(
+            self.nalu_slice_segment_entries,
+            self.nalu_slice_segment_entry_count as usize,
+        )
+    }
+    ///Gets the value of [`Self::current_picture_info`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn current_picture_info(&self) -> &StdVideoEncodeH265PictureInfo {
+        &*self.current_picture_info
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::nalu_slice_segment_entry_count`]
+    pub fn nalu_slice_segment_entry_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::reference_final_lists`]
+    pub fn set_reference_final_lists(
+        &mut self,
+        value: &'lt crate::extensions::ext_video_encode_h_265::VideoEncodeH265ReferenceListsEXT<'lt>,
+    ) -> &mut Self {
+        self.reference_final_lists = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::nalu_slice_segment_entry_count`]
+    pub fn set_nalu_slice_segment_entry_count(&mut self, value: u32) -> &mut Self {
+        self.nalu_slice_segment_entry_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::nalu_slice_segment_entries`]
+    pub fn set_nalu_slice_segment_entries(
+        &mut self,
+        value: &'lt [crate::extensions::ext_video_encode_h_265::VideoEncodeH265NaluSliceSegmentEXT<'lt>],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.nalu_slice_segment_entries = value.as_ptr();
+        self.nalu_slice_segment_entry_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::current_picture_info`]
+    pub fn set_current_picture_info(&mut self, value: &'lt crate::native::StdVideoEncodeH265PictureInfo) -> &mut Self {
+        self.current_picture_info = value as *const _;
+        self
+    }
 }
 ///[VkVideoEncodeH265EmitPictureParametersEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265EmitPictureParametersEXT.html) - Structure specifies H.265 encode VPS NALU insertion parameters
 ///# C Specifications
@@ -606,9 +1619,8 @@ pub struct VideoEncodeH265VclFrameInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct VideoEncodeH265EmitPictureParametersEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -616,7 +1628,7 @@ pub struct VideoEncodeH265EmitPictureParametersEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`vps_id`] is the H.265 VPS ID for the H.265 VPS to insert in the
     ///bitstream.
     ///The VPS ID **must** match the VPS provided in `vpsStd` of
@@ -650,7 +1662,220 @@ pub struct VideoEncodeH265EmitPictureParametersEXT<'lt> {
     ///to identify the PPS parameter set to insert in the bitstream.
     ///This is retrieved from the [`VideoSessionParametersKHR`] object
     ///provided in [`VideoBeginCodingInfoKHR`].
-    pps_id_entries: *mut u8,
+    pps_id_entries: *const u8,
+}
+impl<'lt> Default for VideoEncodeH265EmitPictureParametersEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            vps_id: 0,
+            sps_id: 0,
+            emit_vps_enable: 0,
+            emit_sps_enable: 0,
+            pps_id_entry_count: 0,
+            pps_id_entries: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> VideoEncodeH265EmitPictureParametersEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::vps_id`]
+    pub fn vps_id_raw(&self) -> u8 {
+        self.vps_id
+    }
+    ///Gets the raw value of [`Self::sps_id`]
+    pub fn sps_id_raw(&self) -> u8 {
+        self.sps_id
+    }
+    ///Gets the raw value of [`Self::emit_vps_enable`]
+    pub fn emit_vps_enable_raw(&self) -> Bool32 {
+        self.emit_vps_enable
+    }
+    ///Gets the raw value of [`Self::emit_sps_enable`]
+    pub fn emit_sps_enable_raw(&self) -> Bool32 {
+        self.emit_sps_enable
+    }
+    ///Gets the raw value of [`Self::pps_id_entry_count`]
+    pub fn pps_id_entry_count_raw(&self) -> u32 {
+        self.pps_id_entry_count
+    }
+    ///Gets the raw value of [`Self::pps_id_entries`]
+    pub fn pps_id_entries_raw(&self) -> *const u8 {
+        self.pps_id_entries
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::vps_id`]
+    pub fn set_vps_id_raw(&mut self, value: u8) -> &mut Self {
+        self.vps_id = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sps_id`]
+    pub fn set_sps_id_raw(&mut self, value: u8) -> &mut Self {
+        self.sps_id = value;
+        self
+    }
+    ///Sets the raw value of [`Self::emit_vps_enable`]
+    pub fn set_emit_vps_enable_raw(&mut self, value: Bool32) -> &mut Self {
+        self.emit_vps_enable = value;
+        self
+    }
+    ///Sets the raw value of [`Self::emit_sps_enable`]
+    pub fn set_emit_sps_enable_raw(&mut self, value: Bool32) -> &mut Self {
+        self.emit_sps_enable = value;
+        self
+    }
+    ///Sets the raw value of [`Self::pps_id_entry_count`]
+    pub fn set_pps_id_entry_count_raw(&mut self, value: u32) -> &mut Self {
+        self.pps_id_entry_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::pps_id_entries`]
+    pub fn set_pps_id_entries_raw(&mut self, value: *const u8) -> &mut Self {
+        self.pps_id_entries = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::vps_id`]
+    pub fn vps_id(&self) -> u8 {
+        self.vps_id
+    }
+    ///Gets the value of [`Self::sps_id`]
+    pub fn sps_id(&self) -> u8 {
+        self.sps_id
+    }
+    ///Gets the value of [`Self::emit_vps_enable`]
+    pub fn emit_vps_enable(&self) -> bool {
+        unsafe { std::mem::transmute(self.emit_vps_enable as u8) }
+    }
+    ///Gets the value of [`Self::emit_sps_enable`]
+    pub fn emit_sps_enable(&self) -> bool {
+        unsafe { std::mem::transmute(self.emit_sps_enable as u8) }
+    }
+    ///Gets the value of [`Self::pps_id_entry_count`]
+    pub fn pps_id_entry_count(&self) -> u32 {
+        self.pps_id_entry_count
+    }
+    ///Gets the value of [`Self::pps_id_entries`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn pps_id_entries(&self) -> &[u8] {
+        std::slice::from_raw_parts(self.pps_id_entries, self.pps_id_entry_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::vps_id`]
+    pub fn vps_id_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::sps_id`]
+    pub fn sps_id_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::emit_vps_enable`]
+    pub fn emit_vps_enable_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.emit_vps_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.emit_vps_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::emit_sps_enable`]
+    pub fn emit_sps_enable_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.emit_sps_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.emit_sps_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::pps_id_entry_count`]
+    pub fn pps_id_entry_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::vps_id`]
+    pub fn set_vps_id(&mut self, value: u8) -> &mut Self {
+        self.vps_id = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sps_id`]
+    pub fn set_sps_id(&mut self, value: u8) -> &mut Self {
+        self.sps_id = value;
+        self
+    }
+    ///Sets the raw value of [`Self::emit_vps_enable`]
+    pub fn set_emit_vps_enable(&mut self, value: bool) -> &mut Self {
+        self.emit_vps_enable = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::emit_sps_enable`]
+    pub fn set_emit_sps_enable(&mut self, value: bool) -> &mut Self {
+        self.emit_sps_enable = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::pps_id_entry_count`]
+    pub fn set_pps_id_entry_count(&mut self, value: u32) -> &mut Self {
+        self.pps_id_entry_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::pps_id_entries`]
+    pub fn set_pps_id_entries(&mut self, value: &'lt [u8]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.pps_id_entries = value.as_ptr();
+        self.pps_id_entry_count = len_;
+        self
+    }
 }
 ///[VkVideoEncodeH265NaluSliceSegmentEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265NaluSliceSegmentEXT.html) - Structure specifies H.265 encode slice segment NALU parameters
 ///# C Specifications
@@ -670,19 +1895,19 @@ pub struct VideoEncodeH265EmitPictureParametersEXT<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`ctb_count`] is the number of CTBs in this slice segment.
-/// - [`p_reference_final_lists`] is `NULL` or a pointer to a [`VideoEncodeH265ReferenceListsEXT`]
+/// - [`reference_final_lists`] is `NULL` or a pointer to a [`VideoEncodeH265ReferenceListsEXT`]
 ///   structure specifying the reference lists to be used for the current slice segment. If
-///   [`p_reference_final_lists`] is not `NULL`, these reference lists override the reference lists
-///   provided in [`VideoEncodeH265VclFrameInfoEXT`]::[`p_reference_final_lists`].
-/// - [`p_slice_segment_header_std`] is a pointer to a [`StdVideoEncodeH265SliceSegmentHeader`]
+///   [`reference_final_lists`] is not `NULL`, these reference lists override the reference lists
+///   provided in [`VideoEncodeH265VclFrameInfoEXT`]::[`reference_final_lists`].
+/// - [`slice_segment_header_std`] is a pointer to a [`StdVideoEncodeH265SliceSegmentHeader`]
 ///   structure specifying the slice segment header for the current slice segment.
 ///# Description
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_NALU_SLICE_SEGMENT_EXT`
 /// - [`p_next`]**must** be `NULL`
-/// - If [`p_reference_final_lists`] is not `NULL`, [`p_reference_final_lists`]**must** be a valid
+/// - If [`reference_final_lists`] is not `NULL`, [`reference_final_lists`]**must** be a valid
 ///   pointer to a valid [`VideoEncodeH265ReferenceListsEXT`] structure
-/// - [`p_slice_segment_header_std`]**must** be a valid pointer to a valid
+/// - [`slice_segment_header_std`]**must** be a valid pointer to a valid
 ///   [`StdVideoEncodeH265SliceSegmentHeader`] value
 ///# Related
 /// - [`VK_EXT_video_encode_h265`]
@@ -697,9 +1922,8 @@ pub struct VideoEncodeH265EmitPictureParametersEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct VideoEncodeH265NaluSliceSegmentEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -707,20 +1931,129 @@ pub struct VideoEncodeH265NaluSliceSegmentEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`ctb_count`] is the number of CTBs in this slice segment.
     ctb_count: u32,
-    ///[`p_reference_final_lists`] is `NULL` or a pointer to a
+    ///[`reference_final_lists`] is `NULL` or a pointer to a
     ///[`VideoEncodeH265ReferenceListsEXT`] structure specifying the
     ///reference lists to be used for the current slice segment.
-    ///If [`p_reference_final_lists`] is not `NULL`, these reference lists
+    ///If [`reference_final_lists`] is not `NULL`, these reference lists
     ///override the reference lists provided in
-    ///[`VideoEncodeH265VclFrameInfoEXT`]::[`p_reference_final_lists`].
-    p_reference_final_lists: *mut VideoEncodeH265ReferenceListsEXT<'lt>,
-    ///[`p_slice_segment_header_std`] is a pointer to a
+    ///[`VideoEncodeH265VclFrameInfoEXT`]::[`reference_final_lists`].
+    reference_final_lists: *const VideoEncodeH265ReferenceListsEXT<'lt>,
+    ///[`slice_segment_header_std`] is a pointer to a
     ///[`StdVideoEncodeH265SliceSegmentHeader`] structure specifying the slice
     ///segment header for the current slice segment.
-    p_slice_segment_header_std: *mut StdVideoEncodeH265SliceSegmentHeader,
+    slice_segment_header_std: *const StdVideoEncodeH265SliceSegmentHeader,
+}
+impl<'lt> Default for VideoEncodeH265NaluSliceSegmentEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            ctb_count: 0,
+            reference_final_lists: std::ptr::null(),
+            slice_segment_header_std: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> VideoEncodeH265NaluSliceSegmentEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::ctb_count`]
+    pub fn ctb_count_raw(&self) -> u32 {
+        self.ctb_count
+    }
+    ///Gets the raw value of [`Self::reference_final_lists`]
+    pub fn reference_final_lists_raw(&self) -> *const VideoEncodeH265ReferenceListsEXT<'lt> {
+        self.reference_final_lists
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::ctb_count`]
+    pub fn set_ctb_count_raw(&mut self, value: u32) -> &mut Self {
+        self.ctb_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::reference_final_lists`]
+    pub fn set_reference_final_lists_raw(&mut self, value: *const VideoEncodeH265ReferenceListsEXT<'lt>) -> &mut Self {
+        self.reference_final_lists = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::ctb_count`]
+    pub fn ctb_count(&self) -> u32 {
+        self.ctb_count
+    }
+    ///Gets the value of [`Self::reference_final_lists`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn reference_final_lists(&self) -> &VideoEncodeH265ReferenceListsEXT<'lt> {
+        &*self.reference_final_lists
+    }
+    ///Gets the value of [`Self::slice_segment_header_std`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn slice_segment_header_std(&self) -> &StdVideoEncodeH265SliceSegmentHeader {
+        &*self.slice_segment_header_std
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::ctb_count`]
+    pub fn ctb_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::ctb_count`]
+    pub fn set_ctb_count(&mut self, value: u32) -> &mut Self {
+        self.ctb_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::reference_final_lists`]
+    pub fn set_reference_final_lists(
+        &mut self,
+        value: &'lt crate::extensions::ext_video_encode_h_265::VideoEncodeH265ReferenceListsEXT<'lt>,
+    ) -> &mut Self {
+        self.reference_final_lists = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::slice_segment_header_std`]
+    pub fn set_slice_segment_header_std(
+        &mut self,
+        value: &'lt crate::native::StdVideoEncodeH265SliceSegmentHeader,
+    ) -> &mut Self {
+        self.slice_segment_header_std = value as *const _;
+        self
+    }
 }
 ///[VkVideoEncodeH265RateControlInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265RateControlInfoEXT.html) - Structure describing H.265 stream rate control parameters
 ///# C Specifications
@@ -783,9 +2116,8 @@ pub struct VideoEncodeH265NaluSliceSegmentEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct VideoEncodeH265RateControlInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -793,7 +2125,7 @@ pub struct VideoEncodeH265RateControlInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`gop_frame_count`] is the number of frames contained within the group
     ///of pictures (GOP), starting from an intra frame and until the next intra
     ///frame.
@@ -816,6 +2148,160 @@ pub struct VideoEncodeH265RateControlInfoEXT<'lt> {
     ///[`sub_layer_count`] specifies the number of sub layers enabled in the
     ///stream.
     sub_layer_count: u8,
+}
+impl<'lt> Default for VideoEncodeH265RateControlInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            gop_frame_count: 0,
+            idr_period: 0,
+            consecutive_b_frame_count: 0,
+            rate_control_structure: Default::default(),
+            sub_layer_count: 0,
+        }
+    }
+}
+impl<'lt> VideoEncodeH265RateControlInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::gop_frame_count`]
+    pub fn gop_frame_count_raw(&self) -> u32 {
+        self.gop_frame_count
+    }
+    ///Gets the raw value of [`Self::idr_period`]
+    pub fn idr_period_raw(&self) -> u32 {
+        self.idr_period
+    }
+    ///Gets the raw value of [`Self::consecutive_b_frame_count`]
+    pub fn consecutive_b_frame_count_raw(&self) -> u32 {
+        self.consecutive_b_frame_count
+    }
+    ///Gets the raw value of [`Self::sub_layer_count`]
+    pub fn sub_layer_count_raw(&self) -> u8 {
+        self.sub_layer_count
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::gop_frame_count`]
+    pub fn set_gop_frame_count_raw(&mut self, value: u32) -> &mut Self {
+        self.gop_frame_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::idr_period`]
+    pub fn set_idr_period_raw(&mut self, value: u32) -> &mut Self {
+        self.idr_period = value;
+        self
+    }
+    ///Sets the raw value of [`Self::consecutive_b_frame_count`]
+    pub fn set_consecutive_b_frame_count_raw(&mut self, value: u32) -> &mut Self {
+        self.consecutive_b_frame_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sub_layer_count`]
+    pub fn set_sub_layer_count_raw(&mut self, value: u8) -> &mut Self {
+        self.sub_layer_count = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::gop_frame_count`]
+    pub fn gop_frame_count(&self) -> u32 {
+        self.gop_frame_count
+    }
+    ///Gets the value of [`Self::idr_period`]
+    pub fn idr_period(&self) -> u32 {
+        self.idr_period
+    }
+    ///Gets the value of [`Self::consecutive_b_frame_count`]
+    pub fn consecutive_b_frame_count(&self) -> u32 {
+        self.consecutive_b_frame_count
+    }
+    ///Gets the value of [`Self::rate_control_structure`]
+    pub fn rate_control_structure(&self) -> VideoEncodeH265RateControlStructureFlagBitsEXT {
+        self.rate_control_structure
+    }
+    ///Gets the value of [`Self::sub_layer_count`]
+    pub fn sub_layer_count(&self) -> u8 {
+        self.sub_layer_count
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::gop_frame_count`]
+    pub fn gop_frame_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::idr_period`]
+    pub fn idr_period_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::consecutive_b_frame_count`]
+    pub fn consecutive_b_frame_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::rate_control_structure`]
+    pub fn rate_control_structure_mut(&mut self) -> &mut VideoEncodeH265RateControlStructureFlagBitsEXT {
+        &mut self.rate_control_structure
+    }
+    ///Gets a mutable reference to the value of [`Self::sub_layer_count`]
+    pub fn sub_layer_count_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::gop_frame_count`]
+    pub fn set_gop_frame_count(&mut self, value: u32) -> &mut Self {
+        self.gop_frame_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::idr_period`]
+    pub fn set_idr_period(&mut self, value: u32) -> &mut Self {
+        self.idr_period = value;
+        self
+    }
+    ///Sets the raw value of [`Self::consecutive_b_frame_count`]
+    pub fn set_consecutive_b_frame_count(&mut self, value: u32) -> &mut Self {
+        self.consecutive_b_frame_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::rate_control_structure`]
+    pub fn set_rate_control_structure(
+        &mut self,
+        value: crate::extensions::ext_video_encode_h_265::VideoEncodeH265RateControlStructureFlagBitsEXT,
+    ) -> &mut Self {
+        self.rate_control_structure = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sub_layer_count`]
+    pub fn set_sub_layer_count(&mut self, value: u8) -> &mut Self {
+        self.sub_layer_count = value;
+        self
+    }
 }
 ///[VkVideoEncodeH265QpEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265QpEXT.html) - Structure describing H.265 QP values per picture type
 ///# C Specifications
@@ -843,7 +2329,7 @@ pub struct VideoEncodeH265RateControlInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -854,6 +2340,83 @@ pub struct VideoEncodeH265QpEXT {
     qp_p: i32,
     ///[`qp_b`] is the QP to be used for B-frames.
     qp_b: i32,
+}
+impl Default for VideoEncodeH265QpEXT {
+    fn default() -> Self {
+        Self {
+            qp_i: 0,
+            qp_p: 0,
+            qp_b: 0,
+        }
+    }
+}
+impl VideoEncodeH265QpEXT {
+    ///Gets the raw value of [`Self::qp_i`]
+    pub fn qp_i_raw(&self) -> i32 {
+        self.qp_i
+    }
+    ///Gets the raw value of [`Self::qp_p`]
+    pub fn qp_p_raw(&self) -> i32 {
+        self.qp_p
+    }
+    ///Gets the raw value of [`Self::qp_b`]
+    pub fn qp_b_raw(&self) -> i32 {
+        self.qp_b
+    }
+    ///Sets the raw value of [`Self::qp_i`]
+    pub fn set_qp_i_raw(&mut self, value: i32) -> &mut Self {
+        self.qp_i = value;
+        self
+    }
+    ///Sets the raw value of [`Self::qp_p`]
+    pub fn set_qp_p_raw(&mut self, value: i32) -> &mut Self {
+        self.qp_p = value;
+        self
+    }
+    ///Sets the raw value of [`Self::qp_b`]
+    pub fn set_qp_b_raw(&mut self, value: i32) -> &mut Self {
+        self.qp_b = value;
+        self
+    }
+    ///Gets the value of [`Self::qp_i`]
+    pub fn qp_i(&self) -> i32 {
+        self.qp_i
+    }
+    ///Gets the value of [`Self::qp_p`]
+    pub fn qp_p(&self) -> i32 {
+        self.qp_p
+    }
+    ///Gets the value of [`Self::qp_b`]
+    pub fn qp_b(&self) -> i32 {
+        self.qp_b
+    }
+    ///Gets a mutable reference to the value of [`Self::qp_i`]
+    pub fn qp_i_mut(&mut self) -> &mut i32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::qp_p`]
+    pub fn qp_p_mut(&mut self) -> &mut i32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::qp_b`]
+    pub fn qp_b_mut(&mut self) -> &mut i32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::qp_i`]
+    pub fn set_qp_i(&mut self, value: i32) -> &mut Self {
+        self.qp_i = value;
+        self
+    }
+    ///Sets the raw value of [`Self::qp_p`]
+    pub fn set_qp_p(&mut self, value: i32) -> &mut Self {
+        self.qp_p = value;
+        self
+    }
+    ///Sets the raw value of [`Self::qp_b`]
+    pub fn set_qp_b(&mut self, value: i32) -> &mut Self {
+        self.qp_b = value;
+        self
+    }
 }
 ///[VkVideoEncodeH265FrameSizeEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265FrameSizeEXT.html) - Structure describing frame size values per H.265 picture type
 ///# C Specifications
@@ -881,7 +2444,7 @@ pub struct VideoEncodeH265QpEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -892,6 +2455,83 @@ pub struct VideoEncodeH265FrameSizeEXT {
     frame_p_size: u32,
     ///[`frame_b_size`] is the size in bytes to be used for B-frames.
     frame_b_size: u32,
+}
+impl Default for VideoEncodeH265FrameSizeEXT {
+    fn default() -> Self {
+        Self {
+            frame_i_size: 0,
+            frame_p_size: 0,
+            frame_b_size: 0,
+        }
+    }
+}
+impl VideoEncodeH265FrameSizeEXT {
+    ///Gets the raw value of [`Self::frame_i_size`]
+    pub fn frame_i_size_raw(&self) -> u32 {
+        self.frame_i_size
+    }
+    ///Gets the raw value of [`Self::frame_p_size`]
+    pub fn frame_p_size_raw(&self) -> u32 {
+        self.frame_p_size
+    }
+    ///Gets the raw value of [`Self::frame_b_size`]
+    pub fn frame_b_size_raw(&self) -> u32 {
+        self.frame_b_size
+    }
+    ///Sets the raw value of [`Self::frame_i_size`]
+    pub fn set_frame_i_size_raw(&mut self, value: u32) -> &mut Self {
+        self.frame_i_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::frame_p_size`]
+    pub fn set_frame_p_size_raw(&mut self, value: u32) -> &mut Self {
+        self.frame_p_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::frame_b_size`]
+    pub fn set_frame_b_size_raw(&mut self, value: u32) -> &mut Self {
+        self.frame_b_size = value;
+        self
+    }
+    ///Gets the value of [`Self::frame_i_size`]
+    pub fn frame_i_size(&self) -> u32 {
+        self.frame_i_size
+    }
+    ///Gets the value of [`Self::frame_p_size`]
+    pub fn frame_p_size(&self) -> u32 {
+        self.frame_p_size
+    }
+    ///Gets the value of [`Self::frame_b_size`]
+    pub fn frame_b_size(&self) -> u32 {
+        self.frame_b_size
+    }
+    ///Gets a mutable reference to the value of [`Self::frame_i_size`]
+    pub fn frame_i_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::frame_p_size`]
+    pub fn frame_p_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::frame_b_size`]
+    pub fn frame_b_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::frame_i_size`]
+    pub fn set_frame_i_size(&mut self, value: u32) -> &mut Self {
+        self.frame_i_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::frame_p_size`]
+    pub fn set_frame_p_size(&mut self, value: u32) -> &mut Self {
+        self.frame_p_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::frame_b_size`]
+    pub fn set_frame_b_size(&mut self, value: u32) -> &mut Self {
+        self.frame_b_size = value;
+        self
+    }
 }
 ///[VkVideoEncodeH265RateControlLayerInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265RateControlLayerInfoEXT.html) - Structure describing H.265 per-layer rate control parameters
 ///# C Specifications
@@ -974,9 +2614,8 @@ pub struct VideoEncodeH265FrameSizeEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct VideoEncodeH265RateControlLayerInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -984,7 +2623,7 @@ pub struct VideoEncodeH265RateControlLayerInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`temporal_id`] specifies the H.265 temporal ID of the video coding
     ///layer that settings provided in this structure and its parent
     ///[`VideoEncodeRateControlLayerInfoKHR`] structure apply to.
@@ -1028,6 +2667,284 @@ pub struct VideoEncodeH265RateControlLayerInfoEXT<'lt> {
     ///implementation from respecting the [`max_frame_size`] limit.
     max_frame_size: VideoEncodeH265FrameSizeEXT,
 }
+impl<'lt> Default for VideoEncodeH265RateControlLayerInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            temporal_id: 0,
+            use_initial_rc_qp: 0,
+            initial_rc_qp: Default::default(),
+            use_min_qp: 0,
+            min_qp: Default::default(),
+            use_max_qp: 0,
+            max_qp: Default::default(),
+            use_max_frame_size: 0,
+            max_frame_size: Default::default(),
+        }
+    }
+}
+impl<'lt> VideoEncodeH265RateControlLayerInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::temporal_id`]
+    pub fn temporal_id_raw(&self) -> u8 {
+        self.temporal_id
+    }
+    ///Gets the raw value of [`Self::use_initial_rc_qp`]
+    pub fn use_initial_rc_qp_raw(&self) -> Bool32 {
+        self.use_initial_rc_qp
+    }
+    ///Gets the raw value of [`Self::use_min_qp`]
+    pub fn use_min_qp_raw(&self) -> Bool32 {
+        self.use_min_qp
+    }
+    ///Gets the raw value of [`Self::use_max_qp`]
+    pub fn use_max_qp_raw(&self) -> Bool32 {
+        self.use_max_qp
+    }
+    ///Gets the raw value of [`Self::use_max_frame_size`]
+    pub fn use_max_frame_size_raw(&self) -> Bool32 {
+        self.use_max_frame_size
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::temporal_id`]
+    pub fn set_temporal_id_raw(&mut self, value: u8) -> &mut Self {
+        self.temporal_id = value;
+        self
+    }
+    ///Sets the raw value of [`Self::use_initial_rc_qp`]
+    pub fn set_use_initial_rc_qp_raw(&mut self, value: Bool32) -> &mut Self {
+        self.use_initial_rc_qp = value;
+        self
+    }
+    ///Sets the raw value of [`Self::use_min_qp`]
+    pub fn set_use_min_qp_raw(&mut self, value: Bool32) -> &mut Self {
+        self.use_min_qp = value;
+        self
+    }
+    ///Sets the raw value of [`Self::use_max_qp`]
+    pub fn set_use_max_qp_raw(&mut self, value: Bool32) -> &mut Self {
+        self.use_max_qp = value;
+        self
+    }
+    ///Sets the raw value of [`Self::use_max_frame_size`]
+    pub fn set_use_max_frame_size_raw(&mut self, value: Bool32) -> &mut Self {
+        self.use_max_frame_size = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::temporal_id`]
+    pub fn temporal_id(&self) -> u8 {
+        self.temporal_id
+    }
+    ///Gets the value of [`Self::use_initial_rc_qp`]
+    pub fn use_initial_rc_qp(&self) -> bool {
+        unsafe { std::mem::transmute(self.use_initial_rc_qp as u8) }
+    }
+    ///Gets the value of [`Self::initial_rc_qp`]
+    pub fn initial_rc_qp(&self) -> VideoEncodeH265QpEXT {
+        self.initial_rc_qp
+    }
+    ///Gets the value of [`Self::use_min_qp`]
+    pub fn use_min_qp(&self) -> bool {
+        unsafe { std::mem::transmute(self.use_min_qp as u8) }
+    }
+    ///Gets the value of [`Self::min_qp`]
+    pub fn min_qp(&self) -> VideoEncodeH265QpEXT {
+        self.min_qp
+    }
+    ///Gets the value of [`Self::use_max_qp`]
+    pub fn use_max_qp(&self) -> bool {
+        unsafe { std::mem::transmute(self.use_max_qp as u8) }
+    }
+    ///Gets the value of [`Self::max_qp`]
+    pub fn max_qp(&self) -> VideoEncodeH265QpEXT {
+        self.max_qp
+    }
+    ///Gets the value of [`Self::use_max_frame_size`]
+    pub fn use_max_frame_size(&self) -> bool {
+        unsafe { std::mem::transmute(self.use_max_frame_size as u8) }
+    }
+    ///Gets the value of [`Self::max_frame_size`]
+    pub fn max_frame_size(&self) -> VideoEncodeH265FrameSizeEXT {
+        self.max_frame_size
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::temporal_id`]
+    pub fn temporal_id_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::use_initial_rc_qp`]
+    pub fn use_initial_rc_qp_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.use_initial_rc_qp as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.use_initial_rc_qp as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::initial_rc_qp`]
+    pub fn initial_rc_qp_mut(&mut self) -> &mut VideoEncodeH265QpEXT {
+        &mut self.initial_rc_qp
+    }
+    ///Gets a mutable reference to the value of [`Self::use_min_qp`]
+    pub fn use_min_qp_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.use_min_qp as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.use_min_qp as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::min_qp`]
+    pub fn min_qp_mut(&mut self) -> &mut VideoEncodeH265QpEXT {
+        &mut self.min_qp
+    }
+    ///Gets a mutable reference to the value of [`Self::use_max_qp`]
+    pub fn use_max_qp_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.use_max_qp as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.use_max_qp as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::max_qp`]
+    pub fn max_qp_mut(&mut self) -> &mut VideoEncodeH265QpEXT {
+        &mut self.max_qp
+    }
+    ///Gets a mutable reference to the value of [`Self::use_max_frame_size`]
+    pub fn use_max_frame_size_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.use_max_frame_size as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.use_max_frame_size as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::max_frame_size`]
+    pub fn max_frame_size_mut(&mut self) -> &mut VideoEncodeH265FrameSizeEXT {
+        &mut self.max_frame_size
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::temporal_id`]
+    pub fn set_temporal_id(&mut self, value: u8) -> &mut Self {
+        self.temporal_id = value;
+        self
+    }
+    ///Sets the raw value of [`Self::use_initial_rc_qp`]
+    pub fn set_use_initial_rc_qp(&mut self, value: bool) -> &mut Self {
+        self.use_initial_rc_qp = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::initial_rc_qp`]
+    pub fn set_initial_rc_qp(
+        &mut self,
+        value: crate::extensions::ext_video_encode_h_265::VideoEncodeH265QpEXT,
+    ) -> &mut Self {
+        self.initial_rc_qp = value;
+        self
+    }
+    ///Sets the raw value of [`Self::use_min_qp`]
+    pub fn set_use_min_qp(&mut self, value: bool) -> &mut Self {
+        self.use_min_qp = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::min_qp`]
+    pub fn set_min_qp(&mut self, value: crate::extensions::ext_video_encode_h_265::VideoEncodeH265QpEXT) -> &mut Self {
+        self.min_qp = value;
+        self
+    }
+    ///Sets the raw value of [`Self::use_max_qp`]
+    pub fn set_use_max_qp(&mut self, value: bool) -> &mut Self {
+        self.use_max_qp = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::max_qp`]
+    pub fn set_max_qp(&mut self, value: crate::extensions::ext_video_encode_h_265::VideoEncodeH265QpEXT) -> &mut Self {
+        self.max_qp = value;
+        self
+    }
+    ///Sets the raw value of [`Self::use_max_frame_size`]
+    pub fn set_use_max_frame_size(&mut self, value: bool) -> &mut Self {
+        self.use_max_frame_size = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::max_frame_size`]
+    pub fn set_max_frame_size(
+        &mut self,
+        value: crate::extensions::ext_video_encode_h_265::VideoEncodeH265FrameSizeEXT,
+    ) -> &mut Self {
+        self.max_frame_size = value;
+        self
+    }
+}
 ///[VkVideoEncodeH265ProfileEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265ProfileEXT.html) - Structure specifying H.265 encode profile
 ///# C Specifications
 ///The [`VideoEncodeH265ProfileEXT`] structure is defined as:
@@ -1058,9 +2975,8 @@ pub struct VideoEncodeH265RateControlLayerInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug)]
+#[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct VideoEncodeH265ProfileEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1068,10 +2984,78 @@ pub struct VideoEncodeH265ProfileEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`std_profile_idc`] is a [`StdVideoH265ProfileIdc`] value specifying
     ///the H.265 codec profile IDC.
     std_profile_idc: StdVideoH265ProfileIdc,
+}
+impl<'lt> Default for VideoEncodeH265ProfileEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            std_profile_idc: Default::default(),
+        }
+    }
+}
+impl<'lt> VideoEncodeH265ProfileEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::std_profile_idc`]
+    pub fn std_profile_idc_raw(&self) -> &StdVideoH265ProfileIdc {
+        &self.std_profile_idc
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::std_profile_idc`]
+    pub fn set_std_profile_idc_raw(&mut self, value: StdVideoH265ProfileIdc) -> &mut Self {
+        self.std_profile_idc = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::std_profile_idc`]
+    pub fn std_profile_idc(&self) -> &StdVideoH265ProfileIdc {
+        &self.std_profile_idc
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::std_profile_idc`]
+    pub fn std_profile_idc_mut(&mut self) -> &mut StdVideoH265ProfileIdc {
+        &mut self.std_profile_idc
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::std_profile_idc`]
+    pub fn set_std_profile_idc(&mut self, value: crate::native::StdVideoH265ProfileIdc) -> &mut Self {
+        self.std_profile_idc = value;
+        self
+    }
 }
 ///[VkVideoEncodeH265DpbSlotInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265DpbSlotInfoEXT.html) - Structure specifies H.265 encode decoded pic info
 ///# C Specifications
@@ -1092,14 +3076,14 @@ pub struct VideoEncodeH265ProfileEXT<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`slot_index`] is the [DPB Slot](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#dpb-slot)
 ///   index for this picture.
-/// - [`p_std_reference_info`] is a pointer to a [`StdVideoEncodeH265ReferenceInfo`] structure
+/// - [`std_reference_info`] is a pointer to a [`StdVideoEncodeH265ReferenceInfo`] structure
 ///   specifying the syntax and other codec-specific information from the H.265 specification,
 ///   associated with this reference picture.
 ///# Description
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_DPB_SLOT_INFO_EXT`
 /// - [`p_next`]**must** be `NULL`
-/// - [`p_std_reference_info`]**must** be a valid pointer to a valid
+/// - [`std_reference_info`]**must** be a valid pointer to a valid
 ///   [`StdVideoEncodeH265ReferenceInfo`] value
 ///# Related
 /// - [`VK_EXT_video_encode_h265`]
@@ -1113,9 +3097,8 @@ pub struct VideoEncodeH265ProfileEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct VideoEncodeH265DpbSlotInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1123,14 +3106,95 @@ pub struct VideoEncodeH265DpbSlotInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`slot_index`] is the [DPB Slot](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#dpb-slot) index for this picture.
     slot_index: i8,
-    ///[`p_std_reference_info`] is a pointer to a
+    ///[`std_reference_info`] is a pointer to a
     ///[`StdVideoEncodeH265ReferenceInfo`] structure specifying the syntax and
     ///other codec-specific information from the H.265 specification,
     ///associated with this reference picture.
-    p_std_reference_info: *mut StdVideoEncodeH265ReferenceInfo,
+    std_reference_info: *const StdVideoEncodeH265ReferenceInfo,
+}
+impl<'lt> Default for VideoEncodeH265DpbSlotInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            slot_index: 0,
+            std_reference_info: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> VideoEncodeH265DpbSlotInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::slot_index`]
+    pub fn slot_index_raw(&self) -> i8 {
+        self.slot_index
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::slot_index`]
+    pub fn set_slot_index_raw(&mut self, value: i8) -> &mut Self {
+        self.slot_index = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::slot_index`]
+    pub fn slot_index(&self) -> i8 {
+        self.slot_index
+    }
+    ///Gets the value of [`Self::std_reference_info`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn std_reference_info(&self) -> &StdVideoEncodeH265ReferenceInfo {
+        &*self.std_reference_info
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::slot_index`]
+    pub fn slot_index_mut(&mut self) -> &mut i8 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::slot_index`]
+    pub fn set_slot_index(&mut self, value: i8) -> &mut Self {
+        self.slot_index = value;
+        self
+    }
+    ///Sets the raw value of [`Self::std_reference_info`]
+    pub fn set_std_reference_info(&mut self, value: &'lt crate::native::StdVideoEncodeH265ReferenceInfo) -> &mut Self {
+        self.std_reference_info = value as *const _;
+        self
+    }
 }
 ///[VkVideoEncodeH265ReferenceListsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265ReferenceListsEXT.html) - Structure specifies H.265 reference frame lists
 ///# C Specifications
@@ -1153,27 +3217,27 @@ pub struct VideoEncodeH265DpbSlotInfoEXT<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`reference_list_0_entry_count`] is the number of reference pictures in reference list L0 and
 ///   is identical to [`StdVideoEncodeH265SliceSegmentHeader`]`::num_ref_idx_l0_active_minus1` + 1.
-/// - [`p_reference_list_0_entries`] is a pointer to an array of
+/// - [`reference_list_0_entries`] is a pointer to an array of
 ///   [`reference_list_0_entry_count`][`VideoEncodeH265DpbSlotInfoEXT`] structures specifying the
 ///   reference list L0 entries for the current picture.
 /// - [`reference_list_1_entry_count`] is the number of reference pictures in reference list L1 and
 ///   is identical to [`StdVideoEncodeH265SliceSegmentHeader`]`::num_ref_idx_l1_active_minus1` + 1.
-/// - [`p_reference_list_1_entries`] is a pointer to an array of
+/// - [`reference_list_1_entries`] is a pointer to an array of
 ///   [`reference_list_1_entry_count`][`VideoEncodeH265DpbSlotInfoEXT`] structures specifying the
 ///   reference list L1 entries for the current picture.
-/// - [`p_reference_modifications`] is a pointer to a [`StdVideoEncodeH265ReferenceModifications`]
+/// - [`reference_modifications`] is a pointer to a [`StdVideoEncodeH265ReferenceModifications`]
 ///   structure specifying reference list modifications.
 ///# Description
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_REFERENCE_LISTS_EXT`
 /// - [`p_next`]**must** be `NULL`
-/// - If [`reference_list_0_entry_count`] is not `0`, [`p_reference_list_0_entries`]**must** be a
+/// - If [`reference_list_0_entry_count`] is not `0`, [`reference_list_0_entries`]**must** be a
 ///   valid pointer to an array of [`reference_list_0_entry_count`] valid
 ///   [`VideoEncodeH265DpbSlotInfoEXT`] structures
-/// - If [`reference_list_1_entry_count`] is not `0`, [`p_reference_list_1_entries`]**must** be a
+/// - If [`reference_list_1_entry_count`] is not `0`, [`reference_list_1_entries`]**must** be a
 ///   valid pointer to an array of [`reference_list_1_entry_count`] valid
 ///   [`VideoEncodeH265DpbSlotInfoEXT`] structures
-/// - [`p_reference_modifications`]**must** be a valid pointer to a valid
+/// - [`reference_modifications`]**must** be a valid pointer to a valid
 ///   [`StdVideoEncodeH265ReferenceModifications`] value
 ///# Related
 /// - [`VK_EXT_video_encode_h265`]
@@ -1189,9 +3253,8 @@ pub struct VideoEncodeH265DpbSlotInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct VideoEncodeH265ReferenceListsEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1199,29 +3262,198 @@ pub struct VideoEncodeH265ReferenceListsEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`reference_list_0_entry_count`] is the number of reference pictures in
     ///reference list L0 and is identical to
     ///[`StdVideoEncodeH265SliceSegmentHeader`]::`num_ref_idx_l0_active_minus1`
     ///+ 1.
     reference_list_0_entry_count: u8,
-    ///[`p_reference_list_0_entries`] is a pointer to an array of
+    ///[`reference_list_0_entries`] is a pointer to an array of
     ///[`reference_list_0_entry_count`][`VideoEncodeH265DpbSlotInfoEXT`]
     ///structures specifying the reference list L0 entries for the current
     ///picture.
-    p_reference_list_0_entries: *mut VideoEncodeH265DpbSlotInfoEXT<'lt>,
+    reference_list_0_entries: *const VideoEncodeH265DpbSlotInfoEXT<'lt>,
     ///[`reference_list_1_entry_count`] is the number of reference pictures in
     ///reference list L1 and is identical to
     ///[`StdVideoEncodeH265SliceSegmentHeader`]::`num_ref_idx_l1_active_minus1`
     ///+ 1.
     reference_list_1_entry_count: u8,
-    ///[`p_reference_list_1_entries`] is a pointer to an array of
+    ///[`reference_list_1_entries`] is a pointer to an array of
     ///[`reference_list_1_entry_count`][`VideoEncodeH265DpbSlotInfoEXT`]
     ///structures specifying the reference list L1 entries for the current
     ///picture.
-    p_reference_list_1_entries: *mut VideoEncodeH265DpbSlotInfoEXT<'lt>,
-    ///[`p_reference_modifications`] is a pointer to a
+    reference_list_1_entries: *const VideoEncodeH265DpbSlotInfoEXT<'lt>,
+    ///[`reference_modifications`] is a pointer to a
     ///[`StdVideoEncodeH265ReferenceModifications`] structure specifying
     ///reference list modifications.
-    p_reference_modifications: *mut StdVideoEncodeH265ReferenceModifications,
+    reference_modifications: *const StdVideoEncodeH265ReferenceModifications,
+}
+impl<'lt> Default for VideoEncodeH265ReferenceListsEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            reference_list_0_entry_count: 0,
+            reference_list_0_entries: std::ptr::null(),
+            reference_list_1_entry_count: 0,
+            reference_list_1_entries: std::ptr::null(),
+            reference_modifications: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> VideoEncodeH265ReferenceListsEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::reference_list_0_entry_count`]
+    pub fn reference_list_0_entry_count_raw(&self) -> u8 {
+        self.reference_list_0_entry_count
+    }
+    ///Gets the raw value of [`Self::reference_list_0_entries`]
+    pub fn reference_list_0_entries_raw(&self) -> *const VideoEncodeH265DpbSlotInfoEXT<'lt> {
+        self.reference_list_0_entries
+    }
+    ///Gets the raw value of [`Self::reference_list_1_entry_count`]
+    pub fn reference_list_1_entry_count_raw(&self) -> u8 {
+        self.reference_list_1_entry_count
+    }
+    ///Gets the raw value of [`Self::reference_list_1_entries`]
+    pub fn reference_list_1_entries_raw(&self) -> *const VideoEncodeH265DpbSlotInfoEXT<'lt> {
+        self.reference_list_1_entries
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::reference_list_0_entry_count`]
+    pub fn set_reference_list_0_entry_count_raw(&mut self, value: u8) -> &mut Self {
+        self.reference_list_0_entry_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::reference_list_0_entries`]
+    pub fn set_reference_list_0_entries_raw(&mut self, value: *const VideoEncodeH265DpbSlotInfoEXT<'lt>) -> &mut Self {
+        self.reference_list_0_entries = value;
+        self
+    }
+    ///Sets the raw value of [`Self::reference_list_1_entry_count`]
+    pub fn set_reference_list_1_entry_count_raw(&mut self, value: u8) -> &mut Self {
+        self.reference_list_1_entry_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::reference_list_1_entries`]
+    pub fn set_reference_list_1_entries_raw(&mut self, value: *const VideoEncodeH265DpbSlotInfoEXT<'lt>) -> &mut Self {
+        self.reference_list_1_entries = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::reference_list_0_entry_count`]
+    pub fn reference_list_0_entry_count(&self) -> u8 {
+        self.reference_list_0_entry_count
+    }
+    ///Gets the value of [`Self::reference_list_0_entries`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn reference_list_0_entries(&self) -> &[VideoEncodeH265DpbSlotInfoEXT<'lt>] {
+        std::slice::from_raw_parts(
+            self.reference_list_0_entries,
+            self.reference_list_0_entry_count as usize,
+        )
+    }
+    ///Gets the value of [`Self::reference_list_1_entry_count`]
+    pub fn reference_list_1_entry_count(&self) -> u8 {
+        self.reference_list_1_entry_count
+    }
+    ///Gets the value of [`Self::reference_list_1_entries`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn reference_list_1_entries(&self) -> &[VideoEncodeH265DpbSlotInfoEXT<'lt>] {
+        std::slice::from_raw_parts(
+            self.reference_list_1_entries,
+            self.reference_list_1_entry_count as usize,
+        )
+    }
+    ///Gets the value of [`Self::reference_modifications`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn reference_modifications(&self) -> &StdVideoEncodeH265ReferenceModifications {
+        &*self.reference_modifications
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::reference_list_0_entry_count`]
+    pub fn reference_list_0_entry_count_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::reference_list_1_entry_count`]
+    pub fn reference_list_1_entry_count_mut(&mut self) -> &mut u8 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::reference_list_0_entry_count`]
+    pub fn set_reference_list_0_entry_count(&mut self, value: u8) -> &mut Self {
+        self.reference_list_0_entry_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::reference_list_0_entries`]
+    pub fn set_reference_list_0_entries(
+        &mut self,
+        value: &'lt [crate::extensions::ext_video_encode_h_265::VideoEncodeH265DpbSlotInfoEXT<'lt>],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.reference_list_0_entries = value.as_ptr();
+        self.reference_list_0_entry_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::reference_list_1_entry_count`]
+    pub fn set_reference_list_1_entry_count(&mut self, value: u8) -> &mut Self {
+        self.reference_list_1_entry_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::reference_list_1_entries`]
+    pub fn set_reference_list_1_entries(
+        &mut self,
+        value: &'lt [crate::extensions::ext_video_encode_h_265::VideoEncodeH265DpbSlotInfoEXT<'lt>],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.reference_list_1_entries = value.as_ptr();
+        self.reference_list_1_entry_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::reference_modifications`]
+    pub fn set_reference_modifications(
+        &mut self,
+        value: &'lt crate::native::StdVideoEncodeH265ReferenceModifications,
+    ) -> &mut Self {
+        self.reference_modifications = value as *const _;
+        self
+    }
 }

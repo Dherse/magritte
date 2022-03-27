@@ -69,9 +69,8 @@ pub const KHR_EXTERNAL_MEMORY_FD_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ImportMemoryFdInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -79,12 +78,94 @@ pub struct ImportMemoryFdInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value
     ///specifying the handle type of [`fd`].
     handle_type: ExternalMemoryHandleTypeFlagBits,
     ///[`fd`] is the external handle to import.
     fd: i32,
+}
+impl<'lt> Default for ImportMemoryFdInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            handle_type: Default::default(),
+            fd: 0,
+        }
+    }
+}
+impl<'lt> ImportMemoryFdInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::fd`]
+    pub fn fd_raw(&self) -> i32 {
+        self.fd
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fd`]
+    pub fn set_fd_raw(&mut self, value: i32) -> &mut Self {
+        self.fd = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::handle_type`]
+    pub fn handle_type(&self) -> ExternalMemoryHandleTypeFlagBits {
+        self.handle_type
+    }
+    ///Gets the value of [`Self::fd`]
+    pub fn fd(&self) -> i32 {
+        self.fd
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_type`]
+    pub fn handle_type_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlagBits {
+        &mut self.handle_type
+    }
+    ///Gets a mutable reference to the value of [`Self::fd`]
+    pub fn fd_mut(&mut self) -> &mut i32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_type`]
+    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> &mut Self {
+        self.handle_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fd`]
+    pub fn set_fd(&mut self, value: i32) -> &mut Self {
+        self.fd = value;
+        self
+    }
 }
 ///[VkMemoryFdPropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryFdPropertiesKHR.html) - Properties of External Memory File Descriptors
 ///# C Specifications
@@ -118,9 +199,8 @@ pub struct ImportMemoryFdInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct MemoryFdPropertiesKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -128,10 +208,85 @@ pub struct MemoryFdPropertiesKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`memory_type_bits`] is a bitmask containing one bit set for every
     ///memory type which the specified file descriptor **can** be imported as.
     memory_type_bits: u32,
+}
+impl<'lt> Default for MemoryFdPropertiesKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            memory_type_bits: 0,
+        }
+    }
+}
+impl<'lt> MemoryFdPropertiesKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::memory_type_bits`]
+    pub fn memory_type_bits_raw(&self) -> u32 {
+        self.memory_type_bits
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::memory_type_bits`]
+    pub fn set_memory_type_bits_raw(&mut self, value: u32) -> &mut Self {
+        self.memory_type_bits = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::memory_type_bits`]
+    pub fn memory_type_bits(&self) -> u32 {
+        self.memory_type_bits
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::memory_type_bits`]
+    pub fn memory_type_bits_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::memory_type_bits`]
+    pub fn set_memory_type_bits(&mut self, value: u32) -> &mut Self {
+        self.memory_type_bits = value;
+        self
+    }
 }
 ///[VkMemoryGetFdInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryGetFdInfoKHR.html) - Structure describing a POSIX FD semaphore export operation
 ///# C Specifications
@@ -179,9 +334,8 @@ pub struct MemoryFdPropertiesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct MemoryGetFdInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -189,11 +343,84 @@ pub struct MemoryGetFdInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`memory`] is the memory object from which the handle will be
     ///exported.
     memory: DeviceMemory,
     ///[`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value
     ///specifying the type of handle requested.
     handle_type: ExternalMemoryHandleTypeFlagBits,
+}
+impl<'lt> Default for MemoryGetFdInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            memory: Default::default(),
+            handle_type: Default::default(),
+        }
+    }
+}
+impl<'lt> MemoryGetFdInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::memory`]
+    pub fn memory(&self) -> DeviceMemory {
+        self.memory
+    }
+    ///Gets the value of [`Self::handle_type`]
+    pub fn handle_type(&self) -> ExternalMemoryHandleTypeFlagBits {
+        self.handle_type
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::memory`]
+    pub fn memory_mut(&mut self) -> &mut DeviceMemory {
+        &mut self.memory
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_type`]
+    pub fn handle_type_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlagBits {
+        &mut self.handle_type
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::memory`]
+    pub fn set_memory(&mut self, value: crate::vulkan1_0::DeviceMemory) -> &mut Self {
+        self.memory = value;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_type`]
+    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> &mut Self {
+        self.handle_type = value;
+        self
+    }
 }

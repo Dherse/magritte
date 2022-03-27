@@ -111,41 +111,41 @@ impl AccelerationStructureMemoryRequirementsTypeNV {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`type_`] is the type of hit group specified in this structure.
 /// - [`general_shader`] is the index of the ray generation, miss, or callable shader from
-///   [`RayTracingPipelineCreateInfoNV::p_stages`] in the group if the shader group has [`type_`] of
+///   [`RayTracingPipelineCreateInfoNV::stages`] in the group if the shader group has [`type_`] of
 ///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV`, and [`SHADER_UNUSED_NV`] otherwise.
 /// - [`closest_hit_shader`] is the optional index of the closest hit shader from
-///   [`RayTracingPipelineCreateInfoNV::p_stages`] in the group if the shader group has [`type_`] of
+///   [`RayTracingPipelineCreateInfoNV::stages`] in the group if the shader group has [`type_`] of
 ///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_NV` or
 ///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV`, and [`SHADER_UNUSED_NV`]
 ///   otherwise.
 /// - [`any_hit_shader`] is the optional index of the any-hit shader from
-///   [`RayTracingPipelineCreateInfoNV::p_stages`] in the group if the shader group has [`type_`] of
+///   [`RayTracingPipelineCreateInfoNV::stages`] in the group if the shader group has [`type_`] of
 ///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_NV` or
 ///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV`, and [`SHADER_UNUSED_NV`]
 ///   otherwise.
 /// - [`intersection_shader`] is the index of the intersection shader from
-///   [`RayTracingPipelineCreateInfoNV::p_stages`] in the group if the shader group has [`type_`] of
+///   [`RayTracingPipelineCreateInfoNV::stages`] in the group if the shader group has [`type_`] of
 ///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV`, and [`SHADER_UNUSED_NV`]
 ///   otherwise.
 ///# Description
 ///Valid Usage
 /// - If [`type_`] is `VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV` then [`general_shader`]**must**
-///   be a valid index into [`RayTracingPipelineCreateInfoNV::p_stages`] referring to a shader of
+///   be a valid index into [`RayTracingPipelineCreateInfoNV::stages`] referring to a shader of
 ///   `VK_SHADER_STAGE_RAYGEN_BIT_NV`, `VK_SHADER_STAGE_MISS_BIT_NV`, or
 ///   `VK_SHADER_STAGE_CALLABLE_BIT_NV`
 /// - If [`type_`] is `VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV` then [`closest_hit_shader`],
 ///   [`any_hit_shader`], and [`intersection_shader`]**must** be [`SHADER_UNUSED_NV`]
 /// - If [`type_`] is `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV` then
 ///   [`intersection_shader`]**must** be a valid index into
-///   [`RayTracingPipelineCreateInfoNV::p_stages`] referring to a shader of
+///   [`RayTracingPipelineCreateInfoNV::stages`] referring to a shader of
 ///   `VK_SHADER_STAGE_INTERSECTION_BIT_NV`
 /// - If [`type_`] is `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_NV` then
 ///   [`intersection_shader`]**must** be [`SHADER_UNUSED_NV`]
 /// - [`closest_hit_shader`]**must** be either [`SHADER_UNUSED_NV`] or a valid index into
-///   [`RayTracingPipelineCreateInfoNV::p_stages`] referring to a shader of
+///   [`RayTracingPipelineCreateInfoNV::stages`] referring to a shader of
 ///   `VK_SHADER_STAGE_CLOSEST_HIT_BIT_NV`
 /// - [`any_hit_shader`]**must** be either [`SHADER_UNUSED_NV`] or a valid index into
-///   [`RayTracingPipelineCreateInfoNV::p_stages`] referring to a shader of
+///   [`RayTracingPipelineCreateInfoNV::stages`] referring to a shader of
 ///   `VK_SHADER_STAGE_ANY_HIT_BIT_NV`
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV`
@@ -164,9 +164,8 @@ impl AccelerationStructureMemoryRequirementsTypeNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct RayTracingShaderGroupCreateInfoNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -174,7 +173,7 @@ pub struct RayTracingShaderGroupCreateInfoNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`type_`] is the type of hit group specified in this structure.
     type_: RayTracingShaderGroupTypeKHR,
     ///[`general_shader`] is the index of the ray generation, miss, or
@@ -205,6 +204,160 @@ pub struct RayTracingShaderGroupCreateInfoNV<'lt> {
     ///[`SHADER_UNUSED_NV`] otherwise.
     intersection_shader: u32,
 }
+impl<'lt> Default for RayTracingShaderGroupCreateInfoNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            type_: Default::default(),
+            general_shader: 0,
+            closest_hit_shader: 0,
+            any_hit_shader: 0,
+            intersection_shader: 0,
+        }
+    }
+}
+impl<'lt> RayTracingShaderGroupCreateInfoNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::general_shader`]
+    pub fn general_shader_raw(&self) -> u32 {
+        self.general_shader
+    }
+    ///Gets the raw value of [`Self::closest_hit_shader`]
+    pub fn closest_hit_shader_raw(&self) -> u32 {
+        self.closest_hit_shader
+    }
+    ///Gets the raw value of [`Self::any_hit_shader`]
+    pub fn any_hit_shader_raw(&self) -> u32 {
+        self.any_hit_shader
+    }
+    ///Gets the raw value of [`Self::intersection_shader`]
+    pub fn intersection_shader_raw(&self) -> u32 {
+        self.intersection_shader
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::general_shader`]
+    pub fn set_general_shader_raw(&mut self, value: u32) -> &mut Self {
+        self.general_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::closest_hit_shader`]
+    pub fn set_closest_hit_shader_raw(&mut self, value: u32) -> &mut Self {
+        self.closest_hit_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::any_hit_shader`]
+    pub fn set_any_hit_shader_raw(&mut self, value: u32) -> &mut Self {
+        self.any_hit_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::intersection_shader`]
+    pub fn set_intersection_shader_raw(&mut self, value: u32) -> &mut Self {
+        self.intersection_shader = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::type_`]
+    pub fn type_(&self) -> RayTracingShaderGroupTypeKHR {
+        self.type_
+    }
+    ///Gets the value of [`Self::general_shader`]
+    pub fn general_shader(&self) -> u32 {
+        self.general_shader
+    }
+    ///Gets the value of [`Self::closest_hit_shader`]
+    pub fn closest_hit_shader(&self) -> u32 {
+        self.closest_hit_shader
+    }
+    ///Gets the value of [`Self::any_hit_shader`]
+    pub fn any_hit_shader(&self) -> u32 {
+        self.any_hit_shader
+    }
+    ///Gets the value of [`Self::intersection_shader`]
+    pub fn intersection_shader(&self) -> u32 {
+        self.intersection_shader
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::type_`]
+    pub fn type__mut(&mut self) -> &mut RayTracingShaderGroupTypeKHR {
+        &mut self.type_
+    }
+    ///Gets a mutable reference to the value of [`Self::general_shader`]
+    pub fn general_shader_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::closest_hit_shader`]
+    pub fn closest_hit_shader_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::any_hit_shader`]
+    pub fn any_hit_shader_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::intersection_shader`]
+    pub fn intersection_shader_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::type_`]
+    pub fn set_type_(
+        &mut self,
+        value: crate::extensions::khr_ray_tracing_pipeline::RayTracingShaderGroupTypeKHR,
+    ) -> &mut Self {
+        self.type_ = value;
+        self
+    }
+    ///Sets the raw value of [`Self::general_shader`]
+    pub fn set_general_shader(&mut self, value: u32) -> &mut Self {
+        self.general_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::closest_hit_shader`]
+    pub fn set_closest_hit_shader(&mut self, value: u32) -> &mut Self {
+        self.closest_hit_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::any_hit_shader`]
+    pub fn set_any_hit_shader(&mut self, value: u32) -> &mut Self {
+        self.any_hit_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::intersection_shader`]
+    pub fn set_intersection_shader(&mut self, value: u32) -> &mut Self {
+        self.intersection_shader = value;
+        self
+    }
+}
 ///[VkRayTracingPipelineCreateInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRayTracingPipelineCreateInfoNV.html) - Structure specifying parameters of a newly created ray tracing pipeline
 ///# C Specifications
 ///The [`RayTracingPipelineCreateInfoNV`] structure is defined as:
@@ -229,11 +382,11 @@ pub struct RayTracingShaderGroupCreateInfoNV<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`PipelineCreateFlagBits`] specifying how the pipeline will be
 ///   generated.
-/// - [`stage_count`] is the number of entries in the [`p_stages`] array.
-/// - [`p_stages`] is a pointer to an array of [`PipelineShaderStageCreateInfo`] structures
-///   specifying the set of the shader stages to be included in the ray tracing pipeline.
-/// - [`group_count`] is the number of entries in the [`p_groups`] array.
-/// - [`p_groups`] is a pointer to an array of [`RayTracingShaderGroupCreateInfoNV`] structures
+/// - [`stage_count`] is the number of entries in the [`stages`] array.
+/// - [`stages`] is a pointer to an array of [`PipelineShaderStageCreateInfo`] structures specifying
+///   the set of the shader stages to be included in the ray tracing pipeline.
+/// - [`group_count`] is the number of entries in the [`groups`] array.
+/// - [`groups`] is a pointer to an array of [`RayTracingShaderGroupCreateInfoNV`] structures
 ///   describing the set of the shader stages to be included in each shader group in the ray tracing
 ///   pipeline.
 /// - [`max_recursion_depth`] is the [maximum recursion depth](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-tracing-recursion-depth)
@@ -259,9 +412,9 @@ pub struct RayTracingShaderGroupCreateInfoNV<'lt> {
 /// - If [`flags`] contains the `VK_PIPELINE_CREATE_DERIVATIVE_BIT` flag, and
 ///   [`base_pipeline_handle`] is not [`crate::utils::Handle::null`],
 ///   [`base_pipeline_index`]**must** be `-1`
-/// -    The shader code for the entry points identified by [`p_stages`], and the rest of the state identified by this structure **must** adhere to the pipeline linking rules described in the [Shader Interfaces](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#interfaces) chapter
+/// -    The shader code for the entry points identified by [`stages`], and the rest of the state identified by this structure **must** adhere to the pipeline linking rules described in the [Shader Interfaces](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#interfaces) chapter
 /// - [`layout`]**must** be [consistent](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#descriptorsets-pipelinelayout-consistency)
-///   with all shaders specified in [`p_stages`]
+///   with all shaders specified in [`stages`]
 /// - The number of resources in [`layout`] accessible to each shader stage that is used by the
 ///   pipeline **must** be less than or equal to [`PhysicalDeviceLimits::max_per_stage_resources`]
 /// - [`flags`]**must** not include `VK_PIPELINE_CREATE_INDIRECT_BINDABLE_BIT_NV`
@@ -269,7 +422,7 @@ pub struct RayTracingShaderGroupCreateInfoNV<'lt> {
 ///   feature is not enabled, [`flags`]**must** not include
 ///   `VK_PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT` or
 ///   `VK_PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT`
-/// - The `stage` member of at least one element of [`p_stages`]**must** be
+/// - The `stage` member of at least one element of [`stages`]**must** be
 ///   `VK_SHADER_STAGE_RAYGEN_BIT_KHR`
 /// - [`flags`]**must** not include `VK_PIPELINE_CREATE_LIBRARY_BIT_KHR`
 /// - [`max_recursion_depth`]**must** be less than or equal to
@@ -293,9 +446,9 @@ pub struct RayTracingShaderGroupCreateInfoNV<'lt> {
 ///   [`PipelineCreationFeedbackCreateInfo`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
 /// - [`flags`]**must** be a valid combination of [`PipelineCreateFlagBits`] values
-/// - [`p_stages`]**must** be a valid pointer to an array of [`stage_count`] valid
+/// - [`stages`]**must** be a valid pointer to an array of [`stage_count`] valid
 ///   [`PipelineShaderStageCreateInfo`] structures
-/// - [`p_groups`]**must** be a valid pointer to an array of [`group_count`] valid
+/// - [`groups`]**must** be a valid pointer to an array of [`group_count`] valid
 ///   [`RayTracingShaderGroupCreateInfoNV`] structures
 /// - [`layout`]**must** be a valid [`PipelineLayout`] handle
 /// - [`stage_count`]**must** be greater than `0`
@@ -319,9 +472,8 @@ pub struct RayTracingShaderGroupCreateInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct RayTracingPipelineCreateInfoNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -329,23 +481,23 @@ pub struct RayTracingPipelineCreateInfoNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`PipelineCreateFlagBits`] specifying
     ///how the pipeline will be generated.
     flags: PipelineCreateFlags,
-    ///[`stage_count`] is the number of entries in the [`p_stages`] array.
+    ///[`stage_count`] is the number of entries in the [`stages`] array.
     stage_count: u32,
-    ///[`p_stages`] is a pointer to an array of
+    ///[`stages`] is a pointer to an array of
     ///[`PipelineShaderStageCreateInfo`] structures specifying the set of
     ///the shader stages to be included in the ray tracing pipeline.
-    p_stages: *mut PipelineShaderStageCreateInfo<'lt>,
-    ///[`group_count`] is the number of entries in the [`p_groups`] array.
+    stages: *const PipelineShaderStageCreateInfo<'lt>,
+    ///[`group_count`] is the number of entries in the [`groups`] array.
     group_count: u32,
-    ///[`p_groups`] is a pointer to an array of
+    ///[`groups`] is a pointer to an array of
     ///[`RayTracingShaderGroupCreateInfoNV`] structures describing the set
     ///of the shader stages to be included in each shader group in the ray
     ///tracing pipeline.
-    p_groups: *mut RayTracingShaderGroupCreateInfoNV<'lt>,
+    groups: *const RayTracingShaderGroupCreateInfoNV<'lt>,
     ///[`max_recursion_depth`] is the [maximum
     ///recursion depth](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-tracing-recursion-depth) of shaders executed by this pipeline.
     max_recursion_depth: u32,
@@ -357,6 +509,238 @@ pub struct RayTracingPipelineCreateInfoNV<'lt> {
     ///[`base_pipeline_index`] is an index into the `pCreateInfos`
     ///parameter to use as a pipeline to derive from.
     base_pipeline_index: i32,
+}
+impl<'lt> Default for RayTracingPipelineCreateInfoNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            flags: Default::default(),
+            stage_count: 0,
+            stages: std::ptr::null(),
+            group_count: 0,
+            groups: std::ptr::null(),
+            max_recursion_depth: 0,
+            layout: Default::default(),
+            base_pipeline_handle: Default::default(),
+            base_pipeline_index: 0,
+        }
+    }
+}
+impl<'lt> RayTracingPipelineCreateInfoNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::stage_count`]
+    pub fn stage_count_raw(&self) -> u32 {
+        self.stage_count
+    }
+    ///Gets the raw value of [`Self::stages`]
+    pub fn stages_raw(&self) -> *const PipelineShaderStageCreateInfo<'lt> {
+        self.stages
+    }
+    ///Gets the raw value of [`Self::group_count`]
+    pub fn group_count_raw(&self) -> u32 {
+        self.group_count
+    }
+    ///Gets the raw value of [`Self::groups`]
+    pub fn groups_raw(&self) -> *const RayTracingShaderGroupCreateInfoNV<'lt> {
+        self.groups
+    }
+    ///Gets the raw value of [`Self::max_recursion_depth`]
+    pub fn max_recursion_depth_raw(&self) -> u32 {
+        self.max_recursion_depth
+    }
+    ///Gets the raw value of [`Self::base_pipeline_index`]
+    pub fn base_pipeline_index_raw(&self) -> i32 {
+        self.base_pipeline_index
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stage_count`]
+    pub fn set_stage_count_raw(&mut self, value: u32) -> &mut Self {
+        self.stage_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stages`]
+    pub fn set_stages_raw(&mut self, value: *const PipelineShaderStageCreateInfo<'lt>) -> &mut Self {
+        self.stages = value;
+        self
+    }
+    ///Sets the raw value of [`Self::group_count`]
+    pub fn set_group_count_raw(&mut self, value: u32) -> &mut Self {
+        self.group_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::groups`]
+    pub fn set_groups_raw(&mut self, value: *const RayTracingShaderGroupCreateInfoNV<'lt>) -> &mut Self {
+        self.groups = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_recursion_depth`]
+    pub fn set_max_recursion_depth_raw(&mut self, value: u32) -> &mut Self {
+        self.max_recursion_depth = value;
+        self
+    }
+    ///Sets the raw value of [`Self::base_pipeline_index`]
+    pub fn set_base_pipeline_index_raw(&mut self, value: i32) -> &mut Self {
+        self.base_pipeline_index = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> PipelineCreateFlags {
+        self.flags
+    }
+    ///Gets the value of [`Self::stage_count`]
+    pub fn stage_count(&self) -> u32 {
+        self.stage_count
+    }
+    ///Gets the value of [`Self::stages`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn stages(&self) -> &[PipelineShaderStageCreateInfo<'lt>] {
+        std::slice::from_raw_parts(self.stages, self.stage_count as usize)
+    }
+    ///Gets the value of [`Self::group_count`]
+    pub fn group_count(&self) -> u32 {
+        self.group_count
+    }
+    ///Gets the value of [`Self::groups`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn groups(&self) -> &[RayTracingShaderGroupCreateInfoNV<'lt>] {
+        std::slice::from_raw_parts(self.groups, self.group_count as usize)
+    }
+    ///Gets the value of [`Self::max_recursion_depth`]
+    pub fn max_recursion_depth(&self) -> u32 {
+        self.max_recursion_depth
+    }
+    ///Gets the value of [`Self::layout`]
+    pub fn layout(&self) -> PipelineLayout {
+        self.layout
+    }
+    ///Gets the value of [`Self::base_pipeline_handle`]
+    pub fn base_pipeline_handle(&self) -> Pipeline {
+        self.base_pipeline_handle
+    }
+    ///Gets the value of [`Self::base_pipeline_index`]
+    pub fn base_pipeline_index(&self) -> i32 {
+        self.base_pipeline_index
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut PipelineCreateFlags {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::stage_count`]
+    pub fn stage_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::group_count`]
+    pub fn group_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_recursion_depth`]
+    pub fn max_recursion_depth_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::layout`]
+    pub fn layout_mut(&mut self) -> &mut PipelineLayout {
+        &mut self.layout
+    }
+    ///Gets a mutable reference to the value of [`Self::base_pipeline_handle`]
+    pub fn base_pipeline_handle_mut(&mut self) -> &mut Pipeline {
+        &mut self.base_pipeline_handle
+    }
+    ///Gets a mutable reference to the value of [`Self::base_pipeline_index`]
+    pub fn base_pipeline_index_mut(&mut self) -> &mut i32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(&mut self, value: crate::vulkan1_0::PipelineCreateFlags) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stage_count`]
+    pub fn set_stage_count(&mut self, value: u32) -> &mut Self {
+        self.stage_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stages`]
+    pub fn set_stages(&mut self, value: &'lt [crate::vulkan1_0::PipelineShaderStageCreateInfo<'lt>]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.stages = value.as_ptr();
+        self.stage_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::group_count`]
+    pub fn set_group_count(&mut self, value: u32) -> &mut Self {
+        self.group_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::groups`]
+    pub fn set_groups(
+        &mut self,
+        value: &'lt [crate::extensions::nv_ray_tracing::RayTracingShaderGroupCreateInfoNV<'lt>],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.groups = value.as_ptr();
+        self.group_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::max_recursion_depth`]
+    pub fn set_max_recursion_depth(&mut self, value: u32) -> &mut Self {
+        self.max_recursion_depth = value;
+        self
+    }
+    ///Sets the raw value of [`Self::layout`]
+    pub fn set_layout(&mut self, value: crate::vulkan1_0::PipelineLayout) -> &mut Self {
+        self.layout = value;
+        self
+    }
+    ///Sets the raw value of [`Self::base_pipeline_handle`]
+    pub fn set_base_pipeline_handle(&mut self, value: crate::vulkan1_0::Pipeline) -> &mut Self {
+        self.base_pipeline_handle = value;
+        self
+    }
+    ///Sets the raw value of [`Self::base_pipeline_index`]
+    pub fn set_base_pipeline_index(&mut self, value: i32) -> &mut Self {
+        self.base_pipeline_index = value;
+        self
+    }
 }
 ///[VkGeometryTrianglesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryTrianglesNV.html) - Structure specifying a triangle geometry in a bottom-level acceleration structure
 ///# C Specifications
@@ -450,9 +834,8 @@ pub struct RayTracingPipelineCreateInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct GeometryTrianglesNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -460,7 +843,7 @@ pub struct GeometryTrianglesNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`vertex_data`] is the buffer containing vertex data for this geometry.
     vertex_data: Buffer,
     ///[`vertex_offset`] is the offset in bytes within [`vertex_data`]
@@ -490,6 +873,223 @@ pub struct GeometryTrianglesNV<'lt> {
     ///[`transform_offset`] is the offset in bytes in [`transform_data`] of
     ///the transform information described above.
     transform_offset: DeviceSize,
+}
+impl<'lt> Default for GeometryTrianglesNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            vertex_data: Default::default(),
+            vertex_offset: Default::default(),
+            vertex_count: 0,
+            vertex_stride: Default::default(),
+            vertex_format: Default::default(),
+            index_data: Default::default(),
+            index_offset: Default::default(),
+            index_count: 0,
+            index_type: Default::default(),
+            transform_data: Default::default(),
+            transform_offset: Default::default(),
+        }
+    }
+}
+impl<'lt> GeometryTrianglesNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::vertex_count`]
+    pub fn vertex_count_raw(&self) -> u32 {
+        self.vertex_count
+    }
+    ///Gets the raw value of [`Self::index_count`]
+    pub fn index_count_raw(&self) -> u32 {
+        self.index_count
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::vertex_count`]
+    pub fn set_vertex_count_raw(&mut self, value: u32) -> &mut Self {
+        self.vertex_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::index_count`]
+    pub fn set_index_count_raw(&mut self, value: u32) -> &mut Self {
+        self.index_count = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::vertex_data`]
+    pub fn vertex_data(&self) -> Buffer {
+        self.vertex_data
+    }
+    ///Gets the value of [`Self::vertex_offset`]
+    pub fn vertex_offset(&self) -> DeviceSize {
+        self.vertex_offset
+    }
+    ///Gets the value of [`Self::vertex_count`]
+    pub fn vertex_count(&self) -> u32 {
+        self.vertex_count
+    }
+    ///Gets the value of [`Self::vertex_stride`]
+    pub fn vertex_stride(&self) -> DeviceSize {
+        self.vertex_stride
+    }
+    ///Gets the value of [`Self::vertex_format`]
+    pub fn vertex_format(&self) -> Format {
+        self.vertex_format
+    }
+    ///Gets the value of [`Self::index_data`]
+    pub fn index_data(&self) -> Buffer {
+        self.index_data
+    }
+    ///Gets the value of [`Self::index_offset`]
+    pub fn index_offset(&self) -> DeviceSize {
+        self.index_offset
+    }
+    ///Gets the value of [`Self::index_count`]
+    pub fn index_count(&self) -> u32 {
+        self.index_count
+    }
+    ///Gets the value of [`Self::index_type`]
+    pub fn index_type(&self) -> IndexType {
+        self.index_type
+    }
+    ///Gets the value of [`Self::transform_data`]
+    pub fn transform_data(&self) -> Buffer {
+        self.transform_data
+    }
+    ///Gets the value of [`Self::transform_offset`]
+    pub fn transform_offset(&self) -> DeviceSize {
+        self.transform_offset
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::vertex_data`]
+    pub fn vertex_data_mut(&mut self) -> &mut Buffer {
+        &mut self.vertex_data
+    }
+    ///Gets a mutable reference to the value of [`Self::vertex_offset`]
+    pub fn vertex_offset_mut(&mut self) -> &mut DeviceSize {
+        &mut self.vertex_offset
+    }
+    ///Gets a mutable reference to the value of [`Self::vertex_count`]
+    pub fn vertex_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::vertex_stride`]
+    pub fn vertex_stride_mut(&mut self) -> &mut DeviceSize {
+        &mut self.vertex_stride
+    }
+    ///Gets a mutable reference to the value of [`Self::vertex_format`]
+    pub fn vertex_format_mut(&mut self) -> &mut Format {
+        &mut self.vertex_format
+    }
+    ///Gets a mutable reference to the value of [`Self::index_data`]
+    pub fn index_data_mut(&mut self) -> &mut Buffer {
+        &mut self.index_data
+    }
+    ///Gets a mutable reference to the value of [`Self::index_offset`]
+    pub fn index_offset_mut(&mut self) -> &mut DeviceSize {
+        &mut self.index_offset
+    }
+    ///Gets a mutable reference to the value of [`Self::index_count`]
+    pub fn index_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::index_type`]
+    pub fn index_type_mut(&mut self) -> &mut IndexType {
+        &mut self.index_type
+    }
+    ///Gets a mutable reference to the value of [`Self::transform_data`]
+    pub fn transform_data_mut(&mut self) -> &mut Buffer {
+        &mut self.transform_data
+    }
+    ///Gets a mutable reference to the value of [`Self::transform_offset`]
+    pub fn transform_offset_mut(&mut self) -> &mut DeviceSize {
+        &mut self.transform_offset
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::vertex_data`]
+    pub fn set_vertex_data(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+        self.vertex_data = value;
+        self
+    }
+    ///Sets the raw value of [`Self::vertex_offset`]
+    pub fn set_vertex_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.vertex_offset = value;
+        self
+    }
+    ///Sets the raw value of [`Self::vertex_count`]
+    pub fn set_vertex_count(&mut self, value: u32) -> &mut Self {
+        self.vertex_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::vertex_stride`]
+    pub fn set_vertex_stride(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.vertex_stride = value;
+        self
+    }
+    ///Sets the raw value of [`Self::vertex_format`]
+    pub fn set_vertex_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+        self.vertex_format = value;
+        self
+    }
+    ///Sets the raw value of [`Self::index_data`]
+    pub fn set_index_data(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+        self.index_data = value;
+        self
+    }
+    ///Sets the raw value of [`Self::index_offset`]
+    pub fn set_index_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.index_offset = value;
+        self
+    }
+    ///Sets the raw value of [`Self::index_count`]
+    pub fn set_index_count(&mut self, value: u32) -> &mut Self {
+        self.index_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::index_type`]
+    pub fn set_index_type(&mut self, value: crate::vulkan1_0::IndexType) -> &mut Self {
+        self.index_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::transform_data`]
+    pub fn set_transform_data(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+        self.transform_data = value;
+        self
+    }
+    ///Sets the raw value of [`Self::transform_offset`]
+    pub fn set_transform_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.transform_offset = value;
+        self
+    }
 }
 ///[VkGeometryAABBNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryAABBNV.html) - Structure specifying axis-aligned bounding box geometry in a bottom-level acceleration structure
 ///# C Specifications
@@ -538,9 +1138,8 @@ pub struct GeometryTrianglesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct GeometryAabbNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -548,7 +1147,7 @@ pub struct GeometryAabbNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`aabb_data`] is the buffer containing axis-aligned bounding box data.
     aabb_data: Buffer,
     ///[`num_aab_bs`] is the number of AABBs in this geometry.
@@ -557,6 +1156,125 @@ pub struct GeometryAabbNV<'lt> {
     stride: u32,
     ///[`offset`] is the offset in bytes of the first AABB in [`aabb_data`].
     offset: DeviceSize,
+}
+impl<'lt> Default for GeometryAabbNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            aabb_data: Default::default(),
+            num_aab_bs: 0,
+            stride: 0,
+            offset: Default::default(),
+        }
+    }
+}
+impl<'lt> GeometryAabbNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::num_aab_bs`]
+    pub fn num_aab_bs_raw(&self) -> u32 {
+        self.num_aab_bs
+    }
+    ///Gets the raw value of [`Self::stride`]
+    pub fn stride_raw(&self) -> u32 {
+        self.stride
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::num_aab_bs`]
+    pub fn set_num_aab_bs_raw(&mut self, value: u32) -> &mut Self {
+        self.num_aab_bs = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stride`]
+    pub fn set_stride_raw(&mut self, value: u32) -> &mut Self {
+        self.stride = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::aabb_data`]
+    pub fn aabb_data(&self) -> Buffer {
+        self.aabb_data
+    }
+    ///Gets the value of [`Self::num_aab_bs`]
+    pub fn num_aab_bs(&self) -> u32 {
+        self.num_aab_bs
+    }
+    ///Gets the value of [`Self::stride`]
+    pub fn stride(&self) -> u32 {
+        self.stride
+    }
+    ///Gets the value of [`Self::offset`]
+    pub fn offset(&self) -> DeviceSize {
+        self.offset
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::aabb_data`]
+    pub fn aabb_data_mut(&mut self) -> &mut Buffer {
+        &mut self.aabb_data
+    }
+    ///Gets a mutable reference to the value of [`Self::num_aab_bs`]
+    pub fn num_aab_bs_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::stride`]
+    pub fn stride_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::offset`]
+    pub fn offset_mut(&mut self) -> &mut DeviceSize {
+        &mut self.offset
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::aabb_data`]
+    pub fn set_aabb_data(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+        self.aabb_data = value;
+        self
+    }
+    ///Sets the raw value of [`Self::num_aab_bs`]
+    pub fn set_num_aab_bs(&mut self, value: u32) -> &mut Self {
+        self.num_aab_bs = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stride`]
+    pub fn set_stride(&mut self, value: u32) -> &mut Self {
+        self.stride = value;
+        self
+    }
+    ///Sets the raw value of [`Self::offset`]
+    pub fn set_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.offset = value;
+        self
+    }
 }
 ///[VkGeometryDataNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryDataNV.html) - Structure specifying geometry in a bottom-level acceleration structure
 ///# C Specifications
@@ -591,9 +1309,8 @@ pub struct GeometryAabbNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct GeometryDataNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -605,6 +1322,43 @@ pub struct GeometryDataNV<'lt> {
     ///[`GeometryNV`]::`geometryType` is
     ///`VK_GEOMETRY_TYPE_AABBS_NV`.
     aabbs: GeometryAabbNV<'lt>,
+}
+impl<'lt> Default for GeometryDataNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            triangles: Default::default(),
+            aabbs: Default::default(),
+        }
+    }
+}
+impl<'lt> GeometryDataNV<'lt> {
+    ///Gets the value of [`Self::triangles`]
+    pub fn triangles(&self) -> GeometryTrianglesNV<'lt> {
+        self.triangles
+    }
+    ///Gets the value of [`Self::aabbs`]
+    pub fn aabbs(&self) -> GeometryAabbNV<'lt> {
+        self.aabbs
+    }
+    ///Gets a mutable reference to the value of [`Self::triangles`]
+    pub fn triangles_mut(&mut self) -> &mut GeometryTrianglesNV<'lt> {
+        &mut self.triangles
+    }
+    ///Gets a mutable reference to the value of [`Self::aabbs`]
+    pub fn aabbs_mut(&mut self) -> &mut GeometryAabbNV<'lt> {
+        &mut self.aabbs
+    }
+    ///Sets the raw value of [`Self::triangles`]
+    pub fn set_triangles(&mut self, value: crate::extensions::nv_ray_tracing::GeometryTrianglesNV<'lt>) -> &mut Self {
+        self.triangles = value;
+        self
+    }
+    ///Sets the raw value of [`Self::aabbs`]
+    pub fn set_aabbs(&mut self, value: crate::extensions::nv_ray_tracing::GeometryAabbNV<'lt>) -> &mut Self {
+        self.aabbs = value;
+        self
+    }
 }
 ///[VkGeometryNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryNV.html) - Structure specifying a geometry in a bottom-level acceleration structure
 ///# C Specifications
@@ -650,9 +1404,8 @@ pub struct GeometryDataNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct GeometryNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -660,7 +1413,7 @@ pub struct GeometryNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`geometry_type`] specifies the [`GeometryTypeKHR`] which this
     ///geometry refers to.
     geometry_type: GeometryTypeKHR,
@@ -670,6 +1423,96 @@ pub struct GeometryNV<'lt> {
     ///[`flags`] has [`GeometryFlagBitsKHR`] describing options for this
     ///geometry.
     flags: GeometryFlagsKHR,
+}
+impl<'lt> Default for GeometryNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            geometry_type: Default::default(),
+            geometry: Default::default(),
+            flags: Default::default(),
+        }
+    }
+}
+impl<'lt> GeometryNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::geometry_type`]
+    pub fn geometry_type(&self) -> GeometryTypeKHR {
+        self.geometry_type
+    }
+    ///Gets the value of [`Self::geometry`]
+    pub fn geometry(&self) -> GeometryDataNV<'lt> {
+        self.geometry
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> GeometryFlagsKHR {
+        self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::geometry_type`]
+    pub fn geometry_type_mut(&mut self) -> &mut GeometryTypeKHR {
+        &mut self.geometry_type
+    }
+    ///Gets a mutable reference to the value of [`Self::geometry`]
+    pub fn geometry_mut(&mut self) -> &mut GeometryDataNV<'lt> {
+        &mut self.geometry
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut GeometryFlagsKHR {
+        &mut self.flags
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::geometry_type`]
+    pub fn set_geometry_type(
+        &mut self,
+        value: crate::extensions::khr_acceleration_structure::GeometryTypeKHR,
+    ) -> &mut Self {
+        self.geometry_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::geometry`]
+    pub fn set_geometry(&mut self, value: crate::extensions::nv_ray_tracing::GeometryDataNV<'lt>) -> &mut Self {
+        self.geometry = value;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(&mut self, value: crate::extensions::khr_acceleration_structure::GeometryFlagsKHR) -> &mut Self {
+        self.flags = value;
+        self
+    }
 }
 ///[VkAccelerationStructureInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureInfoNV.html) - Structure specifying the parameters of acceleration structure object
 ///# C Specifications
@@ -697,7 +1540,7 @@ pub struct GeometryNV<'lt> {
 ///   structure.
 /// - [`geometry_count`] specifies the number of geometries that will be in the new acceleration
 ///   structure.
-/// - [`p_geometries`] is a pointer to an array of [`geometry_count`][`GeometryNV`] structures
+/// - [`geometries`] is a pointer to an array of [`geometry_count`][`GeometryNV`] structures
 ///   containing the scene data being passed into the acceleration structure.
 ///# Description
 ///[`AccelerationStructureInfoNV`] contains information that is used both
@@ -716,7 +1559,7 @@ pub struct GeometryNV<'lt> {
 /// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_NV` then
 ///   [`instance_count`]**must** be `0`
 /// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_NV` then the `geometryType`
-///   member of each geometry in [`p_geometries`]**must** be the same
+///   member of each geometry in [`geometries`]**must** be the same
 /// - [`type_`]**must** not be `VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR`
 /// - If [`flags`] has the `VK_BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_NV` bit set, then
 ///   it **must** not have the `VK_BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_NV` bit set
@@ -728,7 +1571,7 @@ pub struct GeometryNV<'lt> {
 /// - [`p_next`]**must** be `NULL`
 /// - [`type_`]**must** be a valid [`AccelerationStructureTypeNV`] value
 /// - [`flags`]**must** be a valid combination of [`BuildAccelerationStructureFlagBitsNV`] values
-/// - If [`geometry_count`] is not `0`, [`p_geometries`]**must** be a valid pointer to an array of
+/// - If [`geometry_count`] is not `0`, [`geometries`]**must** be a valid pointer to an array of
 ///   [`geometry_count`] valid [`GeometryNV`] structures
 ///# Related
 /// - [`VK_NV_ray_tracing`]
@@ -746,9 +1589,8 @@ pub struct GeometryNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct AccelerationStructureInfoNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -756,7 +1598,7 @@ pub struct AccelerationStructureInfoNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`type_`] is a [`AccelerationStructureTypeNV`] value specifying the
     ///type of acceleration structure that will be created.
     type_: AccelerationStructureTypeNV,
@@ -769,9 +1611,156 @@ pub struct AccelerationStructureInfoNV<'lt> {
     ///[`geometry_count`] specifies the number of geometries that will be in
     ///the new acceleration structure.
     geometry_count: u32,
-    ///[`p_geometries`] is a pointer to an array of [`geometry_count`][`GeometryNV`] structures
+    ///[`geometries`] is a pointer to an array of [`geometry_count`][`GeometryNV`] structures
     /// containing the scene data being passed into the acceleration structure.
-    p_geometries: *mut GeometryNV<'lt>,
+    geometries: *const GeometryNV<'lt>,
+}
+impl<'lt> Default for AccelerationStructureInfoNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            type_: Default::default(),
+            flags: Default::default(),
+            instance_count: 0,
+            geometry_count: 0,
+            geometries: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> AccelerationStructureInfoNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::instance_count`]
+    pub fn instance_count_raw(&self) -> u32 {
+        self.instance_count
+    }
+    ///Gets the raw value of [`Self::geometry_count`]
+    pub fn geometry_count_raw(&self) -> u32 {
+        self.geometry_count
+    }
+    ///Gets the raw value of [`Self::geometries`]
+    pub fn geometries_raw(&self) -> *const GeometryNV<'lt> {
+        self.geometries
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::instance_count`]
+    pub fn set_instance_count_raw(&mut self, value: u32) -> &mut Self {
+        self.instance_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::geometry_count`]
+    pub fn set_geometry_count_raw(&mut self, value: u32) -> &mut Self {
+        self.geometry_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::geometries`]
+    pub fn set_geometries_raw(&mut self, value: *const GeometryNV<'lt>) -> &mut Self {
+        self.geometries = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::type_`]
+    pub fn type_(&self) -> AccelerationStructureTypeNV {
+        self.type_
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> BuildAccelerationStructureFlagsNV {
+        self.flags
+    }
+    ///Gets the value of [`Self::instance_count`]
+    pub fn instance_count(&self) -> u32 {
+        self.instance_count
+    }
+    ///Gets the value of [`Self::geometry_count`]
+    pub fn geometry_count(&self) -> u32 {
+        self.geometry_count
+    }
+    ///Gets the value of [`Self::geometries`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn geometries(&self) -> &[GeometryNV<'lt>] {
+        std::slice::from_raw_parts(self.geometries, self.geometry_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::type_`]
+    pub fn type__mut(&mut self) -> &mut AccelerationStructureTypeNV {
+        &mut self.type_
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut BuildAccelerationStructureFlagsNV {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::instance_count`]
+    pub fn instance_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::geometry_count`]
+    pub fn geometry_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::type_`]
+    pub fn set_type_(&mut self, value: crate::extensions::nv_ray_tracing::AccelerationStructureTypeNV) -> &mut Self {
+        self.type_ = value;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::nv_ray_tracing::BuildAccelerationStructureFlagsNV,
+    ) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::instance_count`]
+    pub fn set_instance_count(&mut self, value: u32) -> &mut Self {
+        self.instance_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::geometry_count`]
+    pub fn set_geometry_count(&mut self, value: u32) -> &mut Self {
+        self.geometry_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::geometries`]
+    pub fn set_geometries(&mut self, value: &'lt [crate::extensions::nv_ray_tracing::GeometryNV<'lt>]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.geometries = value.as_ptr();
+        self.geometry_count = len_;
+        self
+    }
 }
 ///[VkAccelerationStructureCreateInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureCreateInfoNV.html) - Structure specifying the parameters of a newly created acceleration structure object
 ///# C Specifications
@@ -815,9 +1804,8 @@ pub struct AccelerationStructureInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct AccelerationStructureCreateInfoNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -825,7 +1813,7 @@ pub struct AccelerationStructureCreateInfoNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`compacted_size`] is the size from the result of
     ///[`CmdWriteAccelerationStructuresPropertiesNV`] if this acceleration
     ///structure is going to be the target of a compacting copy.
@@ -833,6 +1821,82 @@ pub struct AccelerationStructureCreateInfoNV<'lt> {
     ///[`info`] is the [`AccelerationStructureInfoNV`] structure
     ///specifying further parameters of the created acceleration structure.
     info: AccelerationStructureInfoNV<'lt>,
+}
+impl<'lt> Default for AccelerationStructureCreateInfoNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            compacted_size: Default::default(),
+            info: Default::default(),
+        }
+    }
+}
+impl<'lt> AccelerationStructureCreateInfoNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::compacted_size`]
+    pub fn compacted_size(&self) -> DeviceSize {
+        self.compacted_size
+    }
+    ///Gets the value of [`Self::info`]
+    pub fn info(&self) -> AccelerationStructureInfoNV<'lt> {
+        self.info
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::compacted_size`]
+    pub fn compacted_size_mut(&mut self) -> &mut DeviceSize {
+        &mut self.compacted_size
+    }
+    ///Gets a mutable reference to the value of [`Self::info`]
+    pub fn info_mut(&mut self) -> &mut AccelerationStructureInfoNV<'lt> {
+        &mut self.info
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::compacted_size`]
+    pub fn set_compacted_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.compacted_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::info`]
+    pub fn set_info(
+        &mut self,
+        value: crate::extensions::nv_ray_tracing::AccelerationStructureInfoNV<'lt>,
+    ) -> &mut Self {
+        self.info = value;
+        self
+    }
 }
 ///[VkBindAccelerationStructureMemoryInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindAccelerationStructureMemoryInfoNV.html) - Structure specifying acceleration structure memory binding
 ///# C Specifications
@@ -858,8 +1922,8 @@ pub struct AccelerationStructureCreateInfoNV<'lt> {
 ///   acceleration structure. The number of bytes returned in the [`MemoryRequirements::size`]
 ///   member in [`memory`], starting from [`memory_offset`] bytes, will be bound to the specified
 ///   acceleration structure.
-/// - [`device_index_count`] is the number of elements in [`p_device_indices`].
-/// - [`p_device_indices`] is a pointer to an array of device indices.
+/// - [`device_index_count`] is the number of elements in [`device_indices`].
+/// - [`device_indices`] is a pointer to an array of device indices.
 ///# Description
 ///Valid Usage
 /// - [`acceleration_structure`]**must** not already be backed by a memory object
@@ -881,7 +1945,7 @@ pub struct AccelerationStructureCreateInfoNV<'lt> {
 /// - [`p_next`]**must** be `NULL`
 /// - [`acceleration_structure`]**must** be a valid [`AccelerationStructureNV`] handle
 /// - [`memory`]**must** be a valid [`DeviceMemory`] handle
-/// - If [`device_index_count`] is not `0`, [`p_device_indices`]**must** be a valid pointer to an
+/// - If [`device_index_count`] is not `0`, [`device_indices`]**must** be a valid pointer to an
 ///   array of [`device_index_count`]`uint32_t` values
 /// - Both of [`acceleration_structure`], and [`memory`]**must** have been created, allocated, or
 ///   retrieved from the same [`Device`]
@@ -900,9 +1964,8 @@ pub struct AccelerationStructureCreateInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct BindAccelerationStructureMemoryInfoNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -910,7 +1973,7 @@ pub struct BindAccelerationStructureMemoryInfoNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`acceleration_structure`] is the acceleration structure to be attached
     ///to memory.
     acceleration_structure: AccelerationStructureNV,
@@ -925,10 +1988,148 @@ pub struct BindAccelerationStructureMemoryInfoNV<'lt> {
     ///acceleration structure.
     memory_offset: DeviceSize,
     ///[`device_index_count`] is the number of elements in
-    ///[`p_device_indices`].
+    ///[`device_indices`].
     device_index_count: u32,
-    ///[`p_device_indices`] is a pointer to an array of device indices.
-    p_device_indices: *mut u32,
+    ///[`device_indices`] is a pointer to an array of device indices.
+    device_indices: *const u32,
+}
+impl<'lt> Default for BindAccelerationStructureMemoryInfoNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            acceleration_structure: Default::default(),
+            memory: Default::default(),
+            memory_offset: Default::default(),
+            device_index_count: 0,
+            device_indices: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> BindAccelerationStructureMemoryInfoNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::device_index_count`]
+    pub fn device_index_count_raw(&self) -> u32 {
+        self.device_index_count
+    }
+    ///Gets the raw value of [`Self::device_indices`]
+    pub fn device_indices_raw(&self) -> *const u32 {
+        self.device_indices
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_index_count`]
+    pub fn set_device_index_count_raw(&mut self, value: u32) -> &mut Self {
+        self.device_index_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_indices`]
+    pub fn set_device_indices_raw(&mut self, value: *const u32) -> &mut Self {
+        self.device_indices = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::acceleration_structure`]
+    pub fn acceleration_structure(&self) -> AccelerationStructureNV {
+        self.acceleration_structure
+    }
+    ///Gets the value of [`Self::memory`]
+    pub fn memory(&self) -> DeviceMemory {
+        self.memory
+    }
+    ///Gets the value of [`Self::memory_offset`]
+    pub fn memory_offset(&self) -> DeviceSize {
+        self.memory_offset
+    }
+    ///Gets the value of [`Self::device_index_count`]
+    pub fn device_index_count(&self) -> u32 {
+        self.device_index_count
+    }
+    ///Gets the value of [`Self::device_indices`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn device_indices(&self) -> &[u32] {
+        std::slice::from_raw_parts(self.device_indices, self.device_index_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::acceleration_structure`]
+    pub fn acceleration_structure_mut(&mut self) -> &mut AccelerationStructureNV {
+        &mut self.acceleration_structure
+    }
+    ///Gets a mutable reference to the value of [`Self::memory`]
+    pub fn memory_mut(&mut self) -> &mut DeviceMemory {
+        &mut self.memory
+    }
+    ///Gets a mutable reference to the value of [`Self::memory_offset`]
+    pub fn memory_offset_mut(&mut self) -> &mut DeviceSize {
+        &mut self.memory_offset
+    }
+    ///Gets a mutable reference to the value of [`Self::device_index_count`]
+    pub fn device_index_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::acceleration_structure`]
+    pub fn set_acceleration_structure(
+        &mut self,
+        value: crate::extensions::nv_ray_tracing::AccelerationStructureNV,
+    ) -> &mut Self {
+        self.acceleration_structure = value;
+        self
+    }
+    ///Sets the raw value of [`Self::memory`]
+    pub fn set_memory(&mut self, value: crate::vulkan1_0::DeviceMemory) -> &mut Self {
+        self.memory = value;
+        self
+    }
+    ///Sets the raw value of [`Self::memory_offset`]
+    pub fn set_memory_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.memory_offset = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_index_count`]
+    pub fn set_device_index_count(&mut self, value: u32) -> &mut Self {
+        self.device_index_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_indices`]
+    pub fn set_device_indices(&mut self, value: &'lt [u32]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.device_indices = value.as_ptr();
+        self.device_index_count = len_;
+        self
+    }
 }
 ///[VkWriteDescriptorSetAccelerationStructureNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWriteDescriptorSetAccelerationStructureNV.html) - Structure specifying acceleration structure descriptor information
 ///# C Specifications
@@ -946,21 +2147,21 @@ pub struct BindAccelerationStructureMemoryInfoNV<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`acceleration_structure_count`] is the number of elements in [`p_acceleration_structures`].
-/// - [`p_acceleration_structures`] is a pointer to an array of [`AccelerationStructureNV`]
-///   structures specifying the acceleration structures to update.
+/// - [`acceleration_structure_count`] is the number of elements in [`acceleration_structures`].
+/// - [`acceleration_structures`] is a pointer to an array of [`AccelerationStructureNV`] structures
+///   specifying the acceleration structures to update.
 ///# Description
 ///Valid Usage
 /// - [`acceleration_structure_count`]**must** be equal to `descriptorCount` in the extended
 ///   structure
-/// - Each acceleration structure in [`p_acceleration_structures`]**must** have been created with
+/// - Each acceleration structure in [`acceleration_structures`]**must** have been created with
 ///   `VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR`
 /// - If the [nullDescriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-nullDescriptor)
-///   feature is not enabled, each member of [`p_acceleration_structures`]**must** not be
+///   feature is not enabled, each member of [`acceleration_structures`]**must** not be
 ///   [`crate::utils::Handle::null`]
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV`
-/// - [`p_acceleration_structures`]**must** be a valid pointer to an array of
+/// - [`acceleration_structures`]**must** be a valid pointer to an array of
 ///   [`acceleration_structure_count`] valid or
 ///   [`crate::utils::Handle::null`][`AccelerationStructureNV`] handles
 /// - [`acceleration_structure_count`]**must** be greater than `0`
@@ -976,9 +2177,8 @@ pub struct BindAccelerationStructureMemoryInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct WriteDescriptorSetAccelerationStructureNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -986,14 +2186,110 @@ pub struct WriteDescriptorSetAccelerationStructureNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`acceleration_structure_count`] is the number of elements in
-    ///[`p_acceleration_structures`].
+    ///[`acceleration_structures`].
     acceleration_structure_count: u32,
-    ///[`p_acceleration_structures`] is a pointer to an array of
+    ///[`acceleration_structures`] is a pointer to an array of
     ///[`AccelerationStructureNV`] structures specifying the acceleration
     ///structures to update.
-    p_acceleration_structures: *mut AccelerationStructureNV,
+    acceleration_structures: *const AccelerationStructureNV,
+}
+impl<'lt> Default for WriteDescriptorSetAccelerationStructureNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            acceleration_structure_count: 0,
+            acceleration_structures: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> WriteDescriptorSetAccelerationStructureNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::acceleration_structure_count`]
+    pub fn acceleration_structure_count_raw(&self) -> u32 {
+        self.acceleration_structure_count
+    }
+    ///Gets the raw value of [`Self::acceleration_structures`]
+    pub fn acceleration_structures_raw(&self) -> *const AccelerationStructureNV {
+        self.acceleration_structures
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::acceleration_structure_count`]
+    pub fn set_acceleration_structure_count_raw(&mut self, value: u32) -> &mut Self {
+        self.acceleration_structure_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::acceleration_structures`]
+    pub fn set_acceleration_structures_raw(&mut self, value: *const AccelerationStructureNV) -> &mut Self {
+        self.acceleration_structures = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::acceleration_structure_count`]
+    pub fn acceleration_structure_count(&self) -> u32 {
+        self.acceleration_structure_count
+    }
+    ///Gets the value of [`Self::acceleration_structures`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn acceleration_structures(&self) -> &[AccelerationStructureNV] {
+        std::slice::from_raw_parts(self.acceleration_structures, self.acceleration_structure_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::acceleration_structure_count`]
+    pub fn acceleration_structure_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::acceleration_structure_count`]
+    pub fn set_acceleration_structure_count(&mut self, value: u32) -> &mut Self {
+        self.acceleration_structure_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::acceleration_structures`]
+    pub fn set_acceleration_structures(
+        &mut self,
+        value: &'lt [crate::extensions::nv_ray_tracing::AccelerationStructureNV],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.acceleration_structures = value.as_ptr();
+        self.acceleration_structure_count = len_;
+        self
+    }
 }
 ///[VkAccelerationStructureMemoryRequirementsInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMemoryRequirementsInfoNV.html) - Structure specifying acceleration to query for memory requirements
 ///# C Specifications
@@ -1039,9 +2335,8 @@ pub struct WriteDescriptorSetAccelerationStructureNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct AccelerationStructureMemoryRequirementsInfoNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1049,7 +2344,7 @@ pub struct AccelerationStructureMemoryRequirementsInfoNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`type_`] selects the type of memory requirement being queried.
     ///`VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_OBJECT_NV`
     ///returns the memory requirements for the object itself.
@@ -1063,6 +2358,85 @@ pub struct AccelerationStructureMemoryRequirementsInfoNV<'lt> {
     ///[`acceleration_structure`] is the acceleration structure to be queried
     ///for memory requirements.
     acceleration_structure: AccelerationStructureNV,
+}
+impl<'lt> Default for AccelerationStructureMemoryRequirementsInfoNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            type_: Default::default(),
+            acceleration_structure: Default::default(),
+        }
+    }
+}
+impl<'lt> AccelerationStructureMemoryRequirementsInfoNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::type_`]
+    pub fn type_(&self) -> AccelerationStructureMemoryRequirementsTypeNV {
+        self.type_
+    }
+    ///Gets the value of [`Self::acceleration_structure`]
+    pub fn acceleration_structure(&self) -> AccelerationStructureNV {
+        self.acceleration_structure
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::type_`]
+    pub fn type__mut(&mut self) -> &mut AccelerationStructureMemoryRequirementsTypeNV {
+        &mut self.type_
+    }
+    ///Gets a mutable reference to the value of [`Self::acceleration_structure`]
+    pub fn acceleration_structure_mut(&mut self) -> &mut AccelerationStructureNV {
+        &mut self.acceleration_structure
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::type_`]
+    pub fn set_type_(
+        &mut self,
+        value: crate::extensions::nv_ray_tracing::AccelerationStructureMemoryRequirementsTypeNV,
+    ) -> &mut Self {
+        self.type_ = value;
+        self
+    }
+    ///Sets the raw value of [`Self::acceleration_structure`]
+    pub fn set_acceleration_structure(
+        &mut self,
+        value: crate::extensions::nv_ray_tracing::AccelerationStructureNV,
+    ) -> &mut Self {
+        self.acceleration_structure = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceRayTracingPropertiesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceRayTracingPropertiesNV.html) - Properties of the physical device for ray tracing
 ///# C Specifications
@@ -1124,9 +2498,8 @@ pub struct AccelerationStructureMemoryRequirementsInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPropertiesNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1134,7 +2507,7 @@ pub struct PhysicalDeviceRayTracingPropertiesNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_group_handle_size`] is the size in bytes of the shader header.
     shader_group_handle_size: u32,
     ///[`max_recursion_depth`] is the maximum
@@ -1158,4 +2531,241 @@ pub struct PhysicalDeviceRayTracingPropertiesNV<'lt> {
     ///[`max_descriptor_set_acceleration_structures`] is the maximum number of
     ///acceleration structure descriptors that are allowed in a descriptor set.
     max_descriptor_set_acceleration_structures: u32,
+}
+impl<'lt> Default for PhysicalDeviceRayTracingPropertiesNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            shader_group_handle_size: 0,
+            max_recursion_depth: 0,
+            max_shader_group_stride: 0,
+            shader_group_base_alignment: 0,
+            max_geometry_count: 0,
+            max_instance_count: 0,
+            max_triangle_count: 0,
+            max_descriptor_set_acceleration_structures: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceRayTracingPropertiesNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::shader_group_handle_size`]
+    pub fn shader_group_handle_size_raw(&self) -> u32 {
+        self.shader_group_handle_size
+    }
+    ///Gets the raw value of [`Self::max_recursion_depth`]
+    pub fn max_recursion_depth_raw(&self) -> u32 {
+        self.max_recursion_depth
+    }
+    ///Gets the raw value of [`Self::max_shader_group_stride`]
+    pub fn max_shader_group_stride_raw(&self) -> u32 {
+        self.max_shader_group_stride
+    }
+    ///Gets the raw value of [`Self::shader_group_base_alignment`]
+    pub fn shader_group_base_alignment_raw(&self) -> u32 {
+        self.shader_group_base_alignment
+    }
+    ///Gets the raw value of [`Self::max_geometry_count`]
+    pub fn max_geometry_count_raw(&self) -> u64 {
+        self.max_geometry_count
+    }
+    ///Gets the raw value of [`Self::max_instance_count`]
+    pub fn max_instance_count_raw(&self) -> u64 {
+        self.max_instance_count
+    }
+    ///Gets the raw value of [`Self::max_triangle_count`]
+    pub fn max_triangle_count_raw(&self) -> u64 {
+        self.max_triangle_count
+    }
+    ///Gets the raw value of [`Self::max_descriptor_set_acceleration_structures`]
+    pub fn max_descriptor_set_acceleration_structures_raw(&self) -> u32 {
+        self.max_descriptor_set_acceleration_structures
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_group_handle_size`]
+    pub fn set_shader_group_handle_size_raw(&mut self, value: u32) -> &mut Self {
+        self.shader_group_handle_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_recursion_depth`]
+    pub fn set_max_recursion_depth_raw(&mut self, value: u32) -> &mut Self {
+        self.max_recursion_depth = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_shader_group_stride`]
+    pub fn set_max_shader_group_stride_raw(&mut self, value: u32) -> &mut Self {
+        self.max_shader_group_stride = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_group_base_alignment`]
+    pub fn set_shader_group_base_alignment_raw(&mut self, value: u32) -> &mut Self {
+        self.shader_group_base_alignment = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_geometry_count`]
+    pub fn set_max_geometry_count_raw(&mut self, value: u64) -> &mut Self {
+        self.max_geometry_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_instance_count`]
+    pub fn set_max_instance_count_raw(&mut self, value: u64) -> &mut Self {
+        self.max_instance_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_triangle_count`]
+    pub fn set_max_triangle_count_raw(&mut self, value: u64) -> &mut Self {
+        self.max_triangle_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_descriptor_set_acceleration_structures`]
+    pub fn set_max_descriptor_set_acceleration_structures_raw(&mut self, value: u32) -> &mut Self {
+        self.max_descriptor_set_acceleration_structures = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::shader_group_handle_size`]
+    pub fn shader_group_handle_size(&self) -> u32 {
+        self.shader_group_handle_size
+    }
+    ///Gets the value of [`Self::max_recursion_depth`]
+    pub fn max_recursion_depth(&self) -> u32 {
+        self.max_recursion_depth
+    }
+    ///Gets the value of [`Self::max_shader_group_stride`]
+    pub fn max_shader_group_stride(&self) -> u32 {
+        self.max_shader_group_stride
+    }
+    ///Gets the value of [`Self::shader_group_base_alignment`]
+    pub fn shader_group_base_alignment(&self) -> u32 {
+        self.shader_group_base_alignment
+    }
+    ///Gets the value of [`Self::max_geometry_count`]
+    pub fn max_geometry_count(&self) -> u64 {
+        self.max_geometry_count
+    }
+    ///Gets the value of [`Self::max_instance_count`]
+    pub fn max_instance_count(&self) -> u64 {
+        self.max_instance_count
+    }
+    ///Gets the value of [`Self::max_triangle_count`]
+    pub fn max_triangle_count(&self) -> u64 {
+        self.max_triangle_count
+    }
+    ///Gets the value of [`Self::max_descriptor_set_acceleration_structures`]
+    pub fn max_descriptor_set_acceleration_structures(&self) -> u32 {
+        self.max_descriptor_set_acceleration_structures
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::shader_group_handle_size`]
+    pub fn shader_group_handle_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_recursion_depth`]
+    pub fn max_recursion_depth_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_shader_group_stride`]
+    pub fn max_shader_group_stride_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::shader_group_base_alignment`]
+    pub fn shader_group_base_alignment_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_geometry_count`]
+    pub fn max_geometry_count_mut(&mut self) -> &mut u64 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_instance_count`]
+    pub fn max_instance_count_mut(&mut self) -> &mut u64 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_triangle_count`]
+    pub fn max_triangle_count_mut(&mut self) -> &mut u64 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::max_descriptor_set_acceleration_structures`]
+    pub fn max_descriptor_set_acceleration_structures_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_group_handle_size`]
+    pub fn set_shader_group_handle_size(&mut self, value: u32) -> &mut Self {
+        self.shader_group_handle_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_recursion_depth`]
+    pub fn set_max_recursion_depth(&mut self, value: u32) -> &mut Self {
+        self.max_recursion_depth = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_shader_group_stride`]
+    pub fn set_max_shader_group_stride(&mut self, value: u32) -> &mut Self {
+        self.max_shader_group_stride = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_group_base_alignment`]
+    pub fn set_shader_group_base_alignment(&mut self, value: u32) -> &mut Self {
+        self.shader_group_base_alignment = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_geometry_count`]
+    pub fn set_max_geometry_count(&mut self, value: u64) -> &mut Self {
+        self.max_geometry_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_instance_count`]
+    pub fn set_max_instance_count(&mut self, value: u64) -> &mut Self {
+        self.max_instance_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_triangle_count`]
+    pub fn set_max_triangle_count(&mut self, value: u64) -> &mut Self {
+        self.max_triangle_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_descriptor_set_acceleration_structures`]
+    pub fn set_max_descriptor_set_acceleration_structures(&mut self, value: u32) -> &mut Self {
+        self.max_descriptor_set_acceleration_structures = value;
+        self
+    }
 }

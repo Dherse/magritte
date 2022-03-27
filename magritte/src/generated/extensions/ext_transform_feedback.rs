@@ -50,9 +50,8 @@ pub const EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -60,7 +59,7 @@ pub struct PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`transform_feedback`] indicates whether
     ///the implementation supports transform feedback and shader modules **can**
     ///declare the `TransformFeedback` capability.
@@ -68,6 +67,132 @@ pub struct PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
     ///[`geometry_streams`] indicates whether the
     ///implementation supports the `GeometryStreams` SPIR-V capability.
     geometry_streams: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            transform_feedback: 0,
+            geometry_streams: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::transform_feedback`]
+    pub fn transform_feedback_raw(&self) -> Bool32 {
+        self.transform_feedback
+    }
+    ///Gets the raw value of [`Self::geometry_streams`]
+    pub fn geometry_streams_raw(&self) -> Bool32 {
+        self.geometry_streams
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::transform_feedback`]
+    pub fn set_transform_feedback_raw(&mut self, value: Bool32) -> &mut Self {
+        self.transform_feedback = value;
+        self
+    }
+    ///Sets the raw value of [`Self::geometry_streams`]
+    pub fn set_geometry_streams_raw(&mut self, value: Bool32) -> &mut Self {
+        self.geometry_streams = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::transform_feedback`]
+    pub fn transform_feedback(&self) -> bool {
+        unsafe { std::mem::transmute(self.transform_feedback as u8) }
+    }
+    ///Gets the value of [`Self::geometry_streams`]
+    pub fn geometry_streams(&self) -> bool {
+        unsafe { std::mem::transmute(self.geometry_streams as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::transform_feedback`]
+    pub fn transform_feedback_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.transform_feedback as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.transform_feedback as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::geometry_streams`]
+    pub fn geometry_streams_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.geometry_streams as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.geometry_streams as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::transform_feedback`]
+    pub fn set_transform_feedback(&mut self, value: bool) -> &mut Self {
+        self.transform_feedback = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::geometry_streams`]
+    pub fn set_geometry_streams(&mut self, value: bool) -> &mut Self {
+        self.geometry_streams = value as u8 as u32;
+        self
+    }
 }
 ///[VkPhysicalDeviceTransformFeedbackPropertiesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceTransformFeedbackPropertiesEXT.html) - Structure describing transform feedback properties that can be supported by an implementation
 ///# C Specifications
@@ -142,9 +267,8 @@ pub struct PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -152,7 +276,7 @@ pub struct PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`max_transform_feedback_streams`]
     ///is the maximum number of vertex streams that can be output from geometry
     ///shaders declared with the `GeometryStreams` capability.
@@ -209,6 +333,337 @@ pub struct PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
     ///**must** not be called.
     transform_feedback_draw: Bool32,
 }
+impl<'lt> Default for PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            max_transform_feedback_streams: 0,
+            max_transform_feedback_buffers: 0,
+            max_transform_feedback_buffer_size: Default::default(),
+            max_transform_feedback_stream_data_size: 0,
+            max_transform_feedback_buffer_data_size: 0,
+            max_transform_feedback_buffer_data_stride: 0,
+            transform_feedback_queries: 0,
+            transform_feedback_streams_lines_triangles: 0,
+            transform_feedback_rasterization_stream_select: 0,
+            transform_feedback_draw: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::max_transform_feedback_streams`]
+    pub fn max_transform_feedback_streams_raw(&self) -> u32 {
+        self.max_transform_feedback_streams
+    }
+    ///Gets the raw value of [`Self::max_transform_feedback_buffers`]
+    pub fn max_transform_feedback_buffers_raw(&self) -> u32 {
+        self.max_transform_feedback_buffers
+    }
+    ///Gets the raw value of [`Self::max_transform_feedback_stream_data_size`]
+    pub fn max_transform_feedback_stream_data_size_raw(&self) -> u32 {
+        self.max_transform_feedback_stream_data_size
+    }
+    ///Gets the raw value of [`Self::max_transform_feedback_buffer_data_size`]
+    pub fn max_transform_feedback_buffer_data_size_raw(&self) -> u32 {
+        self.max_transform_feedback_buffer_data_size
+    }
+    ///Gets the raw value of [`Self::max_transform_feedback_buffer_data_stride`]
+    pub fn max_transform_feedback_buffer_data_stride_raw(&self) -> u32 {
+        self.max_transform_feedback_buffer_data_stride
+    }
+    ///Gets the raw value of [`Self::transform_feedback_queries`]
+    pub fn transform_feedback_queries_raw(&self) -> Bool32 {
+        self.transform_feedback_queries
+    }
+    ///Gets the raw value of [`Self::transform_feedback_streams_lines_triangles`]
+    pub fn transform_feedback_streams_lines_triangles_raw(&self) -> Bool32 {
+        self.transform_feedback_streams_lines_triangles
+    }
+    ///Gets the raw value of [`Self::transform_feedback_rasterization_stream_select`]
+    pub fn transform_feedback_rasterization_stream_select_raw(&self) -> Bool32 {
+        self.transform_feedback_rasterization_stream_select
+    }
+    ///Gets the raw value of [`Self::transform_feedback_draw`]
+    pub fn transform_feedback_draw_raw(&self) -> Bool32 {
+        self.transform_feedback_draw
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_transform_feedback_streams`]
+    pub fn set_max_transform_feedback_streams_raw(&mut self, value: u32) -> &mut Self {
+        self.max_transform_feedback_streams = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_transform_feedback_buffers`]
+    pub fn set_max_transform_feedback_buffers_raw(&mut self, value: u32) -> &mut Self {
+        self.max_transform_feedback_buffers = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_transform_feedback_stream_data_size`]
+    pub fn set_max_transform_feedback_stream_data_size_raw(&mut self, value: u32) -> &mut Self {
+        self.max_transform_feedback_stream_data_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_transform_feedback_buffer_data_size`]
+    pub fn set_max_transform_feedback_buffer_data_size_raw(&mut self, value: u32) -> &mut Self {
+        self.max_transform_feedback_buffer_data_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_transform_feedback_buffer_data_stride`]
+    pub fn set_max_transform_feedback_buffer_data_stride_raw(&mut self, value: u32) -> &mut Self {
+        self.max_transform_feedback_buffer_data_stride = value;
+        self
+    }
+    ///Sets the raw value of [`Self::transform_feedback_queries`]
+    pub fn set_transform_feedback_queries_raw(&mut self, value: Bool32) -> &mut Self {
+        self.transform_feedback_queries = value;
+        self
+    }
+    ///Sets the raw value of [`Self::transform_feedback_streams_lines_triangles`]
+    pub fn set_transform_feedback_streams_lines_triangles_raw(&mut self, value: Bool32) -> &mut Self {
+        self.transform_feedback_streams_lines_triangles = value;
+        self
+    }
+    ///Sets the raw value of [`Self::transform_feedback_rasterization_stream_select`]
+    pub fn set_transform_feedback_rasterization_stream_select_raw(&mut self, value: Bool32) -> &mut Self {
+        self.transform_feedback_rasterization_stream_select = value;
+        self
+    }
+    ///Sets the raw value of [`Self::transform_feedback_draw`]
+    pub fn set_transform_feedback_draw_raw(&mut self, value: Bool32) -> &mut Self {
+        self.transform_feedback_draw = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::max_transform_feedback_streams`]
+    pub fn max_transform_feedback_streams(&self) -> u32 {
+        self.max_transform_feedback_streams
+    }
+    ///Gets the value of [`Self::max_transform_feedback_buffers`]
+    pub fn max_transform_feedback_buffers(&self) -> u32 {
+        self.max_transform_feedback_buffers
+    }
+    ///Gets the value of [`Self::max_transform_feedback_buffer_size`]
+    pub fn max_transform_feedback_buffer_size(&self) -> DeviceSize {
+        self.max_transform_feedback_buffer_size
+    }
+    ///Gets the value of [`Self::max_transform_feedback_stream_data_size`]
+    pub fn max_transform_feedback_stream_data_size(&self) -> u32 {
+        self.max_transform_feedback_stream_data_size
+    }
+    ///Gets the value of [`Self::max_transform_feedback_buffer_data_size`]
+    pub fn max_transform_feedback_buffer_data_size(&self) -> u32 {
+        self.max_transform_feedback_buffer_data_size
+    }
+    ///Gets the value of [`Self::max_transform_feedback_buffer_data_stride`]
+    pub fn max_transform_feedback_buffer_data_stride(&self) -> u32 {
+        self.max_transform_feedback_buffer_data_stride
+    }
+    ///Gets the value of [`Self::transform_feedback_queries`]
+    pub fn transform_feedback_queries(&self) -> bool {
+        unsafe { std::mem::transmute(self.transform_feedback_queries as u8) }
+    }
+    ///Gets the value of [`Self::transform_feedback_streams_lines_triangles`]
+    pub fn transform_feedback_streams_lines_triangles(&self) -> bool {
+        unsafe { std::mem::transmute(self.transform_feedback_streams_lines_triangles as u8) }
+    }
+    ///Gets the value of [`Self::transform_feedback_rasterization_stream_select`]
+    pub fn transform_feedback_rasterization_stream_select(&self) -> bool {
+        unsafe { std::mem::transmute(self.transform_feedback_rasterization_stream_select as u8) }
+    }
+    ///Gets the value of [`Self::transform_feedback_draw`]
+    pub fn transform_feedback_draw(&self) -> bool {
+        unsafe { std::mem::transmute(self.transform_feedback_draw as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::max_transform_feedback_streams`]
+    pub fn max_transform_feedback_streams_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_transform_feedback_buffers`]
+    pub fn max_transform_feedback_buffers_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_transform_feedback_buffer_size`]
+    pub fn max_transform_feedback_buffer_size_mut(&mut self) -> &mut DeviceSize {
+        &mut self.max_transform_feedback_buffer_size
+    }
+    ///Gets a mutable reference to the value of [`Self::max_transform_feedback_stream_data_size`]
+    pub fn max_transform_feedback_stream_data_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_transform_feedback_buffer_data_size`]
+    pub fn max_transform_feedback_buffer_data_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_transform_feedback_buffer_data_stride`]
+    pub fn max_transform_feedback_buffer_data_stride_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::transform_feedback_queries`]
+    pub fn transform_feedback_queries_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.transform_feedback_queries as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.transform_feedback_queries as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::transform_feedback_streams_lines_triangles`]
+    pub fn transform_feedback_streams_lines_triangles_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.transform_feedback_streams_lines_triangles as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.transform_feedback_streams_lines_triangles as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::transform_feedback_rasterization_stream_select`]
+    pub fn transform_feedback_rasterization_stream_select_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.transform_feedback_rasterization_stream_select as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.transform_feedback_rasterization_stream_select as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::transform_feedback_draw`]
+    pub fn transform_feedback_draw_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.transform_feedback_draw as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.transform_feedback_draw as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::max_transform_feedback_streams`]
+    pub fn set_max_transform_feedback_streams(&mut self, value: u32) -> &mut Self {
+        self.max_transform_feedback_streams = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_transform_feedback_buffers`]
+    pub fn set_max_transform_feedback_buffers(&mut self, value: u32) -> &mut Self {
+        self.max_transform_feedback_buffers = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_transform_feedback_buffer_size`]
+    pub fn set_max_transform_feedback_buffer_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.max_transform_feedback_buffer_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_transform_feedback_stream_data_size`]
+    pub fn set_max_transform_feedback_stream_data_size(&mut self, value: u32) -> &mut Self {
+        self.max_transform_feedback_stream_data_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_transform_feedback_buffer_data_size`]
+    pub fn set_max_transform_feedback_buffer_data_size(&mut self, value: u32) -> &mut Self {
+        self.max_transform_feedback_buffer_data_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_transform_feedback_buffer_data_stride`]
+    pub fn set_max_transform_feedback_buffer_data_stride(&mut self, value: u32) -> &mut Self {
+        self.max_transform_feedback_buffer_data_stride = value;
+        self
+    }
+    ///Sets the raw value of [`Self::transform_feedback_queries`]
+    pub fn set_transform_feedback_queries(&mut self, value: bool) -> &mut Self {
+        self.transform_feedback_queries = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::transform_feedback_streams_lines_triangles`]
+    pub fn set_transform_feedback_streams_lines_triangles(&mut self, value: bool) -> &mut Self {
+        self.transform_feedback_streams_lines_triangles = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::transform_feedback_rasterization_stream_select`]
+    pub fn set_transform_feedback_rasterization_stream_select(&mut self, value: bool) -> &mut Self {
+        self.transform_feedback_rasterization_stream_select = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::transform_feedback_draw`]
+    pub fn set_transform_feedback_draw(&mut self, value: bool) -> &mut Self {
+        self.transform_feedback_draw = value as u8 as u32;
+        self
+    }
+}
 ///[VkPipelineRasterizationStateStreamCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineRasterizationStateStreamCreateInfoEXT.html) - Structure defining the geometry stream used for rasterization
 ///# C Specifications
 ///The vertex stream used for rasterization is specified by adding a
@@ -254,9 +709,8 @@ pub struct PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PipelineRasterizationStateStreamCreateInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -264,10 +718,95 @@ pub struct PipelineRasterizationStateStreamCreateInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
     flags: PipelineRasterizationStateStreamCreateFlagsEXT,
     ///[`rasterization_stream`] is the vertex stream selected for
     ///rasterization.
     rasterization_stream: u32,
+}
+impl<'lt> Default for PipelineRasterizationStateStreamCreateInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            flags: Default::default(),
+            rasterization_stream: 0,
+        }
+    }
+}
+impl<'lt> PipelineRasterizationStateStreamCreateInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::rasterization_stream`]
+    pub fn rasterization_stream_raw(&self) -> u32 {
+        self.rasterization_stream
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::rasterization_stream`]
+    pub fn set_rasterization_stream_raw(&mut self, value: u32) -> &mut Self {
+        self.rasterization_stream = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> PipelineRasterizationStateStreamCreateFlagsEXT {
+        self.flags
+    }
+    ///Gets the value of [`Self::rasterization_stream`]
+    pub fn rasterization_stream(&self) -> u32 {
+        self.rasterization_stream
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut PipelineRasterizationStateStreamCreateFlagsEXT {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::rasterization_stream`]
+    pub fn rasterization_stream_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::ext_transform_feedback::PipelineRasterizationStateStreamCreateFlagsEXT,
+    ) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::rasterization_stream`]
+    pub fn set_rasterization_stream(&mut self, value: u32) -> &mut Self {
+        self.rasterization_stream = value;
+        self
+    }
 }

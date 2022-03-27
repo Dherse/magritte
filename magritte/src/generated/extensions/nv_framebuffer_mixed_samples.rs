@@ -115,10 +115,10 @@ impl CoverageModulationModeNV {
 /// - [`coverage_modulation_mode`] is a [`CoverageModulationModeNV`] value controlling which color
 ///   components are modulated.
 /// - [`coverage_modulation_table_enable`] controls whether the modulation factor is looked up from
-///   a table in [`p_coverage_modulation_table`].
+///   a table in [`coverage_modulation_table`].
 /// - [`coverage_modulation_table_count`] is the number of elements in
-///   [`p_coverage_modulation_table`].
-/// - [`p_coverage_modulation_table`] is a table of modulation factors containing a value for each
+///   [`coverage_modulation_table`].
+/// - [`coverage_modulation_table`] is a table of modulation factors containing a value for each
 ///   number of covered samples.
 ///# Description
 ///If [`coverage_modulation_table_enable`] is [`FALSE`], then for each
@@ -134,10 +134,10 @@ impl CoverageModulationModeNV {
 ///is computed using a programmable lookup table.
 ///The lookup table has N / M elements, and the element of the table is
 ///selected by:
-/// - R = [`p_coverage_modulation_table`][popcount(associated coverage bits)-1]
+/// - R = [`coverage_modulation_table`][popcount(associated coverage bits)-1]
 ///Note that the table does not have an entry for popcount(associated
 ///coverage bits) = 0, because such samples would have been killed.The values of
-/// [`p_coverage_modulation_table`]**may** be rounded to an
+/// [`coverage_modulation_table`]**may** be rounded to an
 ///implementation-dependent precision, which is at least as fine as 1 /
 ///N, and clamped to [0,1].For each color attachment with a floating point or normalized color
 /// format,
@@ -173,9 +173,8 @@ impl CoverageModulationModeNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PipelineCoverageModulationStateCreateInfoNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -183,19 +182,186 @@ pub struct PipelineCoverageModulationStateCreateInfoNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
     flags: PipelineCoverageModulationStateCreateFlagsNV,
     ///[`coverage_modulation_mode`] is a [`CoverageModulationModeNV`] value
     ///controlling which color components are modulated.
     coverage_modulation_mode: CoverageModulationModeNV,
     ///[`coverage_modulation_table_enable`] controls whether the modulation
-    ///factor is looked up from a table in [`p_coverage_modulation_table`].
+    ///factor is looked up from a table in [`coverage_modulation_table`].
     coverage_modulation_table_enable: Bool32,
     ///[`coverage_modulation_table_count`] is the number of elements in
-    ///[`p_coverage_modulation_table`].
+    ///[`coverage_modulation_table`].
     coverage_modulation_table_count: u32,
-    ///[`p_coverage_modulation_table`] is a table of modulation factors
+    ///[`coverage_modulation_table`] is a table of modulation factors
     ///containing a value for each number of covered samples.
-    p_coverage_modulation_table: *mut f32,
+    coverage_modulation_table: *const f32,
+}
+impl<'lt> Default for PipelineCoverageModulationStateCreateInfoNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            flags: Default::default(),
+            coverage_modulation_mode: Default::default(),
+            coverage_modulation_table_enable: 0,
+            coverage_modulation_table_count: 0,
+            coverage_modulation_table: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> PipelineCoverageModulationStateCreateInfoNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::coverage_modulation_table_enable`]
+    pub fn coverage_modulation_table_enable_raw(&self) -> Bool32 {
+        self.coverage_modulation_table_enable
+    }
+    ///Gets the raw value of [`Self::coverage_modulation_table_count`]
+    pub fn coverage_modulation_table_count_raw(&self) -> u32 {
+        self.coverage_modulation_table_count
+    }
+    ///Gets the raw value of [`Self::coverage_modulation_table`]
+    pub fn coverage_modulation_table_raw(&self) -> *const f32 {
+        self.coverage_modulation_table
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::coverage_modulation_table_enable`]
+    pub fn set_coverage_modulation_table_enable_raw(&mut self, value: Bool32) -> &mut Self {
+        self.coverage_modulation_table_enable = value;
+        self
+    }
+    ///Sets the raw value of [`Self::coverage_modulation_table_count`]
+    pub fn set_coverage_modulation_table_count_raw(&mut self, value: u32) -> &mut Self {
+        self.coverage_modulation_table_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::coverage_modulation_table`]
+    pub fn set_coverage_modulation_table_raw(&mut self, value: *const f32) -> &mut Self {
+        self.coverage_modulation_table = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> PipelineCoverageModulationStateCreateFlagsNV {
+        self.flags
+    }
+    ///Gets the value of [`Self::coverage_modulation_mode`]
+    pub fn coverage_modulation_mode(&self) -> CoverageModulationModeNV {
+        self.coverage_modulation_mode
+    }
+    ///Gets the value of [`Self::coverage_modulation_table_enable`]
+    pub fn coverage_modulation_table_enable(&self) -> bool {
+        unsafe { std::mem::transmute(self.coverage_modulation_table_enable as u8) }
+    }
+    ///Gets the value of [`Self::coverage_modulation_table_count`]
+    pub fn coverage_modulation_table_count(&self) -> u32 {
+        self.coverage_modulation_table_count
+    }
+    ///Gets the value of [`Self::coverage_modulation_table`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn coverage_modulation_table(&self) -> &[f32] {
+        std::slice::from_raw_parts(
+            self.coverage_modulation_table,
+            self.coverage_modulation_table_count as usize,
+        )
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut PipelineCoverageModulationStateCreateFlagsNV {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::coverage_modulation_mode`]
+    pub fn coverage_modulation_mode_mut(&mut self) -> &mut CoverageModulationModeNV {
+        &mut self.coverage_modulation_mode
+    }
+    ///Gets a mutable reference to the value of [`Self::coverage_modulation_table_enable`]
+    pub fn coverage_modulation_table_enable_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.coverage_modulation_table_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.coverage_modulation_table_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::coverage_modulation_table_count`]
+    pub fn coverage_modulation_table_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::nv_framebuffer_mixed_samples::PipelineCoverageModulationStateCreateFlagsNV,
+    ) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::coverage_modulation_mode`]
+    pub fn set_coverage_modulation_mode(
+        &mut self,
+        value: crate::extensions::nv_framebuffer_mixed_samples::CoverageModulationModeNV,
+    ) -> &mut Self {
+        self.coverage_modulation_mode = value;
+        self
+    }
+    ///Sets the raw value of [`Self::coverage_modulation_table_enable`]
+    pub fn set_coverage_modulation_table_enable(&mut self, value: bool) -> &mut Self {
+        self.coverage_modulation_table_enable = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::coverage_modulation_table_count`]
+    pub fn set_coverage_modulation_table_count(&mut self, value: u32) -> &mut Self {
+        self.coverage_modulation_table_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::coverage_modulation_table`]
+    pub fn set_coverage_modulation_table(&mut self, value: &'lt [f32]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.coverage_modulation_table = value.as_ptr();
+        self.coverage_modulation_table_count = len_;
+        self
+    }
 }

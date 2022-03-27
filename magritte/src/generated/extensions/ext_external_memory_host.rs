@@ -33,7 +33,7 @@ pub const EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value specifying the handle type.
-/// - [`p_host_pointer`] is the host pointer to import from.
+/// - [`host_pointer`] is the host pointer to import from.
 ///# Description
 ///Importing memory from a host pointer shares ownership of the memory between
 ///the host and the Vulkan implementation.
@@ -57,14 +57,14 @@ pub const EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// - If [`handle_type`] is not `0`, it **must** be
 ///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT` or
 ///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT`
-/// - [`p_host_pointer`]**must** be a pointer aligned to an integer multiple of
+/// - [`host_pointer`]**must** be a pointer aligned to an integer multiple of
 ///   [`PhysicalDeviceExternalMemoryHostPropertiesEXT::min_imported_host_pointer_alignment`]
 /// - If [`handle_type`] is `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT`,
-///   [`p_host_pointer`]**must** be a pointer to `allocationSize` number of bytes of host memory,
+///   [`host_pointer`]**must** be a pointer to `allocationSize` number of bytes of host memory,
 ///   where `allocationSize` is the member of the [`MemoryAllocateInfo`] structure this structure is
 ///   chained to
 /// - If [`handle_type`] is `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT`,
-///   [`p_host_pointer`]**must** be a pointer to `allocationSize` number of bytes of host mapped
+///   [`host_pointer`]**must** be a pointer to `allocationSize` number of bytes of host mapped
 ///   foreign memory, where `allocationSize` is the member of the [`MemoryAllocateInfo`] structure
 ///   this structure is chained to
 ///Valid Usage (Implicit)
@@ -82,9 +82,8 @@ pub const EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ImportMemoryHostPointerInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -92,12 +91,100 @@ pub struct ImportMemoryHostPointerInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value
     ///specifying the handle type.
     handle_type: ExternalMemoryHandleTypeFlagBits,
-    ///[`p_host_pointer`] is the host pointer to import from.
-    p_host_pointer: *const c_void,
+    ///[`host_pointer`] is the host pointer to import from.
+    host_pointer: *mut c_void,
+}
+impl<'lt> Default for ImportMemoryHostPointerInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            handle_type: Default::default(),
+            host_pointer: std::ptr::null_mut(),
+        }
+    }
+}
+impl<'lt> ImportMemoryHostPointerInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::host_pointer`]
+    pub fn host_pointer_raw(&self) -> &*mut c_void {
+        &self.host_pointer
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::host_pointer`]
+    pub fn set_host_pointer_raw(&mut self, value: *mut c_void) -> &mut Self {
+        self.host_pointer = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::handle_type`]
+    pub fn handle_type(&self) -> ExternalMemoryHandleTypeFlagBits {
+        self.handle_type
+    }
+    ///Gets the value of [`Self::host_pointer`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn host_pointer(&self) -> &c_void {
+        &*self.host_pointer
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_type`]
+    pub fn handle_type_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlagBits {
+        &mut self.handle_type
+    }
+    ///Gets a mutable reference to the value of [`Self::host_pointer`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn host_pointer_mut(&mut self) -> &mut c_void {
+        &mut *self.host_pointer
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_type`]
+    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> &mut Self {
+        self.handle_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::host_pointer`]
+    pub fn set_host_pointer(&mut self, value: &'lt mut std::ffi::c_void) -> &mut Self {
+        self.host_pointer = value as *mut _;
+        self
+    }
 }
 ///[VkMemoryHostPointerPropertiesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryHostPointerPropertiesEXT.html) - Properties of external memory host pointer
 ///# C Specifications
@@ -132,9 +219,8 @@ pub struct ImportMemoryHostPointerInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct MemoryHostPointerPropertiesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -142,10 +228,85 @@ pub struct MemoryHostPointerPropertiesEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`memory_type_bits`] is a bitmask containing one bit set for every
     ///memory type which the specified host pointer **can** be imported as.
     memory_type_bits: u32,
+}
+impl<'lt> Default for MemoryHostPointerPropertiesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            memory_type_bits: 0,
+        }
+    }
+}
+impl<'lt> MemoryHostPointerPropertiesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::memory_type_bits`]
+    pub fn memory_type_bits_raw(&self) -> u32 {
+        self.memory_type_bits
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::memory_type_bits`]
+    pub fn set_memory_type_bits_raw(&mut self, value: u32) -> &mut Self {
+        self.memory_type_bits = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::memory_type_bits`]
+    pub fn memory_type_bits(&self) -> u32 {
+        self.memory_type_bits
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::memory_type_bits`]
+    pub fn memory_type_bits_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::memory_type_bits`]
+    pub fn set_memory_type_bits(&mut self, value: u32) -> &mut Self {
+        self.memory_type_bits = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceExternalMemoryHostPropertiesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceExternalMemoryHostPropertiesEXT.html) - Structure describing external memory host pointer limits that can be supported by an implementation
 ///# C Specifications
@@ -184,9 +345,8 @@ pub struct MemoryHostPointerPropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceExternalMemoryHostPropertiesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -194,10 +354,76 @@ pub struct PhysicalDeviceExternalMemoryHostPropertiesEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`min_imported_host_pointer_alignment`] is the minimum **required**
     ///alignment, in bytes, for the base address and size of host pointers that
     ///**can** be imported to a Vulkan memory object.
     ///The value **must** be a power of two.
     min_imported_host_pointer_alignment: DeviceSize,
+}
+impl<'lt> Default for PhysicalDeviceExternalMemoryHostPropertiesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            min_imported_host_pointer_alignment: Default::default(),
+        }
+    }
+}
+impl<'lt> PhysicalDeviceExternalMemoryHostPropertiesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::min_imported_host_pointer_alignment`]
+    pub fn min_imported_host_pointer_alignment(&self) -> DeviceSize {
+        self.min_imported_host_pointer_alignment
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::min_imported_host_pointer_alignment`]
+    pub fn min_imported_host_pointer_alignment_mut(&mut self) -> &mut DeviceSize {
+        &mut self.min_imported_host_pointer_alignment
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::min_imported_host_pointer_alignment`]
+    pub fn set_min_imported_host_pointer_alignment(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.min_imported_host_pointer_alignment = value;
+        self
+    }
 }

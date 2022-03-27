@@ -648,9 +648,8 @@ impl ChromaLocation {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceFeatures2<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -658,10 +657,76 @@ pub struct PhysicalDeviceFeatures2<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`features`] is a [`PhysicalDeviceFeatures`] structure describing
     ///the fine-grained features of the Vulkan 1.0 API.
     features: PhysicalDeviceFeatures,
+}
+impl<'lt> Default for PhysicalDeviceFeatures2<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            features: Default::default(),
+        }
+    }
+}
+impl<'lt> PhysicalDeviceFeatures2<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::features`]
+    pub fn features(&self) -> PhysicalDeviceFeatures {
+        self.features
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::features`]
+    pub fn features_mut(&mut self) -> &mut PhysicalDeviceFeatures {
+        &mut self.features
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::features`]
+    pub fn set_features(&mut self, value: crate::vulkan1_0::PhysicalDeviceFeatures) -> &mut Self {
+        self.features = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceProperties2.html) - Structure specifying physical device properties
 ///# C Specifications
@@ -744,9 +809,8 @@ pub struct PhysicalDeviceFeatures2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug)]
+#[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceProperties2<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -754,12 +818,78 @@ pub struct PhysicalDeviceProperties2<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`properties`] is a [`PhysicalDeviceProperties`] structure
     ///describing properties of the physical device.
     ///This structure is written with the same values as if it were written by
     ///[`GetPhysicalDeviceProperties`].
     properties: PhysicalDeviceProperties,
+}
+impl<'lt> Default for PhysicalDeviceProperties2<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            properties: Default::default(),
+        }
+    }
+}
+impl<'lt> PhysicalDeviceProperties2<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::properties`]
+    pub fn properties(&self) -> PhysicalDeviceProperties {
+        self.properties
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::properties`]
+    pub fn properties_mut(&mut self) -> &mut PhysicalDeviceProperties {
+        &mut self.properties
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::properties`]
+    pub fn set_properties(&mut self, value: crate::vulkan1_0::PhysicalDeviceProperties) -> &mut Self {
+        self.properties = value;
+        self
+    }
 }
 ///[VkFormatProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFormatProperties2.html) - Structure specifying image format properties
 ///# C Specifications
@@ -805,9 +935,8 @@ pub struct PhysicalDeviceProperties2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct FormatProperties2<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -815,10 +944,76 @@ pub struct FormatProperties2<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`format_properties`] is a [`FormatProperties`] structure
     ///describing features supported by the requested format.
     format_properties: FormatProperties,
+}
+impl<'lt> Default for FormatProperties2<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            format_properties: Default::default(),
+        }
+    }
+}
+impl<'lt> FormatProperties2<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::format_properties`]
+    pub fn format_properties(&self) -> FormatProperties {
+        self.format_properties
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::format_properties`]
+    pub fn format_properties_mut(&mut self) -> &mut FormatProperties {
+        &mut self.format_properties
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::format_properties`]
+    pub fn set_format_properties(&mut self, value: crate::vulkan1_0::FormatProperties) -> &mut Self {
+        self.format_properties = value;
+        self
+    }
 }
 ///[VkImageFormatProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageFormatProperties2.html) - Structure specifying an image format properties
 ///# C Specifications
@@ -868,9 +1063,8 @@ pub struct FormatProperties2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ImageFormatProperties2<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -881,10 +1075,76 @@ pub struct ImageFormatProperties2<'lt> {
     ///The [`p_next`] chain of [`ImageFormatProperties2`] is used to allow
     ///the specification of additional capabilities to be returned from
     ///[`GetPhysicalDeviceImageFormatProperties2`].
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`image_format_properties`] is a [`ImageFormatProperties`] structure
     ///in which capabilities are returned.
     image_format_properties: ImageFormatProperties,
+}
+impl<'lt> Default for ImageFormatProperties2<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            image_format_properties: Default::default(),
+        }
+    }
+}
+impl<'lt> ImageFormatProperties2<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::image_format_properties`]
+    pub fn image_format_properties(&self) -> ImageFormatProperties {
+        self.image_format_properties
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::image_format_properties`]
+    pub fn image_format_properties_mut(&mut self) -> &mut ImageFormatProperties {
+        &mut self.image_format_properties
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::image_format_properties`]
+    pub fn set_image_format_properties(&mut self, value: crate::vulkan1_0::ImageFormatProperties) -> &mut Self {
+        self.image_format_properties = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceImageFormatInfo2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceImageFormatInfo2.html) - Structure specifying image creation parameters
 ///# C Specifications
@@ -962,9 +1222,8 @@ pub struct ImageFormatProperties2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceImageFormatInfo2<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -975,7 +1234,7 @@ pub struct PhysicalDeviceImageFormatInfo2<'lt> {
     ///The [`p_next`] chain of [`PhysicalDeviceImageFormatInfo2`] is used
     ///to provide additional image parameters to
     ///[`GetPhysicalDeviceImageFormatProperties2`].
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`format`] is a [`Format`] value indicating the image format,
     ///corresponding to [`ImageCreateInfo`]::[`format`].
     format: Format,
@@ -993,6 +1252,121 @@ pub struct PhysicalDeviceImageFormatInfo2<'lt> {
     ///additional parameters of the image, corresponding to
     ///[`ImageCreateInfo`]::[`flags`].
     flags: ImageCreateFlags,
+}
+impl<'lt> Default for PhysicalDeviceImageFormatInfo2<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            format: Default::default(),
+            type_: Default::default(),
+            tiling: Default::default(),
+            usage: Default::default(),
+            flags: Default::default(),
+        }
+    }
+}
+impl<'lt> PhysicalDeviceImageFormatInfo2<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::format`]
+    pub fn format(&self) -> Format {
+        self.format
+    }
+    ///Gets the value of [`Self::type_`]
+    pub fn type_(&self) -> ImageType {
+        self.type_
+    }
+    ///Gets the value of [`Self::tiling`]
+    pub fn tiling(&self) -> ImageTiling {
+        self.tiling
+    }
+    ///Gets the value of [`Self::usage`]
+    pub fn usage(&self) -> ImageUsageFlags {
+        self.usage
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> ImageCreateFlags {
+        self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::format`]
+    pub fn format_mut(&mut self) -> &mut Format {
+        &mut self.format
+    }
+    ///Gets a mutable reference to the value of [`Self::type_`]
+    pub fn type__mut(&mut self) -> &mut ImageType {
+        &mut self.type_
+    }
+    ///Gets a mutable reference to the value of [`Self::tiling`]
+    pub fn tiling_mut(&mut self) -> &mut ImageTiling {
+        &mut self.tiling
+    }
+    ///Gets a mutable reference to the value of [`Self::usage`]
+    pub fn usage_mut(&mut self) -> &mut ImageUsageFlags {
+        &mut self.usage
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut ImageCreateFlags {
+        &mut self.flags
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::format`]
+    pub fn set_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+        self.format = value;
+        self
+    }
+    ///Sets the raw value of [`Self::type_`]
+    pub fn set_type_(&mut self, value: crate::vulkan1_0::ImageType) -> &mut Self {
+        self.type_ = value;
+        self
+    }
+    ///Sets the raw value of [`Self::tiling`]
+    pub fn set_tiling(&mut self, value: crate::vulkan1_0::ImageTiling) -> &mut Self {
+        self.tiling = value;
+        self
+    }
+    ///Sets the raw value of [`Self::usage`]
+    pub fn set_usage(&mut self, value: crate::vulkan1_0::ImageUsageFlags) -> &mut Self {
+        self.usage = value;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(&mut self, value: crate::vulkan1_0::ImageCreateFlags) -> &mut Self {
+        self.flags = value;
+        self
+    }
 }
 ///[VkQueueFamilyProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueueFamilyProperties2.html) - Structure providing information about a queue family
 ///# C Specifications
@@ -1037,9 +1411,8 @@ pub struct PhysicalDeviceImageFormatInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct QueueFamilyProperties2<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1047,11 +1420,77 @@ pub struct QueueFamilyProperties2<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`queue_family_properties`] is a [`QueueFamilyProperties`] structure
     ///which is populated with the same values as in
     ///[`GetPhysicalDeviceQueueFamilyProperties`].
     queue_family_properties: QueueFamilyProperties,
+}
+impl<'lt> Default for QueueFamilyProperties2<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            queue_family_properties: Default::default(),
+        }
+    }
+}
+impl<'lt> QueueFamilyProperties2<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::queue_family_properties`]
+    pub fn queue_family_properties(&self) -> QueueFamilyProperties {
+        self.queue_family_properties
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::queue_family_properties`]
+    pub fn queue_family_properties_mut(&mut self) -> &mut QueueFamilyProperties {
+        &mut self.queue_family_properties
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::queue_family_properties`]
+    pub fn set_queue_family_properties(&mut self, value: crate::vulkan1_0::QueueFamilyProperties) -> &mut Self {
+        self.queue_family_properties = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceMemoryProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMemoryProperties2.html) - Structure specifying physical device memory properties
 ///# C Specifications
@@ -1094,9 +1533,8 @@ pub struct QueueFamilyProperties2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceMemoryProperties2<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1104,11 +1542,77 @@ pub struct PhysicalDeviceMemoryProperties2<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`memory_properties`] is a [`PhysicalDeviceMemoryProperties`]
     ///structure which is populated with the same values as in
     ///[`GetPhysicalDeviceMemoryProperties`].
     memory_properties: PhysicalDeviceMemoryProperties,
+}
+impl<'lt> Default for PhysicalDeviceMemoryProperties2<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            memory_properties: Default::default(),
+        }
+    }
+}
+impl<'lt> PhysicalDeviceMemoryProperties2<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::memory_properties`]
+    pub fn memory_properties(&self) -> PhysicalDeviceMemoryProperties {
+        self.memory_properties
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::memory_properties`]
+    pub fn memory_properties_mut(&mut self) -> &mut PhysicalDeviceMemoryProperties {
+        &mut self.memory_properties
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::memory_properties`]
+    pub fn set_memory_properties(&mut self, value: crate::vulkan1_0::PhysicalDeviceMemoryProperties) -> &mut Self {
+        self.memory_properties = value;
+        self
+    }
 }
 ///[VkSparseImageFormatProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageFormatProperties2.html) - Structure specifying sparse image format properties
 ///# C Specifications
@@ -1149,9 +1653,8 @@ pub struct PhysicalDeviceMemoryProperties2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct SparseImageFormatProperties2<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1159,11 +1662,77 @@ pub struct SparseImageFormatProperties2<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`properties`] is a [`SparseImageFormatProperties`] structure
     ///which is populated with the same values as in
     ///[`GetPhysicalDeviceSparseImageFormatProperties`].
     properties: SparseImageFormatProperties,
+}
+impl<'lt> Default for SparseImageFormatProperties2<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            properties: Default::default(),
+        }
+    }
+}
+impl<'lt> SparseImageFormatProperties2<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::properties`]
+    pub fn properties(&self) -> SparseImageFormatProperties {
+        self.properties
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::properties`]
+    pub fn properties_mut(&mut self) -> &mut SparseImageFormatProperties {
+        &mut self.properties
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::properties`]
+    pub fn set_properties(&mut self, value: crate::vulkan1_0::SparseImageFormatProperties) -> &mut Self {
+        self.properties = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceSparseImageFormatInfo2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSparseImageFormatInfo2.html) - Structure specifying sparse image format inputs
 ///# C Specifications
@@ -1226,9 +1795,8 @@ pub struct SparseImageFormatProperties2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceSparseImageFormatInfo2<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1236,7 +1804,7 @@ pub struct PhysicalDeviceSparseImageFormatInfo2<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`format`] is the image format.
     format: Format,
     ///[`type_`] is the dimensionality of image.
@@ -1248,6 +1816,121 @@ pub struct PhysicalDeviceSparseImageFormatInfo2<'lt> {
     usage: ImageUsageFlags,
     ///[`tiling`] is the tiling arrangement of the texel blocks in memory.
     tiling: ImageTiling,
+}
+impl<'lt> Default for PhysicalDeviceSparseImageFormatInfo2<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            format: Default::default(),
+            type_: Default::default(),
+            samples: Default::default(),
+            usage: Default::default(),
+            tiling: Default::default(),
+        }
+    }
+}
+impl<'lt> PhysicalDeviceSparseImageFormatInfo2<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::format`]
+    pub fn format(&self) -> Format {
+        self.format
+    }
+    ///Gets the value of [`Self::type_`]
+    pub fn type_(&self) -> ImageType {
+        self.type_
+    }
+    ///Gets the value of [`Self::samples`]
+    pub fn samples(&self) -> SampleCountFlagBits {
+        self.samples
+    }
+    ///Gets the value of [`Self::usage`]
+    pub fn usage(&self) -> ImageUsageFlags {
+        self.usage
+    }
+    ///Gets the value of [`Self::tiling`]
+    pub fn tiling(&self) -> ImageTiling {
+        self.tiling
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::format`]
+    pub fn format_mut(&mut self) -> &mut Format {
+        &mut self.format
+    }
+    ///Gets a mutable reference to the value of [`Self::type_`]
+    pub fn type__mut(&mut self) -> &mut ImageType {
+        &mut self.type_
+    }
+    ///Gets a mutable reference to the value of [`Self::samples`]
+    pub fn samples_mut(&mut self) -> &mut SampleCountFlagBits {
+        &mut self.samples
+    }
+    ///Gets a mutable reference to the value of [`Self::usage`]
+    pub fn usage_mut(&mut self) -> &mut ImageUsageFlags {
+        &mut self.usage
+    }
+    ///Gets a mutable reference to the value of [`Self::tiling`]
+    pub fn tiling_mut(&mut self) -> &mut ImageTiling {
+        &mut self.tiling
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::format`]
+    pub fn set_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+        self.format = value;
+        self
+    }
+    ///Sets the raw value of [`Self::type_`]
+    pub fn set_type_(&mut self, value: crate::vulkan1_0::ImageType) -> &mut Self {
+        self.type_ = value;
+        self
+    }
+    ///Sets the raw value of [`Self::samples`]
+    pub fn set_samples(&mut self, value: crate::vulkan1_0::SampleCountFlagBits) -> &mut Self {
+        self.samples = value;
+        self
+    }
+    ///Sets the raw value of [`Self::usage`]
+    pub fn set_usage(&mut self, value: crate::vulkan1_0::ImageUsageFlags) -> &mut Self {
+        self.usage = value;
+        self
+    }
+    ///Sets the raw value of [`Self::tiling`]
+    pub fn set_tiling(&mut self, value: crate::vulkan1_0::ImageTiling) -> &mut Self {
+        self.tiling = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceVariablePointersFeatures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceVariablePointersFeatures.html) - Structure describing variable pointers features that can be supported by an implementation
 ///# C Specifications
@@ -1313,9 +1996,8 @@ pub struct PhysicalDeviceSparseImageFormatInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceVariablePointersFeatures<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1323,7 +2005,7 @@ pub struct PhysicalDeviceVariablePointersFeatures<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`variable_pointers_storage_buffer`] specifies whether the implementation
     ///supports the SPIR-V `VariablePointersStorageBuffer` capability.
     ///When this feature is not enabled, shader modules **must** not declare the
@@ -1336,6 +2018,132 @@ pub struct PhysicalDeviceVariablePointersFeatures<'lt> {
     ///When this feature is not enabled, shader modules **must** not declare the
     ///`VariablePointers` capability.
     variable_pointers: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceVariablePointersFeatures<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            variable_pointers_storage_buffer: 0,
+            variable_pointers: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceVariablePointersFeatures<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::variable_pointers_storage_buffer`]
+    pub fn variable_pointers_storage_buffer_raw(&self) -> Bool32 {
+        self.variable_pointers_storage_buffer
+    }
+    ///Gets the raw value of [`Self::variable_pointers`]
+    pub fn variable_pointers_raw(&self) -> Bool32 {
+        self.variable_pointers
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::variable_pointers_storage_buffer`]
+    pub fn set_variable_pointers_storage_buffer_raw(&mut self, value: Bool32) -> &mut Self {
+        self.variable_pointers_storage_buffer = value;
+        self
+    }
+    ///Sets the raw value of [`Self::variable_pointers`]
+    pub fn set_variable_pointers_raw(&mut self, value: Bool32) -> &mut Self {
+        self.variable_pointers = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::variable_pointers_storage_buffer`]
+    pub fn variable_pointers_storage_buffer(&self) -> bool {
+        unsafe { std::mem::transmute(self.variable_pointers_storage_buffer as u8) }
+    }
+    ///Gets the value of [`Self::variable_pointers`]
+    pub fn variable_pointers(&self) -> bool {
+        unsafe { std::mem::transmute(self.variable_pointers as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::variable_pointers_storage_buffer`]
+    pub fn variable_pointers_storage_buffer_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.variable_pointers_storage_buffer as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.variable_pointers_storage_buffer as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::variable_pointers`]
+    pub fn variable_pointers_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.variable_pointers as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.variable_pointers as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::variable_pointers_storage_buffer`]
+    pub fn set_variable_pointers_storage_buffer(&mut self, value: bool) -> &mut Self {
+        self.variable_pointers_storage_buffer = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::variable_pointers`]
+    pub fn set_variable_pointers(&mut self, value: bool) -> &mut Self {
+        self.variable_pointers = value as u8 as u32;
+        self
+    }
 }
 ///[VkExternalMemoryProperties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryProperties.html) - Structure specifying external memory handle type capabilities
 ///# C Specifications
@@ -1384,7 +2192,7 @@ pub struct PhysicalDeviceVariablePointersFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -1402,6 +2210,59 @@ pub struct ExternalMemoryProperties {
     ///**can** be specified at the same time as `handleType` when creating an
     ///image compatible with external memory.
     compatible_handle_types: ExternalMemoryHandleTypeFlags,
+}
+impl Default for ExternalMemoryProperties {
+    fn default() -> Self {
+        Self {
+            external_memory_features: Default::default(),
+            export_from_imported_handle_types: Default::default(),
+            compatible_handle_types: Default::default(),
+        }
+    }
+}
+impl ExternalMemoryProperties {
+    ///Gets the value of [`Self::external_memory_features`]
+    pub fn external_memory_features(&self) -> ExternalMemoryFeatureFlags {
+        self.external_memory_features
+    }
+    ///Gets the value of [`Self::export_from_imported_handle_types`]
+    pub fn export_from_imported_handle_types(&self) -> ExternalMemoryHandleTypeFlags {
+        self.export_from_imported_handle_types
+    }
+    ///Gets the value of [`Self::compatible_handle_types`]
+    pub fn compatible_handle_types(&self) -> ExternalMemoryHandleTypeFlags {
+        self.compatible_handle_types
+    }
+    ///Gets a mutable reference to the value of [`Self::external_memory_features`]
+    pub fn external_memory_features_mut(&mut self) -> &mut ExternalMemoryFeatureFlags {
+        &mut self.external_memory_features
+    }
+    ///Gets a mutable reference to the value of [`Self::export_from_imported_handle_types`]
+    pub fn export_from_imported_handle_types_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlags {
+        &mut self.export_from_imported_handle_types
+    }
+    ///Gets a mutable reference to the value of [`Self::compatible_handle_types`]
+    pub fn compatible_handle_types_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlags {
+        &mut self.compatible_handle_types
+    }
+    ///Sets the raw value of [`Self::external_memory_features`]
+    pub fn set_external_memory_features(&mut self, value: crate::vulkan1_1::ExternalMemoryFeatureFlags) -> &mut Self {
+        self.external_memory_features = value;
+        self
+    }
+    ///Sets the raw value of [`Self::export_from_imported_handle_types`]
+    pub fn set_export_from_imported_handle_types(
+        &mut self,
+        value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags,
+    ) -> &mut Self {
+        self.export_from_imported_handle_types = value;
+        self
+    }
+    ///Sets the raw value of [`Self::compatible_handle_types`]
+    pub fn set_compatible_handle_types(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags) -> &mut Self {
+        self.compatible_handle_types = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceExternalImageFormatInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceExternalImageFormatInfo.html) - Structure specifying external image creation parameters
 ///# C Specifications
@@ -1453,9 +2314,8 @@ pub struct ExternalMemoryProperties {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceExternalImageFormatInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1463,11 +2323,70 @@ pub struct PhysicalDeviceExternalImageFormatInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value
     ///specifying the memory handle type that will be used with the memory
     ///associated with the image.
     handle_type: ExternalMemoryHandleTypeFlagBits,
+}
+impl<'lt> Default for PhysicalDeviceExternalImageFormatInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            handle_type: Default::default(),
+        }
+    }
+}
+impl<'lt> PhysicalDeviceExternalImageFormatInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::handle_type`]
+    pub fn handle_type(&self) -> ExternalMemoryHandleTypeFlagBits {
+        self.handle_type
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_type`]
+    pub fn handle_type_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlagBits {
+        &mut self.handle_type
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_type`]
+    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> &mut Self {
+        self.handle_type = value;
+        self
+    }
 }
 ///[VkExternalImageFormatProperties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalImageFormatProperties.html) - Structure specifying supported external handle properties
 ///# C Specifications
@@ -1506,9 +2425,8 @@ pub struct PhysicalDeviceExternalImageFormatInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ExternalImageFormatProperties<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1516,11 +2434,77 @@ pub struct ExternalImageFormatProperties<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`external_memory_properties`] is a [`ExternalMemoryProperties`]
     ///structure specifying various capabilities of the external handle type
     ///when used with the specified image creation parameters.
     external_memory_properties: ExternalMemoryProperties,
+}
+impl<'lt> Default for ExternalImageFormatProperties<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            external_memory_properties: Default::default(),
+        }
+    }
+}
+impl<'lt> ExternalImageFormatProperties<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::external_memory_properties`]
+    pub fn external_memory_properties(&self) -> ExternalMemoryProperties {
+        self.external_memory_properties
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::external_memory_properties`]
+    pub fn external_memory_properties_mut(&mut self) -> &mut ExternalMemoryProperties {
+        &mut self.external_memory_properties
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::external_memory_properties`]
+    pub fn set_external_memory_properties(&mut self, value: crate::vulkan1_1::ExternalMemoryProperties) -> &mut Self {
+        self.external_memory_properties = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceExternalBufferInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceExternalBufferInfo.html) - Structure specifying buffer creation parameters
 ///# C Specifications
@@ -1573,9 +2557,8 @@ pub struct ExternalImageFormatProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceExternalBufferInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1583,7 +2566,7 @@ pub struct PhysicalDeviceExternalBufferInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`BufferCreateFlagBits`] describing
     ///additional parameters of the buffer, corresponding to
     ///[`BufferCreateInfo`]::[`flags`].
@@ -1596,6 +2579,93 @@ pub struct PhysicalDeviceExternalBufferInfo<'lt> {
     ///specifying the memory handle type that will be used with the memory
     ///associated with the buffer.
     handle_type: ExternalMemoryHandleTypeFlagBits,
+}
+impl<'lt> Default for PhysicalDeviceExternalBufferInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            flags: Default::default(),
+            usage: Default::default(),
+            handle_type: Default::default(),
+        }
+    }
+}
+impl<'lt> PhysicalDeviceExternalBufferInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> BufferCreateFlags {
+        self.flags
+    }
+    ///Gets the value of [`Self::usage`]
+    pub fn usage(&self) -> BufferUsageFlags {
+        self.usage
+    }
+    ///Gets the value of [`Self::handle_type`]
+    pub fn handle_type(&self) -> ExternalMemoryHandleTypeFlagBits {
+        self.handle_type
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut BufferCreateFlags {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::usage`]
+    pub fn usage_mut(&mut self) -> &mut BufferUsageFlags {
+        &mut self.usage
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_type`]
+    pub fn handle_type_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlagBits {
+        &mut self.handle_type
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(&mut self, value: crate::vulkan1_0::BufferCreateFlags) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::usage`]
+    pub fn set_usage(&mut self, value: crate::vulkan1_0::BufferUsageFlags) -> &mut Self {
+        self.usage = value;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_type`]
+    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> &mut Self {
+        self.handle_type = value;
+        self
+    }
 }
 ///[VkExternalBufferProperties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalBufferProperties.html) - Structure specifying supported external handle capabilities
 ///# C Specifications
@@ -1637,9 +2707,8 @@ pub struct PhysicalDeviceExternalBufferInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ExternalBufferProperties<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1647,11 +2716,77 @@ pub struct ExternalBufferProperties<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`external_memory_properties`] is a [`ExternalMemoryProperties`]
     ///structure specifying various capabilities of the external handle type
     ///when used with the specified buffer creation parameters.
     external_memory_properties: ExternalMemoryProperties,
+}
+impl<'lt> Default for ExternalBufferProperties<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            external_memory_properties: Default::default(),
+        }
+    }
+}
+impl<'lt> ExternalBufferProperties<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::external_memory_properties`]
+    pub fn external_memory_properties(&self) -> ExternalMemoryProperties {
+        self.external_memory_properties
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::external_memory_properties`]
+    pub fn external_memory_properties_mut(&mut self) -> &mut ExternalMemoryProperties {
+        &mut self.external_memory_properties
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::external_memory_properties`]
+    pub fn set_external_memory_properties(&mut self, value: crate::vulkan1_1::ExternalMemoryProperties) -> &mut Self {
+        self.external_memory_properties = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceIDProperties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceIDProperties.html) - Structure specifying IDs related to the physical device
 ///# C Specifications
@@ -1731,9 +2866,8 @@ pub struct ExternalBufferProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceIdProperties<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1741,7 +2875,7 @@ pub struct PhysicalDeviceIdProperties<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
     device_uuid: [u8; UUID_SIZE],
     ///No documentation found
@@ -1752,6 +2886,187 @@ pub struct PhysicalDeviceIdProperties<'lt> {
     device_node_mask: u32,
     ///No documentation found
     device_luid_valid: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceIdProperties<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            device_uuid: [0; UUID_SIZE],
+            driver_uuid: [0; UUID_SIZE],
+            device_luid: [0; LUID_SIZE],
+            device_node_mask: 0,
+            device_luid_valid: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceIdProperties<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::device_uuid`]
+    pub fn device_uuid_raw(&self) -> [u8; UUID_SIZE] {
+        self.device_uuid
+    }
+    ///Gets the raw value of [`Self::driver_uuid`]
+    pub fn driver_uuid_raw(&self) -> [u8; UUID_SIZE] {
+        self.driver_uuid
+    }
+    ///Gets the raw value of [`Self::device_luid`]
+    pub fn device_luid_raw(&self) -> [u8; LUID_SIZE] {
+        self.device_luid
+    }
+    ///Gets the raw value of [`Self::device_node_mask`]
+    pub fn device_node_mask_raw(&self) -> u32 {
+        self.device_node_mask
+    }
+    ///Gets the raw value of [`Self::device_luid_valid`]
+    pub fn device_luid_valid_raw(&self) -> Bool32 {
+        self.device_luid_valid
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_uuid`]
+    pub fn set_device_uuid_raw(&mut self, value: [u8; UUID_SIZE]) -> &mut Self {
+        self.device_uuid = value;
+        self
+    }
+    ///Sets the raw value of [`Self::driver_uuid`]
+    pub fn set_driver_uuid_raw(&mut self, value: [u8; UUID_SIZE]) -> &mut Self {
+        self.driver_uuid = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_luid`]
+    pub fn set_device_luid_raw(&mut self, value: [u8; LUID_SIZE]) -> &mut Self {
+        self.device_luid = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_node_mask`]
+    pub fn set_device_node_mask_raw(&mut self, value: u32) -> &mut Self {
+        self.device_node_mask = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_luid_valid`]
+    pub fn set_device_luid_valid_raw(&mut self, value: Bool32) -> &mut Self {
+        self.device_luid_valid = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::device_uuid`]
+    pub fn device_uuid(&self) -> &[u8; UUID_SIZE] {
+        &getter
+    }
+    ///Gets the value of [`Self::driver_uuid`]
+    pub fn driver_uuid(&self) -> &[u8; UUID_SIZE] {
+        &getter
+    }
+    ///Gets the value of [`Self::device_luid`]
+    pub fn device_luid(&self) -> &[u8; LUID_SIZE] {
+        &getter
+    }
+    ///Gets the value of [`Self::device_node_mask`]
+    pub fn device_node_mask(&self) -> u32 {
+        self.device_node_mask
+    }
+    ///Gets the value of [`Self::device_luid_valid`]
+    pub fn device_luid_valid(&self) -> bool {
+        unsafe { std::mem::transmute(self.device_luid_valid as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::device_uuid`]
+    pub fn device_uuid_mut(&mut self) -> &mut [u8; UUID_SIZE] {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::driver_uuid`]
+    pub fn driver_uuid_mut(&mut self) -> &mut [u8; UUID_SIZE] {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::device_luid`]
+    pub fn device_luid_mut(&mut self) -> &mut [u8; LUID_SIZE] {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::device_node_mask`]
+    pub fn device_node_mask_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::device_luid_valid`]
+    pub fn device_luid_valid_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.device_luid_valid as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.device_luid_valid as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::device_uuid`]
+    pub fn set_device_uuid(&mut self, value: [u8; crate::core::UUID_SIZE]) -> &mut Self {
+        self.device_uuid = value;
+        self
+    }
+    ///Sets the raw value of [`Self::driver_uuid`]
+    pub fn set_driver_uuid(&mut self, value: [u8; crate::core::UUID_SIZE]) -> &mut Self {
+        self.driver_uuid = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_luid`]
+    pub fn set_device_luid(&mut self, value: [u8; crate::vulkan1_1::LUID_SIZE]) -> &mut Self {
+        self.device_luid = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_node_mask`]
+    pub fn set_device_node_mask(&mut self, value: u32) -> &mut Self {
+        self.device_node_mask = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_luid_valid`]
+    pub fn set_device_luid_valid(&mut self, value: bool) -> &mut Self {
+        self.device_luid_valid = value as u8 as u32;
+        self
+    }
 }
 ///[VkExternalMemoryImageCreateInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryImageCreateInfo.html) - Specify that an image may be backed by external memory
 ///# C Specifications
@@ -1792,9 +3107,8 @@ pub struct PhysicalDeviceIdProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ExternalMemoryImageCreateInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1802,11 +3116,70 @@ pub struct ExternalMemoryImageCreateInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`handle_types`] is zero, or a bitmask of
     ///[`ExternalMemoryHandleTypeFlagBits`] specifying one or more external
     ///memory handle types.
     handle_types: ExternalMemoryHandleTypeFlags,
+}
+impl<'lt> Default for ExternalMemoryImageCreateInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            handle_types: Default::default(),
+        }
+    }
+}
+impl<'lt> ExternalMemoryImageCreateInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::handle_types`]
+    pub fn handle_types(&self) -> ExternalMemoryHandleTypeFlags {
+        self.handle_types
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_types`]
+    pub fn handle_types_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlags {
+        &mut self.handle_types
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_types`]
+    pub fn set_handle_types(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags) -> &mut Self {
+        self.handle_types = value;
+        self
+    }
 }
 ///[VkExternalMemoryBufferCreateInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryBufferCreateInfo.html) - Specify that a buffer may be backed by external memory
 ///# C Specifications
@@ -1847,9 +3220,8 @@ pub struct ExternalMemoryImageCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ExternalMemoryBufferCreateInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1857,11 +3229,70 @@ pub struct ExternalMemoryBufferCreateInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`handle_types`] is zero, or a bitmask of
     ///[`ExternalMemoryHandleTypeFlagBits`] specifying one or more external
     ///memory handle types.
     handle_types: ExternalMemoryHandleTypeFlags,
+}
+impl<'lt> Default for ExternalMemoryBufferCreateInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            handle_types: Default::default(),
+        }
+    }
+}
+impl<'lt> ExternalMemoryBufferCreateInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::handle_types`]
+    pub fn handle_types(&self) -> ExternalMemoryHandleTypeFlags {
+        self.handle_types
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_types`]
+    pub fn handle_types_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlags {
+        &mut self.handle_types
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_types`]
+    pub fn set_handle_types(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags) -> &mut Self {
+        self.handle_types = value;
+        self
+    }
 }
 ///[VkExportMemoryAllocateInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExportMemoryAllocateInfo.html) - Specify exportable handle types for a device memory object
 ///# C Specifications
@@ -1908,9 +3339,8 @@ pub struct ExternalMemoryBufferCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ExportMemoryAllocateInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1918,13 +3348,72 @@ pub struct ExportMemoryAllocateInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`handle_types`] is a bitmask of
     ///[`ExternalMemoryHandleTypeFlagBits`] specifying one or more memory
     ///handle types the application **can** export from the resulting allocation.
     ///The application **can** request multiple handle types for the same
     ///allocation.
     handle_types: ExternalMemoryHandleTypeFlags,
+}
+impl<'lt> Default for ExportMemoryAllocateInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            handle_types: Default::default(),
+        }
+    }
+}
+impl<'lt> ExportMemoryAllocateInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::handle_types`]
+    pub fn handle_types(&self) -> ExternalMemoryHandleTypeFlags {
+        self.handle_types
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_types`]
+    pub fn handle_types_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlags {
+        &mut self.handle_types
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_types`]
+    pub fn set_handle_types(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags) -> &mut Self {
+        self.handle_types = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceExternalSemaphoreInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceExternalSemaphoreInfo.html) - Structure specifying semaphore creation parameters.
 ///# C Specifications
@@ -1967,9 +3456,8 @@ pub struct ExportMemoryAllocateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceExternalSemaphoreInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -1977,11 +3465,70 @@ pub struct PhysicalDeviceExternalSemaphoreInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`handle_type`] is a [`ExternalSemaphoreHandleTypeFlagBits`] value
     ///specifying the external semaphore handle type for which capabilities
     ///will be returned.
     handle_type: ExternalSemaphoreHandleTypeFlagBits,
+}
+impl<'lt> Default for PhysicalDeviceExternalSemaphoreInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            handle_type: Default::default(),
+        }
+    }
+}
+impl<'lt> PhysicalDeviceExternalSemaphoreInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::handle_type`]
+    pub fn handle_type(&self) -> ExternalSemaphoreHandleTypeFlagBits {
+        self.handle_type
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_type`]
+    pub fn handle_type_mut(&mut self) -> &mut ExternalSemaphoreHandleTypeFlagBits {
+        &mut self.handle_type
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_type`]
+    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlagBits) -> &mut Self {
+        self.handle_type = value;
+        self
+    }
 }
 ///[VkExternalSemaphoreProperties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalSemaphoreProperties.html) - Structure describing supported external semaphore handle features
 ///# C Specifications
@@ -2032,9 +3579,8 @@ pub struct PhysicalDeviceExternalSemaphoreInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ExternalSemaphoreProperties<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -2042,7 +3588,7 @@ pub struct ExternalSemaphoreProperties<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`export_from_imported_handle_types`] is a bitmask of
     ///[`ExternalSemaphoreHandleTypeFlagBits`] specifying which types of
     ///imported handle `handleType`**can** be exported from.
@@ -2056,6 +3602,109 @@ pub struct ExternalSemaphoreProperties<'lt> {
     ///[`ExternalSemaphoreFeatureFlagBits`] describing the features of
     ///`handleType`.
     external_semaphore_features: ExternalSemaphoreFeatureFlags,
+}
+impl<'lt> Default for ExternalSemaphoreProperties<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            export_from_imported_handle_types: Default::default(),
+            compatible_handle_types: Default::default(),
+            external_semaphore_features: Default::default(),
+        }
+    }
+}
+impl<'lt> ExternalSemaphoreProperties<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::export_from_imported_handle_types`]
+    pub fn export_from_imported_handle_types(&self) -> ExternalSemaphoreHandleTypeFlags {
+        self.export_from_imported_handle_types
+    }
+    ///Gets the value of [`Self::compatible_handle_types`]
+    pub fn compatible_handle_types(&self) -> ExternalSemaphoreHandleTypeFlags {
+        self.compatible_handle_types
+    }
+    ///Gets the value of [`Self::external_semaphore_features`]
+    pub fn external_semaphore_features(&self) -> ExternalSemaphoreFeatureFlags {
+        self.external_semaphore_features
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::export_from_imported_handle_types`]
+    pub fn export_from_imported_handle_types_mut(&mut self) -> &mut ExternalSemaphoreHandleTypeFlags {
+        &mut self.export_from_imported_handle_types
+    }
+    ///Gets a mutable reference to the value of [`Self::compatible_handle_types`]
+    pub fn compatible_handle_types_mut(&mut self) -> &mut ExternalSemaphoreHandleTypeFlags {
+        &mut self.compatible_handle_types
+    }
+    ///Gets a mutable reference to the value of [`Self::external_semaphore_features`]
+    pub fn external_semaphore_features_mut(&mut self) -> &mut ExternalSemaphoreFeatureFlags {
+        &mut self.external_semaphore_features
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::export_from_imported_handle_types`]
+    pub fn set_export_from_imported_handle_types(
+        &mut self,
+        value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlags,
+    ) -> &mut Self {
+        self.export_from_imported_handle_types = value;
+        self
+    }
+    ///Sets the raw value of [`Self::compatible_handle_types`]
+    pub fn set_compatible_handle_types(
+        &mut self,
+        value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlags,
+    ) -> &mut Self {
+        self.compatible_handle_types = value;
+        self
+    }
+    ///Sets the raw value of [`Self::external_semaphore_features`]
+    pub fn set_external_semaphore_features(
+        &mut self,
+        value: crate::vulkan1_1::ExternalSemaphoreFeatureFlags,
+    ) -> &mut Self {
+        self.external_semaphore_features = value;
+        self
+    }
 }
 ///[VkExportSemaphoreCreateInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExportSemaphoreCreateInfo.html) - Structure specifying handle types that can be exported from a semaphore
 ///# C Specifications
@@ -2102,9 +3751,8 @@ pub struct ExternalSemaphoreProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ExportSemaphoreCreateInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -2112,7 +3760,7 @@ pub struct ExportSemaphoreCreateInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`handle_types`] is a bitmask of
     ///[`ExternalSemaphoreHandleTypeFlagBits`] specifying one or more
     ///semaphore handle types the application **can** export from the resulting
@@ -2120,6 +3768,65 @@ pub struct ExportSemaphoreCreateInfo<'lt> {
     ///The application **can** request multiple handle types for the same
     ///semaphore.
     handle_types: ExternalSemaphoreHandleTypeFlags,
+}
+impl<'lt> Default for ExportSemaphoreCreateInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            handle_types: Default::default(),
+        }
+    }
+}
+impl<'lt> ExportSemaphoreCreateInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::handle_types`]
+    pub fn handle_types(&self) -> ExternalSemaphoreHandleTypeFlags {
+        self.handle_types
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_types`]
+    pub fn handle_types_mut(&mut self) -> &mut ExternalSemaphoreHandleTypeFlags {
+        &mut self.handle_types
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_types`]
+    pub fn set_handle_types(&mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlags) -> &mut Self {
+        self.handle_types = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceExternalFenceInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceExternalFenceInfo.html) - Structure specifying fence creation parameters.
 ///# C Specifications
@@ -2161,9 +3868,8 @@ pub struct ExportSemaphoreCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceExternalFenceInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -2171,11 +3877,70 @@ pub struct PhysicalDeviceExternalFenceInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`handle_type`] is a [`ExternalFenceHandleTypeFlagBits`] value
     ///specifying an external fence handle type for which capabilities will be
     ///returned.
     handle_type: ExternalFenceHandleTypeFlagBits,
+}
+impl<'lt> Default for PhysicalDeviceExternalFenceInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            handle_type: Default::default(),
+        }
+    }
+}
+impl<'lt> PhysicalDeviceExternalFenceInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::handle_type`]
+    pub fn handle_type(&self) -> ExternalFenceHandleTypeFlagBits {
+        self.handle_type
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_type`]
+    pub fn handle_type_mut(&mut self) -> &mut ExternalFenceHandleTypeFlagBits {
+        &mut self.handle_type
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_type`]
+    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalFenceHandleTypeFlagBits) -> &mut Self {
+        self.handle_type = value;
+        self
+    }
 }
 ///[VkExternalFenceProperties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalFenceProperties.html) - Structure describing supported external fence handle features
 ///# C Specifications
@@ -2224,16 +3989,15 @@ pub struct PhysicalDeviceExternalFenceInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ExternalFenceProperties<'lt> {
     _lifetime: PhantomData<&'lt ()>,
     ///No documentation found
     s_type: StructureType,
     ///No documentation found
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`export_from_imported_handle_types`] is a bitmask of
     ///[`ExternalFenceHandleTypeFlagBits`] indicating which types of
     ///imported handle `handleType`**can** be exported from.
@@ -2247,6 +4011,103 @@ pub struct ExternalFenceProperties<'lt> {
     ///[`ExternalFenceFeatureFlagBits`] indicating the features of
     ///`handleType`.
     external_fence_features: ExternalFenceFeatureFlags,
+}
+impl<'lt> Default for ExternalFenceProperties<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            export_from_imported_handle_types: Default::default(),
+            compatible_handle_types: Default::default(),
+            external_fence_features: Default::default(),
+        }
+    }
+}
+impl<'lt> ExternalFenceProperties<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::export_from_imported_handle_types`]
+    pub fn export_from_imported_handle_types(&self) -> ExternalFenceHandleTypeFlags {
+        self.export_from_imported_handle_types
+    }
+    ///Gets the value of [`Self::compatible_handle_types`]
+    pub fn compatible_handle_types(&self) -> ExternalFenceHandleTypeFlags {
+        self.compatible_handle_types
+    }
+    ///Gets the value of [`Self::external_fence_features`]
+    pub fn external_fence_features(&self) -> ExternalFenceFeatureFlags {
+        self.external_fence_features
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::export_from_imported_handle_types`]
+    pub fn export_from_imported_handle_types_mut(&mut self) -> &mut ExternalFenceHandleTypeFlags {
+        &mut self.export_from_imported_handle_types
+    }
+    ///Gets a mutable reference to the value of [`Self::compatible_handle_types`]
+    pub fn compatible_handle_types_mut(&mut self) -> &mut ExternalFenceHandleTypeFlags {
+        &mut self.compatible_handle_types
+    }
+    ///Gets a mutable reference to the value of [`Self::external_fence_features`]
+    pub fn external_fence_features_mut(&mut self) -> &mut ExternalFenceFeatureFlags {
+        &mut self.external_fence_features
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::export_from_imported_handle_types`]
+    pub fn set_export_from_imported_handle_types(
+        &mut self,
+        value: crate::vulkan1_1::ExternalFenceHandleTypeFlags,
+    ) -> &mut Self {
+        self.export_from_imported_handle_types = value;
+        self
+    }
+    ///Sets the raw value of [`Self::compatible_handle_types`]
+    pub fn set_compatible_handle_types(&mut self, value: crate::vulkan1_1::ExternalFenceHandleTypeFlags) -> &mut Self {
+        self.compatible_handle_types = value;
+        self
+    }
+    ///Sets the raw value of [`Self::external_fence_features`]
+    pub fn set_external_fence_features(&mut self, value: crate::vulkan1_1::ExternalFenceFeatureFlags) -> &mut Self {
+        self.external_fence_features = value;
+        self
+    }
 }
 ///[VkExportFenceCreateInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExportFenceCreateInfo.html) - Structure specifying handle types that can be exported from a fence
 ///# C Specifications
@@ -2292,9 +4153,8 @@ pub struct ExternalFenceProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ExportFenceCreateInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -2302,12 +4162,71 @@ pub struct ExportFenceCreateInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`handle_types`] is a bitmask of
     ///[`ExternalFenceHandleTypeFlagBits`] specifying one or more fence
     ///handle types the application **can** export from the resulting fence.
     ///The application **can** request multiple handle types for the same fence.
     handle_types: ExternalFenceHandleTypeFlags,
+}
+impl<'lt> Default for ExportFenceCreateInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            handle_types: Default::default(),
+        }
+    }
+}
+impl<'lt> ExportFenceCreateInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::handle_types`]
+    pub fn handle_types(&self) -> ExternalFenceHandleTypeFlags {
+        self.handle_types
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_types`]
+    pub fn handle_types_mut(&mut self) -> &mut ExternalFenceHandleTypeFlags {
+        &mut self.handle_types
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_types`]
+    pub fn set_handle_types(&mut self, value: crate::vulkan1_1::ExternalFenceHandleTypeFlags) -> &mut Self {
+        self.handle_types = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceMultiviewFeatures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMultiviewFeatures.html) - Structure describing multiview features that can be supported by an implementation
 ///# C Specifications
@@ -2360,9 +4279,8 @@ pub struct ExportFenceCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceMultiviewFeatures<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -2370,7 +4288,7 @@ pub struct PhysicalDeviceMultiviewFeatures<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`multiview`] specifies whether
     ///the implementation supports multiview rendering within a render pass.
     ///If this feature is not enabled, the view mask of each subpass **must**
@@ -2389,6 +4307,169 @@ pub struct PhysicalDeviceMultiviewFeatures<'lt> {
     ///subpass with a non-zero view mask **must** not include any tessellation
     ///shaders.
     multiview_tessellation_shader: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceMultiviewFeatures<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            multiview: 0,
+            multiview_geometry_shader: 0,
+            multiview_tessellation_shader: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceMultiviewFeatures<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::multiview`]
+    pub fn multiview_raw(&self) -> Bool32 {
+        self.multiview
+    }
+    ///Gets the raw value of [`Self::multiview_geometry_shader`]
+    pub fn multiview_geometry_shader_raw(&self) -> Bool32 {
+        self.multiview_geometry_shader
+    }
+    ///Gets the raw value of [`Self::multiview_tessellation_shader`]
+    pub fn multiview_tessellation_shader_raw(&self) -> Bool32 {
+        self.multiview_tessellation_shader
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::multiview`]
+    pub fn set_multiview_raw(&mut self, value: Bool32) -> &mut Self {
+        self.multiview = value;
+        self
+    }
+    ///Sets the raw value of [`Self::multiview_geometry_shader`]
+    pub fn set_multiview_geometry_shader_raw(&mut self, value: Bool32) -> &mut Self {
+        self.multiview_geometry_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::multiview_tessellation_shader`]
+    pub fn set_multiview_tessellation_shader_raw(&mut self, value: Bool32) -> &mut Self {
+        self.multiview_tessellation_shader = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::multiview`]
+    pub fn multiview(&self) -> bool {
+        unsafe { std::mem::transmute(self.multiview as u8) }
+    }
+    ///Gets the value of [`Self::multiview_geometry_shader`]
+    pub fn multiview_geometry_shader(&self) -> bool {
+        unsafe { std::mem::transmute(self.multiview_geometry_shader as u8) }
+    }
+    ///Gets the value of [`Self::multiview_tessellation_shader`]
+    pub fn multiview_tessellation_shader(&self) -> bool {
+        unsafe { std::mem::transmute(self.multiview_tessellation_shader as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::multiview`]
+    pub fn multiview_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.multiview as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.multiview as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::multiview_geometry_shader`]
+    pub fn multiview_geometry_shader_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.multiview_geometry_shader as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.multiview_geometry_shader as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::multiview_tessellation_shader`]
+    pub fn multiview_tessellation_shader_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.multiview_tessellation_shader as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.multiview_tessellation_shader as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::multiview`]
+    pub fn set_multiview(&mut self, value: bool) -> &mut Self {
+        self.multiview = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::multiview_geometry_shader`]
+    pub fn set_multiview_geometry_shader(&mut self, value: bool) -> &mut Self {
+        self.multiview_geometry_shader = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::multiview_tessellation_shader`]
+    pub fn set_multiview_tessellation_shader(&mut self, value: bool) -> &mut Self {
+        self.multiview_tessellation_shader = value as u8 as u32;
+        self
+    }
 }
 ///[VkPhysicalDeviceMultiviewProperties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMultiviewProperties.html) - Structure describing multiview limits that can be supported by an implementation
 ///# C Specifications
@@ -2432,9 +4513,8 @@ pub struct PhysicalDeviceMultiviewFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceMultiviewProperties<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -2442,11 +4522,109 @@ pub struct PhysicalDeviceMultiviewProperties<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
     max_multiview_view_count: u32,
     ///No documentation found
     max_multiview_instance_index: u32,
+}
+impl<'lt> Default for PhysicalDeviceMultiviewProperties<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            max_multiview_view_count: 0,
+            max_multiview_instance_index: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceMultiviewProperties<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::max_multiview_view_count`]
+    pub fn max_multiview_view_count_raw(&self) -> u32 {
+        self.max_multiview_view_count
+    }
+    ///Gets the raw value of [`Self::max_multiview_instance_index`]
+    pub fn max_multiview_instance_index_raw(&self) -> u32 {
+        self.max_multiview_instance_index
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_multiview_view_count`]
+    pub fn set_max_multiview_view_count_raw(&mut self, value: u32) -> &mut Self {
+        self.max_multiview_view_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_multiview_instance_index`]
+    pub fn set_max_multiview_instance_index_raw(&mut self, value: u32) -> &mut Self {
+        self.max_multiview_instance_index = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::max_multiview_view_count`]
+    pub fn max_multiview_view_count(&self) -> u32 {
+        self.max_multiview_view_count
+    }
+    ///Gets the value of [`Self::max_multiview_instance_index`]
+    pub fn max_multiview_instance_index(&self) -> u32 {
+        self.max_multiview_instance_index
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::max_multiview_view_count`]
+    pub fn max_multiview_view_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_multiview_instance_index`]
+    pub fn max_multiview_instance_index_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::max_multiview_view_count`]
+    pub fn set_max_multiview_view_count(&mut self, value: u32) -> &mut Self {
+        self.max_multiview_view_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_multiview_instance_index`]
+    pub fn set_max_multiview_instance_index(&mut self, value: u32) -> &mut Self {
+        self.max_multiview_instance_index = value;
+        self
+    }
 }
 ///[VkRenderPassMultiviewCreateInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassMultiviewCreateInfo.html) - Structure containing multiview information for all subpasses
 ///# C Specifications
@@ -2476,16 +4654,16 @@ pub struct PhysicalDeviceMultiviewProperties<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`subpass_count`] is zero or the number of subpasses in the render pass.
-/// - [`p_view_masks`] is a pointer to an array of [`subpass_count`] view masks, where each mask is
-///   a bitfield of view indices describing which views rendering is broadcast to in each subpass,
+/// - [`view_masks`] is a pointer to an array of [`subpass_count`] view masks, where each mask is a
+///   bitfield of view indices describing which views rendering is broadcast to in each subpass,
 ///   when multiview is enabled. If [`subpass_count`] is zero, each view mask is treated as zero.
 /// - [`dependency_count`] is zero or the number of dependencies in the render pass.
-/// - [`p_view_offsets`] is a pointer to an array of [`dependency_count`] view offsets, one for each
+/// - [`view_offsets`] is a pointer to an array of [`dependency_count`] view offsets, one for each
 ///   dependency. If [`dependency_count`] is zero, each dependency’s view offset is treated as zero.
 ///   Each view offset controls which views in the source subpass the views in the destination
 ///   subpass depend on.
 /// - [`correlation_mask_count`] is zero or the number of correlation masks.
-/// - [`p_correlation_masks`] is a pointer to an array of [`correlation_mask_count`] view masks
+/// - [`correlation_masks`] is a pointer to an array of [`correlation_mask_count`] view masks
 ///   indicating sets of views that **may** be more efficient to render concurrently.
 ///# Description
 ///When a subpass uses a non-zero view mask, *multiview* functionality is
@@ -2513,14 +4691,14 @@ pub struct PhysicalDeviceMultiviewProperties<'lt> {
 ///different view mask in the source subpass and the destination subpass.
 ///If the dependency is view-local, then each view (dstView) in the
 ///destination subpass depends on the view dstView +
-///[`p_view_offsets`][dependency] in the source subpass.
+///[`view_offsets`][dependency] in the source subpass.
 ///If there is not such a view in the source subpass, then this dependency does
 ///not affect that view in the destination subpass.
 ///If the dependency is not view-local, then all views in the destination
 ///subpass depend on all views in the source subpass, and the view offset is
 ///ignored.
-///A non-zero view offset is not allowed in a self-dependency.The elements of
-/// [`p_correlation_masks`] are a set of masks of views
+///A non-zero view offset is not allowed in a self-dependency.The elements of [`correlation_masks`]
+/// are a set of masks of views
 ///indicating that views in the same mask **may** exhibit spatial coherency
 ///between the views, making it more efficient to render them concurrently.
 ///Correlation masks **must** not have a functional effect on the results of the
@@ -2565,17 +4743,17 @@ pub struct PhysicalDeviceMultiviewProperties<'lt> {
 ///non-per-view (e.g. `Position`) outputs.
 ///Pipelines compiled against a subpass that does not include this bit **must**
 ///not include the `*PerViewNV[]` outputs in their interfaces.Valid Usage
-/// - Each view index **must** not be set in more than one element of [`p_correlation_masks`]
+/// - Each view index **must** not be set in more than one element of [`correlation_masks`]
 /// - If the [`multiview`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiview)
-///   feature is not enabled, each element of [`p_view_masks`]**must** be `0`
+///   feature is not enabled, each element of [`view_masks`]**must** be `0`
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO`
-/// - If [`subpass_count`] is not `0`, [`p_view_masks`]**must** be a valid pointer to an array of
+/// - If [`subpass_count`] is not `0`, [`view_masks`]**must** be a valid pointer to an array of
 ///   [`subpass_count`]`uint32_t` values
-/// - If [`dependency_count`] is not `0`, [`p_view_offsets`]**must** be a valid pointer to an array
-///   of [`dependency_count`]`int32_t` values
-/// - If [`correlation_mask_count`] is not `0`, [`p_correlation_masks`]**must** be a valid pointer
-///   to an array of [`correlation_mask_count`]`uint32_t` values
+/// - If [`dependency_count`] is not `0`, [`view_offsets`]**must** be a valid pointer to an array of
+///   [`dependency_count`]`int32_t` values
+/// - If [`correlation_mask_count`] is not `0`, [`correlation_masks`]**must** be a valid pointer to
+///   an array of [`correlation_mask_count`]`uint32_t` values
 ///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`StructureType`]
@@ -2587,9 +4765,8 @@ pub struct PhysicalDeviceMultiviewProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct RenderPassMultiviewCreateInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -2597,32 +4774,221 @@ pub struct RenderPassMultiviewCreateInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`subpass_count`] is zero or the number of subpasses in the render
     ///pass.
     subpass_count: u32,
-    ///[`p_view_masks`] is a pointer to an array of [`subpass_count`] view
+    ///[`view_masks`] is a pointer to an array of [`subpass_count`] view
     ///masks, where each mask is a bitfield of view indices describing which
     ///views rendering is broadcast to in each subpass, when multiview is
     ///enabled.
     ///If [`subpass_count`] is zero, each view mask is treated as zero.
-    p_view_masks: *mut u32,
+    view_masks: *const u32,
     ///[`dependency_count`] is zero or the number of dependencies in the
     ///render pass.
     dependency_count: u32,
-    ///[`p_view_offsets`] is a pointer to an array of [`dependency_count`]
+    ///[`view_offsets`] is a pointer to an array of [`dependency_count`]
     ///view offsets, one for each dependency.
     ///If [`dependency_count`] is zero, each dependency’s view offset is
     ///treated as zero.
     ///Each view offset controls which views in the source subpass the views in
     ///the destination subpass depend on.
-    p_view_offsets: *mut i32,
+    view_offsets: *const i32,
     ///[`correlation_mask_count`] is zero or the number of correlation masks.
     correlation_mask_count: u32,
-    ///[`p_correlation_masks`] is a pointer to an array of
+    ///[`correlation_masks`] is a pointer to an array of
     ///[`correlation_mask_count`] view masks indicating sets of views that **may**
     ///be more efficient to render concurrently.
-    p_correlation_masks: *mut u32,
+    correlation_masks: *const u32,
+}
+impl<'lt> Default for RenderPassMultiviewCreateInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            subpass_count: 0,
+            view_masks: std::ptr::null(),
+            dependency_count: 0,
+            view_offsets: std::ptr::null(),
+            correlation_mask_count: 0,
+            correlation_masks: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> RenderPassMultiviewCreateInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::subpass_count`]
+    pub fn subpass_count_raw(&self) -> u32 {
+        self.subpass_count
+    }
+    ///Gets the raw value of [`Self::view_masks`]
+    pub fn view_masks_raw(&self) -> *const u32 {
+        self.view_masks
+    }
+    ///Gets the raw value of [`Self::dependency_count`]
+    pub fn dependency_count_raw(&self) -> u32 {
+        self.dependency_count
+    }
+    ///Gets the raw value of [`Self::view_offsets`]
+    pub fn view_offsets_raw(&self) -> *const i32 {
+        self.view_offsets
+    }
+    ///Gets the raw value of [`Self::correlation_mask_count`]
+    pub fn correlation_mask_count_raw(&self) -> u32 {
+        self.correlation_mask_count
+    }
+    ///Gets the raw value of [`Self::correlation_masks`]
+    pub fn correlation_masks_raw(&self) -> *const u32 {
+        self.correlation_masks
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::subpass_count`]
+    pub fn set_subpass_count_raw(&mut self, value: u32) -> &mut Self {
+        self.subpass_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::view_masks`]
+    pub fn set_view_masks_raw(&mut self, value: *const u32) -> &mut Self {
+        self.view_masks = value;
+        self
+    }
+    ///Sets the raw value of [`Self::dependency_count`]
+    pub fn set_dependency_count_raw(&mut self, value: u32) -> &mut Self {
+        self.dependency_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::view_offsets`]
+    pub fn set_view_offsets_raw(&mut self, value: *const i32) -> &mut Self {
+        self.view_offsets = value;
+        self
+    }
+    ///Sets the raw value of [`Self::correlation_mask_count`]
+    pub fn set_correlation_mask_count_raw(&mut self, value: u32) -> &mut Self {
+        self.correlation_mask_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::correlation_masks`]
+    pub fn set_correlation_masks_raw(&mut self, value: *const u32) -> &mut Self {
+        self.correlation_masks = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::subpass_count`]
+    pub fn subpass_count(&self) -> u32 {
+        self.subpass_count
+    }
+    ///Gets the value of [`Self::view_masks`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn view_masks(&self) -> &[u32] {
+        std::slice::from_raw_parts(self.view_masks, self.subpass_count as usize)
+    }
+    ///Gets the value of [`Self::dependency_count`]
+    pub fn dependency_count(&self) -> u32 {
+        self.dependency_count
+    }
+    ///Gets the value of [`Self::view_offsets`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn view_offsets(&self) -> &[i32] {
+        std::slice::from_raw_parts(self.view_offsets, self.dependency_count as usize)
+    }
+    ///Gets the value of [`Self::correlation_mask_count`]
+    pub fn correlation_mask_count(&self) -> u32 {
+        self.correlation_mask_count
+    }
+    ///Gets the value of [`Self::correlation_masks`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn correlation_masks(&self) -> &[u32] {
+        std::slice::from_raw_parts(self.correlation_masks, self.correlation_mask_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::subpass_count`]
+    pub fn subpass_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::dependency_count`]
+    pub fn dependency_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::correlation_mask_count`]
+    pub fn correlation_mask_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::subpass_count`]
+    pub fn set_subpass_count(&mut self, value: u32) -> &mut Self {
+        self.subpass_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::view_masks`]
+    pub fn set_view_masks(&mut self, value: &'lt [u32]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.view_masks = value.as_ptr();
+        self.subpass_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::dependency_count`]
+    pub fn set_dependency_count(&mut self, value: u32) -> &mut Self {
+        self.dependency_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::view_offsets`]
+    pub fn set_view_offsets(&mut self, value: &'lt [i32]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.view_offsets = value.as_ptr();
+        self.dependency_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::correlation_mask_count`]
+    pub fn set_correlation_mask_count(&mut self, value: u32) -> &mut Self {
+        self.correlation_mask_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::correlation_masks`]
+    pub fn set_correlation_masks(&mut self, value: &'lt [u32]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.correlation_masks = value.as_ptr();
+        self.correlation_mask_count = len_;
+        self
+    }
 }
 ///[VkPhysicalDeviceGroupProperties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceGroupProperties.html) - Structure specifying physical device group properties
 ///# C Specifications
@@ -2673,9 +5039,8 @@ pub struct RenderPassMultiviewCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceGroupProperties<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -2683,7 +5048,7 @@ pub struct PhysicalDeviceGroupProperties<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`physical_device_count`] is the number of physical devices in the
     ///group.
     physical_device_count: u32,
@@ -2699,6 +5064,135 @@ pub struct PhysicalDeviceGroupProperties<'lt> {
     ///If [`physical_device_count`] is `1`, then [`subset_allocation`]**must**
     ///be [`FALSE`].
     subset_allocation: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceGroupProperties<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            physical_device_count: 0,
+            physical_devices: [Default::default(); MAX_DEVICE_GROUP_SIZE],
+            subset_allocation: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceGroupProperties<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::physical_device_count`]
+    pub fn physical_device_count_raw(&self) -> u32 {
+        self.physical_device_count
+    }
+    ///Gets the raw value of [`Self::subset_allocation`]
+    pub fn subset_allocation_raw(&self) -> Bool32 {
+        self.subset_allocation
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::physical_device_count`]
+    pub fn set_physical_device_count_raw(&mut self, value: u32) -> &mut Self {
+        self.physical_device_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::subset_allocation`]
+    pub fn set_subset_allocation_raw(&mut self, value: Bool32) -> &mut Self {
+        self.subset_allocation = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::physical_device_count`]
+    pub fn physical_device_count(&self) -> u32 {
+        self.physical_device_count
+    }
+    ///Gets the value of [`Self::physical_devices`]
+    pub fn physical_devices(&self) -> &[PhysicalDevice; MAX_DEVICE_GROUP_SIZE] {
+        &getter
+    }
+    ///Gets the value of [`Self::subset_allocation`]
+    pub fn subset_allocation(&self) -> bool {
+        unsafe { std::mem::transmute(self.subset_allocation as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::physical_device_count`]
+    pub fn physical_device_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::physical_devices`]
+    pub fn physical_devices_mut(&mut self) -> &mut [PhysicalDevice; MAX_DEVICE_GROUP_SIZE] {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::subset_allocation`]
+    pub fn subset_allocation_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.subset_allocation as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.subset_allocation as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::physical_device_count`]
+    pub fn set_physical_device_count(&mut self, value: u32) -> &mut Self {
+        self.physical_device_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::physical_devices`]
+    pub fn set_physical_devices(
+        &mut self,
+        value: [crate::vulkan1_0::PhysicalDevice; crate::vulkan1_1::MAX_DEVICE_GROUP_SIZE],
+    ) -> &mut Self {
+        self.physical_devices = value;
+        self
+    }
+    ///Sets the raw value of [`Self::subset_allocation`]
+    pub fn set_subset_allocation(&mut self, value: bool) -> &mut Self {
+        self.subset_allocation = value as u8 as u32;
+        self
+    }
 }
 ///[VkMemoryAllocateFlagsInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryAllocateFlagsInfo.html) - Structure controlling how many instances of memory will be allocated
 ///# C Specifications
@@ -2759,9 +5253,8 @@ pub struct PhysicalDeviceGroupProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct MemoryAllocateFlagsInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -2769,7 +5262,7 @@ pub struct MemoryAllocateFlagsInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`MemoryAllocateFlagBits`] controlling
     ///the allocation.
     flags: MemoryAllocateFlags,
@@ -2777,6 +5270,88 @@ pub struct MemoryAllocateFlagsInfo<'lt> {
     ///indicating that memory **must** be allocated on each device in the mask, if
     ///`VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT` is set in [`flags`].
     device_mask: u32,
+}
+impl<'lt> Default for MemoryAllocateFlagsInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            flags: Default::default(),
+            device_mask: 0,
+        }
+    }
+}
+impl<'lt> MemoryAllocateFlagsInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::device_mask`]
+    pub fn device_mask_raw(&self) -> u32 {
+        self.device_mask
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_mask`]
+    pub fn set_device_mask_raw(&mut self, value: u32) -> &mut Self {
+        self.device_mask = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> MemoryAllocateFlags {
+        self.flags
+    }
+    ///Gets the value of [`Self::device_mask`]
+    pub fn device_mask(&self) -> u32 {
+        self.device_mask
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut MemoryAllocateFlags {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::device_mask`]
+    pub fn device_mask_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(&mut self, value: crate::vulkan1_1::MemoryAllocateFlags) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_mask`]
+    pub fn set_device_mask(&mut self, value: u32) -> &mut Self {
+        self.device_mask = value;
+        self
+    }
 }
 ///[VkBindBufferMemoryInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindBufferMemoryInfo.html) - Structure specifying how to bind a buffer to memory
 ///# C Specifications
@@ -2858,7 +5433,7 @@ pub struct MemoryAllocateFlagsInfo<'lt> {
 ///   [`ImportMemoryBufferCollectionFUCHSIA`] chained to [`MemoryAllocateInfo`]::[`p_next`]
 /// - If the [`p_next`] chain includes a [`BindBufferMemoryDeviceGroupInfo`] structure, all
 ///   instances of [`memory`] specified by
-///   [`BindBufferMemoryDeviceGroupInfo::p_device_indices`]**must** have been allocated
+///   [`BindBufferMemoryDeviceGroupInfo::device_indices`]**must** have been allocated
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO`
 /// - [`p_next`]**must** be `NULL` or a pointer to a valid instance of
@@ -2884,9 +5459,8 @@ pub struct MemoryAllocateFlagsInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct BindBufferMemoryInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -2894,7 +5468,7 @@ pub struct BindBufferMemoryInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`buffer`] is the buffer to be attached to memory.
     buffer: Buffer,
     ///[`memory`] is a [`DeviceMemory`] object describing the device
@@ -2906,6 +5480,93 @@ pub struct BindBufferMemoryInfo<'lt> {
     ///[`MemoryRequirements`]::`size` member in [`memory`], starting
     ///from [`memory_offset`] bytes, will be bound to the specified buffer.
     memory_offset: DeviceSize,
+}
+impl<'lt> Default for BindBufferMemoryInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            buffer: Default::default(),
+            memory: Default::default(),
+            memory_offset: Default::default(),
+        }
+    }
+}
+impl<'lt> BindBufferMemoryInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::buffer`]
+    pub fn buffer(&self) -> Buffer {
+        self.buffer
+    }
+    ///Gets the value of [`Self::memory`]
+    pub fn memory(&self) -> DeviceMemory {
+        self.memory
+    }
+    ///Gets the value of [`Self::memory_offset`]
+    pub fn memory_offset(&self) -> DeviceSize {
+        self.memory_offset
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::buffer`]
+    pub fn buffer_mut(&mut self) -> &mut Buffer {
+        &mut self.buffer
+    }
+    ///Gets a mutable reference to the value of [`Self::memory`]
+    pub fn memory_mut(&mut self) -> &mut DeviceMemory {
+        &mut self.memory
+    }
+    ///Gets a mutable reference to the value of [`Self::memory_offset`]
+    pub fn memory_offset_mut(&mut self) -> &mut DeviceSize {
+        &mut self.memory_offset
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::buffer`]
+    pub fn set_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+        self.buffer = value;
+        self
+    }
+    ///Sets the raw value of [`Self::memory`]
+    pub fn set_memory(&mut self, value: crate::vulkan1_0::DeviceMemory) -> &mut Self {
+        self.memory = value;
+        self
+    }
+    ///Sets the raw value of [`Self::memory_offset`]
+    pub fn set_memory_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.memory_offset = value;
+        self
+    }
 }
 ///[VkBindBufferMemoryDeviceGroupInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindBufferMemoryDeviceGroupInfo.html) - Structure specifying device within a group to bind to
 ///# C Specifications
@@ -2927,30 +5588,30 @@ pub struct BindBufferMemoryInfo<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`device_index_count`] is the number of elements in [`p_device_indices`].
-/// - [`p_device_indices`] is a pointer to an array of device indices.
+/// - [`device_index_count`] is the number of elements in [`device_indices`].
+/// - [`device_indices`] is a pointer to an array of device indices.
 ///# Description
 ///If the [`p_next`] chain of [`BindBufferMemoryInfo`] includes a
 ///[`BindBufferMemoryDeviceGroupInfo`] structure, then that structure
 ///determines how memory is bound to buffers across multiple devices in a
 ///device group.If [`device_index_count`] is greater than zero, then on device index i
 ///the buffer is attached to the instance of `memory` on the physical
-///device with device index [`p_device_indices`][i].If [`device_index_count`] is zero and `memory`
+///device with device index [`device_indices`][i].If [`device_index_count`] is zero and `memory`
 /// comes from a memory heap
 ///with the `VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` bit set, then it is as if
-///[`p_device_indices`] contains consecutive indices from zero to the number of
+///[`device_indices`] contains consecutive indices from zero to the number of
 ///physical devices in the logical device, minus one.
 ///In other words, by default each physical device attaches to its own instance
 ///of `memory`.If [`device_index_count`] is zero and `memory` comes from a memory heap
 ///without the `VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` bit set, then it is as
-///if [`p_device_indices`] contains an array of zeros.
+///if [`device_indices`] contains an array of zeros.
 ///In other words, by default each physical device attaches to instance zero.Valid Usage
 /// - [`device_index_count`]**must** either be zero or equal to the number of physical devices in
 ///   the logical device
-/// - All elements of [`p_device_indices`]**must** be valid device indices
+/// - All elements of [`device_indices`]**must** be valid device indices
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO`
-/// - If [`device_index_count`] is not `0`, [`p_device_indices`]**must** be a valid pointer to an
+/// - If [`device_index_count`] is not `0`, [`device_indices`]**must** be a valid pointer to an
 ///   array of [`device_index_count`]`uint32_t` values
 ///# Related
 /// - [`crate::vulkan1_1`]
@@ -2963,9 +5624,8 @@ pub struct BindBufferMemoryInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct BindBufferMemoryDeviceGroupInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -2973,12 +5633,105 @@ pub struct BindBufferMemoryDeviceGroupInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`device_index_count`] is the number of elements in
-    ///[`p_device_indices`].
+    ///[`device_indices`].
     device_index_count: u32,
-    ///[`p_device_indices`] is a pointer to an array of device indices.
-    p_device_indices: *mut u32,
+    ///[`device_indices`] is a pointer to an array of device indices.
+    device_indices: *const u32,
+}
+impl<'lt> Default for BindBufferMemoryDeviceGroupInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            device_index_count: 0,
+            device_indices: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> BindBufferMemoryDeviceGroupInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::device_index_count`]
+    pub fn device_index_count_raw(&self) -> u32 {
+        self.device_index_count
+    }
+    ///Gets the raw value of [`Self::device_indices`]
+    pub fn device_indices_raw(&self) -> *const u32 {
+        self.device_indices
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_index_count`]
+    pub fn set_device_index_count_raw(&mut self, value: u32) -> &mut Self {
+        self.device_index_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_indices`]
+    pub fn set_device_indices_raw(&mut self, value: *const u32) -> &mut Self {
+        self.device_indices = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::device_index_count`]
+    pub fn device_index_count(&self) -> u32 {
+        self.device_index_count
+    }
+    ///Gets the value of [`Self::device_indices`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn device_indices(&self) -> &[u32] {
+        std::slice::from_raw_parts(self.device_indices, self.device_index_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::device_index_count`]
+    pub fn device_index_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::device_index_count`]
+    pub fn set_device_index_count(&mut self, value: u32) -> &mut Self {
+        self.device_index_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_indices`]
+    pub fn set_device_indices(&mut self, value: &'lt [u32]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.device_indices = value.as_ptr();
+        self.device_index_count = len_;
+        self
+    }
 }
 ///[VkBindImageMemoryInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImageMemoryInfo.html) - Structure specifying how to bind an image to memory
 ///# C Specifications
@@ -3088,17 +5841,17 @@ pub struct BindBufferMemoryDeviceGroupInfo<'lt> {
 ///   [`ImagePlaneMemoryRequirementsInfo::plane_aspect`] in the [`ImageMemoryRequirementsInfo2`]
 ///   structure’s [`p_next`] chain
 /// - If the [`p_next`] chain includes a [`BindImageMemoryDeviceGroupInfo`] structure, all instances
-///   of [`memory`] specified by [`BindImageMemoryDeviceGroupInfo::p_device_indices`]**must** have
+///   of [`memory`] specified by [`BindImageMemoryDeviceGroupInfo::device_indices`]**must** have
 ///   been allocated
 /// - If the [`p_next`] chain includes a [`BindImageMemoryDeviceGroupInfo`] structure, and
 ///   [`BindImageMemoryDeviceGroupInfo::split_instance_bind_region_count`] is not zero, then
 ///   [`image`]**must** have been created with the `VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT`
 ///   bit set
 /// - If the [`p_next`] chain includes a [`BindImageMemoryDeviceGroupInfo`] structure, all elements
-///   of [`BindImageMemoryDeviceGroupInfo::p_split_instance_bind_regions`]**must** be valid
-///   rectangles contained within the dimensions of [`image`]
+///   of [`BindImageMemoryDeviceGroupInfo::split_instance_bind_regions`]**must** be valid rectangles
+///   contained within the dimensions of [`image`]
 /// - If the [`p_next`] chain includes a [`BindImageMemoryDeviceGroupInfo`] structure, the union of
-///   the areas of all elements of [`BindImageMemoryDeviceGroupInfo::p_split_instance_bind_regions`]
+///   the areas of all elements of [`BindImageMemoryDeviceGroupInfo::split_instance_bind_regions`]
 ///   that correspond to the same instance of [`image`]**must** cover the entire image
 /// - If [`image`] was created with a valid swapchain handle in
 ///   [`ImageSwapchainCreateInfoKHR::swapchain`], then the [`p_next`] chain **must** include a
@@ -3132,9 +5885,8 @@ pub struct BindBufferMemoryDeviceGroupInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct BindImageMemoryInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -3142,7 +5894,7 @@ pub struct BindImageMemoryInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`image`] is the image to be attached to memory.
     image: Image,
     ///[`memory`] is a [`DeviceMemory`] object describing the device
@@ -3154,6 +5906,93 @@ pub struct BindImageMemoryInfo<'lt> {
     ///[`MemoryRequirements`]::`size` member in [`memory`], starting
     ///from [`memory_offset`] bytes, will be bound to the specified image.
     memory_offset: DeviceSize,
+}
+impl<'lt> Default for BindImageMemoryInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            image: Default::default(),
+            memory: Default::default(),
+            memory_offset: Default::default(),
+        }
+    }
+}
+impl<'lt> BindImageMemoryInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::image`]
+    pub fn image(&self) -> Image {
+        self.image
+    }
+    ///Gets the value of [`Self::memory`]
+    pub fn memory(&self) -> DeviceMemory {
+        self.memory
+    }
+    ///Gets the value of [`Self::memory_offset`]
+    pub fn memory_offset(&self) -> DeviceSize {
+        self.memory_offset
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::image`]
+    pub fn image_mut(&mut self) -> &mut Image {
+        &mut self.image
+    }
+    ///Gets a mutable reference to the value of [`Self::memory`]
+    pub fn memory_mut(&mut self) -> &mut DeviceMemory {
+        &mut self.memory
+    }
+    ///Gets a mutable reference to the value of [`Self::memory_offset`]
+    pub fn memory_offset_mut(&mut self) -> &mut DeviceSize {
+        &mut self.memory_offset
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::image`]
+    pub fn set_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
+        self.image = value;
+        self
+    }
+    ///Sets the raw value of [`Self::memory`]
+    pub fn set_memory(&mut self, value: crate::vulkan1_0::DeviceMemory) -> &mut Self {
+        self.memory = value;
+        self
+    }
+    ///Sets the raw value of [`Self::memory_offset`]
+    pub fn set_memory_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.memory_offset = value;
+        self
+    }
 }
 ///[VkBindImageMemoryDeviceGroupInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImageMemoryDeviceGroupInfo.html) - Structure specifying device within a group to bind to
 ///# C Specifications
@@ -3177,11 +6016,11 @@ pub struct BindImageMemoryInfo<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`device_index_count`] is the number of elements in [`p_device_indices`].
-/// - [`p_device_indices`] is a pointer to an array of device indices.
+/// - [`device_index_count`] is the number of elements in [`device_indices`].
+/// - [`device_indices`] is a pointer to an array of device indices.
 /// - [`split_instance_bind_region_count`] is the number of elements in
-///   [`p_split_instance_bind_regions`].
-/// - [`p_split_instance_bind_regions`] is a pointer to an array of [`Rect2D`] structures describing
+///   [`split_instance_bind_regions`].
+/// - [`split_instance_bind_regions`] is a pointer to an array of [`Rect2D`] structures describing
 ///   which regions of the image are attached to each instance of memory.
 ///# Description
 ///If the [`p_next`] chain of [`BindImageMemoryInfo`] includes a
@@ -3192,7 +6031,7 @@ pub struct BindImageMemoryInfo<'lt> {
 ///with device index pDeviceIndices[i].Let N be the number of physical devices in the logical
 /// device.
 ///If [`split_instance_bind_region_count`] is greater than zero, then
-///[`p_split_instance_bind_regions`] is a pointer to an array of N<sup>2</sup>
+///[`split_instance_bind_regions`] is a pointer to an array of N<sup>2</sup>
 ///rectangles, where the image region specified by the rectangle at element
 ///i*N+j in resource instance i is bound to the memory instance
 ///j.
@@ -3206,43 +6045,41 @@ pub struct BindImageMemoryInfo<'lt> {
 /// [`split_instance_bind_region_count`] and [`device_index_count`] are zero
 ///and the memory comes from a memory heap with the
 ///`VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` bit set, then it is as if
-///[`p_device_indices`] contains consecutive indices from zero to the number of
+///[`device_indices`] contains consecutive indices from zero to the number of
 ///physical devices in the logical device, minus one.
 ///In other words, by default each physical device attaches to its own instance
 ///of the memory.If [`split_instance_bind_region_count`] and [`device_index_count`] are zero
 ///and the memory comes from a memory heap without the
 ///`VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` bit set, then it is as if
-///[`p_device_indices`] contains an array of zeros.
+///[`device_indices`] contains an array of zeros.
 ///In other words, by default each physical device attaches to instance zero.Valid Usage
 /// - At least one of [`device_index_count`] and [`split_instance_bind_region_count`]**must** be
 ///   zero
 /// - [`device_index_count`]**must** either be zero or equal to the number of physical devices in
 ///   the logical device
-/// - All elements of [`p_device_indices`]**must** be valid device indices
+/// - All elements of [`device_indices`]**must** be valid device indices
 /// - [`split_instance_bind_region_count`]**must** either be zero or equal to the number of physical
 ///   devices in the logical device squared
-/// - Elements of [`p_split_instance_bind_regions`] that correspond to the same instance of an image
+/// - Elements of [`split_instance_bind_regions`] that correspond to the same instance of an image
 ///   **must** not overlap
-/// - The `offset.x` member of any element of [`p_split_instance_bind_regions`]**must** be a
-///   multiple of the sparse image block width
-///   ([`SparseImageFormatProperties`]::`imageGranularity.width`) of all non-metadata aspects of the
-///   image
-/// - The `offset.y` member of any element of [`p_split_instance_bind_regions`]**must** be a
-///   multiple of the sparse image block height
-///   ([`SparseImageFormatProperties`]::`imageGranularity.height`) of all non-metadata aspects of
-///   the image
-/// - The `extent.width` member of any element of [`p_split_instance_bind_regions`]**must** either
-///   be a multiple of the sparse image block width of all non-metadata aspects of the image, or
-///   else `extent.width` +  `offset.x`**must** equal the width of the image subresource
-/// - The `extent.height` member of any element of [`p_split_instance_bind_regions`]**must** either
-///   be a multiple of the sparse image block height of all non-metadata aspects of the image, or
-///   else `extent.height` +  `offset.y`**must** equal the height of the image subresource
+/// - The `offset.x` member of any element of [`split_instance_bind_regions`]**must** be a multiple
+///   of the sparse image block width ([`SparseImageFormatProperties`]::`imageGranularity.width`) of
+///   all non-metadata aspects of the image
+/// - The `offset.y` member of any element of [`split_instance_bind_regions`]**must** be a multiple
+///   of the sparse image block height ([`SparseImageFormatProperties`]::`imageGranularity.height`)
+///   of all non-metadata aspects of the image
+/// - The `extent.width` member of any element of [`split_instance_bind_regions`]**must** either be
+///   a multiple of the sparse image block width of all non-metadata aspects of the image, or else
+///   `extent.width` +  `offset.x`**must** equal the width of the image subresource
+/// - The `extent.height` member of any element of [`split_instance_bind_regions`]**must** either be
+///   a multiple of the sparse image block height of all non-metadata aspects of the image, or else
+///   `extent.height` +  `offset.y`**must** equal the height of the image subresource
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO`
-/// - If [`device_index_count`] is not `0`, [`p_device_indices`]**must** be a valid pointer to an
+/// - If [`device_index_count`] is not `0`, [`device_indices`]**must** be a valid pointer to an
 ///   array of [`device_index_count`]`uint32_t` values
-/// - If [`split_instance_bind_region_count`] is not `0`, [`p_split_instance_bind_regions`]**must**
-///   be a valid pointer to an array of [`split_instance_bind_region_count`][`Rect2D`] structures
+/// - If [`split_instance_bind_region_count`] is not `0`, [`split_instance_bind_regions`]**must** be
+///   a valid pointer to an array of [`split_instance_bind_region_count`][`Rect2D`] structures
 ///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Rect2D`]
@@ -3255,9 +6092,8 @@ pub struct BindImageMemoryInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct BindImageMemoryDeviceGroupInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -3265,19 +6101,163 @@ pub struct BindImageMemoryDeviceGroupInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`device_index_count`] is the number of elements in
-    ///[`p_device_indices`].
+    ///[`device_indices`].
     device_index_count: u32,
-    ///[`p_device_indices`] is a pointer to an array of device indices.
-    p_device_indices: *mut u32,
+    ///[`device_indices`] is a pointer to an array of device indices.
+    device_indices: *const u32,
     ///[`split_instance_bind_region_count`] is the number of elements in
-    ///[`p_split_instance_bind_regions`].
+    ///[`split_instance_bind_regions`].
     split_instance_bind_region_count: u32,
-    ///[`p_split_instance_bind_regions`] is a pointer to an array of
+    ///[`split_instance_bind_regions`] is a pointer to an array of
     ///[`Rect2D`] structures describing which regions of the image are
     ///attached to each instance of memory.
-    p_split_instance_bind_regions: *mut Rect2D,
+    split_instance_bind_regions: *const Rect2D,
+}
+impl<'lt> Default for BindImageMemoryDeviceGroupInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            device_index_count: 0,
+            device_indices: std::ptr::null(),
+            split_instance_bind_region_count: 0,
+            split_instance_bind_regions: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> BindImageMemoryDeviceGroupInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::device_index_count`]
+    pub fn device_index_count_raw(&self) -> u32 {
+        self.device_index_count
+    }
+    ///Gets the raw value of [`Self::device_indices`]
+    pub fn device_indices_raw(&self) -> *const u32 {
+        self.device_indices
+    }
+    ///Gets the raw value of [`Self::split_instance_bind_region_count`]
+    pub fn split_instance_bind_region_count_raw(&self) -> u32 {
+        self.split_instance_bind_region_count
+    }
+    ///Gets the raw value of [`Self::split_instance_bind_regions`]
+    pub fn split_instance_bind_regions_raw(&self) -> *const Rect2D {
+        self.split_instance_bind_regions
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_index_count`]
+    pub fn set_device_index_count_raw(&mut self, value: u32) -> &mut Self {
+        self.device_index_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_indices`]
+    pub fn set_device_indices_raw(&mut self, value: *const u32) -> &mut Self {
+        self.device_indices = value;
+        self
+    }
+    ///Sets the raw value of [`Self::split_instance_bind_region_count`]
+    pub fn set_split_instance_bind_region_count_raw(&mut self, value: u32) -> &mut Self {
+        self.split_instance_bind_region_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::split_instance_bind_regions`]
+    pub fn set_split_instance_bind_regions_raw(&mut self, value: *const Rect2D) -> &mut Self {
+        self.split_instance_bind_regions = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::device_index_count`]
+    pub fn device_index_count(&self) -> u32 {
+        self.device_index_count
+    }
+    ///Gets the value of [`Self::device_indices`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn device_indices(&self) -> &[u32] {
+        std::slice::from_raw_parts(self.device_indices, self.device_index_count as usize)
+    }
+    ///Gets the value of [`Self::split_instance_bind_region_count`]
+    pub fn split_instance_bind_region_count(&self) -> u32 {
+        self.split_instance_bind_region_count
+    }
+    ///Gets the value of [`Self::split_instance_bind_regions`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn split_instance_bind_regions(&self) -> &[Rect2D] {
+        std::slice::from_raw_parts(
+            self.split_instance_bind_regions,
+            self.split_instance_bind_region_count as usize,
+        )
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::device_index_count`]
+    pub fn device_index_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::split_instance_bind_region_count`]
+    pub fn split_instance_bind_region_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::device_index_count`]
+    pub fn set_device_index_count(&mut self, value: u32) -> &mut Self {
+        self.device_index_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_indices`]
+    pub fn set_device_indices(&mut self, value: &'lt [u32]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.device_indices = value.as_ptr();
+        self.device_index_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::split_instance_bind_region_count`]
+    pub fn set_split_instance_bind_region_count(&mut self, value: u32) -> &mut Self {
+        self.split_instance_bind_region_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::split_instance_bind_regions`]
+    pub fn set_split_instance_bind_regions(&mut self, value: &'lt [crate::vulkan1_0::Rect2D]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.split_instance_bind_regions = value.as_ptr();
+        self.split_instance_bind_region_count = len_;
+        self
+    }
 }
 ///[VkDeviceGroupRenderPassBeginInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupRenderPassBeginInfo.html) - Set the initial device mask and render areas for a render pass instance
 ///# C Specifications
@@ -3305,9 +6285,9 @@ pub struct BindImageMemoryDeviceGroupInfo<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`device_mask`] is the device mask for the render pass instance.
-/// - [`device_render_area_count`] is the number of elements in the [`p_device_render_areas`] array.
-/// - [`p_device_render_areas`] is a pointer to an array of [`Rect2D`] structures defining the
-///   render area for each physical device.
+/// - [`device_render_area_count`] is the number of elements in the [`device_render_areas`] array.
+/// - [`device_render_areas`] is a pointer to an array of [`Rect2D`] structures defining the render
+///   area for each physical device.
 ///# Description
 ///The [`device_mask`] serves several purposes.
 ///It is an upper bound on the set of physical devices that **can** be used during
@@ -3319,7 +6299,7 @@ pub struct BindImageMemoryDeviceGroupInfo<'lt> {
 ///dependencies corresponding to the render pass instance, are executed on the
 ///physical devices included in the device mask provided here.If [`device_render_area_count`] is
 /// not zero, then the elements of
-///[`p_device_render_areas`] override the value of
+///[`device_render_areas`] override the value of
 ///[`RenderPassBeginInfo::render_area`], and provide a render area
 ///specific to each physical device.
 ///These render areas serve the same purpose as
@@ -3336,16 +6316,16 @@ pub struct BindImageMemoryDeviceGroupInfo<'lt> {
 /// - [`device_mask`]**must** be a subset of the command buffer’s initial device mask
 /// - [`device_render_area_count`]**must** either be zero or equal to the number of physical devices
 ///   in the logical device
-/// - The `offset.x` member of any element of [`p_device_render_areas`]**must** be greater than or
+/// - The `offset.x` member of any element of [`device_render_areas`]**must** be greater than or
 ///   equal to 0
-/// - The `offset.y` member of any element of [`p_device_render_areas`]**must** be greater than or
+/// - The `offset.y` member of any element of [`device_render_areas`]**must** be greater than or
 ///   equal to 0
-/// -    The sum of the `offset.x` and `extent.width` members of any element of [`p_device_render_areas`]**must** be less than or equal to [`maxFramebufferWidth`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFramebufferWidth)
-/// -    The sum of the `offset.y` and `extent.height` members of any element of [`p_device_render_areas`]**must** be less than or equal to [`maxFramebufferHeight`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFramebufferHeight)
+/// -    The sum of the `offset.x` and `extent.width` members of any element of [`device_render_areas`]**must** be less than or equal to [`maxFramebufferWidth`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFramebufferWidth)
+/// -    The sum of the `offset.y` and `extent.height` members of any element of [`device_render_areas`]**must** be less than or equal to [`maxFramebufferHeight`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFramebufferHeight)
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO`
-/// - If [`device_render_area_count`] is not `0`, [`p_device_render_areas`]**must** be a valid
-///   pointer to an array of [`device_render_area_count`][`Rect2D`] structures
+/// - If [`device_render_area_count`] is not `0`, [`device_render_areas`]**must** be a valid pointer
+///   to an array of [`device_render_area_count`][`Rect2D`] structures
 ///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Rect2D`]
@@ -3358,9 +6338,8 @@ pub struct BindImageMemoryDeviceGroupInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct DeviceGroupRenderPassBeginInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -3368,15 +6347,131 @@ pub struct DeviceGroupRenderPassBeginInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`device_mask`] is the device mask for the render pass instance.
     device_mask: u32,
     ///[`device_render_area_count`] is the number of elements in the
-    ///[`p_device_render_areas`] array.
+    ///[`device_render_areas`] array.
     device_render_area_count: u32,
-    ///[`p_device_render_areas`] is a pointer to an array of [`Rect2D`]
+    ///[`device_render_areas`] is a pointer to an array of [`Rect2D`]
     ///structures defining the render area for each physical device.
-    p_device_render_areas: *mut Rect2D,
+    device_render_areas: *const Rect2D,
+}
+impl<'lt> Default for DeviceGroupRenderPassBeginInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            device_mask: 0,
+            device_render_area_count: 0,
+            device_render_areas: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> DeviceGroupRenderPassBeginInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::device_mask`]
+    pub fn device_mask_raw(&self) -> u32 {
+        self.device_mask
+    }
+    ///Gets the raw value of [`Self::device_render_area_count`]
+    pub fn device_render_area_count_raw(&self) -> u32 {
+        self.device_render_area_count
+    }
+    ///Gets the raw value of [`Self::device_render_areas`]
+    pub fn device_render_areas_raw(&self) -> *const Rect2D {
+        self.device_render_areas
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_mask`]
+    pub fn set_device_mask_raw(&mut self, value: u32) -> &mut Self {
+        self.device_mask = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_render_area_count`]
+    pub fn set_device_render_area_count_raw(&mut self, value: u32) -> &mut Self {
+        self.device_render_area_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_render_areas`]
+    pub fn set_device_render_areas_raw(&mut self, value: *const Rect2D) -> &mut Self {
+        self.device_render_areas = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::device_mask`]
+    pub fn device_mask(&self) -> u32 {
+        self.device_mask
+    }
+    ///Gets the value of [`Self::device_render_area_count`]
+    pub fn device_render_area_count(&self) -> u32 {
+        self.device_render_area_count
+    }
+    ///Gets the value of [`Self::device_render_areas`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn device_render_areas(&self) -> &[Rect2D] {
+        std::slice::from_raw_parts(self.device_render_areas, self.device_render_area_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::device_mask`]
+    pub fn device_mask_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::device_render_area_count`]
+    pub fn device_render_area_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::device_mask`]
+    pub fn set_device_mask(&mut self, value: u32) -> &mut Self {
+        self.device_mask = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_render_area_count`]
+    pub fn set_device_render_area_count(&mut self, value: u32) -> &mut Self {
+        self.device_render_area_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_render_areas`]
+    pub fn set_device_render_areas(&mut self, value: &'lt [crate::vulkan1_0::Rect2D]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.device_render_areas = value.as_ptr();
+        self.device_render_area_count = len_;
+        self
+    }
 }
 ///[VkDeviceGroupCommandBufferBeginInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupCommandBufferBeginInfo.html) - Set the initial device mask for a command buffer
 ///# C Specifications
@@ -3422,9 +6517,8 @@ pub struct DeviceGroupRenderPassBeginInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct DeviceGroupCommandBufferBeginInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -3432,10 +6526,78 @@ pub struct DeviceGroupCommandBufferBeginInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`device_mask`] is the initial value of the command buffer’s device
     ///mask.
     device_mask: u32,
+}
+impl<'lt> Default for DeviceGroupCommandBufferBeginInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            device_mask: 0,
+        }
+    }
+}
+impl<'lt> DeviceGroupCommandBufferBeginInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::device_mask`]
+    pub fn device_mask_raw(&self) -> u32 {
+        self.device_mask
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_mask`]
+    pub fn set_device_mask_raw(&mut self, value: u32) -> &mut Self {
+        self.device_mask = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::device_mask`]
+    pub fn device_mask(&self) -> u32 {
+        self.device_mask
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::device_mask`]
+    pub fn device_mask_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::device_mask`]
+    pub fn set_device_mask(&mut self, value: u32) -> &mut Self {
+        self.device_mask = value;
+        self
+    }
 }
 ///[VkDeviceGroupSubmitInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupSubmitInfo.html) - Structure indicating which physical devices execute semaphore operations and command buffers
 ///# C Specifications
@@ -3464,38 +6626,38 @@ pub struct DeviceGroupCommandBufferBeginInfo<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`wait_semaphore_count`] is the number of elements in the [`p_wait_semaphore_device_indices`]
+/// - [`wait_semaphore_count`] is the number of elements in the [`wait_semaphore_device_indices`]
 ///   array.
-/// - [`p_wait_semaphore_device_indices`] is a pointer to an array of [`wait_semaphore_count`]
-///   device indices indicating which physical device executes the semaphore wait operation in the
-///   corresponding element of [`SubmitInfo::p_wait_semaphores`].
-/// - [`command_buffer_count`] is the number of elements in the [`p_command_buffer_device_masks`]
+/// - [`wait_semaphore_device_indices`] is a pointer to an array of [`wait_semaphore_count`] device
+///   indices indicating which physical device executes the semaphore wait operation in the
+///   corresponding element of [`SubmitInfo::wait_semaphores`].
+/// - [`command_buffer_count`] is the number of elements in the [`command_buffer_device_masks`]
 ///   array.
-/// - [`p_command_buffer_device_masks`] is a pointer to an array of [`command_buffer_count`] device
+/// - [`command_buffer_device_masks`] is a pointer to an array of [`command_buffer_count`] device
 ///   masks indicating which physical devices execute the command buffer in the corresponding
-///   element of [`SubmitInfo::p_command_buffers`]. A physical device executes the command buffer if
+///   element of [`SubmitInfo::command_buffers`]. A physical device executes the command buffer if
 ///   the corresponding bit is set in the mask.
 /// - [`signal_semaphore_count`] is the number of elements in the
-///   [`p_signal_semaphore_device_indices`] array.
-/// - [`p_signal_semaphore_device_indices`] is a pointer to an array of [`signal_semaphore_count`]
+///   [`signal_semaphore_device_indices`] array.
+/// - [`signal_semaphore_device_indices`] is a pointer to an array of [`signal_semaphore_count`]
 ///   device indices indicating which physical device executes the semaphore signal operation in the
-///   corresponding element of [`SubmitInfo::p_signal_semaphores`].
+///   corresponding element of [`SubmitInfo::signal_semaphores`].
 ///# Description
 ///If this structure is not present, semaphore operations and command buffers
 ///execute on device index zero.Valid Usage
 /// - [`wait_semaphore_count`]**must** equal [`SubmitInfo`]::[`wait_semaphore_count`]
 /// - [`command_buffer_count`]**must** equal [`SubmitInfo`]::[`command_buffer_count`]
 /// - [`signal_semaphore_count`]**must** equal [`SubmitInfo`]::[`signal_semaphore_count`]
-/// - All elements of [`p_wait_semaphore_device_indices`] and
-///   [`p_signal_semaphore_device_indices`]**must** be valid device indices
-/// - All elements of [`p_command_buffer_device_masks`]**must** be valid device masks
+/// - All elements of [`wait_semaphore_device_indices`] and
+///   [`signal_semaphore_device_indices`]**must** be valid device indices
+/// - All elements of [`command_buffer_device_masks`]**must** be valid device masks
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO`
-/// - If [`wait_semaphore_count`] is not `0`, [`p_wait_semaphore_device_indices`]**must** be a valid
+/// - If [`wait_semaphore_count`] is not `0`, [`wait_semaphore_device_indices`]**must** be a valid
 ///   pointer to an array of [`wait_semaphore_count`]`uint32_t` values
-/// - If [`command_buffer_count`] is not `0`, [`p_command_buffer_device_masks`]**must** be a valid
+/// - If [`command_buffer_count`] is not `0`, [`command_buffer_device_masks`]**must** be a valid
 ///   pointer to an array of [`command_buffer_count`]`uint32_t` values
-/// - If [`signal_semaphore_count`] is not `0`, [`p_signal_semaphore_device_indices`]**must** be a
+/// - If [`signal_semaphore_count`] is not `0`, [`signal_semaphore_device_indices`]**must** be a
 ///   valid pointer to an array of [`signal_semaphore_count`]`uint32_t` values
 ///# Related
 /// - [`crate::vulkan1_1`]
@@ -3508,9 +6670,8 @@ pub struct DeviceGroupCommandBufferBeginInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct DeviceGroupSubmitInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -3518,33 +6679,225 @@ pub struct DeviceGroupSubmitInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`wait_semaphore_count`] is the number of elements in the
-    ///[`p_wait_semaphore_device_indices`] array.
+    ///[`wait_semaphore_device_indices`] array.
     wait_semaphore_count: u32,
-    ///[`p_wait_semaphore_device_indices`] is a pointer to an array of
+    ///[`wait_semaphore_device_indices`] is a pointer to an array of
     ///[`wait_semaphore_count`] device indices indicating which physical device
     ///executes the semaphore wait operation in the corresponding element of
     ///[`SubmitInfo`]::`pWaitSemaphores`.
-    p_wait_semaphore_device_indices: *mut u32,
+    wait_semaphore_device_indices: *const u32,
     ///[`command_buffer_count`] is the number of elements in the
-    ///[`p_command_buffer_device_masks`] array.
+    ///[`command_buffer_device_masks`] array.
     command_buffer_count: u32,
-    ///[`p_command_buffer_device_masks`] is a pointer to an array of
+    ///[`command_buffer_device_masks`] is a pointer to an array of
     ///[`command_buffer_count`] device masks indicating which physical devices
     ///execute the command buffer in the corresponding element of
     ///[`SubmitInfo`]::`pCommandBuffers`.
     ///A physical device executes the command buffer if the corresponding bit
     ///is set in the mask.
-    p_command_buffer_device_masks: *mut u32,
+    command_buffer_device_masks: *const u32,
     ///[`signal_semaphore_count`] is the number of elements in the
-    ///[`p_signal_semaphore_device_indices`] array.
+    ///[`signal_semaphore_device_indices`] array.
     signal_semaphore_count: u32,
-    ///[`p_signal_semaphore_device_indices`] is a pointer to an array of
+    ///[`signal_semaphore_device_indices`] is a pointer to an array of
     ///[`signal_semaphore_count`] device indices indicating which physical
     ///device executes the semaphore signal operation in the corresponding
     ///element of [`SubmitInfo`]::`pSignalSemaphores`.
-    p_signal_semaphore_device_indices: *mut u32,
+    signal_semaphore_device_indices: *const u32,
+}
+impl<'lt> Default for DeviceGroupSubmitInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            wait_semaphore_count: 0,
+            wait_semaphore_device_indices: std::ptr::null(),
+            command_buffer_count: 0,
+            command_buffer_device_masks: std::ptr::null(),
+            signal_semaphore_count: 0,
+            signal_semaphore_device_indices: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> DeviceGroupSubmitInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::wait_semaphore_count`]
+    pub fn wait_semaphore_count_raw(&self) -> u32 {
+        self.wait_semaphore_count
+    }
+    ///Gets the raw value of [`Self::wait_semaphore_device_indices`]
+    pub fn wait_semaphore_device_indices_raw(&self) -> *const u32 {
+        self.wait_semaphore_device_indices
+    }
+    ///Gets the raw value of [`Self::command_buffer_count`]
+    pub fn command_buffer_count_raw(&self) -> u32 {
+        self.command_buffer_count
+    }
+    ///Gets the raw value of [`Self::command_buffer_device_masks`]
+    pub fn command_buffer_device_masks_raw(&self) -> *const u32 {
+        self.command_buffer_device_masks
+    }
+    ///Gets the raw value of [`Self::signal_semaphore_count`]
+    pub fn signal_semaphore_count_raw(&self) -> u32 {
+        self.signal_semaphore_count
+    }
+    ///Gets the raw value of [`Self::signal_semaphore_device_indices`]
+    pub fn signal_semaphore_device_indices_raw(&self) -> *const u32 {
+        self.signal_semaphore_device_indices
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::wait_semaphore_count`]
+    pub fn set_wait_semaphore_count_raw(&mut self, value: u32) -> &mut Self {
+        self.wait_semaphore_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::wait_semaphore_device_indices`]
+    pub fn set_wait_semaphore_device_indices_raw(&mut self, value: *const u32) -> &mut Self {
+        self.wait_semaphore_device_indices = value;
+        self
+    }
+    ///Sets the raw value of [`Self::command_buffer_count`]
+    pub fn set_command_buffer_count_raw(&mut self, value: u32) -> &mut Self {
+        self.command_buffer_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::command_buffer_device_masks`]
+    pub fn set_command_buffer_device_masks_raw(&mut self, value: *const u32) -> &mut Self {
+        self.command_buffer_device_masks = value;
+        self
+    }
+    ///Sets the raw value of [`Self::signal_semaphore_count`]
+    pub fn set_signal_semaphore_count_raw(&mut self, value: u32) -> &mut Self {
+        self.signal_semaphore_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::signal_semaphore_device_indices`]
+    pub fn set_signal_semaphore_device_indices_raw(&mut self, value: *const u32) -> &mut Self {
+        self.signal_semaphore_device_indices = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::wait_semaphore_count`]
+    pub fn wait_semaphore_count(&self) -> u32 {
+        self.wait_semaphore_count
+    }
+    ///Gets the value of [`Self::wait_semaphore_device_indices`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn wait_semaphore_device_indices(&self) -> &[u32] {
+        std::slice::from_raw_parts(self.wait_semaphore_device_indices, self.wait_semaphore_count as usize)
+    }
+    ///Gets the value of [`Self::command_buffer_count`]
+    pub fn command_buffer_count(&self) -> u32 {
+        self.command_buffer_count
+    }
+    ///Gets the value of [`Self::command_buffer_device_masks`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn command_buffer_device_masks(&self) -> &[u32] {
+        std::slice::from_raw_parts(self.command_buffer_device_masks, self.command_buffer_count as usize)
+    }
+    ///Gets the value of [`Self::signal_semaphore_count`]
+    pub fn signal_semaphore_count(&self) -> u32 {
+        self.signal_semaphore_count
+    }
+    ///Gets the value of [`Self::signal_semaphore_device_indices`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn signal_semaphore_device_indices(&self) -> &[u32] {
+        std::slice::from_raw_parts(
+            self.signal_semaphore_device_indices,
+            self.signal_semaphore_count as usize,
+        )
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::wait_semaphore_count`]
+    pub fn wait_semaphore_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::command_buffer_count`]
+    pub fn command_buffer_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::signal_semaphore_count`]
+    pub fn signal_semaphore_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::wait_semaphore_count`]
+    pub fn set_wait_semaphore_count(&mut self, value: u32) -> &mut Self {
+        self.wait_semaphore_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::wait_semaphore_device_indices`]
+    pub fn set_wait_semaphore_device_indices(&mut self, value: &'lt [u32]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.wait_semaphore_device_indices = value.as_ptr();
+        self.wait_semaphore_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::command_buffer_count`]
+    pub fn set_command_buffer_count(&mut self, value: u32) -> &mut Self {
+        self.command_buffer_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::command_buffer_device_masks`]
+    pub fn set_command_buffer_device_masks(&mut self, value: &'lt [u32]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.command_buffer_device_masks = value.as_ptr();
+        self.command_buffer_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::signal_semaphore_count`]
+    pub fn set_signal_semaphore_count(&mut self, value: u32) -> &mut Self {
+        self.signal_semaphore_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::signal_semaphore_device_indices`]
+    pub fn set_signal_semaphore_device_indices(&mut self, value: &'lt [u32]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.signal_semaphore_device_indices = value.as_ptr();
+        self.signal_semaphore_count = len_;
+        self
+    }
 }
 ///[VkDeviceGroupBindSparseInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupBindSparseInfo.html) - Structure indicating which instances are bound
 ///# C Specifications
@@ -3596,9 +6949,8 @@ pub struct DeviceGroupSubmitInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct DeviceGroupBindSparseInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -3606,13 +6958,104 @@ pub struct DeviceGroupBindSparseInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`resource_device_index`] is a device index indicating which instance of
     ///the resource is bound.
     resource_device_index: u32,
     ///[`memory_device_index`] is a device index indicating which instance of
     ///the memory the resource instance is bound to.
     memory_device_index: u32,
+}
+impl<'lt> Default for DeviceGroupBindSparseInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            resource_device_index: 0,
+            memory_device_index: 0,
+        }
+    }
+}
+impl<'lt> DeviceGroupBindSparseInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::resource_device_index`]
+    pub fn resource_device_index_raw(&self) -> u32 {
+        self.resource_device_index
+    }
+    ///Gets the raw value of [`Self::memory_device_index`]
+    pub fn memory_device_index_raw(&self) -> u32 {
+        self.memory_device_index
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::resource_device_index`]
+    pub fn set_resource_device_index_raw(&mut self, value: u32) -> &mut Self {
+        self.resource_device_index = value;
+        self
+    }
+    ///Sets the raw value of [`Self::memory_device_index`]
+    pub fn set_memory_device_index_raw(&mut self, value: u32) -> &mut Self {
+        self.memory_device_index = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::resource_device_index`]
+    pub fn resource_device_index(&self) -> u32 {
+        self.resource_device_index
+    }
+    ///Gets the value of [`Self::memory_device_index`]
+    pub fn memory_device_index(&self) -> u32 {
+        self.memory_device_index
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::resource_device_index`]
+    pub fn resource_device_index_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::memory_device_index`]
+    pub fn memory_device_index_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::resource_device_index`]
+    pub fn set_resource_device_index(&mut self, value: u32) -> &mut Self {
+        self.resource_device_index = value;
+        self
+    }
+    ///Sets the raw value of [`Self::memory_device_index`]
+    pub fn set_memory_device_index(&mut self, value: u32) -> &mut Self {
+        self.memory_device_index = value;
+        self
+    }
 }
 ///[VkDeviceGroupDeviceCreateInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupDeviceCreateInfo.html) - Create a logical device from multiple physical devices
 ///# C Specifications
@@ -3637,33 +7080,33 @@ pub struct DeviceGroupBindSparseInfo<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`physical_device_count`] is the number of elements in the [`p_physical_devices`] array.
-/// - [`p_physical_devices`] is a pointer to an array of physical device handles belonging to the
-///   same device group.
+/// - [`physical_device_count`] is the number of elements in the [`physical_devices`] array.
+/// - [`physical_devices`] is a pointer to an array of physical device handles belonging to the same
+///   device group.
 ///# Description
-///The elements of the [`p_physical_devices`] array are an ordered list of the
+///The elements of the [`physical_devices`] array are an ordered list of the
 ///physical devices that the logical device represents.
 ///These **must** be a subset of a single device group, and need not be in the
 ///same order as they were enumerated.
-///The order of the physical devices in the [`p_physical_devices`] array
+///The order of the physical devices in the [`physical_devices`] array
 ///determines the *device index* of each physical device, with element i
 ///being assigned a device index of i.
 ///Certain commands and structures refer to one or more physical devices by
 ///using device indices or *device masks* formed using device indices.A logical device created
 /// without using [`DeviceGroupDeviceCreateInfo`],
 ///or with [`physical_device_count`] equal to zero, is equivalent to a
-///[`physical_device_count`] of one and [`p_physical_devices`] pointing to the
+///[`physical_device_count`] of one and [`physical_devices`] pointing to the
 ///`physicalDevice` parameter to [`CreateDevice`].
 ///In particular, the device index of that physical device is zero.Valid Usage
-/// - Each element of [`p_physical_devices`]**must** be unique
-/// - All elements of [`p_physical_devices`]**must** be in the same device group as enumerated by
+/// - Each element of [`physical_devices`]**must** be unique
+/// - All elements of [`physical_devices`]**must** be in the same device group as enumerated by
 ///   [`EnumeratePhysicalDeviceGroups`]
 /// - If [`physical_device_count`] is not `0`, the `physicalDevice` parameter of
-///   [`CreateDevice`]**must** be an element of [`p_physical_devices`]
+///   [`CreateDevice`]**must** be an element of [`physical_devices`]
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO`
-/// - If [`physical_device_count`] is not `0`, [`p_physical_devices`]**must** be a valid pointer to
-///   an array of [`physical_device_count`] valid [`PhysicalDevice`] handles
+/// - If [`physical_device_count`] is not `0`, [`physical_devices`]**must** be a valid pointer to an
+///   array of [`physical_device_count`] valid [`PhysicalDevice`] handles
 ///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`PhysicalDevice`]
@@ -3676,9 +7119,8 @@ pub struct DeviceGroupBindSparseInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct DeviceGroupDeviceCreateInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -3686,13 +7128,106 @@ pub struct DeviceGroupDeviceCreateInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`physical_device_count`] is the number of elements in the
-    ///[`p_physical_devices`] array.
+    ///[`physical_devices`] array.
     physical_device_count: u32,
-    ///[`p_physical_devices`] is a pointer to an array of physical device
+    ///[`physical_devices`] is a pointer to an array of physical device
     ///handles belonging to the same device group.
-    p_physical_devices: *mut PhysicalDevice,
+    physical_devices: *const PhysicalDevice,
+}
+impl<'lt> Default for DeviceGroupDeviceCreateInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            physical_device_count: 0,
+            physical_devices: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> DeviceGroupDeviceCreateInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::physical_device_count`]
+    pub fn physical_device_count_raw(&self) -> u32 {
+        self.physical_device_count
+    }
+    ///Gets the raw value of [`Self::physical_devices`]
+    pub fn physical_devices_raw(&self) -> *const PhysicalDevice {
+        self.physical_devices
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::physical_device_count`]
+    pub fn set_physical_device_count_raw(&mut self, value: u32) -> &mut Self {
+        self.physical_device_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::physical_devices`]
+    pub fn set_physical_devices_raw(&mut self, value: *const PhysicalDevice) -> &mut Self {
+        self.physical_devices = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::physical_device_count`]
+    pub fn physical_device_count(&self) -> u32 {
+        self.physical_device_count
+    }
+    ///Gets the value of [`Self::physical_devices`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn physical_devices(&self) -> &[PhysicalDevice] {
+        std::slice::from_raw_parts(self.physical_devices, self.physical_device_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::physical_device_count`]
+    pub fn physical_device_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::physical_device_count`]
+    pub fn set_physical_device_count(&mut self, value: u32) -> &mut Self {
+        self.physical_device_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::physical_devices`]
+    pub fn set_physical_devices(&mut self, value: &'lt [crate::vulkan1_0::PhysicalDevice]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.physical_devices = value.as_ptr();
+        self.physical_device_count = len_;
+        self
+    }
 }
 ///[VkDescriptorUpdateTemplateEntry](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorUpdateTemplateEntry.html) - Describes a single descriptor update of the descriptor update template
 ///# C Specifications
@@ -3760,7 +7295,7 @@ pub struct DeviceGroupDeviceCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -3806,6 +7341,143 @@ pub struct DescriptorUpdateTemplateEntry {
     ///a contiguous range.
     stride: usize,
 }
+impl Default for DescriptorUpdateTemplateEntry {
+    fn default() -> Self {
+        Self {
+            dst_binding: 0,
+            dst_array_element: 0,
+            descriptor_count: 0,
+            descriptor_type: Default::default(),
+            offset: 0,
+            stride: 0,
+        }
+    }
+}
+impl DescriptorUpdateTemplateEntry {
+    ///Gets the raw value of [`Self::dst_binding`]
+    pub fn dst_binding_raw(&self) -> u32 {
+        self.dst_binding
+    }
+    ///Gets the raw value of [`Self::dst_array_element`]
+    pub fn dst_array_element_raw(&self) -> u32 {
+        self.dst_array_element
+    }
+    ///Gets the raw value of [`Self::descriptor_count`]
+    pub fn descriptor_count_raw(&self) -> u32 {
+        self.descriptor_count
+    }
+    ///Gets the raw value of [`Self::offset`]
+    pub fn offset_raw(&self) -> usize {
+        self.offset
+    }
+    ///Gets the raw value of [`Self::stride`]
+    pub fn stride_raw(&self) -> usize {
+        self.stride
+    }
+    ///Sets the raw value of [`Self::dst_binding`]
+    pub fn set_dst_binding_raw(&mut self, value: u32) -> &mut Self {
+        self.dst_binding = value;
+        self
+    }
+    ///Sets the raw value of [`Self::dst_array_element`]
+    pub fn set_dst_array_element_raw(&mut self, value: u32) -> &mut Self {
+        self.dst_array_element = value;
+        self
+    }
+    ///Sets the raw value of [`Self::descriptor_count`]
+    pub fn set_descriptor_count_raw(&mut self, value: u32) -> &mut Self {
+        self.descriptor_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::offset`]
+    pub fn set_offset_raw(&mut self, value: usize) -> &mut Self {
+        self.offset = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stride`]
+    pub fn set_stride_raw(&mut self, value: usize) -> &mut Self {
+        self.stride = value;
+        self
+    }
+    ///Gets the value of [`Self::dst_binding`]
+    pub fn dst_binding(&self) -> u32 {
+        self.dst_binding
+    }
+    ///Gets the value of [`Self::dst_array_element`]
+    pub fn dst_array_element(&self) -> u32 {
+        self.dst_array_element
+    }
+    ///Gets the value of [`Self::descriptor_count`]
+    pub fn descriptor_count(&self) -> u32 {
+        self.descriptor_count
+    }
+    ///Gets the value of [`Self::descriptor_type`]
+    pub fn descriptor_type(&self) -> DescriptorType {
+        self.descriptor_type
+    }
+    ///Gets the value of [`Self::offset`]
+    pub fn offset(&self) -> usize {
+        self.offset
+    }
+    ///Gets the value of [`Self::stride`]
+    pub fn stride(&self) -> usize {
+        self.stride
+    }
+    ///Gets a mutable reference to the value of [`Self::dst_binding`]
+    pub fn dst_binding_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::dst_array_element`]
+    pub fn dst_array_element_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::descriptor_count`]
+    pub fn descriptor_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::descriptor_type`]
+    pub fn descriptor_type_mut(&mut self) -> &mut DescriptorType {
+        &mut self.descriptor_type
+    }
+    ///Gets a mutable reference to the value of [`Self::offset`]
+    pub fn offset_mut(&mut self) -> &mut usize {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::stride`]
+    pub fn stride_mut(&mut self) -> &mut usize {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::dst_binding`]
+    pub fn set_dst_binding(&mut self, value: u32) -> &mut Self {
+        self.dst_binding = value;
+        self
+    }
+    ///Sets the raw value of [`Self::dst_array_element`]
+    pub fn set_dst_array_element(&mut self, value: u32) -> &mut Self {
+        self.dst_array_element = value;
+        self
+    }
+    ///Sets the raw value of [`Self::descriptor_count`]
+    pub fn set_descriptor_count(&mut self, value: u32) -> &mut Self {
+        self.descriptor_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::descriptor_type`]
+    pub fn set_descriptor_type(&mut self, value: crate::vulkan1_0::DescriptorType) -> &mut Self {
+        self.descriptor_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::offset`]
+    pub fn set_offset(&mut self, value: usize) -> &mut Self {
+        self.offset = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stride`]
+    pub fn set_stride(&mut self, value: usize) -> &mut Self {
+        self.stride = value;
+        self
+    }
+}
 ///[VkDescriptorUpdateTemplateCreateInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorUpdateTemplateCreateInfo.html) - Structure specifying parameters of a newly created descriptor update template
 ///# C Specifications
 ///The [`DescriptorUpdateTemplateCreateInfo`] structure is defined as:
@@ -3834,8 +7506,8 @@ pub struct DescriptorUpdateTemplateEntry {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 /// - [`descriptor_update_entry_count`] is the number of elements in the
-///   [`p_descriptor_update_entries`] array.
-/// - [`p_descriptor_update_entries`] is a pointer to an array of [`DescriptorUpdateTemplateEntry`]
+///   [`descriptor_update_entries`] array.
+/// - [`descriptor_update_entries`] is a pointer to an array of [`DescriptorUpdateTemplateEntry`]
 ///   structures describing the descriptors to be updated by the descriptor update template.
 /// - [`template_type`] Specifies the type of the descriptor update template. If set to
 ///   `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET` it **can** only be used to update
@@ -3875,7 +7547,7 @@ pub struct DescriptorUpdateTemplateEntry {
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO`
 /// - [`p_next`]**must** be `NULL`
 /// - [`flags`]**must** be `0`
-/// - [`p_descriptor_update_entries`]**must** be a valid pointer to an array of
+/// - [`descriptor_update_entries`]**must** be a valid pointer to an array of
 ///   [`descriptor_update_entry_count`] valid [`DescriptorUpdateTemplateEntry`] structures
 /// - [`template_type`]**must** be a valid [`DescriptorUpdateTemplateType`] value
 /// - [`descriptor_update_entry_count`]**must** be greater than `0`
@@ -3901,9 +7573,8 @@ pub struct DescriptorUpdateTemplateEntry {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct DescriptorUpdateTemplateCreateInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -3911,16 +7582,16 @@ pub struct DescriptorUpdateTemplateCreateInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
     flags: DescriptorUpdateTemplateCreateFlags,
     ///[`descriptor_update_entry_count`] is the number of elements in the
-    ///[`p_descriptor_update_entries`] array.
+    ///[`descriptor_update_entries`] array.
     descriptor_update_entry_count: u32,
-    ///[`p_descriptor_update_entries`] is a pointer to an array of
+    ///[`descriptor_update_entries`] is a pointer to an array of
     ///[`DescriptorUpdateTemplateEntry`] structures describing the
     ///descriptors to be updated by the descriptor update template.
-    p_descriptor_update_entries: *mut DescriptorUpdateTemplateEntry,
+    descriptor_update_entries: *const DescriptorUpdateTemplateEntry,
     ///[`template_type`] Specifies the type of the descriptor update template.
     ///If set to `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET` it
     ///**can** only be used to update descriptor sets with a fixed
@@ -3952,6 +7623,198 @@ pub struct DescriptorUpdateTemplateCreateInfo<'lt> {
     ///This parameter is ignored if [`template_type`] is not
     ///`VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR`
     set: u32,
+}
+impl<'lt> Default for DescriptorUpdateTemplateCreateInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            flags: Default::default(),
+            descriptor_update_entry_count: 0,
+            descriptor_update_entries: std::ptr::null(),
+            template_type: Default::default(),
+            descriptor_set_layout: Default::default(),
+            pipeline_bind_point: Default::default(),
+            pipeline_layout: Default::default(),
+            set: 0,
+        }
+    }
+}
+impl<'lt> DescriptorUpdateTemplateCreateInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::descriptor_update_entry_count`]
+    pub fn descriptor_update_entry_count_raw(&self) -> u32 {
+        self.descriptor_update_entry_count
+    }
+    ///Gets the raw value of [`Self::descriptor_update_entries`]
+    pub fn descriptor_update_entries_raw(&self) -> *const DescriptorUpdateTemplateEntry {
+        self.descriptor_update_entries
+    }
+    ///Gets the raw value of [`Self::set`]
+    pub fn set_raw(&self) -> u32 {
+        self.set
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::descriptor_update_entry_count`]
+    pub fn set_descriptor_update_entry_count_raw(&mut self, value: u32) -> &mut Self {
+        self.descriptor_update_entry_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::descriptor_update_entries`]
+    pub fn set_descriptor_update_entries_raw(&mut self, value: *const DescriptorUpdateTemplateEntry) -> &mut Self {
+        self.descriptor_update_entries = value;
+        self
+    }
+    ///Sets the raw value of [`Self::set`]
+    pub fn set_set_raw(&mut self, value: u32) -> &mut Self {
+        self.set = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> DescriptorUpdateTemplateCreateFlags {
+        self.flags
+    }
+    ///Gets the value of [`Self::descriptor_update_entry_count`]
+    pub fn descriptor_update_entry_count(&self) -> u32 {
+        self.descriptor_update_entry_count
+    }
+    ///Gets the value of [`Self::descriptor_update_entries`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn descriptor_update_entries(&self) -> &[DescriptorUpdateTemplateEntry] {
+        std::slice::from_raw_parts(
+            self.descriptor_update_entries,
+            self.descriptor_update_entry_count as usize,
+        )
+    }
+    ///Gets the value of [`Self::template_type`]
+    pub fn template_type(&self) -> DescriptorUpdateTemplateType {
+        self.template_type
+    }
+    ///Gets the value of [`Self::descriptor_set_layout`]
+    pub fn descriptor_set_layout(&self) -> DescriptorSetLayout {
+        self.descriptor_set_layout
+    }
+    ///Gets the value of [`Self::pipeline_bind_point`]
+    pub fn pipeline_bind_point(&self) -> PipelineBindPoint {
+        self.pipeline_bind_point
+    }
+    ///Gets the value of [`Self::pipeline_layout`]
+    pub fn pipeline_layout(&self) -> PipelineLayout {
+        self.pipeline_layout
+    }
+    ///Gets the value of [`Self::set`]
+    pub fn set(&self) -> u32 {
+        self.set
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut DescriptorUpdateTemplateCreateFlags {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::descriptor_update_entry_count`]
+    pub fn descriptor_update_entry_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::template_type`]
+    pub fn template_type_mut(&mut self) -> &mut DescriptorUpdateTemplateType {
+        &mut self.template_type
+    }
+    ///Gets a mutable reference to the value of [`Self::descriptor_set_layout`]
+    pub fn descriptor_set_layout_mut(&mut self) -> &mut DescriptorSetLayout {
+        &mut self.descriptor_set_layout
+    }
+    ///Gets a mutable reference to the value of [`Self::pipeline_bind_point`]
+    pub fn pipeline_bind_point_mut(&mut self) -> &mut PipelineBindPoint {
+        &mut self.pipeline_bind_point
+    }
+    ///Gets a mutable reference to the value of [`Self::pipeline_layout`]
+    pub fn pipeline_layout_mut(&mut self) -> &mut PipelineLayout {
+        &mut self.pipeline_layout
+    }
+    ///Gets a mutable reference to the value of [`Self::set`]
+    pub fn set_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(&mut self, value: crate::vulkan1_1::DescriptorUpdateTemplateCreateFlags) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::descriptor_update_entry_count`]
+    pub fn set_descriptor_update_entry_count(&mut self, value: u32) -> &mut Self {
+        self.descriptor_update_entry_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::descriptor_update_entries`]
+    pub fn set_descriptor_update_entries(
+        &mut self,
+        value: &'lt [crate::vulkan1_1::DescriptorUpdateTemplateEntry],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.descriptor_update_entries = value.as_ptr();
+        self.descriptor_update_entry_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::template_type`]
+    pub fn set_template_type(&mut self, value: crate::vulkan1_1::DescriptorUpdateTemplateType) -> &mut Self {
+        self.template_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::descriptor_set_layout`]
+    pub fn set_descriptor_set_layout(&mut self, value: crate::vulkan1_0::DescriptorSetLayout) -> &mut Self {
+        self.descriptor_set_layout = value;
+        self
+    }
+    ///Sets the raw value of [`Self::pipeline_bind_point`]
+    pub fn set_pipeline_bind_point(&mut self, value: crate::vulkan1_0::PipelineBindPoint) -> &mut Self {
+        self.pipeline_bind_point = value;
+        self
+    }
+    ///Sets the raw value of [`Self::pipeline_layout`]
+    pub fn set_pipeline_layout(&mut self, value: crate::vulkan1_0::PipelineLayout) -> &mut Self {
+        self.pipeline_layout = value;
+        self
+    }
+    ///Sets the raw value of [`Self::set`]
+    pub fn set_set(&mut self, value: u32) -> &mut Self {
+        self.set = value;
+        self
+    }
 }
 ///[VkInputAttachmentAspectReference](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkInputAttachmentAspectReference.html) - Structure specifying a subpass/input attachment pair and an aspect mask that can: be read.
 ///# C Specifications
@@ -4000,7 +7863,7 @@ pub struct DescriptorUpdateTemplateCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -4014,6 +7877,74 @@ pub struct InputAttachmentAspectReference {
     ///[`aspect_mask`] is a mask of which aspect(s) **can** be accessed within
     ///the specified subpass.
     aspect_mask: ImageAspectFlags,
+}
+impl Default for InputAttachmentAspectReference {
+    fn default() -> Self {
+        Self {
+            subpass: 0,
+            input_attachment_index: 0,
+            aspect_mask: Default::default(),
+        }
+    }
+}
+impl InputAttachmentAspectReference {
+    ///Gets the raw value of [`Self::subpass`]
+    pub fn subpass_raw(&self) -> u32 {
+        self.subpass
+    }
+    ///Gets the raw value of [`Self::input_attachment_index`]
+    pub fn input_attachment_index_raw(&self) -> u32 {
+        self.input_attachment_index
+    }
+    ///Sets the raw value of [`Self::subpass`]
+    pub fn set_subpass_raw(&mut self, value: u32) -> &mut Self {
+        self.subpass = value;
+        self
+    }
+    ///Sets the raw value of [`Self::input_attachment_index`]
+    pub fn set_input_attachment_index_raw(&mut self, value: u32) -> &mut Self {
+        self.input_attachment_index = value;
+        self
+    }
+    ///Gets the value of [`Self::subpass`]
+    pub fn subpass(&self) -> u32 {
+        self.subpass
+    }
+    ///Gets the value of [`Self::input_attachment_index`]
+    pub fn input_attachment_index(&self) -> u32 {
+        self.input_attachment_index
+    }
+    ///Gets the value of [`Self::aspect_mask`]
+    pub fn aspect_mask(&self) -> ImageAspectFlags {
+        self.aspect_mask
+    }
+    ///Gets a mutable reference to the value of [`Self::subpass`]
+    pub fn subpass_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::input_attachment_index`]
+    pub fn input_attachment_index_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::aspect_mask`]
+    pub fn aspect_mask_mut(&mut self) -> &mut ImageAspectFlags {
+        &mut self.aspect_mask
+    }
+    ///Sets the raw value of [`Self::subpass`]
+    pub fn set_subpass(&mut self, value: u32) -> &mut Self {
+        self.subpass = value;
+        self
+    }
+    ///Sets the raw value of [`Self::input_attachment_index`]
+    pub fn set_input_attachment_index(&mut self, value: u32) -> &mut Self {
+        self.input_attachment_index = value;
+        self
+    }
+    ///Sets the raw value of [`Self::aspect_mask`]
+    pub fn set_aspect_mask(&mut self, value: crate::vulkan1_0::ImageAspectFlags) -> &mut Self {
+        self.aspect_mask = value;
+        self
+    }
 }
 ///[VkRenderPassInputAttachmentAspectCreateInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassInputAttachmentAspectCreateInfo.html) - Structure specifying, for a given subpass/input attachment pair, which aspect can: be read.
 ///# C Specifications
@@ -4037,8 +7968,8 @@ pub struct InputAttachmentAspectReference {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`aspect_reference_count`] is the number of elements in the [`p_aspect_references`] array.
-/// - [`p_aspect_references`] is a pointer to an array of
+/// - [`aspect_reference_count`] is the number of elements in the [`aspect_references`] array.
+/// - [`aspect_references`] is a pointer to an array of
 ///   [`aspect_reference_count`][`InputAttachmentAspectReference`] structures containing a mask
 ///   describing which aspect(s) **can** be accessed for a given input attachment within a given
 ///   subpass.
@@ -4047,11 +7978,11 @@ pub struct InputAttachmentAspectReference {
 ///[`RenderPassInputAttachmentAspectCreateInfo`] structure to the
 ///[`p_next`] chain of the [`RenderPassCreateInfo`] structure:An application **can** access any
 /// aspect of an input attachment that does not
-///have a specified aspect mask in the [`p_aspect_references`] array.
+///have a specified aspect mask in the [`aspect_references`] array.
 ///Otherwise, an application **must** not access aspect(s) of an input attachment
 ///other than those in its specified aspect mask.Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO`
-/// - [`p_aspect_references`]**must** be a valid pointer to an array of [`aspect_reference_count`]
+/// - [`aspect_references`]**must** be a valid pointer to an array of [`aspect_reference_count`]
 ///   valid [`InputAttachmentAspectReference`] structures
 /// - [`aspect_reference_count`]**must** be greater than `0`
 ///# Related
@@ -4066,9 +7997,8 @@ pub struct InputAttachmentAspectReference {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct RenderPassInputAttachmentAspectCreateInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -4076,15 +8006,111 @@ pub struct RenderPassInputAttachmentAspectCreateInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`aspect_reference_count`] is the number of elements in the
-    ///[`p_aspect_references`] array.
+    ///[`aspect_references`] array.
     aspect_reference_count: u32,
-    ///[`p_aspect_references`] is a pointer to an array of
+    ///[`aspect_references`] is a pointer to an array of
     ///[`aspect_reference_count`][`InputAttachmentAspectReference`]
     ///structures containing a mask describing which aspect(s) **can** be accessed
     ///for a given input attachment within a given subpass.
-    p_aspect_references: *mut InputAttachmentAspectReference,
+    aspect_references: *const InputAttachmentAspectReference,
+}
+impl<'lt> Default for RenderPassInputAttachmentAspectCreateInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            aspect_reference_count: 0,
+            aspect_references: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> RenderPassInputAttachmentAspectCreateInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::aspect_reference_count`]
+    pub fn aspect_reference_count_raw(&self) -> u32 {
+        self.aspect_reference_count
+    }
+    ///Gets the raw value of [`Self::aspect_references`]
+    pub fn aspect_references_raw(&self) -> *const InputAttachmentAspectReference {
+        self.aspect_references
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::aspect_reference_count`]
+    pub fn set_aspect_reference_count_raw(&mut self, value: u32) -> &mut Self {
+        self.aspect_reference_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::aspect_references`]
+    pub fn set_aspect_references_raw(&mut self, value: *const InputAttachmentAspectReference) -> &mut Self {
+        self.aspect_references = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::aspect_reference_count`]
+    pub fn aspect_reference_count(&self) -> u32 {
+        self.aspect_reference_count
+    }
+    ///Gets the value of [`Self::aspect_references`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn aspect_references(&self) -> &[InputAttachmentAspectReference] {
+        std::slice::from_raw_parts(self.aspect_references, self.aspect_reference_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::aspect_reference_count`]
+    pub fn aspect_reference_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::aspect_reference_count`]
+    pub fn set_aspect_reference_count(&mut self, value: u32) -> &mut Self {
+        self.aspect_reference_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::aspect_references`]
+    pub fn set_aspect_references(
+        &mut self,
+        value: &'lt [crate::vulkan1_1::InputAttachmentAspectReference],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.aspect_references = value.as_ptr();
+        self.aspect_reference_count = len_;
+        self
+    }
 }
 ///[VkPhysicalDevice16BitStorageFeatures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevice16BitStorageFeatures.html) - Structure describing features supported by VK_KHR_16bit_storage
 ///# C Specifications
@@ -4151,9 +8177,8 @@ pub struct RenderPassInputAttachmentAspectCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDevice16BitStorageFeatures<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -4161,7 +8186,7 @@ pub struct PhysicalDevice16BitStorageFeatures<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`storage_buffer_16_bit_access`] specifies whether objects in the
     ///    `StorageBuffer`,
     ///`ShaderRecordBufferKHR`,
@@ -4197,6 +8222,206 @@ pub struct PhysicalDevice16BitStorageFeatures<'lt> {
     ///This also specifies whether shader modules **can** declare the
     ///`StorageInputOutput16` capability.
     storage_input_output_16: Bool32,
+}
+impl<'lt> Default for PhysicalDevice16BitStorageFeatures<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            storage_buffer_16_bit_access: 0,
+            uniform_and_storage_buffer_16_bit_access: 0,
+            storage_push_constant_16: 0,
+            storage_input_output_16: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDevice16BitStorageFeatures<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::storage_buffer_16_bit_access`]
+    pub fn storage_buffer_16_bit_access_raw(&self) -> Bool32 {
+        self.storage_buffer_16_bit_access
+    }
+    ///Gets the raw value of [`Self::uniform_and_storage_buffer_16_bit_access`]
+    pub fn uniform_and_storage_buffer_16_bit_access_raw(&self) -> Bool32 {
+        self.uniform_and_storage_buffer_16_bit_access
+    }
+    ///Gets the raw value of [`Self::storage_push_constant_16`]
+    pub fn storage_push_constant_16_raw(&self) -> Bool32 {
+        self.storage_push_constant_16
+    }
+    ///Gets the raw value of [`Self::storage_input_output_16`]
+    pub fn storage_input_output_16_raw(&self) -> Bool32 {
+        self.storage_input_output_16
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::storage_buffer_16_bit_access`]
+    pub fn set_storage_buffer_16_bit_access_raw(&mut self, value: Bool32) -> &mut Self {
+        self.storage_buffer_16_bit_access = value;
+        self
+    }
+    ///Sets the raw value of [`Self::uniform_and_storage_buffer_16_bit_access`]
+    pub fn set_uniform_and_storage_buffer_16_bit_access_raw(&mut self, value: Bool32) -> &mut Self {
+        self.uniform_and_storage_buffer_16_bit_access = value;
+        self
+    }
+    ///Sets the raw value of [`Self::storage_push_constant_16`]
+    pub fn set_storage_push_constant_16_raw(&mut self, value: Bool32) -> &mut Self {
+        self.storage_push_constant_16 = value;
+        self
+    }
+    ///Sets the raw value of [`Self::storage_input_output_16`]
+    pub fn set_storage_input_output_16_raw(&mut self, value: Bool32) -> &mut Self {
+        self.storage_input_output_16 = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::storage_buffer_16_bit_access`]
+    pub fn storage_buffer_16_bit_access(&self) -> bool {
+        unsafe { std::mem::transmute(self.storage_buffer_16_bit_access as u8) }
+    }
+    ///Gets the value of [`Self::uniform_and_storage_buffer_16_bit_access`]
+    pub fn uniform_and_storage_buffer_16_bit_access(&self) -> bool {
+        unsafe { std::mem::transmute(self.uniform_and_storage_buffer_16_bit_access as u8) }
+    }
+    ///Gets the value of [`Self::storage_push_constant_16`]
+    pub fn storage_push_constant_16(&self) -> bool {
+        unsafe { std::mem::transmute(self.storage_push_constant_16 as u8) }
+    }
+    ///Gets the value of [`Self::storage_input_output_16`]
+    pub fn storage_input_output_16(&self) -> bool {
+        unsafe { std::mem::transmute(self.storage_input_output_16 as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::storage_buffer_16_bit_access`]
+    pub fn storage_buffer_16_bit_access_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.storage_buffer_16_bit_access as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.storage_buffer_16_bit_access as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::uniform_and_storage_buffer_16_bit_access`]
+    pub fn uniform_and_storage_buffer_16_bit_access_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.uniform_and_storage_buffer_16_bit_access as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.uniform_and_storage_buffer_16_bit_access as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::storage_push_constant_16`]
+    pub fn storage_push_constant_16_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.storage_push_constant_16 as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.storage_push_constant_16 as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::storage_input_output_16`]
+    pub fn storage_input_output_16_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.storage_input_output_16 as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.storage_input_output_16 as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::storage_buffer_16_bit_access`]
+    pub fn set_storage_buffer_16_bit_access(&mut self, value: bool) -> &mut Self {
+        self.storage_buffer_16_bit_access = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::uniform_and_storage_buffer_16_bit_access`]
+    pub fn set_uniform_and_storage_buffer_16_bit_access(&mut self, value: bool) -> &mut Self {
+        self.uniform_and_storage_buffer_16_bit_access = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::storage_push_constant_16`]
+    pub fn set_storage_push_constant_16(&mut self, value: bool) -> &mut Self {
+        self.storage_push_constant_16 = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::storage_input_output_16`]
+    pub fn set_storage_input_output_16(&mut self, value: bool) -> &mut Self {
+        self.storage_input_output_16 = value as u8 as u32;
+        self
+    }
 }
 ///[VkPhysicalDeviceSubgroupProperties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSubgroupProperties.html) - Structure describing subgroup support for an implementation
 ///# C Specifications
@@ -4244,9 +8469,8 @@ pub struct PhysicalDevice16BitStorageFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceSubgroupProperties<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -4254,7 +8478,7 @@ pub struct PhysicalDeviceSubgroupProperties<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
     subgroup_size: u32,
     ///No documentation found
@@ -4263,6 +8487,146 @@ pub struct PhysicalDeviceSubgroupProperties<'lt> {
     supported_operations: SubgroupFeatureFlags,
     ///No documentation found
     quad_operations_in_all_stages: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceSubgroupProperties<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            subgroup_size: 0,
+            supported_stages: Default::default(),
+            supported_operations: Default::default(),
+            quad_operations_in_all_stages: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceSubgroupProperties<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::subgroup_size`]
+    pub fn subgroup_size_raw(&self) -> u32 {
+        self.subgroup_size
+    }
+    ///Gets the raw value of [`Self::quad_operations_in_all_stages`]
+    pub fn quad_operations_in_all_stages_raw(&self) -> Bool32 {
+        self.quad_operations_in_all_stages
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::subgroup_size`]
+    pub fn set_subgroup_size_raw(&mut self, value: u32) -> &mut Self {
+        self.subgroup_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::quad_operations_in_all_stages`]
+    pub fn set_quad_operations_in_all_stages_raw(&mut self, value: Bool32) -> &mut Self {
+        self.quad_operations_in_all_stages = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::subgroup_size`]
+    pub fn subgroup_size(&self) -> u32 {
+        self.subgroup_size
+    }
+    ///Gets the value of [`Self::supported_stages`]
+    pub fn supported_stages(&self) -> ShaderStageFlags {
+        self.supported_stages
+    }
+    ///Gets the value of [`Self::supported_operations`]
+    pub fn supported_operations(&self) -> SubgroupFeatureFlags {
+        self.supported_operations
+    }
+    ///Gets the value of [`Self::quad_operations_in_all_stages`]
+    pub fn quad_operations_in_all_stages(&self) -> bool {
+        unsafe { std::mem::transmute(self.quad_operations_in_all_stages as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::subgroup_size`]
+    pub fn subgroup_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::supported_stages`]
+    pub fn supported_stages_mut(&mut self) -> &mut ShaderStageFlags {
+        &mut self.supported_stages
+    }
+    ///Gets a mutable reference to the value of [`Self::supported_operations`]
+    pub fn supported_operations_mut(&mut self) -> &mut SubgroupFeatureFlags {
+        &mut self.supported_operations
+    }
+    ///Gets a mutable reference to the value of [`Self::quad_operations_in_all_stages`]
+    pub fn quad_operations_in_all_stages_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.quad_operations_in_all_stages as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.quad_operations_in_all_stages as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::subgroup_size`]
+    pub fn set_subgroup_size(&mut self, value: u32) -> &mut Self {
+        self.subgroup_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::supported_stages`]
+    pub fn set_supported_stages(&mut self, value: crate::vulkan1_0::ShaderStageFlags) -> &mut Self {
+        self.supported_stages = value;
+        self
+    }
+    ///Sets the raw value of [`Self::supported_operations`]
+    pub fn set_supported_operations(&mut self, value: crate::vulkan1_1::SubgroupFeatureFlags) -> &mut Self {
+        self.supported_operations = value;
+        self
+    }
+    ///Sets the raw value of [`Self::quad_operations_in_all_stages`]
+    pub fn set_quad_operations_in_all_stages(&mut self, value: bool) -> &mut Self {
+        self.quad_operations_in_all_stages = value as u8 as u32;
+        self
+    }
 }
 ///[VkBufferMemoryRequirementsInfo2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferMemoryRequirementsInfo2.html) - (None)
 ///# C Specifications
@@ -4303,9 +8667,8 @@ pub struct PhysicalDeviceSubgroupProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct BufferMemoryRequirementsInfo2<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -4313,9 +8676,68 @@ pub struct BufferMemoryRequirementsInfo2<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`buffer`] is the buffer to query.
     buffer: Buffer,
+}
+impl<'lt> Default for BufferMemoryRequirementsInfo2<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            buffer: Default::default(),
+        }
+    }
+}
+impl<'lt> BufferMemoryRequirementsInfo2<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::buffer`]
+    pub fn buffer(&self) -> Buffer {
+        self.buffer
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::buffer`]
+    pub fn buffer_mut(&mut self) -> &mut Buffer {
+        &mut self.buffer
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::buffer`]
+    pub fn set_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+        self.buffer = value;
+        self
+    }
 }
 ///[VkImageMemoryRequirementsInfo2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageMemoryRequirementsInfo2.html) - (None)
 ///# C Specifications
@@ -4376,9 +8798,8 @@ pub struct BufferMemoryRequirementsInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ImageMemoryRequirementsInfo2<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -4386,9 +8807,68 @@ pub struct ImageMemoryRequirementsInfo2<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`image`] is the image to query.
     image: Image,
+}
+impl<'lt> Default for ImageMemoryRequirementsInfo2<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            image: Default::default(),
+        }
+    }
+}
+impl<'lt> ImageMemoryRequirementsInfo2<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::image`]
+    pub fn image(&self) -> Image {
+        self.image
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::image`]
+    pub fn image_mut(&mut self) -> &mut Image {
+        &mut self.image
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::image`]
+    pub fn set_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
+        self.image = value;
+        self
+    }
 }
 ///[VkImageSparseMemoryRequirementsInfo2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageSparseMemoryRequirementsInfo2.html) - (None)
 ///# C Specifications
@@ -4429,9 +8909,8 @@ pub struct ImageMemoryRequirementsInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ImageSparseMemoryRequirementsInfo2<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -4439,9 +8918,68 @@ pub struct ImageSparseMemoryRequirementsInfo2<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`image`] is the image to query.
     image: Image,
+}
+impl<'lt> Default for ImageSparseMemoryRequirementsInfo2<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            image: Default::default(),
+        }
+    }
+}
+impl<'lt> ImageSparseMemoryRequirementsInfo2<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::image`]
+    pub fn image(&self) -> Image {
+        self.image
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::image`]
+    pub fn image_mut(&mut self) -> &mut Image {
+        &mut self.image
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::image`]
+    pub fn set_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
+        self.image = value;
+        self
+    }
 }
 ///[VkMemoryRequirements2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryRequirements2.html) - Structure specifying memory requirements
 ///# C Specifications
@@ -4492,9 +9030,8 @@ pub struct ImageSparseMemoryRequirementsInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct MemoryRequirements2<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -4502,10 +9039,76 @@ pub struct MemoryRequirements2<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`memory_requirements`] is a [`MemoryRequirements`] structure
     ///describing the memory requirements of the resource.
     memory_requirements: MemoryRequirements,
+}
+impl<'lt> Default for MemoryRequirements2<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            memory_requirements: Default::default(),
+        }
+    }
+}
+impl<'lt> MemoryRequirements2<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::memory_requirements`]
+    pub fn memory_requirements(&self) -> MemoryRequirements {
+        self.memory_requirements
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::memory_requirements`]
+    pub fn memory_requirements_mut(&mut self) -> &mut MemoryRequirements {
+        &mut self.memory_requirements
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::memory_requirements`]
+    pub fn set_memory_requirements(&mut self, value: crate::vulkan1_0::MemoryRequirements) -> &mut Self {
+        self.memory_requirements = value;
+        self
+    }
 }
 ///[VkSparseImageMemoryRequirements2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageMemoryRequirements2.html) - (None)
 ///# C Specifications
@@ -4548,9 +9151,8 @@ pub struct MemoryRequirements2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct SparseImageMemoryRequirements2<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -4558,10 +9160,76 @@ pub struct SparseImageMemoryRequirements2<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`memory_requirements`] is a [`SparseImageMemoryRequirements`]
     ///structure describing the memory requirements of the sparse image.
     memory_requirements: SparseImageMemoryRequirements,
+}
+impl<'lt> Default for SparseImageMemoryRequirements2<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            memory_requirements: Default::default(),
+        }
+    }
+}
+impl<'lt> SparseImageMemoryRequirements2<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::memory_requirements`]
+    pub fn memory_requirements(&self) -> SparseImageMemoryRequirements {
+        self.memory_requirements
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::memory_requirements`]
+    pub fn memory_requirements_mut(&mut self) -> &mut SparseImageMemoryRequirements {
+        &mut self.memory_requirements
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::memory_requirements`]
+    pub fn set_memory_requirements(&mut self, value: crate::vulkan1_0::SparseImageMemoryRequirements) -> &mut Self {
+        self.memory_requirements = value;
+        self
+    }
 }
 ///[VkPhysicalDevicePointClippingProperties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePointClippingProperties.html) - Structure describing the point clipping behavior supported by an implementation
 ///# C Specifications
@@ -4603,9 +9271,8 @@ pub struct SparseImageMemoryRequirements2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDevicePointClippingProperties<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -4613,9 +9280,75 @@ pub struct PhysicalDevicePointClippingProperties<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
     point_clipping_behavior: PointClippingBehavior,
+}
+impl<'lt> Default for PhysicalDevicePointClippingProperties<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            point_clipping_behavior: Default::default(),
+        }
+    }
+}
+impl<'lt> PhysicalDevicePointClippingProperties<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::point_clipping_behavior`]
+    pub fn point_clipping_behavior(&self) -> PointClippingBehavior {
+        self.point_clipping_behavior
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::point_clipping_behavior`]
+    pub fn point_clipping_behavior_mut(&mut self) -> &mut PointClippingBehavior {
+        &mut self.point_clipping_behavior
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::point_clipping_behavior`]
+    pub fn set_point_clipping_behavior(&mut self, value: crate::vulkan1_1::PointClippingBehavior) -> &mut Self {
+        self.point_clipping_behavior = value;
+        self
+    }
 }
 ///[VkMemoryDedicatedRequirements](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryDedicatedRequirements.html) - Structure describing dedicated allocation requirements of buffer and image resources
 ///# C Specifications
@@ -4686,9 +9419,8 @@ pub struct PhysicalDevicePointClippingProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct MemoryDedicatedRequirements<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -4696,7 +9428,7 @@ pub struct MemoryDedicatedRequirements<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`prefers_dedicated_allocation`] specifies that the implementation would
     ///prefer a dedicated allocation for this resource.
     ///The application is still free to suballocate the resource but it **may**
@@ -4705,6 +9437,132 @@ pub struct MemoryDedicatedRequirements<'lt> {
     ///[`requires_dedicated_allocation`] specifies that a dedicated allocation
     ///is required for this resource.
     requires_dedicated_allocation: Bool32,
+}
+impl<'lt> Default for MemoryDedicatedRequirements<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            prefers_dedicated_allocation: 0,
+            requires_dedicated_allocation: 0,
+        }
+    }
+}
+impl<'lt> MemoryDedicatedRequirements<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::prefers_dedicated_allocation`]
+    pub fn prefers_dedicated_allocation_raw(&self) -> Bool32 {
+        self.prefers_dedicated_allocation
+    }
+    ///Gets the raw value of [`Self::requires_dedicated_allocation`]
+    pub fn requires_dedicated_allocation_raw(&self) -> Bool32 {
+        self.requires_dedicated_allocation
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::prefers_dedicated_allocation`]
+    pub fn set_prefers_dedicated_allocation_raw(&mut self, value: Bool32) -> &mut Self {
+        self.prefers_dedicated_allocation = value;
+        self
+    }
+    ///Sets the raw value of [`Self::requires_dedicated_allocation`]
+    pub fn set_requires_dedicated_allocation_raw(&mut self, value: Bool32) -> &mut Self {
+        self.requires_dedicated_allocation = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::prefers_dedicated_allocation`]
+    pub fn prefers_dedicated_allocation(&self) -> bool {
+        unsafe { std::mem::transmute(self.prefers_dedicated_allocation as u8) }
+    }
+    ///Gets the value of [`Self::requires_dedicated_allocation`]
+    pub fn requires_dedicated_allocation(&self) -> bool {
+        unsafe { std::mem::transmute(self.requires_dedicated_allocation as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::prefers_dedicated_allocation`]
+    pub fn prefers_dedicated_allocation_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.prefers_dedicated_allocation as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.prefers_dedicated_allocation as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::requires_dedicated_allocation`]
+    pub fn requires_dedicated_allocation_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.requires_dedicated_allocation as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.requires_dedicated_allocation as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::prefers_dedicated_allocation`]
+    pub fn set_prefers_dedicated_allocation(&mut self, value: bool) -> &mut Self {
+        self.prefers_dedicated_allocation = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::requires_dedicated_allocation`]
+    pub fn set_requires_dedicated_allocation(&mut self, value: bool) -> &mut Self {
+        self.requires_dedicated_allocation = value as u8 as u32;
+        self
+    }
 }
 ///[VkMemoryDedicatedAllocateInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryDedicatedAllocateInfo.html) - Specify a dedicated memory allocation resource
 ///# C Specifications
@@ -4804,9 +9662,8 @@ pub struct MemoryDedicatedRequirements<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct MemoryDedicatedAllocateInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -4814,13 +9671,86 @@ pub struct MemoryDedicatedAllocateInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`image`] is [`crate::utils::Handle::null`] or a handle of an image which this
     ///memory will be bound to.
     image: Image,
     ///[`buffer`] is [`crate::utils::Handle::null`] or a handle of a buffer which this
     ///memory will be bound to.
     buffer: Buffer,
+}
+impl<'lt> Default for MemoryDedicatedAllocateInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            image: Default::default(),
+            buffer: Default::default(),
+        }
+    }
+}
+impl<'lt> MemoryDedicatedAllocateInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::image`]
+    pub fn image(&self) -> Image {
+        self.image
+    }
+    ///Gets the value of [`Self::buffer`]
+    pub fn buffer(&self) -> Buffer {
+        self.buffer
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::image`]
+    pub fn image_mut(&mut self) -> &mut Image {
+        &mut self.image
+    }
+    ///Gets a mutable reference to the value of [`Self::buffer`]
+    pub fn buffer_mut(&mut self) -> &mut Buffer {
+        &mut self.buffer
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::image`]
+    pub fn set_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
+        self.image = value;
+        self
+    }
+    ///Sets the raw value of [`Self::buffer`]
+    pub fn set_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+        self.buffer = value;
+        self
+    }
 }
 ///[VkImageViewUsageCreateInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageViewUsageCreateInfo.html) - Specify the intended usage of an image view
 ///# C Specifications
@@ -4865,9 +9795,8 @@ pub struct MemoryDedicatedAllocateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ImageViewUsageCreateInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -4875,10 +9804,69 @@ pub struct ImageViewUsageCreateInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`usage`] is a bitmask of [`ImageUsageFlagBits`] specifying
     ///allowed usages of the image view.
     usage: ImageUsageFlags,
+}
+impl<'lt> Default for ImageViewUsageCreateInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            usage: Default::default(),
+        }
+    }
+}
+impl<'lt> ImageViewUsageCreateInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::usage`]
+    pub fn usage(&self) -> ImageUsageFlags {
+        self.usage
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::usage`]
+    pub fn usage_mut(&mut self) -> &mut ImageUsageFlags {
+        &mut self.usage
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::usage`]
+    pub fn set_usage(&mut self, value: crate::vulkan1_0::ImageUsageFlags) -> &mut Self {
+        self.usage = value;
+        self
+    }
 }
 ///[VkPipelineTessellationDomainOriginStateCreateInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineTessellationDomainOriginStateCreateInfo.html) - Structure specifying the orientation of the tessellation domain
 ///# C Specifications
@@ -4925,9 +9913,8 @@ pub struct ImageViewUsageCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PipelineTessellationDomainOriginStateCreateInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -4935,10 +9922,69 @@ pub struct PipelineTessellationDomainOriginStateCreateInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`domain_origin`] is a [`TessellationDomainOrigin`] value
     ///controlling the origin of the tessellation domain space.
     domain_origin: TessellationDomainOrigin,
+}
+impl<'lt> Default for PipelineTessellationDomainOriginStateCreateInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            domain_origin: Default::default(),
+        }
+    }
+}
+impl<'lt> PipelineTessellationDomainOriginStateCreateInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::domain_origin`]
+    pub fn domain_origin(&self) -> TessellationDomainOrigin {
+        self.domain_origin
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::domain_origin`]
+    pub fn domain_origin_mut(&mut self) -> &mut TessellationDomainOrigin {
+        &mut self.domain_origin
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::domain_origin`]
+    pub fn set_domain_origin(&mut self, value: crate::vulkan1_1::TessellationDomainOrigin) -> &mut Self {
+        self.domain_origin = value;
+        self
+    }
 }
 ///[VkSamplerYcbcrConversionInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerYcbcrConversionInfo.html) - Structure specifying Y′C<sub>B</sub>C<sub>R</sub> conversion to a sampler or image view
 ///# C Specifications
@@ -4991,9 +10037,8 @@ pub struct PipelineTessellationDomainOriginStateCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct SamplerYcbcrConversionInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -5001,10 +10046,69 @@ pub struct SamplerYcbcrConversionInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`conversion`] is a [`SamplerYcbcrConversion`] handle created with
     ///[`CreateSamplerYcbcrConversion`].
     conversion: SamplerYcbcrConversion,
+}
+impl<'lt> Default for SamplerYcbcrConversionInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            conversion: Default::default(),
+        }
+    }
+}
+impl<'lt> SamplerYcbcrConversionInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::conversion`]
+    pub fn conversion(&self) -> SamplerYcbcrConversion {
+        self.conversion
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::conversion`]
+    pub fn conversion_mut(&mut self) -> &mut SamplerYcbcrConversion {
+        &mut self.conversion
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::conversion`]
+    pub fn set_conversion(&mut self, value: crate::vulkan1_1::SamplerYcbcrConversion) -> &mut Self {
+        self.conversion = value;
+        self
+    }
 }
 ///[VkSamplerYcbcrConversionCreateInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerYcbcrConversionCreateInfo.html) - Structure specifying the parameters of the newly created conversion
 ///# C Specifications
@@ -5122,9 +10226,8 @@ pub struct SamplerYcbcrConversionInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct SamplerYcbcrConversionCreateInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -5132,7 +10235,7 @@ pub struct SamplerYcbcrConversionCreateInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`format`] is the format of the image from which color information
     ///will be retrieved.
     format: Format,
@@ -5162,6 +10265,186 @@ pub struct SamplerYcbcrConversionCreateInfo<'lt> {
     ///[`force_explicit_reconstruction`]**can** be used to ensure that
     ///reconstruction is done explicitly, if supported.
     force_explicit_reconstruction: Bool32,
+}
+impl<'lt> Default for SamplerYcbcrConversionCreateInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            format: Default::default(),
+            ycbcr_model: Default::default(),
+            ycbcr_range: Default::default(),
+            components: Default::default(),
+            x_chroma_offset: Default::default(),
+            y_chroma_offset: Default::default(),
+            chroma_filter: Default::default(),
+            force_explicit_reconstruction: 0,
+        }
+    }
+}
+impl<'lt> SamplerYcbcrConversionCreateInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::force_explicit_reconstruction`]
+    pub fn force_explicit_reconstruction_raw(&self) -> Bool32 {
+        self.force_explicit_reconstruction
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::force_explicit_reconstruction`]
+    pub fn set_force_explicit_reconstruction_raw(&mut self, value: Bool32) -> &mut Self {
+        self.force_explicit_reconstruction = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::format`]
+    pub fn format(&self) -> Format {
+        self.format
+    }
+    ///Gets the value of [`Self::ycbcr_model`]
+    pub fn ycbcr_model(&self) -> SamplerYcbcrModelConversion {
+        self.ycbcr_model
+    }
+    ///Gets the value of [`Self::ycbcr_range`]
+    pub fn ycbcr_range(&self) -> SamplerYcbcrRange {
+        self.ycbcr_range
+    }
+    ///Gets the value of [`Self::components`]
+    pub fn components(&self) -> ComponentMapping {
+        self.components
+    }
+    ///Gets the value of [`Self::x_chroma_offset`]
+    pub fn x_chroma_offset(&self) -> ChromaLocation {
+        self.x_chroma_offset
+    }
+    ///Gets the value of [`Self::y_chroma_offset`]
+    pub fn y_chroma_offset(&self) -> ChromaLocation {
+        self.y_chroma_offset
+    }
+    ///Gets the value of [`Self::chroma_filter`]
+    pub fn chroma_filter(&self) -> Filter {
+        self.chroma_filter
+    }
+    ///Gets the value of [`Self::force_explicit_reconstruction`]
+    pub fn force_explicit_reconstruction(&self) -> bool {
+        unsafe { std::mem::transmute(self.force_explicit_reconstruction as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::format`]
+    pub fn format_mut(&mut self) -> &mut Format {
+        &mut self.format
+    }
+    ///Gets a mutable reference to the value of [`Self::ycbcr_model`]
+    pub fn ycbcr_model_mut(&mut self) -> &mut SamplerYcbcrModelConversion {
+        &mut self.ycbcr_model
+    }
+    ///Gets a mutable reference to the value of [`Self::ycbcr_range`]
+    pub fn ycbcr_range_mut(&mut self) -> &mut SamplerYcbcrRange {
+        &mut self.ycbcr_range
+    }
+    ///Gets a mutable reference to the value of [`Self::components`]
+    pub fn components_mut(&mut self) -> &mut ComponentMapping {
+        &mut self.components
+    }
+    ///Gets a mutable reference to the value of [`Self::x_chroma_offset`]
+    pub fn x_chroma_offset_mut(&mut self) -> &mut ChromaLocation {
+        &mut self.x_chroma_offset
+    }
+    ///Gets a mutable reference to the value of [`Self::y_chroma_offset`]
+    pub fn y_chroma_offset_mut(&mut self) -> &mut ChromaLocation {
+        &mut self.y_chroma_offset
+    }
+    ///Gets a mutable reference to the value of [`Self::chroma_filter`]
+    pub fn chroma_filter_mut(&mut self) -> &mut Filter {
+        &mut self.chroma_filter
+    }
+    ///Gets a mutable reference to the value of [`Self::force_explicit_reconstruction`]
+    pub fn force_explicit_reconstruction_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.force_explicit_reconstruction as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.force_explicit_reconstruction as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::format`]
+    pub fn set_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+        self.format = value;
+        self
+    }
+    ///Sets the raw value of [`Self::ycbcr_model`]
+    pub fn set_ycbcr_model(&mut self, value: crate::vulkan1_1::SamplerYcbcrModelConversion) -> &mut Self {
+        self.ycbcr_model = value;
+        self
+    }
+    ///Sets the raw value of [`Self::ycbcr_range`]
+    pub fn set_ycbcr_range(&mut self, value: crate::vulkan1_1::SamplerYcbcrRange) -> &mut Self {
+        self.ycbcr_range = value;
+        self
+    }
+    ///Sets the raw value of [`Self::components`]
+    pub fn set_components(&mut self, value: crate::vulkan1_0::ComponentMapping) -> &mut Self {
+        self.components = value;
+        self
+    }
+    ///Sets the raw value of [`Self::x_chroma_offset`]
+    pub fn set_x_chroma_offset(&mut self, value: crate::vulkan1_1::ChromaLocation) -> &mut Self {
+        self.x_chroma_offset = value;
+        self
+    }
+    ///Sets the raw value of [`Self::y_chroma_offset`]
+    pub fn set_y_chroma_offset(&mut self, value: crate::vulkan1_1::ChromaLocation) -> &mut Self {
+        self.y_chroma_offset = value;
+        self
+    }
+    ///Sets the raw value of [`Self::chroma_filter`]
+    pub fn set_chroma_filter(&mut self, value: crate::vulkan1_0::Filter) -> &mut Self {
+        self.chroma_filter = value;
+        self
+    }
+    ///Sets the raw value of [`Self::force_explicit_reconstruction`]
+    pub fn set_force_explicit_reconstruction(&mut self, value: bool) -> &mut Self {
+        self.force_explicit_reconstruction = value as u8 as u32;
+        self
+    }
 }
 ///[VkBindImagePlaneMemoryInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImagePlaneMemoryInfo.html) - Structure specifying how to bind an image plane to memory
 ///# C Specifications
@@ -5213,9 +10496,8 @@ pub struct SamplerYcbcrConversionCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct BindImagePlaneMemoryInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -5223,10 +10505,69 @@ pub struct BindImagePlaneMemoryInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`plane_aspect`] is a [`ImageAspectFlagBits`] value specifying the
     ///aspect of the disjoint image plane to bind.
     plane_aspect: ImageAspectFlagBits,
+}
+impl<'lt> Default for BindImagePlaneMemoryInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            plane_aspect: Default::default(),
+        }
+    }
+}
+impl<'lt> BindImagePlaneMemoryInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::plane_aspect`]
+    pub fn plane_aspect(&self) -> ImageAspectFlagBits {
+        self.plane_aspect
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::plane_aspect`]
+    pub fn plane_aspect_mut(&mut self) -> &mut ImageAspectFlagBits {
+        &mut self.plane_aspect
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::plane_aspect`]
+    pub fn set_plane_aspect(&mut self, value: crate::vulkan1_0::ImageAspectFlagBits) -> &mut Self {
+        self.plane_aspect = value;
+        self
+    }
 }
 ///[VkImagePlaneMemoryRequirementsInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImagePlaneMemoryRequirementsInfo.html) - Structure specifying image plane for memory requirements
 ///# C Specifications
@@ -5279,9 +10620,8 @@ pub struct BindImagePlaneMemoryInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ImagePlaneMemoryRequirementsInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -5289,10 +10629,69 @@ pub struct ImagePlaneMemoryRequirementsInfo<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`plane_aspect`] is a [`ImageAspectFlagBits`] value specifying the
     ///aspect corresponding to the image plane to query.
     plane_aspect: ImageAspectFlagBits,
+}
+impl<'lt> Default for ImagePlaneMemoryRequirementsInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            plane_aspect: Default::default(),
+        }
+    }
+}
+impl<'lt> ImagePlaneMemoryRequirementsInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::plane_aspect`]
+    pub fn plane_aspect(&self) -> ImageAspectFlagBits {
+        self.plane_aspect
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::plane_aspect`]
+    pub fn plane_aspect_mut(&mut self) -> &mut ImageAspectFlagBits {
+        &mut self.plane_aspect
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::plane_aspect`]
+    pub fn set_plane_aspect(&mut self, value: crate::vulkan1_0::ImageAspectFlagBits) -> &mut Self {
+        self.plane_aspect = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceSamplerYcbcrConversionFeatures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSamplerYcbcrConversionFeatures.html) - Structure describing Y′C<sub>B</sub>C<sub>R</sub> conversion features that can be supported by an implementation
 ///# C Specifications
@@ -5340,9 +10739,8 @@ pub struct ImagePlaneMemoryRequirementsInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceSamplerYcbcrConversionFeatures<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -5350,13 +10748,102 @@ pub struct PhysicalDeviceSamplerYcbcrConversionFeatures<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`sampler_ycbcr_conversion`] specifies whether the implementation
     ///supports [sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-YCbCr-conversion).
     ///If [`sampler_ycbcr_conversion`] is [`FALSE`], sampler Y′C<sub>B</sub>C<sub>R</sub>
     ///conversion is not supported, and samplers using sampler Y′C<sub>B</sub>C<sub>R</sub>
     ///conversion **must** not be used.
     sampler_ycbcr_conversion: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceSamplerYcbcrConversionFeatures<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            sampler_ycbcr_conversion: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceSamplerYcbcrConversionFeatures<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::sampler_ycbcr_conversion`]
+    pub fn sampler_ycbcr_conversion_raw(&self) -> Bool32 {
+        self.sampler_ycbcr_conversion
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sampler_ycbcr_conversion`]
+    pub fn set_sampler_ycbcr_conversion_raw(&mut self, value: Bool32) -> &mut Self {
+        self.sampler_ycbcr_conversion = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::sampler_ycbcr_conversion`]
+    pub fn sampler_ycbcr_conversion(&self) -> bool {
+        unsafe { std::mem::transmute(self.sampler_ycbcr_conversion as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::sampler_ycbcr_conversion`]
+    pub fn sampler_ycbcr_conversion_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.sampler_ycbcr_conversion as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.sampler_ycbcr_conversion as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::sampler_ycbcr_conversion`]
+    pub fn set_sampler_ycbcr_conversion(&mut self, value: bool) -> &mut Self {
+        self.sampler_ycbcr_conversion = value as u8 as u32;
+        self
+    }
 }
 ///[VkSamplerYcbcrConversionImageFormatProperties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerYcbcrConversionImageFormatProperties.html) - Structure specifying combined image sampler descriptor count for multi-planar images
 ///# C Specifications
@@ -5399,9 +10886,8 @@ pub struct PhysicalDeviceSamplerYcbcrConversionFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct SamplerYcbcrConversionImageFormatProperties<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -5409,11 +10895,86 @@ pub struct SamplerYcbcrConversionImageFormatProperties<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`combined_image_sampler_descriptor_count`] is the number of combined
     ///image sampler descriptors that the implementation uses to access the
     ///format.
     combined_image_sampler_descriptor_count: u32,
+}
+impl<'lt> Default for SamplerYcbcrConversionImageFormatProperties<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            combined_image_sampler_descriptor_count: 0,
+        }
+    }
+}
+impl<'lt> SamplerYcbcrConversionImageFormatProperties<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::combined_image_sampler_descriptor_count`]
+    pub fn combined_image_sampler_descriptor_count_raw(&self) -> u32 {
+        self.combined_image_sampler_descriptor_count
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::combined_image_sampler_descriptor_count`]
+    pub fn set_combined_image_sampler_descriptor_count_raw(&mut self, value: u32) -> &mut Self {
+        self.combined_image_sampler_descriptor_count = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::combined_image_sampler_descriptor_count`]
+    pub fn combined_image_sampler_descriptor_count(&self) -> u32 {
+        self.combined_image_sampler_descriptor_count
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::combined_image_sampler_descriptor_count`]
+    pub fn combined_image_sampler_descriptor_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::combined_image_sampler_descriptor_count`]
+    pub fn set_combined_image_sampler_descriptor_count(&mut self, value: u32) -> &mut Self {
+        self.combined_image_sampler_descriptor_count = value;
+        self
+    }
 }
 ///[VkProtectedSubmitInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkProtectedSubmitInfo.html) - Structure indicating whether the submission is protected
 ///# C Specifications
@@ -5449,22 +11010,103 @@ pub struct SamplerYcbcrConversionImageFormatProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ProtectedSubmitInfo<'lt> {
     _lifetime: PhantomData<&'lt ()>,
     ///No documentation found
     s_type: StructureType,
     ///No documentation found
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`protected_submit`] specifies whether the batch is protected.
     ///If [`protected_submit`] is [`TRUE`], the batch is protected.
     ///If [`protected_submit`] is [`FALSE`], the batch is unprotected.
     ///If the [`SubmitInfo`]::[`p_next`] chain does not include this
     ///structure, the batch is unprotected.
     protected_submit: Bool32,
+}
+impl<'lt> Default for ProtectedSubmitInfo<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            protected_submit: 0,
+        }
+    }
+}
+impl<'lt> ProtectedSubmitInfo<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::protected_submit`]
+    pub fn protected_submit_raw(&self) -> Bool32 {
+        self.protected_submit
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::protected_submit`]
+    pub fn set_protected_submit_raw(&mut self, value: Bool32) -> &mut Self {
+        self.protected_submit = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::protected_submit`]
+    pub fn protected_submit(&self) -> bool {
+        unsafe { std::mem::transmute(self.protected_submit as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::protected_submit`]
+    pub fn protected_submit_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.protected_submit as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.protected_submit as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::protected_submit`]
+    pub fn set_protected_submit(&mut self, value: bool) -> &mut Self {
+        self.protected_submit = value as u8 as u32;
+        self
+    }
 }
 ///[VkPhysicalDeviceProtectedMemoryFeatures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceProtectedMemoryFeatures.html) - Structure describing protected memory features that can be supported by an implementation
 ///# C Specifications
@@ -5504,9 +11146,8 @@ pub struct ProtectedSubmitInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceProtectedMemoryFeatures<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -5514,10 +11155,99 @@ pub struct PhysicalDeviceProtectedMemoryFeatures<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`protected_memory`]
     ///specifies whether protected memory is supported.
     protected_memory: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceProtectedMemoryFeatures<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            protected_memory: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceProtectedMemoryFeatures<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::protected_memory`]
+    pub fn protected_memory_raw(&self) -> Bool32 {
+        self.protected_memory
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::protected_memory`]
+    pub fn set_protected_memory_raw(&mut self, value: Bool32) -> &mut Self {
+        self.protected_memory = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::protected_memory`]
+    pub fn protected_memory(&self) -> bool {
+        unsafe { std::mem::transmute(self.protected_memory as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::protected_memory`]
+    pub fn protected_memory_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.protected_memory as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.protected_memory as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::protected_memory`]
+    pub fn set_protected_memory(&mut self, value: bool) -> &mut Self {
+        self.protected_memory = value as u8 as u32;
+        self
+    }
 }
 ///[VkPhysicalDeviceProtectedMemoryProperties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceProtectedMemoryProperties.html) - Structure describing protected memory properties that can be supported by an implementation
 ///# C Specifications
@@ -5558,9 +11288,8 @@ pub struct PhysicalDeviceProtectedMemoryFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceProtectedMemoryProperties<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -5568,9 +11297,98 @@ pub struct PhysicalDeviceProtectedMemoryProperties<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
     protected_no_fault: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceProtectedMemoryProperties<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            protected_no_fault: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceProtectedMemoryProperties<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::protected_no_fault`]
+    pub fn protected_no_fault_raw(&self) -> Bool32 {
+        self.protected_no_fault
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::protected_no_fault`]
+    pub fn set_protected_no_fault_raw(&mut self, value: Bool32) -> &mut Self {
+        self.protected_no_fault = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::protected_no_fault`]
+    pub fn protected_no_fault(&self) -> bool {
+        unsafe { std::mem::transmute(self.protected_no_fault as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::protected_no_fault`]
+    pub fn protected_no_fault_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.protected_no_fault as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.protected_no_fault as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::protected_no_fault`]
+    pub fn set_protected_no_fault(&mut self, value: bool) -> &mut Self {
+        self.protected_no_fault = value as u8 as u32;
+        self
+    }
 }
 ///[VkDeviceQueueInfo2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueInfo2.html) - Structure specifying the parameters used for device queue creation
 ///# C Specifications
@@ -5625,9 +11443,8 @@ pub struct PhysicalDeviceProtectedMemoryProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct DeviceQueueInfo2<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -5637,7 +11454,7 @@ pub struct DeviceQueueInfo2<'lt> {
     ///structure.
     ///The [`p_next`] chain of [`DeviceQueueInfo2`]**can** be used to
     ///provide additional device queue parameters to [`GetDeviceQueue2`].
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a [`DeviceQueueCreateFlags`] value indicating the
     ///flags used to create the device queue.
     flags: DeviceQueueCreateFlags,
@@ -5647,6 +11464,111 @@ pub struct DeviceQueueInfo2<'lt> {
     ///[`queue_index`] is the index within this queue family of the queue to
     ///retrieve.
     queue_index: u32,
+}
+impl<'lt> Default for DeviceQueueInfo2<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            flags: Default::default(),
+            queue_family_index: 0,
+            queue_index: 0,
+        }
+    }
+}
+impl<'lt> DeviceQueueInfo2<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::queue_family_index`]
+    pub fn queue_family_index_raw(&self) -> u32 {
+        self.queue_family_index
+    }
+    ///Gets the raw value of [`Self::queue_index`]
+    pub fn queue_index_raw(&self) -> u32 {
+        self.queue_index
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::queue_family_index`]
+    pub fn set_queue_family_index_raw(&mut self, value: u32) -> &mut Self {
+        self.queue_family_index = value;
+        self
+    }
+    ///Sets the raw value of [`Self::queue_index`]
+    pub fn set_queue_index_raw(&mut self, value: u32) -> &mut Self {
+        self.queue_index = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> DeviceQueueCreateFlags {
+        self.flags
+    }
+    ///Gets the value of [`Self::queue_family_index`]
+    pub fn queue_family_index(&self) -> u32 {
+        self.queue_family_index
+    }
+    ///Gets the value of [`Self::queue_index`]
+    pub fn queue_index(&self) -> u32 {
+        self.queue_index
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut DeviceQueueCreateFlags {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::queue_family_index`]
+    pub fn queue_family_index_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::queue_index`]
+    pub fn queue_index_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(&mut self, value: crate::vulkan1_0::DeviceQueueCreateFlags) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::queue_family_index`]
+    pub fn set_queue_family_index(&mut self, value: u32) -> &mut Self {
+        self.queue_family_index = value;
+        self
+    }
+    ///Sets the raw value of [`Self::queue_index`]
+    pub fn set_queue_index(&mut self, value: u32) -> &mut Self {
+        self.queue_index = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceMaintenance3Properties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMaintenance3Properties.html) - Structure describing descriptor set properties
 ///# C Specifications
@@ -5694,9 +11616,8 @@ pub struct DeviceQueueInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance3Properties<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -5704,11 +11625,100 @@ pub struct PhysicalDeviceMaintenance3Properties<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
     max_per_set_descriptors: u32,
     ///No documentation found
     max_memory_allocation_size: DeviceSize,
+}
+impl<'lt> Default for PhysicalDeviceMaintenance3Properties<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            max_per_set_descriptors: 0,
+            max_memory_allocation_size: Default::default(),
+        }
+    }
+}
+impl<'lt> PhysicalDeviceMaintenance3Properties<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::max_per_set_descriptors`]
+    pub fn max_per_set_descriptors_raw(&self) -> u32 {
+        self.max_per_set_descriptors
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_per_set_descriptors`]
+    pub fn set_max_per_set_descriptors_raw(&mut self, value: u32) -> &mut Self {
+        self.max_per_set_descriptors = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::max_per_set_descriptors`]
+    pub fn max_per_set_descriptors(&self) -> u32 {
+        self.max_per_set_descriptors
+    }
+    ///Gets the value of [`Self::max_memory_allocation_size`]
+    pub fn max_memory_allocation_size(&self) -> DeviceSize {
+        self.max_memory_allocation_size
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::max_per_set_descriptors`]
+    pub fn max_per_set_descriptors_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_memory_allocation_size`]
+    pub fn max_memory_allocation_size_mut(&mut self) -> &mut DeviceSize {
+        &mut self.max_memory_allocation_size
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::max_per_set_descriptors`]
+    pub fn set_max_per_set_descriptors(&mut self, value: u32) -> &mut Self {
+        self.max_per_set_descriptors = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_memory_allocation_size`]
+    pub fn set_max_memory_allocation_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.max_memory_allocation_size = value;
+        self
+    }
 }
 ///[VkDescriptorSetLayoutSupport](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorSetLayoutSupport.html) - Structure returning information about whether a descriptor set layout can be supported
 ///# C Specifications
@@ -5752,9 +11762,8 @@ pub struct PhysicalDeviceMaintenance3Properties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct DescriptorSetLayoutSupport<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -5762,10 +11771,99 @@ pub struct DescriptorSetLayoutSupport<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`supported`] specifies whether the descriptor set layout **can** be
     ///created.
     supported: Bool32,
+}
+impl<'lt> Default for DescriptorSetLayoutSupport<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            supported: 0,
+        }
+    }
+}
+impl<'lt> DescriptorSetLayoutSupport<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::supported`]
+    pub fn supported_raw(&self) -> Bool32 {
+        self.supported
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::supported`]
+    pub fn set_supported_raw(&mut self, value: Bool32) -> &mut Self {
+        self.supported = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::supported`]
+    pub fn supported(&self) -> bool {
+        unsafe { std::mem::transmute(self.supported as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::supported`]
+    pub fn supported_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.supported as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.supported as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::supported`]
+    pub fn set_supported(&mut self, value: bool) -> &mut Self {
+        self.supported = value as u8 as u32;
+        self
+    }
 }
 ///[VkPhysicalDeviceShaderDrawParametersFeatures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShaderDrawParametersFeatures.html) - Structure describing shader draw parameter features that can be supported by an implementation
 ///# C Specifications
@@ -5814,9 +11912,8 @@ pub struct DescriptorSetLayoutSupport<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderDrawParametersFeatures<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -5824,11 +11921,100 @@ pub struct PhysicalDeviceShaderDrawParametersFeatures<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_draw_parameters`] specifies whether the implementation supports
     ///the SPIR-V `DrawParameters` capability.
     ///When this feature is not enabled, shader modules **must** not declare the
     ///`SPV_KHR_shader_draw_parameters` extension or the `DrawParameters`
     ///capability.
     shader_draw_parameters: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceShaderDrawParametersFeatures<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            shader_draw_parameters: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceShaderDrawParametersFeatures<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::shader_draw_parameters`]
+    pub fn shader_draw_parameters_raw(&self) -> Bool32 {
+        self.shader_draw_parameters
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_draw_parameters`]
+    pub fn set_shader_draw_parameters_raw(&mut self, value: Bool32) -> &mut Self {
+        self.shader_draw_parameters = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::shader_draw_parameters`]
+    pub fn shader_draw_parameters(&self) -> bool {
+        unsafe { std::mem::transmute(self.shader_draw_parameters as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::shader_draw_parameters`]
+    pub fn shader_draw_parameters_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.shader_draw_parameters as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.shader_draw_parameters as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_draw_parameters`]
+    pub fn set_shader_draw_parameters(&mut self, value: bool) -> &mut Self {
+        self.shader_draw_parameters = value as u8 as u32;
+        self
+    }
 }

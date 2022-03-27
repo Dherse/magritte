@@ -274,9 +274,8 @@ impl FragmentShadingRateTypeNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -284,7 +283,7 @@ pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`fragment_shading_rate_enums`]
     ///indicates that the implementation supports specifying fragment shading
     ///rates using the [`FragmentShadingRateNV`] enumerated type.
@@ -297,6 +296,169 @@ pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
     ///supports a fragment shading rate enum value indicating that no fragment
     ///shaders should be invoked when that shading rate is used.
     no_invocation_fragment_shading_rates: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            fragment_shading_rate_enums: 0,
+            supersample_fragment_shading_rates: 0,
+            no_invocation_fragment_shading_rates: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::fragment_shading_rate_enums`]
+    pub fn fragment_shading_rate_enums_raw(&self) -> Bool32 {
+        self.fragment_shading_rate_enums
+    }
+    ///Gets the raw value of [`Self::supersample_fragment_shading_rates`]
+    pub fn supersample_fragment_shading_rates_raw(&self) -> Bool32 {
+        self.supersample_fragment_shading_rates
+    }
+    ///Gets the raw value of [`Self::no_invocation_fragment_shading_rates`]
+    pub fn no_invocation_fragment_shading_rates_raw(&self) -> Bool32 {
+        self.no_invocation_fragment_shading_rates
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_enums`]
+    pub fn set_fragment_shading_rate_enums_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_shading_rate_enums = value;
+        self
+    }
+    ///Sets the raw value of [`Self::supersample_fragment_shading_rates`]
+    pub fn set_supersample_fragment_shading_rates_raw(&mut self, value: Bool32) -> &mut Self {
+        self.supersample_fragment_shading_rates = value;
+        self
+    }
+    ///Sets the raw value of [`Self::no_invocation_fragment_shading_rates`]
+    pub fn set_no_invocation_fragment_shading_rates_raw(&mut self, value: Bool32) -> &mut Self {
+        self.no_invocation_fragment_shading_rates = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::fragment_shading_rate_enums`]
+    pub fn fragment_shading_rate_enums(&self) -> bool {
+        unsafe { std::mem::transmute(self.fragment_shading_rate_enums as u8) }
+    }
+    ///Gets the value of [`Self::supersample_fragment_shading_rates`]
+    pub fn supersample_fragment_shading_rates(&self) -> bool {
+        unsafe { std::mem::transmute(self.supersample_fragment_shading_rates as u8) }
+    }
+    ///Gets the value of [`Self::no_invocation_fragment_shading_rates`]
+    pub fn no_invocation_fragment_shading_rates(&self) -> bool {
+        unsafe { std::mem::transmute(self.no_invocation_fragment_shading_rates as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::fragment_shading_rate_enums`]
+    pub fn fragment_shading_rate_enums_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.fragment_shading_rate_enums as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.fragment_shading_rate_enums as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::supersample_fragment_shading_rates`]
+    pub fn supersample_fragment_shading_rates_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.supersample_fragment_shading_rates as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.supersample_fragment_shading_rates as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::no_invocation_fragment_shading_rates`]
+    pub fn no_invocation_fragment_shading_rates_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.no_invocation_fragment_shading_rates as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.no_invocation_fragment_shading_rates as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shading_rate_enums`]
+    pub fn set_fragment_shading_rate_enums(&mut self, value: bool) -> &mut Self {
+        self.fragment_shading_rate_enums = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::supersample_fragment_shading_rates`]
+    pub fn set_supersample_fragment_shading_rates(&mut self, value: bool) -> &mut Self {
+        self.supersample_fragment_shading_rates = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::no_invocation_fragment_shading_rates`]
+    pub fn set_no_invocation_fragment_shading_rates(&mut self, value: bool) -> &mut Self {
+        self.no_invocation_fragment_shading_rates = value as u8 as u32;
+        self
+    }
 }
 ///[VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV.html) - Structure describing fragment shading rate limits that can be supported by an implementation
 ///# C Specifications
@@ -339,9 +501,8 @@ pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -349,12 +510,82 @@ pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`max_fragment_shading_rate_invocation_count`] is a
     ///[`SampleCountFlagBits`] value indicating the maximum number of
     ///fragment shader invocations per fragment supported in pipeline,
     ///primitive, and attachment fragment shading rates.
     max_fragment_shading_rate_invocation_count: SampleCountFlagBits,
+}
+impl<'lt> Default for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            max_fragment_shading_rate_invocation_count: Default::default(),
+        }
+    }
+}
+impl<'lt> PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::max_fragment_shading_rate_invocation_count`]
+    pub fn max_fragment_shading_rate_invocation_count(&self) -> SampleCountFlagBits {
+        self.max_fragment_shading_rate_invocation_count
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::max_fragment_shading_rate_invocation_count`]
+    pub fn max_fragment_shading_rate_invocation_count_mut(&mut self) -> &mut SampleCountFlagBits {
+        &mut self.max_fragment_shading_rate_invocation_count
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::max_fragment_shading_rate_invocation_count`]
+    pub fn set_max_fragment_shading_rate_invocation_count(
+        &mut self,
+        value: crate::vulkan1_0::SampleCountFlagBits,
+    ) -> &mut Self {
+        self.max_fragment_shading_rate_invocation_count = value;
+        self
+    }
 }
 ///[VkPipelineFragmentShadingRateEnumStateCreateInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineFragmentShadingRateEnumStateCreateInfoNV.html) - Structure specifying parameters controlling the fragment shading rate using rate enums
 ///# C Specifications
@@ -412,9 +643,8 @@ pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -422,7 +652,7 @@ pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`shading_rate_type`] specifies a [`FragmentShadingRateTypeNV`]
     ///value indicating whether fragment shading rates are specified using
     ///fragment sizes or [`FragmentShadingRateNV`] enums.
@@ -438,4 +668,100 @@ pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV<'lt> {
     ///are [combined](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-combining) for fragments
     ///generated by drawing commands using the created pipeline.
     combiner_ops: [FragmentShadingRateCombinerOpKHR; 2],
+}
+impl<'lt> Default for PipelineFragmentShadingRateEnumStateCreateInfoNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            shading_rate_type: Default::default(),
+            shading_rate: Default::default(),
+            combiner_ops: [Default::default(); 2],
+        }
+    }
+}
+impl<'lt> PipelineFragmentShadingRateEnumStateCreateInfoNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::shading_rate_type`]
+    pub fn shading_rate_type(&self) -> FragmentShadingRateTypeNV {
+        self.shading_rate_type
+    }
+    ///Gets the value of [`Self::shading_rate`]
+    pub fn shading_rate(&self) -> FragmentShadingRateNV {
+        self.shading_rate
+    }
+    ///Gets the value of [`Self::combiner_ops`]
+    pub fn combiner_ops(&self) -> &[FragmentShadingRateCombinerOpKHR; 2] {
+        &getter
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::shading_rate_type`]
+    pub fn shading_rate_type_mut(&mut self) -> &mut FragmentShadingRateTypeNV {
+        &mut self.shading_rate_type
+    }
+    ///Gets a mutable reference to the value of [`Self::shading_rate`]
+    pub fn shading_rate_mut(&mut self) -> &mut FragmentShadingRateNV {
+        &mut self.shading_rate
+    }
+    ///Gets a mutable reference to the value of [`Self::combiner_ops`]
+    pub fn combiner_ops_mut(&mut self) -> &mut [FragmentShadingRateCombinerOpKHR; 2] {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_type`]
+    pub fn set_shading_rate_type(
+        &mut self,
+        value: crate::extensions::nv_fragment_shading_rate_enums::FragmentShadingRateTypeNV,
+    ) -> &mut Self {
+        self.shading_rate_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate`]
+    pub fn set_shading_rate(
+        &mut self,
+        value: crate::extensions::nv_fragment_shading_rate_enums::FragmentShadingRateNV,
+    ) -> &mut Self {
+        self.shading_rate = value;
+        self
+    }
+    ///Sets the raw value of [`Self::combiner_ops`]
+    pub fn set_combiner_ops(
+        &mut self,
+        value: [crate::extensions::khr_fragment_shading_rate::FragmentShadingRateCombinerOpKHR; 2],
+    ) -> &mut Self {
+        self.combiner_ops = value;
+        self
+    }
 }

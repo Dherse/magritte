@@ -1,8 +1,9 @@
 //! Additional implementation for [`Ty`] used to generate code
 
-use std::iter::once;
+use std::{iter::once, borrow::Cow};
 
-use proc_macro2::{Ident, Span};
+use proc_macro2::{Ident, Span, TokenStream};
+use quote::{quote, ToTokens};
 use syn::{
     punctuated::Punctuated, AngleBracketedGenericArguments, GenericArgument, Lifetime, Path, PathArguments,
     PathSegment, Token, Type, TypeArray, TypePath, TypePtr, TypeReference, TypeSlice,
@@ -36,6 +37,15 @@ pub fn lifetime_as_generic_argument() -> GenericArgument {
 }
 
 impl<'a> Ty<'a> {
+    /// Check if this type is an opaque type (which are **always** treated as void pointers)
+    pub fn is_opaque(&self, source: &Source<'a>) -> bool {
+        match self {
+            Ty::Pointer(_, ty) | Ty::Slice(_, ty, _) | Ty::Array(ty, _) => ty.is_opaque(source),
+            Ty::Native(_) | Ty::StringArray(_) | Ty::NullTerminatedString(_) => false,
+            Ty::Named(named) => source.resolve_type(named).expect("unknown type").is_opaque(),
+        }
+    }
+
     /// Check if this type contains an opaque type (which are **always** treated as void pointers)
     pub fn has_opaque(&self, source: &Source<'a>) -> bool {
         match self {
@@ -119,6 +129,38 @@ impl<'a> Ty<'a> {
         }
     }
 
+    /// Checks whether the type is (de)serializable
+    pub fn is_serde(&self, source: &Source<'a>) -> bool {
+        match self {
+            // floats are not hash
+            Ty::Native(_) | Ty::StringArray(_) => true,
+            Ty::Pointer(_, _) | Ty::Slice(_, _, _) | Ty::NullTerminatedString(_) => false,
+            Ty::Named(name) => source.resolve_type(name).expect("unknown type").is_serde(source),
+            Ty::Array(ty, _) => ty.is_serde(source),
+        }
+    }
+
+    /// Checks whether the type requires conversion to be a "rustified" type
+    pub fn requires_conversion(&self, source: &Source<'a>) -> bool {
+        match self {
+            Ty::Native(_) | Ty::Named(Cow::Borrowed("VkBool32")) => true,
+            Ty::Pointer(_, ty) => !ty.is_opaque(source),
+            Ty::Named(ty) => source.resolve_type(ty).expect("unknown type").is_opaque(),
+            Ty::StringArray(_) => true,
+            Ty::NullTerminatedString(_) => true,
+            Ty::Array(ty, _) => ty.requires_conversion(source),
+            Ty::Slice(_, ty, _) => !ty.is_opaque(source),
+        }
+    }
+
+    /// Checks whether the type conversion is safe
+    pub fn is_safe_conversion(&self) -> bool {
+        match self {
+            Ty::Native(_) | Ty::Named(_) | Ty::StringArray(_) | Ty::Array(_, _) => true,
+            Ty::Pointer(_, _) | Ty::Slice(_, _, _) | Ty::NullTerminatedString(_) => false,
+        }
+    }
+
     /*/// Does the type have a generic (with deep checking)
     pub fn has_generics(&self, source: &Source<'a>) -> bool {
         match self {
@@ -128,6 +170,214 @@ impl<'a> Ty<'a> {
             Ty::Named(named) => source.resolve_type(named).expect("unknown type").has_generics(source),
         }
     }*/
+
+    /// Default tokens for a type
+    pub fn default_tokens(
+        &self,
+        source: &Source<'a>,
+        imports: Option<&Imports>,
+    ) -> TokenStream {
+        match self {
+            Ty::Pointer(mut_, _) | Ty::Slice(mut_, _, _)  => match mut_ {
+                Mutability::Mutable => quote! { std::ptr::null_mut() },
+                Mutability::Const => quote! { std::ptr::null() },
+            },
+            Ty::Native(native) => native.default_tokens(),
+            Ty::Named(Cow::Borrowed("VkBool32")) => quote! { 0 },
+            Ty::Named(_) => {
+                quote! { Default::default() }
+            },
+            Ty::StringArray(len) => {
+                let len = len.as_const_expr(source, imports);
+                quote! { [0; #len]}
+            },
+            Ty::NullTerminatedString(_) => quote! {
+                std::ptr::null() 
+            },
+            Ty::Array(ty, len) => {
+                assert!(ty.is_copy(source), "cannot create a default value of a non-copy type: {:#?}", self);
+
+                let len = len.as_const_expr(source, imports);
+                let default = ty.default_tokens(source, imports);
+                quote! {
+                    [#default; #len]
+                }
+            },
+        }
+    }
+
+    /// Creates a converter from the "raw" type to its "rustified type", only one layer deep
+    /// so as to not allocate. Returns the converter and whether or not the output is a reference.
+    pub fn rust_to_c_converter<F>(
+        &self,
+        source: &Source<'a>,
+        setter: &F,
+        field: &str,
+        len_field: Option<&str>,
+    ) -> (Vec<TokenStream>, TokenStream) where F: Fn(&str, TokenStream) -> TokenStream {
+        let mut fields = Vec::with_capacity(1);
+
+        let value_ident = Ident::new("value", Span::call_site());
+        let lt = lifetime_as_lifetime();
+       
+        let out = match self {
+            Ty::Named(Cow::Borrowed("VkBool32")) => {
+                fields.push(quote! { value: bool });
+                setter(field, quote! { #value_ident as u8 as u32})
+            },
+            Ty::Native(_) | Ty::Named(_) | Ty::StringArray(_) | Ty::NullTerminatedString(_) | Ty::Array(_, _) => {
+                let ty = self.as_raw_ty(source, None).0;
+                fields.push(quote! { value: #ty });
+                
+                setter(field, value_ident.to_token_stream())
+            },
+            Ty::Pointer(mutability, ty) => {
+                let ty = ty.as_raw_ty(source, None).0;
+                let mut_ = mutability.as_mutability_token();
+                fields.push(quote! { value: &#lt #mut_ #ty});
+
+                let ptr_mut = mutability.as_ptr_token();
+
+                setter(field, quote! {
+                   #value_ident as *#ptr_mut _
+                })
+            },
+            Ty::Slice(mutability, ty, len) => {
+                let ty = ty.as_raw_ty(source, None).0;
+                let mut_ = mutability.as_mutability_token();
+
+                fields.push(quote! { value: &#lt #mut_ [#ty]});
+
+                let value_setter = setter(field, match mutability {
+                    Mutability::Mutable => quote! {
+                        #value_ident.as_mut_ptr()
+                    },
+                    Mutability::Const => quote! {
+                        #value_ident.as_ptr()
+                    },
+                });
+
+                let vars = len.variables();
+                if vars.is_empty() {
+                    let len = len.as_const_expr(source, None);
+                    quote! {
+                        assert_eq!(value.len(), #len);
+
+                        #value_setter
+                    }
+                } else {
+                    assert_eq!(vars.len(), 1, "more than one variable");
+
+                    let len_expr = len.pivot("len_").as_expr(source, &|_| quote! { len_ }, None);
+                    let len_setter = setter(len_field.unwrap_or_else(|| &vars[0]), Ident::new("len_", Span::call_site()).to_token_stream());
+
+                    quote! {
+                        let len_ = value.len() as u32;
+                        let len_ = #len_expr;
+    
+                        #value_setter
+                        #len_setter
+                    }
+                }
+            },
+        };
+
+        (fields, out)
+    }
+
+    /// Creates a converter from the "raw" type to its "rustified type", only one layer deep
+    /// so as to not allocate. Returns the converter and whether or not the output is a reference.
+    pub fn c_to_rust_converter(
+        &self,
+        source: &Source<'a>,
+        mutability: Mutability,
+        getter: TokenStream,
+        len: Option<TokenStream>,
+    ) -> Option<(TokenStream, bool)> {
+        let mut_ = mutability.as_mutability_token();
+
+        match self {
+            Ty::Native(_) => if mutability.is_const() {
+                Some((getter, false))
+            } else {
+                Some((quote! { &#mut_ getter }, true))
+            },
+            Ty::Named(Cow::Borrowed("VkBool32")) => {
+                match mutability {
+                    Mutability::Mutable => Some((
+                        quote! {
+                            unsafe {
+                                if cfg!(target_endian = "little") {
+                                    &mut *(#getter as *mut Bool32).cast::<u32>().cast::<u8>().cast::<bool>()
+    
+                                } else {
+                                    // TODO: check that this is actually correct on a big endian system
+                                    // don't even know if those exist in the wild, a problem for a future me
+                                    eprintln!("Big-endianess has not been tested!");
+                                    &mut *(#getter as *mut Bool32).cast::<u32>().cast::<u8>().add(3).cast::<bool>()
+                                }
+                            }
+                        },
+                        true
+                    )),
+                    Mutability::Const => Some((
+                        quote! { unsafe { std::mem::transmute(#getter as u8) }},
+                        false,
+                    ))
+                }
+            },
+            Ty::Named(_) => {
+                Some( if self.is_copy(source) && mutability.is_const() {
+                    (getter, false)
+                } else {
+                    match mutability {
+                        Mutability::Mutable => (quote! { &mut #getter}, true),
+                        Mutability::Const => (quote! { &#getter}, true),
+                    }
+                })
+            },
+            Ty::Pointer(this_mut, _) => Some((
+                match (this_mut, mutability) {
+                    (Mutability::Mutable, Mutability::Const) | (Mutability::Const, Mutability::Const) => quote! {
+                        &*#getter
+                    },
+                    (Mutability::Mutable, Mutability::Mutable) => quote! {
+                        &mut *#getter
+                    },
+                    (Mutability::Const, Mutability::Mutable) => {
+                        return None;
+                    },
+                },
+                true,
+            )),
+            Ty::StringArray(_) | Ty::Array(_, _) => Some((quote! { &#mut_ getter }, true)),
+            Ty::NullTerminatedString(_) => {
+                if mutability.is_mut() {
+                    return None;
+                }
+
+                Some((getter, false))
+            },
+            Ty::Slice(this_mut, _, this_len) => {
+                let len = len.unwrap_or_else(|| this_len.as_const_expr(source, None).to_token_stream());
+
+                Some((
+                    match (this_mut, mutability) {
+                        (Mutability::Mutable, Mutability::Const) | (Mutability::Const, Mutability::Const) => quote! {
+                            std::slice::from_raw_parts(#getter, #len as usize)
+                        },
+                        (Mutability::Mutable, Mutability::Mutable) => quote! {
+                            std::slice::from_raw_parts_mut(#getter, #len as usize)
+                        },
+                        (Mutability::Const, Mutability::Mutable) => {
+                            return None;
+                        },
+                    },
+                    true,
+                ))
+            },
+        }
+    }
 
     /// Turns a type into a tokenized raw C-compatible type and an optional lifetime argument
     pub fn as_raw_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> (Type, bool) {
@@ -179,15 +429,14 @@ impl<'a> Ty<'a> {
     pub fn as_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> (Type, bool) {
         match self {
             Ty::Native(_) | Ty::StringArray(_) => (self.as_const_ty(source, imports), false),
-            Ty::Pointer(mutability, ty) => (
-                Type::Reference(TypeReference {
-                    and_token: Default::default(),
-                    lifetime: Some(lifetime_as_lifetime()),
-                    mutability: mutability.as_mutability_token(),
-                    elem: box ty.as_ty(source, imports).0,
-                }),
+            Ty::Pointer(_, ty) => (
+                ty.as_raw_ty(source, imports).0,
                 true,
             ),
+            Ty::Named(Cow::Borrowed("VkBool32")) => (Type::Path(TypePath {
+                qself: None,
+                path: Path::from(PathSegment::from(Ident::new("bool", Span::call_site()))),
+            }), false),
             Ty::Named(name) => source
                 .find(name)
                 .expect("type not found")
@@ -196,7 +445,7 @@ impl<'a> Ty<'a> {
                 .as_type(source, imports),
             Ty::NullTerminatedString(_) => (Native::NullTerminatedString.as_type(imports), true),
             Ty::Array(ty, len) => {
-                let (elem, lt) = ty.as_ty(source, imports);
+                let (elem, lt) = ty.as_raw_ty(source, imports);
                 let len = len.as_const_expr(source, imports);
 
                 (
@@ -209,15 +458,10 @@ impl<'a> Ty<'a> {
                     lt,
                 )
             },
-            Ty::Slice(mutability, ty, _) => (
-                Type::Reference(TypeReference {
-                    and_token: Default::default(),
-                    lifetime: Some(lifetime_as_lifetime()),
-                    mutability: mutability.as_mutability_token(),
-                    elem: box Type::Slice(TypeSlice {
-                        bracket_token: Default::default(),
-                        elem: box ty.as_ty(source, imports).0,
-                    }),
+            Ty::Slice(_, ty, _) => (
+                Type::Slice(TypeSlice {
+                    bracket_token: Default::default(),
+                    elem: box ty.as_raw_ty(source, imports).0,
                 }),
                 true,
             ),
@@ -351,10 +595,19 @@ impl Mutability {
     /// Returns this mutability as an optional mut token
     #[inline]
     pub fn as_mutability_token(&self) -> Option<Token![mut]> {
-        if self.is_const() {
+        if self.is_mut() {
             Some(Default::default())
         } else {
             None
+        }
+    }
+
+    /// Returns the mutability for a pointer
+    #[inline]
+    pub fn as_ptr_token(&self) -> TokenStream {
+        match self {
+            Mutability::Mutable => quote! { mut },
+            Mutability::Const => quote! { const },
         }
     }
 }

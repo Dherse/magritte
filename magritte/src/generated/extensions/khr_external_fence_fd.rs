@@ -66,9 +66,8 @@ pub const KHR_EXTERNAL_FENCE_FD_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ImportFenceFdInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -76,7 +75,7 @@ pub struct ImportFenceFdInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`fence`] is the fence into which the payload will be imported.
     fence: Fence,
     ///[`flags`] is a bitmask of [`FenceImportFlagBits`] specifying
@@ -87,6 +86,116 @@ pub struct ImportFenceFdInfoKHR<'lt> {
     handle_type: ExternalFenceHandleTypeFlagBits,
     ///[`fd`] is the external handle to import.
     fd: i32,
+}
+impl<'lt> Default for ImportFenceFdInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            fence: Default::default(),
+            flags: Default::default(),
+            handle_type: Default::default(),
+            fd: 0,
+        }
+    }
+}
+impl<'lt> ImportFenceFdInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::fd`]
+    pub fn fd_raw(&self) -> i32 {
+        self.fd
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fd`]
+    pub fn set_fd_raw(&mut self, value: i32) -> &mut Self {
+        self.fd = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::fence`]
+    pub fn fence(&self) -> Fence {
+        self.fence
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> FenceImportFlags {
+        self.flags
+    }
+    ///Gets the value of [`Self::handle_type`]
+    pub fn handle_type(&self) -> ExternalFenceHandleTypeFlagBits {
+        self.handle_type
+    }
+    ///Gets the value of [`Self::fd`]
+    pub fn fd(&self) -> i32 {
+        self.fd
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::fence`]
+    pub fn fence_mut(&mut self) -> &mut Fence {
+        &mut self.fence
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut FenceImportFlags {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_type`]
+    pub fn handle_type_mut(&mut self) -> &mut ExternalFenceHandleTypeFlagBits {
+        &mut self.handle_type
+    }
+    ///Gets a mutable reference to the value of [`Self::fd`]
+    pub fn fd_mut(&mut self) -> &mut i32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::fence`]
+    pub fn set_fence(&mut self, value: crate::vulkan1_0::Fence) -> &mut Self {
+        self.fence = value;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(&mut self, value: crate::vulkan1_1::FenceImportFlags) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_type`]
+    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalFenceHandleTypeFlagBits) -> &mut Self {
+        self.handle_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fd`]
+    pub fn set_fd(&mut self, value: i32) -> &mut Self {
+        self.fd = value;
+        self
+    }
 }
 ///[VkFenceGetFdInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFenceGetFdInfoKHR.html) - Structure describing a POSIX FD fence export operation
 ///# C Specifications
@@ -135,9 +244,8 @@ pub struct ImportFenceFdInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct FenceGetFdInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -145,10 +253,83 @@ pub struct FenceGetFdInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`fence`] is the fence from which state will be exported.
     fence: Fence,
     ///[`handle_type`] is a [`ExternalFenceHandleTypeFlagBits`] value
     ///specifying the type of handle requested.
     handle_type: ExternalFenceHandleTypeFlagBits,
+}
+impl<'lt> Default for FenceGetFdInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            fence: Default::default(),
+            handle_type: Default::default(),
+        }
+    }
+}
+impl<'lt> FenceGetFdInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::fence`]
+    pub fn fence(&self) -> Fence {
+        self.fence
+    }
+    ///Gets the value of [`Self::handle_type`]
+    pub fn handle_type(&self) -> ExternalFenceHandleTypeFlagBits {
+        self.handle_type
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::fence`]
+    pub fn fence_mut(&mut self) -> &mut Fence {
+        &mut self.fence
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_type`]
+    pub fn handle_type_mut(&mut self) -> &mut ExternalFenceHandleTypeFlagBits {
+        &mut self.handle_type
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::fence`]
+    pub fn set_fence(&mut self, value: crate::vulkan1_0::Fence) -> &mut Self {
+        self.fence = value;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_type`]
+    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalFenceHandleTypeFlagBits) -> &mut Self {
+        self.handle_type = value;
+        self
+    }
 }

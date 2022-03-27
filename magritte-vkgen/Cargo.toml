@@ -56,3 +56,8 @@ lazy_static = "1.4"
 # The `default-features = false` disables some security features
 # that are not needed for a code generator that is run manually once.
 mimalloc = { version = "0.1.27", default-features = false}
+
+# Python runtime to solve length equations
+[dependencies.pyo3]
+version = "0.16.2"
+features = ["auto-initialize"]

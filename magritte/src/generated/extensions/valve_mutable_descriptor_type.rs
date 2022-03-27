@@ -66,9 +66,8 @@ pub const VALVE_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -76,7 +75,7 @@ pub struct PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`mutable_descriptor_type`] indicates
     ///that the implementation **must** support using the [`DescriptorType`]
     ///of `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE` with at least the following
@@ -88,6 +87,95 @@ pub struct PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
     /// - `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER`
     /// - `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER`
     mutable_descriptor_type: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            mutable_descriptor_type: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::mutable_descriptor_type`]
+    pub fn mutable_descriptor_type_raw(&self) -> Bool32 {
+        self.mutable_descriptor_type
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::mutable_descriptor_type`]
+    pub fn set_mutable_descriptor_type_raw(&mut self, value: Bool32) -> &mut Self {
+        self.mutable_descriptor_type = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::mutable_descriptor_type`]
+    pub fn mutable_descriptor_type(&self) -> bool {
+        unsafe { std::mem::transmute(self.mutable_descriptor_type as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::mutable_descriptor_type`]
+    pub fn mutable_descriptor_type_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.mutable_descriptor_type as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.mutable_descriptor_type as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::mutable_descriptor_type`]
+    pub fn set_mutable_descriptor_type(&mut self, value: bool) -> &mut Self {
+        self.mutable_descriptor_type = value as u8 as u32;
+        self
+    }
 }
 ///[VkMutableDescriptorTypeListVALVE](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMutableDescriptorTypeListVALVE.html) - Structure describing descriptor types that a given descriptor may mutate to
 ///# C Specifications
@@ -102,26 +190,26 @@ pub struct PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
 ///} VkMutableDescriptorTypeListVALVE;
 ///```
 ///# Members
-/// - [`descriptor_type_count`] is the number of elements in [`p_descriptor_types`].
-/// - [`p_descriptor_types`] is `NULL` or a pointer to an array of
+/// - [`descriptor_type_count`] is the number of elements in [`descriptor_types`].
+/// - [`descriptor_types`] is `NULL` or a pointer to an array of
 ///   [`descriptor_type_count`][`DescriptorType`] values defining which descriptor types a given
 ///   binding may mutate to.
 ///# Description
 ///Valid Usage
 /// - [`descriptor_type_count`]**must** not be `0` if the corresponding binding is of
 ///   `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE`
-/// - [`p_descriptor_types`]**must** be a valid pointer to an array of [`descriptor_type_count`]
+/// - [`descriptor_types`]**must** be a valid pointer to an array of [`descriptor_type_count`]
 ///   valid, unique [`DescriptorType`] values if the given binding is of
 ///   `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE` type
 /// - [`descriptor_type_count`]**must** be `0` if the corresponding binding is not of
 ///   `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE`
-/// - [`p_descriptor_types`]**must** not contain `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE`
-/// - [`p_descriptor_types`]**must** not contain `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`
-/// - [`p_descriptor_types`]**must** not contain `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`
-/// - [`p_descriptor_types`]**must** not contain `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`
+/// - [`descriptor_types`]**must** not contain `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE`
+/// - [`descriptor_types`]**must** not contain `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`
+/// - [`descriptor_types`]**must** not contain `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`
+/// - [`descriptor_types`]**must** not contain `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`
 ///Valid Usage (Implicit)
-/// - If [`descriptor_type_count`] is not `0`, [`p_descriptor_types`]**must** be a valid pointer to
-///   an array of [`descriptor_type_count`] valid [`DescriptorType`] values
+/// - If [`descriptor_type_count`] is not `0`, [`descriptor_types`]**must** be a valid pointer to an
+///   array of [`descriptor_type_count`] valid [`DescriptorType`] values
 ///# Related
 /// - [`VK_VALVE_mutable_descriptor_type`]
 /// - [`DescriptorType`]
@@ -134,19 +222,75 @@ pub struct PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct MutableDescriptorTypeListVALVE<'lt> {
     _lifetime: PhantomData<&'lt ()>,
     ///[`descriptor_type_count`] is the number of elements in
-    ///[`p_descriptor_types`].
+    ///[`descriptor_types`].
     descriptor_type_count: u32,
-    ///[`p_descriptor_types`] is `NULL` or a pointer to an array of
+    ///[`descriptor_types`] is `NULL` or a pointer to an array of
     ///[`descriptor_type_count`][`DescriptorType`] values defining which
     ///descriptor types a given binding may mutate to.
-    p_descriptor_types: *mut DescriptorType,
+    descriptor_types: *const DescriptorType,
+}
+impl<'lt> Default for MutableDescriptorTypeListVALVE<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            descriptor_type_count: 0,
+            descriptor_types: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> MutableDescriptorTypeListVALVE<'lt> {
+    ///Gets the raw value of [`Self::descriptor_type_count`]
+    pub fn descriptor_type_count_raw(&self) -> u32 {
+        self.descriptor_type_count
+    }
+    ///Gets the raw value of [`Self::descriptor_types`]
+    pub fn descriptor_types_raw(&self) -> *const DescriptorType {
+        self.descriptor_types
+    }
+    ///Sets the raw value of [`Self::descriptor_type_count`]
+    pub fn set_descriptor_type_count_raw(&mut self, value: u32) -> &mut Self {
+        self.descriptor_type_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::descriptor_types`]
+    pub fn set_descriptor_types_raw(&mut self, value: *const DescriptorType) -> &mut Self {
+        self.descriptor_types = value;
+        self
+    }
+    ///Gets the value of [`Self::descriptor_type_count`]
+    pub fn descriptor_type_count(&self) -> u32 {
+        self.descriptor_type_count
+    }
+    ///Gets the value of [`Self::descriptor_types`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn descriptor_types(&self) -> &[DescriptorType] {
+        std::slice::from_raw_parts(self.descriptor_types, self.descriptor_type_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::descriptor_type_count`]
+    pub fn descriptor_type_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::descriptor_type_count`]
+    pub fn set_descriptor_type_count(&mut self, value: u32) -> &mut Self {
+        self.descriptor_type_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::descriptor_types`]
+    pub fn set_descriptor_types(&mut self, value: &'lt [crate::vulkan1_0::DescriptorType]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.descriptor_types = value.as_ptr();
+        self.descriptor_type_count = len_;
+        self
+    }
 }
 ///[VkMutableDescriptorTypeCreateInfoVALVE](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMutableDescriptorTypeCreateInfoVALVE.html) - Structure describing the list of possible active descriptor types for mutable type descriptors
 ///# C Specifications
@@ -168,8 +312,8 @@ pub struct MutableDescriptorTypeListVALVE<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`mutable_descriptor_type_list_count`] is the number of elements in
-///   [`p_mutable_descriptor_type_lists`].
-/// - [`p_mutable_descriptor_type_lists`] is a pointer to an array of
+///   [`mutable_descriptor_type_lists`].
+/// - [`mutable_descriptor_type_lists`] is a pointer to an array of
 ///   [`MutableDescriptorTypeListVALVE`] structures.
 ///# Description
 ///If [`mutable_descriptor_type_list_count`] is zero or if this structure is not
@@ -177,12 +321,12 @@ pub struct MutableDescriptorTypeListVALVE<'lt> {
 ///[`MutableDescriptorTypeListVALVE`] for each element is considered to be
 ///zero or `NULL` for each member.
 ///Otherwise, the descriptor set layout binding at
-///[`DescriptorSetLayoutCreateInfo::p_bindings`][i] uses the
+///[`DescriptorSetLayoutCreateInfo::bindings`][i] uses the
 ///descriptor type lists in
-///[`MutableDescriptorTypeCreateInfoVALVE`]::[`p_mutable_descriptor_type_lists`][i].Valid Usage (Implicit)
+///[`MutableDescriptorTypeCreateInfoVALVE`]::[`mutable_descriptor_type_lists`][i].Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_VALVE`
 /// - If [`mutable_descriptor_type_list_count`] is not `0`,
-///   [`p_mutable_descriptor_type_lists`]**must** be a valid pointer to an array of
+///   [`mutable_descriptor_type_lists`]**must** be a valid pointer to an array of
 ///   [`mutable_descriptor_type_list_count`] valid [`MutableDescriptorTypeListVALVE`] structures
 ///# Related
 /// - [`VK_VALVE_mutable_descriptor_type`]
@@ -196,9 +340,8 @@ pub struct MutableDescriptorTypeListVALVE<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct MutableDescriptorTypeCreateInfoVALVE<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -206,11 +349,113 @@ pub struct MutableDescriptorTypeCreateInfoVALVE<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`mutable_descriptor_type_list_count`] is the number of elements in
-    ///[`p_mutable_descriptor_type_lists`].
+    ///[`mutable_descriptor_type_lists`].
     mutable_descriptor_type_list_count: u32,
-    ///[`p_mutable_descriptor_type_lists`] is a pointer to an array of
+    ///[`mutable_descriptor_type_lists`] is a pointer to an array of
     ///[`MutableDescriptorTypeListVALVE`] structures.
-    p_mutable_descriptor_type_lists: *mut MutableDescriptorTypeListVALVE<'lt>,
+    mutable_descriptor_type_lists: *const MutableDescriptorTypeListVALVE<'lt>,
+}
+impl<'lt> Default for MutableDescriptorTypeCreateInfoVALVE<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            mutable_descriptor_type_list_count: 0,
+            mutable_descriptor_type_lists: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> MutableDescriptorTypeCreateInfoVALVE<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::mutable_descriptor_type_list_count`]
+    pub fn mutable_descriptor_type_list_count_raw(&self) -> u32 {
+        self.mutable_descriptor_type_list_count
+    }
+    ///Gets the raw value of [`Self::mutable_descriptor_type_lists`]
+    pub fn mutable_descriptor_type_lists_raw(&self) -> *const MutableDescriptorTypeListVALVE<'lt> {
+        self.mutable_descriptor_type_lists
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::mutable_descriptor_type_list_count`]
+    pub fn set_mutable_descriptor_type_list_count_raw(&mut self, value: u32) -> &mut Self {
+        self.mutable_descriptor_type_list_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::mutable_descriptor_type_lists`]
+    pub fn set_mutable_descriptor_type_lists_raw(
+        &mut self,
+        value: *const MutableDescriptorTypeListVALVE<'lt>,
+    ) -> &mut Self {
+        self.mutable_descriptor_type_lists = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::mutable_descriptor_type_list_count`]
+    pub fn mutable_descriptor_type_list_count(&self) -> u32 {
+        self.mutable_descriptor_type_list_count
+    }
+    ///Gets the value of [`Self::mutable_descriptor_type_lists`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn mutable_descriptor_type_lists(&self) -> &[MutableDescriptorTypeListVALVE<'lt>] {
+        std::slice::from_raw_parts(
+            self.mutable_descriptor_type_lists,
+            self.mutable_descriptor_type_list_count as usize,
+        )
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::mutable_descriptor_type_list_count`]
+    pub fn mutable_descriptor_type_list_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::mutable_descriptor_type_list_count`]
+    pub fn set_mutable_descriptor_type_list_count(&mut self, value: u32) -> &mut Self {
+        self.mutable_descriptor_type_list_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::mutable_descriptor_type_lists`]
+    pub fn set_mutable_descriptor_type_lists(
+        &mut self,
+        value: &'lt [crate::extensions::valve_mutable_descriptor_type::MutableDescriptorTypeListVALVE<'lt>],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.mutable_descriptor_type_lists = value.as_ptr();
+        self.mutable_descriptor_type_list_count = len_;
+        self
+    }
 }

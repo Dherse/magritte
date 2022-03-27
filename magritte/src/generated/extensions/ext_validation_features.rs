@@ -15,7 +15,7 @@ pub const EXT_VALIDATION_FEATURES_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///[VkValidationFeatureEnableEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkValidationFeatureEnableEXT.html) - Specify validation features to enable
 ///# C Specifications
 ///Possible values of elements of the
-///[`ValidationFeaturesEXT::p_enabled_validation_features`] array,
+///[`ValidationFeaturesEXT::enabled_validation_features`] array,
 ///specifying validation features to be enabled, are:
 ///```c
 ///// Provided by VK_EXT_validation_features
@@ -125,7 +125,7 @@ impl ValidationFeatureEnableEXT {
 ///[VkValidationFeatureDisableEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkValidationFeatureDisableEXT.html) - Specify validation features to disable
 ///# C Specifications
 ///Possible values of elements of the
-///[`ValidationFeaturesEXT::p_disabled_validation_features`] array,
+///[`ValidationFeaturesEXT::disabled_validation_features`] array,
 ///specifying validation features to be disabled, are:
 ///```c
 ///// Provided by VK_EXT_validation_features
@@ -254,27 +254,27 @@ impl ValidationFeatureDisableEXT {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`enabled_validation_feature_count`] is the number of features to enable.
-/// - [`p_enabled_validation_features`] is a pointer to an array of [`ValidationFeatureEnableEXT`]
+/// - [`enabled_validation_features`] is a pointer to an array of [`ValidationFeatureEnableEXT`]
 ///   values specifying the validation features to be enabled.
 /// - [`disabled_validation_feature_count`] is the number of features to disable.
-/// - [`p_disabled_validation_features`] is a pointer to an array of [`ValidationFeatureDisableEXT`]
+/// - [`disabled_validation_features`] is a pointer to an array of [`ValidationFeatureDisableEXT`]
 ///   values specifying the validation features to be disabled.
 ///# Description
 ///Valid Usage
-/// - If the [`p_enabled_validation_features`] array contains
+/// - If the [`enabled_validation_features`] array contains
 ///   `VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT`, then it **must** also
 ///   contain `VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT`
-/// - If the [`p_enabled_validation_features`] array contains
+/// - If the [`enabled_validation_features`] array contains
 ///   `VK_VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT`, then it **must** not contain
 ///   `VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT`
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VALIDATION_FEATURES_EXT`
-/// - If [`enabled_validation_feature_count`] is not `0`, [`p_enabled_validation_features`]**must**
-///   be a valid pointer to an array of [`enabled_validation_feature_count`] valid
+/// - If [`enabled_validation_feature_count`] is not `0`, [`enabled_validation_features`]**must** be
+///   a valid pointer to an array of [`enabled_validation_feature_count`] valid
 ///   [`ValidationFeatureEnableEXT`] values
-/// - If [`disabled_validation_feature_count`] is not `0`,
-///   [`p_disabled_validation_features`]**must** be a valid pointer to an array of
-///   [`disabled_validation_feature_count`] valid [`ValidationFeatureDisableEXT`] values
+/// - If [`disabled_validation_feature_count`] is not `0`, [`disabled_validation_features`]**must**
+///   be a valid pointer to an array of [`disabled_validation_feature_count`] valid
+///   [`ValidationFeatureDisableEXT`] values
 ///# Related
 /// - [`VK_EXT_validation_features`]
 /// - [`StructureType`]
@@ -288,9 +288,8 @@ impl ValidationFeatureDisableEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ValidationFeaturesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -298,18 +297,171 @@ pub struct ValidationFeaturesEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`enabled_validation_feature_count`] is the number of features to enable.
     enabled_validation_feature_count: u32,
-    ///[`p_enabled_validation_features`] is a pointer to an array of
+    ///[`enabled_validation_features`] is a pointer to an array of
     ///[`ValidationFeatureEnableEXT`] values specifying the validation
     ///features to be enabled.
-    p_enabled_validation_features: *mut ValidationFeatureEnableEXT,
+    enabled_validation_features: *const ValidationFeatureEnableEXT,
     ///[`disabled_validation_feature_count`] is the number of features to
     ///disable.
     disabled_validation_feature_count: u32,
-    ///[`p_disabled_validation_features`] is a pointer to an array of
+    ///[`disabled_validation_features`] is a pointer to an array of
     ///[`ValidationFeatureDisableEXT`] values specifying the validation
     ///features to be disabled.
-    p_disabled_validation_features: *mut ValidationFeatureDisableEXT,
+    disabled_validation_features: *const ValidationFeatureDisableEXT,
+}
+impl<'lt> Default for ValidationFeaturesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            enabled_validation_feature_count: 0,
+            enabled_validation_features: std::ptr::null(),
+            disabled_validation_feature_count: 0,
+            disabled_validation_features: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> ValidationFeaturesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::enabled_validation_feature_count`]
+    pub fn enabled_validation_feature_count_raw(&self) -> u32 {
+        self.enabled_validation_feature_count
+    }
+    ///Gets the raw value of [`Self::enabled_validation_features`]
+    pub fn enabled_validation_features_raw(&self) -> *const ValidationFeatureEnableEXT {
+        self.enabled_validation_features
+    }
+    ///Gets the raw value of [`Self::disabled_validation_feature_count`]
+    pub fn disabled_validation_feature_count_raw(&self) -> u32 {
+        self.disabled_validation_feature_count
+    }
+    ///Gets the raw value of [`Self::disabled_validation_features`]
+    pub fn disabled_validation_features_raw(&self) -> *const ValidationFeatureDisableEXT {
+        self.disabled_validation_features
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::enabled_validation_feature_count`]
+    pub fn set_enabled_validation_feature_count_raw(&mut self, value: u32) -> &mut Self {
+        self.enabled_validation_feature_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::enabled_validation_features`]
+    pub fn set_enabled_validation_features_raw(&mut self, value: *const ValidationFeatureEnableEXT) -> &mut Self {
+        self.enabled_validation_features = value;
+        self
+    }
+    ///Sets the raw value of [`Self::disabled_validation_feature_count`]
+    pub fn set_disabled_validation_feature_count_raw(&mut self, value: u32) -> &mut Self {
+        self.disabled_validation_feature_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::disabled_validation_features`]
+    pub fn set_disabled_validation_features_raw(&mut self, value: *const ValidationFeatureDisableEXT) -> &mut Self {
+        self.disabled_validation_features = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::enabled_validation_feature_count`]
+    pub fn enabled_validation_feature_count(&self) -> u32 {
+        self.enabled_validation_feature_count
+    }
+    ///Gets the value of [`Self::enabled_validation_features`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn enabled_validation_features(&self) -> &[ValidationFeatureEnableEXT] {
+        std::slice::from_raw_parts(
+            self.enabled_validation_features,
+            self.enabled_validation_feature_count as usize,
+        )
+    }
+    ///Gets the value of [`Self::disabled_validation_feature_count`]
+    pub fn disabled_validation_feature_count(&self) -> u32 {
+        self.disabled_validation_feature_count
+    }
+    ///Gets the value of [`Self::disabled_validation_features`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn disabled_validation_features(&self) -> &[ValidationFeatureDisableEXT] {
+        std::slice::from_raw_parts(
+            self.disabled_validation_features,
+            self.disabled_validation_feature_count as usize,
+        )
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::enabled_validation_feature_count`]
+    pub fn enabled_validation_feature_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::disabled_validation_feature_count`]
+    pub fn disabled_validation_feature_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::enabled_validation_feature_count`]
+    pub fn set_enabled_validation_feature_count(&mut self, value: u32) -> &mut Self {
+        self.enabled_validation_feature_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::enabled_validation_features`]
+    pub fn set_enabled_validation_features(
+        &mut self,
+        value: &'lt [crate::extensions::ext_validation_features::ValidationFeatureEnableEXT],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.enabled_validation_features = value.as_ptr();
+        self.enabled_validation_feature_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::disabled_validation_feature_count`]
+    pub fn set_disabled_validation_feature_count(&mut self, value: u32) -> &mut Self {
+        self.disabled_validation_feature_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::disabled_validation_features`]
+    pub fn set_disabled_validation_features(
+        &mut self,
+        value: &'lt [crate::extensions::ext_validation_features::ValidationFeatureDisableEXT],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.disabled_validation_features = value.as_ptr();
+        self.disabled_validation_feature_count = len_;
+        self
+    }
 }

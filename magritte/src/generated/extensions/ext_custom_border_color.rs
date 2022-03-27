@@ -53,9 +53,8 @@ pub const EXT_CUSTOM_BORDER_COLOR_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct SamplerCustomBorderColorCreateInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -63,7 +62,7 @@ pub struct SamplerCustomBorderColorCreateInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`custom_border_color`] is a [`ClearColorValue`] representing the
     ///desired custom sampler border color.
     custom_border_color: ClearColorValue,
@@ -73,6 +72,79 @@ pub struct SamplerCustomBorderColorCreateInfoEXT<'lt> {
     ///[customBorderColorWithoutFormat](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-customBorderColorWithoutFormat)
     ///feature is enabled.
     format: Format,
+}
+impl<'lt> Default for SamplerCustomBorderColorCreateInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            custom_border_color: Default::default(),
+            format: Default::default(),
+        }
+    }
+}
+impl<'lt> SamplerCustomBorderColorCreateInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::custom_border_color`]
+    pub fn custom_border_color(&self) -> ClearColorValue {
+        self.custom_border_color
+    }
+    ///Gets the value of [`Self::format`]
+    pub fn format(&self) -> Format {
+        self.format
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::custom_border_color`]
+    pub fn custom_border_color_mut(&mut self) -> &mut ClearColorValue {
+        &mut self.custom_border_color
+    }
+    ///Gets a mutable reference to the value of [`Self::format`]
+    pub fn format_mut(&mut self) -> &mut Format {
+        &mut self.format
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::custom_border_color`]
+    pub fn set_custom_border_color(&mut self, value: crate::vulkan1_0::ClearColorValue) -> &mut Self {
+        self.custom_border_color = value;
+        self
+    }
+    ///Sets the raw value of [`Self::format`]
+    pub fn set_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+        self.format = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceCustomBorderColorPropertiesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceCustomBorderColorPropertiesEXT.html) - Structure describing whether custom border colors can be supported by an implementation
 ///# C Specifications
@@ -107,20 +179,94 @@ pub struct SamplerCustomBorderColorCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceCustomBorderColorPropertiesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
     ///No documentation found
     s_type: StructureType,
     ///No documentation found
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`max_custom_border_color_samplers`] indicates the maximum number of
     ///samplers with custom border colors which **can** simultaneously exist on a
     ///device.
     max_custom_border_color_samplers: u32,
+}
+impl<'lt> Default for PhysicalDeviceCustomBorderColorPropertiesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            max_custom_border_color_samplers: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceCustomBorderColorPropertiesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::max_custom_border_color_samplers`]
+    pub fn max_custom_border_color_samplers_raw(&self) -> u32 {
+        self.max_custom_border_color_samplers
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_custom_border_color_samplers`]
+    pub fn set_max_custom_border_color_samplers_raw(&mut self, value: u32) -> &mut Self {
+        self.max_custom_border_color_samplers = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::max_custom_border_color_samplers`]
+    pub fn max_custom_border_color_samplers(&self) -> u32 {
+        self.max_custom_border_color_samplers
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::max_custom_border_color_samplers`]
+    pub fn max_custom_border_color_samplers_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::max_custom_border_color_samplers`]
+    pub fn set_max_custom_border_color_samplers(&mut self, value: u32) -> &mut Self {
+        self.max_custom_border_color_samplers = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceCustomBorderColorFeaturesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceCustomBorderColorFeaturesEXT.html) - Structure describing whether custom border colors can be supported by an implementation
 ///# C Specifications
@@ -169,9 +315,8 @@ pub struct PhysicalDeviceCustomBorderColorPropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceCustomBorderColorFeaturesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -179,7 +324,7 @@ pub struct PhysicalDeviceCustomBorderColorFeaturesEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`custom_border_colors`] indicates that
     ///the implementation supports providing a `borderColor` value with one
     ///of the following values at sampler creation time:
@@ -195,4 +340,130 @@ pub struct PhysicalDeviceCustomBorderColorFeaturesEXT<'lt> {
     ///`format` member of the [`SamplerCustomBorderColorCreateInfoEXT`]
     ///structure.
     custom_border_color_without_format: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceCustomBorderColorFeaturesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            custom_border_colors: 0,
+            custom_border_color_without_format: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceCustomBorderColorFeaturesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::custom_border_colors`]
+    pub fn custom_border_colors_raw(&self) -> Bool32 {
+        self.custom_border_colors
+    }
+    ///Gets the raw value of [`Self::custom_border_color_without_format`]
+    pub fn custom_border_color_without_format_raw(&self) -> Bool32 {
+        self.custom_border_color_without_format
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::custom_border_colors`]
+    pub fn set_custom_border_colors_raw(&mut self, value: Bool32) -> &mut Self {
+        self.custom_border_colors = value;
+        self
+    }
+    ///Sets the raw value of [`Self::custom_border_color_without_format`]
+    pub fn set_custom_border_color_without_format_raw(&mut self, value: Bool32) -> &mut Self {
+        self.custom_border_color_without_format = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::custom_border_colors`]
+    pub fn custom_border_colors(&self) -> bool {
+        unsafe { std::mem::transmute(self.custom_border_colors as u8) }
+    }
+    ///Gets the value of [`Self::custom_border_color_without_format`]
+    pub fn custom_border_color_without_format(&self) -> bool {
+        unsafe { std::mem::transmute(self.custom_border_color_without_format as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::custom_border_colors`]
+    pub fn custom_border_colors_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.custom_border_colors as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.custom_border_colors as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::custom_border_color_without_format`]
+    pub fn custom_border_color_without_format_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.custom_border_color_without_format as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.custom_border_color_without_format as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::custom_border_colors`]
+    pub fn set_custom_border_colors(&mut self, value: bool) -> &mut Self {
+        self.custom_border_colors = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::custom_border_color_without_format`]
+    pub fn set_custom_border_color_without_format(&mut self, value: bool) -> &mut Self {
+        self.custom_border_color_without_format = value as u8 as u32;
+        self
+    }
 }

@@ -202,14 +202,14 @@ impl CoarseSampleOrderTypeNV {
 ///# Members
 /// - [`shading_rate_palette_entry_count`] specifies the number of entries in the shading rate image
 ///   palette.
-/// - [`p_shading_rate_palette_entries`] is a pointer to an array of [`ShadingRatePaletteEntryNV`]
+/// - [`shading_rate_palette_entries`] is a pointer to an array of [`ShadingRatePaletteEntryNV`]
 ///   enums defining the shading rate for each palette entry.
 ///# Description
 ///Valid Usage
 /// - [`shading_rate_palette_entry_count`]**must** be between `1` and
 ///   [`PhysicalDeviceShadingRateImagePropertiesNV::shading_rate_palette_size`], inclusive
 ///Valid Usage (Implicit)
-/// - [`p_shading_rate_palette_entries`]**must** be a valid pointer to an array of
+/// - [`shading_rate_palette_entries`]**must** be a valid pointer to an array of
 ///   [`shading_rate_palette_entry_count`] valid [`ShadingRatePaletteEntryNV`] values
 /// - [`shading_rate_palette_entry_count`]**must** be greater than `0`
 ///# Related
@@ -225,19 +225,81 @@ impl CoarseSampleOrderTypeNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ShadingRatePaletteNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
     ///[`shading_rate_palette_entry_count`] specifies the number of entries in
     ///the shading rate image palette.
     shading_rate_palette_entry_count: u32,
-    ///[`p_shading_rate_palette_entries`] is a pointer to an array of
+    ///[`shading_rate_palette_entries`] is a pointer to an array of
     ///[`ShadingRatePaletteEntryNV`] enums defining the shading rate for
     ///each palette entry.
-    p_shading_rate_palette_entries: *mut ShadingRatePaletteEntryNV,
+    shading_rate_palette_entries: *const ShadingRatePaletteEntryNV,
+}
+impl<'lt> Default for ShadingRatePaletteNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            shading_rate_palette_entry_count: 0,
+            shading_rate_palette_entries: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> ShadingRatePaletteNV<'lt> {
+    ///Gets the raw value of [`Self::shading_rate_palette_entry_count`]
+    pub fn shading_rate_palette_entry_count_raw(&self) -> u32 {
+        self.shading_rate_palette_entry_count
+    }
+    ///Gets the raw value of [`Self::shading_rate_palette_entries`]
+    pub fn shading_rate_palette_entries_raw(&self) -> *const ShadingRatePaletteEntryNV {
+        self.shading_rate_palette_entries
+    }
+    ///Sets the raw value of [`Self::shading_rate_palette_entry_count`]
+    pub fn set_shading_rate_palette_entry_count_raw(&mut self, value: u32) -> &mut Self {
+        self.shading_rate_palette_entry_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_palette_entries`]
+    pub fn set_shading_rate_palette_entries_raw(&mut self, value: *const ShadingRatePaletteEntryNV) -> &mut Self {
+        self.shading_rate_palette_entries = value;
+        self
+    }
+    ///Gets the value of [`Self::shading_rate_palette_entry_count`]
+    pub fn shading_rate_palette_entry_count(&self) -> u32 {
+        self.shading_rate_palette_entry_count
+    }
+    ///Gets the value of [`Self::shading_rate_palette_entries`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn shading_rate_palette_entries(&self) -> &[ShadingRatePaletteEntryNV] {
+        std::slice::from_raw_parts(
+            self.shading_rate_palette_entries,
+            self.shading_rate_palette_entry_count as usize,
+        )
+    }
+    ///Gets a mutable reference to the value of [`Self::shading_rate_palette_entry_count`]
+    pub fn shading_rate_palette_entry_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::shading_rate_palette_entry_count`]
+    pub fn set_shading_rate_palette_entry_count(&mut self, value: u32) -> &mut Self {
+        self.shading_rate_palette_entry_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_palette_entries`]
+    pub fn set_shading_rate_palette_entries(
+        &mut self,
+        value: &'lt [crate::extensions::nv_shading_rate_image::ShadingRatePaletteEntryNV],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.shading_rate_palette_entries = value.as_ptr();
+        self.shading_rate_palette_entry_count = len_;
+        self
+    }
 }
 ///[VkPipelineViewportShadingRateImageStateCreateInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportShadingRateImageStateCreateInfoNV.html) - Structure specifying parameters controlling shading rate image usage
 ///# C Specifications
@@ -263,7 +325,7 @@ pub struct ShadingRatePaletteNV<'lt> {
 ///   during rasterization.
 /// - [`viewport_count`] specifies the number of per-viewport palettes used to translate values
 ///   stored in shading rate images.
-/// - [`p_shading_rate_palettes`] is a pointer to an array of [`ShadingRatePaletteNV`] structures
+/// - [`shading_rate_palettes`] is a pointer to an array of [`ShadingRatePaletteNV`] structures
 ///   defining the palette for each viewport. If the shading rate palette state is dynamic, this
 ///   member is ignored.
 ///# Description
@@ -290,9 +352,8 @@ pub struct ShadingRatePaletteNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -300,18 +361,151 @@ pub struct PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`shading_rate_image_enable`] specifies whether shading rate image and
     ///palettes are used during rasterization.
     shading_rate_image_enable: Bool32,
     ///[`viewport_count`] specifies the number of per-viewport palettes used
     ///to translate values stored in shading rate images.
     viewport_count: u32,
-    ///[`p_shading_rate_palettes`] is a pointer to an array of
+    ///[`shading_rate_palettes`] is a pointer to an array of
     ///[`ShadingRatePaletteNV`] structures defining the palette for each
     ///viewport.
     ///If the shading rate palette state is dynamic, this member is ignored.
-    p_shading_rate_palettes: *mut ShadingRatePaletteNV<'lt>,
+    shading_rate_palettes: *const ShadingRatePaletteNV<'lt>,
+}
+impl<'lt> Default for PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            shading_rate_image_enable: 0,
+            viewport_count: 0,
+            shading_rate_palettes: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::shading_rate_image_enable`]
+    pub fn shading_rate_image_enable_raw(&self) -> Bool32 {
+        self.shading_rate_image_enable
+    }
+    ///Gets the raw value of [`Self::viewport_count`]
+    pub fn viewport_count_raw(&self) -> u32 {
+        self.viewport_count
+    }
+    ///Gets the raw value of [`Self::shading_rate_palettes`]
+    pub fn shading_rate_palettes_raw(&self) -> *const ShadingRatePaletteNV<'lt> {
+        self.shading_rate_palettes
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_image_enable`]
+    pub fn set_shading_rate_image_enable_raw(&mut self, value: Bool32) -> &mut Self {
+        self.shading_rate_image_enable = value;
+        self
+    }
+    ///Sets the raw value of [`Self::viewport_count`]
+    pub fn set_viewport_count_raw(&mut self, value: u32) -> &mut Self {
+        self.viewport_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_palettes`]
+    pub fn set_shading_rate_palettes_raw(&mut self, value: *const ShadingRatePaletteNV<'lt>) -> &mut Self {
+        self.shading_rate_palettes = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::shading_rate_image_enable`]
+    pub fn shading_rate_image_enable(&self) -> bool {
+        unsafe { std::mem::transmute(self.shading_rate_image_enable as u8) }
+    }
+    ///Gets the value of [`Self::viewport_count`]
+    pub fn viewport_count(&self) -> u32 {
+        self.viewport_count
+    }
+    ///Gets the value of [`Self::shading_rate_palettes`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn shading_rate_palettes(&self) -> &[ShadingRatePaletteNV<'lt>] {
+        std::slice::from_raw_parts(self.shading_rate_palettes, self.viewport_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::shading_rate_image_enable`]
+    pub fn shading_rate_image_enable_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.shading_rate_image_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.shading_rate_image_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::viewport_count`]
+    pub fn viewport_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_image_enable`]
+    pub fn set_shading_rate_image_enable(&mut self, value: bool) -> &mut Self {
+        self.shading_rate_image_enable = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::viewport_count`]
+    pub fn set_viewport_count(&mut self, value: u32) -> &mut Self {
+        self.viewport_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_palettes`]
+    pub fn set_shading_rate_palettes(
+        &mut self,
+        value: &'lt [crate::extensions::nv_shading_rate_image::ShadingRatePaletteNV<'lt>],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.shading_rate_palettes = value.as_ptr();
+        self.viewport_count = len_;
+        self
+    }
 }
 ///[VkPhysicalDeviceShadingRateImageFeaturesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShadingRateImageFeaturesNV.html) - Structure describing shading rate image features that can be supported by an implementation
 ///# C Specifications
@@ -357,9 +551,8 @@ pub struct PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -367,7 +560,7 @@ pub struct PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`shading_rate_image`] indicates that the
     ///implementation supports the use of a shading rate image to derive an
     ///effective shading rate for fragment processing.
@@ -378,6 +571,132 @@ pub struct PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
     ///supports a user-configurable ordering of coverage samples in fragments
     ///larger than one pixel.
     shading_rate_coarse_sample_order: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            shading_rate_image: 0,
+            shading_rate_coarse_sample_order: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::shading_rate_image`]
+    pub fn shading_rate_image_raw(&self) -> Bool32 {
+        self.shading_rate_image
+    }
+    ///Gets the raw value of [`Self::shading_rate_coarse_sample_order`]
+    pub fn shading_rate_coarse_sample_order_raw(&self) -> Bool32 {
+        self.shading_rate_coarse_sample_order
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_image`]
+    pub fn set_shading_rate_image_raw(&mut self, value: Bool32) -> &mut Self {
+        self.shading_rate_image = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_coarse_sample_order`]
+    pub fn set_shading_rate_coarse_sample_order_raw(&mut self, value: Bool32) -> &mut Self {
+        self.shading_rate_coarse_sample_order = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::shading_rate_image`]
+    pub fn shading_rate_image(&self) -> bool {
+        unsafe { std::mem::transmute(self.shading_rate_image as u8) }
+    }
+    ///Gets the value of [`Self::shading_rate_coarse_sample_order`]
+    pub fn shading_rate_coarse_sample_order(&self) -> bool {
+        unsafe { std::mem::transmute(self.shading_rate_coarse_sample_order as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::shading_rate_image`]
+    pub fn shading_rate_image_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.shading_rate_image as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.shading_rate_image as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::shading_rate_coarse_sample_order`]
+    pub fn shading_rate_coarse_sample_order_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.shading_rate_coarse_sample_order as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.shading_rate_coarse_sample_order as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_image`]
+    pub fn set_shading_rate_image(&mut self, value: bool) -> &mut Self {
+        self.shading_rate_image = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_coarse_sample_order`]
+    pub fn set_shading_rate_coarse_sample_order(&mut self, value: bool) -> &mut Self {
+        self.shading_rate_coarse_sample_order = value as u8 as u32;
+        self
+    }
 }
 ///[VkPhysicalDeviceShadingRateImagePropertiesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShadingRateImagePropertiesNV.html) - Structure describing shading rate image limits that can be supported by an implementation
 ///# C Specifications
@@ -424,9 +743,8 @@ pub struct PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -434,7 +752,7 @@ pub struct PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`shading_rate_texel_size`] indicates the
     ///width and height of the portion of the framebuffer corresponding to each
     ///texel in the shading rate image.
@@ -451,6 +769,118 @@ pub struct PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
     ///final shading rate will be adjusted so that its product does not exceed
     ///the limit.
     shading_rate_max_coarse_samples: u32,
+}
+impl<'lt> Default for PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            shading_rate_texel_size: Default::default(),
+            shading_rate_palette_size: 0,
+            shading_rate_max_coarse_samples: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::shading_rate_palette_size`]
+    pub fn shading_rate_palette_size_raw(&self) -> u32 {
+        self.shading_rate_palette_size
+    }
+    ///Gets the raw value of [`Self::shading_rate_max_coarse_samples`]
+    pub fn shading_rate_max_coarse_samples_raw(&self) -> u32 {
+        self.shading_rate_max_coarse_samples
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_palette_size`]
+    pub fn set_shading_rate_palette_size_raw(&mut self, value: u32) -> &mut Self {
+        self.shading_rate_palette_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_max_coarse_samples`]
+    pub fn set_shading_rate_max_coarse_samples_raw(&mut self, value: u32) -> &mut Self {
+        self.shading_rate_max_coarse_samples = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::shading_rate_texel_size`]
+    pub fn shading_rate_texel_size(&self) -> Extent2D {
+        self.shading_rate_texel_size
+    }
+    ///Gets the value of [`Self::shading_rate_palette_size`]
+    pub fn shading_rate_palette_size(&self) -> u32 {
+        self.shading_rate_palette_size
+    }
+    ///Gets the value of [`Self::shading_rate_max_coarse_samples`]
+    pub fn shading_rate_max_coarse_samples(&self) -> u32 {
+        self.shading_rate_max_coarse_samples
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::shading_rate_texel_size`]
+    pub fn shading_rate_texel_size_mut(&mut self) -> &mut Extent2D {
+        &mut self.shading_rate_texel_size
+    }
+    ///Gets a mutable reference to the value of [`Self::shading_rate_palette_size`]
+    pub fn shading_rate_palette_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::shading_rate_max_coarse_samples`]
+    pub fn shading_rate_max_coarse_samples_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_texel_size`]
+    pub fn set_shading_rate_texel_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.shading_rate_texel_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_palette_size`]
+    pub fn set_shading_rate_palette_size(&mut self, value: u32) -> &mut Self {
+        self.shading_rate_palette_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shading_rate_max_coarse_samples`]
+    pub fn set_shading_rate_max_coarse_samples(&mut self, value: u32) -> &mut Self {
+        self.shading_rate_max_coarse_samples = value;
+        self
+    }
 }
 ///[VkCoarseSampleLocationNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCoarseSampleLocationNV.html) - Structure specifying parameters controlling shading rate image usage
 ///# C Specifications
@@ -490,7 +920,7 @@ pub struct PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -504,6 +934,83 @@ pub struct CoarseSampleLocationNV {
     ///[`sample`] is the number of the coverage sample in the pixel
     ///identified by [`pixel_x`] and [`pixel_y`].
     sample: u32,
+}
+impl Default for CoarseSampleLocationNV {
+    fn default() -> Self {
+        Self {
+            pixel_x: 0,
+            pixel_y: 0,
+            sample: 0,
+        }
+    }
+}
+impl CoarseSampleLocationNV {
+    ///Gets the raw value of [`Self::pixel_x`]
+    pub fn pixel_x_raw(&self) -> u32 {
+        self.pixel_x
+    }
+    ///Gets the raw value of [`Self::pixel_y`]
+    pub fn pixel_y_raw(&self) -> u32 {
+        self.pixel_y
+    }
+    ///Gets the raw value of [`Self::sample`]
+    pub fn sample_raw(&self) -> u32 {
+        self.sample
+    }
+    ///Sets the raw value of [`Self::pixel_x`]
+    pub fn set_pixel_x_raw(&mut self, value: u32) -> &mut Self {
+        self.pixel_x = value;
+        self
+    }
+    ///Sets the raw value of [`Self::pixel_y`]
+    pub fn set_pixel_y_raw(&mut self, value: u32) -> &mut Self {
+        self.pixel_y = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample`]
+    pub fn set_sample_raw(&mut self, value: u32) -> &mut Self {
+        self.sample = value;
+        self
+    }
+    ///Gets the value of [`Self::pixel_x`]
+    pub fn pixel_x(&self) -> u32 {
+        self.pixel_x
+    }
+    ///Gets the value of [`Self::pixel_y`]
+    pub fn pixel_y(&self) -> u32 {
+        self.pixel_y
+    }
+    ///Gets the value of [`Self::sample`]
+    pub fn sample(&self) -> u32 {
+        self.sample
+    }
+    ///Gets a mutable reference to the value of [`Self::pixel_x`]
+    pub fn pixel_x_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::pixel_y`]
+    pub fn pixel_y_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::sample`]
+    pub fn sample_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::pixel_x`]
+    pub fn set_pixel_x(&mut self, value: u32) -> &mut Self {
+        self.pixel_x = value;
+        self
+    }
+    ///Sets the raw value of [`Self::pixel_y`]
+    pub fn set_pixel_y(&mut self, value: u32) -> &mut Self {
+        self.pixel_y = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample`]
+    pub fn set_sample(&mut self, value: u32) -> &mut Self {
+        self.sample = value;
+        self
+    }
 }
 ///[VkCoarseSampleOrderCustomNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCoarseSampleOrderCustomNV.html) - Structure specifying parameters controlling shading rate image usage
 ///# C Specifications
@@ -523,14 +1030,14 @@ pub struct CoarseSampleLocationNV {
 /// - [`sample_count`] identifies the per-pixel coverage sample count for the combination of
 ///   fragment area and coverage sample count to control.
 /// - [`sample_location_count`] specifies the number of sample locations in the custom ordering.
-/// - [`p_sample_locations`] is a pointer to an array of [`CoarseSampleLocationNV`] structures
+/// - [`sample_locations`] is a pointer to an array of [`CoarseSampleLocationNV`] structures
 ///   specifying the location of each sample in the custom ordering.
 ///# Description
 ///The [`CoarseSampleOrderCustomNV`] structure is used with a coverage
 ///sample ordering type of `VK_COARSE_SAMPLE_ORDER_TYPE_CUSTOM_NV` to
 ///specify the order of coverage samples for one combination of fragment width,
 ///fragment height, and coverage sample count.When using a custom sample ordering, element *j* in
-/// [`p_sample_locations`]
+/// [`sample_locations`]
 ///specifies a specific pixel location and
 ///[sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask) that corresponds to
 ///[coverage index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask)*j* in the
@@ -542,12 +1049,12 @@ pub struct CoarseSampleLocationNV {
 ///   width for [`shading_rate`], and the fragment height for [`shading_rate`]
 /// - [`sample_location_count`]**must** be less than or equal to the value of
 ///   [`PhysicalDeviceShadingRateImagePropertiesNV::shading_rate_max_coarse_samples`]
-/// - The array [`p_sample_locations`]**must** contain exactly one entry for every combination of
+/// - The array [`sample_locations`]**must** contain exactly one entry for every combination of
 ///   valid values for `pixelX`, `pixelY`, and `sample` in the structure
 ///   [`CoarseSampleOrderCustomNV`]
 ///Valid Usage (Implicit)
 /// - [`shading_rate`]**must** be a valid [`ShadingRatePaletteEntryNV`] value
-/// - [`p_sample_locations`]**must** be a valid pointer to an array of
+/// - [`sample_locations`]**must** be a valid pointer to an array of
 ///   [`sample_location_count`][`CoarseSampleLocationNV`] structures
 /// - [`sample_location_count`]**must** be greater than `0`
 ///# Related
@@ -564,9 +1071,8 @@ pub struct CoarseSampleLocationNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct CoarseSampleOrderCustomNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -580,10 +1086,110 @@ pub struct CoarseSampleOrderCustomNV<'lt> {
     ///[`sample_location_count`] specifies the number of sample locations in
     ///the custom ordering.
     sample_location_count: u32,
-    ///[`p_sample_locations`] is a pointer to an array of
+    ///[`sample_locations`] is a pointer to an array of
     ///[`CoarseSampleLocationNV`] structures specifying the location of
     ///each sample in the custom ordering.
-    p_sample_locations: *mut CoarseSampleLocationNV,
+    sample_locations: *const CoarseSampleLocationNV,
+}
+impl<'lt> Default for CoarseSampleOrderCustomNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            shading_rate: Default::default(),
+            sample_count: 0,
+            sample_location_count: 0,
+            sample_locations: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> CoarseSampleOrderCustomNV<'lt> {
+    ///Gets the raw value of [`Self::sample_count`]
+    pub fn sample_count_raw(&self) -> u32 {
+        self.sample_count
+    }
+    ///Gets the raw value of [`Self::sample_location_count`]
+    pub fn sample_location_count_raw(&self) -> u32 {
+        self.sample_location_count
+    }
+    ///Gets the raw value of [`Self::sample_locations`]
+    pub fn sample_locations_raw(&self) -> *const CoarseSampleLocationNV {
+        self.sample_locations
+    }
+    ///Sets the raw value of [`Self::sample_count`]
+    pub fn set_sample_count_raw(&mut self, value: u32) -> &mut Self {
+        self.sample_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_location_count`]
+    pub fn set_sample_location_count_raw(&mut self, value: u32) -> &mut Self {
+        self.sample_location_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_locations`]
+    pub fn set_sample_locations_raw(&mut self, value: *const CoarseSampleLocationNV) -> &mut Self {
+        self.sample_locations = value;
+        self
+    }
+    ///Gets the value of [`Self::shading_rate`]
+    pub fn shading_rate(&self) -> ShadingRatePaletteEntryNV {
+        self.shading_rate
+    }
+    ///Gets the value of [`Self::sample_count`]
+    pub fn sample_count(&self) -> u32 {
+        self.sample_count
+    }
+    ///Gets the value of [`Self::sample_location_count`]
+    pub fn sample_location_count(&self) -> u32 {
+        self.sample_location_count
+    }
+    ///Gets the value of [`Self::sample_locations`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn sample_locations(&self) -> &[CoarseSampleLocationNV] {
+        std::slice::from_raw_parts(self.sample_locations, self.sample_location_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::shading_rate`]
+    pub fn shading_rate_mut(&mut self) -> &mut ShadingRatePaletteEntryNV {
+        &mut self.shading_rate
+    }
+    ///Gets a mutable reference to the value of [`Self::sample_count`]
+    pub fn sample_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::sample_location_count`]
+    pub fn sample_location_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::shading_rate`]
+    pub fn set_shading_rate(
+        &mut self,
+        value: crate::extensions::nv_shading_rate_image::ShadingRatePaletteEntryNV,
+    ) -> &mut Self {
+        self.shading_rate = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_count`]
+    pub fn set_sample_count(&mut self, value: u32) -> &mut Self {
+        self.sample_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_location_count`]
+    pub fn set_sample_location_count(&mut self, value: u32) -> &mut Self {
+        self.sample_location_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_locations`]
+    pub fn set_sample_locations(
+        &mut self,
+        value: &'lt [crate::extensions::nv_shading_rate_image::CoarseSampleLocationNV],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.sample_locations = value.as_ptr();
+        self.sample_location_count = len_;
+        self
+    }
 }
 ///[VkPipelineViewportCoarseSampleOrderStateCreateInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportCoarseSampleOrderStateCreateInfoNV.html) - Structure specifying parameters controlling sample order in coarse fragments
 ///# C Specifications
@@ -610,7 +1216,7 @@ pub struct CoarseSampleOrderCustomNV<'lt> {
 ///   larger than one pixel.
 /// - [`custom_sample_order_count`] specifies the number of custom sample orderings to use when
 ///   ordering coverage samples.
-/// - [`p_custom_sample_orders`] is a pointer to an array of
+/// - [`custom_sample_orders`] is a pointer to an array of
 ///   [`custom_sample_order_count`][`CoarseSampleOrderCustomNV`] structures, each structure
 ///   specifying the coverage sample order for a single combination of fragment area and coverage
 ///   sample count.
@@ -619,20 +1225,20 @@ pub struct CoarseSampleOrderCustomNV<'lt> {
 ///`VK_COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV`.If [`sample_order_type`] is
 /// `VK_COARSE_SAMPLE_ORDER_TYPE_CUSTOM_NV`, the
 ///coverage sample order used for any combination of fragment area and coverage
-///sample count not enumerated in [`p_custom_sample_orders`] will be identical
+///sample count not enumerated in [`custom_sample_orders`] will be identical
 ///to that used for `VK_COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV`.If the pipeline was created with
 ///`VK_DYNAMIC_STATE_VIEWPORT_COARSE_SAMPLE_ORDER_NV`, the contents of this
 ///structure (if present) are ignored, and the coverage sample order is instead
 ///specified by [`CmdSetCoarseSampleOrderNV`].Valid Usage
 /// - If [`sample_order_type`] is not `VK_COARSE_SAMPLE_ORDER_TYPE_CUSTOM_NV`,
 ///   `customSamplerOrderCount`**must** be `0`
-/// - The array [`p_custom_sample_orders`]**must** not contain two structures with matching values
-///   for both the `shadingRate` and `sampleCount` members
+/// - The array [`custom_sample_orders`]**must** not contain two structures with matching values for
+///   both the `shadingRate` and `sampleCount` members
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV`
 /// - [`sample_order_type`]**must** be a valid [`CoarseSampleOrderTypeNV`] value
-/// - If [`custom_sample_order_count`] is not `0`, [`p_custom_sample_orders`]**must** be a valid
+/// - If [`custom_sample_order_count`] is not `0`, [`custom_sample_orders`]**must** be a valid
 ///   pointer to an array of [`custom_sample_order_count`] valid [`CoarseSampleOrderCustomNV`]
 ///   structures
 ///# Related
@@ -648,9 +1254,8 @@ pub struct CoarseSampleOrderCustomNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PipelineViewportCoarseSampleOrderStateCreateInfoNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -658,16 +1263,129 @@ pub struct PipelineViewportCoarseSampleOrderStateCreateInfoNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`sample_order_type`] specifies the mechanism used to order coverage
     ///samples in fragments larger than one pixel.
     sample_order_type: CoarseSampleOrderTypeNV,
     ///[`custom_sample_order_count`] specifies the number of custom sample
     ///orderings to use when ordering coverage samples.
     custom_sample_order_count: u32,
-    ///[`p_custom_sample_orders`] is a pointer to an array of
+    ///[`custom_sample_orders`] is a pointer to an array of
     ///[`custom_sample_order_count`][`CoarseSampleOrderCustomNV`]
     ///structures, each structure specifying the coverage sample order for a
     ///single combination of fragment area and coverage sample count.
-    p_custom_sample_orders: *mut CoarseSampleOrderCustomNV<'lt>,
+    custom_sample_orders: *const CoarseSampleOrderCustomNV<'lt>,
+}
+impl<'lt> Default for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            sample_order_type: Default::default(),
+            custom_sample_order_count: 0,
+            custom_sample_orders: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> PipelineViewportCoarseSampleOrderStateCreateInfoNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::custom_sample_order_count`]
+    pub fn custom_sample_order_count_raw(&self) -> u32 {
+        self.custom_sample_order_count
+    }
+    ///Gets the raw value of [`Self::custom_sample_orders`]
+    pub fn custom_sample_orders_raw(&self) -> *const CoarseSampleOrderCustomNV<'lt> {
+        self.custom_sample_orders
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::custom_sample_order_count`]
+    pub fn set_custom_sample_order_count_raw(&mut self, value: u32) -> &mut Self {
+        self.custom_sample_order_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::custom_sample_orders`]
+    pub fn set_custom_sample_orders_raw(&mut self, value: *const CoarseSampleOrderCustomNV<'lt>) -> &mut Self {
+        self.custom_sample_orders = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::sample_order_type`]
+    pub fn sample_order_type(&self) -> CoarseSampleOrderTypeNV {
+        self.sample_order_type
+    }
+    ///Gets the value of [`Self::custom_sample_order_count`]
+    pub fn custom_sample_order_count(&self) -> u32 {
+        self.custom_sample_order_count
+    }
+    ///Gets the value of [`Self::custom_sample_orders`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn custom_sample_orders(&self) -> &[CoarseSampleOrderCustomNV<'lt>] {
+        std::slice::from_raw_parts(self.custom_sample_orders, self.custom_sample_order_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::sample_order_type`]
+    pub fn sample_order_type_mut(&mut self) -> &mut CoarseSampleOrderTypeNV {
+        &mut self.sample_order_type
+    }
+    ///Gets a mutable reference to the value of [`Self::custom_sample_order_count`]
+    pub fn custom_sample_order_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::sample_order_type`]
+    pub fn set_sample_order_type(
+        &mut self,
+        value: crate::extensions::nv_shading_rate_image::CoarseSampleOrderTypeNV,
+    ) -> &mut Self {
+        self.sample_order_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::custom_sample_order_count`]
+    pub fn set_custom_sample_order_count(&mut self, value: u32) -> &mut Self {
+        self.custom_sample_order_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::custom_sample_orders`]
+    pub fn set_custom_sample_orders(
+        &mut self,
+        value: &'lt [crate::extensions::nv_shading_rate_image::CoarseSampleOrderCustomNV<'lt>],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.custom_sample_orders = value.as_ptr();
+        self.custom_sample_order_count = len_;
+        self
+    }
 }

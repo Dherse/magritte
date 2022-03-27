@@ -3,6 +3,16 @@
 To build Magritte's Vulkan bindings, you will need to build the Vulkan documentation.
 Then you will need to run `magritte-vkgen` to generate the actual bindings.
 
+## Dependencies
+
+You will need a working Python 3.0 setup with the [sympy](https://github.com/sympy/sympy) package.
+
+To install sympy using pip do the following:
+
+```sh
+    pip install sympy
+```
+
 ## Building the Vulkan doc
 
 To build the Vulkan doc, you will need the following tools:

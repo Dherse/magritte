@@ -49,9 +49,8 @@ pub const QCOM_FRAGMENT_DENSITY_MAP_OFFSET_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -59,9 +58,98 @@ pub struct PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
     fragment_density_map_offset: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            fragment_density_map_offset: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::fragment_density_map_offset`]
+    pub fn fragment_density_map_offset_raw(&self) -> Bool32 {
+        self.fragment_density_map_offset
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_map_offset`]
+    pub fn set_fragment_density_map_offset_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_density_map_offset = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::fragment_density_map_offset`]
+    pub fn fragment_density_map_offset(&self) -> bool {
+        unsafe { std::mem::transmute(self.fragment_density_map_offset as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::fragment_density_map_offset`]
+    pub fn fragment_density_map_offset_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.fragment_density_map_offset as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.fragment_density_map_offset as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_map_offset`]
+    pub fn set_fragment_density_map_offset(&mut self, value: bool) -> &mut Self {
+        self.fragment_density_map_offset = value as u8 as u32;
+        self
+    }
 }
 ///[VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM.html) - Structure describing fragment density map offset properties that can be supported by an implementation
 ///# C Specifications
@@ -99,9 +187,8 @@ pub struct PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -109,10 +196,76 @@ pub struct PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`fragment_density_offset_granularity`] is the granularity for
     ///[fragment density offsets](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-fragmentdensitymapoffsets).
     fragment_density_offset_granularity: Extent2D,
+}
+impl<'lt> Default for PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            fragment_density_offset_granularity: Default::default(),
+        }
+    }
+}
+impl<'lt> PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::fragment_density_offset_granularity`]
+    pub fn fragment_density_offset_granularity(&self) -> Extent2D {
+        self.fragment_density_offset_granularity
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::fragment_density_offset_granularity`]
+    pub fn fragment_density_offset_granularity_mut(&mut self) -> &mut Extent2D {
+        &mut self.fragment_density_offset_granularity
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_offset_granularity`]
+    pub fn set_fragment_density_offset_granularity(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.fragment_density_offset_granularity = value;
+        self
+    }
 }
 ///[VkSubpassFragmentDensityMapOffsetEndInfoQCOM](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassFragmentDensityMapOffsetEndInfoQCOM.html) - Structure specifying fragment density map offset subpass end information
 ///# C Specifications
@@ -134,7 +287,7 @@ pub struct PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`fragment_density_offset_count`] is the number of offsets being specified.
-/// - [`p_fragment_density_offsets`] is a pointer to an array of [`Offset2D`] structs, each of which
+/// - [`fragment_density_offsets`] is a pointer to an array of [`Offset2D`] structs, each of which
 ///   describes the offset per layer.
 ///# Description
 ///The array elements are given per `layer` as defined by
@@ -156,22 +309,22 @@ pub struct PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> {
 /// - If [`SubpassDescription`]`::fragmentDensityMapAttachment` is not is not [`ATTACHMENT_UNUSED`]
 ///   and was not created with `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`,
 ///   [`fragment_density_offset_count`]**must** equal `0`.
-/// - If [`SubpassDescription::p_depth_stencil_attachment`] is not is not [`ATTACHMENT_UNUSED`] and
+/// - If [`SubpassDescription::depth_stencil_attachment`] is not is not [`ATTACHMENT_UNUSED`] and
 ///   was not created with `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`,
 ///   [`fragment_density_offset_count`]**must** equal `0`.
-/// - If any element of [`SubpassDescription::p_input_attachments`] is not is not
+/// - If any element of [`SubpassDescription::input_attachments`] is not is not
 ///   [`ATTACHMENT_UNUSED`] and was not created with
 ///   `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`,
 ///   [`fragment_density_offset_count`]**must** equal `0`.
-/// - If any element of [`SubpassDescription::p_color_attachments`] is not is not
+/// - If any element of [`SubpassDescription::color_attachments`] is not is not
 ///   [`ATTACHMENT_UNUSED`] and was not created with
 ///   `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`,
 ///   [`fragment_density_offset_count`]**must** equal `0`.
-/// - If any element of [`SubpassDescription::p_resolve_attachments`] is not is not
+/// - If any element of [`SubpassDescription::resolve_attachments`] is not is not
 ///   [`ATTACHMENT_UNUSED`] and was not created with
 ///   `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`,
 ///   [`fragment_density_offset_count`]**must** equal `0`.
-/// - If any element of [`SubpassDescription::p_preserve_attachments`] is not is not
+/// - If any element of [`SubpassDescription::preserve_attachments`] is not is not
 ///   [`ATTACHMENT_UNUSED`] and was not created with
 ///   `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`,
 ///   [`fragment_density_offset_count`]**must** equal `0`.
@@ -180,13 +333,13 @@ pub struct PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> {
 ///   creating the fragment density map attachment view.
 /// - If [`fragment_density_offset_count`] is not `0` and multiview is not enabled for the render
 ///   pass, [`fragment_density_offset_count`]**must** equal `1`.
-/// - The `x` component of each element of [`p_fragment_density_offsets`]**must** be an integer
+/// - The `x` component of each element of [`fragment_density_offsets`]**must** be an integer
 ///   multiple of `fragmentDensityOffsetGranularity.width`.
-/// - The `y` component of each element of [`p_fragment_density_offsets`]**must** be an integer
+/// - The `y` component of each element of [`fragment_density_offsets`]**must** be an integer
 ///   multiple of `fragmentDensityOffsetGranularity.height`.
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SUBPASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_QCOM`
-/// - If [`fragment_density_offset_count`] is not `0`, [`p_fragment_density_offsets`]**must** be a
+/// - If [`fragment_density_offset_count`] is not `0`, [`fragment_density_offsets`]**must** be a
 ///   valid pointer to an array of [`fragment_density_offset_count`][`Offset2D`] structures
 ///# Related
 /// - [`VK_QCOM_fragment_density_map_offset`]
@@ -200,9 +353,8 @@ pub struct PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct SubpassFragmentDensityMapOffsetEndInfoQCOM<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -210,11 +362,107 @@ pub struct SubpassFragmentDensityMapOffsetEndInfoQCOM<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`fragment_density_offset_count`] is the number of offsets being
     ///specified.
     fragment_density_offset_count: u32,
-    ///[`p_fragment_density_offsets`] is a pointer to an array of
+    ///[`fragment_density_offsets`] is a pointer to an array of
     ///[`Offset2D`] structs, each of which describes the offset per layer.
-    p_fragment_density_offsets: *mut Offset2D,
+    fragment_density_offsets: *const Offset2D,
+}
+impl<'lt> Default for SubpassFragmentDensityMapOffsetEndInfoQCOM<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            fragment_density_offset_count: 0,
+            fragment_density_offsets: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> SubpassFragmentDensityMapOffsetEndInfoQCOM<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::fragment_density_offset_count`]
+    pub fn fragment_density_offset_count_raw(&self) -> u32 {
+        self.fragment_density_offset_count
+    }
+    ///Gets the raw value of [`Self::fragment_density_offsets`]
+    pub fn fragment_density_offsets_raw(&self) -> *const Offset2D {
+        self.fragment_density_offsets
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_offset_count`]
+    pub fn set_fragment_density_offset_count_raw(&mut self, value: u32) -> &mut Self {
+        self.fragment_density_offset_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_offsets`]
+    pub fn set_fragment_density_offsets_raw(&mut self, value: *const Offset2D) -> &mut Self {
+        self.fragment_density_offsets = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::fragment_density_offset_count`]
+    pub fn fragment_density_offset_count(&self) -> u32 {
+        self.fragment_density_offset_count
+    }
+    ///Gets the value of [`Self::fragment_density_offsets`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn fragment_density_offsets(&self) -> &[Offset2D] {
+        std::slice::from_raw_parts(
+            self.fragment_density_offsets,
+            self.fragment_density_offset_count as usize,
+        )
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::fragment_density_offset_count`]
+    pub fn fragment_density_offset_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_offset_count`]
+    pub fn set_fragment_density_offset_count(&mut self, value: u32) -> &mut Self {
+        self.fragment_density_offset_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_offsets`]
+    pub fn set_fragment_density_offsets(&mut self, value: &'lt [crate::vulkan1_0::Offset2D]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.fragment_density_offsets = value.as_ptr();
+        self.fragment_density_offset_count = len_;
+        self
+    }
 }

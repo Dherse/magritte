@@ -91,22 +91,22 @@ impl ValidationCacheHeaderVersionEXT {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
-/// - [`initial_data_size`] is the number of bytes in [`p_initial_data`]. If [`initial_data_size`]
-///   is zero, the validation cache will initially be empty.
-/// - [`p_initial_data`] is a pointer to previously retrieved validation cache data. If the
-///   validation cache data is incompatible (as defined below) with the device, the validation cache
-///   will be initially empty. If [`initial_data_size`] is zero, [`p_initial_data`] is ignored.
+/// - [`initial_data_size`] is the number of bytes in [`initial_data`]. If [`initial_data_size`] is
+///   zero, the validation cache will initially be empty.
+/// - [`initial_data`] is a pointer to previously retrieved validation cache data. If the validation
+///   cache data is incompatible (as defined below) with the device, the validation cache will be
+///   initially empty. If [`initial_data_size`] is zero, [`initial_data`] is ignored.
 ///# Description
 ///Valid Usage
-/// - If [`initial_data_size`] is not `0`, it **must** be equal to the size of [`p_initial_data`],
-///   as returned by [`GetValidationCacheDataEXT`] when [`p_initial_data`] was originally retrieved
-/// - If [`initial_data_size`] is not `0`, [`p_initial_data`]**must** have been retrieved from a
+/// - If [`initial_data_size`] is not `0`, it **must** be equal to the size of [`initial_data`], as
+///   returned by [`GetValidationCacheDataEXT`] when [`initial_data`] was originally retrieved
+/// - If [`initial_data_size`] is not `0`, [`initial_data`]**must** have been retrieved from a
 ///   previous call to [`GetValidationCacheDataEXT`]
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VALIDATION_CACHE_CREATE_INFO_EXT`
 /// - [`p_next`]**must** be `NULL`
 /// - [`flags`]**must** be `0`
-/// - If [`initial_data_size`] is not `0`, [`p_initial_data`]**must** be a valid pointer to an array
+/// - If [`initial_data_size`] is not `0`, [`initial_data`]**must** be a valid pointer to an array
 ///   of [`initial_data_size`] bytes
 ///# Related
 /// - [`VK_EXT_validation_cache`]
@@ -121,9 +121,8 @@ impl ValidationCacheHeaderVersionEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ValidationCacheCreateInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -131,19 +130,129 @@ pub struct ValidationCacheCreateInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
     flags: ValidationCacheCreateFlagsEXT,
-    ///[`initial_data_size`] is the number of bytes in [`p_initial_data`].
+    ///[`initial_data_size`] is the number of bytes in [`initial_data`].
     ///If [`initial_data_size`] is zero, the validation cache will initially be
     ///empty.
     initial_data_size: usize,
-    ///[`p_initial_data`] is a pointer to previously retrieved validation cache
+    ///[`initial_data`] is a pointer to previously retrieved validation cache
     ///data.
     ///If the validation cache data is incompatible (as defined below) with the
     ///device, the validation cache will be initially empty.
-    ///If [`initial_data_size`] is zero, [`p_initial_data`] is ignored.
-    p_initial_data: *mut c_void,
+    ///If [`initial_data_size`] is zero, [`initial_data`] is ignored.
+    initial_data: *const c_void,
+}
+impl<'lt> Default for ValidationCacheCreateInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            flags: Default::default(),
+            initial_data_size: 0,
+            initial_data: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> ValidationCacheCreateInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::initial_data_size`]
+    pub fn initial_data_size_raw(&self) -> usize {
+        self.initial_data_size
+    }
+    ///Gets the raw value of [`Self::initial_data`]
+    pub fn initial_data_raw(&self) -> *const c_void {
+        self.initial_data
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::initial_data_size`]
+    pub fn set_initial_data_size_raw(&mut self, value: usize) -> &mut Self {
+        self.initial_data_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::initial_data`]
+    pub fn set_initial_data_raw(&mut self, value: *const c_void) -> &mut Self {
+        self.initial_data = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> ValidationCacheCreateFlagsEXT {
+        self.flags
+    }
+    ///Gets the value of [`Self::initial_data_size`]
+    pub fn initial_data_size(&self) -> usize {
+        self.initial_data_size
+    }
+    ///Gets the value of [`Self::initial_data`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn initial_data(&self) -> &[c_void] {
+        std::slice::from_raw_parts(self.initial_data, self.initial_data_size as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut ValidationCacheCreateFlagsEXT {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::initial_data_size`]
+    pub fn initial_data_size_mut(&mut self) -> &mut usize {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::ext_validation_cache::ValidationCacheCreateFlagsEXT,
+    ) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::initial_data_size`]
+    pub fn set_initial_data_size(&mut self, value: usize) -> &mut Self {
+        self.initial_data_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::initial_data`]
+    pub fn set_initial_data(&mut self, value: &'lt [std::ffi::c_void]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.initial_data = value.as_ptr();
+        self.initial_data_size = len_;
+        self
+    }
 }
 ///[VkShaderModuleValidationCacheCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderModuleValidationCacheCreateInfoEXT.html) - Specify validation cache to use during shader module creation
 ///# C Specifications
@@ -182,9 +291,8 @@ pub struct ValidationCacheCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ShaderModuleValidationCacheCreateInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -192,10 +300,72 @@ pub struct ShaderModuleValidationCacheCreateInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`validation_cache`] is the validation cache object from which the
     ///results of prior validation attempts will be written, and to which new
     ///validation results for this [`ShaderModule`] will be written (if not
     ///already present).
     validation_cache: ValidationCacheEXT,
+}
+impl<'lt> Default for ShaderModuleValidationCacheCreateInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            validation_cache: Default::default(),
+        }
+    }
+}
+impl<'lt> ShaderModuleValidationCacheCreateInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::validation_cache`]
+    pub fn validation_cache(&self) -> ValidationCacheEXT {
+        self.validation_cache
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::validation_cache`]
+    pub fn validation_cache_mut(&mut self) -> &mut ValidationCacheEXT {
+        &mut self.validation_cache
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::validation_cache`]
+    pub fn set_validation_cache(
+        &mut self,
+        value: crate::extensions::ext_validation_cache::ValidationCacheEXT,
+    ) -> &mut Self {
+        self.validation_cache = value;
+        self
+    }
 }

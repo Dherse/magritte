@@ -129,9 +129,8 @@ impl AccelerationStructureMotionInstanceTypeNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -139,7 +138,7 @@ pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`ray_tracing_motion_blur`] indicates
     ///whether the implementation supports the motion blur feature.
     ray_tracing_motion_blur: Bool32,
@@ -147,6 +146,133 @@ pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt> {
     ///the implementation supports indirect ray tracing commands with the
     ///motion blur feature enabled.
     ray_tracing_motion_blur_pipeline_trace_rays_indirect: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            ray_tracing_motion_blur: 0,
+            ray_tracing_motion_blur_pipeline_trace_rays_indirect: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::ray_tracing_motion_blur`]
+    pub fn ray_tracing_motion_blur_raw(&self) -> Bool32 {
+        self.ray_tracing_motion_blur
+    }
+    ///Gets the raw value of [`Self::ray_tracing_motion_blur_pipeline_trace_rays_indirect`]
+    pub fn ray_tracing_motion_blur_pipeline_trace_rays_indirect_raw(&self) -> Bool32 {
+        self.ray_tracing_motion_blur_pipeline_trace_rays_indirect
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::ray_tracing_motion_blur`]
+    pub fn set_ray_tracing_motion_blur_raw(&mut self, value: Bool32) -> &mut Self {
+        self.ray_tracing_motion_blur = value;
+        self
+    }
+    ///Sets the raw value of [`Self::ray_tracing_motion_blur_pipeline_trace_rays_indirect`]
+    pub fn set_ray_tracing_motion_blur_pipeline_trace_rays_indirect_raw(&mut self, value: Bool32) -> &mut Self {
+        self.ray_tracing_motion_blur_pipeline_trace_rays_indirect = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::ray_tracing_motion_blur`]
+    pub fn ray_tracing_motion_blur(&self) -> bool {
+        unsafe { std::mem::transmute(self.ray_tracing_motion_blur as u8) }
+    }
+    ///Gets the value of [`Self::ray_tracing_motion_blur_pipeline_trace_rays_indirect`]
+    pub fn ray_tracing_motion_blur_pipeline_trace_rays_indirect(&self) -> bool {
+        unsafe { std::mem::transmute(self.ray_tracing_motion_blur_pipeline_trace_rays_indirect as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::ray_tracing_motion_blur`]
+    pub fn ray_tracing_motion_blur_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.ray_tracing_motion_blur as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.ray_tracing_motion_blur as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::ray_tracing_motion_blur_pipeline_trace_rays_indirect`]
+    pub fn ray_tracing_motion_blur_pipeline_trace_rays_indirect_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.ray_tracing_motion_blur_pipeline_trace_rays_indirect as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.ray_tracing_motion_blur_pipeline_trace_rays_indirect as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::ray_tracing_motion_blur`]
+    pub fn set_ray_tracing_motion_blur(&mut self, value: bool) -> &mut Self {
+        self.ray_tracing_motion_blur = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::ray_tracing_motion_blur_pipeline_trace_rays_indirect`]
+    pub fn set_ray_tracing_motion_blur_pipeline_trace_rays_indirect(&mut self, value: bool) -> &mut Self {
+        self.ray_tracing_motion_blur_pipeline_trace_rays_indirect = value as u8 as u32;
+        self
+    }
 }
 ///[VkAccelerationStructureGeometryMotionTrianglesDataNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureGeometryMotionTrianglesDataNV.html) - Structure specifying vertex motion in a bottom-level acceleration structure
 ///# C Specifications
@@ -189,9 +315,8 @@ pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct AccelerationStructureGeometryMotionTrianglesDataNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -199,10 +324,72 @@ pub struct AccelerationStructureGeometryMotionTrianglesDataNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`vertex_data`] is a pointer to vertex data for this geometry at time
     ///1.0
     vertex_data: DeviceOrHostAddressConstKHR<'lt>,
+}
+impl<'lt> Default for AccelerationStructureGeometryMotionTrianglesDataNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            vertex_data: Default::default(),
+        }
+    }
+}
+impl<'lt> AccelerationStructureGeometryMotionTrianglesDataNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::vertex_data`]
+    pub fn vertex_data(&self) -> DeviceOrHostAddressConstKHR<'lt> {
+        self.vertex_data
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::vertex_data`]
+    pub fn vertex_data_mut(&mut self) -> &mut DeviceOrHostAddressConstKHR<'lt> {
+        &mut self.vertex_data
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::vertex_data`]
+    pub fn set_vertex_data(
+        &mut self,
+        value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressConstKHR<'lt>,
+    ) -> &mut Self {
+        self.vertex_data = value;
+        self
+    }
 }
 ///[VkAccelerationStructureMotionInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMotionInfoNV.html) - Structure specifying the parameters of a newly created acceleration structure object
 ///# C Specifications
@@ -238,9 +425,8 @@ pub struct AccelerationStructureGeometryMotionTrianglesDataNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct AccelerationStructureMotionInfoNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -248,12 +434,97 @@ pub struct AccelerationStructureMotionInfoNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`max_instances`] is the maximum number of instances that **may** be used
     ///in the motion top-level acceleration structure.
     max_instances: u32,
     ///[`flags`] is 0 and reserved for future use.
     flags: AccelerationStructureMotionInfoFlagsNV,
+}
+impl<'lt> Default for AccelerationStructureMotionInfoNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            max_instances: 0,
+            flags: Default::default(),
+        }
+    }
+}
+impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::max_instances`]
+    pub fn max_instances_raw(&self) -> u32 {
+        self.max_instances
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_instances`]
+    pub fn set_max_instances_raw(&mut self, value: u32) -> &mut Self {
+        self.max_instances = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::max_instances`]
+    pub fn max_instances(&self) -> u32 {
+        self.max_instances
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> AccelerationStructureMotionInfoFlagsNV {
+        self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::max_instances`]
+    pub fn max_instances_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut AccelerationStructureMotionInfoFlagsNV {
+        &mut self.flags
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::max_instances`]
+    pub fn set_max_instances(&mut self, value: u32) -> &mut Self {
+        self.max_instances = value;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::nv_ray_tracing_motion_blur::AccelerationStructureMotionInfoFlagsNV,
+    ) -> &mut Self {
+        self.flags = value;
+        self
+    }
 }
 ///[VkSRTDataNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSRTDataNV.html) - Structure specifying a transform in SRT decomposition
 ///# C Specifications
@@ -301,20 +572,20 @@ pub struct AccelerationStructureMotionInfoNV<'lt> {
 ///The first is a matrix S, consisting of a scale, shear, and translation,
 ///usually used to define the pivot point of the following rotation.
 ///This matrix is constructed from the parameters above by:<span class="katex"><span
-/// class="katex-html" aria-hidden="true"><span class="base"><span
-/// style="height:0.68333em;vertical-align:0em;" class="strut"></span><span class="mord mathdefault"
-/// style="margin-right:0.05764em;">S</span><span class="mspace"
+/// aria-hidden="true" class="katex-html"><span class="base"><span class="strut"
+/// style="height:0.68333em;vertical-align:0em;"></span><span style="margin-right:0.05764em;"
+/// class="mord mathdefault">S</span><span class="mspace"
 /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-/// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span class="base"><span
+/// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
 /// style="height:3.60004em;vertical-align:-1.55002em;" class="strut"></span><span
 /// class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t
 /// vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span
-/// style="top:-2.2500000000000004em;"><span style="height:3.1550000000000002em;"
-/// class="pstrut"></span><span class="delimsizinginner
+/// style="top:-2.2500000000000004em;"><span class="pstrut"
+/// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎝</span></span></span><span style="top:-2.8100000000000005em;"><span
 /// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
-/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span
-/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
+/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
+/// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎛</span></span></span></span><span class="vlist-s">​</span></span><span
 /// class="vlist-r"><span class="vlist"
 /// style="height:1.55002em;"><span></span></span></span></span></span></span><span
@@ -324,60 +595,61 @@ pub struct AccelerationStructureMotionInfoNV<'lt> {
 /// mathdefault">s</span><span class="mord mathdefault">x</span></span></span><span
 /// style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span
 /// class="mord"><span class="mord">0</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
+/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
 /// class="mord"><span class="mord">0</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
-/// class="vlist"><span></span></span></span></span></span><span style="width:0.5em;"
-/// class="arraycolsep"></span><span class="arraycolsep" style="width:0.5em;"></span><span
+/// class="vlist"><span></span></span></span></span></span><span class="arraycolsep"
+/// style="width:0.5em;"></span><span style="width:0.5em;" class="arraycolsep"></span><span
 /// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-/// style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut"
-/// style="height:3em;"></span><span class="mord"><span class="mord
-/// mathdefault">a</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
-/// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">s</span><span
-/// class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span><span
+/// style="height:2.05em;"><span style="top:-4.21em;"><span style="height:3em;"
+/// class="pstrut"></span><span class="mord"><span class="mord
+/// mathdefault">a</span></span></span><span style="top:-3.0099999999999993em;"><span
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
+/// mathdefault">s</span><span class="mord mathdefault"
+/// style="margin-right:0.03588em;">y</span></span></span><span
 /// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
 /// class="mord"><span class="mord">0</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 /// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
-/// style="width:0.5em;" class="arraycolsep"></span><span style="width:0.5em;"
-/// class="arraycolsep"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
+/// class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep"
+/// style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
 /// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
-/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
+/// class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord
 /// mathdefault">b</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord
-/// mathdefault">c</span></span></span><span style="top:-1.8099999999999994em;"><span
+/// mathdefault">c</span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut"
+/// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">s</span><span
+/// class="mord mathdefault" style="margin-right:0.04398em;">z</span></span></span></span><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
+/// class="vlist"><span></span></span></span></span></span><span class="arraycolsep"
+/// style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span
+/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+/// style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut"
+/// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">p</span><span
+/// class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord
+/// mathdefault">x</span></span></span><span style="top:-3.0099999999999993em;"><span
 /// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
-/// mathdefault">s</span><span style="margin-right:0.04398em;" class="mord
-/// mathdefault">z</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span class="vlist"
-/// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
-/// class="arraycolsep" style="width:0.5em;"></span><span style="width:0.5em;"
-/// class="arraycolsep"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
-/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
-/// mathdefault">p</span><span style="margin-right:0.03588em;" class="mord
-/// mathdefault">v</span><span class="mord mathdefault">x</span></span></span><span
-/// style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span
-/// class="mord"><span class="mord mathdefault">p</span><span class="mord mathdefault"
+/// mathdefault">p</span><span class="mord mathdefault"
 /// style="margin-right:0.03588em;">v</span><span class="mord mathdefault"
 /// style="margin-right:0.03588em;">y</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
-/// class="mord"><span class="mord mathdefault">p</span><span style="margin-right:0.03588em;"
-/// class="mord mathdefault">v</span><span style="margin-right:0.04398em;" class="mord
-/// mathdefault">z</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span style="height:1.5500000000000007em;"
-/// class="vlist"><span></span></span></span></span></span></span></span><span class="mclose"><span
-/// class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-/// style="height:2.05002em;" class="vlist"><span style="top:-2.2500000000000004em;"><span
-/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
+/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
+/// class="mord"><span class="mord mathdefault">p</span><span class="mord mathdefault"
+/// style="margin-right:0.03588em;">v</span><span class="mord mathdefault"
+/// style="margin-right:0.04398em;">z</span></span></span></span><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+/// style="height:1.5500000000000007em;"><span></span></span></span></span></span></span></
+/// span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span style="height:2.05002em;" class="vlist"><span
+/// style="top:-2.2500000000000004em;"><span style="height:3.1550000000000002em;"
+/// class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎠</span></span></span><span style="top:-2.8100000000000005em;"><span
-/// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
+/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎟</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
 /// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎞</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span class="vlist"
-/// style="height:1.55002em;"><span></span></span></span></span></span></span></span></span></
-/// span></span>The rotation quaternion is defined as:
+/// class="vlist-r"><span style="height:1.55002em;"
+/// class="vlist"><span></span></span></span></span></span></span></span></span></span></span>The
+/// rotation quaternion is defined as:
 /// * `R` = [ [`qx`], [`qy`], [`qz`], [`qw`] ]
 ///This is a rotation around a conceptual normalized axis [ ax, ay, az ]
 ///of amount `theta` such that:
@@ -385,17 +657,16 @@ pub struct AccelerationStructureMotionInfoNV<'lt> {
 ///and
 /// * [`qw`] = cos(`theta`/2)
 ///Finally, the transform has a translation T constructed from the parameters
-///above by:<span class="katex"><span aria-hidden="true" class="katex-html"><span
+///above by:<span class="katex"><span class="katex-html" aria-hidden="true"><span
 /// class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
-/// class="mord mathdefault" style="margin-right:0.13889em;">T</span><span
-/// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-/// class="mrel">=</span><span class="mspace"
-/// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut"
-/// style="height:3.60004em;vertical-align:-1.55002em;"></span><span class="minner"><span
-/// class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span style="height:2.05002em;" class="vlist"><span
-/// style="top:-2.2500000000000004em;"><span class="pstrut"
-/// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
+/// class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace"
+/// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+/// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+/// class="strut" style="height:3.60004em;vertical-align:-1.55002em;"></span><span
+/// class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t
+/// vlist-t2"><span class="vlist-r"><span style="height:2.05002em;" class="vlist"><span
+/// style="top:-2.2500000000000004em;"><span style="height:3.1550000000000002em;"
+/// class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎝</span></span></span><span style="top:-2.8100000000000005em;"><span
 /// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
@@ -404,58 +675,59 @@ pub struct AccelerationStructureMotionInfoNV<'lt> {
 /// class="vlist-r"><span class="vlist"
 /// style="height:1.55002em;"><span></span></span></span></span></span></span><span
 /// class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
-/// style="height:3em;" class="pstrut"></span><span class="mord"><span
+/// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
+/// class="pstrut" style="height:3em;"></span><span class="mord"><span
 /// class="mord">1</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span
+/// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
+/// class="mord"><span class="mord">0</span></span></span></span><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+/// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
+/// class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep"
+/// style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
+/// class="pstrut" style="height:3em;"></span><span class="mord"><span
+/// class="mord">0</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
+/// style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span
 /// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
 /// class="mord"><span class="mord">0</span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
-/// class="vlist"><span></span></span></span></span></span><span class="arraycolsep"
-/// style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span
-/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-/// style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span class="pstrut"
+/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+/// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
+/// class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep"
+/// style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span
+/// class="mord">0</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span
-/// style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span
-/// class="mord"><span class="mord">1</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
-/// class="mord"><span class="mord">0</span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
-/// class="vlist"><span></span></span></span></span></span><span style="width:0.5em;"
-/// class="arraycolsep"></span><span style="width:0.5em;" class="arraycolsep"></span><span
-/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-/// style="height:2.05em;"><span style="top:-4.21em;"><span style="height:3em;"
-/// class="pstrut"></span><span class="mord"><span class="mord">0</span></span></span><span
-/// style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span
-/// class="mord"><span class="mord">0</span></span></span><span
 /// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
 /// class="mord"><span class="mord">1</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 /// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
 /// class="arraycolsep" style="width:0.5em;"></span><span style="width:0.5em;"
 /// class="arraycolsep"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
+/// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
 /// class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord
 /// mathdefault">t</span><span class="mord mathdefault">x</span></span></span><span
 /// style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span
 /// class="mord"><span class="mord mathdefault">t</span><span style="margin-right:0.03588em;"
 /// class="mord mathdefault">y</span></span></span><span style="top:-1.8099999999999994em;"><span
-/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
+/// class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord
 /// mathdefault">t</span><span style="margin-right:0.04398em;" class="mord
 /// mathdefault">z</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span style="height:1.5500000000000007em;"
-/// class="vlist"><span></span></span></span></span></span></span></span><span class="mclose"><span
-/// class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-/// class="vlist" style="height:2.05002em;"><span style="top:-2.2500000000000004em;"><span
-/// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
+/// class="vlist-r"><span class="vlist"
+/// style="height:1.5500000000000007em;"><span></span></span></span></span></span></span></
+/// span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span class="vlist" style="height:2.05002em;"><span
+/// style="top:-2.2500000000000004em;"><span style="height:3.1550000000000002em;"
+/// class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎠</span></span></span><span style="top:-2.8100000000000005em;"><span
 /// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎟</span></span></span><span style="top:-4.05002em;"><span
 /// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎞</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span class="vlist"
-/// style="height:1.55002em;"><span></span></span></span></span></span></span></span></span></
-/// span></span>The effective derived transform is then given by
+/// class="vlist-r"><span style="height:1.55002em;"
+/// class="vlist"><span></span></span></span></span></span></span></span></span></span></span>The
+/// effective derived transform is then given by
 /// * `T` × `R` × `S`
 ///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
@@ -468,7 +740,7 @@ pub struct AccelerationStructureMotionInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -505,6 +777,382 @@ pub struct SrtDataNV {
     ty: f32,
     ///[`tz`] is the z component of the post-rotation translation
     tz: f32,
+}
+impl Default for SrtDataNV {
+    fn default() -> Self {
+        Self {
+            sx: 0.0,
+            a: 0.0,
+            b: 0.0,
+            pvx: 0.0,
+            sy: 0.0,
+            c: 0.0,
+            pvy: 0.0,
+            sz: 0.0,
+            pvz: 0.0,
+            qx: 0.0,
+            qy: 0.0,
+            qz: 0.0,
+            qw: 0.0,
+            tx: 0.0,
+            ty: 0.0,
+            tz: 0.0,
+        }
+    }
+}
+impl SrtDataNV {
+    ///Gets the raw value of [`Self::sx`]
+    pub fn sx_raw(&self) -> f32 {
+        self.sx
+    }
+    ///Gets the raw value of [`Self::a`]
+    pub fn a_raw(&self) -> f32 {
+        self.a
+    }
+    ///Gets the raw value of [`Self::b`]
+    pub fn b_raw(&self) -> f32 {
+        self.b
+    }
+    ///Gets the raw value of [`Self::pvx`]
+    pub fn pvx_raw(&self) -> f32 {
+        self.pvx
+    }
+    ///Gets the raw value of [`Self::sy`]
+    pub fn sy_raw(&self) -> f32 {
+        self.sy
+    }
+    ///Gets the raw value of [`Self::c`]
+    pub fn c_raw(&self) -> f32 {
+        self.c
+    }
+    ///Gets the raw value of [`Self::pvy`]
+    pub fn pvy_raw(&self) -> f32 {
+        self.pvy
+    }
+    ///Gets the raw value of [`Self::sz`]
+    pub fn sz_raw(&self) -> f32 {
+        self.sz
+    }
+    ///Gets the raw value of [`Self::pvz`]
+    pub fn pvz_raw(&self) -> f32 {
+        self.pvz
+    }
+    ///Gets the raw value of [`Self::qx`]
+    pub fn qx_raw(&self) -> f32 {
+        self.qx
+    }
+    ///Gets the raw value of [`Self::qy`]
+    pub fn qy_raw(&self) -> f32 {
+        self.qy
+    }
+    ///Gets the raw value of [`Self::qz`]
+    pub fn qz_raw(&self) -> f32 {
+        self.qz
+    }
+    ///Gets the raw value of [`Self::qw`]
+    pub fn qw_raw(&self) -> f32 {
+        self.qw
+    }
+    ///Gets the raw value of [`Self::tx`]
+    pub fn tx_raw(&self) -> f32 {
+        self.tx
+    }
+    ///Gets the raw value of [`Self::ty`]
+    pub fn ty_raw(&self) -> f32 {
+        self.ty
+    }
+    ///Gets the raw value of [`Self::tz`]
+    pub fn tz_raw(&self) -> f32 {
+        self.tz
+    }
+    ///Sets the raw value of [`Self::sx`]
+    pub fn set_sx_raw(&mut self, value: f32) -> &mut Self {
+        self.sx = value;
+        self
+    }
+    ///Sets the raw value of [`Self::a`]
+    pub fn set_a_raw(&mut self, value: f32) -> &mut Self {
+        self.a = value;
+        self
+    }
+    ///Sets the raw value of [`Self::b`]
+    pub fn set_b_raw(&mut self, value: f32) -> &mut Self {
+        self.b = value;
+        self
+    }
+    ///Sets the raw value of [`Self::pvx`]
+    pub fn set_pvx_raw(&mut self, value: f32) -> &mut Self {
+        self.pvx = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sy`]
+    pub fn set_sy_raw(&mut self, value: f32) -> &mut Self {
+        self.sy = value;
+        self
+    }
+    ///Sets the raw value of [`Self::c`]
+    pub fn set_c_raw(&mut self, value: f32) -> &mut Self {
+        self.c = value;
+        self
+    }
+    ///Sets the raw value of [`Self::pvy`]
+    pub fn set_pvy_raw(&mut self, value: f32) -> &mut Self {
+        self.pvy = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sz`]
+    pub fn set_sz_raw(&mut self, value: f32) -> &mut Self {
+        self.sz = value;
+        self
+    }
+    ///Sets the raw value of [`Self::pvz`]
+    pub fn set_pvz_raw(&mut self, value: f32) -> &mut Self {
+        self.pvz = value;
+        self
+    }
+    ///Sets the raw value of [`Self::qx`]
+    pub fn set_qx_raw(&mut self, value: f32) -> &mut Self {
+        self.qx = value;
+        self
+    }
+    ///Sets the raw value of [`Self::qy`]
+    pub fn set_qy_raw(&mut self, value: f32) -> &mut Self {
+        self.qy = value;
+        self
+    }
+    ///Sets the raw value of [`Self::qz`]
+    pub fn set_qz_raw(&mut self, value: f32) -> &mut Self {
+        self.qz = value;
+        self
+    }
+    ///Sets the raw value of [`Self::qw`]
+    pub fn set_qw_raw(&mut self, value: f32) -> &mut Self {
+        self.qw = value;
+        self
+    }
+    ///Sets the raw value of [`Self::tx`]
+    pub fn set_tx_raw(&mut self, value: f32) -> &mut Self {
+        self.tx = value;
+        self
+    }
+    ///Sets the raw value of [`Self::ty`]
+    pub fn set_ty_raw(&mut self, value: f32) -> &mut Self {
+        self.ty = value;
+        self
+    }
+    ///Sets the raw value of [`Self::tz`]
+    pub fn set_tz_raw(&mut self, value: f32) -> &mut Self {
+        self.tz = value;
+        self
+    }
+    ///Gets the value of [`Self::sx`]
+    pub fn sx(&self) -> f32 {
+        self.sx
+    }
+    ///Gets the value of [`Self::a`]
+    pub fn a(&self) -> f32 {
+        self.a
+    }
+    ///Gets the value of [`Self::b`]
+    pub fn b(&self) -> f32 {
+        self.b
+    }
+    ///Gets the value of [`Self::pvx`]
+    pub fn pvx(&self) -> f32 {
+        self.pvx
+    }
+    ///Gets the value of [`Self::sy`]
+    pub fn sy(&self) -> f32 {
+        self.sy
+    }
+    ///Gets the value of [`Self::c`]
+    pub fn c(&self) -> f32 {
+        self.c
+    }
+    ///Gets the value of [`Self::pvy`]
+    pub fn pvy(&self) -> f32 {
+        self.pvy
+    }
+    ///Gets the value of [`Self::sz`]
+    pub fn sz(&self) -> f32 {
+        self.sz
+    }
+    ///Gets the value of [`Self::pvz`]
+    pub fn pvz(&self) -> f32 {
+        self.pvz
+    }
+    ///Gets the value of [`Self::qx`]
+    pub fn qx(&self) -> f32 {
+        self.qx
+    }
+    ///Gets the value of [`Self::qy`]
+    pub fn qy(&self) -> f32 {
+        self.qy
+    }
+    ///Gets the value of [`Self::qz`]
+    pub fn qz(&self) -> f32 {
+        self.qz
+    }
+    ///Gets the value of [`Self::qw`]
+    pub fn qw(&self) -> f32 {
+        self.qw
+    }
+    ///Gets the value of [`Self::tx`]
+    pub fn tx(&self) -> f32 {
+        self.tx
+    }
+    ///Gets the value of [`Self::ty`]
+    pub fn ty(&self) -> f32 {
+        self.ty
+    }
+    ///Gets the value of [`Self::tz`]
+    pub fn tz(&self) -> f32 {
+        self.tz
+    }
+    ///Gets a mutable reference to the value of [`Self::sx`]
+    pub fn sx_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::a`]
+    pub fn a_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::b`]
+    pub fn b_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::pvx`]
+    pub fn pvx_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::sy`]
+    pub fn sy_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::c`]
+    pub fn c_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::pvy`]
+    pub fn pvy_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::sz`]
+    pub fn sz_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::pvz`]
+    pub fn pvz_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::qx`]
+    pub fn qx_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::qy`]
+    pub fn qy_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::qz`]
+    pub fn qz_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::qw`]
+    pub fn qw_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::tx`]
+    pub fn tx_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::ty`]
+    pub fn ty_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::tz`]
+    pub fn tz_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::sx`]
+    pub fn set_sx(&mut self, value: f32) -> &mut Self {
+        self.sx = value;
+        self
+    }
+    ///Sets the raw value of [`Self::a`]
+    pub fn set_a(&mut self, value: f32) -> &mut Self {
+        self.a = value;
+        self
+    }
+    ///Sets the raw value of [`Self::b`]
+    pub fn set_b(&mut self, value: f32) -> &mut Self {
+        self.b = value;
+        self
+    }
+    ///Sets the raw value of [`Self::pvx`]
+    pub fn set_pvx(&mut self, value: f32) -> &mut Self {
+        self.pvx = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sy`]
+    pub fn set_sy(&mut self, value: f32) -> &mut Self {
+        self.sy = value;
+        self
+    }
+    ///Sets the raw value of [`Self::c`]
+    pub fn set_c(&mut self, value: f32) -> &mut Self {
+        self.c = value;
+        self
+    }
+    ///Sets the raw value of [`Self::pvy`]
+    pub fn set_pvy(&mut self, value: f32) -> &mut Self {
+        self.pvy = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sz`]
+    pub fn set_sz(&mut self, value: f32) -> &mut Self {
+        self.sz = value;
+        self
+    }
+    ///Sets the raw value of [`Self::pvz`]
+    pub fn set_pvz(&mut self, value: f32) -> &mut Self {
+        self.pvz = value;
+        self
+    }
+    ///Sets the raw value of [`Self::qx`]
+    pub fn set_qx(&mut self, value: f32) -> &mut Self {
+        self.qx = value;
+        self
+    }
+    ///Sets the raw value of [`Self::qy`]
+    pub fn set_qy(&mut self, value: f32) -> &mut Self {
+        self.qy = value;
+        self
+    }
+    ///Sets the raw value of [`Self::qz`]
+    pub fn set_qz(&mut self, value: f32) -> &mut Self {
+        self.qz = value;
+        self
+    }
+    ///Sets the raw value of [`Self::qw`]
+    pub fn set_qw(&mut self, value: f32) -> &mut Self {
+        self.qw = value;
+        self
+    }
+    ///Sets the raw value of [`Self::tx`]
+    pub fn set_tx(&mut self, value: f32) -> &mut Self {
+        self.tx = value;
+        self
+    }
+    ///Sets the raw value of [`Self::ty`]
+    pub fn set_ty(&mut self, value: f32) -> &mut Self {
+        self.ty = value;
+        self
+    }
+    ///Sets the raw value of [`Self::tz`]
+    pub fn set_tz(&mut self, value: f32) -> &mut Self {
+        self.tz = value;
+        self
+    }
 }
 ///[VkAccelerationStructureSRTMotionInstanceNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureSRTMotionInstanceNV.html) - Structure specifying a single acceleration structure SRT motion instance for building into an acceleration structure geometry
 ///# C Specifications
@@ -572,7 +1220,7 @@ pub struct SrtDataNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -602,6 +1250,152 @@ pub struct AccelerationStructureSrtMotionInstanceNV {
     /// - a [`AccelerationStructureKHR`] object (used by host operations which reference
     ///   acceleration structures).
     acceleration_structure_reference: u64,
+}
+impl Default for AccelerationStructureSrtMotionInstanceNV {
+    fn default() -> Self {
+        Self {
+            transform_t_0: Default::default(),
+            transform_t_1: Default::default(),
+            instance_custom_index: 0,
+            mask: 0,
+            instance_shader_binding_table_record_offset: 0,
+            flags: Default::default(),
+            acceleration_structure_reference: 0,
+        }
+    }
+}
+impl AccelerationStructureSrtMotionInstanceNV {
+    ///Gets the raw value of [`Self::instance_custom_index`]
+    pub fn instance_custom_index_raw(&self) -> u32 {
+        self.instance_custom_index
+    }
+    ///Gets the raw value of [`Self::mask`]
+    pub fn mask_raw(&self) -> u32 {
+        self.mask
+    }
+    ///Gets the raw value of [`Self::instance_shader_binding_table_record_offset`]
+    pub fn instance_shader_binding_table_record_offset_raw(&self) -> u32 {
+        self.instance_shader_binding_table_record_offset
+    }
+    ///Gets the raw value of [`Self::acceleration_structure_reference`]
+    pub fn acceleration_structure_reference_raw(&self) -> u64 {
+        self.acceleration_structure_reference
+    }
+    ///Sets the raw value of [`Self::instance_custom_index`]
+    pub fn set_instance_custom_index_raw(&mut self, value: u32) -> &mut Self {
+        self.instance_custom_index = value;
+        self
+    }
+    ///Sets the raw value of [`Self::mask`]
+    pub fn set_mask_raw(&mut self, value: u32) -> &mut Self {
+        self.mask = value;
+        self
+    }
+    ///Sets the raw value of [`Self::instance_shader_binding_table_record_offset`]
+    pub fn set_instance_shader_binding_table_record_offset_raw(&mut self, value: u32) -> &mut Self {
+        self.instance_shader_binding_table_record_offset = value;
+        self
+    }
+    ///Sets the raw value of [`Self::acceleration_structure_reference`]
+    pub fn set_acceleration_structure_reference_raw(&mut self, value: u64) -> &mut Self {
+        self.acceleration_structure_reference = value;
+        self
+    }
+    ///Gets the value of [`Self::transform_t_0`]
+    pub fn transform_t_0(&self) -> SrtDataNV {
+        self.transform_t_0
+    }
+    ///Gets the value of [`Self::transform_t_1`]
+    pub fn transform_t_1(&self) -> SrtDataNV {
+        self.transform_t_1
+    }
+    ///Gets the value of [`Self::instance_custom_index`]
+    pub fn instance_custom_index(&self) -> u32 {
+        self.instance_custom_index
+    }
+    ///Gets the value of [`Self::mask`]
+    pub fn mask(&self) -> u32 {
+        self.mask
+    }
+    ///Gets the value of [`Self::instance_shader_binding_table_record_offset`]
+    pub fn instance_shader_binding_table_record_offset(&self) -> u32 {
+        self.instance_shader_binding_table_record_offset
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> GeometryInstanceFlagsKHR {
+        self.flags
+    }
+    ///Gets the value of [`Self::acceleration_structure_reference`]
+    pub fn acceleration_structure_reference(&self) -> u64 {
+        self.acceleration_structure_reference
+    }
+    ///Gets a mutable reference to the value of [`Self::transform_t_0`]
+    pub fn transform_t_0_mut(&mut self) -> &mut SrtDataNV {
+        &mut self.transform_t_0
+    }
+    ///Gets a mutable reference to the value of [`Self::transform_t_1`]
+    pub fn transform_t_1_mut(&mut self) -> &mut SrtDataNV {
+        &mut self.transform_t_1
+    }
+    ///Gets a mutable reference to the value of [`Self::instance_custom_index`]
+    pub fn instance_custom_index_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::mask`]
+    pub fn mask_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::instance_shader_binding_table_record_offset`]
+    pub fn instance_shader_binding_table_record_offset_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut GeometryInstanceFlagsKHR {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::acceleration_structure_reference`]
+    pub fn acceleration_structure_reference_mut(&mut self) -> &mut u64 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::transform_t_0`]
+    pub fn set_transform_t_0(&mut self, value: crate::extensions::nv_ray_tracing_motion_blur::SrtDataNV) -> &mut Self {
+        self.transform_t_0 = value;
+        self
+    }
+    ///Sets the raw value of [`Self::transform_t_1`]
+    pub fn set_transform_t_1(&mut self, value: crate::extensions::nv_ray_tracing_motion_blur::SrtDataNV) -> &mut Self {
+        self.transform_t_1 = value;
+        self
+    }
+    ///Sets the raw value of [`Self::instance_custom_index`]
+    pub fn set_instance_custom_index(&mut self, value: u32) -> &mut Self {
+        self.instance_custom_index = value;
+        self
+    }
+    ///Sets the raw value of [`Self::mask`]
+    pub fn set_mask(&mut self, value: u32) -> &mut Self {
+        self.mask = value;
+        self
+    }
+    ///Sets the raw value of [`Self::instance_shader_binding_table_record_offset`]
+    pub fn set_instance_shader_binding_table_record_offset(&mut self, value: u32) -> &mut Self {
+        self.instance_shader_binding_table_record_offset = value;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::khr_acceleration_structure::GeometryInstanceFlagsKHR,
+    ) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::acceleration_structure_reference`]
+    pub fn set_acceleration_structure_reference(&mut self, value: u64) -> &mut Self {
+        self.acceleration_structure_reference = value;
+        self
+    }
 }
 ///[VkAccelerationStructureMatrixMotionInstanceNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMatrixMotionInstanceNV.html) - Structure specifying a single acceleration structure matrix motion instance for building into an acceleration structure geometry
 ///# C Specifications
@@ -670,7 +1464,7 @@ pub struct AccelerationStructureSrtMotionInstanceNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -700,6 +1494,158 @@ pub struct AccelerationStructureMatrixMotionInstanceNV {
     /// - a [`AccelerationStructureKHR`] object (used by host operations which reference
     ///   acceleration structures).
     acceleration_structure_reference: u64,
+}
+impl Default for AccelerationStructureMatrixMotionInstanceNV {
+    fn default() -> Self {
+        Self {
+            transform_t_0: Default::default(),
+            transform_t_1: Default::default(),
+            instance_custom_index: 0,
+            mask: 0,
+            instance_shader_binding_table_record_offset: 0,
+            flags: Default::default(),
+            acceleration_structure_reference: 0,
+        }
+    }
+}
+impl AccelerationStructureMatrixMotionInstanceNV {
+    ///Gets the raw value of [`Self::instance_custom_index`]
+    pub fn instance_custom_index_raw(&self) -> u32 {
+        self.instance_custom_index
+    }
+    ///Gets the raw value of [`Self::mask`]
+    pub fn mask_raw(&self) -> u32 {
+        self.mask
+    }
+    ///Gets the raw value of [`Self::instance_shader_binding_table_record_offset`]
+    pub fn instance_shader_binding_table_record_offset_raw(&self) -> u32 {
+        self.instance_shader_binding_table_record_offset
+    }
+    ///Gets the raw value of [`Self::acceleration_structure_reference`]
+    pub fn acceleration_structure_reference_raw(&self) -> u64 {
+        self.acceleration_structure_reference
+    }
+    ///Sets the raw value of [`Self::instance_custom_index`]
+    pub fn set_instance_custom_index_raw(&mut self, value: u32) -> &mut Self {
+        self.instance_custom_index = value;
+        self
+    }
+    ///Sets the raw value of [`Self::mask`]
+    pub fn set_mask_raw(&mut self, value: u32) -> &mut Self {
+        self.mask = value;
+        self
+    }
+    ///Sets the raw value of [`Self::instance_shader_binding_table_record_offset`]
+    pub fn set_instance_shader_binding_table_record_offset_raw(&mut self, value: u32) -> &mut Self {
+        self.instance_shader_binding_table_record_offset = value;
+        self
+    }
+    ///Sets the raw value of [`Self::acceleration_structure_reference`]
+    pub fn set_acceleration_structure_reference_raw(&mut self, value: u64) -> &mut Self {
+        self.acceleration_structure_reference = value;
+        self
+    }
+    ///Gets the value of [`Self::transform_t_0`]
+    pub fn transform_t_0(&self) -> TransformMatrixKHR {
+        self.transform_t_0
+    }
+    ///Gets the value of [`Self::transform_t_1`]
+    pub fn transform_t_1(&self) -> TransformMatrixKHR {
+        self.transform_t_1
+    }
+    ///Gets the value of [`Self::instance_custom_index`]
+    pub fn instance_custom_index(&self) -> u32 {
+        self.instance_custom_index
+    }
+    ///Gets the value of [`Self::mask`]
+    pub fn mask(&self) -> u32 {
+        self.mask
+    }
+    ///Gets the value of [`Self::instance_shader_binding_table_record_offset`]
+    pub fn instance_shader_binding_table_record_offset(&self) -> u32 {
+        self.instance_shader_binding_table_record_offset
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> GeometryInstanceFlagsKHR {
+        self.flags
+    }
+    ///Gets the value of [`Self::acceleration_structure_reference`]
+    pub fn acceleration_structure_reference(&self) -> u64 {
+        self.acceleration_structure_reference
+    }
+    ///Gets a mutable reference to the value of [`Self::transform_t_0`]
+    pub fn transform_t_0_mut(&mut self) -> &mut TransformMatrixKHR {
+        &mut self.transform_t_0
+    }
+    ///Gets a mutable reference to the value of [`Self::transform_t_1`]
+    pub fn transform_t_1_mut(&mut self) -> &mut TransformMatrixKHR {
+        &mut self.transform_t_1
+    }
+    ///Gets a mutable reference to the value of [`Self::instance_custom_index`]
+    pub fn instance_custom_index_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::mask`]
+    pub fn mask_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::instance_shader_binding_table_record_offset`]
+    pub fn instance_shader_binding_table_record_offset_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut GeometryInstanceFlagsKHR {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::acceleration_structure_reference`]
+    pub fn acceleration_structure_reference_mut(&mut self) -> &mut u64 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::transform_t_0`]
+    pub fn set_transform_t_0(
+        &mut self,
+        value: crate::extensions::khr_acceleration_structure::TransformMatrixKHR,
+    ) -> &mut Self {
+        self.transform_t_0 = value;
+        self
+    }
+    ///Sets the raw value of [`Self::transform_t_1`]
+    pub fn set_transform_t_1(
+        &mut self,
+        value: crate::extensions::khr_acceleration_structure::TransformMatrixKHR,
+    ) -> &mut Self {
+        self.transform_t_1 = value;
+        self
+    }
+    ///Sets the raw value of [`Self::instance_custom_index`]
+    pub fn set_instance_custom_index(&mut self, value: u32) -> &mut Self {
+        self.instance_custom_index = value;
+        self
+    }
+    ///Sets the raw value of [`Self::mask`]
+    pub fn set_mask(&mut self, value: u32) -> &mut Self {
+        self.mask = value;
+        self
+    }
+    ///Sets the raw value of [`Self::instance_shader_binding_table_record_offset`]
+    pub fn set_instance_shader_binding_table_record_offset(&mut self, value: u32) -> &mut Self {
+        self.instance_shader_binding_table_record_offset = value;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::khr_acceleration_structure::GeometryInstanceFlagsKHR,
+    ) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::acceleration_structure_reference`]
+    pub fn set_acceleration_structure_reference(&mut self, value: u64) -> &mut Self {
+        self.acceleration_structure_reference = value;
+        self
+    }
 }
 ///[VkAccelerationStructureMotionInstanceNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMotionInstanceNV.html) - Structure specifying a single acceleration structure motion instance for building into an acceleration structure geometry
 ///# C Specifications
@@ -750,9 +1696,8 @@ pub struct AccelerationStructureMatrixMotionInstanceNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct AccelerationStructureMotionInstanceNV {
     ///[`type_`] is a [`AccelerationStructureMotionInstanceTypeNV`]
@@ -765,4 +1710,63 @@ pub struct AccelerationStructureMotionInstanceNV {
     ///[`data`] is a [`AccelerationStructureMotionInstanceDataNV`]
     ///containing motion instance data for this instance.
     data: AccelerationStructureMotionInstanceDataNV,
+}
+impl Default for AccelerationStructureMotionInstanceNV {
+    fn default() -> Self {
+        Self {
+            type_: Default::default(),
+            flags: Default::default(),
+            data: Default::default(),
+        }
+    }
+}
+impl AccelerationStructureMotionInstanceNV {
+    ///Gets the value of [`Self::type_`]
+    pub fn type_(&self) -> AccelerationStructureMotionInstanceTypeNV {
+        self.type_
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> AccelerationStructureMotionInstanceFlagsNV {
+        self.flags
+    }
+    ///Gets the value of [`Self::data`]
+    pub fn data(&self) -> AccelerationStructureMotionInstanceDataNV {
+        self.data
+    }
+    ///Gets a mutable reference to the value of [`Self::type_`]
+    pub fn type__mut(&mut self) -> &mut AccelerationStructureMotionInstanceTypeNV {
+        &mut self.type_
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut AccelerationStructureMotionInstanceFlagsNV {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::data`]
+    pub fn data_mut(&mut self) -> &mut AccelerationStructureMotionInstanceDataNV {
+        &mut self.data
+    }
+    ///Sets the raw value of [`Self::type_`]
+    pub fn set_type_(
+        &mut self,
+        value: crate::extensions::nv_ray_tracing_motion_blur::AccelerationStructureMotionInstanceTypeNV,
+    ) -> &mut Self {
+        self.type_ = value;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::nv_ray_tracing_motion_blur::AccelerationStructureMotionInstanceFlagsNV,
+    ) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::data`]
+    pub fn set_data(
+        &mut self,
+        value: crate::extensions::nv_ray_tracing_motion_blur::AccelerationStructureMotionInstanceDataNV,
+    ) -> &mut Self {
+        self.data = value;
+        self
+    }
 }

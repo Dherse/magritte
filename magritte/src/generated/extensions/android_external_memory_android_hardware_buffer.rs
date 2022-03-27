@@ -79,9 +79,8 @@ pub type AHardwareBuffer = c_void;
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ImportAndroidHardwareBufferInfoANDROID<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -89,9 +88,86 @@ pub struct ImportAndroidHardwareBufferInfoANDROID<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`buffer`] is the Android hardware buffer to import.
-    buffer: *const AHardwareBuffer,
+    buffer: *mut AHardwareBuffer,
+}
+impl<'lt> Default for ImportAndroidHardwareBufferInfoANDROID<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            buffer: std::ptr::null_mut(),
+        }
+    }
+}
+impl<'lt> ImportAndroidHardwareBufferInfoANDROID<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::buffer`]
+    pub fn buffer_raw(&self) -> &*mut AHardwareBuffer {
+        &self.buffer
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::buffer`]
+    pub fn set_buffer_raw(&mut self, value: *mut AHardwareBuffer) -> &mut Self {
+        self.buffer = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::buffer`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn buffer(&self) -> &AHardwareBuffer {
+        &*self.buffer
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::buffer`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn buffer_mut(&mut self) -> &mut AHardwareBuffer {
+        &mut *self.buffer
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::buffer`]
+    pub fn set_buffer(
+        &mut self,
+        value: &'lt mut crate::extensions::android_external_memory_android_hardware_buffer::AHardwareBuffer,
+    ) -> &mut Self {
+        self.buffer = value as *mut _;
+        self
+    }
 }
 ///[VkAndroidHardwareBufferUsageANDROID](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAndroidHardwareBufferUsageANDROID.html) - Struct containing Android hardware buffer usage flags
 ///# C Specifications
@@ -134,9 +210,8 @@ pub struct ImportAndroidHardwareBufferInfoANDROID<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct AndroidHardwareBufferUsageANDROID<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -144,10 +219,85 @@ pub struct AndroidHardwareBufferUsageANDROID<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`android_hardware_buffer_usage`] returns the Android hardware buffer
     ///usage flags.
     android_hardware_buffer_usage: u64,
+}
+impl<'lt> Default for AndroidHardwareBufferUsageANDROID<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            android_hardware_buffer_usage: 0,
+        }
+    }
+}
+impl<'lt> AndroidHardwareBufferUsageANDROID<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::android_hardware_buffer_usage`]
+    pub fn android_hardware_buffer_usage_raw(&self) -> u64 {
+        self.android_hardware_buffer_usage
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::android_hardware_buffer_usage`]
+    pub fn set_android_hardware_buffer_usage_raw(&mut self, value: u64) -> &mut Self {
+        self.android_hardware_buffer_usage = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::android_hardware_buffer_usage`]
+    pub fn android_hardware_buffer_usage(&self) -> u64 {
+        self.android_hardware_buffer_usage
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::android_hardware_buffer_usage`]
+    pub fn android_hardware_buffer_usage_mut(&mut self) -> &mut u64 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::android_hardware_buffer_usage`]
+    pub fn set_android_hardware_buffer_usage(&mut self, value: u64) -> &mut Self {
+        self.android_hardware_buffer_usage = value;
+        self
+    }
 }
 ///[VkAndroidHardwareBufferPropertiesANDROID](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAndroidHardwareBufferPropertiesANDROID.html) - Properties of External Memory Android Hardware Buffers
 ///# C Specifications
@@ -189,9 +339,8 @@ pub struct AndroidHardwareBufferUsageANDROID<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct AndroidHardwareBufferPropertiesANDROID<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -199,13 +348,102 @@ pub struct AndroidHardwareBufferPropertiesANDROID<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`allocation_size`] is the size of the external memory
     allocation_size: DeviceSize,
     ///[`memory_type_bits`] is a bitmask containing one bit set for every
     ///memory type which the specified Android hardware buffer **can** be imported
     ///as.
     memory_type_bits: u32,
+}
+impl<'lt> Default for AndroidHardwareBufferPropertiesANDROID<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            allocation_size: Default::default(),
+            memory_type_bits: 0,
+        }
+    }
+}
+impl<'lt> AndroidHardwareBufferPropertiesANDROID<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::memory_type_bits`]
+    pub fn memory_type_bits_raw(&self) -> u32 {
+        self.memory_type_bits
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::memory_type_bits`]
+    pub fn set_memory_type_bits_raw(&mut self, value: u32) -> &mut Self {
+        self.memory_type_bits = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::allocation_size`]
+    pub fn allocation_size(&self) -> DeviceSize {
+        self.allocation_size
+    }
+    ///Gets the value of [`Self::memory_type_bits`]
+    pub fn memory_type_bits(&self) -> u32 {
+        self.memory_type_bits
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::allocation_size`]
+    pub fn allocation_size_mut(&mut self) -> &mut DeviceSize {
+        &mut self.allocation_size
+    }
+    ///Gets a mutable reference to the value of [`Self::memory_type_bits`]
+    pub fn memory_type_bits_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::allocation_size`]
+    pub fn set_allocation_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.allocation_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::memory_type_bits`]
+    pub fn set_memory_type_bits(&mut self, value: u32) -> &mut Self {
+        self.memory_type_bits = value;
+        self
+    }
 }
 ///[VkMemoryGetAndroidHardwareBufferInfoANDROID](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryGetAndroidHardwareBufferInfoANDROID.html) - Structure describing an Android hardware buffer memory export operation
 ///# C Specifications
@@ -247,9 +485,8 @@ pub struct AndroidHardwareBufferPropertiesANDROID<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -257,10 +494,69 @@ pub struct MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`memory`] is the memory object from which the Android hardware buffer
     ///will be exported.
     memory: DeviceMemory,
+}
+impl<'lt> Default for MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            memory: Default::default(),
+        }
+    }
+}
+impl<'lt> MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::memory`]
+    pub fn memory(&self) -> DeviceMemory {
+        self.memory
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::memory`]
+    pub fn memory_mut(&mut self) -> &mut DeviceMemory {
+        &mut self.memory
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::memory`]
+    pub fn set_memory(&mut self, value: crate::vulkan1_0::DeviceMemory) -> &mut Self {
+        self.memory = value;
+        self
+    }
 }
 ///[VkAndroidHardwareBufferFormatPropertiesANDROID](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAndroidHardwareBufferFormatPropertiesANDROID.html) - Structure describing the image format properties of an Android hardware buffer
 ///# C Specifications
@@ -365,9 +661,8 @@ pub struct MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -375,7 +670,7 @@ pub struct AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`format`] is the Vulkan format corresponding to the Android hardware
     ///buffer’s format, or `VK_FORMAT_UNDEFINED` if there is not an
     ///equivalent Vulkan format.
@@ -402,6 +697,179 @@ pub struct AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
     ///[`suggested_y_chroma_offset`] is a suggested Y chroma offset to use in
     ///[`SamplerYcbcrConversionCreateInfo`].
     suggested_y_chroma_offset: ChromaLocation,
+}
+impl<'lt> Default for AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            format: Default::default(),
+            external_format: 0,
+            format_features: Default::default(),
+            sampler_ycbcr_conversion_components: Default::default(),
+            suggested_ycbcr_model: Default::default(),
+            suggested_ycbcr_range: Default::default(),
+            suggested_x_chroma_offset: Default::default(),
+            suggested_y_chroma_offset: Default::default(),
+        }
+    }
+}
+impl<'lt> AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::external_format`]
+    pub fn external_format_raw(&self) -> u64 {
+        self.external_format
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::external_format`]
+    pub fn set_external_format_raw(&mut self, value: u64) -> &mut Self {
+        self.external_format = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::format`]
+    pub fn format(&self) -> Format {
+        self.format
+    }
+    ///Gets the value of [`Self::external_format`]
+    pub fn external_format(&self) -> u64 {
+        self.external_format
+    }
+    ///Gets the value of [`Self::format_features`]
+    pub fn format_features(&self) -> FormatFeatureFlags {
+        self.format_features
+    }
+    ///Gets the value of [`Self::sampler_ycbcr_conversion_components`]
+    pub fn sampler_ycbcr_conversion_components(&self) -> ComponentMapping {
+        self.sampler_ycbcr_conversion_components
+    }
+    ///Gets the value of [`Self::suggested_ycbcr_model`]
+    pub fn suggested_ycbcr_model(&self) -> SamplerYcbcrModelConversion {
+        self.suggested_ycbcr_model
+    }
+    ///Gets the value of [`Self::suggested_ycbcr_range`]
+    pub fn suggested_ycbcr_range(&self) -> SamplerYcbcrRange {
+        self.suggested_ycbcr_range
+    }
+    ///Gets the value of [`Self::suggested_x_chroma_offset`]
+    pub fn suggested_x_chroma_offset(&self) -> ChromaLocation {
+        self.suggested_x_chroma_offset
+    }
+    ///Gets the value of [`Self::suggested_y_chroma_offset`]
+    pub fn suggested_y_chroma_offset(&self) -> ChromaLocation {
+        self.suggested_y_chroma_offset
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::format`]
+    pub fn format_mut(&mut self) -> &mut Format {
+        &mut self.format
+    }
+    ///Gets a mutable reference to the value of [`Self::external_format`]
+    pub fn external_format_mut(&mut self) -> &mut u64 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::format_features`]
+    pub fn format_features_mut(&mut self) -> &mut FormatFeatureFlags {
+        &mut self.format_features
+    }
+    ///Gets a mutable reference to the value of [`Self::sampler_ycbcr_conversion_components`]
+    pub fn sampler_ycbcr_conversion_components_mut(&mut self) -> &mut ComponentMapping {
+        &mut self.sampler_ycbcr_conversion_components
+    }
+    ///Gets a mutable reference to the value of [`Self::suggested_ycbcr_model`]
+    pub fn suggested_ycbcr_model_mut(&mut self) -> &mut SamplerYcbcrModelConversion {
+        &mut self.suggested_ycbcr_model
+    }
+    ///Gets a mutable reference to the value of [`Self::suggested_ycbcr_range`]
+    pub fn suggested_ycbcr_range_mut(&mut self) -> &mut SamplerYcbcrRange {
+        &mut self.suggested_ycbcr_range
+    }
+    ///Gets a mutable reference to the value of [`Self::suggested_x_chroma_offset`]
+    pub fn suggested_x_chroma_offset_mut(&mut self) -> &mut ChromaLocation {
+        &mut self.suggested_x_chroma_offset
+    }
+    ///Gets a mutable reference to the value of [`Self::suggested_y_chroma_offset`]
+    pub fn suggested_y_chroma_offset_mut(&mut self) -> &mut ChromaLocation {
+        &mut self.suggested_y_chroma_offset
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::format`]
+    pub fn set_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+        self.format = value;
+        self
+    }
+    ///Sets the raw value of [`Self::external_format`]
+    pub fn set_external_format(&mut self, value: u64) -> &mut Self {
+        self.external_format = value;
+        self
+    }
+    ///Sets the raw value of [`Self::format_features`]
+    pub fn set_format_features(&mut self, value: crate::vulkan1_0::FormatFeatureFlags) -> &mut Self {
+        self.format_features = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sampler_ycbcr_conversion_components`]
+    pub fn set_sampler_ycbcr_conversion_components(&mut self, value: crate::vulkan1_0::ComponentMapping) -> &mut Self {
+        self.sampler_ycbcr_conversion_components = value;
+        self
+    }
+    ///Sets the raw value of [`Self::suggested_ycbcr_model`]
+    pub fn set_suggested_ycbcr_model(&mut self, value: crate::vulkan1_1::SamplerYcbcrModelConversion) -> &mut Self {
+        self.suggested_ycbcr_model = value;
+        self
+    }
+    ///Sets the raw value of [`Self::suggested_ycbcr_range`]
+    pub fn set_suggested_ycbcr_range(&mut self, value: crate::vulkan1_1::SamplerYcbcrRange) -> &mut Self {
+        self.suggested_ycbcr_range = value;
+        self
+    }
+    ///Sets the raw value of [`Self::suggested_x_chroma_offset`]
+    pub fn set_suggested_x_chroma_offset(&mut self, value: crate::vulkan1_1::ChromaLocation) -> &mut Self {
+        self.suggested_x_chroma_offset = value;
+        self
+    }
+    ///Sets the raw value of [`Self::suggested_y_chroma_offset`]
+    pub fn set_suggested_y_chroma_offset(&mut self, value: crate::vulkan1_1::ChromaLocation) -> &mut Self {
+        self.suggested_y_chroma_offset = value;
+        self
+    }
 }
 ///[VkExternalFormatANDROID](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalFormatANDROID.html) - Structure containing an Android hardware buffer external format
 ///# C Specifications
@@ -442,9 +910,8 @@ pub struct AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ExternalFormatANDROID<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -452,10 +919,85 @@ pub struct ExternalFormatANDROID<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`external_format`] is an implementation-defined identifier for the
     ///external format
     external_format: u64,
+}
+impl<'lt> Default for ExternalFormatANDROID<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            external_format: 0,
+        }
+    }
+}
+impl<'lt> ExternalFormatANDROID<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::external_format`]
+    pub fn external_format_raw(&self) -> u64 {
+        self.external_format
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::external_format`]
+    pub fn set_external_format_raw(&mut self, value: u64) -> &mut Self {
+        self.external_format = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::external_format`]
+    pub fn external_format(&self) -> u64 {
+        self.external_format
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::external_format`]
+    pub fn external_format_mut(&mut self) -> &mut u64 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::external_format`]
+    pub fn set_external_format(&mut self, value: u64) -> &mut Self {
+        self.external_format = value;
+        self
+    }
 }
 ///[VkAndroidHardwareBufferFormatProperties2ANDROID](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAndroidHardwareBufferFormatProperties2ANDROID.html) - Structure describing the image format properties of an Android hardware buffer
 ///# C Specifications
@@ -523,9 +1065,8 @@ pub struct ExternalFormatANDROID<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct AndroidHardwareBufferFormatProperties2ANDROID<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -533,7 +1074,7 @@ pub struct AndroidHardwareBufferFormatProperties2ANDROID<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`format`] is the Vulkan format corresponding to the Android hardware
     ///buffer’s format, or `VK_FORMAT_UNDEFINED` if there is not an
     ///equivalent Vulkan format.
@@ -560,4 +1101,177 @@ pub struct AndroidHardwareBufferFormatProperties2ANDROID<'lt> {
     ///[`suggested_y_chroma_offset`] is a suggested Y chroma offset to use in
     ///[`SamplerYcbcrConversionCreateInfo`].
     suggested_y_chroma_offset: ChromaLocation,
+}
+impl<'lt> Default for AndroidHardwareBufferFormatProperties2ANDROID<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            format: Default::default(),
+            external_format: 0,
+            format_features: Default::default(),
+            sampler_ycbcr_conversion_components: Default::default(),
+            suggested_ycbcr_model: Default::default(),
+            suggested_ycbcr_range: Default::default(),
+            suggested_x_chroma_offset: Default::default(),
+            suggested_y_chroma_offset: Default::default(),
+        }
+    }
+}
+impl<'lt> AndroidHardwareBufferFormatProperties2ANDROID<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::external_format`]
+    pub fn external_format_raw(&self) -> u64 {
+        self.external_format
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::external_format`]
+    pub fn set_external_format_raw(&mut self, value: u64) -> &mut Self {
+        self.external_format = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::format`]
+    pub fn format(&self) -> Format {
+        self.format
+    }
+    ///Gets the value of [`Self::external_format`]
+    pub fn external_format(&self) -> u64 {
+        self.external_format
+    }
+    ///Gets the value of [`Self::format_features`]
+    pub fn format_features(&self) -> FormatFeatureFlags2 {
+        self.format_features
+    }
+    ///Gets the value of [`Self::sampler_ycbcr_conversion_components`]
+    pub fn sampler_ycbcr_conversion_components(&self) -> ComponentMapping {
+        self.sampler_ycbcr_conversion_components
+    }
+    ///Gets the value of [`Self::suggested_ycbcr_model`]
+    pub fn suggested_ycbcr_model(&self) -> SamplerYcbcrModelConversion {
+        self.suggested_ycbcr_model
+    }
+    ///Gets the value of [`Self::suggested_ycbcr_range`]
+    pub fn suggested_ycbcr_range(&self) -> SamplerYcbcrRange {
+        self.suggested_ycbcr_range
+    }
+    ///Gets the value of [`Self::suggested_x_chroma_offset`]
+    pub fn suggested_x_chroma_offset(&self) -> ChromaLocation {
+        self.suggested_x_chroma_offset
+    }
+    ///Gets the value of [`Self::suggested_y_chroma_offset`]
+    pub fn suggested_y_chroma_offset(&self) -> ChromaLocation {
+        self.suggested_y_chroma_offset
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::format`]
+    pub fn format_mut(&mut self) -> &mut Format {
+        &mut self.format
+    }
+    ///Gets a mutable reference to the value of [`Self::external_format`]
+    pub fn external_format_mut(&mut self) -> &mut u64 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::format_features`]
+    pub fn format_features_mut(&mut self) -> &mut FormatFeatureFlags2 {
+        &mut self.format_features
+    }
+    ///Gets a mutable reference to the value of [`Self::sampler_ycbcr_conversion_components`]
+    pub fn sampler_ycbcr_conversion_components_mut(&mut self) -> &mut ComponentMapping {
+        &mut self.sampler_ycbcr_conversion_components
+    }
+    ///Gets a mutable reference to the value of [`Self::suggested_ycbcr_model`]
+    pub fn suggested_ycbcr_model_mut(&mut self) -> &mut SamplerYcbcrModelConversion {
+        &mut self.suggested_ycbcr_model
+    }
+    ///Gets a mutable reference to the value of [`Self::suggested_ycbcr_range`]
+    pub fn suggested_ycbcr_range_mut(&mut self) -> &mut SamplerYcbcrRange {
+        &mut self.suggested_ycbcr_range
+    }
+    ///Gets a mutable reference to the value of [`Self::suggested_x_chroma_offset`]
+    pub fn suggested_x_chroma_offset_mut(&mut self) -> &mut ChromaLocation {
+        &mut self.suggested_x_chroma_offset
+    }
+    ///Gets a mutable reference to the value of [`Self::suggested_y_chroma_offset`]
+    pub fn suggested_y_chroma_offset_mut(&mut self) -> &mut ChromaLocation {
+        &mut self.suggested_y_chroma_offset
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::format`]
+    pub fn set_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+        self.format = value;
+        self
+    }
+    ///Sets the raw value of [`Self::external_format`]
+    pub fn set_external_format(&mut self, value: u64) -> &mut Self {
+        self.external_format = value;
+        self
+    }
+    ///Sets the raw value of [`Self::format_features`]
+    pub fn set_format_features(&mut self, value: crate::vulkan1_3::FormatFeatureFlags2) -> &mut Self {
+        self.format_features = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sampler_ycbcr_conversion_components`]
+    pub fn set_sampler_ycbcr_conversion_components(&mut self, value: crate::vulkan1_0::ComponentMapping) -> &mut Self {
+        self.sampler_ycbcr_conversion_components = value;
+        self
+    }
+    ///Sets the raw value of [`Self::suggested_ycbcr_model`]
+    pub fn set_suggested_ycbcr_model(&mut self, value: crate::vulkan1_1::SamplerYcbcrModelConversion) -> &mut Self {
+        self.suggested_ycbcr_model = value;
+        self
+    }
+    ///Sets the raw value of [`Self::suggested_ycbcr_range`]
+    pub fn set_suggested_ycbcr_range(&mut self, value: crate::vulkan1_1::SamplerYcbcrRange) -> &mut Self {
+        self.suggested_ycbcr_range = value;
+        self
+    }
+    ///Sets the raw value of [`Self::suggested_x_chroma_offset`]
+    pub fn set_suggested_x_chroma_offset(&mut self, value: crate::vulkan1_1::ChromaLocation) -> &mut Self {
+        self.suggested_x_chroma_offset = value;
+        self
+    }
+    ///Sets the raw value of [`Self::suggested_y_chroma_offset`]
+    pub fn set_suggested_y_chroma_offset(&mut self, value: crate::vulkan1_1::ChromaLocation) -> &mut Self {
+        self.suggested_y_chroma_offset = value;
+        self
+    }
 }

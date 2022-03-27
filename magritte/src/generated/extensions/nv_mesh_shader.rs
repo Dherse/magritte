@@ -47,9 +47,8 @@ pub const NV_MESH_SHADER_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_mes
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceMeshShaderFeaturesNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -57,13 +56,139 @@ pub struct PhysicalDeviceMeshShaderFeaturesNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`task_shader`] indicates whether the task
     ///shader stage is supported.
     task_shader: Bool32,
     ///[`mesh_shader`] indicates whether the mesh
     ///shader stage is supported.
     mesh_shader: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceMeshShaderFeaturesNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            task_shader: 0,
+            mesh_shader: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceMeshShaderFeaturesNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::task_shader`]
+    pub fn task_shader_raw(&self) -> Bool32 {
+        self.task_shader
+    }
+    ///Gets the raw value of [`Self::mesh_shader`]
+    pub fn mesh_shader_raw(&self) -> Bool32 {
+        self.mesh_shader
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::task_shader`]
+    pub fn set_task_shader_raw(&mut self, value: Bool32) -> &mut Self {
+        self.task_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::mesh_shader`]
+    pub fn set_mesh_shader_raw(&mut self, value: Bool32) -> &mut Self {
+        self.mesh_shader = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::task_shader`]
+    pub fn task_shader(&self) -> bool {
+        unsafe { std::mem::transmute(self.task_shader as u8) }
+    }
+    ///Gets the value of [`Self::mesh_shader`]
+    pub fn mesh_shader(&self) -> bool {
+        unsafe { std::mem::transmute(self.mesh_shader as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::task_shader`]
+    pub fn task_shader_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.task_shader as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.task_shader as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::mesh_shader`]
+    pub fn mesh_shader_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.mesh_shader as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.mesh_shader as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::task_shader`]
+    pub fn set_task_shader(&mut self, value: bool) -> &mut Self {
+        self.task_shader = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::mesh_shader`]
+    pub fn set_mesh_shader(&mut self, value: bool) -> &mut Self {
+        self.mesh_shader = value as u8 as u32;
+        self
+    }
 }
 ///[VkPhysicalDeviceMeshShaderPropertiesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMeshShaderPropertiesNV.html) - Structure describing mesh shading properties
 ///# C Specifications
@@ -145,9 +270,8 @@ pub struct PhysicalDeviceMeshShaderFeaturesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -155,7 +279,7 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`max_draw_mesh_tasks_count`] is the maximum number of local workgroups
     ///that **can** be launched by a single draw mesh tasks command.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-mesh-shading](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-mesh-shading).
@@ -229,6 +353,357 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     ///[`max_mesh_total_memory_size`].
     mesh_output_per_primitive_granularity: u32,
 }
+impl<'lt> Default for PhysicalDeviceMeshShaderPropertiesNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            max_draw_mesh_tasks_count: 0,
+            max_task_work_group_invocations: 0,
+            max_task_work_group_size: [0; 3],
+            max_task_total_memory_size: 0,
+            max_task_output_count: 0,
+            max_mesh_work_group_invocations: 0,
+            max_mesh_work_group_size: [0; 3],
+            max_mesh_total_memory_size: 0,
+            max_mesh_output_vertices: 0,
+            max_mesh_output_primitives: 0,
+            max_mesh_multiview_view_count: 0,
+            mesh_output_per_vertex_granularity: 0,
+            mesh_output_per_primitive_granularity: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceMeshShaderPropertiesNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::max_draw_mesh_tasks_count`]
+    pub fn max_draw_mesh_tasks_count_raw(&self) -> u32 {
+        self.max_draw_mesh_tasks_count
+    }
+    ///Gets the raw value of [`Self::max_task_work_group_invocations`]
+    pub fn max_task_work_group_invocations_raw(&self) -> u32 {
+        self.max_task_work_group_invocations
+    }
+    ///Gets the raw value of [`Self::max_task_work_group_size`]
+    pub fn max_task_work_group_size_raw(&self) -> [u32; 3] {
+        self.max_task_work_group_size
+    }
+    ///Gets the raw value of [`Self::max_task_total_memory_size`]
+    pub fn max_task_total_memory_size_raw(&self) -> u32 {
+        self.max_task_total_memory_size
+    }
+    ///Gets the raw value of [`Self::max_task_output_count`]
+    pub fn max_task_output_count_raw(&self) -> u32 {
+        self.max_task_output_count
+    }
+    ///Gets the raw value of [`Self::max_mesh_work_group_invocations`]
+    pub fn max_mesh_work_group_invocations_raw(&self) -> u32 {
+        self.max_mesh_work_group_invocations
+    }
+    ///Gets the raw value of [`Self::max_mesh_work_group_size`]
+    pub fn max_mesh_work_group_size_raw(&self) -> [u32; 3] {
+        self.max_mesh_work_group_size
+    }
+    ///Gets the raw value of [`Self::max_mesh_total_memory_size`]
+    pub fn max_mesh_total_memory_size_raw(&self) -> u32 {
+        self.max_mesh_total_memory_size
+    }
+    ///Gets the raw value of [`Self::max_mesh_output_vertices`]
+    pub fn max_mesh_output_vertices_raw(&self) -> u32 {
+        self.max_mesh_output_vertices
+    }
+    ///Gets the raw value of [`Self::max_mesh_output_primitives`]
+    pub fn max_mesh_output_primitives_raw(&self) -> u32 {
+        self.max_mesh_output_primitives
+    }
+    ///Gets the raw value of [`Self::max_mesh_multiview_view_count`]
+    pub fn max_mesh_multiview_view_count_raw(&self) -> u32 {
+        self.max_mesh_multiview_view_count
+    }
+    ///Gets the raw value of [`Self::mesh_output_per_vertex_granularity`]
+    pub fn mesh_output_per_vertex_granularity_raw(&self) -> u32 {
+        self.mesh_output_per_vertex_granularity
+    }
+    ///Gets the raw value of [`Self::mesh_output_per_primitive_granularity`]
+    pub fn mesh_output_per_primitive_granularity_raw(&self) -> u32 {
+        self.mesh_output_per_primitive_granularity
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_draw_mesh_tasks_count`]
+    pub fn set_max_draw_mesh_tasks_count_raw(&mut self, value: u32) -> &mut Self {
+        self.max_draw_mesh_tasks_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_task_work_group_invocations`]
+    pub fn set_max_task_work_group_invocations_raw(&mut self, value: u32) -> &mut Self {
+        self.max_task_work_group_invocations = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_task_work_group_size`]
+    pub fn set_max_task_work_group_size_raw(&mut self, value: [u32; 3]) -> &mut Self {
+        self.max_task_work_group_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_task_total_memory_size`]
+    pub fn set_max_task_total_memory_size_raw(&mut self, value: u32) -> &mut Self {
+        self.max_task_total_memory_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_task_output_count`]
+    pub fn set_max_task_output_count_raw(&mut self, value: u32) -> &mut Self {
+        self.max_task_output_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_mesh_work_group_invocations`]
+    pub fn set_max_mesh_work_group_invocations_raw(&mut self, value: u32) -> &mut Self {
+        self.max_mesh_work_group_invocations = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_mesh_work_group_size`]
+    pub fn set_max_mesh_work_group_size_raw(&mut self, value: [u32; 3]) -> &mut Self {
+        self.max_mesh_work_group_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_mesh_total_memory_size`]
+    pub fn set_max_mesh_total_memory_size_raw(&mut self, value: u32) -> &mut Self {
+        self.max_mesh_total_memory_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_mesh_output_vertices`]
+    pub fn set_max_mesh_output_vertices_raw(&mut self, value: u32) -> &mut Self {
+        self.max_mesh_output_vertices = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_mesh_output_primitives`]
+    pub fn set_max_mesh_output_primitives_raw(&mut self, value: u32) -> &mut Self {
+        self.max_mesh_output_primitives = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_mesh_multiview_view_count`]
+    pub fn set_max_mesh_multiview_view_count_raw(&mut self, value: u32) -> &mut Self {
+        self.max_mesh_multiview_view_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::mesh_output_per_vertex_granularity`]
+    pub fn set_mesh_output_per_vertex_granularity_raw(&mut self, value: u32) -> &mut Self {
+        self.mesh_output_per_vertex_granularity = value;
+        self
+    }
+    ///Sets the raw value of [`Self::mesh_output_per_primitive_granularity`]
+    pub fn set_mesh_output_per_primitive_granularity_raw(&mut self, value: u32) -> &mut Self {
+        self.mesh_output_per_primitive_granularity = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::max_draw_mesh_tasks_count`]
+    pub fn max_draw_mesh_tasks_count(&self) -> u32 {
+        self.max_draw_mesh_tasks_count
+    }
+    ///Gets the value of [`Self::max_task_work_group_invocations`]
+    pub fn max_task_work_group_invocations(&self) -> u32 {
+        self.max_task_work_group_invocations
+    }
+    ///Gets the value of [`Self::max_task_work_group_size`]
+    pub fn max_task_work_group_size(&self) -> &[u32; 3] {
+        &getter
+    }
+    ///Gets the value of [`Self::max_task_total_memory_size`]
+    pub fn max_task_total_memory_size(&self) -> u32 {
+        self.max_task_total_memory_size
+    }
+    ///Gets the value of [`Self::max_task_output_count`]
+    pub fn max_task_output_count(&self) -> u32 {
+        self.max_task_output_count
+    }
+    ///Gets the value of [`Self::max_mesh_work_group_invocations`]
+    pub fn max_mesh_work_group_invocations(&self) -> u32 {
+        self.max_mesh_work_group_invocations
+    }
+    ///Gets the value of [`Self::max_mesh_work_group_size`]
+    pub fn max_mesh_work_group_size(&self) -> &[u32; 3] {
+        &getter
+    }
+    ///Gets the value of [`Self::max_mesh_total_memory_size`]
+    pub fn max_mesh_total_memory_size(&self) -> u32 {
+        self.max_mesh_total_memory_size
+    }
+    ///Gets the value of [`Self::max_mesh_output_vertices`]
+    pub fn max_mesh_output_vertices(&self) -> u32 {
+        self.max_mesh_output_vertices
+    }
+    ///Gets the value of [`Self::max_mesh_output_primitives`]
+    pub fn max_mesh_output_primitives(&self) -> u32 {
+        self.max_mesh_output_primitives
+    }
+    ///Gets the value of [`Self::max_mesh_multiview_view_count`]
+    pub fn max_mesh_multiview_view_count(&self) -> u32 {
+        self.max_mesh_multiview_view_count
+    }
+    ///Gets the value of [`Self::mesh_output_per_vertex_granularity`]
+    pub fn mesh_output_per_vertex_granularity(&self) -> u32 {
+        self.mesh_output_per_vertex_granularity
+    }
+    ///Gets the value of [`Self::mesh_output_per_primitive_granularity`]
+    pub fn mesh_output_per_primitive_granularity(&self) -> u32 {
+        self.mesh_output_per_primitive_granularity
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::max_draw_mesh_tasks_count`]
+    pub fn max_draw_mesh_tasks_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_task_work_group_invocations`]
+    pub fn max_task_work_group_invocations_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_task_work_group_size`]
+    pub fn max_task_work_group_size_mut(&mut self) -> &mut [u32; 3] {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_task_total_memory_size`]
+    pub fn max_task_total_memory_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_task_output_count`]
+    pub fn max_task_output_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_mesh_work_group_invocations`]
+    pub fn max_mesh_work_group_invocations_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_mesh_work_group_size`]
+    pub fn max_mesh_work_group_size_mut(&mut self) -> &mut [u32; 3] {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_mesh_total_memory_size`]
+    pub fn max_mesh_total_memory_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_mesh_output_vertices`]
+    pub fn max_mesh_output_vertices_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_mesh_output_primitives`]
+    pub fn max_mesh_output_primitives_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_mesh_multiview_view_count`]
+    pub fn max_mesh_multiview_view_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::mesh_output_per_vertex_granularity`]
+    pub fn mesh_output_per_vertex_granularity_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::mesh_output_per_primitive_granularity`]
+    pub fn mesh_output_per_primitive_granularity_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::max_draw_mesh_tasks_count`]
+    pub fn set_max_draw_mesh_tasks_count(&mut self, value: u32) -> &mut Self {
+        self.max_draw_mesh_tasks_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_task_work_group_invocations`]
+    pub fn set_max_task_work_group_invocations(&mut self, value: u32) -> &mut Self {
+        self.max_task_work_group_invocations = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_task_work_group_size`]
+    pub fn set_max_task_work_group_size(&mut self, value: [u32; 3]) -> &mut Self {
+        self.max_task_work_group_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_task_total_memory_size`]
+    pub fn set_max_task_total_memory_size(&mut self, value: u32) -> &mut Self {
+        self.max_task_total_memory_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_task_output_count`]
+    pub fn set_max_task_output_count(&mut self, value: u32) -> &mut Self {
+        self.max_task_output_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_mesh_work_group_invocations`]
+    pub fn set_max_mesh_work_group_invocations(&mut self, value: u32) -> &mut Self {
+        self.max_mesh_work_group_invocations = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_mesh_work_group_size`]
+    pub fn set_max_mesh_work_group_size(&mut self, value: [u32; 3]) -> &mut Self {
+        self.max_mesh_work_group_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_mesh_total_memory_size`]
+    pub fn set_max_mesh_total_memory_size(&mut self, value: u32) -> &mut Self {
+        self.max_mesh_total_memory_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_mesh_output_vertices`]
+    pub fn set_max_mesh_output_vertices(&mut self, value: u32) -> &mut Self {
+        self.max_mesh_output_vertices = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_mesh_output_primitives`]
+    pub fn set_max_mesh_output_primitives(&mut self, value: u32) -> &mut Self {
+        self.max_mesh_output_primitives = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_mesh_multiview_view_count`]
+    pub fn set_max_mesh_multiview_view_count(&mut self, value: u32) -> &mut Self {
+        self.max_mesh_multiview_view_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::mesh_output_per_vertex_granularity`]
+    pub fn set_mesh_output_per_vertex_granularity(&mut self, value: u32) -> &mut Self {
+        self.mesh_output_per_vertex_granularity = value;
+        self
+    }
+    ///Sets the raw value of [`Self::mesh_output_per_primitive_granularity`]
+    pub fn set_mesh_output_per_primitive_granularity(&mut self, value: u32) -> &mut Self {
+        self.mesh_output_per_primitive_granularity = value;
+        self
+    }
+}
 ///[VkDrawMeshTasksIndirectCommandNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDrawMeshTasksIndirectCommandNV.html) - Structure specifying a mesh tasks draw indirect command
 ///# C Specifications
 ///The [`DrawMeshTasksIndirectCommandNV`] structure is defined as:
@@ -259,7 +734,7 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -270,4 +745,58 @@ pub struct DrawMeshTasksIndirectCommandNV {
     task_count: u32,
     ///[`first_task`] is the X component of the first workgroup ID.
     first_task: u32,
+}
+impl Default for DrawMeshTasksIndirectCommandNV {
+    fn default() -> Self {
+        Self {
+            task_count: 0,
+            first_task: 0,
+        }
+    }
+}
+impl DrawMeshTasksIndirectCommandNV {
+    ///Gets the raw value of [`Self::task_count`]
+    pub fn task_count_raw(&self) -> u32 {
+        self.task_count
+    }
+    ///Gets the raw value of [`Self::first_task`]
+    pub fn first_task_raw(&self) -> u32 {
+        self.first_task
+    }
+    ///Sets the raw value of [`Self::task_count`]
+    pub fn set_task_count_raw(&mut self, value: u32) -> &mut Self {
+        self.task_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::first_task`]
+    pub fn set_first_task_raw(&mut self, value: u32) -> &mut Self {
+        self.first_task = value;
+        self
+    }
+    ///Gets the value of [`Self::task_count`]
+    pub fn task_count(&self) -> u32 {
+        self.task_count
+    }
+    ///Gets the value of [`Self::first_task`]
+    pub fn first_task(&self) -> u32 {
+        self.first_task
+    }
+    ///Gets a mutable reference to the value of [`Self::task_count`]
+    pub fn task_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::first_task`]
+    pub fn first_task_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::task_count`]
+    pub fn set_task_count(&mut self, value: u32) -> &mut Self {
+        self.task_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::first_task`]
+    pub fn set_first_task(&mut self, value: u32) -> &mut Self {
+        self.first_task = value;
+        self
+    }
 }

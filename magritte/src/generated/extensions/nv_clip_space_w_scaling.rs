@@ -32,7 +32,7 @@ pub const NV_CLIP_SPACE_W_SCALING_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, PartialEq, PartialOrd)]
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -42,6 +42,60 @@ pub struct ViewportWScalingNV {
     xcoeff: f32,
     ///No documentation found
     ycoeff: f32,
+}
+impl Default for ViewportWScalingNV {
+    fn default() -> Self {
+        Self {
+            xcoeff: 0.0,
+            ycoeff: 0.0,
+        }
+    }
+}
+impl ViewportWScalingNV {
+    ///Gets the raw value of [`Self::xcoeff`]
+    pub fn xcoeff_raw(&self) -> f32 {
+        self.xcoeff
+    }
+    ///Gets the raw value of [`Self::ycoeff`]
+    pub fn ycoeff_raw(&self) -> f32 {
+        self.ycoeff
+    }
+    ///Sets the raw value of [`Self::xcoeff`]
+    pub fn set_xcoeff_raw(&mut self, value: f32) -> &mut Self {
+        self.xcoeff = value;
+        self
+    }
+    ///Sets the raw value of [`Self::ycoeff`]
+    pub fn set_ycoeff_raw(&mut self, value: f32) -> &mut Self {
+        self.ycoeff = value;
+        self
+    }
+    ///Gets the value of [`Self::xcoeff`]
+    pub fn xcoeff(&self) -> f32 {
+        self.xcoeff
+    }
+    ///Gets the value of [`Self::ycoeff`]
+    pub fn ycoeff(&self) -> f32 {
+        self.ycoeff
+    }
+    ///Gets a mutable reference to the value of [`Self::xcoeff`]
+    pub fn xcoeff_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::ycoeff`]
+    pub fn ycoeff_mut(&mut self) -> &mut f32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::xcoeff`]
+    pub fn set_xcoeff(&mut self, value: f32) -> &mut Self {
+        self.xcoeff = value;
+        self
+    }
+    ///Sets the raw value of [`Self::ycoeff`]
+    pub fn set_ycoeff(&mut self, value: f32) -> &mut Self {
+        self.ycoeff = value;
+        self
+    }
 }
 ///[VkPipelineViewportWScalingStateCreateInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportWScalingStateCreateInfoNV.html) - Structure specifying parameters of a newly created pipeline viewport W scaling state
 ///# C Specifications
@@ -63,9 +117,9 @@ pub struct ViewportWScalingNV {
 /// - [`viewport_w_scaling_enable`] controls whether viewport **W** scaling is enabled.
 /// - [`viewport_count`] is the number of viewports used by **W** scaling, and **must** match the
 ///   number of viewports in the pipeline if viewport **W** scaling is enabled.
-/// - [`p_viewport_w_scalings`] is a pointer to an array of [`ViewportWScalingNV`] structures
-///   defining the **W** scaling parameters for the corresponding viewports. If the viewport **W**
-///   scaling state is dynamic, this member is ignored.
+/// - [`viewport_w_scalings`] is a pointer to an array of [`ViewportWScalingNV`] structures defining
+///   the **W** scaling parameters for the corresponding viewports. If the viewport **W** scaling
+///   state is dynamic, this member is ignored.
 ///# Description
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV`
@@ -83,9 +137,8 @@ pub struct ViewportWScalingNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PipelineViewportWScalingStateCreateInfoNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -93,7 +146,7 @@ pub struct PipelineViewportWScalingStateCreateInfoNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`viewport_w_scaling_enable`] controls whether viewport **W** scaling is
     ///enabled.
     viewport_w_scaling_enable: Bool32,
@@ -101,9 +154,142 @@ pub struct PipelineViewportWScalingStateCreateInfoNV<'lt> {
     ///**must** match the number of viewports in the pipeline if viewport **W**
     ///scaling is enabled.
     viewport_count: u32,
-    ///[`p_viewport_w_scalings`] is a pointer to an array of
+    ///[`viewport_w_scalings`] is a pointer to an array of
     ///[`ViewportWScalingNV`] structures defining the **W** scaling
     ///parameters for the corresponding viewports.
     ///If the viewport **W** scaling state is dynamic, this member is ignored.
-    p_viewport_w_scalings: *mut ViewportWScalingNV,
+    viewport_w_scalings: *const ViewportWScalingNV,
+}
+impl<'lt> Default for PipelineViewportWScalingStateCreateInfoNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            viewport_w_scaling_enable: 0,
+            viewport_count: 0,
+            viewport_w_scalings: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> PipelineViewportWScalingStateCreateInfoNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::viewport_w_scaling_enable`]
+    pub fn viewport_w_scaling_enable_raw(&self) -> Bool32 {
+        self.viewport_w_scaling_enable
+    }
+    ///Gets the raw value of [`Self::viewport_count`]
+    pub fn viewport_count_raw(&self) -> u32 {
+        self.viewport_count
+    }
+    ///Gets the raw value of [`Self::viewport_w_scalings`]
+    pub fn viewport_w_scalings_raw(&self) -> *const ViewportWScalingNV {
+        self.viewport_w_scalings
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::viewport_w_scaling_enable`]
+    pub fn set_viewport_w_scaling_enable_raw(&mut self, value: Bool32) -> &mut Self {
+        self.viewport_w_scaling_enable = value;
+        self
+    }
+    ///Sets the raw value of [`Self::viewport_count`]
+    pub fn set_viewport_count_raw(&mut self, value: u32) -> &mut Self {
+        self.viewport_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::viewport_w_scalings`]
+    pub fn set_viewport_w_scalings_raw(&mut self, value: *const ViewportWScalingNV) -> &mut Self {
+        self.viewport_w_scalings = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::viewport_w_scaling_enable`]
+    pub fn viewport_w_scaling_enable(&self) -> bool {
+        unsafe { std::mem::transmute(self.viewport_w_scaling_enable as u8) }
+    }
+    ///Gets the value of [`Self::viewport_count`]
+    pub fn viewport_count(&self) -> u32 {
+        self.viewport_count
+    }
+    ///Gets the value of [`Self::viewport_w_scalings`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn viewport_w_scalings(&self) -> &[ViewportWScalingNV] {
+        std::slice::from_raw_parts(self.viewport_w_scalings, self.viewport_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::viewport_w_scaling_enable`]
+    pub fn viewport_w_scaling_enable_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.viewport_w_scaling_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.viewport_w_scaling_enable as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::viewport_count`]
+    pub fn viewport_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::viewport_w_scaling_enable`]
+    pub fn set_viewport_w_scaling_enable(&mut self, value: bool) -> &mut Self {
+        self.viewport_w_scaling_enable = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::viewport_count`]
+    pub fn set_viewport_count(&mut self, value: u32) -> &mut Self {
+        self.viewport_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::viewport_w_scalings`]
+    pub fn set_viewport_w_scalings(
+        &mut self,
+        value: &'lt [crate::extensions::nv_clip_space_w_scaling::ViewportWScalingNV],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.viewport_w_scalings = value.as_ptr();
+        self.viewport_count = len_;
+        self
+    }
 }

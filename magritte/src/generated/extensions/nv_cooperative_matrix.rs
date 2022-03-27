@@ -226,9 +226,8 @@ impl ComponentTypeNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -236,7 +235,7 @@ pub struct PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`cooperative_matrix`] indicates that
     ///the implementation supports the `CooperativeMatrixNV` SPIR-V
     ///capability.
@@ -246,6 +245,132 @@ pub struct PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
     ///`OpCooperativeMatrixLoadNV` and `OpCooperativeMatrixStoreNV`
     ///instructions.
     cooperative_matrix_robust_buffer_access: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            cooperative_matrix: 0,
+            cooperative_matrix_robust_buffer_access: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::cooperative_matrix`]
+    pub fn cooperative_matrix_raw(&self) -> Bool32 {
+        self.cooperative_matrix
+    }
+    ///Gets the raw value of [`Self::cooperative_matrix_robust_buffer_access`]
+    pub fn cooperative_matrix_robust_buffer_access_raw(&self) -> Bool32 {
+        self.cooperative_matrix_robust_buffer_access
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::cooperative_matrix`]
+    pub fn set_cooperative_matrix_raw(&mut self, value: Bool32) -> &mut Self {
+        self.cooperative_matrix = value;
+        self
+    }
+    ///Sets the raw value of [`Self::cooperative_matrix_robust_buffer_access`]
+    pub fn set_cooperative_matrix_robust_buffer_access_raw(&mut self, value: Bool32) -> &mut Self {
+        self.cooperative_matrix_robust_buffer_access = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::cooperative_matrix`]
+    pub fn cooperative_matrix(&self) -> bool {
+        unsafe { std::mem::transmute(self.cooperative_matrix as u8) }
+    }
+    ///Gets the value of [`Self::cooperative_matrix_robust_buffer_access`]
+    pub fn cooperative_matrix_robust_buffer_access(&self) -> bool {
+        unsafe { std::mem::transmute(self.cooperative_matrix_robust_buffer_access as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::cooperative_matrix`]
+    pub fn cooperative_matrix_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.cooperative_matrix as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.cooperative_matrix as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::cooperative_matrix_robust_buffer_access`]
+    pub fn cooperative_matrix_robust_buffer_access_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.cooperative_matrix_robust_buffer_access as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.cooperative_matrix_robust_buffer_access as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::cooperative_matrix`]
+    pub fn set_cooperative_matrix(&mut self, value: bool) -> &mut Self {
+        self.cooperative_matrix = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::cooperative_matrix_robust_buffer_access`]
+    pub fn set_cooperative_matrix_robust_buffer_access(&mut self, value: bool) -> &mut Self {
+        self.cooperative_matrix_robust_buffer_access = value as u8 as u32;
+        self
+    }
 }
 ///[VkPhysicalDeviceCooperativeMatrixPropertiesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceCooperativeMatrixPropertiesNV.html) - Structure describing cooperative matrix properties supported by an implementation
 ///# C Specifications
@@ -285,9 +410,8 @@ pub struct PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -295,7 +419,7 @@ pub struct PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`cooperative_matrix_supported_stages`] is a bitfield of
     ///[`ShaderStageFlagBits`] describing the shader stages that
     ///cooperative matrix instructions are supported in.
@@ -303,6 +427,72 @@ pub struct PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
     ///`VK_SHADER_STAGE_COMPUTE_BIT` bit set if any of the physical
     ///device’s queues support `VK_QUEUE_COMPUTE_BIT`.
     cooperative_matrix_supported_stages: ShaderStageFlags,
+}
+impl<'lt> Default for PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            cooperative_matrix_supported_stages: Default::default(),
+        }
+    }
+}
+impl<'lt> PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::cooperative_matrix_supported_stages`]
+    pub fn cooperative_matrix_supported_stages(&self) -> ShaderStageFlags {
+        self.cooperative_matrix_supported_stages
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::cooperative_matrix_supported_stages`]
+    pub fn cooperative_matrix_supported_stages_mut(&mut self) -> &mut ShaderStageFlags {
+        &mut self.cooperative_matrix_supported_stages
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::cooperative_matrix_supported_stages`]
+    pub fn set_cooperative_matrix_supported_stages(&mut self, value: crate::vulkan1_0::ShaderStageFlags) -> &mut Self {
+        self.cooperative_matrix_supported_stages = value;
+        self
+    }
 }
 ///[VkCooperativeMatrixPropertiesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCooperativeMatrixPropertiesNV.html) - Structure specifying cooperative matrix properties
 ///# C Specifications
@@ -374,9 +564,8 @@ pub struct PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct CooperativeMatrixPropertiesNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -384,7 +573,7 @@ pub struct CooperativeMatrixPropertiesNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`m_size`] is the number of rows in matrices A, C, and D.
     m_size: u32,
     ///[`n_size`] is the number of columns in matrices B, C, D.
@@ -406,4 +595,195 @@ pub struct CooperativeMatrixPropertiesNV<'lt> {
     ///[`scope`] is the scope of all the matrix types, of type
     ///[`ScopeNV`].
     scope: ScopeNV,
+}
+impl<'lt> Default for CooperativeMatrixPropertiesNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            m_size: 0,
+            n_size: 0,
+            k_size: 0,
+            a_type: Default::default(),
+            b_type: Default::default(),
+            c_type: Default::default(),
+            d_type: Default::default(),
+            scope: Default::default(),
+        }
+    }
+}
+impl<'lt> CooperativeMatrixPropertiesNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::m_size`]
+    pub fn m_size_raw(&self) -> u32 {
+        self.m_size
+    }
+    ///Gets the raw value of [`Self::n_size`]
+    pub fn n_size_raw(&self) -> u32 {
+        self.n_size
+    }
+    ///Gets the raw value of [`Self::k_size`]
+    pub fn k_size_raw(&self) -> u32 {
+        self.k_size
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::m_size`]
+    pub fn set_m_size_raw(&mut self, value: u32) -> &mut Self {
+        self.m_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::n_size`]
+    pub fn set_n_size_raw(&mut self, value: u32) -> &mut Self {
+        self.n_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::k_size`]
+    pub fn set_k_size_raw(&mut self, value: u32) -> &mut Self {
+        self.k_size = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::m_size`]
+    pub fn m_size(&self) -> u32 {
+        self.m_size
+    }
+    ///Gets the value of [`Self::n_size`]
+    pub fn n_size(&self) -> u32 {
+        self.n_size
+    }
+    ///Gets the value of [`Self::k_size`]
+    pub fn k_size(&self) -> u32 {
+        self.k_size
+    }
+    ///Gets the value of [`Self::a_type`]
+    pub fn a_type(&self) -> ComponentTypeNV {
+        self.a_type
+    }
+    ///Gets the value of [`Self::b_type`]
+    pub fn b_type(&self) -> ComponentTypeNV {
+        self.b_type
+    }
+    ///Gets the value of [`Self::c_type`]
+    pub fn c_type(&self) -> ComponentTypeNV {
+        self.c_type
+    }
+    ///Gets the value of [`Self::d_type`]
+    pub fn d_type(&self) -> ComponentTypeNV {
+        self.d_type
+    }
+    ///Gets the value of [`Self::scope`]
+    pub fn scope(&self) -> ScopeNV {
+        self.scope
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::m_size`]
+    pub fn m_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::n_size`]
+    pub fn n_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::k_size`]
+    pub fn k_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::a_type`]
+    pub fn a_type_mut(&mut self) -> &mut ComponentTypeNV {
+        &mut self.a_type
+    }
+    ///Gets a mutable reference to the value of [`Self::b_type`]
+    pub fn b_type_mut(&mut self) -> &mut ComponentTypeNV {
+        &mut self.b_type
+    }
+    ///Gets a mutable reference to the value of [`Self::c_type`]
+    pub fn c_type_mut(&mut self) -> &mut ComponentTypeNV {
+        &mut self.c_type
+    }
+    ///Gets a mutable reference to the value of [`Self::d_type`]
+    pub fn d_type_mut(&mut self) -> &mut ComponentTypeNV {
+        &mut self.d_type
+    }
+    ///Gets a mutable reference to the value of [`Self::scope`]
+    pub fn scope_mut(&mut self) -> &mut ScopeNV {
+        &mut self.scope
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::m_size`]
+    pub fn set_m_size(&mut self, value: u32) -> &mut Self {
+        self.m_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::n_size`]
+    pub fn set_n_size(&mut self, value: u32) -> &mut Self {
+        self.n_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::k_size`]
+    pub fn set_k_size(&mut self, value: u32) -> &mut Self {
+        self.k_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::a_type`]
+    pub fn set_a_type(&mut self, value: crate::extensions::nv_cooperative_matrix::ComponentTypeNV) -> &mut Self {
+        self.a_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::b_type`]
+    pub fn set_b_type(&mut self, value: crate::extensions::nv_cooperative_matrix::ComponentTypeNV) -> &mut Self {
+        self.b_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::c_type`]
+    pub fn set_c_type(&mut self, value: crate::extensions::nv_cooperative_matrix::ComponentTypeNV) -> &mut Self {
+        self.c_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::d_type`]
+    pub fn set_d_type(&mut self, value: crate::extensions::nv_cooperative_matrix::ComponentTypeNV) -> &mut Self {
+        self.d_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::scope`]
+    pub fn set_scope(&mut self, value: crate::extensions::nv_cooperative_matrix::ScopeNV) -> &mut Self {
+        self.scope = value;
+        self
+    }
 }

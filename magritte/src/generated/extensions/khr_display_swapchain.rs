@@ -65,9 +65,8 @@ pub const KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct DisplayPresentInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -75,7 +74,7 @@ pub struct DisplayPresentInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`src_rect`] is a rectangular region of pixels to present.
     ///It **must** be a subset of the image being presented.
     ///If [`DisplayPresentInfoKHR`] is not specified, this region will be
@@ -104,4 +103,114 @@ pub struct DisplayPresentInfoKHR<'lt> {
     ///If [`DisplayPresentInfoKHR`] is not specified, persistent mode will
     ///not be used.
     persistent: Bool32,
+}
+impl<'lt> Default for DisplayPresentInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            src_rect: Default::default(),
+            dst_rect: Default::default(),
+            persistent: 0,
+        }
+    }
+}
+impl<'lt> DisplayPresentInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::persistent`]
+    pub fn persistent_raw(&self) -> Bool32 {
+        self.persistent
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::persistent`]
+    pub fn set_persistent_raw(&mut self, value: Bool32) -> &mut Self {
+        self.persistent = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::src_rect`]
+    pub fn src_rect(&self) -> Rect2D {
+        self.src_rect
+    }
+    ///Gets the value of [`Self::dst_rect`]
+    pub fn dst_rect(&self) -> Rect2D {
+        self.dst_rect
+    }
+    ///Gets the value of [`Self::persistent`]
+    pub fn persistent(&self) -> bool {
+        unsafe { std::mem::transmute(self.persistent as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::src_rect`]
+    pub fn src_rect_mut(&mut self) -> &mut Rect2D {
+        &mut self.src_rect
+    }
+    ///Gets a mutable reference to the value of [`Self::dst_rect`]
+    pub fn dst_rect_mut(&mut self) -> &mut Rect2D {
+        &mut self.dst_rect
+    }
+    ///Gets a mutable reference to the value of [`Self::persistent`]
+    pub fn persistent_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.persistent as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.persistent as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::src_rect`]
+    pub fn set_src_rect(&mut self, value: crate::vulkan1_0::Rect2D) -> &mut Self {
+        self.src_rect = value;
+        self
+    }
+    ///Sets the raw value of [`Self::dst_rect`]
+    pub fn set_dst_rect(&mut self, value: crate::vulkan1_0::Rect2D) -> &mut Self {
+        self.dst_rect = value;
+        self
+    }
+    ///Sets the raw value of [`Self::persistent`]
+    pub fn set_persistent(&mut self, value: bool) -> &mut Self {
+        self.persistent = value as u8 as u32;
+        self
+    }
 }

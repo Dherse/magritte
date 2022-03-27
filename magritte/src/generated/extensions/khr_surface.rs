@@ -279,7 +279,7 @@ impl PresentModeKHR {
 ///This extension defines enums for [`ColorSpaceKHR`] that correspond to
 ///the following color spaces:The transfer functions are described in the “Transfer Functions”
 /// chapter
-///of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).Except Display-P3 OETF, which is:<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:3.30003em;vertical-align:-1.400015em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.900015em;" class="vlist"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.400015em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord"></span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">=</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">×</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9540200000000001em;"><span style="top:-3.363em;margin-right:0.05em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.8443142857142858em;" class="vlist"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">.</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span style="border-bottom-width:0.049em;" class="frac-line mtight"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.344em;" class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">−</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span><span class="mord">.</span><span class="mord">9</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord mathdefault">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.19em;" class="vlist"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.400015em;"><span></span></span></span></span></span></span></span></span></span></span>where L is the linear value of a color component and E is the
+///of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).Except Display-P3 OETF, which is:<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span style="height:3.30003em;vertical-align:-1.400015em;" class="strut"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span style="height:3.75em;" class="pstrut"></span><span class="mord"><span style="margin-right:0.05764em;" class="mord mathdefault">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.400015em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord"></span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9540200000000001em;"><span style="top:-3.363em;margin-right:0.05em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443142857142858em;"><span style="top:-2.656em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">.</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span style="border-bottom-width:0.049em;" class="frac-line mtight"></span></span><span style="top:-3.384em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.344em;" class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">−</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span><span class="mord">.</span><span class="mord">9</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.400015em;"><span></span></span></span></span></span></span></span></span></span></span>where L is the linear value of a color component and E is the
 ///encoded value (as stored in the image in memory).
 ///# Related
 /// - [`VK_KHR_surface`]
@@ -482,7 +482,7 @@ impl ColorSpaceKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -552,6 +552,190 @@ pub struct SurfaceCapabilitiesKHR {
     ///Implementations **may** support additional usages.
     supported_usage_flags: ImageUsageFlags,
 }
+impl Default for SurfaceCapabilitiesKHR {
+    fn default() -> Self {
+        Self {
+            min_image_count: 0,
+            max_image_count: 0,
+            current_extent: Default::default(),
+            min_image_extent: Default::default(),
+            max_image_extent: Default::default(),
+            max_image_array_layers: 0,
+            supported_transforms: Default::default(),
+            current_transform: Default::default(),
+            supported_composite_alpha: Default::default(),
+            supported_usage_flags: Default::default(),
+        }
+    }
+}
+impl SurfaceCapabilitiesKHR {
+    ///Gets the raw value of [`Self::min_image_count`]
+    pub fn min_image_count_raw(&self) -> u32 {
+        self.min_image_count
+    }
+    ///Gets the raw value of [`Self::max_image_count`]
+    pub fn max_image_count_raw(&self) -> u32 {
+        self.max_image_count
+    }
+    ///Gets the raw value of [`Self::max_image_array_layers`]
+    pub fn max_image_array_layers_raw(&self) -> u32 {
+        self.max_image_array_layers
+    }
+    ///Sets the raw value of [`Self::min_image_count`]
+    pub fn set_min_image_count_raw(&mut self, value: u32) -> &mut Self {
+        self.min_image_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_image_count`]
+    pub fn set_max_image_count_raw(&mut self, value: u32) -> &mut Self {
+        self.max_image_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_image_array_layers`]
+    pub fn set_max_image_array_layers_raw(&mut self, value: u32) -> &mut Self {
+        self.max_image_array_layers = value;
+        self
+    }
+    ///Gets the value of [`Self::min_image_count`]
+    pub fn min_image_count(&self) -> u32 {
+        self.min_image_count
+    }
+    ///Gets the value of [`Self::max_image_count`]
+    pub fn max_image_count(&self) -> u32 {
+        self.max_image_count
+    }
+    ///Gets the value of [`Self::current_extent`]
+    pub fn current_extent(&self) -> Extent2D {
+        self.current_extent
+    }
+    ///Gets the value of [`Self::min_image_extent`]
+    pub fn min_image_extent(&self) -> Extent2D {
+        self.min_image_extent
+    }
+    ///Gets the value of [`Self::max_image_extent`]
+    pub fn max_image_extent(&self) -> Extent2D {
+        self.max_image_extent
+    }
+    ///Gets the value of [`Self::max_image_array_layers`]
+    pub fn max_image_array_layers(&self) -> u32 {
+        self.max_image_array_layers
+    }
+    ///Gets the value of [`Self::supported_transforms`]
+    pub fn supported_transforms(&self) -> SurfaceTransformFlagsKHR {
+        self.supported_transforms
+    }
+    ///Gets the value of [`Self::current_transform`]
+    pub fn current_transform(&self) -> SurfaceTransformFlagBitsKHR {
+        self.current_transform
+    }
+    ///Gets the value of [`Self::supported_composite_alpha`]
+    pub fn supported_composite_alpha(&self) -> CompositeAlphaFlagsKHR {
+        self.supported_composite_alpha
+    }
+    ///Gets the value of [`Self::supported_usage_flags`]
+    pub fn supported_usage_flags(&self) -> ImageUsageFlags {
+        self.supported_usage_flags
+    }
+    ///Gets a mutable reference to the value of [`Self::min_image_count`]
+    pub fn min_image_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_image_count`]
+    pub fn max_image_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::current_extent`]
+    pub fn current_extent_mut(&mut self) -> &mut Extent2D {
+        &mut self.current_extent
+    }
+    ///Gets a mutable reference to the value of [`Self::min_image_extent`]
+    pub fn min_image_extent_mut(&mut self) -> &mut Extent2D {
+        &mut self.min_image_extent
+    }
+    ///Gets a mutable reference to the value of [`Self::max_image_extent`]
+    pub fn max_image_extent_mut(&mut self) -> &mut Extent2D {
+        &mut self.max_image_extent
+    }
+    ///Gets a mutable reference to the value of [`Self::max_image_array_layers`]
+    pub fn max_image_array_layers_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::supported_transforms`]
+    pub fn supported_transforms_mut(&mut self) -> &mut SurfaceTransformFlagsKHR {
+        &mut self.supported_transforms
+    }
+    ///Gets a mutable reference to the value of [`Self::current_transform`]
+    pub fn current_transform_mut(&mut self) -> &mut SurfaceTransformFlagBitsKHR {
+        &mut self.current_transform
+    }
+    ///Gets a mutable reference to the value of [`Self::supported_composite_alpha`]
+    pub fn supported_composite_alpha_mut(&mut self) -> &mut CompositeAlphaFlagsKHR {
+        &mut self.supported_composite_alpha
+    }
+    ///Gets a mutable reference to the value of [`Self::supported_usage_flags`]
+    pub fn supported_usage_flags_mut(&mut self) -> &mut ImageUsageFlags {
+        &mut self.supported_usage_flags
+    }
+    ///Sets the raw value of [`Self::min_image_count`]
+    pub fn set_min_image_count(&mut self, value: u32) -> &mut Self {
+        self.min_image_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_image_count`]
+    pub fn set_max_image_count(&mut self, value: u32) -> &mut Self {
+        self.max_image_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::current_extent`]
+    pub fn set_current_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.current_extent = value;
+        self
+    }
+    ///Sets the raw value of [`Self::min_image_extent`]
+    pub fn set_min_image_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.min_image_extent = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_image_extent`]
+    pub fn set_max_image_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.max_image_extent = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_image_array_layers`]
+    pub fn set_max_image_array_layers(&mut self, value: u32) -> &mut Self {
+        self.max_image_array_layers = value;
+        self
+    }
+    ///Sets the raw value of [`Self::supported_transforms`]
+    pub fn set_supported_transforms(
+        &mut self,
+        value: crate::extensions::khr_display::SurfaceTransformFlagsKHR,
+    ) -> &mut Self {
+        self.supported_transforms = value;
+        self
+    }
+    ///Sets the raw value of [`Self::current_transform`]
+    pub fn set_current_transform(
+        &mut self,
+        value: crate::extensions::khr_surface::SurfaceTransformFlagBitsKHR,
+    ) -> &mut Self {
+        self.current_transform = value;
+        self
+    }
+    ///Sets the raw value of [`Self::supported_composite_alpha`]
+    pub fn set_supported_composite_alpha(
+        &mut self,
+        value: crate::extensions::khr_surface::CompositeAlphaFlagsKHR,
+    ) -> &mut Self {
+        self.supported_composite_alpha = value;
+        self
+    }
+    ///Sets the raw value of [`Self::supported_usage_flags`]
+    pub fn set_supported_usage_flags(&mut self, value: crate::vulkan1_0::ImageUsageFlags) -> &mut Self {
+        self.supported_usage_flags = value;
+        self
+    }
+}
 ///[VkSurfaceFormatKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceFormatKHR.html) - Structure describing a supported swapchain format-color space pair
 ///# C Specifications
 ///The [`SurfaceFormatKHR`] structure is defined as:
@@ -579,7 +763,7 @@ pub struct SurfaceCapabilitiesKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -590,4 +774,40 @@ pub struct SurfaceFormatKHR {
     ///[`color_space`] is a presentation [`ColorSpaceKHR`] that is
     ///compatible with the surface.
     color_space: ColorSpaceKHR,
+}
+impl Default for SurfaceFormatKHR {
+    fn default() -> Self {
+        Self {
+            format: Default::default(),
+            color_space: Default::default(),
+        }
+    }
+}
+impl SurfaceFormatKHR {
+    ///Gets the value of [`Self::format`]
+    pub fn format(&self) -> Format {
+        self.format
+    }
+    ///Gets the value of [`Self::color_space`]
+    pub fn color_space(&self) -> ColorSpaceKHR {
+        self.color_space
+    }
+    ///Gets a mutable reference to the value of [`Self::format`]
+    pub fn format_mut(&mut self) -> &mut Format {
+        &mut self.format
+    }
+    ///Gets a mutable reference to the value of [`Self::color_space`]
+    pub fn color_space_mut(&mut self) -> &mut ColorSpaceKHR {
+        &mut self.color_space
+    }
+    ///Sets the raw value of [`Self::format`]
+    pub fn set_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+        self.format = value;
+        self
+    }
+    ///Sets the raw value of [`Self::color_space`]
+    pub fn set_color_space(&mut self, value: crate::extensions::khr_surface::ColorSpaceKHR) -> &mut Self {
+        self.color_space = value;
+        self
+    }
 }

@@ -80,9 +80,8 @@ pub const KHR_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug)]
+#[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ImportMemoryWin32HandleInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -90,7 +89,7 @@ pub struct ImportMemoryWin32HandleInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value
     ///specifying the type of [`handle`] or [`name`].
     handle_type: ExternalMemoryHandleTypeFlagBits,
@@ -99,6 +98,111 @@ pub struct ImportMemoryWin32HandleInfoKHR<'lt> {
     ///[`name`] is `NULL` or a null-terminated UTF-16 string naming the
     ///payload to import.
     name: LPCWSTR,
+}
+impl<'lt> Default for ImportMemoryWin32HandleInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            handle_type: Default::default(),
+            handle: Default::default(),
+            name: Default::default(),
+        }
+    }
+}
+impl<'lt> ImportMemoryWin32HandleInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::handle`]
+    pub fn handle_raw(&self) -> &HANDLE {
+        &self.handle
+    }
+    ///Gets the raw value of [`Self::name`]
+    pub fn name_raw(&self) -> &LPCWSTR {
+        &self.name
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::handle`]
+    pub fn set_handle_raw(&mut self, value: HANDLE) -> &mut Self {
+        self.handle = value;
+        self
+    }
+    ///Sets the raw value of [`Self::name`]
+    pub fn set_name_raw(&mut self, value: LPCWSTR) -> &mut Self {
+        self.name = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::handle_type`]
+    pub fn handle_type(&self) -> ExternalMemoryHandleTypeFlagBits {
+        self.handle_type
+    }
+    ///Gets the value of [`Self::handle`]
+    pub fn handle(&self) -> &HANDLE {
+        &self.handle
+    }
+    ///Gets the value of [`Self::name`]
+    pub fn name(&self) -> &LPCWSTR {
+        &self.name
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_type`]
+    pub fn handle_type_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlagBits {
+        &mut self.handle_type
+    }
+    ///Gets a mutable reference to the value of [`Self::handle`]
+    pub fn handle_mut(&mut self) -> &mut HANDLE {
+        &mut self.handle
+    }
+    ///Gets a mutable reference to the value of [`Self::name`]
+    pub fn name_mut(&mut self) -> &mut LPCWSTR {
+        &mut self.name
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_type`]
+    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> &mut Self {
+        self.handle_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::handle`]
+    pub fn set_handle(&mut self, value: crate::native::HANDLE) -> &mut Self {
+        self.handle = value;
+        self
+    }
+    ///Sets the raw value of [`Self::name`]
+    pub fn set_name(&mut self, value: crate::native::LPCWSTR) -> &mut Self {
+        self.name = value;
+        self
+    }
 }
 ///[VkExportMemoryWin32HandleInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExportMemoryWin32HandleInfoKHR.html) - Structure specifying additional attributes of Windows handles exported from a memory
 ///# C Specifications
@@ -119,8 +223,8 @@ pub struct ImportMemoryWin32HandleInfoKHR<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`p_attributes`] is a pointer to a Windows [`SECURITY_ATTRIBUTES`] structure specifying
-///   security attributes of the handle.
+/// - [`attributes`] is a pointer to a Windows [`SECURITY_ATTRIBUTES`] structure specifying security
+///   attributes of the handle.
 /// - [`dw_access`] is a [`DWORD`] specifying access rights of the handle.
 /// - [`name`] is a null-terminated UTF-16 string to associate with the payload referenced by NT
 ///   handles exported from the created memory.
@@ -130,7 +234,7 @@ pub struct ImportMemoryWin32HandleInfoKHR<'lt> {
 /// chain of
 ///[`MemoryAllocateInfo`] with a Windows `handleType`, but either
 ///[`ExportMemoryWin32HandleInfoKHR`] is not included in the [`p_next`]
-///chain, or if it is but [`p_attributes`] is set to `NULL`, default security
+///chain, or if it is but [`attributes`] is set to `NULL`, default security
 ///descriptor values will be used, and child processes created by the
 ///application will not inherit the handle, as described in the MSDN
 ///documentation for “Synchronization Object Security and Access Rights”<sup>1</sup>.
@@ -146,7 +250,7 @@ pub struct ImportMemoryWin32HandleInfoKHR<'lt> {
 ///   structure **must** not be included in the [`p_next`] chain of [`MemoryAllocateInfo`]
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR`
-/// - If [`p_attributes`] is not `NULL`, [`p_attributes`]**must** be a valid pointer to a valid
+/// - If [`attributes`] is not `NULL`, [`attributes`]**must** be a valid pointer to a valid
 ///   [`SECURITY_ATTRIBUTES`] value
 ///# Related
 /// - [`VK_KHR_external_memory_win32`]
@@ -159,9 +263,8 @@ pub struct ImportMemoryWin32HandleInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug)]
+#[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ExportMemoryWin32HandleInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -169,15 +272,119 @@ pub struct ExportMemoryWin32HandleInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
-    ///[`p_attributes`] is a pointer to a Windows [`SECURITY_ATTRIBUTES`]
+    p_next: *const BaseInStructure<'lt>,
+    ///[`attributes`] is a pointer to a Windows [`SECURITY_ATTRIBUTES`]
     ///structure specifying security attributes of the handle.
-    p_attributes: *mut SECURITY_ATTRIBUTES,
+    attributes: *const SECURITY_ATTRIBUTES,
     ///[`dw_access`] is a [`DWORD`] specifying access rights of the handle.
     dw_access: DWORD,
     ///[`name`] is a null-terminated UTF-16 string to associate with the
     ///payload referenced by NT handles exported from the created memory.
     name: LPCWSTR,
+}
+impl<'lt> Default for ExportMemoryWin32HandleInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            attributes: std::ptr::null(),
+            dw_access: Default::default(),
+            name: Default::default(),
+        }
+    }
+}
+impl<'lt> ExportMemoryWin32HandleInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::dw_access`]
+    pub fn dw_access_raw(&self) -> &DWORD {
+        &self.dw_access
+    }
+    ///Gets the raw value of [`Self::name`]
+    pub fn name_raw(&self) -> &LPCWSTR {
+        &self.name
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::dw_access`]
+    pub fn set_dw_access_raw(&mut self, value: DWORD) -> &mut Self {
+        self.dw_access = value;
+        self
+    }
+    ///Sets the raw value of [`Self::name`]
+    pub fn set_name_raw(&mut self, value: LPCWSTR) -> &mut Self {
+        self.name = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::attributes`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn attributes(&self) -> &SECURITY_ATTRIBUTES {
+        &*self.attributes
+    }
+    ///Gets the value of [`Self::dw_access`]
+    pub fn dw_access(&self) -> &DWORD {
+        &self.dw_access
+    }
+    ///Gets the value of [`Self::name`]
+    pub fn name(&self) -> &LPCWSTR {
+        &self.name
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::dw_access`]
+    pub fn dw_access_mut(&mut self) -> &mut DWORD {
+        &mut self.dw_access
+    }
+    ///Gets a mutable reference to the value of [`Self::name`]
+    pub fn name_mut(&mut self) -> &mut LPCWSTR {
+        &mut self.name
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::attributes`]
+    pub fn set_attributes(&mut self, value: &'lt crate::native::SECURITY_ATTRIBUTES) -> &mut Self {
+        self.attributes = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::dw_access`]
+    pub fn set_dw_access(&mut self, value: crate::native::DWORD) -> &mut Self {
+        self.dw_access = value;
+        self
+    }
+    ///Sets the raw value of [`Self::name`]
+    pub fn set_name(&mut self, value: crate::native::LPCWSTR) -> &mut Self {
+        self.name = value;
+        self
+    }
 }
 ///[VkMemoryWin32HandlePropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryWin32HandlePropertiesKHR.html) - Properties of External Memory Windows Handles
 ///# C Specifications
@@ -211,9 +418,8 @@ pub struct ExportMemoryWin32HandleInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct MemoryWin32HandlePropertiesKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -221,10 +427,85 @@ pub struct MemoryWin32HandlePropertiesKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`memory_type_bits`] is a bitmask containing one bit set for every
     ///memory type which the specified windows handle **can** be imported as.
     memory_type_bits: u32,
+}
+impl<'lt> Default for MemoryWin32HandlePropertiesKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            memory_type_bits: 0,
+        }
+    }
+}
+impl<'lt> MemoryWin32HandlePropertiesKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::memory_type_bits`]
+    pub fn memory_type_bits_raw(&self) -> u32 {
+        self.memory_type_bits
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::memory_type_bits`]
+    pub fn set_memory_type_bits_raw(&mut self, value: u32) -> &mut Self {
+        self.memory_type_bits = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::memory_type_bits`]
+    pub fn memory_type_bits(&self) -> u32 {
+        self.memory_type_bits
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::memory_type_bits`]
+    pub fn memory_type_bits_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::memory_type_bits`]
+    pub fn set_memory_type_bits(&mut self, value: u32) -> &mut Self {
+        self.memory_type_bits = value;
+        self
+    }
 }
 ///[VkMemoryGetWin32HandleInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryGetWin32HandleInfoKHR.html) - Structure describing a Win32 handle semaphore export operation
 ///# C Specifications
@@ -273,9 +554,8 @@ pub struct MemoryWin32HandlePropertiesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct MemoryGetWin32HandleInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -283,11 +563,84 @@ pub struct MemoryGetWin32HandleInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`memory`] is the memory object from which the handle will be
     ///exported.
     memory: DeviceMemory,
     ///[`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value
     ///specifying the type of handle requested.
     handle_type: ExternalMemoryHandleTypeFlagBits,
+}
+impl<'lt> Default for MemoryGetWin32HandleInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            memory: Default::default(),
+            handle_type: Default::default(),
+        }
+    }
+}
+impl<'lt> MemoryGetWin32HandleInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::memory`]
+    pub fn memory(&self) -> DeviceMemory {
+        self.memory
+    }
+    ///Gets the value of [`Self::handle_type`]
+    pub fn handle_type(&self) -> ExternalMemoryHandleTypeFlagBits {
+        self.handle_type
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::memory`]
+    pub fn memory_mut(&mut self) -> &mut DeviceMemory {
+        &mut self.memory
+    }
+    ///Gets a mutable reference to the value of [`Self::handle_type`]
+    pub fn handle_type_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlagBits {
+        &mut self.handle_type
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::memory`]
+    pub fn set_memory(&mut self, value: crate::vulkan1_0::DeviceMemory) -> &mut Self {
+        self.memory = value;
+        self
+    }
+    ///Sets the raw value of [`Self::handle_type`]
+    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> &mut Self {
+        self.handle_type = value;
+        self
+    }
 }

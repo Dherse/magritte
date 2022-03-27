@@ -235,55 +235,55 @@ impl ShaderGroupShaderKHR {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`type_`] is the type of hit group specified in this structure.
 /// - [`general_shader`] is the index of the ray generation, miss, or callable shader from
-///   [`RayTracingPipelineCreateInfoKHR::p_stages`] in the group if the shader group has [`type_`]
-///   of `VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_KHR`, and [`SHADER_UNUSED_KHR`] otherwise.
+///   [`RayTracingPipelineCreateInfoKHR::stages`] in the group if the shader group has [`type_`] of
+///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_KHR`, and [`SHADER_UNUSED_KHR`] otherwise.
 /// - [`closest_hit_shader`] is the optional index of the closest hit shader from
-///   [`RayTracingPipelineCreateInfoKHR::p_stages`] in the group if the shader group has [`type_`]
-///   of `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR` or
+///   [`RayTracingPipelineCreateInfoKHR::stages`] in the group if the shader group has [`type_`] of
+///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR` or
 ///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR`, and [`SHADER_UNUSED_KHR`]
 ///   otherwise.
 /// - [`any_hit_shader`] is the optional index of the any-hit shader from
-///   [`RayTracingPipelineCreateInfoKHR::p_stages`] in the group if the shader group has [`type_`]
-///   of `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR` or
+///   [`RayTracingPipelineCreateInfoKHR::stages`] in the group if the shader group has [`type_`] of
+///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR` or
 ///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR`, and [`SHADER_UNUSED_KHR`]
 ///   otherwise.
 /// - [`intersection_shader`] is the index of the intersection shader from
-///   [`RayTracingPipelineCreateInfoKHR::p_stages`] in the group if the shader group has [`type_`]
-///   of `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR`, and [`SHADER_UNUSED_KHR`]
+///   [`RayTracingPipelineCreateInfoKHR::stages`] in the group if the shader group has [`type_`] of
+///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR`, and [`SHADER_UNUSED_KHR`]
 ///   otherwise.
-/// - [`p_shader_group_capture_replay_handle`] is `NULL` or a pointer to replay information for this
+/// - [`shader_group_capture_replay_handle`] is `NULL` or a pointer to replay information for this
 ///   shader group. Ignored if
 ///   [`PhysicalDeviceRayTracingPipelineFeaturesKHR::
 ///   ray_tracing_pipeline_shader_group_handle_capture_replay`] is [`FALSE`].
 ///# Description
 ///Valid Usage
 /// - If [`type_`] is `VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_KHR` then [`general_shader`]**must**
-///   be a valid index into [`RayTracingPipelineCreateInfoKHR::p_stages`] referring to a shader of
+///   be a valid index into [`RayTracingPipelineCreateInfoKHR::stages`] referring to a shader of
 ///   `VK_SHADER_STAGE_RAYGEN_BIT_KHR`, `VK_SHADER_STAGE_MISS_BIT_KHR`, or
 ///   `VK_SHADER_STAGE_CALLABLE_BIT_KHR`
 /// - If [`type_`] is `VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_KHR` then [`closest_hit_shader`],
 ///   [`any_hit_shader`], and [`intersection_shader`]**must** be [`SHADER_UNUSED_KHR`]
 /// - If [`type_`] is `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR` then
 ///   [`intersection_shader`]**must** be a valid index into
-///   [`RayTracingPipelineCreateInfoKHR::p_stages`] referring to a shader of
+///   [`RayTracingPipelineCreateInfoKHR::stages`] referring to a shader of
 ///   `VK_SHADER_STAGE_INTERSECTION_BIT_KHR`
 /// - If [`type_`] is `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR` then
 ///   [`intersection_shader`]**must** be [`SHADER_UNUSED_KHR`]
 /// - [`closest_hit_shader`]**must** be either [`SHADER_UNUSED_KHR`] or a valid index into
-///   [`RayTracingPipelineCreateInfoKHR::p_stages`] referring to a shader of
+///   [`RayTracingPipelineCreateInfoKHR::stages`] referring to a shader of
 ///   `VK_SHADER_STAGE_CLOSEST_HIT_BIT_KHR`
 /// - [`any_hit_shader`]**must** be either [`SHADER_UNUSED_KHR`] or a valid index into
-///   [`RayTracingPipelineCreateInfoKHR::p_stages`] referring to a shader of
+///   [`RayTracingPipelineCreateInfoKHR::stages`] referring to a shader of
 ///   `VK_SHADER_STAGE_ANY_HIT_BIT_KHR`
 /// - If [`PhysicalDeviceRayTracingPipelineFeaturesKHR::
 ///   ray_tracing_pipeline_shader_group_handle_capture_replay_mixed`] is [`FALSE`] then
-///   [`p_shader_group_capture_replay_handle`]**must** not be provided if it has not been provided
-///   on a previous call to ray tracing pipeline creation
+///   [`shader_group_capture_replay_handle`]**must** not be provided if it has not been provided on
+///   a previous call to ray tracing pipeline creation
 /// - If [`PhysicalDeviceRayTracingPipelineFeaturesKHR::
 ///   ray_tracing_pipeline_shader_group_handle_capture_replay_mixed`] is [`FALSE`] then the caller
 ///   **must** guarantee that no ray tracing pipeline creation commands with
-///   [`p_shader_group_capture_replay_handle`] provided execute simultaneously with ray tracing
-///   pipeline creation commands without [`p_shader_group_capture_replay_handle`] provided
+///   [`shader_group_capture_replay_handle`] provided execute simultaneously with ray tracing
+///   pipeline creation commands without [`shader_group_capture_replay_handle`] provided
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_KHR`
 /// - [`p_next`]**must** be `NULL`
@@ -301,9 +301,8 @@ impl ShaderGroupShaderKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct RayTracingShaderGroupCreateInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -311,7 +310,7 @@ pub struct RayTracingShaderGroupCreateInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`type_`] is the type of hit group specified in this structure.
     type_: RayTracingShaderGroupTypeKHR,
     ///[`general_shader`] is the index of the ray generation, miss, or
@@ -341,12 +340,188 @@ pub struct RayTracingShaderGroupCreateInfoKHR<'lt> {
     ///`VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR`, and
     ///[`SHADER_UNUSED_KHR`] otherwise.
     intersection_shader: u32,
-    ///[`p_shader_group_capture_replay_handle`] is `NULL` or a pointer to replay
+    ///[`shader_group_capture_replay_handle`] is `NULL` or a pointer to replay
     ///information for this shader group.
     ///Ignored if
     ///[`PhysicalDeviceRayTracingPipelineFeaturesKHR`]::`rayTracingPipelineShaderGroupHandleCaptureReplay`
     ///is [`FALSE`].
-    p_shader_group_capture_replay_handle: *mut c_void,
+    shader_group_capture_replay_handle: *const c_void,
+}
+impl<'lt> Default for RayTracingShaderGroupCreateInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            type_: Default::default(),
+            general_shader: 0,
+            closest_hit_shader: 0,
+            any_hit_shader: 0,
+            intersection_shader: 0,
+            shader_group_capture_replay_handle: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> RayTracingShaderGroupCreateInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::general_shader`]
+    pub fn general_shader_raw(&self) -> u32 {
+        self.general_shader
+    }
+    ///Gets the raw value of [`Self::closest_hit_shader`]
+    pub fn closest_hit_shader_raw(&self) -> u32 {
+        self.closest_hit_shader
+    }
+    ///Gets the raw value of [`Self::any_hit_shader`]
+    pub fn any_hit_shader_raw(&self) -> u32 {
+        self.any_hit_shader
+    }
+    ///Gets the raw value of [`Self::intersection_shader`]
+    pub fn intersection_shader_raw(&self) -> u32 {
+        self.intersection_shader
+    }
+    ///Gets the raw value of [`Self::shader_group_capture_replay_handle`]
+    pub fn shader_group_capture_replay_handle_raw(&self) -> *const c_void {
+        self.shader_group_capture_replay_handle
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::general_shader`]
+    pub fn set_general_shader_raw(&mut self, value: u32) -> &mut Self {
+        self.general_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::closest_hit_shader`]
+    pub fn set_closest_hit_shader_raw(&mut self, value: u32) -> &mut Self {
+        self.closest_hit_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::any_hit_shader`]
+    pub fn set_any_hit_shader_raw(&mut self, value: u32) -> &mut Self {
+        self.any_hit_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::intersection_shader`]
+    pub fn set_intersection_shader_raw(&mut self, value: u32) -> &mut Self {
+        self.intersection_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_group_capture_replay_handle`]
+    pub fn set_shader_group_capture_replay_handle_raw(&mut self, value: *const c_void) -> &mut Self {
+        self.shader_group_capture_replay_handle = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::type_`]
+    pub fn type_(&self) -> RayTracingShaderGroupTypeKHR {
+        self.type_
+    }
+    ///Gets the value of [`Self::general_shader`]
+    pub fn general_shader(&self) -> u32 {
+        self.general_shader
+    }
+    ///Gets the value of [`Self::closest_hit_shader`]
+    pub fn closest_hit_shader(&self) -> u32 {
+        self.closest_hit_shader
+    }
+    ///Gets the value of [`Self::any_hit_shader`]
+    pub fn any_hit_shader(&self) -> u32 {
+        self.any_hit_shader
+    }
+    ///Gets the value of [`Self::intersection_shader`]
+    pub fn intersection_shader(&self) -> u32 {
+        self.intersection_shader
+    }
+    ///Gets the value of [`Self::shader_group_capture_replay_handle`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn shader_group_capture_replay_handle(&self) -> &c_void {
+        &*self.shader_group_capture_replay_handle
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::type_`]
+    pub fn type__mut(&mut self) -> &mut RayTracingShaderGroupTypeKHR {
+        &mut self.type_
+    }
+    ///Gets a mutable reference to the value of [`Self::general_shader`]
+    pub fn general_shader_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::closest_hit_shader`]
+    pub fn closest_hit_shader_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::any_hit_shader`]
+    pub fn any_hit_shader_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::intersection_shader`]
+    pub fn intersection_shader_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::type_`]
+    pub fn set_type_(
+        &mut self,
+        value: crate::extensions::khr_ray_tracing_pipeline::RayTracingShaderGroupTypeKHR,
+    ) -> &mut Self {
+        self.type_ = value;
+        self
+    }
+    ///Sets the raw value of [`Self::general_shader`]
+    pub fn set_general_shader(&mut self, value: u32) -> &mut Self {
+        self.general_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::closest_hit_shader`]
+    pub fn set_closest_hit_shader(&mut self, value: u32) -> &mut Self {
+        self.closest_hit_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::any_hit_shader`]
+    pub fn set_any_hit_shader(&mut self, value: u32) -> &mut Self {
+        self.any_hit_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::intersection_shader`]
+    pub fn set_intersection_shader(&mut self, value: u32) -> &mut Self {
+        self.intersection_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_group_capture_replay_handle`]
+    pub fn set_shader_group_capture_replay_handle(&mut self, value: &'lt std::ffi::c_void) -> &mut Self {
+        self.shader_group_capture_replay_handle = value as *const _;
+        self
+    }
 }
 ///[VkRayTracingPipelineCreateInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRayTracingPipelineCreateInfoKHR.html) - Structure specifying parameters of a newly created ray tracing pipeline
 ///# C Specifications
@@ -375,23 +550,23 @@ pub struct RayTracingShaderGroupCreateInfoKHR<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`PipelineCreateFlagBits`] specifying how the pipeline will be
 ///   generated.
-/// - [`stage_count`] is the number of entries in the [`p_stages`] array.
-/// - [`p_stages`] is a pointer to an array of [`stage_count`][`PipelineShaderStageCreateInfo`]
+/// - [`stage_count`] is the number of entries in the [`stages`] array.
+/// - [`stages`] is a pointer to an array of [`stage_count`][`PipelineShaderStageCreateInfo`]
 ///   structures describing the set of the shader stages to be included in the ray tracing pipeline.
-/// - [`group_count`] is the number of entries in the [`p_groups`] array.
-/// - [`p_groups`] is a pointer to an array of [`group_count`][`RayTracingShaderGroupCreateInfoKHR`]
+/// - [`group_count`] is the number of entries in the [`groups`] array.
+/// - [`groups`] is a pointer to an array of [`group_count`][`RayTracingShaderGroupCreateInfoKHR`]
 ///   structures describing the set of the shader stages to be included in each shader group in the
 ///   ray tracing pipeline.
 /// - [`max_pipeline_ray_recursion_depth`] is the [maximum recursion depth](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-tracing-recursion-depth)
 ///   of shaders executed by this pipeline.
-/// - [`p_library_info`] is a pointer to a [`PipelineLibraryCreateInfoKHR`] structure defining
+/// - [`library_info`] is a pointer to a [`PipelineLibraryCreateInfoKHR`] structure defining
 ///   pipeline libraries to include.
-/// - [`p_library_interface`] is a pointer to a [`RayTracingPipelineInterfaceCreateInfoKHR`]
-///   structure defining additional information when using pipeline libraries.
-/// - [`p_dynamic_state`] is a pointer to a [`PipelineDynamicStateCreateInfo`] structure, and is
-///   used to indicate which properties of the pipeline state object are dynamic and **can** be
-///   changed independently of the pipeline state. This **can** be `NULL`, which means no state in
-///   the pipeline is considered dynamic.
+/// - [`library_interface`] is a pointer to a [`RayTracingPipelineInterfaceCreateInfoKHR`] structure
+///   defining additional information when using pipeline libraries.
+/// - [`dynamic_state`] is a pointer to a [`PipelineDynamicStateCreateInfo`] structure, and is used
+///   to indicate which properties of the pipeline state object are dynamic and **can** be changed
+///   independently of the pipeline state. This **can** be `NULL`, which means no state in the
+///   pipeline is considered dynamic.
 /// - [`layout`] is the description of binding locations used by both the pipeline and descriptor
 ///   sets used with the pipeline.
 /// - [`base_pipeline_handle`] is a pipeline to derive from.
@@ -405,14 +580,14 @@ pub struct RayTracingShaderGroupCreateInfoKHR<'lt> {
 ///pipeline directly.
 ///Instead, pipeline libraries define common shaders and shader groups which
 ///**can** be included in future pipeline creation.If pipeline libraries are included in
-/// [`p_library_info`], shaders defined in
+/// [`library_info`], shaders defined in
 ///those libraries are treated as if they were defined as additional entries in
-///[`p_stages`], appended in the order they appear in the `pLibraries`
-///array and in the [`p_stages`] array when those libraries were defined.When referencing shader
+///[`stages`], appended in the order they appear in the `pLibraries`
+///array and in the [`stages`] array when those libraries were defined.When referencing shader
 /// groups in order to obtain a shader group handle,
 ///groups defined in those libraries are treated as if they were defined as
-///additional entries in [`p_groups`], appended in the order they appear in
-///the `pLibraries` array and in the [`p_groups`] array when those
+///additional entries in [`groups`], appended in the order they appear in
+///the `pLibraries` array and in the [`groups`] array when those
 ///libraries were defined.
 ///The shaders these groups reference are set when the pipeline library is
 ///created, referencing those specified in the pipeline library, not in the
@@ -432,9 +607,9 @@ pub struct RayTracingShaderGroupCreateInfoKHR<'lt> {
 /// - If [`flags`] contains the `VK_PIPELINE_CREATE_DERIVATIVE_BIT` flag, and
 ///   [`base_pipeline_handle`] is not [`crate::utils::Handle::null`],
 ///   [`base_pipeline_index`]**must** be `-1`
-/// -    The shader code for the entry points identified by [`p_stages`], and the rest of the state identified by this structure **must** adhere to the pipeline linking rules described in the [Shader Interfaces](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#interfaces) chapter
+/// -    The shader code for the entry points identified by [`stages`], and the rest of the state identified by this structure **must** adhere to the pipeline linking rules described in the [Shader Interfaces](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#interfaces) chapter
 /// - [`layout`]**must** be [consistent](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#descriptorsets-pipelinelayout-consistency)
-///   with all shaders specified in [`p_stages`]
+///   with all shaders specified in [`stages`]
 /// - The number of resources in [`layout`] accessible to each shader stage that is used by the
 ///   pipeline **must** be less than or equal to [`PhysicalDeviceLimits::max_per_stage_resources`]
 /// - [`flags`]**must** not include `VK_PIPELINE_CREATE_INDIRECT_BINDABLE_BIT_NV`
@@ -443,22 +618,21 @@ pub struct RayTracingShaderGroupCreateInfoKHR<'lt> {
 ///   `VK_PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT` or
 ///   `VK_PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT`
 /// - If [`flags`] does not include `VK_PIPELINE_CREATE_LIBRARY_BIT_KHR`, the `stage` member of at
-///   least one element of [`p_stages`], including those implicitly added by [`p_library_info`],
+///   least one element of [`stages`], including those implicitly added by [`library_info`],
 ///   **must** be `VK_SHADER_STAGE_RAYGEN_BIT_KHR`
 /// - [`max_pipeline_ray_recursion_depth`]**must** be less than or equal to
 ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::max_ray_recursion_depth`]
-/// - If [`flags`] includes `VK_PIPELINE_CREATE_LIBRARY_BIT_KHR`, [`p_library_interface`]**must**
-///   not be `NULL`
-/// - If [`p_library_info`] is not `NULL` and its `libraryCount` member is greater than `0`, its
-///   [`p_library_interface`] member **must** not be `NULL`
+/// - If [`flags`] includes `VK_PIPELINE_CREATE_LIBRARY_BIT_KHR`, [`library_interface`]**must** not
+///   be `NULL`
+/// - If [`library_info`] is not `NULL` and its `libraryCount` member is greater than `0`, its
+///   [`library_interface`] member **must** not be `NULL`
 /// - Each element of `pLibraryInfo->pLibraries`**must** have been created with the value of
 ///   [`max_pipeline_ray_recursion_depth`] equal to that in this pipeline
-/// - If [`p_library_info`] is not `NULL`, each element of its `pLibraries` member **must** have
-///   been created with a [`layout`] that is compatible with the [`layout`] in this pipeline
-/// - If [`p_library_info`] is not `NULL`, each element of its `pLibraries` member **must** have
-///   been created with values of the `maxPipelineRayPayloadSize` and
-///   `maxPipelineRayHitAttributeSize` members of [`p_library_interface`] equal to those in this
-///   pipeline
+/// - If [`library_info`] is not `NULL`, each element of its `pLibraries` member **must** have been
+///   created with a [`layout`] that is compatible with the [`layout`] in this pipeline
+/// - If [`library_info`] is not `NULL`, each element of its `pLibraries` member **must** have been
+///   created with values of the `maxPipelineRayPayloadSize` and `maxPipelineRayHitAttributeSize`
+///   members of [`library_interface`] equal to those in this pipeline
 /// - If [`flags`] includes
 ///   `VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR`, each element of
 ///   `pLibraryInfo->pLibraries`**must** have been created with the
@@ -481,15 +655,15 @@ pub struct RayTracingShaderGroupCreateInfoKHR<'lt> {
 /// - If [`flags`] includes `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR`, each
 ///   element of `pLibraryInfo->pLibraries`**must** have been created with the
 ///   `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR` bit set
-/// - If the `[`VK_KHR_pipeline_library`]` extension is not enabled, [`p_library_info`] and
-///   [`p_library_interface`]**must** be `NULL`
+/// - If the `[`VK_KHR_pipeline_library`]` extension is not enabled, [`library_info`] and
+///   [`library_interface`]**must** be `NULL`
 /// - If [`flags`] includes `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR`, for
-///   any element of [`p_groups`] with a `type` of
+///   any element of [`groups`] with a `type` of
 ///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR` or
 ///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR`, the `anyHitShader` of that
 ///   element **must** not be [`SHADER_UNUSED_KHR`]
 /// - If [`flags`] includes `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR`,
-///   for any element of [`p_groups`] with a `type` of
+///   for any element of [`groups`] with a `type` of
 ///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR` or
 ///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR`, the `closestHitShader` of that
 ///   element **must** not be [`SHADER_UNUSED_KHR`]
@@ -504,14 +678,14 @@ pub struct RayTracingShaderGroupCreateInfoKHR<'lt> {
 /// -    If [`flags`] includes `VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR`, [`rayTracingPipelineShaderGroupHandleCaptureReplay`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-rayTracingPipelineShaderGroupHandleCaptureReplay)**must** be enabled
 /// - If [`PhysicalDeviceRayTracingPipelineFeaturesKHR::
 ///   ray_tracing_pipeline_shader_group_handle_capture_replay`] is [`TRUE`] and the
-///   `pShaderGroupCaptureReplayHandle` member of any element of [`p_groups`] is not `NULL`,
+///   `pShaderGroupCaptureReplayHandle` member of any element of [`groups`] is not `NULL`,
 ///   [`flags`]**must** include
 ///   `VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR`
-/// - If [`p_library_info`] is not `NULL` and its `libraryCount` is `0`, [`stage_count`]**must** not
+/// - If [`library_info`] is not `NULL` and its `libraryCount` is `0`, [`stage_count`]**must** not
 ///   be `0`
-/// - If [`p_library_info`] is not `NULL` and its `libraryCount` is `0`, [`group_count`]**must** not
+/// - If [`library_info`] is not `NULL` and its `libraryCount` is `0`, [`group_count`]**must** not
 ///   be `0`
-/// - Any element of the `pDynamicStates` member of [`p_dynamic_state`]**must** be
+/// - Any element of the `pDynamicStates` member of [`dynamic_state`]**must** be
 ///   `VK_DYNAMIC_STATE_RAY_TRACING_PIPELINE_STACK_SIZE_KHR`
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_KHR`
@@ -519,16 +693,16 @@ pub struct RayTracingShaderGroupCreateInfoKHR<'lt> {
 ///   [`PipelineCreationFeedbackCreateInfo`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
 /// - [`flags`]**must** be a valid combination of [`PipelineCreateFlagBits`] values
-/// - If [`stage_count`] is not `0`, [`p_stages`]**must** be a valid pointer to an array of
+/// - If [`stage_count`] is not `0`, [`stages`]**must** be a valid pointer to an array of
 ///   [`stage_count`] valid [`PipelineShaderStageCreateInfo`] structures
-/// - If [`group_count`] is not `0`, [`p_groups`]**must** be a valid pointer to an array of
+/// - If [`group_count`] is not `0`, [`groups`]**must** be a valid pointer to an array of
 ///   [`group_count`] valid [`RayTracingShaderGroupCreateInfoKHR`] structures
-/// - If [`p_library_info`] is not `NULL`, [`p_library_info`]**must** be a valid pointer to a valid
+/// - If [`library_info`] is not `NULL`, [`library_info`]**must** be a valid pointer to a valid
 ///   [`PipelineLibraryCreateInfoKHR`] structure
-/// - If [`p_library_interface`] is not `NULL`, [`p_library_interface`]**must** be a valid pointer
-///   to a valid [`RayTracingPipelineInterfaceCreateInfoKHR`] structure
-/// - If [`p_dynamic_state`] is not `NULL`, [`p_dynamic_state`]**must** be a valid pointer to a
-///   valid [`PipelineDynamicStateCreateInfo`] structure
+/// - If [`library_interface`] is not `NULL`, [`library_interface`]**must** be a valid pointer to a
+///   valid [`RayTracingPipelineInterfaceCreateInfoKHR`] structure
+/// - If [`dynamic_state`] is not `NULL`, [`dynamic_state`]**must** be a valid pointer to a valid
+///   [`PipelineDynamicStateCreateInfo`] structure
 /// - [`layout`]**must** be a valid [`PipelineLayout`] handle
 /// - Both of [`base_pipeline_handle`], and [`layout`] that are valid handles of non-ignored
 ///   parameters **must** have been created, allocated, or retrieved from the same [`Device`]
@@ -552,9 +726,8 @@ pub struct RayTracingShaderGroupCreateInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct RayTracingPipelineCreateInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -562,40 +735,39 @@ pub struct RayTracingPipelineCreateInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`PipelineCreateFlagBits`] specifying
     ///how the pipeline will be generated.
     flags: PipelineCreateFlags,
-    ///[`stage_count`] is the number of entries in the [`p_stages`] array.
+    ///[`stage_count`] is the number of entries in the [`stages`] array.
     stage_count: u32,
-    ///[`p_stages`] is a pointer to an array of [`stage_count`][`PipelineShaderStageCreateInfo`]
+    ///[`stages`] is a pointer to an array of [`stage_count`][`PipelineShaderStageCreateInfo`]
     /// structures describing the set of the shader stages to be included in the ray tracing
     /// pipeline.
-    p_stages: *mut PipelineShaderStageCreateInfo<'lt>,
-    ///[`group_count`] is the number of entries in the [`p_groups`] array.
+    stages: *const PipelineShaderStageCreateInfo<'lt>,
+    ///[`group_count`] is the number of entries in the [`groups`] array.
     group_count: u32,
-    ///[`p_groups`] is a pointer to an array of
-    /// [`group_count`][`RayTracingShaderGroupCreateInfoKHR`] structures describing the set
-    /// of the shader stages to be included in each shader group in the ray
-    ///tracing pipeline.
-    p_groups: *mut RayTracingShaderGroupCreateInfoKHR<'lt>,
+    ///[`groups`] is a pointer to an array of [`group_count`][`RayTracingShaderGroupCreateInfoKHR`]
+    /// structures describing the set of the shader stages to be included in each shader group
+    /// in the ray tracing pipeline.
+    groups: *const RayTracingShaderGroupCreateInfoKHR<'lt>,
     ///[`max_pipeline_ray_recursion_depth`] is the [maximum recursion depth](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-tracing-recursion-depth) of shaders executed by this pipeline.
     max_pipeline_ray_recursion_depth: u32,
-    ///[`p_library_info`] is a pointer to a
+    ///[`library_info`] is a pointer to a
     ///[`PipelineLibraryCreateInfoKHR`] structure defining pipeline
     ///libraries to include.
-    p_library_info: *mut PipelineLibraryCreateInfoKHR<'lt>,
-    ///[`p_library_interface`] is a pointer to a
+    library_info: *const PipelineLibraryCreateInfoKHR<'lt>,
+    ///[`library_interface`] is a pointer to a
     ///[`RayTracingPipelineInterfaceCreateInfoKHR`] structure defining
     ///additional information when using pipeline libraries.
-    p_library_interface: *mut RayTracingPipelineInterfaceCreateInfoKHR<'lt>,
-    ///[`p_dynamic_state`] is a pointer to a
+    library_interface: *const RayTracingPipelineInterfaceCreateInfoKHR<'lt>,
+    ///[`dynamic_state`] is a pointer to a
     ///[`PipelineDynamicStateCreateInfo`] structure, and is used to
     ///indicate which properties of the pipeline state object are dynamic and
     ///**can** be changed independently of the pipeline state.
     ///This **can** be `NULL`, which means no state in the pipeline is considered
     ///dynamic.
-    p_dynamic_state: *mut PipelineDynamicStateCreateInfo<'lt>,
+    dynamic_state: *const PipelineDynamicStateCreateInfo<'lt>,
     ///[`layout`] is the description of binding locations used by both the
     ///pipeline and descriptor sets used with the pipeline.
     layout: PipelineLayout,
@@ -604,6 +776,316 @@ pub struct RayTracingPipelineCreateInfoKHR<'lt> {
     ///[`base_pipeline_index`] is an index into the `pCreateInfos`
     ///parameter to use as a pipeline to derive from.
     base_pipeline_index: i32,
+}
+impl<'lt> Default for RayTracingPipelineCreateInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            flags: Default::default(),
+            stage_count: 0,
+            stages: std::ptr::null(),
+            group_count: 0,
+            groups: std::ptr::null(),
+            max_pipeline_ray_recursion_depth: 0,
+            library_info: std::ptr::null(),
+            library_interface: std::ptr::null(),
+            dynamic_state: std::ptr::null(),
+            layout: Default::default(),
+            base_pipeline_handle: Default::default(),
+            base_pipeline_index: 0,
+        }
+    }
+}
+impl<'lt> RayTracingPipelineCreateInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::stage_count`]
+    pub fn stage_count_raw(&self) -> u32 {
+        self.stage_count
+    }
+    ///Gets the raw value of [`Self::stages`]
+    pub fn stages_raw(&self) -> *const PipelineShaderStageCreateInfo<'lt> {
+        self.stages
+    }
+    ///Gets the raw value of [`Self::group_count`]
+    pub fn group_count_raw(&self) -> u32 {
+        self.group_count
+    }
+    ///Gets the raw value of [`Self::groups`]
+    pub fn groups_raw(&self) -> *const RayTracingShaderGroupCreateInfoKHR<'lt> {
+        self.groups
+    }
+    ///Gets the raw value of [`Self::max_pipeline_ray_recursion_depth`]
+    pub fn max_pipeline_ray_recursion_depth_raw(&self) -> u32 {
+        self.max_pipeline_ray_recursion_depth
+    }
+    ///Gets the raw value of [`Self::library_info`]
+    pub fn library_info_raw(&self) -> *const PipelineLibraryCreateInfoKHR<'lt> {
+        self.library_info
+    }
+    ///Gets the raw value of [`Self::library_interface`]
+    pub fn library_interface_raw(&self) -> *const RayTracingPipelineInterfaceCreateInfoKHR<'lt> {
+        self.library_interface
+    }
+    ///Gets the raw value of [`Self::dynamic_state`]
+    pub fn dynamic_state_raw(&self) -> *const PipelineDynamicStateCreateInfo<'lt> {
+        self.dynamic_state
+    }
+    ///Gets the raw value of [`Self::base_pipeline_index`]
+    pub fn base_pipeline_index_raw(&self) -> i32 {
+        self.base_pipeline_index
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stage_count`]
+    pub fn set_stage_count_raw(&mut self, value: u32) -> &mut Self {
+        self.stage_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stages`]
+    pub fn set_stages_raw(&mut self, value: *const PipelineShaderStageCreateInfo<'lt>) -> &mut Self {
+        self.stages = value;
+        self
+    }
+    ///Sets the raw value of [`Self::group_count`]
+    pub fn set_group_count_raw(&mut self, value: u32) -> &mut Self {
+        self.group_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::groups`]
+    pub fn set_groups_raw(&mut self, value: *const RayTracingShaderGroupCreateInfoKHR<'lt>) -> &mut Self {
+        self.groups = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_pipeline_ray_recursion_depth`]
+    pub fn set_max_pipeline_ray_recursion_depth_raw(&mut self, value: u32) -> &mut Self {
+        self.max_pipeline_ray_recursion_depth = value;
+        self
+    }
+    ///Sets the raw value of [`Self::library_info`]
+    pub fn set_library_info_raw(&mut self, value: *const PipelineLibraryCreateInfoKHR<'lt>) -> &mut Self {
+        self.library_info = value;
+        self
+    }
+    ///Sets the raw value of [`Self::library_interface`]
+    pub fn set_library_interface_raw(
+        &mut self,
+        value: *const RayTracingPipelineInterfaceCreateInfoKHR<'lt>,
+    ) -> &mut Self {
+        self.library_interface = value;
+        self
+    }
+    ///Sets the raw value of [`Self::dynamic_state`]
+    pub fn set_dynamic_state_raw(&mut self, value: *const PipelineDynamicStateCreateInfo<'lt>) -> &mut Self {
+        self.dynamic_state = value;
+        self
+    }
+    ///Sets the raw value of [`Self::base_pipeline_index`]
+    pub fn set_base_pipeline_index_raw(&mut self, value: i32) -> &mut Self {
+        self.base_pipeline_index = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> PipelineCreateFlags {
+        self.flags
+    }
+    ///Gets the value of [`Self::stage_count`]
+    pub fn stage_count(&self) -> u32 {
+        self.stage_count
+    }
+    ///Gets the value of [`Self::stages`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn stages(&self) -> &[PipelineShaderStageCreateInfo<'lt>] {
+        std::slice::from_raw_parts(self.stages, self.stage_count as usize)
+    }
+    ///Gets the value of [`Self::group_count`]
+    pub fn group_count(&self) -> u32 {
+        self.group_count
+    }
+    ///Gets the value of [`Self::groups`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn groups(&self) -> &[RayTracingShaderGroupCreateInfoKHR<'lt>] {
+        std::slice::from_raw_parts(self.groups, self.group_count as usize)
+    }
+    ///Gets the value of [`Self::max_pipeline_ray_recursion_depth`]
+    pub fn max_pipeline_ray_recursion_depth(&self) -> u32 {
+        self.max_pipeline_ray_recursion_depth
+    }
+    ///Gets the value of [`Self::library_info`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn library_info(&self) -> &PipelineLibraryCreateInfoKHR<'lt> {
+        &*self.library_info
+    }
+    ///Gets the value of [`Self::library_interface`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn library_interface(&self) -> &RayTracingPipelineInterfaceCreateInfoKHR<'lt> {
+        &*self.library_interface
+    }
+    ///Gets the value of [`Self::dynamic_state`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn dynamic_state(&self) -> &PipelineDynamicStateCreateInfo<'lt> {
+        &*self.dynamic_state
+    }
+    ///Gets the value of [`Self::layout`]
+    pub fn layout(&self) -> PipelineLayout {
+        self.layout
+    }
+    ///Gets the value of [`Self::base_pipeline_handle`]
+    pub fn base_pipeline_handle(&self) -> Pipeline {
+        self.base_pipeline_handle
+    }
+    ///Gets the value of [`Self::base_pipeline_index`]
+    pub fn base_pipeline_index(&self) -> i32 {
+        self.base_pipeline_index
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut PipelineCreateFlags {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::stage_count`]
+    pub fn stage_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::group_count`]
+    pub fn group_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_pipeline_ray_recursion_depth`]
+    pub fn max_pipeline_ray_recursion_depth_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::layout`]
+    pub fn layout_mut(&mut self) -> &mut PipelineLayout {
+        &mut self.layout
+    }
+    ///Gets a mutable reference to the value of [`Self::base_pipeline_handle`]
+    pub fn base_pipeline_handle_mut(&mut self) -> &mut Pipeline {
+        &mut self.base_pipeline_handle
+    }
+    ///Gets a mutable reference to the value of [`Self::base_pipeline_index`]
+    pub fn base_pipeline_index_mut(&mut self) -> &mut i32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(&mut self, value: crate::vulkan1_0::PipelineCreateFlags) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stage_count`]
+    pub fn set_stage_count(&mut self, value: u32) -> &mut Self {
+        self.stage_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stages`]
+    pub fn set_stages(&mut self, value: &'lt [crate::vulkan1_0::PipelineShaderStageCreateInfo<'lt>]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.stages = value.as_ptr();
+        self.stage_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::group_count`]
+    pub fn set_group_count(&mut self, value: u32) -> &mut Self {
+        self.group_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::groups`]
+    pub fn set_groups(
+        &mut self,
+        value: &'lt [crate::extensions::khr_ray_tracing_pipeline::RayTracingShaderGroupCreateInfoKHR<'lt>],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.groups = value.as_ptr();
+        self.group_count = len_;
+        self
+    }
+    ///Sets the raw value of [`Self::max_pipeline_ray_recursion_depth`]
+    pub fn set_max_pipeline_ray_recursion_depth(&mut self, value: u32) -> &mut Self {
+        self.max_pipeline_ray_recursion_depth = value;
+        self
+    }
+    ///Sets the raw value of [`Self::library_info`]
+    pub fn set_library_info(
+        &mut self,
+        value: &'lt crate::extensions::khr_pipeline_library::PipelineLibraryCreateInfoKHR<'lt>,
+    ) -> &mut Self {
+        self.library_info = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::library_interface`]
+    pub fn set_library_interface(
+        &mut self,
+        value: &'lt crate::extensions::khr_ray_tracing_pipeline::RayTracingPipelineInterfaceCreateInfoKHR<'lt>,
+    ) -> &mut Self {
+        self.library_interface = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::dynamic_state`]
+    pub fn set_dynamic_state(
+        &mut self,
+        value: &'lt crate::vulkan1_0::PipelineDynamicStateCreateInfo<'lt>,
+    ) -> &mut Self {
+        self.dynamic_state = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::layout`]
+    pub fn set_layout(&mut self, value: crate::vulkan1_0::PipelineLayout) -> &mut Self {
+        self.layout = value;
+        self
+    }
+    ///Sets the raw value of [`Self::base_pipeline_handle`]
+    pub fn set_base_pipeline_handle(&mut self, value: crate::vulkan1_0::Pipeline) -> &mut Self {
+        self.base_pipeline_handle = value;
+        self
+    }
+    ///Sets the raw value of [`Self::base_pipeline_index`]
+    pub fn set_base_pipeline_index(&mut self, value: i32) -> &mut Self {
+        self.base_pipeline_index = value;
+        self
+    }
 }
 ///[VkPhysicalDeviceRayTracingPipelineFeaturesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceRayTracingPipelineFeaturesKHR.html) - Structure describing the ray tracing features that can be supported by an implementation
 ///# C Specifications
@@ -660,9 +1142,8 @@ pub struct RayTracingPipelineCreateInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -670,7 +1151,7 @@ pub struct PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`ray_tracing_pipeline`] indicates
     ///whether the implementation supports the ray tracing pipeline
     ///functionality.
@@ -694,6 +1175,251 @@ pub struct PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
     ///supports [primitive culling during ray
     ///traversal](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-traversal-culling-primitive).
     ray_traversal_primitive_culling: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            ray_tracing_pipeline: 0,
+            ray_tracing_pipeline_shader_group_handle_capture_replay: 0,
+            ray_tracing_pipeline_shader_group_handle_capture_replay_mixed: 0,
+            ray_tracing_pipeline_trace_rays_indirect: 0,
+            ray_traversal_primitive_culling: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::ray_tracing_pipeline`]
+    pub fn ray_tracing_pipeline_raw(&self) -> Bool32 {
+        self.ray_tracing_pipeline
+    }
+    ///Gets the raw value of [`Self::ray_tracing_pipeline_shader_group_handle_capture_replay`]
+    pub fn ray_tracing_pipeline_shader_group_handle_capture_replay_raw(&self) -> Bool32 {
+        self.ray_tracing_pipeline_shader_group_handle_capture_replay
+    }
+    ///Gets the raw value of
+    /// [`Self::ray_tracing_pipeline_shader_group_handle_capture_replay_mixed`]
+    pub fn ray_tracing_pipeline_shader_group_handle_capture_replay_mixed_raw(&self) -> Bool32 {
+        self.ray_tracing_pipeline_shader_group_handle_capture_replay_mixed
+    }
+    ///Gets the raw value of [`Self::ray_tracing_pipeline_trace_rays_indirect`]
+    pub fn ray_tracing_pipeline_trace_rays_indirect_raw(&self) -> Bool32 {
+        self.ray_tracing_pipeline_trace_rays_indirect
+    }
+    ///Gets the raw value of [`Self::ray_traversal_primitive_culling`]
+    pub fn ray_traversal_primitive_culling_raw(&self) -> Bool32 {
+        self.ray_traversal_primitive_culling
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::ray_tracing_pipeline`]
+    pub fn set_ray_tracing_pipeline_raw(&mut self, value: Bool32) -> &mut Self {
+        self.ray_tracing_pipeline = value;
+        self
+    }
+    ///Sets the raw value of [`Self::ray_tracing_pipeline_shader_group_handle_capture_replay`]
+    pub fn set_ray_tracing_pipeline_shader_group_handle_capture_replay_raw(&mut self, value: Bool32) -> &mut Self {
+        self.ray_tracing_pipeline_shader_group_handle_capture_replay = value;
+        self
+    }
+    ///Sets the raw value of
+    /// [`Self::ray_tracing_pipeline_shader_group_handle_capture_replay_mixed`]
+    pub fn set_ray_tracing_pipeline_shader_group_handle_capture_replay_mixed_raw(
+        &mut self,
+        value: Bool32,
+    ) -> &mut Self {
+        self.ray_tracing_pipeline_shader_group_handle_capture_replay_mixed = value;
+        self
+    }
+    ///Sets the raw value of [`Self::ray_tracing_pipeline_trace_rays_indirect`]
+    pub fn set_ray_tracing_pipeline_trace_rays_indirect_raw(&mut self, value: Bool32) -> &mut Self {
+        self.ray_tracing_pipeline_trace_rays_indirect = value;
+        self
+    }
+    ///Sets the raw value of [`Self::ray_traversal_primitive_culling`]
+    pub fn set_ray_traversal_primitive_culling_raw(&mut self, value: Bool32) -> &mut Self {
+        self.ray_traversal_primitive_culling = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::ray_tracing_pipeline`]
+    pub fn ray_tracing_pipeline(&self) -> bool {
+        unsafe { std::mem::transmute(self.ray_tracing_pipeline as u8) }
+    }
+    ///Gets the value of [`Self::ray_tracing_pipeline_shader_group_handle_capture_replay`]
+    pub fn ray_tracing_pipeline_shader_group_handle_capture_replay(&self) -> bool {
+        unsafe { std::mem::transmute(self.ray_tracing_pipeline_shader_group_handle_capture_replay as u8) }
+    }
+    ///Gets the value of [`Self::ray_tracing_pipeline_shader_group_handle_capture_replay_mixed`]
+    pub fn ray_tracing_pipeline_shader_group_handle_capture_replay_mixed(&self) -> bool {
+        unsafe { std::mem::transmute(self.ray_tracing_pipeline_shader_group_handle_capture_replay_mixed as u8) }
+    }
+    ///Gets the value of [`Self::ray_tracing_pipeline_trace_rays_indirect`]
+    pub fn ray_tracing_pipeline_trace_rays_indirect(&self) -> bool {
+        unsafe { std::mem::transmute(self.ray_tracing_pipeline_trace_rays_indirect as u8) }
+    }
+    ///Gets the value of [`Self::ray_traversal_primitive_culling`]
+    pub fn ray_traversal_primitive_culling(&self) -> bool {
+        unsafe { std::mem::transmute(self.ray_traversal_primitive_culling as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::ray_tracing_pipeline`]
+    pub fn ray_tracing_pipeline_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.ray_tracing_pipeline as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.ray_tracing_pipeline as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::ray_tracing_pipeline_shader_group_handle_capture_replay`]
+    pub fn ray_tracing_pipeline_shader_group_handle_capture_replay_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.ray_tracing_pipeline_shader_group_handle_capture_replay as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.ray_tracing_pipeline_shader_group_handle_capture_replay as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::ray_tracing_pipeline_shader_group_handle_capture_replay_mixed`]
+    pub fn ray_tracing_pipeline_shader_group_handle_capture_replay_mixed_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.ray_tracing_pipeline_shader_group_handle_capture_replay_mixed as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.ray_tracing_pipeline_shader_group_handle_capture_replay_mixed as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::ray_tracing_pipeline_trace_rays_indirect`]
+    pub fn ray_tracing_pipeline_trace_rays_indirect_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.ray_tracing_pipeline_trace_rays_indirect as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.ray_tracing_pipeline_trace_rays_indirect as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::ray_traversal_primitive_culling`]
+    pub fn ray_traversal_primitive_culling_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.ray_traversal_primitive_culling as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.ray_traversal_primitive_culling as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::ray_tracing_pipeline`]
+    pub fn set_ray_tracing_pipeline(&mut self, value: bool) -> &mut Self {
+        self.ray_tracing_pipeline = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::ray_tracing_pipeline_shader_group_handle_capture_replay`]
+    pub fn set_ray_tracing_pipeline_shader_group_handle_capture_replay(&mut self, value: bool) -> &mut Self {
+        self.ray_tracing_pipeline_shader_group_handle_capture_replay = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of
+    /// [`Self::ray_tracing_pipeline_shader_group_handle_capture_replay_mixed`]
+    pub fn set_ray_tracing_pipeline_shader_group_handle_capture_replay_mixed(&mut self, value: bool) -> &mut Self {
+        self.ray_tracing_pipeline_shader_group_handle_capture_replay_mixed = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::ray_tracing_pipeline_trace_rays_indirect`]
+    pub fn set_ray_tracing_pipeline_trace_rays_indirect(&mut self, value: bool) -> &mut Self {
+        self.ray_tracing_pipeline_trace_rays_indirect = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::ray_traversal_primitive_culling`]
+    pub fn set_ray_traversal_primitive_culling(&mut self, value: bool) -> &mut Self {
+        self.ray_traversal_primitive_culling = value as u8 as u32;
+        self
+    }
 }
 ///[VkPhysicalDeviceRayTracingPipelinePropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceRayTracingPipelinePropertiesKHR.html) - Properties of the physical device for ray tracing
 ///# C Specifications
@@ -752,9 +1478,8 @@ pub struct PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -762,7 +1487,7 @@ pub struct PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_group_handle_size`] is the size in bytes of the shader header.
     shader_group_handle_size: u32,
     ///[`max_ray_recursion_depth`] is the
@@ -788,6 +1513,242 @@ pub struct PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
     ///[`max_ray_hit_attribute_size`] is the maximum size in bytes for a ray
     ///attribute structure
     max_ray_hit_attribute_size: u32,
+}
+impl<'lt> Default for PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            shader_group_handle_size: 0,
+            max_ray_recursion_depth: 0,
+            max_shader_group_stride: 0,
+            shader_group_base_alignment: 0,
+            shader_group_handle_capture_replay_size: 0,
+            max_ray_dispatch_invocation_count: 0,
+            shader_group_handle_alignment: 0,
+            max_ray_hit_attribute_size: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::shader_group_handle_size`]
+    pub fn shader_group_handle_size_raw(&self) -> u32 {
+        self.shader_group_handle_size
+    }
+    ///Gets the raw value of [`Self::max_ray_recursion_depth`]
+    pub fn max_ray_recursion_depth_raw(&self) -> u32 {
+        self.max_ray_recursion_depth
+    }
+    ///Gets the raw value of [`Self::max_shader_group_stride`]
+    pub fn max_shader_group_stride_raw(&self) -> u32 {
+        self.max_shader_group_stride
+    }
+    ///Gets the raw value of [`Self::shader_group_base_alignment`]
+    pub fn shader_group_base_alignment_raw(&self) -> u32 {
+        self.shader_group_base_alignment
+    }
+    ///Gets the raw value of [`Self::shader_group_handle_capture_replay_size`]
+    pub fn shader_group_handle_capture_replay_size_raw(&self) -> u32 {
+        self.shader_group_handle_capture_replay_size
+    }
+    ///Gets the raw value of [`Self::max_ray_dispatch_invocation_count`]
+    pub fn max_ray_dispatch_invocation_count_raw(&self) -> u32 {
+        self.max_ray_dispatch_invocation_count
+    }
+    ///Gets the raw value of [`Self::shader_group_handle_alignment`]
+    pub fn shader_group_handle_alignment_raw(&self) -> u32 {
+        self.shader_group_handle_alignment
+    }
+    ///Gets the raw value of [`Self::max_ray_hit_attribute_size`]
+    pub fn max_ray_hit_attribute_size_raw(&self) -> u32 {
+        self.max_ray_hit_attribute_size
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_group_handle_size`]
+    pub fn set_shader_group_handle_size_raw(&mut self, value: u32) -> &mut Self {
+        self.shader_group_handle_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_ray_recursion_depth`]
+    pub fn set_max_ray_recursion_depth_raw(&mut self, value: u32) -> &mut Self {
+        self.max_ray_recursion_depth = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_shader_group_stride`]
+    pub fn set_max_shader_group_stride_raw(&mut self, value: u32) -> &mut Self {
+        self.max_shader_group_stride = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_group_base_alignment`]
+    pub fn set_shader_group_base_alignment_raw(&mut self, value: u32) -> &mut Self {
+        self.shader_group_base_alignment = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_group_handle_capture_replay_size`]
+    pub fn set_shader_group_handle_capture_replay_size_raw(&mut self, value: u32) -> &mut Self {
+        self.shader_group_handle_capture_replay_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_ray_dispatch_invocation_count`]
+    pub fn set_max_ray_dispatch_invocation_count_raw(&mut self, value: u32) -> &mut Self {
+        self.max_ray_dispatch_invocation_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_group_handle_alignment`]
+    pub fn set_shader_group_handle_alignment_raw(&mut self, value: u32) -> &mut Self {
+        self.shader_group_handle_alignment = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_ray_hit_attribute_size`]
+    pub fn set_max_ray_hit_attribute_size_raw(&mut self, value: u32) -> &mut Self {
+        self.max_ray_hit_attribute_size = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::shader_group_handle_size`]
+    pub fn shader_group_handle_size(&self) -> u32 {
+        self.shader_group_handle_size
+    }
+    ///Gets the value of [`Self::max_ray_recursion_depth`]
+    pub fn max_ray_recursion_depth(&self) -> u32 {
+        self.max_ray_recursion_depth
+    }
+    ///Gets the value of [`Self::max_shader_group_stride`]
+    pub fn max_shader_group_stride(&self) -> u32 {
+        self.max_shader_group_stride
+    }
+    ///Gets the value of [`Self::shader_group_base_alignment`]
+    pub fn shader_group_base_alignment(&self) -> u32 {
+        self.shader_group_base_alignment
+    }
+    ///Gets the value of [`Self::shader_group_handle_capture_replay_size`]
+    pub fn shader_group_handle_capture_replay_size(&self) -> u32 {
+        self.shader_group_handle_capture_replay_size
+    }
+    ///Gets the value of [`Self::max_ray_dispatch_invocation_count`]
+    pub fn max_ray_dispatch_invocation_count(&self) -> u32 {
+        self.max_ray_dispatch_invocation_count
+    }
+    ///Gets the value of [`Self::shader_group_handle_alignment`]
+    pub fn shader_group_handle_alignment(&self) -> u32 {
+        self.shader_group_handle_alignment
+    }
+    ///Gets the value of [`Self::max_ray_hit_attribute_size`]
+    pub fn max_ray_hit_attribute_size(&self) -> u32 {
+        self.max_ray_hit_attribute_size
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::shader_group_handle_size`]
+    pub fn shader_group_handle_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_ray_recursion_depth`]
+    pub fn max_ray_recursion_depth_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_shader_group_stride`]
+    pub fn max_shader_group_stride_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::shader_group_base_alignment`]
+    pub fn shader_group_base_alignment_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::shader_group_handle_capture_replay_size`]
+    pub fn shader_group_handle_capture_replay_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_ray_dispatch_invocation_count`]
+    pub fn max_ray_dispatch_invocation_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::shader_group_handle_alignment`]
+    pub fn shader_group_handle_alignment_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_ray_hit_attribute_size`]
+    pub fn max_ray_hit_attribute_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_group_handle_size`]
+    pub fn set_shader_group_handle_size(&mut self, value: u32) -> &mut Self {
+        self.shader_group_handle_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_ray_recursion_depth`]
+    pub fn set_max_ray_recursion_depth(&mut self, value: u32) -> &mut Self {
+        self.max_ray_recursion_depth = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_shader_group_stride`]
+    pub fn set_max_shader_group_stride(&mut self, value: u32) -> &mut Self {
+        self.max_shader_group_stride = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_group_base_alignment`]
+    pub fn set_shader_group_base_alignment(&mut self, value: u32) -> &mut Self {
+        self.shader_group_base_alignment = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_group_handle_capture_replay_size`]
+    pub fn set_shader_group_handle_capture_replay_size(&mut self, value: u32) -> &mut Self {
+        self.shader_group_handle_capture_replay_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_ray_dispatch_invocation_count`]
+    pub fn set_max_ray_dispatch_invocation_count(&mut self, value: u32) -> &mut Self {
+        self.max_ray_dispatch_invocation_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_group_handle_alignment`]
+    pub fn set_shader_group_handle_alignment(&mut self, value: u32) -> &mut Self {
+        self.shader_group_handle_alignment = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_ray_hit_attribute_size`]
+    pub fn set_max_ray_hit_attribute_size(&mut self, value: u32) -> &mut Self {
+        self.max_ray_hit_attribute_size = value;
+        self
+    }
 }
 ///[VkStridedDeviceAddressRegionKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkStridedDeviceAddressRegionKHR.html) - Structure specifying a region of device addresses with a stride
 ///# C Specifications
@@ -825,7 +1786,7 @@ pub struct PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -839,6 +1800,56 @@ pub struct StridedDeviceAddressRegionKHR {
     ///[`size`] is the size in bytes of the region starting at
     ///[`device_address`].
     size: DeviceSize,
+}
+impl Default for StridedDeviceAddressRegionKHR {
+    fn default() -> Self {
+        Self {
+            device_address: Default::default(),
+            stride: Default::default(),
+            size: Default::default(),
+        }
+    }
+}
+impl StridedDeviceAddressRegionKHR {
+    ///Gets the value of [`Self::device_address`]
+    pub fn device_address(&self) -> DeviceAddress {
+        self.device_address
+    }
+    ///Gets the value of [`Self::stride`]
+    pub fn stride(&self) -> DeviceSize {
+        self.stride
+    }
+    ///Gets the value of [`Self::size`]
+    pub fn size(&self) -> DeviceSize {
+        self.size
+    }
+    ///Gets a mutable reference to the value of [`Self::device_address`]
+    pub fn device_address_mut(&mut self) -> &mut DeviceAddress {
+        &mut self.device_address
+    }
+    ///Gets a mutable reference to the value of [`Self::stride`]
+    pub fn stride_mut(&mut self) -> &mut DeviceSize {
+        &mut self.stride
+    }
+    ///Gets a mutable reference to the value of [`Self::size`]
+    pub fn size_mut(&mut self) -> &mut DeviceSize {
+        &mut self.size
+    }
+    ///Sets the raw value of [`Self::device_address`]
+    pub fn set_device_address(&mut self, value: crate::vulkan1_0::DeviceAddress) -> &mut Self {
+        self.device_address = value;
+        self
+    }
+    ///Sets the raw value of [`Self::stride`]
+    pub fn set_stride(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.stride = value;
+        self
+    }
+    ///Sets the raw value of [`Self::size`]
+    pub fn set_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.size = value;
+        self
+    }
 }
 ///[VkTraceRaysIndirectCommandKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkTraceRaysIndirectCommandKHR.html) - Structure specifying the parameters of an indirect ray tracing command
 ///# C Specifications
@@ -879,7 +1890,7 @@ pub struct StridedDeviceAddressRegionKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -890,6 +1901,83 @@ pub struct TraceRaysIndirectCommandKHR {
     height: u32,
     ///[`depth`] is depth of the ray trace query dimensions.
     depth: u32,
+}
+impl Default for TraceRaysIndirectCommandKHR {
+    fn default() -> Self {
+        Self {
+            width: 0,
+            height: 0,
+            depth: 0,
+        }
+    }
+}
+impl TraceRaysIndirectCommandKHR {
+    ///Gets the raw value of [`Self::width`]
+    pub fn width_raw(&self) -> u32 {
+        self.width
+    }
+    ///Gets the raw value of [`Self::height`]
+    pub fn height_raw(&self) -> u32 {
+        self.height
+    }
+    ///Gets the raw value of [`Self::depth`]
+    pub fn depth_raw(&self) -> u32 {
+        self.depth
+    }
+    ///Sets the raw value of [`Self::width`]
+    pub fn set_width_raw(&mut self, value: u32) -> &mut Self {
+        self.width = value;
+        self
+    }
+    ///Sets the raw value of [`Self::height`]
+    pub fn set_height_raw(&mut self, value: u32) -> &mut Self {
+        self.height = value;
+        self
+    }
+    ///Sets the raw value of [`Self::depth`]
+    pub fn set_depth_raw(&mut self, value: u32) -> &mut Self {
+        self.depth = value;
+        self
+    }
+    ///Gets the value of [`Self::width`]
+    pub fn width(&self) -> u32 {
+        self.width
+    }
+    ///Gets the value of [`Self::height`]
+    pub fn height(&self) -> u32 {
+        self.height
+    }
+    ///Gets the value of [`Self::depth`]
+    pub fn depth(&self) -> u32 {
+        self.depth
+    }
+    ///Gets a mutable reference to the value of [`Self::width`]
+    pub fn width_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::height`]
+    pub fn height_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::depth`]
+    pub fn depth_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::width`]
+    pub fn set_width(&mut self, value: u32) -> &mut Self {
+        self.width = value;
+        self
+    }
+    ///Sets the raw value of [`Self::height`]
+    pub fn set_height(&mut self, value: u32) -> &mut Self {
+        self.height = value;
+        self
+    }
+    ///Sets the raw value of [`Self::depth`]
+    pub fn set_depth(&mut self, value: u32) -> &mut Self {
+        self.depth = value;
+        self
+    }
 }
 ///[VkRayTracingPipelineInterfaceCreateInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRayTracingPipelineInterfaceCreateInfoKHR.html) - Structure specifying additional interface information when using libraries
 ///# C Specifications
@@ -938,9 +2026,8 @@ pub struct TraceRaysIndirectCommandKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct RayTracingPipelineInterfaceCreateInfoKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -948,11 +2035,102 @@ pub struct RayTracingPipelineInterfaceCreateInfoKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`max_pipeline_ray_payload_size`] is the maximum payload size in bytes
     ///used by any shader in the pipeline.
     max_pipeline_ray_payload_size: u32,
     ///[`max_pipeline_ray_hit_attribute_size`] is the maximum attribute structure
     ///size in bytes used by any shader in the pipeline.
     max_pipeline_ray_hit_attribute_size: u32,
+}
+impl<'lt> Default for RayTracingPipelineInterfaceCreateInfoKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            max_pipeline_ray_payload_size: 0,
+            max_pipeline_ray_hit_attribute_size: 0,
+        }
+    }
+}
+impl<'lt> RayTracingPipelineInterfaceCreateInfoKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::max_pipeline_ray_payload_size`]
+    pub fn max_pipeline_ray_payload_size_raw(&self) -> u32 {
+        self.max_pipeline_ray_payload_size
+    }
+    ///Gets the raw value of [`Self::max_pipeline_ray_hit_attribute_size`]
+    pub fn max_pipeline_ray_hit_attribute_size_raw(&self) -> u32 {
+        self.max_pipeline_ray_hit_attribute_size
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_pipeline_ray_payload_size`]
+    pub fn set_max_pipeline_ray_payload_size_raw(&mut self, value: u32) -> &mut Self {
+        self.max_pipeline_ray_payload_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_pipeline_ray_hit_attribute_size`]
+    pub fn set_max_pipeline_ray_hit_attribute_size_raw(&mut self, value: u32) -> &mut Self {
+        self.max_pipeline_ray_hit_attribute_size = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::max_pipeline_ray_payload_size`]
+    pub fn max_pipeline_ray_payload_size(&self) -> u32 {
+        self.max_pipeline_ray_payload_size
+    }
+    ///Gets the value of [`Self::max_pipeline_ray_hit_attribute_size`]
+    pub fn max_pipeline_ray_hit_attribute_size(&self) -> u32 {
+        self.max_pipeline_ray_hit_attribute_size
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::max_pipeline_ray_payload_size`]
+    pub fn max_pipeline_ray_payload_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Gets a mutable reference to the value of [`Self::max_pipeline_ray_hit_attribute_size`]
+    pub fn max_pipeline_ray_hit_attribute_size_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::max_pipeline_ray_payload_size`]
+    pub fn set_max_pipeline_ray_payload_size(&mut self, value: u32) -> &mut Self {
+        self.max_pipeline_ray_payload_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_pipeline_ray_hit_attribute_size`]
+    pub fn set_max_pipeline_ray_hit_attribute_size(&mut self, value: u32) -> &mut Self {
+        self.max_pipeline_ray_hit_attribute_size = value;
+        self
+    }
 }

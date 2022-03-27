@@ -281,7 +281,6 @@ impl<'a> DocRef<'a> {
         }
     }
 
-
     /// Processes the members, optionally writing the variants to a map of variants
     pub fn members<'b>(
         &mut self,

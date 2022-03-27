@@ -210,7 +210,7 @@ impl<'a> Origin<'a> {
                 segments: [
                     PathSegment::from(Ident::new("crate", Span::call_site())),
                     PathSegment::from(Ident::new("extensions", Span::call_site())),
-                    PathSegment::from(Ident::new(name.as_ref(), Span::call_site())),
+                    PathSegment::from(Ident::new(&name.trim_start_matches("VK_").to_case(Case::Snake), Span::call_site())),
                 ]
                 .into_iter()
                 .collect(),

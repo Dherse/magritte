@@ -15,7 +15,7 @@ pub const EXT_VALIDATION_FLAGS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///[VkValidationCheckEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkValidationCheckEXT.html) - Specify validation checks to disable
 ///# C Specifications
 ///Possible values of elements of the
-///[`ValidationFlagsEXT::p_disabled_validation_checks`] array,
+///[`ValidationFlagsEXT::disabled_validation_checks`] array,
 ///specifying validation checks to be disabled, are:
 ///```c
 ///// Provided by VK_EXT_validation_flags
@@ -92,12 +92,12 @@ impl ValidationCheckEXT {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`disabled_validation_check_count`] is the number of checks to disable.
-/// - [`p_disabled_validation_checks`] is a pointer to an array of [`ValidationCheckEXT`] values
+/// - [`disabled_validation_checks`] is a pointer to an array of [`ValidationCheckEXT`] values
 ///   specifying the validation checks to be disabled.
 ///# Description
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VALIDATION_FLAGS_EXT`
-/// - [`p_disabled_validation_checks`]**must** be a valid pointer to an array of
+/// - [`disabled_validation_checks`]**must** be a valid pointer to an array of
 ///   [`disabled_validation_check_count`] valid [`ValidationCheckEXT`] values
 /// - [`disabled_validation_check_count`]**must** be greater than `0`
 ///# Related
@@ -112,9 +112,8 @@ impl ValidationCheckEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ValidationFlagsEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -122,11 +121,110 @@ pub struct ValidationFlagsEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`disabled_validation_check_count`] is the number of checks to disable.
     disabled_validation_check_count: u32,
-    ///[`p_disabled_validation_checks`] is a pointer to an array of
+    ///[`disabled_validation_checks`] is a pointer to an array of
     ///[`ValidationCheckEXT`] values specifying the validation checks to be
     ///disabled.
-    p_disabled_validation_checks: *mut ValidationCheckEXT,
+    disabled_validation_checks: *const ValidationCheckEXT,
+}
+impl<'lt> Default for ValidationFlagsEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            disabled_validation_check_count: 0,
+            disabled_validation_checks: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> ValidationFlagsEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::disabled_validation_check_count`]
+    pub fn disabled_validation_check_count_raw(&self) -> u32 {
+        self.disabled_validation_check_count
+    }
+    ///Gets the raw value of [`Self::disabled_validation_checks`]
+    pub fn disabled_validation_checks_raw(&self) -> *const ValidationCheckEXT {
+        self.disabled_validation_checks
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::disabled_validation_check_count`]
+    pub fn set_disabled_validation_check_count_raw(&mut self, value: u32) -> &mut Self {
+        self.disabled_validation_check_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::disabled_validation_checks`]
+    pub fn set_disabled_validation_checks_raw(&mut self, value: *const ValidationCheckEXT) -> &mut Self {
+        self.disabled_validation_checks = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::disabled_validation_check_count`]
+    pub fn disabled_validation_check_count(&self) -> u32 {
+        self.disabled_validation_check_count
+    }
+    ///Gets the value of [`Self::disabled_validation_checks`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn disabled_validation_checks(&self) -> &[ValidationCheckEXT] {
+        std::slice::from_raw_parts(
+            self.disabled_validation_checks,
+            self.disabled_validation_check_count as usize,
+        )
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::disabled_validation_check_count`]
+    pub fn disabled_validation_check_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::disabled_validation_check_count`]
+    pub fn set_disabled_validation_check_count(&mut self, value: u32) -> &mut Self {
+        self.disabled_validation_check_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::disabled_validation_checks`]
+    pub fn set_disabled_validation_checks(
+        &mut self,
+        value: &'lt [crate::extensions::ext_validation_flags::ValidationCheckEXT],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.disabled_validation_checks = value.as_ptr();
+        self.disabled_validation_check_count = len_;
+        self
+    }
 }

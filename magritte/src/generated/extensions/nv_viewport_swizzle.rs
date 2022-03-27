@@ -127,7 +127,7 @@ impl ViewportCoordinateSwizzleNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
@@ -144,6 +144,70 @@ pub struct ViewportSwizzleNV {
     ///[`w`] is a [`ViewportCoordinateSwizzleNV`] value specifying the
     ///swizzle operation to apply to the w component of the primitive
     w: ViewportCoordinateSwizzleNV,
+}
+impl Default for ViewportSwizzleNV {
+    fn default() -> Self {
+        Self {
+            x: Default::default(),
+            y: Default::default(),
+            z: Default::default(),
+            w: Default::default(),
+        }
+    }
+}
+impl ViewportSwizzleNV {
+    ///Gets the value of [`Self::x`]
+    pub fn x(&self) -> ViewportCoordinateSwizzleNV {
+        self.x
+    }
+    ///Gets the value of [`Self::y`]
+    pub fn y(&self) -> ViewportCoordinateSwizzleNV {
+        self.y
+    }
+    ///Gets the value of [`Self::z`]
+    pub fn z(&self) -> ViewportCoordinateSwizzleNV {
+        self.z
+    }
+    ///Gets the value of [`Self::w`]
+    pub fn w(&self) -> ViewportCoordinateSwizzleNV {
+        self.w
+    }
+    ///Gets a mutable reference to the value of [`Self::x`]
+    pub fn x_mut(&mut self) -> &mut ViewportCoordinateSwizzleNV {
+        &mut self.x
+    }
+    ///Gets a mutable reference to the value of [`Self::y`]
+    pub fn y_mut(&mut self) -> &mut ViewportCoordinateSwizzleNV {
+        &mut self.y
+    }
+    ///Gets a mutable reference to the value of [`Self::z`]
+    pub fn z_mut(&mut self) -> &mut ViewportCoordinateSwizzleNV {
+        &mut self.z
+    }
+    ///Gets a mutable reference to the value of [`Self::w`]
+    pub fn w_mut(&mut self) -> &mut ViewportCoordinateSwizzleNV {
+        &mut self.w
+    }
+    ///Sets the raw value of [`Self::x`]
+    pub fn set_x(&mut self, value: crate::extensions::nv_viewport_swizzle::ViewportCoordinateSwizzleNV) -> &mut Self {
+        self.x = value;
+        self
+    }
+    ///Sets the raw value of [`Self::y`]
+    pub fn set_y(&mut self, value: crate::extensions::nv_viewport_swizzle::ViewportCoordinateSwizzleNV) -> &mut Self {
+        self.y = value;
+        self
+    }
+    ///Sets the raw value of [`Self::z`]
+    pub fn set_z(&mut self, value: crate::extensions::nv_viewport_swizzle::ViewportCoordinateSwizzleNV) -> &mut Self {
+        self.z = value;
+        self
+    }
+    ///Sets the raw value of [`Self::w`]
+    pub fn set_w(&mut self, value: crate::extensions::nv_viewport_swizzle::ViewportCoordinateSwizzleNV) -> &mut Self {
+        self.w = value;
+        self
+    }
 }
 ///[VkPipelineViewportSwizzleStateCreateInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportSwizzleStateCreateInfoNV.html) - Structure specifying swizzle applied to primitive clip coordinates
 ///# C Specifications
@@ -166,7 +230,7 @@ pub struct ViewportSwizzleNV {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 /// - [`viewport_count`] is the number of viewport swizzles used by the pipeline.
-/// - [`p_viewport_swizzles`] is a pointer to an array of [`ViewportSwizzleNV`] structures, defining
+/// - [`viewport_swizzles`] is a pointer to an array of [`ViewportSwizzleNV`] structures, defining
 ///   the viewport swizzles.
 ///# Description
 ///Valid Usage
@@ -175,7 +239,7 @@ pub struct ViewportSwizzleNV {
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV`
 /// - [`flags`]**must** be `0`
-/// - [`p_viewport_swizzles`]**must** be a valid pointer to an array of [`viewport_count`] valid
+/// - [`viewport_swizzles`]**must** be a valid pointer to an array of [`viewport_count`] valid
 ///   [`ViewportSwizzleNV`] structures
 /// - [`viewport_count`]**must** be greater than `0`
 ///# Related
@@ -191,9 +255,8 @@ pub struct ViewportSwizzleNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PipelineViewportSwizzleStateCreateInfoNV<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -201,13 +264,126 @@ pub struct PipelineViewportSwizzleStateCreateInfoNV<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
     flags: PipelineViewportSwizzleStateCreateFlagsNV,
     ///[`viewport_count`] is the number of viewport swizzles used by the
     ///pipeline.
     viewport_count: u32,
-    ///[`p_viewport_swizzles`] is a pointer to an array of
+    ///[`viewport_swizzles`] is a pointer to an array of
     ///[`ViewportSwizzleNV`] structures, defining the viewport swizzles.
-    p_viewport_swizzles: *mut ViewportSwizzleNV,
+    viewport_swizzles: *const ViewportSwizzleNV,
+}
+impl<'lt> Default for PipelineViewportSwizzleStateCreateInfoNV<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            flags: Default::default(),
+            viewport_count: 0,
+            viewport_swizzles: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> PipelineViewportSwizzleStateCreateInfoNV<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::viewport_count`]
+    pub fn viewport_count_raw(&self) -> u32 {
+        self.viewport_count
+    }
+    ///Gets the raw value of [`Self::viewport_swizzles`]
+    pub fn viewport_swizzles_raw(&self) -> *const ViewportSwizzleNV {
+        self.viewport_swizzles
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::viewport_count`]
+    pub fn set_viewport_count_raw(&mut self, value: u32) -> &mut Self {
+        self.viewport_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::viewport_swizzles`]
+    pub fn set_viewport_swizzles_raw(&mut self, value: *const ViewportSwizzleNV) -> &mut Self {
+        self.viewport_swizzles = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::flags`]
+    pub fn flags(&self) -> PipelineViewportSwizzleStateCreateFlagsNV {
+        self.flags
+    }
+    ///Gets the value of [`Self::viewport_count`]
+    pub fn viewport_count(&self) -> u32 {
+        self.viewport_count
+    }
+    ///Gets the value of [`Self::viewport_swizzles`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn viewport_swizzles(&self) -> &[ViewportSwizzleNV] {
+        std::slice::from_raw_parts(self.viewport_swizzles, self.viewport_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::flags`]
+    pub fn flags_mut(&mut self) -> &mut PipelineViewportSwizzleStateCreateFlagsNV {
+        &mut self.flags
+    }
+    ///Gets a mutable reference to the value of [`Self::viewport_count`]
+    pub fn viewport_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::flags`]
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::nv_viewport_swizzle::PipelineViewportSwizzleStateCreateFlagsNV,
+    ) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the raw value of [`Self::viewport_count`]
+    pub fn set_viewport_count(&mut self, value: u32) -> &mut Self {
+        self.viewport_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::viewport_swizzles`]
+    pub fn set_viewport_swizzles(
+        &mut self,
+        value: &'lt [crate::extensions::nv_viewport_swizzle::ViewportSwizzleNV],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.viewport_swizzles = value.as_ptr();
+        self.viewport_count = len_;
+        self
+    }
 }

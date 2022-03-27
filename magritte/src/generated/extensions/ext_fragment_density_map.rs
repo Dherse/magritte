@@ -56,9 +56,8 @@ pub const EXT_FRAGMENT_DENSITY_MAP_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -66,7 +65,7 @@ pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`fragment_density_map`] specifies
     ///whether the implementation supports render passes with a fragment
     ///density map attachment.
@@ -90,6 +89,170 @@ pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
     ///attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-fragmentdensitymapattachment)**must** only have [subsampled
     ///attachments](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-subsamplesampler) bound.
     fragment_density_map_non_subsampled_images: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            fragment_density_map: 0,
+            fragment_density_map_dynamic: 0,
+            fragment_density_map_non_subsampled_images: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::fragment_density_map`]
+    pub fn fragment_density_map_raw(&self) -> Bool32 {
+        self.fragment_density_map
+    }
+    ///Gets the raw value of [`Self::fragment_density_map_dynamic`]
+    pub fn fragment_density_map_dynamic_raw(&self) -> Bool32 {
+        self.fragment_density_map_dynamic
+    }
+    ///Gets the raw value of [`Self::fragment_density_map_non_subsampled_images`]
+    pub fn fragment_density_map_non_subsampled_images_raw(&self) -> Bool32 {
+        self.fragment_density_map_non_subsampled_images
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_map`]
+    pub fn set_fragment_density_map_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_density_map = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_map_dynamic`]
+    pub fn set_fragment_density_map_dynamic_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_density_map_dynamic = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_map_non_subsampled_images`]
+    pub fn set_fragment_density_map_non_subsampled_images_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_density_map_non_subsampled_images = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::fragment_density_map`]
+    pub fn fragment_density_map(&self) -> bool {
+        unsafe { std::mem::transmute(self.fragment_density_map as u8) }
+    }
+    ///Gets the value of [`Self::fragment_density_map_dynamic`]
+    pub fn fragment_density_map_dynamic(&self) -> bool {
+        unsafe { std::mem::transmute(self.fragment_density_map_dynamic as u8) }
+    }
+    ///Gets the value of [`Self::fragment_density_map_non_subsampled_images`]
+    pub fn fragment_density_map_non_subsampled_images(&self) -> bool {
+        unsafe { std::mem::transmute(self.fragment_density_map_non_subsampled_images as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::fragment_density_map`]
+    pub fn fragment_density_map_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.fragment_density_map as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.fragment_density_map as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of [`Self::fragment_density_map_dynamic`]
+    pub fn fragment_density_map_dynamic_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.fragment_density_map_dynamic as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.fragment_density_map_dynamic as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Gets a mutable reference to the value of
+    /// [`Self::fragment_density_map_non_subsampled_images`]
+    pub fn fragment_density_map_non_subsampled_images_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.fragment_density_map_non_subsampled_images as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.fragment_density_map_non_subsampled_images as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_map`]
+    pub fn set_fragment_density_map(&mut self, value: bool) -> &mut Self {
+        self.fragment_density_map = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_map_dynamic`]
+    pub fn set_fragment_density_map_dynamic(&mut self, value: bool) -> &mut Self {
+        self.fragment_density_map_dynamic = value as u8 as u32;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_map_non_subsampled_images`]
+    pub fn set_fragment_density_map_non_subsampled_images(&mut self, value: bool) -> &mut Self {
+        self.fragment_density_map_non_subsampled_images = value as u8 as u32;
+        self
+    }
 }
 ///[VkPhysicalDeviceFragmentDensityMapPropertiesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentDensityMapPropertiesEXT.html) - Structure describing fragment density map properties that can be supported by an implementation
 ///# C Specifications
@@ -132,9 +295,8 @@ pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -142,7 +304,7 @@ pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`min_fragment_density_texel_size`]
     ///is the minimum [fragment density
     ///texel size](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary-fragment-density-texel-size).
@@ -154,6 +316,123 @@ pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
     ///specifies whether the implementation **may** invoke additional fragment
     ///shader invocations for each covered sample.
     fragment_density_invocations: Bool32,
+}
+impl<'lt> Default for PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            min_fragment_density_texel_size: Default::default(),
+            max_fragment_density_texel_size: Default::default(),
+            fragment_density_invocations: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::fragment_density_invocations`]
+    pub fn fragment_density_invocations_raw(&self) -> Bool32 {
+        self.fragment_density_invocations
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_invocations`]
+    pub fn set_fragment_density_invocations_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_density_invocations = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::min_fragment_density_texel_size`]
+    pub fn min_fragment_density_texel_size(&self) -> Extent2D {
+        self.min_fragment_density_texel_size
+    }
+    ///Gets the value of [`Self::max_fragment_density_texel_size`]
+    pub fn max_fragment_density_texel_size(&self) -> Extent2D {
+        self.max_fragment_density_texel_size
+    }
+    ///Gets the value of [`Self::fragment_density_invocations`]
+    pub fn fragment_density_invocations(&self) -> bool {
+        unsafe { std::mem::transmute(self.fragment_density_invocations as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::min_fragment_density_texel_size`]
+    pub fn min_fragment_density_texel_size_mut(&mut self) -> &mut Extent2D {
+        &mut self.min_fragment_density_texel_size
+    }
+    ///Gets a mutable reference to the value of [`Self::max_fragment_density_texel_size`]
+    pub fn max_fragment_density_texel_size_mut(&mut self) -> &mut Extent2D {
+        &mut self.max_fragment_density_texel_size
+    }
+    ///Gets a mutable reference to the value of [`Self::fragment_density_invocations`]
+    pub fn fragment_density_invocations_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.fragment_density_invocations as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.fragment_density_invocations as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::min_fragment_density_texel_size`]
+    pub fn set_min_fragment_density_texel_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.min_fragment_density_texel_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::max_fragment_density_texel_size`]
+    pub fn set_max_fragment_density_texel_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+        self.max_fragment_density_texel_size = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_invocations`]
+    pub fn set_fragment_density_invocations(&mut self, value: bool) -> &mut Self {
+        self.fragment_density_invocations = value as u8 as u32;
+        self
+    }
 }
 ///[VkRenderPassFragmentDensityMapCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassFragmentDensityMapCreateInfoEXT.html) - Structure containing fragment density map attachment for render pass
 ///# C Specifications
@@ -191,10 +470,9 @@ pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
 ///[`fragment_density_map_attachment`] was given as [`ATTACHMENT_UNUSED`].Valid Usage
 /// - If [`fragment_density_map_attachment`] is not [`ATTACHMENT_UNUSED`],
 ///   [`fragment_density_map_attachment`]**must** not be an element of
-///   [`SubpassDescription::p_input_attachments`], [`SubpassDescription::p_color_attachments`],
-///   [`SubpassDescription::p_resolve_attachments`],
-///   [`SubpassDescription::p_depth_stencil_attachment`], or
-///   [`SubpassDescription::p_preserve_attachments`] for any subpass
+///   [`SubpassDescription::input_attachments`], [`SubpassDescription::color_attachments`],
+///   [`SubpassDescription::resolve_attachments`], [`SubpassDescription::depth_stencil_attachment`],
+///   or [`SubpassDescription::preserve_attachments`] for any subpass
 /// - If [`fragment_density_map_attachment`] is not [`ATTACHMENT_UNUSED`], `layout`**must** be equal
 ///   to `VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT`, or `VK_IMAGE_LAYOUT_GENERAL`
 /// - If [`fragment_density_map_attachment`] is not [`ATTACHMENT_UNUSED`],
@@ -218,9 +496,8 @@ pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct RenderPassFragmentDensityMapCreateInfoEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -228,8 +505,67 @@ pub struct RenderPassFragmentDensityMapCreateInfoEXT<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`fragment_density_map_attachment`] is the fragment density map to use
     ///for the render pass.
     fragment_density_map_attachment: AttachmentReference,
+}
+impl<'lt> Default for RenderPassFragmentDensityMapCreateInfoEXT<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            fragment_density_map_attachment: Default::default(),
+        }
+    }
+}
+impl<'lt> RenderPassFragmentDensityMapCreateInfoEXT<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::fragment_density_map_attachment`]
+    pub fn fragment_density_map_attachment(&self) -> AttachmentReference {
+        self.fragment_density_map_attachment
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::fragment_density_map_attachment`]
+    pub fn fragment_density_map_attachment_mut(&mut self) -> &mut AttachmentReference {
+        &mut self.fragment_density_map_attachment
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_map_attachment`]
+    pub fn set_fragment_density_map_attachment(&mut self, value: crate::vulkan1_0::AttachmentReference) -> &mut Self {
+        self.fragment_density_map_attachment = value;
+        self
+    }
 }

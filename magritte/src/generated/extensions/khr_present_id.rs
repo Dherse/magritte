@@ -46,9 +46,8 @@ pub const KHR_PRESENT_ID_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_pr
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PhysicalDevicePresentIdFeaturesKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -56,11 +55,100 @@ pub struct PhysicalDevicePresentIdFeaturesKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseOutStructure<'lt>,
+    p_next: *mut BaseOutStructure<'lt>,
     ///[`present_id`] indicates that the implementation
     ///supports specifying present ID values in the [`PresentIdKHR`]
     ///extension to the [`PresentInfoKHR`] struct.
     present_id: Bool32,
+}
+impl<'lt> Default for PhysicalDevicePresentIdFeaturesKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null_mut(),
+            present_id: 0,
+        }
+    }
+}
+impl<'lt> PhysicalDevicePresentIdFeaturesKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
+        &self.p_next
+    }
+    ///Gets the raw value of [`Self::present_id`]
+    pub fn present_id_raw(&self) -> Bool32 {
+        self.present_id
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::present_id`]
+    pub fn set_present_id_raw(&mut self, value: Bool32) -> &mut Self {
+        self.present_id = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::present_id`]
+    pub fn present_id(&self) -> bool {
+        unsafe { std::mem::transmute(self.present_id as u8) }
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
+        &mut *self.p_next
+    }
+    ///Gets a mutable reference to the value of [`Self::present_id`]
+    pub fn present_id_mut(&mut self) -> &mut bool {
+        unsafe {
+            if cfg!(target_endian = "little") {
+                &mut *(self.present_id as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .cast::<bool>()
+            } else {
+                eprintln!("Big-endianess has not been tested!");
+                &mut *(self.present_id as *mut Bool32)
+                    .cast::<u32>()
+                    .cast::<u8>()
+                    .add(3)
+                    .cast::<bool>()
+            }
+        }
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the raw value of [`Self::present_id`]
+    pub fn set_present_id(&mut self, value: bool) -> &mut Self {
+        self.present_id = value as u8 as u32;
+        self
+    }
 }
 ///[VkPresentIdKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPresentIdKHR.html) - The list of presentation identifiers
 ///# C Specifications
@@ -79,9 +167,9 @@ pub struct PhysicalDevicePresentIdFeaturesKHR<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`swapchain_count`] is the number of swapchains being presented to the [`QueuePresentKHR`]
 ///   command.
-/// - [`p_present_ids`] is `NULL` or a pointer to an array of uint64_t with [`swapchain_count`]
-///   entries. If not `NULL`, each non-zero value in [`p_present_ids`] specifies the present id to
-///   be associated with the presentation of the swapchain with the same index in the
+/// - [`present_ids`] is `NULL` or a pointer to an array of uint64_t with [`swapchain_count`]
+///   entries. If not `NULL`, each non-zero value in [`present_ids`] specifies the present id to be
+///   associated with the presentation of the swapchain with the same index in the
 ///   [`QueuePresentKHR`] call.
 ///# Description
 ///For applications to be able to reference specific presentation events queued
@@ -92,10 +180,10 @@ pub struct PhysicalDevicePresentIdFeaturesKHR<'lt> {
 ///[`p_next`] chain of the [`PresentInfoKHR`] structure to supply
 ///identifiers.Each [`SwapchainKHR`] has a presentId associated with it.
 ///This value is initially set to zero when the [`SwapchainKHR`] is
-///created.When a [`PresentIdKHR`] structure with a non-NULL [`p_present_ids`] is
+///created.When a [`PresentIdKHR`] structure with a non-NULL [`present_ids`] is
 ///included in the [`p_next`] chain of a [`PresentInfoKHR`] structure,
 ///each `pSwapchains` entry has a presentId associated in the
-///[`p_present_ids`] array at the same index as the swapchain in the
+///[`present_ids`] array at the same index as the swapchain in the
 ///`pSwapchains` array.
 ///If this presentId is non-zero, then the application **can** later use this
 ///value to refer to that image presentation.
@@ -113,8 +201,8 @@ pub struct PhysicalDevicePresentIdFeaturesKHR<'lt> {
 ///   the associated `pSwapchains` entry
 ///Valid Usage (Implicit)
 /// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PRESENT_ID_KHR`
-/// - If [`p_present_ids`] is not `NULL`, [`p_present_ids`]**must** be a valid pointer to an array
-///   of [`swapchain_count`]`uint64_t` values
+/// - If [`present_ids`] is not `NULL`, [`present_ids`]**must** be a valid pointer to an array of
+///   [`swapchain_count`]`uint64_t` values
 /// - [`swapchain_count`]**must** be greater than `0`
 ///# Related
 /// - [`VK_KHR_present_id`]
@@ -127,9 +215,8 @@ pub struct PhysicalDevicePresentIdFeaturesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Debug, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PresentIdKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
@@ -137,14 +224,107 @@ pub struct PresentIdKHR<'lt> {
     s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseInStructure<'lt>,
+    p_next: *const BaseInStructure<'lt>,
     ///[`swapchain_count`] is the number of swapchains being presented to the
     ///[`QueuePresentKHR`] command.
     swapchain_count: u32,
-    ///[`p_present_ids`] is `NULL` or a pointer to an array of uint64_t with
+    ///[`present_ids`] is `NULL` or a pointer to an array of uint64_t with
     ///[`swapchain_count`] entries.
-    ///If not `NULL`, each non-zero value in [`p_present_ids`] specifies the
+    ///If not `NULL`, each non-zero value in [`present_ids`] specifies the
     ///present id to be associated with the presentation of the swapchain with
     ///the same index in the [`QueuePresentKHR`] call.
-    p_present_ids: *mut u64,
+    present_ids: *const u64,
+}
+impl<'lt> Default for PresentIdKHR<'lt> {
+    fn default() -> Self {
+        Self {
+            _lifetime: PhantomData,
+            s_type: Default::default(),
+            p_next: std::ptr::null(),
+            swapchain_count: 0,
+            present_ids: std::ptr::null(),
+        }
+    }
+}
+impl<'lt> PresentIdKHR<'lt> {
+    ///Gets the raw value of [`Self::p_next`]
+    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
+        self.p_next
+    }
+    ///Gets the raw value of [`Self::swapchain_count`]
+    pub fn swapchain_count_raw(&self) -> u32 {
+        self.swapchain_count
+    }
+    ///Gets the raw value of [`Self::present_ids`]
+    pub fn present_ids_raw(&self) -> *const u64 {
+        self.present_ids
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::swapchain_count`]
+    pub fn set_swapchain_count_raw(&mut self, value: u32) -> &mut Self {
+        self.swapchain_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::present_ids`]
+    pub fn set_present_ids_raw(&mut self, value: *const u64) -> &mut Self {
+        self.present_ids = value;
+        self
+    }
+    ///Gets the value of [`Self::s_type`]
+    pub fn s_type(&self) -> StructureType {
+        self.s_type
+    }
+    ///Gets the value of [`Self::p_next`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
+        &*self.p_next
+    }
+    ///Gets the value of [`Self::swapchain_count`]
+    pub fn swapchain_count(&self) -> u32 {
+        self.swapchain_count
+    }
+    ///Gets the value of [`Self::present_ids`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn present_ids(&self) -> &[u64] {
+        std::slice::from_raw_parts(self.present_ids, self.swapchain_count as usize)
+    }
+    ///Gets a mutable reference to the value of [`Self::s_type`]
+    pub fn s_type_mut(&mut self) -> &mut StructureType {
+        &mut self.s_type
+    }
+    ///Gets a mutable reference to the value of [`Self::swapchain_count`]
+    pub fn swapchain_count_mut(&mut self) -> &mut u32 {
+        &mut getter
+    }
+    ///Sets the raw value of [`Self::s_type`]
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::swapchain_count`]
+    pub fn set_swapchain_count(&mut self, value: u32) -> &mut Self {
+        self.swapchain_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::present_ids`]
+    pub fn set_present_ids(&mut self, value: &'lt [u64]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.present_ids = value.as_ptr();
+        self.swapchain_count = len_;
+        self
+    }
 }
