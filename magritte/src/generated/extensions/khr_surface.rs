@@ -1,3 +1,173 @@
+//![VK_KHR_surface](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_surface.html) - instance extension
+//!# Description
+//!The [`VK_KHR_surface`] extension is an instance extension.
+//!It introduces [`SurfaceKHR`] objects, which abstract native platform
+//!surface or window objects for use with Vulkan.
+//!It also provides a way to determine whether a queue family in a physical
+//!device supports presenting to particular surface.Separate extensions for each platform provide
+//! the mechanisms for creating
+//![`SurfaceKHR`] objects, but once created they may be used in this and
+//!other platform-independent extensions, in particular the
+//!`[`VK_KHR_swapchain`]` extension.
+//!# Revision
+//!25
+//!# Dependencies
+//! - Requires Vulkan 1.0
+//!# Contacts
+//! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_surface]
+//!   @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_surface
+//!   extension>>)
+//! - Ian Elliott [ianelliottus](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_surface]
+//!   @ianelliottus%0A<<Here describe the issue or question you have about the VK_KHR_surface
+//!   extension>>)
+//!# New handles
+//! - [`SurfaceKHR`]
+//!# New functions & commands
+//! - [`DestroySurfaceKHR`]
+//! - [`GetPhysicalDeviceSurfaceCapabilitiesKHR`]
+//! - [`GetPhysicalDeviceSurfaceFormatsKHR`]
+//! - [`GetPhysicalDeviceSurfacePresentModesKHR`]
+//! - [`GetPhysicalDeviceSurfaceSupportKHR`]
+//!# New structures
+//! - [`SurfaceCapabilitiesKHR`]
+//! - [`SurfaceFormatKHR`]
+//!# New enums
+//! - [`ColorSpaceKHR`]
+//! - [`CompositeAlphaFlagBitsKHR`]
+//! - [`PresentModeKHR`]
+//! - [`SurfaceTransformFlagBitsKHR`]
+//!# New bitmasks
+//! - [`CompositeAlphaFlagsKHR`]
+//!# New constants
+//! - [`KHR_SURFACE_EXTENSION_NAME`]
+//! - [`KHR_SURFACE_SPEC_VERSION`]
+//! - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_SURFACE_KHR`
+//! - Extending [`VulkanResultCodes`]:  - `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`  -
+//!   `VK_ERROR_SURFACE_LOST_KHR`
+//!# Known issues & F.A.Q
+//!1) Should this extension include a method to query whether a physical device
+//!supports presenting to a specific window or native surface on a given
+//!platform? **RESOLVED** : Yes.
+//!Without this, applications would need to create a device instance to
+//!determine whether a particular window can be presented to.
+//!Knowing that a device supports presentation to a platform in general is not
+//!sufficient, as a single machine might support multiple seats, or instances
+//!of the platform that each use different underlying physical devices.
+//!Additionally, on some platforms, such as the X Window System, different
+//!drivers and devices might be used for different windows depending on which
+//!section of the desktop they exist on.2) Should the [`GetPhysicalDeviceSurfaceCapabilitiesKHR`],
+//![`GetPhysicalDeviceSurfaceFormatsKHR`], and
+//![`GetPhysicalDeviceSurfacePresentModesKHR`] functions be in this
+//!extension and operate on physical devices, rather than being in
+//!`[`VK_KHR_swapchain`]` (i.e. device extension) and being dependent on
+//![`Device`]? **RESOLVED** : Yes.
+//!While it might be useful to depend on [`Device`] (and therefore on
+//!enabled extensions and features) for the queries, Vulkan was released only
+//!with the [`PhysicalDevice`] versions.
+//!Many cases can be resolved by a Valid Usage statement, and/or by a separate
+//!`pNext` chain version of the query struct specific to a given extension
+//!or parameters, via extensible versions of the queries:
+//![`GetPhysicalDeviceSurfacePresentModes2EXT`],
+//![`GetPhysicalDeviceSurfaceCapabilities2KHR`], and
+//![`GetPhysicalDeviceSurfaceFormats2KHR`].3) Should Vulkan support Xlib or XCB as the API for
+//! accessing the X Window
+//!System platform? **RESOLVED** : Both.
+//!XCB is a more modern and efficient API, but Xlib usage is deeply ingrained
+//!in many applications and likely will remain in use for the foreseeable
+//!future.
+//!Not all drivers necessarily need to support both, but including both as
+//!options in the core specification will probably encourage support, which
+//!should in turn ease adoption of the Vulkan API in older codebases.
+//!Additionally, the performance improvements possible with XCB likely will not
+//!have a measurable impact on the performance of Vulkan presentation and other
+//!minimal window system interactions defined here.4) Should the GBM platform be included in the
+//! list of platform enums? **RESOLVED** : Deferred, and will be addressed with a platform-specific
+//!extension to be written in the future.
+//!# Version History
+//! - Revision 1, 2015-05-20 (James Jones)  - Initial draft, based on LunarG KHR spec, other KHR
+//!   specs, patches attached to bugs.
+//! - Revision 2, 2015-05-22 (Ian Elliott)  - Created initial Description section.  - Removed query
+//!   for whether a platform requires the use of a queue for presentation, since it was decided that
+//!   presentation will always be modeled as being part of the queue.  - Fixed typos and other minor
+//!   mistakes.
+//! - Revision 3, 2015-05-26 (Ian Elliott)  - Improved the Description section.
+//! - Revision 4, 2015-05-27 (James Jones)  - Fixed compilation errors in example code.
+//! - Revision 5, 2015-06-01 (James Jones)  - Added issues 1 and 2 and made related spec updates.
+//! - Revision 6, 2015-06-01 (James Jones)  - Merged the platform type mappings table previously
+//!   removed from VK_KHR_swapchain with the platform description table in this spec.  - Added
+//!   issues 3 and 4 documenting choices made when building the initial list of native platforms
+//!   supported.
+//! - Revision 7, 2015-06-11 (Ian Elliott)  - Updated table 1 per input from the KHR TSG.  - Updated
+//!   issue 4 (GBM) per discussion with Daniel Stone. He will create a platform-specific extension
+//!   sometime in the future.
+//! - Revision 8, 2015-06-17 (James Jones)  - Updated enum-extending values using new convention.  -
+//!   Fixed the value of VK_SURFACE_PLATFORM_INFO_TYPE_SUPPORTED_KHR.
+//! - Revision 9, 2015-06-17 (James Jones)  - Rebased on Vulkan API version 126.
+//! - Revision 10, 2015-06-18 (James Jones)  - Marked issues 2 and 3 resolved.
+//! - Revision 11, 2015-06-23 (Ian Elliott)  - Examples now show use of function pointers for
+//!   extension functions.  - Eliminated extraneous whitespace.
+//! - Revision 12, 2015-07-07 (Daniel Rakos)  - Added error section describing when each error is
+//!   expected to be reported.  - Replaced the term “queue node index” with “queue family index” in
+//!   the spec as that is the agreed term to be used in the latest version of the core header and
+//!   spec.  - Replaced bool32_t with VkBool32.
+//! - Revision 13, 2015-08-06 (Daniel Rakos)  - Updated spec against latest core API header version.
+//! - Revision 14, 2015-08-20 (Ian Elliott)  - Renamed this extension and all of its enumerations,
+//!   types, functions, etc. This makes it compliant with the proposed standard for Vulkan
+//!   extensions.  - Switched from “revision” to “version”, including use of the VK_MAKE_VERSION
+//!   macro in the header file.  - Did miscellaneous cleanup, etc.
+//! - Revision 15, 2015-08-20 (Ian Elliott—​porting a 2015-07-29 change from James Jones)  - Moved
+//!   the surface transform enums here from VK_WSI_swapchain so they could be reused by
+//!   VK_WSI_display.
+//! - Revision 16, 2015-09-01 (James Jones)  - Restore single-field revision number.
+//! - Revision 17, 2015-09-01 (James Jones)  - Fix example code compilation errors.
+//! - Revision 18, 2015-09-26 (Jesse Hall)  - Replaced VkSurfaceDescriptionKHR with the VkSurfaceKHR
+//!   object, which is created via layered extensions. Added VkDestroySurfaceKHR.
+//! - Revision 19, 2015-09-28 (Jesse Hall)  - Renamed from VK_EXT_KHR_swapchain to
+//!   VK_EXT_KHR_surface.
+//! - Revision 20, 2015-09-30 (Jeff Vigil)  - Add error result VK_ERROR_SURFACE_LOST_KHR.
+//! - Revision 21, 2015-10-15 (Daniel Rakos)  - Updated the resolution of issue #2 and include the
+//!   surface capability queries in this extension.  - Renamed SurfaceProperties to
+//!   SurfaceCapabilities as it better reflects that the values returned are the capabilities of the
+//!   surface on a particular device.  - Other minor cleanup and consistency changes.
+//! - Revision 22, 2015-10-26 (Ian Elliott)  - Renamed from VK_EXT_KHR_surface to VK_KHR_surface.
+//! - Revision 23, 2015-11-03 (Daniel Rakos)  - Added allocation callbacks to vkDestroySurfaceKHR.
+//! - Revision 24, 2015-11-10 (Jesse Hall)  - Removed VkSurfaceTransformKHR. Use
+//!   VkSurfaceTransformFlagBitsKHR instead.  - Rename VkSurfaceCapabilitiesKHR member
+//!   maxImageArraySize to maxImageArrayLayers.
+//! - Revision 25, 2016-01-14 (James Jones)  - Moved VK_ERROR_NATIVE_WINDOW_IN_USE_KHR from the
+//!   VK_KHR_android_surface to the VK_KHR_surface extension.
+//! - 2016-08-23 (Ian Elliott)  - Update the example code, to not have so many characters per line,
+//!   and to split out a new example to show how to obtain function pointers.
+//! - 2016-08-25 (Ian Elliott)  - A note was added at the beginning of the example code, stating
+//!   that it will be removed from future versions of the appendix.
+//!# Other info
+//! * 2016-08-25
+//! * No known IP claims.
+//! * - Patrick Doane, Blizzard  - Ian Elliott, LunarG  - Jesse Hall, Google  - James Jones, NVIDIA
+//!   - David Mao, AMD  - Norbert Nopper, Freescale  - Alon Or-bach, Samsung  - Daniel Rakos, AMD  -
+//!   Graham Sellers, AMD  - Jeff Vigil, Qualcomm  - Chia-I Wu, LunarG  - Jason Ekstrand, Intel
+//!# Related
+//! - [`ColorSpaceKHR`]
+//! - [`CompositeAlphaFlagBitsKHR`]
+//! - [`CompositeAlphaFlagsKHR`]
+//! - [`PresentModeKHR`]
+//! - [`SurfaceCapabilitiesKHR`]
+//! - [`SurfaceFormatKHR`]
+//! - [`SurfaceKHR`]
+//! - [`SurfaceTransformFlagBitsKHR`]
+//! - [`DestroySurfaceKHR`]
+//! - [`GetPhysicalDeviceSurfaceCapabilitiesKHR`]
+//! - [`GetPhysicalDeviceSurfaceFormatsKHR`]
+//! - [`GetPhysicalDeviceSurfacePresentModesKHR`]
+//! - [`GetPhysicalDeviceSurfaceSupportKHR`]
+//!
+//!# Notes and documentation
+//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+//!
+//!This documentation is generated from the Vulkan specification and documentation.
+//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+//! Commons Attribution 4.0 International*.
+//!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     extensions::khr_display::SurfaceTransformFlagsKHR,
     vulkan1_0::{Extent2D, Format, ImageUsageFlags},
@@ -96,6 +266,7 @@ pub const KHR_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_surfa
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum PresentModeKHR {
     ///[`PresentModeImmediateKhr`] specifies that the presentation
@@ -172,7 +343,7 @@ pub enum PresentModeKHR {
 }
 impl const Default for PresentModeKHR {
     fn default() -> Self {
-        PresentModeImmediateKhr
+        Self::PresentModeImmediateKhr
     }
 }
 impl PresentModeKHR {
@@ -279,7 +450,7 @@ impl PresentModeKHR {
 ///This extension defines enums for [`ColorSpaceKHR`] that correspond to
 ///the following color spaces:The transfer functions are described in the “Transfer Functions”
 /// chapter
-///of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).Except Display-P3 OETF, which is:<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span style="height:3.30003em;vertical-align:-1.400015em;" class="strut"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.400015em;" class="vlist"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span style="height:3.75em;" class="pstrut"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.69em;" class="vlist"><span style="top:-3.69em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span style="height:0.9540200000000001em;" class="vlist"><span style="top:-3.363em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.8443142857142858em;" class="vlist"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">.</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span style="border-bottom-width:0.049em;" class="frac-line mtight"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.344em;" class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span><span class="mord">.</span><span class="mord">9</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.19em;" class="vlist"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.69em;" class="vlist"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">&lt;</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.400015em;" class="vlist"><span></span></span></span></span></span></span></span></span></span></span>where L is the linear value of a color component and E is the
+///of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).Except Display-P3 OETF, which is:<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span style="height:3.30003em;vertical-align:-1.400015em;" class="strut"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span style="height:3.75em;" class="pstrut"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.400015em;" class="vlist"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span style="height:3.75em;" class="pstrut"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.69em;" class="vlist"><span style="top:-3.69em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9540200000000001em;"><span style="top:-3.363em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443142857142858em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">.</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">−</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span><span class="mord">.</span><span class="mord">9</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.19em;" class="vlist"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.69em;" class="vlist"><span style="top:-3.69em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.400015em;"><span></span></span></span></span></span></span></span></span></span></span>where L is the linear value of a color component and E is the
 ///encoded value (as stored in the image in memory).
 ///# Related
 /// - [`VK_KHR_surface`]
@@ -297,6 +468,7 @@ impl PresentModeKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum ColorSpaceKHR {
     ///[`ColorSpaceSrgbNonlinearKhr`] specifies support for the sRGB
@@ -390,7 +562,7 @@ pub enum ColorSpaceKHR {
 }
 impl const Default for ColorSpaceKHR {
     fn default() -> Self {
-        ColorSpaceSrgbNonlinearKhr
+        Self::ColorSpaceSrgbNonlinearKhr
     }
 }
 impl ColorSpaceKHR {
@@ -408,6 +580,553 @@ impl ColorSpaceKHR {
     #[inline]
     pub const unsafe fn from_bits(bits: i32) -> i32 {
         std::mem::transmute(bits)
+    }
+}
+///[VkCompositeAlphaFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCompositeAlphaFlagBitsKHR.html) - Alpha compositing modes supported on a device
+///# C Specifications
+///The `supportedCompositeAlpha` member is of type
+///[`CompositeAlphaFlagBitsKHR`], containing the following values:
+///```c
+///// Provided by VK_KHR_surface
+///typedef enum VkCompositeAlphaFlagBitsKHR {
+///    VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR = 0x00000001,
+///    VK_COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR = 0x00000002,
+///    VK_COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR = 0x00000004,
+///    VK_COMPOSITE_ALPHA_INHERIT_BIT_KHR = 0x00000008,
+///} VkCompositeAlphaFlagBitsKHR;
+///```
+///# Description
+///These values are described as follows:
+/// - [`CompositeAlphaOpaqueKhr`]: The alpha component, if it exists, of the images is ignored in
+///   the compositing process. Instead, the image is treated as if it has a constant alpha of 1.0.
+/// - [`CompositeAlphaPreMultipliedKhr`]: The alpha component, if it exists, of the images is
+///   respected in the compositing process. The non-alpha components of the image are expected to
+///   already be multiplied by the alpha component by the application.
+/// - [`CompositeAlphaPostMultipliedKhr`]: The alpha component, if it exists, of the images is
+///   respected in the compositing process. The non-alpha components of the image are not expected
+///   to already be multiplied by the alpha component by the application; instead, the compositor
+///   will multiply the non-alpha components of the image by the alpha component during compositing.
+/// - [`CompositeAlphaInheritKhr`]: The way in which the presentation engine treats the alpha
+///   component in the images is unknown to the Vulkan API. Instead, the application is responsible
+///   for setting the composite alpha blending mode using native window system commands. If the
+///   application does not set the blending mode using native window system commands, then a
+///   platform-specific default will be used.
+///# Related
+/// - [`VK_KHR_surface`]
+/// - [`CompositeAlphaFlagsKHR`]
+/// - [`SwapchainCreateInfoKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCompositeAlphaFlagBitsKHR")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum CompositeAlphaFlagBitsKHR {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`CompositeAlphaOpaqueKhr`]: The alpha component, if it
+    ///exists, of the images is ignored in the compositing process.
+    ///Instead, the image is treated as if it has a constant alpha of 1.0.
+    CompositeAlphaOpaqueKhr = 1,
+    ///[`CompositeAlphaPreMultipliedKhr`]: The alpha component, if
+    ///it exists, of the images is respected in the compositing process.
+    ///The non-alpha components of the image are expected to already be
+    ///multiplied by the alpha component by the application.
+    CompositeAlphaPreMultipliedKhr = 2,
+    ///[`CompositeAlphaPostMultipliedKhr`]: The alpha component,
+    ///if it exists, of the images is respected in the compositing process.
+    ///The non-alpha components of the image are not expected to already be
+    ///multiplied by the alpha component by the application; instead, the
+    ///compositor will multiply the non-alpha components of the image by the
+    ///alpha component during compositing.
+    CompositeAlphaPostMultipliedKhr = 4,
+    ///[`CompositeAlphaInheritKhr`]: The way in which the
+    ///presentation engine treats the alpha component in the images is unknown
+    ///to the Vulkan API.
+    ///Instead, the application is responsible for setting the composite alpha
+    ///blending mode using native window system commands.
+    ///If the application does not set the blending mode using native window
+    ///system commands, then a platform-specific default will be used.
+    CompositeAlphaInheritKhr = 8,
+}
+impl const Default for CompositeAlphaFlagBitsKHR {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl CompositeAlphaFlagBitsKHR {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkSurfaceTransformFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceTransformFlagBitsKHR.html) - Presentation transforms supported on a device
+///# C Specifications
+///Bits which  **may**  be set in
+///[`SurfaceCapabilitiesKHR::supported_transforms`] indicating the
+///presentation transforms supported for the surface on the specified device,
+///and possible values of
+///[`SurfaceCapabilitiesKHR::current_transform`] indicating the
+///surface’s current transform relative to the presentation engine’s natural
+///orientation, are:
+///```c
+///// Provided by VK_KHR_surface
+///typedef enum VkSurfaceTransformFlagBitsKHR {
+///    VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR = 0x00000001,
+///    VK_SURFACE_TRANSFORM_ROTATE_90_BIT_KHR = 0x00000002,
+///    VK_SURFACE_TRANSFORM_ROTATE_180_BIT_KHR = 0x00000004,
+///    VK_SURFACE_TRANSFORM_ROTATE_270_BIT_KHR = 0x00000008,
+///    VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_BIT_KHR = 0x00000010,
+///    VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_BIT_KHR = 0x00000020,
+///    VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_BIT_KHR = 0x00000040,
+///    VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_BIT_KHR = 0x00000080,
+///    VK_SURFACE_TRANSFORM_INHERIT_BIT_KHR = 0x00000100,
+///} VkSurfaceTransformFlagBitsKHR;
+///```
+///# Description
+/// - [`SurfaceTransformIdentityKhr`] specifies that image content is presented without being
+///   transformed.
+/// - [`SurfaceTransformRotate90Khr`] specifies that image content is rotated 90 degrees clockwise.
+/// - [`SurfaceTransformRotate180Khr`] specifies that image content is rotated 180 degrees
+///   clockwise.
+/// - [`SurfaceTransformRotate270Khr`] specifies that image content is rotated 270 degrees
+///   clockwise.
+/// - [`SurfaceTransformHorizontalMirrorKhr`] specifies that image content is mirrored horizontally.
+/// - [`SurfaceTransformHorizontalMirrorRotate90Khr`] specifies that image content is mirrored
+///   horizontally, then rotated 90 degrees clockwise.
+/// - [`SurfaceTransformHorizontalMirrorRotate180Khr`] specifies that image content is mirrored
+///   horizontally, then rotated 180 degrees clockwise.
+/// - [`SurfaceTransformHorizontalMirrorRotate270Khr`] specifies that image content is mirrored
+///   horizontally, then rotated 270 degrees clockwise.
+/// - [`SurfaceTransformInheritKhr`] specifies that the presentation transform is not specified, and
+///   is instead determined by platform-specific considerations and mechanisms outside Vulkan.
+///# Related
+/// - [`VK_KHR_surface`]
+/// - [`CommandBufferInheritanceRenderPassTransformInfoQCOM`]
+/// - [`CopyCommandTransformInfoQCOM`]
+/// - [`DisplaySurfaceCreateInfoKHR`]
+/// - [`RenderPassTransformBeginInfoQCOM`]
+/// - [`SurfaceCapabilities2EXT`]
+/// - [`SurfaceCapabilitiesKHR`]
+/// - [`SurfaceTransformFlagsKHR`]
+/// - [`SwapchainCreateInfoKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSurfaceTransformFlagBitsKHR")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum SurfaceTransformFlagBitsKHR {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`SurfaceTransformIdentityKhr`] specifies that image content
+    ///is presented without being transformed.
+    SurfaceTransformIdentityKhr = 1,
+    ///[`SurfaceTransformRotate90Khr`] specifies that image
+    ///content is rotated 90 degrees clockwise.
+    SurfaceTransformRotate90Khr = 2,
+    ///[`SurfaceTransformRotate180Khr`] specifies that image
+    ///content is rotated 180 degrees clockwise.
+    SurfaceTransformRotate180Khr = 4,
+    ///[`SurfaceTransformRotate270Khr`] specifies that image
+    ///content is rotated 270 degrees clockwise.
+    SurfaceTransformRotate270Khr = 8,
+    ///[`SurfaceTransformHorizontalMirrorKhr`] specifies that
+    ///image content is mirrored horizontally.
+    SurfaceTransformHorizontalMirrorKhr = 16,
+    ///[`SurfaceTransformHorizontalMirrorRotate90Khr`] specifies
+    ///that image content is mirrored horizontally, then rotated 90 degrees
+    ///clockwise.
+    SurfaceTransformHorizontalMirrorRotate90Khr = 32,
+    ///[`SurfaceTransformHorizontalMirrorRotate180Khr`]
+    ///specifies that image content is mirrored horizontally, then rotated 180
+    ///degrees clockwise.
+    SurfaceTransformHorizontalMirrorRotate180Khr = 64,
+    ///[`SurfaceTransformHorizontalMirrorRotate270Khr`]
+    ///specifies that image content is mirrored horizontally, then rotated 270
+    ///degrees clockwise.
+    SurfaceTransformHorizontalMirrorRotate270Khr = 128,
+    ///[`SurfaceTransformInheritKhr`] specifies that the
+    ///presentation transform is not specified, and is instead determined by
+    ///platform-specific considerations and mechanisms outside Vulkan.
+    SurfaceTransformInheritKhr = 256,
+}
+impl const Default for SurfaceTransformFlagBitsKHR {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl SurfaceTransformFlagBitsKHR {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkCompositeAlphaFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCompositeAlphaFlagBitsKHR.html) - Alpha compositing modes supported on a device
+///# C Specifications
+///The `supportedCompositeAlpha` member is of type
+///[`CompositeAlphaFlagBitsKHR`], containing the following values:
+///```c
+///// Provided by VK_KHR_surface
+///typedef enum VkCompositeAlphaFlagBitsKHR {
+///    VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR = 0x00000001,
+///    VK_COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR = 0x00000002,
+///    VK_COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR = 0x00000004,
+///    VK_COMPOSITE_ALPHA_INHERIT_BIT_KHR = 0x00000008,
+///} VkCompositeAlphaFlagBitsKHR;
+///```
+///# Description
+///These values are described as follows:
+/// - [`CompositeAlphaOpaqueKhr`]: The alpha component, if it exists, of the images is ignored in
+///   the compositing process. Instead, the image is treated as if it has a constant alpha of 1.0.
+/// - [`CompositeAlphaPreMultipliedKhr`]: The alpha component, if it exists, of the images is
+///   respected in the compositing process. The non-alpha components of the image are expected to
+///   already be multiplied by the alpha component by the application.
+/// - [`CompositeAlphaPostMultipliedKhr`]: The alpha component, if it exists, of the images is
+///   respected in the compositing process. The non-alpha components of the image are not expected
+///   to already be multiplied by the alpha component by the application; instead, the compositor
+///   will multiply the non-alpha components of the image by the alpha component during compositing.
+/// - [`CompositeAlphaInheritKhr`]: The way in which the presentation engine treats the alpha
+///   component in the images is unknown to the Vulkan API. Instead, the application is responsible
+///   for setting the composite alpha blending mode using native window system commands. If the
+///   application does not set the blending mode using native window system commands, then a
+///   platform-specific default will be used.
+///# Related
+/// - [`VK_KHR_surface`]
+/// - [`CompositeAlphaFlagsKHR`]
+/// - [`SwapchainCreateInfoKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct CompositeAlphaFlagsKHR(u32);
+impl const Default for CompositeAlphaFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<CompositeAlphaFlagBitsKHR> for CompositeAlphaFlagsKHR {
+    fn from(from: CompositeAlphaFlagBitsKHR) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl CompositeAlphaFlagsKHR {
+    ///[`CompositeAlphaOpaqueKhr`]: The alpha component, if it
+    ///exists, of the images is ignored in the compositing process.
+    ///Instead, the image is treated as if it has a constant alpha of 1.0.
+    const CompositeAlphaOpaqueKhr: Self = Self(1);
+    ///[`CompositeAlphaPreMultipliedKhr`]: The alpha component, if
+    ///it exists, of the images is respected in the compositing process.
+    ///The non-alpha components of the image are expected to already be
+    ///multiplied by the alpha component by the application.
+    const CompositeAlphaPreMultipliedKhr: Self = Self(2);
+    ///[`CompositeAlphaPostMultipliedKhr`]: The alpha component,
+    ///if it exists, of the images is respected in the compositing process.
+    ///The non-alpha components of the image are not expected to already be
+    ///multiplied by the alpha component by the application; instead, the
+    ///compositor will multiply the non-alpha components of the image by the
+    ///alpha component during compositing.
+    const CompositeAlphaPostMultipliedKhr: Self = Self(4);
+    ///[`CompositeAlphaInheritKhr`]: The way in which the
+    ///presentation engine treats the alpha component in the images is unknown
+    ///to the Vulkan API.
+    ///Instead, the application is responsible for setting the composite alpha
+    ///blending mode using native window system commands.
+    ///If the application does not set the blending mode using native window
+    ///system commands, then a platform-specific default will be used.
+    const CompositeAlphaInheritKhr: Self = Self(8);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::CompositeAlphaOpaqueKhr
+            | Self::CompositeAlphaPreMultipliedKhr
+            | Self::CompositeAlphaPostMultipliedKhr
+            | Self::CompositeAlphaInheritKhr
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for CompositeAlphaFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for CompositeAlphaFlagsKHR {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for CompositeAlphaFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for CompositeAlphaFlagsKHR {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for CompositeAlphaFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for CompositeAlphaFlagsKHR {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for CompositeAlphaFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for CompositeAlphaFlagsKHR {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for CompositeAlphaFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<CompositeAlphaFlagsKHR> for CompositeAlphaFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = CompositeAlphaFlagsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<CompositeAlphaFlagBitsKHR> for CompositeAlphaFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = CompositeAlphaFlagBitsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(CompositeAlphaFlagsKHR::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<CompositeAlphaFlagsKHR> for CompositeAlphaFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = CompositeAlphaFlagsKHR>>(iterator: T) -> CompositeAlphaFlagsKHR {
+        let mut out = CompositeAlphaFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<CompositeAlphaFlagBitsKHR> for CompositeAlphaFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = CompositeAlphaFlagBitsKHR>>(iterator: T) -> CompositeAlphaFlagsKHR {
+        let mut out = CompositeAlphaFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for CompositeAlphaFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(CompositeAlphaFlagsKHR);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == CompositeAlphaFlagsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self.0.contains(CompositeAlphaFlagsKHR::CompositeAlphaOpaqueKhr) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(CompositeAlphaOpaqueKhr))?;
+                    }
+                    if self.0.contains(CompositeAlphaFlagsKHR::CompositeAlphaPreMultipliedKhr) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(CompositeAlphaPreMultipliedKhr))?;
+                    }
+                    if self.0.contains(CompositeAlphaFlagsKHR::CompositeAlphaPostMultipliedKhr) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(CompositeAlphaPostMultipliedKhr))?;
+                    }
+                    if self.0.contains(CompositeAlphaFlagsKHR::CompositeAlphaInheritKhr) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(CompositeAlphaInheritKhr))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(CompositeAlphaFlagsKHR))
+            .field(&Flags(*self))
+            .finish()
     }
 }
 ///[VkSurfaceCapabilitiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceCapabilitiesKHR.html) - Structure describing capabilities of a surface

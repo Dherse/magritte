@@ -1,7 +1,267 @@
+//![VK_KHR_display](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_display.html) - instance extension
+//!# Description
+//!This extension provides the API to enumerate displays and available modes on
+//!a given device.
+//!# Revision
+//!23
+//!# Dependencies
+//! - Requires Vulkan 1.0
+//! - Requires `[`VK_KHR_surface`]`
+//!# Contacts
+//! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_display]
+//!   @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_display
+//!   extension>>)
+//! - Norbert Nopper [FslNopper](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_display]
+//!   @FslNopper%0A<<Here describe the issue or question you have about the VK_KHR_display
+//!   extension>>)
+//!# New handles
+//! - [`DisplayKHR`]
+//! - [`DisplayModeKHR`]
+//!# New functions & commands
+//! - [`CreateDisplayModeKHR`]
+//! - [`CreateDisplayPlaneSurfaceKHR`]
+//! - [`GetDisplayModePropertiesKHR`]
+//! - [`GetDisplayPlaneCapabilitiesKHR`]
+//! - [`GetDisplayPlaneSupportedDisplaysKHR`]
+//! - [`GetPhysicalDeviceDisplayPlanePropertiesKHR`]
+//! - [`GetPhysicalDeviceDisplayPropertiesKHR`]
+//!# New structures
+//! - [`DisplayModeCreateInfoKHR`]
+//! - [`DisplayModeParametersKHR`]
+//! - [`DisplayModePropertiesKHR`]
+//! - [`DisplayPlaneCapabilitiesKHR`]
+//! - [`DisplayPlanePropertiesKHR`]
+//! - [`DisplayPropertiesKHR`]
+//! - [`DisplaySurfaceCreateInfoKHR`]
+//!# New enums
+//! - [`DisplayPlaneAlphaFlagBitsKHR`]
+//!# New bitmasks
+//! - [`DisplayModeCreateFlagsKHR`]
+//! - [`DisplayPlaneAlphaFlagsKHR`]
+//! - [`DisplaySurfaceCreateFlagsKHR`]
+//! - [`SurfaceTransformFlagsKHR`]
+//!# New constants
+//! - [`KHR_DISPLAY_EXTENSION_NAME`]
+//! - [`KHR_DISPLAY_SPEC_VERSION`]
+//! - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_DISPLAY_KHR`  - `VK_OBJECT_TYPE_DISPLAY_MODE_KHR`
+//! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DISPLAY_MODE_CREATE_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR`
+//!# Known issues & F.A.Q
+//!1) Which properties of a mode should be fixed in the mode information vs.
+//!settable in some other function when setting the mode? E.g., do we need to
+//!double the size of the mode pool to include both stereo and non-stereo
+//!modes? YUV and RGB scanout even if they both take RGB input images? BGR vs.
+//!RGB input? etc. **PROPOSED RESOLUTION** : Many modern displays support at most a handful of
+//!resolutions and timings natively.
+//!Other “modes” are expected to be supported using scaling hardware on the
+//!display engine or GPU.
+//!Other properties, such as rotation and mirroring should not require
+//!duplicating hardware modes just to express all combinations.
+//!Further, these properties may be implemented on a per-display or per-overlay
+//!granularity.To avoid the exponential growth of modes as mutable properties are added, as
+//!was the case with `EGLConfig`/WGL pixel formats/`GLXFBConfig`, this
+//!specification should separate out hardware properties and configurable state
+//!into separate objects.
+//!Modes and overlay planes will express capabilities of the hardware, while a
+//!separate structure will allow applications to configure scaling, rotation,
+//!mirroring, color keys, LUT values, alpha masks, etc.
+//!for a given swapchain independent of the mode in use.
+//!Constraints on these settings will be established by properties of the
+//!immutable objects.Note the resolution of this issue may affect issue 5 as well.2) What
+//! properties of a display itself are useful? **PROPOSED RESOLUTION** : This issue is too broad.
+//!It was meant to prompt general discussion, but resolving this issue amounts
+//!to completing this specification.
+//!All interesting properties should be included.
+//!The issue will remain as a placeholder since removing it would make it hard
+//!to parse existing discussion notes that refer to issues by number.3) How are multiple overlay
+//! planes within a display or mode enumerated? **PROPOSED RESOLUTION** : They are referred to by an
+//! index.
+//!Each display will report the number of overlay planes it contains.4) Should swapchains be
+//! created relative to a mode or a display? **PROPOSED RESOLUTION** : When using this extension,
+//! swapchains are created
+//!relative to a mode and a plane.
+//!The mode implies the display object the swapchain will present to.
+//!If the specified mode is not the display’s current mode, the new mode will
+//!be applied when the first image is presented to the swapchain, and the
+//!default operating system mode, if any, will be restored when the swapchain
+//!is destroyed.5) Should users query generic ranges from displays and construct their own
+//!modes explicitly using those constraints rather than querying a fixed set of
+//!modes (Most monitors only have one real “mode” these days, even though
+//!many support relatively arbitrary scaling, either on the monitor side or in
+//!the GPU display engine, making “modes” something of a relic/compatibility
+//!construct). **PROPOSED RESOLUTION** : Expose both.
+//!Display information structures will expose a set of predefined modes, as
+//!well as any attributes necessary to construct a customized mode.6) Is it fine if we return the
+//! display and display mode handles in the
+//!structure used to query their properties? **PROPOSED RESOLUTION** : Yes.7) Is there a
+//! possibility that not all displays of a device work with all of
+//!the present queues of a device? If yes, how do we determine which displays
+//!work with which present queues? **PROPOSED RESOLUTION** : No known hardware has such
+//! limitations, but
+//!determining such limitations is supported automatically using the existing
+//!`[`VK_KHR_surface`]` and `[`VK_KHR_swapchain`]` query mechanisms.8) Should all presentation need
+//! to be done relative to an overlay plane, or
+//!can a display mode + display be used alone to target an output? **PROPOSED RESOLUTION** :
+//! Require specifying a plane explicitly.9) Should displays have an associated window system
+//! display, such as an
+//!`HDC` or `Display*`? **PROPOSED RESOLUTION** : No.
+//!Displays are independent of any windowing system in use on the system.
+//!Further, neither `HDC` nor `Display*` refer to a physical display
+//!object.10) Are displays queried from a physical GPU or from a device instance? **PROPOSED
+//! RESOLUTION** : Developers prefer to query modes directly from the
+//!physical GPU so they can use display information as an input to their device
+//!selection algorithms prior to device creation.
+//!This avoids the need to create placeholder device instances to enumerate
+//!displays.This preference must be weighed against the extra initialization that must
+//!be done by driver vendors prior to device instance creation to support this
+//!usage.11) Should displays and/or modes be dispatchable objects? If functions are
+//!to take displays, overlays, or modes as their first parameter, they must be
+//!dispatchable objects as defined in Khronos bug 13529.
+//!If they are not added to the list of dispatchable objects, functions
+//!operating on them must take some higher-level object as their first
+//!parameter.
+//!There is no performance case against making them dispatchable objects, but
+//!they would be the first extension objects to be dispatchable. **PROPOSED RESOLUTION** : Do not
+//! make displays or modes dispatchable.
+//!They will dispatch based on their associated physical device.12) Should hardware cursor
+//! capabilities be exposed? **PROPOSED RESOLUTION** : Defer.
+//!This could be a separate extension on top of the base WSI specs.if they are one physical display
+//! device to an end user, but may internally
+//!be implemented as two side-by-side displays using the same display engine
+//!(and sometimes cabling) resources as two physically separate display
+//!devices. **RESOLVED** : Tiled displays will appear as a single display object in this
+//!API.14) Should the raw EDID data be included in the display information? **RESOLVED** : No.
+//!A future extension could be added which reports the EDID if necessary.
+//!This may be complicated by the outcome of issue 13.15) Should min and max scaling factor
+//! capabilities of overlays be exposed? **RESOLVED** : Yes.
+//!This is exposed indirectly by allowing applications to query the min/max
+//!position and extent of the source and destination regions from which image
+//!contents are fetched by the display engine when using a particular mode and
+//!overlay pair.16) Should devices be able to expose planes that can be moved between
+//!displays? If so, how? **RESOLVED** : Yes.
+//!Applications can determine which displays a given plane supports using
+//![`GetDisplayPlaneSupportedDisplaysKHR`].17) Should there be a way to destroy display modes? If
+//! so, does it support
+//!destroying “built in” modes? **RESOLVED** : Not in this extension.
+//!A future extension could add this functionality.18) What should the lifetime of display and
+//! built-in display mode objects
+//!be? **RESOLVED** : The lifetime of the instance.
+//!These objects cannot be destroyed.
+//!A future extension may be added to expose a way to destroy these objects
+//!and/or support display hotplug.19) Should persistent mode for smart panels be enabled/disabled
+//! at swapchain
+//!creation time, or on a per-present basis. **RESOLVED** : On a per-present basis.
+//!# Version History
+//! - Revision 1, 2015-02-24 (James Jones)  - Initial draft
+//! - Revision 2, 2015-03-12 (Norbert Nopper)  - Added overlay enumeration for a display.
+//! - Revision 3, 2015-03-17 (Norbert Nopper)  - Fixed typos and namings as discussed in Bugzilla.
+//!   - Reordered and grouped functions.  - Added functions to query count of display, mode and
+//!   overlay.  - Added native display handle, which may be needed on some platforms to create a
+//!   native Window.
+//! - Revision 4, 2015-03-18 (Norbert Nopper)  - Removed primary and virtualPostion members (see
+//!   comment of James Jones in Bugzilla).  - Added native overlay handle to information structure.
+//!   - Replaced , with ; in struct.
+//! - Revision 6, 2015-03-18 (Daniel Rakos)  - Added WSI extension suffix to all items.  - Made the
+//!   whole API more “Vulkanish”.  - Replaced all functions with a single vkGetDisplayInfoKHR
+//!   function to better match the rest of the API.  - Made the display, display mode, and overlay
+//!   objects be first class objects, not subclasses of VkBaseObject as they do not support the
+//!   common functions anyways.  - Renamed *Info structures to *Properties.  - Removed overlayIndex
+//!   field from VkOverlayProperties as there is an implicit index already as a result of moving to
+//!   a “Vulkanish” API.  - Displays are not get through device, but through physical GPU to match
+//!   the rest of the Vulkan API. Also this is something ISVs explicitly requested.  - Added issue
+//!   (6) and (7).
+//! - Revision 7, 2015-03-25 (James Jones)  - Added an issues section  - Added rotation and
+//!   mirroring flags
+//! - Revision 8, 2015-03-25 (James Jones)  - Combined the duplicate issues sections introduced in
+//!   last change.  - Added proposed resolutions to several issues.
+//! - Revision 9, 2015-04-01 (Daniel Rakos)  - Rebased extension against Vulkan 0.82.0
+//! - Revision 10, 2015-04-01 (James Jones)  - Added issues (10) and (11).  - Added more straw-man
+//!   issue resolutions, and cleaned up the proposed resolution for issue (4).  - Updated the
+//!   rotation and mirroring enums to have proper bitmask semantics.
+//! - Revision 11, 2015-04-15 (James Jones)  - Added proposed resolution for issues (1) and (2).  -
+//!   Added issues (12), (13), (14), and (15)  - Removed pNativeHandle field from overlay structure.
+//!   - Fixed small compilation errors in example code.
+//! - Revision 12, 2015-07-29 (James Jones)  - Rewrote the guts of the extension against the latest
+//!   WSI swapchain specifications and the latest Vulkan API.  - Address overlay planes by their
+//!   index rather than an object handle and refer to them as “planes” rather than “overlays” to
+//!   make it slightly clearer that even a display with no “overlays” still has at least one base
+//!   “plane” that images can be displayed on.  - Updated most of the issues.  - Added an “extension
+//!   type” section to the specification header.  - Re-used the VK_EXT_KHR_surface surface transform
+//!   enumerations rather than redefining them here.  - Updated the example code to use the new
+//!   semantics.
+//! - Revision 13, 2015-08-21 (Ian Elliott)  - Renamed this extension and all of its enumerations,
+//!   types, functions, etc. This makes it compliant with the proposed standard for Vulkan
+//!   extensions.  - Switched from “revision” to “version”, including use of the VK_MAKE_VERSION
+//!   macro in the header file.
+//! - Revision 14, 2015-09-01 (James Jones)  - Restore single-field revision number.
+//! - Revision 15, 2015-09-08 (James Jones)  - Added alpha flags enum.  - Added premultiplied alpha
+//!   support.
+//! - Revision 16, 2015-09-08 (James Jones)  - Added description section to the spec.  - Added
+//!   issues 16 - 18.
+//! - Revision 17, 2015-10-02 (James Jones)  - Planes are now a property of the entire device rather
+//!   than individual displays. This allows planes to be moved between multiple displays on devices
+//!   that support it.  - Added a function to create a VkSurfaceKHR object describing a display
+//!   plane and mode to align with the new per-platform surface creation conventions.  - Removed
+//!   detailed mode timing data. It was agreed that the mode extents and refresh rate are sufficient
+//!   for current use cases. Other information could be added back in as an extension if it is
+//!   needed in the future.  - Added support for smart/persistent/buffered display devices.
+//! - Revision 18, 2015-10-26 (Ian Elliott)  - Renamed from VK_EXT_KHR_display to VK_KHR_display.
+//! - Revision 19, 2015-11-02 (James Jones)  - Updated example code to match revision 17 changes.
+//! - Revision 20, 2015-11-03 (Daniel Rakos)  - Added allocation callbacks to creation functions.
+//! - Revision 21, 2015-11-10 (Jesse Hall)  - Added VK_DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR, and use
+//!   VkDisplayPlaneAlphaFlagBitsKHR for VkDisplayPlanePropertiesKHR::alphaMode instead of
+//!   VkDisplayPlaneAlphaFlagsKHR, since it only represents one mode.  - Added reserved flags
+//!   bitmask to VkDisplayPlanePropertiesKHR.  - Use VkSurfaceTransformFlagBitsKHR instead of
+//!   obsolete VkSurfaceTransformKHR.  - Renamed vkGetDisplayPlaneSupportedDisplaysKHR parameters
+//!   for clarity.
+//! - Revision 22, 2015-12-18 (James Jones)  - Added missing “planeIndex” parameter to
+//!   vkGetDisplayPlaneSupportedDisplaysKHR()
+//! - Revision 23, 2017-03-13 (James Jones)  - Closed all remaining issues. The specification and
+//!   implementations have been shipping with the proposed resolutions for some time now.  - Removed
+//!   the sample code and noted it has been integrated into the official Vulkan SDK cube demo.
+//!# Other info
+//! * 2017-03-13
+//! * No known IP claims.
+//! * - James Jones, NVIDIA  - Norbert Nopper, Freescale  - Jeff Vigil, Qualcomm  - Daniel Rakos,
+//!   AMD
+//!# Related
+//! - [`DisplayKHR`]
+//! - [`DisplayModeCreateFlagsKHR`]
+//! - [`DisplayModeCreateInfoKHR`]
+//! - [`DisplayModeKHR`]
+//! - [`DisplayModeParametersKHR`]
+//! - [`DisplayModePropertiesKHR`]
+//! - [`DisplayPlaneAlphaFlagBitsKHR`]
+//! - [`DisplayPlaneAlphaFlagsKHR`]
+//! - [`DisplayPlaneCapabilitiesKHR`]
+//! - [`DisplayPlanePropertiesKHR`]
+//! - [`DisplayPropertiesKHR`]
+//! - [`DisplaySurfaceCreateFlagsKHR`]
+//! - [`DisplaySurfaceCreateInfoKHR`]
+//! - [`SurfaceTransformFlagsKHR`]
+//! - [`CreateDisplayModeKHR`]
+//! - [`CreateDisplayPlaneSurfaceKHR`]
+//! - [`GetDisplayModePropertiesKHR`]
+//! - [`GetDisplayPlaneCapabilitiesKHR`]
+//! - [`GetDisplayPlaneSupportedDisplaysKHR`]
+//! - [`GetPhysicalDeviceDisplayPlanePropertiesKHR`]
+//! - [`GetPhysicalDeviceDisplayPropertiesKHR`]
+//!
+//!# Notes and documentation
+//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+//!
+//!This documentation is generated from the Vulkan specification and documentation.
+//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+//! Commons Attribution 4.0 International*.
+//!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     extensions::khr_surface::SurfaceTransformFlagBitsKHR,
     vulkan1_0::{BaseInStructure, Bool32, Extent2D, Offset2D, StructureType},
 };
+#[cfg(feature = "bytemuck")]
+use bytemuck::{Pod, Zeroable};
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -11,6 +271,916 @@ pub const KHR_DISPLAY_SPEC_VERSION: u32 = 23;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_DISPLAY_EXTENSION_NAME")]
 pub const KHR_DISPLAY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_display");
+///[VkDisplayPlaneAlphaFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPlaneAlphaFlagBitsKHR.html) - Alpha blending type
+///# C Specifications
+///Bits which  **can**  be set in
+///[`DisplaySurfaceCreateInfoKHR::alpha_mode`], specifying the type of
+///alpha blending to use on a display, are:
+///```c
+///// Provided by VK_KHR_display
+///typedef enum VkDisplayPlaneAlphaFlagBitsKHR {
+///    VK_DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR = 0x00000001,
+///    VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR = 0x00000002,
+///    VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR = 0x00000004,
+///    VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR = 0x00000008,
+///} VkDisplayPlaneAlphaFlagBitsKHR;
+///```
+///# Description
+/// - [`DisplayPlaneAlphaOpaqueKhr`] specifies that the source image will be treated as opaque.
+/// - [`DisplayPlaneAlphaGlobalKhr`] specifies that a global alpha value  **must**  be specified
+///   that will be applied to all pixels in the source image.
+/// - [`DisplayPlaneAlphaPerPixelKhr`] specifies that the alpha value will be determined by the
+///   alpha component of the source image’s pixels. If the source format contains no alpha values,
+///   no blending will be applied. The source alpha values are not premultiplied into the source
+///   image’s other color components.
+/// - [`DisplayPlaneAlphaPerPixelPremultipliedKhr`] is equivalent to
+///   [`DisplayPlaneAlphaPerPixelKhr`], except the source alpha values are assumed to be
+///   premultiplied into the source image’s other color components.
+///# Related
+/// - [`VK_KHR_display`]
+/// - [`DisplayPlaneAlphaFlagsKHR`]
+/// - [`DisplaySurfaceCreateInfoKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplayPlaneAlphaFlagBitsKHR")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum DisplayPlaneAlphaFlagBitsKHR {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`DisplayPlaneAlphaOpaqueKhr`] specifies that the source
+    ///image will be treated as opaque.
+    DisplayPlaneAlphaOpaqueKhr = 1,
+    ///[`DisplayPlaneAlphaGlobalKhr`] specifies that a global
+    ///alpha value  **must**  be specified that will be applied to all pixels in the
+    ///source image.
+    DisplayPlaneAlphaGlobalKhr = 2,
+    ///[`DisplayPlaneAlphaPerPixelKhr`] specifies that the alpha
+    ///value will be determined by the alpha component of the source image’s
+    ///pixels.
+    ///If the source format contains no alpha values, no blending will be
+    ///applied.
+    ///The source alpha values are not premultiplied into the source image’s
+    ///other color components.
+    DisplayPlaneAlphaPerPixelKhr = 4,
+    ///[`DisplayPlaneAlphaPerPixelPremultipliedKhr`] is
+    ///equivalent to [`DisplayPlaneAlphaPerPixelKhr`], except the
+    ///source alpha values are assumed to be premultiplied into the source
+    ///image’s other color components.
+    DisplayPlaneAlphaPerPixelPremultipliedKhr = 8,
+}
+impl const Default for DisplayPlaneAlphaFlagBitsKHR {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl DisplayPlaneAlphaFlagBitsKHR {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkDisplayPlaneAlphaFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPlaneAlphaFlagBitsKHR.html) - Alpha blending type
+///# C Specifications
+///Bits which  **can**  be set in
+///[`DisplaySurfaceCreateInfoKHR::alpha_mode`], specifying the type of
+///alpha blending to use on a display, are:
+///```c
+///// Provided by VK_KHR_display
+///typedef enum VkDisplayPlaneAlphaFlagBitsKHR {
+///    VK_DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR = 0x00000001,
+///    VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR = 0x00000002,
+///    VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR = 0x00000004,
+///    VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR = 0x00000008,
+///} VkDisplayPlaneAlphaFlagBitsKHR;
+///```
+///# Description
+/// - [`DisplayPlaneAlphaOpaqueKhr`] specifies that the source image will be treated as opaque.
+/// - [`DisplayPlaneAlphaGlobalKhr`] specifies that a global alpha value  **must**  be specified
+///   that will be applied to all pixels in the source image.
+/// - [`DisplayPlaneAlphaPerPixelKhr`] specifies that the alpha value will be determined by the
+///   alpha component of the source image’s pixels. If the source format contains no alpha values,
+///   no blending will be applied. The source alpha values are not premultiplied into the source
+///   image’s other color components.
+/// - [`DisplayPlaneAlphaPerPixelPremultipliedKhr`] is equivalent to
+///   [`DisplayPlaneAlphaPerPixelKhr`], except the source alpha values are assumed to be
+///   premultiplied into the source image’s other color components.
+///# Related
+/// - [`VK_KHR_display`]
+/// - [`DisplayPlaneAlphaFlagsKHR`]
+/// - [`DisplaySurfaceCreateInfoKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct DisplayPlaneAlphaFlagsKHR(u32);
+impl const Default for DisplayPlaneAlphaFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<DisplayPlaneAlphaFlagBitsKHR> for DisplayPlaneAlphaFlagsKHR {
+    fn from(from: DisplayPlaneAlphaFlagBitsKHR) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl DisplayPlaneAlphaFlagsKHR {
+    ///[`DisplayPlaneAlphaOpaqueKhr`] specifies that the source
+    ///image will be treated as opaque.
+    const DisplayPlaneAlphaOpaqueKhr: Self = Self(1);
+    ///[`DisplayPlaneAlphaGlobalKhr`] specifies that a global
+    ///alpha value  **must**  be specified that will be applied to all pixels in the
+    ///source image.
+    const DisplayPlaneAlphaGlobalKhr: Self = Self(2);
+    ///[`DisplayPlaneAlphaPerPixelKhr`] specifies that the alpha
+    ///value will be determined by the alpha component of the source image’s
+    ///pixels.
+    ///If the source format contains no alpha values, no blending will be
+    ///applied.
+    ///The source alpha values are not premultiplied into the source image’s
+    ///other color components.
+    const DisplayPlaneAlphaPerPixelKhr: Self = Self(4);
+    ///[`DisplayPlaneAlphaPerPixelPremultipliedKhr`] is
+    ///equivalent to [`DisplayPlaneAlphaPerPixelKhr`], except the
+    ///source alpha values are assumed to be premultiplied into the source
+    ///image’s other color components.
+    const DisplayPlaneAlphaPerPixelPremultipliedKhr: Self = Self(8);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::DisplayPlaneAlphaOpaqueKhr
+            | Self::DisplayPlaneAlphaGlobalKhr
+            | Self::DisplayPlaneAlphaPerPixelKhr
+            | Self::DisplayPlaneAlphaPerPixelPremultipliedKhr
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for DisplayPlaneAlphaFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for DisplayPlaneAlphaFlagsKHR {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for DisplayPlaneAlphaFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for DisplayPlaneAlphaFlagsKHR {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for DisplayPlaneAlphaFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for DisplayPlaneAlphaFlagsKHR {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for DisplayPlaneAlphaFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for DisplayPlaneAlphaFlagsKHR {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for DisplayPlaneAlphaFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<DisplayPlaneAlphaFlagsKHR> for DisplayPlaneAlphaFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = DisplayPlaneAlphaFlagsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<DisplayPlaneAlphaFlagBitsKHR> for DisplayPlaneAlphaFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = DisplayPlaneAlphaFlagBitsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(DisplayPlaneAlphaFlagsKHR::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<DisplayPlaneAlphaFlagsKHR> for DisplayPlaneAlphaFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = DisplayPlaneAlphaFlagsKHR>>(
+        iterator: T,
+    ) -> DisplayPlaneAlphaFlagsKHR {
+        let mut out = DisplayPlaneAlphaFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<DisplayPlaneAlphaFlagBitsKHR> for DisplayPlaneAlphaFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = DisplayPlaneAlphaFlagBitsKHR>>(
+        iterator: T,
+    ) -> DisplayPlaneAlphaFlagsKHR {
+        let mut out = DisplayPlaneAlphaFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for DisplayPlaneAlphaFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(DisplayPlaneAlphaFlagsKHR);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == DisplayPlaneAlphaFlagsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self.0.contains(DisplayPlaneAlphaFlagsKHR::DisplayPlaneAlphaOpaqueKhr) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DisplayPlaneAlphaOpaqueKhr))?;
+                    }
+                    if self.0.contains(DisplayPlaneAlphaFlagsKHR::DisplayPlaneAlphaGlobalKhr) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DisplayPlaneAlphaGlobalKhr))?;
+                    }
+                    if self.0.contains(DisplayPlaneAlphaFlagsKHR::DisplayPlaneAlphaPerPixelKhr) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DisplayPlaneAlphaPerPixelKhr))?;
+                    }
+                    if self
+                        .0
+                        .contains(DisplayPlaneAlphaFlagsKHR::DisplayPlaneAlphaPerPixelPremultipliedKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DisplayPlaneAlphaPerPixelPremultipliedKhr))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(DisplayPlaneAlphaFlagsKHR))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkSurfaceTransformFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceTransformFlagBitsKHR.html) - Presentation transforms supported on a device
+///# C Specifications
+///Bits which  **may**  be set in
+///[`SurfaceCapabilitiesKHR::supported_transforms`] indicating the
+///presentation transforms supported for the surface on the specified device,
+///and possible values of
+///[`SurfaceCapabilitiesKHR::current_transform`] indicating the
+///surface’s current transform relative to the presentation engine’s natural
+///orientation, are:
+///```c
+///// Provided by VK_KHR_surface
+///typedef enum VkSurfaceTransformFlagBitsKHR {
+///    VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR = 0x00000001,
+///    VK_SURFACE_TRANSFORM_ROTATE_90_BIT_KHR = 0x00000002,
+///    VK_SURFACE_TRANSFORM_ROTATE_180_BIT_KHR = 0x00000004,
+///    VK_SURFACE_TRANSFORM_ROTATE_270_BIT_KHR = 0x00000008,
+///    VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_BIT_KHR = 0x00000010,
+///    VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_BIT_KHR = 0x00000020,
+///    VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_BIT_KHR = 0x00000040,
+///    VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_BIT_KHR = 0x00000080,
+///    VK_SURFACE_TRANSFORM_INHERIT_BIT_KHR = 0x00000100,
+///} VkSurfaceTransformFlagBitsKHR;
+///```
+///# Description
+/// - [`SurfaceTransformIdentityKhr`] specifies that image content is presented without being
+///   transformed.
+/// - [`SurfaceTransformRotate90Khr`] specifies that image content is rotated 90 degrees clockwise.
+/// - [`SurfaceTransformRotate180Khr`] specifies that image content is rotated 180 degrees
+///   clockwise.
+/// - [`SurfaceTransformRotate270Khr`] specifies that image content is rotated 270 degrees
+///   clockwise.
+/// - [`SurfaceTransformHorizontalMirrorKhr`] specifies that image content is mirrored horizontally.
+/// - [`SurfaceTransformHorizontalMirrorRotate90Khr`] specifies that image content is mirrored
+///   horizontally, then rotated 90 degrees clockwise.
+/// - [`SurfaceTransformHorizontalMirrorRotate180Khr`] specifies that image content is mirrored
+///   horizontally, then rotated 180 degrees clockwise.
+/// - [`SurfaceTransformHorizontalMirrorRotate270Khr`] specifies that image content is mirrored
+///   horizontally, then rotated 270 degrees clockwise.
+/// - [`SurfaceTransformInheritKhr`] specifies that the presentation transform is not specified, and
+///   is instead determined by platform-specific considerations and mechanisms outside Vulkan.
+///# Related
+/// - [`VK_KHR_surface`]
+/// - [`CommandBufferInheritanceRenderPassTransformInfoQCOM`]
+/// - [`CopyCommandTransformInfoQCOM`]
+/// - [`DisplaySurfaceCreateInfoKHR`]
+/// - [`RenderPassTransformBeginInfoQCOM`]
+/// - [`SurfaceCapabilities2EXT`]
+/// - [`SurfaceCapabilitiesKHR`]
+/// - [`SurfaceTransformFlagsKHR`]
+/// - [`SwapchainCreateInfoKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct SurfaceTransformFlagsKHR(u32);
+impl const Default for SurfaceTransformFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<SurfaceTransformFlagBitsKHR> for SurfaceTransformFlagsKHR {
+    fn from(from: SurfaceTransformFlagBitsKHR) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl SurfaceTransformFlagsKHR {
+    ///[`SurfaceTransformIdentityKhr`] specifies that image content
+    ///is presented without being transformed.
+    ///
+    ///Provided by [`crate::extensions::khr_surface`]
+    const SurfaceTransformIdentityKhr: Self = Self(1);
+    ///[`SurfaceTransformRotate90Khr`] specifies that image
+    ///content is rotated 90 degrees clockwise.
+    ///
+    ///Provided by [`crate::extensions::khr_surface`]
+    const SurfaceTransformRotate90Khr: Self = Self(2);
+    ///[`SurfaceTransformRotate180Khr`] specifies that image
+    ///content is rotated 180 degrees clockwise.
+    ///
+    ///Provided by [`crate::extensions::khr_surface`]
+    const SurfaceTransformRotate180Khr: Self = Self(4);
+    ///[`SurfaceTransformRotate270Khr`] specifies that image
+    ///content is rotated 270 degrees clockwise.
+    ///
+    ///Provided by [`crate::extensions::khr_surface`]
+    const SurfaceTransformRotate270Khr: Self = Self(8);
+    ///[`SurfaceTransformHorizontalMirrorKhr`] specifies that
+    ///image content is mirrored horizontally.
+    ///
+    ///Provided by [`crate::extensions::khr_surface`]
+    const SurfaceTransformHorizontalMirrorKhr: Self = Self(16);
+    ///[`SurfaceTransformHorizontalMirrorRotate90Khr`] specifies
+    ///that image content is mirrored horizontally, then rotated 90 degrees
+    ///clockwise.
+    ///
+    ///Provided by [`crate::extensions::khr_surface`]
+    const SurfaceTransformHorizontalMirrorRotate90Khr: Self = Self(32);
+    ///[`SurfaceTransformHorizontalMirrorRotate180Khr`]
+    ///specifies that image content is mirrored horizontally, then rotated 180
+    ///degrees clockwise.
+    ///
+    ///Provided by [`crate::extensions::khr_surface`]
+    const SurfaceTransformHorizontalMirrorRotate180Khr: Self = Self(64);
+    ///[`SurfaceTransformHorizontalMirrorRotate270Khr`]
+    ///specifies that image content is mirrored horizontally, then rotated 270
+    ///degrees clockwise.
+    ///
+    ///Provided by [`crate::extensions::khr_surface`]
+    const SurfaceTransformHorizontalMirrorRotate270Khr: Self = Self(128);
+    ///[`SurfaceTransformInheritKhr`] specifies that the
+    ///presentation transform is not specified, and is instead determined by
+    ///platform-specific considerations and mechanisms outside Vulkan.
+    ///
+    ///Provided by [`crate::extensions::khr_surface`]
+    const SurfaceTransformInheritKhr: Self = Self(256);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::SurfaceTransformIdentityKhr
+            | Self::SurfaceTransformRotate90Khr
+            | Self::SurfaceTransformRotate180Khr
+            | Self::SurfaceTransformRotate270Khr
+            | Self::SurfaceTransformHorizontalMirrorKhr
+            | Self::SurfaceTransformHorizontalMirrorRotate90Khr
+            | Self::SurfaceTransformHorizontalMirrorRotate180Khr
+            | Self::SurfaceTransformHorizontalMirrorRotate270Khr
+            | Self::SurfaceTransformInheritKhr
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for SurfaceTransformFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for SurfaceTransformFlagsKHR {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for SurfaceTransformFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for SurfaceTransformFlagsKHR {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for SurfaceTransformFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for SurfaceTransformFlagsKHR {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for SurfaceTransformFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for SurfaceTransformFlagsKHR {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for SurfaceTransformFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<SurfaceTransformFlagsKHR> for SurfaceTransformFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = SurfaceTransformFlagsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<SurfaceTransformFlagBitsKHR> for SurfaceTransformFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = SurfaceTransformFlagBitsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(SurfaceTransformFlagsKHR::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<SurfaceTransformFlagsKHR> for SurfaceTransformFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = SurfaceTransformFlagsKHR>>(iterator: T) -> SurfaceTransformFlagsKHR {
+        let mut out = SurfaceTransformFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<SurfaceTransformFlagBitsKHR> for SurfaceTransformFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = SurfaceTransformFlagBitsKHR>>(
+        iterator: T,
+    ) -> SurfaceTransformFlagsKHR {
+        let mut out = SurfaceTransformFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for SurfaceTransformFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(SurfaceTransformFlagsKHR);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == SurfaceTransformFlagsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self.0.contains(SurfaceTransformFlagsKHR::SurfaceTransformIdentityKhr) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SurfaceTransformIdentityKhr))?;
+                    }
+                    if self.0.contains(SurfaceTransformFlagsKHR::SurfaceTransformRotate90Khr) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SurfaceTransformRotate90Khr))?;
+                    }
+                    if self.0.contains(SurfaceTransformFlagsKHR::SurfaceTransformRotate180Khr) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SurfaceTransformRotate180Khr))?;
+                    }
+                    if self.0.contains(SurfaceTransformFlagsKHR::SurfaceTransformRotate270Khr) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SurfaceTransformRotate270Khr))?;
+                    }
+                    if self
+                        .0
+                        .contains(SurfaceTransformFlagsKHR::SurfaceTransformHorizontalMirrorKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SurfaceTransformHorizontalMirrorKhr))?;
+                    }
+                    if self
+                        .0
+                        .contains(SurfaceTransformFlagsKHR::SurfaceTransformHorizontalMirrorRotate90Khr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SurfaceTransformHorizontalMirrorRotate90Khr))?;
+                    }
+                    if self
+                        .0
+                        .contains(SurfaceTransformFlagsKHR::SurfaceTransformHorizontalMirrorRotate180Khr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SurfaceTransformHorizontalMirrorRotate180Khr))?;
+                    }
+                    if self
+                        .0
+                        .contains(SurfaceTransformFlagsKHR::SurfaceTransformHorizontalMirrorRotate270Khr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SurfaceTransformHorizontalMirrorRotate270Khr))?;
+                    }
+                    if self.0.contains(SurfaceTransformFlagsKHR::SurfaceTransformInheritKhr) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SurfaceTransformInheritKhr))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(SurfaceTransformFlagsKHR))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkDisplayModeCreateFlagsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayModeCreateFlagsKHR.html) - Reserved for future use
+///# C Specifications
+///```c
+///// Provided by VK_KHR_display
+///typedef VkFlags VkDisplayModeCreateFlagsKHR;
+///```
+///# Related
+/// - [`VK_KHR_display`]
+/// - [`DisplayModeCreateInfoKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct DisplayModeCreateFlagsKHR(u32);
+impl const Default for DisplayModeCreateFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl std::fmt::Debug for DisplayModeCreateFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(DisplayModeCreateFlagsKHR))
+            .field(&self.0)
+            .finish()
+    }
+}
+///[VkDisplaySurfaceCreateFlagsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplaySurfaceCreateFlagsKHR.html) - Reserved for future use
+///# C Specifications
+///```c
+///// Provided by VK_KHR_display
+///typedef VkFlags VkDisplaySurfaceCreateFlagsKHR;
+///```
+///# Related
+/// - [`VK_KHR_display`]
+/// - [`DisplaySurfaceCreateInfoKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct DisplaySurfaceCreateFlagsKHR(u32);
+impl const Default for DisplaySurfaceCreateFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl std::fmt::Debug for DisplaySurfaceCreateFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(DisplaySurfaceCreateFlagsKHR))
+            .field(&self.0)
+            .finish()
+    }
+}
 ///[VkDisplayPropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPropertiesKHR.html) - Structure describing an available display device
 ///# C Specifications
 ///The [`DisplayPropertiesKHR`] structure is defined as:

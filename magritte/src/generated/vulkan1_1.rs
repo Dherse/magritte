@@ -140,6 +140,7 @@ pub const MAX_DEVICE_GROUP_SIZE: u32 = 32;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum DescriptorUpdateTemplateType {
     ///[`DescriptorSet`] specifies that
@@ -155,7 +156,7 @@ pub enum DescriptorUpdateTemplateType {
 }
 impl const Default for DescriptorUpdateTemplateType {
     fn default() -> Self {
-        DescriptorSet
+        Self::DescriptorSet
     }
 }
 impl DescriptorUpdateTemplateType {
@@ -219,6 +220,7 @@ impl DescriptorUpdateTemplateType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum PointClippingBehavior {
     ///[`AllClipPlanes`] specifies that the
@@ -232,7 +234,7 @@ pub enum PointClippingBehavior {
 }
 impl const Default for PointClippingBehavior {
     fn default() -> Self {
-        AllClipPlanes
+        Self::AllClipPlanes
     }
 }
 impl PointClippingBehavior {
@@ -293,6 +295,7 @@ impl PointClippingBehavior {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum TessellationDomainOrigin {
     ///[`UpperLeft`] specifies that the origin
@@ -306,7 +309,7 @@ pub enum TessellationDomainOrigin {
 }
 impl const Default for TessellationDomainOrigin {
     fn default() -> Self {
-        UpperLeft
+        Self::UpperLeft
     }
 }
 impl TessellationDomainOrigin {
@@ -399,6 +402,7 @@ impl TessellationDomainOrigin {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum SamplerYcbcrModelConversion {
     ///[`RgbIdentity`] specifies that the
@@ -425,7 +429,7 @@ pub enum SamplerYcbcrModelConversion {
 }
 impl const Default for SamplerYcbcrModelConversion {
     fn default() -> Self {
-        RgbIdentity
+        Self::RgbIdentity
     }
 }
 impl SamplerYcbcrModelConversion {
@@ -496,6 +500,7 @@ impl SamplerYcbcrModelConversion {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum SamplerYcbcrRange {
     ///[`ItuFull`] specifies that the full range of
@@ -510,7 +515,7 @@ pub enum SamplerYcbcrRange {
 }
 impl const Default for SamplerYcbcrRange {
     fn default() -> Self {
-        ItuFull
+        Self::ItuFull
     }
 }
 impl SamplerYcbcrRange {
@@ -573,6 +578,7 @@ impl SamplerYcbcrRange {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum ChromaLocation {
     ///[`CositedEven`] specifies that downsampled chroma
@@ -585,7 +591,7 @@ pub enum ChromaLocation {
 }
 impl const Default for ChromaLocation {
     fn default() -> Self {
-        CositedEven
+        Self::CositedEven
     }
 }
 impl ChromaLocation {
@@ -603,6 +609,5454 @@ impl ChromaLocation {
     #[inline]
     pub const unsafe fn from_bits(bits: i32) -> i32 {
         std::mem::transmute(bits)
+    }
+}
+///[VkDeviceQueueCreateFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueCreateFlagBits.html) - Bitmask specifying behavior of the queue
+///# C Specifications
+///Bits which  **can**  be set in [`DeviceQueueCreateInfo::flags`],
+///specifying usage behavior of a queue, are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkDeviceQueueCreateFlagBits {
+///  // Provided by VK_VERSION_1_1
+///    VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT = 0x00000001,
+///} VkDeviceQueueCreateFlagBits;
+///```
+///# Description
+/// - [`Protected`] specifies that the device queue is a protected-capable queue.
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`DeviceQueueCreateFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceQueueCreateFlagBits")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum DeviceQueueCreateFlagBits {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`Protected`] specifies that the device
+    ///queue is a protected-capable queue.
+    Protected = 1,
+}
+impl const Default for DeviceQueueCreateFlagBits {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl DeviceQueueCreateFlagBits {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkSubgroupFeatureFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubgroupFeatureFlagBits.html) - Bitmask describing what group operations are supported with subgroup scope
+///# C Specifications
+///Bits which  **can**  be set in
+///[`PhysicalDeviceSubgroupProperties::supported_operations`]
+///and
+///[`PhysicalDeviceVulkan11Properties::subgroup_supported_operations`]
+///to specify supported [group operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shaders-group-operations) with
+///[subgroup scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shaders-scope-subgroup) are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkSubgroupFeatureFlagBits {
+///    VK_SUBGROUP_FEATURE_BASIC_BIT = 0x00000001,
+///    VK_SUBGROUP_FEATURE_VOTE_BIT = 0x00000002,
+///    VK_SUBGROUP_FEATURE_ARITHMETIC_BIT = 0x00000004,
+///    VK_SUBGROUP_FEATURE_BALLOT_BIT = 0x00000008,
+///    VK_SUBGROUP_FEATURE_SHUFFLE_BIT = 0x00000010,
+///    VK_SUBGROUP_FEATURE_SHUFFLE_RELATIVE_BIT = 0x00000020,
+///    VK_SUBGROUP_FEATURE_CLUSTERED_BIT = 0x00000040,
+///    VK_SUBGROUP_FEATURE_QUAD_BIT = 0x00000080,
+///  // Provided by VK_NV_shader_subgroup_partitioned
+///    VK_SUBGROUP_FEATURE_PARTITIONED_BIT_NV = 0x00000100,
+///} VkSubgroupFeatureFlagBits;
+///```
+///# Description
+/// - [`SubgroupFeatureBasic`] specifies the device will accept SPIR-V shader modules containing the
+///   `GroupNonUniform` capability.
+/// - [`SubgroupFeatureVote`] specifies the device will accept SPIR-V shader modules containing the
+///   `GroupNonUniformVote` capability.
+/// - [`SubgroupFeatureArithmetic`] specifies the device will accept SPIR-V shader modules
+///   containing the `GroupNonUniformArithmetic` capability.
+/// - [`SubgroupFeatureBallot`] specifies the device will accept SPIR-V shader modules containing
+///   the `GroupNonUniformBallot` capability.
+/// - [`SubgroupFeatureShuffle`] specifies the device will accept SPIR-V shader modules containing
+///   the `GroupNonUniformShuffle` capability.
+/// - [`SubgroupFeatureShuffleRelative`] specifies the device will accept SPIR-V shader modules
+///   containing the `GroupNonUniformShuffleRelative` capability.
+/// - [`SubgroupFeatureClustered`] specifies the device will accept SPIR-V shader modules containing
+///   the `GroupNonUniformClustered` capability.
+/// - [`SubgroupFeatureQuad`] specifies the device will accept SPIR-V shader modules containing the
+///   `GroupNonUniformQuad` capability.
+/// - [`PartitionedNv`] specifies the device will accept SPIR-V shader modules containing the
+///   `GroupNonUniformPartitionedNV` capability.
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`SubgroupFeatureFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSubgroupFeatureFlagBits")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum SubgroupFeatureFlagBits {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`SubgroupFeatureBasic`]
+    ///specifies the device will accept SPIR-V shader modules containing the
+    ///`GroupNonUniform` capability.
+    SubgroupFeatureBasic = 1,
+    ///[`SubgroupFeatureVote`] specifies
+    ///the device will accept SPIR-V shader modules containing the
+    ///`GroupNonUniformVote` capability.
+    SubgroupFeatureVote = 2,
+    ///[`SubgroupFeatureArithmetic`] specifies the device will
+    ///accept SPIR-V shader modules containing the
+    ///`GroupNonUniformArithmetic` capability.
+    SubgroupFeatureArithmetic = 4,
+    ///[`SubgroupFeatureBallot`]
+    ///specifies the device will accept SPIR-V shader modules containing the
+    ///`GroupNonUniformBallot` capability.
+    SubgroupFeatureBallot = 8,
+    ///[`SubgroupFeatureShuffle`]
+    ///specifies the device will accept SPIR-V shader modules containing the
+    ///`GroupNonUniformShuffle` capability.
+    SubgroupFeatureShuffle = 16,
+    ///[`SubgroupFeatureShuffleRelative`] specifies the device will
+    ///accept SPIR-V shader modules containing the
+    ///`GroupNonUniformShuffleRelative` capability.
+    SubgroupFeatureShuffleRelative = 32,
+    ///[`SubgroupFeatureClustered`]
+    ///specifies the device will accept SPIR-V shader modules containing the
+    ///`GroupNonUniformClustered` capability.
+    SubgroupFeatureClustered = 64,
+    ///[`SubgroupFeatureQuad`] specifies
+    ///the device will accept SPIR-V shader modules containing the
+    ///`GroupNonUniformQuad` capability.
+    SubgroupFeatureQuad = 128,
+    ///[`PartitionedNv`] specifies the device will
+    ///accept SPIR-V shader modules containing the
+    ///`GroupNonUniformPartitionedNV` capability.
+    ///
+    ///Provided by [`crate::extensions::nv_shader_subgroup_partitioned`]
+    PartitionedNv = 256,
+}
+impl const Default for SubgroupFeatureFlagBits {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl SubgroupFeatureFlagBits {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkExternalMemoryHandleTypeFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryHandleTypeFlagBits.html) - Bit specifying external memory handle types
+///# C Specifications
+///Possible values of
+///[`PhysicalDeviceExternalImageFormatInfo::handle_type`], specifying
+///an external memory handle type, are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkExternalMemoryHandleTypeFlagBits {
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT = 0x00000001,
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT = 0x00000002,
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 0x00000004,
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT = 0x00000008,
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT = 0x00000010,
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT = 0x00000020,
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT = 0x00000040,
+///  // Provided by VK_EXT_external_memory_dma_buf
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_DMA_BUF_BIT_EXT = 0x00000200,
+///  // Provided by VK_ANDROID_external_memory_android_hardware_buffer
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID = 0x00000400,
+///  // Provided by VK_EXT_external_memory_host
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT = 0x00000080,
+///  // Provided by VK_EXT_external_memory_host
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT = 0x00000100,
+///  // Provided by VK_FUCHSIA_external_memory
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_ZIRCON_VMO_BIT_FUCHSIA = 0x00000800,
+///  // Provided by VK_NV_external_memory_rdma
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_RDMA_ADDRESS_BIT_NV = 0x00001000,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT_KHR =
+/// VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR =
+/// VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR =
+/// VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT_KHR =
+/// VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT_KHR =
+/// VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT_KHR =
+/// VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT_KHR =
+/// VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT,
+///} VkExternalMemoryHandleTypeFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_external_memory_capabilities
+///typedef VkExternalMemoryHandleTypeFlagBits VkExternalMemoryHandleTypeFlagBitsKHR;
+///```
+///# Description
+/// - [`ExternalMemoryHandleTypeOpaqueFd`] specifies a POSIX file descriptor handle that has only
+///   limited valid usage outside of Vulkan and other compatible APIs. It  **must**  be compatible
+///   with the POSIX system calls `dup`, `dup2`, `close`, and the non-standard system call `dup3`.
+///   Additionally, it  **must**  be transportable over a socket using an `SCM_RIGHTS` control
+///   message. It owns a reference to the underlying memory resource represented by its Vulkan
+///   memory object.
+/// - [`ExternalMemoryHandleTypeOpaqueWin32`] specifies an NT handle that has only limited valid
+///   usage outside of Vulkan and other compatible APIs. It  **must**  be compatible with the
+///   functions `DuplicateHandle`, `CloseHandle`, `CompareObjectHandles`, `GetHandleInformation`,
+///   and `SetHandleInformation`. It owns a reference to the underlying memory resource represented
+///   by its Vulkan memory object.
+/// - [`ExternalMemoryHandleTypeOpaqueWin32Kmt`] specifies a global share handle that has only
+///   limited valid usage outside of Vulkan and other compatible APIs. It is not compatible with any
+///   native APIs. It does not own a reference to the underlying memory resource represented by its
+///   Vulkan memory object, and will therefore become invalid when all Vulkan memory objects
+///   associated with it are destroyed.
+/// - [`ExternalMemoryHandleTypeD3D11Texture`] specifies an NT handle returned by
+///   `IDXGIResource1`::`CreateSharedHandle` referring to a Direct3D 10 or 11 texture resource. It
+///   owns a reference to the memory used by the Direct3D resource.
+/// - [`ExternalMemoryHandleTypeD3D11TextureKmt`] specifies a global share handle returned by
+///   `IDXGIResource`::`GetSharedHandle` referring to a Direct3D 10 or 11 texture resource. It does
+///   not own a reference to the underlying Direct3D resource, and will therefore become invalid
+///   when all Vulkan memory objects and Direct3D resources associated with it are destroyed.
+/// - [`ExternalMemoryHandleTypeD3D12Heap`] specifies an NT handle returned by
+///   `ID3D12Device`::`CreateSharedHandle` referring to a Direct3D 12 heap resource. It owns a
+///   reference to the resources used by the Direct3D heap.
+/// - [`ExternalMemoryHandleTypeD3D12Resource`] specifies an NT handle returned by
+///   `ID3D12Device`::`CreateSharedHandle` referring to a Direct3D 12 committed resource. It owns a
+///   reference to the memory used by the Direct3D resource.
+/// - [`HostAllocationExt`] specifies a host pointer returned by a host memory allocation command.
+///   It does not own a reference to the underlying memory resource, and will therefore become
+///   invalid if the host memory is freed.
+/// - [`HostMappedForeignMemoryExt`] specifies a host pointer to *host mapped foreign memory*. It
+///   does not own a reference to the underlying memory resource, and will therefore become invalid
+///   if the foreign memory is unmapped or otherwise becomes no longer available.
+/// - [`DmaBufExt`] is a file descriptor for a Linux dma_buf. It owns a reference to the underlying
+///   memory resource represented by its Vulkan memory object.
+/// - [`AndroidHardwareBufferAndroid`] specifies an [`AHardwareBuffer`] object defined by the Android NDK. See [Android Hardware Buffers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer) for more details of this handle type.
+/// - [`ZirconVmoFuchsia`] is a Zircon handle to a virtual memory object.
+/// - [`RdmaAddressNv`] is a handle to an allocation accessible by remote devices. It owns a
+///   reference to the underlying memory resource represented by its Vulkan memory object.
+///Some external memory handle types can only be shared within the same
+///underlying physical device and/or the same driver version, as defined in the
+///following table:
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`ExternalMemoryHandleTypeFlags`]
+/// - [`ImportMemoryFdInfoKHR`]
+/// - [`ImportMemoryHostPointerInfoEXT`]
+/// - [`ImportMemoryWin32HandleInfoKHR`]
+/// - [`ImportMemoryZirconHandleInfoFUCHSIA`]
+/// - [`MemoryGetFdInfoKHR`]
+/// - [`MemoryGetRemoteAddressInfoNV`]
+/// - [`MemoryGetWin32HandleInfoKHR`]
+/// - [`MemoryGetZirconHandleInfoFUCHSIA`]
+/// - [`PhysicalDeviceExternalBufferInfo`]
+/// - [`PhysicalDeviceExternalImageFormatInfo`]
+/// - [`GetMemoryFdPropertiesKHR`]
+/// - [`GetMemoryHostPointerPropertiesEXT`]
+/// - [`GetMemoryWin32HandlePropertiesKHR`]
+/// - [`GetMemoryZirconHandlePropertiesFUCHSIA`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalMemoryHandleTypeFlagBits")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum ExternalMemoryHandleTypeFlagBits {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`ExternalMemoryHandleTypeOpaqueFd`] specifies a POSIX
+    ///file descriptor handle that has only limited valid usage outside of
+    ///Vulkan and other compatible APIs.
+    ///It  **must**  be compatible with the POSIX system calls `dup`, `dup2`,
+    ///`close`, and the non-standard system call `dup3`.
+    ///Additionally, it  **must**  be transportable over a socket using an
+    ///`SCM_RIGHTS` control message.
+    ///It owns a reference to the underlying memory resource represented by its
+    ///Vulkan memory object.
+    ExternalMemoryHandleTypeOpaqueFd = 1,
+    ///[`ExternalMemoryHandleTypeOpaqueWin32`] specifies an NT
+    ///handle that has only limited valid usage outside of Vulkan and other
+    ///compatible APIs.
+    ///It  **must**  be compatible with the functions `DuplicateHandle`,
+    ///`CloseHandle`, `CompareObjectHandles`, `GetHandleInformation`,
+    ///and `SetHandleInformation`.
+    ///It owns a reference to the underlying memory resource represented by its
+    ///Vulkan memory object.
+    ExternalMemoryHandleTypeOpaqueWin32 = 2,
+    ///[`ExternalMemoryHandleTypeOpaqueWin32Kmt`] specifies a
+    ///global share handle that has only limited valid usage outside of Vulkan
+    ///and other compatible APIs.
+    ///It is not compatible with any native APIs.
+    ///It does not own a reference to the underlying memory resource
+    ///represented by its Vulkan memory object, and will therefore become
+    ///invalid when all Vulkan memory objects associated with it are destroyed.
+    ExternalMemoryHandleTypeOpaqueWin32Kmt = 4,
+    ///[`ExternalMemoryHandleTypeD3D11Texture`] specifies an NT
+    ///handle returned by `IDXGIResource1`::`CreateSharedHandle`
+    ///referring to a Direct3D 10 or 11 texture resource.
+    ///It owns a reference to the memory used by the Direct3D resource.
+    ExternalMemoryHandleTypeD3D11Texture = 8,
+    ///[`ExternalMemoryHandleTypeD3D11TextureKmt`] specifies a
+    ///global share handle returned by `IDXGIResource`::`GetSharedHandle`
+    ///referring to a Direct3D 10 or 11 texture resource.
+    ///It does not own a reference to the underlying Direct3D resource, and
+    ///will therefore become invalid when all Vulkan memory objects and
+    ///Direct3D resources associated with it are destroyed.
+    ExternalMemoryHandleTypeD3D11TextureKmt = 16,
+    ///[`ExternalMemoryHandleTypeD3D12Heap`] specifies an NT
+    ///handle returned by `ID3D12Device`::`CreateSharedHandle` referring
+    ///to a Direct3D 12 heap resource.
+    ///It owns a reference to the resources used by the Direct3D heap.
+    ExternalMemoryHandleTypeD3D12Heap = 32,
+    ///[`ExternalMemoryHandleTypeD3D12Resource`] specifies an NT
+    ///handle returned by `ID3D12Device`::`CreateSharedHandle` referring
+    ///to a Direct3D 12 committed resource.
+    ///It owns a reference to the memory used by the Direct3D resource.
+    ExternalMemoryHandleTypeD3D12Resource = 64,
+    ///[`DmaBufExt`] is a file
+    ///descriptor for a Linux dma_buf.
+    ///It owns a reference to the underlying memory resource represented by its
+    ///Vulkan memory object.
+    ///
+    ///Provided by [`crate::extensions::ext_external_memory_dma_buf`]
+    DmaBufExt = 512,
+    ///[`AndroidHardwareBufferAndroid`]
+    ///specifies an [`AHardwareBuffer`] object defined by the Android NDK.
+    ///See [Android Hardware Buffers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer)
+    ///for more details of this handle type.
+    ///
+    ///Provided by [`crate::extensions::android_external_memory_android_hardware_buffer`]
+    AndroidHardwareBufferAndroid = 1024,
+    ///[`HostAllocationExt`] specifies a
+    ///host pointer returned by a host memory allocation command.
+    ///It does not own a reference to the underlying memory resource, and will
+    ///therefore become invalid if the host memory is freed.
+    ///
+    ///Provided by [`crate::extensions::ext_external_memory_host`]
+    HostAllocationExt = 128,
+    ///[`HostMappedForeignMemoryExt`]
+    ///specifies a host pointer to *host mapped foreign memory*.
+    ///It does not own a reference to the underlying memory resource, and will
+    ///therefore become invalid if the foreign memory is unmapped or otherwise
+    ///becomes no longer available.
+    ///
+    ///Provided by [`crate::extensions::ext_external_memory_host`]
+    HostMappedForeignMemoryExt = 256,
+    ///[`ZirconVmoFuchsia`] is a Zircon
+    ///handle to a virtual memory object.
+    ///
+    ///Provided by [`crate::extensions::fuchsia_external_memory`]
+    ZirconVmoFuchsia = 2048,
+    ///[`RdmaAddressNv`] is a handle to
+    ///an allocation accessible by remote devices.
+    ///It owns a reference to the underlying memory resource represented by its
+    ///Vulkan memory object.
+    ///
+    ///Provided by [`crate::extensions::nv_external_memory_rdma`]
+    RdmaAddressNv = 4096,
+}
+impl const Default for ExternalMemoryHandleTypeFlagBits {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl ExternalMemoryHandleTypeFlagBits {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkExternalMemoryFeatureFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryFeatureFlagBits.html) - Bitmask specifying features of an external memory handle type
+///# C Specifications
+///Bits which  **may**  be set in
+///[`ExternalMemoryProperties::external_memory_features`], specifying
+///features of an external memory handle type, are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkExternalMemoryFeatureFlagBits {
+///    VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT = 0x00000001,
+///    VK_EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT = 0x00000002,
+///    VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT = 0x00000004,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_KHR =
+/// VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_KHR = VK_EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_KHR = VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT,
+///} VkExternalMemoryFeatureFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_external_memory_capabilities
+///typedef VkExternalMemoryFeatureFlagBits VkExternalMemoryFeatureFlagBitsKHR;
+///```
+///# Description
+/// - [`ExternalMemoryFeatureDedicatedOnly`] specifies that images or buffers created with the
+///   specified parameters and handle type  **must**  use the mechanisms defined by
+///   [`MemoryDedicatedRequirements`] and [`MemoryDedicatedAllocateInfo`] to create (or import) a
+///   dedicated allocation for the image or buffer.
+/// - [`ExternalMemoryFeatureExportable`] specifies that handles of this type  **can**  be exported
+///   from Vulkan memory objects.
+/// - [`ExternalMemoryFeatureImportable`] specifies that handles of this type  **can**  be imported
+///   as Vulkan memory objects.
+///Because their semantics in external APIs roughly align with that of an image
+///or buffer with a dedicated allocation in Vulkan, implementations are
+/// **required**  to report [`ExternalMemoryFeatureDedicatedOnly`] for
+///the following external handle types:
+/// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT`
+/// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT`
+/// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT`
+/// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID` for images only
+///Implementations  **must**  not report
+///[`ExternalMemoryFeatureDedicatedOnly`] for buffers with
+///external handle type
+///`VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID`.
+///Implementations  **must**  not report
+///[`ExternalMemoryFeatureDedicatedOnly`] for images or buffers
+///with external handle type
+///`VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT`, or
+///`VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT`.
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`ExternalMemoryFeatureFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalMemoryFeatureFlagBits")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum ExternalMemoryFeatureFlagBits {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`ExternalMemoryFeatureDedicatedOnly`] specifies that
+    ///images or buffers created with the specified parameters and handle type
+    /// **must**  use the mechanisms defined by [`MemoryDedicatedRequirements`]
+    ///and [`MemoryDedicatedAllocateInfo`] to create (or import) a
+    ///dedicated allocation for the image or buffer.
+    ExternalMemoryFeatureDedicatedOnly = 1,
+    ///[`ExternalMemoryFeatureExportable`] specifies that handles
+    ///of this type  **can**  be exported from Vulkan memory objects.
+    ExternalMemoryFeatureExportable = 2,
+    ///[`ExternalMemoryFeatureImportable`] specifies that handles
+    ///of this type  **can**  be imported as Vulkan memory objects.
+    ExternalMemoryFeatureImportable = 4,
+}
+impl const Default for ExternalMemoryFeatureFlagBits {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl ExternalMemoryFeatureFlagBits {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkExternalSemaphoreHandleTypeFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalSemaphoreHandleTypeFlagBits.html) - Bitmask of valid external semaphore handle types
+///# C Specifications
+///Bits which  **may**  be set in
+///[`PhysicalDeviceExternalSemaphoreInfo::handle_type`], specifying an
+///external semaphore handle type, are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkExternalSemaphoreHandleTypeFlagBits {
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT = 0x00000001,
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT = 0x00000002,
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 0x00000004,
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT = 0x00000008,
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT = 0x00000010,
+///  // Provided by VK_FUCHSIA_external_semaphore
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_ZIRCON_EVENT_BIT_FUCHSIA = 0x00000080,
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D11_FENCE_BIT =
+/// VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT,
+///  // Provided by VK_KHR_external_semaphore_capabilities
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT_KHR =
+/// VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT,
+///  // Provided by VK_KHR_external_semaphore_capabilities
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR =
+/// VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT,
+///  // Provided by VK_KHR_external_semaphore_capabilities
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR =
+/// VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT,
+///  // Provided by VK_KHR_external_semaphore_capabilities
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT_KHR =
+/// VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT,
+///  // Provided by VK_KHR_external_semaphore_capabilities
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT_KHR =
+/// VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT,
+///} VkExternalSemaphoreHandleTypeFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_external_semaphore_capabilities
+///typedef VkExternalSemaphoreHandleTypeFlagBits VkExternalSemaphoreHandleTypeFlagBitsKHR;
+///```
+///# Description
+/// - [`ExternalSemaphoreHandleTypeOpaqueFd`] specifies a POSIX file descriptor handle that has only
+///   limited valid usage outside of Vulkan and other compatible APIs. It  **must**  be compatible
+///   with the POSIX system calls `dup`, `dup2`, `close`, and the non-standard system call `dup3`.
+///   Additionally, it  **must**  be transportable over a socket using an `SCM_RIGHTS` control
+///   message. It owns a reference to the underlying synchronization primitive represented by its
+///   Vulkan semaphore object.
+/// - [`ExternalSemaphoreHandleTypeOpaqueWin32`] specifies an NT handle that has only limited valid
+///   usage outside of Vulkan and other compatible APIs. It  **must**  be compatible with the
+///   functions `DuplicateHandle`, `CloseHandle`, `CompareObjectHandles`, `GetHandleInformation`,
+///   and `SetHandleInformation`. It owns a reference to the underlying synchronization primitive
+///   represented by its Vulkan semaphore object.
+/// - [`ExternalSemaphoreHandleTypeOpaqueWin32Kmt`] specifies a global share handle that has only
+///   limited valid usage outside of Vulkan and other compatible APIs. It is not compatible with any
+///   native APIs. It does not own a reference to the underlying synchronization primitive
+///   represented by its Vulkan semaphore object, and will therefore become invalid when all Vulkan
+///   semaphore objects associated with it are destroyed.
+/// - [`ExternalSemaphoreHandleTypeD3D12Fence`] specifies an NT handle returned by
+///   `ID3D12Device`::`CreateSharedHandle` referring to a Direct3D 12 fence, or
+///   `ID3D11Device5`::[`CreateFence`] referring to a Direct3D 11 fence. It owns a reference to the
+///   underlying synchronization primitive associated with the Direct3D fence.
+/// - [`ExternalSemaphoreHandleTypeD3D11Fence`] is an alias of
+///   [`ExternalSemaphoreHandleTypeD3D12Fence`] with the same meaning. It is provided for
+///   convenience and code clarity when interacting with D3D11 fences.
+/// - [`ExternalSemaphoreHandleTypeSyncFd`] specifies a POSIX file descriptor handle to a Linux Sync
+///   File or Android Fence object. It can be used with any native API accepting a valid sync file
+///   or fence as input. It owns a reference to the underlying synchronization primitive associated
+///   with the file descriptor. Implementations which support importing this handle type  **must**
+///   accept any type of sync or fence FD supported by the native system they are running on.
+/// - [`ZirconEventFuchsia`] specifies a handle to a Zircon event object. It can be used with any
+///   native API that accepts a Zircon event handle. Zircon event handles are created with
+///   `ZX_RIGHTS_BASIC` and `ZX_RIGHTS_SIGNAL` rights. Vulkan on Fuchsia uses only the
+///   ZX_EVENT_SIGNALED bit when signaling or waiting.
+///Some external semaphore handle types can only be shared within the same
+///underlying physical device and/or the same driver version, as defined in the
+///following table:
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`ExternalSemaphoreHandleTypeFlags`]
+/// - [`ImportSemaphoreFdInfoKHR`]
+/// - [`ImportSemaphoreWin32HandleInfoKHR`]
+/// - [`ImportSemaphoreZirconHandleInfoFUCHSIA`]
+/// - [`PhysicalDeviceExternalSemaphoreInfo`]
+/// - [`SemaphoreGetFdInfoKHR`]
+/// - [`SemaphoreGetWin32HandleInfoKHR`]
+/// - [`SemaphoreGetZirconHandleInfoFUCHSIA`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalSemaphoreHandleTypeFlagBits")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum ExternalSemaphoreHandleTypeFlagBits {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`ExternalSemaphoreHandleTypeOpaqueFd`] specifies a POSIX
+    ///file descriptor handle that has only limited valid usage outside of
+    ///Vulkan and other compatible APIs.
+    ///It  **must**  be compatible with the POSIX system calls `dup`, `dup2`,
+    ///`close`, and the non-standard system call `dup3`.
+    ///Additionally, it  **must**  be transportable over a socket using an
+    ///`SCM_RIGHTS` control message.
+    ///It owns a reference to the underlying synchronization primitive
+    ///represented by its Vulkan semaphore object.
+    ExternalSemaphoreHandleTypeOpaqueFd = 1,
+    ///[`ExternalSemaphoreHandleTypeOpaqueWin32`] specifies an NT
+    ///handle that has only limited valid usage outside of Vulkan and other
+    ///compatible APIs.
+    ///It  **must**  be compatible with the functions `DuplicateHandle`,
+    ///`CloseHandle`, `CompareObjectHandles`, `GetHandleInformation`,
+    ///and `SetHandleInformation`.
+    ///It owns a reference to the underlying synchronization primitive
+    ///represented by its Vulkan semaphore object.
+    ExternalSemaphoreHandleTypeOpaqueWin32 = 2,
+    ///[`ExternalSemaphoreHandleTypeOpaqueWin32Kmt`] specifies a
+    ///global share handle that has only limited valid usage outside of Vulkan
+    ///and other compatible APIs.
+    ///It is not compatible with any native APIs.
+    ///It does not own a reference to the underlying synchronization primitive
+    ///represented by its Vulkan semaphore object, and will therefore become
+    ///invalid when all Vulkan semaphore objects associated with it are
+    ///destroyed.
+    ExternalSemaphoreHandleTypeOpaqueWin32Kmt = 4,
+    ///[`ExternalSemaphoreHandleTypeD3D12Fence`] specifies an NT
+    ///handle returned by `ID3D12Device`::`CreateSharedHandle` referring
+    ///to a Direct3D 12 fence, or `ID3D11Device5`::[`CreateFence`]
+    ///referring to a Direct3D 11 fence.
+    ///It owns a reference to the underlying synchronization primitive
+    ///associated with the Direct3D fence.
+    ExternalSemaphoreHandleTypeD3D12Fence = 8,
+    ///[`ExternalSemaphoreHandleTypeSyncFd`] specifies a POSIX
+    ///file descriptor handle to a Linux Sync File or Android Fence object.
+    ///It can be used with any native API accepting a valid sync file or fence
+    ///as input.
+    ///It owns a reference to the underlying synchronization primitive
+    ///associated with the file descriptor.
+    ///Implementations which support importing this handle type  **must**  accept
+    ///any type of sync or fence FD supported by the native system they are
+    ///running on.
+    ExternalSemaphoreHandleTypeSyncFd = 16,
+    ///[`ZirconEventFuchsia`]
+    ///specifies a handle to a Zircon event object.
+    ///It can be used with any native API that accepts a Zircon event handle.
+    ///Zircon event handles are created with `ZX_RIGHTS_BASIC` and
+    ///`ZX_RIGHTS_SIGNAL` rights.
+    ///Vulkan on Fuchsia uses only the ZX_EVENT_SIGNALED bit when signaling or
+    ///waiting.
+    ///
+    ///Provided by [`crate::extensions::fuchsia_external_semaphore`]
+    ZirconEventFuchsia = 128,
+}
+impl const Default for ExternalSemaphoreHandleTypeFlagBits {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl ExternalSemaphoreHandleTypeFlagBits {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkExternalSemaphoreFeatureFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalSemaphoreFeatureFlagBits.html) - Bitfield describing features of an external semaphore handle type
+///# C Specifications
+///Bits which  **may**  be set in
+///[`ExternalSemaphoreProperties::external_semaphore_features`],
+///specifying the features of an external semaphore handle type, are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkExternalSemaphoreFeatureFlagBits {
+///    VK_EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT = 0x00000001,
+///    VK_EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT = 0x00000002,
+///  // Provided by VK_KHR_external_semaphore_capabilities
+///    VK_EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT_KHR =
+/// VK_EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT,
+///  // Provided by VK_KHR_external_semaphore_capabilities
+///    VK_EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT_KHR =
+/// VK_EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT,
+///} VkExternalSemaphoreFeatureFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_external_semaphore_capabilities
+///typedef VkExternalSemaphoreFeatureFlagBits VkExternalSemaphoreFeatureFlagBitsKHR;
+///```
+///# Description
+/// - [`ExternalSemaphoreFeatureExportable`] specifies that handles of this type  **can**  be
+///   exported from Vulkan semaphore objects.
+/// - [`ExternalSemaphoreFeatureImportable`] specifies that handles of this type  **can**  be
+///   imported as Vulkan semaphore objects.
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`ExternalSemaphoreFeatureFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalSemaphoreFeatureFlagBits")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum ExternalSemaphoreFeatureFlagBits {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`ExternalSemaphoreFeatureExportable`] specifies that
+    ///handles of this type  **can**  be exported from Vulkan semaphore objects.
+    ExternalSemaphoreFeatureExportable = 1,
+    ///[`ExternalSemaphoreFeatureImportable`] specifies that
+    ///handles of this type  **can**  be imported as Vulkan semaphore objects.
+    ExternalSemaphoreFeatureImportable = 2,
+}
+impl const Default for ExternalSemaphoreFeatureFlagBits {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl ExternalSemaphoreFeatureFlagBits {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkSemaphoreImportFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreImportFlagBits.html) - Bitmask specifying additional parameters of semaphore payload import
+///# C Specifications
+///Bits which  **can**  be set in
+/// - [`ImportSemaphoreWin32HandleInfoKHR::flags`]
+/// - [`ImportSemaphoreFdInfoKHR::flags`]
+/// - [`ImportSemaphoreZirconHandleInfoFUCHSIA::flags`]
+///specifying additional parameters of a semaphore import operation are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkSemaphoreImportFlagBits {
+///    VK_SEMAPHORE_IMPORT_TEMPORARY_BIT = 0x00000001,
+///  // Provided by VK_KHR_external_semaphore
+///    VK_SEMAPHORE_IMPORT_TEMPORARY_BIT_KHR = VK_SEMAPHORE_IMPORT_TEMPORARY_BIT,
+///} VkSemaphoreImportFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_external_semaphore
+///typedef VkSemaphoreImportFlagBits VkSemaphoreImportFlagBitsKHR;
+///```
+///# Description
+///These bits have the following meanings:
+/// - [`SemaphoreImportTemporary`] specifies that the semaphore payload will be imported only temporarily, as described in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing), regardless of the permanence of `handleType`.
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`SemaphoreImportFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSemaphoreImportFlagBits")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum SemaphoreImportFlagBits {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`SemaphoreImportTemporary`] specifies that the semaphore
+    ///payload will be imported only temporarily, as described in
+    ///[Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing),
+    ///regardless of the permanence of `handleType`.
+    SemaphoreImportTemporary = 1,
+}
+impl const Default for SemaphoreImportFlagBits {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl SemaphoreImportFlagBits {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkExternalFenceHandleTypeFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalFenceHandleTypeFlagBits.html) - Bitmask of valid external fence handle types
+///# C Specifications
+///Bits which  **may**  be set in
+///  * [`PhysicalDeviceExternalFenceInfo::handle_type`]
+///  * [`ExternalFenceProperties::export_from_imported_handle_types`]
+///  * [`ExternalFenceProperties::compatible_handle_types`]
+///indicate external fence handle types, and are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkExternalFenceHandleTypeFlagBits {
+///    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT = 0x00000001,
+///    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT = 0x00000002,
+///    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 0x00000004,
+///    VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT = 0x00000008,
+///  // Provided by VK_KHR_external_fence_capabilities
+///    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT_KHR =
+/// VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT,
+///  // Provided by VK_KHR_external_fence_capabilities
+///    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR =
+/// VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT,
+///  // Provided by VK_KHR_external_fence_capabilities
+///    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR =
+/// VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT,
+///  // Provided by VK_KHR_external_fence_capabilities
+///    VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT_KHR = VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT,
+///} VkExternalFenceHandleTypeFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_external_fence_capabilities
+///typedef VkExternalFenceHandleTypeFlagBits VkExternalFenceHandleTypeFlagBitsKHR;
+///```
+///# Description
+/// - [`ExternalFenceHandleTypeOpaqueFd`] specifies a POSIX file descriptor handle that has only
+///   limited valid usage outside of Vulkan and other compatible APIs. It  **must**  be compatible
+///   with the POSIX system calls `dup`, `dup2`, `close`, and the non-standard system call `dup3`.
+///   Additionally, it  **must**  be transportable over a socket using an `SCM_RIGHTS` control
+///   message. It owns a reference to the underlying synchronization primitive represented by its
+///   Vulkan fence object.
+/// - [`ExternalFenceHandleTypeOpaqueWin32`] specifies an NT handle that has only limited valid
+///   usage outside of Vulkan and other compatible APIs. It  **must**  be compatible with the
+///   functions `DuplicateHandle`, `CloseHandle`, `CompareObjectHandles`, `GetHandleInformation`,
+///   and `SetHandleInformation`. It owns a reference to the underlying synchronization primitive
+///   represented by its Vulkan fence object.
+/// - [`ExternalFenceHandleTypeOpaqueWin32Kmt`] specifies a global share handle that has only
+///   limited valid usage outside of Vulkan and other compatible APIs. It is not compatible with any
+///   native APIs. It does not own a reference to the underlying synchronization primitive
+///   represented by its Vulkan fence object, and will therefore become invalid when all Vulkan
+///   fence objects associated with it are destroyed.
+/// - [`ExternalFenceHandleTypeSyncFd`] specifies a POSIX file descriptor handle to a Linux Sync
+///   File or Android Fence. It can be used with any native API accepting a valid sync file or fence
+///   as input. It owns a reference to the underlying synchronization primitive associated with the
+///   file descriptor. Implementations which support importing this handle type  **must**  accept
+///   any type of sync or fence FD supported by the native system they are running on.
+///Some external fence handle types can only be shared within the same
+///underlying physical device and/or the same driver version, as defined in the
+///following table:
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`ExternalFenceHandleTypeFlags`]
+/// - [`FenceGetFdInfoKHR`]
+/// - [`FenceGetWin32HandleInfoKHR`]
+/// - [`ImportFenceFdInfoKHR`]
+/// - [`ImportFenceWin32HandleInfoKHR`]
+/// - [`PhysicalDeviceExternalFenceInfo`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalFenceHandleTypeFlagBits")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum ExternalFenceHandleTypeFlagBits {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`ExternalFenceHandleTypeOpaqueFd`] specifies a POSIX file
+    ///descriptor handle that has only limited valid usage outside of Vulkan
+    ///and other compatible APIs.
+    ///It  **must**  be compatible with the POSIX system calls `dup`, `dup2`,
+    ///`close`, and the non-standard system call `dup3`.
+    ///Additionally, it  **must**  be transportable over a socket using an
+    ///`SCM_RIGHTS` control message.
+    ///It owns a reference to the underlying synchronization primitive
+    ///represented by its Vulkan fence object.
+    ExternalFenceHandleTypeOpaqueFd = 1,
+    ///[`ExternalFenceHandleTypeOpaqueWin32`] specifies an NT
+    ///handle that has only limited valid usage outside of Vulkan and other
+    ///compatible APIs.
+    ///It  **must**  be compatible with the functions `DuplicateHandle`,
+    ///`CloseHandle`, `CompareObjectHandles`, `GetHandleInformation`,
+    ///and `SetHandleInformation`.
+    ///It owns a reference to the underlying synchronization primitive
+    ///represented by its Vulkan fence object.
+    ExternalFenceHandleTypeOpaqueWin32 = 2,
+    ///[`ExternalFenceHandleTypeOpaqueWin32Kmt`] specifies a
+    ///global share handle that has only limited valid usage outside of Vulkan
+    ///and other compatible APIs.
+    ///It is not compatible with any native APIs.
+    ///It does not own a reference to the underlying synchronization primitive
+    ///represented by its Vulkan fence object, and will therefore become
+    ///invalid when all Vulkan fence objects associated with it are destroyed.
+    ExternalFenceHandleTypeOpaqueWin32Kmt = 4,
+    ///[`ExternalFenceHandleTypeSyncFd`] specifies a POSIX file
+    ///descriptor handle to a Linux Sync File or Android Fence.
+    ///It can be used with any native API accepting a valid sync file or fence
+    ///as input.
+    ///It owns a reference to the underlying synchronization primitive
+    ///associated with the file descriptor.
+    ///Implementations which support importing this handle type  **must**  accept
+    ///any type of sync or fence FD supported by the native system they are
+    ///running on.
+    ExternalFenceHandleTypeSyncFd = 8,
+}
+impl const Default for ExternalFenceHandleTypeFlagBits {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl ExternalFenceHandleTypeFlagBits {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkExternalFenceFeatureFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalFenceFeatureFlagBits.html) - Bitfield describing features of an external fence handle type
+///# C Specifications
+///Bits which  **may**  be set in
+///[`ExternalFenceProperties::external_fence_features`], indicating
+///features of a fence external handle type, are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkExternalFenceFeatureFlagBits {
+///    VK_EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT = 0x00000001,
+///    VK_EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT = 0x00000002,
+///  // Provided by VK_KHR_external_fence_capabilities
+///    VK_EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT_KHR = VK_EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT,
+///  // Provided by VK_KHR_external_fence_capabilities
+///    VK_EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT_KHR = VK_EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT,
+///} VkExternalFenceFeatureFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_external_fence_capabilities
+///typedef VkExternalFenceFeatureFlagBits VkExternalFenceFeatureFlagBitsKHR;
+///```
+///# Description
+/// - [`ExternalFenceFeatureExportable`] specifies handles of this type  **can**  be exported from
+///   Vulkan fence objects.
+/// - [`ExternalFenceFeatureImportable`] specifies handles of this type  **can**  be imported to
+///   Vulkan fence objects.
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`ExternalFenceFeatureFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalFenceFeatureFlagBits")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum ExternalFenceFeatureFlagBits {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`ExternalFenceFeatureExportable`] specifies handles of this
+    ///type  **can**  be exported from Vulkan fence objects.
+    ExternalFenceFeatureExportable = 1,
+    ///[`ExternalFenceFeatureImportable`] specifies handles of this
+    ///type  **can**  be imported to Vulkan fence objects.
+    ExternalFenceFeatureImportable = 2,
+}
+impl const Default for ExternalFenceFeatureFlagBits {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl ExternalFenceFeatureFlagBits {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkFenceImportFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFenceImportFlagBits.html) - Bitmask specifying additional parameters of fence payload import
+///# C Specifications
+///Bits which  **can**  be set in
+/// - [`ImportFenceWin32HandleInfoKHR::flags`]
+/// - [`ImportFenceFdInfoKHR::flags`]
+///specifying additional parameters of a fence import operation are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkFenceImportFlagBits {
+///    VK_FENCE_IMPORT_TEMPORARY_BIT = 0x00000001,
+///  // Provided by VK_KHR_external_fence
+///    VK_FENCE_IMPORT_TEMPORARY_BIT_KHR = VK_FENCE_IMPORT_TEMPORARY_BIT,
+///} VkFenceImportFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_external_fence
+///typedef VkFenceImportFlagBits VkFenceImportFlagBitsKHR;
+///```
+///# Description
+/// - [`FenceImportTemporary`] specifies that the fence payload will be imported only temporarily, as described in [Importing Fence Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-importing), regardless of the permanence of `handleType`.
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`FenceImportFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFenceImportFlagBits")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum FenceImportFlagBits {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`FenceImportTemporary`] specifies that the fence payload
+    ///will be imported only temporarily, as described in
+    ///[Importing Fence Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-importing),
+    ///regardless of the permanence of `handleType`.
+    FenceImportTemporary = 1,
+}
+impl const Default for FenceImportFlagBits {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl FenceImportFlagBits {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkPeerMemoryFeatureFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPeerMemoryFeatureFlagBits.html) - Bitmask specifying supported peer memory features
+///# C Specifications
+///Bits which  **may**  be set in
+///[`GetDeviceGroupPeerMemoryFeatures`]`::pPeerMemoryFeatures`,
+///indicating supported peer memory features, are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkPeerMemoryFeatureFlagBits {
+///    VK_PEER_MEMORY_FEATURE_COPY_SRC_BIT = 0x00000001,
+///    VK_PEER_MEMORY_FEATURE_COPY_DST_BIT = 0x00000002,
+///    VK_PEER_MEMORY_FEATURE_GENERIC_SRC_BIT = 0x00000004,
+///    VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT = 0x00000008,
+///  // Provided by VK_KHR_device_group
+///    VK_PEER_MEMORY_FEATURE_COPY_SRC_BIT_KHR = VK_PEER_MEMORY_FEATURE_COPY_SRC_BIT,
+///  // Provided by VK_KHR_device_group
+///    VK_PEER_MEMORY_FEATURE_COPY_DST_BIT_KHR = VK_PEER_MEMORY_FEATURE_COPY_DST_BIT,
+///  // Provided by VK_KHR_device_group
+///    VK_PEER_MEMORY_FEATURE_GENERIC_SRC_BIT_KHR = VK_PEER_MEMORY_FEATURE_GENERIC_SRC_BIT,
+///  // Provided by VK_KHR_device_group
+///    VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT_KHR = VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT,
+///} VkPeerMemoryFeatureFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_device_group
+///typedef VkPeerMemoryFeatureFlagBits VkPeerMemoryFeatureFlagBitsKHR;
+///```
+///# Description
+/// - [`PeerMemoryFeatureCopySrc`] specifies that the memory  **can**  be accessed as the source of
+///   any `vkCmdCopy*` command.
+/// - [`PeerMemoryFeatureCopyDst`] specifies that the memory  **can**  be accessed as the
+///   destination of any `vkCmdCopy*` command.
+/// - [`PeerMemoryFeatureGenericSrc`] specifies that the memory  **can**  be read as any memory
+///   access type.
+/// - [`PeerMemoryFeatureGenericDst`] specifies that the memory  **can**  be written as any memory
+///   access type. Shader atomics are considered to be writes.
+///[`PeerMemoryFeatureCopyDst`] **must**  be supported for all host
+///local heaps and for at least one device-local memory heap.If a device does not support a peer
+/// memory feature, it is still valid to use
+///a resource that includes both local and peer memory bindings with the
+///corresponding access type as long as only the local bindings are actually
+///accessed.
+///For example, an application doing split-frame rendering would use
+///framebuffer attachments that include both local and peer memory bindings,
+///but would scissor the rendering to only update local memory.
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`PeerMemoryFeatureFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPeerMemoryFeatureFlagBits")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum PeerMemoryFeatureFlagBits {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`PeerMemoryFeatureCopySrc`] specifies that the memory  **can**
+    ///be accessed as the source of any `vkCmdCopy*` command.
+    PeerMemoryFeatureCopySrc = 1,
+    ///[`PeerMemoryFeatureCopyDst`] specifies that the memory  **can**
+    ///be accessed as the destination of any `vkCmdCopy*` command.
+    PeerMemoryFeatureCopyDst = 2,
+    ///[`PeerMemoryFeatureGenericSrc`] specifies that the memory
+    /// **can**  be read as any memory access type.
+    PeerMemoryFeatureGenericSrc = 4,
+    ///[`PeerMemoryFeatureGenericDst`] specifies that the memory
+    /// **can**  be written as any memory access type.
+    ///Shader atomics are considered to be writes.
+    PeerMemoryFeatureGenericDst = 8,
+}
+impl const Default for PeerMemoryFeatureFlagBits {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl PeerMemoryFeatureFlagBits {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkMemoryAllocateFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryAllocateFlagBits.html) - Bitmask specifying flags for a device memory allocation
+///# C Specifications
+///Bits which  **can**  be set in [`MemoryAllocateFlagsInfo::flags`],
+///controlling device memory allocation, are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkMemoryAllocateFlagBits {
+///    VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT = 0x00000001,
+///  // Provided by VK_VERSION_1_2
+///    VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT = 0x00000002,
+///  // Provided by VK_VERSION_1_2
+///    VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT = 0x00000004,
+///  // Provided by VK_KHR_device_group
+///    VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT_KHR = VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT,
+///  // Provided by VK_KHR_buffer_device_address
+///    VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT_KHR = VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT,
+///  // Provided by VK_KHR_buffer_device_address
+///    VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR =
+/// VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT,
+///} VkMemoryAllocateFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_device_group
+///typedef VkMemoryAllocateFlagBits VkMemoryAllocateFlagBitsKHR;
+///```
+///# Description
+/// - [`MemoryAllocateDeviceMask`] specifies that memory will be allocated for the devices in
+///   [`MemoryAllocateFlagsInfo::device_mask`].
+/// - [`DeviceAddress`] specifies that the memory  **can**  be attached to a buffer object created
+///   with the `VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT` bit set in `usage`, and that the memory
+///   handle  **can**  be used to retrieve an opaque address via
+///   [`GetDeviceMemoryOpaqueCaptureAddress`].
+/// - [`DeviceAddressCaptureReplay`] specifies that the memory’s address  **can**  be saved and
+///   reused on a subsequent run (e.g. for trace capture and replay), see
+///   [`BufferOpaqueCaptureAddressCreateInfo`] for more detail.
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`MemoryAllocateFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryAllocateFlagBits")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum MemoryAllocateFlagBits {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`MemoryAllocateDeviceMask`] specifies that memory will be
+    ///allocated for the devices in
+    ///[`MemoryAllocateFlagsInfo`]::`deviceMask`.
+    MemoryAllocateDeviceMask = 1,
+    ///[`DeviceAddress`] specifies that the memory
+    /// **can**  be attached to a buffer object created with the
+    ///`VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT` bit set in `usage`,
+    ///and that the memory handle  **can**  be used to retrieve an opaque address
+    ///via [`GetDeviceMemoryOpaqueCaptureAddress`].
+    ///
+    ///Provided by [`crate::vulkan1_2`]
+    DeviceAddress = 2,
+    ///[`DeviceAddressCaptureReplay`] specifies
+    ///that the memory’s address  **can**  be saved and reused on a subsequent run
+    ///(e.g. for trace capture and replay), see
+    ///[`BufferOpaqueCaptureAddressCreateInfo`] for more detail.
+    ///
+    ///Provided by [`crate::vulkan1_2`]
+    DeviceAddressCaptureReplay = 4,
+}
+impl const Default for MemoryAllocateFlagBits {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl MemoryAllocateFlagBits {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkSubgroupFeatureFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubgroupFeatureFlagBits.html) - Bitmask describing what group operations are supported with subgroup scope
+///# C Specifications
+///Bits which  **can**  be set in
+///[`PhysicalDeviceSubgroupProperties::supported_operations`]
+///and
+///[`PhysicalDeviceVulkan11Properties::subgroup_supported_operations`]
+///to specify supported [group operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shaders-group-operations) with
+///[subgroup scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shaders-scope-subgroup) are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkSubgroupFeatureFlagBits {
+///    VK_SUBGROUP_FEATURE_BASIC_BIT = 0x00000001,
+///    VK_SUBGROUP_FEATURE_VOTE_BIT = 0x00000002,
+///    VK_SUBGROUP_FEATURE_ARITHMETIC_BIT = 0x00000004,
+///    VK_SUBGROUP_FEATURE_BALLOT_BIT = 0x00000008,
+///    VK_SUBGROUP_FEATURE_SHUFFLE_BIT = 0x00000010,
+///    VK_SUBGROUP_FEATURE_SHUFFLE_RELATIVE_BIT = 0x00000020,
+///    VK_SUBGROUP_FEATURE_CLUSTERED_BIT = 0x00000040,
+///    VK_SUBGROUP_FEATURE_QUAD_BIT = 0x00000080,
+///  // Provided by VK_NV_shader_subgroup_partitioned
+///    VK_SUBGROUP_FEATURE_PARTITIONED_BIT_NV = 0x00000100,
+///} VkSubgroupFeatureFlagBits;
+///```
+///# Description
+/// - [`SubgroupFeatureBasic`] specifies the device will accept SPIR-V shader modules containing the
+///   `GroupNonUniform` capability.
+/// - [`SubgroupFeatureVote`] specifies the device will accept SPIR-V shader modules containing the
+///   `GroupNonUniformVote` capability.
+/// - [`SubgroupFeatureArithmetic`] specifies the device will accept SPIR-V shader modules
+///   containing the `GroupNonUniformArithmetic` capability.
+/// - [`SubgroupFeatureBallot`] specifies the device will accept SPIR-V shader modules containing
+///   the `GroupNonUniformBallot` capability.
+/// - [`SubgroupFeatureShuffle`] specifies the device will accept SPIR-V shader modules containing
+///   the `GroupNonUniformShuffle` capability.
+/// - [`SubgroupFeatureShuffleRelative`] specifies the device will accept SPIR-V shader modules
+///   containing the `GroupNonUniformShuffleRelative` capability.
+/// - [`SubgroupFeatureClustered`] specifies the device will accept SPIR-V shader modules containing
+///   the `GroupNonUniformClustered` capability.
+/// - [`SubgroupFeatureQuad`] specifies the device will accept SPIR-V shader modules containing the
+///   `GroupNonUniformQuad` capability.
+/// - [`PartitionedNv`] specifies the device will accept SPIR-V shader modules containing the
+///   `GroupNonUniformPartitionedNV` capability.
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`SubgroupFeatureFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct SubgroupFeatureFlags(u32);
+impl const Default for SubgroupFeatureFlags {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<SubgroupFeatureFlagBits> for SubgroupFeatureFlags {
+    fn from(from: SubgroupFeatureFlagBits) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl SubgroupFeatureFlags {
+    ///[`SubgroupFeatureBasic`]
+    ///specifies the device will accept SPIR-V shader modules containing the
+    ///`GroupNonUniform` capability.
+    const SubgroupFeatureBasic: Self = Self(1);
+    ///[`SubgroupFeatureVote`] specifies
+    ///the device will accept SPIR-V shader modules containing the
+    ///`GroupNonUniformVote` capability.
+    const SubgroupFeatureVote: Self = Self(2);
+    ///[`SubgroupFeatureArithmetic`] specifies the device will
+    ///accept SPIR-V shader modules containing the
+    ///`GroupNonUniformArithmetic` capability.
+    const SubgroupFeatureArithmetic: Self = Self(4);
+    ///[`SubgroupFeatureBallot`]
+    ///specifies the device will accept SPIR-V shader modules containing the
+    ///`GroupNonUniformBallot` capability.
+    const SubgroupFeatureBallot: Self = Self(8);
+    ///[`SubgroupFeatureShuffle`]
+    ///specifies the device will accept SPIR-V shader modules containing the
+    ///`GroupNonUniformShuffle` capability.
+    const SubgroupFeatureShuffle: Self = Self(16);
+    ///[`SubgroupFeatureShuffleRelative`] specifies the device will
+    ///accept SPIR-V shader modules containing the
+    ///`GroupNonUniformShuffleRelative` capability.
+    const SubgroupFeatureShuffleRelative: Self = Self(32);
+    ///[`SubgroupFeatureClustered`]
+    ///specifies the device will accept SPIR-V shader modules containing the
+    ///`GroupNonUniformClustered` capability.
+    const SubgroupFeatureClustered: Self = Self(64);
+    ///[`SubgroupFeatureQuad`] specifies
+    ///the device will accept SPIR-V shader modules containing the
+    ///`GroupNonUniformQuad` capability.
+    const SubgroupFeatureQuad: Self = Self(128);
+    ///[`PartitionedNv`] specifies the device will
+    ///accept SPIR-V shader modules containing the
+    ///`GroupNonUniformPartitionedNV` capability.
+    ///
+    ///Provided by [`crate::extensions::nv_shader_subgroup_partitioned`]
+    const PartitionedNv: Self = Self(256);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::SubgroupFeatureBasic
+            | Self::SubgroupFeatureVote
+            | Self::SubgroupFeatureArithmetic
+            | Self::SubgroupFeatureBallot
+            | Self::SubgroupFeatureShuffle
+            | Self::SubgroupFeatureShuffleRelative
+            | Self::SubgroupFeatureClustered
+            | Self::SubgroupFeatureQuad
+            | Self::PartitionedNv
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for SubgroupFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for SubgroupFeatureFlags {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for SubgroupFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for SubgroupFeatureFlags {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for SubgroupFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for SubgroupFeatureFlags {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for SubgroupFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for SubgroupFeatureFlags {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for SubgroupFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<SubgroupFeatureFlags> for SubgroupFeatureFlags {
+    fn extend<T: std::iter::IntoIterator<Item = SubgroupFeatureFlags>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<SubgroupFeatureFlagBits> for SubgroupFeatureFlags {
+    fn extend<T: std::iter::IntoIterator<Item = SubgroupFeatureFlagBits>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(SubgroupFeatureFlags::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<SubgroupFeatureFlags> for SubgroupFeatureFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = SubgroupFeatureFlags>>(iterator: T) -> SubgroupFeatureFlags {
+        let mut out = SubgroupFeatureFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<SubgroupFeatureFlagBits> for SubgroupFeatureFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = SubgroupFeatureFlagBits>>(iterator: T) -> SubgroupFeatureFlags {
+        let mut out = SubgroupFeatureFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for SubgroupFeatureFlags {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(SubgroupFeatureFlags);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == SubgroupFeatureFlags::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self.0.contains(SubgroupFeatureFlags::SubgroupFeatureBasic) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SubgroupFeatureBasic))?;
+                    }
+                    if self.0.contains(SubgroupFeatureFlags::SubgroupFeatureVote) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SubgroupFeatureVote))?;
+                    }
+                    if self.0.contains(SubgroupFeatureFlags::SubgroupFeatureArithmetic) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SubgroupFeatureArithmetic))?;
+                    }
+                    if self.0.contains(SubgroupFeatureFlags::SubgroupFeatureBallot) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SubgroupFeatureBallot))?;
+                    }
+                    if self.0.contains(SubgroupFeatureFlags::SubgroupFeatureShuffle) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SubgroupFeatureShuffle))?;
+                    }
+                    if self.0.contains(SubgroupFeatureFlags::SubgroupFeatureShuffleRelative) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SubgroupFeatureShuffleRelative))?;
+                    }
+                    if self.0.contains(SubgroupFeatureFlags::SubgroupFeatureClustered) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SubgroupFeatureClustered))?;
+                    }
+                    if self.0.contains(SubgroupFeatureFlags::SubgroupFeatureQuad) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SubgroupFeatureQuad))?;
+                    }
+                    if self.0.contains(SubgroupFeatureFlags::PartitionedNv) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PartitionedNv))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(SubgroupFeatureFlags))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkDescriptorUpdateTemplateCreateFlags](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorUpdateTemplateCreateFlags.html) - Reserved for future use
+///# C Specifications
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef VkFlags VkDescriptorUpdateTemplateCreateFlags;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_descriptor_update_template
+///typedef VkDescriptorUpdateTemplateCreateFlags VkDescriptorUpdateTemplateCreateFlagsKHR;
+///```
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`DescriptorUpdateTemplateCreateInfo`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct DescriptorUpdateTemplateCreateFlags(u32);
+impl const Default for DescriptorUpdateTemplateCreateFlags {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl std::fmt::Debug for DescriptorUpdateTemplateCreateFlags {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(DescriptorUpdateTemplateCreateFlags))
+            .field(&self.0)
+            .finish()
+    }
+}
+///[VkPeerMemoryFeatureFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPeerMemoryFeatureFlagBits.html) - Bitmask specifying supported peer memory features
+///# C Specifications
+///Bits which  **may**  be set in
+///[`GetDeviceGroupPeerMemoryFeatures`]`::pPeerMemoryFeatures`,
+///indicating supported peer memory features, are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkPeerMemoryFeatureFlagBits {
+///    VK_PEER_MEMORY_FEATURE_COPY_SRC_BIT = 0x00000001,
+///    VK_PEER_MEMORY_FEATURE_COPY_DST_BIT = 0x00000002,
+///    VK_PEER_MEMORY_FEATURE_GENERIC_SRC_BIT = 0x00000004,
+///    VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT = 0x00000008,
+///  // Provided by VK_KHR_device_group
+///    VK_PEER_MEMORY_FEATURE_COPY_SRC_BIT_KHR = VK_PEER_MEMORY_FEATURE_COPY_SRC_BIT,
+///  // Provided by VK_KHR_device_group
+///    VK_PEER_MEMORY_FEATURE_COPY_DST_BIT_KHR = VK_PEER_MEMORY_FEATURE_COPY_DST_BIT,
+///  // Provided by VK_KHR_device_group
+///    VK_PEER_MEMORY_FEATURE_GENERIC_SRC_BIT_KHR = VK_PEER_MEMORY_FEATURE_GENERIC_SRC_BIT,
+///  // Provided by VK_KHR_device_group
+///    VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT_KHR = VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT,
+///} VkPeerMemoryFeatureFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_device_group
+///typedef VkPeerMemoryFeatureFlagBits VkPeerMemoryFeatureFlagBitsKHR;
+///```
+///# Description
+/// - [`PeerMemoryFeatureCopySrc`] specifies that the memory  **can**  be accessed as the source of
+///   any `vkCmdCopy*` command.
+/// - [`PeerMemoryFeatureCopyDst`] specifies that the memory  **can**  be accessed as the
+///   destination of any `vkCmdCopy*` command.
+/// - [`PeerMemoryFeatureGenericSrc`] specifies that the memory  **can**  be read as any memory
+///   access type.
+/// - [`PeerMemoryFeatureGenericDst`] specifies that the memory  **can**  be written as any memory
+///   access type. Shader atomics are considered to be writes.
+///[`PeerMemoryFeatureCopyDst`] **must**  be supported for all host
+///local heaps and for at least one device-local memory heap.If a device does not support a peer
+/// memory feature, it is still valid to use
+///a resource that includes both local and peer memory bindings with the
+///corresponding access type as long as only the local bindings are actually
+///accessed.
+///For example, an application doing split-frame rendering would use
+///framebuffer attachments that include both local and peer memory bindings,
+///but would scissor the rendering to only update local memory.
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`PeerMemoryFeatureFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct PeerMemoryFeatureFlags(u32);
+impl const Default for PeerMemoryFeatureFlags {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<PeerMemoryFeatureFlagBits> for PeerMemoryFeatureFlags {
+    fn from(from: PeerMemoryFeatureFlagBits) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl PeerMemoryFeatureFlags {
+    ///[`PeerMemoryFeatureCopySrc`] specifies that the memory  **can**
+    ///be accessed as the source of any `vkCmdCopy*` command.
+    const PeerMemoryFeatureCopySrc: Self = Self(1);
+    ///[`PeerMemoryFeatureCopyDst`] specifies that the memory  **can**
+    ///be accessed as the destination of any `vkCmdCopy*` command.
+    const PeerMemoryFeatureCopyDst: Self = Self(2);
+    ///[`PeerMemoryFeatureGenericSrc`] specifies that the memory
+    /// **can**  be read as any memory access type.
+    const PeerMemoryFeatureGenericSrc: Self = Self(4);
+    ///[`PeerMemoryFeatureGenericDst`] specifies that the memory
+    /// **can**  be written as any memory access type.
+    ///Shader atomics are considered to be writes.
+    const PeerMemoryFeatureGenericDst: Self = Self(8);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::PeerMemoryFeatureCopySrc
+            | Self::PeerMemoryFeatureCopyDst
+            | Self::PeerMemoryFeatureGenericSrc
+            | Self::PeerMemoryFeatureGenericDst
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for PeerMemoryFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for PeerMemoryFeatureFlags {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for PeerMemoryFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for PeerMemoryFeatureFlags {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for PeerMemoryFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for PeerMemoryFeatureFlags {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for PeerMemoryFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for PeerMemoryFeatureFlags {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for PeerMemoryFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<PeerMemoryFeatureFlags> for PeerMemoryFeatureFlags {
+    fn extend<T: std::iter::IntoIterator<Item = PeerMemoryFeatureFlags>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<PeerMemoryFeatureFlagBits> for PeerMemoryFeatureFlags {
+    fn extend<T: std::iter::IntoIterator<Item = PeerMemoryFeatureFlagBits>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(PeerMemoryFeatureFlags::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<PeerMemoryFeatureFlags> for PeerMemoryFeatureFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = PeerMemoryFeatureFlags>>(iterator: T) -> PeerMemoryFeatureFlags {
+        let mut out = PeerMemoryFeatureFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<PeerMemoryFeatureFlagBits> for PeerMemoryFeatureFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = PeerMemoryFeatureFlagBits>>(iterator: T) -> PeerMemoryFeatureFlags {
+        let mut out = PeerMemoryFeatureFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for PeerMemoryFeatureFlags {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(PeerMemoryFeatureFlags);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == PeerMemoryFeatureFlags::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self.0.contains(PeerMemoryFeatureFlags::PeerMemoryFeatureCopySrc) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PeerMemoryFeatureCopySrc))?;
+                    }
+                    if self.0.contains(PeerMemoryFeatureFlags::PeerMemoryFeatureCopyDst) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PeerMemoryFeatureCopyDst))?;
+                    }
+                    if self.0.contains(PeerMemoryFeatureFlags::PeerMemoryFeatureGenericSrc) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PeerMemoryFeatureGenericSrc))?;
+                    }
+                    if self.0.contains(PeerMemoryFeatureFlags::PeerMemoryFeatureGenericDst) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PeerMemoryFeatureGenericDst))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(PeerMemoryFeatureFlags))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkMemoryAllocateFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryAllocateFlagBits.html) - Bitmask specifying flags for a device memory allocation
+///# C Specifications
+///Bits which  **can**  be set in [`MemoryAllocateFlagsInfo::flags`],
+///controlling device memory allocation, are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkMemoryAllocateFlagBits {
+///    VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT = 0x00000001,
+///  // Provided by VK_VERSION_1_2
+///    VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT = 0x00000002,
+///  // Provided by VK_VERSION_1_2
+///    VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT = 0x00000004,
+///  // Provided by VK_KHR_device_group
+///    VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT_KHR = VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT,
+///  // Provided by VK_KHR_buffer_device_address
+///    VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT_KHR = VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT,
+///  // Provided by VK_KHR_buffer_device_address
+///    VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR =
+/// VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT,
+///} VkMemoryAllocateFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_device_group
+///typedef VkMemoryAllocateFlagBits VkMemoryAllocateFlagBitsKHR;
+///```
+///# Description
+/// - [`MemoryAllocateDeviceMask`] specifies that memory will be allocated for the devices in
+///   [`MemoryAllocateFlagsInfo::device_mask`].
+/// - [`DeviceAddress`] specifies that the memory  **can**  be attached to a buffer object created
+///   with the `VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT` bit set in `usage`, and that the memory
+///   handle  **can**  be used to retrieve an opaque address via
+///   [`GetDeviceMemoryOpaqueCaptureAddress`].
+/// - [`DeviceAddressCaptureReplay`] specifies that the memory’s address  **can**  be saved and
+///   reused on a subsequent run (e.g. for trace capture and replay), see
+///   [`BufferOpaqueCaptureAddressCreateInfo`] for more detail.
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`MemoryAllocateFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct MemoryAllocateFlags(u32);
+impl const Default for MemoryAllocateFlags {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<MemoryAllocateFlagBits> for MemoryAllocateFlags {
+    fn from(from: MemoryAllocateFlagBits) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl MemoryAllocateFlags {
+    ///[`MemoryAllocateDeviceMask`] specifies that memory will be
+    ///allocated for the devices in
+    ///[`MemoryAllocateFlagsInfo`]::`deviceMask`.
+    const MemoryAllocateDeviceMask: Self = Self(1);
+    ///[`DeviceAddress`] specifies that the memory
+    /// **can**  be attached to a buffer object created with the
+    ///`VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT` bit set in `usage`,
+    ///and that the memory handle  **can**  be used to retrieve an opaque address
+    ///via [`GetDeviceMemoryOpaqueCaptureAddress`].
+    ///
+    ///Provided by [`crate::vulkan1_2`]
+    const DeviceAddress: Self = Self(2);
+    ///[`DeviceAddressCaptureReplay`] specifies
+    ///that the memory’s address  **can**  be saved and reused on a subsequent run
+    ///(e.g. for trace capture and replay), see
+    ///[`BufferOpaqueCaptureAddressCreateInfo`] for more detail.
+    ///
+    ///Provided by [`crate::vulkan1_2`]
+    const DeviceAddressCaptureReplay: Self = Self(4);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty() | Self::MemoryAllocateDeviceMask | Self::DeviceAddress | Self::DeviceAddressCaptureReplay
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for MemoryAllocateFlags {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for MemoryAllocateFlags {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for MemoryAllocateFlags {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for MemoryAllocateFlags {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for MemoryAllocateFlags {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for MemoryAllocateFlags {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for MemoryAllocateFlags {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for MemoryAllocateFlags {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for MemoryAllocateFlags {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<MemoryAllocateFlags> for MemoryAllocateFlags {
+    fn extend<T: std::iter::IntoIterator<Item = MemoryAllocateFlags>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<MemoryAllocateFlagBits> for MemoryAllocateFlags {
+    fn extend<T: std::iter::IntoIterator<Item = MemoryAllocateFlagBits>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(MemoryAllocateFlags::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<MemoryAllocateFlags> for MemoryAllocateFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = MemoryAllocateFlags>>(iterator: T) -> MemoryAllocateFlags {
+        let mut out = MemoryAllocateFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<MemoryAllocateFlagBits> for MemoryAllocateFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = MemoryAllocateFlagBits>>(iterator: T) -> MemoryAllocateFlags {
+        let mut out = MemoryAllocateFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for MemoryAllocateFlags {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(MemoryAllocateFlags);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == MemoryAllocateFlags::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self.0.contains(MemoryAllocateFlags::MemoryAllocateDeviceMask) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(MemoryAllocateDeviceMask))?;
+                    }
+                    if self.0.contains(MemoryAllocateFlags::DeviceAddress) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DeviceAddress))?;
+                    }
+                    if self.0.contains(MemoryAllocateFlags::DeviceAddressCaptureReplay) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DeviceAddressCaptureReplay))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(MemoryAllocateFlags))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkCommandPoolTrimFlags](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCommandPoolTrimFlags.html) - Reserved for future use
+///# C Specifications
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef VkFlags VkCommandPoolTrimFlags;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_maintenance1
+///typedef VkCommandPoolTrimFlags VkCommandPoolTrimFlagsKHR;
+///```
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`TrimCommandPool`]
+/// - [`TrimCommandPoolKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct CommandPoolTrimFlags(u32);
+impl const Default for CommandPoolTrimFlags {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl std::fmt::Debug for CommandPoolTrimFlags {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(CommandPoolTrimFlags)).field(&self.0).finish()
+    }
+}
+///[VkExternalMemoryHandleTypeFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryHandleTypeFlagBits.html) - Bit specifying external memory handle types
+///# C Specifications
+///Possible values of
+///[`PhysicalDeviceExternalImageFormatInfo::handle_type`], specifying
+///an external memory handle type, are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkExternalMemoryHandleTypeFlagBits {
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT = 0x00000001,
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT = 0x00000002,
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 0x00000004,
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT = 0x00000008,
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT = 0x00000010,
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT = 0x00000020,
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT = 0x00000040,
+///  // Provided by VK_EXT_external_memory_dma_buf
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_DMA_BUF_BIT_EXT = 0x00000200,
+///  // Provided by VK_ANDROID_external_memory_android_hardware_buffer
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID = 0x00000400,
+///  // Provided by VK_EXT_external_memory_host
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT = 0x00000080,
+///  // Provided by VK_EXT_external_memory_host
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT = 0x00000100,
+///  // Provided by VK_FUCHSIA_external_memory
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_ZIRCON_VMO_BIT_FUCHSIA = 0x00000800,
+///  // Provided by VK_NV_external_memory_rdma
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_RDMA_ADDRESS_BIT_NV = 0x00001000,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT_KHR =
+/// VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR =
+/// VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR =
+/// VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT_KHR =
+/// VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT_KHR =
+/// VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT_KHR =
+/// VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT_KHR =
+/// VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT,
+///} VkExternalMemoryHandleTypeFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_external_memory_capabilities
+///typedef VkExternalMemoryHandleTypeFlagBits VkExternalMemoryHandleTypeFlagBitsKHR;
+///```
+///# Description
+/// - [`ExternalMemoryHandleTypeOpaqueFd`] specifies a POSIX file descriptor handle that has only
+///   limited valid usage outside of Vulkan and other compatible APIs. It  **must**  be compatible
+///   with the POSIX system calls `dup`, `dup2`, `close`, and the non-standard system call `dup3`.
+///   Additionally, it  **must**  be transportable over a socket using an `SCM_RIGHTS` control
+///   message. It owns a reference to the underlying memory resource represented by its Vulkan
+///   memory object.
+/// - [`ExternalMemoryHandleTypeOpaqueWin32`] specifies an NT handle that has only limited valid
+///   usage outside of Vulkan and other compatible APIs. It  **must**  be compatible with the
+///   functions `DuplicateHandle`, `CloseHandle`, `CompareObjectHandles`, `GetHandleInformation`,
+///   and `SetHandleInformation`. It owns a reference to the underlying memory resource represented
+///   by its Vulkan memory object.
+/// - [`ExternalMemoryHandleTypeOpaqueWin32Kmt`] specifies a global share handle that has only
+///   limited valid usage outside of Vulkan and other compatible APIs. It is not compatible with any
+///   native APIs. It does not own a reference to the underlying memory resource represented by its
+///   Vulkan memory object, and will therefore become invalid when all Vulkan memory objects
+///   associated with it are destroyed.
+/// - [`ExternalMemoryHandleTypeD3D11Texture`] specifies an NT handle returned by
+///   `IDXGIResource1`::`CreateSharedHandle` referring to a Direct3D 10 or 11 texture resource. It
+///   owns a reference to the memory used by the Direct3D resource.
+/// - [`ExternalMemoryHandleTypeD3D11TextureKmt`] specifies a global share handle returned by
+///   `IDXGIResource`::`GetSharedHandle` referring to a Direct3D 10 or 11 texture resource. It does
+///   not own a reference to the underlying Direct3D resource, and will therefore become invalid
+///   when all Vulkan memory objects and Direct3D resources associated with it are destroyed.
+/// - [`ExternalMemoryHandleTypeD3D12Heap`] specifies an NT handle returned by
+///   `ID3D12Device`::`CreateSharedHandle` referring to a Direct3D 12 heap resource. It owns a
+///   reference to the resources used by the Direct3D heap.
+/// - [`ExternalMemoryHandleTypeD3D12Resource`] specifies an NT handle returned by
+///   `ID3D12Device`::`CreateSharedHandle` referring to a Direct3D 12 committed resource. It owns a
+///   reference to the memory used by the Direct3D resource.
+/// - [`HostAllocationExt`] specifies a host pointer returned by a host memory allocation command.
+///   It does not own a reference to the underlying memory resource, and will therefore become
+///   invalid if the host memory is freed.
+/// - [`HostMappedForeignMemoryExt`] specifies a host pointer to *host mapped foreign memory*. It
+///   does not own a reference to the underlying memory resource, and will therefore become invalid
+///   if the foreign memory is unmapped or otherwise becomes no longer available.
+/// - [`DmaBufExt`] is a file descriptor for a Linux dma_buf. It owns a reference to the underlying
+///   memory resource represented by its Vulkan memory object.
+/// - [`AndroidHardwareBufferAndroid`] specifies an [`AHardwareBuffer`] object defined by the Android NDK. See [Android Hardware Buffers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer) for more details of this handle type.
+/// - [`ZirconVmoFuchsia`] is a Zircon handle to a virtual memory object.
+/// - [`RdmaAddressNv`] is a handle to an allocation accessible by remote devices. It owns a
+///   reference to the underlying memory resource represented by its Vulkan memory object.
+///Some external memory handle types can only be shared within the same
+///underlying physical device and/or the same driver version, as defined in the
+///following table:
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`ExternalMemoryHandleTypeFlags`]
+/// - [`ImportMemoryFdInfoKHR`]
+/// - [`ImportMemoryHostPointerInfoEXT`]
+/// - [`ImportMemoryWin32HandleInfoKHR`]
+/// - [`ImportMemoryZirconHandleInfoFUCHSIA`]
+/// - [`MemoryGetFdInfoKHR`]
+/// - [`MemoryGetRemoteAddressInfoNV`]
+/// - [`MemoryGetWin32HandleInfoKHR`]
+/// - [`MemoryGetZirconHandleInfoFUCHSIA`]
+/// - [`PhysicalDeviceExternalBufferInfo`]
+/// - [`PhysicalDeviceExternalImageFormatInfo`]
+/// - [`GetMemoryFdPropertiesKHR`]
+/// - [`GetMemoryHostPointerPropertiesEXT`]
+/// - [`GetMemoryWin32HandlePropertiesKHR`]
+/// - [`GetMemoryZirconHandlePropertiesFUCHSIA`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct ExternalMemoryHandleTypeFlags(u32);
+impl const Default for ExternalMemoryHandleTypeFlags {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<ExternalMemoryHandleTypeFlagBits> for ExternalMemoryHandleTypeFlags {
+    fn from(from: ExternalMemoryHandleTypeFlagBits) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl ExternalMemoryHandleTypeFlags {
+    ///[`ExternalMemoryHandleTypeOpaqueFd`] specifies a POSIX
+    ///file descriptor handle that has only limited valid usage outside of
+    ///Vulkan and other compatible APIs.
+    ///It  **must**  be compatible with the POSIX system calls `dup`, `dup2`,
+    ///`close`, and the non-standard system call `dup3`.
+    ///Additionally, it  **must**  be transportable over a socket using an
+    ///`SCM_RIGHTS` control message.
+    ///It owns a reference to the underlying memory resource represented by its
+    ///Vulkan memory object.
+    const ExternalMemoryHandleTypeOpaqueFd: Self = Self(1);
+    ///[`ExternalMemoryHandleTypeOpaqueWin32`] specifies an NT
+    ///handle that has only limited valid usage outside of Vulkan and other
+    ///compatible APIs.
+    ///It  **must**  be compatible with the functions `DuplicateHandle`,
+    ///`CloseHandle`, `CompareObjectHandles`, `GetHandleInformation`,
+    ///and `SetHandleInformation`.
+    ///It owns a reference to the underlying memory resource represented by its
+    ///Vulkan memory object.
+    const ExternalMemoryHandleTypeOpaqueWin32: Self = Self(2);
+    ///[`ExternalMemoryHandleTypeOpaqueWin32Kmt`] specifies a
+    ///global share handle that has only limited valid usage outside of Vulkan
+    ///and other compatible APIs.
+    ///It is not compatible with any native APIs.
+    ///It does not own a reference to the underlying memory resource
+    ///represented by its Vulkan memory object, and will therefore become
+    ///invalid when all Vulkan memory objects associated with it are destroyed.
+    const ExternalMemoryHandleTypeOpaqueWin32Kmt: Self = Self(4);
+    ///[`ExternalMemoryHandleTypeD3D11Texture`] specifies an NT
+    ///handle returned by `IDXGIResource1`::`CreateSharedHandle`
+    ///referring to a Direct3D 10 or 11 texture resource.
+    ///It owns a reference to the memory used by the Direct3D resource.
+    const ExternalMemoryHandleTypeD3D11Texture: Self = Self(8);
+    ///[`ExternalMemoryHandleTypeD3D11TextureKmt`] specifies a
+    ///global share handle returned by `IDXGIResource`::`GetSharedHandle`
+    ///referring to a Direct3D 10 or 11 texture resource.
+    ///It does not own a reference to the underlying Direct3D resource, and
+    ///will therefore become invalid when all Vulkan memory objects and
+    ///Direct3D resources associated with it are destroyed.
+    const ExternalMemoryHandleTypeD3D11TextureKmt: Self = Self(16);
+    ///[`ExternalMemoryHandleTypeD3D12Heap`] specifies an NT
+    ///handle returned by `ID3D12Device`::`CreateSharedHandle` referring
+    ///to a Direct3D 12 heap resource.
+    ///It owns a reference to the resources used by the Direct3D heap.
+    const ExternalMemoryHandleTypeD3D12Heap: Self = Self(32);
+    ///[`ExternalMemoryHandleTypeD3D12Resource`] specifies an NT
+    ///handle returned by `ID3D12Device`::`CreateSharedHandle` referring
+    ///to a Direct3D 12 committed resource.
+    ///It owns a reference to the memory used by the Direct3D resource.
+    const ExternalMemoryHandleTypeD3D12Resource: Self = Self(64);
+    ///[`DmaBufExt`] is a file
+    ///descriptor for a Linux dma_buf.
+    ///It owns a reference to the underlying memory resource represented by its
+    ///Vulkan memory object.
+    ///
+    ///Provided by [`crate::extensions::ext_external_memory_dma_buf`]
+    const DmaBufExt: Self = Self(512);
+    ///[`AndroidHardwareBufferAndroid`]
+    ///specifies an [`AHardwareBuffer`] object defined by the Android NDK.
+    ///See [Android Hardware Buffers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer)
+    ///for more details of this handle type.
+    ///
+    ///Provided by [`crate::extensions::android_external_memory_android_hardware_buffer`]
+    const AndroidHardwareBufferAndroid: Self = Self(1024);
+    ///[`HostAllocationExt`] specifies a
+    ///host pointer returned by a host memory allocation command.
+    ///It does not own a reference to the underlying memory resource, and will
+    ///therefore become invalid if the host memory is freed.
+    ///
+    ///Provided by [`crate::extensions::ext_external_memory_host`]
+    const HostAllocationExt: Self = Self(128);
+    ///[`HostMappedForeignMemoryExt`]
+    ///specifies a host pointer to *host mapped foreign memory*.
+    ///It does not own a reference to the underlying memory resource, and will
+    ///therefore become invalid if the foreign memory is unmapped or otherwise
+    ///becomes no longer available.
+    ///
+    ///Provided by [`crate::extensions::ext_external_memory_host`]
+    const HostMappedForeignMemoryExt: Self = Self(256);
+    ///[`ZirconVmoFuchsia`] is a Zircon
+    ///handle to a virtual memory object.
+    ///
+    ///Provided by [`crate::extensions::fuchsia_external_memory`]
+    const ZirconVmoFuchsia: Self = Self(2048);
+    ///[`RdmaAddressNv`] is a handle to
+    ///an allocation accessible by remote devices.
+    ///It owns a reference to the underlying memory resource represented by its
+    ///Vulkan memory object.
+    ///
+    ///Provided by [`crate::extensions::nv_external_memory_rdma`]
+    const RdmaAddressNv: Self = Self(4096);
+    ///No documentation found
+    ///
+    ///Provided by [`crate::extensions::nv_extension_375`]
+    const Reserved13Nv: Self = Self(8192);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::ExternalMemoryHandleTypeOpaqueFd
+            | Self::ExternalMemoryHandleTypeOpaqueWin32
+            | Self::ExternalMemoryHandleTypeOpaqueWin32Kmt
+            | Self::ExternalMemoryHandleTypeD3D11Texture
+            | Self::ExternalMemoryHandleTypeD3D11TextureKmt
+            | Self::ExternalMemoryHandleTypeD3D12Heap
+            | Self::ExternalMemoryHandleTypeD3D12Resource
+            | Self::DmaBufExt
+            | Self::AndroidHardwareBufferAndroid
+            | Self::HostAllocationExt
+            | Self::HostMappedForeignMemoryExt
+            | Self::ZirconVmoFuchsia
+            | Self::RdmaAddressNv
+            | Self::Reserved13Nv
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for ExternalMemoryHandleTypeFlags {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for ExternalMemoryHandleTypeFlags {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for ExternalMemoryHandleTypeFlags {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for ExternalMemoryHandleTypeFlags {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for ExternalMemoryHandleTypeFlags {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for ExternalMemoryHandleTypeFlags {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for ExternalMemoryHandleTypeFlags {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for ExternalMemoryHandleTypeFlags {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for ExternalMemoryHandleTypeFlags {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<ExternalMemoryHandleTypeFlags> for ExternalMemoryHandleTypeFlags {
+    fn extend<T: std::iter::IntoIterator<Item = ExternalMemoryHandleTypeFlags>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<ExternalMemoryHandleTypeFlagBits> for ExternalMemoryHandleTypeFlags {
+    fn extend<T: std::iter::IntoIterator<Item = ExternalMemoryHandleTypeFlagBits>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(ExternalMemoryHandleTypeFlags::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<ExternalMemoryHandleTypeFlags> for ExternalMemoryHandleTypeFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = ExternalMemoryHandleTypeFlags>>(
+        iterator: T,
+    ) -> ExternalMemoryHandleTypeFlags {
+        let mut out = ExternalMemoryHandleTypeFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<ExternalMemoryHandleTypeFlagBits> for ExternalMemoryHandleTypeFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = ExternalMemoryHandleTypeFlagBits>>(
+        iterator: T,
+    ) -> ExternalMemoryHandleTypeFlags {
+        let mut out = ExternalMemoryHandleTypeFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for ExternalMemoryHandleTypeFlags {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(ExternalMemoryHandleTypeFlags);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == ExternalMemoryHandleTypeFlags::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(ExternalMemoryHandleTypeFlags::ExternalMemoryHandleTypeOpaqueFd)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalMemoryHandleTypeOpaqueFd))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalMemoryHandleTypeFlags::ExternalMemoryHandleTypeOpaqueWin32)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalMemoryHandleTypeOpaqueWin32))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalMemoryHandleTypeFlags::ExternalMemoryHandleTypeOpaqueWin32Kmt)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalMemoryHandleTypeOpaqueWin32Kmt))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalMemoryHandleTypeFlags::ExternalMemoryHandleTypeD3D11Texture)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalMemoryHandleTypeD3D11Texture))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalMemoryHandleTypeFlags::ExternalMemoryHandleTypeD3D11TextureKmt)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalMemoryHandleTypeD3D11TextureKmt))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalMemoryHandleTypeFlags::ExternalMemoryHandleTypeD3D12Heap)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalMemoryHandleTypeD3D12Heap))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalMemoryHandleTypeFlags::ExternalMemoryHandleTypeD3D12Resource)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalMemoryHandleTypeD3D12Resource))?;
+                    }
+                    if self.0.contains(ExternalMemoryHandleTypeFlags::DmaBufExt) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DmaBufExt))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalMemoryHandleTypeFlags::AndroidHardwareBufferAndroid)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(AndroidHardwareBufferAndroid))?;
+                    }
+                    if self.0.contains(ExternalMemoryHandleTypeFlags::HostAllocationExt) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(HostAllocationExt))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalMemoryHandleTypeFlags::HostMappedForeignMemoryExt)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(HostMappedForeignMemoryExt))?;
+                    }
+                    if self.0.contains(ExternalMemoryHandleTypeFlags::ZirconVmoFuchsia) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ZirconVmoFuchsia))?;
+                    }
+                    if self.0.contains(ExternalMemoryHandleTypeFlags::RdmaAddressNv) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(RdmaAddressNv))?;
+                    }
+                    if self.0.contains(ExternalMemoryHandleTypeFlags::Reserved13Nv) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(Reserved13Nv))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(ExternalMemoryHandleTypeFlags))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkExternalMemoryFeatureFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryFeatureFlagBits.html) - Bitmask specifying features of an external memory handle type
+///# C Specifications
+///Bits which  **may**  be set in
+///[`ExternalMemoryProperties::external_memory_features`], specifying
+///features of an external memory handle type, are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkExternalMemoryFeatureFlagBits {
+///    VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT = 0x00000001,
+///    VK_EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT = 0x00000002,
+///    VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT = 0x00000004,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_KHR =
+/// VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_KHR = VK_EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT,
+///  // Provided by VK_KHR_external_memory_capabilities
+///    VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_KHR = VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT,
+///} VkExternalMemoryFeatureFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_external_memory_capabilities
+///typedef VkExternalMemoryFeatureFlagBits VkExternalMemoryFeatureFlagBitsKHR;
+///```
+///# Description
+/// - [`ExternalMemoryFeatureDedicatedOnly`] specifies that images or buffers created with the
+///   specified parameters and handle type  **must**  use the mechanisms defined by
+///   [`MemoryDedicatedRequirements`] and [`MemoryDedicatedAllocateInfo`] to create (or import) a
+///   dedicated allocation for the image or buffer.
+/// - [`ExternalMemoryFeatureExportable`] specifies that handles of this type  **can**  be exported
+///   from Vulkan memory objects.
+/// - [`ExternalMemoryFeatureImportable`] specifies that handles of this type  **can**  be imported
+///   as Vulkan memory objects.
+///Because their semantics in external APIs roughly align with that of an image
+///or buffer with a dedicated allocation in Vulkan, implementations are
+/// **required**  to report [`ExternalMemoryFeatureDedicatedOnly`] for
+///the following external handle types:
+/// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT`
+/// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT`
+/// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT`
+/// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID` for images only
+///Implementations  **must**  not report
+///[`ExternalMemoryFeatureDedicatedOnly`] for buffers with
+///external handle type
+///`VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID`.
+///Implementations  **must**  not report
+///[`ExternalMemoryFeatureDedicatedOnly`] for images or buffers
+///with external handle type
+///`VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT`, or
+///`VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT`.
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`ExternalMemoryFeatureFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct ExternalMemoryFeatureFlags(u32);
+impl const Default for ExternalMemoryFeatureFlags {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<ExternalMemoryFeatureFlagBits> for ExternalMemoryFeatureFlags {
+    fn from(from: ExternalMemoryFeatureFlagBits) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl ExternalMemoryFeatureFlags {
+    ///[`ExternalMemoryFeatureDedicatedOnly`] specifies that
+    ///images or buffers created with the specified parameters and handle type
+    /// **must**  use the mechanisms defined by [`MemoryDedicatedRequirements`]
+    ///and [`MemoryDedicatedAllocateInfo`] to create (or import) a
+    ///dedicated allocation for the image or buffer.
+    const ExternalMemoryFeatureDedicatedOnly: Self = Self(1);
+    ///[`ExternalMemoryFeatureExportable`] specifies that handles
+    ///of this type  **can**  be exported from Vulkan memory objects.
+    const ExternalMemoryFeatureExportable: Self = Self(2);
+    ///[`ExternalMemoryFeatureImportable`] specifies that handles
+    ///of this type  **can**  be imported as Vulkan memory objects.
+    const ExternalMemoryFeatureImportable: Self = Self(4);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::ExternalMemoryFeatureDedicatedOnly
+            | Self::ExternalMemoryFeatureExportable
+            | Self::ExternalMemoryFeatureImportable
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for ExternalMemoryFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for ExternalMemoryFeatureFlags {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for ExternalMemoryFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for ExternalMemoryFeatureFlags {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for ExternalMemoryFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for ExternalMemoryFeatureFlags {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for ExternalMemoryFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for ExternalMemoryFeatureFlags {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for ExternalMemoryFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<ExternalMemoryFeatureFlags> for ExternalMemoryFeatureFlags {
+    fn extend<T: std::iter::IntoIterator<Item = ExternalMemoryFeatureFlags>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<ExternalMemoryFeatureFlagBits> for ExternalMemoryFeatureFlags {
+    fn extend<T: std::iter::IntoIterator<Item = ExternalMemoryFeatureFlagBits>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(ExternalMemoryFeatureFlags::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<ExternalMemoryFeatureFlags> for ExternalMemoryFeatureFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = ExternalMemoryFeatureFlags>>(
+        iterator: T,
+    ) -> ExternalMemoryFeatureFlags {
+        let mut out = ExternalMemoryFeatureFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<ExternalMemoryFeatureFlagBits> for ExternalMemoryFeatureFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = ExternalMemoryFeatureFlagBits>>(
+        iterator: T,
+    ) -> ExternalMemoryFeatureFlags {
+        let mut out = ExternalMemoryFeatureFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for ExternalMemoryFeatureFlags {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(ExternalMemoryFeatureFlags);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == ExternalMemoryFeatureFlags::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(ExternalMemoryFeatureFlags::ExternalMemoryFeatureDedicatedOnly)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalMemoryFeatureDedicatedOnly))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalMemoryFeatureFlags::ExternalMemoryFeatureExportable)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalMemoryFeatureExportable))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalMemoryFeatureFlags::ExternalMemoryFeatureImportable)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalMemoryFeatureImportable))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(ExternalMemoryFeatureFlags))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkExternalSemaphoreHandleTypeFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalSemaphoreHandleTypeFlagBits.html) - Bitmask of valid external semaphore handle types
+///# C Specifications
+///Bits which  **may**  be set in
+///[`PhysicalDeviceExternalSemaphoreInfo::handle_type`], specifying an
+///external semaphore handle type, are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkExternalSemaphoreHandleTypeFlagBits {
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT = 0x00000001,
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT = 0x00000002,
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 0x00000004,
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT = 0x00000008,
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT = 0x00000010,
+///  // Provided by VK_FUCHSIA_external_semaphore
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_ZIRCON_EVENT_BIT_FUCHSIA = 0x00000080,
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D11_FENCE_BIT =
+/// VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT,
+///  // Provided by VK_KHR_external_semaphore_capabilities
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT_KHR =
+/// VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT,
+///  // Provided by VK_KHR_external_semaphore_capabilities
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR =
+/// VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT,
+///  // Provided by VK_KHR_external_semaphore_capabilities
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR =
+/// VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT,
+///  // Provided by VK_KHR_external_semaphore_capabilities
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT_KHR =
+/// VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT,
+///  // Provided by VK_KHR_external_semaphore_capabilities
+///    VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT_KHR =
+/// VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT,
+///} VkExternalSemaphoreHandleTypeFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_external_semaphore_capabilities
+///typedef VkExternalSemaphoreHandleTypeFlagBits VkExternalSemaphoreHandleTypeFlagBitsKHR;
+///```
+///# Description
+/// - [`ExternalSemaphoreHandleTypeOpaqueFd`] specifies a POSIX file descriptor handle that has only
+///   limited valid usage outside of Vulkan and other compatible APIs. It  **must**  be compatible
+///   with the POSIX system calls `dup`, `dup2`, `close`, and the non-standard system call `dup3`.
+///   Additionally, it  **must**  be transportable over a socket using an `SCM_RIGHTS` control
+///   message. It owns a reference to the underlying synchronization primitive represented by its
+///   Vulkan semaphore object.
+/// - [`ExternalSemaphoreHandleTypeOpaqueWin32`] specifies an NT handle that has only limited valid
+///   usage outside of Vulkan and other compatible APIs. It  **must**  be compatible with the
+///   functions `DuplicateHandle`, `CloseHandle`, `CompareObjectHandles`, `GetHandleInformation`,
+///   and `SetHandleInformation`. It owns a reference to the underlying synchronization primitive
+///   represented by its Vulkan semaphore object.
+/// - [`ExternalSemaphoreHandleTypeOpaqueWin32Kmt`] specifies a global share handle that has only
+///   limited valid usage outside of Vulkan and other compatible APIs. It is not compatible with any
+///   native APIs. It does not own a reference to the underlying synchronization primitive
+///   represented by its Vulkan semaphore object, and will therefore become invalid when all Vulkan
+///   semaphore objects associated with it are destroyed.
+/// - [`ExternalSemaphoreHandleTypeD3D12Fence`] specifies an NT handle returned by
+///   `ID3D12Device`::`CreateSharedHandle` referring to a Direct3D 12 fence, or
+///   `ID3D11Device5`::[`CreateFence`] referring to a Direct3D 11 fence. It owns a reference to the
+///   underlying synchronization primitive associated with the Direct3D fence.
+/// - [`ExternalSemaphoreHandleTypeD3D11Fence`] is an alias of
+///   [`ExternalSemaphoreHandleTypeD3D12Fence`] with the same meaning. It is provided for
+///   convenience and code clarity when interacting with D3D11 fences.
+/// - [`ExternalSemaphoreHandleTypeSyncFd`] specifies a POSIX file descriptor handle to a Linux Sync
+///   File or Android Fence object. It can be used with any native API accepting a valid sync file
+///   or fence as input. It owns a reference to the underlying synchronization primitive associated
+///   with the file descriptor. Implementations which support importing this handle type  **must**
+///   accept any type of sync or fence FD supported by the native system they are running on.
+/// - [`ZirconEventFuchsia`] specifies a handle to a Zircon event object. It can be used with any
+///   native API that accepts a Zircon event handle. Zircon event handles are created with
+///   `ZX_RIGHTS_BASIC` and `ZX_RIGHTS_SIGNAL` rights. Vulkan on Fuchsia uses only the
+///   ZX_EVENT_SIGNALED bit when signaling or waiting.
+///Some external semaphore handle types can only be shared within the same
+///underlying physical device and/or the same driver version, as defined in the
+///following table:
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`ExternalSemaphoreHandleTypeFlags`]
+/// - [`ImportSemaphoreFdInfoKHR`]
+/// - [`ImportSemaphoreWin32HandleInfoKHR`]
+/// - [`ImportSemaphoreZirconHandleInfoFUCHSIA`]
+/// - [`PhysicalDeviceExternalSemaphoreInfo`]
+/// - [`SemaphoreGetFdInfoKHR`]
+/// - [`SemaphoreGetWin32HandleInfoKHR`]
+/// - [`SemaphoreGetZirconHandleInfoFUCHSIA`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct ExternalSemaphoreHandleTypeFlags(u32);
+impl const Default for ExternalSemaphoreHandleTypeFlags {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<ExternalSemaphoreHandleTypeFlagBits> for ExternalSemaphoreHandleTypeFlags {
+    fn from(from: ExternalSemaphoreHandleTypeFlagBits) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl ExternalSemaphoreHandleTypeFlags {
+    ///[`ExternalSemaphoreHandleTypeOpaqueFd`] specifies a POSIX
+    ///file descriptor handle that has only limited valid usage outside of
+    ///Vulkan and other compatible APIs.
+    ///It  **must**  be compatible with the POSIX system calls `dup`, `dup2`,
+    ///`close`, and the non-standard system call `dup3`.
+    ///Additionally, it  **must**  be transportable over a socket using an
+    ///`SCM_RIGHTS` control message.
+    ///It owns a reference to the underlying synchronization primitive
+    ///represented by its Vulkan semaphore object.
+    const ExternalSemaphoreHandleTypeOpaqueFd: Self = Self(1);
+    ///[`ExternalSemaphoreHandleTypeOpaqueWin32`] specifies an NT
+    ///handle that has only limited valid usage outside of Vulkan and other
+    ///compatible APIs.
+    ///It  **must**  be compatible with the functions `DuplicateHandle`,
+    ///`CloseHandle`, `CompareObjectHandles`, `GetHandleInformation`,
+    ///and `SetHandleInformation`.
+    ///It owns a reference to the underlying synchronization primitive
+    ///represented by its Vulkan semaphore object.
+    const ExternalSemaphoreHandleTypeOpaqueWin32: Self = Self(2);
+    ///[`ExternalSemaphoreHandleTypeOpaqueWin32Kmt`] specifies a
+    ///global share handle that has only limited valid usage outside of Vulkan
+    ///and other compatible APIs.
+    ///It is not compatible with any native APIs.
+    ///It does not own a reference to the underlying synchronization primitive
+    ///represented by its Vulkan semaphore object, and will therefore become
+    ///invalid when all Vulkan semaphore objects associated with it are
+    ///destroyed.
+    const ExternalSemaphoreHandleTypeOpaqueWin32Kmt: Self = Self(4);
+    ///[`ExternalSemaphoreHandleTypeD3D12Fence`] specifies an NT
+    ///handle returned by `ID3D12Device`::`CreateSharedHandle` referring
+    ///to a Direct3D 12 fence, or `ID3D11Device5`::[`CreateFence`]
+    ///referring to a Direct3D 11 fence.
+    ///It owns a reference to the underlying synchronization primitive
+    ///associated with the Direct3D fence.
+    const ExternalSemaphoreHandleTypeD3D12Fence: Self = Self(8);
+    ///[`ExternalSemaphoreHandleTypeSyncFd`] specifies a POSIX
+    ///file descriptor handle to a Linux Sync File or Android Fence object.
+    ///It can be used with any native API accepting a valid sync file or fence
+    ///as input.
+    ///It owns a reference to the underlying synchronization primitive
+    ///associated with the file descriptor.
+    ///Implementations which support importing this handle type  **must**  accept
+    ///any type of sync or fence FD supported by the native system they are
+    ///running on.
+    const ExternalSemaphoreHandleTypeSyncFd: Self = Self(16);
+    ///[`ZirconEventFuchsia`]
+    ///specifies a handle to a Zircon event object.
+    ///It can be used with any native API that accepts a Zircon event handle.
+    ///Zircon event handles are created with `ZX_RIGHTS_BASIC` and
+    ///`ZX_RIGHTS_SIGNAL` rights.
+    ///Vulkan on Fuchsia uses only the ZX_EVENT_SIGNALED bit when signaling or
+    ///waiting.
+    ///
+    ///Provided by [`crate::extensions::fuchsia_external_semaphore`]
+    const ZirconEventFuchsia: Self = Self(128);
+    ///No documentation found
+    ///
+    ///Provided by [`crate::extensions::nv_extension_374`]
+    const Reserved5Nv: Self = Self(32);
+    ///No documentation found
+    ///
+    ///Provided by [`crate::extensions::nv_extension_374`]
+    const Reserved6Nv: Self = Self(64);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::ExternalSemaphoreHandleTypeOpaqueFd
+            | Self::ExternalSemaphoreHandleTypeOpaqueWin32
+            | Self::ExternalSemaphoreHandleTypeOpaqueWin32Kmt
+            | Self::ExternalSemaphoreHandleTypeD3D12Fence
+            | Self::ExternalSemaphoreHandleTypeSyncFd
+            | Self::ZirconEventFuchsia
+            | Self::Reserved5Nv
+            | Self::Reserved6Nv
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for ExternalSemaphoreHandleTypeFlags {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for ExternalSemaphoreHandleTypeFlags {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for ExternalSemaphoreHandleTypeFlags {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for ExternalSemaphoreHandleTypeFlags {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for ExternalSemaphoreHandleTypeFlags {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for ExternalSemaphoreHandleTypeFlags {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for ExternalSemaphoreHandleTypeFlags {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for ExternalSemaphoreHandleTypeFlags {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for ExternalSemaphoreHandleTypeFlags {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<ExternalSemaphoreHandleTypeFlags> for ExternalSemaphoreHandleTypeFlags {
+    fn extend<T: std::iter::IntoIterator<Item = ExternalSemaphoreHandleTypeFlags>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<ExternalSemaphoreHandleTypeFlagBits> for ExternalSemaphoreHandleTypeFlags {
+    fn extend<T: std::iter::IntoIterator<Item = ExternalSemaphoreHandleTypeFlagBits>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(ExternalSemaphoreHandleTypeFlags::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<ExternalSemaphoreHandleTypeFlags> for ExternalSemaphoreHandleTypeFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = ExternalSemaphoreHandleTypeFlags>>(
+        iterator: T,
+    ) -> ExternalSemaphoreHandleTypeFlags {
+        let mut out = ExternalSemaphoreHandleTypeFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<ExternalSemaphoreHandleTypeFlagBits> for ExternalSemaphoreHandleTypeFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = ExternalSemaphoreHandleTypeFlagBits>>(
+        iterator: T,
+    ) -> ExternalSemaphoreHandleTypeFlags {
+        let mut out = ExternalSemaphoreHandleTypeFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for ExternalSemaphoreHandleTypeFlags {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(ExternalSemaphoreHandleTypeFlags);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == ExternalSemaphoreHandleTypeFlags::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(ExternalSemaphoreHandleTypeFlags::ExternalSemaphoreHandleTypeOpaqueFd)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalSemaphoreHandleTypeOpaqueFd))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalSemaphoreHandleTypeFlags::ExternalSemaphoreHandleTypeOpaqueWin32)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalSemaphoreHandleTypeOpaqueWin32))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalSemaphoreHandleTypeFlags::ExternalSemaphoreHandleTypeOpaqueWin32Kmt)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalSemaphoreHandleTypeOpaqueWin32Kmt))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalSemaphoreHandleTypeFlags::ExternalSemaphoreHandleTypeD3D12Fence)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalSemaphoreHandleTypeD3D12Fence))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalSemaphoreHandleTypeFlags::ExternalSemaphoreHandleTypeSyncFd)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalSemaphoreHandleTypeSyncFd))?;
+                    }
+                    if self.0.contains(ExternalSemaphoreHandleTypeFlags::ZirconEventFuchsia) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ZirconEventFuchsia))?;
+                    }
+                    if self.0.contains(ExternalSemaphoreHandleTypeFlags::Reserved5Nv) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(Reserved5Nv))?;
+                    }
+                    if self.0.contains(ExternalSemaphoreHandleTypeFlags::Reserved6Nv) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(Reserved6Nv))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(ExternalSemaphoreHandleTypeFlags))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkExternalSemaphoreFeatureFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalSemaphoreFeatureFlagBits.html) - Bitfield describing features of an external semaphore handle type
+///# C Specifications
+///Bits which  **may**  be set in
+///[`ExternalSemaphoreProperties::external_semaphore_features`],
+///specifying the features of an external semaphore handle type, are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkExternalSemaphoreFeatureFlagBits {
+///    VK_EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT = 0x00000001,
+///    VK_EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT = 0x00000002,
+///  // Provided by VK_KHR_external_semaphore_capabilities
+///    VK_EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT_KHR =
+/// VK_EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT,
+///  // Provided by VK_KHR_external_semaphore_capabilities
+///    VK_EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT_KHR =
+/// VK_EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT,
+///} VkExternalSemaphoreFeatureFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_external_semaphore_capabilities
+///typedef VkExternalSemaphoreFeatureFlagBits VkExternalSemaphoreFeatureFlagBitsKHR;
+///```
+///# Description
+/// - [`ExternalSemaphoreFeatureExportable`] specifies that handles of this type  **can**  be
+///   exported from Vulkan semaphore objects.
+/// - [`ExternalSemaphoreFeatureImportable`] specifies that handles of this type  **can**  be
+///   imported as Vulkan semaphore objects.
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`ExternalSemaphoreFeatureFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct ExternalSemaphoreFeatureFlags(u32);
+impl const Default for ExternalSemaphoreFeatureFlags {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<ExternalSemaphoreFeatureFlagBits> for ExternalSemaphoreFeatureFlags {
+    fn from(from: ExternalSemaphoreFeatureFlagBits) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl ExternalSemaphoreFeatureFlags {
+    ///[`ExternalSemaphoreFeatureExportable`] specifies that
+    ///handles of this type  **can**  be exported from Vulkan semaphore objects.
+    const ExternalSemaphoreFeatureExportable: Self = Self(1);
+    ///[`ExternalSemaphoreFeatureImportable`] specifies that
+    ///handles of this type  **can**  be imported as Vulkan semaphore objects.
+    const ExternalSemaphoreFeatureImportable: Self = Self(2);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty() | Self::ExternalSemaphoreFeatureExportable | Self::ExternalSemaphoreFeatureImportable
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for ExternalSemaphoreFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for ExternalSemaphoreFeatureFlags {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for ExternalSemaphoreFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for ExternalSemaphoreFeatureFlags {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for ExternalSemaphoreFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for ExternalSemaphoreFeatureFlags {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for ExternalSemaphoreFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for ExternalSemaphoreFeatureFlags {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for ExternalSemaphoreFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<ExternalSemaphoreFeatureFlags> for ExternalSemaphoreFeatureFlags {
+    fn extend<T: std::iter::IntoIterator<Item = ExternalSemaphoreFeatureFlags>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<ExternalSemaphoreFeatureFlagBits> for ExternalSemaphoreFeatureFlags {
+    fn extend<T: std::iter::IntoIterator<Item = ExternalSemaphoreFeatureFlagBits>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(ExternalSemaphoreFeatureFlags::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<ExternalSemaphoreFeatureFlags> for ExternalSemaphoreFeatureFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = ExternalSemaphoreFeatureFlags>>(
+        iterator: T,
+    ) -> ExternalSemaphoreFeatureFlags {
+        let mut out = ExternalSemaphoreFeatureFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<ExternalSemaphoreFeatureFlagBits> for ExternalSemaphoreFeatureFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = ExternalSemaphoreFeatureFlagBits>>(
+        iterator: T,
+    ) -> ExternalSemaphoreFeatureFlags {
+        let mut out = ExternalSemaphoreFeatureFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for ExternalSemaphoreFeatureFlags {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(ExternalSemaphoreFeatureFlags);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == ExternalSemaphoreFeatureFlags::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(ExternalSemaphoreFeatureFlags::ExternalSemaphoreFeatureExportable)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalSemaphoreFeatureExportable))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalSemaphoreFeatureFlags::ExternalSemaphoreFeatureImportable)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalSemaphoreFeatureImportable))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(ExternalSemaphoreFeatureFlags))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkSemaphoreImportFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreImportFlagBits.html) - Bitmask specifying additional parameters of semaphore payload import
+///# C Specifications
+///Bits which  **can**  be set in
+/// - [`ImportSemaphoreWin32HandleInfoKHR::flags`]
+/// - [`ImportSemaphoreFdInfoKHR::flags`]
+/// - [`ImportSemaphoreZirconHandleInfoFUCHSIA::flags`]
+///specifying additional parameters of a semaphore import operation are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkSemaphoreImportFlagBits {
+///    VK_SEMAPHORE_IMPORT_TEMPORARY_BIT = 0x00000001,
+///  // Provided by VK_KHR_external_semaphore
+///    VK_SEMAPHORE_IMPORT_TEMPORARY_BIT_KHR = VK_SEMAPHORE_IMPORT_TEMPORARY_BIT,
+///} VkSemaphoreImportFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_external_semaphore
+///typedef VkSemaphoreImportFlagBits VkSemaphoreImportFlagBitsKHR;
+///```
+///# Description
+///These bits have the following meanings:
+/// - [`SemaphoreImportTemporary`] specifies that the semaphore payload will be imported only temporarily, as described in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing), regardless of the permanence of `handleType`.
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`SemaphoreImportFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct SemaphoreImportFlags(u32);
+impl const Default for SemaphoreImportFlags {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<SemaphoreImportFlagBits> for SemaphoreImportFlags {
+    fn from(from: SemaphoreImportFlagBits) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl SemaphoreImportFlags {
+    ///[`SemaphoreImportTemporary`] specifies that the semaphore
+    ///payload will be imported only temporarily, as described in
+    ///[Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing),
+    ///regardless of the permanence of `handleType`.
+    const SemaphoreImportTemporary: Self = Self(1);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty() | Self::SemaphoreImportTemporary
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for SemaphoreImportFlags {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for SemaphoreImportFlags {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for SemaphoreImportFlags {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for SemaphoreImportFlags {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for SemaphoreImportFlags {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for SemaphoreImportFlags {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for SemaphoreImportFlags {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for SemaphoreImportFlags {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for SemaphoreImportFlags {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<SemaphoreImportFlags> for SemaphoreImportFlags {
+    fn extend<T: std::iter::IntoIterator<Item = SemaphoreImportFlags>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<SemaphoreImportFlagBits> for SemaphoreImportFlags {
+    fn extend<T: std::iter::IntoIterator<Item = SemaphoreImportFlagBits>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(SemaphoreImportFlags::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<SemaphoreImportFlags> for SemaphoreImportFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = SemaphoreImportFlags>>(iterator: T) -> SemaphoreImportFlags {
+        let mut out = SemaphoreImportFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<SemaphoreImportFlagBits> for SemaphoreImportFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = SemaphoreImportFlagBits>>(iterator: T) -> SemaphoreImportFlags {
+        let mut out = SemaphoreImportFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for SemaphoreImportFlags {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(SemaphoreImportFlags);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == SemaphoreImportFlags::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self.0.contains(SemaphoreImportFlags::SemaphoreImportTemporary) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SemaphoreImportTemporary))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(SemaphoreImportFlags))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkExternalFenceHandleTypeFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalFenceHandleTypeFlagBits.html) - Bitmask of valid external fence handle types
+///# C Specifications
+///Bits which  **may**  be set in
+///  * [`PhysicalDeviceExternalFenceInfo::handle_type`]
+///  * [`ExternalFenceProperties::export_from_imported_handle_types`]
+///  * [`ExternalFenceProperties::compatible_handle_types`]
+///indicate external fence handle types, and are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkExternalFenceHandleTypeFlagBits {
+///    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT = 0x00000001,
+///    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT = 0x00000002,
+///    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 0x00000004,
+///    VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT = 0x00000008,
+///  // Provided by VK_KHR_external_fence_capabilities
+///    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT_KHR =
+/// VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT,
+///  // Provided by VK_KHR_external_fence_capabilities
+///    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR =
+/// VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT,
+///  // Provided by VK_KHR_external_fence_capabilities
+///    VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR =
+/// VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT,
+///  // Provided by VK_KHR_external_fence_capabilities
+///    VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT_KHR = VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT,
+///} VkExternalFenceHandleTypeFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_external_fence_capabilities
+///typedef VkExternalFenceHandleTypeFlagBits VkExternalFenceHandleTypeFlagBitsKHR;
+///```
+///# Description
+/// - [`ExternalFenceHandleTypeOpaqueFd`] specifies a POSIX file descriptor handle that has only
+///   limited valid usage outside of Vulkan and other compatible APIs. It  **must**  be compatible
+///   with the POSIX system calls `dup`, `dup2`, `close`, and the non-standard system call `dup3`.
+///   Additionally, it  **must**  be transportable over a socket using an `SCM_RIGHTS` control
+///   message. It owns a reference to the underlying synchronization primitive represented by its
+///   Vulkan fence object.
+/// - [`ExternalFenceHandleTypeOpaqueWin32`] specifies an NT handle that has only limited valid
+///   usage outside of Vulkan and other compatible APIs. It  **must**  be compatible with the
+///   functions `DuplicateHandle`, `CloseHandle`, `CompareObjectHandles`, `GetHandleInformation`,
+///   and `SetHandleInformation`. It owns a reference to the underlying synchronization primitive
+///   represented by its Vulkan fence object.
+/// - [`ExternalFenceHandleTypeOpaqueWin32Kmt`] specifies a global share handle that has only
+///   limited valid usage outside of Vulkan and other compatible APIs. It is not compatible with any
+///   native APIs. It does not own a reference to the underlying synchronization primitive
+///   represented by its Vulkan fence object, and will therefore become invalid when all Vulkan
+///   fence objects associated with it are destroyed.
+/// - [`ExternalFenceHandleTypeSyncFd`] specifies a POSIX file descriptor handle to a Linux Sync
+///   File or Android Fence. It can be used with any native API accepting a valid sync file or fence
+///   as input. It owns a reference to the underlying synchronization primitive associated with the
+///   file descriptor. Implementations which support importing this handle type  **must**  accept
+///   any type of sync or fence FD supported by the native system they are running on.
+///Some external fence handle types can only be shared within the same
+///underlying physical device and/or the same driver version, as defined in the
+///following table:
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`ExternalFenceHandleTypeFlags`]
+/// - [`FenceGetFdInfoKHR`]
+/// - [`FenceGetWin32HandleInfoKHR`]
+/// - [`ImportFenceFdInfoKHR`]
+/// - [`ImportFenceWin32HandleInfoKHR`]
+/// - [`PhysicalDeviceExternalFenceInfo`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct ExternalFenceHandleTypeFlags(u32);
+impl const Default for ExternalFenceHandleTypeFlags {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<ExternalFenceHandleTypeFlagBits> for ExternalFenceHandleTypeFlags {
+    fn from(from: ExternalFenceHandleTypeFlagBits) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl ExternalFenceHandleTypeFlags {
+    ///[`ExternalFenceHandleTypeOpaqueFd`] specifies a POSIX file
+    ///descriptor handle that has only limited valid usage outside of Vulkan
+    ///and other compatible APIs.
+    ///It  **must**  be compatible with the POSIX system calls `dup`, `dup2`,
+    ///`close`, and the non-standard system call `dup3`.
+    ///Additionally, it  **must**  be transportable over a socket using an
+    ///`SCM_RIGHTS` control message.
+    ///It owns a reference to the underlying synchronization primitive
+    ///represented by its Vulkan fence object.
+    const ExternalFenceHandleTypeOpaqueFd: Self = Self(1);
+    ///[`ExternalFenceHandleTypeOpaqueWin32`] specifies an NT
+    ///handle that has only limited valid usage outside of Vulkan and other
+    ///compatible APIs.
+    ///It  **must**  be compatible with the functions `DuplicateHandle`,
+    ///`CloseHandle`, `CompareObjectHandles`, `GetHandleInformation`,
+    ///and `SetHandleInformation`.
+    ///It owns a reference to the underlying synchronization primitive
+    ///represented by its Vulkan fence object.
+    const ExternalFenceHandleTypeOpaqueWin32: Self = Self(2);
+    ///[`ExternalFenceHandleTypeOpaqueWin32Kmt`] specifies a
+    ///global share handle that has only limited valid usage outside of Vulkan
+    ///and other compatible APIs.
+    ///It is not compatible with any native APIs.
+    ///It does not own a reference to the underlying synchronization primitive
+    ///represented by its Vulkan fence object, and will therefore become
+    ///invalid when all Vulkan fence objects associated with it are destroyed.
+    const ExternalFenceHandleTypeOpaqueWin32Kmt: Self = Self(4);
+    ///[`ExternalFenceHandleTypeSyncFd`] specifies a POSIX file
+    ///descriptor handle to a Linux Sync File or Android Fence.
+    ///It can be used with any native API accepting a valid sync file or fence
+    ///as input.
+    ///It owns a reference to the underlying synchronization primitive
+    ///associated with the file descriptor.
+    ///Implementations which support importing this handle type  **must**  accept
+    ///any type of sync or fence FD supported by the native system they are
+    ///running on.
+    const ExternalFenceHandleTypeSyncFd: Self = Self(8);
+    ///No documentation found
+    ///
+    ///Provided by [`crate::extensions::nv_extension_374`]
+    const Reserved4Nv: Self = Self(16);
+    ///No documentation found
+    ///
+    ///Provided by [`crate::extensions::nv_extension_374`]
+    const Reserved5Nv: Self = Self(32);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::ExternalFenceHandleTypeOpaqueFd
+            | Self::ExternalFenceHandleTypeOpaqueWin32
+            | Self::ExternalFenceHandleTypeOpaqueWin32Kmt
+            | Self::ExternalFenceHandleTypeSyncFd
+            | Self::Reserved4Nv
+            | Self::Reserved5Nv
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for ExternalFenceHandleTypeFlags {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for ExternalFenceHandleTypeFlags {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for ExternalFenceHandleTypeFlags {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for ExternalFenceHandleTypeFlags {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for ExternalFenceHandleTypeFlags {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for ExternalFenceHandleTypeFlags {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for ExternalFenceHandleTypeFlags {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for ExternalFenceHandleTypeFlags {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for ExternalFenceHandleTypeFlags {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<ExternalFenceHandleTypeFlags> for ExternalFenceHandleTypeFlags {
+    fn extend<T: std::iter::IntoIterator<Item = ExternalFenceHandleTypeFlags>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<ExternalFenceHandleTypeFlagBits> for ExternalFenceHandleTypeFlags {
+    fn extend<T: std::iter::IntoIterator<Item = ExternalFenceHandleTypeFlagBits>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(ExternalFenceHandleTypeFlags::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<ExternalFenceHandleTypeFlags> for ExternalFenceHandleTypeFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = ExternalFenceHandleTypeFlags>>(
+        iterator: T,
+    ) -> ExternalFenceHandleTypeFlags {
+        let mut out = ExternalFenceHandleTypeFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<ExternalFenceHandleTypeFlagBits> for ExternalFenceHandleTypeFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = ExternalFenceHandleTypeFlagBits>>(
+        iterator: T,
+    ) -> ExternalFenceHandleTypeFlags {
+        let mut out = ExternalFenceHandleTypeFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for ExternalFenceHandleTypeFlags {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(ExternalFenceHandleTypeFlags);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == ExternalFenceHandleTypeFlags::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(ExternalFenceHandleTypeFlags::ExternalFenceHandleTypeOpaqueFd)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalFenceHandleTypeOpaqueFd))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalFenceHandleTypeFlags::ExternalFenceHandleTypeOpaqueWin32)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalFenceHandleTypeOpaqueWin32))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalFenceHandleTypeFlags::ExternalFenceHandleTypeOpaqueWin32Kmt)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalFenceHandleTypeOpaqueWin32Kmt))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalFenceHandleTypeFlags::ExternalFenceHandleTypeSyncFd)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalFenceHandleTypeSyncFd))?;
+                    }
+                    if self.0.contains(ExternalFenceHandleTypeFlags::Reserved4Nv) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(Reserved4Nv))?;
+                    }
+                    if self.0.contains(ExternalFenceHandleTypeFlags::Reserved5Nv) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(Reserved5Nv))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(ExternalFenceHandleTypeFlags))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkExternalFenceFeatureFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalFenceFeatureFlagBits.html) - Bitfield describing features of an external fence handle type
+///# C Specifications
+///Bits which  **may**  be set in
+///[`ExternalFenceProperties::external_fence_features`], indicating
+///features of a fence external handle type, are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkExternalFenceFeatureFlagBits {
+///    VK_EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT = 0x00000001,
+///    VK_EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT = 0x00000002,
+///  // Provided by VK_KHR_external_fence_capabilities
+///    VK_EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT_KHR = VK_EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT,
+///  // Provided by VK_KHR_external_fence_capabilities
+///    VK_EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT_KHR = VK_EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT,
+///} VkExternalFenceFeatureFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_external_fence_capabilities
+///typedef VkExternalFenceFeatureFlagBits VkExternalFenceFeatureFlagBitsKHR;
+///```
+///# Description
+/// - [`ExternalFenceFeatureExportable`] specifies handles of this type  **can**  be exported from
+///   Vulkan fence objects.
+/// - [`ExternalFenceFeatureImportable`] specifies handles of this type  **can**  be imported to
+///   Vulkan fence objects.
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`ExternalFenceFeatureFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct ExternalFenceFeatureFlags(u32);
+impl const Default for ExternalFenceFeatureFlags {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<ExternalFenceFeatureFlagBits> for ExternalFenceFeatureFlags {
+    fn from(from: ExternalFenceFeatureFlagBits) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl ExternalFenceFeatureFlags {
+    ///[`ExternalFenceFeatureExportable`] specifies handles of this
+    ///type  **can**  be exported from Vulkan fence objects.
+    const ExternalFenceFeatureExportable: Self = Self(1);
+    ///[`ExternalFenceFeatureImportable`] specifies handles of this
+    ///type  **can**  be imported to Vulkan fence objects.
+    const ExternalFenceFeatureImportable: Self = Self(2);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty() | Self::ExternalFenceFeatureExportable | Self::ExternalFenceFeatureImportable
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for ExternalFenceFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for ExternalFenceFeatureFlags {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for ExternalFenceFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for ExternalFenceFeatureFlags {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for ExternalFenceFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for ExternalFenceFeatureFlags {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for ExternalFenceFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for ExternalFenceFeatureFlags {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for ExternalFenceFeatureFlags {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<ExternalFenceFeatureFlags> for ExternalFenceFeatureFlags {
+    fn extend<T: std::iter::IntoIterator<Item = ExternalFenceFeatureFlags>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<ExternalFenceFeatureFlagBits> for ExternalFenceFeatureFlags {
+    fn extend<T: std::iter::IntoIterator<Item = ExternalFenceFeatureFlagBits>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(ExternalFenceFeatureFlags::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<ExternalFenceFeatureFlags> for ExternalFenceFeatureFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = ExternalFenceFeatureFlags>>(
+        iterator: T,
+    ) -> ExternalFenceFeatureFlags {
+        let mut out = ExternalFenceFeatureFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<ExternalFenceFeatureFlagBits> for ExternalFenceFeatureFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = ExternalFenceFeatureFlagBits>>(
+        iterator: T,
+    ) -> ExternalFenceFeatureFlags {
+        let mut out = ExternalFenceFeatureFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for ExternalFenceFeatureFlags {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(ExternalFenceFeatureFlags);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == ExternalFenceFeatureFlags::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(ExternalFenceFeatureFlags::ExternalFenceFeatureExportable)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalFenceFeatureExportable))?;
+                    }
+                    if self
+                        .0
+                        .contains(ExternalFenceFeatureFlags::ExternalFenceFeatureImportable)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ExternalFenceFeatureImportable))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(ExternalFenceFeatureFlags))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkFenceImportFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFenceImportFlagBits.html) - Bitmask specifying additional parameters of fence payload import
+///# C Specifications
+///Bits which  **can**  be set in
+/// - [`ImportFenceWin32HandleInfoKHR::flags`]
+/// - [`ImportFenceFdInfoKHR::flags`]
+///specifying additional parameters of a fence import operation are:
+///```c
+///// Provided by VK_VERSION_1_1
+///typedef enum VkFenceImportFlagBits {
+///    VK_FENCE_IMPORT_TEMPORARY_BIT = 0x00000001,
+///  // Provided by VK_KHR_external_fence
+///    VK_FENCE_IMPORT_TEMPORARY_BIT_KHR = VK_FENCE_IMPORT_TEMPORARY_BIT,
+///} VkFenceImportFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_external_fence
+///typedef VkFenceImportFlagBits VkFenceImportFlagBitsKHR;
+///```
+///# Description
+/// - [`FenceImportTemporary`] specifies that the fence payload will be imported only temporarily, as described in [Importing Fence Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-importing), regardless of the permanence of `handleType`.
+///# Related
+/// - [`crate::vulkan1_1`]
+/// - [`FenceImportFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct FenceImportFlags(u32);
+impl const Default for FenceImportFlags {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<FenceImportFlagBits> for FenceImportFlags {
+    fn from(from: FenceImportFlagBits) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl FenceImportFlags {
+    ///[`FenceImportTemporary`] specifies that the fence payload
+    ///will be imported only temporarily, as described in
+    ///[Importing Fence Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-importing),
+    ///regardless of the permanence of `handleType`.
+    const FenceImportTemporary: Self = Self(1);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty() | Self::FenceImportTemporary
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for FenceImportFlags {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for FenceImportFlags {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for FenceImportFlags {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for FenceImportFlags {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for FenceImportFlags {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for FenceImportFlags {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for FenceImportFlags {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for FenceImportFlags {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for FenceImportFlags {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<FenceImportFlags> for FenceImportFlags {
+    fn extend<T: std::iter::IntoIterator<Item = FenceImportFlags>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<FenceImportFlagBits> for FenceImportFlags {
+    fn extend<T: std::iter::IntoIterator<Item = FenceImportFlagBits>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(FenceImportFlags::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<FenceImportFlags> for FenceImportFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = FenceImportFlags>>(iterator: T) -> FenceImportFlags {
+        let mut out = FenceImportFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<FenceImportFlagBits> for FenceImportFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = FenceImportFlagBits>>(iterator: T) -> FenceImportFlags {
+        let mut out = FenceImportFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for FenceImportFlags {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(FenceImportFlags);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == FenceImportFlags::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self.0.contains(FenceImportFlags::FenceImportTemporary) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(FenceImportTemporary))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(FenceImportFlags))
+            .field(&Flags(*self))
+            .finish()
     }
 }
 ///[VkPhysicalDeviceFeatures2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFeatures2.html) - Structure describing the fine-grained features that can be supported by an implementation

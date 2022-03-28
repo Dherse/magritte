@@ -1,4 +1,160 @@
+//![VK_EXT_debug_utils](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_debug_utils.html) - instance extension
+//!# Description
+//!Due to the nature of the Vulkan interface, there is very little error
+//!information available to the developer and application.
+//!By using the [`VK_EXT_debug_utils`] extension, developers  **can**  obtain more
+//!information.
+//!When combined with validation layers, even more detailed feedback on the
+//!application’s use of Vulkan will be provided.This extension provides the following capabilities:
+//! - The ability to create a debug messenger which will pass along debug messages to an application
+//!   supplied callback.
+//! - The ability to identify specific Vulkan objects using a name or tag to improve tracking.
+//! - The ability to identify specific sections within a [`Queue`] or [`CommandBuffer`] using labels
+//!   to aid organization and offline analysis in external tools.
+//!The main difference between this extension and `[`VK_EXT_debug_report`]`
+//!and `[`VK_EXT_debug_marker`]` is that those extensions use
+//![`DebugReportObjectTypeEXT`] to identify objects.
+//!This extension uses the core [`ObjectType`] in place of
+//![`DebugReportObjectTypeEXT`].
+//!The primary reason for this move is that no future object type handle
+//!enumeration values will be added to [`DebugReportObjectTypeEXT`] since
+//!the creation of [`ObjectType`].In addition, this extension combines the functionality of both
+//!`[`VK_EXT_debug_report`]` and `[`VK_EXT_debug_marker`]` by allowing
+//!object name and debug markers (now called labels) to be returned to the
+//!application’s callback function.
+//!This should assist in clarifying the details of a debug message including:
+//!what objects are involved and potentially which location within a
+//![`Queue`] or [`CommandBuffer`] the message occurred.
+//!# Revision
+//!2
+//!# Dependencies
+//! - Requires Vulkan 1.0
+//!# Contacts
+//! - Mark Young [marky-lunarg](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_debug_utils]
+//!   @marky-lunarg%0A<<Here describe the issue or question you have about the VK_EXT_debug_utils
+//!   extension>>)
+//!# New handles
+//! - [`DebugUtilsMessengerEXT`]
+//!# New functions & commands
+//! - [`CmdBeginDebugUtilsLabelEXT`]
+//! - [`CmdEndDebugUtilsLabelEXT`]
+//! - [`CmdInsertDebugUtilsLabelEXT`]
+//! - [`CreateDebugUtilsMessengerEXT`]
+//! - [`DestroyDebugUtilsMessengerEXT`]
+//! - [`QueueBeginDebugUtilsLabelEXT`]
+//! - [`QueueEndDebugUtilsLabelEXT`]
+//! - [`QueueInsertDebugUtilsLabelEXT`]
+//! - [`SetDebugUtilsObjectNameEXT`]
+//! - [`SetDebugUtilsObjectTagEXT`]
+//! - [`SubmitDebugUtilsMessageEXT`]
+//!# New structures
+//! - [`DebugUtilsLabelEXT`]
+//! - [`DebugUtilsMessengerCallbackDataEXT`]
+//! - [`DebugUtilsObjectNameInfoEXT`]
+//! - [`DebugUtilsObjectTagInfoEXT`]
+//! - Extending [`InstanceCreateInfo`]:  - [`DebugUtilsMessengerCreateInfoEXT`]
+//!# New enums
+//! - [`DebugUtilsMessageSeverityFlagBitsEXT`]
+//! - [`DebugUtilsMessageTypeFlagBitsEXT`]
+//!# New bitmasks
+//! - [`DebugUtilsMessageSeverityFlagsEXT`]
+//! - [`DebugUtilsMessageTypeFlagsEXT`]
+//! - [`DebugUtilsMessengerCallbackDataFlagsEXT`]
+//! - [`DebugUtilsMessengerCreateFlagsEXT`]
+//!# New constants
+//! - [`EXT_DEBUG_UTILS_EXTENSION_NAME`]
+//! - [`EXT_DEBUG_UTILS_SPEC_VERSION`]
+//! - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_DEBUG_UTILS_MESSENGER_EXT`
+//! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEBUG_UTILS_LABEL_EXT`  -
+//!   `VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT`  -
+//!   `VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT`  -
+//!   `VK_STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_NAME_INFO_EXT`  -
+//!   `VK_STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_TAG_INFO_EXT`
+//!# Known issues & F.A.Q
+//!1) Should we just name this extension `VK_EXT_debug_report2` **RESOLVED** : No.
+//!There is enough additional changes to the structures to break backwards
+//!compatibility.
+//!So, a new name was decided that would not indicate any interaction with the
+//!previous extension.2) Will validation layers immediately support all the new features.
+//! **RESOLVED** : Not immediately.
+//!As one can imagine, there is a lot of work involved with converting the
+//!validation layer logging over to the new functionality.
+//!Basic logging, as seen in the origin `[`VK_EXT_debug_report`]` extension
+//!will be made available immediately.
+//!However, adding the labels and object names will take time.
+//!Since the priority for Khronos at this time is to continue focusing on Valid
+//!Usage statements, it may take a while before the new functionality is fully
+//!exposed.3) If the validation layers will not expose the new functionality
+//!immediately, then what is the point of this extension? **RESOLVED** : We needed a replacement
+//! for `[`VK_EXT_debug_report`]` because
+//!the [`DebugReportObjectTypeEXT`] enumeration will no longer be updated
+//!and any new objects will need to be debugged using the new functionality
+//!provided by this extension.4) Should this extension be split into two separate parts (1
+//! extension that
+//!is an instance extension providing the callback functionality, and another
+//!device extension providing the general debug marker and annotation
+//!functionality)? **RESOLVED** : No, the functionality for this extension is too closely related.
+//!If we did split up the extension, where would the structures and enums live,
+//!and how would you define that the device behavior in the instance extension
+//!is really only valid if the device extension is enabled, and the
+//!functionality is passed in.
+//!It is cleaner to just define this all as an instance extension, plus it
+//!allows the application to enable all debug functionality provided with one
+//!enable string during [`CreateInstance`].
+//!# Version History
+//! - Revision 1, 2017-09-14 (Mark Young and all listed Contributors)  - Initial draft, based on
+//!   `[`VK_EXT_debug_report`]` and `[`VK_EXT_debug_marker`]` in addition to previous feedback
+//!   supplied from various companies including Valve, Epic, and Oxide games.
+//! - Revision 2, 2020-04-03 (Mark Young and Piers Daniell)  - Updated to allow either `NULL` or an
+//!   empty string to be passed in for `pObjectName` in [`DebugUtilsObjectNameInfoEXT`], because the
+//!   loader and various drivers support `NULL` already.
+//!# Other info
+//! * 2020-04-03
+//! * 2
+//! * No known IP claims.
+//! * - This extension is written against version 1.0 of the Vulkan API.  - Requires [`ObjectType`]
+//! * - Mark Young, LunarG  - Baldur Karlsson  - Ian Elliott, Google  - Courtney Goeltzenleuchter,
+//!   Google  - Karl Schultz, LunarG  - Mark Lobodzinski, LunarG  - Mike Schuchardt, LunarG  -
+//!   Jaakko Konttinen, AMD  - Dan Ginsburg, Valve Software  - Rolando Olivares, Epic Games  - Dan
+//!   Baker, Oxide Games  - Kyle Spagnoli, NVIDIA  - Jon Ashburn, LunarG  - Piers Daniell, NVIDIA
+//!# Related
+//! - [`PFNDebugUtilsMessengerCallbackEXT`]
+//! - [`DebugUtilsLabelEXT`]
+//! - [`DebugUtilsMessageSeverityFlagBitsEXT`]
+//! - [`DebugUtilsMessageSeverityFlagsEXT`]
+//! - [`DebugUtilsMessageTypeFlagBitsEXT`]
+//! - [`DebugUtilsMessageTypeFlagsEXT`]
+//! - [`DebugUtilsMessengerCallbackDataEXT`]
+//! - [`DebugUtilsMessengerCallbackDataFlagsEXT`]
+//! - [`DebugUtilsMessengerCreateFlagsEXT`]
+//! - [`DebugUtilsMessengerCreateInfoEXT`]
+//! - [`DebugUtilsMessengerEXT`]
+//! - [`DebugUtilsObjectNameInfoEXT`]
+//! - [`DebugUtilsObjectTagInfoEXT`]
+//! - [`CmdBeginDebugUtilsLabelEXT`]
+//! - [`CmdEndDebugUtilsLabelEXT`]
+//! - [`CmdInsertDebugUtilsLabelEXT`]
+//! - [`CreateDebugUtilsMessengerEXT`]
+//! - [`DestroyDebugUtilsMessengerEXT`]
+//! - [`QueueBeginDebugUtilsLabelEXT`]
+//! - [`QueueEndDebugUtilsLabelEXT`]
+//! - [`QueueInsertDebugUtilsLabelEXT`]
+//! - [`SetDebugUtilsObjectNameEXT`]
+//! - [`SetDebugUtilsObjectTagEXT`]
+//! - [`SubmitDebugUtilsMessageEXT`]
+//!
+//!# Notes and documentation
+//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+//!
+//!This documentation is generated from the Vulkan specification and documentation.
+//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+//! Commons Attribution 4.0 International*.
+//!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::vulkan1_0::{BaseInStructure, ObjectType, StructureType};
+#[cfg(feature = "bytemuck")]
+use bytemuck::{Pod, Zeroable};
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 use std::{
     ffi::{c_void, CStr},
     marker::PhantomData,
@@ -11,6 +167,897 @@ pub const EXT_DEBUG_UTILS_SPEC_VERSION: u32 = 2;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_DEBUG_UTILS_EXTENSION_NAME")]
 pub const EXT_DEBUG_UTILS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_debug_utils");
+///[VkDebugUtilsMessageSeverityFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessageSeverityFlagBitsEXT.html) - Bitmask specifying which severities of events cause a debug messenger callback
+///# C Specifications
+///Bits which  **can**  be set in
+///[`DebugUtilsMessengerCreateInfoEXT::message_severity`], specifying
+///event severities which cause a debug messenger to call the callback, are:
+///```c
+///// Provided by VK_EXT_debug_utils
+///typedef enum VkDebugUtilsMessageSeverityFlagBitsEXT {
+///    VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT = 0x00000001,
+///    VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT = 0x00000010,
+///    VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT = 0x00000100,
+///    VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT = 0x00001000,
+///} VkDebugUtilsMessageSeverityFlagBitsEXT;
+///```
+///# Description
+/// - [`DebugUtilsMessageSeverityVerboseExt`] specifies the most verbose output indicating all
+///   diagnostic messages from the Vulkan loader, layers, and drivers should be captured.
+/// - [`DebugUtilsMessageSeverityInfoExt`] specifies an informational message such as resource
+///   details that may be handy when debugging an application.
+/// - [`DebugUtilsMessageSeverityWarningExt`] specifies use of Vulkan that  **may**  expose an app
+///   bug. Such cases may not be immediately harmful, such as a fragment shader outputting to a
+///   location with no attachment. Other cases  **may**  point to behavior that is almost certainly
+///   bad when unintended such as using an image whose memory has not been filled. In general if you
+///   see a warning but you know that the behavior is intended/desired, then simply ignore the
+///   warning.
+/// - [`DebugUtilsMessageSeverityErrorExt`] specifies that the application has violated a valid
+///   usage condition of the specification.
+///# Related
+/// - [`VK_EXT_debug_utils`]
+/// - [`DebugUtilsMessageSeverityFlagsEXT`]
+/// - [`SubmitDebugUtilsMessageEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDebugUtilsMessageSeverityFlagBitsEXT")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum DebugUtilsMessageSeverityFlagBitsEXT {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`DebugUtilsMessageSeverityVerboseExt`] specifies the most
+    ///verbose output indicating all diagnostic messages from the Vulkan
+    ///loader, layers, and drivers should be captured.
+    DebugUtilsMessageSeverityVerboseExt = 1,
+    ///[`DebugUtilsMessageSeverityInfoExt`] specifies an
+    ///informational message such as resource details that may be handy when
+    ///debugging an application.
+    DebugUtilsMessageSeverityInfoExt = 16,
+    ///[`DebugUtilsMessageSeverityWarningExt`] specifies use of
+    ///Vulkan that  **may**  expose an app bug.
+    ///Such cases may not be immediately harmful, such as a fragment shader
+    ///outputting to a location with no attachment.
+    ///Other cases  **may**  point to behavior that is almost certainly bad when
+    ///unintended such as using an image whose memory has not been filled.
+    ///In general if you see a warning but you know that the behavior is
+    ///intended/desired, then simply ignore the warning.
+    DebugUtilsMessageSeverityWarningExt = 256,
+    ///[`DebugUtilsMessageSeverityErrorExt`] specifies that the
+    ///application has violated a valid usage condition of the specification.
+    DebugUtilsMessageSeverityErrorExt = 4096,
+}
+impl const Default for DebugUtilsMessageSeverityFlagBitsEXT {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl DebugUtilsMessageSeverityFlagBitsEXT {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkDebugUtilsMessageTypeFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessageTypeFlagBitsEXT.html) - Bitmask specifying which types of events cause a debug messenger callback
+///# C Specifications
+///Bits which  **can**  be set in
+///[`DebugUtilsMessengerCreateInfoEXT::message_type`], specifying
+///event types which cause a debug messenger to call the callback, are:
+///```c
+///// Provided by VK_EXT_debug_utils
+///typedef enum VkDebugUtilsMessageTypeFlagBitsEXT {
+///    VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT = 0x00000001,
+///    VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT = 0x00000002,
+///    VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT = 0x00000004,
+///} VkDebugUtilsMessageTypeFlagBitsEXT;
+///```
+///# Description
+/// - [`DebugUtilsMessageTypeGeneralExt`] specifies that some general event has occurred. This is
+///   typically a non-specification, non-performance event.
+/// - [`DebugUtilsMessageTypeValidationExt`] specifies that something has occurred during validation
+///   against the Vulkan specification that may indicate invalid behavior.
+/// - [`DebugUtilsMessageTypePerformanceExt`] specifies a potentially non-optimal use of Vulkan,
+///   e.g. using [`CmdClearColorImage`] when setting [`AttachmentDescription::load_op`] to
+///   `VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
+///# Related
+/// - [`VK_EXT_debug_utils`]
+/// - [`DebugUtilsMessageTypeFlagsEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDebugUtilsMessageTypeFlagBitsEXT")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum DebugUtilsMessageTypeFlagBitsEXT {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`DebugUtilsMessageTypeGeneralExt`] specifies that some
+    ///general event has occurred.
+    ///This is typically a non-specification, non-performance event.
+    DebugUtilsMessageTypeGeneralExt = 1,
+    ///[`DebugUtilsMessageTypeValidationExt`] specifies that
+    ///something has occurred during validation against the Vulkan
+    ///specification that may indicate invalid behavior.
+    DebugUtilsMessageTypeValidationExt = 2,
+    ///[`DebugUtilsMessageTypePerformanceExt`] specifies a
+    ///potentially non-optimal use of Vulkan, e.g. using
+    ///[`CmdClearColorImage`] when setting
+    ///[`AttachmentDescription`]::`loadOp` to
+    ///`VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
+    DebugUtilsMessageTypePerformanceExt = 4,
+}
+impl const Default for DebugUtilsMessageTypeFlagBitsEXT {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl DebugUtilsMessageTypeFlagBitsEXT {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkDebugUtilsMessageSeverityFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessageSeverityFlagBitsEXT.html) - Bitmask specifying which severities of events cause a debug messenger callback
+///# C Specifications
+///Bits which  **can**  be set in
+///[`DebugUtilsMessengerCreateInfoEXT::message_severity`], specifying
+///event severities which cause a debug messenger to call the callback, are:
+///```c
+///// Provided by VK_EXT_debug_utils
+///typedef enum VkDebugUtilsMessageSeverityFlagBitsEXT {
+///    VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT = 0x00000001,
+///    VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT = 0x00000010,
+///    VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT = 0x00000100,
+///    VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT = 0x00001000,
+///} VkDebugUtilsMessageSeverityFlagBitsEXT;
+///```
+///# Description
+/// - [`DebugUtilsMessageSeverityVerboseExt`] specifies the most verbose output indicating all
+///   diagnostic messages from the Vulkan loader, layers, and drivers should be captured.
+/// - [`DebugUtilsMessageSeverityInfoExt`] specifies an informational message such as resource
+///   details that may be handy when debugging an application.
+/// - [`DebugUtilsMessageSeverityWarningExt`] specifies use of Vulkan that  **may**  expose an app
+///   bug. Such cases may not be immediately harmful, such as a fragment shader outputting to a
+///   location with no attachment. Other cases  **may**  point to behavior that is almost certainly
+///   bad when unintended such as using an image whose memory has not been filled. In general if you
+///   see a warning but you know that the behavior is intended/desired, then simply ignore the
+///   warning.
+/// - [`DebugUtilsMessageSeverityErrorExt`] specifies that the application has violated a valid
+///   usage condition of the specification.
+///# Related
+/// - [`VK_EXT_debug_utils`]
+/// - [`DebugUtilsMessageSeverityFlagsEXT`]
+/// - [`SubmitDebugUtilsMessageEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct DebugUtilsMessageSeverityFlagsEXT(u32);
+impl const Default for DebugUtilsMessageSeverityFlagsEXT {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<DebugUtilsMessageSeverityFlagBitsEXT> for DebugUtilsMessageSeverityFlagsEXT {
+    fn from(from: DebugUtilsMessageSeverityFlagBitsEXT) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl DebugUtilsMessageSeverityFlagsEXT {
+    ///[`DebugUtilsMessageSeverityVerboseExt`] specifies the most
+    ///verbose output indicating all diagnostic messages from the Vulkan
+    ///loader, layers, and drivers should be captured.
+    const DebugUtilsMessageSeverityVerboseExt: Self = Self(1);
+    ///[`DebugUtilsMessageSeverityInfoExt`] specifies an
+    ///informational message such as resource details that may be handy when
+    ///debugging an application.
+    const DebugUtilsMessageSeverityInfoExt: Self = Self(16);
+    ///[`DebugUtilsMessageSeverityWarningExt`] specifies use of
+    ///Vulkan that  **may**  expose an app bug.
+    ///Such cases may not be immediately harmful, such as a fragment shader
+    ///outputting to a location with no attachment.
+    ///Other cases  **may**  point to behavior that is almost certainly bad when
+    ///unintended such as using an image whose memory has not been filled.
+    ///In general if you see a warning but you know that the behavior is
+    ///intended/desired, then simply ignore the warning.
+    const DebugUtilsMessageSeverityWarningExt: Self = Self(256);
+    ///[`DebugUtilsMessageSeverityErrorExt`] specifies that the
+    ///application has violated a valid usage condition of the specification.
+    const DebugUtilsMessageSeverityErrorExt: Self = Self(4096);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::DebugUtilsMessageSeverityVerboseExt
+            | Self::DebugUtilsMessageSeverityInfoExt
+            | Self::DebugUtilsMessageSeverityWarningExt
+            | Self::DebugUtilsMessageSeverityErrorExt
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for DebugUtilsMessageSeverityFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for DebugUtilsMessageSeverityFlagsEXT {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for DebugUtilsMessageSeverityFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for DebugUtilsMessageSeverityFlagsEXT {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for DebugUtilsMessageSeverityFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for DebugUtilsMessageSeverityFlagsEXT {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for DebugUtilsMessageSeverityFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for DebugUtilsMessageSeverityFlagsEXT {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for DebugUtilsMessageSeverityFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<DebugUtilsMessageSeverityFlagsEXT> for DebugUtilsMessageSeverityFlagsEXT {
+    fn extend<T: std::iter::IntoIterator<Item = DebugUtilsMessageSeverityFlagsEXT>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<DebugUtilsMessageSeverityFlagBitsEXT> for DebugUtilsMessageSeverityFlagsEXT {
+    fn extend<T: std::iter::IntoIterator<Item = DebugUtilsMessageSeverityFlagBitsEXT>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(DebugUtilsMessageSeverityFlagsEXT::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<DebugUtilsMessageSeverityFlagsEXT> for DebugUtilsMessageSeverityFlagsEXT {
+    fn from_iter<T: std::iter::IntoIterator<Item = DebugUtilsMessageSeverityFlagsEXT>>(
+        iterator: T,
+    ) -> DebugUtilsMessageSeverityFlagsEXT {
+        let mut out = DebugUtilsMessageSeverityFlagsEXT::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<DebugUtilsMessageSeverityFlagBitsEXT> for DebugUtilsMessageSeverityFlagsEXT {
+    fn from_iter<T: std::iter::IntoIterator<Item = DebugUtilsMessageSeverityFlagBitsEXT>>(
+        iterator: T,
+    ) -> DebugUtilsMessageSeverityFlagsEXT {
+        let mut out = DebugUtilsMessageSeverityFlagsEXT::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for DebugUtilsMessageSeverityFlagsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(DebugUtilsMessageSeverityFlagsEXT);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == DebugUtilsMessageSeverityFlagsEXT::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(DebugUtilsMessageSeverityFlagsEXT::DebugUtilsMessageSeverityVerboseExt)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DebugUtilsMessageSeverityVerboseExt))?;
+                    }
+                    if self
+                        .0
+                        .contains(DebugUtilsMessageSeverityFlagsEXT::DebugUtilsMessageSeverityInfoExt)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DebugUtilsMessageSeverityInfoExt))?;
+                    }
+                    if self
+                        .0
+                        .contains(DebugUtilsMessageSeverityFlagsEXT::DebugUtilsMessageSeverityWarningExt)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DebugUtilsMessageSeverityWarningExt))?;
+                    }
+                    if self
+                        .0
+                        .contains(DebugUtilsMessageSeverityFlagsEXT::DebugUtilsMessageSeverityErrorExt)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DebugUtilsMessageSeverityErrorExt))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(DebugUtilsMessageSeverityFlagsEXT))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkDebugUtilsMessageTypeFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessageTypeFlagBitsEXT.html) - Bitmask specifying which types of events cause a debug messenger callback
+///# C Specifications
+///Bits which  **can**  be set in
+///[`DebugUtilsMessengerCreateInfoEXT::message_type`], specifying
+///event types which cause a debug messenger to call the callback, are:
+///```c
+///// Provided by VK_EXT_debug_utils
+///typedef enum VkDebugUtilsMessageTypeFlagBitsEXT {
+///    VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT = 0x00000001,
+///    VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT = 0x00000002,
+///    VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT = 0x00000004,
+///} VkDebugUtilsMessageTypeFlagBitsEXT;
+///```
+///# Description
+/// - [`DebugUtilsMessageTypeGeneralExt`] specifies that some general event has occurred. This is
+///   typically a non-specification, non-performance event.
+/// - [`DebugUtilsMessageTypeValidationExt`] specifies that something has occurred during validation
+///   against the Vulkan specification that may indicate invalid behavior.
+/// - [`DebugUtilsMessageTypePerformanceExt`] specifies a potentially non-optimal use of Vulkan,
+///   e.g. using [`CmdClearColorImage`] when setting [`AttachmentDescription::load_op`] to
+///   `VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
+///# Related
+/// - [`VK_EXT_debug_utils`]
+/// - [`DebugUtilsMessageTypeFlagsEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct DebugUtilsMessageTypeFlagsEXT(u32);
+impl const Default for DebugUtilsMessageTypeFlagsEXT {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<DebugUtilsMessageTypeFlagBitsEXT> for DebugUtilsMessageTypeFlagsEXT {
+    fn from(from: DebugUtilsMessageTypeFlagBitsEXT) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl DebugUtilsMessageTypeFlagsEXT {
+    ///[`DebugUtilsMessageTypeGeneralExt`] specifies that some
+    ///general event has occurred.
+    ///This is typically a non-specification, non-performance event.
+    const DebugUtilsMessageTypeGeneralExt: Self = Self(1);
+    ///[`DebugUtilsMessageTypeValidationExt`] specifies that
+    ///something has occurred during validation against the Vulkan
+    ///specification that may indicate invalid behavior.
+    const DebugUtilsMessageTypeValidationExt: Self = Self(2);
+    ///[`DebugUtilsMessageTypePerformanceExt`] specifies a
+    ///potentially non-optimal use of Vulkan, e.g. using
+    ///[`CmdClearColorImage`] when setting
+    ///[`AttachmentDescription`]::`loadOp` to
+    ///`VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
+    const DebugUtilsMessageTypePerformanceExt: Self = Self(4);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::DebugUtilsMessageTypeGeneralExt
+            | Self::DebugUtilsMessageTypeValidationExt
+            | Self::DebugUtilsMessageTypePerformanceExt
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for DebugUtilsMessageTypeFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for DebugUtilsMessageTypeFlagsEXT {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for DebugUtilsMessageTypeFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for DebugUtilsMessageTypeFlagsEXT {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for DebugUtilsMessageTypeFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for DebugUtilsMessageTypeFlagsEXT {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for DebugUtilsMessageTypeFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for DebugUtilsMessageTypeFlagsEXT {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for DebugUtilsMessageTypeFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<DebugUtilsMessageTypeFlagsEXT> for DebugUtilsMessageTypeFlagsEXT {
+    fn extend<T: std::iter::IntoIterator<Item = DebugUtilsMessageTypeFlagsEXT>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<DebugUtilsMessageTypeFlagBitsEXT> for DebugUtilsMessageTypeFlagsEXT {
+    fn extend<T: std::iter::IntoIterator<Item = DebugUtilsMessageTypeFlagBitsEXT>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(DebugUtilsMessageTypeFlagsEXT::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<DebugUtilsMessageTypeFlagsEXT> for DebugUtilsMessageTypeFlagsEXT {
+    fn from_iter<T: std::iter::IntoIterator<Item = DebugUtilsMessageTypeFlagsEXT>>(
+        iterator: T,
+    ) -> DebugUtilsMessageTypeFlagsEXT {
+        let mut out = DebugUtilsMessageTypeFlagsEXT::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<DebugUtilsMessageTypeFlagBitsEXT> for DebugUtilsMessageTypeFlagsEXT {
+    fn from_iter<T: std::iter::IntoIterator<Item = DebugUtilsMessageTypeFlagBitsEXT>>(
+        iterator: T,
+    ) -> DebugUtilsMessageTypeFlagsEXT {
+        let mut out = DebugUtilsMessageTypeFlagsEXT::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for DebugUtilsMessageTypeFlagsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(DebugUtilsMessageTypeFlagsEXT);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == DebugUtilsMessageTypeFlagsEXT::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(DebugUtilsMessageTypeFlagsEXT::DebugUtilsMessageTypeGeneralExt)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DebugUtilsMessageTypeGeneralExt))?;
+                    }
+                    if self
+                        .0
+                        .contains(DebugUtilsMessageTypeFlagsEXT::DebugUtilsMessageTypeValidationExt)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DebugUtilsMessageTypeValidationExt))?;
+                    }
+                    if self
+                        .0
+                        .contains(DebugUtilsMessageTypeFlagsEXT::DebugUtilsMessageTypePerformanceExt)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DebugUtilsMessageTypePerformanceExt))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(DebugUtilsMessageTypeFlagsEXT))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkDebugUtilsMessengerCreateFlagsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessengerCreateFlagsEXT.html) - Reserved for future use
+///# C Specifications
+///```c
+///// Provided by VK_EXT_debug_utils
+///typedef VkFlags VkDebugUtilsMessengerCreateFlagsEXT;
+///```
+///# Related
+/// - [`VK_EXT_debug_utils`]
+/// - [`DebugUtilsMessengerCreateInfoEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct DebugUtilsMessengerCreateFlagsEXT(u32);
+impl const Default for DebugUtilsMessengerCreateFlagsEXT {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl std::fmt::Debug for DebugUtilsMessengerCreateFlagsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(DebugUtilsMessengerCreateFlagsEXT))
+            .field(&self.0)
+            .finish()
+    }
+}
+///[VkDebugUtilsMessengerCallbackDataFlagsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessengerCallbackDataFlagsEXT.html) - Reserved for future use
+///# C Specifications
+///```c
+///// Provided by VK_EXT_debug_utils
+///typedef VkFlags VkDebugUtilsMessengerCallbackDataFlagsEXT;
+///```
+///# Related
+/// - [`VK_EXT_debug_utils`]
+/// - [`DebugUtilsMessengerCallbackDataEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct DebugUtilsMessengerCallbackDataFlagsEXT(u32);
+impl const Default for DebugUtilsMessengerCallbackDataFlagsEXT {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl std::fmt::Debug for DebugUtilsMessengerCallbackDataFlagsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(DebugUtilsMessengerCallbackDataFlagsEXT))
+            .field(&self.0)
+            .finish()
+    }
+}
 ///[VkDebugUtilsObjectNameInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsObjectNameInfoEXT.html) - Specify parameters of a name to give to an object
 ///# C Specifications
 ///The [`DebugUtilsObjectNameInfoEXT`] structure is defined as:

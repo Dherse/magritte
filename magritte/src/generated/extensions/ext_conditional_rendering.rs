@@ -1,4 +1,82 @@
+//![VK_EXT_conditional_rendering](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_conditional_rendering.html) - device extension
+//!# Description
+//!This extension allows the execution of one or more rendering commands to be
+//!conditional on a value in buffer memory.
+//!This may help an application reduce the latency by conditionally discarding
+//!rendering commands without application intervention.
+//!The conditional rendering commands are limited to draws, compute dispatches
+//!and clearing attachments within a conditional rendering block.
+//!# Revision
+//!2
+//!# Dependencies
+//! - Requires Vulkan 1.0
+//!# Contacts
+//! - Vikram Kushwaha [vkushwaha](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_conditional_rendering]
+//!   @vkushwaha%0A<<Here describe the issue or question you have about the
+//!   VK_EXT_conditional_rendering extension>>)
+//!# New functions & commands
+//! - [`CmdBeginConditionalRenderingEXT`]
+//! - [`CmdEndConditionalRenderingEXT`]
+//!# New structures
+//! - [`ConditionalRenderingBeginInfoEXT`]
+//! - Extending [`CommandBufferInheritanceInfo`]:  -
+//!   [`CommandBufferInheritanceConditionalRenderingInfoEXT`]
+//! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
+//!   [`PhysicalDeviceConditionalRenderingFeaturesEXT`]
+//!# New enums
+//! - [`ConditionalRenderingFlagBitsEXT`]
+//!# New bitmasks
+//! - [`ConditionalRenderingFlagsEXT`]
+//!# New constants
+//! - [`EXT_CONDITIONAL_RENDERING_EXTENSION_NAME`]
+//! - [`EXT_CONDITIONAL_RENDERING_SPEC_VERSION`]
+//! - Extending [`AccessFlagBits`]:  - `VK_ACCESS_CONDITIONAL_RENDERING_READ_BIT_EXT`
+//! - Extending [`BufferUsageFlagBits`]:  - `VK_BUFFER_USAGE_CONDITIONAL_RENDERING_BIT_EXT`
+//! - Extending [`PipelineStageFlagBits`]:  - `VK_PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT`
+//! - Extending [`StructureType`]:  -
+//!   `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT`  -
+//!   `VK_STRUCTURE_TYPE_CONDITIONAL_RENDERING_BEGIN_INFO_EXT`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT`
+//!# Known issues & F.A.Q
+//!1) Should conditional rendering affect copy and blit commands? **RESOLVED** : Conditional
+//! rendering should not affect copies and blits.2) Should secondary command buffers be allowed to
+//! execute while conditional
+//!rendering is active in the primary command buffer? **RESOLVED** : The rendering commands in
+//! secondary command buffer will be
+//!affected by an active conditional rendering in primary command buffer if the
+//!`conditionalRenderingEnable` is set to [`TRUE`].
+//!Conditional rendering  **must**  not be active in the primary command buffer if
+//!`conditionalRenderingEnable` is [`FALSE`].
+//!# Version History
+//! - Revision 1, 2018-04-19 (Vikram Kushwaha)  - First Version
+//! - Revision 2, 2018-05-21 (Vikram Kushwaha)  - Add new pipeline stage, access flags and limit
+//!   conditional rendering to a subpass or entire render pass.
+//!# Other info
+//! * 2018-05-21
+//! * No known IP claims.
+//! * - Vikram Kushwaha, NVIDIA  - Daniel Rakos, AMD  - Jesse Hall, Google  - Jeff Bolz, NVIDIA  -
+//!   Piers Daniell, NVIDIA  - Stuart Smith, Imagination Technologies
+//!# Related
+//! - [`CommandBufferInheritanceConditionalRenderingInfoEXT`]
+//! - [`ConditionalRenderingBeginInfoEXT`]
+//! - [`ConditionalRenderingFlagBitsEXT`]
+//! - [`ConditionalRenderingFlagsEXT`]
+//! - [`PhysicalDeviceConditionalRenderingFeaturesEXT`]
+//! - [`CmdBeginConditionalRenderingEXT`]
+//! - [`CmdEndConditionalRenderingEXT`]
+//!
+//!# Notes and documentation
+//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+//!
+//!This documentation is generated from the Vulkan specification and documentation.
+//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+//! Commons Attribution 4.0 International*.
+//!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, Buffer, DeviceSize, StructureType};
+#[cfg(feature = "bytemuck")]
+use bytemuck::{Pod, Zeroable};
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -8,6 +86,350 @@ pub const EXT_CONDITIONAL_RENDERING_SPEC_VERSION: u32 = 2;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_CONDITIONAL_RENDERING_EXTENSION_NAME")]
 pub const EXT_CONDITIONAL_RENDERING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_conditional_rendering");
+///[VkConditionalRenderingFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkConditionalRenderingFlagBitsEXT.html) - Specify the behavior of conditional rendering
+///# C Specifications
+///Bits which  **can**  be set in
+///[`CmdBeginConditionalRenderingEXT`]`::flags`, specifying the
+///behavior of conditional rendering, are:
+///```c
+///// Provided by VK_EXT_conditional_rendering
+///typedef enum VkConditionalRenderingFlagBitsEXT {
+///    VK_CONDITIONAL_RENDERING_INVERTED_BIT_EXT = 0x00000001,
+///} VkConditionalRenderingFlagBitsEXT;
+///```
+///# Description
+/// - [`ConditionalRenderingInvertedExt`] specifies the condition used to determine whether to
+///   discard rendering commands or not. That is, if the 32-bit predicate read from `buffer` memory
+///   at `offset` is zero, the rendering commands are not discarded, and if non zero, then they are
+///   discarded.
+///# Related
+/// - [`VK_EXT_conditional_rendering`]
+/// - [`ConditionalRenderingFlagsEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkConditionalRenderingFlagBitsEXT")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum ConditionalRenderingFlagBitsEXT {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`ConditionalRenderingInvertedExt`] specifies the condition
+    ///used to determine whether to discard rendering commands or not.
+    ///That is, if the 32-bit predicate read from `buffer` memory at
+    ///`offset` is zero, the rendering commands are not discarded, and if
+    ///non zero, then they are discarded.
+    ConditionalRenderingInvertedExt = 1,
+}
+impl const Default for ConditionalRenderingFlagBitsEXT {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl ConditionalRenderingFlagBitsEXT {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkConditionalRenderingFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkConditionalRenderingFlagBitsEXT.html) - Specify the behavior of conditional rendering
+///# C Specifications
+///Bits which  **can**  be set in
+///[`CmdBeginConditionalRenderingEXT`]`::flags`, specifying the
+///behavior of conditional rendering, are:
+///```c
+///// Provided by VK_EXT_conditional_rendering
+///typedef enum VkConditionalRenderingFlagBitsEXT {
+///    VK_CONDITIONAL_RENDERING_INVERTED_BIT_EXT = 0x00000001,
+///} VkConditionalRenderingFlagBitsEXT;
+///```
+///# Description
+/// - [`ConditionalRenderingInvertedExt`] specifies the condition used to determine whether to
+///   discard rendering commands or not. That is, if the 32-bit predicate read from `buffer` memory
+///   at `offset` is zero, the rendering commands are not discarded, and if non zero, then they are
+///   discarded.
+///# Related
+/// - [`VK_EXT_conditional_rendering`]
+/// - [`ConditionalRenderingFlagsEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct ConditionalRenderingFlagsEXT(u32);
+impl const Default for ConditionalRenderingFlagsEXT {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<ConditionalRenderingFlagBitsEXT> for ConditionalRenderingFlagsEXT {
+    fn from(from: ConditionalRenderingFlagBitsEXT) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl ConditionalRenderingFlagsEXT {
+    ///[`ConditionalRenderingInvertedExt`] specifies the condition
+    ///used to determine whether to discard rendering commands or not.
+    ///That is, if the 32-bit predicate read from `buffer` memory at
+    ///`offset` is zero, the rendering commands are not discarded, and if
+    ///non zero, then they are discarded.
+    const ConditionalRenderingInvertedExt: Self = Self(1);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty() | Self::ConditionalRenderingInvertedExt
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for ConditionalRenderingFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for ConditionalRenderingFlagsEXT {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for ConditionalRenderingFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for ConditionalRenderingFlagsEXT {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for ConditionalRenderingFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for ConditionalRenderingFlagsEXT {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for ConditionalRenderingFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for ConditionalRenderingFlagsEXT {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for ConditionalRenderingFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<ConditionalRenderingFlagsEXT> for ConditionalRenderingFlagsEXT {
+    fn extend<T: std::iter::IntoIterator<Item = ConditionalRenderingFlagsEXT>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<ConditionalRenderingFlagBitsEXT> for ConditionalRenderingFlagsEXT {
+    fn extend<T: std::iter::IntoIterator<Item = ConditionalRenderingFlagBitsEXT>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(ConditionalRenderingFlagsEXT::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<ConditionalRenderingFlagsEXT> for ConditionalRenderingFlagsEXT {
+    fn from_iter<T: std::iter::IntoIterator<Item = ConditionalRenderingFlagsEXT>>(
+        iterator: T,
+    ) -> ConditionalRenderingFlagsEXT {
+        let mut out = ConditionalRenderingFlagsEXT::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<ConditionalRenderingFlagBitsEXT> for ConditionalRenderingFlagsEXT {
+    fn from_iter<T: std::iter::IntoIterator<Item = ConditionalRenderingFlagBitsEXT>>(
+        iterator: T,
+    ) -> ConditionalRenderingFlagsEXT {
+        let mut out = ConditionalRenderingFlagsEXT::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for ConditionalRenderingFlagsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(ConditionalRenderingFlagsEXT);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == ConditionalRenderingFlagsEXT::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(ConditionalRenderingFlagsEXT::ConditionalRenderingInvertedExt)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ConditionalRenderingInvertedExt))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(ConditionalRenderingFlagsEXT))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
 ///[VkConditionalRenderingBeginInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkConditionalRenderingBeginInfoEXT.html) - Structure specifying conditional rendering begin information
 ///# C Specifications
 ///The [`ConditionalRenderingBeginInfoEXT`] structure is defined as:

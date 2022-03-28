@@ -8,7 +8,7 @@ use crate::{
     symbols::{SymbolName, SymbolTable},
 };
 
-use super::Alias;
+use super::{Alias, Source};
 
 /// A type bit flags.
 #[derive(Debug, Clone, PartialEq)]
@@ -127,8 +127,8 @@ impl<'a> SymbolName<'a> for BitFlag<'a> {
     }
 }
 
-impl<'a> Queryable for BitFlag<'a> {
-    fn find(&self, name: &str) -> Option<&str> {
+impl<'a> Queryable<'a> for BitFlag<'a> {
+    fn find<'b>(&'b self, _: &'b Source<'a>, name: &str) -> Option<&'b str> {
         self.bits
             .get_by_either(name)
             .map(Bit::name)

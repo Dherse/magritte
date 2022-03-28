@@ -1,3 +1,72 @@
+//![VK_NV_coverage_reduction_mode](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_NV_coverage_reduction_mode.html) - device extension
+//!# Description
+//!When using a framebuffer with mixed samples, a per-fragment coverage
+//!reduction operation is performed which generates color sample coverage from
+//!the pixel coverage.
+//!This extension defines the following modes to control how this reduction is
+//!performed.
+//! - Merge: When there are more samples in the pixel coverage than color samples, there is an
+//!   implementation-dependent association of each pixel coverage sample to a color sample. In the
+//!   merge mode, the color sample coverage is computed such that only if any associated sample in
+//!   the pixel coverage is covered, the color sample is covered. This is the default mode.
+//! - Truncate: When there are more raster samples (N) than color samples(M), there is one to one
+//!   association of the first M raster samples to the M color samples; other raster samples are
+//!   ignored.
+//!When the number of raster samples is equal to the color samples, there is a
+//!one to one mapping between them in either of the above modes.The new command
+//![`GetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV`] can
+//!be used to query the various raster, color, depth/stencil sample count and
+//!reduction mode combinations that are supported by the implementation.
+//!This extension would allow an implementation to support the behavior of both
+//![`VK_NV_framebuffer_mixed_samples`] and [`VK_AMD_mixed_attachment_samples`]
+//!extensions simultaneously.
+//!# Revision
+//!1
+//!# Dependencies
+//! - Requires Vulkan 1.0
+//! - Requires `[`VK_NV_framebuffer_mixed_samples`]`
+//!# Contacts
+//! - Kedarnath Thangudu [kthangudu](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_coverage_reduction_mode]
+//!   @kthangudu%0A<<Here describe the issue or question you have about the
+//!   VK_NV_coverage_reduction_mode extension>>)
+//!# New functions & commands
+//! - [`GetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV`]
+//!# New structures
+//! - [`FramebufferMixedSamplesCombinationNV`]
+//! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
+//!   [`PhysicalDeviceCoverageReductionModeFeaturesNV`]
+//! - Extending [`PipelineMultisampleStateCreateInfo`]:  -
+//!   [`PipelineCoverageReductionStateCreateInfoNV`]
+//!# New enums
+//! - [`CoverageReductionModeNV`]
+//!# New bitmasks
+//! - [`PipelineCoverageReductionStateCreateFlagsNV`]
+//!# New constants
+//! - [`NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME`]
+//! - [`NV_COVERAGE_REDUCTION_MODE_SPEC_VERSION`]
+//! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV`
+//!   - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV`  -
+//!   `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV`
+//!# Version History
+//! - Revision 1, 2019-01-29 (Kedarnath Thangudu)  - Internal revisions
+//!# Other info
+//! * 2019-01-29
+//! * - Kedarnath Thangudu, NVIDIA  - Jeff Bolz, NVIDIA
+//!# Related
+//! - [`CoverageReductionModeNV`]
+//! - [`FramebufferMixedSamplesCombinationNV`]
+//! - [`PhysicalDeviceCoverageReductionModeFeaturesNV`]
+//! - [`PipelineCoverageReductionStateCreateFlagsNV`]
+//! - [`PipelineCoverageReductionStateCreateInfoNV`]
+//! - [`GetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV`]
+//!
+//!# Notes and documentation
+//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+//!
+//!This documentation is generated from the Vulkan specification and documentation.
+//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+//! Commons Attribution 4.0 International*.
+//!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::vulkan1_0::{
     BaseInStructure, BaseOutStructure, Bool32, SampleCountFlagBits, SampleCountFlags, StructureType,
 };
@@ -47,6 +116,7 @@ pub const NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME: &'static CStr = crate::cstr
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum CoverageReductionModeNV {
     ///[`CoverageReductionModeMergeNv`] specifies that each color
@@ -64,7 +134,7 @@ pub enum CoverageReductionModeNV {
 }
 impl const Default for CoverageReductionModeNV {
     fn default() -> Self {
-        CoverageReductionModeMergeNv
+        Self::CoverageReductionModeMergeNv
     }
 }
 impl CoverageReductionModeNV {
@@ -82,6 +152,40 @@ impl CoverageReductionModeNV {
     #[inline]
     pub const unsafe fn from_bits(bits: i32) -> i32 {
         std::mem::transmute(bits)
+    }
+}
+///[VkPipelineCoverageReductionStateCreateFlagsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineCoverageReductionStateCreateFlagsNV.html) - Reserved for future use
+///# C Specifications
+///```c
+///// Provided by VK_NV_coverage_reduction_mode
+///typedef VkFlags VkPipelineCoverageReductionStateCreateFlagsNV;
+///```
+///# Related
+/// - [`VK_NV_coverage_reduction_mode`]
+/// - [`PipelineCoverageReductionStateCreateInfoNV`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct PipelineCoverageReductionStateCreateFlagsNV(u32);
+impl const Default for PipelineCoverageReductionStateCreateFlagsNV {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl std::fmt::Debug for PipelineCoverageReductionStateCreateFlagsNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(PipelineCoverageReductionStateCreateFlagsNV))
+            .field(&self.0)
+            .finish()
     }
 }
 ///[VkPhysicalDeviceCoverageReductionModeFeaturesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceCoverageReductionModeFeaturesNV.html) - Structure describing the coverage reduction mode features that can be supported by an implementation

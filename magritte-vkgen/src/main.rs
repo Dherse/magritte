@@ -64,9 +64,10 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
     source
         .generate_code(&mut doc)
         .into_par_iter()
-        .for_each(|CodeOut(origin, imports, code)| {
+        .for_each(|CodeOut(origin, imports, header, code)| {
             let mut out = String::with_capacity(1 << 20);
 
+            write!(out, "{}", header).unwrap();
             write!(out, "{}", imports.to_token_stream()).unwrap();
             write!(out, "{}", code).unwrap();
 

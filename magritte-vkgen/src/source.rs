@@ -31,7 +31,7 @@ use vk_parse::{
 
 use crate::{
     expr::Expr,
-    name::{const_name, enum_name, funcpointer_name, tag_of_type, type_name},
+    name::{const_name, enum_name, funcpointer_name, tag_of_type, type_name, bit_name},
     origin::Origin,
     symbols::{SymbolName, SymbolTable},
     ty::{Mutability, Ty},
@@ -550,7 +550,7 @@ impl<'a> Source<'a> {
                                 let tag = tag_of_type(item.original_name(), &self.tags[..]);
 
                                 let original_name = name;
-                                let name = const_name(original_name, tag);
+                                let name = bit_name(original_name, tag, Some(extends));
 
                                 item.aliases_mut().push(Alias::new(original_name, name, alias, origin));
                             } else if let Some(item) = self.enums.get_by_name_mut(extends) {
@@ -590,7 +590,7 @@ impl<'a> Source<'a> {
                             let tag = tag_of_type(item.original_name(), &self.tags[..]);
 
                             let original_name = name;
-                            let name = const_name(original_name, tag);
+                            let name = bit_name(original_name, tag, Some(extends));
 
                             item.bits_mut().push(Bit::new(original_name, name, value, origin));
                         } else if let Some(item) = self.enums.get_by_name_mut(extends) {
@@ -616,7 +616,7 @@ impl<'a> Source<'a> {
                                 let tag = tag_of_type(item.original_name(), &self.tags[..]);
 
                                 let original_name = name;
-                                let name = const_name(original_name, tag);
+                                let name = bit_name(original_name, tag, Some(extends));
 
                                 item.bits_mut().push(Bit::new(original_name, name, value, origin));
                             } else if let Some(item) = self.enums.get_by_name_mut(extends) {
@@ -655,7 +655,7 @@ impl<'a> Source<'a> {
                                 let tag = tag_of_type(item.original_name(), &self.tags[..]);
 
                                 let original_name = name;
-                                let name = const_name(original_name, tag);
+                                let name = bit_name(original_name, tag, Some(extends));
 
                                 item.bits_mut()
                                     .push(Bit::new(original_name, name, value.compute(), origin));
@@ -948,7 +948,7 @@ impl<'a> Source<'a> {
                     let _guard = span.enter();
 
                     let original_name = &en.name;
-                    let name = const_name(original_name, tag);
+                    let name = bit_name(original_name, tag, Some(original_name));
                     info!(?name, "computed rustified name");
 
                     bits.push(Bit::new_no_origin(original_name, name, 1 << *bitpos));
@@ -958,7 +958,7 @@ impl<'a> Source<'a> {
                     let _guard = span.enter();
 
                     let original_name = &en.name;
-                    let name = const_name(original_name, tag);
+                    let name = bit_name(original_name, tag, Some(original_name));
                     info!(?name, "computed rustified name");
 
                     aliases.push(Alias::new_no_origin(original_name, name, alias));
@@ -968,7 +968,7 @@ impl<'a> Source<'a> {
                     let _guard = span.enter();
 
                     let original_name = &en.name;
-                    let name = const_name(original_name, tag);
+                    let name = bit_name(original_name, tag, Some(original_name));
                     info!(?name, "computed rustified name");
 
                     let expr = Expr::new(value);

@@ -93,6 +93,7 @@ impl<'a> Enum<'a> {
             #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
             #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
             #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+            #[non_exhaustive]
             #[repr(i32)]
             pub enum #name {
                 #empty_decl
@@ -101,7 +102,7 @@ impl<'a> Enum<'a> {
 
             impl const Default for #name {
                 fn default() -> Self {
-                    #default
+                    Self::#default
                 }
             }
 

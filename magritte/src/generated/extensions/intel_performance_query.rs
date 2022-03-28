@@ -1,3 +1,98 @@
+//![VK_INTEL_performance_query](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_INTEL_performance_query.html) - device extension
+//!# Description
+//!This extension allows an application to capture performance data to be
+//!interpreted by a external application or library.Such a library is available at : [https://github.com/intel/metrics-discovery](https://github.com/intel/metrics-discovery)Performance analysis tools such as
+//![Graphics
+//!Performance Analyzers](https://software.intel.com/content/www/us/en/develop/tools/graphics-performance-analyzers.html) make use of this extension and the metrics-discovery
+//!library to present the data in a human readable way.
+//!# Revision
+//!2
+//!# Dependencies
+//! - Requires Vulkan 1.0
+//!# Contacts
+//! - Lionel Landwerlin [llandwerlin](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_INTEL_performance_query]
+//!   @llandwerlin%0A<<Here describe the issue or question you have about the
+//!   VK_INTEL_performance_query extension>>)
+//!# New handles
+//! - [`PerformanceConfigurationINTEL`]
+//!# New functions & commands
+//! - [`AcquirePerformanceConfigurationINTEL`]
+//! - [`CmdSetPerformanceMarkerINTEL`]
+//! - [`CmdSetPerformanceOverrideINTEL`]
+//! - [`CmdSetPerformanceStreamMarkerINTEL`]
+//! - [`GetPerformanceParameterINTEL`]
+//! - [`InitializePerformanceApiINTEL`]
+//! - [`QueueSetPerformanceConfigurationINTEL`]
+//! - [`ReleasePerformanceConfigurationINTEL`]
+//! - [`UninitializePerformanceApiINTEL`]
+//!# New structures
+//! - [`InitializePerformanceApiInfoINTEL`]
+//! - [`PerformanceConfigurationAcquireInfoINTEL`]
+//! - [`PerformanceMarkerInfoINTEL`]
+//! - [`PerformanceOverrideInfoINTEL`]
+//! - [`PerformanceStreamMarkerInfoINTEL`]
+//! - [`PerformanceValueINTEL`]
+//! - Extending [`QueryPoolCreateInfo`]:  - [`QueryPoolCreateInfoINTEL`]  -
+//!   [`QueryPoolPerformanceQueryCreateInfoINTEL`]
+//!# New enums
+//! - [`PerformanceConfigurationTypeINTEL`]
+//! - [`PerformanceOverrideTypeINTEL`]
+//! - [`PerformanceParameterTypeINTEL`]
+//! - [`PerformanceValueTypeINTEL`]
+//! - [`QueryPoolSamplingModeINTEL`]
+//!# New constants
+//! - [`INTEL_PERFORMANCE_QUERY_EXTENSION_NAME`]
+//! - [`INTEL_PERFORMANCE_QUERY_SPEC_VERSION`]
+//! - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_PERFORMANCE_CONFIGURATION_INTEL`
+//! - Extending [`QueryType`]:  - `VK_QUERY_TYPE_PERFORMANCE_QUERY_INTEL`
+//! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_INITIALIZE_PERFORMANCE_API_INFO_INTEL`  -
+//!   `VK_STRUCTURE_TYPE_PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL`  -
+//!   `VK_STRUCTURE_TYPE_PERFORMANCE_MARKER_INFO_INTEL`  -
+//!   `VK_STRUCTURE_TYPE_PERFORMANCE_OVERRIDE_INFO_INTEL`  -
+//!   `VK_STRUCTURE_TYPE_PERFORMANCE_STREAM_MARKER_INFO_INTEL`  -
+//!   `VK_STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO_INTEL`  -
+//!   `VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL`
+//!# Version History
+//! - Revision 2, 2020-03-06 (Lionel Landwerlin)  - Rename VkQueryPoolCreateInfoINTEL in
+//!   VkQueryPoolPerformanceQueryCreateInfoINTEL
+//! - Revision 1, 2018-05-16 (Lionel Landwerlin)  - Initial revision
+//!# Other info
+//! * 2018-05-16
+//! * No known IP claims.
+//! * - Lionel Landwerlin, Intel  - Piotr Maciejewski, Intel
+//!# Related
+//! - [`InitializePerformanceApiInfoINTEL`]
+//! - [`PerformanceConfigurationAcquireInfoINTEL`]
+//! - [`PerformanceConfigurationINTEL`]
+//! - [`PerformanceConfigurationTypeINTEL`]
+//! - [`PerformanceMarkerInfoINTEL`]
+//! - [`PerformanceOverrideInfoINTEL`]
+//! - [`PerformanceOverrideTypeINTEL`]
+//! - [`PerformanceParameterTypeINTEL`]
+//! - [`PerformanceStreamMarkerInfoINTEL`]
+//! - [`PerformanceValueDataINTEL`]
+//! - [`PerformanceValueINTEL`]
+//! - [`PerformanceValueTypeINTEL`]
+//! - [`QueryPoolCreateInfoINTEL`]
+//! - [`QueryPoolPerformanceQueryCreateInfoINTEL`]
+//! - [`QueryPoolSamplingModeINTEL`]
+//! - [`AcquirePerformanceConfigurationINTEL`]
+//! - [`CmdSetPerformanceMarkerINTEL`]
+//! - [`CmdSetPerformanceOverrideINTEL`]
+//! - [`CmdSetPerformanceStreamMarkerINTEL`]
+//! - [`GetPerformanceParameterINTEL`]
+//! - [`InitializePerformanceApiINTEL`]
+//! - [`QueueSetPerformanceConfigurationINTEL`]
+//! - [`ReleasePerformanceConfigurationINTEL`]
+//! - [`UninitializePerformanceApiINTEL`]
+//!
+//!# Notes and documentation
+//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+//!
+//!This documentation is generated from the Vulkan specification and documentation.
+//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+//! Commons Attribution 4.0 International*.
+//!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::vulkan1_0::{BaseInStructure, Bool32, StructureType};
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -41,6 +136,7 @@ pub const INTEL_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum PerformanceConfigurationTypeINTEL {
     ///No documentation found
@@ -48,7 +144,7 @@ pub enum PerformanceConfigurationTypeINTEL {
 }
 impl const Default for PerformanceConfigurationTypeINTEL {
     fn default() -> Self {
-        PerformanceConfigurationTypeCommandQueueMetricsDiscoveryActivatedIntel
+        Self::PerformanceConfigurationTypeCommandQueueMetricsDiscoveryActivatedIntel
     }
 }
 impl PerformanceConfigurationTypeINTEL {
@@ -97,6 +193,7 @@ impl PerformanceConfigurationTypeINTEL {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum QueryPoolSamplingModeINTEL {
     ///[`QueryPoolSamplingModeManualIntel`] is the default mode in
@@ -106,7 +203,7 @@ pub enum QueryPoolSamplingModeINTEL {
 }
 impl const Default for QueryPoolSamplingModeINTEL {
     fn default() -> Self {
-        QueryPoolSamplingModeManualIntel
+        Self::QueryPoolSamplingModeManualIntel
     }
 }
 impl QueryPoolSamplingModeINTEL {
@@ -156,6 +253,7 @@ impl QueryPoolSamplingModeINTEL {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum PerformanceOverrideTypeINTEL {
     ///[`PerformanceOverrideTypeNullHardwareIntel`] turns all
@@ -168,7 +266,7 @@ pub enum PerformanceOverrideTypeINTEL {
 }
 impl const Default for PerformanceOverrideTypeINTEL {
     fn default() -> Self {
-        PerformanceOverrideTypeNullHardwareIntel
+        Self::PerformanceOverrideTypeNullHardwareIntel
     }
 }
 impl PerformanceOverrideTypeINTEL {
@@ -219,6 +317,7 @@ impl PerformanceOverrideTypeINTEL {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum PerformanceParameterTypeINTEL {
     ///[`PerformanceParameterTypeHwCountersSupportedIntel`] has a
@@ -231,7 +330,7 @@ pub enum PerformanceParameterTypeINTEL {
 }
 impl const Default for PerformanceParameterTypeINTEL {
     fn default() -> Self {
-        PerformanceParameterTypeHwCountersSupportedIntel
+        Self::PerformanceParameterTypeHwCountersSupportedIntel
     }
 }
 impl PerformanceParameterTypeINTEL {
@@ -292,6 +391,7 @@ impl PerformanceParameterTypeINTEL {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum PerformanceValueTypeINTEL {
     ///No documentation found
@@ -307,7 +407,7 @@ pub enum PerformanceValueTypeINTEL {
 }
 impl const Default for PerformanceValueTypeINTEL {
     fn default() -> Self {
-        PerformanceValueTypeUint32Intel
+        Self::PerformanceValueTypeUint32Intel
     }
 }
 impl PerformanceValueTypeINTEL {

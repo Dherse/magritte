@@ -101,8 +101,8 @@ impl<'a> SymbolName<'a> for FunctionPointer<'a> {
     }
 }
 
-impl<'a> Queryable for FunctionPointer<'a> {
-    fn find(&self, name: &str) -> Option<&str> {
+impl<'a> Queryable<'a> for FunctionPointer<'a> {
+    fn find<'b>(&'b self, _: &'b Source<'a>, name: &str) -> Option<&'b str> {
         self.arguments.get_by_either(name).map(FunctionPointerArgument::name)
     }
 }

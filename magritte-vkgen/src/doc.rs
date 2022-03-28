@@ -78,13 +78,13 @@ impl Deref for Documentation {
 }
 
 /// An object that has queryable children
-pub trait Queryable {
+pub trait Queryable<'a> {
     /// Find the owned value
-    fn find(&self, name: &str) -> Option<&str>;
+    fn find<'b>(&'b self, source: &'b Source<'a>, name: &str) -> Option<&'b str>;
 }
 
-impl Queryable for () {
-    fn find(&self, _: &str) -> Option<&str> {
+impl<'a> Queryable<'a> for () {
+    fn find(&self, _: &Source<'a>, _: &str) -> Option<&'a str> {
         None
     }
 }
@@ -106,7 +106,7 @@ impl<'a> DocRef<'a> {
     fn visit_selectable<'b>(
         &mut self,
         source: &Source<'b>,
-        this: &impl Queryable,
+        this: &impl Queryable<'b>,
         variants: Option<&mut AHashMap<String, String>>,
         first_selector: &Selector,
         second_selector: &Selector,
@@ -144,7 +144,7 @@ impl<'a> DocRef<'a> {
     pub fn specification<'b>(
         &mut self,
         source: &Source<'b>,
-        this: &impl Queryable,
+        this: &impl Queryable<'b>,
         mut out: &mut TokenStream,
     ) -> Option<()> {
         let text = self.visit_selectable(source, this, None, &SELECTOR_SPECIFICATION_H2, &SELECTOR_SECTIONBODY)?;
@@ -170,7 +170,7 @@ impl<'a> DocRef<'a> {
     }
 
     /// Gets the `Name` section as markdown
-    pub fn name<'b>(&mut self, source: &Source<'b>, this: &impl Queryable, mut out: &mut TokenStream) -> Option<()> {
+    pub fn name<'b>(&mut self, source: &Source<'b>, this: &impl Queryable<'b>, mut out: &mut TokenStream) -> Option<()> {
         let mut text = self.visit_selectable(source, this, None, &SELECTOR_NAME_H2, &SELECTOR_SECTIONBODY)?;
 
         // generate the link for the type itself
@@ -285,7 +285,7 @@ impl<'a> DocRef<'a> {
     pub fn members<'b>(
         &mut self,
         source: &Source<'b>,
-        this: &impl Queryable,
+        this: &impl Queryable<'b>,
         mut out: &mut TokenStream,
         variants: Option<&mut AHashMap<String, String>>,
     ) -> Option<()> {
@@ -325,7 +325,7 @@ impl<'a> DocRef<'a> {
     pub fn description<'b>(
         &mut self,
         source: &Source<'b>,
-        this: &impl Queryable,
+        this: &impl Queryable<'b>,
         mut out: &mut TokenStream,
         variants: Option<&mut AHashMap<String, String>>,
     ) -> Option<()> {
@@ -363,7 +363,7 @@ impl<'a> DocRef<'a> {
 
     /// Processes the new object types, commands, structures, enums, bitmasks, constants, issues and
     /// version history
-    pub fn extension<'b>(&mut self, source: &Source<'b>, this: &impl Queryable, mut out: &mut TokenStream) {
+    pub fn extension<'b>(&mut self, source: &Source<'b>, this: &impl Queryable<'b>, mut out: &mut TokenStream) {
         if let Some(text) = self.visit_selectable(source, this, None, &SELECTOR_REVISION_H2, &SELECTOR_SECTIONBODY) {
             let lines = text.split('\n');
             quote::quote_each_token! {

@@ -1,3 +1,164 @@
+//![VK_KHR_video_queue](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_video_queue.html) - device extension
+//!# Revision
+//!2
+//!# Dependencies
+//! - Requires Vulkan 1.0
+//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`VK_KHR_sampler_ycbcr_conversion`]`
+//! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
+//!   of provisional header files for enablement and stability details.**
+//!# Contacts
+//! - Tony Zlatinski [tzlatinski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_video_queue]
+//!   @tzlatinski%0A<<Here describe the issue or question you have about the VK_KHR_video_queue
+//!   extension>>)
+//!# New handles
+//! - [`VideoSessionKHR`]
+//! - [`VideoSessionParametersKHR`]
+//!# New functions & commands
+//! - [`BindVideoSessionMemoryKHR`]
+//! - [`CmdBeginVideoCodingKHR`]
+//! - [`CmdControlVideoCodingKHR`]
+//! - [`CmdEndVideoCodingKHR`]
+//! - [`CreateVideoSessionKHR`]
+//! - [`CreateVideoSessionParametersKHR`]
+//! - [`DestroyVideoSessionKHR`]
+//! - [`DestroyVideoSessionParametersKHR`]
+//! - [`GetPhysicalDeviceVideoCapabilitiesKHR`]
+//! - [`GetPhysicalDeviceVideoFormatPropertiesKHR`]
+//! - [`GetVideoSessionMemoryRequirementsKHR`]
+//! - [`UpdateVideoSessionParametersKHR`]
+//!# New structures
+//! - [`PhysicalDeviceVideoFormatInfoKHR`]
+//! - [`VideoBeginCodingInfoKHR`]
+//! - [`VideoBindMemoryKHR`]
+//! - [`VideoCapabilitiesKHR`]
+//! - [`VideoCodingControlInfoKHR`]
+//! - [`VideoEndCodingInfoKHR`]
+//! - [`VideoFormatPropertiesKHR`]
+//! - [`VideoGetMemoryPropertiesKHR`]
+//! - [`VideoPictureResourceKHR`]
+//! - [`VideoReferenceSlotKHR`]
+//! - [`VideoSessionCreateInfoKHR`]
+//! - [`VideoSessionParametersCreateInfoKHR`]
+//! - [`VideoSessionParametersUpdateInfoKHR`]
+//! - Extending [`FormatProperties2`], [`ImageCreateInfo`], [`ImageViewCreateInfo`],
+//!   [`BufferCreateInfo`]:  - [`VideoProfilesKHR`]
+//! - Extending [`QueryPoolCreateInfo`], [`FormatProperties2`], [`ImageCreateInfo`],
+//!   [`ImageViewCreateInfo`], [`BufferCreateInfo`]:  - [`VideoProfileKHR`]
+//! - Extending [`QueueFamilyProperties2`]:  - [`QueueFamilyQueryResultStatusProperties2KHR`]  -
+//!   [`VideoQueueFamilyProperties2KHR`]
+//!# New enums
+//! - [`QueryResultStatusKHR`]
+//! - [`VideoCapabilityFlagBitsKHR`]
+//! - [`VideoChromaSubsamplingFlagBitsKHR`]
+//! - [`VideoCodecOperationFlagBitsKHR`]
+//! - [`VideoCodingControlFlagBitsKHR`]
+//! - [`VideoCodingQualityPresetFlagBitsKHR`]
+//! - [`VideoComponentBitDepthFlagBitsKHR`]
+//! - [`VideoSessionCreateFlagBitsKHR`]
+//!# New bitmasks
+//! - [`VideoBeginCodingFlagsKHR`]
+//! - [`VideoCapabilityFlagsKHR`]
+//! - [`VideoChromaSubsamplingFlagsKHR`]
+//! - [`VideoCodecOperationFlagsKHR`]
+//! - [`VideoCodingControlFlagsKHR`]
+//! - [`VideoCodingQualityPresetFlagsKHR`]
+//! - [`VideoComponentBitDepthFlagsKHR`]
+//! - [`VideoEndCodingFlagsKHR`]
+//! - [`VideoSessionCreateFlagsKHR`]
+//!# New constants
+//! - [`KHR_VIDEO_QUEUE_EXTENSION_NAME`]
+//! - [`KHR_VIDEO_QUEUE_SPEC_VERSION`]
+//! - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_VIDEO_SESSION_KHR`  -
+//!   `VK_OBJECT_TYPE_VIDEO_SESSION_PARAMETERS_KHR`
+//! - Extending [`QueryResultFlagBits`]:  - `VK_QUERY_RESULT_WITH_STATUS_BIT_KHR`
+//! - Extending [`QueryType`]:  - `VK_QUERY_TYPE_RESULT_STATUS_ONLY_KHR`
+//! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_2_KHR`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_BEGIN_CODING_INFO_KHR`  - `VK_STRUCTURE_TYPE_VIDEO_BIND_MEMORY_KHR`
+//!   - `VK_STRUCTURE_TYPE_VIDEO_CAPABILITIES_KHR`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_CODING_CONTROL_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_END_CODING_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_FORMAT_PROPERTIES_KHR`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_GET_MEMORY_PROPERTIES_KHR`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_PICTURE_RESOURCE_KHR`  - `VK_STRUCTURE_TYPE_VIDEO_PROFILES_KHR`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_PROFILE_KHR`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_QUEUE_FAMILY_PROPERTIES_2_KHR`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_REFERENCE_SLOT_KHR`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_SESSION_CREATE_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR`
+//!# Version History
+//! - Revision 0.1, 2019-11-21 (Tony Zlatinski)  - Initial draft
+//! - Revision 0.2, 2019-11-27 (Tony Zlatinski)  - Make vulkan video core common between decode and
+//!   encode
+//! - Revision 1, March 29 2021 (Tony Zlatinski)  - Spec and API updates.
+//! - Revision 2, August 1 2021 (Srinath Kumarapuram)  - Rename `VkVideoCapabilitiesFlagBitsKHR` to
+//!   [`VideoCapabilityFlagBitsKHR`] (along with the names of enumerants it defines) and
+//!   `VkVideoCapabilitiesFlagsKHR` to [`VideoCapabilityFlagsKHR`], following Vulkan naming
+//!   conventions.
+//!# Other info
+//! * 2021-03-29
+//! * No known IP claims.
+//! * - Ahmed Abdelkhalek, AMD  - George Hao, AMD  - Jake Beju, AMD  - Piers Daniell, NVIDIA  -
+//!   Srinath Kumarapuram, NVIDIA  - Tobias Hector, AMD  - Tony Zlatinski, NVIDIA
+//!# Related
+//! - [`PhysicalDeviceVideoFormatInfoKHR`]
+//! - [`QueryResultStatusKHR`]
+//! - [`QueueFamilyQueryResultStatusProperties2KHR`]
+//! - [`VideoBeginCodingFlagsKHR`]
+//! - [`VideoBeginCodingInfoKHR`]
+//! - [`VideoBindMemoryKHR`]
+//! - [`VideoCapabilitiesKHR`]
+//! - [`VideoCapabilityFlagBitsKHR`]
+//! - [`VideoCapabilityFlagsKHR`]
+//! - [`VideoChromaSubsamplingFlagBitsKHR`]
+//! - [`VideoChromaSubsamplingFlagsKHR`]
+//! - [`VideoCodecOperationFlagBitsKHR`]
+//! - [`VideoCodecOperationFlagsKHR`]
+//! - [`VideoCodingControlFlagBitsKHR`]
+//! - [`VideoCodingControlFlagsKHR`]
+//! - [`VideoCodingControlInfoKHR`]
+//! - [`VideoCodingQualityPresetFlagBitsKHR`]
+//! - [`VideoCodingQualityPresetFlagsKHR`]
+//! - [`VideoComponentBitDepthFlagBitsKHR`]
+//! - [`VideoComponentBitDepthFlagsKHR`]
+//! - [`VideoEndCodingFlagsKHR`]
+//! - [`VideoEndCodingInfoKHR`]
+//! - [`VideoFormatPropertiesKHR`]
+//! - [`VideoGetMemoryPropertiesKHR`]
+//! - [`VideoPictureResourceKHR`]
+//! - [`VideoProfileKHR`]
+//! - [`VideoProfilesKHR`]
+//! - [`VideoQueueFamilyProperties2KHR`]
+//! - [`VideoReferenceSlotKHR`]
+//! - [`VideoSessionCreateFlagBitsKHR`]
+//! - [`VideoSessionCreateFlagsKHR`]
+//! - [`VideoSessionCreateInfoKHR`]
+//! - [`VideoSessionKHR`]
+//! - [`VideoSessionParametersCreateInfoKHR`]
+//! - [`VideoSessionParametersKHR`]
+//! - [`VideoSessionParametersUpdateInfoKHR`]
+//! - [`BindVideoSessionMemoryKHR`]
+//! - [`CmdBeginVideoCodingKHR`]
+//! - [`CmdControlVideoCodingKHR`]
+//! - [`CmdEndVideoCodingKHR`]
+//! - [`CreateVideoSessionKHR`]
+//! - [`CreateVideoSessionParametersKHR`]
+//! - [`DestroyVideoSessionKHR`]
+//! - [`DestroyVideoSessionParametersKHR`]
+//! - [`GetPhysicalDeviceVideoCapabilitiesKHR`]
+//! - [`GetPhysicalDeviceVideoFormatPropertiesKHR`]
+//! - [`GetVideoSessionMemoryRequirementsKHR`]
+//! - [`UpdateVideoSessionParametersKHR`]
+//!
+//!# Notes and documentation
+//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+//!
+//!This documentation is generated from the Vulkan specification and documentation.
+//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+//! Commons Attribution 4.0 International*.
+//!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     vulkan1_0::{
         BaseInStructure, BaseOutStructure, Bool32, DeviceMemory, DeviceSize, Extent2D, Format, ImageUsageFlags,
@@ -48,6 +209,7 @@ pub const KHR_VIDEO_QUEUE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_v
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum QueryResultStatusKHR {
     ///[`QueryResultStatusErrorKhr`] specifies that operations did not
@@ -62,7 +224,7 @@ pub enum QueryResultStatusKHR {
 }
 impl const Default for QueryResultStatusKHR {
     fn default() -> Self {
-        QueryResultStatusNotReadyKhr
+        Self::QueryResultStatusNotReadyKhr
     }
 }
 impl QueryResultStatusKHR {
@@ -80,6 +242,2799 @@ impl QueryResultStatusKHR {
     #[inline]
     pub const unsafe fn from_bits(bits: i32) -> i32 {
         std::mem::transmute(bits)
+    }
+}
+///[VkVideoCodecOperationFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCodecOperationFlagBitsKHR.html) - Video codec operation types
+///# C Specifications
+///The codec operations are defined with the
+///[`VideoCodecOperationFlagBitsKHR`] enum:
+///```c
+///// Provided by VK_KHR_video_queue
+///typedef enum VkVideoCodecOperationFlagBitsKHR {
+///    VK_VIDEO_CODEC_OPERATION_INVALID_BIT_KHR = 0,
+///#ifdef VK_ENABLE_BETA_EXTENSIONS
+///  // Provided by VK_EXT_video_encode_h264
+///    VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_EXT = 0x00010000,
+///#endif
+///#ifdef VK_ENABLE_BETA_EXTENSIONS
+///  // Provided by VK_EXT_video_encode_h265
+///    VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_EXT = 0x00020000,
+///#endif
+///#ifdef VK_ENABLE_BETA_EXTENSIONS
+///  // Provided by VK_EXT_video_decode_h264
+///    VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_EXT = 0x00000001,
+///#endif
+///#ifdef VK_ENABLE_BETA_EXTENSIONS
+///  // Provided by VK_EXT_video_decode_h265
+///    VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_EXT = 0x00000002,
+///#endif
+///} VkVideoCodecOperationFlagBitsKHR;
+///```
+///# Description
+///Each decode or encode codec-specific extension extends this enumeration with
+///the appropriate bit corresponding to the extension’s codec operation:
+/// - [`VideoCodecOperationInvalidKhr`] - No video operations are supported for this queue family.
+/// - [`VideoCodecOperationEncodeH264Ext`] - H.264 video encode operations are supported by this
+///   queue family.
+/// - [`VideoCodecOperationDecodeH264Ext`] - H.264 video decode operations are supported by this
+///   queue family.
+/// - [`VideoCodecOperationDecodeH265Ext`] - H.265 video decode operations are supported by this
+///   queue family.
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoCodecOperationFlagsKHR`]
+/// - [`VideoProfileKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoCodecOperationFlagBitsKHR")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum VideoCodecOperationFlagBitsKHR {
+    ///[`VideoCodecOperationInvalidKhr`] - No video operations are
+    ///supported for this queue family.
+    VideoCodecOperationInvalidKhr = 0,
+    ///[`VideoCodecOperationEncodeH264Ext`] - H.264 video encode
+    ///operations are supported by this queue family.
+    ///
+    ///Provided by [`crate::extensions::ext_video_encode_h_264`]
+    VideoCodecOperationEncodeH264Ext = 65536,
+    ///No documentation found
+    ///
+    ///Provided by [`crate::extensions::ext_video_encode_h_265`]
+    VideoCodecOperationEncodeH265Ext = 131072,
+    ///[`VideoCodecOperationDecodeH264Ext`] - H.264 video decode
+    ///operations are supported by this queue family.
+    ///
+    ///Provided by [`crate::extensions::ext_video_decode_h_264`]
+    VideoCodecOperationDecodeH264Ext = 1,
+    ///[`VideoCodecOperationDecodeH265Ext`] - H.265 video decode
+    ///operations are supported by this queue family.
+    ///
+    ///Provided by [`crate::extensions::ext_video_decode_h_265`]
+    VideoCodecOperationDecodeH265Ext = 2,
+}
+impl const Default for VideoCodecOperationFlagBitsKHR {
+    fn default() -> Self {
+        Self::VideoCodecOperationInvalidKhr
+    }
+}
+impl VideoCodecOperationFlagBitsKHR {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkVideoChromaSubsamplingFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoChromaSubsamplingFlagBitsKHR.html) - Video chroma subsampling
+///# C Specifications
+///The video format chroma subsampling is defined with the following enums:
+///```c
+///// Provided by VK_KHR_video_queue
+///typedef enum VkVideoChromaSubsamplingFlagBitsKHR {
+///    VK_VIDEO_CHROMA_SUBSAMPLING_INVALID_BIT_KHR = 0,
+///    VK_VIDEO_CHROMA_SUBSAMPLING_MONOCHROME_BIT_KHR = 0x00000001,
+///    VK_VIDEO_CHROMA_SUBSAMPLING_420_BIT_KHR = 0x00000002,
+///    VK_VIDEO_CHROMA_SUBSAMPLING_422_BIT_KHR = 0x00000004,
+///    VK_VIDEO_CHROMA_SUBSAMPLING_444_BIT_KHR = 0x00000008,
+///} VkVideoChromaSubsamplingFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoChromaSubsamplingMonochromeKhr`] - the format is monochrome.
+/// - [`VideoChromaSubsampling420Khr`] - the format is 4:2:0 chroma subsampled. The two chroma
+///   components are each subsampled at a factor of 2 both horizontally and vertically.
+/// - [`VideoChromaSubsampling422Khr`] - the format is 4:2:2 chroma subsampled. The two chroma
+///   components are sampled at half the sample rate of luma. The horizontal chroma resolution is
+///   halved.
+/// - [`VideoChromaSubsampling444Khr`] - the format is 4:4:4 chroma sampled. Each of the three YCbCr
+///   components have the same sample rate, thus there is no chroma subsampling.
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoChromaSubsamplingFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoChromaSubsamplingFlagBitsKHR")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum VideoChromaSubsamplingFlagBitsKHR {
+    ///No documentation found
+    VideoChromaSubsamplingInvalidKhr = 0,
+    ///[`VideoChromaSubsamplingMonochromeKhr`] - the format is
+    ///monochrome.
+    VideoChromaSubsamplingMonochromeKhr = 1,
+    ///[`VideoChromaSubsampling420Khr`] - the format is 4:2:0
+    ///chroma subsampled.
+    ///The two chroma components are each subsampled at a factor of 2 both
+    ///horizontally and vertically.
+    VideoChromaSubsampling420Khr = 2,
+    ///[`VideoChromaSubsampling422Khr`] - the format is 4:2:2
+    ///chroma subsampled.
+    ///The two chroma components are sampled at half the sample rate of luma.
+    ///The horizontal chroma resolution is halved.
+    VideoChromaSubsampling422Khr = 4,
+    ///[`VideoChromaSubsampling444Khr`] - the format is 4:4:4
+    ///chroma sampled.
+    ///Each of the three YCbCr components have the same sample rate, thus there
+    ///is no chroma subsampling.
+    VideoChromaSubsampling444Khr = 8,
+}
+impl const Default for VideoChromaSubsamplingFlagBitsKHR {
+    fn default() -> Self {
+        Self::VideoChromaSubsamplingInvalidKhr
+    }
+}
+impl VideoChromaSubsamplingFlagBitsKHR {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkVideoComponentBitDepthFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoComponentBitDepthFlagBitsKHR.html) - Video component bit depth
+///# C Specifications
+///The video format component bit depth is defined with the following enums:
+///```c
+///// Provided by VK_KHR_video_queue
+///typedef enum VkVideoComponentBitDepthFlagBitsKHR {
+///    VK_VIDEO_COMPONENT_BIT_DEPTH_INVALID_KHR = 0,
+///    VK_VIDEO_COMPONENT_BIT_DEPTH_8_BIT_KHR = 0x00000001,
+///    VK_VIDEO_COMPONENT_BIT_DEPTH_10_BIT_KHR = 0x00000004,
+///    VK_VIDEO_COMPONENT_BIT_DEPTH_12_BIT_KHR = 0x00000010,
+///} VkVideoComponentBitDepthFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoComponentDepth8Khr`] - the format component bit depth is 8 bits.
+/// - [`VideoComponentDepth10Khr`] - the format component bit depth is 10 bits.
+/// - [`VideoComponentDepth12Khr`] - the format component bit depth is 12 bits.
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoComponentBitDepthFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoComponentBitDepthFlagBitsKHR")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum VideoComponentBitDepthFlagBitsKHR {
+    ///No documentation found
+    VideoComponentDepthInvalidKhr = 0,
+    ///[`VideoComponentDepth8Khr`] - the format component bit
+    ///depth is 8 bits.
+    VideoComponentDepth8Khr = 1,
+    ///[`VideoComponentDepth10Khr`] - the format component bit
+    ///depth is 10 bits.
+    VideoComponentDepth10Khr = 4,
+    ///[`VideoComponentDepth12Khr`] - the format component bit
+    ///depth is 12 bits.
+    VideoComponentDepth12Khr = 16,
+}
+impl const Default for VideoComponentBitDepthFlagBitsKHR {
+    fn default() -> Self {
+        Self::VideoComponentDepthInvalidKhr
+    }
+}
+impl VideoComponentBitDepthFlagBitsKHR {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkVideoCapabilityFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCapabilityFlagBitsKHR.html) - Video Decode and Encode Capability Flags
+///# C Specifications
+///The [`VideoCapabilitiesKHR`] flags are defined with the following
+///enumeration:
+///```c
+///// Provided by VK_KHR_video_queue
+///typedef enum VkVideoCapabilityFlagBitsKHR {
+///    VK_VIDEO_CAPABILITY_PROTECTED_CONTENT_BIT_KHR = 0x00000001,
+///    VK_VIDEO_CAPABILITY_SEPARATE_REFERENCE_IMAGES_BIT_KHR = 0x00000002,
+///} VkVideoCapabilityFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoCapabilityProtectedContentKhr`] - the decode or encode session supports protected
+///   content.
+/// - [`VideoCapabilitySeparateReferenceImagesKhr`] - the DPB or Reconstructed Video Picture
+///   Resources for the video session  **may**  be created as a separate [`Image`] for each DPB
+///   picture. If not supported, the DPB  **must**  be created as single multi-layered image where
+///   each layer represents one of the DPB Video Picture Resources.
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoCapabilityFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoCapabilityFlagBitsKHR")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum VideoCapabilityFlagBitsKHR {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`VideoCapabilityProtectedContentKhr`] - the decode or
+    ///encode session supports protected content.
+    VideoCapabilityProtectedContentKhr = 1,
+    ///[`VideoCapabilitySeparateReferenceImagesKhr`] - the DPB or
+    ///Reconstructed Video Picture Resources for the video session  **may**  be
+    ///created as a separate [`Image`] for each DPB picture.
+    ///If not supported, the DPB  **must**  be created as single multi-layered image
+    ///where each layer represents one of the DPB Video Picture Resources.
+    VideoCapabilitySeparateReferenceImagesKhr = 2,
+}
+impl const Default for VideoCapabilityFlagBitsKHR {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl VideoCapabilityFlagBitsKHR {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkVideoSessionCreateFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoSessionCreateFlagBitsKHR.html) - Video decode or encode video session creation flags
+///# C Specifications
+///The decode or encode session creation flags defined with the following
+///enums:
+///```c
+///// Provided by VK_KHR_video_queue
+///typedef enum VkVideoSessionCreateFlagBitsKHR {
+///    VK_VIDEO_SESSION_CREATE_DEFAULT_KHR = 0,
+///    VK_VIDEO_SESSION_CREATE_PROTECTED_CONTENT_BIT_KHR = 0x00000001,
+///} VkVideoSessionCreateFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoSessionCreateProtectedContentKhr`] - create the video session for use with protected
+///   video content
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoSessionCreateFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoSessionCreateFlagBitsKHR")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum VideoSessionCreateFlagBitsKHR {
+    ///No documentation found
+    VideoSessionCreateDefaultKhr = 0,
+    ///[`VideoSessionCreateProtectedContentKhr`] - create the
+    ///video session for use with protected video content
+    VideoSessionCreateProtectedContentKhr = 1,
+}
+impl const Default for VideoSessionCreateFlagBitsKHR {
+    fn default() -> Self {
+        Self::VideoSessionCreateDefaultKhr
+    }
+}
+impl VideoSessionCreateFlagBitsKHR {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkVideoCodingQualityPresetFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCodingQualityPresetFlagBitsKHR.html) - Video codec profile types
+///# C Specifications
+///The decode preset types are defined with the following:
+///```c
+///// Provided by VK_KHR_video_queue
+///typedef enum VkVideoCodingQualityPresetFlagBitsKHR {
+///    VK_VIDEO_CODING_QUALITY_PRESET_NORMAL_BIT_KHR = 0x00000001,
+///    VK_VIDEO_CODING_QUALITY_PRESET_POWER_BIT_KHR = 0x00000002,
+///    VK_VIDEO_CODING_QUALITY_PRESET_QUALITY_BIT_KHR = 0x00000004,
+///} VkVideoCodingQualityPresetFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoCodingQualityPresetNormalKhr`] defines normal decode case.
+/// - [`VideoCodingQualityPresetPowerKhr`] defines power efficient case.
+/// - [`VideoCodingQualityPresetQualityKhr`] defines quality focus case.
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoCodingQualityPresetFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoCodingQualityPresetFlagBitsKHR")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum VideoCodingQualityPresetFlagBitsKHR {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`VideoCodingQualityPresetNormalKhr`] defines normal
+    ///decode case.
+    VideoCodingQualityPresetNormalKhr = 1,
+    ///[`VideoCodingQualityPresetPowerKhr`] defines power
+    ///efficient case.
+    VideoCodingQualityPresetPowerKhr = 2,
+    ///[`VideoCodingQualityPresetQualityKhr`] defines quality
+    ///focus case.
+    VideoCodingQualityPresetQualityKhr = 4,
+}
+impl const Default for VideoCodingQualityPresetFlagBitsKHR {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl VideoCodingQualityPresetFlagBitsKHR {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkVideoCodingControlFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCodingControlFlagBitsKHR.html) - Video Coding Control Command Flags
+///# C Specifications
+///The [`CmdControlVideoCodingKHR`] flags are defined with the following
+///enumeration:
+///```c
+///// Provided by VK_KHR_video_queue
+///typedef enum VkVideoCodingControlFlagBitsKHR {
+///    VK_VIDEO_CODING_CONTROL_DEFAULT_KHR = 0,
+///    VK_VIDEO_CODING_CONTROL_RESET_BIT_KHR = 0x00000001,
+///} VkVideoCodingControlFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoCodingControlDefaultKhr`] indicates a request for the coding control paramaters to be
+///   applied to the current state of the bound video session.
+/// - [`VideoCodingControlResetKhr`] indicates a request for the bound video session device context
+///   to be reset before the coding control parameters are applied.
+///A newly created video session  **must**  be reset before use for video decode or
+///encode operations.
+///The reset operation returns all session DPB slots to the unused state (see
+///[DPB Slot States](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-session-dpb-slot-states)).
+///For encode sessions, the reset operation returns rate control configuration
+///to implementation default settings.
+///After decode or encode operations are performed on a session, the reset
+///operation  **may**  be used to return the video session device context to the
+///same initial state as after the reset of a newly created video session.
+///This  **may**  be used when different video sequences are processed with the same
+///session.
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoCodingControlFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoCodingControlFlagBitsKHR")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum VideoCodingControlFlagBitsKHR {
+    ///[`VideoCodingControlDefaultKhr`] indicates a request for the
+    ///coding control paramaters to be applied to the current state of the
+    ///bound video session.
+    VideoCodingControlDefaultKhr = 0,
+    ///[`VideoCodingControlResetKhr`] indicates a request for the
+    ///bound video session device context to be reset before the coding control
+    ///parameters are applied.
+    VideoCodingControlResetKhr = 1,
+}
+impl const Default for VideoCodingControlFlagBitsKHR {
+    fn default() -> Self {
+        Self::VideoCodingControlDefaultKhr
+    }
+}
+impl VideoCodingControlFlagBitsKHR {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkVideoCodecOperationFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCodecOperationFlagBitsKHR.html) - Video codec operation types
+///# C Specifications
+///The codec operations are defined with the
+///[`VideoCodecOperationFlagBitsKHR`] enum:
+///```c
+///// Provided by VK_KHR_video_queue
+///typedef enum VkVideoCodecOperationFlagBitsKHR {
+///    VK_VIDEO_CODEC_OPERATION_INVALID_BIT_KHR = 0,
+///#ifdef VK_ENABLE_BETA_EXTENSIONS
+///  // Provided by VK_EXT_video_encode_h264
+///    VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_EXT = 0x00010000,
+///#endif
+///#ifdef VK_ENABLE_BETA_EXTENSIONS
+///  // Provided by VK_EXT_video_encode_h265
+///    VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_EXT = 0x00020000,
+///#endif
+///#ifdef VK_ENABLE_BETA_EXTENSIONS
+///  // Provided by VK_EXT_video_decode_h264
+///    VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_EXT = 0x00000001,
+///#endif
+///#ifdef VK_ENABLE_BETA_EXTENSIONS
+///  // Provided by VK_EXT_video_decode_h265
+///    VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_EXT = 0x00000002,
+///#endif
+///} VkVideoCodecOperationFlagBitsKHR;
+///```
+///# Description
+///Each decode or encode codec-specific extension extends this enumeration with
+///the appropriate bit corresponding to the extension’s codec operation:
+/// - [`VideoCodecOperationInvalidKhr`] - No video operations are supported for this queue family.
+/// - [`VideoCodecOperationEncodeH264Ext`] - H.264 video encode operations are supported by this
+///   queue family.
+/// - [`VideoCodecOperationDecodeH264Ext`] - H.264 video decode operations are supported by this
+///   queue family.
+/// - [`VideoCodecOperationDecodeH265Ext`] - H.265 video decode operations are supported by this
+///   queue family.
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoCodecOperationFlagsKHR`]
+/// - [`VideoProfileKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct VideoCodecOperationFlagsKHR(u32);
+impl const Default for VideoCodecOperationFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<VideoCodecOperationFlagBitsKHR> for VideoCodecOperationFlagsKHR {
+    fn from(from: VideoCodecOperationFlagBitsKHR) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl VideoCodecOperationFlagsKHR {
+    ///[`VideoCodecOperationInvalidKhr`] - No video operations are
+    ///supported for this queue family.
+    const VideoCodecOperationInvalidKhr: Self = Self(0);
+    ///[`VideoCodecOperationEncodeH264Ext`] - H.264 video encode
+    ///operations are supported by this queue family.
+    ///
+    ///Provided by [`crate::extensions::ext_video_encode_h_264`]
+    const VideoCodecOperationEncodeH264Ext: Self = Self(65536);
+    ///No documentation found
+    ///
+    ///Provided by [`crate::extensions::ext_video_encode_h_265`]
+    const VideoCodecOperationEncodeH265Ext: Self = Self(131072);
+    ///[`VideoCodecOperationDecodeH264Ext`] - H.264 video decode
+    ///operations are supported by this queue family.
+    ///
+    ///Provided by [`crate::extensions::ext_video_decode_h_264`]
+    const VideoCodecOperationDecodeH264Ext: Self = Self(1);
+    ///[`VideoCodecOperationDecodeH265Ext`] - H.265 video decode
+    ///operations are supported by this queue family.
+    ///
+    ///Provided by [`crate::extensions::ext_video_decode_h_265`]
+    const VideoCodecOperationDecodeH265Ext: Self = Self(2);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::VideoCodecOperationInvalidKhr
+            | Self::VideoCodecOperationEncodeH264Ext
+            | Self::VideoCodecOperationEncodeH265Ext
+            | Self::VideoCodecOperationDecodeH264Ext
+            | Self::VideoCodecOperationDecodeH265Ext
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for VideoCodecOperationFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for VideoCodecOperationFlagsKHR {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for VideoCodecOperationFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for VideoCodecOperationFlagsKHR {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for VideoCodecOperationFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for VideoCodecOperationFlagsKHR {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for VideoCodecOperationFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for VideoCodecOperationFlagsKHR {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for VideoCodecOperationFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<VideoCodecOperationFlagsKHR> for VideoCodecOperationFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoCodecOperationFlagsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<VideoCodecOperationFlagBitsKHR> for VideoCodecOperationFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoCodecOperationFlagBitsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(VideoCodecOperationFlagsKHR::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<VideoCodecOperationFlagsKHR> for VideoCodecOperationFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoCodecOperationFlagsKHR>>(
+        iterator: T,
+    ) -> VideoCodecOperationFlagsKHR {
+        let mut out = VideoCodecOperationFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<VideoCodecOperationFlagBitsKHR> for VideoCodecOperationFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoCodecOperationFlagBitsKHR>>(
+        iterator: T,
+    ) -> VideoCodecOperationFlagsKHR {
+        let mut out = VideoCodecOperationFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for VideoCodecOperationFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(VideoCodecOperationFlagsKHR);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == VideoCodecOperationFlagsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(VideoCodecOperationFlagsKHR::VideoCodecOperationInvalidKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoCodecOperationInvalidKhr))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoCodecOperationFlagsKHR::VideoCodecOperationEncodeH264Ext)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoCodecOperationEncodeH264Ext))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoCodecOperationFlagsKHR::VideoCodecOperationEncodeH265Ext)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoCodecOperationEncodeH265Ext))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoCodecOperationFlagsKHR::VideoCodecOperationDecodeH264Ext)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoCodecOperationDecodeH264Ext))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoCodecOperationFlagsKHR::VideoCodecOperationDecodeH265Ext)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoCodecOperationDecodeH265Ext))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(VideoCodecOperationFlagsKHR))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkVideoCapabilityFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCapabilityFlagBitsKHR.html) - Video Decode and Encode Capability Flags
+///# C Specifications
+///The [`VideoCapabilitiesKHR`] flags are defined with the following
+///enumeration:
+///```c
+///// Provided by VK_KHR_video_queue
+///typedef enum VkVideoCapabilityFlagBitsKHR {
+///    VK_VIDEO_CAPABILITY_PROTECTED_CONTENT_BIT_KHR = 0x00000001,
+///    VK_VIDEO_CAPABILITY_SEPARATE_REFERENCE_IMAGES_BIT_KHR = 0x00000002,
+///} VkVideoCapabilityFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoCapabilityProtectedContentKhr`] - the decode or encode session supports protected
+///   content.
+/// - [`VideoCapabilitySeparateReferenceImagesKhr`] - the DPB or Reconstructed Video Picture
+///   Resources for the video session  **may**  be created as a separate [`Image`] for each DPB
+///   picture. If not supported, the DPB  **must**  be created as single multi-layered image where
+///   each layer represents one of the DPB Video Picture Resources.
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoCapabilityFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct VideoCapabilityFlagsKHR(u32);
+impl const Default for VideoCapabilityFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<VideoCapabilityFlagBitsKHR> for VideoCapabilityFlagsKHR {
+    fn from(from: VideoCapabilityFlagBitsKHR) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl VideoCapabilityFlagsKHR {
+    ///[`VideoCapabilityProtectedContentKhr`] - the decode or
+    ///encode session supports protected content.
+    const VideoCapabilityProtectedContentKhr: Self = Self(1);
+    ///[`VideoCapabilitySeparateReferenceImagesKhr`] - the DPB or
+    ///Reconstructed Video Picture Resources for the video session  **may**  be
+    ///created as a separate [`Image`] for each DPB picture.
+    ///If not supported, the DPB  **must**  be created as single multi-layered image
+    ///where each layer represents one of the DPB Video Picture Resources.
+    const VideoCapabilitySeparateReferenceImagesKhr: Self = Self(2);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty() | Self::VideoCapabilityProtectedContentKhr | Self::VideoCapabilitySeparateReferenceImagesKhr
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for VideoCapabilityFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for VideoCapabilityFlagsKHR {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for VideoCapabilityFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for VideoCapabilityFlagsKHR {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for VideoCapabilityFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for VideoCapabilityFlagsKHR {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for VideoCapabilityFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for VideoCapabilityFlagsKHR {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for VideoCapabilityFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<VideoCapabilityFlagsKHR> for VideoCapabilityFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoCapabilityFlagsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<VideoCapabilityFlagBitsKHR> for VideoCapabilityFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoCapabilityFlagBitsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(VideoCapabilityFlagsKHR::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<VideoCapabilityFlagsKHR> for VideoCapabilityFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoCapabilityFlagsKHR>>(iterator: T) -> VideoCapabilityFlagsKHR {
+        let mut out = VideoCapabilityFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<VideoCapabilityFlagBitsKHR> for VideoCapabilityFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoCapabilityFlagBitsKHR>>(
+        iterator: T,
+    ) -> VideoCapabilityFlagsKHR {
+        let mut out = VideoCapabilityFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for VideoCapabilityFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(VideoCapabilityFlagsKHR);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == VideoCapabilityFlagsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(VideoCapabilityFlagsKHR::VideoCapabilityProtectedContentKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoCapabilityProtectedContentKhr))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoCapabilityFlagsKHR::VideoCapabilitySeparateReferenceImagesKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoCapabilitySeparateReferenceImagesKhr))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(VideoCapabilityFlagsKHR))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkVideoSessionCreateFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoSessionCreateFlagBitsKHR.html) - Video decode or encode video session creation flags
+///# C Specifications
+///The decode or encode session creation flags defined with the following
+///enums:
+///```c
+///// Provided by VK_KHR_video_queue
+///typedef enum VkVideoSessionCreateFlagBitsKHR {
+///    VK_VIDEO_SESSION_CREATE_DEFAULT_KHR = 0,
+///    VK_VIDEO_SESSION_CREATE_PROTECTED_CONTENT_BIT_KHR = 0x00000001,
+///} VkVideoSessionCreateFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoSessionCreateProtectedContentKhr`] - create the video session for use with protected
+///   video content
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoSessionCreateFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct VideoSessionCreateFlagsKHR(u32);
+impl const Default for VideoSessionCreateFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<VideoSessionCreateFlagBitsKHR> for VideoSessionCreateFlagsKHR {
+    fn from(from: VideoSessionCreateFlagBitsKHR) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl VideoSessionCreateFlagsKHR {
+    ///No documentation found
+    const VideoSessionCreateDefaultKhr: Self = Self(0);
+    ///[`VideoSessionCreateProtectedContentKhr`] - create the
+    ///video session for use with protected video content
+    const VideoSessionCreateProtectedContentKhr: Self = Self(1);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty() | Self::VideoSessionCreateDefaultKhr | Self::VideoSessionCreateProtectedContentKhr
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for VideoSessionCreateFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for VideoSessionCreateFlagsKHR {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for VideoSessionCreateFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for VideoSessionCreateFlagsKHR {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for VideoSessionCreateFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for VideoSessionCreateFlagsKHR {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for VideoSessionCreateFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for VideoSessionCreateFlagsKHR {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for VideoSessionCreateFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<VideoSessionCreateFlagsKHR> for VideoSessionCreateFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoSessionCreateFlagsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<VideoSessionCreateFlagBitsKHR> for VideoSessionCreateFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoSessionCreateFlagBitsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(VideoSessionCreateFlagsKHR::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<VideoSessionCreateFlagsKHR> for VideoSessionCreateFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoSessionCreateFlagsKHR>>(
+        iterator: T,
+    ) -> VideoSessionCreateFlagsKHR {
+        let mut out = VideoSessionCreateFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<VideoSessionCreateFlagBitsKHR> for VideoSessionCreateFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoSessionCreateFlagBitsKHR>>(
+        iterator: T,
+    ) -> VideoSessionCreateFlagsKHR {
+        let mut out = VideoSessionCreateFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for VideoSessionCreateFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(VideoSessionCreateFlagsKHR);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == VideoSessionCreateFlagsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(VideoSessionCreateFlagsKHR::VideoSessionCreateDefaultKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoSessionCreateDefaultKhr))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoSessionCreateFlagsKHR::VideoSessionCreateProtectedContentKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoSessionCreateProtectedContentKhr))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(VideoSessionCreateFlagsKHR))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkVideoBeginCodingFlagsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoBeginCodingFlagsKHR.html) - Reserved for future use
+///# C Specifications
+///```c
+///// Provided by VK_KHR_video_queue
+///typedef VkFlags VkVideoBeginCodingFlagsKHR;
+///```
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoBeginCodingInfoKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct VideoBeginCodingFlagsKHR(u32);
+impl const Default for VideoBeginCodingFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl std::fmt::Debug for VideoBeginCodingFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoBeginCodingFlagsKHR))
+            .field(&self.0)
+            .finish()
+    }
+}
+///[VkVideoEndCodingFlagsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEndCodingFlagsKHR.html) - Reserved for future use
+///# C Specifications
+///```c
+///// Provided by VK_KHR_video_queue
+///typedef VkFlags VkVideoEndCodingFlagsKHR;
+///```
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoEndCodingInfoKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct VideoEndCodingFlagsKHR(u32);
+impl const Default for VideoEndCodingFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl std::fmt::Debug for VideoEndCodingFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoEndCodingFlagsKHR))
+            .field(&self.0)
+            .finish()
+    }
+}
+///[VkVideoCodingQualityPresetFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCodingQualityPresetFlagBitsKHR.html) - Video codec profile types
+///# C Specifications
+///The decode preset types are defined with the following:
+///```c
+///// Provided by VK_KHR_video_queue
+///typedef enum VkVideoCodingQualityPresetFlagBitsKHR {
+///    VK_VIDEO_CODING_QUALITY_PRESET_NORMAL_BIT_KHR = 0x00000001,
+///    VK_VIDEO_CODING_QUALITY_PRESET_POWER_BIT_KHR = 0x00000002,
+///    VK_VIDEO_CODING_QUALITY_PRESET_QUALITY_BIT_KHR = 0x00000004,
+///} VkVideoCodingQualityPresetFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoCodingQualityPresetNormalKhr`] defines normal decode case.
+/// - [`VideoCodingQualityPresetPowerKhr`] defines power efficient case.
+/// - [`VideoCodingQualityPresetQualityKhr`] defines quality focus case.
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoCodingQualityPresetFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct VideoCodingQualityPresetFlagsKHR(u32);
+impl const Default for VideoCodingQualityPresetFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<VideoCodingQualityPresetFlagBitsKHR> for VideoCodingQualityPresetFlagsKHR {
+    fn from(from: VideoCodingQualityPresetFlagBitsKHR) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl VideoCodingQualityPresetFlagsKHR {
+    ///[`VideoCodingQualityPresetNormalKhr`] defines normal
+    ///decode case.
+    const VideoCodingQualityPresetNormalKhr: Self = Self(1);
+    ///[`VideoCodingQualityPresetPowerKhr`] defines power
+    ///efficient case.
+    const VideoCodingQualityPresetPowerKhr: Self = Self(2);
+    ///[`VideoCodingQualityPresetQualityKhr`] defines quality
+    ///focus case.
+    const VideoCodingQualityPresetQualityKhr: Self = Self(4);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::VideoCodingQualityPresetNormalKhr
+            | Self::VideoCodingQualityPresetPowerKhr
+            | Self::VideoCodingQualityPresetQualityKhr
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for VideoCodingQualityPresetFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for VideoCodingQualityPresetFlagsKHR {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for VideoCodingQualityPresetFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for VideoCodingQualityPresetFlagsKHR {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for VideoCodingQualityPresetFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for VideoCodingQualityPresetFlagsKHR {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for VideoCodingQualityPresetFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for VideoCodingQualityPresetFlagsKHR {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for VideoCodingQualityPresetFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<VideoCodingQualityPresetFlagsKHR> for VideoCodingQualityPresetFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoCodingQualityPresetFlagsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<VideoCodingQualityPresetFlagBitsKHR> for VideoCodingQualityPresetFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoCodingQualityPresetFlagBitsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(VideoCodingQualityPresetFlagsKHR::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<VideoCodingQualityPresetFlagsKHR> for VideoCodingQualityPresetFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoCodingQualityPresetFlagsKHR>>(
+        iterator: T,
+    ) -> VideoCodingQualityPresetFlagsKHR {
+        let mut out = VideoCodingQualityPresetFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<VideoCodingQualityPresetFlagBitsKHR> for VideoCodingQualityPresetFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoCodingQualityPresetFlagBitsKHR>>(
+        iterator: T,
+    ) -> VideoCodingQualityPresetFlagsKHR {
+        let mut out = VideoCodingQualityPresetFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for VideoCodingQualityPresetFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(VideoCodingQualityPresetFlagsKHR);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == VideoCodingQualityPresetFlagsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(VideoCodingQualityPresetFlagsKHR::VideoCodingQualityPresetNormalKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoCodingQualityPresetNormalKhr))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoCodingQualityPresetFlagsKHR::VideoCodingQualityPresetPowerKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoCodingQualityPresetPowerKhr))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoCodingQualityPresetFlagsKHR::VideoCodingQualityPresetQualityKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoCodingQualityPresetQualityKhr))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(VideoCodingQualityPresetFlagsKHR))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkVideoCodingControlFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCodingControlFlagBitsKHR.html) - Video Coding Control Command Flags
+///# C Specifications
+///The [`CmdControlVideoCodingKHR`] flags are defined with the following
+///enumeration:
+///```c
+///// Provided by VK_KHR_video_queue
+///typedef enum VkVideoCodingControlFlagBitsKHR {
+///    VK_VIDEO_CODING_CONTROL_DEFAULT_KHR = 0,
+///    VK_VIDEO_CODING_CONTROL_RESET_BIT_KHR = 0x00000001,
+///} VkVideoCodingControlFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoCodingControlDefaultKhr`] indicates a request for the coding control paramaters to be
+///   applied to the current state of the bound video session.
+/// - [`VideoCodingControlResetKhr`] indicates a request for the bound video session device context
+///   to be reset before the coding control parameters are applied.
+///A newly created video session  **must**  be reset before use for video decode or
+///encode operations.
+///The reset operation returns all session DPB slots to the unused state (see
+///[DPB Slot States](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-session-dpb-slot-states)).
+///For encode sessions, the reset operation returns rate control configuration
+///to implementation default settings.
+///After decode or encode operations are performed on a session, the reset
+///operation  **may**  be used to return the video session device context to the
+///same initial state as after the reset of a newly created video session.
+///This  **may**  be used when different video sequences are processed with the same
+///session.
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoCodingControlFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct VideoCodingControlFlagsKHR(u32);
+impl const Default for VideoCodingControlFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<VideoCodingControlFlagBitsKHR> for VideoCodingControlFlagsKHR {
+    fn from(from: VideoCodingControlFlagBitsKHR) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl VideoCodingControlFlagsKHR {
+    ///[`VideoCodingControlDefaultKhr`] indicates a request for the
+    ///coding control paramaters to be applied to the current state of the
+    ///bound video session.
+    const VideoCodingControlDefaultKhr: Self = Self(0);
+    ///[`VideoCodingControlResetKhr`] indicates a request for the
+    ///bound video session device context to be reset before the coding control
+    ///parameters are applied.
+    const VideoCodingControlResetKhr: Self = Self(1);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty() | Self::VideoCodingControlDefaultKhr | Self::VideoCodingControlResetKhr
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for VideoCodingControlFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for VideoCodingControlFlagsKHR {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for VideoCodingControlFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for VideoCodingControlFlagsKHR {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for VideoCodingControlFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for VideoCodingControlFlagsKHR {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for VideoCodingControlFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for VideoCodingControlFlagsKHR {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for VideoCodingControlFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<VideoCodingControlFlagsKHR> for VideoCodingControlFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoCodingControlFlagsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<VideoCodingControlFlagBitsKHR> for VideoCodingControlFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoCodingControlFlagBitsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(VideoCodingControlFlagsKHR::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<VideoCodingControlFlagsKHR> for VideoCodingControlFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoCodingControlFlagsKHR>>(
+        iterator: T,
+    ) -> VideoCodingControlFlagsKHR {
+        let mut out = VideoCodingControlFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<VideoCodingControlFlagBitsKHR> for VideoCodingControlFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoCodingControlFlagBitsKHR>>(
+        iterator: T,
+    ) -> VideoCodingControlFlagsKHR {
+        let mut out = VideoCodingControlFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for VideoCodingControlFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(VideoCodingControlFlagsKHR);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == VideoCodingControlFlagsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(VideoCodingControlFlagsKHR::VideoCodingControlDefaultKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoCodingControlDefaultKhr))?;
+                    }
+                    if self.0.contains(VideoCodingControlFlagsKHR::VideoCodingControlResetKhr) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoCodingControlResetKhr))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(VideoCodingControlFlagsKHR))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkVideoChromaSubsamplingFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoChromaSubsamplingFlagBitsKHR.html) - Video chroma subsampling
+///# C Specifications
+///The video format chroma subsampling is defined with the following enums:
+///```c
+///// Provided by VK_KHR_video_queue
+///typedef enum VkVideoChromaSubsamplingFlagBitsKHR {
+///    VK_VIDEO_CHROMA_SUBSAMPLING_INVALID_BIT_KHR = 0,
+///    VK_VIDEO_CHROMA_SUBSAMPLING_MONOCHROME_BIT_KHR = 0x00000001,
+///    VK_VIDEO_CHROMA_SUBSAMPLING_420_BIT_KHR = 0x00000002,
+///    VK_VIDEO_CHROMA_SUBSAMPLING_422_BIT_KHR = 0x00000004,
+///    VK_VIDEO_CHROMA_SUBSAMPLING_444_BIT_KHR = 0x00000008,
+///} VkVideoChromaSubsamplingFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoChromaSubsamplingMonochromeKhr`] - the format is monochrome.
+/// - [`VideoChromaSubsampling420Khr`] - the format is 4:2:0 chroma subsampled. The two chroma
+///   components are each subsampled at a factor of 2 both horizontally and vertically.
+/// - [`VideoChromaSubsampling422Khr`] - the format is 4:2:2 chroma subsampled. The two chroma
+///   components are sampled at half the sample rate of luma. The horizontal chroma resolution is
+///   halved.
+/// - [`VideoChromaSubsampling444Khr`] - the format is 4:4:4 chroma sampled. Each of the three YCbCr
+///   components have the same sample rate, thus there is no chroma subsampling.
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoChromaSubsamplingFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct VideoChromaSubsamplingFlagsKHR(u32);
+impl const Default for VideoChromaSubsamplingFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<VideoChromaSubsamplingFlagBitsKHR> for VideoChromaSubsamplingFlagsKHR {
+    fn from(from: VideoChromaSubsamplingFlagBitsKHR) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl VideoChromaSubsamplingFlagsKHR {
+    ///No documentation found
+    const VideoChromaSubsamplingInvalidKhr: Self = Self(0);
+    ///[`VideoChromaSubsamplingMonochromeKhr`] - the format is
+    ///monochrome.
+    const VideoChromaSubsamplingMonochromeKhr: Self = Self(1);
+    ///[`VideoChromaSubsampling420Khr`] - the format is 4:2:0
+    ///chroma subsampled.
+    ///The two chroma components are each subsampled at a factor of 2 both
+    ///horizontally and vertically.
+    const VideoChromaSubsampling420Khr: Self = Self(2);
+    ///[`VideoChromaSubsampling422Khr`] - the format is 4:2:2
+    ///chroma subsampled.
+    ///The two chroma components are sampled at half the sample rate of luma.
+    ///The horizontal chroma resolution is halved.
+    const VideoChromaSubsampling422Khr: Self = Self(4);
+    ///[`VideoChromaSubsampling444Khr`] - the format is 4:4:4
+    ///chroma sampled.
+    ///Each of the three YCbCr components have the same sample rate, thus there
+    ///is no chroma subsampling.
+    const VideoChromaSubsampling444Khr: Self = Self(8);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::VideoChromaSubsamplingInvalidKhr
+            | Self::VideoChromaSubsamplingMonochromeKhr
+            | Self::VideoChromaSubsampling420Khr
+            | Self::VideoChromaSubsampling422Khr
+            | Self::VideoChromaSubsampling444Khr
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for VideoChromaSubsamplingFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for VideoChromaSubsamplingFlagsKHR {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for VideoChromaSubsamplingFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for VideoChromaSubsamplingFlagsKHR {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for VideoChromaSubsamplingFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for VideoChromaSubsamplingFlagsKHR {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for VideoChromaSubsamplingFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for VideoChromaSubsamplingFlagsKHR {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for VideoChromaSubsamplingFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<VideoChromaSubsamplingFlagsKHR> for VideoChromaSubsamplingFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoChromaSubsamplingFlagsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<VideoChromaSubsamplingFlagBitsKHR> for VideoChromaSubsamplingFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoChromaSubsamplingFlagBitsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(VideoChromaSubsamplingFlagsKHR::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<VideoChromaSubsamplingFlagsKHR> for VideoChromaSubsamplingFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoChromaSubsamplingFlagsKHR>>(
+        iterator: T,
+    ) -> VideoChromaSubsamplingFlagsKHR {
+        let mut out = VideoChromaSubsamplingFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<VideoChromaSubsamplingFlagBitsKHR> for VideoChromaSubsamplingFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoChromaSubsamplingFlagBitsKHR>>(
+        iterator: T,
+    ) -> VideoChromaSubsamplingFlagsKHR {
+        let mut out = VideoChromaSubsamplingFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for VideoChromaSubsamplingFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(VideoChromaSubsamplingFlagsKHR);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == VideoChromaSubsamplingFlagsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(VideoChromaSubsamplingFlagsKHR::VideoChromaSubsamplingInvalidKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoChromaSubsamplingInvalidKhr))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoChromaSubsamplingFlagsKHR::VideoChromaSubsamplingMonochromeKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoChromaSubsamplingMonochromeKhr))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoChromaSubsamplingFlagsKHR::VideoChromaSubsampling420Khr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoChromaSubsampling420Khr))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoChromaSubsamplingFlagsKHR::VideoChromaSubsampling422Khr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoChromaSubsampling422Khr))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoChromaSubsamplingFlagsKHR::VideoChromaSubsampling444Khr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoChromaSubsampling444Khr))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(VideoChromaSubsamplingFlagsKHR))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkVideoComponentBitDepthFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoComponentBitDepthFlagBitsKHR.html) - Video component bit depth
+///# C Specifications
+///The video format component bit depth is defined with the following enums:
+///```c
+///// Provided by VK_KHR_video_queue
+///typedef enum VkVideoComponentBitDepthFlagBitsKHR {
+///    VK_VIDEO_COMPONENT_BIT_DEPTH_INVALID_KHR = 0,
+///    VK_VIDEO_COMPONENT_BIT_DEPTH_8_BIT_KHR = 0x00000001,
+///    VK_VIDEO_COMPONENT_BIT_DEPTH_10_BIT_KHR = 0x00000004,
+///    VK_VIDEO_COMPONENT_BIT_DEPTH_12_BIT_KHR = 0x00000010,
+///} VkVideoComponentBitDepthFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoComponentDepth8Khr`] - the format component bit depth is 8 bits.
+/// - [`VideoComponentDepth10Khr`] - the format component bit depth is 10 bits.
+/// - [`VideoComponentDepth12Khr`] - the format component bit depth is 12 bits.
+///# Related
+/// - [`VK_KHR_video_queue`]
+/// - [`VideoComponentBitDepthFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct VideoComponentBitDepthFlagsKHR(u32);
+impl const Default for VideoComponentBitDepthFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<VideoComponentBitDepthFlagBitsKHR> for VideoComponentBitDepthFlagsKHR {
+    fn from(from: VideoComponentBitDepthFlagBitsKHR) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl VideoComponentBitDepthFlagsKHR {
+    ///No documentation found
+    const VideoComponentDepthInvalidKhr: Self = Self(0);
+    ///[`VideoComponentDepth8Khr`] - the format component bit
+    ///depth is 8 bits.
+    const VideoComponentDepth8Khr: Self = Self(1);
+    ///[`VideoComponentDepth10Khr`] - the format component bit
+    ///depth is 10 bits.
+    const VideoComponentDepth10Khr: Self = Self(4);
+    ///[`VideoComponentDepth12Khr`] - the format component bit
+    ///depth is 12 bits.
+    const VideoComponentDepth12Khr: Self = Self(16);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::VideoComponentDepthInvalidKhr
+            | Self::VideoComponentDepth8Khr
+            | Self::VideoComponentDepth10Khr
+            | Self::VideoComponentDepth12Khr
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for VideoComponentBitDepthFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for VideoComponentBitDepthFlagsKHR {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for VideoComponentBitDepthFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for VideoComponentBitDepthFlagsKHR {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for VideoComponentBitDepthFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for VideoComponentBitDepthFlagsKHR {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for VideoComponentBitDepthFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for VideoComponentBitDepthFlagsKHR {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for VideoComponentBitDepthFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<VideoComponentBitDepthFlagsKHR> for VideoComponentBitDepthFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoComponentBitDepthFlagsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<VideoComponentBitDepthFlagBitsKHR> for VideoComponentBitDepthFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoComponentBitDepthFlagBitsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(VideoComponentBitDepthFlagsKHR::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<VideoComponentBitDepthFlagsKHR> for VideoComponentBitDepthFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoComponentBitDepthFlagsKHR>>(
+        iterator: T,
+    ) -> VideoComponentBitDepthFlagsKHR {
+        let mut out = VideoComponentBitDepthFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<VideoComponentBitDepthFlagBitsKHR> for VideoComponentBitDepthFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoComponentBitDepthFlagBitsKHR>>(
+        iterator: T,
+    ) -> VideoComponentBitDepthFlagsKHR {
+        let mut out = VideoComponentBitDepthFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for VideoComponentBitDepthFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(VideoComponentBitDepthFlagsKHR);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == VideoComponentBitDepthFlagsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(VideoComponentBitDepthFlagsKHR::VideoComponentDepthInvalidKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoComponentDepthInvalidKhr))?;
+                    }
+                    if self.0.contains(VideoComponentBitDepthFlagsKHR::VideoComponentDepth8Khr) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoComponentDepth8Khr))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoComponentBitDepthFlagsKHR::VideoComponentDepth10Khr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoComponentDepth10Khr))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoComponentBitDepthFlagsKHR::VideoComponentDepth12Khr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoComponentDepth12Khr))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(VideoComponentBitDepthFlagsKHR))
+            .field(&Flags(*self))
+            .finish()
     }
 }
 ///[VkVideoQueueFamilyProperties2KHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoQueueFamilyProperties2KHR.html) - Structure specifying the codec video operations

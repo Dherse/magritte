@@ -1,3 +1,77 @@
+//![VK_EXT_video_decode_h264](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_video_decode_h264.html) - device extension
+//!# Revision
+//!3
+//!# Dependencies
+//! - Requires Vulkan 1.0
+//! - Requires `[`VK_KHR_video_decode_queue`]`
+//! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
+//!   of provisional header files for enablement and stability details.**
+//!# Contacts
+//! - [peter.fang@amd.com]()
+//!# New structures
+//! - Extending [`VideoDecodeCapabilitiesKHR`]:  - [`VideoDecodeH264CapabilitiesEXT`]
+//! - Extending [`VideoDecodeH264PictureInfoEXT`]:  - [`VideoDecodeH264MvcEXT`]
+//! - Extending [`VideoDecodeInfoKHR`]:  - [`VideoDecodeH264PictureInfoEXT`]
+//! - Extending [`VideoProfileKHR`], [`QueryPoolCreateInfo`], [`FormatProperties2`],
+//!   [`ImageCreateInfo`], [`ImageViewCreateInfo`], [`BufferCreateInfo`]:  -
+//!   [`VideoDecodeH264ProfileEXT`]
+//! - Extending [`VideoReferenceSlotKHR`]:  - [`VideoDecodeH264DpbSlotInfoEXT`]
+//! - Extending [`VideoSessionCreateInfoKHR`]:  - [`VideoDecodeH264SessionCreateInfoEXT`]
+//! - Extending [`VideoSessionParametersCreateInfoKHR`]:  -
+//!   [`VideoDecodeH264SessionParametersCreateInfoEXT`]
+//! - Extending [`VideoSessionParametersUpdateInfoKHR`]:  -
+//!   [`VideoDecodeH264SessionParametersAddInfoEXT`]
+//!# New enums
+//! - [`VideoDecodeH264PictureLayoutFlagBitsEXT`]
+//!# New bitmasks
+//! - [`VideoDecodeH264CreateFlagsEXT`]
+//! - [`VideoDecodeH264PictureLayoutFlagsEXT`]
+//!# New constants
+//! - [`EXT_VIDEO_DECODE_H264_EXTENSION_NAME`]
+//! - [`EXT_VIDEO_DECODE_H264_SPEC_VERSION`]
+//! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_CAPABILITIES_EXT`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_DPB_SLOT_INFO_EXT`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_MVC_EXT`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_PICTURE_INFO_EXT`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_PROFILE_EXT`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_CREATE_INFO_EXT`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_PARAMETERS_ADD_INFO_EXT`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_EXT`
+//! - Extending [`VideoCodecOperationFlagBitsKHR`]:  -
+//!   `VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_EXT`
+//!# Version History
+//! - Revision 1, 2018-6-11 (Peter Fang)  - Initial draft
+//! - Revision 2, March 29 2021 (Tony Zlatinski)  - Spec and API Updates
+//! - Revision 3, August 1 2021 (Srinath Kumarapuram)  - Rename
+//!   `VkVideoDecodeH264FieldLayoutFlagsEXT` to [`VideoDecodeH264PictureLayoutFlagsEXT`],
+//!   `VkVideoDecodeH264FieldLayoutFlagBitsEXT` to [`VideoDecodeH264PictureLayoutFlagBitsEXT`]
+//!   (along with the names of enumerants it defines), and `VkVideoDecodeH264ProfileEXT.fieldLayout`
+//!   to `VkVideoDecodeH264ProfileEXT.pictureLayout`, following Vulkan naming conventions.
+//!# Other info
+//! * 2021-03-29
+//! * No known IP claims.
+//! * - Chunbo Chen, Intel  - HoHin Lau, AMD  - Jake Beju, AMD  - Peter Fang, AMD  - Ping Liu, Intel
+//!   - Srinath Kumarapuram, NVIDIA  - Tony Zlatinski, NVIDIA
+//!# Related
+//! - [`VideoDecodeH264CapabilitiesEXT`]
+//! - [`VideoDecodeH264CreateFlagsEXT`]
+//! - [`VideoDecodeH264DpbSlotInfoEXT`]
+//! - [`VideoDecodeH264MvcEXT`]
+//! - [`VideoDecodeH264PictureInfoEXT`]
+//! - [`VideoDecodeH264PictureLayoutFlagBitsEXT`]
+//! - [`VideoDecodeH264PictureLayoutFlagsEXT`]
+//! - [`VideoDecodeH264ProfileEXT`]
+//! - [`VideoDecodeH264SessionCreateInfoEXT`]
+//! - [`VideoDecodeH264SessionParametersAddInfoEXT`]
+//! - [`VideoDecodeH264SessionParametersCreateInfoEXT`]
+//!
+//!# Notes and documentation
+//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+//!
+//!This documentation is generated from the Vulkan specification and documentation.
+//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+//! Commons Attribution 4.0 International*.
+//!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     native::{
         StdVideoDecodeH264Mvc, StdVideoDecodeH264PictureInfo, StdVideoDecodeH264ReferenceInfo,
@@ -5,6 +79,10 @@ use crate::{
     },
     vulkan1_0::{BaseInStructure, BaseOutStructure, ExtensionProperties, Offset2D, StructureType},
 };
+#[cfg(feature = "bytemuck")]
+use bytemuck::{Pod, Zeroable};
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -14,6 +92,439 @@ pub const EXT_VIDEO_DECODE_H264_SPEC_VERSION: u32 = 3;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_VIDEO_DECODE_H264_EXTENSION_NAME")]
 pub const EXT_VIDEO_DECODE_H264_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_video_decode_h264");
+///[VkVideoDecodeH264PictureLayoutFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeH264PictureLayoutFlagBitsEXT.html) - H.264 video decode picture layout flags
+///# C Specifications
+///The H.264 video decode picture layout flags are defined with the following
+///enum:
+///```c
+///// Provided by VK_EXT_video_decode_h264
+///typedef enum VkVideoDecodeH264PictureLayoutFlagBitsEXT {
+///    VK_VIDEO_DECODE_H264_PICTURE_LAYOUT_PROGRESSIVE_EXT = 0,
+///    VK_VIDEO_DECODE_H264_PICTURE_LAYOUT_INTERLACED_INTERLEAVED_LINES_BIT_EXT = 0x00000001,
+///    VK_VIDEO_DECODE_H264_PICTURE_LAYOUT_INTERLACED_SEPARATE_PLANES_BIT_EXT = 0x00000002,
+///} VkVideoDecodeH264PictureLayoutFlagBitsEXT;
+///```
+///# Description
+/// - [`VideoDecodeH264PictureLayoutProgressiveExt`] specifies support for progressive content. This
+///   flag has the value `0`.
+/// - [`VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt`] specifies support for or use of
+///   a picture layout for interlaced content where all lines belonging to the first field are
+///   decoded to the even-numbered lines within the picture resource, and all lines belonging to the
+///   second field are decoded to the odd-numbered lines within the picture resource.
+/// - [`VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt`] specifies support for or use of a
+///   picture layout for interlaced content where all lines belonging to the first field are grouped
+///   together in a single plane, followed by another plane containing all lines belonging to the
+///   second field.
+///# Related
+/// - [`VK_EXT_video_decode_h264`]
+/// - [`VideoDecodeH264PictureLayoutFlagsEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoDecodeH264PictureLayoutFlagBitsEXT")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum VideoDecodeH264PictureLayoutFlagBitsEXT {
+    ///[`VideoDecodeH264PictureLayoutProgressiveExt`] specifies
+    ///support for progressive content.
+    ///This flag has the value `0`.
+    VideoDecodeH264PictureLayoutProgressiveExt = 0,
+    ///[`VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt`]
+    ///specifies support for or use of a picture layout for interlaced content
+    ///where all lines belonging to the first field are decoded to the
+    ///even-numbered lines within the picture resource, and all lines belonging
+    ///to the second field are decoded to the odd-numbered lines within the
+    ///picture resource.
+    VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt = 1,
+    ///[`VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt`]
+    ///specifies support for or use of a picture layout for interlaced content
+    ///where all lines belonging to the first field are grouped together in a
+    ///single plane, followed by another plane containing all lines belonging
+    ///to the second field.
+    VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt = 2,
+}
+impl const Default for VideoDecodeH264PictureLayoutFlagBitsEXT {
+    fn default() -> Self {
+        Self::VideoDecodeH264PictureLayoutProgressiveExt
+    }
+}
+impl VideoDecodeH264PictureLayoutFlagBitsEXT {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkVideoDecodeH264PictureLayoutFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeH264PictureLayoutFlagBitsEXT.html) - H.264 video decode picture layout flags
+///# C Specifications
+///The H.264 video decode picture layout flags are defined with the following
+///enum:
+///```c
+///// Provided by VK_EXT_video_decode_h264
+///typedef enum VkVideoDecodeH264PictureLayoutFlagBitsEXT {
+///    VK_VIDEO_DECODE_H264_PICTURE_LAYOUT_PROGRESSIVE_EXT = 0,
+///    VK_VIDEO_DECODE_H264_PICTURE_LAYOUT_INTERLACED_INTERLEAVED_LINES_BIT_EXT = 0x00000001,
+///    VK_VIDEO_DECODE_H264_PICTURE_LAYOUT_INTERLACED_SEPARATE_PLANES_BIT_EXT = 0x00000002,
+///} VkVideoDecodeH264PictureLayoutFlagBitsEXT;
+///```
+///# Description
+/// - [`VideoDecodeH264PictureLayoutProgressiveExt`] specifies support for progressive content. This
+///   flag has the value `0`.
+/// - [`VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt`] specifies support for or use of
+///   a picture layout for interlaced content where all lines belonging to the first field are
+///   decoded to the even-numbered lines within the picture resource, and all lines belonging to the
+///   second field are decoded to the odd-numbered lines within the picture resource.
+/// - [`VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt`] specifies support for or use of a
+///   picture layout for interlaced content where all lines belonging to the first field are grouped
+///   together in a single plane, followed by another plane containing all lines belonging to the
+///   second field.
+///# Related
+/// - [`VK_EXT_video_decode_h264`]
+/// - [`VideoDecodeH264PictureLayoutFlagsEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct VideoDecodeH264PictureLayoutFlagsEXT(u32);
+impl const Default for VideoDecodeH264PictureLayoutFlagsEXT {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<VideoDecodeH264PictureLayoutFlagBitsEXT> for VideoDecodeH264PictureLayoutFlagsEXT {
+    fn from(from: VideoDecodeH264PictureLayoutFlagBitsEXT) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl VideoDecodeH264PictureLayoutFlagsEXT {
+    ///[`VideoDecodeH264PictureLayoutProgressiveExt`] specifies
+    ///support for progressive content.
+    ///This flag has the value `0`.
+    const VideoDecodeH264PictureLayoutProgressiveExt: Self = Self(0);
+    ///[`VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt`]
+    ///specifies support for or use of a picture layout for interlaced content
+    ///where all lines belonging to the first field are decoded to the
+    ///even-numbered lines within the picture resource, and all lines belonging
+    ///to the second field are decoded to the odd-numbered lines within the
+    ///picture resource.
+    const VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt: Self = Self(1);
+    ///[`VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt`]
+    ///specifies support for or use of a picture layout for interlaced content
+    ///where all lines belonging to the first field are grouped together in a
+    ///single plane, followed by another plane containing all lines belonging
+    ///to the second field.
+    const VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt: Self = Self(2);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::VideoDecodeH264PictureLayoutProgressiveExt
+            | Self::VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt
+            | Self::VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for VideoDecodeH264PictureLayoutFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for VideoDecodeH264PictureLayoutFlagsEXT {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for VideoDecodeH264PictureLayoutFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for VideoDecodeH264PictureLayoutFlagsEXT {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for VideoDecodeH264PictureLayoutFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for VideoDecodeH264PictureLayoutFlagsEXT {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for VideoDecodeH264PictureLayoutFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for VideoDecodeH264PictureLayoutFlagsEXT {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for VideoDecodeH264PictureLayoutFlagsEXT {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<VideoDecodeH264PictureLayoutFlagsEXT> for VideoDecodeH264PictureLayoutFlagsEXT {
+    fn extend<T: std::iter::IntoIterator<Item = VideoDecodeH264PictureLayoutFlagsEXT>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<VideoDecodeH264PictureLayoutFlagBitsEXT> for VideoDecodeH264PictureLayoutFlagsEXT {
+    fn extend<T: std::iter::IntoIterator<Item = VideoDecodeH264PictureLayoutFlagBitsEXT>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(VideoDecodeH264PictureLayoutFlagsEXT::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<VideoDecodeH264PictureLayoutFlagsEXT> for VideoDecodeH264PictureLayoutFlagsEXT {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoDecodeH264PictureLayoutFlagsEXT>>(
+        iterator: T,
+    ) -> VideoDecodeH264PictureLayoutFlagsEXT {
+        let mut out = VideoDecodeH264PictureLayoutFlagsEXT::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<VideoDecodeH264PictureLayoutFlagBitsEXT> for VideoDecodeH264PictureLayoutFlagsEXT {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoDecodeH264PictureLayoutFlagBitsEXT>>(
+        iterator: T,
+    ) -> VideoDecodeH264PictureLayoutFlagsEXT {
+        let mut out = VideoDecodeH264PictureLayoutFlagsEXT::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for VideoDecodeH264PictureLayoutFlagsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(VideoDecodeH264PictureLayoutFlagsEXT);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == VideoDecodeH264PictureLayoutFlagsEXT::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(VideoDecodeH264PictureLayoutFlagsEXT::VideoDecodeH264PictureLayoutProgressiveExt)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoDecodeH264PictureLayoutProgressiveExt))?;
+                    }
+                    if self.0.contains(
+                        VideoDecodeH264PictureLayoutFlagsEXT::VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt,
+                    ) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt))?;
+                    }
+                    if self.0.contains(
+                        VideoDecodeH264PictureLayoutFlagsEXT::VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt,
+                    ) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(VideoDecodeH264PictureLayoutFlagsEXT))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkVideoDecodeH264CreateFlagsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeH264CreateFlagsEXT.html) - Reserved for future use
+///# C Specifications
+///```c
+///// Provided by VK_EXT_video_decode_h264
+///typedef VkFlags VkVideoDecodeH264CreateFlagsEXT;
+///```
+///# Related
+/// - [`VK_EXT_video_decode_h264`]
+/// - [`VideoDecodeH264SessionCreateInfoEXT`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct VideoDecodeH264CreateFlagsEXT(u32);
+impl const Default for VideoDecodeH264CreateFlagsEXT {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl std::fmt::Debug for VideoDecodeH264CreateFlagsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoDecodeH264CreateFlagsEXT))
+            .field(&self.0)
+            .finish()
+    }
+}
 ///[VkVideoDecodeH264ProfileEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeH264ProfileEXT.html) - Structure specifying H.264 decode profile
 ///# C Specifications
 ///The [`VideoDecodeH264ProfileEXT`] structure is defined as:

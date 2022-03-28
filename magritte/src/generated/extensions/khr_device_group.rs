@@ -1,8 +1,134 @@
+//![VK_KHR_device_group](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_device_group.html) - device extension
+//!# Description
+//!This extension provides functionality to use a logical device that consists
+//!of multiple physical devices, as created with the
+//!`[`VK_KHR_device_group_creation`]` extension.
+//!A device group can allocate memory across the subdevices, bind memory from
+//!one subdevice to a resource on another subdevice, record command buffers
+//!where some work executes on an arbitrary subset of the subdevices, and
+//!potentially present a swapchain image from one or more subdevices.
+//!# Revision
+//!4
+//!# Dependencies
+//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+//!# Dependencies
+//! - Requires Vulkan 1.0
+//! - Requires `[`VK_KHR_device_group_creation`]`
+//!# Contacts
+//! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_device_group]
+//!   @jeffbolznv%0A<<Here describe the issue or question you have about the VK_KHR_device_group
+//!   extension>>)
+//!# New functions & commands
+//! - [`CmdDispatchBaseKHR`]
+//! - [`CmdSetDeviceMaskKHR`]
+//! - [`GetDeviceGroupPeerMemoryFeaturesKHR`]
+//!If [`VK_KHR_surface`] is supported:
+//! - [`GetDeviceGroupPresentCapabilitiesKHR`]
+//! - [`GetDeviceGroupSurfacePresentModesKHR`]
+//! - [`GetPhysicalDevicePresentRectanglesKHR`]
+//!If [`VK_KHR_swapchain`] is supported:
+//! - [`AcquireNextImage2KHR`]
+//!# New structures
+//! - Extending [`BindSparseInfo`]:  - [`DeviceGroupBindSparseInfoKHR`]
+//! - Extending [`CommandBufferBeginInfo`]:  - [`DeviceGroupCommandBufferBeginInfoKHR`]
+//! - Extending [`MemoryAllocateInfo`]:  - [`MemoryAllocateFlagsInfoKHR`]
+//! - Extending [`RenderPassBeginInfo`], [`RenderingInfo`]:  - [`DeviceGroupRenderPassBeginInfoKHR`]
+//! - Extending [`SubmitInfo`]:  - [`DeviceGroupSubmitInfoKHR`]
+//!If [`VK_KHR_bind_memory2`] is supported:
+//! - Extending [`BindBufferMemoryInfo`]:  - [`BindBufferMemoryDeviceGroupInfoKHR`]
+//! - Extending [`BindImageMemoryInfo`]:  - [`BindImageMemoryDeviceGroupInfoKHR`]
+//!If [`VK_KHR_surface`] is supported:
+//! - [`DeviceGroupPresentCapabilitiesKHR`]
+//!If [`VK_KHR_swapchain`] is supported:
+//! - [`AcquireNextImageInfoKHR`]
+//! - Extending [`BindImageMemoryInfo`]:  - [`BindImageMemorySwapchainInfoKHR`]
+//! - Extending [`ImageCreateInfo`]:  - [`ImageSwapchainCreateInfoKHR`]
+//! - Extending [`PresentInfoKHR`]:  - [`DeviceGroupPresentInfoKHR`]
+//! - Extending [`SwapchainCreateInfoKHR`]:  - [`DeviceGroupSwapchainCreateInfoKHR`]
+//!# New enums
+//! - [`MemoryAllocateFlagBitsKHR`]
+//! - [`PeerMemoryFeatureFlagBitsKHR`]
+//!If [`VK_KHR_surface`] is supported:
+//! - [`DeviceGroupPresentModeFlagBitsKHR`]
+//!# New bitmasks
+//! - [`MemoryAllocateFlagsKHR`]
+//! - [`PeerMemoryFeatureFlagsKHR`]
+//!If [`VK_KHR_surface`] is supported:
+//! - [`DeviceGroupPresentModeFlagsKHR`]
+//!# New constants
+//! - [`KHR_DEVICE_GROUP_EXTENSION_NAME`]
+//! - [`KHR_DEVICE_GROUP_SPEC_VERSION`]
+//! - Extending [`DependencyFlagBits`]:  - `VK_DEPENDENCY_DEVICE_GROUP_BIT_KHR`
+//! - Extending [`MemoryAllocateFlagBits`]:  - `VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT_KHR`
+//! - Extending [`PeerMemoryFeatureFlagBits`]:  - `VK_PEER_MEMORY_FEATURE_COPY_DST_BIT_KHR`  -
+//!   `VK_PEER_MEMORY_FEATURE_COPY_SRC_BIT_KHR`  - `VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT_KHR`  -
+//!   `VK_PEER_MEMORY_FEATURE_GENERIC_SRC_BIT_KHR`
+//! - Extending [`PipelineCreateFlagBits`]:  - `VK_PIPELINE_CREATE_DISPATCH_BASE_KHR`  -
+//!   `VK_PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT_KHR`
+//! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO_KHR`
+//!If [`VK_KHR_bind_memory2`] is supported:
+//! - Extending [`ImageCreateFlagBits`]:  - `VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR`
+//! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO_KHR`
+//!   - `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHR`
+//!If [`VK_KHR_surface`] is supported:
+//! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_CAPABILITIES_KHR`
+//!If [`VK_KHR_swapchain`] is supported:
+//! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ACQUIRE_NEXT_IMAGE_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_IMAGE_SWAPCHAIN_CREATE_INFO_KHR`
+//! - Extending [`SwapchainCreateFlagBitsKHR`]:  -
+//!   `VK_SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR`
+//!# Version History
+//! - Revision 1, 2016-10-19 (Jeff Bolz)  - Internal revisions
+//! - Revision 2, 2017-05-19 (Tobias Hector)  - Removed extended memory bind functions to
+//!   VK_KHR_bind_memory2, added dependency on that extension, and device-group-specific structs for
+//!   those functions.
+//! - Revision 3, 2017-10-06 (Ian Elliott)  - Corrected Vulkan 1.1 interactions with the WSI
+//!   extensions. All Vulkan 1.1 WSI interactions are with the VK_KHR_swapchain extension.
+//! - Revision 4, 2017-10-10 (Jeff Bolz)  - Rename “SFR” bits and structure members to use the
+//!   phrase “split instance bind regions”.
+//!# Other info
+//! * 2017-10-10
+//! * No known IP claims.
+//! * - This extension requires [`SPV_KHR_device_group`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_device_group.html)
+//!   - Promoted to Vulkan 1.1 Core
+//! * - Jeff Bolz, NVIDIA  - Tobias Hector, Imagination Technologies
+//!# Related
+//! - [`DeviceGroupBindSparseInfoKHR`]
+//! - [`DeviceGroupCommandBufferBeginInfoKHR`]
+//! - [`DeviceGroupRenderPassBeginInfoKHR`]
+//! - [`DeviceGroupSubmitInfoKHR`]
+//! - [`MemoryAllocateFlagBitsKHR`]
+//! - [`MemoryAllocateFlagsInfoKHR`]
+//! - [`MemoryAllocateFlagsKHR`]
+//! - [`PeerMemoryFeatureFlagBitsKHR`]
+//! - [`PeerMemoryFeatureFlagsKHR`]
+//! - [`CmdDispatchBaseKHR`]
+//! - [`CmdSetDeviceMaskKHR`]
+//! - [`GetDeviceGroupPeerMemoryFeaturesKHR`]
+//!
+//!# Notes and documentation
+//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+//!
+//!This documentation is generated from the Vulkan specification and documentation.
+//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+//! Commons Attribution 4.0 International*.
+//!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     extensions::khr_swapchain::SwapchainKHR,
     vulkan1_0::{BaseInStructure, BaseOutStructure, Fence, Semaphore, StructureType},
     vulkan1_1::MAX_DEVICE_GROUP_SIZE,
 };
+#[cfg(feature = "bytemuck")]
+use bytemuck::{Pod, Zeroable};
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -12,6 +138,442 @@ pub const KHR_DEVICE_GROUP_SPEC_VERSION: u32 = 4;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_DEVICE_GROUP_EXTENSION_NAME")]
 pub const KHR_DEVICE_GROUP_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_device_group");
+///[VkDeviceGroupPresentModeFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupPresentModeFlagBitsKHR.html) - Bitmask specifying supported device group present modes
+///# C Specifications
+///Bits which  **may**  be set in
+///[`DeviceGroupPresentCapabilitiesKHR::modes`], indicating which
+///device group presentation modes are supported, are:
+///```c
+///// Provided by VK_VERSION_1_1 with VK_KHR_swapchain, VK_KHR_device_group with VK_KHR_surface
+///typedef enum VkDeviceGroupPresentModeFlagBitsKHR {
+///    VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR = 0x00000001,
+///    VK_DEVICE_GROUP_PRESENT_MODE_REMOTE_BIT_KHR = 0x00000002,
+///    VK_DEVICE_GROUP_PRESENT_MODE_SUM_BIT_KHR = 0x00000004,
+///    VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR = 0x00000008,
+///} VkDeviceGroupPresentModeFlagBitsKHR;
+///```
+///# Description
+/// - [`DeviceGroupPresentModeLocalKhr`] specifies that any physical device with a presentation
+///   engine  **can**  present its own swapchain images.
+/// - [`DeviceGroupPresentModeRemoteKhr`] specifies that any physical device with a presentation
+///   engine  **can**  present swapchain images from any physical device in its `presentMask`.
+/// - [`DeviceGroupPresentModeSumKhr`] specifies that any physical device with a presentation engine
+///   **can**  present the sum of swapchain images from any physical devices in its `presentMask`.
+/// - [`DeviceGroupPresentModeLocalMultiDeviceKhr`] specifies that multiple physical devices with a
+///   presentation engine  **can**  each present their own swapchain images.
+///# Related
+/// - [`VK_KHR_device_group`]
+/// - [`VK_KHR_surface`]
+/// - [`VK_KHR_swapchain`]
+/// - [`crate::vulkan1_1`]
+/// - [`DeviceGroupPresentInfoKHR`]
+/// - [`DeviceGroupPresentModeFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceGroupPresentModeFlagBitsKHR")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum DeviceGroupPresentModeFlagBitsKHR {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`DeviceGroupPresentModeLocalKhr`] specifies that any
+    ///physical device with a presentation engine  **can**  present its own
+    ///swapchain images.
+    ///
+    ///Provided by [`crate::extensions::khr_swapchain`]
+    DeviceGroupPresentModeLocalKhr = 1,
+    ///[`DeviceGroupPresentModeRemoteKhr`] specifies that any
+    ///physical device with a presentation engine  **can**  present swapchain images
+    ///from any physical device in its `presentMask`.
+    ///
+    ///Provided by [`crate::extensions::khr_swapchain`]
+    DeviceGroupPresentModeRemoteKhr = 2,
+    ///[`DeviceGroupPresentModeSumKhr`] specifies that any
+    ///physical device with a presentation engine  **can**  present the sum of
+    ///swapchain images from any physical devices in its `presentMask`.
+    ///
+    ///Provided by [`crate::extensions::khr_swapchain`]
+    DeviceGroupPresentModeSumKhr = 4,
+    ///[`DeviceGroupPresentModeLocalMultiDeviceKhr`] specifies
+    ///that multiple physical devices with a presentation engine  **can**  each
+    ///present their own swapchain images.
+    ///
+    ///Provided by [`crate::extensions::khr_swapchain`]
+    DeviceGroupPresentModeLocalMultiDeviceKhr = 8,
+}
+impl const Default for DeviceGroupPresentModeFlagBitsKHR {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl DeviceGroupPresentModeFlagBitsKHR {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkDeviceGroupPresentModeFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupPresentModeFlagBitsKHR.html) - Bitmask specifying supported device group present modes
+///# C Specifications
+///Bits which  **may**  be set in
+///[`DeviceGroupPresentCapabilitiesKHR::modes`], indicating which
+///device group presentation modes are supported, are:
+///```c
+///// Provided by VK_VERSION_1_1 with VK_KHR_swapchain, VK_KHR_device_group with VK_KHR_surface
+///typedef enum VkDeviceGroupPresentModeFlagBitsKHR {
+///    VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR = 0x00000001,
+///    VK_DEVICE_GROUP_PRESENT_MODE_REMOTE_BIT_KHR = 0x00000002,
+///    VK_DEVICE_GROUP_PRESENT_MODE_SUM_BIT_KHR = 0x00000004,
+///    VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR = 0x00000008,
+///} VkDeviceGroupPresentModeFlagBitsKHR;
+///```
+///# Description
+/// - [`DeviceGroupPresentModeLocalKhr`] specifies that any physical device with a presentation
+///   engine  **can**  present its own swapchain images.
+/// - [`DeviceGroupPresentModeRemoteKhr`] specifies that any physical device with a presentation
+///   engine  **can**  present swapchain images from any physical device in its `presentMask`.
+/// - [`DeviceGroupPresentModeSumKhr`] specifies that any physical device with a presentation engine
+///   **can**  present the sum of swapchain images from any physical devices in its `presentMask`.
+/// - [`DeviceGroupPresentModeLocalMultiDeviceKhr`] specifies that multiple physical devices with a
+///   presentation engine  **can**  each present their own swapchain images.
+///# Related
+/// - [`VK_KHR_device_group`]
+/// - [`VK_KHR_surface`]
+/// - [`VK_KHR_swapchain`]
+/// - [`crate::vulkan1_1`]
+/// - [`DeviceGroupPresentInfoKHR`]
+/// - [`DeviceGroupPresentModeFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct DeviceGroupPresentModeFlagsKHR(u32);
+impl const Default for DeviceGroupPresentModeFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<DeviceGroupPresentModeFlagBitsKHR> for DeviceGroupPresentModeFlagsKHR {
+    fn from(from: DeviceGroupPresentModeFlagBitsKHR) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl DeviceGroupPresentModeFlagsKHR {
+    ///[`DeviceGroupPresentModeLocalKhr`] specifies that any
+    ///physical device with a presentation engine  **can**  present its own
+    ///swapchain images.
+    ///
+    ///Provided by [`crate::extensions::khr_swapchain`]
+    const DeviceGroupPresentModeLocalKhr: Self = Self(1);
+    ///[`DeviceGroupPresentModeRemoteKhr`] specifies that any
+    ///physical device with a presentation engine  **can**  present swapchain images
+    ///from any physical device in its `presentMask`.
+    ///
+    ///Provided by [`crate::extensions::khr_swapchain`]
+    const DeviceGroupPresentModeRemoteKhr: Self = Self(2);
+    ///[`DeviceGroupPresentModeSumKhr`] specifies that any
+    ///physical device with a presentation engine  **can**  present the sum of
+    ///swapchain images from any physical devices in its `presentMask`.
+    ///
+    ///Provided by [`crate::extensions::khr_swapchain`]
+    const DeviceGroupPresentModeSumKhr: Self = Self(4);
+    ///[`DeviceGroupPresentModeLocalMultiDeviceKhr`] specifies
+    ///that multiple physical devices with a presentation engine  **can**  each
+    ///present their own swapchain images.
+    ///
+    ///Provided by [`crate::extensions::khr_swapchain`]
+    const DeviceGroupPresentModeLocalMultiDeviceKhr: Self = Self(8);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::DeviceGroupPresentModeLocalKhr
+            | Self::DeviceGroupPresentModeRemoteKhr
+            | Self::DeviceGroupPresentModeSumKhr
+            | Self::DeviceGroupPresentModeLocalMultiDeviceKhr
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for DeviceGroupPresentModeFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for DeviceGroupPresentModeFlagsKHR {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for DeviceGroupPresentModeFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for DeviceGroupPresentModeFlagsKHR {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for DeviceGroupPresentModeFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for DeviceGroupPresentModeFlagsKHR {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for DeviceGroupPresentModeFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for DeviceGroupPresentModeFlagsKHR {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for DeviceGroupPresentModeFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<DeviceGroupPresentModeFlagsKHR> for DeviceGroupPresentModeFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = DeviceGroupPresentModeFlagsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<DeviceGroupPresentModeFlagBitsKHR> for DeviceGroupPresentModeFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = DeviceGroupPresentModeFlagBitsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(DeviceGroupPresentModeFlagsKHR::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<DeviceGroupPresentModeFlagsKHR> for DeviceGroupPresentModeFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = DeviceGroupPresentModeFlagsKHR>>(
+        iterator: T,
+    ) -> DeviceGroupPresentModeFlagsKHR {
+        let mut out = DeviceGroupPresentModeFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<DeviceGroupPresentModeFlagBitsKHR> for DeviceGroupPresentModeFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = DeviceGroupPresentModeFlagBitsKHR>>(
+        iterator: T,
+    ) -> DeviceGroupPresentModeFlagsKHR {
+        let mut out = DeviceGroupPresentModeFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(DeviceGroupPresentModeFlagsKHR);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == DeviceGroupPresentModeFlagsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(DeviceGroupPresentModeFlagsKHR::DeviceGroupPresentModeLocalKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DeviceGroupPresentModeLocalKhr))?;
+                    }
+                    if self
+                        .0
+                        .contains(DeviceGroupPresentModeFlagsKHR::DeviceGroupPresentModeRemoteKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DeviceGroupPresentModeRemoteKhr))?;
+                    }
+                    if self
+                        .0
+                        .contains(DeviceGroupPresentModeFlagsKHR::DeviceGroupPresentModeSumKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DeviceGroupPresentModeSumKhr))?;
+                    }
+                    if self
+                        .0
+                        .contains(DeviceGroupPresentModeFlagsKHR::DeviceGroupPresentModeLocalMultiDeviceKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DeviceGroupPresentModeLocalMultiDeviceKhr))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(DeviceGroupPresentModeFlagsKHR))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
 ///[VkDeviceGroupPresentCapabilitiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupPresentCapabilitiesKHR.html) - Present capabilities from other physical devices
 ///# C Specifications
 ///The [`DeviceGroupPresentCapabilitiesKHR`] structure is defined as:

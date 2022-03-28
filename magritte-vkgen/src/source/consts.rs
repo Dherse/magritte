@@ -4,6 +4,8 @@ use proc_macro2::{Ident, Span};
 
 use crate::{doc::Queryable, expr::Expr, origin::Origin, symbols::SymbolName, ty::Ty};
 
+use super::Source;
+
 /// A type constant.
 #[derive(Debug, Clone, PartialEq)]
 pub struct Const<'a> {
@@ -89,8 +91,8 @@ impl<'a> SymbolName<'a> for Const<'a> {
     }
 }
 
-impl<'a> Queryable for Const<'a> {
-    fn find(&self, _: &str) -> Option<&str> {
+impl<'a> Queryable<'a> for Const<'a> {
+    fn find(&self, _: &Source<'a>, _: &str) -> Option<&'a str> {
         None
     }
 }
@@ -161,8 +163,8 @@ impl<'a> ConstAlias<'a> {
     }
 }
 
-impl<'a> Queryable for ConstAlias<'a> {
-    fn find(&self, _: &str) -> Option<&str> {
+impl<'a> Queryable<'a> for ConstAlias<'a> {
+    fn find(&self, _: &Source<'a>, _: &str) -> Option<&'a str> {
         None
     }
 }

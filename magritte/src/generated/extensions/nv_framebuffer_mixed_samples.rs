@@ -1,3 +1,73 @@
+//![VK_NV_framebuffer_mixed_samples](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_NV_framebuffer_mixed_samples.html) - device extension
+//!# Description
+//!This extension allows multisample rendering with a raster and depth/stencil
+//!sample count that is larger than the color sample count.
+//!Rasterization and the results of the depth and stencil tests together
+//!determine the portion of a pixel that is “covered”.
+//!It can be useful to evaluate coverage at a higher frequency than color
+//!samples are stored.
+//!This coverage is then “reduced” to a collection of covered color samples,
+//!each having an opacity value corresponding to the fraction of the color
+//!sample covered.
+//!The opacity can optionally be blended into individual color samples.Rendering with fewer color
+//! samples than depth/stencil samples greatly
+//!reduces the amount of memory and bandwidth consumed by the color buffer.
+//!However, converting the coverage values into opacity introduces artifacts
+//!where triangles share edges and  **may**  not be suitable for normal triangle
+//!mesh rendering.One expected use case for this functionality is Stencil-then-Cover path
+//!rendering (similar to the OpenGL GL_NV_path_rendering extension).
+//!The stencil step determines the coverage (in the stencil buffer) for an
+//!entire path at the higher sample frequency, and then the cover step draws
+//!the path into the lower frequency color buffer using the coverage
+//!information to antialias path edges.
+//!With this two-step process, internal edges are fully covered when
+//!antialiasing is applied and there is no corruption on these edges.The key features of this
+//! extension are:
+//! - It allows render pass and framebuffer objects to be created where the number of samples in the
+//!   depth/stencil attachment in a subpass is a multiple of the number of samples in the color
+//!   attachments in the subpass.
+//! - A coverage reduction step is added to Fragment Operations which converts a set of covered
+//!   raster/depth/stencil samples to a set of color samples that perform blending and color writes.
+//!   The coverage reduction step also includes an optional coverage modulation step, multiplying
+//!   color values by a fractional opacity corresponding to the number of associated
+//!   raster/depth/stencil samples covered.
+//!# Revision
+//!1
+//!# Dependencies
+//! - Requires Vulkan 1.0
+//!# Contacts
+//! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_framebuffer_mixed_samples]
+//!   @jeffbolznv%0A<<Here describe the issue or question you have about the
+//!   VK_NV_framebuffer_mixed_samples extension>>)
+//!# New structures
+//! - Extending [`PipelineMultisampleStateCreateInfo`]:  -
+//!   [`PipelineCoverageModulationStateCreateInfoNV`]
+//!# New enums
+//! - [`CoverageModulationModeNV`]
+//!# New bitmasks
+//! - [`PipelineCoverageModulationStateCreateFlagsNV`]
+//!# New constants
+//! - [`NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME`]
+//! - [`NV_FRAMEBUFFER_MIXED_SAMPLES_SPEC_VERSION`]
+//! - Extending [`StructureType`]:  -
+//!   `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV`
+//!# Version History
+//! - Revision 1, 2017-06-04 (Jeff Bolz)  - Internal revisions
+//!# Other info
+//! * 2017-06-04
+//! * - Jeff Bolz, NVIDIA
+//!# Related
+//! - [`CoverageModulationModeNV`]
+//! - [`PipelineCoverageModulationStateCreateFlagsNV`]
+//! - [`PipelineCoverageModulationStateCreateInfoNV`]
+//!
+//!# Notes and documentation
+//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+//!
+//!This documentation is generated from the Vulkan specification and documentation.
+//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+//! Commons Attribution 4.0 International*.
+//!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::vulkan1_0::{BaseInStructure, Bool32, StructureType};
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -50,6 +120,7 @@ pub const NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME: &'static CStr = crate::cs
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum CoverageModulationModeNV {
     ///[`CoverageModulationModeNoneNv`] specifies that no components
@@ -67,7 +138,7 @@ pub enum CoverageModulationModeNV {
 }
 impl const Default for CoverageModulationModeNV {
     fn default() -> Self {
-        CoverageModulationModeNoneNv
+        Self::CoverageModulationModeNoneNv
     }
 }
 impl CoverageModulationModeNV {
@@ -85,6 +156,40 @@ impl CoverageModulationModeNV {
     #[inline]
     pub const unsafe fn from_bits(bits: i32) -> i32 {
         std::mem::transmute(bits)
+    }
+}
+///[VkPipelineCoverageModulationStateCreateFlagsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineCoverageModulationStateCreateFlagsNV.html) - Reserved for future use
+///# C Specifications
+///```c
+///// Provided by VK_NV_framebuffer_mixed_samples
+///typedef VkFlags VkPipelineCoverageModulationStateCreateFlagsNV;
+///```
+///# Related
+/// - [`VK_NV_framebuffer_mixed_samples`]
+/// - [`PipelineCoverageModulationStateCreateInfoNV`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct PipelineCoverageModulationStateCreateFlagsNV(u32);
+impl const Default for PipelineCoverageModulationStateCreateFlagsNV {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl std::fmt::Debug for PipelineCoverageModulationStateCreateFlagsNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(PipelineCoverageModulationStateCreateFlagsNV))
+            .field(&self.0)
+            .finish()
     }
 }
 ///[VkPipelineCoverageModulationStateCreateInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineCoverageModulationStateCreateInfoNV.html) - Structure specifying parameters controlling coverage modulation

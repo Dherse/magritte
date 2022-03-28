@@ -1,3 +1,117 @@
+//![VK_FUCHSIA_buffer_collection](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_FUCHSIA_buffer_collection.html) - device extension
+//!# Description
+//!A buffer collection is a collection of one or more buffers which were
+//!allocated together as a group and which all have the same properties.
+//!These properties describe the buffers' internal representation such as its
+//!dimensions and memory layout.
+//!This ensures that all of the buffers can be used interchangeably by tasks
+//!that require swapping among multiple buffers, such as double-buffered
+//!graphics rendering.By sharing such a collection of buffers between components, communication
+//!about buffer lifecycle can be made much simpler and more efficient.
+//!For example, when a content producer finishes writing to a buffer, it can
+//!message the consumer of the buffer with the buffer index, rather than
+//!passing a handle to the shared memory.On Fuchsia, the Sysmem service uses buffer collections as
+//! a core construct
+//!in its design.
+//!VK_FUCHSIA_buffer_collection is the Vulkan extension that allows Vulkan
+//!applications to interoperate with the Sysmem service on Fuchsia.
+//!# Revision
+//!2
+//!# Dependencies
+//! - Requires Vulkan 1.0
+//! - Requires `[`VK_FUCHSIA_external_memory`]`
+//! - Requires `[`VK_KHR_sampler_ycbcr_conversion`]`
+//!# Contacts
+//! - John Rosasco [rosasco](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_FUCHSIA_buffer_collection]
+//!   @rosasco%0A<<Here describe the issue or question you have about the
+//!   VK_FUCHSIA_buffer_collection extension>>)
+//!# New handles
+//! - [`BufferCollectionFUCHSIA`]
+//!# New functions & commands
+//! - [`CreateBufferCollectionFUCHSIA`]
+//! - [`DestroyBufferCollectionFUCHSIA`]
+//! - [`GetBufferCollectionPropertiesFUCHSIA`]
+//! - [`SetBufferCollectionBufferConstraintsFUCHSIA`]
+//! - [`SetBufferCollectionImageConstraintsFUCHSIA`]
+//!# New structures
+//! - [`BufferCollectionConstraintsInfoFUCHSIA`]
+//! - [`BufferCollectionCreateInfoFUCHSIA`]
+//! - [`BufferCollectionPropertiesFUCHSIA`]
+//! - [`BufferConstraintsInfoFUCHSIA`]
+//! - [`ImageConstraintsInfoFUCHSIA`]
+//! - [`ImageFormatConstraintsInfoFUCHSIA`]
+//! - [`SysmemColorSpaceFUCHSIA`]
+//! - Extending [`BufferCreateInfo`]:  - [`BufferCollectionBufferCreateInfoFUCHSIA`]
+//! - Extending [`ImageCreateInfo`]:  - [`BufferCollectionImageCreateInfoFUCHSIA`]
+//! - Extending [`MemoryAllocateInfo`]:  - [`ImportMemoryBufferCollectionFUCHSIA`]
+//!# New enums
+//! - [`ImageConstraintsInfoFlagBitsFUCHSIA`]
+//!# New bitmasks
+//! - [`ImageConstraintsInfoFlagsFUCHSIA`]
+//! - [`ImageFormatConstraintsFlagsFUCHSIA`]
+//!# New constants
+//! - [`FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME`]
+//! - [`FUCHSIA_BUFFER_COLLECTION_SPEC_VERSION`]
+//! - Extending [`DebugReportObjectTypeEXT`]:  -
+//!   `VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA_EXT`
+//! - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA`
+//! - Extending [`StructureType`]:  -
+//!   `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA`  -
+//!   `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA`  -
+//!   `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_CREATE_INFO_FUCHSIA`  -
+//!   `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA`  -
+//!   `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_PROPERTIES_FUCHSIA`  -
+//!   `VK_STRUCTURE_TYPE_BUFFER_CONSTRAINTS_INFO_FUCHSIA`  -
+//!   `VK_STRUCTURE_TYPE_IMAGE_CONSTRAINTS_INFO_FUCHSIA`  -
+//!   `VK_STRUCTURE_TYPE_IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA`  -
+//!   `VK_STRUCTURE_TYPE_IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA`  -
+//!   `VK_STRUCTURE_TYPE_SYSMEM_COLOR_SPACE_FUCHSIA`
+//!# Known issues & F.A.Q
+//!1) When configuring a [`ImageConstraintsInfoFUCHSIA`] structure for
+//!constraint setting, should a NULL `pFormatConstraints` parameter be
+//!allowed ? **RESOLVED** : No.
+//!Specifying a NULL `pFormatConstraints` results in logical complexity of
+//!interpreting the relationship between the
+//![`ImageCreateInfo::usage`] settings of the elements of the
+//!`pImageCreateInfos` array and the implied or desired
+//![`FormatFeatureFlags`].The explicit requirement for `pFormatConstraints` to be non-NULL
+//!simplifies the implied logic of the implementation and expectations for the
+//!Vulkan application.
+//!# Version History
+//! - Revision 2, 2021-09-23 (John Rosasco)  - Review passes
+//! - Revision 1, 2021-03-09 (John Rosasco)  - Initial revision
+//!# Other info
+//! * 2021-09-23
+//! * No known IP claims.
+//! * - Craig Stout, Google  - John Bauman, Google  - John Rosasco, Google
+//!# Related
+//! - [`BufferCollectionBufferCreateInfoFUCHSIA`]
+//! - [`BufferCollectionConstraintsInfoFUCHSIA`]
+//! - [`BufferCollectionCreateInfoFUCHSIA`]
+//! - [`BufferCollectionFUCHSIA`]
+//! - [`BufferCollectionImageCreateInfoFUCHSIA`]
+//! - [`BufferCollectionPropertiesFUCHSIA`]
+//! - [`BufferConstraintsInfoFUCHSIA`]
+//! - [`ImageConstraintsInfoFUCHSIA`]
+//! - [`ImageConstraintsInfoFlagBitsFUCHSIA`]
+//! - [`ImageConstraintsInfoFlagsFUCHSIA`]
+//! - [`ImageFormatConstraintsFlagsFUCHSIA`]
+//! - [`ImageFormatConstraintsInfoFUCHSIA`]
+//! - [`ImportMemoryBufferCollectionFUCHSIA`]
+//! - [`SysmemColorSpaceFUCHSIA`]
+//! - [`CreateBufferCollectionFUCHSIA`]
+//! - [`DestroyBufferCollectionFUCHSIA`]
+//! - [`GetBufferCollectionPropertiesFUCHSIA`]
+//! - [`SetBufferCollectionBufferConstraintsFUCHSIA`]
+//! - [`SetBufferCollectionImageConstraintsFUCHSIA`]
+//!
+//!# Notes and documentation
+//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+//!
+//!This documentation is generated from the Vulkan specification and documentation.
+//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+//! Commons Attribution 4.0 International*.
+//!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     native::zx_handle_t,
     vulkan1_0::{
@@ -6,6 +120,10 @@ use crate::{
     },
     vulkan1_1::{ChromaLocation, SamplerYcbcrModelConversion, SamplerYcbcrRange},
 };
+#[cfg(feature = "bytemuck")]
+use bytemuck::{Pod, Zeroable};
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -15,6 +133,461 @@ pub const FUCHSIA_BUFFER_COLLECTION_SPEC_VERSION: u32 = 2;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME")]
 pub const FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_FUCHSIA_buffer_collection");
+///[VkImageConstraintsInfoFlagBitsFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageConstraintsInfoFlagBitsFUCHSIA.html) - Bitmask specifying image constraints flags
+///# C Specifications
+///Bits which  **can**  be set in
+///[`ImageConstraintsInfoFlagBitsFUCHSIA`]`::flags` include:
+///```c
+///// Provided by VK_FUCHSIA_buffer_collection
+///typedef enum VkImageConstraintsInfoFlagBitsFUCHSIA {
+///    VK_IMAGE_CONSTRAINTS_INFO_CPU_READ_RARELY_FUCHSIA = 0x00000001,
+///    VK_IMAGE_CONSTRAINTS_INFO_CPU_READ_OFTEN_FUCHSIA = 0x00000002,
+///    VK_IMAGE_CONSTRAINTS_INFO_CPU_WRITE_RARELY_FUCHSIA = 0x00000004,
+///    VK_IMAGE_CONSTRAINTS_INFO_CPU_WRITE_OFTEN_FUCHSIA = 0x00000008,
+///    VK_IMAGE_CONSTRAINTS_INFO_PROTECTED_OPTIONAL_FUCHSIA = 0x00000010,
+///} VkImageConstraintsInfoFlagBitsFUCHSIA;
+///```
+///# Description
+///General hints about the type of memory that should be allocated by Sysmem
+///based on the expected usage of the images in the buffer collection include:
+/// - [`ImageConstraintsInfoCpuReadRarelyFuchsia`]
+/// - [`ImageConstraintsInfoCpuReadOftenFuchsia`]
+/// - [`ImageConstraintsInfoCpuWriteRarelyFuchsia`]
+/// - [`ImageConstraintsInfoCpuWriteOftenFuchsia`]
+///For protected memory:
+/// - [`ImageConstraintsInfoProtectedOptionalFuchsia`] specifies that protected memory is optional
+///   for the buffer collection.
+///Note that if all participants in the buffer collection (Vulkan or otherwise)
+///specify that protected memory is optional, Sysmem will not allocate
+///protected memory.
+///# Related
+/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`ImageConstraintsInfoFlagsFUCHSIA`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageConstraintsInfoFlagBitsFUCHSIA")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum ImageConstraintsInfoFlagBitsFUCHSIA {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`ImageConstraintsInfoCpuReadRarelyFuchsia`]
+    ImageConstraintsInfoCpuReadRarelyFuchsia = 1,
+    ///[`ImageConstraintsInfoCpuReadOftenFuchsia`]
+    ImageConstraintsInfoCpuReadOftenFuchsia = 2,
+    ///[`ImageConstraintsInfoCpuWriteRarelyFuchsia`]
+    ImageConstraintsInfoCpuWriteRarelyFuchsia = 4,
+    ///[`ImageConstraintsInfoCpuWriteOftenFuchsia`]
+    ImageConstraintsInfoCpuWriteOftenFuchsia = 8,
+    ///[`ImageConstraintsInfoProtectedOptionalFuchsia`] specifies
+    ///that protected memory is optional for the buffer collection.
+    ImageConstraintsInfoProtectedOptionalFuchsia = 16,
+}
+impl const Default for ImageConstraintsInfoFlagBitsFUCHSIA {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl ImageConstraintsInfoFlagBitsFUCHSIA {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkImageFormatConstraintsFlagsFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageFormatConstraintsFlagsFUCHSIA.html) - Reserved for future use
+///# C Specifications
+///```c
+///// Provided by VK_FUCHSIA_buffer_collection
+///typedef VkFlags VkImageFormatConstraintsFlagsFUCHSIA;
+///```
+///# Related
+/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`ImageFormatConstraintsInfoFUCHSIA`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct ImageFormatConstraintsFlagsFUCHSIA(u32);
+impl const Default for ImageFormatConstraintsFlagsFUCHSIA {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl std::fmt::Debug for ImageFormatConstraintsFlagsFUCHSIA {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ImageFormatConstraintsFlagsFUCHSIA))
+            .field(&self.0)
+            .finish()
+    }
+}
+///[VkImageConstraintsInfoFlagBitsFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageConstraintsInfoFlagBitsFUCHSIA.html) - Bitmask specifying image constraints flags
+///# C Specifications
+///Bits which  **can**  be set in
+///[`ImageConstraintsInfoFlagBitsFUCHSIA`]`::flags` include:
+///```c
+///// Provided by VK_FUCHSIA_buffer_collection
+///typedef enum VkImageConstraintsInfoFlagBitsFUCHSIA {
+///    VK_IMAGE_CONSTRAINTS_INFO_CPU_READ_RARELY_FUCHSIA = 0x00000001,
+///    VK_IMAGE_CONSTRAINTS_INFO_CPU_READ_OFTEN_FUCHSIA = 0x00000002,
+///    VK_IMAGE_CONSTRAINTS_INFO_CPU_WRITE_RARELY_FUCHSIA = 0x00000004,
+///    VK_IMAGE_CONSTRAINTS_INFO_CPU_WRITE_OFTEN_FUCHSIA = 0x00000008,
+///    VK_IMAGE_CONSTRAINTS_INFO_PROTECTED_OPTIONAL_FUCHSIA = 0x00000010,
+///} VkImageConstraintsInfoFlagBitsFUCHSIA;
+///```
+///# Description
+///General hints about the type of memory that should be allocated by Sysmem
+///based on the expected usage of the images in the buffer collection include:
+/// - [`ImageConstraintsInfoCpuReadRarelyFuchsia`]
+/// - [`ImageConstraintsInfoCpuReadOftenFuchsia`]
+/// - [`ImageConstraintsInfoCpuWriteRarelyFuchsia`]
+/// - [`ImageConstraintsInfoCpuWriteOftenFuchsia`]
+///For protected memory:
+/// - [`ImageConstraintsInfoProtectedOptionalFuchsia`] specifies that protected memory is optional
+///   for the buffer collection.
+///Note that if all participants in the buffer collection (Vulkan or otherwise)
+///specify that protected memory is optional, Sysmem will not allocate
+///protected memory.
+///# Related
+/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`ImageConstraintsInfoFlagsFUCHSIA`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct ImageConstraintsInfoFlagsFUCHSIA(u32);
+impl const Default for ImageConstraintsInfoFlagsFUCHSIA {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<ImageConstraintsInfoFlagBitsFUCHSIA> for ImageConstraintsInfoFlagsFUCHSIA {
+    fn from(from: ImageConstraintsInfoFlagBitsFUCHSIA) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl ImageConstraintsInfoFlagsFUCHSIA {
+    ///[`ImageConstraintsInfoCpuReadRarelyFuchsia`]
+    const ImageConstraintsInfoCpuReadRarelyFuchsia: Self = Self(1);
+    ///[`ImageConstraintsInfoCpuReadOftenFuchsia`]
+    const ImageConstraintsInfoCpuReadOftenFuchsia: Self = Self(2);
+    ///[`ImageConstraintsInfoCpuWriteRarelyFuchsia`]
+    const ImageConstraintsInfoCpuWriteRarelyFuchsia: Self = Self(4);
+    ///[`ImageConstraintsInfoCpuWriteOftenFuchsia`]
+    const ImageConstraintsInfoCpuWriteOftenFuchsia: Self = Self(8);
+    ///[`ImageConstraintsInfoProtectedOptionalFuchsia`] specifies
+    ///that protected memory is optional for the buffer collection.
+    const ImageConstraintsInfoProtectedOptionalFuchsia: Self = Self(16);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::ImageConstraintsInfoCpuReadRarelyFuchsia
+            | Self::ImageConstraintsInfoCpuReadOftenFuchsia
+            | Self::ImageConstraintsInfoCpuWriteRarelyFuchsia
+            | Self::ImageConstraintsInfoCpuWriteOftenFuchsia
+            | Self::ImageConstraintsInfoProtectedOptionalFuchsia
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for ImageConstraintsInfoFlagsFUCHSIA {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for ImageConstraintsInfoFlagsFUCHSIA {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for ImageConstraintsInfoFlagsFUCHSIA {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for ImageConstraintsInfoFlagsFUCHSIA {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for ImageConstraintsInfoFlagsFUCHSIA {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for ImageConstraintsInfoFlagsFUCHSIA {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for ImageConstraintsInfoFlagsFUCHSIA {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for ImageConstraintsInfoFlagsFUCHSIA {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for ImageConstraintsInfoFlagsFUCHSIA {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<ImageConstraintsInfoFlagsFUCHSIA> for ImageConstraintsInfoFlagsFUCHSIA {
+    fn extend<T: std::iter::IntoIterator<Item = ImageConstraintsInfoFlagsFUCHSIA>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<ImageConstraintsInfoFlagBitsFUCHSIA> for ImageConstraintsInfoFlagsFUCHSIA {
+    fn extend<T: std::iter::IntoIterator<Item = ImageConstraintsInfoFlagBitsFUCHSIA>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(ImageConstraintsInfoFlagsFUCHSIA::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<ImageConstraintsInfoFlagsFUCHSIA> for ImageConstraintsInfoFlagsFUCHSIA {
+    fn from_iter<T: std::iter::IntoIterator<Item = ImageConstraintsInfoFlagsFUCHSIA>>(
+        iterator: T,
+    ) -> ImageConstraintsInfoFlagsFUCHSIA {
+        let mut out = ImageConstraintsInfoFlagsFUCHSIA::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<ImageConstraintsInfoFlagBitsFUCHSIA> for ImageConstraintsInfoFlagsFUCHSIA {
+    fn from_iter<T: std::iter::IntoIterator<Item = ImageConstraintsInfoFlagBitsFUCHSIA>>(
+        iterator: T,
+    ) -> ImageConstraintsInfoFlagsFUCHSIA {
+        let mut out = ImageConstraintsInfoFlagsFUCHSIA::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for ImageConstraintsInfoFlagsFUCHSIA {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(ImageConstraintsInfoFlagsFUCHSIA);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == ImageConstraintsInfoFlagsFUCHSIA::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(ImageConstraintsInfoFlagsFUCHSIA::ImageConstraintsInfoCpuReadRarelyFuchsia)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ImageConstraintsInfoCpuReadRarelyFuchsia))?;
+                    }
+                    if self
+                        .0
+                        .contains(ImageConstraintsInfoFlagsFUCHSIA::ImageConstraintsInfoCpuReadOftenFuchsia)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ImageConstraintsInfoCpuReadOftenFuchsia))?;
+                    }
+                    if self
+                        .0
+                        .contains(ImageConstraintsInfoFlagsFUCHSIA::ImageConstraintsInfoCpuWriteRarelyFuchsia)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ImageConstraintsInfoCpuWriteRarelyFuchsia))?;
+                    }
+                    if self
+                        .0
+                        .contains(ImageConstraintsInfoFlagsFUCHSIA::ImageConstraintsInfoCpuWriteOftenFuchsia)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ImageConstraintsInfoCpuWriteOftenFuchsia))?;
+                    }
+                    if self
+                        .0
+                        .contains(ImageConstraintsInfoFlagsFUCHSIA::ImageConstraintsInfoProtectedOptionalFuchsia)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ImageConstraintsInfoProtectedOptionalFuchsia))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(ImageConstraintsInfoFlagsFUCHSIA))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
 ///[VkImportMemoryBufferCollectionFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportMemoryBufferCollectionFUCHSIA.html) - Structure to specify the Sysmem buffer to import
 ///# C Specifications
 ///The [`ImportMemoryBufferCollectionFUCHSIA`] structure is defined as:

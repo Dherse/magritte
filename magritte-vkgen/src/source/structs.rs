@@ -161,8 +161,8 @@ impl<'a> SymbolName<'a> for Struct<'a> {
     }
 }
 
-impl<'a> Queryable for Struct<'a> {
-    fn find(&self, name: &str) -> Option<&str> {
+impl<'a> Queryable<'a> for Struct<'a> {
+    fn find<'b>(&'b self, _: &'b Source<'a>, name: &str) -> Option<&'b str> {
         self.fields().get_by_either(name).map(Field::name)
     }
 }

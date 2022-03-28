@@ -1,3 +1,52 @@
+//![VK_AMD_shader_info](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_AMD_shader_info.html) - device extension
+//!# Description
+//!This extension adds a way to query certain information about a compiled
+//!shader which is part of a pipeline.
+//!This information may include shader disassembly, shader binary and various
+//!statistics about a shader’s resource usage.While this extension provides a mechanism for
+//! extracting this information,
+//!the details regarding the contents or format of this information are not
+//!specified by this extension and may be provided by the vendor externally.Furthermore, all
+//! information types are optionally supported, and users
+//!should not assume every implementation supports querying every type of
+//!information.
+//!# Revision
+//!1
+//!# Dependencies
+//! - Requires Vulkan 1.0
+//!# Contacts
+//! - Jaakko Konttinen [jaakkoamd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_shader_info]
+//!   @jaakkoamd%0A<<Here describe the issue or question you have about the VK_AMD_shader_info
+//!   extension>>)
+//!# New functions & commands
+//! - [`GetShaderInfoAMD`]
+//!# New structures
+//! - [`ShaderResourceUsageAMD`]
+//! - [`ShaderStatisticsInfoAMD`]
+//!# New enums
+//! - [`ShaderInfoTypeAMD`]
+//!# New constants
+//! - [`AMD_SHADER_INFO_EXTENSION_NAME`]
+//! - [`AMD_SHADER_INFO_SPEC_VERSION`]
+//!# Version History
+//! - Revision 1, 2017-10-09 (Jaakko Konttinen)  - Initial revision
+//!# Other info
+//! * 2017-10-09
+//! * No known IP claims.
+//! * - Jaakko Konttinen, AMD
+//!# Related
+//! - [`ShaderInfoTypeAMD`]
+//! - [`ShaderResourceUsageAMD`]
+//! - [`ShaderStatisticsInfoAMD`]
+//! - [`GetShaderInfoAMD`]
+//!
+//!# Notes and documentation
+//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+//!
+//!This documentation is generated from the Vulkan specification and documentation.
+//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+//! Commons Attribution 4.0 International*.
+//!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::vulkan1_0::ShaderStageFlags;
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -45,6 +94,7 @@ pub const AMD_SHADER_INFO_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_AMD_s
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum ShaderInfoTypeAMD {
     ///[`ShaderInfoTypeStatisticsAmd`] specifies that device resources
@@ -59,7 +109,7 @@ pub enum ShaderInfoTypeAMD {
 }
 impl const Default for ShaderInfoTypeAMD {
     fn default() -> Self {
-        ShaderInfoTypeStatisticsAmd
+        Self::ShaderInfoTypeStatisticsAmd
     }
 }
 impl ShaderInfoTypeAMD {

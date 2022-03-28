@@ -1,7 +1,101 @@
+//![VK_KHR_video_encode_queue](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_video_encode_queue.html) - device extension
+//!# Revision
+//!4
+//!# Dependencies
+//! - Requires Vulkan 1.0
+//! - Requires `[`VK_KHR_video_queue`]`
+//! - Requires `[`VK_KHR_synchronization2`]`
+//! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
+//!   of provisional header files for enablement and stability details.**
+//!# Contacts
+//! - Ahmed Abdelkhalek [aabdelkh](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_video_encode_queue]
+//!   @aabdelkh%0A<<Here describe the issue or question you have about the VK_KHR_video_encode_queue
+//!   extension>>)
+//!# New functions & commands
+//! - [`CmdEncodeVideoKHR`]
+//!# New structures
+//! - [`VideoEncodeInfoKHR`]
+//! - Extending [`VideoCapabilitiesKHR`]:  - [`VideoEncodeCapabilitiesKHR`]
+//! - Extending [`VideoCodingControlInfoKHR`]:  - [`VideoEncodeRateControlInfoKHR`]  -
+//!   [`VideoEncodeRateControlLayerInfoKHR`]
+//!# New enums
+//! - [`VideoEncodeCapabilityFlagBitsKHR`]
+//! - [`VideoEncodeFlagBitsKHR`]
+//! - [`VideoEncodeRateControlFlagBitsKHR`]
+//! - [`VideoEncodeRateControlModeFlagBitsKHR`]
+//!# New bitmasks
+//! - [`VideoEncodeCapabilityFlagsKHR`]
+//! - [`VideoEncodeFlagsKHR`]
+//! - [`VideoEncodeRateControlFlagsKHR`]
+//! - [`VideoEncodeRateControlModeFlagsKHR`]
+//!# New constants
+//! - [`KHR_VIDEO_ENCODE_QUEUE_EXTENSION_NAME`]
+//! - [`KHR_VIDEO_ENCODE_QUEUE_SPEC_VERSION`]
+//! - Extending [`AccessFlagBits2`]:  - `VK_ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR`  -
+//!   `VK_ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR`
+//! - Extending [`BufferUsageFlagBits`]:  - `VK_BUFFER_USAGE_VIDEO_ENCODE_DST_BIT_KHR`  -
+//!   `VK_BUFFER_USAGE_VIDEO_ENCODE_SRC_BIT_KHR`
+//! - Extending [`FormatFeatureFlagBits`]:  - `VK_FORMAT_FEATURE_VIDEO_ENCODE_DPB_BIT_KHR`  -
+//!   `VK_FORMAT_FEATURE_VIDEO_ENCODE_INPUT_BIT_KHR`
+//! - Extending [`ImageLayout`]:  - `VK_IMAGE_LAYOUT_VIDEO_ENCODE_DPB_KHR`  -
+//!   `VK_IMAGE_LAYOUT_VIDEO_ENCODE_DST_KHR`  - `VK_IMAGE_LAYOUT_VIDEO_ENCODE_SRC_KHR`
+//! - Extending [`ImageUsageFlagBits`]:  - `VK_IMAGE_USAGE_VIDEO_ENCODE_DPB_BIT_KHR`  -
+//!   `VK_IMAGE_USAGE_VIDEO_ENCODE_DST_BIT_KHR`  - `VK_IMAGE_USAGE_VIDEO_ENCODE_SRC_BIT_KHR`
+//! - Extending [`PipelineStageFlagBits2`]:  - `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
+//! - Extending [`QueryType`]:  - `VK_QUERY_TYPE_VIDEO_ENCODE_BITSTREAM_BUFFER_RANGE_KHR`
+//! - Extending [`QueueFlagBits`]:  - `VK_QUEUE_VIDEO_ENCODE_BIT_KHR`
+//! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_VIDEO_ENCODE_CAPABILITIES_KHR`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_LAYER_INFO_KHR`
+//!If [`VK_KHR_format_feature_flags2`] is supported:
+//! - Extending [`FormatFeatureFlagBits2`]:  - `VK_FORMAT_FEATURE_2_VIDEO_ENCODE_DPB_BIT_KHR`  -
+//!   `VK_FORMAT_FEATURE_2_VIDEO_ENCODE_INPUT_BIT_KHR`
+//!# Version History
+//! - Revision 1, 2018-07-23 (Ahmed Abdelkhalek)  - Initial draft
+//! - Revision 1.1, 10/29/2019 (Tony Zlatinski)  - Updated the reserved spec tokens and renamed
+//!   VkVideoEncoderKHR to VkVideoSessionKHR
+//! - Revision 1.6, Jan 08 2020 (Tony Zlatinski)  - API unify with the video_decode_queue spec
+//! - Revision 2, March 29 2021 (Tony Zlatinski)  - Spec and API updates.
+//! - Revision 3, 2021-09-30 (Jon Leech)  - Add interaction with `[`VK_KHR_format_feature_flags2`]`
+//!   to `vk.xml`
+//! - Revision 4, 2022-02-10 (Ahmed Abdelkhalek)  - Updates to encode capability interface
+//!# Other info
+//! * 2022-02-10
+//! * No known IP claims.
+//! * - Ahmed Abdelkhalek, AMD  - Damien Kessler, NVIDIA  - Daniel Rakos, AMD  - George Hao, AMD  -
+//!   Jake Beju, AMD  - Peter Fang, AMD  - Piers Daniell, NVIDIA  - Srinath Kumarapuram, NVIDIA  -
+//!   Thomas J. Meier, NVIDIA  - Tony Zlatinski, NVIDIA  - Yang Liu, AMD
+//!# Related
+//! - [`VideoEncodeCapabilitiesKHR`]
+//! - [`VideoEncodeCapabilityFlagBitsKHR`]
+//! - [`VideoEncodeCapabilityFlagsKHR`]
+//! - [`VideoEncodeFlagBitsKHR`]
+//! - [`VideoEncodeFlagsKHR`]
+//! - [`VideoEncodeInfoKHR`]
+//! - [`VideoEncodeRateControlFlagBitsKHR`]
+//! - [`VideoEncodeRateControlFlagsKHR`]
+//! - [`VideoEncodeRateControlInfoKHR`]
+//! - [`VideoEncodeRateControlLayerInfoKHR`]
+//! - [`VideoEncodeRateControlModeFlagBitsKHR`]
+//! - [`VideoEncodeRateControlModeFlagsKHR`]
+//! - [`CmdEncodeVideoKHR`]
+//!
+//!# Notes and documentation
+//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+//!
+//!This documentation is generated from the Vulkan specification and documentation.
+//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+//! Commons Attribution 4.0 International*.
+//!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     extensions::khr_video_queue::{VideoPictureResourceKHR, VideoReferenceSlotKHR},
     vulkan1_0::{BaseInStructure, Buffer, DeviceSize, Extent2D, StructureType},
 };
+#[cfg(feature = "bytemuck")]
+use bytemuck::{Pod, Zeroable};
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -11,6 +105,1402 @@ pub const KHR_VIDEO_ENCODE_QUEUE_SPEC_VERSION: u32 = 4;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_VIDEO_ENCODE_QUEUE_EXTENSION_NAME")]
 pub const KHR_VIDEO_ENCODE_QUEUE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_video_encode_queue");
+///[VkVideoEncodeFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeFlagBitsKHR.html) - Video Encode Command Flags
+///# C Specifications
+///The [`CmdEncodeVideoKHR`] flags are defined with the following
+///enumeration:
+///```c
+///// Provided by VK_KHR_video_encode_queue
+///typedef enum VkVideoEncodeFlagBitsKHR {
+///    VK_VIDEO_ENCODE_DEFAULT_KHR = 0,
+///    VK_VIDEO_ENCODE_RESERVED_0_BIT_KHR = 0x00000001,
+///} VkVideoEncodeFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoEncodeReserved0Khr`] The current version of the specification has reserved this value
+///   for future use.
+///# Related
+/// - [`VK_KHR_video_encode_queue`]
+/// - [`VideoEncodeFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoEncodeFlagBitsKHR")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum VideoEncodeFlagBitsKHR {
+    ///No documentation found
+    VideoEncodeDefaultKhr = 0,
+    ///[`VideoEncodeReserved0Khr`] The current version of the
+    ///specification has reserved this value for future use.
+    VideoEncodeReserved0Khr = 1,
+}
+impl const Default for VideoEncodeFlagBitsKHR {
+    fn default() -> Self {
+        Self::VideoEncodeDefaultKhr
+    }
+}
+impl VideoEncodeFlagBitsKHR {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkVideoEncodeCapabilityFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeCapabilityFlagBitsKHR.html) - Video encode capability flags
+///# C Specifications
+///Bits which  **may**  be set in [`VideoEncodeCapabilitiesKHR::flags`],
+///indicating the encoding tools supported, are:
+///```c
+///// Provided by VK_KHR_video_encode_queue
+///typedef enum VkVideoEncodeCapabilityFlagBitsKHR {
+///    VK_VIDEO_ENCODE_CAPABILITY_DEFAULT_KHR = 0,
+///    VK_VIDEO_ENCODE_CAPABILITY_PRECEDING_EXTERNALLY_ENCODED_BYTES_BIT_KHR = 0x00000001,
+///} VkVideoEncodeCapabilityFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr`] reports that the implementation
+///   supports use of [`VideoEncodeInfoKHR::preceding_externally_encoded_bytes`].
+///# Related
+/// - [`VK_KHR_video_encode_queue`]
+/// - [`VideoEncodeCapabilityFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoEncodeCapabilityFlagBitsKHR")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum VideoEncodeCapabilityFlagBitsKHR {
+    ///No documentation found
+    VideoEncodeCapabilityDefaultKhr = 0,
+    ///[`VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr`]
+    ///reports that the implementation supports use of
+    ///[`VideoEncodeInfoKHR`]::`precedingExternallyEncodedBytes`.
+    VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr = 1,
+}
+impl const Default for VideoEncodeCapabilityFlagBitsKHR {
+    fn default() -> Self {
+        Self::VideoEncodeCapabilityDefaultKhr
+    }
+}
+impl VideoEncodeCapabilityFlagBitsKHR {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkVideoEncodeRateControlFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeRateControlFlagBitsKHR.html) - Reserved for future use
+///# C Specifications
+///```c
+///// Provided by VK_KHR_video_encode_queue
+///typedef enum VkVideoEncodeRateControlFlagBitsKHR {
+///    VK_VIDEO_ENCODE_RATE_CONTROL_DEFAULT_KHR = 0,
+///    VK_VIDEO_ENCODE_RATE_CONTROL_RESERVED_0_BIT_KHR = 0x00000001,
+///} VkVideoEncodeRateControlFlagBitsKHR;
+///```
+///# Description
+///[`VideoEncodeRateControlFlagBitsKHR`] defines bits which may be set in a
+///[`VideoEncodeRateControlFlagsKHR`] value, but is currently unused.
+///# Related
+/// - [`VK_KHR_video_encode_queue`]
+/// - [`VideoEncodeRateControlFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoEncodeRateControlFlagBitsKHR")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum VideoEncodeRateControlFlagBitsKHR {
+    ///No documentation found
+    VideoEncodeRateControlDefaultKhr = 0,
+    ///No documentation found
+    VideoEncodeRateControlReserved0Khr = 1,
+}
+impl const Default for VideoEncodeRateControlFlagBitsKHR {
+    fn default() -> Self {
+        Self::VideoEncodeRateControlDefaultKhr
+    }
+}
+impl VideoEncodeRateControlFlagBitsKHR {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkVideoEncodeRateControlModeFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeRateControlModeFlagBitsKHR.html) - Video encode rate control modes
+///# C Specifications
+///The rate control modes are defined with the following enums:
+///```c
+///// Provided by VK_KHR_video_encode_queue
+///typedef enum VkVideoEncodeRateControlModeFlagBitsKHR {
+///    VK_VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_BIT_KHR = 0,
+///    VK_VIDEO_ENCODE_RATE_CONTROL_MODE_CBR_BIT_KHR = 1,
+///    VK_VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_BIT_KHR = 2,
+///} VkVideoEncodeRateControlModeFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoEncodeRateControlModeNoneKhr`] for disabling rate control.
+/// - [`VideoEncodeRateControlModeCbrKhr`] for constant bitrate rate control mode.
+/// - [`VideoEncodeRateControlModeVbrKhr`] for variable bitrate rate control mode.
+///# Related
+/// - [`VK_KHR_video_encode_queue`]
+/// - [`VideoEncodeRateControlInfoKHR`]
+/// - [`VideoEncodeRateControlModeFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoEncodeRateControlModeFlagBitsKHR")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum VideoEncodeRateControlModeFlagBitsKHR {
+    ///[`VideoEncodeRateControlModeNoneKhr`] for disabling rate
+    ///control.
+    VideoEncodeRateControlModeNoneKhr = 0,
+    ///[`VideoEncodeRateControlModeCbrKhr`] for constant bitrate
+    ///rate control mode.
+    VideoEncodeRateControlModeCbrKhr = 1,
+    ///[`VideoEncodeRateControlModeVbrKhr`] for variable bitrate
+    ///rate control mode.
+    VideoEncodeRateControlModeVbrKhr = 2,
+}
+impl const Default for VideoEncodeRateControlModeFlagBitsKHR {
+    fn default() -> Self {
+        Self::VideoEncodeRateControlModeNoneKhr
+    }
+}
+impl VideoEncodeRateControlModeFlagBitsKHR {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkVideoEncodeFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeFlagBitsKHR.html) - Video Encode Command Flags
+///# C Specifications
+///The [`CmdEncodeVideoKHR`] flags are defined with the following
+///enumeration:
+///```c
+///// Provided by VK_KHR_video_encode_queue
+///typedef enum VkVideoEncodeFlagBitsKHR {
+///    VK_VIDEO_ENCODE_DEFAULT_KHR = 0,
+///    VK_VIDEO_ENCODE_RESERVED_0_BIT_KHR = 0x00000001,
+///} VkVideoEncodeFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoEncodeReserved0Khr`] The current version of the specification has reserved this value
+///   for future use.
+///# Related
+/// - [`VK_KHR_video_encode_queue`]
+/// - [`VideoEncodeFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct VideoEncodeFlagsKHR(u32);
+impl const Default for VideoEncodeFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<VideoEncodeFlagBitsKHR> for VideoEncodeFlagsKHR {
+    fn from(from: VideoEncodeFlagBitsKHR) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl VideoEncodeFlagsKHR {
+    ///No documentation found
+    const VideoEncodeDefaultKhr: Self = Self(0);
+    ///[`VideoEncodeReserved0Khr`] The current version of the
+    ///specification has reserved this value for future use.
+    const VideoEncodeReserved0Khr: Self = Self(1);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty() | Self::VideoEncodeDefaultKhr | Self::VideoEncodeReserved0Khr
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for VideoEncodeFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for VideoEncodeFlagsKHR {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for VideoEncodeFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for VideoEncodeFlagsKHR {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for VideoEncodeFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for VideoEncodeFlagsKHR {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for VideoEncodeFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for VideoEncodeFlagsKHR {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for VideoEncodeFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<VideoEncodeFlagsKHR> for VideoEncodeFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeFlagsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<VideoEncodeFlagBitsKHR> for VideoEncodeFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeFlagBitsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(VideoEncodeFlagsKHR::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<VideoEncodeFlagsKHR> for VideoEncodeFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeFlagsKHR>>(iterator: T) -> VideoEncodeFlagsKHR {
+        let mut out = VideoEncodeFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<VideoEncodeFlagBitsKHR> for VideoEncodeFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeFlagBitsKHR>>(iterator: T) -> VideoEncodeFlagsKHR {
+        let mut out = VideoEncodeFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for VideoEncodeFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(VideoEncodeFlagsKHR);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == VideoEncodeFlagsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self.0.contains(VideoEncodeFlagsKHR::VideoEncodeDefaultKhr) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoEncodeDefaultKhr))?;
+                    }
+                    if self.0.contains(VideoEncodeFlagsKHR::VideoEncodeReserved0Khr) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoEncodeReserved0Khr))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(VideoEncodeFlagsKHR))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkVideoEncodeCapabilityFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeCapabilityFlagBitsKHR.html) - Video encode capability flags
+///# C Specifications
+///Bits which  **may**  be set in [`VideoEncodeCapabilitiesKHR::flags`],
+///indicating the encoding tools supported, are:
+///```c
+///// Provided by VK_KHR_video_encode_queue
+///typedef enum VkVideoEncodeCapabilityFlagBitsKHR {
+///    VK_VIDEO_ENCODE_CAPABILITY_DEFAULT_KHR = 0,
+///    VK_VIDEO_ENCODE_CAPABILITY_PRECEDING_EXTERNALLY_ENCODED_BYTES_BIT_KHR = 0x00000001,
+///} VkVideoEncodeCapabilityFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr`] reports that the implementation
+///   supports use of [`VideoEncodeInfoKHR::preceding_externally_encoded_bytes`].
+///# Related
+/// - [`VK_KHR_video_encode_queue`]
+/// - [`VideoEncodeCapabilityFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct VideoEncodeCapabilityFlagsKHR(u32);
+impl const Default for VideoEncodeCapabilityFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<VideoEncodeCapabilityFlagBitsKHR> for VideoEncodeCapabilityFlagsKHR {
+    fn from(from: VideoEncodeCapabilityFlagBitsKHR) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl VideoEncodeCapabilityFlagsKHR {
+    ///No documentation found
+    const VideoEncodeCapabilityDefaultKhr: Self = Self(0);
+    ///[`VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr`]
+    ///reports that the implementation supports use of
+    ///[`VideoEncodeInfoKHR`]::`precedingExternallyEncodedBytes`.
+    const VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr: Self = Self(1);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::VideoEncodeCapabilityDefaultKhr
+            | Self::VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for VideoEncodeCapabilityFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for VideoEncodeCapabilityFlagsKHR {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for VideoEncodeCapabilityFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for VideoEncodeCapabilityFlagsKHR {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for VideoEncodeCapabilityFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for VideoEncodeCapabilityFlagsKHR {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for VideoEncodeCapabilityFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for VideoEncodeCapabilityFlagsKHR {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for VideoEncodeCapabilityFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<VideoEncodeCapabilityFlagsKHR> for VideoEncodeCapabilityFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeCapabilityFlagsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<VideoEncodeCapabilityFlagBitsKHR> for VideoEncodeCapabilityFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeCapabilityFlagBitsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(VideoEncodeCapabilityFlagsKHR::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<VideoEncodeCapabilityFlagsKHR> for VideoEncodeCapabilityFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeCapabilityFlagsKHR>>(
+        iterator: T,
+    ) -> VideoEncodeCapabilityFlagsKHR {
+        let mut out = VideoEncodeCapabilityFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<VideoEncodeCapabilityFlagBitsKHR> for VideoEncodeCapabilityFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeCapabilityFlagBitsKHR>>(
+        iterator: T,
+    ) -> VideoEncodeCapabilityFlagsKHR {
+        let mut out = VideoEncodeCapabilityFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for VideoEncodeCapabilityFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(VideoEncodeCapabilityFlagsKHR);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == VideoEncodeCapabilityFlagsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(VideoEncodeCapabilityFlagsKHR::VideoEncodeCapabilityDefaultKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoEncodeCapabilityDefaultKhr))?;
+                    }
+                    if self.0.contains(
+                        VideoEncodeCapabilityFlagsKHR::VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr,
+                    ) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(VideoEncodeCapabilityFlagsKHR))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkVideoEncodeRateControlFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeRateControlFlagBitsKHR.html) - Reserved for future use
+///# C Specifications
+///```c
+///// Provided by VK_KHR_video_encode_queue
+///typedef enum VkVideoEncodeRateControlFlagBitsKHR {
+///    VK_VIDEO_ENCODE_RATE_CONTROL_DEFAULT_KHR = 0,
+///    VK_VIDEO_ENCODE_RATE_CONTROL_RESERVED_0_BIT_KHR = 0x00000001,
+///} VkVideoEncodeRateControlFlagBitsKHR;
+///```
+///# Description
+///[`VideoEncodeRateControlFlagBitsKHR`] defines bits which may be set in a
+///[`VideoEncodeRateControlFlagsKHR`] value, but is currently unused.
+///# Related
+/// - [`VK_KHR_video_encode_queue`]
+/// - [`VideoEncodeRateControlFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct VideoEncodeRateControlFlagsKHR(u32);
+impl const Default for VideoEncodeRateControlFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<VideoEncodeRateControlFlagBitsKHR> for VideoEncodeRateControlFlagsKHR {
+    fn from(from: VideoEncodeRateControlFlagBitsKHR) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl VideoEncodeRateControlFlagsKHR {
+    ///No documentation found
+    const VideoEncodeRateControlDefaultKhr: Self = Self(0);
+    ///No documentation found
+    const VideoEncodeRateControlReserved0Khr: Self = Self(1);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty() | Self::VideoEncodeRateControlDefaultKhr | Self::VideoEncodeRateControlReserved0Khr
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for VideoEncodeRateControlFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for VideoEncodeRateControlFlagsKHR {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for VideoEncodeRateControlFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for VideoEncodeRateControlFlagsKHR {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for VideoEncodeRateControlFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for VideoEncodeRateControlFlagsKHR {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for VideoEncodeRateControlFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for VideoEncodeRateControlFlagsKHR {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for VideoEncodeRateControlFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<VideoEncodeRateControlFlagsKHR> for VideoEncodeRateControlFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeRateControlFlagsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<VideoEncodeRateControlFlagBitsKHR> for VideoEncodeRateControlFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeRateControlFlagBitsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(VideoEncodeRateControlFlagsKHR::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<VideoEncodeRateControlFlagsKHR> for VideoEncodeRateControlFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeRateControlFlagsKHR>>(
+        iterator: T,
+    ) -> VideoEncodeRateControlFlagsKHR {
+        let mut out = VideoEncodeRateControlFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<VideoEncodeRateControlFlagBitsKHR> for VideoEncodeRateControlFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeRateControlFlagBitsKHR>>(
+        iterator: T,
+    ) -> VideoEncodeRateControlFlagsKHR {
+        let mut out = VideoEncodeRateControlFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for VideoEncodeRateControlFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(VideoEncodeRateControlFlagsKHR);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == VideoEncodeRateControlFlagsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(VideoEncodeRateControlFlagsKHR::VideoEncodeRateControlDefaultKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoEncodeRateControlDefaultKhr))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoEncodeRateControlFlagsKHR::VideoEncodeRateControlReserved0Khr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoEncodeRateControlReserved0Khr))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(VideoEncodeRateControlFlagsKHR))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkVideoEncodeRateControlModeFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeRateControlModeFlagBitsKHR.html) - Video encode rate control modes
+///# C Specifications
+///The rate control modes are defined with the following enums:
+///```c
+///// Provided by VK_KHR_video_encode_queue
+///typedef enum VkVideoEncodeRateControlModeFlagBitsKHR {
+///    VK_VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_BIT_KHR = 0,
+///    VK_VIDEO_ENCODE_RATE_CONTROL_MODE_CBR_BIT_KHR = 1,
+///    VK_VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_BIT_KHR = 2,
+///} VkVideoEncodeRateControlModeFlagBitsKHR;
+///```
+///# Description
+/// - [`VideoEncodeRateControlModeNoneKhr`] for disabling rate control.
+/// - [`VideoEncodeRateControlModeCbrKhr`] for constant bitrate rate control mode.
+/// - [`VideoEncodeRateControlModeVbrKhr`] for variable bitrate rate control mode.
+///# Related
+/// - [`VK_KHR_video_encode_queue`]
+/// - [`VideoEncodeRateControlInfoKHR`]
+/// - [`VideoEncodeRateControlModeFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct VideoEncodeRateControlModeFlagsKHR(u32);
+impl const Default for VideoEncodeRateControlModeFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<VideoEncodeRateControlModeFlagBitsKHR> for VideoEncodeRateControlModeFlagsKHR {
+    fn from(from: VideoEncodeRateControlModeFlagBitsKHR) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl VideoEncodeRateControlModeFlagsKHR {
+    ///[`VideoEncodeRateControlModeNoneKhr`] for disabling rate
+    ///control.
+    const VideoEncodeRateControlModeNoneKhr: Self = Self(0);
+    ///[`VideoEncodeRateControlModeCbrKhr`] for constant bitrate
+    ///rate control mode.
+    const VideoEncodeRateControlModeCbrKhr: Self = Self(1);
+    ///[`VideoEncodeRateControlModeVbrKhr`] for variable bitrate
+    ///rate control mode.
+    const VideoEncodeRateControlModeVbrKhr: Self = Self(2);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::VideoEncodeRateControlModeNoneKhr
+            | Self::VideoEncodeRateControlModeCbrKhr
+            | Self::VideoEncodeRateControlModeVbrKhr
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for VideoEncodeRateControlModeFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for VideoEncodeRateControlModeFlagsKHR {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for VideoEncodeRateControlModeFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for VideoEncodeRateControlModeFlagsKHR {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for VideoEncodeRateControlModeFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for VideoEncodeRateControlModeFlagsKHR {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for VideoEncodeRateControlModeFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for VideoEncodeRateControlModeFlagsKHR {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for VideoEncodeRateControlModeFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<VideoEncodeRateControlModeFlagsKHR> for VideoEncodeRateControlModeFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeRateControlModeFlagsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<VideoEncodeRateControlModeFlagBitsKHR> for VideoEncodeRateControlModeFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeRateControlModeFlagBitsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(VideoEncodeRateControlModeFlagsKHR::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<VideoEncodeRateControlModeFlagsKHR> for VideoEncodeRateControlModeFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeRateControlModeFlagsKHR>>(
+        iterator: T,
+    ) -> VideoEncodeRateControlModeFlagsKHR {
+        let mut out = VideoEncodeRateControlModeFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<VideoEncodeRateControlModeFlagBitsKHR> for VideoEncodeRateControlModeFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeRateControlModeFlagBitsKHR>>(
+        iterator: T,
+    ) -> VideoEncodeRateControlModeFlagsKHR {
+        let mut out = VideoEncodeRateControlModeFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for VideoEncodeRateControlModeFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(VideoEncodeRateControlModeFlagsKHR);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == VideoEncodeRateControlModeFlagsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(VideoEncodeRateControlModeFlagsKHR::VideoEncodeRateControlModeNoneKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoEncodeRateControlModeNoneKhr))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoEncodeRateControlModeFlagsKHR::VideoEncodeRateControlModeCbrKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoEncodeRateControlModeCbrKhr))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoEncodeRateControlModeFlagsKHR::VideoEncodeRateControlModeVbrKhr)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VideoEncodeRateControlModeVbrKhr))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(VideoEncodeRateControlModeFlagsKHR))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
 ///[VkVideoEncodeInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeInfoKHR.html) - Structure to chain codec-specific structures to
 ///# C Specifications
 ///The [`VideoEncodeInfoKHR`] structure is defined as:

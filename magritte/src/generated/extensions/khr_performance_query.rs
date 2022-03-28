@@ -1,3 +1,125 @@
+//![VK_KHR_performance_query](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_performance_query.html) - device extension
+//!# Description
+//!The [`VK_KHR_performance_query`] extension adds a mechanism to allow querying
+//!of performance counters for use in applications and by profiling tools.Each queue family
+//! **may**  expose counters that  **can**  be enabled on a queue of
+//!that family.
+//!We extend [`QueryType`] to add a new query type for performance queries,
+//!and chain a structure on [`QueryPoolCreateInfo`] to specify the
+//!performance queries to enable.
+//!# Revision
+//!1
+//!# Dependencies
+//! - Requires Vulkan 1.0
+//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//!# Contacts
+//! - Alon Or-bach [alonorbach](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_performance_query]
+//!   @alonorbach%0A<<Here describe the issue or question you have about the
+//!   VK_KHR_performance_query extension>>)
+//!# New functions & commands
+//! - [`AcquireProfilingLockKHR`]
+//! - [`EnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR`]
+//! - [`GetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR`]
+//! - [`ReleaseProfilingLockKHR`]
+//!# New structures
+//! - [`AcquireProfilingLockInfoKHR`]
+//! - [`PerformanceCounterDescriptionKHR`]
+//! - [`PerformanceCounterKHR`]
+//! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
+//!   [`PhysicalDevicePerformanceQueryFeaturesKHR`]
+//! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDevicePerformanceQueryPropertiesKHR`]
+//! - Extending [`QueryPoolCreateInfo`]:  - [`QueryPoolPerformanceCreateInfoKHR`]
+//! - Extending [`SubmitInfo`], [`SubmitInfo2`]:  - [`PerformanceQuerySubmitInfoKHR`]
+//!# New enums
+//! - [`AcquireProfilingLockFlagBitsKHR`]
+//! - [`PerformanceCounterDescriptionFlagBitsKHR`]
+//! - [`PerformanceCounterScopeKHR`]
+//! - [`PerformanceCounterStorageKHR`]
+//! - [`PerformanceCounterUnitKHR`]
+//!# New bitmasks
+//! - [`AcquireProfilingLockFlagsKHR`]
+//! - [`PerformanceCounterDescriptionFlagsKHR`]
+//!# New constants
+//! - [`KHR_PERFORMANCE_QUERY_EXTENSION_NAME`]
+//! - [`KHR_PERFORMANCE_QUERY_SPEC_VERSION`]
+//! - Extending [`QueryType`]:  - `VK_QUERY_TYPE_PERFORMANCE_QUERY_KHR`
+//! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ACQUIRE_PROFILING_LOCK_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_DESCRIPTION_KHR`  -
+//!   `VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_KHR`  -
+//!   `VK_STRUCTURE_TYPE_PERFORMANCE_QUERY_SUBMIT_INFO_KHR`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR`  -
+//!   `VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR`
+//!# Known issues & F.A.Q
+//!1) Should this extension include a mechanism to begin a query in command
+//!buffer *A* and end the query in command buffer *B*? **RESOLVED**  No - queries are tied to
+//! command buffer creation and thus have to
+//!be encapsulated within a single command buffer.2) Should this extension include a mechanism to
+//! begin and end queries
+//!globally on the queue, not using the existing command buffer commands? **RESOLVED**  No - for
+//! the same reasoning as the resolution of 1).3) Should this extension expose counters that require
+//! multiple passes? **RESOLVED**  Yes - users should re-submit a command buffer with the same
+//!commands in it multiple times, specifying the pass to count as the query
+//!parameter in VkPerformanceQuerySubmitInfoKHR.4) How to handle counters across parallel
+//! workloads? **RESOLVED**  In the spirit of Vulkan, a counter description flag
+//!`VK_PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR`
+//!denotes that the accuracy of a counter result is affected by parallel
+//!workloads.5) How to handle secondary command buffers? **RESOLVED**  Secondary command buffers
+//! inherit any counter pass index
+//!specified in the parent primary command buffer.
+//!Note: this is no longer an issue after change from issue 10 resolution6) What commands does the
+//! profiling lock have to be held for? **RESOLVED**  For any command buffer that is being queried
+//! with a performance
+//!query pool, the profiling lock  **must**  be held while that command buffer is in
+//!the *recording*, *executable*, or *pending state*.7) Should we support
+//! [`CmdCopyQueryPoolResults`]? **RESOLVED**  Yes.8) Should we allow performance queries to
+//! interact with multiview? **RESOLVED**  Yes, but the performance queries must be performed once
+//! for each
+//!pass per view.9) Should a `queryCount > 1` be usable for performance queries? **RESOLVED**  Yes.
+//!Some vendors will have costly performance counter query pool creation, and
+//!would rather if a certain set of counters were to be used multiple times
+//!that a `queryCount > 1` can be used to amortize the instantiation cost.10) Should we introduce
+//! an indirect mechanism to set the counter pass index? **RESOLVED**  Specify the counter pass
+//! index at submit time instead, to avoid
+//!requiring re-recording of command buffers when multiple counter passes are
+//!needed.
+//!# Version History
+//! - Revision 1, 2019-10-08
+//!# Other info
+//! * 2019-10-08
+//! * No known IP claims.
+//! * - Jesse Barker, Unity Technologies  - Kenneth Benzie, Codeplay  - Jan-Harald Fredriksen, ARM
+//!   - Jeff Leger, Qualcomm  - Jesse Hall, Google  - Tobias Hector, AMD  - Neil Henning, Codeplay
+//!   - Baldur Karlsson  - Lionel Landwerlin, Intel  - Peter Lohrmann, AMD  - Alon Or-bach, Samsung
+//!   - Daniel Rakos, AMD  - Niklas Smedberg, Unity Technologies  - Igor Ostrowski, Intel
+//!# Related
+//! - [`AcquireProfilingLockFlagBitsKHR`]
+//! - [`AcquireProfilingLockFlagsKHR`]
+//! - [`AcquireProfilingLockInfoKHR`]
+//! - [`PerformanceCounterDescriptionFlagBitsKHR`]
+//! - [`PerformanceCounterDescriptionFlagsKHR`]
+//! - [`PerformanceCounterDescriptionKHR`]
+//! - [`PerformanceCounterKHR`]
+//! - [`PerformanceCounterResultKHR`]
+//! - [`PerformanceCounterScopeKHR`]
+//! - [`PerformanceCounterStorageKHR`]
+//! - [`PerformanceCounterUnitKHR`]
+//! - [`PerformanceQuerySubmitInfoKHR`]
+//! - [`PhysicalDevicePerformanceQueryFeaturesKHR`]
+//! - [`PhysicalDevicePerformanceQueryPropertiesKHR`]
+//! - [`QueryPoolPerformanceCreateInfoKHR`]
+//! - [`AcquireProfilingLockKHR`]
+//! - [`EnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR`]
+//! - [`GetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR`]
+//! - [`ReleaseProfilingLockKHR`]
+//!
+//!# Notes and documentation
+//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+//!
+//!This documentation is generated from the Vulkan specification and documentation.
+//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+//! Commons Attribution 4.0 International*.
+//!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     core::{MAX_DESCRIPTION_SIZE, UUID_SIZE},
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType},
@@ -55,6 +177,7 @@ pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum PerformanceCounterScopeKHR {
     ///[`PerformanceCounterScopeCommandBufferKhr`] - the performance
@@ -71,7 +194,7 @@ pub enum PerformanceCounterScopeKHR {
 }
 impl const Default for PerformanceCounterScopeKHR {
     fn default() -> Self {
-        PerformanceCounterScopeCommandBufferKhr
+        Self::PerformanceCounterScopeCommandBufferKhr
     }
 }
 impl PerformanceCounterScopeKHR {
@@ -143,6 +266,7 @@ impl PerformanceCounterScopeKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum PerformanceCounterUnitKHR {
     ///[`PerformanceCounterUnitGenericKhr`] - the performance counter
@@ -181,7 +305,7 @@ pub enum PerformanceCounterUnitKHR {
 }
 impl const Default for PerformanceCounterUnitKHR {
     fn default() -> Self {
-        PerformanceCounterUnitGenericKhr
+        Self::PerformanceCounterUnitGenericKhr
     }
 }
 impl PerformanceCounterUnitKHR {
@@ -246,6 +370,7 @@ impl PerformanceCounterUnitKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum PerformanceCounterStorageKHR {
     ///[`PerformanceCounterStorageInt32Khr`] - the performance counter
@@ -269,7 +394,7 @@ pub enum PerformanceCounterStorageKHR {
 }
 impl const Default for PerformanceCounterStorageKHR {
     fn default() -> Self {
-        PerformanceCounterStorageInt32Khr
+        Self::PerformanceCounterStorageInt32Khr
     }
 }
 impl PerformanceCounterStorageKHR {
@@ -287,6 +412,680 @@ impl PerformanceCounterStorageKHR {
     #[inline]
     pub const unsafe fn from_bits(bits: i32) -> i32 {
         std::mem::transmute(bits)
+    }
+}
+///[VkPerformanceCounterDescriptionFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterDescriptionFlagBitsKHR.html) - Bitmask specifying usage behavior for a counter
+///# C Specifications
+///Bits which  **can**  be set in
+///[`PerformanceCounterDescriptionKHR::flags`], specifying usage
+///behavior for a performance counter, are:
+///```c
+///// Provided by VK_KHR_performance_query
+///typedef enum VkPerformanceCounterDescriptionFlagBitsKHR {
+///    VK_PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_BIT_KHR = 0x00000001,
+///    VK_PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR = 0x00000002,
+///    VK_PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR =
+/// VK_PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_BIT_KHR,
+///    VK_PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR =
+/// VK_PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR,
+///} VkPerformanceCounterDescriptionFlagBitsKHR;
+///```
+///# Description
+/// - [`PerformanceCounterDescriptionPerformanceImpactingKhr`] specifies that recording the counter
+///   **may**  have a noticeable performance impact.
+/// - [`PerformanceCounterDescriptionConcurrentlyImpactedKhr`] specifies that concurrently recording
+///   the counter while other submitted command buffers are running  **may**  impact the accuracy of
+///   the recording.
+///# Related
+/// - [`VK_KHR_performance_query`]
+/// - [`PerformanceCounterDescriptionFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPerformanceCounterDescriptionFlagBitsKHR")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum PerformanceCounterDescriptionFlagBitsKHR {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`PerformanceCounterDescriptionPerformanceImpactingKhr`]
+    ///specifies that recording the counter  **may**  have a noticeable performance
+    ///impact.
+    PerformanceCounterDescriptionPerformanceImpactingKhr = 1,
+    ///[`PerformanceCounterDescriptionConcurrentlyImpactedKhr`]
+    ///specifies that concurrently recording the counter while other submitted
+    ///command buffers are running  **may**  impact the accuracy of the recording.
+    PerformanceCounterDescriptionConcurrentlyImpactedKhr = 2,
+}
+impl const Default for PerformanceCounterDescriptionFlagBitsKHR {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl PerformanceCounterDescriptionFlagBitsKHR {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkAcquireProfilingLockFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAcquireProfilingLockFlagBitsKHR.html) - Reserved for future use
+///# C Specifications
+///```c
+///// Provided by VK_KHR_performance_query
+///typedef enum VkAcquireProfilingLockFlagBitsKHR {
+///} VkAcquireProfilingLockFlagBitsKHR;
+///```
+///# Related
+/// - [`VK_KHR_performance_query`]
+/// - [`AcquireProfilingLockFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAcquireProfilingLockFlagBitsKHR")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum AcquireProfilingLockFlagBitsKHR {
+    #[doc(hidden)]
+    Empty = 0,
+}
+impl const Default for AcquireProfilingLockFlagBitsKHR {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl AcquireProfilingLockFlagBitsKHR {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkPerformanceCounterDescriptionFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterDescriptionFlagBitsKHR.html) - Bitmask specifying usage behavior for a counter
+///# C Specifications
+///Bits which  **can**  be set in
+///[`PerformanceCounterDescriptionKHR::flags`], specifying usage
+///behavior for a performance counter, are:
+///```c
+///// Provided by VK_KHR_performance_query
+///typedef enum VkPerformanceCounterDescriptionFlagBitsKHR {
+///    VK_PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_BIT_KHR = 0x00000001,
+///    VK_PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR = 0x00000002,
+///    VK_PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR =
+/// VK_PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_BIT_KHR,
+///    VK_PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR =
+/// VK_PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR,
+///} VkPerformanceCounterDescriptionFlagBitsKHR;
+///```
+///# Description
+/// - [`PerformanceCounterDescriptionPerformanceImpactingKhr`] specifies that recording the counter
+///   **may**  have a noticeable performance impact.
+/// - [`PerformanceCounterDescriptionConcurrentlyImpactedKhr`] specifies that concurrently recording
+///   the counter while other submitted command buffers are running  **may**  impact the accuracy of
+///   the recording.
+///# Related
+/// - [`VK_KHR_performance_query`]
+/// - [`PerformanceCounterDescriptionFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct PerformanceCounterDescriptionFlagsKHR(u32);
+impl const Default for PerformanceCounterDescriptionFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<PerformanceCounterDescriptionFlagBitsKHR> for PerformanceCounterDescriptionFlagsKHR {
+    fn from(from: PerformanceCounterDescriptionFlagBitsKHR) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl PerformanceCounterDescriptionFlagsKHR {
+    ///[`PerformanceCounterDescriptionPerformanceImpactingKhr`]
+    ///specifies that recording the counter  **may**  have a noticeable performance
+    ///impact.
+    const PerformanceCounterDescriptionPerformanceImpactingKhr: Self = Self(1);
+    ///[`PerformanceCounterDescriptionConcurrentlyImpactedKhr`]
+    ///specifies that concurrently recording the counter while other submitted
+    ///command buffers are running  **may**  impact the accuracy of the recording.
+    const PerformanceCounterDescriptionConcurrentlyImpactedKhr: Self = Self(2);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::PerformanceCounterDescriptionPerformanceImpactingKhr
+            | Self::PerformanceCounterDescriptionConcurrentlyImpactedKhr
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for PerformanceCounterDescriptionFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for PerformanceCounterDescriptionFlagsKHR {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for PerformanceCounterDescriptionFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for PerformanceCounterDescriptionFlagsKHR {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for PerformanceCounterDescriptionFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for PerformanceCounterDescriptionFlagsKHR {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for PerformanceCounterDescriptionFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for PerformanceCounterDescriptionFlagsKHR {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for PerformanceCounterDescriptionFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<PerformanceCounterDescriptionFlagsKHR> for PerformanceCounterDescriptionFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = PerformanceCounterDescriptionFlagsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<PerformanceCounterDescriptionFlagBitsKHR> for PerformanceCounterDescriptionFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = PerformanceCounterDescriptionFlagBitsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(PerformanceCounterDescriptionFlagsKHR::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<PerformanceCounterDescriptionFlagsKHR> for PerformanceCounterDescriptionFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = PerformanceCounterDescriptionFlagsKHR>>(
+        iterator: T,
+    ) -> PerformanceCounterDescriptionFlagsKHR {
+        let mut out = PerformanceCounterDescriptionFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<PerformanceCounterDescriptionFlagBitsKHR> for PerformanceCounterDescriptionFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = PerformanceCounterDescriptionFlagBitsKHR>>(
+        iterator: T,
+    ) -> PerformanceCounterDescriptionFlagsKHR {
+        let mut out = PerformanceCounterDescriptionFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for PerformanceCounterDescriptionFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(PerformanceCounterDescriptionFlagsKHR);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == PerformanceCounterDescriptionFlagsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self.0.contains(
+                        PerformanceCounterDescriptionFlagsKHR::PerformanceCounterDescriptionPerformanceImpactingKhr,
+                    ) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PerformanceCounterDescriptionPerformanceImpactingKhr))?;
+                    }
+                    if self.0.contains(
+                        PerformanceCounterDescriptionFlagsKHR::PerformanceCounterDescriptionConcurrentlyImpactedKhr,
+                    ) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PerformanceCounterDescriptionConcurrentlyImpactedKhr))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(PerformanceCounterDescriptionFlagsKHR))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkAcquireProfilingLockFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAcquireProfilingLockFlagBitsKHR.html) - Reserved for future use
+///# C Specifications
+///```c
+///// Provided by VK_KHR_performance_query
+///typedef enum VkAcquireProfilingLockFlagBitsKHR {
+///} VkAcquireProfilingLockFlagBitsKHR;
+///```
+///# Related
+/// - [`VK_KHR_performance_query`]
+/// - [`AcquireProfilingLockFlagsKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct AcquireProfilingLockFlagsKHR(u32);
+impl const Default for AcquireProfilingLockFlagsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<AcquireProfilingLockFlagBitsKHR> for AcquireProfilingLockFlagsKHR {
+    fn from(from: AcquireProfilingLockFlagBitsKHR) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl AcquireProfilingLockFlagsKHR {
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for AcquireProfilingLockFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for AcquireProfilingLockFlagsKHR {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for AcquireProfilingLockFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for AcquireProfilingLockFlagsKHR {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for AcquireProfilingLockFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for AcquireProfilingLockFlagsKHR {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for AcquireProfilingLockFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for AcquireProfilingLockFlagsKHR {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for AcquireProfilingLockFlagsKHR {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<AcquireProfilingLockFlagsKHR> for AcquireProfilingLockFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = AcquireProfilingLockFlagsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<AcquireProfilingLockFlagBitsKHR> for AcquireProfilingLockFlagsKHR {
+    fn extend<T: std::iter::IntoIterator<Item = AcquireProfilingLockFlagBitsKHR>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(AcquireProfilingLockFlagsKHR::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<AcquireProfilingLockFlagsKHR> for AcquireProfilingLockFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = AcquireProfilingLockFlagsKHR>>(
+        iterator: T,
+    ) -> AcquireProfilingLockFlagsKHR {
+        let mut out = AcquireProfilingLockFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<AcquireProfilingLockFlagBitsKHR> for AcquireProfilingLockFlagsKHR {
+    fn from_iter<T: std::iter::IntoIterator<Item = AcquireProfilingLockFlagBitsKHR>>(
+        iterator: T,
+    ) -> AcquireProfilingLockFlagsKHR {
+        let mut out = AcquireProfilingLockFlagsKHR::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for AcquireProfilingLockFlagsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(AcquireProfilingLockFlagsKHR);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == AcquireProfilingLockFlagsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(AcquireProfilingLockFlagsKHR))
+            .field(&Flags(*self))
+            .finish()
     }
 }
 ///[VkPhysicalDevicePerformanceQueryFeaturesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePerformanceQueryFeaturesKHR.html) - Structure describing performance query support for an implementation

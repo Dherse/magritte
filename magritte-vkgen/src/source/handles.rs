@@ -4,6 +4,8 @@ use proc_macro2::{Ident, Span};
 
 use crate::{doc::Queryable, origin::Origin, symbols::SymbolName};
 
+use super::Source;
+
 /// A Vulkan handle
 #[derive(Debug, Clone, PartialEq)]
 pub struct Handle<'a> {
@@ -23,8 +25,8 @@ pub struct Handle<'a> {
     pub origin: Origin<'a>,
 }
 
-impl<'a> Queryable for Handle<'a> {
-    fn find(&self, _: &str) -> Option<&str> {
+impl<'a> Queryable<'a> for Handle<'a> {
+    fn find(&self, _: &Source<'a>, _: &str) -> Option<&'a str> {
         None
     }
 }

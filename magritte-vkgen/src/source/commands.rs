@@ -19,7 +19,7 @@ use crate::{
     ty::Ty,
 };
 
-use super::structs::Optionality;
+use super::{structs::Optionality, Source};
 
 /// A function defined in Vulkan
 #[derive(Debug, Clone, PartialEq)]
@@ -145,8 +145,8 @@ impl<'a> SymbolName<'a> for Function<'a> {
     }
 }
 
-impl<'a> Queryable for Function<'a> {
-    fn find(&self, name: &str) -> Option<&str> {
+impl<'a> Queryable<'a> for Function<'a> {
+    fn find<'b>(&'b self, _: &'b Source<'a>, name: &str) -> Option<&'b str> {
         self.arguments.get_by_either(name).map(FunctionArgument::name)
     }
 }

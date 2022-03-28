@@ -2,7 +2,9 @@ use std::borrow::Cow;
 
 use proc_macro2::{Ident, Span};
 
-use crate::{origin::Origin, symbols::SymbolName};
+use crate::{origin::Origin, symbols::SymbolName, doc::Queryable};
+
+use super::{Source, BitFlag};
 
 /// A type bitmask.
 #[derive(Debug, Clone, PartialEq)]
@@ -77,5 +79,13 @@ impl<'a> SymbolName<'a> for Bitmask<'a> {
 
     fn pretty_name(&self) -> String {
         self.name().to_owned()
+    }
+}
+
+impl<'a> Queryable<'a> for Bitmask<'a> {
+    fn find<'b>(&'b self, source: &'b Source<'a>, name: &str) -> Option<&'b str> {
+        let bits = source.resolve_type(self.bits()?)?.as_bitflag()?;
+
+        <BitFlag<'a> as Queryable<'a>>::find(bits, source, name)
     }
 }

@@ -108,6 +108,7 @@ pub const MAX_DRIVER_INFO_SIZE: u32 = 256;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum SemaphoreType {
     ///[`Binary`] specifies a *binary semaphore* type that
@@ -125,7 +126,7 @@ pub enum SemaphoreType {
 }
 impl const Default for SemaphoreType {
     fn default() -> Self {
-        Binary
+        Self::Binary
     }
 }
 impl SemaphoreType {
@@ -190,6 +191,7 @@ impl SemaphoreType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum SamplerReductionMode {
     ///[`WeightedAverage`] specifies that texel
@@ -208,7 +210,7 @@ pub enum SamplerReductionMode {
 }
 impl const Default for SamplerReductionMode {
     fn default() -> Self {
-        WeightedAverage
+        Self::WeightedAverage
     }
 }
 impl SamplerReductionMode {
@@ -305,6 +307,7 @@ impl SamplerReductionMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum DriverId {
     #[doc(hidden)]
@@ -356,7 +359,7 @@ pub enum DriverId {
 }
 impl const Default for DriverId {
     fn default() -> Self {
-        Empty
+        Self::Empty
     }
 }
 impl DriverId {
@@ -425,6 +428,7 @@ impl DriverId {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
 #[repr(i32)]
 pub enum ShaderFloatControlsIndependence {
     ///[`32BitOnly`] specifies that
@@ -440,7 +444,7 @@ pub enum ShaderFloatControlsIndependence {
 }
 impl const Default for ShaderFloatControlsIndependence {
     fn default() -> Self {
-        _32BitOnly
+        Self::_32BitOnly
     }
 }
 impl ShaderFloatControlsIndependence {
@@ -458,6 +462,1362 @@ impl ShaderFloatControlsIndependence {
     #[inline]
     pub const unsafe fn from_bits(bits: i32) -> i32 {
         std::mem::transmute(bits)
+    }
+}
+///[VkSemaphoreWaitFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreWaitFlagBits.html) - Bitmask specifying additional parameters of a semaphore wait operation
+///# C Specifications
+///Bits which  **can**  be set in [`SemaphoreWaitInfo::flags`], specifying
+///additional parameters of a semaphore wait operation, are:
+///```c
+///// Provided by VK_VERSION_1_2
+///typedef enum VkSemaphoreWaitFlagBits {
+///    VK_SEMAPHORE_WAIT_ANY_BIT = 0x00000001,
+///  // Provided by VK_KHR_timeline_semaphore
+///    VK_SEMAPHORE_WAIT_ANY_BIT_KHR = VK_SEMAPHORE_WAIT_ANY_BIT,
+///} VkSemaphoreWaitFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_timeline_semaphore
+///typedef VkSemaphoreWaitFlagBits VkSemaphoreWaitFlagBitsKHR;
+///```
+///# Description
+/// - [`SemaphoreWaitAny`] specifies that the semaphore wait condition is that at least one of the
+///   semaphores in [`SemaphoreWaitInfo::semaphores`] has reached the value specified by the
+///   corresponding element of [`SemaphoreWaitInfo::values`]. If [`SemaphoreWaitAny`] is not set,
+///   the semaphore wait condition is that all of the semaphores in
+///   [`SemaphoreWaitInfo::semaphores`] have reached the value specified by the corresponding
+///   element of [`SemaphoreWaitInfo::values`].
+///# Related
+/// - [`VK_KHR_timeline_semaphore`]
+/// - [`crate::vulkan1_2`]
+/// - [`SemaphoreWaitFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSemaphoreWaitFlagBits")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum SemaphoreWaitFlagBits {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`SemaphoreWaitAny`] specifies that the semaphore wait
+    ///condition is that at least one of the semaphores in
+    ///[`SemaphoreWaitInfo`]::`pSemaphores` has reached the value
+    ///specified by the corresponding element of
+    ///[`SemaphoreWaitInfo`]::`pValues`.
+    ///If [`SemaphoreWaitAny`] is not set, the semaphore wait
+    ///condition is that all of the semaphores in
+    ///[`SemaphoreWaitInfo`]::`pSemaphores` have reached the value
+    ///specified by the corresponding element of
+    ///[`SemaphoreWaitInfo`]::`pValues`.
+    SemaphoreWaitAny = 1,
+}
+impl const Default for SemaphoreWaitFlagBits {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl SemaphoreWaitFlagBits {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkDescriptorBindingFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorBindingFlagBits.html) - Bitmask specifying descriptor set layout binding properties
+///# C Specifications
+///Bits which  **can**  be set in each element of
+///[`DescriptorSetLayoutBindingFlagsCreateInfo::binding_flags`],
+///specifying options for the corresponding descriptor set layout binding, are:
+///```c
+///// Provided by VK_VERSION_1_2
+///typedef enum VkDescriptorBindingFlagBits {
+///    VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT = 0x00000001,
+///    VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT = 0x00000002,
+///    VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT = 0x00000004,
+///    VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT = 0x00000008,
+///  // Provided by VK_EXT_descriptor_indexing
+///    VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT_EXT =
+/// VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT,
+///  // Provided by VK_EXT_descriptor_indexing
+///    VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT_EXT =
+/// VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT,
+///  // Provided by VK_EXT_descriptor_indexing
+///    VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT_EXT = VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT,
+///  // Provided by VK_EXT_descriptor_indexing
+///    VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT_EXT =
+/// VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT,
+///} VkDescriptorBindingFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_EXT_descriptor_indexing
+///typedef VkDescriptorBindingFlagBits VkDescriptorBindingFlagBitsEXT;
+///```
+///# Description
+/// - [`DescriptorBindingUpdateAfterBind`] indicates that if descriptors in this binding are updated
+///   between when the descriptor set is bound in a command buffer and when that command buffer is
+///   submitted to a queue, then the submission will use the most recently set descriptors for this
+///   binding and the updates do not invalidate the command buffer. Descriptor bindings created with
+///   this flag are also partially exempt from the external synchronization requirement in
+///   [`UpdateDescriptorSetWithTemplateKHR`] and [`UpdateDescriptorSets`]. Multiple descriptors with
+///   this flag set  **can**  be updated concurrently in different threads, though the same
+///   descriptor  **must**  not be updated concurrently by two threads. Descriptors with this flag
+///   set  **can**  be updated concurrently with the set being bound to a command buffer in another
+///   thread, but not concurrently with the set being reset or freed.
+/// - [`DescriptorBindingPartiallyBound`] indicates that descriptors in this binding that are not
+///   *dynamically used* need not contain valid descriptors at the time the descriptors are
+///   consumed. A descriptor is dynamically used if any shader invocation executes an instruction
+///   that performs any memory access using the descriptor.
+/// - [`DescriptorBindingUpdateUnusedWhilePending`] indicates that descriptors in this binding
+///   **can**  be updated after a command buffer has bound this descriptor set, or while a command
+///   buffer that uses this descriptor set is pending execution, as long as the descriptors that are
+///   updated are not used by those command buffers. If [`DescriptorBindingPartiallyBound`] is also
+///   set, then descriptors  **can**  be updated as long as they are not dynamically used by any
+///   shader invocations. If [`DescriptorBindingPartiallyBound`] is not set, then descriptors
+///   **can**  be updated as long as they are not statically used by any shader invocations.
+/// - [`DescriptorBindingVariableDescriptorCount`] indicates that     this is a *variable-sized descriptor binding* whose size will be     specified when a descriptor set is allocated using this layout.     The value of `descriptorCount` is treated as an upper bound on the     size of the binding.     This  **must**  only be used for the last binding in the descriptor set     layout (i.e. the binding with the largest value of `binding`).     For the purposes of counting against limits such as     `maxDescriptorSet`* and `maxPerStageDescriptor`*, the full value     of `descriptorCount` is     counted, except for descriptor bindings with a descriptor type of     `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.     In this case, `descriptorCount` specifies the upper bound on the     byte size of the binding; thus it counts against the [`maxInlineUniformBlockSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformBlockSize) and [`maxInlineUniformTotalSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformTotalSize) limits instead.
+///# Related
+/// - [`VK_EXT_descriptor_indexing`]
+/// - [`crate::vulkan1_2`]
+/// - [`DescriptorBindingFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorBindingFlagBits")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum DescriptorBindingFlagBits {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`DescriptorBindingUpdateAfterBind`] indicates that if
+    ///descriptors in this binding are updated between when the descriptor set
+    ///is bound in a command buffer and when that command buffer is submitted
+    ///to a queue, then the submission will use the most recently set
+    ///descriptors for this binding and the updates do not invalidate the
+    ///command buffer.
+    ///Descriptor bindings created with this flag are also partially exempt
+    ///from the external synchronization requirement in
+    ///[`UpdateDescriptorSetWithTemplateKHR`] and
+    ///[`UpdateDescriptorSets`].
+    ///Multiple descriptors with this flag set  **can**  be updated concurrently in
+    ///different threads, though the same descriptor  **must**  not be updated
+    ///concurrently by two threads.
+    ///Descriptors with this flag set  **can**  be updated concurrently with the set
+    ///being bound to a command buffer in another thread, but not concurrently
+    ///with the set being reset or freed.
+    DescriptorBindingUpdateAfterBind = 1,
+    ///[`DescriptorBindingUpdateUnusedWhilePending`] indicates
+    ///that descriptors in this binding  **can**  be updated after a command buffer
+    ///has bound this descriptor set, or while a command buffer that uses this
+    ///descriptor set is pending execution, as long as the descriptors that are
+    ///updated are not used by those command buffers.
+    ///If [`DescriptorBindingPartiallyBound`] is also set, then
+    ///descriptors  **can**  be updated as long as they are not dynamically used by
+    ///any shader invocations.
+    ///If [`DescriptorBindingPartiallyBound`] is not set, then
+    ///descriptors  **can**  be updated as long as they are not statically used by
+    ///any shader invocations.
+    DescriptorBindingUpdateUnusedWhilePending = 2,
+    ///[`DescriptorBindingPartiallyBound`] indicates that
+    ///descriptors in this binding that are not *dynamically used* need not
+    ///contain valid descriptors at the time the descriptors are consumed.
+    ///A descriptor is dynamically used if any shader invocation executes an
+    ///instruction that performs any memory access using the descriptor.
+    DescriptorBindingPartiallyBound = 4,
+    ///[`DescriptorBindingVariableDescriptorCount`] indicates that
+    ///    this is a *variable-sized descriptor binding* whose size will be
+    ///    specified when a descriptor set is allocated using this layout.
+    ///    The value of `descriptorCount` is treated as an upper bound on the
+    ///    size of the binding.
+    ///    This  **must**  only be used for the last binding in the descriptor set
+    ///    layout (i.e. the binding with the largest value of `binding`).
+    ///    For the purposes of counting against limits such as
+    ///    `maxDescriptorSet`* and `maxPerStageDescriptor`*, the full value
+    ///    of `descriptorCount` is
+    ///    counted, except for descriptor bindings with a descriptor type of
+    ///    `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.
+    ///    In this case, `descriptorCount` specifies the upper bound on the
+    ///    byte size of the binding; thus it counts against the
+    ///[`maxInlineUniformBlockSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformBlockSize) and [`maxInlineUniformTotalSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformTotalSize) limits
+    ///instead.
+    DescriptorBindingVariableDescriptorCount = 8,
+}
+impl const Default for DescriptorBindingFlagBits {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl DescriptorBindingFlagBits {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkResolveModeFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResolveModeFlagBits.html) - Bitmask indicating supported depth and stencil resolve modes
+///# C Specifications
+///Possible values of
+///[`SubpassDescriptionDepthStencilResolve::depth_resolve_mode`] and
+///`stencilResolveMode`, specifying the depth and stencil resolve modes,
+///are:
+///```c
+///// Provided by VK_VERSION_1_2
+///typedef enum VkResolveModeFlagBits {
+///    VK_RESOLVE_MODE_NONE = 0,
+///    VK_RESOLVE_MODE_SAMPLE_ZERO_BIT = 0x00000001,
+///    VK_RESOLVE_MODE_AVERAGE_BIT = 0x00000002,
+///    VK_RESOLVE_MODE_MIN_BIT = 0x00000004,
+///    VK_RESOLVE_MODE_MAX_BIT = 0x00000008,
+///  // Provided by VK_KHR_depth_stencil_resolve
+///    VK_RESOLVE_MODE_NONE_KHR = VK_RESOLVE_MODE_NONE,
+///  // Provided by VK_KHR_depth_stencil_resolve
+///    VK_RESOLVE_MODE_SAMPLE_ZERO_BIT_KHR = VK_RESOLVE_MODE_SAMPLE_ZERO_BIT,
+///  // Provided by VK_KHR_depth_stencil_resolve
+///    VK_RESOLVE_MODE_AVERAGE_BIT_KHR = VK_RESOLVE_MODE_AVERAGE_BIT,
+///  // Provided by VK_KHR_depth_stencil_resolve
+///    VK_RESOLVE_MODE_MIN_BIT_KHR = VK_RESOLVE_MODE_MIN_BIT,
+///  // Provided by VK_KHR_depth_stencil_resolve
+///    VK_RESOLVE_MODE_MAX_BIT_KHR = VK_RESOLVE_MODE_MAX_BIT,
+///} VkResolveModeFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_depth_stencil_resolve
+///typedef VkResolveModeFlagBits VkResolveModeFlagBitsKHR;
+///```
+///# Description
+/// - [`ResolveModeNone`] indicates that no resolve operation is done.
+/// - [`ResolveModeSampleZero`] indicates that result of the resolve operation is equal to the value
+///   of sample 0.
+/// - [`ResolveModeAverage`] indicates that result of the resolve operation is the average of the
+///   sample values.
+/// - [`ResolveModeMin`] indicates that result of the resolve operation is the minimum of the sample
+///   values.
+/// - [`ResolveModeMax`] indicates that result of the resolve operation is the maximum of the sample
+///   values.
+///# Related
+/// - [`VK_KHR_depth_stencil_resolve`]
+/// - [`crate::vulkan1_2`]
+/// - [`RenderingAttachmentInfo`]
+/// - [`ResolveModeFlags`]
+/// - [`SubpassDescriptionDepthStencilResolve`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkResolveModeFlagBits")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum ResolveModeFlagBits {
+    ///[`ResolveModeNone`] indicates that no resolve operation is done.
+    ResolveModeNone = 0,
+    ///[`ResolveModeSampleZero`] indicates that result of the
+    ///resolve operation is equal to the value of sample 0.
+    ResolveModeSampleZero = 1,
+    ///[`ResolveModeAverage`] indicates that result of the resolve
+    ///operation is the average of the sample values.
+    ResolveModeAverage = 2,
+    ///[`ResolveModeMin`] indicates that result of the resolve
+    ///operation is the minimum of the sample values.
+    ResolveModeMin = 4,
+    ///[`ResolveModeMax`] indicates that result of the resolve
+    ///operation is the maximum of the sample values.
+    ResolveModeMax = 8,
+}
+impl const Default for ResolveModeFlagBits {
+    fn default() -> Self {
+        Self::ResolveModeNone
+    }
+}
+impl ResolveModeFlagBits {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkSemaphoreWaitFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreWaitFlagBits.html) - Bitmask specifying additional parameters of a semaphore wait operation
+///# C Specifications
+///Bits which  **can**  be set in [`SemaphoreWaitInfo::flags`], specifying
+///additional parameters of a semaphore wait operation, are:
+///```c
+///// Provided by VK_VERSION_1_2
+///typedef enum VkSemaphoreWaitFlagBits {
+///    VK_SEMAPHORE_WAIT_ANY_BIT = 0x00000001,
+///  // Provided by VK_KHR_timeline_semaphore
+///    VK_SEMAPHORE_WAIT_ANY_BIT_KHR = VK_SEMAPHORE_WAIT_ANY_BIT,
+///} VkSemaphoreWaitFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_timeline_semaphore
+///typedef VkSemaphoreWaitFlagBits VkSemaphoreWaitFlagBitsKHR;
+///```
+///# Description
+/// - [`SemaphoreWaitAny`] specifies that the semaphore wait condition is that at least one of the
+///   semaphores in [`SemaphoreWaitInfo::semaphores`] has reached the value specified by the
+///   corresponding element of [`SemaphoreWaitInfo::values`]. If [`SemaphoreWaitAny`] is not set,
+///   the semaphore wait condition is that all of the semaphores in
+///   [`SemaphoreWaitInfo::semaphores`] have reached the value specified by the corresponding
+///   element of [`SemaphoreWaitInfo::values`].
+///# Related
+/// - [`VK_KHR_timeline_semaphore`]
+/// - [`crate::vulkan1_2`]
+/// - [`SemaphoreWaitFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct SemaphoreWaitFlags(u32);
+impl const Default for SemaphoreWaitFlags {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<SemaphoreWaitFlagBits> for SemaphoreWaitFlags {
+    fn from(from: SemaphoreWaitFlagBits) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl SemaphoreWaitFlags {
+    ///[`SemaphoreWaitAny`] specifies that the semaphore wait
+    ///condition is that at least one of the semaphores in
+    ///[`SemaphoreWaitInfo`]::`pSemaphores` has reached the value
+    ///specified by the corresponding element of
+    ///[`SemaphoreWaitInfo`]::`pValues`.
+    ///If [`SemaphoreWaitAny`] is not set, the semaphore wait
+    ///condition is that all of the semaphores in
+    ///[`SemaphoreWaitInfo`]::`pSemaphores` have reached the value
+    ///specified by the corresponding element of
+    ///[`SemaphoreWaitInfo`]::`pValues`.
+    const SemaphoreWaitAny: Self = Self(1);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty() | Self::SemaphoreWaitAny
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for SemaphoreWaitFlags {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for SemaphoreWaitFlags {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for SemaphoreWaitFlags {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for SemaphoreWaitFlags {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for SemaphoreWaitFlags {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for SemaphoreWaitFlags {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for SemaphoreWaitFlags {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for SemaphoreWaitFlags {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for SemaphoreWaitFlags {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<SemaphoreWaitFlags> for SemaphoreWaitFlags {
+    fn extend<T: std::iter::IntoIterator<Item = SemaphoreWaitFlags>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<SemaphoreWaitFlagBits> for SemaphoreWaitFlags {
+    fn extend<T: std::iter::IntoIterator<Item = SemaphoreWaitFlagBits>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(SemaphoreWaitFlags::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<SemaphoreWaitFlags> for SemaphoreWaitFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = SemaphoreWaitFlags>>(iterator: T) -> SemaphoreWaitFlags {
+        let mut out = SemaphoreWaitFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<SemaphoreWaitFlagBits> for SemaphoreWaitFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = SemaphoreWaitFlagBits>>(iterator: T) -> SemaphoreWaitFlags {
+        let mut out = SemaphoreWaitFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for SemaphoreWaitFlags {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(SemaphoreWaitFlags);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == SemaphoreWaitFlags::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self.0.contains(SemaphoreWaitFlags::SemaphoreWaitAny) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SemaphoreWaitAny))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(SemaphoreWaitFlags))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkDescriptorBindingFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorBindingFlagBits.html) - Bitmask specifying descriptor set layout binding properties
+///# C Specifications
+///Bits which  **can**  be set in each element of
+///[`DescriptorSetLayoutBindingFlagsCreateInfo::binding_flags`],
+///specifying options for the corresponding descriptor set layout binding, are:
+///```c
+///// Provided by VK_VERSION_1_2
+///typedef enum VkDescriptorBindingFlagBits {
+///    VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT = 0x00000001,
+///    VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT = 0x00000002,
+///    VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT = 0x00000004,
+///    VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT = 0x00000008,
+///  // Provided by VK_EXT_descriptor_indexing
+///    VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT_EXT =
+/// VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT,
+///  // Provided by VK_EXT_descriptor_indexing
+///    VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT_EXT =
+/// VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT,
+///  // Provided by VK_EXT_descriptor_indexing
+///    VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT_EXT = VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT,
+///  // Provided by VK_EXT_descriptor_indexing
+///    VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT_EXT =
+/// VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT,
+///} VkDescriptorBindingFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_EXT_descriptor_indexing
+///typedef VkDescriptorBindingFlagBits VkDescriptorBindingFlagBitsEXT;
+///```
+///# Description
+/// - [`DescriptorBindingUpdateAfterBind`] indicates that if descriptors in this binding are updated
+///   between when the descriptor set is bound in a command buffer and when that command buffer is
+///   submitted to a queue, then the submission will use the most recently set descriptors for this
+///   binding and the updates do not invalidate the command buffer. Descriptor bindings created with
+///   this flag are also partially exempt from the external synchronization requirement in
+///   [`UpdateDescriptorSetWithTemplateKHR`] and [`UpdateDescriptorSets`]. Multiple descriptors with
+///   this flag set  **can**  be updated concurrently in different threads, though the same
+///   descriptor  **must**  not be updated concurrently by two threads. Descriptors with this flag
+///   set  **can**  be updated concurrently with the set being bound to a command buffer in another
+///   thread, but not concurrently with the set being reset or freed.
+/// - [`DescriptorBindingPartiallyBound`] indicates that descriptors in this binding that are not
+///   *dynamically used* need not contain valid descriptors at the time the descriptors are
+///   consumed. A descriptor is dynamically used if any shader invocation executes an instruction
+///   that performs any memory access using the descriptor.
+/// - [`DescriptorBindingUpdateUnusedWhilePending`] indicates that descriptors in this binding
+///   **can**  be updated after a command buffer has bound this descriptor set, or while a command
+///   buffer that uses this descriptor set is pending execution, as long as the descriptors that are
+///   updated are not used by those command buffers. If [`DescriptorBindingPartiallyBound`] is also
+///   set, then descriptors  **can**  be updated as long as they are not dynamically used by any
+///   shader invocations. If [`DescriptorBindingPartiallyBound`] is not set, then descriptors
+///   **can**  be updated as long as they are not statically used by any shader invocations.
+/// - [`DescriptorBindingVariableDescriptorCount`] indicates that     this is a *variable-sized descriptor binding* whose size will be     specified when a descriptor set is allocated using this layout.     The value of `descriptorCount` is treated as an upper bound on the     size of the binding.     This  **must**  only be used for the last binding in the descriptor set     layout (i.e. the binding with the largest value of `binding`).     For the purposes of counting against limits such as     `maxDescriptorSet`* and `maxPerStageDescriptor`*, the full value     of `descriptorCount` is     counted, except for descriptor bindings with a descriptor type of     `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.     In this case, `descriptorCount` specifies the upper bound on the     byte size of the binding; thus it counts against the [`maxInlineUniformBlockSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformBlockSize) and [`maxInlineUniformTotalSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformTotalSize) limits instead.
+///# Related
+/// - [`VK_EXT_descriptor_indexing`]
+/// - [`crate::vulkan1_2`]
+/// - [`DescriptorBindingFlags`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct DescriptorBindingFlags(u32);
+impl const Default for DescriptorBindingFlags {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<DescriptorBindingFlagBits> for DescriptorBindingFlags {
+    fn from(from: DescriptorBindingFlagBits) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl DescriptorBindingFlags {
+    ///[`DescriptorBindingUpdateAfterBind`] indicates that if
+    ///descriptors in this binding are updated between when the descriptor set
+    ///is bound in a command buffer and when that command buffer is submitted
+    ///to a queue, then the submission will use the most recently set
+    ///descriptors for this binding and the updates do not invalidate the
+    ///command buffer.
+    ///Descriptor bindings created with this flag are also partially exempt
+    ///from the external synchronization requirement in
+    ///[`UpdateDescriptorSetWithTemplateKHR`] and
+    ///[`UpdateDescriptorSets`].
+    ///Multiple descriptors with this flag set  **can**  be updated concurrently in
+    ///different threads, though the same descriptor  **must**  not be updated
+    ///concurrently by two threads.
+    ///Descriptors with this flag set  **can**  be updated concurrently with the set
+    ///being bound to a command buffer in another thread, but not concurrently
+    ///with the set being reset or freed.
+    const DescriptorBindingUpdateAfterBind: Self = Self(1);
+    ///[`DescriptorBindingUpdateUnusedWhilePending`] indicates
+    ///that descriptors in this binding  **can**  be updated after a command buffer
+    ///has bound this descriptor set, or while a command buffer that uses this
+    ///descriptor set is pending execution, as long as the descriptors that are
+    ///updated are not used by those command buffers.
+    ///If [`DescriptorBindingPartiallyBound`] is also set, then
+    ///descriptors  **can**  be updated as long as they are not dynamically used by
+    ///any shader invocations.
+    ///If [`DescriptorBindingPartiallyBound`] is not set, then
+    ///descriptors  **can**  be updated as long as they are not statically used by
+    ///any shader invocations.
+    const DescriptorBindingUpdateUnusedWhilePending: Self = Self(2);
+    ///[`DescriptorBindingPartiallyBound`] indicates that
+    ///descriptors in this binding that are not *dynamically used* need not
+    ///contain valid descriptors at the time the descriptors are consumed.
+    ///A descriptor is dynamically used if any shader invocation executes an
+    ///instruction that performs any memory access using the descriptor.
+    const DescriptorBindingPartiallyBound: Self = Self(4);
+    ///[`DescriptorBindingVariableDescriptorCount`] indicates that
+    ///    this is a *variable-sized descriptor binding* whose size will be
+    ///    specified when a descriptor set is allocated using this layout.
+    ///    The value of `descriptorCount` is treated as an upper bound on the
+    ///    size of the binding.
+    ///    This  **must**  only be used for the last binding in the descriptor set
+    ///    layout (i.e. the binding with the largest value of `binding`).
+    ///    For the purposes of counting against limits such as
+    ///    `maxDescriptorSet`* and `maxPerStageDescriptor`*, the full value
+    ///    of `descriptorCount` is
+    ///    counted, except for descriptor bindings with a descriptor type of
+    ///    `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.
+    ///    In this case, `descriptorCount` specifies the upper bound on the
+    ///    byte size of the binding; thus it counts against the
+    ///[`maxInlineUniformBlockSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformBlockSize) and [`maxInlineUniformTotalSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformTotalSize) limits
+    ///instead.
+    const DescriptorBindingVariableDescriptorCount: Self = Self(8);
+    ///No documentation found
+    ///
+    ///Provided by [`crate::extensions::qcom_extension_369`]
+    const Reserved4Qcom: Self = Self(16);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::DescriptorBindingUpdateAfterBind
+            | Self::DescriptorBindingUpdateUnusedWhilePending
+            | Self::DescriptorBindingPartiallyBound
+            | Self::DescriptorBindingVariableDescriptorCount
+            | Self::Reserved4Qcom
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for DescriptorBindingFlags {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for DescriptorBindingFlags {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for DescriptorBindingFlags {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for DescriptorBindingFlags {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for DescriptorBindingFlags {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for DescriptorBindingFlags {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for DescriptorBindingFlags {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for DescriptorBindingFlags {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for DescriptorBindingFlags {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<DescriptorBindingFlags> for DescriptorBindingFlags {
+    fn extend<T: std::iter::IntoIterator<Item = DescriptorBindingFlags>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<DescriptorBindingFlagBits> for DescriptorBindingFlags {
+    fn extend<T: std::iter::IntoIterator<Item = DescriptorBindingFlagBits>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(DescriptorBindingFlags::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<DescriptorBindingFlags> for DescriptorBindingFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = DescriptorBindingFlags>>(iterator: T) -> DescriptorBindingFlags {
+        let mut out = DescriptorBindingFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<DescriptorBindingFlagBits> for DescriptorBindingFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = DescriptorBindingFlagBits>>(iterator: T) -> DescriptorBindingFlags {
+        let mut out = DescriptorBindingFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for DescriptorBindingFlags {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(DescriptorBindingFlags);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == DescriptorBindingFlags::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(DescriptorBindingFlags::DescriptorBindingUpdateAfterBind)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DescriptorBindingUpdateAfterBind))?;
+                    }
+                    if self
+                        .0
+                        .contains(DescriptorBindingFlags::DescriptorBindingUpdateUnusedWhilePending)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DescriptorBindingUpdateUnusedWhilePending))?;
+                    }
+                    if self.0.contains(DescriptorBindingFlags::DescriptorBindingPartiallyBound) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DescriptorBindingPartiallyBound))?;
+                    }
+                    if self
+                        .0
+                        .contains(DescriptorBindingFlags::DescriptorBindingVariableDescriptorCount)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DescriptorBindingVariableDescriptorCount))?;
+                    }
+                    if self.0.contains(DescriptorBindingFlags::Reserved4Qcom) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(Reserved4Qcom))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(DescriptorBindingFlags))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
+///[VkResolveModeFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResolveModeFlagBits.html) - Bitmask indicating supported depth and stencil resolve modes
+///# C Specifications
+///Possible values of
+///[`SubpassDescriptionDepthStencilResolve::depth_resolve_mode`] and
+///`stencilResolveMode`, specifying the depth and stencil resolve modes,
+///are:
+///```c
+///// Provided by VK_VERSION_1_2
+///typedef enum VkResolveModeFlagBits {
+///    VK_RESOLVE_MODE_NONE = 0,
+///    VK_RESOLVE_MODE_SAMPLE_ZERO_BIT = 0x00000001,
+///    VK_RESOLVE_MODE_AVERAGE_BIT = 0x00000002,
+///    VK_RESOLVE_MODE_MIN_BIT = 0x00000004,
+///    VK_RESOLVE_MODE_MAX_BIT = 0x00000008,
+///  // Provided by VK_KHR_depth_stencil_resolve
+///    VK_RESOLVE_MODE_NONE_KHR = VK_RESOLVE_MODE_NONE,
+///  // Provided by VK_KHR_depth_stencil_resolve
+///    VK_RESOLVE_MODE_SAMPLE_ZERO_BIT_KHR = VK_RESOLVE_MODE_SAMPLE_ZERO_BIT,
+///  // Provided by VK_KHR_depth_stencil_resolve
+///    VK_RESOLVE_MODE_AVERAGE_BIT_KHR = VK_RESOLVE_MODE_AVERAGE_BIT,
+///  // Provided by VK_KHR_depth_stencil_resolve
+///    VK_RESOLVE_MODE_MIN_BIT_KHR = VK_RESOLVE_MODE_MIN_BIT,
+///  // Provided by VK_KHR_depth_stencil_resolve
+///    VK_RESOLVE_MODE_MAX_BIT_KHR = VK_RESOLVE_MODE_MAX_BIT,
+///} VkResolveModeFlagBits;
+///```
+///or the equivalent
+///```c
+///// Provided by VK_KHR_depth_stencil_resolve
+///typedef VkResolveModeFlagBits VkResolveModeFlagBitsKHR;
+///```
+///# Description
+/// - [`ResolveModeNone`] indicates that no resolve operation is done.
+/// - [`ResolveModeSampleZero`] indicates that result of the resolve operation is equal to the value
+///   of sample 0.
+/// - [`ResolveModeAverage`] indicates that result of the resolve operation is the average of the
+///   sample values.
+/// - [`ResolveModeMin`] indicates that result of the resolve operation is the minimum of the sample
+///   values.
+/// - [`ResolveModeMax`] indicates that result of the resolve operation is the maximum of the sample
+///   values.
+///# Related
+/// - [`VK_KHR_depth_stencil_resolve`]
+/// - [`crate::vulkan1_2`]
+/// - [`RenderingAttachmentInfo`]
+/// - [`ResolveModeFlags`]
+/// - [`SubpassDescriptionDepthStencilResolve`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct ResolveModeFlags(u32);
+impl const Default for ResolveModeFlags {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<ResolveModeFlagBits> for ResolveModeFlags {
+    fn from(from: ResolveModeFlagBits) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl ResolveModeFlags {
+    ///[`ResolveModeNone`] indicates that no resolve operation is done.
+    const ResolveModeNone: Self = Self(0);
+    ///[`ResolveModeSampleZero`] indicates that result of the
+    ///resolve operation is equal to the value of sample 0.
+    const ResolveModeSampleZero: Self = Self(1);
+    ///[`ResolveModeAverage`] indicates that result of the resolve
+    ///operation is the average of the sample values.
+    const ResolveModeAverage: Self = Self(2);
+    ///[`ResolveModeMin`] indicates that result of the resolve
+    ///operation is the minimum of the sample values.
+    const ResolveModeMin: Self = Self(4);
+    ///[`ResolveModeMax`] indicates that result of the resolve
+    ///operation is the maximum of the sample values.
+    const ResolveModeMax: Self = Self(8);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::ResolveModeNone
+            | Self::ResolveModeSampleZero
+            | Self::ResolveModeAverage
+            | Self::ResolveModeMin
+            | Self::ResolveModeMax
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for ResolveModeFlags {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for ResolveModeFlags {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for ResolveModeFlags {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for ResolveModeFlags {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for ResolveModeFlags {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for ResolveModeFlags {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for ResolveModeFlags {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for ResolveModeFlags {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for ResolveModeFlags {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<ResolveModeFlags> for ResolveModeFlags {
+    fn extend<T: std::iter::IntoIterator<Item = ResolveModeFlags>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<ResolveModeFlagBits> for ResolveModeFlags {
+    fn extend<T: std::iter::IntoIterator<Item = ResolveModeFlagBits>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(ResolveModeFlags::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<ResolveModeFlags> for ResolveModeFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = ResolveModeFlags>>(iterator: T) -> ResolveModeFlags {
+        let mut out = ResolveModeFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<ResolveModeFlagBits> for ResolveModeFlags {
+    fn from_iter<T: std::iter::IntoIterator<Item = ResolveModeFlagBits>>(iterator: T) -> ResolveModeFlags {
+        let mut out = ResolveModeFlags::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for ResolveModeFlags {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(ResolveModeFlags);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == ResolveModeFlags::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self.0.contains(ResolveModeFlags::ResolveModeNone) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ResolveModeNone))?;
+                    }
+                    if self.0.contains(ResolveModeFlags::ResolveModeSampleZero) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ResolveModeSampleZero))?;
+                    }
+                    if self.0.contains(ResolveModeFlags::ResolveModeAverage) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ResolveModeAverage))?;
+                    }
+                    if self.0.contains(ResolveModeFlags::ResolveModeMin) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ResolveModeMin))?;
+                    }
+                    if self.0.contains(ResolveModeFlags::ResolveModeMax) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ResolveModeMax))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(ResolveModeFlags))
+            .field(&Flags(*self))
+            .finish()
     }
 }
 ///[VkConformanceVersion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkConformanceVersion.html) - Structure containing the conformance test suite version the implementation is compliant with
@@ -1672,23 +3032,23 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 /// - [`rounding_mode_independence`] is a [`ShaderFloatControlsIndependence`] value indicating
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float_16`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
 ///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
 ///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_32`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
 ///   class="base"><span class="strut"
 ///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 64-bit floating-point types.
@@ -15147,22 +16507,22 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float_16`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_32`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 64-bit floating-point types.

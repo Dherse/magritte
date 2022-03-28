@@ -21,7 +21,7 @@ lazy_static::lazy_static! {
 }
 
 /// A visitor that visits nodes in an HTML graph
-pub(super) struct Visitor<'a, 'b, T: Queryable>
+pub(super) struct Visitor<'a, 'b, T: Queryable<'b>>
 where
     'b: 'a,
 {
@@ -35,7 +35,7 @@ where
     pub variants: Option<&'a mut AHashMap<String, String>>,
 }
 
-impl<'a, 'b, T: Queryable> Visitor<'a, 'b, T>
+impl<'a, 'b, T: Queryable<'b>> Visitor<'a, 'b, T>
 where
     'b: 'a,
 {
@@ -346,7 +346,7 @@ where
             if let Some(text) = first.value().as_text() {
                 let text = text.trim();
 
-                if let Some(name) = self.this.find(text) {
+                if let Some(name) = self.this.find(self.source, text) {
                     self.out.push_str("[`");
                     self.out.push_str(name);
                     self.out.push_str("`]");

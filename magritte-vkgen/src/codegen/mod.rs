@@ -9,6 +9,7 @@ mod expr;
 mod extensions;
 mod handles;
 mod structs;
+mod bitmasks;
 pub mod ty;
 
 use ahash::AHashMap;
@@ -17,7 +18,7 @@ use proc_macro2::TokenStream;
 use crate::{doc::Documentation, imports::Imports, origin::Origin, source::Source};
 
 #[doc(hidden)]
-pub struct CodeOut(pub Origin<'static>, pub Imports, pub TokenStream);
+pub struct CodeOut(pub Origin<'static>, pub Imports, pub TokenStream, pub TokenStream);
 
 unsafe impl Send for CodeOut {}
 
@@ -28,15 +29,25 @@ impl<'a> Source<'a> {
             .origins
             .iter()
             .filter(|o| !o.is_disabled())
-            .map(|o| (o, (Imports::new(o), TokenStream::new())))
+            .map(|o| (o, (Imports::new(o), TokenStream::new(), TokenStream::new())))
             .collect::<AHashMap<_, _>>();
+
+        for extension in &self.extensions {
+            if extension.origin().is_disabled() {
+                continue;
+            }
+
+            let (_, out, _) = per_origin.get_mut(extension.origin()).unwrap();
+
+            extension.generate_mod_doc(self, doc, out);
+        }
 
         for const_ in &self.constants {
             if const_.origin().is_disabled() {
                 continue;
             }
 
-            let (imports, out) = per_origin.get_mut(const_.origin()).unwrap();
+            let (imports, _, out) = per_origin.get_mut(const_.origin()).unwrap();
 
             const_.generate_code(self, doc, imports, out);
         }
@@ -46,7 +57,7 @@ impl<'a> Source<'a> {
                 continue;
             }
 
-            let (imports, out) = per_origin.get_mut(basetype.origin()).unwrap();
+            let (imports, _, out) = per_origin.get_mut(basetype.origin()).unwrap();
 
             basetype.generate_code(self, doc, imports, out);
         }
@@ -56,9 +67,29 @@ impl<'a> Source<'a> {
                 continue;
             }
 
-            let (imports, out) = per_origin.get_mut(enum_.origin()).unwrap();
+            let (imports, _, out) = per_origin.get_mut(enum_.origin()).unwrap();
 
             enum_.generate_code(self, doc, imports, out);
+        }
+
+        for bitflag in &self.bitflags {
+            if bitflag.origin().is_disabled() {
+                continue;
+            }
+
+            let (imports, _, out) = per_origin.get_mut(bitflag.origin()).unwrap();
+
+            bitflag.generate_code(self, doc, imports, out);
+        }
+
+        for bitmask in &self.bitmasks {
+            if bitmask.origin().is_disabled() {
+                continue;
+            }
+
+            let (imports, _, out) = per_origin.get_mut(bitmask.origin()).unwrap();
+
+            bitmask.generate_code(self, doc, imports, out);
         }
 
         for struct_ in &self.structs {
@@ -66,7 +97,7 @@ impl<'a> Source<'a> {
                 continue;
             }
 
-            let (imports, out) = per_origin.get_mut(struct_.origin()).unwrap();
+            let (imports, _, out) = per_origin.get_mut(struct_.origin()).unwrap();
 
             struct_.generate_raw_code(self, doc, imports, out);
         }
@@ -76,14 +107,14 @@ impl<'a> Source<'a> {
                 continue;
             }
 
-            let (_, out) = per_origin.get_mut(handle.origin()).unwrap();
+            let (_, _, out) = per_origin.get_mut(handle.origin()).unwrap();
 
             handle.generate_code(self, doc, out);
         }
 
         per_origin
             .into_iter()
-            .map(|(key, (i, t))| CodeOut(key.as_static(), i, t))
+            .map(|(key, (i, h, t))| CodeOut(key.as_static(), i, h, t))
             .collect()
     }
 }

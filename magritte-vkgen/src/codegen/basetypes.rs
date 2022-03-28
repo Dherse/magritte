@@ -63,8 +63,8 @@ impl<'a> Basetype<'a> {
     }
 }
 
-impl<'a> Queryable for Basetype<'a> {
-    fn find(&self, _: &str) -> Option<&str> {
+impl<'a> Queryable<'a> for Basetype<'a> {
+    fn find(&self, _: &Source<'a>, _: &str) -> Option<&'a str> {
         None
     }
 }

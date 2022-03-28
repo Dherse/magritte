@@ -96,8 +96,8 @@ impl<'a> SymbolName<'a> for Union<'a> {
     }
 }
 
-impl<'a> Queryable for Union<'a> {
-    fn find(&self, name: &str) -> Option<&str> {
+impl<'a> Queryable<'a> for Union<'a> {
+    fn find<'b>(&'b self, _: &'b Source<'a>, name: &str) -> Option<&'b str> {
         self.fields.get_by_name(name).map(Field::name)
     }
 }

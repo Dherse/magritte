@@ -1,4 +1,53 @@
+//![VK_NV_device_diagnostics_config](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_NV_device_diagnostics_config.html) - device extension
+//!# Description
+//!Applications using Nvidia Nsight<sup>™</sup> Aftermath SDK for Vulkan to integrate
+//!device crash dumps into their error reporting mechanisms,  **may**  use this
+//!extension to configure options related to device crash dump creation.
+//!# Revision
+//!1
+//!# Dependencies
+//! - Requires Vulkan 1.0
+//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//!# Contacts
+//! - Kedarnath Thangudu [kthangudu](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_device_diagnostics_config]
+//!   @kthangudu%0A<<Here describe the issue or question you have about the
+//!   VK_NV_device_diagnostics_config extension>>)
+//!# New structures
+//! - Extending [`DeviceCreateInfo`]:  - [`DeviceDiagnosticsConfigCreateInfoNV`]
+//! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
+//!   [`PhysicalDeviceDiagnosticsConfigFeaturesNV`]
+//!# New enums
+//! - [`DeviceDiagnosticsConfigFlagBitsNV`]
+//!# New bitmasks
+//! - [`DeviceDiagnosticsConfigFlagsNV`]
+//!# New constants
+//! - [`NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME`]
+//! - [`NV_DEVICE_DIAGNOSTICS_CONFIG_SPEC_VERSION`]
+//! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV`
+//!   - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV`
+//!# Version History
+//! - Revision 1, 2019-11-21 (Kedarnath Thangudu)  - Internal revisions
+//!# Other info
+//! * 2019-12-15
+//! * - Kedarnath Thangudu, NVIDIA  - Thomas Klein, NVIDIA
+//!# Related
+//! - [`DeviceDiagnosticsConfigCreateInfoNV`]
+//! - [`DeviceDiagnosticsConfigFlagBitsNV`]
+//! - [`DeviceDiagnosticsConfigFlagsNV`]
+//! - [`PhysicalDeviceDiagnosticsConfigFeaturesNV`]
+//!
+//!# Notes and documentation
+//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+//!
+//!This documentation is generated from the Vulkan specification and documentation.
+//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+//! Commons Attribution 4.0 International*.
+//!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType};
+#[cfg(feature = "bytemuck")]
+use bytemuck::{Pod, Zeroable};
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -8,6 +57,393 @@ pub const NV_DEVICE_DIAGNOSTICS_CONFIG_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME")]
 pub const NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_device_diagnostics_config");
+///[VkDeviceDiagnosticsConfigFlagBitsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceDiagnosticsConfigFlagBitsNV.html) - Bitmask specifying diagnostics flags
+///# C Specifications
+///Bits which  **can**  be set in
+///[`DeviceDiagnosticsConfigCreateInfoNV::flags`] include:
+///```c
+///// Provided by VK_NV_device_diagnostics_config
+///typedef enum VkDeviceDiagnosticsConfigFlagBitsNV {
+///    VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_BIT_NV = 0x00000001,
+///    VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_BIT_NV = 0x00000002,
+///    VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_BIT_NV = 0x00000004,
+///} VkDeviceDiagnosticsConfigFlagBitsNV;
+///```
+///# Description
+/// - [`DeviceDiagnosticsConfigEnableShaderDebugInfoNv`] enables the generation of debug information
+///   for shaders.
+/// - [`DeviceDiagnosticsConfigEnableResourceTrackingNv`] enables driver side tracking of resources
+///   (images, buffers, etc.) used to augment the device fault information.
+/// - [`DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv`] enables automatic insertion of [diagnostic checkpoints](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-diagnostic-checkpoints) for draw calls, dispatches, trace rays, and copies. The CPU call stack at the time of the command will be associated as the marker data for the automatically inserted checkpoints.
+///# Related
+/// - [`VK_NV_device_diagnostics_config`]
+/// - [`DeviceDiagnosticsConfigFlagsNV`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceDiagnosticsConfigFlagBitsNV")]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[non_exhaustive]
+#[repr(u32)]
+pub enum DeviceDiagnosticsConfigFlagBitsNV {
+    #[doc(hidden)]
+    Empty = 0,
+    ///[`DeviceDiagnosticsConfigEnableShaderDebugInfoNv`]
+    ///enables the generation of debug information for shaders.
+    DeviceDiagnosticsConfigEnableShaderDebugInfoNv = 1,
+    ///[`DeviceDiagnosticsConfigEnableResourceTrackingNv`]
+    ///enables driver side tracking of resources (images, buffers, etc.) used
+    ///to augment the device fault information.
+    DeviceDiagnosticsConfigEnableResourceTrackingNv = 2,
+    ///[`DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv`]
+    ///enables automatic insertion of [diagnostic checkpoints](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-diagnostic-checkpoints) for draw calls, dispatches,
+    ///trace rays,
+    ///and copies.
+    ///The CPU call stack at the time of the command will be associated as the
+    ///marker data for the automatically inserted checkpoints.
+    DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv = 4,
+}
+impl const Default for DeviceDiagnosticsConfigFlagBitsNV {
+    fn default() -> Self {
+        Self::Empty
+    }
+}
+impl DeviceDiagnosticsConfigFlagBitsNV {
+    ///Default empty value
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Gets the raw underlying value
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self as u32
+    }
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    #[inline]
+    pub const unsafe fn from_bits(bits: u32) -> u32 {
+        std::mem::transmute(bits)
+    }
+}
+///[VkDeviceDiagnosticsConfigFlagBitsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceDiagnosticsConfigFlagBitsNV.html) - Bitmask specifying diagnostics flags
+///# C Specifications
+///Bits which  **can**  be set in
+///[`DeviceDiagnosticsConfigCreateInfoNV::flags`] include:
+///```c
+///// Provided by VK_NV_device_diagnostics_config
+///typedef enum VkDeviceDiagnosticsConfigFlagBitsNV {
+///    VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_BIT_NV = 0x00000001,
+///    VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_BIT_NV = 0x00000002,
+///    VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_BIT_NV = 0x00000004,
+///} VkDeviceDiagnosticsConfigFlagBitsNV;
+///```
+///# Description
+/// - [`DeviceDiagnosticsConfigEnableShaderDebugInfoNv`] enables the generation of debug information
+///   for shaders.
+/// - [`DeviceDiagnosticsConfigEnableResourceTrackingNv`] enables driver side tracking of resources
+///   (images, buffers, etc.) used to augment the device fault information.
+/// - [`DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv`] enables automatic insertion of [diagnostic checkpoints](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-diagnostic-checkpoints) for draw calls, dispatches, trace rays, and copies. The CPU call stack at the time of the command will be associated as the marker data for the automatically inserted checkpoints.
+///# Related
+/// - [`VK_NV_device_diagnostics_config`]
+/// - [`DeviceDiagnosticsConfigFlagsNV`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[repr(transparent)]
+pub struct DeviceDiagnosticsConfigFlagsNV(u32);
+impl const Default for DeviceDiagnosticsConfigFlagsNV {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl From<DeviceDiagnosticsConfigFlagBitsNV> for DeviceDiagnosticsConfigFlagsNV {
+    fn from(from: DeviceDiagnosticsConfigFlagBitsNV) -> Self {
+        unsafe { Self::from_bits_unchecked(from as u32) }
+    }
+}
+impl DeviceDiagnosticsConfigFlagsNV {
+    ///[`DeviceDiagnosticsConfigEnableShaderDebugInfoNv`]
+    ///enables the generation of debug information for shaders.
+    const DeviceDiagnosticsConfigEnableShaderDebugInfoNv: Self = Self(1);
+    ///[`DeviceDiagnosticsConfigEnableResourceTrackingNv`]
+    ///enables driver side tracking of resources (images, buffers, etc.) used
+    ///to augment the device fault information.
+    const DeviceDiagnosticsConfigEnableResourceTrackingNv: Self = Self(2);
+    ///[`DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv`]
+    ///enables automatic insertion of [diagnostic checkpoints](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-diagnostic-checkpoints) for draw calls, dispatches,
+    ///trace rays,
+    ///and copies.
+    ///The CPU call stack at the time of the command will be associated as the
+    ///marker data for the automatically inserted checkpoints.
+    const DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv: Self = Self(4);
+    ///Default empty flags
+    #[inline]
+    pub const fn empty() -> Self {
+        Self::default()
+    }
+    ///Returns a value with all of the flags enabled
+    #[inline]
+    pub const fn all() -> Self {
+        Self::empty()
+            | Self::DeviceDiagnosticsConfigEnableShaderDebugInfoNv
+            | Self::DeviceDiagnosticsConfigEnableResourceTrackingNv
+            | Self::DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv
+    }
+    ///Returns the raw bits
+    #[inline]
+    pub const fn bits(&self) -> u32 {
+        self.0
+    }
+    ///Convert raw bits into a bit flags checking that only valid
+    ///bits are contained.
+    #[inline]
+    pub const fn from_bits(bits: u32) -> Option<Self> {
+        if (bits & !Self::all().bits()) == 0 {
+            Some(Self(bits))
+        } else {
+            None
+        }
+    }
+    ///Convert raw bits into a bit flags truncating all invalid
+    ///bits that may be contained.
+    #[inline]
+    pub const fn from_bits_truncate(bits: u32) -> Self {
+        Self(Self::all().0 & bits)
+    }
+    ///Convert raw bits into a bit preserving all bits
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
+    #[inline]
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
+    }
+    ///Returns `true` if no flags are currently set
+    #[inline]
+    pub const fn is_empty(&self) -> bool {
+        self.bits() == Self::empty().bits()
+    }
+    ///Returns `true` if all flags are currently set
+    #[inline]
+    pub const fn is_all(&self) -> bool {
+        self.bits() == Self::all().bits()
+    }
+    ///Returns `true` if there are flags in common to `self` and `other`
+    #[inline]
+    pub const fn intersects(&self, other: Self) -> bool {
+        !Self(self.bits() & other.bits()).is_empty()
+    }
+    ///Returns `true` if all of the flags in `other` are contained `self`
+    #[inline]
+    pub const fn contains(&self, other: Self) -> bool {
+        (self.bits() & other.bits()) == other.bits()
+    }
+    ///Inserts a set of flags in place
+    #[inline]
+    pub fn insert(&mut self, other: Self) {
+        self.0 |= other.bits()
+    }
+    ///Removes a set of flags in place
+    #[inline]
+    pub fn remove(&mut self, other: Self) {
+        self.0 &= !other.bits();
+    }
+    ///Toggles a set of flags in place
+    #[inline]
+    pub fn toggle(&mut self, other: Self) {
+        self.0 ^= other.bits();
+    }
+    ///Inserts or removes the specified flags depending on the value of `is_insert`
+    #[inline]
+    pub fn set(&mut self, other: Self, is_insert: bool) {
+        if is_insert {
+            self.insert(other);
+        } else {
+            self.remove(other);
+        }
+    }
+    ///Returns the intersection between `self` and `other`
+    #[inline]
+    pub const fn intersection(self, other: Self) -> Self {
+        Self(self.bits() & other.bits())
+    }
+    ///Returns the union between `self` and `other`
+    #[inline]
+    pub const fn union(self, other: Self) -> Self {
+        Self(self.bits() | other.bits())
+    }
+    ///Returns the difference between `self` and `other`
+    #[inline]
+    pub const fn difference(self, other: Self) -> Self {
+        Self(self.bits() & !other.bits())
+    }
+    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
+    ///
+    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
+    #[inline]
+    pub const fn symmetric_difference(self, other: Self) -> Self {
+        Self(self.bits() ^ other.bits())
+    }
+    ///Returns the complement of `self`.
+    #[inline]
+    pub const fn complement(self) -> Self {
+        Self::from_bits_truncate(!self.bits())
+    }
+}
+impl const std::ops::BitOr for DeviceDiagnosticsConfigFlagsNV {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        self.union(other)
+    }
+}
+impl std::ops::BitOrAssign for DeviceDiagnosticsConfigFlagsNV {
+    #[inline]
+    fn bitor_assign(&mut self, other: Self) {
+        *self = *self | other;
+    }
+}
+impl const std::ops::BitXor for DeviceDiagnosticsConfigFlagsNV {
+    type Output = Self;
+    #[inline]
+    fn bitxor(self, other: Self) -> Self {
+        self.symmetric_difference(other)
+    }
+}
+impl std::ops::BitXorAssign for DeviceDiagnosticsConfigFlagsNV {
+    #[inline]
+    fn bitxor_assign(&mut self, other: Self) {
+        *self = *self ^ other;
+    }
+}
+impl const std::ops::BitAnd for DeviceDiagnosticsConfigFlagsNV {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        self.intersection(other)
+    }
+}
+impl std::ops::BitAndAssign for DeviceDiagnosticsConfigFlagsNV {
+    #[inline]
+    fn bitand_assign(&mut self, other: Self) {
+        *self = *self & other;
+    }
+}
+impl const std::ops::Sub for DeviceDiagnosticsConfigFlagsNV {
+    type Output = Self;
+    #[inline]
+    fn sub(self, other: Self) -> Self {
+        self.difference(other)
+    }
+}
+impl std::ops::SubAssign for DeviceDiagnosticsConfigFlagsNV {
+    #[inline]
+    fn sub_assign(&mut self, other: Self) {
+        *self = *self - other;
+    }
+}
+impl const std::ops::Not for DeviceDiagnosticsConfigFlagsNV {
+    type Output = Self;
+    #[inline]
+    fn not(self) -> Self {
+        self.complement()
+    }
+}
+impl std::iter::Extend<DeviceDiagnosticsConfigFlagsNV> for DeviceDiagnosticsConfigFlagsNV {
+    fn extend<T: std::iter::IntoIterator<Item = DeviceDiagnosticsConfigFlagsNV>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(i);
+        }
+    }
+}
+impl std::iter::Extend<DeviceDiagnosticsConfigFlagBitsNV> for DeviceDiagnosticsConfigFlagsNV {
+    fn extend<T: std::iter::IntoIterator<Item = DeviceDiagnosticsConfigFlagBitsNV>>(&mut self, iterator: T) {
+        for i in iterator {
+            self.insert(DeviceDiagnosticsConfigFlagsNV::from(i));
+        }
+    }
+}
+impl std::iter::FromIterator<DeviceDiagnosticsConfigFlagsNV> for DeviceDiagnosticsConfigFlagsNV {
+    fn from_iter<T: std::iter::IntoIterator<Item = DeviceDiagnosticsConfigFlagsNV>>(
+        iterator: T,
+    ) -> DeviceDiagnosticsConfigFlagsNV {
+        let mut out = DeviceDiagnosticsConfigFlagsNV::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::iter::FromIterator<DeviceDiagnosticsConfigFlagBitsNV> for DeviceDiagnosticsConfigFlagsNV {
+    fn from_iter<T: std::iter::IntoIterator<Item = DeviceDiagnosticsConfigFlagBitsNV>>(
+        iterator: T,
+    ) -> DeviceDiagnosticsConfigFlagsNV {
+        let mut out = DeviceDiagnosticsConfigFlagsNV::empty();
+        out.extend(iterator);
+        out
+    }
+}
+impl std::fmt::Debug for DeviceDiagnosticsConfigFlagsNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(DeviceDiagnosticsConfigFlagsNV);
+        impl std::fmt::Debug for Flags {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == DeviceDiagnosticsConfigFlagsNV::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    let mut first = true;
+                    if self
+                        .0
+                        .contains(DeviceDiagnosticsConfigFlagsNV::DeviceDiagnosticsConfigEnableShaderDebugInfoNv)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DeviceDiagnosticsConfigEnableShaderDebugInfoNv))?;
+                    }
+                    if self
+                        .0
+                        .contains(DeviceDiagnosticsConfigFlagsNV::DeviceDiagnosticsConfigEnableResourceTrackingNv)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DeviceDiagnosticsConfigEnableResourceTrackingNv))?;
+                    }
+                    if self
+                        .0
+                        .contains(DeviceDiagnosticsConfigFlagsNV::DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv))?;
+                    }
+                }
+                Ok(())
+            }
+        }
+        f.debug_tuple(stringify!(DeviceDiagnosticsConfigFlagsNV))
+            .field(&Flags(*self))
+            .finish()
+    }
+}
 ///[VkPhysicalDeviceDiagnosticsConfigFeaturesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceDiagnosticsConfigFeaturesNV.html) - Structure describing the device-generated diagnostic configuration features that can be supported by an implementation
 ///# C Specifications
 ///The [`PhysicalDeviceDiagnosticsConfigFeaturesNV`] structure is defined

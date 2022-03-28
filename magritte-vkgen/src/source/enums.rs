@@ -8,7 +8,7 @@ use crate::{
     symbols::{SymbolName, SymbolTable},
 };
 
-use super::{Alias, Bit};
+use super::{Alias, Bit, Source};
 
 /// A type enum.
 #[derive(Debug, Clone, PartialEq)]
@@ -116,8 +116,8 @@ impl<'a> SymbolName<'a> for Enum<'a> {
     }
 }
 
-impl<'a> Queryable for Enum<'a> {
-    fn find(&self, name: &str) -> Option<&str> {
+impl<'a> Queryable<'a> for Enum<'a> {
+    fn find<'b>(&'b self, _: &'b Source<'a>, name: &str) -> Option<&'b str> {
         self.variants
             .get_by_either(name)
             .map(Bit::name)
