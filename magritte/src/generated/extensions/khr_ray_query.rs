@@ -31,9 +31,10 @@ pub const KHR_RAY_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_ray
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceRayQueryFeaturesKHR`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR`
+///[`PhysicalDeviceRayQueryFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR`
 ///# Related
 /// - [`VK_KHR_ray_query`]
 /// - [`Bool32`]

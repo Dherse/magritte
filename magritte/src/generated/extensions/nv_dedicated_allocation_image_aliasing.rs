@@ -33,10 +33,11 @@ pub const NV_DEDICATED_ALLOCATION_IMAGE_ALIASING_EXTENSION_NAME: &'static CStr =
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV`]**can** also be used in the
+///[`PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV`] **can**  also be used in the
 /// [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV`
 ///# Related
 /// - [`VK_NV_dedicated_allocation_image_aliasing`]

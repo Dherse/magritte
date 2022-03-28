@@ -37,39 +37,41 @@ pub const EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///# Description
 ///Importing memory from a host pointer shares ownership of the memory between
 ///the host and the Vulkan implementation.
-///The application **can** continue to access the memory through the host pointer
+///The application  **can**  continue to access the memory through the host pointer
 ///but it is the application’s responsibility to synchronize device and
 ///non-device access to the payload as defined in
-///[Host Access to Device Memory Objects](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-device-hostaccess).Applications **can** import the same payload into multiple instances of Vulkan
+///[Host Access to Device Memory Objects](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-device-hostaccess).Applications  **can**  import the same payload into multiple instances of Vulkan
 ///and multiple times into a given Vulkan instance.
-///However, implementations **may** fail to import the same payload multiple times
+///However, implementations  **may**  fail to import the same payload multiple times
 ///into a given physical device due to platform constraints.Importing memory from a particular host
-/// pointer **may** not be possible due to
+/// pointer  **may**  not be possible due to
 ///additional platform-specific restrictions beyond the scope of this
-///specification in which case the implementation **must** fail the memory import
+///specification in which case the implementation  **must**  fail the memory import
 ///operation with the error code `VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR`.Whether device memory
 /// objects imported from a host pointer hold a reference
 ///to their payload is undefined.
-///As such, the application **must** ensure that the imported memory range remains
-///valid and accessible for the lifetime of the imported memory object.Valid Usage
-/// - If [`handle_type`] is not `0`, it **must** be supported for import, as reported in
+///As such, the application  **must**  ensure that the imported memory range remains
+///valid and accessible for the lifetime of the imported memory object.
+///## Valid Usage
+/// - If [`handle_type`] is not `0`, it  **must**  be supported for import, as reported in
 ///   [`ExternalMemoryProperties`]
-/// - If [`handle_type`] is not `0`, it **must** be
+/// - If [`handle_type`] is not `0`, it  **must**  be
 ///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT` or
 ///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT`
-/// - [`host_pointer`]**must** be a pointer aligned to an integer multiple of
+/// - [`host_pointer`] **must**  be a pointer aligned to an integer multiple of
 ///   [`PhysicalDeviceExternalMemoryHostPropertiesEXT::min_imported_host_pointer_alignment`]
 /// - If [`handle_type`] is `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT`,
-///   [`host_pointer`]**must** be a pointer to `allocationSize` number of bytes of host memory,
+///   [`host_pointer`] **must**  be a pointer to `allocationSize` number of bytes of host memory,
 ///   where `allocationSize` is the member of the [`MemoryAllocateInfo`] structure this structure is
 ///   chained to
 /// - If [`handle_type`] is `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT`,
-///   [`host_pointer`]**must** be a pointer to `allocationSize` number of bytes of host mapped
+///   [`host_pointer`] **must**  be a pointer to `allocationSize` number of bytes of host mapped
 ///   foreign memory, where `allocationSize` is the member of the [`MemoryAllocateInfo`] structure
 ///   this structure is chained to
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_HOST_POINTER_INFO_EXT`
-/// - [`handle_type`]**must** be a valid [`ExternalMemoryHandleTypeFlagBits`] value
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_HOST_POINTER_INFO_EXT`
+/// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
 ///# Related
 /// - [`VK_EXT_external_memory_host`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
@@ -201,12 +203,13 @@ impl<'lt> ImportMemoryHostPointerInfoEXT<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory_type_bits`] is a bitmask containing one bit set for every memory type which the
-///   specified host pointer **can** be imported as.
+///   specified host pointer  **can**  be imported as.
 ///# Description
-///The value returned by [`memory_type_bits`]**must** only include bits that
-///identify memory types which are host visible.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_MEMORY_HOST_POINTER_PROPERTIES_EXT`
-/// - [`p_next`]**must** be `NULL`
+///The value returned by [`memory_type_bits`] **must**  only include bits that
+///identify memory types which are host visible.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_HOST_POINTER_PROPERTIES_EXT`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_EXT_external_memory_host`]
 /// - [`StructureType`]
@@ -230,7 +233,7 @@ pub struct MemoryHostPointerPropertiesEXT<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`memory_type_bits`] is a bitmask containing one bit set for every
-    ///memory type which the specified host pointer **can** be imported as.
+    ///memory type which the specified host pointer  **can**  be imported as.
     memory_type_bits: u32,
 }
 impl<'lt> Default for MemoryHostPointerPropertiesEXT<'lt> {
@@ -248,18 +251,9 @@ impl<'lt> MemoryHostPointerPropertiesEXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::memory_type_bits`]
-    pub fn memory_type_bits_raw(&self) -> u32 {
-        self.memory_type_bits
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::memory_type_bits`]
-    pub fn set_memory_type_bits_raw(&mut self, value: u32) -> &mut Self {
-        self.memory_type_bits = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -323,16 +317,18 @@ impl<'lt> MemoryHostPointerPropertiesEXT<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`min_imported_host_pointer_alignment`] is the minimum **required** alignment, in bytes, for
-///   the base address and size of host pointers that **can** be imported to a Vulkan memory object.
-///   The value **must** be a power of two.
+/// - [`min_imported_host_pointer_alignment`] is the minimum  **required**  alignment, in bytes, for
+///   the base address and size of host pointers that  **can**  be imported to a Vulkan memory
+///   object. The value  **must**  be a power of two.
 ///# Description
 ///If the [`PhysicalDeviceExternalMemoryHostPropertiesEXT`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT`
 ///# Related
 /// - [`VK_EXT_external_memory_host`]
 /// - [`DeviceSize`]
@@ -355,10 +351,10 @@ pub struct PhysicalDeviceExternalMemoryHostPropertiesEXT<'lt> {
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
-    ///[`min_imported_host_pointer_alignment`] is the minimum **required**
+    ///[`min_imported_host_pointer_alignment`] is the minimum  **required**
     ///alignment, in bytes, for the base address and size of host pointers that
-    ///**can** be imported to a Vulkan memory object.
-    ///The value **must** be a power of two.
+    /// **can**  be imported to a Vulkan memory object.
+    ///The value  **must**  be a power of two.
     min_imported_host_pointer_alignment: DeviceSize,
 }
 impl<'lt> Default for PhysicalDeviceExternalMemoryHostPropertiesEXT<'lt> {

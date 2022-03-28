@@ -30,12 +30,13 @@ pub const NN_VI_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NN_vi_s
 /// - [`window`] is the `nn`::`vi`::`NativeWindowHandle` for the `nn`::`vi`::`Layer` with which to
 ///   associate the surface.
 ///# Description
-///Valid Usage
-/// - [`window`]**must** be a valid `nn`::`vi`::`NativeWindowHandle`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VI_SURFACE_CREATE_INFO_NN`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
+///## Valid Usage
+/// - [`window`] **must**  be a valid `nn`::`vi`::`NativeWindowHandle`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VI_SURFACE_CREATE_INFO_NN`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_NN_vi_surface`]
 /// - [`StructureType`]

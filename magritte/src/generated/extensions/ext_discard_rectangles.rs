@@ -86,15 +86,16 @@ impl DiscardRectangleModeEXT {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`max_discard_rectangles`] is the maximum number of active discard rectangles that **can** be
-///   specified.
+/// - [`max_discard_rectangles`] is the maximum number of active discard rectangles that  **can**
+///   be specified.
 ///# Description
 ///If the [`PhysicalDeviceDiscardRectanglePropertiesEXT`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT`
 ///# Related
 /// - [`VK_EXT_discard_rectangles`]
 /// - [`StructureType`]
@@ -117,7 +118,7 @@ pub struct PhysicalDeviceDiscardRectanglePropertiesEXT<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`max_discard_rectangles`] is the
-    ///maximum number of active discard rectangles that **can** be specified.
+    ///maximum number of active discard rectangles that  **can**  be specified.
     max_discard_rectangles: u32,
 }
 impl<'lt> Default for PhysicalDeviceDiscardRectanglePropertiesEXT<'lt> {
@@ -135,18 +136,9 @@ impl<'lt> PhysicalDeviceDiscardRectanglePropertiesEXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::max_discard_rectangles`]
-    pub fn max_discard_rectangles_raw(&self) -> u32 {
-        self.max_discard_rectangles
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_discard_rectangles`]
-    pub fn set_max_discard_rectangles_raw(&mut self, value: u32) -> &mut Self {
-        self.max_discard_rectangles = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -226,13 +218,15 @@ impl<'lt> PhysicalDeviceDiscardRectanglePropertiesEXT<'lt> {
 ///[`GraphicsPipelineCreateInfo`], it defines parameters of the discard
 ///rectangle test.
 ///If this structure is not included in the [`p_next`] chain, it is equivalent
-///to specifying this structure with a [`discard_rectangle_count`] of `0`.Valid Usage
-/// - [`discard_rectangle_count`]**must** be less than or equal to
+///to specifying this structure with a [`discard_rectangle_count`] of `0`.
+///## Valid Usage
+/// - [`discard_rectangle_count`] **must**  be less than or equal to
 ///   [`PhysicalDeviceDiscardRectanglePropertiesEXT::max_discard_rectangles`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT`
-/// - [`flags`]**must** be `0`
-/// - [`discard_rectangle_mode`]**must** be a valid [`DiscardRectangleModeEXT`] value
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT`
+/// - [`flags`] **must**  be `0`
+/// - [`discard_rectangle_mode`] **must**  be a valid [`DiscardRectangleModeEXT`] value
 ///# Related
 /// - [`VK_EXT_discard_rectangles`]
 /// - [`DiscardRectangleModeEXT`]
@@ -287,10 +281,6 @@ impl<'lt> PipelineDiscardRectangleStateCreateInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::discard_rectangle_count`]
-    pub fn discard_rectangle_count_raw(&self) -> u32 {
-        self.discard_rectangle_count
-    }
     ///Gets the raw value of [`Self::discard_rectangles`]
     pub fn discard_rectangles_raw(&self) -> *const Rect2D {
         self.discard_rectangles
@@ -298,11 +288,6 @@ impl<'lt> PipelineDiscardRectangleStateCreateInfoEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::discard_rectangle_count`]
-    pub fn set_discard_rectangle_count_raw(&mut self, value: u32) -> &mut Self {
-        self.discard_rectangle_count = value;
         self
     }
     ///Sets the raw value of [`Self::discard_rectangles`]

@@ -27,18 +27,19 @@ pub const EXT_SHADER_IMAGE_ATOMIC_INT64_EXTENSION_NAME: &'static CStr =
 ///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`shader_image_int_64_atomics`] indicates whether shaders **can** support 64-bit unsigned and
-///   signed integer atomic operations on images.
-/// - [`sparse_image_int_64_atomics`] indicates whether 64-bit integer atomics **can** be used on
+/// - [`shader_image_int_64_atomics`] indicates whether shaders  **can**  support 64-bit unsigned
+///   and signed integer atomic operations on images.
+/// - [`sparse_image_int_64_atomics`] indicates whether 64-bit integer atomics  **can**  be used on
 ///   sparse images.
 ///If the `VkPhysicalDeviceShaderAtomicInt64FeaturesEXT` structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///`VkPhysicalDeviceShaderAtomicInt64FeaturesEXT`**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///`VkPhysicalDeviceShaderAtomicInt64FeaturesEXT` **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_shader_image_atomic_int64`]
@@ -63,11 +64,11 @@ pub struct PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_image_int_64_atomics`]
-    ///indicates whether shaders **can** support 64-bit unsigned and signed
+    ///indicates whether shaders  **can**  support 64-bit unsigned and signed
     ///integer atomic operations on images.
     shader_image_int_64_atomics: Bool32,
     ///[`sparse_image_int_64_atomics`]
-    ///indicates whether 64-bit integer atomics **can** be used on sparse images.
+    ///indicates whether 64-bit integer atomics  **can**  be used on sparse images.
     sparse_image_int_64_atomics: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'lt> {

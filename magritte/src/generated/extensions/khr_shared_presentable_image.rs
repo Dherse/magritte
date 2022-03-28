@@ -23,14 +23,14 @@ pub const KHR_SHARED_PRESENTABLE_IMAGE_EXTENSION_NAME: &'static CStr = crate::cs
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`shared_present_supported_usage_flags`] is a bitmask of [`ImageUsageFlagBits`] representing
-///   the ways the application **can** use the shared presentable image from a swapchain created
+///   the ways the application  **can**  use the shared presentable image from a swapchain created
 ///   with [`PresentModeKHR`] set to `VK_PRESENT_MODE_SHARED_DEMAND_REFRESH_KHR` or
 ///   `VK_PRESENT_MODE_SHARED_CONTINUOUS_REFRESH_KHR` for the surface on the specified device.
-///   `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT`**must** be included in the set but implementations
-///   **may** support additional usages.
+///   `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT` **must**  be included in the set but implementations
+///   **may**  support additional usages.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SHARED_PRESENT_SURFACE_CAPABILITIES_KHR`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SHARED_PRESENT_SURFACE_CAPABILITIES_KHR`
 ///# Related
 /// - [`VK_KHR_shared_presentable_image`]
 /// - [`ImageUsageFlags`]
@@ -54,14 +54,14 @@ pub struct SharedPresentSurfaceCapabilitiesKHR<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`shared_present_supported_usage_flags`] is a bitmask of
-    ///[`ImageUsageFlagBits`] representing the ways the application **can**
+    ///[`ImageUsageFlagBits`] representing the ways the application  **can**
     ///use the shared presentable image from a swapchain created with
     ///[`PresentModeKHR`] set to
     ///`VK_PRESENT_MODE_SHARED_DEMAND_REFRESH_KHR` or
     ///`VK_PRESENT_MODE_SHARED_CONTINUOUS_REFRESH_KHR` for the surface on
     ///the specified device.
-    ///`VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT`**must** be included in the set
-    ///but implementations **may** support additional usages.
+    ///`VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT` **must**  be included in the set
+    ///but implementations  **may**  support additional usages.
     shared_present_supported_usage_flags: ImageUsageFlags,
 }
 impl<'lt> Default for SharedPresentSurfaceCapabilitiesKHR<'lt> {

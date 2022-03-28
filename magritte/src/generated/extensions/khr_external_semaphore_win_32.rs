@@ -39,36 +39,40 @@ pub const KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME: &'static CStr = crate::cs
 /// - [`name`] is `NULL` or a null-terminated UTF-16 string naming the underlying synchronization
 ///   primitive to import.
 ///# Description
-///The handle types supported by [`handle_type`] are:Valid Usage
-/// - [`handle_type`]**must** be a value included in the [Handle Types Supported by [`ImportSemaphoreWin32HandleInfoKHR`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphore-handletypes-win32)
+///The handle types supported by [`handle_type`] are:
+///## Valid Usage
+/// - [`handle_type`] **must**  be a value included in the [Handle Types Supported by [`ImportSemaphoreWin32HandleInfoKHR`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphore-handletypes-win32)
 ///   table
 /// - If [`handle_type`] is not `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT` or
-///   `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT`, [`name`]**must** be `NULL`
-/// - If [`handle`] is `NULL`, [`name`]**must** name a valid synchronization primitive of the type
+///   `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT`, [`name`] **must**  be `NULL`
+/// - If [`handle`] is `NULL`, [`name`] **must**  name a valid synchronization primitive of the type
 ///   specified by [`handle_type`]
-/// - If [`name`] is `NULL`, [`handle`]**must** be a valid handle of the type specified by
+/// - If [`name`] is `NULL`, [`handle`] **must**  be a valid handle of the type specified by
 ///   [`handle_type`]
-/// - If [`handle`] is not `NULL`, [`name`]**must** be `NULL`
-/// -    If [`handle`] is not `NULL`, it **must** obey any requirements listed for [`handle_type`] in [external semaphore handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-semaphore-handle-types-compatibility)
-/// -    If [`name`] is not `NULL`, it **must** obey any requirements listed for [`handle_type`] in [external semaphore handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-semaphore-handle-types-compatibility)
+/// - If [`handle`] is not `NULL`, [`name`] **must**  be `NULL`
+/// - If [`handle`] is not `NULL`, it  **must**  obey any requirements listed for [`handle_type`] in
+///   [external semaphore handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-semaphore-handle-types-compatibility)
+/// -    If [`name`] is not `NULL`, it  **must**  obey any requirements listed for [`handle_type`] in [external semaphore handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-semaphore-handle-types-compatibility)
 /// - If [`handle_type`] is `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT` or
 ///   `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT`, the
-///   [`SemaphoreCreateInfo`]::[`flags`] field **must** match that of the semaphore from which
+///   [`SemaphoreCreateInfo`]::[`flags`] field  **must**  match that of the semaphore from which
 ///   [`handle`] or [`name`] was exported
 /// - If [`handle_type`] is `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT` or
 ///   `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT`, the
-///   [`SemaphoreTypeCreateInfo::semaphore_type`] field **must** match that of the semaphore from
+///   [`SemaphoreTypeCreateInfo::semaphore_type`] field  **must**  match that of the semaphore from
 ///   which [`handle`] or [`name`] was exported
 /// - If [`flags`] contains `VK_SEMAPHORE_IMPORT_TEMPORARY_BIT`, the
 ///   [`SemaphoreTypeCreateInfo::semaphore_type`] field of the semaphore from which [`handle`] or
-///   [`name`] was exported **must** not be `VK_SEMAPHORE_TYPE_TIMELINE`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`semaphore`]**must** be a valid [`Semaphore`] handle
-/// - [`flags`]**must** be a valid combination of [`SemaphoreImportFlagBits`] values
-///Host Synchronization
-/// - Host access to [`semaphore`]**must** be externally synchronized
+///   [`name`] was exported  **must**  not be `VK_SEMAPHORE_TYPE_TIMELINE`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
+/// - [`flags`] **must**  be a valid combination of [`SemaphoreImportFlagBits`] values
+///
+///## Host Synchronization
+/// - Host access to [`semaphore`] **must**  be externally synchronized
 ///# Related
 /// - [`VK_KHR_external_semaphore_win32`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]
@@ -278,21 +282,22 @@ impl<'lt> ImportSemaphoreWin32HandleInfoKHR<'lt> {
 ///documentation for “Synchronization Object Security and Access Rights”<sup>1</sup>.
 ///Further, if the structure is not present, the access rights used depend on
 ///the handle type.For handles of the following
-/// types:`VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT`The implementation **must** ensure the
-/// access rights allow both signal and wait
+/// types:`VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT`The implementation  **must**  ensure
+/// the access rights allow both signal and wait
 ///operations on the semaphore.For handles of the following
-/// types:`VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT`The access rights **must**
+/// types:`VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT`The access rights  **must**
 /// be:`GENERIC_ALL`
 /// * [https://docs.microsoft.com/en-us/windows/win32/sync/synchronization-object-security-and-access-rights](https://docs.microsoft.com/en-us/windows/win32/sync/synchronization-object-security-and-access-rights)
-///Valid Usage
+///
+///## Valid Usage
 /// - If [`ExportSemaphoreCreateInfo::handle_types`] does not include
 ///   `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT` or
-///   `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT`,
-///   [`ExportSemaphoreWin32HandleInfoKHR`]**must** not be included in the [`p_next`] chain of
-///   [`SemaphoreCreateInfo`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR`
-/// - If [`attributes`] is not `NULL`, [`attributes`]**must** be a valid pointer to a valid
+///   `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT`, [`ExportSemaphoreWin32HandleInfoKHR`]
+///   **must**  not be included in the [`p_next`] chain of [`SemaphoreCreateInfo`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR`
+/// - If [`attributes`] is not `NULL`, [`attributes`] **must**  be a valid pointer to a valid
 ///   [`SECURITY_ATTRIBUTES`] value
 ///# Related
 /// - [`VK_KHR_external_semaphore_win32`]
@@ -464,21 +469,23 @@ impl<'lt> ExportSemaphoreWin32HandleInfoKHR<'lt> {
 ///[`SubmitInfo::signal_semaphores`] corresponding to an entry in
 ///[`wait_semaphore_values`] or [`signal_semaphore_values`] respectively does
 ///not currently have a [payload](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-payloads)
-///referring to a Direct3D 12 fence, the implementation **must** ignore the value
-///in the [`wait_semaphore_values`] or [`signal_semaphore_values`] entry.Valid Usage
-/// - [`wait_semaphore_values_count`]**must** be the same value as
+///referring to a Direct3D 12 fence, the implementation  **must**  ignore the value
+///in the [`wait_semaphore_values`] or [`signal_semaphore_values`] entry.
+///## Valid Usage
+/// - [`wait_semaphore_values_count`] **must**  be the same value as
 ///   [`SubmitInfo::wait_semaphore_count`], where [`SubmitInfo`] is in the [`p_next`] chain of this
 ///   [`D3D12FenceSubmitInfoKHR`] structure
-/// - [`signal_semaphore_values_count`]**must** be the same value as
+/// - [`signal_semaphore_values_count`] **must**  be the same value as
 ///   [`SubmitInfo::signal_semaphore_count`], where [`SubmitInfo`] is in the [`p_next`] chain of
 ///   this [`D3D12FenceSubmitInfoKHR`] structure
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_D3D12_FENCE_SUBMIT_INFO_KHR`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_D3D12_FENCE_SUBMIT_INFO_KHR`
 /// - If [`wait_semaphore_values_count`] is not `0`, and [`wait_semaphore_values`] is not `NULL`,
-///   [`wait_semaphore_values`]**must** be a valid pointer to an array of
+///   [`wait_semaphore_values`] **must**  be a valid pointer to an array of
 ///   [`wait_semaphore_values_count`]`uint64_t` values
 /// - If [`signal_semaphore_values_count`] is not `0`, and [`signal_semaphore_values`] is not
-///   `NULL`, [`signal_semaphore_values`]**must** be a valid pointer to an array of
+///   `NULL`, [`signal_semaphore_values`] **must**  be a valid pointer to an array of
 ///   [`signal_semaphore_values_count`]`uint64_t` values
 ///# Related
 /// - [`VK_KHR_external_semaphore_win32`]
@@ -534,17 +541,9 @@ impl<'lt> D3D12FenceSubmitInfoKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::wait_semaphore_values_count`]
-    pub fn wait_semaphore_values_count_raw(&self) -> u32 {
-        self.wait_semaphore_values_count
-    }
     ///Gets the raw value of [`Self::wait_semaphore_values`]
     pub fn wait_semaphore_values_raw(&self) -> *const u64 {
         self.wait_semaphore_values
-    }
-    ///Gets the raw value of [`Self::signal_semaphore_values_count`]
-    pub fn signal_semaphore_values_count_raw(&self) -> u32 {
-        self.signal_semaphore_values_count
     }
     ///Gets the raw value of [`Self::signal_semaphore_values`]
     pub fn signal_semaphore_values_raw(&self) -> *const u64 {
@@ -555,19 +554,9 @@ impl<'lt> D3D12FenceSubmitInfoKHR<'lt> {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::wait_semaphore_values_count`]
-    pub fn set_wait_semaphore_values_count_raw(&mut self, value: u32) -> &mut Self {
-        self.wait_semaphore_values_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::wait_semaphore_values`]
     pub fn set_wait_semaphore_values_raw(&mut self, value: *const u64) -> &mut Self {
         self.wait_semaphore_values = value;
-        self
-    }
-    ///Sets the raw value of [`Self::signal_semaphore_values_count`]
-    pub fn set_signal_semaphore_values_count_raw(&mut self, value: u32) -> &mut Self {
-        self.signal_semaphore_values_count = value;
         self
     }
     ///Sets the raw value of [`Self::signal_semaphore_values`]
@@ -682,21 +671,23 @@ impl<'lt> D3D12FenceSubmitInfoKHR<'lt> {
 ///The properties of the handle returned depend on the value of
 ///[`handle_type`].
 ///See [`ExternalSemaphoreHandleTypeFlagBits`] for a description of the
-///properties of the defined external semaphore handle types.Valid Usage
-/// - [`handle_type`]**must** have been included in [`ExportSemaphoreCreateInfo::handle_types`] when
-///   the [`semaphore`]’s current payload was created
-/// - If [`handle_type`] is defined as an NT handle, [`GetSemaphoreWin32HandleKHR`]**must** be
+///properties of the defined external semaphore handle types.
+///## Valid Usage
+/// - [`handle_type`] **must**  have been included in [`ExportSemaphoreCreateInfo::handle_types`]
+///   when the [`semaphore`]’s current payload was created
+/// - If [`handle_type`] is defined as an NT handle, [`GetSemaphoreWin32HandleKHR`] **must**  be
 ///   called no more than once for each valid unique combination of [`semaphore`] and
 ///   [`handle_type`]
-/// -  [`semaphore`]**must** not currently have its payload replaced by an imported payload as described below in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing) unless that imported payload’s handle type was included in [`ExternalSemaphoreProperties::export_from_imported_handle_types`] for [`handle_type`]
-/// -    If [`handle_type`] refers to a handle type with copy payload transference semantics, as defined below in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing), there **must** be no queue waiting on [`semaphore`]
-/// -    If [`handle_type`] refers to a handle type with copy payload transference semantics, [`semaphore`]**must** be signaled, or have an associated [semaphore signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling) pending execution
-/// - [`handle_type`]**must** be defined as an NT handle or a global share handle
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`semaphore`]**must** be a valid [`Semaphore`] handle
-/// - [`handle_type`]**must** be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
+/// -  [`semaphore`] **must**  not currently have its payload replaced by an imported payload as described below in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing) unless that imported payload’s handle type was included in [`ExternalSemaphoreProperties::export_from_imported_handle_types`] for [`handle_type`]
+/// -    If [`handle_type`] refers to a handle type with copy payload transference semantics, as defined below in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing), there  **must**  be no queue waiting on [`semaphore`]
+/// -    If [`handle_type`] refers to a handle type with copy payload transference semantics, [`semaphore`] **must**  be signaled, or have an associated [semaphore signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling) pending execution
+/// - [`handle_type`] **must**  be defined as an NT handle or a global share handle
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
+/// - [`handle_type`] **must**  be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
 ///# Related
 /// - [`VK_KHR_external_semaphore_win32`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]

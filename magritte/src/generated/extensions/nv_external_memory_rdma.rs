@@ -43,9 +43,10 @@ pub type RemoteAddressNV = c_void;
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceExternalMemoryRdmaFeaturesNV`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV`
+///[`PhysicalDeviceExternalMemoryRdmaFeaturesNV`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV`
 ///# Related
 /// - [`VK_NV_external_memory_rdma`]
 /// - [`Bool32`]
@@ -182,14 +183,15 @@ impl<'lt> PhysicalDeviceExternalMemoryRdmaFeaturesNV<'lt> {
 /// - [`memory`] is the memory object from which the remote accessible address will be exported.
 /// - [`handle_type`] is the type of handle requested.
 ///# Description
-///Valid Usage
-/// - [`handle_type`]**must** have been included in [`ExportMemoryAllocateInfo::handle_types`] when
-///   [`memory`] was created
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_MEMORY_GET_REMOTE_ADDRESS_INFO_NV`
-/// - [`p_next`]**must** be `NULL`
-/// - [`memory`]**must** be a valid [`DeviceMemory`] handle
-/// - [`handle_type`]**must** be a valid [`ExternalMemoryHandleTypeFlagBits`] value
+///## Valid Usage
+/// - [`handle_type`] **must**  have been included in [`ExportMemoryAllocateInfo::handle_types`]
+///   when [`memory`] was created
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_GET_REMOTE_ADDRESS_INFO_NV`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
+/// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
 ///# Related
 /// - [`VK_NV_external_memory_rdma`]
 /// - [`DeviceMemory`]

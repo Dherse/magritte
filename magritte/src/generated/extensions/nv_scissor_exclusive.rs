@@ -32,9 +32,10 @@ pub const NV_SCISSOR_EXCLUSIVE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceExclusiveScissorFeaturesNV`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV`
+///[`PhysicalDeviceExclusiveScissorFeaturesNV`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV`
 ///# Related
 /// - [`VK_NV_scissor_exclusive`]
 /// - [`Bool32`]
@@ -176,15 +177,17 @@ impl<'lt> PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
 ///[`GraphicsPipelineCreateInfo`], it defines parameters of the exclusive
 ///scissor test.
 ///If this structure is not included in the [`p_next`] chain, it is equivalent
-///to specifying this structure with a [`exclusive_scissor_count`] of `0`.Valid Usage
+///to specifying this structure with a [`exclusive_scissor_count`] of `0`.
+///## Valid Usage
 /// - If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport)
-///   feature is not enabled, [`exclusive_scissor_count`]**must** be `0` or `1`
-/// - [`exclusive_scissor_count`]**must** be less than or equal to
+///   feature is not enabled, [`exclusive_scissor_count`] **must**  be `0` or `1`
+/// - [`exclusive_scissor_count`] **must**  be less than or equal to
 ///   [`PhysicalDeviceLimits::max_viewports`]
-/// - [`exclusive_scissor_count`]**must** be `0` or greater than or equal to the `viewportCount`
+/// - [`exclusive_scissor_count`] **must**  be `0` or greater than or equal to the `viewportCount`
 ///   member of [`PipelineViewportStateCreateInfo`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV`
 ///# Related
 /// - [`VK_NV_scissor_exclusive`]
@@ -231,10 +234,6 @@ impl<'lt> PipelineViewportExclusiveScissorStateCreateInfoNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::exclusive_scissor_count`]
-    pub fn exclusive_scissor_count_raw(&self) -> u32 {
-        self.exclusive_scissor_count
-    }
     ///Gets the raw value of [`Self::exclusive_scissors`]
     pub fn exclusive_scissors_raw(&self) -> *const Rect2D {
         self.exclusive_scissors
@@ -242,11 +241,6 @@ impl<'lt> PipelineViewportExclusiveScissorStateCreateInfoNV<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::exclusive_scissor_count`]
-    pub fn set_exclusive_scissor_count_raw(&mut self, value: u32) -> &mut Self {
-        self.exclusive_scissor_count = value;
         self
     }
     ///Sets the raw value of [`Self::exclusive_scissors`]

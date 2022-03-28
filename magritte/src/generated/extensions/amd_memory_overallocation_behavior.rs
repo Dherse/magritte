@@ -108,9 +108,9 @@ impl MemoryOverallocationBehaviorAMD {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`overallocation_behavior`] is the desired overallocation behavior.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD`
-/// - [`overallocation_behavior`]**must** be a valid [`MemoryOverallocationBehaviorAMD`] value
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD`
+/// - [`overallocation_behavior`] **must**  be a valid [`MemoryOverallocationBehaviorAMD`] value
 ///# Related
 /// - [`VK_AMD_memory_overallocation_behavior`]
 /// - [`MemoryOverallocationBehaviorAMD`]

@@ -36,21 +36,24 @@ pub const FUCHSIA_EXTERNAL_SEMAPHORE_EXTENSION_NAME: &'static CStr = crate::cstr
 ///   [`zircon_handle`].
 /// - [`zircon_handle`] is the external handle to import.
 ///# Description
-///The handle types supported by [`handle_type`] are:Valid Usage
-/// - [`handle_type`]**must** be a value included in the [Handle Types Supported by [`ImportSemaphoreZirconHandleInfoFUCHSIA`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphore-handletypes-fuchsia)
+///The handle types supported by [`handle_type`] are:
+///## Valid Usage
+/// - [`handle_type`] **must**  be a value included in the [Handle Types Supported by [`ImportSemaphoreZirconHandleInfoFUCHSIA`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphore-handletypes-fuchsia)
 ///   table
-/// -  [`zircon_handle`]**must** obey any requirements listed for [`handle_type`] in [external semaphore handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-semaphore-handle-types-compatibility)
-/// - [`zircon_handle`]**must** have `ZX_RIGHTS_BASIC` and `ZX_RIGHTS_SIGNAL` rights
-/// - The [`SemaphoreTypeCreateInfo::semaphore_type`] field **must** not be
+/// -  [`zircon_handle`] **must**  obey any requirements listed for [`handle_type`] in [external semaphore handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-semaphore-handle-types-compatibility)
+/// - [`zircon_handle`] **must**  have `ZX_RIGHTS_BASIC` and `ZX_RIGHTS_SIGNAL` rights
+/// - The [`SemaphoreTypeCreateInfo::semaphore_type`] field  **must**  not be
 ///   `VK_SEMAPHORE_TYPE_TIMELINE`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA`
-/// - [`p_next`]**must** be `NULL`
-/// - [`semaphore`]**must** be a valid [`Semaphore`] handle
-/// - [`flags`]**must** be a valid combination of [`SemaphoreImportFlagBits`] values
-/// - [`handle_type`]**must** be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
-///Host Synchronization
-/// - Host access to [`semaphore`]**must** be externally synchronized
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
+/// - [`flags`] **must**  be a valid combination of [`SemaphoreImportFlagBits`] values
+/// - [`handle_type`] **must**  be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
+///
+///## Host Synchronization
+/// - Host access to [`semaphore`] **must**  be externally synchronized
 ///# Related
 /// - [`VK_FUCHSIA_external_semaphore`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]
@@ -220,19 +223,22 @@ impl<'lt> ImportSemaphoreZirconHandleInfoFUCHSIA<'lt> {
 ///The properties of the Zircon event handle returned depend on the value of
 ///[`handle_type`].
 ///See [`ExternalSemaphoreHandleTypeFlagBits`] for a description of the
-///properties of the defined external semaphore handle types.Valid Usage
-/// - [`handle_type`]**must** have been included in [`ExportSemaphoreCreateInfo::handle_types`] when
-///   [`semaphore`]’s current payload was created
-/// -  [`semaphore`]**must** not currently have its payload replaced by an imported payload as described below in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing) unless that imported payload’s handle type was included in [`ExternalSemaphoreProperties::export_from_imported_handle_types`] for [`handle_type`]
-/// -    If [`handle_type`] refers to a handle type with copy payload transference semantics, as defined below in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing), there **must** be no queue waiting on [`semaphore`]
-/// -    If [`handle_type`] refers to a handle type with copy payload transference semantics, [`semaphore`]**must** be signaled, or have an associated [semaphore signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling) pending execution
-/// - [`handle_type`]**must** be defined as a Zircon event handle
-/// - [`semaphore`]**must** have been created with a [`SemaphoreType`] of `VK_SEMAPHORE_TYPE_BINARY`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA`
-/// - [`p_next`]**must** be `NULL`
-/// - [`semaphore`]**must** be a valid [`Semaphore`] handle
-/// - [`handle_type`]**must** be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
+///properties of the defined external semaphore handle types.
+///## Valid Usage
+/// - [`handle_type`] **must**  have been included in [`ExportSemaphoreCreateInfo::handle_types`]
+///   when [`semaphore`]’s current payload was created
+/// -  [`semaphore`] **must**  not currently have its payload replaced by an imported payload as described below in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing) unless that imported payload’s handle type was included in [`ExternalSemaphoreProperties::export_from_imported_handle_types`] for [`handle_type`]
+/// -    If [`handle_type`] refers to a handle type with copy payload transference semantics, as defined below in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing), there  **must**  be no queue waiting on [`semaphore`]
+/// -    If [`handle_type`] refers to a handle type with copy payload transference semantics, [`semaphore`] **must**  be signaled, or have an associated [semaphore signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling) pending execution
+/// - [`handle_type`] **must**  be defined as a Zircon event handle
+/// - [`semaphore`] **must**  have been created with a [`SemaphoreType`] of
+///   `VK_SEMAPHORE_TYPE_BINARY`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
+/// - [`handle_type`] **must**  be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
 ///# Related
 /// - [`VK_FUCHSIA_external_semaphore`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]

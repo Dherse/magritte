@@ -41,15 +41,16 @@ pub const EXT_DEBUG_REPORT_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///For each non-zero result the corresponding callback will be called.
 ///The callback will come directly from the component that detected the event,
 ///unless some other layer intercepts the calls for its own purposes (filter
-///them in a different way, log to a system error log, etc.).An application **may** receive
+///them in a different way, log to a system error log, etc.).An application  **may**  receive
 /// multiple callbacks if multiple
 ///[`DebugReportCallbackEXT`] objects were created.
 ///A callback will always be executed in the same thread as the originating
 ///Vulkan call.A callback may be called from multiple threads simultaneously (if the
-///application is making Vulkan calls from multiple threads).Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT`
-/// - [`flags`]**must** be a valid combination of [`DebugReportFlagBitsEXT`] values
-/// - [`pfn_callback`]**must** be a valid [`PFNDebugReportCallbackEXT`] value
+///application is making Vulkan calls from multiple threads).
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT`
+/// - [`flags`] **must**  be a valid combination of [`DebugReportFlagBitsEXT`] values
+/// - [`pfn_callback`] **must**  be a valid [`PFNDebugReportCallbackEXT`] value
 ///# Related
 /// - [`PFNDebugReportCallbackEXT`]
 /// - [`VK_EXT_debug_report`]

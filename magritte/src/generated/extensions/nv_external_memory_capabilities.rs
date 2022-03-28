@@ -23,19 +23,19 @@ pub const NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 ///```
 ///# Members
 /// - [`image_format_properties`] will be filled in as when calling
-///   [`GetPhysicalDeviceImageFormatProperties`], but the values returned **may** vary depending on
-///   the external handle type requested.
+///   [`GetPhysicalDeviceImageFormatProperties`], but the values returned  **may**  vary depending
+///   on the external handle type requested.
 /// - [`external_memory_features`] is a bitmask of [`ExternalMemoryFeatureFlagBitsNV`], indicating
 ///   properties of the external memory handle type
 ///   ([`GetPhysicalDeviceExternalImageFormatPropertiesNV`]`::externalHandleType`) being queried, or
 ///   0 if the external memory handle type is 0.
 /// - [`export_from_imported_handle_types`] is a bitmask of [`ExternalMemoryHandleTypeFlagBitsNV`]
-///   containing a bit set for every external handle type that **may** be used to create memory from
-///   which the handles of the type specified in
-///   [`GetPhysicalDeviceExternalImageFormatPropertiesNV`]`::externalHandleType`**can** be exported,
-///   or 0 if the external memory handle type is 0.
+///   containing a bit set for every external handle type that  **may**  be used to create memory
+///   from which the handles of the type specified in
+///   [`GetPhysicalDeviceExternalImageFormatPropertiesNV`]`::externalHandleType` **can**  be
+///   exported, or 0 if the external memory handle type is 0.
 /// - [`compatible_handle_types`] is a bitmask of [`ExternalMemoryHandleTypeFlagBitsNV`] containing
-///   a bit set for every external handle type that **may** be specified simultaneously with the
+///   a bit set for every external handle type that  **may**  be specified simultaneously with the
 ///   handle type specified by
 ///   [`GetPhysicalDeviceExternalImageFormatPropertiesNV`]`::externalHandleType` when calling
 ///   [`AllocateMemory`], or 0 if the external memory handle type is 0. [`compatible_handle_types`]
@@ -61,7 +61,7 @@ pub const NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 pub struct ExternalImageFormatPropertiesNV {
     ///[`image_format_properties`] will be filled in as when calling
     ///[`GetPhysicalDeviceImageFormatProperties`], but the values returned
-    ///**may** vary depending on the external handle type requested.
+    /// **may**  vary depending on the external handle type requested.
     image_format_properties: ImageFormatProperties,
     ///[`external_memory_features`] is a bitmask of
     ///[`ExternalMemoryFeatureFlagBitsNV`], indicating properties of the
@@ -71,13 +71,13 @@ pub struct ExternalImageFormatPropertiesNV {
     external_memory_features: ExternalMemoryFeatureFlagsNV,
     ///[`export_from_imported_handle_types`] is a bitmask of
     ///[`ExternalMemoryHandleTypeFlagBitsNV`] containing a bit set for
-    ///every external handle type that **may** be used to create memory from which
+    ///every external handle type that  **may**  be used to create memory from which
     ///the handles of the type specified in
-    ///[`GetPhysicalDeviceExternalImageFormatPropertiesNV`]::`externalHandleType`**can** be exported, or 0 if the external memory handle type is 0.
+    ///[`GetPhysicalDeviceExternalImageFormatPropertiesNV`]::`externalHandleType` **can**  be exported, or 0 if the external memory handle type is 0.
     export_from_imported_handle_types: ExternalMemoryHandleTypeFlagsNV,
     ///[`compatible_handle_types`] is a bitmask of
     ///[`ExternalMemoryHandleTypeFlagBitsNV`] containing a bit set for
-    ///every external handle type that **may** be specified simultaneously with
+    ///every external handle type that  **may**  be specified simultaneously with
     ///the handle type specified by
     ///[`GetPhysicalDeviceExternalImageFormatPropertiesNV`]::`externalHandleType`
     ///when calling [`AllocateMemory`], or 0 if the external memory handle

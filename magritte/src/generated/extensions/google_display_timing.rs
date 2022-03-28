@@ -46,15 +46,6 @@ impl Default for RefreshCycleDurationGOOGLE {
     }
 }
 impl RefreshCycleDurationGOOGLE {
-    ///Gets the raw value of [`Self::refresh_duration`]
-    pub fn refresh_duration_raw(&self) -> u64 {
-        self.refresh_duration
-    }
-    ///Sets the raw value of [`Self::refresh_duration`]
-    pub fn set_refresh_duration_raw(&mut self, value: u64) -> &mut Self {
-        self.refresh_duration = value;
-        self
-    }
     ///Gets the value of [`Self::refresh_duration`]
     pub fn refresh_duration(&self) -> u64 {
         self.refresh_duration
@@ -84,7 +75,7 @@ impl RefreshCycleDurationGOOGLE {
 ///```
 ///# Members
 /// - [`present_id`] is an application-provided value that was given to a previous
-///   [`QueuePresentKHR`] command via [`PresentTimeGOOGLE`]::[`present_id`] (see below). It **can**
+///   [`QueuePresentKHR`] command via [`PresentTimeGOOGLE`]::[`present_id`] (see below). It  **can**
 ///   be used to uniquely identify a previous present with the [`QueuePresentKHR`] command.
 /// - [`desired_present_time`] is an application-provided value that was given to a previous
 ///   [`QueuePresentKHR`] command via [`PresentTimeGOOGLE`]::[`desired_present_time`]. If non-zero,
@@ -92,14 +83,14 @@ impl RefreshCycleDurationGOOGLE {
 ///   [`desired_present_time`].
 /// - [`actual_present_time`] is the time when the image of the `swapchain` was actually displayed.
 /// - [`earliest_present_time`] is the time when the image of the `swapchain` could have been
-///   displayed. This **may** differ from [`actual_present_time`] if the application requested that
-///   the image be presented no sooner than [`PresentTimeGOOGLE`]::[`desired_present_time`].
+///   displayed. This  **may**  differ from [`actual_present_time`] if the application requested
+///   that the image be presented no sooner than [`PresentTimeGOOGLE`]::[`desired_present_time`].
 /// - [`present_margin`] is an indication of how early the [`QueuePresentKHR`] command was processed
 ///   compared to how soon it needed to be processed, and still be presented at
 ///   [`earliest_present_time`].
 ///# Description
 ///The results for a given `swapchain` and [`present_id`] are only
-///returned once from [`GetPastPresentationTimingGOOGLE`].The application **can** use the
+///returned once from [`GetPastPresentationTimingGOOGLE`].The application  **can**  use the
 /// [`PastPresentationTimingGOOGLE`] values to
 ///occasionally adjust its timing.
 ///For example, if [`actual_present_time`] is later than expected (e.g. one
@@ -138,7 +129,7 @@ pub struct PastPresentationTimingGOOGLE {
     ///[`present_id`] is an application-provided value that was given to a
     ///previous [`QueuePresentKHR`] command via
     ///[`PresentTimeGOOGLE`]::[`present_id`] (see below).
-    ///It **can** be used to uniquely identify a previous present with the
+    ///It  **can**  be used to uniquely identify a previous present with the
     ///[`QueuePresentKHR`] command.
     present_id: u32,
     ///[`desired_present_time`] is an application-provided value that was given
@@ -152,7 +143,7 @@ pub struct PastPresentationTimingGOOGLE {
     actual_present_time: u64,
     ///[`earliest_present_time`] is the time when the image of the
     ///`swapchain` could have been displayed.
-    ///This **may** differ from [`actual_present_time`] if the application
+    ///This  **may**  differ from [`actual_present_time`] if the application
     ///requested that the image be presented no sooner than
     ///[`PresentTimeGOOGLE`]::[`desired_present_time`].
     earliest_present_time: u64,
@@ -174,51 +165,6 @@ impl Default for PastPresentationTimingGOOGLE {
     }
 }
 impl PastPresentationTimingGOOGLE {
-    ///Gets the raw value of [`Self::present_id`]
-    pub fn present_id_raw(&self) -> u32 {
-        self.present_id
-    }
-    ///Gets the raw value of [`Self::desired_present_time`]
-    pub fn desired_present_time_raw(&self) -> u64 {
-        self.desired_present_time
-    }
-    ///Gets the raw value of [`Self::actual_present_time`]
-    pub fn actual_present_time_raw(&self) -> u64 {
-        self.actual_present_time
-    }
-    ///Gets the raw value of [`Self::earliest_present_time`]
-    pub fn earliest_present_time_raw(&self) -> u64 {
-        self.earliest_present_time
-    }
-    ///Gets the raw value of [`Self::present_margin`]
-    pub fn present_margin_raw(&self) -> u64 {
-        self.present_margin
-    }
-    ///Sets the raw value of [`Self::present_id`]
-    pub fn set_present_id_raw(&mut self, value: u32) -> &mut Self {
-        self.present_id = value;
-        self
-    }
-    ///Sets the raw value of [`Self::desired_present_time`]
-    pub fn set_desired_present_time_raw(&mut self, value: u64) -> &mut Self {
-        self.desired_present_time = value;
-        self
-    }
-    ///Sets the raw value of [`Self::actual_present_time`]
-    pub fn set_actual_present_time_raw(&mut self, value: u64) -> &mut Self {
-        self.actual_present_time = value;
-        self
-    }
-    ///Sets the raw value of [`Self::earliest_present_time`]
-    pub fn set_earliest_present_time_raw(&mut self, value: u64) -> &mut Self {
-        self.earliest_present_time = value;
-        self
-    }
-    ///Sets the raw value of [`Self::present_margin`]
-    pub fn set_present_margin_raw(&mut self, value: u64) -> &mut Self {
-        self.present_margin = value;
-        self
-    }
     ///Gets the value of [`Self::present_id`]
     pub fn present_id(&self) -> u32 {
         self.present_id
@@ -288,14 +234,14 @@ impl PastPresentationTimingGOOGLE {
 ///[VkPresentTimesInfoGOOGLE](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPresentTimesInfoGOOGLE.html) - The earliest time each image should be presented
 ///# C Specifications
 ///When the `[`VK_GOOGLE_display_timing`]` extension is enabled, additional
-///fields **can** be specified that allow an application to specify the earliest
+///fields  **can**  be specified that allow an application to specify the earliest
 ///time that an image should be displayed.
 ///This allows an application to avoid stutter that is caused by an image being
 ///displayed earlier than planned.
 ///Such stuttering can occur with both fixed and variable-refresh-rate
 ///displays, because stuttering occurs when the geometry is not correctly
 ///positioned for when the image is displayed.
-///An application **can** instruct the presentation engine that an image should
+///An application  **can**  instruct the presentation engine that an image should
 ///not be displayed earlier than a specified time by adding a
 ///[`PresentTimesInfoGOOGLE`] structure to the [`p_next`] chain of the
 ///[`PresentInfoKHR`] structure.The [`PresentTimesInfoGOOGLE`] structure is defined as:
@@ -317,15 +263,16 @@ impl PastPresentationTimingGOOGLE {
 ///   time to present the image corresponding to the entry in the [`PresentInfoKHR::image_indices`]
 ///   array.
 ///# Description
-///Valid Usage
-/// - [`swapchain_count`]**must** be the same value as [`PresentInfoKHR`]::[`swapchain_count`],
+///## Valid Usage
+/// - [`swapchain_count`] **must**  be the same value as [`PresentInfoKHR`]::[`swapchain_count`],
 ///   where [`PresentInfoKHR`] is included in the [`p_next`] chain of this
 ///   [`PresentTimesInfoGOOGLE`] structure
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PRESENT_TIMES_INFO_GOOGLE`
-/// - If [`times`] is not `NULL`, [`times`]**must** be a valid pointer to an array of
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PRESENT_TIMES_INFO_GOOGLE`
+/// - If [`times`] is not `NULL`, [`times`] **must**  be a valid pointer to an array of
 ///   [`swapchain_count`][`PresentTimeGOOGLE`] structures
-/// - [`swapchain_count`]**must** be greater than `0`
+/// - [`swapchain_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_GOOGLE_display_timing`]
 /// - [`PresentTimeGOOGLE`]
@@ -374,10 +321,6 @@ impl<'lt> PresentTimesInfoGOOGLE<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::swapchain_count`]
-    pub fn swapchain_count_raw(&self) -> u32 {
-        self.swapchain_count
-    }
     ///Gets the raw value of [`Self::times`]
     pub fn times_raw(&self) -> *const PresentTimeGOOGLE {
         self.times
@@ -385,11 +328,6 @@ impl<'lt> PresentTimesInfoGOOGLE<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::swapchain_count`]
-    pub fn set_swapchain_count_raw(&mut self, value: u32) -> &mut Self {
-        self.swapchain_count = value;
         self
     }
     ///Sets the raw value of [`Self::times`]
@@ -465,14 +403,14 @@ impl<'lt> PresentTimesInfoGOOGLE<'lt> {
 ///} VkPresentTimeGOOGLE;
 ///```
 ///# Members
-/// - [`present_id`] is an application-provided identification value, that **can** be used with the
-///   results of [`GetPastPresentationTimingGOOGLE`], in order to uniquely identify this present. In
-///   order to be useful to the application, it **should** be unique within some period of time that
-///   is meaningful to the application.
-/// - [`desired_present_time`] specifies that the image given **should** not be displayed to the
+/// - [`present_id`] is an application-provided identification value, that  **can**  be used with
+///   the results of [`GetPastPresentationTimingGOOGLE`], in order to uniquely identify this
+///   present. In order to be useful to the application, it  **should**  be unique within some
+///   period of time that is meaningful to the application.
+/// - [`desired_present_time`] specifies that the image given  **should**  not be displayed to the
 ///   user any earlier than this time. [`desired_present_time`] is a time in nanoseconds, relative
 ///   to a monotonically-increasing clock (e.g. `CLOCK_MONOTONIC` (see clock_gettime(2)) on Android
-///   and Linux). A value of zero specifies that the presentation engine **may** display the image
+///   and Linux). A value of zero specifies that the presentation engine  **may**  display the image
 ///   at any time. This is useful when the application desires to provide [`present_id`],
 ///# Description
 ///```c but does not need a specific pname:desiredPresentTime.
@@ -494,18 +432,18 @@ impl<'lt> PresentTimesInfoGOOGLE<'lt> {
 #[repr(C)]
 pub struct PresentTimeGOOGLE {
     ///[`present_id`] is an application-provided identification value, that
-    ///**can** be used with the results of
+    /// **can**  be used with the results of
     ///[`GetPastPresentationTimingGOOGLE`], in order to uniquely identify
     ///this present.
-    ///In order to be useful to the application, it **should** be unique within
+    ///In order to be useful to the application, it  **should**  be unique within
     ///some period of time that is meaningful to the application.
     present_id: u32,
-    ///[`desired_present_time`] specifies that the image given **should** not be
+    ///[`desired_present_time`] specifies that the image given  **should**  not be
     ///displayed to the user any earlier than this time.
     ///[`desired_present_time`] is a time in nanoseconds, relative to a
     ///monotonically-increasing clock (e.g. `CLOCK_MONOTONIC` (see
     ///clock_gettime(2)) on Android and Linux).
-    ///A value of zero specifies that the presentation engine **may** display the
+    ///A value of zero specifies that the presentation engine  **may**  display the
     ///image at any time.
     ///This is useful when the application desires to provide [`present_id`],
     desired_present_time: u64,
@@ -519,24 +457,6 @@ impl Default for PresentTimeGOOGLE {
     }
 }
 impl PresentTimeGOOGLE {
-    ///Gets the raw value of [`Self::present_id`]
-    pub fn present_id_raw(&self) -> u32 {
-        self.present_id
-    }
-    ///Gets the raw value of [`Self::desired_present_time`]
-    pub fn desired_present_time_raw(&self) -> u64 {
-        self.desired_present_time
-    }
-    ///Sets the raw value of [`Self::present_id`]
-    pub fn set_present_id_raw(&mut self, value: u32) -> &mut Self {
-        self.present_id = value;
-        self
-    }
-    ///Sets the raw value of [`Self::desired_present_time`]
-    pub fn set_desired_present_time_raw(&mut self, value: u64) -> &mut Self {
-        self.desired_present_time = value;
-        self
-    }
     ///Gets the value of [`Self::present_id`]
     pub fn present_id(&self) -> u32 {
         self.present_id

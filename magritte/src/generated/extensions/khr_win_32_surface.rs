@@ -31,13 +31,14 @@ pub const KHR_WIN32_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR
 /// - [`hinstance`] is the Win32 [`HINSTANCE`] for the window to associate the surface with.
 /// - [`hwnd`] is the Win32 [`HWND`] for the window to associate the surface with.
 ///# Description
-///Valid Usage
-/// - [`hinstance`]**must** be a valid Win32 [`HINSTANCE`]
-/// - [`hwnd`]**must** be a valid Win32 [`HWND`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
+///## Valid Usage
+/// - [`hinstance`] **must**  be a valid Win32 [`HINSTANCE`]
+/// - [`hwnd`] **must**  be a valid Win32 [`HWND`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_KHR_win32_surface`]
 /// - [`StructureType`]

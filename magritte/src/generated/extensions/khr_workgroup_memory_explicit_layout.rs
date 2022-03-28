@@ -34,24 +34,25 @@ pub const KHR_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_EXTENSION_NAME: &'static CStr =
 /// - [`workgroup_memory_explicit_layout_scalar_block_layout`] indicates whether the implementation
 ///   supports scalar alignment for laying out Workgroup Blocks.
 /// - [`workgroup_memory_explicit_layout_8_bit_access`] indicates whether objects in the `Workgroup`
-///   storage class with the `Block` decoration **can** have 8-bit integer members. If this feature
-///   is not enabled, 8-bit integer members **must** not be used in such objects. This also
-///   indicates whether shader modules **can** declare the
+///   storage class with the `Block` decoration  **can**  have 8-bit integer members. If this
+///   feature is not enabled, 8-bit integer members  **must**  not be used in such objects. This
+///   also indicates whether shader modules  **can**  declare the
 ///   `WorkgroupMemoryExplicitLayout8BitAccessKHR` capability.
 /// - [`workgroup_memory_explicit_layout_16_bit_access`] indicates whether objects in the
-///   `Workgroup` storage class with the `Block` decoration **can** have 16-bit integer and 16-bit
+///   `Workgroup` storage class with the `Block` decoration  **can**  have 16-bit integer and 16-bit
 ///   floating-point members. If this feature is not enabled, 16-bit integer or 16-bit
-///   floating-point members **must** not be used in such objects. This also indicates whether
-///   shader modules **can** declare the `WorkgroupMemoryExplicitLayout16BitAccessKHR` capability.
+///   floating-point members  **must**  not be used in such objects. This also indicates whether
+///   shader modules  **can**  declare the `WorkgroupMemoryExplicitLayout16BitAccessKHR` capability.
 ///If the [`PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR`] structure is included in the
 /// [`p_next`] chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR`]**can** also be used in the [`p_next`]
-/// chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR`] **can**  also be used in the
+/// [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR`
 ///# Related
 /// - [`VK_KHR_workgroup_memory_explicit_layout`]
@@ -83,19 +84,19 @@ pub struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
     ///Blocks.
     workgroup_memory_explicit_layout_scalar_block_layout: Bool32,
     ///[`workgroup_memory_explicit_layout_8_bit_access`] indicates whether objects
-    ///in the `Workgroup` storage class with the `Block` decoration **can**
+    ///in the `Workgroup` storage class with the `Block` decoration  **can**
     ///have 8-bit integer members.
-    ///If this feature is not enabled, 8-bit integer members **must** not be used
+    ///If this feature is not enabled, 8-bit integer members  **must**  not be used
     ///in such objects.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`WorkgroupMemoryExplicitLayout8BitAccessKHR` capability.
     workgroup_memory_explicit_layout_8_bit_access: Bool32,
     ///[`workgroup_memory_explicit_layout_16_bit_access`] indicates whether objects
-    ///in the `Workgroup` storage class with the `Block` decoration **can**
+    ///in the `Workgroup` storage class with the `Block` decoration  **can**
     ///have 16-bit integer and 16-bit floating-point members.
     ///If this feature is not enabled, 16-bit integer or 16-bit floating-point
-    ///members **must** not be used in such objects.
-    ///This also indicates whether shader modules **can** declare the
+    ///members  **must**  not be used in such objects.
+    ///This also indicates whether shader modules  **can**  declare the
     ///`WorkgroupMemoryExplicitLayout16BitAccessKHR` capability.
     workgroup_memory_explicit_layout_16_bit_access: Bool32,
 }

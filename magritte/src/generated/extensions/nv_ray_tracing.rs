@@ -128,29 +128,30 @@ impl AccelerationStructureMemoryRequirementsTypeNV {
 ///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV`, and [`SHADER_UNUSED_NV`]
 ///   otherwise.
 ///# Description
-///Valid Usage
-/// - If [`type_`] is `VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV` then [`general_shader`]**must**
+///## Valid Usage
+/// - If [`type_`] is `VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV` then [`general_shader`] **must**
 ///   be a valid index into [`RayTracingPipelineCreateInfoNV::stages`] referring to a shader of
 ///   `VK_SHADER_STAGE_RAYGEN_BIT_NV`, `VK_SHADER_STAGE_MISS_BIT_NV`, or
 ///   `VK_SHADER_STAGE_CALLABLE_BIT_NV`
 /// - If [`type_`] is `VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV` then [`closest_hit_shader`],
-///   [`any_hit_shader`], and [`intersection_shader`]**must** be [`SHADER_UNUSED_NV`]
+///   [`any_hit_shader`], and [`intersection_shader`] **must**  be [`SHADER_UNUSED_NV`]
 /// - If [`type_`] is `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV` then
-///   [`intersection_shader`]**must** be a valid index into
+///   [`intersection_shader`] **must**  be a valid index into
 ///   [`RayTracingPipelineCreateInfoNV::stages`] referring to a shader of
 ///   `VK_SHADER_STAGE_INTERSECTION_BIT_NV`
 /// - If [`type_`] is `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_NV` then
-///   [`intersection_shader`]**must** be [`SHADER_UNUSED_NV`]
-/// - [`closest_hit_shader`]**must** be either [`SHADER_UNUSED_NV`] or a valid index into
+///   [`intersection_shader`] **must**  be [`SHADER_UNUSED_NV`]
+/// - [`closest_hit_shader`] **must**  be either [`SHADER_UNUSED_NV`] or a valid index into
 ///   [`RayTracingPipelineCreateInfoNV::stages`] referring to a shader of
 ///   `VK_SHADER_STAGE_CLOSEST_HIT_BIT_NV`
-/// - [`any_hit_shader`]**must** be either [`SHADER_UNUSED_NV`] or a valid index into
+/// - [`any_hit_shader`] **must**  be either [`SHADER_UNUSED_NV`] or a valid index into
 ///   [`RayTracingPipelineCreateInfoNV::stages`] referring to a shader of
 ///   `VK_SHADER_STAGE_ANY_HIT_BIT_NV`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV`
-/// - [`p_next`]**must** be `NULL`
-/// - [`type_`]**must** be a valid [`RayTracingShaderGroupTypeKHR`] value
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`type_`] **must**  be a valid [`RayTracingShaderGroupTypeKHR`] value
 ///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`RayTracingPipelineCreateInfoNV`]
@@ -223,45 +224,9 @@ impl<'lt> RayTracingShaderGroupCreateInfoNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::general_shader`]
-    pub fn general_shader_raw(&self) -> u32 {
-        self.general_shader
-    }
-    ///Gets the raw value of [`Self::closest_hit_shader`]
-    pub fn closest_hit_shader_raw(&self) -> u32 {
-        self.closest_hit_shader
-    }
-    ///Gets the raw value of [`Self::any_hit_shader`]
-    pub fn any_hit_shader_raw(&self) -> u32 {
-        self.any_hit_shader
-    }
-    ///Gets the raw value of [`Self::intersection_shader`]
-    pub fn intersection_shader_raw(&self) -> u32 {
-        self.intersection_shader
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::general_shader`]
-    pub fn set_general_shader_raw(&mut self, value: u32) -> &mut Self {
-        self.general_shader = value;
-        self
-    }
-    ///Sets the raw value of [`Self::closest_hit_shader`]
-    pub fn set_closest_hit_shader_raw(&mut self, value: u32) -> &mut Self {
-        self.closest_hit_shader = value;
-        self
-    }
-    ///Sets the raw value of [`Self::any_hit_shader`]
-    pub fn set_any_hit_shader_raw(&mut self, value: u32) -> &mut Self {
-        self.any_hit_shader = value;
-        self
-    }
-    ///Sets the raw value of [`Self::intersection_shader`]
-    pub fn set_intersection_shader_raw(&mut self, value: u32) -> &mut Self {
-        self.intersection_shader = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -399,62 +364,65 @@ impl<'lt> RayTracingShaderGroupCreateInfoNV<'lt> {
 ///# Description
 ///The parameters [`base_pipeline_handle`] and [`base_pipeline_index`] are
 ///described in more detail in [Pipeline
-///Derivatives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-pipeline-derivatives).Valid Usage
+///Derivatives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-pipeline-derivatives).
+///## Valid Usage
 /// - If [`flags`] contains the `VK_PIPELINE_CREATE_DERIVATIVE_BIT` flag, and
-///   [`base_pipeline_index`] is `-1`, [`base_pipeline_handle`]**must** be a valid handle to a ray
+///   [`base_pipeline_index`] is `-1`, [`base_pipeline_handle`] **must**  be a valid handle to a ray
 ///   tracing [`Pipeline`]
 /// - If [`flags`] contains the `VK_PIPELINE_CREATE_DERIVATIVE_BIT` flag, and
-///   [`base_pipeline_handle`] is [`crate::utils::Handle::null`], [`base_pipeline_index`]**must** be
-///   a valid index into the calling command’s `pCreateInfos` parameter
+///   [`base_pipeline_handle`] is [`crate::utils::Handle::null`], [`base_pipeline_index`] **must**
+///   be a valid index into the calling command’s `pCreateInfos` parameter
 /// - If [`flags`] contains the `VK_PIPELINE_CREATE_DERIVATIVE_BIT` flag, and
-///   [`base_pipeline_index`] is not `-1`, [`base_pipeline_handle`]**must** be
+///   [`base_pipeline_index`] is not `-1`, [`base_pipeline_handle`] **must**  be
 ///   [`crate::utils::Handle::null`]
 /// - If [`flags`] contains the `VK_PIPELINE_CREATE_DERIVATIVE_BIT` flag, and
-///   [`base_pipeline_handle`] is not [`crate::utils::Handle::null`],
-///   [`base_pipeline_index`]**must** be `-1`
-/// -    The shader code for the entry points identified by [`stages`], and the rest of the state identified by this structure **must** adhere to the pipeline linking rules described in the [Shader Interfaces](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#interfaces) chapter
-/// - [`layout`]**must** be [consistent](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#descriptorsets-pipelinelayout-consistency)
+///   [`base_pipeline_handle`] is not [`crate::utils::Handle::null`], [`base_pipeline_index`]
+///   **must**  be `-1`
+/// -    The shader code for the entry points identified by [`stages`], and the rest of the state identified by this structure  **must**  adhere to the pipeline linking rules described in the [Shader Interfaces](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#interfaces) chapter
+/// - [`layout`] **must**  be [consistent](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#descriptorsets-pipelinelayout-consistency)
 ///   with all shaders specified in [`stages`]
 /// - The number of resources in [`layout`] accessible to each shader stage that is used by the
-///   pipeline **must** be less than or equal to [`PhysicalDeviceLimits::max_per_stage_resources`]
-/// - [`flags`]**must** not include `VK_PIPELINE_CREATE_INDIRECT_BINDABLE_BIT_NV`
+///   pipeline  **must**  be less than or equal to [`PhysicalDeviceLimits::max_per_stage_resources`]
+/// - [`flags`] **must**  not include `VK_PIPELINE_CREATE_INDIRECT_BINDABLE_BIT_NV`
 /// - If the [`pipelineCreationCacheControl`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-pipelineCreationCacheControl)
-///   feature is not enabled, [`flags`]**must** not include
+///   feature is not enabled, [`flags`] **must**  not include
 ///   `VK_PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT` or
 ///   `VK_PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT`
-/// - The `stage` member of at least one element of [`stages`]**must** be
+/// - The `stage` member of at least one element of [`stages`] **must**  be
 ///   `VK_SHADER_STAGE_RAYGEN_BIT_KHR`
-/// - [`flags`]**must** not include `VK_PIPELINE_CREATE_LIBRARY_BIT_KHR`
-/// - [`max_recursion_depth`]**must** be less than or equal to
+/// - [`flags`] **must**  not include `VK_PIPELINE_CREATE_LIBRARY_BIT_KHR`
+/// - [`max_recursion_depth`] **must**  be less than or equal to
 ///   [`PhysicalDeviceRayTracingPropertiesNV`]::[`max_recursion_depth`]
-/// - [`flags`]**must** not include `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR`
-/// - [`flags`]**must** not include
+/// - [`flags`] **must**  not include
+///   `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR`
+/// - [`flags`] **must**  not include
 ///   `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR`
-/// - [`flags`]**must** not include `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR`
-/// - [`flags`]**must** not include
+/// - [`flags`] **must**  not include `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR`
+/// - [`flags`] **must**  not include
 ///   `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_BIT_KHR`
-/// - [`flags`]**must** not include `VK_PIPELINE_CREATE_RAY_TRACING_SKIP_AABBS_BIT_KHR`
-/// - [`flags`]**must** not include `VK_PIPELINE_CREATE_RAY_TRACING_SKIP_TRIANGLES_BIT_KHR`
-/// - [`flags`]**must** not include
+/// - [`flags`] **must**  not include `VK_PIPELINE_CREATE_RAY_TRACING_SKIP_AABBS_BIT_KHR`
+/// - [`flags`] **must**  not include `VK_PIPELINE_CREATE_RAY_TRACING_SKIP_TRIANGLES_BIT_KHR`
+/// - [`flags`] **must**  not include
 ///   `VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR`
-/// - [`flags`]**must** not include `VK_PIPELINE_CREATE_RAY_TRACING_ALLOW_MOTION_BIT_NV`
-/// - [`flags`]**must** not include both `VK_PIPELINE_CREATE_DEFER_COMPILE_BIT_NV` and
+/// - [`flags`] **must**  not include `VK_PIPELINE_CREATE_RAY_TRACING_ALLOW_MOTION_BIT_NV`
+/// - [`flags`] **must**  not include both `VK_PIPELINE_CREATE_DEFER_COMPILE_BIT_NV` and
 ///   `VK_PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT` at the same time
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_NV`
-/// - [`p_next`]**must** be `NULL` or a pointer to a valid instance of
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_NV`
+/// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`PipelineCreationFeedbackCreateInfo`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - [`flags`]**must** be a valid combination of [`PipelineCreateFlagBits`] values
-/// - [`stages`]**must** be a valid pointer to an array of [`stage_count`] valid
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`flags`] **must**  be a valid combination of [`PipelineCreateFlagBits`] values
+/// - [`stages`] **must**  be a valid pointer to an array of [`stage_count`] valid
 ///   [`PipelineShaderStageCreateInfo`] structures
-/// - [`groups`]**must** be a valid pointer to an array of [`group_count`] valid
+/// - [`groups`] **must**  be a valid pointer to an array of [`group_count`] valid
 ///   [`RayTracingShaderGroupCreateInfoNV`] structures
-/// - [`layout`]**must** be a valid [`PipelineLayout`] handle
-/// - [`stage_count`]**must** be greater than `0`
-/// - [`group_count`]**must** be greater than `0`
+/// - [`layout`] **must**  be a valid [`PipelineLayout`] handle
+/// - [`stage_count`] **must**  be greater than `0`
+/// - [`group_count`] **must**  be greater than `0`
 /// - Both of [`base_pipeline_handle`], and [`layout`] that are valid handles of non-ignored
-///   parameters **must** have been created, allocated, or retrieved from the same [`Device`]
+///   parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
 ///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`Pipeline`]
@@ -533,38 +501,17 @@ impl<'lt> RayTracingPipelineCreateInfoNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::stage_count`]
-    pub fn stage_count_raw(&self) -> u32 {
-        self.stage_count
-    }
     ///Gets the raw value of [`Self::stages`]
     pub fn stages_raw(&self) -> *const PipelineShaderStageCreateInfo<'lt> {
         self.stages
-    }
-    ///Gets the raw value of [`Self::group_count`]
-    pub fn group_count_raw(&self) -> u32 {
-        self.group_count
     }
     ///Gets the raw value of [`Self::groups`]
     pub fn groups_raw(&self) -> *const RayTracingShaderGroupCreateInfoNV<'lt> {
         self.groups
     }
-    ///Gets the raw value of [`Self::max_recursion_depth`]
-    pub fn max_recursion_depth_raw(&self) -> u32 {
-        self.max_recursion_depth
-    }
-    ///Gets the raw value of [`Self::base_pipeline_index`]
-    pub fn base_pipeline_index_raw(&self) -> i32 {
-        self.base_pipeline_index
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::stage_count`]
-    pub fn set_stage_count_raw(&mut self, value: u32) -> &mut Self {
-        self.stage_count = value;
         self
     }
     ///Sets the raw value of [`Self::stages`]
@@ -572,24 +519,9 @@ impl<'lt> RayTracingPipelineCreateInfoNV<'lt> {
         self.stages = value;
         self
     }
-    ///Sets the raw value of [`Self::group_count`]
-    pub fn set_group_count_raw(&mut self, value: u32) -> &mut Self {
-        self.group_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::groups`]
     pub fn set_groups_raw(&mut self, value: *const RayTracingShaderGroupCreateInfoNV<'lt>) -> &mut Self {
         self.groups = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_recursion_depth`]
-    pub fn set_max_recursion_depth_raw(&mut self, value: u32) -> &mut Self {
-        self.max_recursion_depth = value;
-        self
-    }
-    ///Sets the raw value of [`Self::base_pipeline_index`]
-    pub fn set_base_pipeline_index_raw(&mut self, value: i32) -> &mut Self {
-        self.base_pipeline_index = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -786,37 +718,39 @@ impl<'lt> RayTracingPipelineCreateInfoNV<'lt> {
 ///If [`index_type`] is `VK_INDEX_TYPE_NONE_NV`, then this structure
 ///describes a set of triangles determined by [`vertex_count`].
 ///Otherwise, this structure describes a set of indexed triangles determined by
-///[`index_count`].Valid Usage
-/// - [`vertex_offset`]**must** be less than the size of [`vertex_data`]
-/// - [`vertex_offset`]**must** be a multiple of the component size of [`vertex_format`]
-/// - [`vertex_format`]**must** be one of `VK_FORMAT_R32G32B32_SFLOAT`, `VK_FORMAT_R32G32_SFLOAT`,
+///[`index_count`].
+///## Valid Usage
+/// - [`vertex_offset`] **must**  be less than the size of [`vertex_data`]
+/// - [`vertex_offset`] **must**  be a multiple of the component size of [`vertex_format`]
+/// - [`vertex_format`] **must**  be one of `VK_FORMAT_R32G32B32_SFLOAT`, `VK_FORMAT_R32G32_SFLOAT`,
 ///   `VK_FORMAT_R16G16B16_SFLOAT`, `VK_FORMAT_R16G16_SFLOAT`, `VK_FORMAT_R16G16_SNORM`, or
 ///   `VK_FORMAT_R16G16B16_SNORM`
-/// - [`vertex_stride`]**must** be less than or equal to 2<sup>32</sup>-1
-/// - [`index_offset`]**must** be less than the size of [`index_data`]
-/// - [`index_offset`]**must** be a multiple of the element size of [`index_type`]
-/// - [`index_type`]**must** be `VK_INDEX_TYPE_UINT16`, `VK_INDEX_TYPE_UINT32`, or
+/// - [`vertex_stride`] **must**  be less than or equal to 2<sup>32</sup>-1
+/// - [`index_offset`] **must**  be less than the size of [`index_data`]
+/// - [`index_offset`] **must**  be a multiple of the element size of [`index_type`]
+/// - [`index_type`] **must**  be `VK_INDEX_TYPE_UINT16`, `VK_INDEX_TYPE_UINT32`, or
 ///   `VK_INDEX_TYPE_NONE_NV`
-/// - [`index_data`]**must** be [`crate::utils::Handle::null`] if [`index_type`] is
+/// - [`index_data`] **must**  be [`crate::utils::Handle::null`] if [`index_type`] is
 ///   `VK_INDEX_TYPE_NONE_NV`
-/// - [`index_data`]**must** be a valid [`Buffer`] handle if [`index_type`] is not
+/// - [`index_data`] **must**  be a valid [`Buffer`] handle if [`index_type`] is not
 ///   `VK_INDEX_TYPE_NONE_NV`
-/// - [`index_count`]**must** be `0` if [`index_type`] is `VK_INDEX_TYPE_NONE_NV`
-/// - [`transform_offset`]**must** be less than the size of [`transform_data`]
-/// - [`transform_offset`]**must** be a multiple of `16`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_GEOMETRY_TRIANGLES_NV`
-/// - [`p_next`]**must** be `NULL`
-/// - If [`vertex_data`] is not [`crate::utils::Handle::null`], [`vertex_data`]**must** be a valid
+/// - [`index_count`] **must**  be `0` if [`index_type`] is `VK_INDEX_TYPE_NONE_NV`
+/// - [`transform_offset`] **must**  be less than the size of [`transform_data`]
+/// - [`transform_offset`] **must**  be a multiple of `16`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_GEOMETRY_TRIANGLES_NV`
+/// - [`p_next`] **must**  be `NULL`
+/// - If [`vertex_data`] is not [`crate::utils::Handle::null`], [`vertex_data`] **must**  be a valid
 ///   [`Buffer`] handle
-/// - [`vertex_format`]**must** be a valid [`Format`] value
-/// - If [`index_data`] is not [`crate::utils::Handle::null`], [`index_data`]**must** be a valid
+/// - [`vertex_format`] **must**  be a valid [`Format`] value
+/// - If [`index_data`] is not [`crate::utils::Handle::null`], [`index_data`] **must**  be a valid
 ///   [`Buffer`] handle
-/// - [`index_type`]**must** be a valid [`IndexType`] value
-/// - If [`transform_data`] is not [`crate::utils::Handle::null`], [`transform_data`]**must** be a
+/// - [`index_type`] **must**  be a valid [`IndexType`] value
+/// - If [`transform_data`] is not [`crate::utils::Handle::null`], [`transform_data`] **must**  be a
 ///   valid [`Buffer`] handle
 /// - Each of [`index_data`], [`transform_data`], and [`vertex_data`] that are valid handles of
-///   non-ignored parameters **must** have been created, allocated, or retrieved from the same
+///   non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
 ///   [`Device`]
 ///# Related
 /// - [`VK_NV_ray_tracing`]
@@ -899,27 +833,9 @@ impl<'lt> GeometryTrianglesNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::vertex_count`]
-    pub fn vertex_count_raw(&self) -> u32 {
-        self.vertex_count
-    }
-    ///Gets the raw value of [`Self::index_count`]
-    pub fn index_count_raw(&self) -> u32 {
-        self.index_count
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::vertex_count`]
-    pub fn set_vertex_count_raw(&mut self, value: u32) -> &mut Self {
-        self.vertex_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::index_count`]
-    pub fn set_index_count_raw(&mut self, value: u32) -> &mut Self {
-        self.index_count = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -1115,14 +1031,16 @@ impl<'lt> GeometryTrianglesNV<'lt> {
 /// - [`offset`] is the offset in bytes of the first AABB in [`aabb_data`].
 ///# Description
 ///The AABB data in memory is six 32-bit floats consisting of the minimum x, y,
-///and z values followed by the maximum x, y, and z values.Valid Usage
-/// - [`offset`]**must** be less than the size of [`aabb_data`]
-/// - [`offset`]**must** be a multiple of `8`
-/// - [`stride`]**must** be a multiple of `8`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_GEOMETRY_AABB_NV`
-/// - [`p_next`]**must** be `NULL`
-/// - If [`aabb_data`] is not [`crate::utils::Handle::null`], [`aabb_data`]**must** be a valid
+///and z values followed by the maximum x, y, and z values.
+///## Valid Usage
+/// - [`offset`] **must**  be less than the size of [`aabb_data`]
+/// - [`offset`] **must**  be a multiple of `8`
+/// - [`stride`] **must**  be a multiple of `8`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_GEOMETRY_AABB_NV`
+/// - [`p_next`] **must**  be `NULL`
+/// - If [`aabb_data`] is not [`crate::utils::Handle::null`], [`aabb_data`] **must**  be a valid
 ///   [`Buffer`] handle
 ///# Related
 /// - [`VK_NV_ray_tracing`]
@@ -1175,27 +1093,9 @@ impl<'lt> GeometryAabbNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::num_aab_bs`]
-    pub fn num_aab_bs_raw(&self) -> u32 {
-        self.num_aab_bs
-    }
-    ///Gets the raw value of [`Self::stride`]
-    pub fn stride_raw(&self) -> u32 {
-        self.stride
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::num_aab_bs`]
-    pub fn set_num_aab_bs_raw(&mut self, value: u32) -> &mut Self {
-        self.num_aab_bs = value;
-        self
-    }
-    ///Sets the raw value of [`Self::stride`]
-    pub fn set_stride_raw(&mut self, value: u32) -> &mut Self {
-        self.stride = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -1293,9 +1193,9 @@ impl<'lt> GeometryAabbNV<'lt> {
 /// - [`aabbs`] contains axis-aligned bounding box data if [`GeometryNV::geometry_type`] is
 ///   `VK_GEOMETRY_TYPE_AABBS_NV`.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`triangles`]**must** be a valid [`GeometryTrianglesNV`] structure
-/// - [`aabbs`]**must** be a valid [`GeometryAabbNV`] structure
+///## Valid Usage (Implicit)
+/// - [`triangles`] **must**  be a valid [`GeometryTrianglesNV`] structure
+/// - [`aabbs`] **must**  be a valid [`GeometryAabbNV`] structure
 ///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`GeometryAabbNV`]
@@ -1381,14 +1281,15 @@ impl<'lt> GeometryDataNV<'lt> {
 /// - [`geometry`] contains the geometry data as described in [`GeometryDataNV`].
 /// - [`flags`] has [`GeometryFlagBitsKHR`] describing options for this geometry.
 ///# Description
-///Valid Usage
-/// - [`geometry_type`]**must** be `VK_GEOMETRY_TYPE_TRIANGLES_NV` or `VK_GEOMETRY_TYPE_AABBS_NV`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_GEOMETRY_NV`
-/// - [`p_next`]**must** be `NULL`
-/// - [`geometry_type`]**must** be a valid [`GeometryTypeKHR`] value
-/// - [`geometry`]**must** be a valid [`GeometryDataNV`] structure
-/// - [`flags`]**must** be a valid combination of [`GeometryFlagBitsKHR`] values
+///## Valid Usage
+/// - [`geometry_type`] **must**  be `VK_GEOMETRY_TYPE_TRIANGLES_NV` or `VK_GEOMETRY_TYPE_AABBS_NV`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_GEOMETRY_NV`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`geometry_type`] **must**  be a valid [`GeometryTypeKHR`] value
+/// - [`geometry`] **must**  be a valid [`GeometryDataNV`] structure
+/// - [`flags`] **must**  be a valid combination of [`GeometryFlagBitsKHR`] values
 ///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureInfoNV`]
@@ -1547,31 +1448,33 @@ impl<'lt> GeometryNV<'lt> {
 ///for acceleration structure creation with
 ///[`CreateAccelerationStructureNV`] and in combination with the actual
 ///geometric data to build the acceleration structure with
-///[`CmdBuildAccelerationStructureNV`].Valid Usage
-/// - [`geometry_count`]**must** be less than or equal to
+///[`CmdBuildAccelerationStructureNV`].
+///## Valid Usage
+/// - [`geometry_count`] **must**  be less than or equal to
 ///   [`PhysicalDeviceRayTracingPropertiesNV::max_geometry_count`]
-/// - [`instance_count`]**must** be less than or equal to
+/// - [`instance_count`] **must**  be less than or equal to
 ///   [`PhysicalDeviceRayTracingPropertiesNV::max_instance_count`]
-/// - The total number of triangles in all geometries **must** be less than or equal to
+/// - The total number of triangles in all geometries  **must**  be less than or equal to
 ///   [`PhysicalDeviceRayTracingPropertiesNV::max_triangle_count`]
-/// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_NV` then [`geometry_count`]**must**
+/// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_NV` then [`geometry_count`] **must**
 ///   be `0`
-/// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_NV` then
-///   [`instance_count`]**must** be `0`
+/// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_NV` then [`instance_count`]
+///   **must**  be `0`
 /// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_NV` then the `geometryType`
-///   member of each geometry in [`geometries`]**must** be the same
-/// - [`type_`]**must** not be `VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR`
+///   member of each geometry in [`geometries`] **must**  be the same
+/// - [`type_`] **must**  not be `VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR`
 /// - If [`flags`] has the `VK_BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_NV` bit set, then
-///   it **must** not have the `VK_BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_NV` bit set
-/// - `scratch`**must** have been created with `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` usage flag
-/// - If `instanceData` is not [`crate::utils::Handle::null`], `instanceData`**must** have been
+///   it  **must**  not have the `VK_BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_NV` bit set
+/// - `scratch` **must**  have been created with `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` usage flag
+/// - If `instanceData` is not [`crate::utils::Handle::null`], `instanceData` **must**  have been
 ///   created with `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` usage flag
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_INFO_NV`
-/// - [`p_next`]**must** be `NULL`
-/// - [`type_`]**must** be a valid [`AccelerationStructureTypeNV`] value
-/// - [`flags`]**must** be a valid combination of [`BuildAccelerationStructureFlagBitsNV`] values
-/// - If [`geometry_count`] is not `0`, [`geometries`]**must** be a valid pointer to an array of
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_INFO_NV`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`type_`] **must**  be a valid [`AccelerationStructureTypeNV`] value
+/// - [`flags`] **must**  be a valid combination of [`BuildAccelerationStructureFlagBitsNV`] values
+/// - If [`geometry_count`] is not `0`, [`geometries`] **must**  be a valid pointer to an array of
 ///   [`geometry_count`] valid [`GeometryNV`] structures
 ///# Related
 /// - [`VK_NV_ray_tracing`]
@@ -1634,14 +1537,6 @@ impl<'lt> AccelerationStructureInfoNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::instance_count`]
-    pub fn instance_count_raw(&self) -> u32 {
-        self.instance_count
-    }
-    ///Gets the raw value of [`Self::geometry_count`]
-    pub fn geometry_count_raw(&self) -> u32 {
-        self.geometry_count
-    }
     ///Gets the raw value of [`Self::geometries`]
     pub fn geometries_raw(&self) -> *const GeometryNV<'lt> {
         self.geometries
@@ -1649,16 +1544,6 @@ impl<'lt> AccelerationStructureInfoNV<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::instance_count`]
-    pub fn set_instance_count_raw(&mut self, value: u32) -> &mut Self {
-        self.instance_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::geometry_count`]
-    pub fn set_geometry_count_raw(&mut self, value: u32) -> &mut Self {
-        self.geometry_count = value;
         self
     }
     ///Sets the raw value of [`Self::geometries`]
@@ -1783,13 +1668,14 @@ impl<'lt> AccelerationStructureInfoNV<'lt> {
 /// - [`info`] is the [`AccelerationStructureInfoNV`] structure specifying further parameters of the
 ///   created acceleration structure.
 ///# Description
-///Valid Usage
-/// - If [`compacted_size`] is not `0` then both `info.geometryCount` and
-///   `info.instanceCount`**must** be `0`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_NV`
-/// - [`p_next`]**must** be `NULL`
-/// - [`info`]**must** be a valid [`AccelerationStructureInfoNV`] structure
+///## Valid Usage
+/// - If [`compacted_size`] is not `0` then both `info.geometryCount` and `info.instanceCount`
+///   **must**  be `0`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_NV`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`info`] **must**  be a valid [`AccelerationStructureInfoNV`] structure
 ///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureInfoNV`]
@@ -1925,29 +1811,30 @@ impl<'lt> AccelerationStructureCreateInfoNV<'lt> {
 /// - [`device_index_count`] is the number of elements in [`device_indices`].
 /// - [`device_indices`] is a pointer to an array of device indices.
 ///# Description
-///Valid Usage
-/// - [`acceleration_structure`]**must** not already be backed by a memory object
-/// - [`memory_offset`]**must** be less than the size of [`memory`]
-/// - [`memory`]**must** have been allocated using one of the memory types allowed in the
+///## Valid Usage
+/// - [`acceleration_structure`] **must**  not already be backed by a memory object
+/// - [`memory_offset`] **must**  be less than the size of [`memory`]
+/// - [`memory`] **must**  have been allocated using one of the memory types allowed in the
 ///   `memoryTypeBits` member of the [`MemoryRequirements`] structure returned from a call to
 ///   [`GetAccelerationStructureMemoryRequirementsNV`] with [`acceleration_structure`] and `type` of
 ///   `VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_OBJECT_NV`
-/// - [`memory_offset`]**must** be an integer multiple of the `alignment` member of the
+/// - [`memory_offset`] **must**  be an integer multiple of the `alignment` member of the
 ///   [`MemoryRequirements`] structure returned from a call to
 ///   [`GetAccelerationStructureMemoryRequirementsNV`] with [`acceleration_structure`] and `type` of
 ///   `VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_OBJECT_NV`
 /// - The `size` member of the [`MemoryRequirements`] structure returned from a call to
 ///   [`GetAccelerationStructureMemoryRequirementsNV`] with [`acceleration_structure`] and `type` of
-///   `VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_OBJECT_NV`**must** be less than or equal
+///   `VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_OBJECT_NV` **must**  be less than or equal
 ///   to the size of [`memory`] minus [`memory_offset`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV`
-/// - [`p_next`]**must** be `NULL`
-/// - [`acceleration_structure`]**must** be a valid [`AccelerationStructureNV`] handle
-/// - [`memory`]**must** be a valid [`DeviceMemory`] handle
-/// - If [`device_index_count`] is not `0`, [`device_indices`]**must** be a valid pointer to an
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`acceleration_structure`] **must**  be a valid [`AccelerationStructureNV`] handle
+/// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
+/// - If [`device_index_count`] is not `0`, [`device_indices`] **must**  be a valid pointer to an
 ///   array of [`device_index_count`]`uint32_t` values
-/// - Both of [`acceleration_structure`], and [`memory`]**must** have been created, allocated, or
+/// - Both of [`acceleration_structure`], and [`memory`] **must**  have been created, allocated, or
 ///   retrieved from the same [`Device`]
 ///# Related
 /// - [`VK_NV_ray_tracing`]
@@ -2012,10 +1899,6 @@ impl<'lt> BindAccelerationStructureMemoryInfoNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::device_index_count`]
-    pub fn device_index_count_raw(&self) -> u32 {
-        self.device_index_count
-    }
     ///Gets the raw value of [`Self::device_indices`]
     pub fn device_indices_raw(&self) -> *const u32 {
         self.device_indices
@@ -2023,11 +1906,6 @@ impl<'lt> BindAccelerationStructureMemoryInfoNV<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::device_index_count`]
-    pub fn set_device_index_count_raw(&mut self, value: u32) -> &mut Self {
-        self.device_index_count = value;
         self
     }
     ///Sets the raw value of [`Self::device_indices`]
@@ -2151,20 +2029,21 @@ impl<'lt> BindAccelerationStructureMemoryInfoNV<'lt> {
 /// - [`acceleration_structures`] is a pointer to an array of [`AccelerationStructureNV`] structures
 ///   specifying the acceleration structures to update.
 ///# Description
-///Valid Usage
-/// - [`acceleration_structure_count`]**must** be equal to `descriptorCount` in the extended
+///## Valid Usage
+/// - [`acceleration_structure_count`] **must**  be equal to `descriptorCount` in the extended
 ///   structure
-/// - Each acceleration structure in [`acceleration_structures`]**must** have been created with
+/// - Each acceleration structure in [`acceleration_structures`] **must**  have been created with
 ///   `VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR`
 /// - If the [nullDescriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-nullDescriptor)
-///   feature is not enabled, each member of [`acceleration_structures`]**must** not be
+///   feature is not enabled, each member of [`acceleration_structures`] **must**  not be
 ///   [`crate::utils::Handle::null`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV`
-/// - [`acceleration_structures`]**must** be a valid pointer to an array of
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV`
+/// - [`acceleration_structures`] **must**  be a valid pointer to an array of
 ///   [`acceleration_structure_count`] valid or
 ///   [`crate::utils::Handle::null`][`AccelerationStructureNV`] handles
-/// - [`acceleration_structure_count`]**must** be greater than `0`
+/// - [`acceleration_structure_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureNV`]
@@ -2211,10 +2090,6 @@ impl<'lt> WriteDescriptorSetAccelerationStructureNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::acceleration_structure_count`]
-    pub fn acceleration_structure_count_raw(&self) -> u32 {
-        self.acceleration_structure_count
-    }
     ///Gets the raw value of [`Self::acceleration_structures`]
     pub fn acceleration_structures_raw(&self) -> *const AccelerationStructureNV {
         self.acceleration_structures
@@ -2222,11 +2097,6 @@ impl<'lt> WriteDescriptorSetAccelerationStructureNV<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::acceleration_structure_count`]
-    pub fn set_acceleration_structure_count_raw(&mut self, value: u32) -> &mut Self {
-        self.acceleration_structure_count = value;
         self
     }
     ///Sets the raw value of [`Self::acceleration_structures`]
@@ -2316,11 +2186,11 @@ impl<'lt> WriteDescriptorSetAccelerationStructureNV<'lt> {
 /// - [`acceleration_structure`] is the acceleration structure to be queried for memory
 ///   requirements.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV`
-/// - [`p_next`]**must** be `NULL`
-/// - [`type_`]**must** be a valid [`AccelerationStructureMemoryRequirementsTypeNV`] value
-/// - [`acceleration_structure`]**must** be a valid [`AccelerationStructureNV`] handle
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`type_`] **must**  be a valid [`AccelerationStructureMemoryRequirementsTypeNV`] value
+/// - [`acceleration_structure`] **must**  be a valid [`AccelerationStructureNV`] handle
 ///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureMemoryRequirementsTypeNV`]
@@ -2464,7 +2334,7 @@ impl<'lt> AccelerationStructureMemoryRequirementsInfoNV<'lt> {
 ///   command.
 /// - [`max_shader_group_stride`] is the maximum stride in bytes allowed between shader groups in
 ///   the shader binding table.
-/// - [`shader_group_base_alignment`] is the **required** alignment in bytes for the base of the
+/// - [`shader_group_base_alignment`] is the  **required**  alignment in bytes for the base of the
 ///   shader binding table.
 /// - [`max_geometry_count`] is the maximum number of geometries in the bottom level acceleration
 ///   structure.
@@ -2477,16 +2347,17 @@ impl<'lt> AccelerationStructureMemoryRequirementsInfoNV<'lt> {
 ///# Description
 ///Due to the fact that the geometry, instance, and triangle counts are
 ///specified at acceleration structure creation as 32-bit values,
-///[`max_geometry_count`], [`max_instance_count`], and [`max_triangle_count`]**must** not exceed
+///[`max_geometry_count`], [`max_instance_count`], and [`max_triangle_count`] **must**  not exceed
 /// 2<sup>32</sup>-1.If the [`PhysicalDeviceRayTracingPropertiesNV`] structure is included in the
 /// [`p_next`] chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Limits specified by this structure **must**
+///corresponding implementation-dependent property.Limits specified by this structure  **must**
 /// match those specified with the same
 ///name in [`PhysicalDeviceAccelerationStructurePropertiesKHR`] and
-///[`PhysicalDeviceRayTracingPipelinePropertiesKHR`].Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV`
+///[`PhysicalDeviceRayTracingPipelinePropertiesKHR`].
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV`
 ///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`StructureType`]
@@ -2516,7 +2387,7 @@ pub struct PhysicalDeviceRayTracingPropertiesNV<'lt> {
     ///[`max_shader_group_stride`] is the maximum stride in bytes allowed
     ///between shader groups in the shader binding table.
     max_shader_group_stride: u32,
-    ///[`shader_group_base_alignment`] is the **required** alignment in bytes for
+    ///[`shader_group_base_alignment`] is the  **required**  alignment in bytes for
     ///the base of the shader binding table.
     shader_group_base_alignment: u32,
     ///[`max_geometry_count`] is the maximum number of geometries in the bottom
@@ -2554,81 +2425,9 @@ impl<'lt> PhysicalDeviceRayTracingPropertiesNV<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::shader_group_handle_size`]
-    pub fn shader_group_handle_size_raw(&self) -> u32 {
-        self.shader_group_handle_size
-    }
-    ///Gets the raw value of [`Self::max_recursion_depth`]
-    pub fn max_recursion_depth_raw(&self) -> u32 {
-        self.max_recursion_depth
-    }
-    ///Gets the raw value of [`Self::max_shader_group_stride`]
-    pub fn max_shader_group_stride_raw(&self) -> u32 {
-        self.max_shader_group_stride
-    }
-    ///Gets the raw value of [`Self::shader_group_base_alignment`]
-    pub fn shader_group_base_alignment_raw(&self) -> u32 {
-        self.shader_group_base_alignment
-    }
-    ///Gets the raw value of [`Self::max_geometry_count`]
-    pub fn max_geometry_count_raw(&self) -> u64 {
-        self.max_geometry_count
-    }
-    ///Gets the raw value of [`Self::max_instance_count`]
-    pub fn max_instance_count_raw(&self) -> u64 {
-        self.max_instance_count
-    }
-    ///Gets the raw value of [`Self::max_triangle_count`]
-    pub fn max_triangle_count_raw(&self) -> u64 {
-        self.max_triangle_count
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_acceleration_structures`]
-    pub fn max_descriptor_set_acceleration_structures_raw(&self) -> u32 {
-        self.max_descriptor_set_acceleration_structures
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::shader_group_handle_size`]
-    pub fn set_shader_group_handle_size_raw(&mut self, value: u32) -> &mut Self {
-        self.shader_group_handle_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_recursion_depth`]
-    pub fn set_max_recursion_depth_raw(&mut self, value: u32) -> &mut Self {
-        self.max_recursion_depth = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_shader_group_stride`]
-    pub fn set_max_shader_group_stride_raw(&mut self, value: u32) -> &mut Self {
-        self.max_shader_group_stride = value;
-        self
-    }
-    ///Sets the raw value of [`Self::shader_group_base_alignment`]
-    pub fn set_shader_group_base_alignment_raw(&mut self, value: u32) -> &mut Self {
-        self.shader_group_base_alignment = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_geometry_count`]
-    pub fn set_max_geometry_count_raw(&mut self, value: u64) -> &mut Self {
-        self.max_geometry_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_instance_count`]
-    pub fn set_max_instance_count_raw(&mut self, value: u64) -> &mut Self {
-        self.max_instance_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_triangle_count`]
-    pub fn set_max_triangle_count_raw(&mut self, value: u64) -> &mut Self {
-        self.max_triangle_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_acceleration_structures`]
-    pub fn set_max_descriptor_set_acceleration_structures_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_acceleration_structures = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

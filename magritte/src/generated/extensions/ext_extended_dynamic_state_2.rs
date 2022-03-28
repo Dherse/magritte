@@ -39,10 +39,11 @@ pub const EXT_EXTENDED_DYNAMIC_STATE_2_EXTENSION_NAME: &'static CStr = crate::cs
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceExtendedDynamicState2FeaturesEXT`]**can** also be used in the [`p_next`] chain
+///[`PhysicalDeviceExtendedDynamicState2FeaturesEXT`] **can**  also be used in the [`p_next`] chain
 /// of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_extended_dynamic_state2`]

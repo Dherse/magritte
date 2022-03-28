@@ -25,11 +25,11 @@ pub const EXT_4444_FORMATS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`format_a_4_r_4_g_4_b_4`] indicates that the implementation **must** support using a
+/// - [`format_a_4_r_4_g_4_b_4`] indicates that the implementation  **must**  support using a
 ///   [`Format`] of `VK_FORMAT_A4R4G4B4_UNORM_PACK16_EXT` with at least the following
 ///   [`FormatFeatureFlagBits`]:  - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`  -
 ///   `VK_FORMAT_FEATURE_BLIT_SRC_BIT`  - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
-/// - [`format_a_4_b_4_g_4_r_4`] indicates that the implementation **must** support using a
+/// - [`format_a_4_b_4_g_4_r_4`] indicates that the implementation  **must**  support using a
 ///   [`Format`] of `VK_FORMAT_A4B4G4R4_UNORM_PACK16_EXT` with at least the following
 ///   [`FormatFeatureFlagBits`]:  - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`  -
 ///   `VK_FORMAT_FEATURE_BLIT_SRC_BIT`  - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
@@ -38,9 +38,10 @@ pub const EXT_4444_FORMATS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDevice4444FormatsFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT`
+///[`PhysicalDevice4444FormatsFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_4444_formats`]
 /// - [`Bool32`]
@@ -64,7 +65,7 @@ pub struct PhysicalDevice4444FormatsFeaturesEXT<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`format_a_4_r_4_g_4_b_4`] indicates that the
-    ///implementation **must** support using a [`Format`] of
+    ///implementation  **must**  support using a [`Format`] of
     ///`VK_FORMAT_A4R4G4B4_UNORM_PACK16_EXT` with at least the following
     ///[`FormatFeatureFlagBits`]:
     /// - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`
@@ -72,7 +73,7 @@ pub struct PhysicalDevice4444FormatsFeaturesEXT<'lt> {
     /// - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
     format_a_4_r_4_g_4_b_4: Bool32,
     ///[`format_a_4_b_4_g_4_r_4`] indicates that the
-    ///implementation **must** support using a [`Format`] of
+    ///implementation  **must**  support using a [`Format`] of
     ///`VK_FORMAT_A4B4G4R4_UNORM_PACK16_EXT` with at least the following
     ///[`FormatFeatureFlagBits`]:
     /// - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`

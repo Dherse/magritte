@@ -30,9 +30,9 @@ pub const KHR_GET_DISPLAY_PROPERTIES_2_EXTENSION_NAME: &'static CStr = crate::cs
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`display_properties`] is a [`DisplayPropertiesKHR`] structure.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DISPLAY_PROPERTIES_2_KHR`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_PROPERTIES_2_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_get_display_properties2`]
 /// - [`DisplayPropertiesKHR`]
@@ -144,9 +144,9 @@ impl<'lt> DisplayProperties2KHR<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`display_plane_properties`] is a [`DisplayPlanePropertiesKHR`] structure.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DISPLAY_PLANE_PROPERTIES_2_KHR`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_PLANE_PROPERTIES_2_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_get_display_properties2`]
 /// - [`DisplayPlanePropertiesKHR`]
@@ -259,9 +259,9 @@ impl<'lt> DisplayPlaneProperties2KHR<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`display_mode_properties`] is a [`DisplayModePropertiesKHR`] structure.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DISPLAY_MODE_PROPERTIES_2_KHR`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_MODE_PROPERTIES_2_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_get_display_properties2`]
 /// - [`DisplayModePropertiesKHR`]
@@ -379,12 +379,14 @@ impl<'lt> DisplayModeProperties2KHR<'lt> {
 /// - [`plane_index`] is the plane which the application intends to use with the display.
 ///The members of [`DisplayPlaneInfo2KHR`] correspond to the arguments to
 ///[`GetDisplayPlaneCapabilitiesKHR`], with [`s_type`] and [`p_next`]
-///added for extensibility.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DISPLAY_PLANE_INFO_2_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`mode`]**must** be a valid [`DisplayModeKHR`] handle
-///Host Synchronization
-/// - Host access to [`mode`]**must** be externally synchronized
+///added for extensibility.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_PLANE_INFO_2_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`mode`] **must**  be a valid [`DisplayModeKHR`] handle
+///
+///## Host Synchronization
+/// - Host access to [`mode`] **must**  be externally synchronized
 ///# Related
 /// - [`VK_KHR_get_display_properties2`]
 /// - [`DisplayModeKHR`]
@@ -430,18 +432,9 @@ impl<'lt> DisplayPlaneInfo2KHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::plane_index`]
-    pub fn plane_index_raw(&self) -> u32 {
-        self.plane_index
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::plane_index`]
-    pub fn set_plane_index_raw(&mut self, value: u32) -> &mut Self {
-        self.plane_index = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -512,9 +505,9 @@ impl<'lt> DisplayPlaneInfo2KHR<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`capabilities`] is a [`DisplayPlaneCapabilitiesKHR`] structure.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DISPLAY_PLANE_CAPABILITIES_2_KHR`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_PLANE_CAPABILITIES_2_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_get_display_properties2`]
 /// - [`DisplayPlaneCapabilitiesKHR`]

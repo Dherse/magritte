@@ -30,8 +30,8 @@ pub const EXT_DISPLAY_CONTROL_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_E
 ///# Description
 /// - [`DisplayPowerStateOffExt`] specifies that the display is powered down.
 /// - [`DisplayPowerStateSuspendExt`] specifies that the display is put into a low power mode, from
-///   which it **may** be able to transition back to [`DisplayPowerStateOnExt`] more quickly than if
-///   it were in [`DisplayPowerStateOffExt`]. This state **may** be the same as
+///   which it  **may**  be able to transition back to [`DisplayPowerStateOnExt`] more quickly than
+///   if it were in [`DisplayPowerStateOffExt`]. This state  **may**  be the same as
 ///   [`DisplayPowerStateOffExt`].
 /// - [`DisplayPowerStateOnExt`] specifies that the display is powered on.
 ///# Related
@@ -55,10 +55,10 @@ pub enum DisplayPowerStateEXT {
     ///powered down.
     DisplayPowerStateOffExt = 0,
     ///[`DisplayPowerStateSuspendExt`] specifies that the display is
-    ///put into a low power mode, from which it **may** be able to transition back
+    ///put into a low power mode, from which it  **may**  be able to transition back
     ///to [`DisplayPowerStateOnExt`] more quickly than if it were in
     ///[`DisplayPowerStateOffExt`].
-    ///This state **may** be the same as [`DisplayPowerStateOffExt`].
+    ///This state  **may**  be the same as [`DisplayPowerStateOffExt`].
     DisplayPowerStateSuspendExt = 1,
     ///[`DisplayPowerStateOnExt`] specifies that the display is
     ///powered on.
@@ -98,7 +98,7 @@ impl DisplayPowerStateEXT {
 ///```
 ///# Description
 /// - [`DeviceEventTypeDisplayHotplugExt`] specifies that the fence is signaled when a display is
-///   plugged into or unplugged from the specified device. Applications **can** use this
+///   plugged into or unplugged from the specified device. Applications  **can**  use this
 ///   notification to determine when they need to re-enumerate the available displays on a device.
 ///# Related
 /// - [`VK_EXT_display_control`]
@@ -120,7 +120,7 @@ pub enum DeviceEventTypeEXT {
     ///[`DeviceEventTypeDisplayHotplugExt`] specifies that the fence
     ///is signaled when a display is plugged into or unplugged from the
     ///specified device.
-    ///Applications **can** use this notification to determine when they need to
+    ///Applications  **can**  use this notification to determine when they need to
     ///re-enumerate the available displays on a device.
     DeviceEventTypeDisplayHotplugExt = 0,
 }
@@ -220,10 +220,10 @@ impl DisplayEventTypeEXT {
 /// - [`power_state`] is a [`DisplayPowerStateEXT`] value specifying the new power state of the
 ///   display.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DISPLAY_POWER_INFO_EXT`
-/// - [`p_next`]**must** be `NULL`
-/// - [`power_state`]**must** be a valid [`DisplayPowerStateEXT`] value
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_POWER_INFO_EXT`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`power_state`] **must**  be a valid [`DisplayPowerStateEXT`] value
 ///# Related
 /// - [`VK_EXT_display_control`]
 /// - [`DisplayPowerStateEXT`]
@@ -329,10 +329,10 @@ impl<'lt> DisplayPowerInfoEXT<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - `device` is a [`DeviceEventTypeEXT`] value specifying when the fence will be signaled.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEVICE_EVENT_INFO_EXT`
-/// - [`p_next`]**must** be `NULL`
-/// - [`device_event`]**must** be a valid [`DeviceEventTypeEXT`] value
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_EVENT_INFO_EXT`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`device_event`] **must**  be a valid [`DeviceEventTypeEXT`] value
 ///# Related
 /// - [`VK_EXT_display_control`]
 /// - [`DeviceEventTypeEXT`]
@@ -434,10 +434,10 @@ impl<'lt> DeviceEventInfoEXT<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`display_event`] is a [`DisplayEventTypeEXT`] specifying when the fence will be signaled.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DISPLAY_EVENT_INFO_EXT`
-/// - [`p_next`]**must** be `NULL`
-/// - [`display_event`]**must** be a valid [`DisplayEventTypeEXT`] value
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_EVENT_INFO_EXT`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`display_event`] **must**  be a valid [`DisplayEventTypeEXT`] value
 ///# Related
 /// - [`VK_EXT_display_control`]
 /// - [`DisplayEventTypeEXT`]
@@ -547,12 +547,14 @@ impl<'lt> DisplayEventInfoEXT<'lt> {
 /// - [`surface_counters`] is a bitmask of [`SurfaceCounterFlagBitsEXT`] specifying surface counters
 ///   to enable for the swapchain.
 ///# Description
-///Valid Usage
-/// - The bits in [`surface_counters`]**must** be supported by [`SwapchainCreateInfoKHR::surface`],
-///   as reported by [`GetPhysicalDeviceSurfaceCapabilities2EXT`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SWAPCHAIN_COUNTER_CREATE_INFO_EXT`
-/// - [`surface_counters`]**must** be a valid combination of [`SurfaceCounterFlagBitsEXT`] values
+///## Valid Usage
+/// - The bits in [`surface_counters`] **must**  be supported by
+///   [`SwapchainCreateInfoKHR::surface`], as reported by
+///   [`GetPhysicalDeviceSurfaceCapabilities2EXT`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SWAPCHAIN_COUNTER_CREATE_INFO_EXT`
+/// - [`surface_counters`] **must**  be a valid combination of [`SurfaceCounterFlagBitsEXT`] values
 ///# Related
 /// - [`VK_EXT_display_control`]
 /// - [`StructureType`]

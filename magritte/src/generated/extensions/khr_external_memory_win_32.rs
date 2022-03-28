@@ -38,35 +38,39 @@ pub const KHR_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///# Description
 ///Importing memory object payloads from Windows handles does not transfer
 ///ownership of the handle to the Vulkan implementation.
-///For handle types defined as NT handles, the application **must** release handle
+///For handle types defined as NT handles, the application  **must**  release handle
 ///ownership using the `CloseHandle` system call when the handle is no
 ///longer needed.
 ///For handle types defined as NT handles, the imported memory object holds a
-///reference to its payload.Applications **can** import the same payload into multiple instances of
-/// Vulkan,
+///reference to its payload.Applications  **can**  import the same payload into multiple instances
+/// of Vulkan,
 ///into the same instance from which it was exported, and multiple times into a
 ///given Vulkan instance.
-///In all cases, each import operation **must** create a distinct
-///[`DeviceMemory`] object.Valid Usage
-/// - If [`handle_type`] is not `0`, it **must** be supported for import, as reported by
+///In all cases, each import operation  **must**  create a distinct
+///[`DeviceMemory`] object.
+///## Valid Usage
+/// - If [`handle_type`] is not `0`, it  **must**  be supported for import, as reported by
 ///   [`ExternalImageFormatProperties`] or [`ExternalBufferProperties`]
-/// - The memory from which [`handle`] was exported, or the memory named by [`name`]**must** have
+/// - The memory from which [`handle`] was exported, or the memory named by [`name`] **must**  have
 ///   been created on the same underlying physical device as `device`
-/// - If [`handle_type`] is not `0`, it **must** be defined as an NT handle or a global share handle
+/// - If [`handle_type`] is not `0`, it  **must**  be defined as an NT handle or a global share
+///   handle
 /// - If [`handle_type`] is not `VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT`,
 ///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT`,
 ///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT`, or
-///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT`, [`name`]**must** be `NULL`
-/// - If [`handle_type`] is not `0` and [`handle`] is `NULL`, [`name`]**must** name a valid memory
+///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT`, [`name`] **must**  be `NULL`
+/// - If [`handle_type`] is not `0` and [`handle`] is `NULL`, [`name`] **must**  name a valid memory
 ///   resource of the type specified by [`handle_type`]
-/// - If [`handle_type`] is not `0` and [`name`] is `NULL`, [`handle`]**must** be a valid handle of
-///   the type specified by [`handle_type`]
-/// - if [`handle`] is not `NULL`, [`name`]**must** be `NULL`
-/// -    If [`handle`] is not `NULL`, it **must** obey any requirements listed for [`handle_type`] in [external memory handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-memory-handle-types-compatibility)
-/// -    If [`name`] is not `NULL`, it **must** obey any requirements listed for [`handle_type`] in [external memory handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-memory-handle-types-compatibility)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR`
-/// - If [`handle_type`] is not `0`, [`handle_type`]**must** be a valid
+/// - If [`handle_type`] is not `0` and [`name`] is `NULL`, [`handle`] **must**  be a valid handle
+///   of the type specified by [`handle_type`]
+/// - if [`handle`] is not `NULL`, [`name`] **must**  be `NULL`
+/// - If [`handle`] is not `NULL`, it  **must**  obey any requirements listed for [`handle_type`] in
+///   [external memory handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-memory-handle-types-compatibility)
+/// -    If [`name`] is not `NULL`, it  **must**  obey any requirements listed for [`handle_type`] in [external memory handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-memory-handle-types-compatibility)
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR`
+/// - If [`handle_type`] is not `0`, [`handle_type`] **must**  be a valid
 ///   [`ExternalMemoryHandleTypeFlagBits`] value
 ///# Related
 /// - [`VK_KHR_external_memory_win32`]
@@ -241,16 +245,18 @@ impl<'lt> ImportMemoryWin32HandleInfoKHR<'lt> {
 ///Further, if the structure is not present, the access rights used depend on
 ///the handle type.For handles of the following types:
 /// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT`
-///The implementation **must** ensure the access rights allow read and write
+///The implementation  **must**  ensure the access rights allow read and write
 ///access to the memory.
 /// * [https://docs.microsoft.com/en-us/windows/win32/sync/synchronization-object-security-and-access-rights](https://docs.microsoft.com/en-us/windows/win32/sync/synchronization-object-security-and-access-rights)
-///Valid Usage
+///
+///## Valid Usage
 /// - If [`ExportMemoryAllocateInfo::handle_types`] does not include
 ///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT`, a [`ExportMemoryWin32HandleInfoKHR`]
-///   structure **must** not be included in the [`p_next`] chain of [`MemoryAllocateInfo`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR`
-/// - If [`attributes`] is not `NULL`, [`attributes`]**must** be a valid pointer to a valid
+///   structure  **must**  not be included in the [`p_next`] chain of [`MemoryAllocateInfo`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR`
+/// - If [`attributes`] is not `NULL`, [`attributes`] **must**  be a valid pointer to a valid
 ///   [`SECURITY_ATTRIBUTES`] value
 ///# Related
 /// - [`VK_KHR_external_memory_win32`]
@@ -401,11 +407,11 @@ impl<'lt> ExportMemoryWin32HandleInfoKHR<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory_type_bits`] is a bitmask containing one bit set for every memory type which the
-///   specified windows handle **can** be imported as.
+///   specified windows handle  **can**  be imported as.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_MEMORY_WIN32_HANDLE_PROPERTIES_KHR`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_WIN32_HANDLE_PROPERTIES_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_external_memory_win32`]
 /// - [`StructureType`]
@@ -429,7 +435,7 @@ pub struct MemoryWin32HandlePropertiesKHR<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`memory_type_bits`] is a bitmask containing one bit set for every
-    ///memory type which the specified windows handle **can** be imported as.
+    ///memory type which the specified windows handle  **can**  be imported as.
     memory_type_bits: u32,
 }
 impl<'lt> Default for MemoryWin32HandlePropertiesKHR<'lt> {
@@ -447,18 +453,9 @@ impl<'lt> MemoryWin32HandlePropertiesKHR<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::memory_type_bits`]
-    pub fn memory_type_bits_raw(&self) -> u32 {
-        self.memory_type_bits
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::memory_type_bits`]
-    pub fn set_memory_type_bits_raw(&mut self, value: u32) -> &mut Self {
-        self.memory_type_bits = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -529,17 +526,19 @@ impl<'lt> MemoryWin32HandlePropertiesKHR<'lt> {
 ///The properties of the handle returned depend on the value of
 ///[`handle_type`].
 ///See [`ExternalMemoryHandleTypeFlagBits`] for a description of the
-///properties of the defined external memory handle types.Valid Usage
-/// - [`handle_type`]**must** have been included in [`ExportMemoryAllocateInfo::handle_types`] when
-///   [`memory`] was created
-/// - If [`handle_type`] is defined as an NT handle, [`GetMemoryWin32HandleKHR`]**must** be called
+///properties of the defined external memory handle types.
+///## Valid Usage
+/// - [`handle_type`] **must**  have been included in [`ExportMemoryAllocateInfo::handle_types`]
+///   when [`memory`] was created
+/// - If [`handle_type`] is defined as an NT handle, [`GetMemoryWin32HandleKHR`] **must**  be called
 ///   no more than once for each valid unique combination of [`memory`] and [`handle_type`]
-/// - [`handle_type`]**must** be defined as an NT handle or a global share handle
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_MEMORY_GET_WIN32_HANDLE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`memory`]**must** be a valid [`DeviceMemory`] handle
-/// - [`handle_type`]**must** be a valid [`ExternalMemoryHandleTypeFlagBits`] value
+/// - [`handle_type`] **must**  be defined as an NT handle or a global share handle
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_GET_WIN32_HANDLE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
+/// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
 ///# Related
 /// - [`VK_KHR_external_memory_win32`]
 /// - [`DeviceMemory`]

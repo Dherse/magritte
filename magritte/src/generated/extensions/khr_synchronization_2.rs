@@ -54,8 +54,9 @@ pub type Flags64 = u64;
 ///# Description
 ///Additional queue family information can be queried by setting
 ///[`QueueFamilyProperties2`]::[`p_next`] to point to a
-///[`QueueFamilyCheckpointProperties2NV`] structure.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV`
+///[`QueueFamilyCheckpointProperties2NV`] structure.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV`
 ///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`VK_NV_device_diagnostic_checkpoints`]
@@ -168,11 +169,11 @@ impl<'lt> QueueFamilyCheckpointProperties2NV<'lt> {
 /// - [`checkpoint_marker`] contains the value of the last checkpoint marker executed in the stage
 ///   that [`stage`] refers to.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_CHECKPOINT_DATA_2_NV`
-/// - [`p_next`]**must** be `NULL`
-///The stages at which a checkpoint marker **can** be executed are
-///implementation-defined and **can** be queried by calling
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_CHECKPOINT_DATA_2_NV`
+/// - [`p_next`] **must**  be `NULL`
+///The stages at which a checkpoint marker  **can**  be executed are
+///implementation-defined and  **can**  be queried by calling
 ///[`GetPhysicalDeviceQueueFamilyProperties2`].
 ///# Related
 /// - [`VK_KHR_synchronization2`]

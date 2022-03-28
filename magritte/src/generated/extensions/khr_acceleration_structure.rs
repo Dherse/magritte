@@ -39,13 +39,13 @@ pub const KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME: &'static CStr = crate::cstr
 ///```
 ///# Description
 /// - [`CopyAccelerationStructureModeCloneKhr`] creates a direct copy of the acceleration structure
-///   specified in `src` into the one specified by `dst`. The `dst` acceleration structure **must**
+///   specified in `src` into the one specified by `dst`. The `dst` acceleration structure  **must**
 ///   have been created with the same parameters as `src`. If `src` contains references to other
 ///   acceleration structures, `dst` will reference the same acceleration structures.
 /// - [`CopyAccelerationStructureModeCompactKhr`] creates a more compact version of an acceleration
-///   structure `src` into `dst`. The acceleration structure `dst`**must** have been created with a
-///   size at least as large as that returned by [`CmdWriteAccelerationStructuresPropertiesKHR`] or
-///   [`WriteAccelerationStructuresPropertiesKHR`] after the build of the acceleration structure
+///   structure `src` into `dst`. The acceleration structure `dst` **must**  have been created with
+///   a size at least as large as that returned by [`CmdWriteAccelerationStructuresPropertiesKHR`]
+///   or [`WriteAccelerationStructuresPropertiesKHR`] after the build of the acceleration structure
 ///   specified by `src`. If `src` contains references to other acceleration structures, `dst` will
 ///   reference the same acceleration structures.
 /// - [`CopyAccelerationStructureModeSerializeKhr`] serializes the acceleration structure to a
@@ -76,14 +76,14 @@ pub enum CopyAccelerationStructureModeKHR {
     ///[`CopyAccelerationStructureModeCloneKhr`] creates a direct
     ///copy of the acceleration structure specified in `src` into the one
     ///specified by `dst`.
-    ///The `dst` acceleration structure **must** have been created with the
+    ///The `dst` acceleration structure  **must**  have been created with the
     ///same parameters as `src`.
     ///If `src` contains references to other acceleration structures,
     ///`dst` will reference the same acceleration structures.
     CopyAccelerationStructureModeCloneKhr = 0,
     ///[`CopyAccelerationStructureModeCompactKhr`] creates a more
     ///compact version of an acceleration structure `src` into `dst`.
-    ///The acceleration structure `dst`**must** have been created with a size
+    ///The acceleration structure `dst` **must**  have been created with a size
     ///at least as large as that returned by
     ///[`CmdWriteAccelerationStructuresPropertiesKHR`]
     ///or [`WriteAccelerationStructuresPropertiesKHR`]
@@ -188,7 +188,7 @@ impl BuildAccelerationStructureModeKHR {
 }
 ///[VkAccelerationStructureTypeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureTypeKHR.html) - Type of acceleration structure
 ///# C Specifications
-///Values which **can** be set in
+///Values which  **can**  be set in
 ///[`AccelerationStructureCreateInfoKHR::type_`]
 ///or
 ///[`AccelerationStructureInfoNV::type_`]
@@ -502,21 +502,22 @@ impl AccelerationStructureCompatibilityKHR {
 /// - [`acceleration_structures`] is a pointer to an array of [`AccelerationStructureKHR`]
 ///   structures specifying the acceleration structures to update.
 ///# Description
-///Valid Usage
-/// - [`acceleration_structure_count`]**must** be equal to `descriptorCount` in the extended
+///## Valid Usage
+/// - [`acceleration_structure_count`] **must**  be equal to `descriptorCount` in the extended
 ///   structure
-/// - Each acceleration structure in [`acceleration_structures`]**must** have been created with a
+/// - Each acceleration structure in [`acceleration_structures`] **must**  have been created with a
 ///   `type` of `VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR` or
 ///   `VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR`
 /// - If the [nullDescriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-nullDescriptor)
-///   feature is not enabled, each element of [`acceleration_structures`]**must** not be
+///   feature is not enabled, each element of [`acceleration_structures`] **must**  not be
 ///   [`crate::utils::Handle::null`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR`
-/// - [`acceleration_structures`]**must** be a valid pointer to an array of
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR`
+/// - [`acceleration_structures`] **must**  be a valid pointer to an array of
 ///   [`acceleration_structure_count`] valid or
 ///   [`crate::utils::Handle::null`][`AccelerationStructureKHR`] handles
-/// - [`acceleration_structure_count`]**must** be greater than `0`
+/// - [`acceleration_structure_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`AccelerationStructureKHR`]
@@ -563,10 +564,6 @@ impl<'lt> WriteDescriptorSetAccelerationStructureKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::acceleration_structure_count`]
-    pub fn acceleration_structure_count_raw(&self) -> u32 {
-        self.acceleration_structure_count
-    }
     ///Gets the raw value of [`Self::acceleration_structures`]
     pub fn acceleration_structures_raw(&self) -> *const AccelerationStructureKHR {
         self.acceleration_structures
@@ -574,11 +571,6 @@ impl<'lt> WriteDescriptorSetAccelerationStructureKHR<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::acceleration_structure_count`]
-    pub fn set_acceleration_structure_count_raw(&mut self, value: u32) -> &mut Self {
-        self.acceleration_structure_count = value;
         self
     }
     ///Sets the raw value of [`Self::acceleration_structures`]
@@ -676,17 +668,19 @@ impl<'lt> WriteDescriptorSetAccelerationStructureKHR<'lt> {
 ///   [`CopyMemoryToAccelerationStructureKHR`], [`WriteAccelerationStructuresPropertiesKHR`].
 /// - [`descriptor_binding_acceleration_structure_update_after_bind`] indicates whether the
 ///   implementation supports updating acceleration structure descriptors after a set is bound. If
-///   this feature is not enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used
-///   with `VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR`.
+///   this feature is not enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be
+///   used with `VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR`.
 ///If the [`PhysicalDeviceAccelerationStructureFeaturesKHR`] structure is included in the
 /// [`p_next`] chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceAccelerationStructureFeaturesKHR`]**can** also be used in the [`p_next`] chain
+///[`PhysicalDeviceAccelerationStructureFeaturesKHR`] **can**  also be used in the [`p_next`] chain
 /// of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR`
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR`
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`Bool32`]
@@ -734,7 +728,7 @@ pub struct PhysicalDeviceAccelerationStructureFeaturesKHR<'lt> {
     ///whether the implementation supports updating acceleration structure
     ///descriptors after a set is bound.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR`.
     descriptor_binding_acceleration_structure_update_after_bind: Bool32,
 }
@@ -1005,7 +999,7 @@ impl<'lt> PhysicalDeviceAccelerationStructureFeaturesKHR<'lt> {
 /// - [`max_primitive_count`] is the maximum number of triangles or AABBs in all geometries in the
 ///   bottom level acceleration structure.
 /// - [`max_per_stage_descriptor_acceleration_structures`] is the maximum number of acceleration
-///   structure bindings that **can** be accessible to a single shader stage in a pipeline layout.
+///   structure bindings that  **can**  be accessible to a single shader stage in a pipeline layout.
 ///   Descriptor bindings with a descriptor type of `VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR`
 ///   count against this limit. Only descriptor bindings in descriptor set layouts created without
 ///   the `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set count against this
@@ -1015,7 +1009,7 @@ impl<'lt> PhysicalDeviceAccelerationStructureFeaturesKHR<'lt> {
 ///   descriptor sets created with or without the
 ///   `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set.
 /// - [`max_descriptor_set_acceleration_structures`] is the maximum number of acceleration structure
-///   descriptors that **can** be included in descriptor bindings in a pipeline layout across all
+///   descriptors that  **can**  be included in descriptor bindings in a pipeline layout across all
 ///   pipeline shader stages and descriptor set numbers. Descriptor bindings with a descriptor type
 ///   of `VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR` count against this limit. Only descriptor
 ///   bindings in descriptor set layouts created without the
@@ -1024,23 +1018,24 @@ impl<'lt> PhysicalDeviceAccelerationStructureFeaturesKHR<'lt> {
 ///   [`max_descriptor_set_acceleration_structures`] but counts descriptor bindings from descriptor
 ///   sets created with or without the `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT`
 ///   bit set.
-/// - [`min_acceleration_structure_scratch_offset_alignment`] is the minimum **required** alignment,
-///   in bytes, for scratch data passed in to an acceleration structure build command. The value
-///   **must** be a power of two.
+/// - [`min_acceleration_structure_scratch_offset_alignment`] is the minimum  **required**
+///   alignment, in bytes, for scratch data passed in to an acceleration structure build command.
+///   The value  **must**  be a power of two.
 ///# Description
 ///Due to the fact that the geometry, instance, and primitive counts are
 ///specified at acceleration structure creation as 32-bit values,
 ///[[`max_geometry_count`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxGeometryCount),
 ///[[`max_instance_count`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInstanceCount), and
-///[[`max_primitive_count`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxPrimitiveCount)**must** not exceed
+///[[`max_primitive_count`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxPrimitiveCount) **must**  not exceed
 ///2<sup>32</sup>-1.If the [`PhysicalDeviceAccelerationStructurePropertiesKHR`] structure is
 /// included in the [`p_next`] chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Limits specified by this structure **must**
+///corresponding implementation-dependent property.Limits specified by this structure  **must**
 /// match those specified with the same
-///name in [`PhysicalDeviceRayTracingPropertiesNV`].Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///name in [`PhysicalDeviceRayTracingPropertiesNV`].
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR`
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
@@ -1074,7 +1069,7 @@ pub struct PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
     ///acceleration structure.
     max_primitive_count: u64,
     ///[`max_per_stage_descriptor_acceleration_structures`] is the maximum number
-    ///of acceleration structure bindings that **can** be accessible to a single
+    ///of acceleration structure bindings that  **can**  be accessible to a single
     ///shader stage in a pipeline layout.
     ///Descriptor bindings with a descriptor type of
     ///`VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR` count against this
@@ -1090,7 +1085,7 @@ pub struct PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
     ///set.
     max_per_stage_descriptor_update_after_bind_acceleration_structures: u32,
     ///[`max_descriptor_set_acceleration_structures`] is the maximum number of
-    ///acceleration structure descriptors that **can** be included in descriptor
+    ///acceleration structure descriptors that  **can**  be included in descriptor
     ///bindings in a pipeline layout across all pipeline shader stages and
     ///descriptor set numbers.
     ///Descriptor bindings with a descriptor type of
@@ -1107,9 +1102,9 @@ pub struct PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
     ///set.
     max_descriptor_set_update_after_bind_acceleration_structures: u32,
     ///[`min_acceleration_structure_scratch_offset_alignment`] is the minimum
-    ///**required** alignment, in bytes, for scratch data passed in to an
+    /// **required**  alignment, in bytes, for scratch data passed in to an
     ///acceleration structure build command.
-    ///The value **must** be a power of two.
+    ///The value  **must**  be a power of two.
     min_acceleration_structure_scratch_offset_alignment: u32,
 }
 impl<'lt> Default for PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
@@ -1134,86 +1129,9 @@ impl<'lt> PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::max_geometry_count`]
-    pub fn max_geometry_count_raw(&self) -> u64 {
-        self.max_geometry_count
-    }
-    ///Gets the raw value of [`Self::max_instance_count`]
-    pub fn max_instance_count_raw(&self) -> u64 {
-        self.max_instance_count
-    }
-    ///Gets the raw value of [`Self::max_primitive_count`]
-    pub fn max_primitive_count_raw(&self) -> u64 {
-        self.max_primitive_count
-    }
-    ///Gets the raw value of [`Self::max_per_stage_descriptor_acceleration_structures`]
-    pub fn max_per_stage_descriptor_acceleration_structures_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_acceleration_structures
-    }
-    ///Gets the raw value of
-    /// [`Self::max_per_stage_descriptor_update_after_bind_acceleration_structures`]
-    pub fn max_per_stage_descriptor_update_after_bind_acceleration_structures_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_update_after_bind_acceleration_structures
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_acceleration_structures`]
-    pub fn max_descriptor_set_acceleration_structures_raw(&self) -> u32 {
-        self.max_descriptor_set_acceleration_structures
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_acceleration_structures`]
-    pub fn max_descriptor_set_update_after_bind_acceleration_structures_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_acceleration_structures
-    }
-    ///Gets the raw value of [`Self::min_acceleration_structure_scratch_offset_alignment`]
-    pub fn min_acceleration_structure_scratch_offset_alignment_raw(&self) -> u32 {
-        self.min_acceleration_structure_scratch_offset_alignment
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_geometry_count`]
-    pub fn set_max_geometry_count_raw(&mut self, value: u64) -> &mut Self {
-        self.max_geometry_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_instance_count`]
-    pub fn set_max_instance_count_raw(&mut self, value: u64) -> &mut Self {
-        self.max_instance_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_primitive_count`]
-    pub fn set_max_primitive_count_raw(&mut self, value: u64) -> &mut Self {
-        self.max_primitive_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_per_stage_descriptor_acceleration_structures`]
-    pub fn set_max_per_stage_descriptor_acceleration_structures_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_stage_descriptor_acceleration_structures = value;
-        self
-    }
-    ///Sets the raw value of
-    /// [`Self::max_per_stage_descriptor_update_after_bind_acceleration_structures`]
-    pub fn set_max_per_stage_descriptor_update_after_bind_acceleration_structures_raw(
-        &mut self,
-        value: u32,
-    ) -> &mut Self {
-        self.max_per_stage_descriptor_update_after_bind_acceleration_structures = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_acceleration_structures`]
-    pub fn set_max_descriptor_set_acceleration_structures_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_acceleration_structures = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_acceleration_structures`]
-    pub fn set_max_descriptor_set_update_after_bind_acceleration_structures_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_acceleration_structures = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_acceleration_structure_scratch_offset_alignment`]
-    pub fn set_min_acceleration_structure_scratch_offset_alignment_raw(&mut self, value: u32) -> &mut Self {
-        self.min_acceleration_structure_scratch_offset_alignment = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -1394,22 +1312,23 @@ impl<'lt> PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
 ///   vertices in this geometry are described to the space in which the acceleration structure is
 ///   defined.
 ///# Description
-///Valid Usage
-/// - [`vertex_stride`]**must** be a multiple of the size in bytes of the smallest component of
+///## Valid Usage
+/// - [`vertex_stride`] **must**  be a multiple of the size in bytes of the smallest component of
 ///   [`vertex_format`]
-/// - [`vertex_stride`]**must** be less than or equal to 2<sup>32</sup>-1
-/// - [`vertex_format`]**must** support the
+/// - [`vertex_stride`] **must**  be less than or equal to 2<sup>32</sup>-1
+/// - [`vertex_format`] **must**  support the
 ///   `VK_FORMAT_FEATURE_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR` in
 ///   [`FormatProperties::buffer_features`] as returned by [`GetPhysicalDeviceFormatProperties2`]
-/// - [`index_type`]**must** be `VK_INDEX_TYPE_UINT16`, `VK_INDEX_TYPE_UINT32`, or
+/// - [`index_type`] **must**  be `VK_INDEX_TYPE_UINT16`, `VK_INDEX_TYPE_UINT32`, or
 ///   `VK_INDEX_TYPE_NONE_KHR`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR`
-/// - [`p_next`]**must** be `NULL` or a pointer to a valid instance of
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR`
+/// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`AccelerationStructureGeometryMotionTrianglesDataNV`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - [`vertex_format`]**must** be a valid [`Format`] value
-/// - [`index_type`]**must** be a valid [`IndexType`] value
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`vertex_format`] **must**  be a valid [`Format`] value
+/// - [`index_type`] **must**  be a valid [`IndexType`] value
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`AccelerationStructureGeometryDataKHR`]
@@ -1479,18 +1398,9 @@ impl<'lt> AccelerationStructureGeometryTrianglesDataKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::max_vertex`]
-    pub fn max_vertex_raw(&self) -> u32 {
-        self.max_vertex
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_vertex`]
-    pub fn set_max_vertex_raw(&mut self, value: u32) -> &mut Self {
-        self.max_vertex = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -1637,15 +1547,16 @@ impl<'lt> AccelerationStructureGeometryTrianglesDataKHR<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`data`] is a device or host address to memory containing [`AabbPositionsKHR`] structures
 ///   containing position data for each axis-aligned bounding box in the geometry.
-/// - [`stride`] is the stride in bytes between each entry in [`data`]. The stride **must** be a
+/// - [`stride`] is the stride in bytes between each entry in [`data`]. The stride  **must**  be a
 ///   multiple of `8`.
 ///# Description
-///Valid Usage
-/// - [`stride`]**must** be a multiple of `8`
-/// - [`stride`]**must** be less than or equal to 2<sup>32</sup>-1
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage
+/// - [`stride`] **must**  be a multiple of `8`
+/// - [`stride`] **must**  be less than or equal to 2<sup>32</sup>-1
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`AccelerationStructureGeometryDataKHR`]
@@ -1675,7 +1586,7 @@ pub struct AccelerationStructureGeometryAabbsDataKHR<'lt> {
     ///axis-aligned bounding box in the geometry.
     data: DeviceOrHostAddressConstKHR<'lt>,
     ///[`stride`] is the stride in bytes between each entry in [`data`].
-    ///The stride **must** be a multiple of `8`.
+    ///The stride  **must**  be a multiple of `8`.
     stride: DeviceSize,
 }
 impl<'lt> Default for AccelerationStructureGeometryAabbsDataKHR<'lt> {
@@ -1774,9 +1685,9 @@ impl<'lt> AccelerationStructureGeometryAabbsDataKHR<'lt> {
 ///   array.
 /// - [`data`] is either the address of an array of device or host addresses referencing individual [`AccelerationStructureInstanceKHR`] structures or packed motion instance information as described in [motion instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-motion-instances) if [`array_of_pointers`] is [`TRUE`], or the address of an array of [`AccelerationStructureInstanceKHR`] or [`AccelerationStructureMotionInstanceNV`] structures. Addresses and [`AccelerationStructureInstanceKHR`] structures are tightly packed. [`AccelerationStructureMotionInstanceNV`] structures have a stride of 160 bytes.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`AccelerationStructureGeometryDataKHR`]
@@ -1941,17 +1852,17 @@ impl<'lt> AccelerationStructureGeometryInstancesDataKHR<'lt> {
 /// - [`flags`] is a bitmask of [`GeometryFlagBitsKHR`] values describing additional properties of
 ///   how the geometry should be built.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`geometry_type`]**must** be a valid [`GeometryTypeKHR`] value
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`geometry_type`] **must**  be a valid [`GeometryTypeKHR`] value
 /// - If [`geometry_type`] is `VK_GEOMETRY_TYPE_TRIANGLES_KHR`, the `triangles` member of
-///   [`geometry`]**must** be a valid [`AccelerationStructureGeometryTrianglesDataKHR`] structure
-/// - If [`geometry_type`] is `VK_GEOMETRY_TYPE_AABBS_KHR`, the `aabbs` member of
-///   [`geometry`]**must** be a valid [`AccelerationStructureGeometryAabbsDataKHR`] structure
+///   [`geometry`] **must**  be a valid [`AccelerationStructureGeometryTrianglesDataKHR`] structure
+/// - If [`geometry_type`] is `VK_GEOMETRY_TYPE_AABBS_KHR`, the `aabbs` member of [`geometry`]
+///   **must**  be a valid [`AccelerationStructureGeometryAabbsDataKHR`] structure
 /// - If [`geometry_type`] is `VK_GEOMETRY_TYPE_INSTANCES_KHR`, the `instances` member of
-///   [`geometry`]**must** be a valid [`AccelerationStructureGeometryInstancesDataKHR`] structure
-/// - [`flags`]**must** be a valid combination of [`GeometryFlagBitsKHR`] values
+///   [`geometry`] **must**  be a valid [`AccelerationStructureGeometryInstancesDataKHR`] structure
+/// - [`flags`] **must**  be a valid combination of [`GeometryFlagBitsKHR`] values
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`AccelerationStructureBuildGeometryInfoKHR`]
@@ -2122,8 +2033,8 @@ impl<'lt> AccelerationStructureGeometryKHR<'lt> {
 /// - [`scratch_data`] is the device or host address to memory that will be used as scratch memory
 ///   for the build.
 ///# Description
-///Only one of [`geometries`] or [`pp_geometries`]**can** be a valid pointer,
-///the other **must** be `NULL`.
+///Only one of [`geometries`] or [`pp_geometries`] **can**  be a valid pointer,
+///the other  **must**  be `NULL`.
 ///Each element of the non-`NULL` array describes the data used to build each
 ///acceleration structure geometry.The index of each element of the [`geometries`] or
 /// [`pp_geometries`]
@@ -2154,64 +2065,66 @@ impl<'lt> AccelerationStructureGeometryKHR<'lt> {
 ///[`AccelerationStructureSrtMotionInstanceNV`], depending on the type
 ///value encoded in the low 4 bits.A top level acceleration structure with either motion instances
 /// or vertex
-///motion in its instances **must** set
+///motion in its instances  **must**  set
 ///`VK_BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV` in [`flags`].Members
-/// [`src_acceleration_structure`] and [`dst_acceleration_structure`]**may** be the same or
+/// [`src_acceleration_structure`] and [`dst_acceleration_structure`] **may**  be the same or
 /// different for an update operation (when [`mode`] is
 ///`VK_BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR`).
 ///If they are the same, the update happens in-place.
 ///Otherwise, the target acceleration structure is updated and the source is
-///not modified.Valid Usage
-/// - [`type_`]**must** not be `VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR`
-/// - Only one of [`geometries`] or [`pp_geometries`]**can** be a valid pointer, the other **must**
-///   be `NULL`
+///not modified.
+///## Valid Usage
+/// - [`type_`] **must**  not be `VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR`
+/// - Only one of [`geometries`] or [`pp_geometries`] **can**  be a valid pointer, the other
+///   **must**  be `NULL`
 /// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR`, the `geometryType` member of
-///   elements of either [`geometries`] or [`pp_geometries`]**must** be
+///   elements of either [`geometries`] or [`pp_geometries`] **must**  be
 ///   `VK_GEOMETRY_TYPE_INSTANCES_KHR`
-/// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR`, [`geometry_count`]**must** be
-///   `1`
+/// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR`, [`geometry_count`] **must**
+///   be `1`
 /// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_KHR` the `geometryType` member of
-///   elements of either [`geometries`] or [`pp_geometries`]**must** not be
+///   elements of either [`geometries`] or [`pp_geometries`] **must**  not be
 ///   `VK_GEOMETRY_TYPE_INSTANCES_KHR`
 /// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_KHR` then the `geometryType`
-///   member of each geometry in either [`geometries`] or [`pp_geometries`]**must** be the same
-/// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_KHR` then
-///   [`geometry_count`]**must** be less than or equal to
+///   member of each geometry in either [`geometries`] or [`pp_geometries`] **must**  be the same
+/// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_KHR` then [`geometry_count`]
+///   **must**  be less than or equal to
 ///   [`PhysicalDeviceAccelerationStructurePropertiesKHR::max_geometry_count`]
 /// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_KHR` and the `geometryType`
 ///   member of either [`geometries`] or [`pp_geometries`] is `VK_GEOMETRY_TYPE_AABBS_KHR`, the
-///   total number of AABBs in all geometries **must** be less than or equal to
+///   total number of AABBs in all geometries  **must**  be less than or equal to
 ///   [`PhysicalDeviceAccelerationStructurePropertiesKHR::max_primitive_count`]
 /// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_KHR` and the `geometryType`
 ///   member of either [`geometries`] or [`pp_geometries`] is `VK_GEOMETRY_TYPE_TRIANGLES_KHR`, the
-///   total number of triangles in all geometries **must** be less than or equal to
+///   total number of triangles in all geometries  **must**  be less than or equal to
 ///   [`PhysicalDeviceAccelerationStructurePropertiesKHR::max_primitive_count`]
 /// - If [`flags`] has the `VK_BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_KHR` bit set, then
-///   it **must** not have the `VK_BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_KHR` bit set
+///   it  **must**  not have the `VK_BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_KHR` bit set
 /// - If [`dst_acceleration_structure`] was created with
 ///   `VK_ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV` set in
 ///   [`AccelerationStructureCreateInfoKHR`]::[`flags`],
-///   `VK_BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV`**must** be set in [`flags`]
+///   `VK_BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV` **must**  be set in [`flags`]
 /// - If `VK_BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV` is set in [`flags`],
-///   [`dst_acceleration_structure`]**must** have been created with
+///   [`dst_acceleration_structure`] **must**  have been created with
 ///   `VK_ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV` set in
 ///   [`AccelerationStructureCreateInfoKHR`]::[`flags`]
-/// - If `VK_BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV` is set in [`flags`], [`type_`]**must** not
-///   be `VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`type_`]**must** be a valid [`AccelerationStructureTypeKHR`] value
-/// - [`flags`]**must** be a valid combination of [`BuildAccelerationStructureFlagBitsKHR`] values
-/// - If [`geometry_count`] is not `0`, and [`geometries`] is not `NULL`, [`geometries`]**must** be
-///   a valid pointer to an array of [`geometry_count`] valid [`AccelerationStructureGeometryKHR`]
-///   structures
-/// - If [`geometry_count`] is not `0`, and [`pp_geometries`] is not `NULL`,
-///   [`pp_geometries`]**must** be a valid pointer to an array of [`geometry_count`] valid pointers
-///   to valid [`AccelerationStructureGeometryKHR`] structures
+/// - If `VK_BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV` is set in [`flags`], [`type_`] **must**
+///   not be `VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`type_`] **must**  be a valid [`AccelerationStructureTypeKHR`] value
+/// - [`flags`] **must**  be a valid combination of [`BuildAccelerationStructureFlagBitsKHR`] values
+/// - If [`geometry_count`] is not `0`, and [`geometries`] is not `NULL`, [`geometries`] **must**
+///   be a valid pointer to an array of [`geometry_count`] valid
+///   [`AccelerationStructureGeometryKHR`] structures
+/// - If [`geometry_count`] is not `0`, and [`pp_geometries`] is not `NULL`, [`pp_geometries`]
+///   **must**  be a valid pointer to an array of [`geometry_count`] valid pointers to valid
+///   [`AccelerationStructureGeometryKHR`] structures
 /// - Both of [`dst_acceleration_structure`], and [`src_acceleration_structure`] that are valid
-///   handles of non-ignored parameters **must** have been created, allocated, or retrieved from the
-///   same [`Device`]
+///   handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from
+///   the same [`Device`]
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`AccelerationStructureGeometryKHR`]
@@ -2297,10 +2210,6 @@ impl<'lt> AccelerationStructureBuildGeometryInfoKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::geometry_count`]
-    pub fn geometry_count_raw(&self) -> u32 {
-        self.geometry_count
-    }
     ///Gets the raw value of [`Self::geometries`]
     pub fn geometries_raw(&self) -> *const AccelerationStructureGeometryKHR<'lt> {
         self.geometries
@@ -2312,11 +2221,6 @@ impl<'lt> AccelerationStructureBuildGeometryInfoKHR<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::geometry_count`]
-    pub fn set_geometry_count_raw(&mut self, value: u32) -> &mut Self {
-        self.geometry_count = value;
         self
     }
     ///Sets the raw value of [`Self::geometries`]
@@ -2547,21 +2451,23 @@ impl<'lt> AccelerationStructureBuildGeometryInfoKHR<'lt> {
 ///   [`AccelerationStructureMotionInstanceNV`] structures are consumed from
 ///   [`AccelerationStructureGeometryInstancesDataKHR::data`], starting at an offset of
 ///   [`primitive_offset`].
-///Valid Usage
+///
+///## Valid Usage
 /// - For geometries of type `VK_GEOMETRY_TYPE_TRIANGLES_KHR`, if the geometry uses indices, the
-///   offset [`primitive_offset`] from
-///   [`AccelerationStructureGeometryTrianglesDataKHR::index_data`]**must** be a multiple of the
-///   element size of [`AccelerationStructureGeometryTrianglesDataKHR::index_type`]
+///   offset [`primitive_offset`] from [`AccelerationStructureGeometryTrianglesDataKHR::index_data`]
+///   **must**  be a multiple of the element size of
+///   [`AccelerationStructureGeometryTrianglesDataKHR::index_type`]
 /// - For geometries of type `VK_GEOMETRY_TYPE_TRIANGLES_KHR`, if the geometry does not use indices,
 ///   the offset [`primitive_offset`] from
-///   [`AccelerationStructureGeometryTrianglesDataKHR::vertex_data`]**must** be a multiple of the
+///   [`AccelerationStructureGeometryTrianglesDataKHR::vertex_data`] **must**  be a multiple of the
 ///   component size of [`AccelerationStructureGeometryTrianglesDataKHR::vertex_format`]
 /// - For geometries of type `VK_GEOMETRY_TYPE_TRIANGLES_KHR`, the offset [`transform_offset`] from
-///   [`AccelerationStructureGeometryTrianglesDataKHR::transform_data`]**must** be a multiple of 16
+///   [`AccelerationStructureGeometryTrianglesDataKHR::transform_data`] **must**  be a multiple of
+///   16
 /// - For geometries of type `VK_GEOMETRY_TYPE_AABBS_KHR`, the offset [`primitive_offset`] from
-///   [`AccelerationStructureGeometryAabbsDataKHR::data`]**must** be a multiple of 8
+///   [`AccelerationStructureGeometryAabbsDataKHR::data`] **must**  be a multiple of 8
 /// - For geometries of type `VK_GEOMETRY_TYPE_INSTANCES_KHR`, the offset [`primitive_offset`] from
-///   [`AccelerationStructureGeometryInstancesDataKHR::data`]**must** be a multiple of 16
+///   [`AccelerationStructureGeometryInstancesDataKHR::data`] **must**  be a multiple of 16
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`BuildAccelerationStructuresKHR`]
@@ -2603,42 +2509,6 @@ impl Default for AccelerationStructureBuildRangeInfoKHR {
     }
 }
 impl AccelerationStructureBuildRangeInfoKHR {
-    ///Gets the raw value of [`Self::primitive_count`]
-    pub fn primitive_count_raw(&self) -> u32 {
-        self.primitive_count
-    }
-    ///Gets the raw value of [`Self::primitive_offset`]
-    pub fn primitive_offset_raw(&self) -> u32 {
-        self.primitive_offset
-    }
-    ///Gets the raw value of [`Self::first_vertex`]
-    pub fn first_vertex_raw(&self) -> u32 {
-        self.first_vertex
-    }
-    ///Gets the raw value of [`Self::transform_offset`]
-    pub fn transform_offset_raw(&self) -> u32 {
-        self.transform_offset
-    }
-    ///Sets the raw value of [`Self::primitive_count`]
-    pub fn set_primitive_count_raw(&mut self, value: u32) -> &mut Self {
-        self.primitive_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::primitive_offset`]
-    pub fn set_primitive_offset_raw(&mut self, value: u32) -> &mut Self {
-        self.primitive_offset = value;
-        self
-    }
-    ///Sets the raw value of [`Self::first_vertex`]
-    pub fn set_first_vertex_raw(&mut self, value: u32) -> &mut Self {
-        self.first_vertex = value;
-        self
-    }
-    ///Sets the raw value of [`Self::transform_offset`]
-    pub fn set_transform_offset_raw(&mut self, value: u32) -> &mut Self {
-        self.transform_offset = value;
-        self
-    }
     ///Gets the value of [`Self::primitive_count`]
     pub fn primitive_count(&self) -> u32 {
         self.primitive_count
@@ -2715,7 +2585,7 @@ impl AccelerationStructureBuildRangeInfoKHR {
 ///   additional creation parameters of the acceleration structure.
 /// - [`buffer`] is the buffer on which the acceleration structure will be stored.
 /// - [`offset`] is an offset in bytes from the base address of the buffer at which the acceleration
-///   structure will be stored, and **must** be a multiple of `256`.
+///   structure will be stored, and  **must**  be a multiple of `256`.
 /// - [`size`] is the size required for the acceleration structure.
 /// - [`type_`] is a [`AccelerationStructureTypeKHR`] value specifying the type of acceleration
 ///   structure that will be created.
@@ -2723,55 +2593,57 @@ impl AccelerationStructureBuildRangeInfoKHR {
 ///   feature is being used.
 ///# Description
 ///If [`device_address`] is zero, no specific address is requested.If [`device_address`] is not
-/// zero, [`device_address`]**must** be an address
+/// zero, [`device_address`] **must**  be an address
 ///retrieved from an identically created acceleration structure on the same
 ///implementation.
-///The acceleration structure **must** also be placed on an identically created
-///[`buffer`] and at the same [`offset`].Applications **should** avoid creating acceleration
+///The acceleration structure  **must**  also be placed on an identically created
+///[`buffer`] and at the same [`offset`].Applications  **should**  avoid creating acceleration
 /// structures with
 ///application-provided addresses and implementation-provided addresses in the
 ///same process, to reduce the likelihood of
-///`VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR` errors.Applications **should** create an
+///`VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR` errors.Applications  **should**  create an
 /// acceleration structure with a specific
 ///[`AccelerationStructureTypeKHR`] other than
 ///`VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR`.If the acceleration structure will be the target of
 /// a build operation, the
-///required size for an acceleration structure **can** be queried with
+///required size for an acceleration structure  **can**  be queried with
 ///[`GetAccelerationStructureBuildSizesKHR`].
 ///If the acceleration structure is going to be the target of a compacting
 ///copy, [`CmdWriteAccelerationStructuresPropertiesKHR`] or
-///[`WriteAccelerationStructuresPropertiesKHR`]**can** be used to obtain the
+///[`WriteAccelerationStructuresPropertiesKHR`] **can**  be used to obtain the
 ///compacted size required.If the acceleration structure will be the target of a build operation
 /// with
-///`VK_BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV` it **must** include
+///`VK_BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV` it  **must**  include
 ///`VK_ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV` in `flags` and
 ///include [`AccelerationStructureMotionInfoNV`] as an extension structure
-///in [`p_next`] with the number of instances as metadata for the object.Valid Usage
-/// - If [`device_address`] is not zero, [`create_flags`]**must** include
+///in [`p_next`] with the number of instances as metadata for the object.
+///## Valid Usage
+/// - If [`device_address`] is not zero, [`create_flags`] **must**  include
 ///   `VK_ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR`
 /// - If [`create_flags`] includes
 ///   `VK_ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR`,
-///   [`PhysicalDeviceAccelerationStructureFeaturesKHR::acceleration_structure_capture_replay`]**
-///   must** be [`TRUE`]
-/// - [`buffer`]**must** have been created with a `usage` value containing
+///   [`PhysicalDeviceAccelerationStructureFeaturesKHR::acceleration_structure_capture_replay`]
+///   **must**  be [`TRUE`]
+/// - [`buffer`] **must**  have been created with a `usage` value containing
 ///   `VK_BUFFER_USAGE_ACCELERATION_STRUCTURE_STORAGE_BIT_KHR`
-/// - [`buffer`]**must** not have been created with `VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT`
-/// - The sum of [`offset`] and [`size`]**must** be less than the size of [`buffer`]
-/// - [`offset`]**must** be a multiple of `256` bytes
+/// - [`buffer`] **must**  not have been created with `VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT`
+/// - The sum of [`offset`] and [`size`] **must**  be less than the size of [`buffer`]
+/// - [`offset`] **must**  be a multiple of `256` bytes
 /// - If `VK_ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV` is set in    `flags` and [`type_`] is
-///   `VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR`, one member of the [`p_next`] chain **must** be
-///   a pointer to a valid instance of [`AccelerationStructureMotionInfoNV`]
-/// - If any geometry includes [`AccelerationStructureGeometryMotionTrianglesDataNV`] then
-///   `flags`**must** contain `VK_ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL` or a pointer to a valid instance of
+///   `VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR`, one member of the [`p_next`] chain  **must**
+///   be a pointer to a valid instance of [`AccelerationStructureMotionInfoNV`]
+/// - If any geometry includes [`AccelerationStructureGeometryMotionTrianglesDataNV`] then `flags`
+///   **must**  contain `VK_ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`AccelerationStructureMotionInfoNV`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - [`create_flags`]**must** be a valid combination of [`AccelerationStructureCreateFlagBitsKHR`]
-///   values
-/// - [`buffer`]**must** be a valid [`Buffer`] handle
-/// - [`type_`]**must** be a valid [`AccelerationStructureTypeKHR`] value
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`create_flags`] **must**  be a valid combination of
+///   [`AccelerationStructureCreateFlagBitsKHR`] values
+/// - [`buffer`] **must**  be a valid [`Buffer`] handle
+/// - [`type_`] **must**  be a valid [`AccelerationStructureTypeKHR`] value
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`AccelerationStructureCreateFlagsKHR`]
@@ -2807,7 +2679,7 @@ pub struct AccelerationStructureCreateInfoKHR<'lt> {
     ///stored.
     buffer: Buffer,
     ///[`offset`] is an offset in bytes from the base address of the buffer
-    ///at which the acceleration structure will be stored, and **must** be a
+    ///at which the acceleration structure will be stored, and  **must**  be a
     ///multiple of `256`.
     offset: DeviceSize,
     ///[`size`] is the size required for the acceleration structure.
@@ -2981,10 +2853,10 @@ impl<'lt> AccelerationStructureCreateInfoKHR<'lt> {
 /// - [`max_y`] is the y position of the other opposing corner of a bounding box.
 /// - [`max_z`] is the z position of the other opposing corner of a bounding box.
 ///# Description
-///Valid Usage
-/// - [`min_x`]**must** be less than or equal to [`max_x`]
-/// - [`min_y`]**must** be less than or equal to [`max_y`]
-/// - [`min_z`]**must** be less than or equal to [`max_z`]
+///## Valid Usage
+/// - [`min_x`] **must**  be less than or equal to [`max_x`]
+/// - [`min_y`] **must**  be less than or equal to [`max_y`]
+/// - [`min_z`] **must**  be less than or equal to [`max_z`]
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`VK_NV_ray_tracing`]
@@ -3030,60 +2902,6 @@ impl Default for AabbPositionsKHR {
     }
 }
 impl AabbPositionsKHR {
-    ///Gets the raw value of [`Self::min_x`]
-    pub fn min_x_raw(&self) -> f32 {
-        self.min_x
-    }
-    ///Gets the raw value of [`Self::min_y`]
-    pub fn min_y_raw(&self) -> f32 {
-        self.min_y
-    }
-    ///Gets the raw value of [`Self::min_z`]
-    pub fn min_z_raw(&self) -> f32 {
-        self.min_z
-    }
-    ///Gets the raw value of [`Self::max_x`]
-    pub fn max_x_raw(&self) -> f32 {
-        self.max_x
-    }
-    ///Gets the raw value of [`Self::max_y`]
-    pub fn max_y_raw(&self) -> f32 {
-        self.max_y
-    }
-    ///Gets the raw value of [`Self::max_z`]
-    pub fn max_z_raw(&self) -> f32 {
-        self.max_z
-    }
-    ///Sets the raw value of [`Self::min_x`]
-    pub fn set_min_x_raw(&mut self, value: f32) -> &mut Self {
-        self.min_x = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_y`]
-    pub fn set_min_y_raw(&mut self, value: f32) -> &mut Self {
-        self.min_y = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_z`]
-    pub fn set_min_z_raw(&mut self, value: f32) -> &mut Self {
-        self.min_z = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_x`]
-    pub fn set_max_x_raw(&mut self, value: f32) -> &mut Self {
-        self.max_x = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_y`]
-    pub fn set_max_y_raw(&mut self, value: f32) -> &mut Self {
-        self.max_y = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_z`]
-    pub fn set_max_z_raw(&mut self, value: f32) -> &mut Self {
-        self.max_z = value;
-        self
-    }
     ///Gets the value of [`Self::min_x`]
     pub fn min_x(&self) -> f32 {
         self.min_x
@@ -3180,8 +2998,8 @@ impl AabbPositionsKHR {
 ///# Members
 /// - [`matrix`] is a 3x4 row-major affine transformation matrix.
 ///# Description
-///Valid Usage
-/// - The first three columns of [`matrix`]**must** define an invertible 3x3 matrix
+///## Valid Usage
+/// - The first three columns of [`matrix`] **must**  define an invertible 3x3 matrix
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`VK_NV_ray_tracing`]
@@ -3209,15 +3027,6 @@ impl Default for TransformMatrixKHR {
     }
 }
 impl TransformMatrixKHR {
-    ///Gets the raw value of [`Self::matrix`]
-    pub fn matrix_raw(&self) -> [f32; 3] {
-        self.matrix
-    }
-    ///Sets the raw value of [`Self::matrix`]
-    pub fn set_matrix_raw(&mut self, value: [f32; 3]) -> &mut Self {
-        self.matrix = value;
-        self
-    }
     ///Gets the value of [`Self::matrix`]
     pub fn matrix(&self) -> &[f32; 3] {
         &getter
@@ -3234,12 +3043,12 @@ impl TransformMatrixKHR {
 }
 ///[VkAccelerationStructureInstanceKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureInstanceKHR.html) - Structure specifying a single acceleration structure instance for building into an acceleration structure geometry
 ///# C Specifications
-///*Acceleration structure instances***can** be built into top-level acceleration
+///*Acceleration structure instances* **can**  be built into top-level acceleration
 ///structures.
 ///Each acceleration structure instance is a separate entry in the top-level
 ///acceleration structure which includes all the geometry of a bottom-level
 ///acceleration structure at a transformed location.
-///Multiple instances **can** point to the same bottom level acceleration
+///Multiple instances  **can**  point to the same bottom level acceleration
 ///structure.An acceleration structure instance is defined by the structure:
 ///```c
 ///// Provided by VK_KHR_acceleration_structure
@@ -3262,7 +3071,7 @@ impl TransformMatrixKHR {
 ///   to the acceleration structure.
 /// - [`instance_custom_index`] is a 24-bit user-specified index value accessible to ray shaders in
 ///   the `InstanceCustomIndexKHR` built-in.
-/// - [`mask`] is an 8-bit visibility mask for the geometry. The instance **may** only be hit if
+/// - [`mask`] is an 8-bit visibility mask for the geometry. The instance  **may**  only be hit if
 ///   `Cull Mask & instance.mask != 0`
 /// - [`instance_shader_binding_table_record_offset`] is a 24-bit offset used in calculating the hit
 ///   shader binding table index.
@@ -3286,9 +3095,10 @@ impl TransformMatrixKHR {
 ///   [`instance_shader_binding_table_record_offset`] occupies the 24 least significant bits of that
 ///   memory  - [`flags`] occupies the 8 most significant bits of that memory
 ///If a compiler produces code that diverges from that pattern, applications
-///**must** employ another method to set values according to the correct bit
-///pattern.Valid Usage (Implicit)
-/// - [`flags`]**must** be a valid combination of [`GeometryInstanceFlagBitsKHR`] values
+/// **must**  employ another method to set values according to the correct bit
+///pattern.
+///## Valid Usage (Implicit)
+/// - [`flags`] **must**  be a valid combination of [`GeometryInstanceFlagBitsKHR`] values
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`VK_NV_ray_tracing`]
@@ -3315,7 +3125,7 @@ pub struct AccelerationStructureInstanceKHR {
     ///accessible to ray shaders in the `InstanceCustomIndexKHR` built-in.
     instance_custom_index: u32,
     ///[`mask`] is an 8-bit visibility mask for the geometry.
-    ///The instance **may** only be hit if `Cull Mask & instance.mask != 0`
+    ///The instance  **may**  only be hit if `Cull Mask & instance.mask != 0`
     mask: u32,
     ///[`instance_shader_binding_table_record_offset`] is a 24-bit offset used in
     ///calculating the hit shader binding table index.
@@ -3344,42 +3154,6 @@ impl Default for AccelerationStructureInstanceKHR {
     }
 }
 impl AccelerationStructureInstanceKHR {
-    ///Gets the raw value of [`Self::instance_custom_index`]
-    pub fn instance_custom_index_raw(&self) -> u32 {
-        self.instance_custom_index
-    }
-    ///Gets the raw value of [`Self::mask`]
-    pub fn mask_raw(&self) -> u32 {
-        self.mask
-    }
-    ///Gets the raw value of [`Self::instance_shader_binding_table_record_offset`]
-    pub fn instance_shader_binding_table_record_offset_raw(&self) -> u32 {
-        self.instance_shader_binding_table_record_offset
-    }
-    ///Gets the raw value of [`Self::acceleration_structure_reference`]
-    pub fn acceleration_structure_reference_raw(&self) -> u64 {
-        self.acceleration_structure_reference
-    }
-    ///Sets the raw value of [`Self::instance_custom_index`]
-    pub fn set_instance_custom_index_raw(&mut self, value: u32) -> &mut Self {
-        self.instance_custom_index = value;
-        self
-    }
-    ///Sets the raw value of [`Self::mask`]
-    pub fn set_mask_raw(&mut self, value: u32) -> &mut Self {
-        self.mask = value;
-        self
-    }
-    ///Sets the raw value of [`Self::instance_shader_binding_table_record_offset`]
-    pub fn set_instance_shader_binding_table_record_offset_raw(&mut self, value: u32) -> &mut Self {
-        self.instance_shader_binding_table_record_offset = value;
-        self
-    }
-    ///Sets the raw value of [`Self::acceleration_structure_reference`]
-    pub fn set_acceleration_structure_reference_raw(&mut self, value: u64) -> &mut Self {
-        self.acceleration_structure_reference = value;
-        self
-    }
     ///Gets the value of [`Self::transform`]
     pub fn transform(&self) -> TransformMatrixKHR {
         self.transform
@@ -3484,10 +3258,10 @@ impl AccelerationStructureInstanceKHR {
 /// - [`acceleration_structure`] specifies the acceleration structure whose address is being
 ///   queried.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`acceleration_structure`]**must** be a valid [`AccelerationStructureKHR`] handle
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`acceleration_structure`] **must**  be a valid [`AccelerationStructureKHR`] handle
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`AccelerationStructureKHR`]
@@ -3594,21 +3368,21 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 /// - [`version_data`] is a pointer to the version header of an acceleration structure as defined in
 ///   [`CmdCopyAccelerationStructureToMemoryKHR`]
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`version_data`]**must** be a valid pointer to an array of <span class="katex"><span
-///   class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:0.72777em;vertical-align:-0.08333em;" class="strut"></span><span
-///   class="mord">2</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
-///   class="base"><span style="height:0.70625em;vertical-align:-0.09514em;"
-///   class="strut"></span><span class="mord"><span class="mord mathtt">V</span><span class="mord
-///   mathtt">K</span><span class="mord mathtt">_</span><span class="mord mathtt">U</span><span
-///   class="mord mathtt">U</span><span class="mord mathtt">I</span><span class="mord
-///   mathtt">D</span><span class="mord mathtt">_</span><span class="mord mathtt">S</span><span
-///   class="mord mathtt">I</span><span class="mord mathtt">Z</span><span class="mord
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`version_data`] **must**  be a valid pointer to an array of <span class="katex"><span
+///   class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+///   style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+///   style="height:0.70625em;vertical-align:-0.09514em;" class="strut"></span><span
+///   class="mord"><span class="mord mathtt">V</span><span class="mord mathtt">K</span><span
+///   class="mord mathtt">_</span><span class="mord mathtt">U</span><span class="mord
+///   mathtt">U</span><span class="mord mathtt">I</span><span class="mord mathtt">D</span><span
+///   class="mord mathtt">_</span><span class="mord mathtt">S</span><span class="mord
+///   mathtt">I</span><span class="mord mathtt">Z</span><span class="mord
 ///   mathtt">E</span></span></span></span></span>`uint8_t` values
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
@@ -3725,23 +3499,24 @@ impl<'lt> AccelerationStructureVersionInfoKHR<'lt> {
 /// - [`mode`] is a [`CopyAccelerationStructureModeKHR`] value specifying additional operations to
 ///   perform during the copy.
 ///# Description
-///Valid Usage
-/// - [`mode`]**must** be `VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR` or
+///## Valid Usage
+/// - [`mode`] **must**  be `VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR` or
 ///   `VK_COPY_ACCELERATION_STRUCTURE_MODE_CLONE_KHR`
-/// - The source acceleration structure [`src`]**must** have been constructed prior to the execution
-///   of this command
-/// - If [`mode`] is `VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR`, [`src`]**must** have been
+/// - The source acceleration structure [`src`] **must**  have been constructed prior to the
+///   execution of this command
+/// - If [`mode`] is `VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR`, [`src`] **must**  have been
 ///   constructed with `VK_BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_KHR` in the build
-/// - The `buffer` used to create [`src`]**must** be bound to device memory
-/// - The `buffer` used to create [`dst`]**must** be bound to device memory
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`src`]**must** be a valid [`AccelerationStructureKHR`] handle
-/// - [`dst`]**must** be a valid [`AccelerationStructureKHR`] handle
-/// - [`mode`]**must** be a valid [`CopyAccelerationStructureModeKHR`] value
-/// - Both of [`dst`], and [`src`]**must** have been created, allocated, or retrieved from the same
-///   [`Device`]
+/// - The `buffer` used to create [`src`] **must**  be bound to device memory
+/// - The `buffer` used to create [`dst`] **must**  be bound to device memory
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`src`] **must**  be a valid [`AccelerationStructureKHR`] handle
+/// - [`dst`] **must**  be a valid [`AccelerationStructureKHR`] handle
+/// - [`mode`] **must**  be a valid [`CopyAccelerationStructureModeKHR`] value
+/// - Both of [`dst`], and [`src`] **must**  have been created, allocated, or retrieved from the
+///   same [`Device`]
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`AccelerationStructureKHR`]
@@ -3891,19 +3666,20 @@ impl<'lt> CopyAccelerationStructureInfoKHR<'lt> {
 /// - [`mode`] is a [`CopyAccelerationStructureModeKHR`] value specifying additional operations to
 ///   perform during the copy.
 ///# Description
-///Valid Usage
-/// - The source acceleration structure [`src`]**must** have been constructed prior to the execution
-///   of this command
-/// - The memory pointed to by [`dst`]**must** be at least as large as the serialization size of
+///## Valid Usage
+/// - The source acceleration structure [`src`] **must**  have been constructed prior to the
+///   execution of this command
+/// - The memory pointed to by [`dst`] **must**  be at least as large as the serialization size of
 ///   [`src`], as reported by [`WriteAccelerationStructuresPropertiesKHR`] or
 ///   [`CmdWriteAccelerationStructuresPropertiesKHR`] with a query type of
 ///   `VK_QUERY_TYPE_ACCELERATION_STRUCTURE_SERIALIZATION_SIZE_KHR`
-/// - [`mode`]**must** be `VK_COPY_ACCELERATION_STRUCTURE_MODE_SERIALIZE_KHR`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`src`]**must** be a valid [`AccelerationStructureKHR`] handle
-/// - [`mode`]**must** be a valid [`CopyAccelerationStructureModeKHR`] value
+/// - [`mode`] **must**  be `VK_COPY_ACCELERATION_STRUCTURE_MODE_SERIALIZE_KHR`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`src`] **must**  be a valid [`AccelerationStructureKHR`] handle
+/// - [`mode`] **must**  be a valid [`CopyAccelerationStructureModeKHR`] value
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`AccelerationStructureKHR`]
@@ -4057,20 +3833,21 @@ impl<'lt> CopyAccelerationStructureToMemoryInfoKHR<'lt> {
 /// - [`mode`] is a [`CopyAccelerationStructureModeKHR`] value specifying additional operations to
 ///   perform during the copy.
 ///# Description
-///Valid Usage
-/// - The source memory pointed to by [`src`]**must** contain data previously serialized using
+///## Valid Usage
+/// - The source memory pointed to by [`src`] **must**  contain data previously serialized using
 ///   [`CmdCopyAccelerationStructureToMemoryKHR`], potentially modified to relocate acceleration
 ///   structure references as described in that command
-/// - [`mode`]**must** be `VK_COPY_ACCELERATION_STRUCTURE_MODE_DESERIALIZE_KHR`
-/// - The data in [`src`]**must** have a format compatible with the destination physical device as
+/// - [`mode`] **must**  be `VK_COPY_ACCELERATION_STRUCTURE_MODE_DESERIALIZE_KHR`
+/// - The data in [`src`] **must**  have a format compatible with the destination physical device as
 ///   returned by [`GetDeviceAccelerationStructureCompatibilityKHR`]
-/// - [`dst`]**must** have been created with a `size` greater than or equal to that used to
+/// - [`dst`] **must**  have been created with a `size` greater than or equal to that used to
 ///   serialize the data in [`src`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`dst`]**must** be a valid [`AccelerationStructureKHR`] handle
-/// - [`mode`]**must** be a valid [`CopyAccelerationStructureModeKHR`] value
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`dst`] **must**  be a valid [`AccelerationStructureKHR`] handle
+/// - [`mode`] **must**  be a valid [`CopyAccelerationStructureModeKHR`] value
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`AccelerationStructureKHR`]
@@ -4227,9 +4004,9 @@ impl<'lt> CopyMemoryToAccelerationStructureInfoKHR<'lt> {
 /// - [`build_scratch_size`] is the size in bytes required in a scratch buffer for a build
 ///   operation.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`DeviceSize`]

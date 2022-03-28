@@ -33,10 +33,11 @@ pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME: &'static CStr =
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceVertexInputDynamicStateFeaturesEXT`]**can** also be used in the [`p_next`] chain
-/// of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`PhysicalDeviceVertexInputDynamicStateFeaturesEXT`] **can**  also be used in the [`p_next`]
+/// chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_vertex_input_dynamic_state`]
@@ -175,23 +176,24 @@ impl<'lt> PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
 /// - [`stride`] is the byte stride between consecutive elements within the buffer.
 /// - [`input_rate`] is a [`VertexInputRate`] value specifying whether vertex attribute addressing
 ///   is a function of the vertex index or of the instance index.
-/// - [`divisor`] is the number of successive instances that will use the same value of the vertex attribute when instanced rendering is enabled. This member **can** be set to a value other than `1` if the [vertexAttributeInstanceRateDivisor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-vertexAttributeInstanceRateDivisor) feature is enabled. For example, if the divisor is N, the same vertex attribute will be applied to N successive instances before moving on to the next vertex attribute. The maximum value of [`divisor`] is implementation-dependent and can be queried using [`PhysicalDeviceVertexAttributeDivisorPropertiesEXT::max_vertex_attrib_divisor`]. A value of `0`**can** be used for the divisor if the [`vertexAttributeInstanceRateZeroDivisor`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-vertexAttributeInstanceRateZeroDivisor) feature is enabled. In this case, the same vertex attribute will be applied to all instances.
+/// - [`divisor`] is the number of successive instances that will use the same value of the vertex attribute when instanced rendering is enabled. This member  **can**  be set to a value other than `1` if the [vertexAttributeInstanceRateDivisor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-vertexAttributeInstanceRateDivisor) feature is enabled. For example, if the divisor is N, the same vertex attribute will be applied to N successive instances before moving on to the next vertex attribute. The maximum value of [`divisor`] is implementation-dependent and can be queried using [`PhysicalDeviceVertexAttributeDivisorPropertiesEXT::max_vertex_attrib_divisor`]. A value of `0` **can**  be used for the divisor if the [`vertexAttributeInstanceRateZeroDivisor`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-vertexAttributeInstanceRateZeroDivisor) feature is enabled. In this case, the same vertex attribute will be applied to all instances.
 ///# Description
-///Valid Usage
-/// - [`binding`]**must** be less than [`PhysicalDeviceLimits::max_vertex_input_bindings`]
-/// - [`stride`]**must** be less than or equal to
+///## Valid Usage
+/// - [`binding`] **must**  be less than [`PhysicalDeviceLimits::max_vertex_input_bindings`]
+/// - [`stride`] **must**  be less than or equal to
 ///   [`PhysicalDeviceLimits::max_vertex_input_binding_stride`]
 /// - If the [vertexAttributeInstanceRateZeroDivisor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-vertexAttributeInstanceRateZeroDivisor)
-///   feature is not enabled, [`divisor`]**must** not be `0`
+///   feature is not enabled, [`divisor`] **must**  not be `0`
 /// - If the [vertexAttributeInstanceRateDivisor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-vertexAttributeInstanceRateDivisor)
-///   feature is not enabled, [`divisor`]**must** be `1`
-/// - [`divisor`]**must** be a value between `0` and
+///   feature is not enabled, [`divisor`] **must**  be `1`
+/// - [`divisor`] **must**  be a value between `0` and
 ///   [`PhysicalDeviceVertexAttributeDivisorPropertiesEXT::max_vertex_attrib_divisor`], inclusive
-/// - If [`divisor`] is not `1` then [`input_rate`]**must** be of type
+/// - If [`divisor`] is not `1` then [`input_rate`] **must**  be of type
 ///   `VK_VERTEX_INPUT_RATE_INSTANCE`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT`
-/// - [`input_rate`]**must** be a valid [`VertexInputRate`] value
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT`
+/// - [`input_rate`] **must**  be a valid [`VertexInputRate`] value
 ///# Related
 /// - [`VK_EXT_vertex_input_dynamic_state`]
 /// - [`StructureType`]
@@ -226,7 +228,7 @@ pub struct VertexInputBindingDescription2EXT<'lt> {
     input_rate: VertexInputRate,
     ///[`divisor`] is the number of successive instances that will use the
     ///same value of the vertex attribute when instanced rendering is enabled.
-    ///This member **can** be set to a value other than `1` if the
+    ///This member  **can**  be set to a value other than `1` if the
     ///[vertexAttributeInstanceRateDivisor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-vertexAttributeInstanceRateDivisor) feature is enabled.
     ///For example, if the divisor is N, the same vertex attribute will be
     ///applied to N successive instances before moving on to the next vertex
@@ -234,7 +236,7 @@ pub struct VertexInputBindingDescription2EXT<'lt> {
     ///The maximum value of [`divisor`] is implementation-dependent and can
     ///be queried using
     ///[`PhysicalDeviceVertexAttributeDivisorPropertiesEXT`]::`maxVertexAttribDivisor`.
-    ///A value of `0`**can** be used for the divisor if the
+    ///A value of `0` **can**  be used for the divisor if the
     ///[`vertexAttributeInstanceRateZeroDivisor`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-vertexAttributeInstanceRateZeroDivisor)
     ///feature is enabled.
     ///In this case, the same vertex attribute will be applied to all
@@ -259,36 +261,9 @@ impl<'lt> VertexInputBindingDescription2EXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::binding`]
-    pub fn binding_raw(&self) -> u32 {
-        self.binding
-    }
-    ///Gets the raw value of [`Self::stride`]
-    pub fn stride_raw(&self) -> u32 {
-        self.stride
-    }
-    ///Gets the raw value of [`Self::divisor`]
-    pub fn divisor_raw(&self) -> u32 {
-        self.divisor
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::binding`]
-    pub fn set_binding_raw(&mut self, value: u32) -> &mut Self {
-        self.binding = value;
-        self
-    }
-    ///Sets the raw value of [`Self::stride`]
-    pub fn set_stride_raw(&mut self, value: u32) -> &mut Self {
-        self.stride = value;
-        self
-    }
-    ///Sets the raw value of [`Self::divisor`]
-    pub fn set_divisor_raw(&mut self, value: u32) -> &mut Self {
-        self.divisor = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -399,22 +374,23 @@ impl<'lt> VertexInputBindingDescription2EXT<'lt> {
 /// - [`offset`] is a byte offset of this attribute relative to the start of an element in the
 ///   vertex input binding.
 ///# Description
-///Valid Usage
-/// - [`location`]**must** be less than [`PhysicalDeviceLimits::max_vertex_input_attributes`]
-/// - [`binding`]**must** be less than [`PhysicalDeviceLimits::max_vertex_input_bindings`]
-/// - [`offset`]**must** be less than or equal to
+///## Valid Usage
+/// - [`location`] **must**  be less than [`PhysicalDeviceLimits::max_vertex_input_attributes`]
+/// - [`binding`] **must**  be less than [`PhysicalDeviceLimits::max_vertex_input_bindings`]
+/// - [`offset`] **must**  be less than or equal to
 ///   [`PhysicalDeviceLimits::max_vertex_input_attribute_offset`]
-/// - [`format`]**must** be allowed as a vertex buffer format, as specified by the
+/// - [`format`] **must**  be allowed as a vertex buffer format, as specified by the
 ///   `VK_FORMAT_FEATURE_VERTEX_BUFFER_BIT` flag in [`FormatProperties::buffer_features`] returned
 ///   by [`GetPhysicalDeviceFormatProperties`]
 /// - If the `[`VK_KHR_portability_subset`]` extension is enabled, and
 ///   [`PhysicalDevicePortabilitySubsetFeaturesKHR::vertex_attribute_access_beyond_stride`] is
 ///   [`FALSE`], the sum of [`offset`] plus the size of the vertex attribute data described by
-///   [`format`]**must** not be greater than `stride` in the [`VertexInputBindingDescription2EXT`]
+///   [`format`] **must**  not be greater than `stride` in the [`VertexInputBindingDescription2EXT`]
 ///   referenced in [`binding`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT`
-/// - [`format`]**must** be a valid [`Format`] value
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT`
+/// - [`format`] **must**  be a valid [`Format`] value
 ///# Related
 /// - [`VK_EXT_vertex_input_dynamic_state`]
 /// - [`Format`]
@@ -467,36 +443,9 @@ impl<'lt> VertexInputAttributeDescription2EXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::location`]
-    pub fn location_raw(&self) -> u32 {
-        self.location
-    }
-    ///Gets the raw value of [`Self::binding`]
-    pub fn binding_raw(&self) -> u32 {
-        self.binding
-    }
-    ///Gets the raw value of [`Self::offset`]
-    pub fn offset_raw(&self) -> u32 {
-        self.offset
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::location`]
-    pub fn set_location_raw(&mut self, value: u32) -> &mut Self {
-        self.location = value;
-        self
-    }
-    ///Sets the raw value of [`Self::binding`]
-    pub fn set_binding_raw(&mut self, value: u32) -> &mut Self {
-        self.binding = value;
-        self
-    }
-    ///Sets the raw value of [`Self::offset`]
-    pub fn set_offset_raw(&mut self, value: u32) -> &mut Self {
-        self.offset = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

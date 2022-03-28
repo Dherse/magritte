@@ -39,13 +39,14 @@ pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_EXTENSION_NAME: &'static CStr =
 ///If [`drm_format_modifier_properties`] is `NULL`, then the function returns
 ///in [`drm_format_modifier_count`] the number of modifiers compatible with the
 ///queried `format`.
-///Otherwise, the application **must** set [`drm_format_modifier_count`] to the
+///Otherwise, the application  **must**  set [`drm_format_modifier_count`] to the
 ///length of the array [`drm_format_modifier_properties`]; the function will
 ///write at most [`drm_format_modifier_count`] elements to the array, and will
 ///return in [`drm_format_modifier_count`] the number of elements written.Among the elements in
 /// array [`drm_format_modifier_properties`], each
-///returned `drmFormatModifier`**must** be unique.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT`
+///returned `drmFormatModifier` **must**  be unique.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT`
 ///# Related
 /// - [`VK_EXT_image_drm_format_modifier`]
 /// - [`DrmFormatModifierPropertiesEXT`]
@@ -91,10 +92,6 @@ impl<'lt> DrmFormatModifierPropertiesListEXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::drm_format_modifier_count`]
-    pub fn drm_format_modifier_count_raw(&self) -> u32 {
-        self.drm_format_modifier_count
-    }
     ///Gets the raw value of [`Self::drm_format_modifier_properties`]
     pub fn drm_format_modifier_properties_raw(&self) -> &*mut DrmFormatModifierPropertiesEXT {
         &self.drm_format_modifier_properties
@@ -102,11 +99,6 @@ impl<'lt> DrmFormatModifierPropertiesListEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::drm_format_modifier_count`]
-    pub fn set_drm_format_modifier_count_raw(&mut self, value: u32) -> &mut Self {
-        self.drm_format_modifier_count = value;
         self
     }
     ///Sets the raw value of [`Self::drm_format_modifier_properties`]
@@ -214,8 +206,8 @@ impl<'lt> DrmFormatModifierPropertiesListEXT<'lt> {
 /// - [`drm_format_modifier_tiling_features`] is a bitmask of [`FormatFeatureFlagBits`] that are
 ///   supported by any image created with `format` and [`drm_format_modifier`].
 ///# Description
-///The returned [`drm_format_modifier_tiling_features`]**must** contain at least
-///one bit.The implementation **must** not return `DRM_FORMAT_MOD_INVALID` in
+///The returned [`drm_format_modifier_tiling_features`] **must**  contain at least
+///one bit.The implementation  **must**  not return `DRM_FORMAT_MOD_INVALID` in
 ///[`drm_format_modifier`].An image’s *memory planecount* (as returned by
 ///[`drm_format_modifier_plane_count`]) is distinct from its *format planecount*
 ///(in the sense of [multi-planar](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
@@ -224,7 +216,7 @@ impl<'lt> DrmFormatModifierPropertiesListEXT<'lt> {
 ///`VK_IMAGE_ASPECT_MEMORY_PLANE*_i_*BIT_EXT` represents a *memory plane*
 ///and each `VK_IMAGE_ASPECT_PLANE*_i_*BIT` a *format plane*.An image’s set of *format planes* is
 /// an ordered partition of the image’s
-///**content** into separable groups of format components.
+/// **content**  into separable groups of format components.
 ///The ordered partition is encoded in the name of each [`Format`].
 ///For example, `VK_FORMAT_G8_B8R8_2PLANE_420_UNORM` contains two *format
 ///planes*; the first plane contains the green component and the second plane
@@ -235,18 +227,18 @@ impl<'lt> DrmFormatModifierPropertiesListEXT<'lt> {
 ///format components in the image, but instead operate only on the *format
 ///planes* explicitly chosen by the application and operate on each *format
 ///plane* independently.An image’s set of *memory planes* is an ordered partition of the image’s
-///**memory** rather than the image’s **content**.
+/// **memory**  rather than the image’s  **content** .
 ///Each *memory plane* is a contiguous range of memory.
 ///The union of an image’s *memory planes* is not necessarily contiguous.If an image is [linear](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary-linear-resource), then the partition is
 ///the same for *memory planes* and for *format planes*.
 ///Therefore, if the returned [`drm_format_modifier`] is
-///`DRM_FORMAT_MOD_LINEAR`, then [`drm_format_modifier_plane_count`]**must**
-///equal the *format planecount*, and [`drm_format_modifier_tiling_features`]**must** be identical
-/// to the
+///`DRM_FORMAT_MOD_LINEAR`, then [`drm_format_modifier_plane_count`] **must**
+///equal the *format planecount*, and [`drm_format_modifier_tiling_features`] **must**  be
+/// identical to the
 ///[`FormatProperties2`]`::linearTilingFeatures` returned in the same
 ///`pNext` chain.If an image is [non-linear](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary-linear-resource), then the partition
-///of the image’s **memory** into *memory planes* is implementation-specific and
-///**may** be unrelated to the partition of the image’s **content** into *format
+///of the image’s  **memory**  into *memory planes* is implementation-specific and
+/// **may**  be unrelated to the partition of the image’s  **content**  into *format
 ///planes*.
 ///For example, consider an image whose `format` is
 ///`VK_FORMAT_G8_B8_R8_3PLANE_420_UNORM`, `tiling` is
@@ -257,12 +249,12 @@ impl<'lt> DrmFormatModifierPropertiesListEXT<'lt> {
 ///[`CmdCopyBufferToImage`] act on each *format plane* independently as if
 ///the data of each *format plane* were separable from the data of the other
 ///planes.
-///In a straightforward implementation, the implementation **may** store the
+///In a straightforward implementation, the implementation  **may**  store the
 ///image’s content in 3 adjacent *memory planes* where each *memory plane*
 ///corresponds exactly to a *format plane*.
-///However, the implementation **may** also store the image’s content in a single
+///However, the implementation  **may**  also store the image’s content in a single
 ///*memory plane* where all format components are combined using an
-///implementation-private block-compressed format; or the implementation **may**
+///implementation-private block-compressed format; or the implementation  **may**
 ///store the image’s content in a collection of 7 adjacent *memory planes*
 ///using an implementation-private sharding technique.
 ///Because the image is non-linear and non-disjoint, the implementation has
@@ -310,24 +302,6 @@ impl Default for DrmFormatModifierPropertiesEXT {
     }
 }
 impl DrmFormatModifierPropertiesEXT {
-    ///Gets the raw value of [`Self::drm_format_modifier`]
-    pub fn drm_format_modifier_raw(&self) -> u64 {
-        self.drm_format_modifier
-    }
-    ///Gets the raw value of [`Self::drm_format_modifier_plane_count`]
-    pub fn drm_format_modifier_plane_count_raw(&self) -> u32 {
-        self.drm_format_modifier_plane_count
-    }
-    ///Sets the raw value of [`Self::drm_format_modifier`]
-    pub fn set_drm_format_modifier_raw(&mut self, value: u64) -> &mut Self {
-        self.drm_format_modifier = value;
-        self
-    }
-    ///Sets the raw value of [`Self::drm_format_modifier_plane_count`]
-    pub fn set_drm_format_modifier_plane_count_raw(&mut self, value: u32) -> &mut Self {
-        self.drm_format_modifier_plane_count = value;
-        self
-    }
     ///Gets the value of [`Self::drm_format_modifier`]
     pub fn drm_format_modifier(&self) -> u64 {
         self.drm_format_modifier
@@ -407,19 +381,21 @@ impl DrmFormatModifierPropertiesEXT {
 ///in [`PhysicalDeviceImageFormatInfo2`] and its [`p_next`] chain, then
 ///[`GetPhysicalDeviceImageFormatProperties2`] returns
 ///`VK_ERROR_FORMAT_NOT_SUPPORTED`.
-///The implementation **must** support the query of any [`drm_format_modifier`],
-///including unknown and invalid modifier values.Valid Usage
-/// - If [`sharing_mode`] is `VK_SHARING_MODE_CONCURRENT`, then [`queue_family_indices`]**must** be
-///   a valid pointer to an array of [`queue_family_index_count`]`uint32_t` values
-/// - If [`sharing_mode`] is `VK_SHARING_MODE_CONCURRENT`, then [`queue_family_index_count`]**must**
-///   be greater than `1`
-/// - If [`sharing_mode`] is `VK_SHARING_MODE_CONCURRENT`, each element of
-///   [`queue_family_indices`]**must** be unique and **must** be less than the
-///   `pQueueFamilyPropertyCount` returned by [`GetPhysicalDeviceQueueFamilyProperties2`] for the
-///   `physicalDevice` that was used to create `device`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT`
-/// - [`sharing_mode`]**must** be a valid [`SharingMode`] value
+///The implementation  **must**  support the query of any [`drm_format_modifier`],
+///including unknown and invalid modifier values.
+///## Valid Usage
+/// - If [`sharing_mode`] is `VK_SHARING_MODE_CONCURRENT`, then [`queue_family_indices`] **must**
+///   be a valid pointer to an array of [`queue_family_index_count`]`uint32_t` values
+/// - If [`sharing_mode`] is `VK_SHARING_MODE_CONCURRENT`, then [`queue_family_index_count`]
+///   **must**  be greater than `1`
+/// - If [`sharing_mode`] is `VK_SHARING_MODE_CONCURRENT`, each element of [`queue_family_indices`]
+///   **must**  be unique and  **must**  be less than the `pQueueFamilyPropertyCount` returned by
+///   [`GetPhysicalDeviceQueueFamilyProperties2`] for the `physicalDevice` that was used to create
+///   `device`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT`
+/// - [`sharing_mode`] **must**  be a valid [`SharingMode`] value
 ///# Related
 /// - [`VK_EXT_image_drm_format_modifier`]
 /// - [`SharingMode`]
@@ -477,14 +453,6 @@ impl<'lt> PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::drm_format_modifier`]
-    pub fn drm_format_modifier_raw(&self) -> u64 {
-        self.drm_format_modifier
-    }
-    ///Gets the raw value of [`Self::queue_family_index_count`]
-    pub fn queue_family_index_count_raw(&self) -> u32 {
-        self.queue_family_index_count
-    }
     ///Gets the raw value of [`Self::queue_family_indices`]
     pub fn queue_family_indices_raw(&self) -> *const u32 {
         self.queue_family_indices
@@ -492,16 +460,6 @@ impl<'lt> PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::drm_format_modifier`]
-    pub fn set_drm_format_modifier_raw(&mut self, value: u64) -> &mut Self {
-        self.drm_format_modifier = value;
-        self
-    }
-    ///Sets the raw value of [`Self::queue_family_index_count`]
-    pub fn set_queue_family_index_count_raw(&mut self, value: u32) -> &mut Self {
-        self.queue_family_index_count = value;
         self
     }
     ///Sets the raw value of [`Self::queue_family_indices`]
@@ -612,16 +570,17 @@ impl<'lt> PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt> {
 /// - [`drm_format_modifier_count`] is the length of the [`drm_format_modifiers`] array.
 /// - [`drm_format_modifiers`] is a pointer to an array of *Linux DRM format modifiers*.
 ///# Description
-///Valid Usage
-/// - Each *modifier* in [`drm_format_modifiers`]**must** be compatible with the parameters in
+///## Valid Usage
+/// - Each *modifier* in [`drm_format_modifiers`] **must**  be compatible with the parameters in
 ///   [`ImageCreateInfo`] and its [`p_next`] chain, as determined by querying
 ///   [`PhysicalDeviceImageFormatInfo2`] extended with
 ///   [`PhysicalDeviceImageDrmFormatModifierInfoEXT`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT`
-/// - [`drm_format_modifiers`]**must** be a valid pointer to an array of
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT`
+/// - [`drm_format_modifiers`] **must**  be a valid pointer to an array of
 ///   [`drm_format_modifier_count`]`uint64_t` values
-/// - [`drm_format_modifier_count`]**must** be greater than `0`
+/// - [`drm_format_modifier_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_EXT_image_drm_format_modifier`]
 /// - [`StructureType`]
@@ -666,10 +625,6 @@ impl<'lt> ImageDrmFormatModifierListCreateInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::drm_format_modifier_count`]
-    pub fn drm_format_modifier_count_raw(&self) -> u32 {
-        self.drm_format_modifier_count
-    }
     ///Gets the raw value of [`Self::drm_format_modifiers`]
     pub fn drm_format_modifiers_raw(&self) -> *const u64 {
         self.drm_format_modifiers
@@ -677,11 +632,6 @@ impl<'lt> ImageDrmFormatModifierListCreateInfoEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::drm_format_modifier_count`]
-    pub fn set_drm_format_modifier_count_raw(&mut self, value: u32) -> &mut Self {
-        self.drm_format_modifier_count = value;
         self
     }
     ///Sets the raw value of [`Self::drm_format_modifiers`]
@@ -773,35 +723,37 @@ impl<'lt> ImageDrmFormatModifierListCreateInfoEXT<'lt> {
 ///The `i`<sup>th</sup> member of [`plane_layouts`] describes the layout of the
 ///image’s `i`<sup>th</sup>*memory plane* (that is,
 ///`VK_IMAGE_ASPECT_MEMORY_PLANE*_i_*BIT_EXT`).
-///In each element of [`plane_layouts`], the implementation **must** ignore
+///In each element of [`plane_layouts`], the implementation  **must**  ignore
 ///`size`.
 ///The implementation calculates the size of each plane, which the application
-///**can** query with [`GetImageSubresourceLayout`].When creating an image with
+/// **can**  query with [`GetImageSubresourceLayout`].When creating an image with
 ///[`ImageDrmFormatModifierExplicitCreateInfoEXT`], it is the application’s
 ///responsibility to satisfy all valid usage requirements.
-///However, the implementation **must** validate that the provided
+///However, the implementation  **must**  validate that the provided
 ///[`plane_layouts`], when combined with the provided [`drm_format_modifier`]
 ///and other creation parameters in [`ImageCreateInfo`] and its [`p_next`]
 ///chain, produce a valid image.
 ///(This validation is necessarily implementation-dependent and outside the
 ///scope of Vulkan, and therefore not described by valid usage requirements).
 ///If this validation fails, then [`CreateImage`] returns
-///`VK_ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT`.Valid Usage
-/// - [`drm_format_modifier`]**must** be compatible with the parameters in [`ImageCreateInfo`] and
+///`VK_ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT`.
+///## Valid Usage
+/// - [`drm_format_modifier`] **must**  be compatible with the parameters in [`ImageCreateInfo`] and
 ///   its [`p_next`] chain, as determined by querying [`PhysicalDeviceImageFormatInfo2`] extended
 ///   with [`PhysicalDeviceImageDrmFormatModifierInfoEXT`]
-/// - [`drm_format_modifier_plane_count`]**must** be equal to the
+/// - [`drm_format_modifier_plane_count`] **must**  be equal to the
 ///   [`DrmFormatModifierPropertiesEXT`]::[`drm_format_modifier_plane_count`] associated with
 ///   [`ImageCreateInfo::format`] and [`drm_format_modifier`], as found by querying
 ///   [`DrmFormatModifierPropertiesListEXT`]
-/// - For each element of [`plane_layouts`], `size`**must** be 0
-/// - For each element of [`plane_layouts`], `arrayPitch`**must** be 0 if
+/// - For each element of [`plane_layouts`], `size` **must**  be 0
+/// - For each element of [`plane_layouts`], `arrayPitch` **must**  be 0 if
 ///   [`ImageCreateInfo::array_layers`] is 1
-/// - For each element of [`plane_layouts`], `depthPitch`**must** be 0 if
+/// - For each element of [`plane_layouts`], `depthPitch` **must**  be 0 if
 ///   [`ImageCreateInfo`]::`extent.depth` is 1
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT`
-/// - If [`drm_format_modifier_plane_count`] is not `0`, [`plane_layouts`]**must** be a valid
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT`
+/// - If [`drm_format_modifier_plane_count`] is not `0`, [`plane_layouts`] **must**  be a valid
 ///   pointer to an array of [`drm_format_modifier_plane_count`][`SubresourceLayout`] structures
 ///# Related
 /// - [`VK_EXT_image_drm_format_modifier`]
@@ -854,14 +806,6 @@ impl<'lt> ImageDrmFormatModifierExplicitCreateInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::drm_format_modifier`]
-    pub fn drm_format_modifier_raw(&self) -> u64 {
-        self.drm_format_modifier
-    }
-    ///Gets the raw value of [`Self::drm_format_modifier_plane_count`]
-    pub fn drm_format_modifier_plane_count_raw(&self) -> u32 {
-        self.drm_format_modifier_plane_count
-    }
     ///Gets the raw value of [`Self::plane_layouts`]
     pub fn plane_layouts_raw(&self) -> *const SubresourceLayout {
         self.plane_layouts
@@ -869,16 +813,6 @@ impl<'lt> ImageDrmFormatModifierExplicitCreateInfoEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::drm_format_modifier`]
-    pub fn set_drm_format_modifier_raw(&mut self, value: u64) -> &mut Self {
-        self.drm_format_modifier = value;
-        self
-    }
-    ///Sets the raw value of [`Self::drm_format_modifier_plane_count`]
-    pub fn set_drm_format_modifier_plane_count_raw(&mut self, value: u32) -> &mut Self {
-        self.drm_format_modifier_plane_count = value;
         self
     }
     ///Sets the raw value of [`Self::plane_layouts`]
@@ -971,16 +905,17 @@ impl<'lt> ImageDrmFormatModifierExplicitCreateInfoEXT<'lt> {
 ///# Description
 ///If the `image` was created with
 ///[`ImageDrmFormatModifierListCreateInfoEXT`], then the returned
-///[`drm_format_modifier`]**must** belong to the list of modifiers provided at
+///[`drm_format_modifier`] **must**  belong to the list of modifiers provided at
 ///time of image creation in
 ///[`ImageDrmFormatModifierListCreateInfoEXT::drm_format_modifiers`].
 ///If the `image` was created with
 ///[`ImageDrmFormatModifierExplicitCreateInfoEXT`], then the returned
-///[`drm_format_modifier`]**must** be the modifier provided at time of image
+///[`drm_format_modifier`] **must**  be the modifier provided at time of image
 ///creation in
-///[`ImageDrmFormatModifierExplicitCreateInfoEXT`]::[`drm_format_modifier`].Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT`
-/// - [`p_next`]**must** be `NULL`
+///[`ImageDrmFormatModifierExplicitCreateInfoEXT`]::[`drm_format_modifier`].
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_EXT_image_drm_format_modifier`]
 /// - [`StructureType`]
@@ -1022,18 +957,9 @@ impl<'lt> ImageDrmFormatModifierPropertiesEXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::drm_format_modifier`]
-    pub fn drm_format_modifier_raw(&self) -> u64 {
-        self.drm_format_modifier
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::drm_format_modifier`]
-    pub fn set_drm_format_modifier_raw(&mut self, value: u64) -> &mut Self {
-        self.drm_format_modifier = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -1085,7 +1011,7 @@ impl<'lt> ImageDrmFormatModifierPropertiesEXT<'lt> {
 ///[VkDrmFormatModifierPropertiesList2EXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDrmFormatModifierPropertiesList2EXT.html) - Structure specifying the list of DRM format modifiers supported for a format
 ///# C Specifications
 ///The list of [Linux DRM format modifiers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary-drm-format-modifier)
-///compatible with a [`Format`]**can** be obtained by adding a
+///compatible with a [`Format`] **can**  be obtained by adding a
 ///[`DrmFormatModifierPropertiesList2EXT`] structure to the [`p_next`]
 ///chain of [`FormatProperties2`].The [`DrmFormatModifierPropertiesList2EXT`] structure is defined
 /// as:
@@ -1109,17 +1035,18 @@ impl<'lt> ImageDrmFormatModifierPropertiesEXT<'lt> {
 ///If [`drm_format_modifier_properties`] is `NULL`, the number of modifiers
 ///compatible with the queried `format` is returned in
 ///[`drm_format_modifier_count`].
-///Otherwise, the application **must** set [`drm_format_modifier_count`] to the
+///Otherwise, the application  **must**  set [`drm_format_modifier_count`] to the
 ///length of the array [`drm_format_modifier_properties`]; the function will
 ///write at most [`drm_format_modifier_count`] elements to the array, and will
 ///return in [`drm_format_modifier_count`] the number of elements written.Among the elements in
 /// array [`drm_format_modifier_properties`], each
-///returned `drmFormatModifier`**must** be unique.Among the elements in array
+///returned `drmFormatModifier` **must**  be unique.Among the elements in array
 /// [`drm_format_modifier_properties`], the bits
-///reported in `drmFormatModifierTilingFeatures`**must** include the bits
+///reported in `drmFormatModifierTilingFeatures` **must**  include the bits
 ///reported in the corresponding element of
-///[`DrmFormatModifierPropertiesListEXT`]::[`drm_format_modifier_properties`].Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT`
+///[`DrmFormatModifierPropertiesListEXT`]::[`drm_format_modifier_properties`].
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT`
 ///# Related
 /// - [`VK_EXT_image_drm_format_modifier`]
 /// - [`VK_KHR_format_feature_flags2`]
@@ -1166,10 +1093,6 @@ impl<'lt> DrmFormatModifierPropertiesList2EXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::drm_format_modifier_count`]
-    pub fn drm_format_modifier_count_raw(&self) -> u32 {
-        self.drm_format_modifier_count
-    }
     ///Gets the raw value of [`Self::drm_format_modifier_properties`]
     pub fn drm_format_modifier_properties_raw(&self) -> &*mut DrmFormatModifierProperties2EXT {
         &self.drm_format_modifier_properties
@@ -1177,11 +1100,6 @@ impl<'lt> DrmFormatModifierPropertiesList2EXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::drm_format_modifier_count`]
-    pub fn set_drm_format_modifier_count_raw(&mut self, value: u32) -> &mut Self {
-        self.drm_format_modifier_count = value;
         self
     }
     ///Sets the raw value of [`Self::drm_format_modifier_properties`]
@@ -1328,24 +1246,6 @@ impl Default for DrmFormatModifierProperties2EXT {
     }
 }
 impl DrmFormatModifierProperties2EXT {
-    ///Gets the raw value of [`Self::drm_format_modifier`]
-    pub fn drm_format_modifier_raw(&self) -> u64 {
-        self.drm_format_modifier
-    }
-    ///Gets the raw value of [`Self::drm_format_modifier_plane_count`]
-    pub fn drm_format_modifier_plane_count_raw(&self) -> u32 {
-        self.drm_format_modifier_plane_count
-    }
-    ///Sets the raw value of [`Self::drm_format_modifier`]
-    pub fn set_drm_format_modifier_raw(&mut self, value: u64) -> &mut Self {
-        self.drm_format_modifier = value;
-        self
-    }
-    ///Sets the raw value of [`Self::drm_format_modifier_plane_count`]
-    pub fn set_drm_format_modifier_plane_count_raw(&mut self, value: u32) -> &mut Self {
-        self.drm_format_modifier_plane_count = value;
-        self
-    }
     ///Gets the value of [`Self::drm_format_modifier`]
     pub fn drm_format_modifier(&self) -> u64 {
         self.drm_format_modifier

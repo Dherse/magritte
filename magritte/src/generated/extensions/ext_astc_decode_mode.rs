@@ -27,17 +27,18 @@ pub const EXT_ASTC_DECODE_MODE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`decode_mode`] is the intermediate format used to decode ASTC compressed formats.
 ///# Description
-///Valid Usage
-/// - [`decode_mode`]**must** be one of `VK_FORMAT_R16G16B16A16_SFLOAT`, `VK_FORMAT_R8G8B8A8_UNORM`,
-///   or `VK_FORMAT_E5B9G9R9_UFLOAT_PACK32`
+///## Valid Usage
+/// - [`decode_mode`] **must**  be one of `VK_FORMAT_R16G16B16A16_SFLOAT`,
+///   `VK_FORMAT_R8G8B8A8_UNORM`, or `VK_FORMAT_E5B9G9R9_UFLOAT_PACK32`
 /// - If the [`decodeModeSharedExponent`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-astc-decodeModeSharedExponent)
-///   feature is not enabled, [`decode_mode`]**must** not be `VK_FORMAT_E5B9G9R9_UFLOAT_PACK32`
-/// - If [`decode_mode`] is `VK_FORMAT_R8G8B8A8_UNORM` the image view **must** not include blocks
+///   feature is not enabled, [`decode_mode`] **must**  not be `VK_FORMAT_E5B9G9R9_UFLOAT_PACK32`
+/// - If [`decode_mode`] is `VK_FORMAT_R8G8B8A8_UNORM` the image view  **must**  not include blocks
 ///   using any of the ASTC HDR modes
-/// - `format` of the image view **must** be one of the [ASTC Compressed Image Formats](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#appendix-compressedtex-astc)
-///If `format` uses sRGB encoding then the [`decode_mode`] has no effect.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMAGE_VIEW_ASTC_DECODE_MODE_EXT`
-/// - [`decode_mode`]**must** be a valid [`Format`] value
+/// - `format` of the image view  **must**  be one of the [ASTC Compressed Image Formats](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#appendix-compressedtex-astc)
+///If `format` uses sRGB encoding then the [`decode_mode`] has no effect.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_VIEW_ASTC_DECODE_MODE_EXT`
+/// - [`decode_mode`] **must**  be a valid [`Format`] value
 ///# Related
 /// - [`VK_EXT_astc_decode_mode`]
 /// - [`Format`]
@@ -146,9 +147,10 @@ impl<'lt> ImageViewAstcDecodeModeEXT<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceAstcDecodeFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT`
+///[`PhysicalDeviceAstcDecodeFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_astc_decode_mode`]
 /// - [`Bool32`]

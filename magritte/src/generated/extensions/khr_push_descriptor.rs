@@ -23,15 +23,16 @@ pub const KHR_PUSH_DESCRIPTOR_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_K
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`max_push_descriptors`] is the maximum number of descriptors that **can** be used in a
+/// - [`max_push_descriptors`] is the maximum number of descriptors that  **can**  be used in a
 ///   descriptor set created with `VK_DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT_KHR` set.
 ///# Description
 ///If the [`PhysicalDevicePushDescriptorPropertiesKHR`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES_KHR`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES_KHR`
 ///# Related
 /// - [`VK_KHR_push_descriptor`]
 /// - [`StructureType`]
@@ -54,7 +55,7 @@ pub struct PhysicalDevicePushDescriptorPropertiesKHR<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`max_push_descriptors`] is the maximum
-    ///number of descriptors that **can** be used in a descriptor set created with
+    ///number of descriptors that  **can**  be used in a descriptor set created with
     ///`VK_DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT_KHR` set.
     max_push_descriptors: u32,
 }
@@ -73,18 +74,9 @@ impl<'lt> PhysicalDevicePushDescriptorPropertiesKHR<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::max_push_descriptors`]
-    pub fn max_push_descriptors_raw(&self) -> u32 {
-        self.max_push_descriptors
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_push_descriptors`]
-    pub fn set_max_push_descriptors_raw(&mut self, value: u32) -> &mut Self {
-        self.max_push_descriptors = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

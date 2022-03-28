@@ -13,7 +13,7 @@ pub const KHR_SURFACE_PROTECTED_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 ///# C Specifications
 ///An application queries if a protected [`SurfaceKHR`] is displayable on a
 ///specific windowing system using [`SurfaceProtectedCapabilitiesKHR`],
-///which **can** be passed in [`p_next`] parameter of
+///which  **can**  be passed in [`p_next`] parameter of
 ///[`SurfaceCapabilities2KHR`].The [`SurfaceProtectedCapabilitiesKHR`] structure is defined as:
 ///```c
 ///// Provided by VK_KHR_surface_protected_capabilities
@@ -27,20 +27,22 @@ pub const KHR_SURFACE_PROTECTED_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`supports_protected`] specifies whether a protected swapchain created from
-///   [`PhysicalDeviceSurfaceInfo2KHR::surface`] for a particular windowing system **can** be
+///   [`PhysicalDeviceSurfaceInfo2KHR::surface`] for a particular windowing system  **can**  be
 ///   displayed on screen or not. If [`supports_protected`] is [`TRUE`], then creation of swapchains
-///   with the `VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR` flag set **must** be supported for `surface`.
+///   with the `VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR` flag set  **must**  be supported for
+///   `surface`.
 ///# Description
 ///If the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, the value
 ///returned in [`supports_protected`] will be identical for every valid
 ///surface created on this physical device, and so in the
 ///[`GetPhysicalDeviceSurfaceCapabilities2KHR`] call,
-///[`PhysicalDeviceSurfaceInfo2KHR::surface`]**can** be
+///[`PhysicalDeviceSurfaceInfo2KHR::surface`] **can**  be
 ///[`crate::utils::Handle::null`].
 ///In that case, the contents of
 ///[`SurfaceCapabilities2KHR::surface_capabilities`] as well as any
-///other struct chained to it will be undefined.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SURFACE_PROTECTED_CAPABILITIES_KHR`
+///other struct chained to it will be undefined.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SURFACE_PROTECTED_CAPABILITIES_KHR`
 ///# Related
 /// - [`VK_KHR_surface_protected_capabilities`]
 /// - [`Bool32`]
@@ -65,9 +67,9 @@ pub struct SurfaceProtectedCapabilitiesKHR<'lt> {
     p_next: *const BaseInStructure<'lt>,
     ///[`supports_protected`] specifies whether a protected swapchain created
     ///from [`PhysicalDeviceSurfaceInfo2KHR`]::`surface` for a
-    ///particular windowing system **can** be displayed on screen or not.
+    ///particular windowing system  **can**  be displayed on screen or not.
     ///If [`supports_protected`] is [`TRUE`], then creation of swapchains
-    ///with the `VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR` flag set **must** be
+    ///with the `VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR` flag set  **must**  be
     ///supported for `surface`.
     supports_protected: Bool32,
 }

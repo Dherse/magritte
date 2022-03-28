@@ -31,12 +31,13 @@ pub const FUCHSIA_EXTERNAL_MEMORY_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///   [`handle`].
 /// - [`handle`] is a [`zx_handle_t`] (Zircon) handle to the external memory.
 ///# Description
-///Valid Usage
-/// - [`handle_type`]**must** be `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ZIRCON_VMO_BIT_FUCHSIA`
+///## Valid Usage
+/// - [`handle_type`] **must**  be `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ZIRCON_VMO_BIT_FUCHSIA`
 /// - [`handle`] must be a valid VMO handle
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA`
-/// - If [`handle_type`] is not `0`, [`handle_type`]**must** be a valid
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA`
+/// - If [`handle_type`] is not `0`, [`handle_type`] **must**  be a valid
 ///   [`ExternalMemoryHandleTypeFlagBits`] value
 ///# Related
 /// - [`VK_FUCHSIA_external_memory`]
@@ -166,9 +167,9 @@ impl<'lt> ImportMemoryZirconHandleInfoFUCHSIA<'lt> {
 /// - [`memory_type_bits`] a bitmask containing one bit set for every memory type which the
 ///   specified handle can be imported as.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_FUCHSIA_external_memory`]
 /// - [`StructureType`]
@@ -210,18 +211,9 @@ impl<'lt> MemoryZirconHandlePropertiesFUCHSIA<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::memory_type_bits`]
-    pub fn memory_type_bits_raw(&self) -> u32 {
-        self.memory_type_bits
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::memory_type_bits`]
-    pub fn set_memory_type_bits_raw(&mut self, value: u32) -> &mut Self {
-        self.memory_type_bits = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -289,15 +281,16 @@ impl<'lt> MemoryZirconHandlePropertiesFUCHSIA<'lt> {
 /// - [`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value specifying the type of the
 ///   handle pointed to by [`GetMemoryZirconHandleFUCHSIA`]`::pZirconHandle`.
 ///# Description
-///Valid Usage
-/// - [`handle_type`]**must** be `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ZIRCON_VMO_BIT_FUCHSIA`
-/// - [`handle_type`]**must** have been included in the `handleTypes` field of the
+///## Valid Usage
+/// - [`handle_type`] **must**  be `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ZIRCON_VMO_BIT_FUCHSIA`
+/// - [`handle_type`] **must**  have been included in the `handleTypes` field of the
 ///   [`ExportMemoryAllocateInfo`] structure when the external memory was allocated
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA`
-/// - [`p_next`]**must** be `NULL`
-/// - [`memory`]**must** be a valid [`DeviceMemory`] handle
-/// - [`handle_type`]**must** be a valid [`ExternalMemoryHandleTypeFlagBits`] value
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
+/// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
 ///# Related
 /// - [`VK_FUCHSIA_external_memory`]
 /// - [`DeviceMemory`]

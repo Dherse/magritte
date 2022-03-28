@@ -341,10 +341,10 @@ impl PerformanceValueTypeINTEL {
 /// - [`type_`] is a [`PerformanceValueTypeINTEL`] value specifying the type of the returned data.
 /// - [`data`] is a [`PerformanceValueDataINTEL`] union specifying the value of the returned data.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`type_`]**must** be a valid [`PerformanceValueTypeINTEL`] value
-/// - If [`type_`] is `VK_PERFORMANCE_VALUE_TYPE_STRING_INTEL`, the `valueString` member of
-///   [`data`]**must** be a null-terminated UTF-8 string
+///## Valid Usage (Implicit)
+/// - [`type_`] **must**  be a valid [`PerformanceValueTypeINTEL`] value
+/// - If [`type_`] is `VK_PERFORMANCE_VALUE_TYPE_STRING_INTEL`, the `valueString` member of [`data`]
+///   **must**  be a null-terminated UTF-8 string
 ///# Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`PerformanceValueDataINTEL`]
@@ -429,9 +429,9 @@ impl<'lt> PerformanceValueINTEL<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`user_data`] is a pointer for application data.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_INITIALIZE_PERFORMANCE_API_INFO_INTEL`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_INITIALIZE_PERFORMANCE_API_INFO_INTEL`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`StructureType`]
@@ -558,9 +558,10 @@ impl<'lt> InitializePerformanceApiInfoINTEL<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`performance_counters_sampling`] describe how performance queries should be captured.
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL`
-/// - [`performance_counters_sampling`]**must** be a valid [`QueryPoolSamplingModeINTEL`] value
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL`
+/// - [`performance_counters_sampling`] **must**  be a valid [`QueryPoolSamplingModeINTEL`] value
 ///# Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`QueryPoolSamplingModeINTEL`]
@@ -665,9 +666,9 @@ impl<'lt> QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`marker`] is the marker value that will be recorded into the opaque query results.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PERFORMANCE_MARKER_INFO_INTEL`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_MARKER_INFO_INTEL`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`StructureType`]
@@ -709,18 +710,9 @@ impl<'lt> PerformanceMarkerInfoINTEL<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::marker`]
-    pub fn marker_raw(&self) -> u64 {
-        self.marker
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::marker`]
-    pub fn set_marker_raw(&mut self, value: u64) -> &mut Self {
-        self.marker = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -779,13 +771,14 @@ impl<'lt> PerformanceMarkerInfoINTEL<'lt> {
 /// - [`marker`] is the marker value that will be recorded into the reports consumed by an external
 ///   application.
 ///# Description
-///Valid Usage
-/// - The value written by the application into [`marker`]**must** only used the valid bits as
+///## Valid Usage
+/// - The value written by the application into [`marker`] **must**  only used the valid bits as
 ///   reported by [`GetPerformanceParameterINTEL`] with the
 ///   `VK_PERFORMANCE_PARAMETER_TYPE_STREAM_MARKER_VALID_BITS_INTEL`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PERFORMANCE_STREAM_MARKER_INFO_INTEL`
-/// - [`p_next`]**must** be `NULL`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_STREAM_MARKER_INFO_INTEL`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`StructureType`]
@@ -827,18 +820,9 @@ impl<'lt> PerformanceStreamMarkerInfoINTEL<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::marker`]
-    pub fn marker_raw(&self) -> u32 {
-        self.marker
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::marker`]
-    pub fn set_marker_raw(&mut self, value: u32) -> &mut Self {
-        self.marker = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -898,10 +882,10 @@ impl<'lt> PerformanceStreamMarkerInfoINTEL<'lt> {
 /// - [`enable`] defines whether the override is enabled.
 /// - [`parameter`] is a potential required parameter for the override.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PERFORMANCE_OVERRIDE_INFO_INTEL`
-/// - [`p_next`]**must** be `NULL`
-/// - [`type_`]**must** be a valid [`PerformanceOverrideTypeINTEL`] value
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_OVERRIDE_INFO_INTEL`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`type_`] **must**  be a valid [`PerformanceOverrideTypeINTEL`] value
 ///# Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`Bool32`]
@@ -954,10 +938,6 @@ impl<'lt> PerformanceOverrideInfoINTEL<'lt> {
     pub fn enable_raw(&self) -> Bool32 {
         self.enable
     }
-    ///Gets the raw value of [`Self::parameter`]
-    pub fn parameter_raw(&self) -> u64 {
-        self.parameter
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
@@ -966,11 +946,6 @@ impl<'lt> PerformanceOverrideInfoINTEL<'lt> {
     ///Sets the raw value of [`Self::enable`]
     pub fn set_enable_raw(&mut self, value: Bool32) -> &mut Self {
         self.enable = value;
-        self
-    }
-    ///Sets the raw value of [`Self::parameter`]
-    pub fn set_parameter_raw(&mut self, value: u64) -> &mut Self {
-        self.parameter = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -1070,10 +1045,10 @@ impl<'lt> PerformanceOverrideInfoINTEL<'lt> {
 /// - [`type_`] is one of the [`PerformanceConfigurationTypeINTEL`] type of performance
 ///   configuration that will be acquired.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL`
-/// - [`p_next`]**must** be `NULL`
-/// - [`type_`]**must** be a valid [`PerformanceConfigurationTypeINTEL`] value
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`type_`] **must**  be a valid [`PerformanceConfigurationTypeINTEL`] value
 ///# Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`PerformanceConfigurationTypeINTEL`]

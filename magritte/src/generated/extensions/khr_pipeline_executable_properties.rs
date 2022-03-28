@@ -34,16 +34,16 @@ pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_EXTENSION_NAME: &'static CStr =
 ///```
 ///# Description
 /// - [`PipelineExecutableStatisticFormatBool32Khr`] specifies that the statistic is returned as a
-///   32-bit boolean value which **must** be either [`TRUE`] or [`FALSE`] and **should** be read
+///   32-bit boolean value which  **must**  be either [`TRUE`] or [`FALSE`] and  **should**  be read
 ///   from the `b32` field of [`PipelineExecutableStatisticValueKHR`].
 /// - [`PipelineExecutableStatisticFormatInt64Khr`] specifies that the statistic is returned as a
-///   signed 64-bit integer and **should** be read from the `i64` field of
+///   signed 64-bit integer and  **should**  be read from the `i64` field of
 ///   [`PipelineExecutableStatisticValueKHR`].
 /// - [`PipelineExecutableStatisticFormatUint64Khr`] specifies that the statistic is returned as an
-///   unsigned 64-bit integer and **should** be read from the `u64` field of
+///   unsigned 64-bit integer and  **should**  be read from the `u64` field of
 ///   [`PipelineExecutableStatisticValueKHR`].
 /// - [`PipelineExecutableStatisticFormatFloat64Khr`] specifies that the statistic is returned as a
-///   64-bit floating-point value and **should** be read from the `f64` field of
+///   64-bit floating-point value and  **should**  be read from the `f64` field of
 ///   [`PipelineExecutableStatisticValueKHR`].
 ///# Related
 /// - [`VK_KHR_pipeline_executable_properties`]
@@ -63,21 +63,21 @@ pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_EXTENSION_NAME: &'static CStr =
 #[repr(i32)]
 pub enum PipelineExecutableStatisticFormatKHR {
     ///[`PipelineExecutableStatisticFormatBool32Khr`] specifies that
-    ///the statistic is returned as a 32-bit boolean value which **must** be
-    ///either [`TRUE`] or [`FALSE`] and **should** be read from the
+    ///the statistic is returned as a 32-bit boolean value which  **must**  be
+    ///either [`TRUE`] or [`FALSE`] and  **should**  be read from the
     ///`b32` field of [`PipelineExecutableStatisticValueKHR`].
     PipelineExecutableStatisticFormatBool32Khr = 0,
     ///[`PipelineExecutableStatisticFormatInt64Khr`] specifies that
-    ///the statistic is returned as a signed 64-bit integer and **should** be read
+    ///the statistic is returned as a signed 64-bit integer and  **should**  be read
     ///from the `i64` field of [`PipelineExecutableStatisticValueKHR`].
     PipelineExecutableStatisticFormatInt64Khr = 1,
     ///[`PipelineExecutableStatisticFormatUint64Khr`] specifies that
-    ///the statistic is returned as an unsigned 64-bit integer and **should** be
+    ///the statistic is returned as an unsigned 64-bit integer and  **should**  be
     ///read from the `u64` field of
     ///[`PipelineExecutableStatisticValueKHR`].
     PipelineExecutableStatisticFormatUint64Khr = 2,
     ///[`PipelineExecutableStatisticFormatFloat64Khr`] specifies that
-    ///the statistic is returned as a 64-bit floating-point value and **should**
+    ///the statistic is returned as a 64-bit floating-point value and  **should**
     ///be read from the `f64` field of
     ///[`PipelineExecutableStatisticValueKHR`].
     PipelineExecutableStatisticFormatFloat64Khr = 3,
@@ -128,10 +128,11 @@ impl PipelineExecutableStatisticFormatKHR {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDevicePipelineExecutablePropertiesFeaturesKHR`]**can** also be used in the [`p_next`]
-/// chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`PhysicalDevicePipelineExecutablePropertiesFeaturesKHR`] **can**  also be used in the
+/// [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR`
 ///# Related
 /// - [`VK_KHR_pipeline_executable_properties`]
@@ -266,10 +267,10 @@ impl<'lt> PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`pipeline`] is a [`Pipeline`] handle.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`pipeline`]**must** be a valid [`Pipeline`] handle
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`pipeline`] **must**  be a valid [`Pipeline`] handle
 ///# Related
 /// - [`VK_KHR_pipeline_executable_properties`]
 /// - [`Pipeline`]
@@ -381,18 +382,19 @@ impl<'lt> PipelineInfoKHR<'lt> {
 /// - [`subgroup_size`] is the subgroup size with which this pipeline executable is dispatched.
 ///# Description
 ///Not all implementations have a 1:1 mapping between shader stages and
-///pipeline executables and some implementations **may** reduce a given shader
+///pipeline executables and some implementations  **may**  reduce a given shader
 ///stage to fixed function hardware programming such that no pipeline
 ///executable is available.
 ///No guarantees are provided about the mapping between shader stages and
-///pipeline executables and [`stages`]**should** be considered a best effort
+///pipeline executables and [`stages`] **should**  be considered a best effort
 ///hint.
-///Because the application **cannot** rely on the [`stages`] field to provide an
+///Because the application  **cannot**  rely on the [`stages`] field to provide an
 ///exact description, [`name`] and [`description`] provide a human readable
 ///name and description which more accurately describes the given pipeline
-///executable.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_PROPERTIES_KHR`
-/// - [`p_next`]**must** be `NULL`
+///executable.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_PROPERTIES_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_pipeline_executable_properties`]
 /// - [`ShaderStageFlags`]
@@ -450,36 +452,9 @@ impl<'lt> PipelineExecutablePropertiesKHR<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::name`]
-    pub fn name_raw(&self) -> [c_schar; MAX_DESCRIPTION_SIZE] {
-        self.name
-    }
-    ///Gets the raw value of [`Self::description`]
-    pub fn description_raw(&self) -> [c_schar; MAX_DESCRIPTION_SIZE] {
-        self.description
-    }
-    ///Gets the raw value of [`Self::subgroup_size`]
-    pub fn subgroup_size_raw(&self) -> u32 {
-        self.subgroup_size
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::name`]
-    pub fn set_name_raw(&mut self, value: [c_schar; MAX_DESCRIPTION_SIZE]) -> &mut Self {
-        self.name = value;
-        self
-    }
-    ///Sets the raw value of [`Self::description`]
-    pub fn set_description_raw(&mut self, value: [c_schar; MAX_DESCRIPTION_SIZE]) -> &mut Self {
-        self.description = value;
-        self
-    }
-    ///Sets the raw value of [`Self::subgroup_size`]
-    pub fn set_subgroup_size_raw(&mut self, value: u32) -> &mut Self {
-        self.subgroup_size = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -586,14 +561,15 @@ impl<'lt> PipelineExecutablePropertiesKHR<'lt> {
 /// - [`executable_index`] is the index of the pipeline executable to query in the array of
 ///   executable properties returned by [`GetPipelineExecutablePropertiesKHR`].
 ///# Description
-///Valid Usage
-/// - [`executable_index`]**must** be less than the number of pipeline executables associated with
+///## Valid Usage
+/// - [`executable_index`] **must**  be less than the number of pipeline executables associated with
 ///   [`pipeline`] as returned in the `pExecutableCount` parameter of
 ///   [`GetPipelineExecutablePropertiesKHR`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`pipeline`]**must** be a valid [`Pipeline`] handle
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`pipeline`] **must**  be a valid [`Pipeline`] handle
 ///# Related
 /// - [`VK_KHR_pipeline_executable_properties`]
 /// - [`Pipeline`]
@@ -641,18 +617,9 @@ impl<'lt> PipelineExecutableInfoKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::executable_index`]
-    pub fn executable_index_raw(&self) -> u32 {
-        self.executable_index
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::executable_index`]
-    pub fn set_executable_index_raw(&mut self, value: u32) -> &mut Self {
-        self.executable_index = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -732,9 +699,9 @@ impl<'lt> PipelineExecutableInfoKHR<'lt> {
 ///   data found in [`value`].
 /// - [`value`] is the value of this statistic.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_STATISTIC_KHR`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_STATISTIC_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_pipeline_executable_properties`]
 /// - [`PipelineExecutableStatisticFormatKHR`]
@@ -791,27 +758,9 @@ impl<'lt> PipelineExecutableStatisticKHR<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::name`]
-    pub fn name_raw(&self) -> [c_schar; MAX_DESCRIPTION_SIZE] {
-        self.name
-    }
-    ///Gets the raw value of [`Self::description`]
-    pub fn description_raw(&self) -> [c_schar; MAX_DESCRIPTION_SIZE] {
-        self.description
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::name`]
-    pub fn set_name_raw(&mut self, value: [c_schar; MAX_DESCRIPTION_SIZE]) -> &mut Self {
-        self.name = value;
-        self
-    }
-    ///Sets the raw value of [`Self::description`]
-    pub fn set_description_raw(&mut self, value: [c_schar; MAX_DESCRIPTION_SIZE]) -> &mut Self {
-        self.description = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -948,9 +897,10 @@ impl<'lt> PipelineExecutableStatisticKHR<'lt> {
 ///`VK_SUCCESS`, to indicate that not all the available representation was
 ///returned.If [`is_text`] is [`TRUE`] and [`data`] is not `NULL` and
 ///[`data_size`] is not zero, the last byte written to [`data`] will be a
-///null character.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR`
-/// - [`p_next`]**must** be `NULL`
+///null character.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_pipeline_executable_properties`]
 /// - [`Bool32`]
@@ -1012,21 +962,9 @@ impl<'lt> PipelineExecutableInternalRepresentationKHR<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::name`]
-    pub fn name_raw(&self) -> [c_schar; MAX_DESCRIPTION_SIZE] {
-        self.name
-    }
-    ///Gets the raw value of [`Self::description`]
-    pub fn description_raw(&self) -> [c_schar; MAX_DESCRIPTION_SIZE] {
-        self.description
-    }
     ///Gets the raw value of [`Self::is_text`]
     pub fn is_text_raw(&self) -> Bool32 {
         self.is_text
-    }
-    ///Gets the raw value of [`Self::data_size`]
-    pub fn data_size_raw(&self) -> usize {
-        self.data_size
     }
     ///Gets the raw value of [`Self::data`]
     pub fn data_raw(&self) -> &*mut c_void {
@@ -1037,24 +975,9 @@ impl<'lt> PipelineExecutableInternalRepresentationKHR<'lt> {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::name`]
-    pub fn set_name_raw(&mut self, value: [c_schar; MAX_DESCRIPTION_SIZE]) -> &mut Self {
-        self.name = value;
-        self
-    }
-    ///Sets the raw value of [`Self::description`]
-    pub fn set_description_raw(&mut self, value: [c_schar; MAX_DESCRIPTION_SIZE]) -> &mut Self {
-        self.description = value;
-        self
-    }
     ///Sets the raw value of [`Self::is_text`]
     pub fn set_is_text_raw(&mut self, value: Bool32) -> &mut Self {
         self.is_text = value;
-        self
-    }
-    ///Sets the raw value of [`Self::data_size`]
-    pub fn set_data_size_raw(&mut self, value: usize) -> &mut Self {
-        self.data_size = value;
         self
     }
     ///Sets the raw value of [`Self::data`]

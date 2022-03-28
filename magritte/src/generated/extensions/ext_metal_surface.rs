@@ -54,10 +54,10 @@ pub type CaMetalLayer = c_void;
 /// - [`flags`] is reserved for future use.
 /// - [`layer`] is a reference to a [`CaMetalLayer`] object representing a renderable surface.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_METAL_SURFACE_CREATE_INFO_EXT`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_METAL_SURFACE_CREATE_INFO_EXT`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_EXT_metal_surface`]
 /// - [`MetalSurfaceCreateFlagsEXT`]

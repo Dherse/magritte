@@ -15,7 +15,7 @@ pub const KHR_VIDEO_DECODE_QUEUE_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///# C Specifications
 ///When calling [`GetPhysicalDeviceVideoCapabilitiesKHR`] with
 ///`pVideoProfile->videoCodecOperation` specified as one of the decode
-///operation bits, the [`VideoDecodeCapabilitiesKHR`] structure **must** be
+///operation bits, the [`VideoDecodeCapabilitiesKHR`] structure  **must**  be
 ///included in the [`p_next`] chain of the [`VideoCapabilitiesKHR`]
 ///structure to retrieve capabilities specific to video decoding.The [`VideoDecodeCapabilitiesKHR`]
 /// structure is defined as:
@@ -33,8 +33,8 @@ pub const KHR_VIDEO_DECODE_QUEUE_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// - [`flags`] is a bitmask of [`VideoDecodeCapabilityFlagBitsKHR`] describing supported decoding
 ///   features.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_DECODE_CAPABILITIES_KHR`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_CAPABILITIES_KHR`
 ///# Related
 /// - [`VK_KHR_video_decode_queue`]
 /// - [`StructureType`]
@@ -154,7 +154,7 @@ impl<'lt> VideoDecodeCapabilitiesKHR<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure. All the codec
 ///   specific structures related to each frame(picture parameters, quantization matrix, etc.)
-///   **must** be chained here and pass to decode session with the function call
+///   **must**  be chained here and pass to decode session with the function call
 ///   [`CmdDecodeVideoKHR`].
 /// - [`flags`] is a bitmask of [`VideoDecodeFlagBitsKHR`] specifying decode flags, reserved for
 ///   future versions of this specification.
@@ -164,39 +164,39 @@ impl<'lt> VideoDecodeCapabilitiesKHR<'lt> {
 /// - [`coded_extent`] is the coded size of the decode operations.
 /// - [`src_buffer`] is the source buffer that holds the encoded bitstream.
 /// - [`src_buffer_offset`] is the buffer offset where the valid encoded bitstream starts in
-///   srcBuffer. It **must** meet the alignment requirement `minBitstreamBufferOffsetAlignment`
+///   srcBuffer. It  **must**  meet the alignment requirement `minBitstreamBufferOffsetAlignment`
 ///   within [`VideoCapabilitiesKHR`] queried with the [`GetPhysicalDeviceVideoCapabilitiesKHR`]
 ///   function.
 /// - [`src_buffer_range`] is the size of the srcBuffer with valid encoded bitstream, starting from
-///   [`src_buffer_offset`]. It **must** meet the alignment requirement
+///   [`src_buffer_offset`]. It  **must**  meet the alignment requirement
 ///   `minBitstreamBufferSizeAlignment` within [`VideoCapabilitiesKHR`] queried with the
 ///   [`GetPhysicalDeviceVideoCapabilitiesKHR`] function.
 /// - [`dst_picture_resource`] is the destination [Decoded Output Picture](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#decoded-output-picture)
 ///   Resource.
 /// - [`setup_reference_slot`] is `NULL` or a pointer to a [`VideoReferenceSlotKHR`] structure used
 ///   for generating a DPB reference slot and Picture Resource. `pSetupReferenceSlot->slotIndex`
-///   specifies the slot index number to use as a target for producing the DPB data.
-///   `slotIndex`**must** reference a valid entry as specified in [`VideoBeginCodingInfoKHR`] via
-///   the [`reference_slots`] within the [`CmdBeginVideoCodingKHR`] command that established the
-///   Vulkan Video Decode Context for this command.
+///   specifies the slot index number to use as a target for producing the DPB data. `slotIndex`
+///   **must**  reference a valid entry as specified in [`VideoBeginCodingInfoKHR`] via the
+///   [`reference_slots`] within the [`CmdBeginVideoCodingKHR`] command that established the Vulkan
+///   Video Decode Context for this command.
 /// - [`reference_slot_count`] is the number of the DPB Reference Pictures that will be used when
 ///   this decoding operation is executing.
 /// - [`reference_slots`] is a pointer to an array of [`VideoReferenceSlotKHR`] structures
 ///   specifying the DPB Reference pictures that will be used when this decoding operation is
 ///   executing.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_DECODE_INFO_KHR`
-/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain **must**
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_INFO_KHR`
+/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`VideoDecodeH264PictureInfoEXT`] or
 ///   [`VideoDecodeH265PictureInfoEXT`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - [`flags`]**must** be a valid combination of [`VideoDecodeFlagBitsKHR`] values
-/// - [`src_buffer`]**must** be a valid [`Buffer`] handle
-/// - [`dst_picture_resource`]**must** be a valid [`VideoPictureResourceKHR`] structure
-/// - [`setup_reference_slot`]**must** be a valid pointer to a valid [`VideoReferenceSlotKHR`]
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`flags`] **must**  be a valid combination of [`VideoDecodeFlagBitsKHR`] values
+/// - [`src_buffer`] **must**  be a valid [`Buffer`] handle
+/// - [`dst_picture_resource`] **must**  be a valid [`VideoPictureResourceKHR`] structure
+/// - [`setup_reference_slot`] **must**  be a valid pointer to a valid [`VideoReferenceSlotKHR`]
 ///   structure
-/// - If [`reference_slot_count`] is not `0`, [`reference_slots`]**must** be a valid pointer to an
+/// - If [`reference_slot_count`] is not `0`, [`reference_slots`] **must**  be a valid pointer to an
 ///   array of [`reference_slot_count`] valid [`VideoReferenceSlotKHR`] structures
 ///# Related
 /// - [`VK_KHR_video_decode_queue`]
@@ -227,7 +227,7 @@ pub struct VideoDecodeInfoKHR<'lt> {
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     ///All the codec specific structures related to each frame(picture
-    ///parameters, quantization matrix, etc.) **must** be chained here and pass to
+    ///parameters, quantization matrix, etc.)  **must**  be chained here and pass to
     ///decode session with the function call [`CmdDecodeVideoKHR`].
     p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`VideoDecodeFlagBitsKHR`] specifying
@@ -244,14 +244,14 @@ pub struct VideoDecodeInfoKHR<'lt> {
     src_buffer: Buffer,
     ///[`src_buffer_offset`] is the buffer offset where the valid encoded
     ///bitstream starts in srcBuffer.
-    ///It **must** meet the alignment requirement
+    ///It  **must**  meet the alignment requirement
     ///`minBitstreamBufferOffsetAlignment` within
     ///[`VideoCapabilitiesKHR`] queried with the
     ///[`GetPhysicalDeviceVideoCapabilitiesKHR`] function.
     src_buffer_offset: DeviceSize,
     ///[`src_buffer_range`] is the size of the srcBuffer with valid encoded
     ///bitstream, starting from [`src_buffer_offset`].
-    ///It **must** meet the alignment requirement
+    ///It  **must**  meet the alignment requirement
     ///`minBitstreamBufferSizeAlignment` within
     ///[`VideoCapabilitiesKHR`] queried with the
     ///[`GetPhysicalDeviceVideoCapabilitiesKHR`] function.
@@ -264,7 +264,7 @@ pub struct VideoDecodeInfoKHR<'lt> {
     ///reference slot and Picture Resource.
     ///`pSetupReferenceSlot->slotIndex` specifies the slot index number to
     ///use as a target for producing the DPB data.
-    ///`slotIndex`**must** reference a valid entry as specified in
+    ///`slotIndex` **must**  reference a valid entry as specified in
     ///[`VideoBeginCodingInfoKHR`] via the [`reference_slots`] within the
     ///[`CmdBeginVideoCodingKHR`] command that established the Vulkan Video
     ///Decode Context for this command.
@@ -305,10 +305,6 @@ impl<'lt> VideoDecodeInfoKHR<'lt> {
     pub fn setup_reference_slot_raw(&self) -> *const VideoReferenceSlotKHR<'lt> {
         self.setup_reference_slot
     }
-    ///Gets the raw value of [`Self::reference_slot_count`]
-    pub fn reference_slot_count_raw(&self) -> u32 {
-        self.reference_slot_count
-    }
     ///Gets the raw value of [`Self::reference_slots`]
     pub fn reference_slots_raw(&self) -> *const VideoReferenceSlotKHR<'lt> {
         self.reference_slots
@@ -321,11 +317,6 @@ impl<'lt> VideoDecodeInfoKHR<'lt> {
     ///Sets the raw value of [`Self::setup_reference_slot`]
     pub fn set_setup_reference_slot_raw(&mut self, value: *const VideoReferenceSlotKHR<'lt>) -> &mut Self {
         self.setup_reference_slot = value;
-        self
-    }
-    ///Sets the raw value of [`Self::reference_slot_count`]
-    pub fn set_reference_slot_count_raw(&mut self, value: u32) -> &mut Self {
-        self.reference_slot_count = value;
         self
     }
     ///Sets the raw value of [`Self::reference_slots`]

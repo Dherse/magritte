@@ -10,7 +10,7 @@ pub const HUAWEI_SUBPASS_SHADING_SPEC_VERSION: u32 = 2;
 pub const HUAWEI_SUBPASS_SHADING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_HUAWEI_subpass_shading");
 ///[VkSubpassShadingPipelineCreateInfoHUAWEI](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassShadingPipelineCreateInfoHUAWEI.html) - Structure specifying parameters of a newly created subpass shading pipeline
 ///# C Specifications
-///A subpass shading pipeline is a compute pipeline which **must** be called only
+///A subpass shading pipeline is a compute pipeline which  **must**  be called only
 ///in a subpass of a render pass with work dimensions specified by render area
 ///size.
 ///The subpass shading pipeline shader is a compute shader allowed to access
@@ -31,13 +31,15 @@ pub const HUAWEI_SUBPASS_SHADING_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`render_pass`] is a handle to a render pass object describing the environment in which the pipeline will be used. The pipeline **must** only be used with a render pass instance compatible with the one provided. See [Render Pass Compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-compatibility) for more information.
+/// - [`render_pass`] is a handle to a render pass object describing the environment in which the pipeline will be used. The pipeline  **must**  only be used with a render pass instance compatible with the one provided. See [Render Pass Compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-compatibility) for more information.
 /// - [`subpass`] is the index of the subpass in the render pass where this pipeline will be used.
 ///# Description
-///Valid Usage
-/// - [`subpass`]**must** be created with `VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI` bind point
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI`
+///## Valid Usage
+/// - [`subpass`] **must**  be created with `VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI` bind
+///   point
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI`
 ///# Related
 /// - [`VK_HUAWEI_subpass_shading`]
 /// - [`RenderPass`]
@@ -62,7 +64,7 @@ pub struct SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
     p_next: *mut BaseOutStructure<'lt>,
     ///[`render_pass`] is a handle to a render pass object describing the
     ///environment in which the pipeline will be used.
-    ///The pipeline **must** only be used with a render pass instance compatible
+    ///The pipeline  **must**  only be used with a render pass instance compatible
     ///with the one provided.
     ///See [Render Pass Compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-compatibility) for more
     ///information.
@@ -87,18 +89,9 @@ impl<'lt> SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::subpass`]
-    pub fn subpass_raw(&self) -> u32 {
-        self.subpass
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::subpass`]
-    pub fn set_subpass_raw(&mut self, value: u32) -> &mut Self {
-        self.subpass = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -177,16 +170,17 @@ impl<'lt> SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_subpass_shading_workgroup_size_aspect_ratio`] indicates the maximum ratio between the
 ///   width and height of the portion of the subpass shading shader workgroup size.
-///   [`max_subpass_shading_workgroup_size_aspect_ratio`]**must** be a power-of-two value, and
-///   **must** be less than or equal to max(`WorkgroupSize.x` / `WorkgroupSize.y`, `WorkgroupSize.y`
-///   / `WorkgroupSize.x`).
+///   [`max_subpass_shading_workgroup_size_aspect_ratio`] **must**  be a power-of-two value, and
+///   **must**  be less than or equal to max(`WorkgroupSize.x` / `WorkgroupSize.y`,
+///   `WorkgroupSize.y` / `WorkgroupSize.x`).
 ///# Description
 ///If the [`PhysicalDeviceSubpassShadingPropertiesHUAWEI`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI`
 ///# Related
 /// - [`VK_HUAWEI_subpass_shading`]
 /// - [`StructureType`]
@@ -211,8 +205,8 @@ pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
     ///[`max_subpass_shading_workgroup_size_aspect_ratio`] indicates the maximum
     ///ratio between the width and height of the portion of the subpass shading
     ///shader workgroup size.
-    ///[`max_subpass_shading_workgroup_size_aspect_ratio`]**must** be a power-of-two
-    ///value, and **must** be less than or equal to max(`WorkgroupSize.x` /
+    ///[`max_subpass_shading_workgroup_size_aspect_ratio`] **must**  be a power-of-two
+    ///value, and  **must**  be less than or equal to max(`WorkgroupSize.x` /
     ///`WorkgroupSize.y`, `WorkgroupSize.y` / `WorkgroupSize.x`).
     max_subpass_shading_workgroup_size_aspect_ratio: u32,
 }
@@ -231,18 +225,9 @@ impl<'lt> PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::max_subpass_shading_workgroup_size_aspect_ratio`]
-    pub fn max_subpass_shading_workgroup_size_aspect_ratio_raw(&self) -> u32 {
-        self.max_subpass_shading_workgroup_size_aspect_ratio
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_subpass_shading_workgroup_size_aspect_ratio`]
-    pub fn set_max_subpass_shading_workgroup_size_aspect_ratio_raw(&mut self, value: u32) -> &mut Self {
-        self.max_subpass_shading_workgroup_size_aspect_ratio = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -315,9 +300,10 @@ impl<'lt> PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceSubpassShadingFeaturesHUAWEI`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI`
+///[`PhysicalDeviceSubpassShadingFeaturesHUAWEI`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI`
 ///# Related
 /// - [`VK_HUAWEI_subpass_shading`]
 /// - [`Bool32`]

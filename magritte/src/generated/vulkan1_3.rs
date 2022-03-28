@@ -14,7 +14,7 @@ use std::{ffi::c_void, marker::PhantomData, os::raw::c_char};
 ///To reserve private data storage slots, add a
 ///[`DevicePrivateDataCreateInfo`] structure to the [`p_next`] chain of
 ///the [`DeviceCreateInfo`] structure.
-///Reserving slots in this manner is not strictly necessary, but doing so **may**
+///Reserving slots in this manner is not strictly necessary, but doing so  **may**
 ///improve performance.
 ///```c
 ///// Provided by VK_VERSION_1_3
@@ -34,8 +34,8 @@ use std::{ffi::c_void, marker::PhantomData, os::raw::c_char};
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`private_data_slot_request_count`] is the amount of slots to reserve.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO`
 ///# Related
 /// - [`VK_EXT_private_data`]
 /// - [`crate::vulkan1_3`]
@@ -76,18 +76,9 @@ impl<'lt> DevicePrivateDataCreateInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::private_data_slot_request_count`]
-    pub fn private_data_slot_request_count_raw(&self) -> u32 {
-        self.private_data_slot_request_count
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::private_data_slot_request_count`]
-    pub fn set_private_data_slot_request_count_raw(&mut self, value: u32) -> &mut Self {
-        self.private_data_slot_request_count = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -150,10 +141,10 @@ impl<'lt> DevicePrivateDataCreateInfo<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PRIVATE_DATA_SLOT_CREATE_INFO`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PRIVATE_DATA_SLOT_CREATE_INFO`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_EXT_private_data`]
 /// - [`crate::vulkan1_3`]
@@ -269,9 +260,10 @@ impl<'lt> PrivateDataSlotCreateInfo<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDevicePrivateDataFeatures`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES`
+///[`PhysicalDevicePrivateDataFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES`
 ///# Related
 /// - [`VK_EXT_private_data`]
 /// - [`crate::vulkan1_3`]
@@ -411,10 +403,10 @@ impl<'lt> PhysicalDevicePrivateDataFeatures<'lt> {
 /// - [`create_info`] is a pointer to a [`BufferCreateInfo`] structure containing parameters
 ///   affecting creation of the buffer to query.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS`
-/// - [`p_next`]**must** be `NULL`
-/// - [`create_info`]**must** be a valid pointer to a valid [`BufferCreateInfo`] structure
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`create_info`] **must**  be a valid pointer to a valid [`BufferCreateInfo`] structure
 ///# Related
 /// - [`VK_KHR_maintenance4`]
 /// - [`crate::vulkan1_3`]
@@ -538,28 +530,29 @@ impl<'lt> DeviceBufferMemoryRequirements<'lt> {
 ///   `VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT`, or [`create_info`]`::flags` has
 ///   `VK_IMAGE_CREATE_DISJOINT_BIT` set.
 ///# Description
-///Valid Usage
-/// - The [`create_info`]::[`p_next`] chain **must** not contain a [`ImageSwapchainCreateInfoKHR`]
+///## Valid Usage
+/// - The [`create_info`]::[`p_next`] chain  **must**  not contain a [`ImageSwapchainCreateInfoKHR`]
 ///   structure
 /// - If [`create_info`]`::format` specifies a *multi-planar* format and [`create_info`]`::flags`
-///   has `VK_IMAGE_CREATE_DISJOINT_BIT` set then [`plane_aspect`]**must** not be
+///   has `VK_IMAGE_CREATE_DISJOINT_BIT` set then [`plane_aspect`] **must**  not be
 ///   `VK_IMAGE_ASPECT_NONE_KHR`
 /// - If [`create_info`]`::flags` has `VK_IMAGE_CREATE_DISJOINT_BIT` set and if the
 ///   [`create_info`]`::tiling` is `VK_IMAGE_TILING_LINEAR` or `VK_IMAGE_TILING_OPTIMAL`, then
-///   [`plane_aspect`]**must** be a single valid *format plane* for the image (that is, for a
-///   two-plane image [`plane_aspect`]**must** be `VK_IMAGE_ASPECT_PLANE_0_BIT` or
-///   `VK_IMAGE_ASPECT_PLANE_1_BIT`, and for a three-plane image [`plane_aspect`]**must** be
+///   [`plane_aspect`] **must**  be a single valid *format plane* for the image (that is, for a
+///   two-plane image [`plane_aspect`] **must**  be `VK_IMAGE_ASPECT_PLANE_0_BIT` or
+///   `VK_IMAGE_ASPECT_PLANE_1_BIT`, and for a three-plane image [`plane_aspect`] **must**  be
 ///   `VK_IMAGE_ASPECT_PLANE_0_BIT`, `VK_IMAGE_ASPECT_PLANE_1_BIT` or `VK_IMAGE_ASPECT_PLANE_2_BIT`)
 /// - If [`create_info`]`::tiling` is `VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT`, then
-///   [`plane_aspect`]**must** be a single valid *memory plane* for the image (that is,
-///   `aspectMask`**must** specify a plane index that is less than the
+///   [`plane_aspect`] **must**  be a single valid *memory plane* for the image (that is,
+///   `aspectMask` **must**  specify a plane index that is less than the
 ///   [`DrmFormatModifierPropertiesEXT::drm_format_modifier_plane_count`] associated with the
 ///   image’s `format` and [`ImageDrmFormatModifierPropertiesEXT::drm_format_modifier`])
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS`
-/// - [`p_next`]**must** be `NULL`
-/// - [`create_info`]**must** be a valid pointer to a valid [`ImageCreateInfo`] structure
-/// - If [`plane_aspect`] is not `0`, [`plane_aspect`]**must** be a valid [`ImageAspectFlagBits`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`create_info`] **must**  be a valid pointer to a valid [`ImageCreateInfo`] structure
+/// - If [`plane_aspect`] is not `0`, [`plane_aspect`] **must**  be a valid [`ImageAspectFlagBits`]
 ///   value
 ///# Related
 /// - [`VK_KHR_maintenance4`]
@@ -708,20 +701,21 @@ impl<'lt> DeviceImageMemoryRequirements<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`inline_uniform_block`] indicates whether the implementation supports inline uniform block
-///   descriptors. If this feature is not enabled, `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`**must**
-///   not be used.
+///   descriptors. If this feature is not enabled, `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`
+///   **must**  not be used.
 /// - [`descriptor_binding_inline_uniform_block_update_after_bind`] indicates whether the
 ///   implementation supports updating inline uniform block descriptors after a set is bound. If
-///   this feature is not enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used
-///   with `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.
+///   this feature is not enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be
+///   used with `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.
 ///If the [`PhysicalDeviceInlineUniformBlockFeatures`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceInlineUniformBlockFeatures`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES`
+///[`PhysicalDeviceInlineUniformBlockFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES`
 ///# Related
 /// - [`VK_EXT_inline_uniform_block`]
 /// - [`crate::vulkan1_3`]
@@ -749,13 +743,13 @@ pub struct PhysicalDeviceInlineUniformBlockFeatures<'lt> {
     ///indicates whether the implementation supports inline uniform block
     ///descriptors.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`**must** not be used.
+    ///`VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` **must**  not be used.
     inline_uniform_block: Bool32,
     ///[`descriptor_binding_inline_uniform_block_update_after_bind`]
     ///indicates whether the implementation supports updating inline uniform
     ///block descriptors after a set is bound.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.
     descriptor_binding_inline_uniform_block_update_after_bind: Bool32,
 }
@@ -915,16 +909,16 @@ impl<'lt> PhysicalDeviceInlineUniformBlockFeatures<'lt> {
 /// - [`max_inline_uniform_block_size`] is the maximum size in bytes of an [inline uniform block](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-inlineuniformblock)
 ///   binding.
 /// - `maxPerStageDescriptorInlineUniformBlock` is the maximum number of inline uniform block
-///   bindings that **can** be accessible to a single shader stage in a pipeline layout. Descriptor
-///   bindings with a descriptor type of `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` count against
-///   this limit. Only descriptor bindings in descriptor set layouts created without the
+///   bindings that  **can**  be accessible to a single shader stage in a pipeline layout.
+///   Descriptor bindings with a descriptor type of `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` count
+///   against this limit. Only descriptor bindings in descriptor set layouts created without the
 ///   `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set count against this limit.
 /// - [`max_per_stage_descriptor_update_after_bind_inline_uniform_blocks`] is similar to
 ///   [`max_per_stage_descriptor_inline_uniform_blocks`] but counts descriptor bindings from
 ///   descriptor sets created with or without the
 ///   `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set.
 /// - [`max_descriptor_set_inline_uniform_blocks`] is the maximum number of inline uniform block
-///   bindings that **can** be included in descriptor bindings in a pipeline layout across all
+///   bindings that  **can**  be included in descriptor bindings in a pipeline layout across all
 ///   pipeline shader stages and descriptor set numbers. Descriptor bindings with a descriptor type
 ///   of `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` count against this limit. Only descriptor
 ///   bindings in descriptor set layouts created without the
@@ -937,8 +931,9 @@ impl<'lt> PhysicalDeviceInlineUniformBlockFeatures<'lt> {
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES`
 ///# Related
 /// - [`VK_EXT_inline_uniform_block`]
 /// - [`crate::vulkan1_3`]
@@ -991,59 +986,9 @@ impl<'lt> PhysicalDeviceInlineUniformBlockProperties<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::max_inline_uniform_block_size`]
-    pub fn max_inline_uniform_block_size_raw(&self) -> u32 {
-        self.max_inline_uniform_block_size
-    }
-    ///Gets the raw value of [`Self::max_per_stage_descriptor_inline_uniform_blocks`]
-    pub fn max_per_stage_descriptor_inline_uniform_blocks_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_inline_uniform_blocks
-    }
-    ///Gets the raw value of
-    /// [`Self::max_per_stage_descriptor_update_after_bind_inline_uniform_blocks`]
-    pub fn max_per_stage_descriptor_update_after_bind_inline_uniform_blocks_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_update_after_bind_inline_uniform_blocks
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_inline_uniform_blocks`]
-    pub fn max_descriptor_set_inline_uniform_blocks_raw(&self) -> u32 {
-        self.max_descriptor_set_inline_uniform_blocks
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_inline_uniform_blocks`]
-    pub fn max_descriptor_set_update_after_bind_inline_uniform_blocks_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_inline_uniform_blocks
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_inline_uniform_block_size`]
-    pub fn set_max_inline_uniform_block_size_raw(&mut self, value: u32) -> &mut Self {
-        self.max_inline_uniform_block_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_per_stage_descriptor_inline_uniform_blocks`]
-    pub fn set_max_per_stage_descriptor_inline_uniform_blocks_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_stage_descriptor_inline_uniform_blocks = value;
-        self
-    }
-    ///Sets the raw value of
-    /// [`Self::max_per_stage_descriptor_update_after_bind_inline_uniform_blocks`]
-    pub fn set_max_per_stage_descriptor_update_after_bind_inline_uniform_blocks_raw(
-        &mut self,
-        value: u32,
-    ) -> &mut Self {
-        self.max_per_stage_descriptor_update_after_bind_inline_uniform_blocks = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_inline_uniform_blocks`]
-    pub fn set_max_descriptor_set_inline_uniform_blocks_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_inline_uniform_blocks = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_inline_uniform_blocks`]
-    pub fn set_max_descriptor_set_update_after_bind_inline_uniform_blocks_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_inline_uniform_blocks = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -1177,12 +1122,13 @@ impl<'lt> PhysicalDeviceInlineUniformBlockProperties<'lt> {
 /// - [`data`] is a pointer to [`data_size`] number of bytes of data to write to the inline uniform
 ///   block.
 ///# Description
-///Valid Usage
-/// - [`data_size`]**must** be an integer multiple of `4`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK`
-/// - [`data`]**must** be a valid pointer to an array of [`data_size`] bytes
-/// - [`data_size`]**must** be greater than `0`
+///## Valid Usage
+/// - [`data_size`] **must**  be an integer multiple of `4`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK`
+/// - [`data`] **must**  be a valid pointer to an array of [`data_size`] bytes
+/// - [`data_size`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_EXT_inline_uniform_block`]
 /// - [`crate::vulkan1_3`]
@@ -1228,10 +1174,6 @@ impl<'lt> WriteDescriptorSetInlineUniformBlock<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::data_size`]
-    pub fn data_size_raw(&self) -> u32 {
-        self.data_size
-    }
     ///Gets the raw value of [`Self::data`]
     pub fn data_raw(&self) -> *const c_void {
         self.data
@@ -1239,11 +1181,6 @@ impl<'lt> WriteDescriptorSetInlineUniformBlock<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::data_size`]
-    pub fn set_data_size_raw(&mut self, value: u32) -> &mut Self {
-        self.data_size = value;
         self
     }
     ///Sets the raw value of [`Self::data`]
@@ -1309,12 +1246,12 @@ impl<'lt> WriteDescriptorSetInlineUniformBlock<'lt> {
 ///# C Specifications
 ///In order to be able to allocate descriptor sets having
 ///[inline uniform block](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-inlineuniformblock) bindings the
-///descriptor pool **must** be created with specifying the inline uniform block
+///descriptor pool  **must**  be created with specifying the inline uniform block
 ///binding capacity of the descriptor pool, in addition to the total inline
 ///uniform data capacity in bytes which is specified through a
 ///[`DescriptorPoolSize`] structure with a `descriptorType` value of
 ///`VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.
-///This **can** be done by adding a
+///This  **can**  be done by adding a
 ///[`DescriptorPoolInlineUniformBlockCreateInfo`] structure to the
 ///[`p_next`] chain of [`DescriptorPoolCreateInfo`].The
 /// [`DescriptorPoolInlineUniformBlockCreateInfo`] structure is defined
@@ -1339,8 +1276,8 @@ impl<'lt> WriteDescriptorSetInlineUniformBlock<'lt> {
 /// - [`max_inline_uniform_block_bindings`] is the number of inline uniform block bindings to
 ///   allocate.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO`
 ///# Related
 /// - [`VK_EXT_inline_uniform_block`]
 /// - [`crate::vulkan1_3`]
@@ -1382,18 +1319,9 @@ impl<'lt> DescriptorPoolInlineUniformBlockCreateInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::max_inline_uniform_block_bindings`]
-    pub fn max_inline_uniform_block_bindings_raw(&self) -> u32 {
-        self.max_inline_uniform_block_bindings
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_inline_uniform_block_bindings`]
-    pub fn set_max_inline_uniform_block_bindings_raw(&mut self, value: u32) -> &mut Self {
-        self.max_inline_uniform_block_bindings = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -1455,9 +1383,9 @@ impl<'lt> DescriptorPoolInlineUniformBlockCreateInfo<'lt> {
 ///This structure describes the following features:
 ///# Description
 /// - [`maintenance_4`] indicates that the implementation supports the following:  - The application
-///   **may** destroy a [`PipelineLayout`] object immediately after using it to create another
-///   object.  - `LocalSizeId`**can** be used as an alternative to `LocalSize` to specify the local
-///   workgroup size with specialization constants.  - Images created with identical creation
+///   **may**  destroy a [`PipelineLayout`] object immediately after using it to create another
+///   object.  - `LocalSizeId` **can**  be used as an alternative to `LocalSize` to specify the
+///   local workgroup size with specialization constants.  - Images created with identical creation
 ///   parameters will always have the same alignment requirements.  - The size memory requirement of
 ///   a buffer or image is never greater than that of another buffer or image created with a greater
 ///   or equal size.  - Push constants do not have to be initialized before they are dynamically
@@ -1468,9 +1396,10 @@ impl<'lt> DescriptorPoolInlineUniformBlockCreateInfo<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceMaintenance4Features`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES`
+///[`PhysicalDeviceMaintenance4Features`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES`
 ///# Related
 /// - [`VK_KHR_maintenance4`]
 /// - [`crate::vulkan1_3`]
@@ -1489,15 +1418,15 @@ impl<'lt> DescriptorPoolInlineUniformBlockCreateInfo<'lt> {
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance4Features<'lt> {
     _lifetime: PhantomData<&'lt ()>,
-    ///[`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES`
+    ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES`
     s_type: StructureType,
     ///No documentation found
     p_next: *mut BaseOutStructure<'lt>,
     ///[`maintenance_4`] indicates
     ///that the implementation supports the following:
-    /// - The application **may** destroy a [`PipelineLayout`] object immediately after using it to
-    ///   create another object.
-    /// - `LocalSizeId`**can** be used as an alternative to `LocalSize` to specify the local
+    /// - The application  **may**  destroy a [`PipelineLayout`] object immediately after using it
+    ///   to create another object.
+    /// - `LocalSizeId` **can**  be used as an alternative to `LocalSize` to specify the local
     ///   workgroup size with specialization constants.
     /// - Images created with identical creation parameters will always have the same alignment
     ///   requirements.
@@ -1617,13 +1546,14 @@ impl<'lt> PhysicalDeviceMaintenance4Features<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///# Description
-/// - [`max_buffer_size`] is the maximum size [`Buffer`] that **can** be created.
+/// - [`max_buffer_size`] is the maximum size [`Buffer`] that  **can**  be created.
 ///If the [`PhysicalDeviceMaintenance4Properties`] structure is included in the [`p_next`] chain of
 /// the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES`
 ///# Related
 /// - [`VK_KHR_maintenance4`]
 /// - [`crate::vulkan1_3`]
@@ -1743,7 +1673,7 @@ impl<'lt> PhysicalDeviceMaintenance4Properties<'lt> {
 /// - [`texture_compression_astc_hdr`] indicates whether all of the ASTC HDR compressed texture
 ///   formats are supported. If this feature is enabled, then the
 ///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`, `VK_FORMAT_FEATURE_BLIT_SRC_BIT` and
-///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT` features **must** be supported in
+///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT` features  **must**  be supported in
 ///   `optimalTilingFeatures` for the following formats:  - `VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK`  -
 ///   `VK_FORMAT_ASTC_5x4_SFLOAT_BLOCK`  - `VK_FORMAT_ASTC_5x5_SFLOAT_BLOCK`  -
 ///   `VK_FORMAT_ASTC_6x5_SFLOAT_BLOCK`  - `VK_FORMAT_ASTC_6x6_SFLOAT_BLOCK`  -
@@ -1753,17 +1683,18 @@ impl<'lt> PhysicalDeviceMaintenance4Properties<'lt> {
 ///   `VK_FORMAT_ASTC_10x10_SFLOAT_BLOCK`  - `VK_FORMAT_ASTC_12x10_SFLOAT_BLOCK`  -
 ///   `VK_FORMAT_ASTC_12x12_SFLOAT_BLOCK` To query for additional properties, or if the feature is
 ///   not enabled, [`GetPhysicalDeviceFormatProperties`] and
-///   [`GetPhysicalDeviceImageFormatProperties`]**can** be used to check for supported properties of
-///   individual formats as normal.
+///   [`GetPhysicalDeviceImageFormatProperties`] **can**  be used to check for supported properties
+///   of individual formats as normal.
 ///If the [`PhysicalDeviceTextureCompressionAstchdrFeatures`] structure is included in the
 /// [`p_next`] chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceTextureCompressionAstchdrFeatures`]**can** also be used in the [`p_next`] chain
-/// of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`PhysicalDeviceTextureCompressionAstchdrFeatures`] **can**  also be used in the [`p_next`]
+/// chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES`
 ///# Related
 /// - [`VK_EXT_texture_compression_astc_hdr`]
@@ -1793,7 +1724,7 @@ pub struct PhysicalDeviceTextureCompressionAstchdrFeatures<'lt> {
     ///If this feature is enabled, then the
     ///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`,
     ///`VK_FORMAT_FEATURE_BLIT_SRC_BIT` and
-    ///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT` features **must**
+    ///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT` features  **must**
     ///be supported in `optimalTilingFeatures` for the following formats:
     /// - `VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK`
     /// - `VK_FORMAT_ASTC_5x4_SFLOAT_BLOCK`
@@ -1811,7 +1742,7 @@ pub struct PhysicalDeviceTextureCompressionAstchdrFeatures<'lt> {
     /// - `VK_FORMAT_ASTC_12x12_SFLOAT_BLOCK`
     ///To query for additional properties, or if the feature is not enabled,
     ///[`GetPhysicalDeviceFormatProperties`] and
-    ///[`GetPhysicalDeviceImageFormatProperties`]**can** be used to check for
+    ///[`GetPhysicalDeviceImageFormatProperties`] **can**  be used to check for
     ///supported properties of individual formats as normal.
     texture_compression_astc_hdr: Bool32,
 }
@@ -1925,7 +1856,7 @@ impl<'lt> PhysicalDeviceTextureCompressionAstchdrFeatures<'lt> {
 /// - [`duration`] is the duration spent creating a pipeline or pipeline stage in nanoseconds.
 ///# Description
 ///If the `VK_PIPELINE_CREATION_FEEDBACK_VALID_BIT` is not set in
-///[`flags`], an implementation **must** not set any other bits in [`flags`],
+///[`flags`], an implementation  **must**  not set any other bits in [`flags`],
 ///and the values of all other [`PipelineCreationFeedback`] data members
 ///are undefined.
 ///# Related
@@ -1964,15 +1895,6 @@ impl Default for PipelineCreationFeedback {
     }
 }
 impl PipelineCreationFeedback {
-    ///Gets the raw value of [`Self::duration`]
-    pub fn duration_raw(&self) -> u64 {
-        self.duration
-    }
-    ///Sets the raw value of [`Self::duration`]
-    pub fn set_duration_raw(&mut self, value: u64) -> &mut Self {
-        self.duration = value;
-        self
-    }
     ///Gets the value of [`Self::flags`]
     pub fn flags(&self) -> PipelineCreationFeedbackFlags {
         self.flags
@@ -2002,7 +1924,7 @@ impl PipelineCreationFeedback {
 }
 ///[VkPipelineCreationFeedbackCreateInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineCreationFeedbackCreateInfo.html) - Request for feedback about the creation of a pipeline
 ///# C Specifications
-///Feedback about the creation of a particular pipeline object **can** be obtained
+///Feedback about the creation of a particular pipeline object  **can**  be obtained
 ///by adding a [`PipelineCreationFeedbackCreateInfo`] structure to the
 ///[`p_next`] chain of [`GraphicsPipelineCreateInfo`],
 ///[`RayTracingPipelineCreateInfoKHR`],
@@ -2033,10 +1955,10 @@ impl PipelineCreationFeedback {
 /// - [`pipeline_stage_creation_feedbacks`] is a pointer to an array of
 ///   [`pipeline_stage_creation_feedback_count`][`PipelineCreationFeedback`] structures.
 ///# Description
-///An implementation **should** write pipeline creation feedback to
-///[`pipeline_creation_feedback`] and **may** write pipeline stage creation
+///An implementation  **should**  write pipeline creation feedback to
+///[`pipeline_creation_feedback`] and  **may**  write pipeline stage creation
 ///feedback to [`pipeline_stage_creation_feedbacks`].
-///An implementation **must** set or clear the
+///An implementation  **must**  set or clear the
 ///`VK_PIPELINE_CREATION_FEEDBACK_VALID_BIT` in
 ///[`PipelineCreationFeedback::flags`] for
 ///[`pipeline_creation_feedback`] and every element of
@@ -2052,25 +1974,27 @@ impl PipelineCreationFeedback {
 ///[`GraphicsPipelineCreateInfo::stages`].
 ///When chained to [`ComputePipelineCreateInfo`], the first element of
 ///[`pipeline_stage_creation_feedbacks`] corresponds to
-///[`ComputePipelineCreateInfo::stage`].Valid Usage
+///[`ComputePipelineCreateInfo::stage`].
+///## Valid Usage
 /// - When chained to [`GraphicsPipelineCreateInfo`],
-///   [`PipelineCreationFeedback`]::[`pipeline_stage_creation_feedback_count`]**must** equal
+///   [`PipelineCreationFeedback`]::[`pipeline_stage_creation_feedback_count`] **must**  equal
 ///   [`GraphicsPipelineCreateInfo::stage_count`]
 /// - When chained to [`ComputePipelineCreateInfo`],
-///   [`PipelineCreationFeedback`]::[`pipeline_stage_creation_feedback_count`]**must** equal 1
+///   [`PipelineCreationFeedback`]::[`pipeline_stage_creation_feedback_count`] **must**  equal 1
 /// - When chained to [`RayTracingPipelineCreateInfoKHR`],
-///   [`PipelineCreationFeedback`]::[`pipeline_stage_creation_feedback_count`]**must** equal
+///   [`PipelineCreationFeedback`]::[`pipeline_stage_creation_feedback_count`] **must**  equal
 ///   [`RayTracingPipelineCreateInfoKHR::stage_count`]
 /// - When chained to [`RayTracingPipelineCreateInfoNV`],
-///   [`PipelineCreationFeedback`]::[`pipeline_stage_creation_feedback_count`]**must** equal
+///   [`PipelineCreationFeedback`]::[`pipeline_stage_creation_feedback_count`] **must**  equal
 ///   [`RayTracingPipelineCreateInfoNV::stage_count`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_CREATION_FEEDBACK_CREATE_INFO`
-/// - [`pipeline_creation_feedback`]**must** be a valid pointer to a [`PipelineCreationFeedback`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_CREATION_FEEDBACK_CREATE_INFO`
+/// - [`pipeline_creation_feedback`] **must**  be a valid pointer to a [`PipelineCreationFeedback`]
 ///   structure
-/// - [`pipeline_stage_creation_feedbacks`]**must** be a valid pointer to an array of
+/// - [`pipeline_stage_creation_feedbacks`] **must**  be a valid pointer to an array of
 ///   [`pipeline_stage_creation_feedback_count`][`PipelineCreationFeedback`] structures
-/// - [`pipeline_stage_creation_feedback_count`]**must** be greater than `0`
+/// - [`pipeline_stage_creation_feedback_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_EXT_pipeline_creation_feedback`]
 /// - [`crate::vulkan1_3`]
@@ -2129,10 +2053,6 @@ impl<'lt> PipelineCreationFeedbackCreateInfo<'lt> {
     pub fn pipeline_creation_feedback_raw(&self) -> &*mut PipelineCreationFeedback {
         &self.pipeline_creation_feedback
     }
-    ///Gets the raw value of [`Self::pipeline_stage_creation_feedback_count`]
-    pub fn pipeline_stage_creation_feedback_count_raw(&self) -> u32 {
-        self.pipeline_stage_creation_feedback_count
-    }
     ///Gets the raw value of [`Self::pipeline_stage_creation_feedbacks`]
     pub fn pipeline_stage_creation_feedbacks_raw(&self) -> &*mut PipelineCreationFeedback {
         &self.pipeline_stage_creation_feedbacks
@@ -2145,11 +2065,6 @@ impl<'lt> PipelineCreationFeedbackCreateInfo<'lt> {
     ///Sets the raw value of [`Self::pipeline_creation_feedback`]
     pub fn set_pipeline_creation_feedback_raw(&mut self, value: *mut PipelineCreationFeedback) -> &mut Self {
         self.pipeline_creation_feedback = value;
-        self
-    }
-    ///Sets the raw value of [`Self::pipeline_stage_creation_feedback_count`]
-    pub fn set_pipeline_stage_creation_feedback_count_raw(&mut self, value: u32) -> &mut Self {
-        self.pipeline_stage_creation_feedback_count = value;
         self
     }
     ///Sets the raw value of [`Self::pipeline_stage_creation_feedbacks`]
@@ -2280,10 +2195,11 @@ impl<'lt> PipelineCreationFeedbackCreateInfo<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceShaderDemoteToHelperInvocationFeatures`]**can** also be used in the [`p_next`]
+///[`PhysicalDeviceShaderDemoteToHelperInvocationFeatures`] **can**  also be used in the [`p_next`]
 /// chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES`
 ///# Related
 /// - [`VK_EXT_shader_demote_to_helper_invocation`]
@@ -2428,14 +2344,14 @@ impl<'lt> PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///# Description
 /// - [`storage_texel_buffer_offset_alignment_bytes`] is a byte alignment that is sufficient for a
-///   storage texel buffer of any format. The value **must** be a power of two.
+///   storage texel buffer of any format. The value  **must**  be a power of two.
 /// - [`storage_texel_buffer_offset_single_texel_alignment`] indicates whether single texel
-///   alignment is sufficient for a storage texel buffer of any format. The value **must** be a
+///   alignment is sufficient for a storage texel buffer of any format. The value  **must**  be a
 ///   power of two.
 /// - [`uniform_texel_buffer_offset_alignment_bytes`] is a byte alignment that is sufficient for a
-///   uniform texel buffer of any format. The value **must** be a power of two.
+///   uniform texel buffer of any format. The value  **must**  be a power of two.
 /// - [`uniform_texel_buffer_offset_single_texel_alignment`] indicates whether single texel
-///   alignment is sufficient for a uniform texel buffer of any format. The value **must** be a
+///   alignment is sufficient for a uniform texel buffer of any format. The value  **must**  be a
 ///   power of two.
 ///If the [`PhysicalDeviceTexelBufferAlignmentProperties`] structure is included in the [`p_next`]
 /// chain of the
@@ -2443,18 +2359,19 @@ impl<'lt> PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'lt> {
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
 ///corresponding implementation-dependent property.If the single texel alignment property is
 /// [`FALSE`], then the buffer
-///view’s offset **must** be aligned to the corresponding byte alignment value.
+///view’s offset  **must**  be aligned to the corresponding byte alignment value.
 ///If the single texel alignment property is [`TRUE`], then the buffer
-///view’s offset **must** be aligned to the lesser of the corresponding byte
+///view’s offset  **must**  be aligned to the lesser of the corresponding byte
 ///alignment value or the size of a single texel, based on
 ///[`BufferViewCreateInfo::format`].
 ///If the size of a single texel is a multiple of three bytes, then the size of
-///a single component of the format is used instead.These limits **must** not advertise a larger
+///a single component of the format is used instead.These limits  **must**  not advertise a larger
 /// alignment than the
 ///[required](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-required) maximum minimum value of
 ///[`PhysicalDeviceLimits::min_texel_buffer_offset_alignment`], for any
-///format that supports use as a texel buffer.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES`
+///format that supports use as a texel buffer.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES`
 ///# Related
 /// - [`VK_EXT_texel_buffer_alignment`]
 /// - [`crate::vulkan1_3`]
@@ -2688,9 +2605,10 @@ impl<'lt> PhysicalDeviceTexelBufferAlignmentProperties<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceSubgroupSizeControlFeatures`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES`
+///[`PhysicalDeviceSubgroupSizeControlFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES`
 ///# Related
 /// - [`VK_EXT_subgroup_size_control`]
 /// - [`crate::vulkan1_3`]
@@ -2889,8 +2807,9 @@ impl<'lt> PhysicalDeviceSubgroupSizeControlFeatures<'lt> {
 ///corresponding implementation-dependent property.If
 /// [`PhysicalDeviceSubgroupProperties::supported_operations`]
 ///includes [`VK_SUBGROUP_FEATURE_QUAD_BIT`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-subgroup-quad),
-///[`min_subgroup_size`]**must** be greater than or equal to 4.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES`
+///[`min_subgroup_size`] **must**  be greater than or equal to 4.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES`
 ///# Related
 /// - [`VK_EXT_subgroup_size_control`]
 /// - [`crate::vulkan1_3`]
@@ -2941,36 +2860,9 @@ impl<'lt> PhysicalDeviceSubgroupSizeControlProperties<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::min_subgroup_size`]
-    pub fn min_subgroup_size_raw(&self) -> u32 {
-        self.min_subgroup_size
-    }
-    ///Gets the raw value of [`Self::max_subgroup_size`]
-    pub fn max_subgroup_size_raw(&self) -> u32 {
-        self.max_subgroup_size
-    }
-    ///Gets the raw value of [`Self::max_compute_workgroup_subgroups`]
-    pub fn max_compute_workgroup_subgroups_raw(&self) -> u32 {
-        self.max_compute_workgroup_subgroups
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_subgroup_size`]
-    pub fn set_min_subgroup_size_raw(&mut self, value: u32) -> &mut Self {
-        self.min_subgroup_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_subgroup_size`]
-    pub fn set_max_subgroup_size_raw(&mut self, value: u32) -> &mut Self {
-        self.max_subgroup_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_compute_workgroup_subgroups`]
-    pub fn set_max_compute_workgroup_subgroups_raw(&mut self, value: u32) -> &mut Self {
-        self.max_compute_workgroup_subgroups = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -3085,12 +2977,14 @@ impl<'lt> PhysicalDeviceSubgroupSizeControlProperties<'lt> {
 ///If a [`PipelineShaderStageRequiredSubgroupSizeCreateInfo`] structure is
 ///included in the [`p_next`] chain of [`PipelineShaderStageCreateInfo`],
 ///it specifies that the pipeline shader stage being compiled has a required
-///subgroup size.Valid Usage
-/// - [`required_subgroup_size`]**must** be a power-of-two integer
-/// - [`required_subgroup_size`]**must** be greater or equal to [minSubgroupSize](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minSubgroupSize)
-/// - [`required_subgroup_size`]**must** be less than or equal to [maxSubgroupSize](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxSubgroupSize)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///subgroup size.
+///## Valid Usage
+/// - [`required_subgroup_size`] **must**  be a power-of-two integer
+/// - [`required_subgroup_size`] **must**  be greater or equal to [minSubgroupSize](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minSubgroupSize)
+/// - [`required_subgroup_size`] **must**  be less than or equal to [maxSubgroupSize](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxSubgroupSize)
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO`
 ///# Related
 /// - [`VK_EXT_subgroup_size_control`]
@@ -3134,18 +3028,9 @@ impl<'lt> PipelineShaderStageRequiredSubgroupSizeCreateInfo<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::required_subgroup_size`]
-    pub fn required_subgroup_size_raw(&self) -> u32 {
-        self.required_subgroup_size
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::required_subgroup_size`]
-    pub fn set_required_subgroup_size_raw(&mut self, value: u32) -> &mut Self {
-        self.required_subgroup_size = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -3219,19 +3104,20 @@ impl<'lt> PipelineShaderStageRequiredSubgroupSizeCreateInfo<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`pipeline_creation_cache_control`] indicates that the implementation supports:  - The
-///   following **can** be used in `Vk*PipelineCreateInfo`::`flags`:   -
+///   following  **can**  be used in `Vk*PipelineCreateInfo`::`flags`:   -
 ///   `VK_PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT`   -
-///   `VK_PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT`   - The following **can** be used in
+///   `VK_PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT`   - The following  **can**  be used in
 ///   [`PipelineCacheCreateInfo::flags`]:   - `VK_PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT`
 ///If the [`PhysicalDevicePipelineCreationCacheControlFeatures`] structure is included in the
 /// [`p_next`] chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDevicePipelineCreationCacheControlFeatures`]**can** also be used in the [`p_next`]
+///[`PhysicalDevicePipelineCreationCacheControlFeatures`] **can**  also be used in the [`p_next`]
 /// chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES`
 ///# Related
 /// - [`VK_EXT_pipeline_creation_cache_control`]
@@ -3258,10 +3144,10 @@ pub struct PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
     p_next: *mut BaseOutStructure<'lt>,
     ///[`pipeline_creation_cache_control`] indicates that the implementation
     ///supports:
-    /// - The following **can** be used in `Vk*PipelineCreateInfo`::`flags`:   -
+    /// - The following  **can**  be used in `Vk*PipelineCreateInfo`::`flags`:   -
     ///   `VK_PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT`   -
     ///   `VK_PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT`
-    /// - The following **can** be used in [`PipelineCacheCreateInfo`]::`flags`:   -
+    /// - The following  **can**  be used in [`PipelineCacheCreateInfo`]::`flags`:   -
     ///   `VK_PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT`
     pipeline_creation_cache_control: Bool32,
 }
@@ -3390,16 +3276,16 @@ impl<'lt> PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
 ///   will be replaced as described in [Texel Replacement](), with either (0,0,1) or (0,0,0) values
 ///   inserted for missing G, B, or A components based on the format.
 /// - [`inline_uniform_block`] indicates whether the implementation supports inline uniform block
-///   descriptors. If this feature is not enabled, `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`**must**
-///   not be used.
+///   descriptors. If this feature is not enabled, `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`
+///   **must**  not be used.
 /// - [`descriptor_binding_inline_uniform_block_update_after_bind`] indicates whether the
 ///   implementation supports updating inline uniform block descriptors after a set is bound. If
-///   this feature is not enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used
-///   with `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.
+///   this feature is not enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be
+///   used with `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.
 /// - [`pipeline_creation_cache_control`] indicates that the implementation supports:  - The
-///   following **can** be used in `Vk*PipelineCreateInfo`::`flags`:   -
+///   following  **can**  be used in `Vk*PipelineCreateInfo`::`flags`:   -
 ///   `VK_PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT`   -
-///   `VK_PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT`   - The following **can** be used in
+///   `VK_PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT`   - The following  **can**  be used in
 ///   [`PipelineCacheCreateInfo::flags`]:   - `VK_PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT`
 /// - [`private_data`] indicates whether the implementation supports private data. See [Private
 ///   Data]().
@@ -3418,7 +3304,7 @@ impl<'lt> PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
 /// - [`texture_compression_astc_hdr`] indicates whether all of the ASTC HDR compressed texture
 ///   formats are supported. If this feature is enabled, then the
 ///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`, `VK_FORMAT_FEATURE_BLIT_SRC_BIT` and
-///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT` features **must** be supported in
+///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT` features  **must**  be supported in
 ///   `optimalTilingFeatures` for the following formats:  - `VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK`  -
 ///   `VK_FORMAT_ASTC_5x4_SFLOAT_BLOCK`  - `VK_FORMAT_ASTC_5x5_SFLOAT_BLOCK`  -
 ///   `VK_FORMAT_ASTC_6x5_SFLOAT_BLOCK`  - `VK_FORMAT_ASTC_6x6_SFLOAT_BLOCK`  -
@@ -3428,19 +3314,19 @@ impl<'lt> PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
 ///   `VK_FORMAT_ASTC_10x10_SFLOAT_BLOCK`  - `VK_FORMAT_ASTC_12x10_SFLOAT_BLOCK`  -
 ///   `VK_FORMAT_ASTC_12x12_SFLOAT_BLOCK` To query for additional properties, or if the feature is
 ///   not enabled, [`GetPhysicalDeviceFormatProperties`] and
-///   [`GetPhysicalDeviceImageFormatProperties`]**can** be used to check for supported properties of
-///   individual formats as normal.
+///   [`GetPhysicalDeviceImageFormatProperties`] **can**  be used to check for supported properties
+///   of individual formats as normal.
 /// - [`shader_zero_initialize_workgroup_memory`] specifies whether the implementation supports
 ///   initializing a variable in Workgroup storage class.
 /// - [`dynamic_rendering`] specifies that the implementation supports dynamic render pass instances
 ///   using the [`CmdBeginRendering`] command.
-/// - [`shader_integer_dot_product`] specifies whether shader modules **can** declare the
+/// - [`shader_integer_dot_product`] specifies whether shader modules  **can**  declare the
 ///   `DotProductInputAllKHR`, `DotProductInput4x8BitKHR`, `DotProductInput4x8BitPackedKHR` and
 ///   `DotProductKHR` capabilities.
 /// - [`maintenance_4`] indicates that the implementation supports the following:  - The application
-///   **may** destroy a [`PipelineLayout`] object immediately after using it to create another
-///   object.  - `LocalSizeId`**can** be used as an alternative to `LocalSize` to specify the local
-///   workgroup size with specialization constants.  - Images created with identical creation
+///   **may**  destroy a [`PipelineLayout`] object immediately after using it to create another
+///   object.  - `LocalSizeId` **can**  be used as an alternative to `LocalSize` to specify the
+///   local workgroup size with specialization constants.  - Images created with identical creation
 ///   parameters will always have the same alignment requirements.  - The size memory requirement of
 ///   a buffer or image is never greater than that of another buffer or image created with a greater
 ///   or equal size.  - Push constants do not have to be initialized before they are dynamically
@@ -3450,9 +3336,10 @@ impl<'lt> PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceVulkan13Features`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_FEATURES`
+///[`PhysicalDeviceVulkan13Features`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_FEATURES`
 ///# Related
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
@@ -3488,21 +3375,21 @@ pub struct PhysicalDeviceVulkan13Features<'lt> {
     ///indicates whether the implementation supports inline uniform block
     ///descriptors.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`**must** not be used.
+    ///`VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` **must**  not be used.
     inline_uniform_block: Bool32,
     ///[`descriptor_binding_inline_uniform_block_update_after_bind`]
     ///indicates whether the implementation supports updating inline uniform
     ///block descriptors after a set is bound.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.
     descriptor_binding_inline_uniform_block_update_after_bind: Bool32,
     ///[`pipeline_creation_cache_control`] indicates that the implementation
     ///supports:
-    /// - The following **can** be used in `Vk*PipelineCreateInfo`::`flags`:   -
+    /// - The following  **can**  be used in `Vk*PipelineCreateInfo`::`flags`:   -
     ///   `VK_PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT`   -
     ///   `VK_PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT`
-    /// - The following **can** be used in [`PipelineCacheCreateInfo`]::`flags`:   -
+    /// - The following  **can**  be used in [`PipelineCacheCreateInfo`]::`flags`:   -
     ///   `VK_PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT`
     pipeline_creation_cache_control: Bool32,
     ///[`private_data`] indicates
@@ -3536,7 +3423,7 @@ pub struct PhysicalDeviceVulkan13Features<'lt> {
     ///If this feature is enabled, then the
     ///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`,
     ///`VK_FORMAT_FEATURE_BLIT_SRC_BIT` and
-    ///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT` features **must**
+    ///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT` features  **must**
     ///be supported in `optimalTilingFeatures` for the following formats:
     /// - `VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK`
     /// - `VK_FORMAT_ASTC_5x4_SFLOAT_BLOCK`
@@ -3554,7 +3441,7 @@ pub struct PhysicalDeviceVulkan13Features<'lt> {
     /// - `VK_FORMAT_ASTC_12x12_SFLOAT_BLOCK`
     ///To query for additional properties, or if the feature is not enabled,
     ///[`GetPhysicalDeviceFormatProperties`] and
-    ///[`GetPhysicalDeviceImageFormatProperties`]**can** be used to check for
+    ///[`GetPhysicalDeviceImageFormatProperties`] **can**  be used to check for
     ///supported properties of individual formats as normal.
     texture_compression_astc_hdr: Bool32,
     ///[`shader_zero_initialize_workgroup_memory`] specifies whether the
@@ -3565,15 +3452,15 @@ pub struct PhysicalDeviceVulkan13Features<'lt> {
     ///specifies that the implementation supports dynamic render pass instances
     ///using the [`CmdBeginRendering`] command.
     dynamic_rendering: Bool32,
-    ///[`shader_integer_dot_product`] specifies whether shader modules **can**
+    ///[`shader_integer_dot_product`] specifies whether shader modules  **can**
     ///declare the `DotProductInputAllKHR`, `DotProductInput4x8BitKHR`,
     ///`DotProductInput4x8BitPackedKHR` and `DotProductKHR` capabilities.
     shader_integer_dot_product: Bool32,
     ///[`maintenance_4`] indicates
     ///that the implementation supports the following:
-    /// - The application **may** destroy a [`PipelineLayout`] object immediately after using it to
-    ///   create another object.
-    /// - `LocalSizeId`**can** be used as an alternative to `LocalSize` to specify the local
+    /// - The application  **may**  destroy a [`PipelineLayout`] object immediately after using it
+    ///   to create another object.
+    /// - `LocalSizeId` **can**  be used as an alternative to `LocalSize` to specify the local
     ///   workgroup size with specialization constants.
     /// - Images created with identical creation parameters will always have the same alignment
     ///   requirements.
@@ -4269,16 +4156,16 @@ impl<'lt> PhysicalDeviceVulkan13Features<'lt> {
 /// - [`max_inline_uniform_block_size`] is the maximum size in bytes of an [inline uniform block]()
 ///   binding.
 /// - `maxPerStageDescriptorInlineUniformBlock` is the maximum number of inline uniform block
-///   bindings that **can** be accessible to a single shader stage in a pipeline layout. Descriptor
-///   bindings with a descriptor type of `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` count against
-///   this limit. Only descriptor bindings in descriptor set layouts created without the
+///   bindings that  **can**  be accessible to a single shader stage in a pipeline layout.
+///   Descriptor bindings with a descriptor type of `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` count
+///   against this limit. Only descriptor bindings in descriptor set layouts created without the
 ///   `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set count against this limit.
 /// - [`max_per_stage_descriptor_update_after_bind_inline_uniform_blocks`] is similar to
 ///   [`max_per_stage_descriptor_inline_uniform_blocks`] but counts descriptor bindings from
 ///   descriptor sets created with or without the
 ///   `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set.
 /// - [`max_descriptor_set_inline_uniform_blocks`] is the maximum number of inline uniform block
-///   bindings that **can** be included in descriptor bindings in a pipeline layout across all
+///   bindings that  **can**  be included in descriptor bindings in a pipeline layout across all
 ///   pipeline shader stages and descriptor set numbers. Descriptor bindings with a descriptor type
 ///   of `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` count against this limit. Only descriptor
 ///   bindings in descriptor set layouts created without the
@@ -4288,8 +4175,8 @@ impl<'lt> PhysicalDeviceVulkan13Features<'lt> {
 ///   sets created with or without the `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT`
 ///   bit set.
 /// - [`max_inline_uniform_total_size`] is the maximum total size in bytes of all inline uniform
-///   block bindings, across all pipeline shader stages and descriptor set numbers, that **can** be
-///   included in a pipeline layout. Descriptor bindings with a descriptor type of
+///   block bindings, across all pipeline shader stages and descriptor set numbers, that  **can**
+///   be included in a pipeline layout. Descriptor bindings with a descriptor type of
 ///   `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` count against this limit.
 /// - [`integer_dot_product_8_bit_unsigned_accelerated`] is a boolean that will be [`TRUE`] if the
 ///   support for 8-bit unsigned dot product operations using the `OpUDotKHR` SPIR-V instruction is
@@ -4390,25 +4277,26 @@ impl<'lt> PhysicalDeviceVulkan13Features<'lt> {
 ///   saturating dot product operations using the `OpSUDotAccSatKHR` SPIR-V instruction is
 ///   accelerated [as defined below]().
 /// - [`storage_texel_buffer_offset_alignment_bytes`] is a byte alignment that is sufficient for a
-///   storage texel buffer of any format. The value **must** be a power of two.
+///   storage texel buffer of any format. The value  **must**  be a power of two.
 /// - [`storage_texel_buffer_offset_single_texel_alignment`] indicates whether single texel
-///   alignment is sufficient for a storage texel buffer of any format. The value **must** be a
+///   alignment is sufficient for a storage texel buffer of any format. The value  **must**  be a
 ///   power of two.
 /// - [`uniform_texel_buffer_offset_alignment_bytes`] is a byte alignment that is sufficient for a
-///   uniform texel buffer of any format. The value **must** be a power of two.
+///   uniform texel buffer of any format. The value  **must**  be a power of two.
 /// - [`uniform_texel_buffer_offset_single_texel_alignment`] indicates whether single texel
-///   alignment is sufficient for a uniform texel buffer of any format. The value **must** be a
+///   alignment is sufficient for a uniform texel buffer of any format. The value  **must**  be a
 ///   power of two.
-/// - [`max_buffer_size`] is the maximum size [`Buffer`] that **can** be created.
+/// - [`max_buffer_size`] is the maximum size [`Buffer`] that  **can**  be created.
 ///If the [`PhysicalDeviceVulkan13Properties`] structure is included in the [`p_next`] chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
 ///corresponding implementation-dependent property.These properties correspond to Vulkan 1.3
-/// functionality.The members of [`PhysicalDeviceVulkan13Properties`]**must** have the same
+/// functionality.The members of [`PhysicalDeviceVulkan13Properties`] **must**  have the same
 ///values as the corresponding members of
 ///[`PhysicalDeviceInlineUniformBlockProperties`] and
-///[`PhysicalDeviceSubgroupSizeControlProperties`].Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_PROPERTIES`
+///[`PhysicalDeviceSubgroupSizeControlProperties`].
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_PROPERTIES`
 ///# Related
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
@@ -4583,43 +4471,6 @@ impl<'lt> PhysicalDeviceVulkan13Properties<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::min_subgroup_size`]
-    pub fn min_subgroup_size_raw(&self) -> u32 {
-        self.min_subgroup_size
-    }
-    ///Gets the raw value of [`Self::max_subgroup_size`]
-    pub fn max_subgroup_size_raw(&self) -> u32 {
-        self.max_subgroup_size
-    }
-    ///Gets the raw value of [`Self::max_compute_workgroup_subgroups`]
-    pub fn max_compute_workgroup_subgroups_raw(&self) -> u32 {
-        self.max_compute_workgroup_subgroups
-    }
-    ///Gets the raw value of [`Self::max_inline_uniform_block_size`]
-    pub fn max_inline_uniform_block_size_raw(&self) -> u32 {
-        self.max_inline_uniform_block_size
-    }
-    ///Gets the raw value of [`Self::max_per_stage_descriptor_inline_uniform_blocks`]
-    pub fn max_per_stage_descriptor_inline_uniform_blocks_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_inline_uniform_blocks
-    }
-    ///Gets the raw value of
-    /// [`Self::max_per_stage_descriptor_update_after_bind_inline_uniform_blocks`]
-    pub fn max_per_stage_descriptor_update_after_bind_inline_uniform_blocks_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_update_after_bind_inline_uniform_blocks
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_inline_uniform_blocks`]
-    pub fn max_descriptor_set_inline_uniform_blocks_raw(&self) -> u32 {
-        self.max_descriptor_set_inline_uniform_blocks
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_inline_uniform_blocks`]
-    pub fn max_descriptor_set_update_after_bind_inline_uniform_blocks_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_inline_uniform_blocks
-    }
-    ///Gets the raw value of [`Self::max_inline_uniform_total_size`]
-    pub fn max_inline_uniform_total_size_raw(&self) -> u32 {
-        self.max_inline_uniform_total_size
-    }
     ///Gets the raw value of [`Self::integer_dot_product_8_bit_unsigned_accelerated`]
     pub fn integer_dot_product_8_bit_unsigned_accelerated_raw(&self) -> Bool32 {
         self.integer_dot_product_8_bit_unsigned_accelerated
@@ -4769,55 +4620,6 @@ impl<'lt> PhysicalDeviceVulkan13Properties<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_subgroup_size`]
-    pub fn set_min_subgroup_size_raw(&mut self, value: u32) -> &mut Self {
-        self.min_subgroup_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_subgroup_size`]
-    pub fn set_max_subgroup_size_raw(&mut self, value: u32) -> &mut Self {
-        self.max_subgroup_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_compute_workgroup_subgroups`]
-    pub fn set_max_compute_workgroup_subgroups_raw(&mut self, value: u32) -> &mut Self {
-        self.max_compute_workgroup_subgroups = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_inline_uniform_block_size`]
-    pub fn set_max_inline_uniform_block_size_raw(&mut self, value: u32) -> &mut Self {
-        self.max_inline_uniform_block_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_per_stage_descriptor_inline_uniform_blocks`]
-    pub fn set_max_per_stage_descriptor_inline_uniform_blocks_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_stage_descriptor_inline_uniform_blocks = value;
-        self
-    }
-    ///Sets the raw value of
-    /// [`Self::max_per_stage_descriptor_update_after_bind_inline_uniform_blocks`]
-    pub fn set_max_per_stage_descriptor_update_after_bind_inline_uniform_blocks_raw(
-        &mut self,
-        value: u32,
-    ) -> &mut Self {
-        self.max_per_stage_descriptor_update_after_bind_inline_uniform_blocks = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_inline_uniform_blocks`]
-    pub fn set_max_descriptor_set_inline_uniform_blocks_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_inline_uniform_blocks = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_inline_uniform_blocks`]
-    pub fn set_max_descriptor_set_update_after_bind_inline_uniform_blocks_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_inline_uniform_blocks = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_inline_uniform_total_size`]
-    pub fn set_max_inline_uniform_total_size_raw(&mut self, value: u32) -> &mut Self {
-        self.max_inline_uniform_total_size = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_8_bit_unsigned_accelerated`]
@@ -6315,11 +6117,11 @@ impl<'lt> PhysicalDeviceVulkan13Properties<'lt> {
 ///   supported by the tool.
 /// - [`description`] is a null-terminated UTF-8 string containing a description of the tool.
 /// - [`layer`] is a null-terminated UTF-8 string containing the name of the layer implementing the
-///   tool, if the tool is implemented in a layer - otherwise it **may** be an empty string.
+///   tool, if the tool is implemented in a layer - otherwise it  **may**  be an empty string.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_EXT_tooling_info`]
 /// - [`crate::vulkan1_3`]
@@ -6359,7 +6161,7 @@ pub struct PhysicalDeviceToolProperties<'lt> {
     description: [c_schar; MAX_DESCRIPTION_SIZE],
     ///[`layer`] is a null-terminated UTF-8 string containing the name of the
     ///layer implementing the tool, if the tool is implemented in a layer -
-    ///otherwise it **may** be an empty string.
+    ///otherwise it  **may**  be an empty string.
     layer: [c_schar; MAX_EXTENSION_NAME_SIZE],
 }
 impl<'lt> Default for PhysicalDeviceToolProperties<'lt> {
@@ -6381,45 +6183,9 @@ impl<'lt> PhysicalDeviceToolProperties<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::name`]
-    pub fn name_raw(&self) -> [c_schar; MAX_EXTENSION_NAME_SIZE] {
-        self.name
-    }
-    ///Gets the raw value of [`Self::version`]
-    pub fn version_raw(&self) -> [c_schar; MAX_EXTENSION_NAME_SIZE] {
-        self.version
-    }
-    ///Gets the raw value of [`Self::description`]
-    pub fn description_raw(&self) -> [c_schar; MAX_DESCRIPTION_SIZE] {
-        self.description
-    }
-    ///Gets the raw value of [`Self::layer`]
-    pub fn layer_raw(&self) -> [c_schar; MAX_EXTENSION_NAME_SIZE] {
-        self.layer
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::name`]
-    pub fn set_name_raw(&mut self, value: [c_schar; MAX_EXTENSION_NAME_SIZE]) -> &mut Self {
-        self.name = value;
-        self
-    }
-    ///Sets the raw value of [`Self::version`]
-    pub fn set_version_raw(&mut self, value: [c_schar; MAX_EXTENSION_NAME_SIZE]) -> &mut Self {
-        self.version = value;
-        self
-    }
-    ///Sets the raw value of [`Self::description`]
-    pub fn set_description_raw(&mut self, value: [c_schar; MAX_DESCRIPTION_SIZE]) -> &mut Self {
-        self.description = value;
-        self
-    }
-    ///Sets the raw value of [`Self::layer`]
-    pub fn set_layer_raw(&mut self, value: [c_schar; MAX_EXTENSION_NAME_SIZE]) -> &mut Self {
-        self.layer = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -6551,10 +6317,11 @@ impl<'lt> PhysicalDeviceToolProperties<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures`]**can** also be used in the [`p_next`]
+///[`PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures`] **can**  also be used in the [`p_next`]
 /// chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES`
 ///# Related
 /// - [`VK_KHR_zero_initialize_workgroup_memory`]
@@ -6701,9 +6468,10 @@ impl<'lt> PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceImageRobustnessFeatures`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES`
+///[`PhysicalDeviceImageRobustnessFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES`
 ///# Related
 /// - [`VK_EXT_image_robustness`]
 /// - [`crate::vulkan1_3`]
@@ -6851,11 +6619,12 @@ impl<'lt> PhysicalDeviceImageRobustnessFeatures<'lt> {
 /// - [`dst_offset`] is the starting offset in bytes from the start of `dstBuffer`.
 /// - [`size`] is the number of bytes to copy.
 ///# Description
-///Valid Usage
-/// - The [`size`]**must** be greater than `0`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BUFFER_COPY_2`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage
+/// - The [`size`] **must**  be greater than `0`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COPY_2`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
@@ -7006,15 +6775,16 @@ impl<'lt> BufferCopy2<'lt> {
 ///   the sub-regions of the source and destination image data.
 /// - [`extent`] is the size in texels of the image to copy in `width`, `height` and `depth`.
 ///# Description
-///Valid Usage
+///## Valid Usage
 /// - The number of slices of the [`extent`] (for 3D) or layers of the [`src_subresource`] (for
-///   non-3D) **must** match the number of slices of the [`extent`] (for 3D) or layers of the
+///   non-3D)  **must**  match the number of slices of the [`extent`] (for 3D) or layers of the
 ///   [`dst_subresource`] (for non-3D)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMAGE_COPY_2`
-/// - [`p_next`]**must** be `NULL`
-/// - [`src_subresource`]**must** be a valid [`ImageSubresourceLayers`] structure
-/// - [`dst_subresource`]**must** be a valid [`ImageSubresourceLayers`] structure
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_COPY_2`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`src_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
+/// - [`dst_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 ///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
@@ -7203,16 +6973,18 @@ impl<'lt> ImageCopy2<'lt> {
 ///   of the destination region within [`dst_subresource`].
 ///# Description
 ///For each element of the `pRegions` array, a blit operation is performed
-///for the specified source and destination regions.Valid Usage
-/// - The `aspectMask` member of [`src_subresource`] and [`dst_subresource`]**must** match
-/// - The `layerCount` member of [`src_subresource`] and [`dst_subresource`]**must** match
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMAGE_BLIT_2`
-/// - [`p_next`]**must** be `NULL` or a pointer to a valid instance of
+///for the specified source and destination regions.
+///## Valid Usage
+/// - The `aspectMask` member of [`src_subresource`] and [`dst_subresource`] **must**  match
+/// - The `layerCount` member of [`src_subresource`] and [`dst_subresource`] **must**  match
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_BLIT_2`
+/// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`CopyCommandTransformInfoQCOM`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - [`src_subresource`]**must** be a valid [`ImageSubresourceLayers`] structure
-/// - [`dst_subresource`]**must** be a valid [`ImageSubresourceLayers`] structure
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`src_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
+/// - [`dst_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 ///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
@@ -7391,18 +7163,20 @@ impl<'lt> ImageBlit2<'lt> {
 ///# Description
 ///This structure is functionally identical to [`BufferImageCopy`], but
 ///adds [`s_type`] and [`p_next`] parameters, allowing it to be more easily
-///extended.Valid Usage
-/// - [`buffer_row_length`]**must** be `0`, or greater than or equal to the `width` member of
+///extended.
+///## Valid Usage
+/// - [`buffer_row_length`] **must**  be `0`, or greater than or equal to the `width` member of
 ///   [`image_extent`]
-/// - [`buffer_image_height`]**must** be `0`, or greater than or equal to the `height` member of
+/// - [`buffer_image_height`] **must**  be `0`, or greater than or equal to the `height` member of
 ///   [`image_extent`]
-/// - The `aspectMask` member of [`image_subresource`]**must** only have a single bit set
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BUFFER_IMAGE_COPY_2`
-/// - [`p_next`]**must** be `NULL` or a pointer to a valid instance of
+/// - The `aspectMask` member of [`image_subresource`] **must**  only have a single bit set
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_IMAGE_COPY_2`
+/// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`CopyCommandTransformInfoQCOM`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - [`image_subresource`]**must** be a valid [`ImageSubresourceLayers`] structure
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`image_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 ///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
@@ -7473,27 +7247,9 @@ impl<'lt> BufferImageCopy2<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::buffer_row_length`]
-    pub fn buffer_row_length_raw(&self) -> u32 {
-        self.buffer_row_length
-    }
-    ///Gets the raw value of [`Self::buffer_image_height`]
-    pub fn buffer_image_height_raw(&self) -> u32 {
-        self.buffer_image_height
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::buffer_row_length`]
-    pub fn set_buffer_row_length_raw(&mut self, value: u32) -> &mut Self {
-        self.buffer_row_length = value;
-        self
-    }
-    ///Sets the raw value of [`Self::buffer_image_height`]
-    pub fn set_buffer_image_height_raw(&mut self, value: u32) -> &mut Self {
-        self.buffer_image_height = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -7631,15 +7387,16 @@ impl<'lt> BufferImageCopy2<'lt> {
 /// - [`extent`] is the size in texels of the source image to resolve in `width`, `height` and
 ///   `depth`.
 ///# Description
-///Valid Usage
-/// - The `aspectMask` member of [`src_subresource`] and [`dst_subresource`]**must** only contain
+///## Valid Usage
+/// - The `aspectMask` member of [`src_subresource`] and [`dst_subresource`] **must**  only contain
 ///   `VK_IMAGE_ASPECT_COLOR_BIT`
-/// - The `layerCount` member of [`src_subresource`] and [`dst_subresource`]**must** match
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMAGE_RESOLVE_2`
-/// - [`p_next`]**must** be `NULL`
-/// - [`src_subresource`]**must** be a valid [`ImageSubresourceLayers`] structure
-/// - [`dst_subresource`]**must** be a valid [`ImageSubresourceLayers`] structure
+/// - The `layerCount` member of [`src_subresource`] and [`dst_subresource`] **must**  match
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_RESOLVE_2`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`src_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
+/// - [`dst_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 ///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
@@ -7830,33 +7587,35 @@ impl<'lt> ImageResolve2<'lt> {
 ///Members defined by this structure with the same name as parameters in
 ///[`CmdCopyBuffer`] have the identical effect to those parameters; the
 ///child structure [`BufferCopy2`] is a variant of [`BufferCopy`] which
-///includes [`s_type`] and [`p_next`] parameters, allowing it to be extended.Valid Usage
-/// - The `srcOffset` member of each element of [`regions`]**must** be less than the size of
+///includes [`s_type`] and [`p_next`] parameters, allowing it to be extended.
+///## Valid Usage
+/// - The `srcOffset` member of each element of [`regions`] **must**  be less than the size of
 ///   [`src_buffer`]
-/// - The `dstOffset` member of each element of [`regions`]**must** be less than the size of
+/// - The `dstOffset` member of each element of [`regions`] **must**  be less than the size of
 ///   [`dst_buffer`]
-/// - The `size` member of each element of [`regions`]**must** be less than or equal to the size of
-///   [`src_buffer`] minus `srcOffset`
-/// - The `size` member of each element of [`regions`]**must** be less than or equal to the size of
-///   [`dst_buffer`] minus `dstOffset`
+/// - The `size` member of each element of [`regions`] **must**  be less than or equal to the size
+///   of [`src_buffer`] minus `srcOffset`
+/// - The `size` member of each element of [`regions`] **must**  be less than or equal to the size
+///   of [`dst_buffer`] minus `dstOffset`
 /// - The union of the source regions, and the union of the destination regions, specified by the
-///   elements of [`regions`], **must** not overlap in memory
-/// - [`src_buffer`]**must** have been created with `VK_BUFFER_USAGE_TRANSFER_SRC_BIT` usage flag
-/// - If [`src_buffer`] is non-sparse then it **must** be bound completely and contiguously to a
+///   elements of [`regions`],  **must**  not overlap in memory
+/// - [`src_buffer`] **must**  have been created with `VK_BUFFER_USAGE_TRANSFER_SRC_BIT` usage flag
+/// - If [`src_buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a
 ///   single [`DeviceMemory`] object
-/// - [`dst_buffer`]**must** have been created with `VK_BUFFER_USAGE_TRANSFER_DST_BIT` usage flag
-/// - If [`dst_buffer`] is non-sparse then it **must** be bound completely and contiguously to a
+/// - [`dst_buffer`] **must**  have been created with `VK_BUFFER_USAGE_TRANSFER_DST_BIT` usage flag
+/// - If [`dst_buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a
 ///   single [`DeviceMemory`] object
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_COPY_BUFFER_INFO_2`
-/// - [`p_next`]**must** be `NULL`
-/// - [`src_buffer`]**must** be a valid [`Buffer`] handle
-/// - [`dst_buffer`]**must** be a valid [`Buffer`] handle
-/// - [`regions`]**must** be a valid pointer to an array of [`region_count`] valid [`BufferCopy2`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COPY_BUFFER_INFO_2`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`src_buffer`] **must**  be a valid [`Buffer`] handle
+/// - [`dst_buffer`] **must**  be a valid [`Buffer`] handle
+/// - [`regions`] **must**  be a valid pointer to an array of [`region_count`] valid [`BufferCopy2`]
 ///   structures
-/// - [`region_count`]**must** be greater than `0`
-/// - Both of [`dst_buffer`], and [`src_buffer`]**must** have been created, allocated, or retrieved
-///   from the same [`Device`]
+/// - [`region_count`] **must**  be greater than `0`
+/// - Both of [`dst_buffer`], and [`src_buffer`] **must**  have been created, allocated, or
+///   retrieved from the same [`Device`]
 ///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
@@ -7911,10 +7670,6 @@ impl<'lt> CopyBufferInfo2<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::region_count`]
-    pub fn region_count_raw(&self) -> u32 {
-        self.region_count
-    }
     ///Gets the raw value of [`Self::regions`]
     pub fn regions_raw(&self) -> *const BufferCopy2<'lt> {
         self.regions
@@ -7922,11 +7677,6 @@ impl<'lt> CopyBufferInfo2<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::region_count`]
-    pub fn set_region_count_raw(&mut self, value: u32) -> &mut Self {
-        self.region_count = value;
         self
     }
     ///Sets the raw value of [`Self::regions`]
@@ -8046,157 +7796,160 @@ impl<'lt> CopyBufferInfo2<'lt> {
 /// - [`regions`] is a pointer to an array of [`ImageCopy2`] structures specifying the regions to
 ///   copy.
 ///# Description
-///Valid Usage
+///## Valid Usage
 /// - The union of all source regions, and the union of all destination regions, specified by the
-///   elements of [`regions`], **must** not overlap in memory
+///   elements of [`regions`],  **must**  not overlap in memory
 /// - The [format features](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#resources-image-format-features)
-///   of [`src_image`]**must** contain `VK_FORMAT_FEATURE_TRANSFER_SRC_BIT`
-/// - [`src_image`]**must** have been created with `VK_IMAGE_USAGE_TRANSFER_SRC_BIT` usage flag
-/// - If [`src_image`] is non-sparse then the image or *disjoint* plane to be copied **must** be
+///   of [`src_image`] **must**  contain `VK_FORMAT_FEATURE_TRANSFER_SRC_BIT`
+/// - [`src_image`] **must**  have been created with `VK_IMAGE_USAGE_TRANSFER_SRC_BIT` usage flag
+/// - If [`src_image`] is non-sparse then the image or *disjoint* plane to be copied  **must**  be
 ///   bound completely and contiguously to a single [`DeviceMemory`] object
-/// - [`src_image_layout`]**must** specify the layout of the image subresources of [`src_image`]
+/// - [`src_image_layout`] **must**  specify the layout of the image subresources of [`src_image`]
 ///   specified in [`regions`] at the time this command is executed on a [`Device`]
-/// - [`src_image_layout`]**must** be `VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL`,
+/// - [`src_image_layout`] **must**  be `VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_GENERAL`, or `VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR`
 /// - The [format features](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#resources-image-format-features)
-///   of [`dst_image`]**must** contain `VK_FORMAT_FEATURE_TRANSFER_DST_BIT`
-/// - [`dst_image`]**must** have been created with `VK_IMAGE_USAGE_TRANSFER_DST_BIT` usage flag
+///   of [`dst_image`] **must**  contain `VK_FORMAT_FEATURE_TRANSFER_DST_BIT`
+/// - [`dst_image`] **must**  have been created with `VK_IMAGE_USAGE_TRANSFER_DST_BIT` usage flag
 /// - If [`dst_image`] is non-sparse then the image or *disjoint* plane that is the destination of
-///   the copy **must** be bound completely and contiguously to a single [`DeviceMemory`] object
-/// - [`dst_image_layout`]**must** specify the layout of the image subresources of [`dst_image`]
+///   the copy  **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
+/// - [`dst_image_layout`] **must**  specify the layout of the image subresources of [`dst_image`]
 ///   specified in [`regions`] at the time this command is executed on a [`Device`]
-/// - [`dst_image_layout`]**must** be `VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL`,
+/// - [`dst_image_layout`] **must**  be `VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_GENERAL`, or `VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR`
 /// - If the [`Format`] of each of [`src_image`] and [`dst_image`] is not a [*multi-planar format*](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion),
-///   the [`Format`] of each of [`src_image`] and [`dst_image`]**must** be compatible, as defined [above](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#copies-images-format-compatibility)
-/// -    In a copy to or from a plane of a [multi-planar image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion), the [`Format`] of the image and plane **must** be compatible according to [the description of compatible planes](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-compatible-planes) for the plane being copied
-/// - The sample count of [`src_image`] and [`dst_image`]**must** match
-/// - The `srcSubresource.mipLevel` member of each element of [`regions`]**must** be less than the
+///   the [`Format`] of each of [`src_image`] and [`dst_image`] **must**  be compatible, as defined [above](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#copies-images-format-compatibility)
+/// -    In a copy to or from a plane of a [multi-planar image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion), the [`Format`] of the image and plane  **must**  be compatible according to [the description of compatible planes](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-compatible-planes) for the plane being copied
+/// - The sample count of [`src_image`] and [`dst_image`] **must**  match
+/// - The `srcSubresource.mipLevel` member of each element of [`regions`] **must**  be less than the
 ///   `mipLevels` specified in [`ImageCreateInfo`] when [`src_image`] was created
-/// - The `dstSubresource.mipLevel` member of each element of [`regions`]**must** be less than the
+/// - The `dstSubresource.mipLevel` member of each element of [`regions`] **must**  be less than the
 ///   `mipLevels` specified in [`ImageCreateInfo`] when [`dst_image`] was created
 /// - The `srcSubresource.baseArrayLayer` +  `srcSubresource.layerCount` of each element of
-///   [`regions`]**must** be less than or equal to the `arrayLayers` specified in
+///   [`regions`] **must**  be less than or equal to the `arrayLayers` specified in
 ///   [`ImageCreateInfo`] when [`src_image`] was created
 /// - The `dstSubresource.baseArrayLayer` +  `dstSubresource.layerCount` of each element of
-///   [`regions`]**must** be less than or equal to the `arrayLayers` specified in
+///   [`regions`] **must**  be less than or equal to the `arrayLayers` specified in
 ///   [`ImageCreateInfo`] when [`dst_image`] was created
-/// - The `srcOffset` and `extent` members of each element of [`regions`]**must** respect the image
-///   transfer granularity requirements of `commandBuffer`’s command pool’s queue family, as
+/// - The `srcOffset` and `extent` members of each element of [`regions`] **must**  respect the
+///   image transfer granularity requirements of `commandBuffer`’s command pool’s queue family, as
 ///   described in [`QueueFamilyProperties`]
-/// - The `dstOffset` and `extent` members of each element of [`regions`]**must** respect the image
-///   transfer granularity requirements of `commandBuffer`’s command pool’s queue family, as
+/// - The `dstOffset` and `extent` members of each element of [`regions`] **must**  respect the
+///   image transfer granularity requirements of `commandBuffer`’s command pool’s queue family, as
 ///   described in [`QueueFamilyProperties`]
-/// - [`dst_image`] and [`src_image`]**must** not have been created with `flags` containing
+/// - [`dst_image`] and [`src_image`] **must**  not have been created with `flags` containing
 ///   `VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT`
 /// - If neither [`src_image`] nor [`dst_image`] has a [multi-planar image format](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
 ///   then for each element of [`regions`], `srcSubresource.aspectMask` and
-///   `dstSubresource.aspectMask`**must** match
+///   `dstSubresource.aspectMask` **must**  match
 /// - If [`src_image`] has a [`Format`] with [two planes](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
-///   then for each element of [`regions`], `srcSubresource.aspectMask`**must** be
+///   then for each element of [`regions`], `srcSubresource.aspectMask` **must**  be
 ///   `VK_IMAGE_ASPECT_PLANE_0_BIT` or `VK_IMAGE_ASPECT_PLANE_1_BIT`
 /// - If [`src_image`] has a [`Format`] with [three planes](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
-///   then for each element of [`regions`], `srcSubresource.aspectMask`**must** be
+///   then for each element of [`regions`], `srcSubresource.aspectMask` **must**  be
 ///   `VK_IMAGE_ASPECT_PLANE_0_BIT`, `VK_IMAGE_ASPECT_PLANE_1_BIT`, or `VK_IMAGE_ASPECT_PLANE_2_BIT`
 /// - If [`dst_image`] has a [`Format`] with [two planes](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
-///   then for each element of [`regions`], `dstSubresource.aspectMask`**must** be
+///   then for each element of [`regions`], `dstSubresource.aspectMask` **must**  be
 ///   `VK_IMAGE_ASPECT_PLANE_0_BIT` or `VK_IMAGE_ASPECT_PLANE_1_BIT`
 /// - If [`dst_image`] has a [`Format`] with [three planes](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
-///   then for each element of [`regions`], `dstSubresource.aspectMask`**must** be
+///   then for each element of [`regions`], `dstSubresource.aspectMask` **must**  be
 ///   `VK_IMAGE_ASPECT_PLANE_0_BIT`, `VK_IMAGE_ASPECT_PLANE_1_BIT`, or `VK_IMAGE_ASPECT_PLANE_2_BIT`
 /// - If [`src_image`] has a [multi-planar image format](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
 ///   and the [`dst_image`] does not have a multi-planar image format, then for each element of
-///   [`regions`], `dstSubresource.aspectMask`**must** be `VK_IMAGE_ASPECT_COLOR_BIT`
+///   [`regions`], `dstSubresource.aspectMask` **must**  be `VK_IMAGE_ASPECT_COLOR_BIT`
 /// - If [`dst_image`] has a [multi-planar image format](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
 ///   and the [`src_image`] does not have a multi-planar image format, then for each element of
-///   [`regions`], `srcSubresource.aspectMask`**must** be `VK_IMAGE_ASPECT_COLOR_BIT`
+///   [`regions`], `srcSubresource.aspectMask` **must**  be `VK_IMAGE_ASPECT_COLOR_BIT`
 /// - If [`src_image`] is of type `VK_IMAGE_TYPE_3D`, then for each element of [`regions`],
-///   `srcSubresource.baseArrayLayer`**must** be `0` and `srcSubresource.layerCount`**must** be `1`
+///   `srcSubresource.baseArrayLayer` **must**  be `0` and `srcSubresource.layerCount` **must**  be
+///   `1`
 /// - If [`dst_image`] is of type `VK_IMAGE_TYPE_3D`, then for each element of [`regions`],
-///   `dstSubresource.baseArrayLayer`**must** be `0` and `dstSubresource.layerCount`**must** be `1`
-/// - For each element of [`regions`], `srcSubresource.aspectMask`**must** specify aspects present
+///   `dstSubresource.baseArrayLayer` **must**  be `0` and `dstSubresource.layerCount` **must**  be
+///   `1`
+/// - For each element of [`regions`], `srcSubresource.aspectMask` **must**  specify aspects present
 ///   in [`src_image`]
-/// - For each element of [`regions`], `dstSubresource.aspectMask`**must** specify aspects present
+/// - For each element of [`regions`], `dstSubresource.aspectMask` **must**  specify aspects present
 ///   in [`dst_image`]
-/// - For each element of [`regions`], `srcOffset.x` and (`extent.width` +  `srcOffset.x`)**must**
+/// - For each element of [`regions`], `srcOffset.x` and (`extent.width` +  `srcOffset.x`) **must**
 ///   both be greater than or equal to `0` and less than or equal to the width of the specified
 ///   `srcSubresource` of [`src_image`]
-/// - For each element of [`regions`], `srcOffset.y` and (`extent.height` +  `srcOffset.y`)**must**
+/// - For each element of [`regions`], `srcOffset.y` and (`extent.height` +  `srcOffset.y`) **must**
 ///   both be greater than or equal to `0` and less than or equal to the height of the specified
 ///   `srcSubresource` of [`src_image`]
 /// - If [`src_image`] is of type `VK_IMAGE_TYPE_1D`, then for each element of [`regions`],
-///   `srcOffset.y`**must** be `0` and `extent.height`**must** be `1`
-/// - For each element of [`regions`], `srcOffset.z` and (`extent.depth` +  `srcOffset.z`)**must**
+///   `srcOffset.y` **must**  be `0` and `extent.height` **must**  be `1`
+/// - For each element of [`regions`], `srcOffset.z` and (`extent.depth` +  `srcOffset.z`) **must**
 ///   both be greater than or equal to `0` and less than or equal to the depth of the specified
 ///   `srcSubresource` of [`src_image`]
 /// - If [`src_image`] is of type `VK_IMAGE_TYPE_1D`, then for each element of [`regions`],
-///   `srcOffset.z`**must** be `0` and `extent.depth`**must** be `1`
+///   `srcOffset.z` **must**  be `0` and `extent.depth` **must**  be `1`
 /// - If [`dst_image`] is of type `VK_IMAGE_TYPE_1D`, then for each element of [`regions`],
-///   `dstOffset.z`**must** be `0` and `extent.depth`**must** be `1`
+///   `dstOffset.z` **must**  be `0` and `extent.depth` **must**  be `1`
 /// - If [`src_image`] is of type `VK_IMAGE_TYPE_2D`, then for each element of [`regions`],
-///   `srcOffset.z`**must** be `0`
+///   `srcOffset.z` **must**  be `0`
 /// - If [`dst_image`] is of type `VK_IMAGE_TYPE_2D`, then for each element of [`regions`],
-///   `dstOffset.z`**must** be `0`
+///   `dstOffset.z` **must**  be `0`
 /// - If [`src_image`] and [`dst_image`] are both of type `VK_IMAGE_TYPE_2D`, then for each element
-///   of [`regions`], `extent.depth`**must** be `1`
+///   of [`regions`], `extent.depth` **must**  be `1`
 /// - If [`src_image`] is of type `VK_IMAGE_TYPE_2D`, and [`dst_image`] is of type
-///   `VK_IMAGE_TYPE_3D`, then for each element of [`regions`], `extent.depth`**must** equal
+///   `VK_IMAGE_TYPE_3D`, then for each element of [`regions`], `extent.depth` **must**  equal
 ///   `srcSubresource.layerCount`
 /// - If [`dst_image`] is of type `VK_IMAGE_TYPE_2D`, and [`src_image`] is of type
-///   `VK_IMAGE_TYPE_3D`, then for each element of [`regions`], `extent.depth`**must** equal
+///   `VK_IMAGE_TYPE_3D`, then for each element of [`regions`], `extent.depth` **must**  equal
 ///   `dstSubresource.layerCount`
-/// - For each element of [`regions`], `dstOffset.x` and (`extent.width` +  `dstOffset.x`)**must**
+/// - For each element of [`regions`], `dstOffset.x` and (`extent.width` +  `dstOffset.x`) **must**
 ///   both be greater than or equal to `0` and less than or equal to the width of the specified
 ///   `dstSubresource` of [`dst_image`]
-/// - For each element of [`regions`], `dstOffset.y` and (`extent.height` +  `dstOffset.y`)**must**
+/// - For each element of [`regions`], `dstOffset.y` and (`extent.height` +  `dstOffset.y`) **must**
 ///   both be greater than or equal to `0` and less than or equal to the height of the specified
 ///   `dstSubresource` of [`dst_image`]
 /// - If [`dst_image`] is of type `VK_IMAGE_TYPE_1D`, then for each element of [`regions`],
-///   `dstOffset.y`**must** be `0` and `extent.height`**must** be `1`
-/// - For each element of [`regions`], `dstOffset.z` and (`extent.depth` +  `dstOffset.z`)**must**
+///   `dstOffset.y` **must**  be `0` and `extent.height` **must**  be `1`
+/// - For each element of [`regions`], `dstOffset.z` and (`extent.depth` +  `dstOffset.z`) **must**
 ///   both be greater than or equal to `0` and less than or equal to the depth of the specified
 ///   `dstSubresource` of [`dst_image`]
 /// - If [`src_image`] is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   then for each element of [`regions`], all members of `srcOffset`**must** be a multiple of the
-///   corresponding dimensions of the compressed texel block
+///   then for each element of [`regions`], all members of `srcOffset` **must**  be a multiple of
+///   the corresponding dimensions of the compressed texel block
 /// - If [`src_image`] is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   then for each element of [`regions`], `extent.width`**must** be a multiple of the compressed
-///   texel block width or (`extent.width` +  `srcOffset.x`)**must** equal the width of the
+///   then for each element of [`regions`], `extent.width` **must**  be a multiple of the compressed
+///   texel block width or (`extent.width` +  `srcOffset.x`) **must**  equal the width of the
 ///   specified `srcSubresource` of [`src_image`]
 /// - If [`src_image`] is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   then for each element of [`regions`], `extent.height`**must** be a multiple of the compressed
-///   texel block height or (`extent.height` +  `srcOffset.y`)**must** equal the height of the
-///   specified `srcSubresource` of [`src_image`]
+///   then for each element of [`regions`], `extent.height` **must**  be a multiple of the
+///   compressed texel block height or (`extent.height` +  `srcOffset.y`) **must**  equal the height
+///   of the specified `srcSubresource` of [`src_image`]
 /// - If [`src_image`] is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   then for each element of [`regions`], `extent.depth`**must** be a multiple of the compressed
-///   texel block depth or (`extent.depth` +  `srcOffset.z`)**must** equal the depth of the
+///   then for each element of [`regions`], `extent.depth` **must**  be a multiple of the compressed
+///   texel block depth or (`extent.depth` +  `srcOffset.z`) **must**  equal the depth of the
 ///   specified `srcSubresource` of [`src_image`]
 /// - If [`dst_image`] is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   then for each element of [`regions`], all members of `dstOffset`**must** be a multiple of the
-///   corresponding dimensions of the compressed texel block
+///   then for each element of [`regions`], all members of `dstOffset` **must**  be a multiple of
+///   the corresponding dimensions of the compressed texel block
 /// - If [`dst_image`] is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   then for each element of [`regions`], `extent.width`**must** be a multiple of the compressed
-///   texel block width or (`extent.width` +  `dstOffset.x`)**must** equal the width of the
+///   then for each element of [`regions`], `extent.width` **must**  be a multiple of the compressed
+///   texel block width or (`extent.width` +  `dstOffset.x`) **must**  equal the width of the
 ///   specified `dstSubresource` of [`dst_image`]
 /// - If [`dst_image`] is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   then for each element of [`regions`], `extent.height`**must** be a multiple of the compressed
-///   texel block height or (`extent.height` +  `dstOffset.y`)**must** equal the height of the
-///   specified `dstSubresource` of [`dst_image`]
+///   then for each element of [`regions`], `extent.height` **must**  be a multiple of the
+///   compressed texel block height or (`extent.height` +  `dstOffset.y`) **must**  equal the height
+///   of the specified `dstSubresource` of [`dst_image`]
 /// - If [`dst_image`] is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   then for each element of [`regions`], `extent.depth`**must** be a multiple of the compressed
-///   texel block depth or (`extent.depth` +  `dstOffset.z`)**must** equal the depth of the
+///   then for each element of [`regions`], `extent.depth` **must**  be a multiple of the compressed
+///   texel block depth or (`extent.depth` +  `dstOffset.z`) **must**  equal the depth of the
 ///   specified `dstSubresource` of [`dst_image`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_COPY_IMAGE_INFO_2`
-/// - [`p_next`]**must** be `NULL`
-/// - [`src_image`]**must** be a valid [`Image`] handle
-/// - [`src_image_layout`]**must** be a valid [`ImageLayout`] value
-/// - [`dst_image`]**must** be a valid [`Image`] handle
-/// - [`dst_image_layout`]**must** be a valid [`ImageLayout`] value
-/// - [`regions`]**must** be a valid pointer to an array of [`region_count`] valid [`ImageCopy2`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COPY_IMAGE_INFO_2`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`src_image`] **must**  be a valid [`Image`] handle
+/// - [`src_image_layout`] **must**  be a valid [`ImageLayout`] value
+/// - [`dst_image`] **must**  be a valid [`Image`] handle
+/// - [`dst_image_layout`] **must**  be a valid [`ImageLayout`] value
+/// - [`regions`] **must**  be a valid pointer to an array of [`region_count`] valid [`ImageCopy2`]
 ///   structures
-/// - [`region_count`]**must** be greater than `0`
-/// - Both of [`dst_image`], and [`src_image`]**must** have been created, allocated, or retrieved
+/// - [`region_count`] **must**  be greater than `0`
+/// - Both of [`dst_image`], and [`src_image`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
 ///# Related
 /// - [`VK_KHR_copy_commands2`]
@@ -8261,10 +8014,6 @@ impl<'lt> CopyImageInfo2<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::region_count`]
-    pub fn region_count_raw(&self) -> u32 {
-        self.region_count
-    }
     ///Gets the raw value of [`Self::regions`]
     pub fn regions_raw(&self) -> *const ImageCopy2<'lt> {
         self.regions
@@ -8272,11 +8021,6 @@ impl<'lt> CopyImageInfo2<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::region_count`]
-    pub fn set_region_count_raw(&mut self, value: u32) -> &mut Self {
-        self.region_count = value;
         self
     }
     ///Sets the raw value of [`Self::regions`]
@@ -8424,111 +8168,114 @@ impl<'lt> CopyImageInfo2<'lt> {
 ///   blit.
 /// - [`filter`] is a [`Filter`] specifying the filter to apply if the blits require scaling.
 ///# Description
-///Valid Usage
-/// - The source region specified by each element of [`regions`]**must** be a region that is
+///## Valid Usage
+/// - The source region specified by each element of [`regions`] **must**  be a region that is
 ///   contained within [`src_image`]
-/// - The destination region specified by each element of [`regions`]**must** be a region that is
+/// - The destination region specified by each element of [`regions`] **must**  be a region that is
 ///   contained within [`dst_image`]
-/// - The union of all destination regions, specified by the elements of [`regions`], **must** not
-///   overlap in memory with any texel that **may** be sampled during the blit operation
+/// - The union of all destination regions, specified by the elements of [`regions`],  **must**  not
+///   overlap in memory with any texel that  **may**  be sampled during the blit operation
 /// - The [format features](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#resources-image-format-features)
-///   of [`src_image`]**must** contain `VK_FORMAT_FEATURE_BLIT_SRC_BIT`
-/// - [`src_image`]**must** not use a [format that requires a sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
-/// - [`src_image`]**must** have been created with `VK_IMAGE_USAGE_TRANSFER_SRC_BIT` usage flag
-/// - If [`src_image`] is non-sparse then it **must** be bound completely and contiguously to a
+///   of [`src_image`] **must**  contain `VK_FORMAT_FEATURE_BLIT_SRC_BIT`
+/// - [`src_image`] **must**  not use a [format that requires a sampler Y′C<sub>B</sub>C<sub>R</sub>
+///   conversion](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
+/// - [`src_image`] **must**  have been created with `VK_IMAGE_USAGE_TRANSFER_SRC_BIT` usage flag
+/// - If [`src_image`] is non-sparse then it  **must**  be bound completely and contiguously to a
 ///   single [`DeviceMemory`] object
-/// - [`src_image_layout`]**must** specify the layout of the image subresources of [`src_image`]
+/// - [`src_image_layout`] **must**  specify the layout of the image subresources of [`src_image`]
 ///   specified in [`regions`] at the time this command is executed on a [`Device`]
-/// - [`src_image_layout`]**must** be `VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR`,
+/// - [`src_image_layout`] **must**  be `VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR`,
 ///   `VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL` or `VK_IMAGE_LAYOUT_GENERAL`
 /// - The [format features](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#resources-image-format-features)
-///   of [`dst_image`]**must** contain `VK_FORMAT_FEATURE_BLIT_DST_BIT`
-/// - [`dst_image`]**must** not use a [format that requires a sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
-/// - [`dst_image`]**must** have been created with `VK_IMAGE_USAGE_TRANSFER_DST_BIT` usage flag
-/// - If [`dst_image`] is non-sparse then it **must** be bound completely and contiguously to a
+///   of [`dst_image`] **must**  contain `VK_FORMAT_FEATURE_BLIT_DST_BIT`
+/// - [`dst_image`] **must**  not use a [format that requires a sampler Y′C<sub>B</sub>C<sub>R</sub>
+///   conversion](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
+/// - [`dst_image`] **must**  have been created with `VK_IMAGE_USAGE_TRANSFER_DST_BIT` usage flag
+/// - If [`dst_image`] is non-sparse then it  **must**  be bound completely and contiguously to a
 ///   single [`DeviceMemory`] object
-/// - [`dst_image_layout`]**must** specify the layout of the image subresources of [`dst_image`]
+/// - [`dst_image_layout`] **must**  specify the layout of the image subresources of [`dst_image`]
 ///   specified in [`regions`] at the time this command is executed on a [`Device`]
-/// - [`dst_image_layout`]**must** be `VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR`,
+/// - [`dst_image_layout`] **must**  be `VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR`,
 ///   `VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL` or `VK_IMAGE_LAYOUT_GENERAL`
 /// - If either of [`src_image`] or [`dst_image`] was created with a signed integer [`Format`], the
-///   other **must** also have been created with a signed integer [`Format`]
+///   other  **must**  also have been created with a signed integer [`Format`]
 /// - If either of [`src_image`] or [`dst_image`] was created with an unsigned integer [`Format`],
-///   the other **must** also have been created with an unsigned integer [`Format`]
+///   the other  **must**  also have been created with an unsigned integer [`Format`]
 /// - If either of [`src_image`] or [`dst_image`] was created with a depth/stencil format, the other
-///   **must** have exactly the same format
-/// - If [`src_image`] was created with a depth/stencil format, [`filter`]**must** be
+///   **must**  have exactly the same format
+/// - If [`src_image`] was created with a depth/stencil format, [`filter`] **must**  be
 ///   `VK_FILTER_NEAREST`
-/// - [`src_image`]**must** have been created with a `samples` value of `VK_SAMPLE_COUNT_1_BIT`
-/// - [`dst_image`]**must** have been created with a `samples` value of `VK_SAMPLE_COUNT_1_BIT`
+/// - [`src_image`] **must**  have been created with a `samples` value of `VK_SAMPLE_COUNT_1_BIT`
+/// - [`dst_image`] **must**  have been created with a `samples` value of `VK_SAMPLE_COUNT_1_BIT`
 /// - If [`filter`] is `VK_FILTER_LINEAR`, then the [format features](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#resources-image-format-features)
-///   of [`src_image`]**must** contain `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
+///   of [`src_image`] **must**  contain `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
 /// - If [`filter`] is `VK_FILTER_CUBIC_EXT`, then the [format features](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#resources-image-format-features)
-///   of [`src_image`]**must** contain `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT`
-/// - If [`filter`] is `VK_FILTER_CUBIC_EXT`, [`src_image`]**must** be of type `VK_IMAGE_TYPE_2D`
-/// - The `srcSubresource.mipLevel` member of each element of [`regions`]**must** be less than the
+///   of [`src_image`] **must**  contain `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT`
+/// - If [`filter`] is `VK_FILTER_CUBIC_EXT`, [`src_image`] **must**  be of type `VK_IMAGE_TYPE_2D`
+/// - The `srcSubresource.mipLevel` member of each element of [`regions`] **must**  be less than the
 ///   `mipLevels` specified in [`ImageCreateInfo`] when [`src_image`] was created
-/// - The `dstSubresource.mipLevel` member of each element of [`regions`]**must** be less than the
+/// - The `dstSubresource.mipLevel` member of each element of [`regions`] **must**  be less than the
 ///   `mipLevels` specified in [`ImageCreateInfo`] when [`dst_image`] was created
 /// - The `srcSubresource.baseArrayLayer` +  `srcSubresource.layerCount` of each element of
-///   [`regions`]**must** be less than or equal to the `arrayLayers` specified in
+///   [`regions`] **must**  be less than or equal to the `arrayLayers` specified in
 ///   [`ImageCreateInfo`] when [`src_image`] was created
 /// - The `dstSubresource.baseArrayLayer` +  `dstSubresource.layerCount` of each element of
-///   [`regions`]**must** be less than or equal to the `arrayLayers` specified in
+///   [`regions`] **must**  be less than or equal to the `arrayLayers` specified in
 ///   [`ImageCreateInfo`] when [`dst_image`] was created
-/// - [`dst_image`] and [`src_image`]**must** not have been created with `flags` containing
+/// - [`dst_image`] and [`src_image`] **must**  not have been created with `flags` containing
 ///   `VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT`
 /// - If either [`src_image`] or [`dst_image`] is of type `VK_IMAGE_TYPE_3D`, then for each element
-///   of [`regions`], `srcSubresource.baseArrayLayer` and `dstSubresource.baseArrayLayer`**must**
-///   each be `0`, and `srcSubresource.layerCount` and `dstSubresource.layerCount`**must** each be
+///   of [`regions`], `srcSubresource.baseArrayLayer` and `dstSubresource.baseArrayLayer` **must**
+///   each be `0`, and `srcSubresource.layerCount` and `dstSubresource.layerCount` **must**  each be
 ///   `1`
-/// - For each element of [`regions`], `srcSubresource.aspectMask`**must** specify aspects present
+/// - For each element of [`regions`], `srcSubresource.aspectMask` **must**  specify aspects present
 ///   in [`src_image`]
-/// - For each element of [`regions`], `dstSubresource.aspectMask`**must** specify aspects present
+/// - For each element of [`regions`], `dstSubresource.aspectMask` **must**  specify aspects present
 ///   in [`dst_image`]
-/// - For each element of [`regions`], `srcOffsets`[0].x and `srcOffsets`[1].x **must** both be
+/// - For each element of [`regions`], `srcOffsets`[0].x and `srcOffsets`[1].x  **must**  both be
 ///   greater than or equal to `0` and less than or equal to the width of the specified
 ///   `srcSubresource` of [`src_image`]
-/// - For each element of [`regions`], `srcOffsets`[0].y and `srcOffsets`[1].y **must** both be
+/// - For each element of [`regions`], `srcOffsets`[0].y and `srcOffsets`[1].y  **must**  both be
 ///   greater than or equal to `0` and less than or equal to the height of the specified
 ///   `srcSubresource` of [`src_image`]
 /// - If [`src_image`] is of type `VK_IMAGE_TYPE_1D`, then for each element of [`regions`],
-///   `srcOffsets`[0].y **must** be `0` and `srcOffsets`[1].y **must** be `1`
-/// - For each element of [`regions`], `srcOffsets`[0].z and `srcOffsets`[1].z **must** both be
+///   `srcOffsets`[0].y  **must**  be `0` and `srcOffsets`[1].y  **must**  be `1`
+/// - For each element of [`regions`], `srcOffsets`[0].z and `srcOffsets`[1].z  **must**  both be
 ///   greater than or equal to `0` and less than or equal to the depth of the specified
 ///   `srcSubresource` of [`src_image`]
 /// - If [`src_image`] is of type `VK_IMAGE_TYPE_1D` or `VK_IMAGE_TYPE_2D`, then for each element of
-///   [`regions`], `srcOffsets`[0].z **must** be `0` and `srcOffsets`[1].z **must** be `1`
-/// - For each element of [`regions`], `dstOffsets`[0].x and `dstOffsets`[1].x **must** both be
+///   [`regions`], `srcOffsets`[0].z  **must**  be `0` and `srcOffsets`[1].z  **must**  be `1`
+/// - For each element of [`regions`], `dstOffsets`[0].x and `dstOffsets`[1].x  **must**  both be
 ///   greater than or equal to `0` and less than or equal to the width of the specified
 ///   `dstSubresource` of [`dst_image`]
-/// - For each element of [`regions`], `dstOffsets`[0].y and `dstOffsets`[1].y **must** both be
+/// - For each element of [`regions`], `dstOffsets`[0].y and `dstOffsets`[1].y  **must**  both be
 ///   greater than or equal to `0` and less than or equal to the height of the specified
 ///   `dstSubresource` of [`dst_image`]
 /// - If [`dst_image`] is of type `VK_IMAGE_TYPE_1D`, then for each element of [`regions`],
-///   `dstOffsets`[0].y **must** be `0` and `dstOffsets`[1].y **must** be `1`
-/// - For each element of [`regions`], `dstOffsets`[0].z and `dstOffsets`[1].z **must** both be
+///   `dstOffsets`[0].y  **must**  be `0` and `dstOffsets`[1].y  **must**  be `1`
+/// - For each element of [`regions`], `dstOffsets`[0].z and `dstOffsets`[1].z  **must**  both be
 ///   greater than or equal to `0` and less than or equal to the depth of the specified
 ///   `dstSubresource` of [`dst_image`]
 /// - If [`dst_image`] is of type `VK_IMAGE_TYPE_1D` or `VK_IMAGE_TYPE_2D`, then for each element of
-///   [`regions`], `dstOffsets`[0].z **must** be `0` and `dstOffsets`[1].z **must** be `1`
+///   [`regions`], `dstOffsets`[0].z  **must**  be `0` and `dstOffsets`[1].z  **must**  be `1`
 /// - If any element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`]
-///   chain, then [`src_image`] and [`dst_image`]**must** not be block-compressed images
+///   chain, then [`src_image`] and [`dst_image`] **must**  not be block-compressed images
 /// - If any element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`]
-///   chain, then [`src_image`]**must** be of type `VK_IMAGE_TYPE_2D`
-/// -    If any element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, then [`src_image`]**must** not have a [multi-planar format](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BLIT_IMAGE_INFO_2`
-/// - [`p_next`]**must** be `NULL`
-/// - [`src_image`]**must** be a valid [`Image`] handle
-/// - [`src_image_layout`]**must** be a valid [`ImageLayout`] value
-/// - [`dst_image`]**must** be a valid [`Image`] handle
-/// - [`dst_image_layout`]**must** be a valid [`ImageLayout`] value
-/// - [`regions`]**must** be a valid pointer to an array of [`region_count`] valid [`ImageBlit2`]
+///   chain, then [`src_image`] **must**  be of type `VK_IMAGE_TYPE_2D`
+/// -    If any element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, then [`src_image`] **must**  not have a [multi-planar format](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BLIT_IMAGE_INFO_2`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`src_image`] **must**  be a valid [`Image`] handle
+/// - [`src_image_layout`] **must**  be a valid [`ImageLayout`] value
+/// - [`dst_image`] **must**  be a valid [`Image`] handle
+/// - [`dst_image_layout`] **must**  be a valid [`ImageLayout`] value
+/// - [`regions`] **must**  be a valid pointer to an array of [`region_count`] valid [`ImageBlit2`]
 ///   structures
-/// - [`filter`]**must** be a valid [`Filter`] value
-/// - [`region_count`]**must** be greater than `0`
-/// - Both of [`dst_image`], and [`src_image`]**must** have been created, allocated, or retrieved
+/// - [`filter`] **must**  be a valid [`Filter`] value
+/// - [`region_count`] **must**  be greater than `0`
+/// - Both of [`dst_image`], and [`src_image`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
 ///# Related
 /// - [`VK_KHR_copy_commands2`]
@@ -8598,10 +8345,6 @@ impl<'lt> BlitImageInfo2<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::region_count`]
-    pub fn region_count_raw(&self) -> u32 {
-        self.region_count
-    }
     ///Gets the raw value of [`Self::regions`]
     pub fn regions_raw(&self) -> *const ImageBlit2<'lt> {
         self.regions
@@ -8609,11 +8352,6 @@ impl<'lt> BlitImageInfo2<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::region_count`]
-    pub fn set_region_count_raw(&mut self, value: u32) -> &mut Self {
-        self.region_count = value;
         self
     }
     ///Sets the raw value of [`Self::regions`]
@@ -8770,124 +8508,122 @@ impl<'lt> BlitImageInfo2<'lt> {
 /// - [`regions`] is a pointer to an array of [`BufferImageCopy2`] structures specifying the regions
 ///   to copy.
 ///# Description
-///Valid Usage
+///## Valid Usage
 /// - If the image region specified by each element of [`regions`] does not contain
-///   [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, it **must** be a region that is
+///   [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, it  **must**  be a region that is
 ///   contained within the specified `imageSubresource` of [`dst_image`]
-/// -    If the image region specified by each element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, the rotated destination region as described in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies-buffers-images-rotation-addressing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies-buffers-images-rotation-addressing)**must** be contained within [`dst_image`]
-/// -    If any element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, then [`dst_image`]**must** not be a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#blocked-image)
+/// -    If the image region specified by each element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, the rotated destination region as described in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies-buffers-images-rotation-addressing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies-buffers-images-rotation-addressing) **must**  be contained within [`dst_image`]
+/// -    If any element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, then [`dst_image`] **must**  not be a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#blocked-image)
 /// - If any element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`]
-///   chain, then [`dst_image`]**must** be of type `VK_IMAGE_TYPE_2D`
-/// -    If any element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, then [`dst_image`]**must** not have a [multi-planar format](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
+///   chain, then [`dst_image`] **must**  be of type `VK_IMAGE_TYPE_2D`
+/// -    If any element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, then [`dst_image`] **must**  not have a [multi-planar format](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
 ///
-/// -  [`src_buffer`]**must** be large enough to contain all buffer locations that are accessed according to [Buffer and Image Addressing](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#copies-buffers-images-addressing), for each element of [`regions`]
+/// -  [`src_buffer`] **must**  be large enough to contain all buffer locations that are accessed according to [Buffer and Image Addressing](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#copies-buffers-images-addressing), for each element of [`regions`]
 /// - The union of all source regions, and the union of all destination regions, specified by the
-///   elements of [`regions`], **must** not overlap in memory
-/// - [`src_buffer`]**must** have been created with `VK_BUFFER_USAGE_TRANSFER_SRC_BIT` usage flag
+///   elements of [`regions`],  **must**  not overlap in memory
+/// - [`src_buffer`] **must**  have been created with `VK_BUFFER_USAGE_TRANSFER_SRC_BIT` usage flag
 /// - The [format features](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#resources-image-format-features)
-///   of [`dst_image`]**must** contain `VK_FORMAT_FEATURE_TRANSFER_DST_BIT`
-/// - If [`src_buffer`] is non-sparse then it **must** be bound completely and contiguously to a
+///   of [`dst_image`] **must**  contain `VK_FORMAT_FEATURE_TRANSFER_DST_BIT`
+/// - If [`src_buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a
 ///   single [`DeviceMemory`] object
-/// - [`dst_image`]**must** have been created with `VK_IMAGE_USAGE_TRANSFER_DST_BIT` usage flag
-/// - If [`dst_image`] is non-sparse then it **must** be bound completely and contiguously to a
+/// - [`dst_image`] **must**  have been created with `VK_IMAGE_USAGE_TRANSFER_DST_BIT` usage flag
+/// - If [`dst_image`] is non-sparse then it  **must**  be bound completely and contiguously to a
 ///   single [`DeviceMemory`] object
-/// - [`dst_image`]**must** have a sample count equal to `VK_SAMPLE_COUNT_1_BIT`
-/// - [`dst_image_layout`]**must** specify the layout of the image subresources of [`dst_image`]
+/// - [`dst_image`] **must**  have a sample count equal to `VK_SAMPLE_COUNT_1_BIT`
+/// - [`dst_image_layout`] **must**  specify the layout of the image subresources of [`dst_image`]
 ///   specified in [`regions`] at the time this command is executed on a [`Device`]
-/// - [`dst_image_layout`]**must** be `VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL`,
+/// - [`dst_image_layout`] **must**  be `VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_GENERAL`, or `VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR`
-/// - The `imageSubresource.mipLevel` member of each element of [`regions`]**must** be less than the
-///   `mipLevels` specified in [`ImageCreateInfo`] when [`dst_image`] was created
+/// - The `imageSubresource.mipLevel` member of each element of [`regions`] **must**  be less than
+///   the `mipLevels` specified in [`ImageCreateInfo`] when [`dst_image`] was created
 /// - The `imageSubresource.baseArrayLayer` +  `imageSubresource.layerCount` of each element of
-///   [`regions`]**must** be less than or equal to the `arrayLayers` specified in
+///   [`regions`] **must**  be less than or equal to the `arrayLayers` specified in
 ///   [`ImageCreateInfo`] when [`dst_image`] was created
-/// - The `imageOffset` and `imageExtent` members of each element of [`regions`]**must** respect the
-///   image transfer granularity requirements of `commandBuffer`’s command pool’s queue family, as
-///   described in [`QueueFamilyProperties`]
-/// - [`dst_image`]**must** not have been created with `flags` containing
+/// - The `imageOffset` and `imageExtent` members of each element of [`regions`] **must**  respect
+///   the image transfer granularity requirements of `commandBuffer`’s command pool’s queue family,
+///   as described in [`QueueFamilyProperties`]
+/// - [`dst_image`] **must**  not have been created with `flags` containing
 ///   `VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT`
 /// - If the queue family used to create the [`CommandPool`] which `commandBuffer` was allocated
 ///   from does not support `VK_QUEUE_GRAPHICS_BIT`, for each element of [`regions`], the
-///   `aspectMask` member of `imageSubresource`**must** not be `VK_IMAGE_ASPECT_DEPTH_BIT` or
+///   `aspectMask` member of `imageSubresource` **must**  not be `VK_IMAGE_ASPECT_DEPTH_BIT` or
 ///   `VK_IMAGE_ASPECT_STENCIL_BIT`
 /// - For each element of [`regions`] not containing [`CopyCommandTransformInfoQCOM`] in its
-///   [`p_next`] chain, `imageOffset.x` and (`imageExtent.width` +  `imageOffset.x`)**must** both be
-///   greater than or equal to `0` and less than or equal to the width of the specified
+///   [`p_next`] chain, `imageOffset.x` and (`imageExtent.width` +  `imageOffset.x`) **must**  both
+///   be greater than or equal to `0` and less than or equal to the width of the specified
 ///   `imageSubresource` of [`dst_image`]
 /// - For each element of [`regions`] not containing [`CopyCommandTransformInfoQCOM`] in its
-///   [`p_next`] chain, `imageOffset.y` and (`imageExtent.height` +  `imageOffset.y`)**must** both
+///   [`p_next`] chain, `imageOffset.y` and (`imageExtent.height` +  `imageOffset.y`) **must**  both
 ///   be greater than or equal to `0` and less than or equal to the height of the specified
 ///   `imageSubresource` of [`dst_image`]
 ///
 /// - If [`dst_image`] does not have either a depth/stencil or a [multi-planar format](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion),
-///   then for each element of [`regions`], `bufferOffset`**must** be a multiple of the format’s
+///   then for each element of [`regions`], `bufferOffset` **must**  be a multiple of the format’s
 ///   texel block size
-/// - If [`dst_image`] has a [multi-planar format](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion),
-///   then for each element of [`regions`], `bufferOffset`**must** be a multiple of the element size
-///   of the compatible format for the format and the `aspectMask` of the `imageSubresource` as defined
-///   in [[formats-compatible-planes]](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-compatible-planes)
+/// -    If [`dst_image`] has a [multi-planar format](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion), then for each element of [`regions`], `bufferOffset` **must**  be a multiple of the element size of the compatible format for the format and the `aspectMask` of the `imageSubresource` as defined in [[formats-compatible-planes]](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-compatible-planes)
 /// - If [`dst_image`] is of type `VK_IMAGE_TYPE_1D`, then for each element of [`regions`],
-///   `imageOffset.y`**must** be `0` and `imageExtent.height`**must** be `1`
-/// - For each element of [`regions`], `imageOffset.z` and (`imageExtent.depth` +
-///   `imageOffset.z`)**must** both be greater than or equal to `0` and less than or equal to the
-///   depth of the specified `imageSubresource` of [`dst_image`]
+///   `imageOffset.y` **must**  be `0` and `imageExtent.height` **must**  be `1`
+/// - For each element of [`regions`], `imageOffset.z` and (`imageExtent.depth` +  `imageOffset.z`)
+///   **must**  both be greater than or equal to `0` and less than or equal to the depth of the
+///   specified `imageSubresource` of [`dst_image`]
 /// - If [`dst_image`] is of type `VK_IMAGE_TYPE_1D` or `VK_IMAGE_TYPE_2D`, then for each element of
-///   [`regions`], `imageOffset.z`**must** be `0` and `imageExtent.depth`**must** be `1`
+///   [`regions`], `imageOffset.z` **must**  be `0` and `imageExtent.depth` **must**  be `1`
 /// - If [`dst_image`] is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   for each element of [`regions`], `bufferRowLength`**must** be a multiple of the compressed
+///   for each element of [`regions`], `bufferRowLength` **must**  be a multiple of the compressed
 ///   texel block width
 /// - If [`dst_image`] is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   for each element of [`regions`], `bufferImageHeight`**must** be a multiple of the compressed
+///   for each element of [`regions`], `bufferImageHeight` **must**  be a multiple of the compressed
 ///   texel block height
 /// - If [`dst_image`] is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   for each element of [`regions`], all members of `imageOffset`**must** be a multiple of the
+///   for each element of [`regions`], all members of `imageOffset` **must**  be a multiple of the
 ///   corresponding dimensions of the compressed texel block
 /// - If [`dst_image`] is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   for each element of [`regions`], `bufferOffset`**must** be a multiple of the compressed texel
-///   block size in bytes
+///   for each element of [`regions`], `bufferOffset` **must**  be a multiple of the compressed
+///   texel block size in bytes
 /// - If [`dst_image`] is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   for each element of [`regions`], `imageExtent.width`**must** be a multiple of the compressed
-///   texel block width or (`imageExtent.width` +  `imageOffset.x`)**must** equal the width of the
+///   for each element of [`regions`], `imageExtent.width` **must**  be a multiple of the compressed
+///   texel block width or (`imageExtent.width` +  `imageOffset.x`) **must**  equal the width of the
 ///   specified `imageSubresource` of [`dst_image`]
 /// - If [`dst_image`] is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   for each element of [`regions`], `imageExtent.height`**must** be a multiple of the compressed
-///   texel block height or (`imageExtent.height` +  `imageOffset.y`)**must** equal the height of
-///   the specified `imageSubresource` of [`dst_image`]
+///   for each element of [`regions`], `imageExtent.height` **must**  be a multiple of the
+///   compressed texel block height or (`imageExtent.height` +  `imageOffset.y`) **must**  equal the
+///   height of the specified `imageSubresource` of [`dst_image`]
 /// - If [`dst_image`] is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   for each element of [`regions`], `imageExtent.depth`**must** be a multiple of the compressed
-///   texel block depth or (`imageExtent.depth` +  `imageOffset.z`)**must** equal the depth of the
+///   for each element of [`regions`], `imageExtent.depth` **must**  be a multiple of the compressed
+///   texel block depth or (`imageExtent.depth` +  `imageOffset.z`) **must**  equal the depth of the
 ///   specified `imageSubresource` of [`dst_image`]
-/// - For each element of [`regions`], `imageSubresource.aspectMask`**must** specify aspects present
-///   in [`dst_image`]
+/// - For each element of [`regions`], `imageSubresource.aspectMask` **must**  specify aspects
+///   present in [`dst_image`]
 /// - If [`dst_image`] has a [multi-planar format](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion),
-///   then for each element of [`regions`], `imageSubresource.aspectMask`**must** be
+///   then for each element of [`regions`], `imageSubresource.aspectMask` **must**  be
 ///   `VK_IMAGE_ASPECT_PLANE_0_BIT`, `VK_IMAGE_ASPECT_PLANE_1_BIT`, or `VK_IMAGE_ASPECT_PLANE_2_BIT`
 ///   (with `VK_IMAGE_ASPECT_PLANE_2_BIT` valid only for image formats with three planes)
 /// - If [`dst_image`] is of type `VK_IMAGE_TYPE_3D`, for each element of [`regions`],
-///   `imageSubresource.baseArrayLayer`**must** be `0` and `imageSubresource.layerCount`**must** be
-///   `1`
+///   `imageSubresource.baseArrayLayer` **must**  be `0` and `imageSubresource.layerCount` **must**
+///   be `1`
 /// - If [`dst_image`] is not a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
 ///   for each element of [`regions`], `bufferRowLength` multiplied by the texel block size of
-///   [`dst_image`]**must** be less than or equal to 2<sup>31</sup>-1
+///   [`dst_image`] **must**  be less than or equal to 2<sup>31</sup>-1
 /// - If [`dst_image`] is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
 ///   for each element of [`regions`], `bufferRowLength` divided by the compressed texel block width
-///   and then multiplied by the texel block size of [`dst_image`]**must** be less than or equal to
-///   2<sup>31</sup>-1
+///   and then multiplied by the texel block size of [`dst_image`] **must**  be less than or equal
+///   to 2<sup>31</sup>-1
 /// - If the queue family used to create the [`CommandPool`] which `commandBuffer` was allocated
 ///   from does not support `VK_QUEUE_GRAPHICS_BIT` or `VK_QUEUE_COMPUTE_BIT`, the `bufferOffset`
-///   member of any element of [`regions`]**must** be a multiple of `4`
+///   member of any element of [`regions`] **must**  be a multiple of `4`
 /// - If [`dst_image`] has a depth/stencil format, the `bufferOffset` member of any element of
-///   [`regions`]**must** be a multiple of `4`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_COPY_BUFFER_TO_IMAGE_INFO_2`
-/// - [`p_next`]**must** be `NULL`
-/// - [`src_buffer`]**must** be a valid [`Buffer`] handle
-/// - [`dst_image`]**must** be a valid [`Image`] handle
-/// - [`dst_image_layout`]**must** be a valid [`ImageLayout`] value
-/// - [`regions`]**must** be a valid pointer to an array of [`region_count`] valid
+///   [`regions`] **must**  be a multiple of `4`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COPY_BUFFER_TO_IMAGE_INFO_2`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`src_buffer`] **must**  be a valid [`Buffer`] handle
+/// - [`dst_image`] **must**  be a valid [`Image`] handle
+/// - [`dst_image_layout`] **must**  be a valid [`ImageLayout`] value
+/// - [`regions`] **must**  be a valid pointer to an array of [`region_count`] valid
 ///   [`BufferImageCopy2`] structures
-/// - [`region_count`]**must** be greater than `0`
-/// - Both of [`dst_image`], and [`src_buffer`]**must** have been created, allocated, or retrieved
+/// - [`region_count`] **must**  be greater than `0`
+/// - Both of [`dst_image`], and [`src_buffer`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
 ///# Related
 /// - [`VK_KHR_copy_commands2`]
@@ -8949,10 +8685,6 @@ impl<'lt> CopyBufferToImageInfo2<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::region_count`]
-    pub fn region_count_raw(&self) -> u32 {
-        self.region_count
-    }
     ///Gets the raw value of [`Self::regions`]
     pub fn regions_raw(&self) -> *const BufferImageCopy2<'lt> {
         self.regions
@@ -8960,11 +8692,6 @@ impl<'lt> CopyBufferToImageInfo2<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::region_count`]
-    pub fn set_region_count_raw(&mut self, value: u32) -> &mut Self {
-        self.region_count = value;
         self
     }
     ///Sets the raw value of [`Self::regions`]
@@ -9095,120 +8822,118 @@ impl<'lt> CopyBufferToImageInfo2<'lt> {
 /// - [`regions`] is a pointer to an array of [`BufferImageCopy2`] structures specifying the regions
 ///   to copy.
 ///# Description
-///Valid Usage
+///## Valid Usage
 /// - If the image region specified by each element of [`regions`] does not contain
-///   [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, it **must** be contained within the
-///   specified `imageSubresource` of [`src_image`]
-/// -    If the image region specified by each element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, the rotated source region as described in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies-buffers-images-rotation-addressing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies-buffers-images-rotation-addressing)**must** be contained within [`src_image`]
-/// -    If any element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, then [`src_image`]**must** not be a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#blocked-image)
+///   [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, it  **must**  be contained within
+///   the specified `imageSubresource` of [`src_image`]
+/// -    If the image region specified by each element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, the rotated source region as described in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies-buffers-images-rotation-addressing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies-buffers-images-rotation-addressing) **must**  be contained within [`src_image`]
+/// -    If any element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, then [`src_image`] **must**  not be a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#blocked-image)
 /// - If any element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`]
-///   chain, then [`src_image`]**must** be of type `VK_IMAGE_TYPE_2D`
-/// -    If any element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, then [`src_image`]**must** not have a [multi-planar format](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
+///   chain, then [`src_image`] **must**  be of type `VK_IMAGE_TYPE_2D`
+/// -    If any element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, then [`src_image`] **must**  not have a [multi-planar format](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
 ///
-/// -  [`dst_buffer`]**must** be large enough to contain all buffer locations that are accessed according to [Buffer and Image Addressing](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#copies-buffers-images-addressing), for each element of [`regions`]
+/// -  [`dst_buffer`] **must**  be large enough to contain all buffer locations that are accessed according to [Buffer and Image Addressing](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#copies-buffers-images-addressing), for each element of [`regions`]
 /// - The union of all source regions, and the union of all destination regions, specified by the
-///   elements of [`regions`], **must** not overlap in memory
-/// - [`src_image`]**must** have been created with `VK_IMAGE_USAGE_TRANSFER_SRC_BIT` usage flag
+///   elements of [`regions`],  **must**  not overlap in memory
+/// - [`src_image`] **must**  have been created with `VK_IMAGE_USAGE_TRANSFER_SRC_BIT` usage flag
 /// - The [format features](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#resources-image-format-features)
-///   of [`src_image`]**must** contain `VK_FORMAT_FEATURE_TRANSFER_SRC_BIT`
-/// - If [`src_image`] is non-sparse then it **must** be bound completely and contiguously to a
+///   of [`src_image`] **must**  contain `VK_FORMAT_FEATURE_TRANSFER_SRC_BIT`
+/// - If [`src_image`] is non-sparse then it  **must**  be bound completely and contiguously to a
 ///   single [`DeviceMemory`] object
-/// - [`dst_buffer`]**must** have been created with `VK_BUFFER_USAGE_TRANSFER_DST_BIT` usage flag
-/// - If [`dst_buffer`] is non-sparse then it **must** be bound completely and contiguously to a
+/// - [`dst_buffer`] **must**  have been created with `VK_BUFFER_USAGE_TRANSFER_DST_BIT` usage flag
+/// - If [`dst_buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a
 ///   single [`DeviceMemory`] object
-/// - [`src_image`]**must** have a sample count equal to `VK_SAMPLE_COUNT_1_BIT`
-/// - [`src_image_layout`]**must** specify the layout of the image subresources of [`src_image`]
+/// - [`src_image`] **must**  have a sample count equal to `VK_SAMPLE_COUNT_1_BIT`
+/// - [`src_image_layout`] **must**  specify the layout of the image subresources of [`src_image`]
 ///   specified in [`regions`] at the time this command is executed on a [`Device`]
-/// - [`src_image_layout`]**must** be `VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL`,
+/// - [`src_image_layout`] **must**  be `VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_GENERAL`, or `VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR`
-/// - The `imageSubresource.mipLevel` member of each element of [`regions`]**must** be less than the
-///   `mipLevels` specified in [`ImageCreateInfo`] when [`src_image`] was created
+/// - The `imageSubresource.mipLevel` member of each element of [`regions`] **must**  be less than
+///   the `mipLevels` specified in [`ImageCreateInfo`] when [`src_image`] was created
 /// - The `imageSubresource.baseArrayLayer` +  `imageSubresource.layerCount` of each element of
-///   [`regions`]**must** be less than or equal to the `arrayLayers` specified in
+///   [`regions`] **must**  be less than or equal to the `arrayLayers` specified in
 ///   [`ImageCreateInfo`] when [`src_image`] was created
-/// - The `imageOffset` and `imageExtent` members of each element of [`regions`]**must** respect the
-///   image transfer granularity requirements of `commandBuffer`’s command pool’s queue family, as
-///   described in [`QueueFamilyProperties`]
-/// - [`src_image`]**must** not have been created with `flags` containing
+/// - The `imageOffset` and `imageExtent` members of each element of [`regions`] **must**  respect
+///   the image transfer granularity requirements of `commandBuffer`’s command pool’s queue family,
+///   as described in [`QueueFamilyProperties`]
+/// - [`src_image`] **must**  not have been created with `flags` containing
 ///   `VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT`
 /// - For each element of [`regions`] not containing [`CopyCommandTransformInfoQCOM`] in its
-///   [`p_next`] chain, `imageOffset.x` and (`imageExtent.width` +  `imageOffset.x`)**must** both be
-///   greater than or equal to `0` and less than or equal to the width of the specified
+///   [`p_next`] chain, `imageOffset.x` and (`imageExtent.width` +  `imageOffset.x`) **must**  both
+///   be greater than or equal to `0` and less than or equal to the width of the specified
 ///   `imageSubresource` of [`src_image`]
 /// - For each element of [`regions`] not containing [`CopyCommandTransformInfoQCOM`] in its
-///   [`p_next`] chain, `imageOffset.y` and (`imageExtent.height` +  `imageOffset.y`)**must** both
+///   [`p_next`] chain, `imageOffset.y` and (`imageExtent.height` +  `imageOffset.y`) **must**  both
 ///   be greater than or equal to `0` and less than or equal to the height of the specified
 ///   `imageSubresource` of [`src_image`]
 ///
 /// - If {imageparam} does not have either a depth/stencil or a [multi-planar format](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion),
-///   then for each element of [`regions`], `bufferOffset`**must** be a multiple of the format’s
+///   then for each element of [`regions`], `bufferOffset` **must**  be a multiple of the format’s
 ///   texel block size
-/// - If {imageparam} has a [multi-planar format](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion),
-///   then for each element of [`regions`], `bufferOffset`**must** be a multiple of the element size
-///   of the compatible format for the format and the `aspectMask` of the `imageSubresource` as defined
-///   in [[formats-compatible-planes]](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-compatible-planes)
+/// -    If {imageparam} has a [multi-planar format](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion), then for each element of [`regions`], `bufferOffset` **must**  be a multiple of the element size of the compatible format for the format and the `aspectMask` of the `imageSubresource` as defined in [[formats-compatible-planes]](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-compatible-planes)
 /// - If {imageparam} is of type `VK_IMAGE_TYPE_1D`, then for each element of [`regions`],
-///   `imageOffset.y`**must** be `0` and `imageExtent.height`**must** be `1`
-/// - For each element of [`regions`], `imageOffset.z` and (`imageExtent.depth` +
-///   `imageOffset.z`)**must** both be greater than or equal to `0` and less than or equal to the
-///   depth of the specified `imageSubresource` of {imageparam}
+///   `imageOffset.y` **must**  be `0` and `imageExtent.height` **must**  be `1`
+/// - For each element of [`regions`], `imageOffset.z` and (`imageExtent.depth` +  `imageOffset.z`)
+///   **must**  both be greater than or equal to `0` and less than or equal to the depth of the
+///   specified `imageSubresource` of {imageparam}
 /// - If {imageparam} is of type `VK_IMAGE_TYPE_1D` or `VK_IMAGE_TYPE_2D`, then for each element of
-///   [`regions`], `imageOffset.z`**must** be `0` and `imageExtent.depth`**must** be `1`
+///   [`regions`], `imageOffset.z` **must**  be `0` and `imageExtent.depth` **must**  be `1`
 /// - If {imageparam} is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   for each element of [`regions`], `bufferRowLength`**must** be a multiple of the compressed
+///   for each element of [`regions`], `bufferRowLength` **must**  be a multiple of the compressed
 ///   texel block width
 /// - If {imageparam} is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   for each element of [`regions`], `bufferImageHeight`**must** be a multiple of the compressed
+///   for each element of [`regions`], `bufferImageHeight` **must**  be a multiple of the compressed
 ///   texel block height
 /// - If {imageparam} is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   for each element of [`regions`], all members of `imageOffset`**must** be a multiple of the
+///   for each element of [`regions`], all members of `imageOffset` **must**  be a multiple of the
 ///   corresponding dimensions of the compressed texel block
 /// - If {imageparam} is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   for each element of [`regions`], `bufferOffset`**must** be a multiple of the compressed texel
-///   block size in bytes
+///   for each element of [`regions`], `bufferOffset` **must**  be a multiple of the compressed
+///   texel block size in bytes
 /// - If {imageparam} is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   for each element of [`regions`], `imageExtent.width`**must** be a multiple of the compressed
-///   texel block width or (`imageExtent.width` +  `imageOffset.x`)**must** equal the width of the
+///   for each element of [`regions`], `imageExtent.width` **must**  be a multiple of the compressed
+///   texel block width or (`imageExtent.width` +  `imageOffset.x`) **must**  equal the width of the
 ///   specified `imageSubresource` of {imageparam}
 /// - If {imageparam} is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   for each element of [`regions`], `imageExtent.height`**must** be a multiple of the compressed
-///   texel block height or (`imageExtent.height` +  `imageOffset.y`)**must** equal the height of
-///   the specified `imageSubresource` of {imageparam}
+///   for each element of [`regions`], `imageExtent.height` **must**  be a multiple of the
+///   compressed texel block height or (`imageExtent.height` +  `imageOffset.y`) **must**  equal the
+///   height of the specified `imageSubresource` of {imageparam}
 /// - If {imageparam} is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
-///   for each element of [`regions`], `imageExtent.depth`**must** be a multiple of the compressed
-///   texel block depth or (`imageExtent.depth` +  `imageOffset.z`)**must** equal the depth of the
+///   for each element of [`regions`], `imageExtent.depth` **must**  be a multiple of the compressed
+///   texel block depth or (`imageExtent.depth` +  `imageOffset.z`) **must**  equal the depth of the
 ///   specified `imageSubresource` of {imageparam}
-/// - For each element of [`regions`], `imageSubresource.aspectMask`**must** specify aspects present
-///   in {imageparam}
+/// - For each element of [`regions`], `imageSubresource.aspectMask` **must**  specify aspects
+///   present in {imageparam}
 /// - If {imageparam} has a [multi-planar format](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion),
-///   then for each element of [`regions`], `imageSubresource.aspectMask`**must** be
+///   then for each element of [`regions`], `imageSubresource.aspectMask` **must**  be
 ///   `VK_IMAGE_ASPECT_PLANE_0_BIT`, `VK_IMAGE_ASPECT_PLANE_1_BIT`, or `VK_IMAGE_ASPECT_PLANE_2_BIT`
 ///   (with `VK_IMAGE_ASPECT_PLANE_2_BIT` valid only for image formats with three planes)
 /// - If {imageparam} is of type `VK_IMAGE_TYPE_3D`, for each element of [`regions`],
-///   `imageSubresource.baseArrayLayer`**must** be `0` and `imageSubresource.layerCount`**must** be
-///   `1`
+///   `imageSubresource.baseArrayLayer` **must**  be `0` and `imageSubresource.layerCount` **must**
+///   be `1`
 /// - If {imageparam} is not a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
 ///   for each element of [`regions`], `bufferRowLength` multiplied by the texel block size of
-///   {imageparam} **must** be less than or equal to 2<sup>31</sup>-1
+///   {imageparam}  **must**  be less than or equal to 2<sup>31</sup>-1
 /// - If {imageparam} is a [blocked image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#blocked-image),
 ///   for each element of [`regions`], `bufferRowLength` divided by the compressed texel block width
-///   and then multiplied by the texel block size of {imageparam} **must** be less than or equal to
-///   2<sup>31</sup>-1
+///   and then multiplied by the texel block size of {imageparam}  **must**  be less than or equal
+///   to 2<sup>31</sup>-1
 /// - If the queue family used to create the [`CommandPool`] which `commandBuffer` was allocated
 ///   from does not support `VK_QUEUE_GRAPHICS_BIT` or `VK_QUEUE_COMPUTE_BIT`, the `bufferOffset`
-///   member of any element of [`regions`]**must** be a multiple of `4`
+///   member of any element of [`regions`] **must**  be a multiple of `4`
 /// - If {imageparam} has a depth/stencil format, the `bufferOffset` member of any element of
-///   [`regions`]**must** be a multiple of `4`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2`
-/// - [`p_next`]**must** be `NULL`
-/// - [`src_image`]**must** be a valid [`Image`] handle
-/// - [`src_image_layout`]**must** be a valid [`ImageLayout`] value
-/// - [`dst_buffer`]**must** be a valid [`Buffer`] handle
-/// - [`regions`]**must** be a valid pointer to an array of [`region_count`] valid
+///   [`regions`] **must**  be a multiple of `4`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`src_image`] **must**  be a valid [`Image`] handle
+/// - [`src_image_layout`] **must**  be a valid [`ImageLayout`] value
+/// - [`dst_buffer`] **must**  be a valid [`Buffer`] handle
+/// - [`regions`] **must**  be a valid pointer to an array of [`region_count`] valid
 ///   [`BufferImageCopy2`] structures
-/// - [`region_count`]**must** be greater than `0`
-/// - Both of [`dst_buffer`], and [`src_image`]**must** have been created, allocated, or retrieved
+/// - [`region_count`] **must**  be greater than `0`
+/// - Both of [`dst_buffer`], and [`src_image`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
 ///# Related
 /// - [`VK_KHR_copy_commands2`]
@@ -9270,10 +8995,6 @@ impl<'lt> CopyImageToBufferInfo2<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::region_count`]
-    pub fn region_count_raw(&self) -> u32 {
-        self.region_count
-    }
     ///Gets the raw value of [`Self::regions`]
     pub fn regions_raw(&self) -> *const BufferImageCopy2<'lt> {
         self.regions
@@ -9281,11 +9002,6 @@ impl<'lt> CopyImageToBufferInfo2<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::region_count`]
-    pub fn set_region_count_raw(&mut self, value: u32) -> &mut Self {
-        self.region_count = value;
         self
     }
     ///Sets the raw value of [`Self::regions`]
@@ -9418,83 +9134,84 @@ impl<'lt> CopyImageToBufferInfo2<'lt> {
 /// - [`regions`] is a pointer to an array of [`ImageResolve2`] structures specifying the regions to
 ///   resolve.
 ///# Description
-///Valid Usage
+///## Valid Usage
 /// - The union of all source regions, and the union of all destination regions, specified by the
-///   elements of [`regions`], **must** not overlap in memory
-/// - If [`src_image`] is non-sparse then it **must** be bound completely and contiguously to a
+///   elements of [`regions`],  **must**  not overlap in memory
+/// - If [`src_image`] is non-sparse then it  **must**  be bound completely and contiguously to a
 ///   single [`DeviceMemory`] object
-/// - [`src_image`]**must** have a sample count equal to any valid sample count value other than
+/// - [`src_image`] **must**  have a sample count equal to any valid sample count value other than
 ///   `VK_SAMPLE_COUNT_1_BIT`
-/// - If [`dst_image`] is non-sparse then it **must** be bound completely and contiguously to a
+/// - If [`dst_image`] is non-sparse then it  **must**  be bound completely and contiguously to a
 ///   single [`DeviceMemory`] object
-/// - [`dst_image`]**must** have a sample count equal to `VK_SAMPLE_COUNT_1_BIT`
-/// - [`src_image_layout`]**must** specify the layout of the image subresources of [`src_image`]
+/// - [`dst_image`] **must**  have a sample count equal to `VK_SAMPLE_COUNT_1_BIT`
+/// - [`src_image_layout`] **must**  specify the layout of the image subresources of [`src_image`]
 ///   specified in [`regions`] at the time this command is executed on a [`Device`]
-/// - [`src_image_layout`]**must** be `VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR`,
+/// - [`src_image_layout`] **must**  be `VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR`,
 ///   `VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL` or `VK_IMAGE_LAYOUT_GENERAL`
-/// - [`dst_image_layout`]**must** specify the layout of the image subresources of [`dst_image`]
+/// - [`dst_image_layout`] **must**  specify the layout of the image subresources of [`dst_image`]
 ///   specified in [`regions`] at the time this command is executed on a [`Device`]
-/// - [`dst_image_layout`]**must** be `VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR`,
+/// - [`dst_image_layout`] **must**  be `VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR`,
 ///   `VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL` or `VK_IMAGE_LAYOUT_GENERAL`
 /// - The [format features](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#resources-image-format-features)
-///   of [`dst_image`]**must** contain `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT`
-/// -    If the [`linearColorAttachment`]() feature is enabled and the image is created with `VK_IMAGE_TILING_LINEAR`, the [format features](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#resources-image-format-features) of [`dst_image`]**must** contain `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
-/// - [`src_image`] and [`dst_image`]**must** have been created with the same image format
-/// - The `srcSubresource.mipLevel` member of each element of [`regions`]**must** be less than the
+///   of [`dst_image`] **must**  contain `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT`
+/// -    If the [`linearColorAttachment`]() feature is enabled and the image is created with `VK_IMAGE_TILING_LINEAR`, the [format features](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#resources-image-format-features) of [`dst_image`] **must**  contain `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
+/// - [`src_image`] and [`dst_image`] **must**  have been created with the same image format
+/// - The `srcSubresource.mipLevel` member of each element of [`regions`] **must**  be less than the
 ///   `mipLevels` specified in [`ImageCreateInfo`] when [`src_image`] was created
-/// - The `dstSubresource.mipLevel` member of each element of [`regions`]**must** be less than the
+/// - The `dstSubresource.mipLevel` member of each element of [`regions`] **must**  be less than the
 ///   `mipLevels` specified in [`ImageCreateInfo`] when [`dst_image`] was created
 /// - The `srcSubresource.baseArrayLayer` +  `srcSubresource.layerCount` of each element of
-///   [`regions`]**must** be less than or equal to the `arrayLayers` specified in
+///   [`regions`] **must**  be less than or equal to the `arrayLayers` specified in
 ///   [`ImageCreateInfo`] when [`src_image`] was created
 /// - The `dstSubresource.baseArrayLayer` +  `dstSubresource.layerCount` of each element of
-///   [`regions`]**must** be less than or equal to the `arrayLayers` specified in
+///   [`regions`] **must**  be less than or equal to the `arrayLayers` specified in
 ///   [`ImageCreateInfo`] when [`dst_image`] was created
-/// - [`dst_image`] and [`src_image`]**must** not have been created with `flags` containing
+/// - [`dst_image`] and [`src_image`] **must**  not have been created with `flags` containing
 ///   `VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT`
 /// - If either [`src_image`] or [`dst_image`] are of type `VK_IMAGE_TYPE_3D`, then for each element
-///   of [`regions`], `srcSubresource.baseArrayLayer`**must** be `0` and
-///   `srcSubresource.layerCount`**must** be `1`
+///   of [`regions`], `srcSubresource.baseArrayLayer` **must**  be `0` and
+///   `srcSubresource.layerCount` **must**  be `1`
 /// - If either [`src_image`] or [`dst_image`] are of type `VK_IMAGE_TYPE_3D`, then for each element
-///   of [`regions`], `dstSubresource.baseArrayLayer`**must** be `0` and
-///   `dstSubresource.layerCount`**must** be `1`
-/// - For each element of [`regions`], `srcOffset.x` and (`extent.width` +  `srcOffset.x`)**must**
+///   of [`regions`], `dstSubresource.baseArrayLayer` **must**  be `0` and
+///   `dstSubresource.layerCount` **must**  be `1`
+/// - For each element of [`regions`], `srcOffset.x` and (`extent.width` +  `srcOffset.x`) **must**
 ///   both be greater than or equal to `0` and less than or equal to the width of the specified
 ///   `srcSubresource` of [`src_image`]
-/// - For each element of [`regions`], `srcOffset.y` and (`extent.height` +  `srcOffset.y`)**must**
+/// - For each element of [`regions`], `srcOffset.y` and (`extent.height` +  `srcOffset.y`) **must**
 ///   both be greater than or equal to `0` and less than or equal to the height of the specified
 ///   `srcSubresource` of [`src_image`]
 /// - If [`src_image`] is of type `VK_IMAGE_TYPE_1D`, then for each element of [`regions`],
-///   `srcOffset.y`**must** be `0` and `extent.height`**must** be `1`
-/// - For each element of [`regions`], `srcOffset.z` and (`extent.depth` +  `srcOffset.z`)**must**
+///   `srcOffset.y` **must**  be `0` and `extent.height` **must**  be `1`
+/// - For each element of [`regions`], `srcOffset.z` and (`extent.depth` +  `srcOffset.z`) **must**
 ///   both be greater than or equal to `0` and less than or equal to the depth of the specified
 ///   `srcSubresource` of [`src_image`]
 /// - If [`src_image`] is of type `VK_IMAGE_TYPE_1D` or `VK_IMAGE_TYPE_2D`, then for each element of
-///   [`regions`], `srcOffset.z`**must** be `0` and `extent.depth`**must** be `1`
-/// - For each element of [`regions`], `dstOffset.x` and (`extent.width` +  `dstOffset.x`)**must**
+///   [`regions`], `srcOffset.z` **must**  be `0` and `extent.depth` **must**  be `1`
+/// - For each element of [`regions`], `dstOffset.x` and (`extent.width` +  `dstOffset.x`) **must**
 ///   both be greater than or equal to `0` and less than or equal to the width of the specified
 ///   `dstSubresource` of [`dst_image`]
-/// - For each element of [`regions`], `dstOffset.y` and (`extent.height` +  `dstOffset.y`)**must**
+/// - For each element of [`regions`], `dstOffset.y` and (`extent.height` +  `dstOffset.y`) **must**
 ///   both be greater than or equal to `0` and less than or equal to the height of the specified
 ///   `dstSubresource` of [`dst_image`]
 /// - If [`dst_image`] is of type `VK_IMAGE_TYPE_1D`, then for each element of [`regions`],
-///   `dstOffset.y`**must** be `0` and `extent.height`**must** be `1`
-/// - For each element of [`regions`], `dstOffset.z` and (`extent.depth` +  `dstOffset.z`)**must**
+///   `dstOffset.y` **must**  be `0` and `extent.height` **must**  be `1`
+/// - For each element of [`regions`], `dstOffset.z` and (`extent.depth` +  `dstOffset.z`) **must**
 ///   both be greater than or equal to `0` and less than or equal to the depth of the specified
 ///   `dstSubresource` of [`dst_image`]
 /// - If [`dst_image`] is of type `VK_IMAGE_TYPE_1D` or `VK_IMAGE_TYPE_2D`, then for each element of
-///   [`regions`], `dstOffset.z`**must** be `0` and `extent.depth`**must** be `1`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2`
-/// - [`p_next`]**must** be `NULL`
-/// - [`src_image`]**must** be a valid [`Image`] handle
-/// - [`src_image_layout`]**must** be a valid [`ImageLayout`] value
-/// - [`dst_image`]**must** be a valid [`Image`] handle
-/// - [`dst_image_layout`]**must** be a valid [`ImageLayout`] value
-/// - [`regions`]**must** be a valid pointer to an array of [`region_count`] valid [`ImageResolve2`]
-///   structures
-/// - [`region_count`]**must** be greater than `0`
-/// - Both of [`dst_image`], and [`src_image`]**must** have been created, allocated, or retrieved
+///   [`regions`], `dstOffset.z` **must**  be `0` and `extent.depth` **must**  be `1`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`src_image`] **must**  be a valid [`Image`] handle
+/// - [`src_image_layout`] **must**  be a valid [`ImageLayout`] value
+/// - [`dst_image`] **must**  be a valid [`Image`] handle
+/// - [`dst_image_layout`] **must**  be a valid [`ImageLayout`] value
+/// - [`regions`] **must**  be a valid pointer to an array of [`region_count`] valid
+///   [`ImageResolve2`] structures
+/// - [`region_count`] **must**  be greater than `0`
+/// - Both of [`dst_image`], and [`src_image`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
 ///# Related
 /// - [`VK_KHR_copy_commands2`]
@@ -9559,10 +9276,6 @@ impl<'lt> ResolveImageInfo2<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::region_count`]
-    pub fn region_count_raw(&self) -> u32 {
-        self.region_count
-    }
     ///Gets the raw value of [`Self::regions`]
     pub fn regions_raw(&self) -> *const ImageResolve2<'lt> {
         self.regions
@@ -9570,11 +9283,6 @@ impl<'lt> ResolveImageInfo2<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::region_count`]
-    pub fn set_region_count_raw(&mut self, value: u32) -> &mut Self {
-        self.region_count = value;
         self
     }
     ///Sets the raw value of [`Self::regions`]
@@ -9719,10 +9427,12 @@ impl<'lt> ResolveImageInfo2<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceShaderTerminateInvocationFeatures`]**can** also be used in the [`p_next`] chain
-/// of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES`
+///[`PhysicalDeviceShaderTerminateInvocationFeatures`] **can**  also be used in the [`p_next`]
+/// chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES`
 ///# Related
 /// - [`VK_KHR_shader_terminate_invocation`]
 /// - [`crate::vulkan1_3`]
@@ -9874,306 +9584,312 @@ impl<'lt> PhysicalDeviceShaderTerminateInvocationFeatures<'lt> {
 ///[`src_stage_mask`] and [`src_access_mask`].The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
 ///and [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) described
 ///by this structure include only operations and memory accesses specified by
-///[`dst_stage_mask`] and [`dst_access_mask`].Valid Usage
+///[`dst_stage_mask`] and [`dst_access_mask`].
+///## Valid Usage
 /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
 /// - If the [tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-tessellationShader)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT` or
 ///   `VK_PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT`
 /// - If the [conditional rendering](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-conditionalRendering)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`
 /// - If the [fragment density map](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-fragmentDensityMap)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
 /// - If the [transform feedback](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-transformFeedback)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`
 /// - If the [mesh shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-meshShader)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_MESH_SHADER_BIT_NV`
 /// - If the [task shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-taskShader)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TASK_SHADER_BIT_NV`
 /// - If the [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-shadingRateImage)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`
 /// - If the [subpass shading](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-subpassShading)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI`
 /// - If the [invocation mask image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-invocationMask)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_INDIRECT_COMMAND_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_INDIRECT_COMMAND_READ_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_INDEX_READ_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_INDEX_READ_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_INDEX_INPUT_BIT`, `VK_PIPELINE_STAGE_2_VERTEX_INPUT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_VERTEX_INPUT_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_INPUT_ATTACHMENT_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_INPUT_ATTACHMENT_READ_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_UNIFORM_READ_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_UNIFORM_READ_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one
 ///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_SAMPLED_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_SAMPLED_READ_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_READ_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_WRITE_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_WRITE_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_READ_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_READ_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or one of the
 ///   `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_WRITE_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_WRITE_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one
 ///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_BIT`,
-///   [`src_stage_mask`]**must** include
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_BIT`, [`src_stage_mask`]
+///   **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT`,
-///   [`src_stage_mask`]**must** include
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT`, [`src_stage_mask`]
+///   **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFER_READ_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFER_READ_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_COPY_BIT`, `VK_PIPELINE_STAGE_2_BLIT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_RESOLVE_BIT`, `VK_PIPELINE_STAGE_2_ALL_TRANSFER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFER_WRITE_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFER_WRITE_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_COPY_BIT`, `VK_PIPELINE_STAGE_2_BLIT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_RESOLVE_BIT`, `VK_PIPELINE_STAGE_2_CLEAR_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_TRANSFER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_HOST_READ_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_HOST_READ_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_HOST_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_HOST_WRITE_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_HOST_WRITE_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_HOST_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_CONDITIONAL_RENDERING_READ_BIT_EXT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_FRAGMENT_DENSITY_MAP_READ_BIT_EXT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_WRITE_BIT_EXT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADING_RATE_IMAGE_READ_BIT_NV`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_INVOCATION_MASK_READ_BIT_HUAWEI`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_COMMAND_PREPROCESS_READ_BIT_NV`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_COMMAND_PREPROCESS_WRITE_BIT_NV`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT`,
-///   [`src_stage_mask`]**must** include
+///   [`src_stage_mask`] **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
+///   [`src_stage_mask`] **must**  include
+///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`
-///   or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
+///   [`src_stage_mask`] **must**  include
+///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR` or
+///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`rayQuery`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-rayQuery)
 ///   is not enabled and [`src_access_mask`] includes
-///   `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`, [`src_stage_mask`]**must** not include any
-///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages except
+///   `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`, [`src_stage_mask`] **must**  not include
+///   any of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages except
 ///   `VK_PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_KHR`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_READ_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_WRITE_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_READ_BIT_KHR`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_WRITE_BIT_KHR`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
 ///
 /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
 /// - If the [tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-tessellationShader)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT` or
 ///   `VK_PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT`
 /// - If the [conditional rendering](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-conditionalRendering)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`
 /// - If the [fragment density map](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-fragmentDensityMap)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
 /// - If the [transform feedback](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-transformFeedback)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`
 /// - If the [mesh shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-meshShader)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_MESH_SHADER_BIT_NV`
 /// - If the [task shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-taskShader)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TASK_SHADER_BIT_NV`
 /// - If the [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-shadingRateImage)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`
 /// - If the [subpass shading](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-subpassShading)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI`
 /// - If the [invocation mask image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-invocationMask)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INDIRECT_COMMAND_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INDIRECT_COMMAND_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INDEX_READ_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INDEX_READ_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_INDEX_INPUT_BIT`, `VK_PIPELINE_STAGE_2_VERTEX_INPUT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_VERTEX_INPUT_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INPUT_ATTACHMENT_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INPUT_ATTACHMENT_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_UNIFORM_READ_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_UNIFORM_READ_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one
 ///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_SAMPLED_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_SAMPLED_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_WRITE_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_WRITE_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_READ_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_READ_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or one of the
 ///   `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_WRITE_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_WRITE_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one
 ///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_BIT`,
-///   [`dst_stage_mask`]**must** include
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT`,
-///   [`dst_stage_mask`]**must** include
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT`, [`dst_stage_mask`]
+///   **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFER_READ_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFER_READ_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_COPY_BIT`, `VK_PIPELINE_STAGE_2_BLIT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_RESOLVE_BIT`, `VK_PIPELINE_STAGE_2_ALL_TRANSFER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFER_WRITE_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFER_WRITE_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_COPY_BIT`, `VK_PIPELINE_STAGE_2_BLIT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_RESOLVE_BIT`, `VK_PIPELINE_STAGE_2_CLEAR_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_TRANSFER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_HOST_READ_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_HOST_READ_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_HOST_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_HOST_WRITE_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_HOST_WRITE_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_HOST_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_CONDITIONAL_RENDERING_READ_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_FRAGMENT_DENSITY_MAP_READ_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_WRITE_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADING_RATE_IMAGE_READ_BIT_NV`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_INVOCATION_MASK_READ_BIT_HUAWEI`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_COMMAND_PREPROCESS_READ_BIT_NV`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_COMMAND_PREPROCESS_WRITE_BIT_NV`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include
+///   [`dst_stage_mask`] **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
+///   [`dst_stage_mask`] **must**  include
+///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`
-///   or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
+///   [`dst_stage_mask`] **must**  include
+///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR` or
+///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`rayQuery`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-rayQuery)
 ///   is not enabled and [`dst_access_mask`] includes
-///   `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`, [`dst_stage_mask`]**must** not include any
-///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages except
+///   `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`, [`dst_stage_mask`] **must**  not include
+///   any of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages except
 ///   `VK_PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_KHR`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_READ_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_WRITE_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_MEMORY_BARRIER_2`
-/// - [`src_stage_mask`]**must** be a valid combination of [`PipelineStageFlagBits2`] values
-/// - [`src_access_mask`]**must** be a valid combination of [`AccessFlagBits2`] values
-/// - [`dst_stage_mask`]**must** be a valid combination of [`PipelineStageFlagBits2`] values
-/// - [`dst_access_mask`]**must** be a valid combination of [`AccessFlagBits2`] values
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_READ_BIT_KHR`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_WRITE_BIT_KHR`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_BARRIER_2`
+/// - [`src_stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
+/// - [`src_access_mask`] **must**  be a valid combination of [`AccessFlagBits2`] values
+/// - [`dst_stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
+/// - [`dst_access_mask`] **must**  be a valid combination of [`AccessFlagBits2`] values
 ///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
@@ -10356,7 +10072,7 @@ impl<'lt> MemoryBarrier2<'lt> {
 ///   within [`image`] that is affected by this barrier.
 ///# Description
 ///This structure defines a [memory
-///dependency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-memory) limited to an image subresource range, and **can** define a
+///dependency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-memory) limited to an image subresource range, and  **can**  define a
 ///[queue family transfer operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and
 ///[image layout transition](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions) for
 ///that subresource range.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
@@ -10397,425 +10113,434 @@ impl<'lt> MemoryBarrier2<'lt> {
 ///including `VK_IMAGE_ASPECT_COLOR_BIT` in the `aspectMask` member of
 ///[`subresource_range`] is equivalent to including
 ///`VK_IMAGE_ASPECT_PLANE_0_BIT`, `VK_IMAGE_ASPECT_PLANE_1_BIT`, and
-///(for three-plane formats only) `VK_IMAGE_ASPECT_PLANE_2_BIT`.Valid Usage
+///(for three-plane formats only) `VK_IMAGE_ASPECT_PLANE_2_BIT`.
+///## Valid Usage
 /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
 /// - If the [tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-tessellationShader)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT` or
 ///   `VK_PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT`
 /// - If the [conditional rendering](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-conditionalRendering)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`
 /// - If the [fragment density map](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-fragmentDensityMap)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
 /// - If the [transform feedback](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-transformFeedback)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`
 /// - If the [mesh shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-meshShader)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_MESH_SHADER_BIT_NV`
 /// - If the [task shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-taskShader)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TASK_SHADER_BIT_NV`
 /// - If the [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-shadingRateImage)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`
 /// - If the [subpass shading](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-subpassShading)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI`
 /// - If the [invocation mask image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-invocationMask)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_INDIRECT_COMMAND_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_INDIRECT_COMMAND_READ_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_INDEX_READ_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_INDEX_READ_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_INDEX_INPUT_BIT`, `VK_PIPELINE_STAGE_2_VERTEX_INPUT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_VERTEX_INPUT_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_INPUT_ATTACHMENT_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_INPUT_ATTACHMENT_READ_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_UNIFORM_READ_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_UNIFORM_READ_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one
 ///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_SAMPLED_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_SAMPLED_READ_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_READ_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_WRITE_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_WRITE_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_READ_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_READ_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or one of the
 ///   `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_WRITE_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_WRITE_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one
 ///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_BIT`,
-///   [`src_stage_mask`]**must** include
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_BIT`, [`src_stage_mask`]
+///   **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT`,
-///   [`src_stage_mask`]**must** include
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT`, [`src_stage_mask`]
+///   **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFER_READ_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFER_READ_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_COPY_BIT`, `VK_PIPELINE_STAGE_2_BLIT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_RESOLVE_BIT`, `VK_PIPELINE_STAGE_2_ALL_TRANSFER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFER_WRITE_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFER_WRITE_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_COPY_BIT`, `VK_PIPELINE_STAGE_2_BLIT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_RESOLVE_BIT`, `VK_PIPELINE_STAGE_2_CLEAR_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_TRANSFER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_HOST_READ_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_HOST_READ_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_HOST_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_HOST_WRITE_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_HOST_WRITE_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_HOST_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_CONDITIONAL_RENDERING_READ_BIT_EXT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_FRAGMENT_DENSITY_MAP_READ_BIT_EXT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_WRITE_BIT_EXT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADING_RATE_IMAGE_READ_BIT_NV`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_INVOCATION_MASK_READ_BIT_HUAWEI`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_COMMAND_PREPROCESS_READ_BIT_NV`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_COMMAND_PREPROCESS_WRITE_BIT_NV`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT`,
-///   [`src_stage_mask`]**must** include
+///   [`src_stage_mask`] **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
+///   [`src_stage_mask`] **must**  include
+///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`
-///   or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
+///   [`src_stage_mask`] **must**  include
+///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR` or
+///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`rayQuery`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-rayQuery)
 ///   is not enabled and [`src_access_mask`] includes
-///   `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`, [`src_stage_mask`]**must** not include any
-///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages except
+///   `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`, [`src_stage_mask`] **must**  not include
+///   any of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages except
 ///   `VK_PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_KHR`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_READ_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_WRITE_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_READ_BIT_KHR`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_WRITE_BIT_KHR`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
 ///
 /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
 /// - If the [tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-tessellationShader)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT` or
 ///   `VK_PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT`
 /// - If the [conditional rendering](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-conditionalRendering)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`
 /// - If the [fragment density map](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-fragmentDensityMap)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
 /// - If the [transform feedback](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-transformFeedback)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`
 /// - If the [mesh shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-meshShader)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_MESH_SHADER_BIT_NV`
 /// - If the [task shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-taskShader)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TASK_SHADER_BIT_NV`
 /// - If the [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-shadingRateImage)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`
 /// - If the [subpass shading](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-subpassShading)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI`
 /// - If the [invocation mask image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-invocationMask)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INDIRECT_COMMAND_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INDIRECT_COMMAND_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INDEX_READ_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INDEX_READ_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_INDEX_INPUT_BIT`, `VK_PIPELINE_STAGE_2_VERTEX_INPUT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_VERTEX_INPUT_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INPUT_ATTACHMENT_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INPUT_ATTACHMENT_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_UNIFORM_READ_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_UNIFORM_READ_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one
 ///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_SAMPLED_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_SAMPLED_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_WRITE_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_WRITE_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_READ_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_READ_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or one of the
 ///   `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_WRITE_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_WRITE_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one
 ///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_BIT`,
-///   [`dst_stage_mask`]**must** include
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT`,
-///   [`dst_stage_mask`]**must** include
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT`, [`dst_stage_mask`]
+///   **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFER_READ_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFER_READ_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_COPY_BIT`, `VK_PIPELINE_STAGE_2_BLIT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_RESOLVE_BIT`, `VK_PIPELINE_STAGE_2_ALL_TRANSFER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFER_WRITE_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFER_WRITE_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_COPY_BIT`, `VK_PIPELINE_STAGE_2_BLIT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_RESOLVE_BIT`, `VK_PIPELINE_STAGE_2_CLEAR_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_TRANSFER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_HOST_READ_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_HOST_READ_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_HOST_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_HOST_WRITE_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_HOST_WRITE_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_HOST_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_CONDITIONAL_RENDERING_READ_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_FRAGMENT_DENSITY_MAP_READ_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_WRITE_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADING_RATE_IMAGE_READ_BIT_NV`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_INVOCATION_MASK_READ_BIT_HUAWEI`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_COMMAND_PREPROCESS_READ_BIT_NV`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_COMMAND_PREPROCESS_WRITE_BIT_NV`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include
+///   [`dst_stage_mask`] **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
+///   [`dst_stage_mask`] **must**  include
+///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`
-///   or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
+///   [`dst_stage_mask`] **must**  include
+///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR` or
+///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`rayQuery`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-rayQuery)
 ///   is not enabled and [`dst_access_mask`] includes
-///   `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`, [`dst_stage_mask`]**must** not include any
-///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages except
+///   `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`, [`dst_stage_mask`] **must**  not include
+///   any of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages except
 ///   `VK_PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_KHR`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_READ_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_WRITE_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_READ_BIT_KHR`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_WRITE_BIT_KHR`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
 ///
-/// - `subresourceRange.baseMipLevel`**must** be less than the `mipLevels` specified in
+/// - `subresourceRange.baseMipLevel` **must**  be less than the `mipLevels` specified in
 ///   [`ImageCreateInfo`] when [`image`] was created
 /// - If `subresourceRange.levelCount` is not [`REMAINING_MIP_LEVELS`],
-///   `subresourceRange.baseMipLevel` +  `subresourceRange.levelCount`**must** be less than or equal
-///   to the `mipLevels` specified in [`ImageCreateInfo`] when [`image`] was created
-/// - `subresourceRange.baseArrayLayer`**must** be less than the `arrayLayers` specified in
+///   `subresourceRange.baseMipLevel` +  `subresourceRange.levelCount` **must**  be less than or
+///   equal to the `mipLevels` specified in [`ImageCreateInfo`] when [`image`] was created
+/// - `subresourceRange.baseArrayLayer` **must**  be less than the `arrayLayers` specified in
 ///   [`ImageCreateInfo`] when [`image`] was created
 /// - If `subresourceRange.layerCount` is not [`REMAINING_ARRAY_LAYERS`],
-///   `subresourceRange.baseArrayLayer` +  `subresourceRange.layerCount`**must** be less than or
+///   `subresourceRange.baseArrayLayer` +  `subresourceRange.layerCount` **must**  be less than or
 ///   equal to the `arrayLayers` specified in [`ImageCreateInfo`] when [`image`] was created
-/// - If [`image`] is non-sparse then it **must** be bound completely and contiguously to a single
+/// - If [`image`] is non-sparse then it  **must**  be bound completely and contiguously to a single
 ///   [`DeviceMemory`] object
 /// - If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 ///   or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions),
 ///   and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL` then
-///   [`image`]**must** have been created with `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT`
+///   [`image`] **must**  have been created with `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT`
 /// - If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 ///   or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions),
 ///   and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL`
-///   then [`image`]**must** have been created with `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
+///   then [`image`] **must**  have been created with `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
 /// - If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 ///   or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions),
 ///   and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL` then
-///   [`image`]**must** have been created with `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
+///   [`image`] **must**  have been created with `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
 /// - If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 ///   or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions),
 ///   and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL` then
-///   [`image`]**must** have been created with `VK_IMAGE_USAGE_SAMPLED_BIT` or
+///   [`image`] **must**  have been created with `VK_IMAGE_USAGE_SAMPLED_BIT` or
 ///   `VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT`
 /// - If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 ///   or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions),
-///   and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL` then
-///   [`image`]**must** have been created with `VK_IMAGE_USAGE_TRANSFER_SRC_BIT`
+///   and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL` then [`image`]
+///   **must**  have been created with `VK_IMAGE_USAGE_TRANSFER_SRC_BIT`
 /// - If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 ///   or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions),
-///   and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL` then
-///   [`image`]**must** have been created with `VK_IMAGE_USAGE_TRANSFER_DST_BIT`
+///   and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL` then [`image`]
+///   **must**  have been created with `VK_IMAGE_USAGE_TRANSFER_DST_BIT`
 /// - If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 ///   or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions),
-///   [`old_layout`]**must** be `VK_IMAGE_LAYOUT_UNDEFINED` or the current layout of the image
+///   [`old_layout`] **must**  be `VK_IMAGE_LAYOUT_UNDEFINED` or the current layout of the image
 ///   subresources affected by the barrier
 /// - If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 ///   or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions),
-///   [`new_layout`]**must** not be `VK_IMAGE_LAYOUT_UNDEFINED` or `VK_IMAGE_LAYOUT_PREINITIALIZED`
+///   [`new_layout`] **must**  not be `VK_IMAGE_LAYOUT_UNDEFINED` or
+///   `VK_IMAGE_LAYOUT_PREINITIALIZED`
 /// - If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 ///   or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions),
 ///   and [`old_layout`] or [`new_layout`] is
-///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL` then [`image`]**must** have been
-///   created with `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
+///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL` then [`image`] **must**  have
+///   been created with `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
 /// - If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 ///   or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions),
 ///   and [`old_layout`] or [`new_layout`] is
-///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL` then [`image`]**must** have been
-///   created with `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
+///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL` then [`image`] **must**  have
+///   been created with `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
 /// - If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 ///   or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions),
 ///   and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL` then
-///   [`image`]**must** have been created with at least one of
+///   [`image`] **must**  have been created with at least one of
 ///   `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`, `VK_IMAGE_USAGE_SAMPLED_BIT`, or
 ///   `VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT`
 /// - If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 ///   or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions),
 ///   and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL` then
-///   [`image`]**must** have been created with `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT` set
+///   [`image`] **must**  have been created with `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT` set
 /// - If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 ///   or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions),
 ///   and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL` then
-///   [`image`]**must** have been created with at least one of
+///   [`image`] **must**  have been created with at least one of
 ///   `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`, `VK_IMAGE_USAGE_SAMPLED_BIT`, or
 ///   `VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT`
 /// - If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 ///   or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions),
 ///   and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL` then
-///   [`image`]**must** have been created with `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT` set
+///   [`image`] **must**  have been created with `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT` set
 /// - If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 ///   or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions),
-///   and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_ATTACHMENT_OPTIMAL`,
-///   [`image`]**must** have been created with `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT` or
+///   and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_ATTACHMENT_OPTIMAL`, [`image`]
+///   **must**  have been created with `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT` or
 ///   `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
 /// - If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 ///   or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions),
-///   and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_READ_ONLY_OPTIMAL`, [`image`]**must**
-///   have been created with at least one of `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`,
-///   `VK_IMAGE_USAGE_SAMPLED_BIT`, or `VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT`
+///   and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_READ_ONLY_OPTIMAL`, [`image`]
+///   **must**  have been created with at least one of
+///   `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`, `VK_IMAGE_USAGE_SAMPLED_BIT`, or
+///   `VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT`
 /// - If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 ///   or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions),
 ///   and [`old_layout`] or [`new_layout`] is
-///   `VK_IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR` then [`image`]**must** have
+///   `VK_IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR` then [`image`] **must**  have
 ///   been created with `VK_IMAGE_USAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR` set
 /// - If [`image`] has a single-plane color format or is not *disjoint*, then the `aspectMask`
-///   member of [`subresource_range`]**must** be `VK_IMAGE_ASPECT_COLOR_BIT`
+///   member of [`subresource_range`] **must**  be `VK_IMAGE_ASPECT_COLOR_BIT`
 /// - If [`image`] has a multi-planar format and the image is *disjoint*, then the `aspectMask`
-///   member of [`subresource_range`]**must** include either at least one of
+///   member of [`subresource_range`] **must**  include either at least one of
 ///   `VK_IMAGE_ASPECT_PLANE_0_BIT`, `VK_IMAGE_ASPECT_PLANE_1_BIT`, and
-///   `VK_IMAGE_ASPECT_PLANE_2_BIT`; or **must** include `VK_IMAGE_ASPECT_COLOR_BIT`
+///   `VK_IMAGE_ASPECT_PLANE_2_BIT`; or  **must**  include `VK_IMAGE_ASPECT_COLOR_BIT`
 /// - If [`image`] has a multi-planar format with only two planes, then the `aspectMask` member of
-///   [`subresource_range`]**must** not include `VK_IMAGE_ASPECT_PLANE_2_BIT`
+///   [`subresource_range`] **must**  not include `VK_IMAGE_ASPECT_PLANE_2_BIT`
 /// - If [`image`] has a depth/stencil format with both depth and stencil and the [separateDepthStencilLayouts](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-separateDepthStencilLayouts)
-///   feature is enabled, then the `aspectMask` member of [`subresource_range`]**must** include
+///   feature is enabled, then the `aspectMask` member of [`subresource_range`] **must**  include
 ///   either or both `VK_IMAGE_ASPECT_DEPTH_BIT` and `VK_IMAGE_ASPECT_STENCIL_BIT`
 /// - If [`image`] has a depth/stencil format with both depth and stencil and the [separateDepthStencilLayouts](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-separateDepthStencilLayouts)
-///   feature is not enabled, then the `aspectMask` member of [`subresource_range`]**must** include
-///   both `VK_IMAGE_ASPECT_DEPTH_BIT` and `VK_IMAGE_ASPECT_STENCIL_BIT`
-/// -    If [`src_queue_family_index`] is not equal to [`dst_queue_family_index`], at least one **must** not be a special queue family reserved for external memory ownership transfers, as described in [[synchronization-queue-transfers]](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
+///   feature is not enabled, then the `aspectMask` member of [`subresource_range`] **must**
+///   include both `VK_IMAGE_ASPECT_DEPTH_BIT` and `VK_IMAGE_ASPECT_STENCIL_BIT`
+/// -    If [`src_queue_family_index`] is not equal to [`dst_queue_family_index`], at least one  **must**  not be a special queue family reserved for external memory ownership transfers, as described in [[synchronization-queue-transfers]](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 /// - If [`image`] was created with a sharing mode of `VK_SHARING_MODE_CONCURRENT`,
 ///   [`src_queue_family_index`] and [`dst_queue_family_index`] are not equal, and one of
 ///   [`src_queue_family_index`] and [`dst_queue_family_index`] is one of the special queue family
-///   values reserved for external memory transfers, the other **must** be [`QUEUE_FAMILY_IGNORED`]
-/// -    If [`image`] was created with a sharing mode of `VK_SHARING_MODE_EXCLUSIVE`, and [`src_queue_family_index`] and [`dst_queue_family_index`] are not equal, [`src_queue_family_index`] and [`dst_queue_family_index`]**must** both be valid queue families, or one of the special queue family values reserved for external memory transfers, as described in [[synchronization-queue-transfers]](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
+///   values reserved for external memory transfers, the other  **must**  be
+///   [`QUEUE_FAMILY_IGNORED`]
+/// -    If [`image`] was created with a sharing mode of `VK_SHARING_MODE_EXCLUSIVE`, and [`src_queue_family_index`] and [`dst_queue_family_index`] are not equal, [`src_queue_family_index`] and [`dst_queue_family_index`] **must**  both be valid queue families, or one of the special queue family values reserved for external memory transfers, as described in [[synchronization-queue-transfers]](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 /// - If either [`src_stage_mask`] or [`dst_stage_mask`] includes `VK_PIPELINE_STAGE_2_HOST_BIT`,
-///   [`src_queue_family_index`] and [`dst_queue_family_index`]**must** be equal
-/// -    If [`src_stage_mask`] includes `VK_PIPELINE_STAGE_2_HOST_BIT`, and [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions), [`old_layout`]**must** be one of `VK_IMAGE_LAYOUT_PREINITIALIZED`, `VK_IMAGE_LAYOUT_UNDEFINED`, or `VK_IMAGE_LAYOUT_GENERAL`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2`
-/// - [`p_next`]**must** be `NULL` or a pointer to a valid instance of [`SampleLocationsInfoEXT`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - [`src_stage_mask`]**must** be a valid combination of [`PipelineStageFlagBits2`] values
-/// - [`src_access_mask`]**must** be a valid combination of [`AccessFlagBits2`] values
-/// - [`dst_stage_mask`]**must** be a valid combination of [`PipelineStageFlagBits2`] values
-/// - [`dst_access_mask`]**must** be a valid combination of [`AccessFlagBits2`] values
-/// - [`old_layout`]**must** be a valid [`ImageLayout`] value
-/// - [`new_layout`]**must** be a valid [`ImageLayout`] value
-/// - [`image`]**must** be a valid [`Image`] handle
-/// - [`subresource_range`]**must** be a valid [`ImageSubresourceRange`] structure
+///   [`src_queue_family_index`] and [`dst_queue_family_index`] **must**  be equal
+/// -    If [`src_stage_mask`] includes `VK_PIPELINE_STAGE_2_HOST_BIT`, and [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions), [`old_layout`] **must**  be one of `VK_IMAGE_LAYOUT_PREINITIALIZED`, `VK_IMAGE_LAYOUT_UNDEFINED`, or `VK_IMAGE_LAYOUT_GENERAL`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2`
+/// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of [`SampleLocationsInfoEXT`]
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`src_stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
+/// - [`src_access_mask`] **must**  be a valid combination of [`AccessFlagBits2`] values
+/// - [`dst_stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
+/// - [`dst_access_mask`] **must**  be a valid combination of [`AccessFlagBits2`] values
+/// - [`old_layout`] **must**  be a valid [`ImageLayout`] value
+/// - [`new_layout`] **must**  be a valid [`ImageLayout`] value
+/// - [`image`] **must**  be a valid [`Image`] handle
+/// - [`subresource_range`] **must**  be a valid [`ImageSubresourceRange`] structure
 ///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
@@ -10900,27 +10625,9 @@ impl<'lt> ImageMemoryBarrier2<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::src_queue_family_index`]
-    pub fn src_queue_family_index_raw(&self) -> u32 {
-        self.src_queue_family_index
-    }
-    ///Gets the raw value of [`Self::dst_queue_family_index`]
-    pub fn dst_queue_family_index_raw(&self) -> u32 {
-        self.dst_queue_family_index
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::src_queue_family_index`]
-    pub fn set_src_queue_family_index_raw(&mut self, value: u32) -> &mut Self {
-        self.src_queue_family_index = value;
-        self
-    }
-    ///Sets the raw value of [`Self::dst_queue_family_index`]
-    pub fn set_dst_queue_family_index_raw(&mut self, value: u32) -> &mut Self {
-        self.dst_queue_family_index = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -11119,7 +10826,7 @@ impl<'lt> ImageMemoryBarrier2<'lt> {
 ///   [`WHOLE_SIZE`] to use the range from [`offset`] to the end of the buffer.
 ///# Description
 ///This structure defines a [memory
-///dependency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-memory) limited to a range of a buffer, and **can** define a
+///dependency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-memory) limited to a range of a buffer, and  **can**  define a
 ///[queue family transfer operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) for
 ///that range.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
 ///[access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) described by
@@ -11150,323 +10857,330 @@ impl<'lt> ImageMemoryBarrier2<'lt> {
 ///operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-release) is defined when [`dst_queue_family_index`] is one of those
 ///values, and a [queue family
 ///acquire operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-acquire) is defined when [`src_queue_family_index`] is one of
-///those values.Valid Usage
+///those values.
+///## Valid Usage
 /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
 /// - If the [tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-tessellationShader)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT` or
 ///   `VK_PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT`
 /// - If the [conditional rendering](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-conditionalRendering)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`
 /// - If the [fragment density map](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-fragmentDensityMap)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
 /// - If the [transform feedback](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-transformFeedback)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`
 /// - If the [mesh shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-meshShader)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_MESH_SHADER_BIT_NV`
 /// - If the [task shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-taskShader)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TASK_SHADER_BIT_NV`
 /// - If the [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-shadingRateImage)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`
 /// - If the [subpass shading](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-subpassShading)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI`
 /// - If the [invocation mask image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-invocationMask)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_INDIRECT_COMMAND_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_INDIRECT_COMMAND_READ_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_INDEX_READ_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_INDEX_READ_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_INDEX_INPUT_BIT`, `VK_PIPELINE_STAGE_2_VERTEX_INPUT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_VERTEX_INPUT_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_INPUT_ATTACHMENT_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_INPUT_ATTACHMENT_READ_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_UNIFORM_READ_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_UNIFORM_READ_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one
 ///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_SAMPLED_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_SAMPLED_READ_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_READ_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_WRITE_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_WRITE_BIT`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_READ_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_READ_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or one of the
 ///   `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_WRITE_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADER_WRITE_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one
 ///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_BIT`,
-///   [`src_stage_mask`]**must** include
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_BIT`, [`src_stage_mask`]
+///   **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT`,
-///   [`src_stage_mask`]**must** include
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT`, [`src_stage_mask`]
+///   **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFER_READ_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFER_READ_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_COPY_BIT`, `VK_PIPELINE_STAGE_2_BLIT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_RESOLVE_BIT`, `VK_PIPELINE_STAGE_2_ALL_TRANSFER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFER_WRITE_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFER_WRITE_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_COPY_BIT`, `VK_PIPELINE_STAGE_2_BLIT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_RESOLVE_BIT`, `VK_PIPELINE_STAGE_2_CLEAR_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_TRANSFER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_HOST_READ_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_HOST_READ_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_HOST_BIT`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_HOST_WRITE_BIT`, [`src_stage_mask`]**must**
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_HOST_WRITE_BIT`, [`src_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_HOST_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_CONDITIONAL_RENDERING_READ_BIT_EXT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_FRAGMENT_DENSITY_MAP_READ_BIT_EXT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_WRITE_BIT_EXT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_SHADING_RATE_IMAGE_READ_BIT_NV`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`,
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_INVOCATION_MASK_READ_BIT_HUAWEI`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_COMMAND_PREPROCESS_READ_BIT_NV`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_COMMAND_PREPROCESS_WRITE_BIT_NV`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
+///   [`src_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT`,
-///   [`src_stage_mask`]**must** include
+///   [`src_stage_mask`] **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
+///   [`src_stage_mask`] **must**  include
+///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
 /// - If [`src_access_mask`] includes `VK_ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`
-///   or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
+///   [`src_stage_mask`] **must**  include
+///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR` or
+///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`rayQuery`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-rayQuery)
 ///   is not enabled and [`src_access_mask`] includes
-///   `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`, [`src_stage_mask`]**must** not include any
-///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages except
+///   `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`, [`src_stage_mask`] **must**  not include
+///   any of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages except
 ///   `VK_PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_KHR`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_READ_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_WRITE_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
-/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR`,
-///   [`src_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_READ_BIT_KHR`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_WRITE_BIT_KHR`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
+/// - If [`src_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR`, [`src_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
 ///
 /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
 /// - If the [tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-tessellationShader)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT` or
 ///   `VK_PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT`
 /// - If the [conditional rendering](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-conditionalRendering)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`
 /// - If the [fragment density map](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-fragmentDensityMap)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
 /// - If the [transform feedback](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-transformFeedback)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`
 /// - If the [mesh shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-meshShader)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_MESH_SHADER_BIT_NV`
 /// - If the [task shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-taskShader)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TASK_SHADER_BIT_NV`
 /// - If the [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-shadingRateImage)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`
 /// - If the [subpass shading](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-subpassShading)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI`
 /// - If the [invocation mask image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-invocationMask)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INDIRECT_COMMAND_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INDIRECT_COMMAND_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INDEX_READ_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INDEX_READ_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_INDEX_INPUT_BIT`, `VK_PIPELINE_STAGE_2_VERTEX_INPUT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_VERTEX_INPUT_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INPUT_ATTACHMENT_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_INPUT_ATTACHMENT_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_UNIFORM_READ_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_UNIFORM_READ_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one
 ///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_SAMPLED_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_SAMPLED_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_WRITE_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_STORAGE_WRITE_BIT`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_READ_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_READ_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or one of the
 ///   `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_WRITE_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADER_WRITE_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one
 ///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_BIT`,
-///   [`dst_stage_mask`]**must** include
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_BIT`, [`dst_stage_mask`]
+///   **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT`,
-///   [`dst_stage_mask`]**must** include
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT`, [`dst_stage_mask`]
+///   **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT`,
 ///   `VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFER_READ_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFER_READ_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_COPY_BIT`, `VK_PIPELINE_STAGE_2_BLIT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_RESOLVE_BIT`, `VK_PIPELINE_STAGE_2_ALL_TRANSFER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFER_WRITE_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFER_WRITE_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_COPY_BIT`, `VK_PIPELINE_STAGE_2_BLIT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_RESOLVE_BIT`, `VK_PIPELINE_STAGE_2_CLEAR_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_TRANSFER_BIT`,
 ///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_HOST_READ_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_HOST_READ_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_HOST_BIT`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_HOST_WRITE_BIT`, [`dst_stage_mask`]**must**
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_HOST_WRITE_BIT`, [`dst_stage_mask`] **must**
 ///   include `VK_PIPELINE_STAGE_2_HOST_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_CONDITIONAL_RENDERING_READ_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_FRAGMENT_DENSITY_MAP_READ_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_WRITE_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`,
 ///   `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`, `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_SHADING_RATE_IMAGE_READ_BIT_NV`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`,
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`,
 ///   `VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_INVOCATION_MASK_READ_BIT_HUAWEI`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_COMMAND_PREPROCESS_READ_BIT_NV`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_COMMAND_PREPROCESS_WRITE_BIT_NV`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
+///   [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT`,
-///   [`dst_stage_mask`]**must** include
+///   [`dst_stage_mask`] **must**  include
 ///   `VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT``VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT`, or
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
+///   [`dst_stage_mask`] **must**  include
+///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`,
 ///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`, or one of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`
-///   or `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
+///   [`dst_stage_mask`] **must**  include
+///   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR` or
+///   `VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT`
 /// - If [`rayQuery`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-rayQuery)
 ///   is not enabled and [`dst_access_mask`] includes
-///   `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`, [`dst_stage_mask`]**must** not include any
-///   of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages except
+///   `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`, [`dst_stage_mask`] **must**  not include
+///   any of the `VK_PIPELINE_STAGE_*_SHADER_BIT` stages except
 ///   `VK_PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_KHR`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_READ_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_WRITE_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
-/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR`,
-///   [`dst_stage_mask`]**must** include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_READ_BIT_KHR`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_DECODE_WRITE_BIT_KHR`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
+/// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR`, [`dst_stage_mask`]
+///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
 ///
-/// - [`offset`]**must** be less than the size of [`buffer`]
-/// - If [`size`] is not equal to [`WHOLE_SIZE`], [`size`]**must** be greater than `0`
-/// - If [`size`] is not equal to [`WHOLE_SIZE`], [`size`]**must** be less than or equal to than the
-///   size of [`buffer`] minus [`offset`]
-/// - If [`buffer`] is non-sparse then it **must** be bound completely and contiguously to a single
-///   [`DeviceMemory`] object
-/// -    If [`src_queue_family_index`] is not equal to [`dst_queue_family_index`], at least one **must** not be a special queue family reserved for external memory ownership transfers, as described in [[synchronization-queue-transfers]](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
+/// - [`offset`] **must**  be less than the size of [`buffer`]
+/// - If [`size`] is not equal to [`WHOLE_SIZE`], [`size`] **must**  be greater than `0`
+/// - If [`size`] is not equal to [`WHOLE_SIZE`], [`size`] **must**  be less than or equal to than
+///   the size of [`buffer`] minus [`offset`]
+/// - If [`buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a
+///   single [`DeviceMemory`] object
+/// -    If [`src_queue_family_index`] is not equal to [`dst_queue_family_index`], at least one  **must**  not be a special queue family reserved for external memory ownership transfers, as described in [[synchronization-queue-transfers]](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 /// - If [`buffer`] was created with a sharing mode of `VK_SHARING_MODE_CONCURRENT`,
 ///   [`src_queue_family_index`] and [`dst_queue_family_index`] are not equal, and one of
 ///   [`src_queue_family_index`] and [`dst_queue_family_index`] is one of the special queue family
-///   values reserved for external memory transfers, the other **must** be [`QUEUE_FAMILY_IGNORED`]
-/// -    If [`buffer`] was created with a sharing mode of `VK_SHARING_MODE_EXCLUSIVE`, and [`src_queue_family_index`] and [`dst_queue_family_index`] are not equal, [`src_queue_family_index`] and [`dst_queue_family_index`]**must** both be valid queue families, or one of the special queue family values reserved for external memory transfers, as described in [[synchronization-queue-transfers]](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
+///   values reserved for external memory transfers, the other  **must**  be
+///   [`QUEUE_FAMILY_IGNORED`]
+/// -    If [`buffer`] was created with a sharing mode of `VK_SHARING_MODE_EXCLUSIVE`, and [`src_queue_family_index`] and [`dst_queue_family_index`] are not equal, [`src_queue_family_index`] and [`dst_queue_family_index`] **must**  both be valid queue families, or one of the special queue family values reserved for external memory transfers, as described in [[synchronization-queue-transfers]](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 /// - If either [`src_stage_mask`] or [`dst_stage_mask`] includes `VK_PIPELINE_STAGE_2_HOST_BIT`,
-///   [`src_queue_family_index`] and [`dst_queue_family_index`]**must** be equal
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER_2`
-/// - [`p_next`]**must** be `NULL`
-/// - [`src_stage_mask`]**must** be a valid combination of [`PipelineStageFlagBits2`] values
-/// - [`src_access_mask`]**must** be a valid combination of [`AccessFlagBits2`] values
-/// - [`dst_stage_mask`]**must** be a valid combination of [`PipelineStageFlagBits2`] values
-/// - [`dst_access_mask`]**must** be a valid combination of [`AccessFlagBits2`] values
-/// - [`buffer`]**must** be a valid [`Buffer`] handle
+///   [`src_queue_family_index`] and [`dst_queue_family_index`] **must**  be equal
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER_2`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`src_stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
+/// - [`src_access_mask`] **must**  be a valid combination of [`AccessFlagBits2`] values
+/// - [`dst_stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
+/// - [`dst_access_mask`] **must**  be a valid combination of [`AccessFlagBits2`] values
+/// - [`buffer`] **must**  be a valid [`Buffer`] handle
 ///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
@@ -11549,27 +11263,9 @@ impl<'lt> BufferMemoryBarrier2<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::src_queue_family_index`]
-    pub fn src_queue_family_index_raw(&self) -> u32 {
-        self.src_queue_family_index
-    }
-    ///Gets the raw value of [`Self::dst_queue_family_index`]
-    pub fn dst_queue_family_index_raw(&self) -> u32 {
-        self.dst_queue_family_index
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::src_queue_family_index`]
-    pub fn set_src_queue_family_index_raw(&mut self, value: u32) -> &mut Self {
-        self.src_queue_family_index = value;
-        self
-    }
-    ///Sets the raw value of [`Self::dst_queue_family_index`]
-    pub fn set_dst_queue_family_index_raw(&mut self, value: u32) -> &mut Self {
-        self.dst_queue_family_index = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -11755,16 +11451,17 @@ impl<'lt> BufferMemoryBarrier2<'lt> {
 ///This structure defines a set of [memory dependencies](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-memory), as well as [queue
 ///family transfer operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and [image layout transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions).Each member of [`memory_barriers`], [`buffer_memory_barriers`], and
 ///[`image_memory_barriers`] defines a separate
-///[memory dependency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-memory).Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEPENDENCY_INFO`
-/// - [`p_next`]**must** be `NULL`
-/// - [`dependency_flags`]**must** be a valid combination of [`DependencyFlagBits`] values
-/// - If [`memory_barrier_count`] is not `0`, [`memory_barriers`]**must** be a valid pointer to an
+///[memory dependency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-memory).
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEPENDENCY_INFO`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`dependency_flags`] **must**  be a valid combination of [`DependencyFlagBits`] values
+/// - If [`memory_barrier_count`] is not `0`, [`memory_barriers`] **must**  be a valid pointer to an
 ///   array of [`memory_barrier_count`] valid [`MemoryBarrier2`] structures
-/// - If [`buffer_memory_barrier_count`] is not `0`, [`buffer_memory_barriers`]**must** be a valid
+/// - If [`buffer_memory_barrier_count`] is not `0`, [`buffer_memory_barriers`] **must**  be a valid
 ///   pointer to an array of [`buffer_memory_barrier_count`] valid [`BufferMemoryBarrier2`]
 ///   structures
-/// - If [`image_memory_barrier_count`] is not `0`, [`image_memory_barriers`]**must** be a valid
+/// - If [`image_memory_barrier_count`] is not `0`, [`image_memory_barriers`] **must**  be a valid
 ///   pointer to an array of [`image_memory_barrier_count`] valid [`ImageMemoryBarrier2`] structures
 ///# Related
 /// - [`VK_KHR_synchronization2`]
@@ -11843,25 +11540,13 @@ impl<'lt> DependencyInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::memory_barrier_count`]
-    pub fn memory_barrier_count_raw(&self) -> u32 {
-        self.memory_barrier_count
-    }
     ///Gets the raw value of [`Self::memory_barriers`]
     pub fn memory_barriers_raw(&self) -> *const MemoryBarrier2<'lt> {
         self.memory_barriers
     }
-    ///Gets the raw value of [`Self::buffer_memory_barrier_count`]
-    pub fn buffer_memory_barrier_count_raw(&self) -> u32 {
-        self.buffer_memory_barrier_count
-    }
     ///Gets the raw value of [`Self::buffer_memory_barriers`]
     pub fn buffer_memory_barriers_raw(&self) -> *const BufferMemoryBarrier2<'lt> {
         self.buffer_memory_barriers
-    }
-    ///Gets the raw value of [`Self::image_memory_barrier_count`]
-    pub fn image_memory_barrier_count_raw(&self) -> u32 {
-        self.image_memory_barrier_count
     }
     ///Gets the raw value of [`Self::image_memory_barriers`]
     pub fn image_memory_barriers_raw(&self) -> *const ImageMemoryBarrier2<'lt> {
@@ -11872,29 +11557,14 @@ impl<'lt> DependencyInfo<'lt> {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::memory_barrier_count`]
-    pub fn set_memory_barrier_count_raw(&mut self, value: u32) -> &mut Self {
-        self.memory_barrier_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::memory_barriers`]
     pub fn set_memory_barriers_raw(&mut self, value: *const MemoryBarrier2<'lt>) -> &mut Self {
         self.memory_barriers = value;
         self
     }
-    ///Sets the raw value of [`Self::buffer_memory_barrier_count`]
-    pub fn set_buffer_memory_barrier_count_raw(&mut self, value: u32) -> &mut Self {
-        self.buffer_memory_barrier_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::buffer_memory_barriers`]
     pub fn set_buffer_memory_barriers_raw(&mut self, value: *const BufferMemoryBarrier2<'lt>) -> &mut Self {
         self.buffer_memory_barriers = value;
-        self
-    }
-    ///Sets the raw value of [`Self::image_memory_barrier_count`]
-    pub fn set_image_memory_barrier_count_raw(&mut self, value: u32) -> &mut Self {
-        self.image_memory_barrier_count = value;
         self
     }
     ///Sets the raw value of [`Self::image_memory_barriers`]
@@ -12058,47 +11728,49 @@ impl<'lt> DependencyInfo<'lt> {
 ///   wait or signal operation.
 ///# Description
 ///Whether this structure defines a semaphore wait or signal operation is
-///defined by how it is used.Valid Usage
+///defined by how it is used.
+///## Valid Usage
 /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
-///   feature is not enabled, [`stage_mask`]**must** not contain
+///   feature is not enabled, [`stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
 /// - If the [tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-tessellationShader)
-///   feature is not enabled, [`stage_mask`]**must** not contain
+///   feature is not enabled, [`stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT` or
 ///   `VK_PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT`
 /// - If the [conditional rendering](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-conditionalRendering)
-///   feature is not enabled, [`stage_mask`]**must** not contain
+///   feature is not enabled, [`stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`
 /// - If the [fragment density map](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-fragmentDensityMap)
-///   feature is not enabled, [`stage_mask`]**must** not contain
+///   feature is not enabled, [`stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
 /// - If the [transform feedback](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-transformFeedback)
-///   feature is not enabled, [`stage_mask`]**must** not contain
+///   feature is not enabled, [`stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`
 /// - If the [mesh shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-meshShader)
-///   feature is not enabled, [`stage_mask`]**must** not contain
+///   feature is not enabled, [`stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_MESH_SHADER_BIT_NV`
 /// - If the [task shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-taskShader)
-///   feature is not enabled, [`stage_mask`]**must** not contain
+///   feature is not enabled, [`stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_TASK_SHADER_BIT_NV`
 /// - If the [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-shadingRateImage)
-///   feature is not enabled, [`stage_mask`]**must** not contain
+///   feature is not enabled, [`stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`
 /// - If the [subpass shading](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-subpassShading)
-///   feature is not enabled, [`stage_mask`]**must** not contain
+///   feature is not enabled, [`stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI`
 /// - If the [invocation mask image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-invocationMask)
-///   feature is not enabled, [`stage_mask`]**must** not contain
+///   feature is not enabled, [`stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
-/// - If the `device` that [`semaphore`] was created on is not a device group,
-///   [`device_index`]**must** be `0`
-/// - If the `device` that [`semaphore`] was created on is a device group, [`device_index`]**must**
+/// - If the `device` that [`semaphore`] was created on is not a device group, [`device_index`]
+///   **must**  be `0`
+/// - If the `device` that [`semaphore`] was created on is a device group, [`device_index`] **must**
 ///   be a valid device index
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO`
-/// - [`p_next`]**must** be `NULL`
-/// - [`semaphore`]**must** be a valid [`Semaphore`] handle
-/// - [`stage_mask`]**must** be a valid combination of [`PipelineStageFlagBits2`] values
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
+/// - [`stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
 ///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
@@ -12162,27 +11834,9 @@ impl<'lt> SemaphoreSubmitInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::value`]
-    pub fn value_raw(&self) -> u64 {
-        self.value
-    }
-    ///Gets the raw value of [`Self::device_index`]
-    pub fn device_index_raw(&self) -> u32 {
-        self.device_index
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::value`]
-    pub fn set_value_raw(&mut self, value: u64) -> &mut Self {
-        self.value = value;
-        self
-    }
-    ///Sets the raw value of [`Self::device_index`]
-    pub fn set_device_index_raw(&mut self, value: u32) -> &mut Self {
-        self.device_index = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -12288,13 +11942,14 @@ impl<'lt> SemaphoreSubmitInfo<'lt> {
 ///   buffer. A [`device_mask`] of `0` is equivalent to setting all bits corresponding to valid
 ///   devices in the group to `1`.
 ///# Description
-///Valid Usage
-/// - [`command_buffer`]**must** not have been allocated with `VK_COMMAND_BUFFER_LEVEL_SECONDARY`
-/// - If [`device_mask`] is not `0`, it **must** be a valid device mask
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO`
-/// - [`p_next`]**must** be `NULL`
-/// - [`command_buffer`]**must** be a valid [`CommandBuffer`] handle
+///## Valid Usage
+/// - [`command_buffer`] **must**  not have been allocated with `VK_COMMAND_BUFFER_LEVEL_SECONDARY`
+/// - If [`device_mask`] is not `0`, it  **must**  be a valid device mask
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 ///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
@@ -12344,18 +11999,9 @@ impl<'lt> CommandBufferSubmitInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::device_mask`]
-    pub fn device_mask_raw(&self) -> u32 {
-        self.device_mask
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::device_mask`]
-    pub fn set_device_mask_raw(&mut self, value: u32) -> &mut Self {
-        self.device_mask = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -12445,36 +12091,37 @@ impl<'lt> CommandBufferSubmitInfo<'lt> {
 /// - [`signal_semaphore_info_count`] is the number of elements in [`signal_semaphore_infos`].
 /// - [`signal_semaphore_infos`] is a pointer to an array of [`SemaphoreSubmitInfo`] describing [semaphore signal operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling).
 ///# Description
-///Valid Usage
+///## Valid Usage
 /// - If the same semaphore is used as the `semaphore` member of both an element of
 ///   [`signal_semaphore_infos`] and [`wait_semaphore_infos`], and that semaphore is a timeline
-///   semaphore, the `value` member of the [`signal_semaphore_infos`] element **must** be greater
+///   semaphore, the `value` member of the [`signal_semaphore_infos`] element  **must**  be greater
 ///   than the `value` member of the [`wait_semaphore_infos`] element
-/// -    If the `semaphore` member of any element of [`signal_semaphore_infos`] is a timeline semaphore, the `value` member of that element **must** have a value greater than the current value of the semaphore when the [semaphore signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling) is executed
-/// -    If the `semaphore` member of any element of [`signal_semaphore_infos`] is a timeline semaphore, the `value` member of that element **must** have a value which does not differ from the current value of the semaphore or the value of any outstanding semaphore wait or signal operation on that semaphore by more than [`maxTimelineSemaphoreValueDifference`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxTimelineSemaphoreValueDifference)
-/// -    If the `semaphore` member of any element of [`wait_semaphore_infos`] is a timeline semaphore, the `value` member of that element **must** have a value which does not differ from the current value of the semaphore or the value of any outstanding semaphore wait or signal operation on that semaphore by more than [`maxTimelineSemaphoreValueDifference`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxTimelineSemaphoreValueDifference)
-/// - If [`flags`] includes `VK_SUBMIT_PROTECTED_BIT`, all elements of `pCommandBuffers`**must** be
-///   protected command buffers
-/// - If [`flags`] does not include `VK_SUBMIT_PROTECTED_BIT`, each element of
-///   `pCommandBuffers`**must** not be a protected command buffer
-/// -    If any `commandBuffer` member of an element of [`command_buffer_infos`] contains any [resumed render pass instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-suspension), they **must** be suspended by a render pass instance earlier in submission order within [`command_buffer_infos`]
-/// -    If any `commandBuffer` member of an element of [`command_buffer_infos`] contains any [suspended render pass instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-suspension), they **must** be resumed by a render pass instance later in submission order within [`command_buffer_infos`]
-/// -    If any `commandBuffer` member of an element of [`command_buffer_infos`] contains any [suspended render pass instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-suspension), there **must** be no action or synchronization commands between that render pass instance and the render pass instance that resumes it
-/// -    If any `commandBuffer` member of an element of [`command_buffer_infos`] contains any [suspended render pass instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-suspension), there **must** be no render pass instances between that render pass instance and the render pass instance that resumes it
-/// -    If the [`variableSampleLocations`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-variableSampleLocations) limit is not supported, and any `commandBuffer` member of an element of [`command_buffer_infos`] contains any [suspended render pass instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-suspension), where a graphics pipeline has been bound, any pipelines bound in the render pass instance that resumes it, or any subsequent render pass instances that resume from that one and so on, **must** use the same sample locations
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SUBMIT_INFO_2`
-/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain **must**
+/// -    If the `semaphore` member of any element of [`signal_semaphore_infos`] is a timeline semaphore, the `value` member of that element  **must**  have a value greater than the current value of the semaphore when the [semaphore signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling) is executed
+/// -    If the `semaphore` member of any element of [`signal_semaphore_infos`] is a timeline semaphore, the `value` member of that element  **must**  have a value which does not differ from the current value of the semaphore or the value of any outstanding semaphore wait or signal operation on that semaphore by more than [`maxTimelineSemaphoreValueDifference`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxTimelineSemaphoreValueDifference)
+/// -    If the `semaphore` member of any element of [`wait_semaphore_infos`] is a timeline semaphore, the `value` member of that element  **must**  have a value which does not differ from the current value of the semaphore or the value of any outstanding semaphore wait or signal operation on that semaphore by more than [`maxTimelineSemaphoreValueDifference`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxTimelineSemaphoreValueDifference)
+/// - If [`flags`] includes `VK_SUBMIT_PROTECTED_BIT`, all elements of `pCommandBuffers` **must**
+///   be protected command buffers
+/// - If [`flags`] does not include `VK_SUBMIT_PROTECTED_BIT`, each element of `pCommandBuffers`
+///   **must**  not be a protected command buffer
+/// -    If any `commandBuffer` member of an element of [`command_buffer_infos`] contains any [resumed render pass instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-suspension), they  **must**  be suspended by a render pass instance earlier in submission order within [`command_buffer_infos`]
+/// -    If any `commandBuffer` member of an element of [`command_buffer_infos`] contains any [suspended render pass instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-suspension), they  **must**  be resumed by a render pass instance later in submission order within [`command_buffer_infos`]
+/// -    If any `commandBuffer` member of an element of [`command_buffer_infos`] contains any [suspended render pass instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-suspension), there  **must**  be no action or synchronization commands between that render pass instance and the render pass instance that resumes it
+/// -    If any `commandBuffer` member of an element of [`command_buffer_infos`] contains any [suspended render pass instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-suspension), there  **must**  be no render pass instances between that render pass instance and the render pass instance that resumes it
+/// -    If the [`variableSampleLocations`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-variableSampleLocations) limit is not supported, and any `commandBuffer` member of an element of [`command_buffer_infos`] contains any [suspended render pass instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-suspension), where a graphics pipeline has been bound, any pipelines bound in the render pass instance that resumes it, or any subsequent render pass instances that resume from that one and so on,  **must**  use the same sample locations
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBMIT_INFO_2`
+/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`PerformanceQuerySubmitInfoKHR`],
 ///   [`Win32KeyedMutexAcquireReleaseInfoKHR`], or [`Win32KeyedMutexAcquireReleaseInfoNV`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - [`flags`]**must** be a valid combination of [`SubmitFlagBits`] values
-/// - If [`wait_semaphore_info_count`] is not `0`, [`wait_semaphore_infos`]**must** be a valid
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`flags`] **must**  be a valid combination of [`SubmitFlagBits`] values
+/// - If [`wait_semaphore_info_count`] is not `0`, [`wait_semaphore_infos`] **must**  be a valid
 ///   pointer to an array of [`wait_semaphore_info_count`] valid [`SemaphoreSubmitInfo`] structures
-/// - If [`command_buffer_info_count`] is not `0`, [`command_buffer_infos`]**must** be a valid
+/// - If [`command_buffer_info_count`] is not `0`, [`command_buffer_infos`] **must**  be a valid
 ///   pointer to an array of [`command_buffer_info_count`] valid [`CommandBufferSubmitInfo`]
 ///   structures
-/// - If [`signal_semaphore_info_count`] is not `0`, [`signal_semaphore_infos`]**must** be a valid
+/// - If [`signal_semaphore_info_count`] is not `0`, [`signal_semaphore_infos`] **must**  be a valid
 ///   pointer to an array of [`signal_semaphore_info_count`] valid [`SemaphoreSubmitInfo`]
 ///   structures
 ///# Related
@@ -12550,25 +12197,13 @@ impl<'lt> SubmitInfo2<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::wait_semaphore_info_count`]
-    pub fn wait_semaphore_info_count_raw(&self) -> u32 {
-        self.wait_semaphore_info_count
-    }
     ///Gets the raw value of [`Self::wait_semaphore_infos`]
     pub fn wait_semaphore_infos_raw(&self) -> *const SemaphoreSubmitInfo<'lt> {
         self.wait_semaphore_infos
     }
-    ///Gets the raw value of [`Self::command_buffer_info_count`]
-    pub fn command_buffer_info_count_raw(&self) -> u32 {
-        self.command_buffer_info_count
-    }
     ///Gets the raw value of [`Self::command_buffer_infos`]
     pub fn command_buffer_infos_raw(&self) -> *const CommandBufferSubmitInfo<'lt> {
         self.command_buffer_infos
-    }
-    ///Gets the raw value of [`Self::signal_semaphore_info_count`]
-    pub fn signal_semaphore_info_count_raw(&self) -> u32 {
-        self.signal_semaphore_info_count
     }
     ///Gets the raw value of [`Self::signal_semaphore_infos`]
     pub fn signal_semaphore_infos_raw(&self) -> *const SemaphoreSubmitInfo<'lt> {
@@ -12579,29 +12214,14 @@ impl<'lt> SubmitInfo2<'lt> {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::wait_semaphore_info_count`]
-    pub fn set_wait_semaphore_info_count_raw(&mut self, value: u32) -> &mut Self {
-        self.wait_semaphore_info_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::wait_semaphore_infos`]
     pub fn set_wait_semaphore_infos_raw(&mut self, value: *const SemaphoreSubmitInfo<'lt>) -> &mut Self {
         self.wait_semaphore_infos = value;
         self
     }
-    ///Sets the raw value of [`Self::command_buffer_info_count`]
-    pub fn set_command_buffer_info_count_raw(&mut self, value: u32) -> &mut Self {
-        self.command_buffer_info_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::command_buffer_infos`]
     pub fn set_command_buffer_infos_raw(&mut self, value: *const CommandBufferSubmitInfo<'lt>) -> &mut Self {
         self.command_buffer_infos = value;
-        self
-    }
-    ///Sets the raw value of [`Self::signal_semaphore_info_count`]
-    pub fn set_signal_semaphore_info_count_raw(&mut self, value: u32) -> &mut Self {
-        self.signal_semaphore_info_count = value;
         self
     }
     ///Sets the raw value of [`Self::signal_semaphore_infos`]
@@ -12767,9 +12387,10 @@ impl<'lt> SubmitInfo2<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceSynchronization2Features`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES`
+///[`PhysicalDeviceSynchronization2Features`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES`
 ///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
@@ -12912,7 +12533,7 @@ impl<'lt> PhysicalDeviceSynchronization2Features<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
-/// - [`shader_integer_dot_product`] specifies whether shader modules **can** declare the
+/// - [`shader_integer_dot_product`] specifies whether shader modules  **can**  declare the
 ///   `DotProductInputAllKHR`, `DotProductInput4x8BitKHR`, `DotProductInput4x8BitPackedKHR` and
 ///   `DotProductKHR` capabilities.
 ///If the [`PhysicalDeviceShaderIntegerDotProductFeatures`] structure is included in the [`p_next`]
@@ -12920,9 +12541,12 @@ impl<'lt> PhysicalDeviceSynchronization2Features<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceShaderIntegerDotProductFeatures`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES`
+///[`PhysicalDeviceShaderIntegerDotProductFeatures`] **can**  also be used in the [`p_next`] chain
+/// of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES`
 ///# Related
 /// - [`VK_KHR_shader_integer_dot_product`]
 /// - [`crate::vulkan1_3`]
@@ -12946,7 +12570,7 @@ pub struct PhysicalDeviceShaderIntegerDotProductFeatures<'lt> {
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
-    ///[`shader_integer_dot_product`] specifies whether shader modules **can**
+    ///[`shader_integer_dot_product`] specifies whether shader modules  **can**
     ///declare the `DotProductInputAllKHR`, `DotProductInput4x8BitKHR`,
     ///`DotProductInput4x8BitPackedKHR` and `DotProductKHR` capabilities.
     shader_integer_dot_product: Bool32,
@@ -13136,8 +12760,9 @@ impl<'lt> PhysicalDeviceShaderIntegerDotProductFeatures<'lt> {
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
 ///corresponding implementation-dependent property.These are properties of the integer dot product
 /// acceleration information of
-///a physical device.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///a physical device.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES`
 ///# Related
 /// - [`VK_KHR_shader_integer_dot_product`]
@@ -14658,9 +14283,10 @@ impl<'lt> PhysicalDeviceShaderIntegerDotProductProperties<'lt> {
 ///   by buffers.
 ///# Description
 ///The bits reported in [`linear_tiling_features`], [`optimal_tiling_features`]
-///and [`buffer_features`]**must** include the bits reported in the
-///corresponding fields of [`FormatProperties2::format_properties`].Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_3`
+///and [`buffer_features`] **must**  include the bits reported in the
+///corresponding fields of [`FormatProperties2::format_properties`].
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_3`
 ///# Related
 /// - [`VK_KHR_format_feature_flags2`]
 /// - [`crate::vulkan1_3`]
@@ -14834,27 +14460,29 @@ impl<'lt> FormatProperties3<'lt> {
 ///element of [`color_attachment_formats`] is `VK_FORMAT_UNDEFINED`, it
 ///indicates that the corresponding attachment is unused within the render
 ///pass.
-///Valid formats indicate that an attachment **can** be used - but it is still
-///valid to set the attachment to `NULL` when beginning rendering.Valid Usage
-/// -    If any element of [`color_attachment_formats`] is not `VK_FORMAT_UNDEFINED`, it **must** be a format with [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) that includes either `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT` or `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
-/// - If [`depth_attachment_format`] is not `VK_FORMAT_UNDEFINED`, it **must** be a format that
+///Valid formats indicate that an attachment  **can**  be used - but it is still
+///valid to set the attachment to `NULL` when beginning rendering.
+///## Valid Usage
+/// -    If any element of [`color_attachment_formats`] is not `VK_FORMAT_UNDEFINED`, it  **must**  be a format with [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) that includes either `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT` or `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
+/// - If [`depth_attachment_format`] is not `VK_FORMAT_UNDEFINED`, it  **must**  be a format that
 ///   includes a depth aspect
-/// - If [`stencil_attachment_format`] is not `VK_FORMAT_UNDEFINED`, it **must** be a format that
+/// - If [`stencil_attachment_format`] is not `VK_FORMAT_UNDEFINED`, it  **must**  be a format that
 ///   includes a stencil aspect
-/// -    If [`depth_attachment_format`] is not `VK_FORMAT_UNDEFINED`, it **must** be a format with [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) that include `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
-/// -    If [`stencil_attachment_format`] is not `VK_FORMAT_UNDEFINED`, it **must** be a format with [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) that include `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
+/// -    If [`depth_attachment_format`] is not `VK_FORMAT_UNDEFINED`, it  **must**  be a format with [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) that include `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
+/// -    If [`stencil_attachment_format`] is not `VK_FORMAT_UNDEFINED`, it  **must**  be a format with [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) that include `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
 /// - If [`depth_attachment_format`] is not `VK_FORMAT_UNDEFINED` and [`stencil_attachment_format`]
-///   is not `VK_FORMAT_UNDEFINED`, [`depth_attachment_format`]**must** equal
+///   is not `VK_FORMAT_UNDEFINED`, [`depth_attachment_format`] **must**  equal
 ///   [`stencil_attachment_format`]
 /// - If the [`multiview`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiview)
-///   feature is not enabled, [`view_mask`]**must** be `0`
-/// - The index of the most significant bit in [`view_mask`]**must** be less than [`maxMultiviewViewCount`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxMultiviewViewCount)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO`
-/// - If [`color_attachment_count`] is not `0`, [`color_attachment_formats`]**must** be a valid
+///   feature is not enabled, [`view_mask`] **must**  be `0`
+/// - The index of the most significant bit in [`view_mask`] **must**  be less than [`maxMultiviewViewCount`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxMultiviewViewCount)
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO`
+/// - If [`color_attachment_count`] is not `0`, [`color_attachment_formats`] **must**  be a valid
 ///   pointer to an array of [`color_attachment_count`] valid [`Format`] values
-/// - [`depth_attachment_format`]**must** be a valid [`Format`] value
-/// - [`stencil_attachment_format`]**must** be a valid [`Format`] value
+/// - [`depth_attachment_format`] **must**  be a valid [`Format`] value
+/// - [`stencil_attachment_format`] **must**  be a valid [`Format`] value
 ///# Related
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
@@ -14912,14 +14540,6 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::view_mask`]
-    pub fn view_mask_raw(&self) -> u32 {
-        self.view_mask
-    }
-    ///Gets the raw value of [`Self::color_attachment_count`]
-    pub fn color_attachment_count_raw(&self) -> u32 {
-        self.color_attachment_count
-    }
     ///Gets the raw value of [`Self::color_attachment_formats`]
     pub fn color_attachment_formats_raw(&self) -> *const Format {
         self.color_attachment_formats
@@ -14927,16 +14547,6 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::view_mask`]
-    pub fn set_view_mask_raw(&mut self, value: u32) -> &mut Self {
-        self.view_mask = value;
-        self
-    }
-    ///Sets the raw value of [`Self::color_attachment_count`]
-    pub fn set_color_attachment_count_raw(&mut self, value: u32) -> &mut Self {
-        self.color_attachment_count = value;
         self
     }
     ///Sets the raw value of [`Self::color_attachment_formats`]
@@ -15084,148 +14694,149 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///[`render_area`] is ignored, and the render area is defined per-device by
 ///that structure.Each element of the [`color_attachments`] array corresponds to an output
 ///location in the shader, i.e. if the shader declares an output variable
-///decorated with a `Location` value of **X**, then it uses the attachment
-///provided in [`color_attachments`][**X**].
+///decorated with a `Location` value of  **X** , then it uses the attachment
+///provided in [`color_attachments`][ **X** ].
 ///If the `imageView` member of any element of [`color_attachments`] is
 ///[`crate::utils::Handle::null`], writes to the corresponding location by a fragment are
-///discarded.Valid Usage
-/// - If [`view_mask`] is `0`, [`layer_count`]**must** not be `0`
+///discarded.
+///## Valid Usage
+/// - If [`view_mask`] is `0`, [`layer_count`] **must**  not be `0`
 /// - If neither the [`VK_AMD_mixed_attachment_samples`] nor the [`VK_NV_framebuffer_mixed_samples`]
 ///   extensions are enabled, `imageView` members of [`depth_attachment`], [`stencil_attachment`],
-///   and elements of [`color_attachments`] that are not [`crate::utils::Handle::null`]**must** have
-///   been created with the same `sampleCount`
+///   and elements of [`color_attachments`] that are not [`crate::utils::Handle::null`] **must**
+///   have been created with the same `sampleCount`
 /// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
-///   `deviceRenderAreaCount` member is equal to 0, `renderArea.offset.x`**must** be greater than or
-///   equal to 0
+///   `deviceRenderAreaCount` member is equal to 0, `renderArea.offset.x` **must**  be greater than
+///   or equal to 0
 /// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
-///   `deviceRenderAreaCount` member is equal to 0, `renderArea.offset.y`**must** be greater than or
-///   equal to 0
+///   `deviceRenderAreaCount` member is equal to 0, `renderArea.offset.y` **must**  be greater than
+///   or equal to 0
 /// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
 ///   `deviceRenderAreaCount` member is equal to 0, the width of the `imageView` member of any
 ///   element of [`color_attachments`], [`depth_attachment`], or [`stencil_attachment`] that is not
-///   [`crate::utils::Handle::null`]**must** be greater than or equal to `renderArea.offset.x` +
+///   [`crate::utils::Handle::null`] **must**  be greater than or equal to `renderArea.offset.x` +
 ///   `renderArea.extent.width`
 /// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
 ///   `deviceRenderAreaCount` member is equal to 0, the height of the `imageView` member of any
 ///   element of [`color_attachments`], [`depth_attachment`], or [`stencil_attachment`] that is not
-///   [`crate::utils::Handle::null`]**must** be greater than or equal to `renderArea.offset.y` +
+///   [`crate::utils::Handle::null`] **must**  be greater than or equal to `renderArea.offset.y` +
 ///   `renderArea.extent.height`
 /// - If the [`p_next`] chain contains [`DeviceGroupRenderPassBeginInfo`], the width of the
 ///   `imageView` member of any element of [`color_attachments`], [`depth_attachment`], or
-///   [`stencil_attachment`] that is not [`crate::utils::Handle::null`]**must** be greater than or
+///   [`stencil_attachment`] that is not [`crate::utils::Handle::null`] **must**  be greater than or
 ///   equal to the sum of the `offset.x` and `extent.width` members of each element of
 ///   `pDeviceRenderAreas`
 /// - If the [`p_next`] chain contains [`DeviceGroupRenderPassBeginInfo`], the height of the
 ///   `imageView` member of any element of [`color_attachments`], [`depth_attachment`], or
-///   [`stencil_attachment`] that is not [`crate::utils::Handle::null`]**must** be greater than or
+///   [`stencil_attachment`] that is not [`crate::utils::Handle::null`] **must**  be greater than or
 ///   equal to the sum of the `offset.y` and `extent.height` members of each element of
 ///   `pDeviceRenderAreas`
 /// - If neither [`depth_attachment`] or [`stencil_attachment`] are `NULL` and the `imageView`
 ///   member of either structure is not [`crate::utils::Handle::null`], the `imageView` member of
-///   each structure **must** be the same
+///   each structure  **must**  be the same
 /// - If neither [`depth_attachment`] or [`stencil_attachment`] are `NULL`, and the `resolveMode`
 ///   member of each is not `VK_RESOLVE_MODE_NONE`, the `resolveImageView` member of each structure
-///   **must** be the same
+///   **must**  be the same
 /// - If [`color_attachment_count`] is not `0` and the `imageView` member of an element of
-///   [`color_attachments`] is not [`crate::utils::Handle::null`], that `imageView`**must** have
+///   [`color_attachments`] is not [`crate::utils::Handle::null`], that `imageView` **must**  have
 ///   been created with `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT`
 /// - If [`depth_attachment`] is not `NULL` and `pDepthAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], `pDepthAttachment->imageView`**must** have been created with a
-///   format that includes a depth aspect
+///   [`crate::utils::Handle::null`], `pDepthAttachment->imageView` **must**  have been created with
+///   a format that includes a depth aspect
 /// - If [`depth_attachment`] is not `NULL` and `pDepthAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], `pDepthAttachment->imageView`**must** have been created with
+///   [`crate::utils::Handle::null`], `pDepthAttachment->imageView` **must**  have been created with
 ///   `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
 /// - If [`stencil_attachment`] is not `NULL` and `pStencilAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], `pStencilAttachment->imageView`**must** have been created with
-///   a format that includes a stencil aspect
+///   [`crate::utils::Handle::null`], `pStencilAttachment->imageView` **must**  have been created
+///   with a format that includes a stencil aspect
 /// - If [`stencil_attachment`] is not `NULL` and `pStencilAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], `pStencilAttachment->imageView`**must** have been created with
-///   a stencil usage including `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
+///   [`crate::utils::Handle::null`], `pStencilAttachment->imageView` **must**  have been created
+///   with a stencil usage including `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
 /// - If [`color_attachment_count`] is not `0` and the `imageView` member of an element of
 ///   [`color_attachments`] is not [`crate::utils::Handle::null`], the `layout` member of that
-///   element of [`color_attachments`]**must** not be
+///   element of [`color_attachments`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL` or
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`color_attachment_count`] is not `0` and the `imageView` member of an element of
 ///   [`color_attachments`] is not [`crate::utils::Handle::null`], if the `resolveMode` member of
 ///   that element of [`color_attachments`] is not `VK_RESOLVE_MODE_NONE`, its `resolveImageLayout`
-///   member **must** not be `VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL` or
+///   member  **must**  not be `VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL` or
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`depth_attachment`] is not `NULL` and `pDepthAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], `pDepthAttachment->layout`**must** not be
+///   [`crate::utils::Handle::null`], `pDepthAttachment->layout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL`
 /// - If [`depth_attachment`] is not `NULL`, `pDepthAttachment->imageView` is not
 ///   [`crate::utils::Handle::null`], and `pDepthAttachment->resolveMode` is not
-///   `VK_RESOLVE_MODE_NONE`, `pDepthAttachment->resolveImageLayout`**must** not be
+///   `VK_RESOLVE_MODE_NONE`, `pDepthAttachment->resolveImageLayout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL`
 /// - If [`stencil_attachment`] is not `NULL` and `pStencilAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], `pStencilAttachment->layout`**must** not be
+///   [`crate::utils::Handle::null`], `pStencilAttachment->layout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL`
 /// - If [`stencil_attachment`] is not `NULL`, `pStencilAttachment->imageView` is not
 ///   [`crate::utils::Handle::null`], and `pStencilAttachment->resolveMode` is not
-///   `VK_RESOLVE_MODE_NONE`, `pStencilAttachment->resolveImageLayout`**must** not be
+///   `VK_RESOLVE_MODE_NONE`, `pStencilAttachment->resolveImageLayout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL`
 /// - If [`color_attachment_count`] is not `0` and the `imageView` member of an element of
 ///   [`color_attachments`] is not [`crate::utils::Handle::null`], the `layout` member of that
-///   element of [`color_attachments`]**must** not be
+///   element of [`color_attachments`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL` or
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`color_attachment_count`] is not `0` and the `imageView` member of an element of
 ///   [`color_attachments`] is not [`crate::utils::Handle::null`], if the `resolveMode` member of
 ///   that element of [`color_attachments`] is not `VK_RESOLVE_MODE_NONE`, its `resolveImageLayout`
-///   member **must** not be `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL` or
+///   member  **must**  not be `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL` or
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`depth_attachment`] is not `NULL`, `pDepthAttachment->imageView` is not
 ///   [`crate::utils::Handle::null`], and `pDepthAttachment->resolveMode` is not
-///   `VK_RESOLVE_MODE_NONE`, `pDepthAttachment->resolveImageLayout`**must** not be
+///   `VK_RESOLVE_MODE_NONE`, `pDepthAttachment->resolveImageLayout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL`
 /// - If [`stencil_attachment`] is not `NULL`, `pStencilAttachment->imageView` is not
 ///   [`crate::utils::Handle::null`], and `pStencilAttachment->resolveMode` is not
-///   `VK_RESOLVE_MODE_NONE`, `pStencilAttachment->resolveImageLayout`**must** not be
+///   `VK_RESOLVE_MODE_NONE`, `pStencilAttachment->resolveImageLayout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`color_attachment_count`] is not `0` and the `imageView` member of an element of
 ///   [`color_attachments`] is not [`crate::utils::Handle::null`], the `layout` member of that
-///   element of [`color_attachments`]**must** not be `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`,
+///   element of [`color_attachments`] **must**  not be `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL`, or
 ///   `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`color_attachment_count`] is not `0` and the `imageView` member of an element of
 ///   [`color_attachments`] is not [`crate::utils::Handle::null`], if the `resolveMode` member of
 ///   that element of [`color_attachments`] is not `VK_RESOLVE_MODE_NONE`, its `resolveImageLayout`
-///   member **must** not be `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`,
+///   member  **must**  not be `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL`, or
 ///   `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`depth_attachment`] is not `NULL` and `pDepthAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], `pDepthAttachment->resolveMode`**must** be one of the bits set
-///   in [`PhysicalDeviceDepthStencilResolveProperties::supported_depth_resolve_modes`]
+///   [`crate::utils::Handle::null`], `pDepthAttachment->resolveMode` **must**  be one of the bits
+///   set in [`PhysicalDeviceDepthStencilResolveProperties::supported_depth_resolve_modes`]
 /// - If [`stencil_attachment`] is not `NULL` and `pStencilAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], `pStencilAttachment->resolveMode`**must** be one of the bits
+///   [`crate::utils::Handle::null`], `pStencilAttachment->resolveMode` **must**  be one of the bits
 ///   set in [`PhysicalDeviceDepthStencilResolveProperties::supported_stencil_resolve_modes`]
 /// - If [`depth_attachment`] or [`stencil_attachment`] are both not `NULL`,
 ///   `pDepthAttachment->imageView` and `pStencilAttachment->imageView` are both not
 ///   [`crate::utils::Handle::null`], and
 ///   [`PhysicalDeviceDepthStencilResolveProperties::independent_resolve_none`] is [`FALSE`], the
-///   `resolveMode` of both structures **must** be the same value
+///   `resolveMode` of both structures  **must**  be the same value
 /// - If [`depth_attachment`] or [`stencil_attachment`] are both not `NULL`,
 ///   `pDepthAttachment->imageView` and `pStencilAttachment->imageView` are both not
 ///   [`crate::utils::Handle::null`],
 ///   [`PhysicalDeviceDepthStencilResolveProperties::independent_resolve`] is [`FALSE`], and the
 ///   `resolveMode` of neither structure is `VK_RESOLVE_MODE_NONE`, the `resolveMode` of both
-///   structures **must** be the same value
-/// - [`color_attachment_count`]**must** be less than or equal to
+///   structures  **must**  be the same value
+/// - [`color_attachment_count`] **must**  be less than or equal to
 ///   [`PhysicalDeviceLimits::max_color_attachments`]
-/// -    If the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is not [`crate::utils::Handle::null`], and [non-subsample image feature](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-fragmentDensityMapNonSubsampledImages) is not enabled, valid `imageView` and `resolveImageView` members of [`depth_attachment`], [`stencil_attachment`], and each element of [`color_attachments`]**must** be a [`ImageView`] created with `VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT`
+/// -    If the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is not [`crate::utils::Handle::null`], and [non-subsample image feature](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-fragmentDensityMapNonSubsampledImages) is not enabled, valid `imageView` and `resolveImageView` members of [`depth_attachment`], [`stencil_attachment`], and each element of [`color_attachments`] **must**  be a [`ImageView`] created with `VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT`
 /// - If the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure
 ///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], and [`view_mask`] is
-///   not `0`, `imageView`**must** have a [`layer_count`] greater than or equal to the index of the
-///   most significant bit in [`view_mask`]
+///   not `0`, `imageView` **must**  have a [`layer_count`] greater than or equal to the index of
+///   the most significant bit in [`view_mask`]
 /// - If the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure
 ///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], and [`view_mask`] is
-///   `0`, `imageView`**must** have a [`layer_count`] equal to `1`
+///   `0`, `imageView` **must**  have a [`layer_count`] equal to `1`
 /// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
 ///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
 ///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::utils::Handle::null`], `imageView`**must** have a width greater than or equal to
-///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or equal
+///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
 ///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
 ///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
@@ -15234,17 +14845,96 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">F</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">a</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
+///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.15122857142857138em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
+///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
+///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
+///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
+///   not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or equal
+///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">F</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
 ///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span><span class="mord mathdefault mtight"
+///   mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
@@ -15262,32 +14952,43 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span
 ///   style="height:0.15122857142857138em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span
+///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
+///   style="top:-3.446108em;"><span style="height:3em;" class="pstrut"></span><span class="sizing
+///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault
+///   mtight">p</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">D</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">v</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">e</span><span style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.16454285714285719em;"><span
 ///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault
 ///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight"
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
@@ -15295,133 +14996,42 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
 ///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
 ///   mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
 ///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
-///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span> for
+///   each element of `pDeviceRenderAreas`
+/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
+///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
 ///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::utils::Handle::null`], `imageView`**must** have a width greater than or equal to
-///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or equal
+///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
 ///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
 ///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
+///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
 ///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
 ///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
 ///   mtight">F</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.05764em;">S</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord
-///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.3448em;"
-///   class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
-///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
 ///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
-///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span> for each element of
-///   `pDeviceRenderAreas`
-/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
-///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
-///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::utils::Handle::null`], `imageView`**must** have a height greater than or equal to
-///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
 ///   mtight">y</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span
-///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
 ///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
 ///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.3448em;"><span
@@ -15435,54 +15045,53 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
 ///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
-///   class="pstrut"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.51308em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
+///   class="pstrut"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.16454285714285716em;"><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.16454285714285716em;" class="vlist"><span
 ///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
 ///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
 ///   mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
-///   class="mbin mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   class="mbin mtight">+</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
 ///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.5480799999999999em;"
-///   class="vlist"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   class="vlist-r"><span style="height:0.29011428571428566em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
 ///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
 ///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::utils::Handle::null`], `imageView`**must** have a height greater than or equal to
-///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or equal
+///   to <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
 ///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
@@ -15490,21 +15099,21 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
 ///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
+///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span
 ///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span><span style="margin-right:0.13889em;" class="mord
-///   mathdefault mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight"
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
@@ -15517,152 +15126,73 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
-///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285716em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.51308em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">D</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">v</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">e</span><span style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.16454285714285716em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
 ///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord
 ///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
+///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span style="height:0.29011428571428566em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.5480799999999999em;"
-///   class="vlist"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span> for each element of
-///   `pDeviceRenderAreas`
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   for each element of `pDeviceRenderAreas`
 /// - If the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure
-///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], it **must** not be
+///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], it  **must**  not be
 ///   equal to the `imageView` or `resolveImageView` member of [`depth_attachment`],
 ///   [`stencil_attachment`], or any element of [`color_attachments`]
 /// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
 ///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
-///   is not [`crate::utils::Handle::null`], `imageView`**must** have a width greater than or equal
-///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
-///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or
+///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span class="strut"
+///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
+///   class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.9019679999999999em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
-///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
-///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
-///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
-///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
-///   is not [`crate::utils::Handle::null`], `imageView`**must** have a width greater than or equal
-///   to <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
+///   class="vlist-r"><span class="vlist" style="height:0.9019679999999999em;"><span
 ///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
@@ -15686,51 +15216,86 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault
+///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
 ///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span
-///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-///   style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing
-///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">p</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">D</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">v</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
-///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285719em;"
-///   class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
+///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
+///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
+///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or
+///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span class="strut"
+///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
+///   style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
+///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.05764em;">S</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.04398em;" class="mord mathdefault mtight">z</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
@@ -15739,103 +15304,66 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mathdefault mtight">h</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.16454285714285719em;" class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
 ///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-///   for each element of `pDeviceRenderAreas`
+///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span> for
+///   each element of `pDeviceRenderAreas`
 /// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
 ///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
-///   is not [`crate::utils::Handle::null`], `imageView`**must** have a height greater than or equal
-///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
-///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.16454285714285716em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
-///   class="mbin mtight">+</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
-///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
-///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
-///   is not [`crate::utils::Handle::null`], `imageView`**must** have a height greater than or equal
-///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
+///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or
+///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span style="height:1.80002em;vertical-align:-0.65002em;"
+///   class="strut"></span><span class="minner"><span style="top:0em;" class="mopen
+///   delimcenter"><span class="delimsizing size2">⌈</span></span><span class="mord"><span
+///   class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
@@ -15849,12 +15377,96 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
 ///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight"
+///   mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.05764em;">S</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.16454285714285716em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
+///   class="mbin mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.5480799999999999em;"
+///   class="vlist"><span></span></span></span></span></span><span class="mclose
+///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
+///   class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
+///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
+///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
+///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or
+///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span class="strut"
+///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
+///   class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord
+///   mathdefault mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight"
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
@@ -15868,32 +15480,32 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
 ///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">d</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.16454285714285716em;" class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight"
+///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.51308em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">p</span><span style="margin-right:0.02778em;"
+///   class="mord mathdefault mtight">D</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">e</span><span style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285716em;"
+///   class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.2818857142857143em;"
 ///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
 ///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
@@ -15903,8 +15515,8 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
 ///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
 ///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.3448em;" class="vlist"><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
@@ -15912,46 +15524,48 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-///   for each element of `pDeviceRenderAreas`
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.5480799999999999em;"
+///   class="vlist"><span></span></span></span></span></span><span class="mclose
+///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
+///   class="delimsizing size2">⌉</span></span></span></span></span></span> for each element of
+///   `pDeviceRenderAreas`
 /// - If the `imageView` member of a [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure
 ///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], and [`view_mask`] is
-///   `0`, `imageView`**must** have a [`layer_count`] that is either equal to `1` or greater than or
-///   equal to [`layer_count`]
+///   `0`, `imageView` **must**  have a [`layer_count`] that is either equal to `1` or greater than
+///   or equal to [`layer_count`]
 /// - If the `imageView` member of a [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure
 ///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], and [`view_mask`] is
-///   not `0`, `imageView`**must** have a [`layer_count`] that either equal to `1` or greater than
+///   not `0`, `imageView` **must**  have a [`layer_count`] that either equal to `1` or greater than
 ///   or equal to the index of the most significant bit in [`view_mask`]
 /// - If the `imageView` member of a [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure
-///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], it **must** not be
+///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], it  **must**  not be
 ///   equal to the `imageView` or `resolveImageView` member of [`depth_attachment`],
 ///   [`stencil_attachment`], or any element of [`color_attachments`]
 /// - If the `imageView` member of a [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure
-///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], it **must** not be
+///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], it  **must**  not be
 ///   equal to the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`]
 ///   structure included in the [`p_next`] chain
 /// - If the [`multiview`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiview)
-///   feature is not enabled, [`view_mask`]**must** be `0`
-/// - The index of the most significant bit in [`view_mask`]**must** be less than [`maxMultiviewViewCount`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxMultiviewViewCount)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RENDERING_INFO`
-/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain **must**
+///   feature is not enabled, [`view_mask`] **must**  be `0`
+/// - The index of the most significant bit in [`view_mask`] **must**  be less than [`maxMultiviewViewCount`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxMultiviewViewCount)
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDERING_INFO`
+/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`DeviceGroupRenderPassBeginInfo`],
 ///   [`MultiviewPerViewAttributesInfoNVX`], [`RenderingFragmentDensityMapAttachmentInfoEXT`], or
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - [`flags`]**must** be a valid combination of [`RenderingFlagBits`] values
-/// - If [`color_attachment_count`] is not `0`, [`color_attachments`]**must** be a valid pointer to
-///   an array of [`color_attachment_count`] valid [`RenderingAttachmentInfo`] structures
-/// - If [`depth_attachment`] is not `NULL`, [`depth_attachment`]**must** be a valid pointer to a
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`flags`] **must**  be a valid combination of [`RenderingFlagBits`] values
+/// - If [`color_attachment_count`] is not `0`, [`color_attachments`] **must**  be a valid pointer
+///   to an array of [`color_attachment_count`] valid [`RenderingAttachmentInfo`] structures
+/// - If [`depth_attachment`] is not `NULL`, [`depth_attachment`] **must**  be a valid pointer to a
 ///   valid [`RenderingAttachmentInfo`] structure
-/// - If [`stencil_attachment`] is not `NULL`, [`stencil_attachment`]**must** be a valid pointer to
-///   a valid [`RenderingAttachmentInfo`] structure
+/// - If [`stencil_attachment`] is not `NULL`, [`stencil_attachment`] **must**  be a valid pointer
+///   to a valid [`RenderingAttachmentInfo`] structure
 ///# Related
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
@@ -16027,18 +15641,6 @@ impl<'lt> RenderingInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::layer_count`]
-    pub fn layer_count_raw(&self) -> u32 {
-        self.layer_count
-    }
-    ///Gets the raw value of [`Self::view_mask`]
-    pub fn view_mask_raw(&self) -> u32 {
-        self.view_mask
-    }
-    ///Gets the raw value of [`Self::color_attachment_count`]
-    pub fn color_attachment_count_raw(&self) -> u32 {
-        self.color_attachment_count
-    }
     ///Gets the raw value of [`Self::color_attachments`]
     pub fn color_attachments_raw(&self) -> *const RenderingAttachmentInfo<'lt> {
         self.color_attachments
@@ -16054,21 +15656,6 @@ impl<'lt> RenderingInfo<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::layer_count`]
-    pub fn set_layer_count_raw(&mut self, value: u32) -> &mut Self {
-        self.layer_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::view_mask`]
-    pub fn set_view_mask_raw(&mut self, value: u32) -> &mut Self {
-        self.view_mask = value;
-        self
-    }
-    ///Sets the raw value of [`Self::color_attachment_count`]
-    pub fn set_color_attachment_count_raw(&mut self, value: u32) -> &mut Self {
-        self.color_attachment_count = value;
         self
     }
     ///Sets the raw value of [`Self::color_attachments`]
@@ -16277,71 +15864,73 @@ impl<'lt> RenderingInfo<'lt> {
 ///flag.Load operations are only performed at the beginning of a render pass
 ///instance that does not specify the `VK_RENDERING_RESUMING_BIT_KHR` flag.Image contents at the
 /// end of a suspended render pass instance remain defined
-///for access by a resuming render pass instance.Valid Usage
+///for access by a resuming render pass instance.
+///## Valid Usage
 /// - If [`image_view`] is not [`crate::utils::Handle::null`] and has a non-integer color format,
-///   [`resolve_mode`]**must** be `VK_RESOLVE_MODE_NONE` or `VK_RESOLVE_MODE_AVERAGE_BIT`
+///   [`resolve_mode`] **must**  be `VK_RESOLVE_MODE_NONE` or `VK_RESOLVE_MODE_AVERAGE_BIT`
 /// - If [`image_view`] is not [`crate::utils::Handle::null`] and has an integer color format,
-///   [`resolve_mode`]**must** be `VK_RESOLVE_MODE_NONE` or `VK_RESOLVE_MODE_SAMPLE_ZERO_BIT`
+///   [`resolve_mode`] **must**  be `VK_RESOLVE_MODE_NONE` or `VK_RESOLVE_MODE_SAMPLE_ZERO_BIT`
 /// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
-///   `VK_RESOLVE_MODE_NONE`, [`image_view`]**must** not have a sample count of
+///   `VK_RESOLVE_MODE_NONE`, [`image_view`] **must**  not have a sample count of
 ///   `VK_SAMPLE_COUNT_1_BIT`
 /// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
-///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_view`]**must** have a sample count of
+///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_view`] **must**  have a sample count of
 ///   `VK_SAMPLE_COUNT_1_BIT`
 /// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
-///   `VK_RESOLVE_MODE_NONE`, [`image_view`] and [`resolve_image_view`]**must** have the same
+///   `VK_RESOLVE_MODE_NONE`, [`image_view`] and [`resolve_image_view`] **must**  have the same
 ///   [`Format`]
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout`**must** not be
+/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_UNDEFINED`, `VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL`, `VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL`, or
 ///   `VK_IMAGE_LAYOUT_PREINITIALIZED`
 /// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
-///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`]**must** not be `VK_IMAGE_LAYOUT_UNDEFINED`,
+///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`] **must**  not be `VK_IMAGE_LAYOUT_UNDEFINED`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, `VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL`, `VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL`, or
 ///   `VK_IMAGE_LAYOUT_PREINITIALIZED`
 /// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
-///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`]**must** not be
+///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL` or `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout`**must** not be
+/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV`
 /// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
-///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`]**must** not be
+///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout`**must** not be
+/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT`
 /// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
-///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`]**must** not be
+///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT`
 /// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
-///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`]**must** not be
+///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_READ_ONLY_OPTIMAL_KHR`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout`**must** not be
+/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR`
 /// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
-///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`]**must** not be
+///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout`**must** not be
+/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`
 /// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
-///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`]**must** not be
+///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO`
-/// - [`p_next`]**must** be `NULL`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], [`image_view`]**must** be a valid
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO`
+/// - [`p_next`] **must**  be `NULL`
+/// - If [`image_view`] is not [`crate::utils::Handle::null`], [`image_view`] **must**  be a valid
 ///   [`ImageView`] handle
-/// - [`image_layout`]**must** be a valid [`ImageLayout`] value
-/// - If [`resolve_mode`] is not `0`, [`resolve_mode`]**must** be a valid [`ResolveModeFlagBits`]
+/// - [`image_layout`] **must**  be a valid [`ImageLayout`] value
+/// - If [`resolve_mode`] is not `0`, [`resolve_mode`] **must**  be a valid [`ResolveModeFlagBits`]
 ///   value
-/// - If [`resolve_image_view`] is not [`crate::utils::Handle::null`],
-///   [`resolve_image_view`]**must** be a valid [`ImageView`] handle
-/// - [`resolve_image_layout`]**must** be a valid [`ImageLayout`] value
-/// - [`load_op`]**must** be a valid [`AttachmentLoadOp`] value
-/// - [`store_op`]**must** be a valid [`AttachmentStoreOp`] value
-/// - [`clear_value`]**must** be a valid [`ClearValue`] union
+/// - If [`resolve_image_view`] is not [`crate::utils::Handle::null`], [`resolve_image_view`]
+///   **must**  be a valid [`ImageView`] handle
+/// - [`resolve_image_layout`] **must**  be a valid [`ImageLayout`] value
+/// - [`load_op`] **must**  be a valid [`AttachmentLoadOp`] value
+/// - [`store_op`] **must**  be a valid [`AttachmentStoreOp`] value
+/// - [`clear_value`] **must**  be a valid [`ClearValue`] union
 /// - Both of [`image_view`], and [`resolve_image_view`] that are valid handles of non-ignored
-///   parameters **must** have been created, allocated, or retrieved from the same [`Device`]
+///   parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
 ///# Related
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
@@ -16582,9 +16171,10 @@ impl<'lt> RenderingAttachmentInfo<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceDynamicRenderingFeatures`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES`
+///[`PhysicalDeviceDynamicRenderingFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES`
 ///# Related
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
@@ -16603,7 +16193,7 @@ impl<'lt> RenderingAttachmentInfo<'lt> {
 #[repr(C)]
 pub struct PhysicalDeviceDynamicRenderingFeatures<'lt> {
     _lifetime: PhantomData<&'lt ()>,
-    ///[`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES`
+    ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES`
     s_type: StructureType,
     ///No documentation found
     p_next: *mut BaseOutStructure<'lt>,
@@ -16741,7 +16331,7 @@ impl<'lt> PhysicalDeviceDynamicRenderingFeatures<'lt> {
 ///If the [`p_next`] chain of [`CommandBufferInheritanceInfo`] includes a
 ///[`CommandBufferInheritanceRenderingInfo`] structure, then that structure
 ///controls parameters of dynamic render pass instances that the
-///[`CommandBuffer`]**can** be executed within.
+///[`CommandBuffer`] **can**  be executed within.
 ///If [`CommandBufferInheritanceInfo::render_pass`] is not
 ///[`crate::utils::Handle::null`], or
 ///`VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT` is not specified in
@@ -16752,34 +16342,36 @@ impl<'lt> PhysicalDeviceDynamicRenderingFeatures<'lt> {
 /// [`stencil_attachment_format`], or any
 ///element of [`color_attachment_formats`] is `VK_FORMAT_UNDEFINED`, it
 ///indicates that the corresponding attachment is unused within the render
-///pass.Valid Usage
-/// - If [`color_attachment_count`] is not `0`, [`rasterization_samples`]**must** be a valid
+///pass.
+///## Valid Usage
+/// - If [`color_attachment_count`] is not `0`, [`rasterization_samples`] **must**  be a valid
 ///   [`SampleCountFlagBits`] value
 /// - If the [`variableMultisampleRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-variableMultisampleRate)
-///   feature is not enabled, [`rasterization_samples`]**must** be a valid [`SampleCountFlagBits`]
+///   feature is not enabled, [`rasterization_samples`] **must**  be a valid [`SampleCountFlagBits`]
 ///   value
-/// -    If any element of [`color_attachment_formats`] is not `VK_FORMAT_UNDEFINED`, it **must** be a format with [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) that include `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT`
-/// - If [`depth_attachment_format`] is not `VK_FORMAT_UNDEFINED`, it **must** be a format that
+/// -    If any element of [`color_attachment_formats`] is not `VK_FORMAT_UNDEFINED`, it  **must**  be a format with [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) that include `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT`
+/// - If [`depth_attachment_format`] is not `VK_FORMAT_UNDEFINED`, it  **must**  be a format that
 ///   includes a depth aspect
-/// -    If [`depth_attachment_format`] is not `VK_FORMAT_UNDEFINED`, it **must** be a format with [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) that include `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
-/// -    When rendering to a [Linear Color attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary), if any element of [`color_attachment_formats`] is not `VK_FORMAT_UNDEFINED`, it **must** be a format with [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) that include `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
-/// - If [`stencil_attachment_format`] is not `VK_FORMAT_UNDEFINED`, it **must** be a format that
+/// -    If [`depth_attachment_format`] is not `VK_FORMAT_UNDEFINED`, it  **must**  be a format with [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) that include `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
+/// -    When rendering to a [Linear Color attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary), if any element of [`color_attachment_formats`] is not `VK_FORMAT_UNDEFINED`, it  **must**  be a format with [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) that include `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
+/// - If [`stencil_attachment_format`] is not `VK_FORMAT_UNDEFINED`, it  **must**  be a format that
 ///   includes a stencil aspect
-/// -    If [`stencil_attachment_format`] is not `VK_FORMAT_UNDEFINED`, it **must** be a format with [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) that include `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
+/// -    If [`stencil_attachment_format`] is not `VK_FORMAT_UNDEFINED`, it  **must**  be a format with [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) that include `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
 /// - If [`depth_attachment_format`] is not `VK_FORMAT_UNDEFINED` and [`stencil_attachment_format`]
-///   is not `VK_FORMAT_UNDEFINED`, [`depth_attachment_format`]**must** equal
+///   is not `VK_FORMAT_UNDEFINED`, [`depth_attachment_format`] **must**  equal
 ///   [`stencil_attachment_format`]
 /// - If the [`multiview`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiview)
-///   feature is not enabled, [`view_mask`]**must** be `0`
-/// - The index of the most significant bit in [`view_mask`]**must** be less than [`maxMultiviewViewCount`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxMultiviewViewCount)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDERING_INFO`
-/// - [`flags`]**must** be a valid combination of [`RenderingFlagBits`] values
-/// - If [`color_attachment_count`] is not `0`, [`color_attachment_formats`]**must** be a valid
+///   feature is not enabled, [`view_mask`] **must**  be `0`
+/// - The index of the most significant bit in [`view_mask`] **must**  be less than [`maxMultiviewViewCount`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxMultiviewViewCount)
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDERING_INFO`
+/// - [`flags`] **must**  be a valid combination of [`RenderingFlagBits`] values
+/// - If [`color_attachment_count`] is not `0`, [`color_attachment_formats`] **must**  be a valid
 ///   pointer to an array of [`color_attachment_count`] valid [`Format`] values
-/// - [`depth_attachment_format`]**must** be a valid [`Format`] value
-/// - [`stencil_attachment_format`]**must** be a valid [`Format`] value
-/// - If [`rasterization_samples`] is not `0`, [`rasterization_samples`]**must** be a valid
+/// - [`depth_attachment_format`] **must**  be a valid [`Format`] value
+/// - [`stencil_attachment_format`] **must**  be a valid [`Format`] value
+/// - If [`rasterization_samples`] is not `0`, [`rasterization_samples`] **must**  be a valid
 ///   [`SampleCountFlagBits`] value
 ///# Related
 /// - [`VK_KHR_dynamic_rendering`]
@@ -16848,14 +16440,6 @@ impl<'lt> CommandBufferInheritanceRenderingInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::view_mask`]
-    pub fn view_mask_raw(&self) -> u32 {
-        self.view_mask
-    }
-    ///Gets the raw value of [`Self::color_attachment_count`]
-    pub fn color_attachment_count_raw(&self) -> u32 {
-        self.color_attachment_count
-    }
     ///Gets the raw value of [`Self::color_attachment_formats`]
     pub fn color_attachment_formats_raw(&self) -> *const Format {
         self.color_attachment_formats
@@ -16863,16 +16447,6 @@ impl<'lt> CommandBufferInheritanceRenderingInfo<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::view_mask`]
-    pub fn set_view_mask_raw(&mut self, value: u32) -> &mut Self {
-        self.view_mask = value;
-        self
-    }
-    ///Sets the raw value of [`Self::color_attachment_count`]
-    pub fn set_color_attachment_count_raw(&mut self, value: u32) -> &mut Self {
-        self.color_attachment_count = value;
         self
     }
     ///Sets the raw value of [`Self::color_attachment_formats`]

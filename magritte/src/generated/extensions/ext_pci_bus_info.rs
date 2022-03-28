@@ -35,8 +35,9 @@ pub const EXT_PCI_BUS_INFO_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
 ///corresponding implementation-dependent property.These are properties of the PCI bus information
-/// of a physical device.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT`
+/// of a physical device.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT`
 ///# Related
 /// - [`VK_EXT_pci_bus_info`]
 /// - [`StructureType`]
@@ -85,45 +86,9 @@ impl<'lt> PhysicalDevicePciBusInfoPropertiesEXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::pci_domain`]
-    pub fn pci_domain_raw(&self) -> u32 {
-        self.pci_domain
-    }
-    ///Gets the raw value of [`Self::pci_bus`]
-    pub fn pci_bus_raw(&self) -> u32 {
-        self.pci_bus
-    }
-    ///Gets the raw value of [`Self::pci_device`]
-    pub fn pci_device_raw(&self) -> u32 {
-        self.pci_device
-    }
-    ///Gets the raw value of [`Self::pci_function`]
-    pub fn pci_function_raw(&self) -> u32 {
-        self.pci_function
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::pci_domain`]
-    pub fn set_pci_domain_raw(&mut self, value: u32) -> &mut Self {
-        self.pci_domain = value;
-        self
-    }
-    ///Sets the raw value of [`Self::pci_bus`]
-    pub fn set_pci_bus_raw(&mut self, value: u32) -> &mut Self {
-        self.pci_bus = value;
-        self
-    }
-    ///Sets the raw value of [`Self::pci_device`]
-    pub fn set_pci_device_raw(&mut self, value: u32) -> &mut Self {
-        self.pci_device = value;
-        self
-    }
-    ///Sets the raw value of [`Self::pci_function`]
-    pub fn set_pci_function_raw(&mut self, value: u32) -> &mut Self {
-        self.pci_function = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

@@ -31,10 +31,11 @@ pub const KHR_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_EXTENSION_NAME: &'static CStr
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR`]**can** also be used in the
+///[`PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR`] **can**  also be used in the
 /// [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR`
 ///# Related
 /// - [`VK_KHR_shader_subgroup_uniform_control_flow`]
@@ -53,7 +54,7 @@ pub const KHR_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_EXTENSION_NAME: &'static CStr
 #[repr(C)]
 pub struct PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'lt> {
     _lifetime: PhantomData<&'lt ()>,
-    ///[`s_type`]**must** be
+    ///[`s_type`] **must**  be
     /// `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR`
     s_type: StructureType,
     ///No documentation found

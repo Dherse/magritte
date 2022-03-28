@@ -39,25 +39,29 @@ pub const KHR_EXTERNAL_FENCE_WIN32_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// - [`name`] is `NULL` or a null-terminated UTF-16 string naming the underlying synchronization
 ///   primitive to import.
 ///# Description
-///The handle types supported by [`handle_type`] are:Valid Usage
-/// - [`handle_type`]**must** be a value included in the [Handle Types Supported by [`ImportFenceWin32HandleInfoKHR`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fence-handletypes-win32)
+///The handle types supported by [`handle_type`] are:
+///## Valid Usage
+/// - [`handle_type`] **must**  be a value included in the [Handle Types Supported by [`ImportFenceWin32HandleInfoKHR`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fence-handletypes-win32)
 ///   table
-/// - If [`handle_type`] is not `VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT`, [`name`]**must**
+/// - If [`handle_type`] is not `VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT`, [`name`] **must**
 ///   be `NULL`
-/// - If [`handle`] is `NULL`, [`name`]**must** name a valid synchronization primitive of the type
+/// - If [`handle`] is `NULL`, [`name`] **must**  name a valid synchronization primitive of the type
 ///   specified by [`handle_type`]
-/// - If [`name`] is `NULL`, [`handle`]**must** be a valid handle of the type specified by
+/// - If [`name`] is `NULL`, [`handle`] **must**  be a valid handle of the type specified by
 ///   [`handle_type`]
-/// - If [`handle`] is not `NULL`, [`name`]**must** be `NULL`
-/// -    If [`handle`] is not `NULL`, it **must** obey any requirements listed for [`handle_type`] in [external fence handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-fence-handle-types-compatibility)
-/// -    If [`name`] is not `NULL`, it **must** obey any requirements listed for [`handle_type`] in [external fence handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-fence-handle-types-compatibility)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMPORT_FENCE_WIN32_HANDLE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`fence`]**must** be a valid [`Fence`] handle
-/// - [`flags`]**must** be a valid combination of [`FenceImportFlagBits`] values
-///Host Synchronization
-/// - Host access to [`fence`]**must** be externally synchronized
+/// - If [`handle`] is not `NULL`, [`name`] **must**  be `NULL`
+/// - If [`handle`] is not `NULL`, it  **must**  obey any requirements listed for [`handle_type`] in
+///   [external fence handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-fence-handle-types-compatibility)
+/// -    If [`name`] is not `NULL`, it  **must**  obey any requirements listed for [`handle_type`] in [external fence handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-fence-handle-types-compatibility)
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_FENCE_WIN32_HANDLE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`fence`] **must**  be a valid [`Fence`] handle
+/// - [`flags`] **must**  be a valid combination of [`FenceImportFlagBits`] values
+///
+///## Host Synchronization
+/// - Host access to [`fence`] **must**  be externally synchronized
 ///# Related
 /// - [`VK_KHR_external_fence_win32`]
 /// - [`ExternalFenceHandleTypeFlagBits`]
@@ -268,13 +272,15 @@ impl<'lt> ImportFenceWin32HandleInfoKHR<'lt> {
 /// `DXGI_SHARED_RESOURCE_WRITE`for handles of the following
 /// types:`VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT`
 /// * [https://docs.microsoft.com/en-us/windows/win32/sync/synchronization-object-security-and-access-rights](https://docs.microsoft.com/en-us/windows/win32/sync/synchronization-object-security-and-access-rights)
-///Valid Usage
+///
+///## Valid Usage
 /// - If [`ExportFenceCreateInfo::handle_types`] does not include
 ///   `VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT`, a [`ExportFenceWin32HandleInfoKHR`]
-///   structure **must** not be included in the [`p_next`] chain of [`FenceCreateInfo`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_EXPORT_FENCE_WIN32_HANDLE_INFO_KHR`
-/// - If [`attributes`] is not `NULL`, [`attributes`]**must** be a valid pointer to a valid
+///   structure  **must**  not be included in the [`p_next`] chain of [`FenceCreateInfo`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXPORT_FENCE_WIN32_HANDLE_INFO_KHR`
+/// - If [`attributes`] is not `NULL`, [`attributes`] **must**  be a valid pointer to a valid
 ///   [`SECURITY_ATTRIBUTES`] value
 ///# Related
 /// - [`VK_KHR_external_fence_win32`]
@@ -433,19 +439,23 @@ impl<'lt> ExportFenceWin32HandleInfoKHR<'lt> {
 ///The properties of the handle returned depend on the value of
 ///[`handle_type`].
 ///See [`ExternalFenceHandleTypeFlagBits`] for a description of the
-///properties of the defined external fence handle types.Valid Usage
-/// - [`handle_type`]**must** have been included in [`ExportFenceCreateInfo::handle_types`] when the
-///   [`fence`]’s current payload was created
-/// - If [`handle_type`] is defined as an NT handle, [`GetFenceWin32HandleKHR`]**must** be called no
-///   more than once for each valid unique combination of [`fence`] and [`handle_type`]
-/// -  [`fence`]**must** not currently have its payload replaced by an imported payload as described below in [Importing Fence Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-importing) unless that imported payload’s handle type was included in [`ExternalFenceProperties::export_from_imported_handle_types`] for [`handle_type`]
-/// -    If [`handle_type`] refers to a handle type with copy payload transference semantics, [`fence`]**must** be signaled, or have an associated [fence signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-signaling) pending execution
-/// - [`handle_type`]**must** be defined as an NT handle or a global share handle
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_FENCE_GET_WIN32_HANDLE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`fence`]**must** be a valid [`Fence`] handle
-/// - [`handle_type`]**must** be a valid [`ExternalFenceHandleTypeFlagBits`] value
+///properties of the defined external fence handle types.
+///## Valid Usage
+/// - [`handle_type`] **must**  have been included in [`ExportFenceCreateInfo::handle_types`] when
+///   the [`fence`]’s current payload was created
+/// - If [`handle_type`] is defined as an NT handle, [`GetFenceWin32HandleKHR`] **must**  be called
+///   no more than once for each valid unique combination of [`fence`] and [`handle_type`]
+/// -  [`fence`] **must**  not currently have its payload replaced by an imported payload as described below in [Importing Fence Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-importing) unless that imported payload’s handle type was included in [`ExternalFenceProperties::export_from_imported_handle_types`] for [`handle_type`]
+/// - If [`handle_type`] refers to a handle type with copy payload transference semantics, [`fence`]
+///   **must**  be signaled, or have an associated [fence signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-signaling)
+///   pending execution
+/// - [`handle_type`] **must**  be defined as an NT handle or a global share handle
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_FENCE_GET_WIN32_HANDLE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`fence`] **must**  be a valid [`Fence`] handle
+/// - [`handle_type`] **must**  be a valid [`ExternalFenceHandleTypeFlagBits`] value
 ///# Related
 /// - [`VK_KHR_external_fence_win32`]
 /// - [`ExternalFenceHandleTypeFlagBits`]

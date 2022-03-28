@@ -31,9 +31,10 @@ pub const EXT_YCBCR_IMAGE_ARRAYS_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceYcbcrImageArraysFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT`
+///[`PhysicalDeviceYcbcrImageArraysFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_ycbcr_image_arrays`]
 /// - [`Bool32`]

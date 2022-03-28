@@ -205,13 +205,14 @@ impl CoarseSampleOrderTypeNV {
 /// - [`shading_rate_palette_entries`] is a pointer to an array of [`ShadingRatePaletteEntryNV`]
 ///   enums defining the shading rate for each palette entry.
 ///# Description
-///Valid Usage
-/// - [`shading_rate_palette_entry_count`]**must** be between `1` and
+///## Valid Usage
+/// - [`shading_rate_palette_entry_count`] **must**  be between `1` and
 ///   [`PhysicalDeviceShadingRateImagePropertiesNV::shading_rate_palette_size`], inclusive
-///Valid Usage (Implicit)
-/// - [`shading_rate_palette_entries`]**must** be a valid pointer to an array of
+///
+///## Valid Usage (Implicit)
+/// - [`shading_rate_palette_entries`] **must**  be a valid pointer to an array of
 ///   [`shading_rate_palette_entry_count`] valid [`ShadingRatePaletteEntryNV`] values
-/// - [`shading_rate_palette_entry_count`]**must** be greater than `0`
+/// - [`shading_rate_palette_entry_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`PipelineViewportShadingRateImageStateCreateInfoNV`]
@@ -248,18 +249,9 @@ impl<'lt> Default for ShadingRatePaletteNV<'lt> {
     }
 }
 impl<'lt> ShadingRatePaletteNV<'lt> {
-    ///Gets the raw value of [`Self::shading_rate_palette_entry_count`]
-    pub fn shading_rate_palette_entry_count_raw(&self) -> u32 {
-        self.shading_rate_palette_entry_count
-    }
     ///Gets the raw value of [`Self::shading_rate_palette_entries`]
     pub fn shading_rate_palette_entries_raw(&self) -> *const ShadingRatePaletteEntryNV {
         self.shading_rate_palette_entries
-    }
-    ///Sets the raw value of [`Self::shading_rate_palette_entry_count`]
-    pub fn set_shading_rate_palette_entry_count_raw(&mut self, value: u32) -> &mut Self {
-        self.shading_rate_palette_entry_count = value;
-        self
     }
     ///Sets the raw value of [`Self::shading_rate_palette_entries`]
     pub fn set_shading_rate_palette_entries_raw(&mut self, value: *const ShadingRatePaletteEntryNV) -> &mut Self {
@@ -330,14 +322,16 @@ impl<'lt> ShadingRatePaletteNV<'lt> {
 ///   member is ignored.
 ///# Description
 ///If this structure is not present, [`shading_rate_image_enable`] is considered
-///to be [`FALSE`], and the shading rate image and palettes are not used.Valid Usage
+///to be [`FALSE`], and the shading rate image and palettes are not used.
+///## Valid Usage
 /// - If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport)
-///   feature is not enabled, [`viewport_count`]**must** be `0` or `1`
-/// - [`viewport_count`]**must** be less than or equal to [`PhysicalDeviceLimits::max_viewports`]
-/// - If [`shading_rate_image_enable`] is [`TRUE`], [`viewport_count`]**must** be greater or equal
+///   feature is not enabled, [`viewport_count`] **must**  be `0` or `1`
+/// - [`viewport_count`] **must**  be less than or equal to [`PhysicalDeviceLimits::max_viewports`]
+/// - If [`shading_rate_image_enable`] is [`TRUE`], [`viewport_count`] **must**  be greater or equal
 ///   to the [`viewport_count`] member of [`PipelineViewportStateCreateInfo`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV`
 ///# Related
 /// - [`VK_NV_shading_rate_image`]
@@ -395,10 +389,6 @@ impl<'lt> PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
     pub fn shading_rate_image_enable_raw(&self) -> Bool32 {
         self.shading_rate_image_enable
     }
-    ///Gets the raw value of [`Self::viewport_count`]
-    pub fn viewport_count_raw(&self) -> u32 {
-        self.viewport_count
-    }
     ///Gets the raw value of [`Self::shading_rate_palettes`]
     pub fn shading_rate_palettes_raw(&self) -> *const ShadingRatePaletteNV<'lt> {
         self.shading_rate_palettes
@@ -411,11 +401,6 @@ impl<'lt> PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
     ///Sets the raw value of [`Self::shading_rate_image_enable`]
     pub fn set_shading_rate_image_enable_raw(&mut self, value: Bool32) -> &mut Self {
         self.shading_rate_image_enable = value;
-        self
-    }
-    ///Sets the raw value of [`Self::viewport_count`]
-    pub fn set_viewport_count_raw(&mut self, value: u32) -> &mut Self {
-        self.viewport_count = value;
         self
     }
     ///Sets the raw value of [`Self::shading_rate_palettes`]
@@ -536,9 +521,10 @@ impl<'lt> PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceShadingRateImageFeaturesNV`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV`
+///[`PhysicalDeviceShadingRateImageFeaturesNV`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV`
 ///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`Bool32`]
@@ -729,8 +715,9 @@ impl<'lt> PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
 ///corresponding implementation-dependent property.These properties are related to the [shading
-///rate image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-shading-rate-image) feature.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV`
+///rate image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-shading-rate-image) feature.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV`
 ///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`Extent2D`]
@@ -787,27 +774,9 @@ impl<'lt> PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::shading_rate_palette_size`]
-    pub fn shading_rate_palette_size_raw(&self) -> u32 {
-        self.shading_rate_palette_size
-    }
-    ///Gets the raw value of [`Self::shading_rate_max_coarse_samples`]
-    pub fn shading_rate_max_coarse_samples_raw(&self) -> u32 {
-        self.shading_rate_max_coarse_samples
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::shading_rate_palette_size`]
-    pub fn set_shading_rate_palette_size_raw(&mut self, value: u32) -> &mut Self {
-        self.shading_rate_palette_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::shading_rate_max_coarse_samples`]
-    pub fn set_shading_rate_max_coarse_samples_raw(&mut self, value: u32) -> &mut Self {
-        self.shading_rate_max_coarse_samples = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -904,11 +873,11 @@ impl<'lt> PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
 /// - [`sample`] is the number of the coverage sample in the pixel identified by [`pixel_x`] and
 ///   [`pixel_y`].
 ///# Description
-///Valid Usage
-/// - [`pixel_x`]**must** be less than the width (in pixels) of the fragment
-/// - [`pixel_y`]**must** be less than the height (in pixels) of the fragment
-/// - [`sample`]**must** be less than the number of coverage samples in each pixel belonging to the
-///   fragment
+///## Valid Usage
+/// - [`pixel_x`] **must**  be less than the width (in pixels) of the fragment
+/// - [`pixel_y`] **must**  be less than the height (in pixels) of the fragment
+/// - [`sample`] **must**  be less than the number of coverage samples in each pixel belonging to
+///   the fragment
 ///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`CoarseSampleOrderCustomNV`]
@@ -945,33 +914,6 @@ impl Default for CoarseSampleLocationNV {
     }
 }
 impl CoarseSampleLocationNV {
-    ///Gets the raw value of [`Self::pixel_x`]
-    pub fn pixel_x_raw(&self) -> u32 {
-        self.pixel_x
-    }
-    ///Gets the raw value of [`Self::pixel_y`]
-    pub fn pixel_y_raw(&self) -> u32 {
-        self.pixel_y
-    }
-    ///Gets the raw value of [`Self::sample`]
-    pub fn sample_raw(&self) -> u32 {
-        self.sample
-    }
-    ///Sets the raw value of [`Self::pixel_x`]
-    pub fn set_pixel_x_raw(&mut self, value: u32) -> &mut Self {
-        self.pixel_x = value;
-        self
-    }
-    ///Sets the raw value of [`Self::pixel_y`]
-    pub fn set_pixel_y_raw(&mut self, value: u32) -> &mut Self {
-        self.pixel_y = value;
-        self
-    }
-    ///Sets the raw value of [`Self::sample`]
-    pub fn set_sample_raw(&mut self, value: u32) -> &mut Self {
-        self.sample = value;
-        self
-    }
     ///Gets the value of [`Self::pixel_x`]
     pub fn pixel_x(&self) -> u32 {
         self.pixel_x
@@ -1041,22 +983,25 @@ impl CoarseSampleLocationNV {
 ///specifies a specific pixel location and
 ///[sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask) that corresponds to
 ///[coverage index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask)*j* in the
-///multi-pixel fragment.Valid Usage
-/// - [`shading_rate`]**must** be a shading rate that generates fragments with more than one pixel
-/// - [`sample_count`]**must** correspond to a sample count enumerated in [`SampleCountFlags`] whose
-///   corresponding bit is set in [`PhysicalDeviceLimits::framebuffer_no_attachments_sample_counts`]
-/// - [`sample_location_count`]**must** be equal to the product of [`sample_count`], the fragment
+///multi-pixel fragment.
+///## Valid Usage
+/// - [`shading_rate`] **must**  be a shading rate that generates fragments with more than one pixel
+/// - [`sample_count`] **must**  correspond to a sample count enumerated in [`SampleCountFlags`]
+///   whose corresponding bit is set in
+///   [`PhysicalDeviceLimits::framebuffer_no_attachments_sample_counts`]
+/// - [`sample_location_count`] **must**  be equal to the product of [`sample_count`], the fragment
 ///   width for [`shading_rate`], and the fragment height for [`shading_rate`]
-/// - [`sample_location_count`]**must** be less than or equal to the value of
+/// - [`sample_location_count`] **must**  be less than or equal to the value of
 ///   [`PhysicalDeviceShadingRateImagePropertiesNV::shading_rate_max_coarse_samples`]
-/// - The array [`sample_locations`]**must** contain exactly one entry for every combination of
+/// - The array [`sample_locations`] **must**  contain exactly one entry for every combination of
 ///   valid values for `pixelX`, `pixelY`, and `sample` in the structure
 ///   [`CoarseSampleOrderCustomNV`]
-///Valid Usage (Implicit)
-/// - [`shading_rate`]**must** be a valid [`ShadingRatePaletteEntryNV`] value
-/// - [`sample_locations`]**must** be a valid pointer to an array of
+///
+///## Valid Usage (Implicit)
+/// - [`shading_rate`] **must**  be a valid [`ShadingRatePaletteEntryNV`] value
+/// - [`sample_locations`] **must**  be a valid pointer to an array of
 ///   [`sample_location_count`][`CoarseSampleLocationNV`] structures
-/// - [`sample_location_count`]**must** be greater than `0`
+/// - [`sample_location_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`CoarseSampleLocationNV`]
@@ -1103,27 +1048,9 @@ impl<'lt> Default for CoarseSampleOrderCustomNV<'lt> {
     }
 }
 impl<'lt> CoarseSampleOrderCustomNV<'lt> {
-    ///Gets the raw value of [`Self::sample_count`]
-    pub fn sample_count_raw(&self) -> u32 {
-        self.sample_count
-    }
-    ///Gets the raw value of [`Self::sample_location_count`]
-    pub fn sample_location_count_raw(&self) -> u32 {
-        self.sample_location_count
-    }
     ///Gets the raw value of [`Self::sample_locations`]
     pub fn sample_locations_raw(&self) -> *const CoarseSampleLocationNV {
         self.sample_locations
-    }
-    ///Sets the raw value of [`Self::sample_count`]
-    pub fn set_sample_count_raw(&mut self, value: u32) -> &mut Self {
-        self.sample_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::sample_location_count`]
-    pub fn set_sample_location_count_raw(&mut self, value: u32) -> &mut Self {
-        self.sample_location_count = value;
-        self
     }
     ///Sets the raw value of [`Self::sample_locations`]
     pub fn set_sample_locations_raw(&mut self, value: *const CoarseSampleLocationNV) -> &mut Self {
@@ -1229,16 +1156,18 @@ impl<'lt> CoarseSampleOrderCustomNV<'lt> {
 ///to that used for `VK_COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV`.If the pipeline was created with
 ///`VK_DYNAMIC_STATE_VIEWPORT_COARSE_SAMPLE_ORDER_NV`, the contents of this
 ///structure (if present) are ignored, and the coverage sample order is instead
-///specified by [`CmdSetCoarseSampleOrderNV`].Valid Usage
+///specified by [`CmdSetCoarseSampleOrderNV`].
+///## Valid Usage
 /// - If [`sample_order_type`] is not `VK_COARSE_SAMPLE_ORDER_TYPE_CUSTOM_NV`,
-///   `customSamplerOrderCount`**must** be `0`
-/// - The array [`custom_sample_orders`]**must** not contain two structures with matching values for
-///   both the `shadingRate` and `sampleCount` members
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///   `customSamplerOrderCount` **must**  be `0`
+/// - The array [`custom_sample_orders`] **must**  not contain two structures with matching values
+///   for both the `shadingRate` and `sampleCount` members
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV`
-/// - [`sample_order_type`]**must** be a valid [`CoarseSampleOrderTypeNV`] value
-/// - If [`custom_sample_order_count`] is not `0`, [`custom_sample_orders`]**must** be a valid
+/// - [`sample_order_type`] **must**  be a valid [`CoarseSampleOrderTypeNV`] value
+/// - If [`custom_sample_order_count`] is not `0`, [`custom_sample_orders`] **must**  be a valid
 ///   pointer to an array of [`custom_sample_order_count`] valid [`CoarseSampleOrderCustomNV`]
 ///   structures
 ///# Related
@@ -1293,10 +1222,6 @@ impl<'lt> PipelineViewportCoarseSampleOrderStateCreateInfoNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::custom_sample_order_count`]
-    pub fn custom_sample_order_count_raw(&self) -> u32 {
-        self.custom_sample_order_count
-    }
     ///Gets the raw value of [`Self::custom_sample_orders`]
     pub fn custom_sample_orders_raw(&self) -> *const CoarseSampleOrderCustomNV<'lt> {
         self.custom_sample_orders
@@ -1304,11 +1229,6 @@ impl<'lt> PipelineViewportCoarseSampleOrderStateCreateInfoNV<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::custom_sample_order_count`]
-    pub fn set_custom_sample_order_count_raw(&mut self, value: u32) -> &mut Self {
-        self.custom_sample_order_count = value;
         self
     }
     ///Sets the raw value of [`Self::custom_sample_orders`]

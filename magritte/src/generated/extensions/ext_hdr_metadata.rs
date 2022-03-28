@@ -52,24 +52,6 @@ impl Default for XyColorEXT {
     }
 }
 impl XyColorEXT {
-    ///Gets the raw value of [`Self::x`]
-    pub fn x_raw(&self) -> f32 {
-        self.x
-    }
-    ///Gets the raw value of [`Self::y`]
-    pub fn y_raw(&self) -> f32 {
-        self.y
-    }
-    ///Sets the raw value of [`Self::x`]
-    pub fn set_x_raw(&mut self, value: f32) -> &mut Self {
-        self.x = value;
-        self
-    }
-    ///Sets the raw value of [`Self::y`]
-    pub fn set_y_raw(&mut self, value: f32) -> &mut Self {
-        self.y = value;
-        self
-    }
     ///Gets the value of [`Self::x`]
     pub fn x(&self) -> f32 {
         self.x
@@ -131,9 +113,9 @@ impl XyColorEXT {
 /// - [`max_content_light_level`] is content’s maximum luminance in nits
 /// - [`max_frame_average_light_level`] is the maximum frame average light level in nits
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_HDR_METADATA_EXT`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_HDR_METADATA_EXT`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_EXT_hdr_metadata`]
 /// - [`StructureType`]
@@ -203,45 +185,9 @@ impl<'lt> HdrMetadataEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::max_luminance`]
-    pub fn max_luminance_raw(&self) -> f32 {
-        self.max_luminance
-    }
-    ///Gets the raw value of [`Self::min_luminance`]
-    pub fn min_luminance_raw(&self) -> f32 {
-        self.min_luminance
-    }
-    ///Gets the raw value of [`Self::max_content_light_level`]
-    pub fn max_content_light_level_raw(&self) -> f32 {
-        self.max_content_light_level
-    }
-    ///Gets the raw value of [`Self::max_frame_average_light_level`]
-    pub fn max_frame_average_light_level_raw(&self) -> f32 {
-        self.max_frame_average_light_level
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_luminance`]
-    pub fn set_max_luminance_raw(&mut self, value: f32) -> &mut Self {
-        self.max_luminance = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_luminance`]
-    pub fn set_min_luminance_raw(&mut self, value: f32) -> &mut Self {
-        self.min_luminance = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_content_light_level`]
-    pub fn set_max_content_light_level_raw(&mut self, value: f32) -> &mut Self {
-        self.max_content_light_level = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_frame_average_light_level`]
-    pub fn set_max_frame_average_light_level_raw(&mut self, value: f32) -> &mut Self {
-        self.max_frame_average_light_level = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

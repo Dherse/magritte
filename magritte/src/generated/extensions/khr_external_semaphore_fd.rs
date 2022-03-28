@@ -35,32 +35,35 @@ pub const KHR_EXTERNAL_SEMAPHORE_FD_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///   [`fd`].
 /// - [`fd`] is the external handle to import.
 ///# Description
-///The handle types supported by [`handle_type`] are:Valid Usage
-/// - [`handle_type`]**must** be a value included in the [Handle Types Supported by [`ImportSemaphoreFdInfoKHR`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphore-handletypes-fd)
+///The handle types supported by [`handle_type`] are:
+///## Valid Usage
+/// - [`handle_type`] **must**  be a value included in the [Handle Types Supported by [`ImportSemaphoreFdInfoKHR`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphore-handletypes-fd)
 ///   table
-/// -  [`fd`]**must** obey any requirements listed for [`handle_type`] in [external semaphore handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-semaphore-handle-types-compatibility)
+/// -  [`fd`] **must**  obey any requirements listed for [`handle_type`] in [external semaphore handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-semaphore-handle-types-compatibility)
 /// - If [`handle_type`] is `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT`, the
-///   [`SemaphoreCreateInfo`]::[`flags`] field **must** match that of the semaphore from which
+///   [`SemaphoreCreateInfo`]::[`flags`] field  **must**  match that of the semaphore from which
 ///   [`fd`] was exported
 /// - If [`handle_type`] is `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT`, the
-///   [`SemaphoreTypeCreateInfo::semaphore_type`] field **must** match that of the semaphore from
+///   [`SemaphoreTypeCreateInfo::semaphore_type`] field  **must**  match that of the semaphore from
 ///   which [`fd`] was exported
 /// - If [`flags`] contains `VK_SEMAPHORE_IMPORT_TEMPORARY_BIT`, the
 ///   [`SemaphoreTypeCreateInfo::semaphore_type`] field of the semaphore from which [`fd`] was
-///   exported **must** not be `VK_SEMAPHORE_TYPE_TIMELINE`
+///   exported  **must**  not be `VK_SEMAPHORE_TYPE_TIMELINE`
 ///If [`handle_type`] is `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT`,
 ///the special value `-1` for [`fd`] is treated like a valid sync file
 ///descriptor referring to an object that has already signaled.
 ///The import operation will succeed and the [`Semaphore`] will have a
 ///temporarily imported payload as if a valid file descriptor had been
-///provided.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_FD_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`semaphore`]**must** be a valid [`Semaphore`] handle
-/// - [`flags`]**must** be a valid combination of [`SemaphoreImportFlagBits`] values
-/// - [`handle_type`]**must** be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
-///Host Synchronization
-/// - Host access to [`semaphore`]**must** be externally synchronized
+///provided.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_FD_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
+/// - [`flags`] **must**  be a valid combination of [`SemaphoreImportFlagBits`] values
+/// - [`handle_type`] **must**  be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
+///
+///## Host Synchronization
+/// - Host access to [`semaphore`] **must**  be externally synchronized
 ///# Related
 /// - [`VK_KHR_external_semaphore_fd`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]
@@ -116,18 +119,9 @@ impl<'lt> ImportSemaphoreFdInfoKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::fd`]
-    pub fn fd_raw(&self) -> i32 {
-        self.fd
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::fd`]
-    pub fn set_fd_raw(&mut self, value: i32) -> &mut Self {
-        self.fd = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -230,24 +224,27 @@ impl<'lt> ImportSemaphoreFdInfoKHR<'lt> {
 ///The properties of the file descriptor returned depend on the value of
 ///[`handle_type`].
 ///See [`ExternalSemaphoreHandleTypeFlagBits`] for a description of the
-///properties of the defined external semaphore handle types.Valid Usage
-/// - [`handle_type`]**must** have been included in [`ExportSemaphoreCreateInfo::handle_types`] when
-///   [`semaphore`]’s current payload was created
-/// -  [`semaphore`]**must** not currently have its payload replaced by an imported payload as described below in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing) unless that imported payload’s handle type was included in [`ExternalSemaphoreProperties::export_from_imported_handle_types`] for [`handle_type`]
-/// -    If [`handle_type`] refers to a handle type with copy payload transference semantics, as defined below in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing), there **must** be no queue waiting on [`semaphore`]
-/// -    If [`handle_type`] refers to a handle type with copy payload transference semantics, [`semaphore`]**must** be signaled, or have an associated [semaphore signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling) pending execution
-/// - [`handle_type`]**must** be defined as a POSIX file descriptor handle
+///properties of the defined external semaphore handle types.
+///## Valid Usage
+/// - [`handle_type`] **must**  have been included in [`ExportSemaphoreCreateInfo::handle_types`]
+///   when [`semaphore`]’s current payload was created
+/// -  [`semaphore`] **must**  not currently have its payload replaced by an imported payload as described below in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing) unless that imported payload’s handle type was included in [`ExternalSemaphoreProperties::export_from_imported_handle_types`] for [`handle_type`]
+/// -    If [`handle_type`] refers to a handle type with copy payload transference semantics, as defined below in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing), there  **must**  be no queue waiting on [`semaphore`]
+/// -    If [`handle_type`] refers to a handle type with copy payload transference semantics, [`semaphore`] **must**  be signaled, or have an associated [semaphore signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling) pending execution
+/// - [`handle_type`] **must**  be defined as a POSIX file descriptor handle
 /// - If [`handle_type`] refers to a handle type with copy payload transference semantics,
-///   [`semaphore`]**must** have been created with a [`SemaphoreType`] of `VK_SEMAPHORE_TYPE_BINARY`
+///   [`semaphore`] **must**  have been created with a [`SemaphoreType`] of
+///   `VK_SEMAPHORE_TYPE_BINARY`
 /// - If [`handle_type`] refers to a handle type with copy payload transference semantics,
-///   [`semaphore`]**must** have an associated semaphore signal operation that has been submitted
-///   for execution and any semaphore signal operations on which it depends (if any) **must** have
+///   [`semaphore`] **must**  have an associated semaphore signal operation that has been submitted
+///   for execution and any semaphore signal operations on which it depends (if any)  **must**  have
 ///   also been submitted for execution
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SEMAPHORE_GET_FD_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`semaphore`]**must** be a valid [`Semaphore`] handle
-/// - [`handle_type`]**must** be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SEMAPHORE_GET_FD_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
+/// - [`handle_type`] **must**  be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
 ///# Related
 /// - [`VK_KHR_external_semaphore_fd`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]

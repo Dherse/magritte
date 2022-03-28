@@ -11,7 +11,7 @@ pub const AMD_TEXTURE_GATHER_BIAS_LOD_EXTENSION_NAME: &'static CStr = crate::cst
 ///[VkTextureLODGatherFormatPropertiesAMD](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkTextureLODGatherFormatPropertiesAMD.html) - Structure informing whether or not texture gather bias/LOD functionality is supported for a given image format and a given physical device.
 ///# C Specifications
 ///To determine if texture gather functions that take explicit LOD and/or bias
-///argument values **can** be used with a given image format, add a
+///argument values  **can**  be used with a given image format, add a
 ///[`TextureLodGatherFormatPropertiesAMD`] structure to the [`p_next`]
 ///chain of the [`ImageFormatProperties2`] structure in a call to
 ///[`GetPhysicalDeviceImageFormatProperties2`].The [`TextureLodGatherFormatPropertiesAMD`]
@@ -31,8 +31,8 @@ pub const AMD_TEXTURE_GATHER_BIAS_LOD_EXTENSION_NAME: &'static CStr = crate::cst
 ///   gather bias/LOD functions, as introduced by the `[`VK_AMD_texture_gather_bias_lod`]`
 ///   extension. This field is set by the implementation. User-specified value is ignored.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD`
 ///# Related
 /// - [`VK_AMD_texture_gather_bias_lod`]
 /// - [`Bool32`]

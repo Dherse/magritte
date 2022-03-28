@@ -11,7 +11,7 @@ pub const AMD_PIPELINE_COMPILER_CONTROL_EXTENSION_NAME: &'static CStr =
     crate::cstr!("VK_AMD_pipeline_compiler_control");
 ///[VkPipelineCompilerControlCreateInfoAMD](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineCompilerControlCreateInfoAMD.html) - Structure used to pass compilation control flags to a pipeline
 ///# C Specifications
-///The compilation of a pipeline **can** be tuned by adding a
+///The compilation of a pipeline  **can**  be tuned by adding a
 ///[`PipelineCompilerControlCreateInfoAMD`] structure to the [`p_next`]
 ///chain of [`GraphicsPipelineCreateInfo`] or
 ///[`ComputePipelineCreateInfo`].
@@ -29,9 +29,9 @@ pub const AMD_PIPELINE_COMPILER_CONTROL_EXTENSION_NAME: &'static CStr =
 /// - [`compiler_control_flags`] is a bitmask of [`PipelineCompilerControlFlagBitsAMD`] affecting
 ///   how the pipeline will be compiled.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD`
-/// - [`compiler_control_flags`]**must** be `0`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD`
+/// - [`compiler_control_flags`] **must**  be `0`
 ///# Related
 /// - [`VK_AMD_pipeline_compiler_control`]
 /// - [`PipelineCompilerControlFlagsAMD`]

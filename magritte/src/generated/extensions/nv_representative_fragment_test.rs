@@ -32,10 +32,11 @@ pub const NV_REPRESENTATIVE_FRAGMENT_TEST_EXTENSION_NAME: &'static CStr =
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceRepresentativeFragmentTestFeaturesNV`]**can** also be used in the [`p_next`]
+///[`PhysicalDeviceRepresentativeFragmentTestFeaturesNV`] **can**  also be used in the [`p_next`]
 /// chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV`
 ///# Related
 /// - [`VK_NV_representative_fragment_test`]
@@ -180,8 +181,9 @@ impl<'lt> PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'lt> {
 ///and the representative fragment test is disabled.If the active fragment shader does not specify
 /// the `EarlyFragmentTests`
 ///execution mode, the representative fragment shader test has no effect, even
-///if enabled.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///if enabled.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV`
 ///# Related
 /// - [`VK_NV_representative_fragment_test`]

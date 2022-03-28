@@ -34,9 +34,10 @@ pub const EXT_DEPTH_CLIP_ENABLE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceDepthClipEnableFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT`
+///[`PhysicalDeviceDepthClipEnableFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_depth_clip_enable`]
 /// - [`Bool32`]
@@ -179,10 +180,10 @@ impl<'lt> PhysicalDeviceDepthClipEnableFeaturesEXT<'lt> {
 /// - [`flags`] is reserved for future use.
 /// - [`depth_clip_enable`] controls whether depth clipping is enabled as described in [Primitive Clipping](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#vertexpostproc-clipping).
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT`
-/// - [`flags`]**must** be `0`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_EXT_depth_clip_enable`]
 /// - [`Bool32`]

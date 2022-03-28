@@ -120,10 +120,11 @@ impl BlendOverlapEXT {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceBlendOperationAdvancedFeaturesEXT`]**can** also be used in the [`p_next`] chain
-/// of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`PhysicalDeviceBlendOperationAdvancedFeaturesEXT`] **can**  also be used in the [`p_next`]
+/// chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_blend_operation_advanced`]
@@ -269,18 +270,18 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`advanced_blend_max_color_attachments`] is one greater than the highest color attachment index that **can** be used in a subpass, for a pipeline that uses an [advanced blend operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blend-advanced).
-/// - [`advanced_blend_independent_blend`] specifies whether advanced blend operations **can** vary
-///   per-attachment.
-/// - [`advanced_blend_non_premultiplied_src_color`] specifies whether the source color **can** be
+/// - [`advanced_blend_max_color_attachments`] is one greater than the highest color attachment index that  **can**  be used in a subpass, for a pipeline that uses an [advanced blend operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blend-advanced).
+/// - [`advanced_blend_independent_blend`] specifies whether advanced blend operations  **can**
+///   vary per-attachment.
+/// - [`advanced_blend_non_premultiplied_src_color`] specifies whether the source color  **can**  be
 ///   treated as non-premultiplied. If this is [`FALSE`], then
-///   [`PipelineColorBlendAdvancedStateCreateInfoEXT::src_premultiplied`]**must** be [`TRUE`].
-/// - [`advanced_blend_non_premultiplied_dst_color`] specifies whether the destination color **can**
-///   be treated as non-premultiplied. If this is [`FALSE`], then
-///   [`PipelineColorBlendAdvancedStateCreateInfoEXT::dst_premultiplied`]**must** be [`TRUE`].
-/// - [`advanced_blend_correlated_overlap`] specifies whether the overlap mode **can** be treated as
-///   correlated. If this is [`FALSE`], then
-///   [`PipelineColorBlendAdvancedStateCreateInfoEXT::blend_overlap`]**must** be
+///   [`PipelineColorBlendAdvancedStateCreateInfoEXT::src_premultiplied`] **must**  be [`TRUE`].
+/// - [`advanced_blend_non_premultiplied_dst_color`] specifies whether the destination color
+///   **can**  be treated as non-premultiplied. If this is [`FALSE`], then
+///   [`PipelineColorBlendAdvancedStateCreateInfoEXT::dst_premultiplied`] **must**  be [`TRUE`].
+/// - [`advanced_blend_correlated_overlap`] specifies whether the overlap mode  **can**  be treated
+///   as correlated. If this is [`FALSE`], then
+///   [`PipelineColorBlendAdvancedStateCreateInfoEXT::blend_overlap`] **must**  be
 ///   `VK_BLEND_OVERLAP_UNCORRELATED_EXT`.
 /// - [`advanced_blend_all_operations`] specifies whether all advanced blend operation enums are
 ///   supported. See the valid usage of [`PipelineColorBlendAttachmentState`].
@@ -289,8 +290,9 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
 /// [`p_next`] chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT`
 ///# Related
 /// - [`VK_EXT_blend_operation_advanced`]
@@ -315,26 +317,26 @@ pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`advanced_blend_max_color_attachments`] is one greater than the highest
-    ///color attachment index that **can** be used in a subpass, for a pipeline
+    ///color attachment index that  **can**  be used in a subpass, for a pipeline
     ///that uses an [advanced blend operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blend-advanced).
     advanced_blend_max_color_attachments: u32,
     ///[`advanced_blend_independent_blend`] specifies whether advanced blend
-    ///operations **can** vary per-attachment.
+    ///operations  **can**  vary per-attachment.
     advanced_blend_independent_blend: Bool32,
     ///[`advanced_blend_non_premultiplied_src_color`] specifies whether the source
-    ///color **can** be treated as non-premultiplied.
+    ///color  **can**  be treated as non-premultiplied.
     ///If this is [`FALSE`], then
-    ///[`PipelineColorBlendAdvancedStateCreateInfoEXT`]::`srcPremultiplied`**must** be [`TRUE`].
+    ///[`PipelineColorBlendAdvancedStateCreateInfoEXT`]::`srcPremultiplied` **must**  be [`TRUE`].
     advanced_blend_non_premultiplied_src_color: Bool32,
     ///[`advanced_blend_non_premultiplied_dst_color`] specifies whether the
-    ///destination color **can** be treated as non-premultiplied.
+    ///destination color  **can**  be treated as non-premultiplied.
     ///If this is [`FALSE`], then
-    ///[`PipelineColorBlendAdvancedStateCreateInfoEXT`]::`dstPremultiplied`**must** be [`TRUE`].
+    ///[`PipelineColorBlendAdvancedStateCreateInfoEXT`]::`dstPremultiplied` **must**  be [`TRUE`].
     advanced_blend_non_premultiplied_dst_color: Bool32,
     ///[`advanced_blend_correlated_overlap`] specifies whether the overlap mode
-    ///**can** be treated as correlated.
+    /// **can**  be treated as correlated.
     ///If this is [`FALSE`], then
-    ///[`PipelineColorBlendAdvancedStateCreateInfoEXT`]::`blendOverlap`**must** be `VK_BLEND_OVERLAP_UNCORRELATED_EXT`.
+    ///[`PipelineColorBlendAdvancedStateCreateInfoEXT`]::`blendOverlap` **must**  be `VK_BLEND_OVERLAP_UNCORRELATED_EXT`.
     advanced_blend_correlated_overlap: Bool32,
     ///[`advanced_blend_all_operations`]
     ///specifies whether all advanced blend operation enums are supported.
@@ -361,10 +363,6 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::advanced_blend_max_color_attachments`]
-    pub fn advanced_blend_max_color_attachments_raw(&self) -> u32 {
-        self.advanced_blend_max_color_attachments
-    }
     ///Gets the raw value of [`Self::advanced_blend_independent_blend`]
     pub fn advanced_blend_independent_blend_raw(&self) -> Bool32 {
         self.advanced_blend_independent_blend
@@ -388,11 +386,6 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::advanced_blend_max_color_attachments`]
-    pub fn set_advanced_blend_max_color_attachments_raw(&mut self, value: u32) -> &mut Self {
-        self.advanced_blend_max_color_attachments = value;
         self
     }
     ///Sets the raw value of [`Self::advanced_blend_independent_blend`]
@@ -633,16 +626,19 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
 ///If this structure is not present, [`src_premultiplied`] and
 ///[`dst_premultiplied`] are both considered to be [`TRUE`], and
 ///[`blend_overlap`] is considered to be
-///`VK_BLEND_OVERLAP_UNCORRELATED_EXT`.Valid Usage
+///`VK_BLEND_OVERLAP_UNCORRELATED_EXT`.
+///## Valid Usage
 /// - If the [non-premultiplied source color](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-advancedBlendNonPremultipliedSrcColor)
-///   property is not supported, [`src_premultiplied`]**must** be [`TRUE`]
+///   property is not supported, [`src_premultiplied`] **must**  be [`TRUE`]
 /// - If the [non-premultiplied destination color](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-advancedBlendNonPremultipliedDstColor)
-///   property is not supported, [`dst_premultiplied`]**must** be [`TRUE`]
+///   property is not supported, [`dst_premultiplied`] **must**  be [`TRUE`]
 /// - If the [correlated overlap](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-advancedBlendCorrelatedOverlap)
-///   property is not supported, [`blend_overlap`]**must** be `VK_BLEND_OVERLAP_UNCORRELATED_EXT`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT`
-/// - [`blend_overlap`]**must** be a valid [`BlendOverlapEXT`] value
+///   property is not supported, [`blend_overlap`] **must**  be `VK_BLEND_OVERLAP_UNCORRELATED_EXT`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT`
+/// - [`blend_overlap`] **must**  be a valid [`BlendOverlapEXT`] value
 ///# Related
 /// - [`VK_EXT_blend_operation_advanced`]
 /// - [`BlendOverlapEXT`]

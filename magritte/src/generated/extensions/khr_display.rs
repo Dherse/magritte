@@ -31,7 +31,7 @@ pub const KHR_DISPLAY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_displ
 ///   be valid for the lifetime of the Vulkan instance.
 /// - [`display_name`] is `NULL` or a pointer to a null-terminated UTF-8 string containing the name
 ///   of the display. Generally, this will be the name provided by the display’s EDID. If `NULL`, no
-///   suitable name is available. If not `NULL`, the string pointed to **must** remain accessible
+///   suitable name is available. If not `NULL`, the string pointed to  **must**  remain accessible
 ///   and unmodified as long as [`display`] is valid.
 /// - [`physical_dimensions`] describes the physical width and height of the visible portion of the
 ///   display, in millimeters.
@@ -40,11 +40,11 @@ pub const KHR_DISPLAY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_displ
 ///# Description
 /// - [`supported_transforms`] is a bitmask of [`SurfaceTransformFlagBitsKHR`] describing which
 ///   transforms are supported by this display.
-/// - [`plane_reorder_possible`] tells whether the planes on this display **can** have their z order
-///   changed. If this is [`TRUE`], the application **can** re-arrange the planes on this display in
-///   any order relative to each other.
+/// - [`plane_reorder_possible`] tells whether the planes on this display  **can**  have their z
+///   order changed. If this is [`TRUE`], the application  **can**  re-arrange the planes on this
+///   display in any order relative to each other.
 /// - [`persistent_content`] tells whether the display supports self-refresh/internal buffering. If
-///   this is true, the application **can** submit persistent present operations on swapchains
+///   this is true, the application  **can**  submit persistent present operations on swapchains
 ///   created against this display.
 ///# Related
 /// - [`VK_KHR_display`]
@@ -75,7 +75,7 @@ pub struct DisplayPropertiesKHR<'lt> {
     ///string containing the name of the display.
     ///Generally, this will be the name provided by the display’s EDID.
     ///If `NULL`, no suitable name is available.
-    ///If not `NULL`, the string pointed to **must** remain accessible and
+    ///If not `NULL`, the string pointed to  **must**  remain accessible and
     ///unmodified as long as [`display`] is valid.
     display_name: &'lt CStr,
     ///[`physical_dimensions`] describes the physical width and height of the
@@ -106,10 +106,6 @@ impl<'lt> Default for DisplayPropertiesKHR<'lt> {
     }
 }
 impl<'lt> DisplayPropertiesKHR<'lt> {
-    ///Gets the raw value of [`Self::display_name`]
-    pub fn display_name_raw(&self) -> &'lt CStr {
-        self.display_name
-    }
     ///Gets the raw value of [`Self::plane_reorder_possible`]
     pub fn plane_reorder_possible_raw(&self) -> Bool32 {
         self.plane_reorder_possible
@@ -117,11 +113,6 @@ impl<'lt> DisplayPropertiesKHR<'lt> {
     ///Gets the raw value of [`Self::persistent_content`]
     pub fn persistent_content_raw(&self) -> Bool32 {
         self.persistent_content
-    }
-    ///Sets the raw value of [`Self::display_name`]
-    pub fn set_display_name_raw(&mut self, value: &'lt CStr) -> &mut Self {
-        self.display_name = value;
-        self
     }
     ///Sets the raw value of [`Self::plane_reorder_possible`]
     pub fn set_plane_reorder_possible_raw(&mut self, value: Bool32) -> &mut Self {
@@ -308,15 +299,6 @@ impl Default for DisplayPlanePropertiesKHR {
     }
 }
 impl DisplayPlanePropertiesKHR {
-    ///Gets the raw value of [`Self::current_stack_index`]
-    pub fn current_stack_index_raw(&self) -> u32 {
-        self.current_stack_index
-    }
-    ///Sets the raw value of [`Self::current_stack_index`]
-    pub fn set_current_stack_index_raw(&mut self, value: u32) -> &mut Self {
-        self.current_stack_index = value;
-        self
-    }
     ///Gets the value of [`Self::current_display`]
     pub fn current_display(&self) -> DisplayKHR {
         self.current_display
@@ -359,10 +341,10 @@ impl DisplayPlanePropertiesKHR {
 /// - [`refresh_rate`] is a `uint32_t` that is the number of times the display is refreshed each
 ///   second multiplied by 1000.
 ///# Description
-///Valid Usage
-/// - The `width` member of [`visible_region`]**must** be greater than `0`
-/// - The `height` member of [`visible_region`]**must** be greater than `0`
-/// - [`refresh_rate`]**must** be greater than `0`
+///## Valid Usage
+/// - The `width` member of [`visible_region`] **must**  be greater than `0`
+/// - The `height` member of [`visible_region`] **must**  be greater than `0`
+/// - [`refresh_rate`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_KHR_display`]
 /// - [`DisplayModeCreateInfoKHR`]
@@ -396,15 +378,6 @@ impl Default for DisplayModeParametersKHR {
     }
 }
 impl DisplayModeParametersKHR {
-    ///Gets the raw value of [`Self::refresh_rate`]
-    pub fn refresh_rate_raw(&self) -> u32 {
-        self.refresh_rate
-    }
-    ///Sets the raw value of [`Self::refresh_rate`]
-    pub fn set_refresh_rate_raw(&mut self, value: u32) -> &mut Self {
-        self.refresh_rate = value;
-        self
-    }
     ///Gets the value of [`Self::visible_region`]
     pub fn visible_region(&self) -> Extent2D {
         self.visible_region
@@ -524,16 +497,16 @@ impl DisplayModePropertiesKHR {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`flags`] is reserved for future use, and **must** be zero.
+/// - [`flags`] is reserved for future use, and  **must**  be zero.
 /// - [`parameters`] is a [`DisplayModeParametersKHR`] structure describing the display parameters
 ///   to use in creating the new mode. If the parameters are not compatible with the specified
-///   display, the implementation **must** return `VK_ERROR_INITIALIZATION_FAILED`.
+///   display, the implementation  **must**  return `VK_ERROR_INITIALIZATION_FAILED`.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DISPLAY_MODE_CREATE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
-/// - [`parameters`]**must** be a valid [`DisplayModeParametersKHR`] structure
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_MODE_CREATE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
+/// - [`parameters`] **must**  be a valid [`DisplayModeParametersKHR`] structure
 ///# Related
 /// - [`VK_KHR_display`]
 /// - [`DisplayModeCreateFlagsKHR`]
@@ -558,12 +531,12 @@ pub struct DisplayModeCreateInfoKHR<'lt> {
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     p_next: *const BaseInStructure<'lt>,
-    ///[`flags`] is reserved for future use, and **must** be zero.
+    ///[`flags`] is reserved for future use, and  **must**  be zero.
     flags: DisplayModeCreateFlagsKHR,
     ///[`parameters`] is a [`DisplayModeParametersKHR`] structure
     ///describing the display parameters to use in creating the new mode.
     ///If the parameters are not compatible with the specified display, the
-    ///implementation **must** return `VK_ERROR_INITIALIZATION_FAILED`.
+    ///implementation  **must**  return `VK_ERROR_INITIALIZATION_FAILED`.
     parameters: DisplayModeParametersKHR,
 }
 impl<'lt> Default for DisplayModeCreateInfoKHR<'lt> {
@@ -662,7 +635,7 @@ impl<'lt> DisplayModeCreateInfoKHR<'lt> {
 /// - [`min_src_position`] is the minimum source rectangle offset supported by this plane using the
 ///   specified mode.
 /// - [`max_src_position`] is the maximum source rectangle offset supported by this plane using the
-///   specified mode. The `x` and `y` components of [`max_src_position`]**must** each be greater
+///   specified mode. The `x` and `y` components of [`max_src_position`] **must**  each be greater
 ///   than or equal to the `x` and `y` components of [`min_src_position`], respectively.
 /// - [`min_src_extent`] is the minimum source rectangle size supported by this plane using the
 ///   specified mode.
@@ -671,36 +644,36 @@ impl<'lt> DisplayModeCreateInfoKHR<'lt> {
 /// - [`min_dst_position`], [`max_dst_position`], [`min_dst_extent`], [`max_dst_extent`] all have
 ///   similar semantics to their corresponding `*Src*` equivalents, but apply to the output region
 ///   within the mode rather than the input region within the source image. Unlike the `*Src*`
-///   offsets, [`min_dst_position`] and [`max_dst_position`]**may** contain negative values.
+///   offsets, [`min_dst_position`] and [`max_dst_position`] **may**  contain negative values.
 ///# Description
 ///The minimum and maximum position and extent fields describe the
 ///implementation limits, if any, as they apply to the specified display mode
 ///and plane.
-///Vendors **may** support displaying a subset of a swapchain’s presentable images
+///Vendors  **may**  support displaying a subset of a swapchain’s presentable images
 ///on the specified display plane.
 ///This is expressed by returning [`min_src_position`], [`max_src_position`],
 ///[`min_src_extent`], and [`max_src_extent`] values that indicate a range of
-///possible positions and sizes which **may** be used to specify the region within
+///possible positions and sizes which  **may**  be used to specify the region within
 ///the presentable images that source pixels will be read from when creating a
-///swapchain on the specified display mode and plane.Vendors **may** also support mapping the
+///swapchain on the specified display mode and plane.Vendors  **may**  also support mapping the
 /// presentable images’ content to a
 ///subset or superset of the visible region in the specified display mode.
 ///This is expressed by returning [`min_dst_position`], [`max_dst_position`],
 ///[`min_dst_extent`] and [`max_dst_extent`] values that indicate a range of
-///possible positions and sizes which **may** be used to describe the region
-///within the display mode that the source pixels will be mapped to.Other vendors **may** support
+///possible positions and sizes which  **may**  be used to describe the region
+///within the display mode that the source pixels will be mapped to.Other vendors  **may**  support
 /// only a 1-1 mapping between pixels in the
 ///presentable images and the display mode.
-///This **may** be indicated by returning (0,0) for [`min_src_position`],
+///This  **may**  be indicated by returning (0,0) for [`min_src_position`],
 ///[`max_src_position`], [`min_dst_position`], and [`max_dst_position`], and
 ///(display mode width, display mode height) for [`min_src_extent`],
-///[`max_src_extent`], [`min_dst_extent`], and [`max_dst_extent`].The value
-/// [`supported_alpha`]**must** contain at least one valid
+///[`max_src_extent`], [`min_dst_extent`], and [`max_dst_extent`].The value [`supported_alpha`]
+/// **must**  contain at least one valid
 ///[`DisplayPlaneAlphaFlagBitsKHR`] bit.These values indicate the limits of the implementation’s
 /// individual fields.
 ///Not all combinations of values within the offset and extent ranges returned
 ///in [`DisplayPlaneCapabilitiesKHR`] are guaranteed to be supported.
-///Presentation requests specifying unsupported combinations **may** fail.
+///Presentation requests specifying unsupported combinations  **may**  fail.
 ///# Related
 /// - [`VK_KHR_display`]
 /// - [`DisplayPlaneAlphaFlagsKHR`]
@@ -730,7 +703,7 @@ pub struct DisplayPlaneCapabilitiesKHR {
     min_src_position: Offset2D,
     ///[`max_src_position`] is the maximum source rectangle offset supported by
     ///this plane using the specified mode.
-    ///The `x` and `y` components of [`max_src_position`]**must** each be
+    ///The `x` and `y` components of [`max_src_position`] **must**  each be
     ///greater than or equal to the `x` and `y` components of
     ///[`min_src_position`], respectively.
     max_src_position: Offset2D,
@@ -745,7 +718,7 @@ pub struct DisplayPlaneCapabilitiesKHR {
     ///`*Src*` equivalents, but apply to the output region within the mode
     ///rather than the input region within the source image.
     ///Unlike the `*Src*` offsets, [`min_dst_position`] and
-    ///[`max_dst_position`]**may** contain negative values.
+    ///[`max_dst_position`] **may**  contain negative values.
     min_dst_position: Offset2D,
     ///No documentation found
     max_dst_position: Offset2D,
@@ -912,7 +885,7 @@ impl DisplayPlaneCapabilitiesKHR {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`flags`] is reserved for future use, and **must** be zero.
+/// - [`flags`] is reserved for future use, and  **must**  be zero.
 /// - [`display_mode`] is a [`DisplayModeKHR`] handle specifying the mode to use when displaying
 ///   this surface.
 /// - [`plane_index`] is the plane on which this surface appears.
@@ -925,30 +898,31 @@ impl DisplayPlaneCapabilitiesKHR {
 ///   blending to use.
 /// - [`image_extent`] is the size of the presentable images to use with the surface.
 ///# Description
-///Valid Usage
-/// - [`plane_index`]**must** be less than the number of display planes supported by the device as
+///## Valid Usage
+/// - [`plane_index`] **must**  be less than the number of display planes supported by the device as
 ///   determined by calling [`GetPhysicalDeviceDisplayPlanePropertiesKHR`]
 /// - If the `planeReorderPossible` member of the [`DisplayPropertiesKHR`] structure returned by
 ///   [`GetPhysicalDeviceDisplayPropertiesKHR`] for the display corresponding to [`display_mode`] is
-///   [`TRUE`] then [`plane_stack_index`]**must** be less than the number of display planes
+///   [`TRUE`] then [`plane_stack_index`] **must**  be less than the number of display planes
 ///   supported by the device as determined by calling
-///   [`GetPhysicalDeviceDisplayPlanePropertiesKHR`]; otherwise [`plane_stack_index`]**must** equal
-///   the `currentStackIndex` member of [`DisplayPlanePropertiesKHR`] returned by
+///   [`GetPhysicalDeviceDisplayPlanePropertiesKHR`]; otherwise [`plane_stack_index`] **must**
+///   equal the `currentStackIndex` member of [`DisplayPlanePropertiesKHR`] returned by
 ///   [`GetPhysicalDeviceDisplayPlanePropertiesKHR`] for the display plane corresponding to
 ///   [`display_mode`]
-/// - If [`alpha_mode`] is `VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR` then [`global_alpha`]**must** be
-///   between `0` and `1`, inclusive
-/// - [`alpha_mode`]**must** be one of the bits present in the `supportedAlpha` member of
+/// - If [`alpha_mode`] is `VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR` then [`global_alpha`] **must**
+///   be between `0` and `1`, inclusive
+/// - [`alpha_mode`] **must**  be one of the bits present in the `supportedAlpha` member of
 ///   [`DisplayPlaneCapabilitiesKHR`] for the display plane corresponding to [`display_mode`]
-/// - The `width` and `height` members of [`image_extent`]**must** be less than or equal to
+/// - The `width` and `height` members of [`image_extent`] **must**  be less than or equal to
 ///   [`PhysicalDeviceLimits::max_image_dimension_2_d`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
-/// - [`display_mode`]**must** be a valid [`DisplayModeKHR`] handle
-/// - [`transform`]**must** be a valid [`SurfaceTransformFlagBitsKHR`] value
-/// - [`alpha_mode`]**must** be a valid [`DisplayPlaneAlphaFlagBitsKHR`] value
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
+/// - [`display_mode`] **must**  be a valid [`DisplayModeKHR`] handle
+/// - [`transform`] **must**  be a valid [`SurfaceTransformFlagBitsKHR`] value
+/// - [`alpha_mode`] **must**  be a valid [`DisplayPlaneAlphaFlagBitsKHR`] value
 ///# Related
 /// - [`VK_KHR_display`]
 /// - [`DisplayModeKHR`]
@@ -976,7 +950,7 @@ pub struct DisplaySurfaceCreateInfoKHR<'lt> {
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     p_next: *const BaseInStructure<'lt>,
-    ///[`flags`] is reserved for future use, and **must** be zero.
+    ///[`flags`] is reserved for future use, and  **must**  be zero.
     flags: DisplaySurfaceCreateFlagsKHR,
     ///[`display_mode`] is a [`DisplayModeKHR`] handle specifying the mode
     ///to use when displaying this surface.
@@ -1022,36 +996,9 @@ impl<'lt> DisplaySurfaceCreateInfoKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::plane_index`]
-    pub fn plane_index_raw(&self) -> u32 {
-        self.plane_index
-    }
-    ///Gets the raw value of [`Self::plane_stack_index`]
-    pub fn plane_stack_index_raw(&self) -> u32 {
-        self.plane_stack_index
-    }
-    ///Gets the raw value of [`Self::global_alpha`]
-    pub fn global_alpha_raw(&self) -> f32 {
-        self.global_alpha
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::plane_index`]
-    pub fn set_plane_index_raw(&mut self, value: u32) -> &mut Self {
-        self.plane_index = value;
-        self
-    }
-    ///Sets the raw value of [`Self::plane_stack_index`]
-    pub fn set_plane_stack_index_raw(&mut self, value: u32) -> &mut Self {
-        self.plane_stack_index = value;
-        self
-    }
-    ///Sets the raw value of [`Self::global_alpha`]
-    pub fn set_global_alpha_raw(&mut self, value: f32) -> &mut Self {
-        self.global_alpha = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

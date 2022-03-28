@@ -31,9 +31,10 @@ pub const EXT_DEPTH_CLIP_CONTROL_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceDepthClipControlFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT`
+///[`PhysicalDeviceDepthClipControlFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_depth_clip_control`]
 /// - [`Bool32`]
@@ -51,7 +52,7 @@ pub const EXT_DEPTH_CLIP_CONTROL_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 #[repr(C)]
 pub struct PhysicalDeviceDepthClipControlFeaturesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
-    ///[`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT`
+    ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT`
     s_type: StructureType,
     ///No documentation found
     p_next: *mut BaseOutStructure<'lt>,
@@ -167,11 +168,13 @@ impl<'lt> PhysicalDeviceDepthClipControlFeaturesEXT<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`negative_one_to_one`] sets the z<sub>m</sub> in the *view volume* to -w<sub>c</sub>
 ///# Description
-///Valid Usage
+///## Valid Usage
 /// - If [depthClipControl](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-depthClipControl)
-///   is not enabled, [`negative_one_to_one`]**must** be [`FALSE`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT`
+///   is not enabled, [`negative_one_to_one`] **must**  be [`FALSE`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT`
 ///# Related
 /// - [`VK_EXT_depth_clip_control`]
 /// - [`Bool32`]

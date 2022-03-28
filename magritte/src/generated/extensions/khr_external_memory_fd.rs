@@ -35,27 +35,30 @@ pub const KHR_EXTERNAL_MEMORY_FD_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///# Description
 ///Importing memory from a file descriptor transfers ownership of the file
 ///descriptor from the application to the Vulkan implementation.
-///The application **must** not perform any operations on the file descriptor
+///The application  **must**  not perform any operations on the file descriptor
 ///after a successful import.
-///The imported memory object holds a reference to its payload.Applications **can** import the same
-/// payload into multiple instances of Vulkan,
+///The imported memory object holds a reference to its payload.Applications  **can**  import the
+/// same payload into multiple instances of Vulkan,
 ///into the same instance from which it was exported, and multiple times into a
 ///given Vulkan instance.
-///In all cases, each import operation **must** create a distinct
-///[`DeviceMemory`] object.Valid Usage
-/// - If [`handle_type`] is not `0`, it **must** be supported for import, as reported by
+///In all cases, each import operation  **must**  create a distinct
+///[`DeviceMemory`] object.
+///## Valid Usage
+/// - If [`handle_type`] is not `0`, it  **must**  be supported for import, as reported by
 ///   [`ExternalImageFormatProperties`] or [`ExternalBufferProperties`]
-/// - The memory from which [`fd`] was exported **must** have been created on the same underlying
+/// - The memory from which [`fd`] was exported  **must**  have been created on the same underlying
 ///   physical device as `device`
-/// - If [`handle_type`] is not `0`, it **must** be `VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT`
+/// - If [`handle_type`] is not `0`, it  **must**  be `VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT`
 ///   or `VK_EXTERNAL_MEMORY_HANDLE_TYPE_DMA_BUF_BIT_EXT`
-/// - If [`handle_type`] is not `0`, [`fd`]**must** be a valid handle of the type specified by
+/// - If [`handle_type`] is not `0`, [`fd`] **must**  be a valid handle of the type specified by
 ///   [`handle_type`]
-/// -    The memory represented by [`fd`]**must** have been created from a physical device and driver that is compatible with `device` and [`handle_type`], as described in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-memory-handle-types-compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-memory-handle-types-compatibility)
-/// -  [`fd`]**must** obey any requirements listed for [`handle_type`] in [external memory handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-memory-handle-types-compatibility)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_FD_INFO_KHR`
-/// - If [`handle_type`] is not `0`, [`handle_type`]**must** be a valid
+/// - The memory represented by [`fd`] **must**  have been created from a physical device and driver
+///   that is compatible with `device` and [`handle_type`], as described in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-memory-handle-types-compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-memory-handle-types-compatibility)
+/// -  [`fd`] **must**  obey any requirements listed for [`handle_type`] in [external memory handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-memory-handle-types-compatibility)
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_FD_INFO_KHR`
+/// - If [`handle_type`] is not `0`, [`handle_type`] **must**  be a valid
 ///   [`ExternalMemoryHandleTypeFlagBits`] value
 ///# Related
 /// - [`VK_KHR_external_memory_fd`]
@@ -101,18 +104,9 @@ impl<'lt> ImportMemoryFdInfoKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::fd`]
-    pub fn fd_raw(&self) -> i32 {
-        self.fd
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::fd`]
-    pub fn set_fd_raw(&mut self, value: i32) -> &mut Self {
-        self.fd = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -182,11 +176,11 @@ impl<'lt> ImportMemoryFdInfoKHR<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory_type_bits`] is a bitmask containing one bit set for every memory type which the
-///   specified file descriptor **can** be imported as.
+///   specified file descriptor  **can**  be imported as.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_MEMORY_FD_PROPERTIES_KHR`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_FD_PROPERTIES_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_external_memory_fd`]
 /// - [`StructureType`]
@@ -210,7 +204,7 @@ pub struct MemoryFdPropertiesKHR<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`memory_type_bits`] is a bitmask containing one bit set for every
-    ///memory type which the specified file descriptor **can** be imported as.
+    ///memory type which the specified file descriptor  **can**  be imported as.
     memory_type_bits: u32,
 }
 impl<'lt> Default for MemoryFdPropertiesKHR<'lt> {
@@ -228,18 +222,9 @@ impl<'lt> MemoryFdPropertiesKHR<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::memory_type_bits`]
-    pub fn memory_type_bits_raw(&self) -> u32 {
-        self.memory_type_bits
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::memory_type_bits`]
-    pub fn set_memory_type_bits_raw(&mut self, value: u32) -> &mut Self {
-        self.memory_type_bits = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -310,16 +295,18 @@ impl<'lt> MemoryFdPropertiesKHR<'lt> {
 ///The properties of the file descriptor exported depend on the value of
 ///[`handle_type`].
 ///See [`ExternalMemoryHandleTypeFlagBits`] for a description of the
-///properties of the defined external memory handle types.Valid Usage
-/// - [`handle_type`]**must** have been included in [`ExportMemoryAllocateInfo::handle_types`] when
-///   [`memory`] was created
-/// - [`handle_type`]**must** be `VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT` or
+///properties of the defined external memory handle types.
+///## Valid Usage
+/// - [`handle_type`] **must**  have been included in [`ExportMemoryAllocateInfo::handle_types`]
+///   when [`memory`] was created
+/// - [`handle_type`] **must**  be `VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT` or
 ///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_DMA_BUF_BIT_EXT`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_MEMORY_GET_FD_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`memory`]**must** be a valid [`DeviceMemory`] handle
-/// - [`handle_type`]**must** be a valid [`ExternalMemoryHandleTypeFlagBits`] value
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_GET_FD_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
+/// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
 ///# Related
 /// - [`VK_KHR_external_memory_fd`]
 /// - [`DeviceMemory`]

@@ -146,13 +146,14 @@ impl TimeDomainEXT {
 /// - [`time_domain`] is a [`TimeDomainEXT`] value specifying the time domain from which the
 ///   calibrated timestamp value should be returned.
 ///# Description
-///Valid Usage
-/// - [`time_domain`]**must** be one of the [`TimeDomainEXT`] values returned by
+///## Valid Usage
+/// - [`time_domain`] **must**  be one of the [`TimeDomainEXT`] values returned by
 ///   [`GetPhysicalDeviceCalibrateableTimeDomainsEXT`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_CALIBRATED_TIMESTAMP_INFO_EXT`
-/// - [`p_next`]**must** be `NULL`
-/// - [`time_domain`]**must** be a valid [`TimeDomainEXT`] value
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_CALIBRATED_TIMESTAMP_INFO_EXT`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`time_domain`] **must**  be a valid [`TimeDomainEXT`] value
 ///# Related
 /// - [`VK_EXT_calibrated_timestamps`]
 /// - [`StructureType`]

@@ -24,10 +24,10 @@ pub const EXT_HEADLESS_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_HEADLESS_SURFACE_CREATE_INFO_EXT`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_HEADLESS_SURFACE_CREATE_INFO_EXT`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_EXT_headless_surface`]
 /// - [`HeadlessSurfaceCreateFlagsEXT`]

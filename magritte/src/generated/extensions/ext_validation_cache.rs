@@ -97,16 +97,17 @@ impl ValidationCacheHeaderVersionEXT {
 ///   cache data is incompatible (as defined below) with the device, the validation cache will be
 ///   initially empty. If [`initial_data_size`] is zero, [`initial_data`] is ignored.
 ///# Description
-///Valid Usage
-/// - If [`initial_data_size`] is not `0`, it **must** be equal to the size of [`initial_data`], as
-///   returned by [`GetValidationCacheDataEXT`] when [`initial_data`] was originally retrieved
-/// - If [`initial_data_size`] is not `0`, [`initial_data`]**must** have been retrieved from a
+///## Valid Usage
+/// - If [`initial_data_size`] is not `0`, it  **must**  be equal to the size of [`initial_data`],
+///   as returned by [`GetValidationCacheDataEXT`] when [`initial_data`] was originally retrieved
+/// - If [`initial_data_size`] is not `0`, [`initial_data`] **must**  have been retrieved from a
 ///   previous call to [`GetValidationCacheDataEXT`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VALIDATION_CACHE_CREATE_INFO_EXT`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
-/// - If [`initial_data_size`] is not `0`, [`initial_data`]**must** be a valid pointer to an array
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VALIDATION_CACHE_CREATE_INFO_EXT`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
+/// - If [`initial_data_size`] is not `0`, [`initial_data`] **must**  be a valid pointer to an array
 ///   of [`initial_data_size`] bytes
 ///# Related
 /// - [`VK_EXT_validation_cache`]
@@ -161,10 +162,6 @@ impl<'lt> ValidationCacheCreateInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::initial_data_size`]
-    pub fn initial_data_size_raw(&self) -> usize {
-        self.initial_data_size
-    }
     ///Gets the raw value of [`Self::initial_data`]
     pub fn initial_data_raw(&self) -> *const c_void {
         self.initial_data
@@ -172,11 +169,6 @@ impl<'lt> ValidationCacheCreateInfoEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::initial_data_size`]
-    pub fn set_initial_data_size_raw(&mut self, value: usize) -> &mut Self {
-        self.initial_data_size = value;
         self
     }
     ///Sets the raw value of [`Self::initial_data`]
@@ -276,9 +268,9 @@ impl<'lt> ValidationCacheCreateInfoEXT<'lt> {
 ///   attempts will be written, and to which new validation results for this [`ShaderModule`] will
 ///   be written (if not already present).
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT`
-/// - [`validation_cache`]**must** be a valid [`ValidationCacheEXT`] handle
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT`
+/// - [`validation_cache`] **must**  be a valid [`ValidationCacheEXT`] handle
 ///# Related
 /// - [`VK_EXT_validation_cache`]
 /// - [`StructureType`]
@@ -380,7 +372,7 @@ impl<'lt> ShaderModuleValidationCacheCreateInfoEXT<'lt> {
 ///them to preinitialize a validation cache on a subsequent run.
 ///The contents of the validation cache objects are managed by the validation
 ///layers.
-///Applications **can** manage the host memory consumed by a validation cache
+///Applications  **can**  manage the host memory consumed by a validation cache
 ///object and control the amount of data retrieved from a validation cache
 ///object.Validation cache objects are represented by [`ValidationCacheEXT`]
 ///handles:

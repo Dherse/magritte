@@ -38,16 +38,18 @@ pub const EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///   reusing buffer addresses, e.g. for trace capture and replay.
 /// - [`buffer_device_address_multi_device`] indicates that the implementation supports the
 ///   [`buffer_device_address`] feature for logical devices created with multiple physical devices.
-///   If this feature is not supported, buffer addresses **must** not be queried on a logical device
-///   created with more than one physical device.
+///   If this feature is not supported, buffer addresses  **must**  not be queried on a logical
+///   device created with more than one physical device.
 ///If the [`PhysicalDeviceBufferDeviceAddressFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceBufferDeviceAddressFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT`
+///[`PhysicalDeviceBufferDeviceAddressFeaturesEXT`] **can**  also be used in the [`p_next`] chain
+/// of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_buffer_device_address`]
 /// - [`Bool32`]
@@ -82,7 +84,7 @@ pub struct PhysicalDeviceBufferDeviceAddressFeaturesEXT<'lt> {
     ///[`buffer_device_address_multi_device`] indicates that the implementation
     ///supports the [`buffer_device_address`] feature for logical devices
     ///created with multiple physical devices.
-    ///If this feature is not supported, buffer addresses **must** not be queried
+    ///If this feature is not supported, buffer addresses  **must**  not be queried
     ///on a logical device created with more than one physical device.
     buffer_device_address_multi_device: Bool32,
 }
@@ -270,14 +272,15 @@ impl<'lt> PhysicalDeviceBufferDeviceAddressFeaturesEXT<'lt> {
 /// - [`device_address`] is the device address requested for the buffer.
 ///# Description
 ///If [`device_address`] is zero, no specific address is requested.If [`device_address`] is not
-/// zero, then it **must** be an address retrieved
+/// zero, then it  **must**  be an address retrieved
 ///from an identically created buffer on the same implementation.
-///The buffer **must** also be bound to an identically created
+///The buffer  **must**  also be bound to an identically created
 ///[`DeviceMemory`] object.If this structure is not present, it is as if [`device_address`] is
-/// zero.Apps **should** avoid creating buffers with app-provided addresses and
+/// zero.Apps  **should**  avoid creating buffers with app-provided addresses and
 ///implementation-provided addresses in the same process, to reduce the
-///likelihood of `VK_ERROR_INVALID_DEVICE_ADDRESS_EXT` errors.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT`
+///likelihood of `VK_ERROR_INVALID_DEVICE_ADDRESS_EXT` errors.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT`
 ///# Related
 /// - [`VK_EXT_buffer_device_address`]
 /// - [`DeviceAddress`]

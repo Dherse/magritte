@@ -125,7 +125,7 @@ impl QueueGlobalPriorityKHR {
 }
 ///[VkDeviceQueueGlobalPriorityCreateInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueGlobalPriorityCreateInfoKHR.html) - Specify a system wide priority
 ///# C Specifications
-///A queue **can** be created with a system-wide priority by adding a
+///A queue  **can**  be created with a system-wide priority by adding a
 ///[`DeviceQueueGlobalPriorityCreateInfoKHR`] structure to the [`p_next`]
 ///chain of [`DeviceQueueCreateInfo`].The [`DeviceQueueGlobalPriorityCreateInfoKHR`] structure is
 /// defined as:
@@ -150,9 +150,10 @@ impl QueueGlobalPriorityKHR {
 ///# Description
 ///A queue created without specifying
 ///[`DeviceQueueGlobalPriorityCreateInfoKHR`] will default to
-///`VK_QUEUE_GLOBAL_PRIORITY_MEDIUM_KHR`.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR`
-/// - [`global_priority`]**must** be a valid [`QueueGlobalPriorityKHR`] value
+///`VK_QUEUE_GLOBAL_PRIORITY_MEDIUM_KHR`.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR`
+/// - [`global_priority`] **must**  be a valid [`QueueGlobalPriorityKHR`] value
 ///# Related
 /// - [`VK_EXT_global_priority`]
 /// - [`VK_KHR_global_priority`]
@@ -273,9 +274,11 @@ impl<'lt> DeviceQueueGlobalPriorityCreateInfoKHR<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceGlobalPriorityQueryFeaturesKHR`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR`
+///[`PhysicalDeviceGlobalPriorityQueryFeaturesKHR`] **can**  also be used in the [`p_next`] chain
+/// of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR`
 ///# Related
 /// - [`VK_KHR_global_priority`]
 /// - [`Bool32`]
@@ -413,7 +416,7 @@ impl<'lt> PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`priority_count`] is the number of supported global queue priorities in this queue family,
-///   and it **must** be greater than 0.
+///   and it  **must**  be greater than 0.
 /// - [`priorities`] is an array of [`MAX_GLOBAL_PRIORITY_SIZE_EXT`][`QueueGlobalPriorityEXT`] enums
 ///   representing all supported global queue priorities in this queue family. The first
 ///   [`priority_count`] elements of the array will be valid.
@@ -422,11 +425,12 @@ impl<'lt> PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
 ///in the [`p_next`] chain of the [`QueueFamilyProperties2`] structure
 ///passed to [`GetPhysicalDeviceQueueFamilyProperties2`], it is filled in
 ///with the list of supported global queue priorities for the indicated family.The valid elements
-/// of [`priorities`]**must** not contain any duplicate
-///values.The valid elements of [`priorities`]**must** be a continuous sequence of
-///[`QueueGlobalPriorityKHR`] enums in the ascending order.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_KHR`
-/// - Any given element of [`priorities`]**must** be a valid [`QueueGlobalPriorityKHR`] value
+/// of [`priorities`] **must**  not contain any duplicate
+///values.The valid elements of [`priorities`] **must**  be a continuous sequence of
+///[`QueueGlobalPriorityKHR`] enums in the ascending order.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_KHR`
+/// - Any given element of [`priorities`] **must**  be a valid [`QueueGlobalPriorityKHR`] value
 ///# Related
 /// - [`VK_KHR_global_priority`]
 /// - [`QueueGlobalPriorityKHR`]
@@ -450,7 +454,7 @@ pub struct QueueFamilyGlobalPriorityPropertiesKHR<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`priority_count`] is the number of supported global queue priorities
-    ///in this queue family, and it **must** be greater than 0.
+    ///in this queue family, and it  **must**  be greater than 0.
     priority_count: u32,
     ///[`priorities`] is an array of [`MAX_GLOBAL_PRIORITY_SIZE_EXT`][`QueueGlobalPriorityEXT`]
     /// enums representing all supported global queue priorities in this queue family.
@@ -473,18 +477,9 @@ impl<'lt> QueueFamilyGlobalPriorityPropertiesKHR<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::priority_count`]
-    pub fn priority_count_raw(&self) -> u32 {
-        self.priority_count
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::priority_count`]
-    pub fn set_priority_count_raw(&mut self, value: u32) -> &mut Self {
-        self.priority_count = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

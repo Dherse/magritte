@@ -30,20 +30,21 @@ pub const EXT_FRAGMENT_DENSITY_MAP_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// - [`fragment_density_map`] specifies whether the implementation supports render passes with a
 ///   fragment density map attachment. If this feature is not enabled and the [`p_next`] chain of
 ///   [`RenderPassCreateInfo`] includes a [`RenderPassFragmentDensityMapCreateInfoEXT`] structure,
-///   `fragmentDensityMapAttachment`**must** be [`ATTACHMENT_UNUSED`].
+///   `fragmentDensityMapAttachment` **must**  be [`ATTACHMENT_UNUSED`].
 /// - [`fragment_density_map_dynamic`] specifies whether the implementation supports dynamic
 ///   fragment density map image views. If this feature is not enabled,
-///   `VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT`**must** not be included in
+///   `VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT` **must**  not be included in
 ///   [`ImageViewCreateInfo::flags`].
-/// - [`fragment_density_map_non_subsampled_images`] specifies whether the implementation supports regular non-subsampled image attachments with fragment density map render passes. If this feature is not enabled, render passes with a [fragment density map attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-fragmentdensitymapattachment)**must** only have [subsampled attachments](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-subsamplesampler) bound.
+/// - [`fragment_density_map_non_subsampled_images`] specifies whether the implementation supports regular non-subsampled image attachments with fragment density map render passes. If this feature is not enabled, render passes with a [fragment density map attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-fragmentdensitymapattachment) **must**  only have [subsampled attachments](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-subsamplesampler) bound.
 ///If the [`PhysicalDeviceFragmentDensityMapFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceFragmentDensityMapFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT`
+///[`PhysicalDeviceFragmentDensityMapFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_fragment_density_map`]
 /// - [`Bool32`]
@@ -72,13 +73,13 @@ pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
     ///If this feature is not enabled and the [`p_next`] chain of
     ///[`RenderPassCreateInfo`] includes a
     ///[`RenderPassFragmentDensityMapCreateInfoEXT`] structure,
-    ///`fragmentDensityMapAttachment`**must** be [`ATTACHMENT_UNUSED`].
+    ///`fragmentDensityMapAttachment` **must**  be [`ATTACHMENT_UNUSED`].
     fragment_density_map: Bool32,
     ///[`fragment_density_map_dynamic`]
     ///specifies whether the implementation supports dynamic fragment density
     ///map image views.
     ///If this feature is not enabled,
-    ///`VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT`**must**
+    ///`VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT` **must**
     ///not be included in [`ImageViewCreateInfo`]::`flags`.
     fragment_density_map_dynamic: Bool32,
     ///[`fragment_density_map_non_subsampled_images`] specifies whether the
@@ -86,7 +87,7 @@ pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
     ///fragment density map render passes.
     ///If this feature is not enabled, render passes with a
     ///[fragment density map
-    ///attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-fragmentdensitymapattachment)**must** only have [subsampled
+    ///attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-fragmentdensitymapattachment) **must**  only have [subsampled
     ///attachments](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-subsamplesampler) bound.
     fragment_density_map_non_subsampled_images: Bool32,
 }
@@ -273,15 +274,17 @@ impl<'lt> PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`min_fragment_density_texel_size`] is the minimum [fragment density texel size](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary-fragment-density-texel-size).
 /// - [`max_fragment_density_texel_size`] is the maximum fragment density texel size.
-/// - [`fragment_density_invocations`] specifies whether the implementation **may** invoke
+/// - [`fragment_density_invocations`] specifies whether the implementation  **may**  invoke
 ///   additional fragment shader invocations for each covered sample.
 ///# Description
 ///If the [`PhysicalDeviceFragmentDensityMapPropertiesEXT`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT`
 ///# Related
 /// - [`VK_EXT_fragment_density_map`]
 /// - [`Bool32`]
@@ -313,7 +316,7 @@ pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
     ///is the maximum fragment density texel size.
     max_fragment_density_texel_size: Extent2D,
     ///[`fragment_density_invocations`]
-    ///specifies whether the implementation **may** invoke additional fragment
+    ///specifies whether the implementation  **may**  invoke additional fragment
     ///shader invocations for each covered sample.
     fragment_density_invocations: Bool32,
 }
@@ -464,26 +467,28 @@ impl<'lt> PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
 ///   density map will be read by the host during [`EndCommandBuffer`] of the primary command buffer
 ///   that the render pass is recorded into
 /// - Otherwise the fragment density map will be read by the host during [`CmdBeginRenderPass`]
-///The fragment density map **may** additionally be read by the device during
+///The fragment density map  **may**  additionally be read by the device during
 ///`VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT` for any mode.If this structure is not
 /// present, it is as if
-///[`fragment_density_map_attachment`] was given as [`ATTACHMENT_UNUSED`].Valid Usage
+///[`fragment_density_map_attachment`] was given as [`ATTACHMENT_UNUSED`].
+///## Valid Usage
 /// - If [`fragment_density_map_attachment`] is not [`ATTACHMENT_UNUSED`],
-///   [`fragment_density_map_attachment`]**must** not be an element of
+///   [`fragment_density_map_attachment`] **must**  not be an element of
 ///   [`SubpassDescription::input_attachments`], [`SubpassDescription::color_attachments`],
 ///   [`SubpassDescription::resolve_attachments`], [`SubpassDescription::depth_stencil_attachment`],
 ///   or [`SubpassDescription::preserve_attachments`] for any subpass
-/// - If [`fragment_density_map_attachment`] is not [`ATTACHMENT_UNUSED`], `layout`**must** be equal
-///   to `VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT`, or `VK_IMAGE_LAYOUT_GENERAL`
+/// - If [`fragment_density_map_attachment`] is not [`ATTACHMENT_UNUSED`], `layout` **must**  be
+///   equal to `VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT`, or `VK_IMAGE_LAYOUT_GENERAL`
 /// - If [`fragment_density_map_attachment`] is not [`ATTACHMENT_UNUSED`],
-///   [`fragment_density_map_attachment`]**must** reference an attachment with a `loadOp` equal to
+///   [`fragment_density_map_attachment`] **must**  reference an attachment with a `loadOp` equal to
 ///   `VK_ATTACHMENT_LOAD_OP_LOAD` or `VK_ATTACHMENT_LOAD_OP_DONT_CARE`
 /// - If [`fragment_density_map_attachment`] is not [`ATTACHMENT_UNUSED`],
-///   [`fragment_density_map_attachment`]**must** reference an attachment with a `storeOp` equal to
-///   `VK_ATTACHMENT_STORE_OP_DONT_CARE`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT`
-/// - [`fragment_density_map_attachment`]**must** be a valid [`AttachmentReference`] structure
+///   [`fragment_density_map_attachment`] **must**  reference an attachment with a `storeOp` equal
+///   to `VK_ATTACHMENT_STORE_OP_DONT_CARE`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT`
+/// - [`fragment_density_map_attachment`] **must**  be a valid [`AttachmentReference`] structure
 ///# Related
 /// - [`VK_EXT_fragment_density_map`]
 /// - [`AttachmentReference`]

@@ -32,14 +32,15 @@ pub const QCOM_RENDER_PASS_TRANSFORM_EXTENSION_NAME: &'static CStr = crate::cstr
 /// - [`transform`] is a [`SurfaceTransformFlagBitsKHR`] value describing the transform to be
 ///   applied to rasterization.
 ///# Description
-///Valid Usage
-/// - [`transform`]**must** be `VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR`,
+///## Valid Usage
+/// - [`transform`] **must**  be `VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR`,
 ///   `VK_SURFACE_TRANSFORM_ROTATE_90_BIT_KHR`, `VK_SURFACE_TRANSFORM_ROTATE_180_BIT_KHR`, or
 ///   `VK_SURFACE_TRANSFORM_ROTATE_270_BIT_KHR`
-/// - The `renderpass`**must** have been created with [`RenderPassCreateInfo::flags`] containing
+/// - The `renderpass` **must**  have been created with [`RenderPassCreateInfo::flags`] containing
 ///   `VK_RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM`
 ///# Related
 /// - [`VK_QCOM_render_pass_transform`]
 /// - [`StructureType`]
@@ -161,16 +162,18 @@ impl<'lt> RenderPassTransformBeginInfoQCOM<'lt> {
 ///# Description
 ///When the secondary is recorded to execute within a render pass instance
 ///using [`CmdExecuteCommands`], the render pass transform parameters of
-///the secondary command buffer **must** be consistent with the render pass
+///the secondary command buffer  **must**  be consistent with the render pass
 ///transform parameters specified for the render pass instance.
 ///In particular, the [`transform`] and [`render_area`] for command buffer
-///**must** be identical to the [`transform`] and [`render_area`] of the render
-///pass instance.Valid Usage
-/// - [`transform`]**must** be `VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR`,
+/// **must**  be identical to the [`transform`] and [`render_area`] of the render
+///pass instance.
+///## Valid Usage
+/// - [`transform`] **must**  be `VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR`,
 ///   `VK_SURFACE_TRANSFORM_ROTATE_90_BIT_KHR`, `VK_SURFACE_TRANSFORM_ROTATE_180_BIT_KHR`, or
 ///   `VK_SURFACE_TRANSFORM_ROTATE_270_BIT_KHR`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM`
 ///# Related
 /// - [`VK_QCOM_render_pass_transform`]

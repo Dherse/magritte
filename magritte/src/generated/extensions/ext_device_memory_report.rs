@@ -123,9 +123,10 @@ impl DeviceMemoryReportEventTypeEXT {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceDeviceMemoryReportFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT`
+///[`PhysicalDeviceDeviceMemoryReportFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_device_memory_report`]
 /// - [`Bool32`]
@@ -265,13 +266,14 @@ impl<'lt> PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
 /// - [`pfn_user_callback`] is the application callback function to call.
 /// - [`user_data`] is user data to be passed to the callback.
 ///# Description
-///The callback **may** be called from multiple threads simultaneously.The callback **must** be
+///The callback  **may**  be called from multiple threads simultaneously.The callback  **must**  be
 /// called only once by the implementation when a
-///[`DeviceMemoryReportEventTypeEXT`] event occurs.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT`
-/// - [`flags`]**must** be `0`
-/// - [`pfn_user_callback`]**must** be a valid [`PFNDeviceMemoryReportCallbackEXT`] value
-/// - [`user_data`]**must** be a pointer value
+///[`DeviceMemoryReportEventTypeEXT`] event occurs.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT`
+/// - [`flags`] **must**  be `0`
+/// - [`pfn_user_callback`] **must**  be a valid [`PFNDeviceMemoryReportCallbackEXT`] value
+/// - [`user_data`] **must**  be a pointer value
 ///# Related
 /// - [`PFNDeviceMemoryReportCallbackEXT`]
 /// - [`VK_EXT_device_memory_report`]
@@ -460,18 +462,20 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
 ///   [`heap_index`] is undefined.
 ///# Description
 ///[`memory_object_id`] is used to avoid double-counting on the same memory
-///object.If an internally-allocated device memory object or a [`DeviceMemory`]**cannot** be
-/// exported, [`memory_object_id`]**must** be unique in the
+///object.If an internally-allocated device memory object or a [`DeviceMemory`] **cannot**  be
+/// exported, [`memory_object_id`] **must**  be unique in the
 ///[`Device`].If an internally-allocated device memory object or a [`DeviceMemory`]
-///supports being exported, [`memory_object_id`]**must** be unique system wide.If an internal
+///supports being exported, [`memory_object_id`] **must**  be unique system wide.If an internal
 /// device memory object or a [`DeviceMemory`] is backed by
-///an imported external memory object, [`memory_object_id`]**must** be unique
-///system wide.Implementor’s NoteIf the heap backing an internally-allocated device memory
-/// **cannot** be used to
-///back [`DeviceMemory`], implementations **can** advertise that heap with no
-///types.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT`
-/// - [`p_next`]**must** be `NULL`
+///an imported external memory object, [`memory_object_id`] **must**  be unique
+///system wide.
+///## Implementor’s NoteIf the heap backing an internally-allocated device memory  **cannot**  be
+/// used to
+///back [`DeviceMemory`], implementations  **can**  advertise that heap with no
+///types.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_EXT_device_memory_report`]
 /// - [`DeviceMemoryReportEventTypeEXT`]
@@ -563,36 +567,9 @@ impl<'lt> DeviceMemoryReportCallbackDataEXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::memory_object_id`]
-    pub fn memory_object_id_raw(&self) -> u64 {
-        self.memory_object_id
-    }
-    ///Gets the raw value of [`Self::object_handle`]
-    pub fn object_handle_raw(&self) -> u64 {
-        self.object_handle
-    }
-    ///Gets the raw value of [`Self::heap_index`]
-    pub fn heap_index_raw(&self) -> u32 {
-        self.heap_index
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::memory_object_id`]
-    pub fn set_memory_object_id_raw(&mut self, value: u64) -> &mut Self {
-        self.memory_object_id = value;
-        self
-    }
-    ///Sets the raw value of [`Self::object_handle`]
-    pub fn set_object_handle_raw(&mut self, value: u64) -> &mut Self {
-        self.object_handle = value;
-        self
-    }
-    ///Sets the raw value of [`Self::heap_index`]
-    pub fn set_heap_index_raw(&mut self, value: u32) -> &mut Self {
-        self.heap_index = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

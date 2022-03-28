@@ -54,24 +54,6 @@ impl Default for MultiDrawInfoEXT {
     }
 }
 impl MultiDrawInfoEXT {
-    ///Gets the raw value of [`Self::first_vertex`]
-    pub fn first_vertex_raw(&self) -> u32 {
-        self.first_vertex
-    }
-    ///Gets the raw value of [`Self::vertex_count`]
-    pub fn vertex_count_raw(&self) -> u32 {
-        self.vertex_count
-    }
-    ///Sets the raw value of [`Self::first_vertex`]
-    pub fn set_first_vertex_raw(&mut self, value: u32) -> &mut Self {
-        self.first_vertex = value;
-        self
-    }
-    ///Sets the raw value of [`Self::vertex_count`]
-    pub fn set_vertex_count_raw(&mut self, value: u32) -> &mut Self {
-        self.vertex_count = value;
-        self
-    }
     ///Gets the value of [`Self::first_vertex`]
     pub fn first_vertex(&self) -> u32 {
         self.first_vertex
@@ -154,33 +136,6 @@ impl Default for MultiDrawIndexedInfoEXT {
     }
 }
 impl MultiDrawIndexedInfoEXT {
-    ///Gets the raw value of [`Self::first_index`]
-    pub fn first_index_raw(&self) -> u32 {
-        self.first_index
-    }
-    ///Gets the raw value of [`Self::index_count`]
-    pub fn index_count_raw(&self) -> u32 {
-        self.index_count
-    }
-    ///Gets the raw value of [`Self::vertex_offset`]
-    pub fn vertex_offset_raw(&self) -> i32 {
-        self.vertex_offset
-    }
-    ///Sets the raw value of [`Self::first_index`]
-    pub fn set_first_index_raw(&mut self, value: u32) -> &mut Self {
-        self.first_index = value;
-        self
-    }
-    ///Sets the raw value of [`Self::index_count`]
-    pub fn set_index_count_raw(&mut self, value: u32) -> &mut Self {
-        self.index_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::vertex_offset`]
-    pub fn set_vertex_offset_raw(&mut self, value: i32) -> &mut Self {
-        self.vertex_offset = value;
-        self
-    }
     ///Gets the value of [`Self::first_index`]
     pub fn first_index(&self) -> u32 {
         self.first_index
@@ -236,14 +191,15 @@ impl MultiDrawIndexedInfoEXT {
 ///The members of the [`PhysicalDeviceMultiDrawPropertiesEXT`] structure
 ///describe the following features:
 ///# Description
-/// - [`max_multi_draw_count`] indicates the maximum number of draw calls which **can** be batched
+/// - [`max_multi_draw_count`] indicates the maximum number of draw calls which  **can**  be batched
 ///   into a single multidraw.
 ///If the [`PhysicalDeviceMultiDrawPropertiesEXT`] structure is included in the [`p_next`] chain of
 /// the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT`
 ///# Related
 /// - [`VK_EXT_multi_draw`]
 /// - [`StructureType`]
@@ -260,12 +216,12 @@ impl MultiDrawIndexedInfoEXT {
 #[repr(C)]
 pub struct PhysicalDeviceMultiDrawPropertiesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
-    ///[`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT`
+    ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT`
     s_type: StructureType,
     ///No documentation found
     p_next: *mut BaseOutStructure<'lt>,
     ///[`max_multi_draw_count`] indicates the
-    ///maximum number of draw calls which **can** be batched into a single
+    ///maximum number of draw calls which  **can**  be batched into a single
     ///multidraw.
     max_multi_draw_count: u32,
 }
@@ -284,18 +240,9 @@ impl<'lt> PhysicalDeviceMultiDrawPropertiesEXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::max_multi_draw_count`]
-    pub fn max_multi_draw_count_raw(&self) -> u32 {
-        self.max_multi_draw_count
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_multi_draw_count`]
-    pub fn set_max_multi_draw_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_multi_draw_count = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -368,9 +315,10 @@ impl<'lt> PhysicalDeviceMultiDrawPropertiesEXT<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceMultiDrawFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT`
+///[`PhysicalDeviceMultiDrawFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_multi_draw`]
 /// - [`Bool32`]

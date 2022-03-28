@@ -95,11 +95,11 @@ impl ValidationCheckEXT {
 /// - [`disabled_validation_checks`] is a pointer to an array of [`ValidationCheckEXT`] values
 ///   specifying the validation checks to be disabled.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VALIDATION_FLAGS_EXT`
-/// - [`disabled_validation_checks`]**must** be a valid pointer to an array of
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VALIDATION_FLAGS_EXT`
+/// - [`disabled_validation_checks`] **must**  be a valid pointer to an array of
 ///   [`disabled_validation_check_count`] valid [`ValidationCheckEXT`] values
-/// - [`disabled_validation_check_count`]**must** be greater than `0`
+/// - [`disabled_validation_check_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_EXT_validation_flags`]
 /// - [`StructureType`]
@@ -145,10 +145,6 @@ impl<'lt> ValidationFlagsEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::disabled_validation_check_count`]
-    pub fn disabled_validation_check_count_raw(&self) -> u32 {
-        self.disabled_validation_check_count
-    }
     ///Gets the raw value of [`Self::disabled_validation_checks`]
     pub fn disabled_validation_checks_raw(&self) -> *const ValidationCheckEXT {
         self.disabled_validation_checks
@@ -156,11 +152,6 @@ impl<'lt> ValidationFlagsEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::disabled_validation_check_count`]
-    pub fn set_disabled_validation_check_count_raw(&mut self, value: u32) -> &mut Self {
-        self.disabled_validation_check_count = value;
         self
     }
     ///Sets the raw value of [`Self::disabled_validation_checks`]

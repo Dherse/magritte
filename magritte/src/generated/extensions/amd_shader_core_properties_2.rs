@@ -32,8 +32,9 @@ pub const AMD_SHADER_CORE_PROPERTIES_2_EXTENSION_NAME: &'static CStr = crate::cs
 /// of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD`
 ///# Related
 /// - [`VK_AMD_shader_core_properties2`]
 /// - [`ShaderCorePropertiesFlagsAMD`]
@@ -81,18 +82,9 @@ impl<'lt> PhysicalDeviceShaderCoreProperties2AMD<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::active_compute_unit_count`]
-    pub fn active_compute_unit_count_raw(&self) -> u32 {
-        self.active_compute_unit_count
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::active_compute_unit_count`]
-    pub fn set_active_compute_unit_count_raw(&mut self, value: u32) -> &mut Self {
-        self.active_compute_unit_count = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

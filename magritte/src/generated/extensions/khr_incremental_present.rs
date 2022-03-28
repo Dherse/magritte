@@ -11,15 +11,15 @@ pub const KHR_INCREMENTAL_PRESENT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///[VkPresentRegionsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPresentRegionsKHR.html) - Structure hint of rectangular regions changed by vkQueuePresentKHR
 ///# C Specifications
 ///When the [`VK_KHR_incremental_present`] extension is enabled, additional
-///fields **can** be specified that allow an application to specify that only
+///fields  **can**  be specified that allow an application to specify that only
 ///certain rectangular regions of the presentable images of a swapchain are
 ///changed.
-///This is an optimization hint that a presentation engine **may** use to only
+///This is an optimization hint that a presentation engine  **may**  use to only
 ///update the region of a surface that is actually changing.
-///The application still **must** ensure that all pixels of a presented image
+///The application still  **must**  ensure that all pixels of a presented image
 ///contain the desired values, in case the presentation engine ignores this
 ///hint.
-///An application **can** provide this hint by adding a [`PresentRegionsKHR`]
+///An application  **can**  provide this hint by adding a [`PresentRegionsKHR`]
 ///structure to the [`p_next`] chain of the [`PresentInfoKHR`] structure.The [`PresentRegionsKHR`]
 /// structure is defined as:
 ///```c
@@ -40,15 +40,16 @@ pub const KHR_INCREMENTAL_PRESENT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///   that has changed since the last present to the swapchain in the corresponding entry in the
 ///   [`PresentInfoKHR::swapchains`] array.
 ///# Description
-///Valid Usage
-/// - [`swapchain_count`]**must** be the same value as [`PresentInfoKHR`]::[`swapchain_count`],
+///## Valid Usage
+/// - [`swapchain_count`] **must**  be the same value as [`PresentInfoKHR`]::[`swapchain_count`],
 ///   where [`PresentInfoKHR`] is included in the [`p_next`] chain of this [`PresentRegionsKHR`]
 ///   structure
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PRESENT_REGIONS_KHR`
-/// - If [`regions`] is not `NULL`, [`regions`]**must** be a valid pointer to an array of
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PRESENT_REGIONS_KHR`
+/// - If [`regions`] is not `NULL`, [`regions`] **must**  be a valid pointer to an array of
 ///   [`swapchain_count`] valid [`PresentRegionKHR`] structures
-/// - [`swapchain_count`]**must** be greater than `0`
+/// - [`swapchain_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_KHR_incremental_present`]
 /// - [`PresentRegionKHR`]
@@ -97,10 +98,6 @@ impl<'lt> PresentRegionsKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::swapchain_count`]
-    pub fn swapchain_count_raw(&self) -> u32 {
-        self.swapchain_count
-    }
     ///Gets the raw value of [`Self::regions`]
     pub fn regions_raw(&self) -> *const PresentRegionKHR<'lt> {
         self.regions
@@ -108,11 +105,6 @@ impl<'lt> PresentRegionsKHR<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::swapchain_count`]
-    pub fn set_swapchain_count_raw(&mut self, value: u32) -> &mut Self {
-        self.swapchain_count = value;
         self
     }
     ///Sets the raw value of [`Self::regions`]
@@ -193,16 +185,16 @@ impl<'lt> PresentRegionsKHR<'lt> {
 ///   has changed and should be presented.
 /// - [`rectangles`] is either `NULL` or a pointer to an array of [`RectLayerKHR`] structures. The
 ///   [`RectLayerKHR`] structure is the framebuffer coordinates, plus layer, of a portion of a
-///   presentable image that has changed and **must** be presented. If non-`NULL`, each entry in
+///   presentable image that has changed and  **must**  be presented. If non-`NULL`, each entry in
 ///   [`rectangles`] is a rectangle of the given image that has changed since the last image was
-///   presented to the given swapchain. The rectangles **must** be specified relative to
+///   presented to the given swapchain. The rectangles  **must**  be specified relative to
 ///   [`SurfaceCapabilitiesKHR::current_transform`], regardless of the swapchain’s `preTransform`.
 ///   The presentation engine will apply the `preTransform` transformation to the rectangles, along
 ///   with any further transformation it applies to the image content.
 ///# Description
-///Valid Usage (Implicit)
-/// - If [`rectangle_count`] is not `0`, and [`rectangles`] is not `NULL`, [`rectangles`]**must** be
-///   a valid pointer to an array of [`rectangle_count`] valid [`RectLayerKHR`] structures
+///## Valid Usage (Implicit)
+/// - If [`rectangle_count`] is not `0`, and [`rectangles`] is not `NULL`, [`rectangles`] **must**
+///   be a valid pointer to an array of [`rectangle_count`] valid [`RectLayerKHR`] structures
 ///# Related
 /// - [`VK_KHR_incremental_present`]
 /// - [`PresentRegionsKHR`]
@@ -226,12 +218,12 @@ pub struct PresentRegionKHR<'lt> {
     ///[`rectangles`] is either `NULL` or a pointer to an array of
     ///[`RectLayerKHR`] structures.
     ///The [`RectLayerKHR`] structure is the framebuffer coordinates, plus
-    ///layer, of a portion of a presentable image that has changed and **must** be
+    ///layer, of a portion of a presentable image that has changed and  **must**  be
     ///presented.
     ///If non-`NULL`, each entry in [`rectangles`] is a rectangle of the
     ///given image that has changed since the last image was presented to the
     ///given swapchain.
-    ///The rectangles **must** be specified relative to
+    ///The rectangles  **must**  be specified relative to
     ///[`SurfaceCapabilitiesKHR`]::`currentTransform`, regardless of
     ///the swapchain’s `preTransform`.
     ///The presentation engine will apply the `preTransform` transformation
@@ -249,18 +241,9 @@ impl<'lt> Default for PresentRegionKHR<'lt> {
     }
 }
 impl<'lt> PresentRegionKHR<'lt> {
-    ///Gets the raw value of [`Self::rectangle_count`]
-    pub fn rectangle_count_raw(&self) -> u32 {
-        self.rectangle_count
-    }
     ///Gets the raw value of [`Self::rectangles`]
     pub fn rectangles_raw(&self) -> *const RectLayerKHR {
         self.rectangles
-    }
-    ///Sets the raw value of [`Self::rectangle_count`]
-    pub fn set_rectangle_count_raw(&mut self, value: u32) -> &mut Self {
-        self.rectangle_count = value;
-        self
     }
     ///Sets the raw value of [`Self::rectangles`]
     pub fn set_rectangles_raw(&mut self, value: *const RectLayerKHR) -> &mut Self {
@@ -313,19 +296,20 @@ impl<'lt> PresentRegionKHR<'lt> {
 ///# Members
 /// - [`offset`] is the origin of the rectangle, in pixels.
 /// - [`extent`] is the size of the rectangle, in pixels.
-/// - [`layer`] is the layer of the image. For images with only one layer, the value of
-///   [`layer`]**must** be 0.
+/// - [`layer`] is the layer of the image. For images with only one layer, the value of [`layer`]
+///   **must**  be 0.
 ///# Description
 ///Some platforms allow the size of a surface to change, and then scale the
 ///pixels of the image to fit the surface.
 ///[`RectLayerKHR`] specifies pixels of the swapchain’s image(s), which
-///will be constant for the life of the swapchain.Valid Usage
+///will be constant for the life of the swapchain.
+///## Valid Usage
 /// - The sum of [`offset`] and [`extent`], after being transformed according to the `preTransform`
-///   member of the [`SwapchainCreateInfoKHR`] structure, **must** be no greater than the
+///   member of the [`SwapchainCreateInfoKHR`] structure,  **must**  be no greater than the
 ///   `imageExtent` member of the [`SwapchainCreateInfoKHR`] structure passed to
 ///   [`CreateSwapchainKHR`]
-/// - [`layer`]**must** be less than the `imageArrayLayers` member of the [`SwapchainCreateInfoKHR`]
-///   structure passed to [`CreateSwapchainKHR`]
+/// - [`layer`] **must**  be less than the `imageArrayLayers` member of the
+///   [`SwapchainCreateInfoKHR`] structure passed to [`CreateSwapchainKHR`]
 ///# Related
 /// - [`VK_KHR_incremental_present`]
 /// - [`Extent2D`]
@@ -349,7 +333,7 @@ pub struct RectLayerKHR {
     ///[`extent`] is the size of the rectangle, in pixels.
     extent: Extent2D,
     ///[`layer`] is the layer of the image.
-    ///For images with only one layer, the value of [`layer`]**must** be 0.
+    ///For images with only one layer, the value of [`layer`] **must**  be 0.
     layer: u32,
 }
 impl Default for RectLayerKHR {
@@ -362,15 +346,6 @@ impl Default for RectLayerKHR {
     }
 }
 impl RectLayerKHR {
-    ///Gets the raw value of [`Self::layer`]
-    pub fn layer_raw(&self) -> u32 {
-        self.layer
-    }
-    ///Sets the raw value of [`Self::layer`]
-    pub fn set_layer_raw(&mut self, value: u32) -> &mut Self {
-        self.layer = value;
-        self
-    }
     ///Gets the value of [`Self::offset`]
     pub fn offset(&self) -> Offset2D {
         self.offset

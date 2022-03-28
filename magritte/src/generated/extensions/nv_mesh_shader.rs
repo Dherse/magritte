@@ -32,9 +32,10 @@ pub const NV_MESH_SHADER_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_mes
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceMeshShaderFeaturesNV`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV`
+///[`PhysicalDeviceMeshShaderFeaturesNV`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV`
 ///# Related
 /// - [`VK_NV_mesh_shader`]
 /// - [`Bool32`]
@@ -216,16 +217,16 @@ impl<'lt> PhysicalDeviceMeshShaderFeaturesNV<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`max_draw_mesh_tasks_count`] is the maximum number of local workgroups that **can** be launched by a single draw mesh tasks command. See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-mesh-shading](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-mesh-shading).
+/// - [`max_draw_mesh_tasks_count`] is the maximum number of local workgroups that  **can**  be launched by a single draw mesh tasks command. See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-mesh-shading](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-mesh-shading).
 /// - [`max_task_work_group_invocations`] is the maximum total number of task     shader invocations
 ///   in a single local workgroup.     The product of the X, Y, and Z sizes, as specified by the
 ///   `LocalSize` or `LocalSizeId`     execution mode in shader modules or by the object decorated
-///   by the     `WorkgroupSize` decoration, **must** be less than or equal to this     limit.
+///   by the     `WorkgroupSize` decoration,  **must**  be less than or equal to this     limit.
 /// - [`max_task_work_group_size`][3] is the maximum size of a local task     workgroup.     These
 ///   three values represent the maximum local workgroup size in the X,     Y, and Z dimensions,
 ///   respectively.     The `x`, `y`, and `z` sizes, as specified by the     `LocalSize` or
 ///   `LocalSizeId`     execution mode or by the object decorated by the `WorkgroupSize`
-///   decoration in shader modules, **must** be less than or equal to the     corresponding limit.
+///   decoration in shader modules,  **must**  be less than or equal to the     corresponding limit.
 /// - [`max_task_total_memory_size`] is the maximum number of bytes that the task shader can use in
 ///   total for shared and output memory combined.
 /// - [`max_task_output_count`] is the maximum number of output tasks a single task shader workgroup
@@ -233,12 +234,12 @@ impl<'lt> PhysicalDeviceMeshShaderFeaturesNV<'lt> {
 /// - [`max_mesh_work_group_invocations`] is the maximum total number of mesh     shader invocations
 ///   in a single local workgroup.     The product of the X, Y, and Z sizes, as specified by the
 ///   `LocalSize` or `LocalSizeId`     execution mode in shader modules or by the object decorated
-///   by the     `WorkgroupSize` decoration, **must** be less than or equal to this     limit.
+///   by the     `WorkgroupSize` decoration,  **must**  be less than or equal to this     limit.
 /// - [`max_mesh_work_group_size`][3] is the maximum size of a local mesh     workgroup.     These
 ///   three values represent the maximum local workgroup size in the X,     Y, and Z dimensions,
 ///   respectively.     The `x`, `y`, and `z` sizes, as specified by the     `LocalSize` or
 ///   `LocalSizeId`     execution mode or by the object decorated by the `WorkgroupSize`
-///   decoration in shader modules, **must** be less than or equal to the     corresponding limit.
+///   decoration in shader modules,  **must**  be less than or equal to the     corresponding limit.
 /// - [`max_mesh_total_memory_size`] is the maximum number of bytes that the mesh shader can use in
 ///   total for shared and output memory combined.
 /// - [`max_mesh_output_vertices`] is the maximum number of vertices a mesh shader output can store.
@@ -257,8 +258,9 @@ impl<'lt> PhysicalDeviceMeshShaderFeaturesNV<'lt> {
 /// the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV`
 ///# Related
 /// - [`VK_NV_mesh_shader`]
 /// - [`StructureType`]
@@ -281,7 +283,7 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`max_draw_mesh_tasks_count`] is the maximum number of local workgroups
-    ///that **can** be launched by a single draw mesh tasks command.
+    ///that  **can**  be launched by a single draw mesh tasks command.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-mesh-shading](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-mesh-shading).
     max_draw_mesh_tasks_count: u32,
     ///[`max_task_work_group_invocations`] is the maximum total number of task
@@ -289,7 +291,7 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     ///    The product of the X, Y, and Z sizes, as specified by the `LocalSize`
     ///or `LocalSizeId`
     ///    execution mode in shader modules or by the object decorated by the
-    ///    `WorkgroupSize` decoration, **must** be less than or equal to this
+    ///    `WorkgroupSize` decoration,  **must**  be less than or equal to this
     ///    limit.
     max_task_work_group_invocations: u32,
     ///[`max_task_work_group_size`][3] is the maximum size of a local task
@@ -300,7 +302,7 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     ///    `LocalSize`
     ///or `LocalSizeId`
     ///    execution mode or by the object decorated by the `WorkgroupSize`
-    ///    decoration in shader modules, **must** be less than or equal to the
+    ///    decoration in shader modules,  **must**  be less than or equal to the
     ///    corresponding limit.
     max_task_work_group_size: [u32; 3],
     ///[`max_task_total_memory_size`] is the maximum number of bytes that the
@@ -314,7 +316,7 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     ///    The product of the X, Y, and Z sizes, as specified by the `LocalSize`
     ///or `LocalSizeId`
     ///    execution mode in shader modules or by the object decorated by the
-    ///    `WorkgroupSize` decoration, **must** be less than or equal to this
+    ///    `WorkgroupSize` decoration,  **must**  be less than or equal to this
     ///    limit.
     max_mesh_work_group_invocations: u32,
     ///[`max_mesh_work_group_size`][3] is the maximum size of a local mesh
@@ -325,7 +327,7 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     ///    `LocalSize`
     ///or `LocalSizeId`
     ///    execution mode or by the object decorated by the `WorkgroupSize`
-    ///    decoration in shader modules, **must** be less than or equal to the
+    ///    decoration in shader modules,  **must**  be less than or equal to the
     ///    corresponding limit.
     max_mesh_work_group_size: [u32; 3],
     ///[`max_mesh_total_memory_size`] is the maximum number of bytes that the
@@ -380,126 +382,9 @@ impl<'lt> PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::max_draw_mesh_tasks_count`]
-    pub fn max_draw_mesh_tasks_count_raw(&self) -> u32 {
-        self.max_draw_mesh_tasks_count
-    }
-    ///Gets the raw value of [`Self::max_task_work_group_invocations`]
-    pub fn max_task_work_group_invocations_raw(&self) -> u32 {
-        self.max_task_work_group_invocations
-    }
-    ///Gets the raw value of [`Self::max_task_work_group_size`]
-    pub fn max_task_work_group_size_raw(&self) -> [u32; 3] {
-        self.max_task_work_group_size
-    }
-    ///Gets the raw value of [`Self::max_task_total_memory_size`]
-    pub fn max_task_total_memory_size_raw(&self) -> u32 {
-        self.max_task_total_memory_size
-    }
-    ///Gets the raw value of [`Self::max_task_output_count`]
-    pub fn max_task_output_count_raw(&self) -> u32 {
-        self.max_task_output_count
-    }
-    ///Gets the raw value of [`Self::max_mesh_work_group_invocations`]
-    pub fn max_mesh_work_group_invocations_raw(&self) -> u32 {
-        self.max_mesh_work_group_invocations
-    }
-    ///Gets the raw value of [`Self::max_mesh_work_group_size`]
-    pub fn max_mesh_work_group_size_raw(&self) -> [u32; 3] {
-        self.max_mesh_work_group_size
-    }
-    ///Gets the raw value of [`Self::max_mesh_total_memory_size`]
-    pub fn max_mesh_total_memory_size_raw(&self) -> u32 {
-        self.max_mesh_total_memory_size
-    }
-    ///Gets the raw value of [`Self::max_mesh_output_vertices`]
-    pub fn max_mesh_output_vertices_raw(&self) -> u32 {
-        self.max_mesh_output_vertices
-    }
-    ///Gets the raw value of [`Self::max_mesh_output_primitives`]
-    pub fn max_mesh_output_primitives_raw(&self) -> u32 {
-        self.max_mesh_output_primitives
-    }
-    ///Gets the raw value of [`Self::max_mesh_multiview_view_count`]
-    pub fn max_mesh_multiview_view_count_raw(&self) -> u32 {
-        self.max_mesh_multiview_view_count
-    }
-    ///Gets the raw value of [`Self::mesh_output_per_vertex_granularity`]
-    pub fn mesh_output_per_vertex_granularity_raw(&self) -> u32 {
-        self.mesh_output_per_vertex_granularity
-    }
-    ///Gets the raw value of [`Self::mesh_output_per_primitive_granularity`]
-    pub fn mesh_output_per_primitive_granularity_raw(&self) -> u32 {
-        self.mesh_output_per_primitive_granularity
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_draw_mesh_tasks_count`]
-    pub fn set_max_draw_mesh_tasks_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_draw_mesh_tasks_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_task_work_group_invocations`]
-    pub fn set_max_task_work_group_invocations_raw(&mut self, value: u32) -> &mut Self {
-        self.max_task_work_group_invocations = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_task_work_group_size`]
-    pub fn set_max_task_work_group_size_raw(&mut self, value: [u32; 3]) -> &mut Self {
-        self.max_task_work_group_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_task_total_memory_size`]
-    pub fn set_max_task_total_memory_size_raw(&mut self, value: u32) -> &mut Self {
-        self.max_task_total_memory_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_task_output_count`]
-    pub fn set_max_task_output_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_task_output_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_mesh_work_group_invocations`]
-    pub fn set_max_mesh_work_group_invocations_raw(&mut self, value: u32) -> &mut Self {
-        self.max_mesh_work_group_invocations = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_mesh_work_group_size`]
-    pub fn set_max_mesh_work_group_size_raw(&mut self, value: [u32; 3]) -> &mut Self {
-        self.max_mesh_work_group_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_mesh_total_memory_size`]
-    pub fn set_max_mesh_total_memory_size_raw(&mut self, value: u32) -> &mut Self {
-        self.max_mesh_total_memory_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_mesh_output_vertices`]
-    pub fn set_max_mesh_output_vertices_raw(&mut self, value: u32) -> &mut Self {
-        self.max_mesh_output_vertices = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_mesh_output_primitives`]
-    pub fn set_max_mesh_output_primitives_raw(&mut self, value: u32) -> &mut Self {
-        self.max_mesh_output_primitives = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_mesh_multiview_view_count`]
-    pub fn set_max_mesh_multiview_view_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_mesh_multiview_view_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::mesh_output_per_vertex_granularity`]
-    pub fn set_mesh_output_per_vertex_granularity_raw(&mut self, value: u32) -> &mut Self {
-        self.mesh_output_per_vertex_granularity = value;
-        self
-    }
-    ///Sets the raw value of [`Self::mesh_output_per_primitive_granularity`]
-    pub fn set_mesh_output_per_primitive_granularity_raw(&mut self, value: u32) -> &mut Self {
-        self.mesh_output_per_primitive_granularity = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -720,8 +605,9 @@ impl<'lt> PhysicalDeviceMeshShaderPropertiesNV<'lt> {
 /// - [`first_task`] is the X component of the first workgroup ID.
 ///# Description
 ///The members of [`DrawMeshTasksIndirectCommandNV`] have the same meaning
-///as the similarly named parameters of [`CmdDrawMeshTasksNV`].Valid Usage
-/// - [`task_count`]**must** be less than or equal to
+///as the similarly named parameters of [`CmdDrawMeshTasksNV`].
+///## Valid Usage
+/// - [`task_count`] **must**  be less than or equal to
 ///   [`PhysicalDeviceMeshShaderPropertiesNV::max_draw_mesh_tasks_count`]
 ///# Related
 /// - [`VK_NV_mesh_shader`]
@@ -755,24 +641,6 @@ impl Default for DrawMeshTasksIndirectCommandNV {
     }
 }
 impl DrawMeshTasksIndirectCommandNV {
-    ///Gets the raw value of [`Self::task_count`]
-    pub fn task_count_raw(&self) -> u32 {
-        self.task_count
-    }
-    ///Gets the raw value of [`Self::first_task`]
-    pub fn first_task_raw(&self) -> u32 {
-        self.first_task
-    }
-    ///Sets the raw value of [`Self::task_count`]
-    pub fn set_task_count_raw(&mut self, value: u32) -> &mut Self {
-        self.task_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::first_task`]
-    pub fn set_first_task_raw(&mut self, value: u32) -> &mut Self {
-        self.first_task = value;
-        self
-    }
     ///Gets the value of [`Self::task_count`]
     pub fn task_count(&self) -> u32 {
         self.task_count

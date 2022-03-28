@@ -31,13 +31,14 @@ pub const KHR_XLIB_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_
 /// - [`dpy`] is a pointer to an Xlib [`Display`] connection to the X server.
 /// - [`window`] is an Xlib [`Window`] to associate the surface with.
 ///# Description
-///Valid Usage
-/// - [`dpy`]**must** point to a valid Xlib [`Display`]
-/// - [`window`]**must** be a valid Xlib [`Window`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_XLIB_SURFACE_CREATE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
+///## Valid Usage
+/// - [`dpy`] **must**  point to a valid Xlib [`Display`]
+/// - [`window`] **must**  be a valid Xlib [`Window`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_XLIB_SURFACE_CREATE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_KHR_xlib_surface`]
 /// - [`StructureType`]

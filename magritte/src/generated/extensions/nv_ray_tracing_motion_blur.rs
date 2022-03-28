@@ -114,9 +114,12 @@ impl AccelerationStructureMotionInstanceTypeNV {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceRayTracingMotionBlurFeaturesNV`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV`
+///[`PhysicalDeviceRayTracingMotionBlurFeaturesNV`] **can**  also be used in the [`p_next`] chain
+/// of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV`
 ///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
 /// - [`Bool32`]
@@ -300,8 +303,9 @@ impl<'lt> PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt> {
 ///vertex positions at time 1.0, with positions linearly interpolated at
 ///intermediate times.Indexing for
 /// [`AccelerationStructureGeometryMotionTrianglesDataNV`][`vertex_data`] is equivalent to the basic
-/// vertex position data.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+/// vertex position data.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV`
 ///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
@@ -406,13 +410,13 @@ impl<'lt> AccelerationStructureGeometryMotionTrianglesDataNV<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`max_instances`] is the maximum number of instances that **may** be used in the motion
+/// - [`max_instances`] is the maximum number of instances that  **may**  be used in the motion
 ///   top-level acceleration structure.
 /// - [`flags`] is 0 and reserved for future use.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MOTION_INFO_NV`
-/// - [`flags`]**must** be `0`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MOTION_INFO_NV`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
 /// - [`AccelerationStructureMotionInfoFlagsNV`]
@@ -435,7 +439,7 @@ pub struct AccelerationStructureMotionInfoNV<'lt> {
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     p_next: *const BaseInStructure<'lt>,
-    ///[`max_instances`] is the maximum number of instances that **may** be used
+    ///[`max_instances`] is the maximum number of instances that  **may**  be used
     ///in the motion top-level acceleration structure.
     max_instances: u32,
     ///[`flags`] is 0 and reserved for future use.
@@ -457,18 +461,9 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::max_instances`]
-    pub fn max_instances_raw(&self) -> u32 {
-        self.max_instances
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_instances`]
-    pub fn set_max_instances_raw(&mut self, value: u32) -> &mut Self {
-        self.max_instances = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -572,20 +567,21 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 ///The first is a matrix S, consisting of a scale, shear, and translation,
 ///usually used to define the pivot point of the following rotation.
 ///This matrix is constructed from the parameters above by:<span class="katex"><span
-/// aria-hidden="true" class="katex-html"><span class="base"><span class="strut"
-/// style="height:0.68333em;vertical-align:0em;"></span><span style="margin-right:0.05764em;"
-/// class="mord mathdefault">S</span><span class="mspace"
-/// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-/// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-/// style="height:3.60004em;vertical-align:-1.55002em;" class="strut"></span><span
-/// class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t
-/// vlist-t2"><span class="vlist-r"><span style="height:2.05002em;" class="vlist"><span
+/// aria-hidden="true" class="katex-html"><span class="base"><span
+/// style="height:0.68333em;vertical-align:0em;" class="strut"></span><span
+/// style="margin-right:0.05764em;" class="mord mathdefault">S</span><span
+/// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+/// class="mrel">=</span><span class="mspace"
+/// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut"
+/// style="height:3.60004em;vertical-align:-1.55002em;"></span><span class="minner"><span
+/// class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span style="height:2.05002em;" class="vlist"><span
 /// style="top:-2.2500000000000004em;"><span style="height:3.1550000000000002em;"
 /// class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎝</span></span></span><span style="top:-2.8100000000000005em;"><span
 /// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
-/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span
-/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
+/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
+/// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎛</span></span></span></span><span class="vlist-s">​</span></span><span
 /// class="vlist-r"><span style="height:1.55002em;"
 /// class="vlist"><span></span></span></span></span></span></span><span class="mord"><span
@@ -593,27 +589,27 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 /// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
 /// class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord
 /// mathdefault">s</span><span class="mord mathdefault">x</span></span></span><span
-/// style="top:-3.0099999999999993em;"><span style="height:3em;" class="pstrut"></span><span
+/// style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span
 /// class="mord"><span class="mord">0</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
+/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
+/// class="mord"><span class="mord">0</span></span></span></span><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+/// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
+/// class="arraycolsep" style="width:0.5em;"></span><span style="width:0.5em;"
+/// class="arraycolsep"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
+/// mathdefault">a</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
+/// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">s</span><span
+/// style="margin-right:0.03588em;" class="mord mathdefault">y</span></span></span><span
+/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
 /// class="mord"><span class="mord">0</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 /// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
 /// class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep"
 /// style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
+/// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
 /// class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord
-/// mathdefault">a</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
-/// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">s</span><span
-/// class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
-/// class="mord"><span class="mord">0</span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
-/// class="vlist"><span></span></span></span></span></span><span class="arraycolsep"
-/// style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span
-/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-/// style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span style="height:3em;"
-/// class="pstrut"></span><span class="mord"><span class="mord
 /// mathdefault">b</span></span></span><span style="top:-3.0099999999999993em;"><span
 /// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
 /// mathdefault">c</span></span></span><span style="top:-1.8099999999999994em;"><span
@@ -622,28 +618,27 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 /// mathdefault">z</span></span></span></span><span class="vlist-s">​</span></span><span
 /// class="vlist-r"><span class="vlist"
 /// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
-/// class="arraycolsep" style="width:0.5em;"></span><span style="width:0.5em;"
-/// class="arraycolsep"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
-/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
-/// mathdefault">p</span><span class="mord mathdefault"
-/// style="margin-right:0.03588em;">v</span><span class="mord
-/// mathdefault">x</span></span></span><span style="top:-3.0099999999999993em;"><span
-/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
+/// style="width:0.5em;" class="arraycolsep"></span><span class="arraycolsep"
+/// style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
+/// class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord
 /// mathdefault">p</span><span style="margin-right:0.03588em;" class="mord
-/// mathdefault">v</span><span class="mord mathdefault"
+/// mathdefault">v</span><span class="mord mathdefault">x</span></span></span><span
+/// style="top:-3.0099999999999993em;"><span style="height:3em;" class="pstrut"></span><span
+/// class="mord"><span class="mord mathdefault">p</span><span class="mord mathdefault"
+/// style="margin-right:0.03588em;">v</span><span class="mord mathdefault"
 /// style="margin-right:0.03588em;">y</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
+/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
 /// class="mord"><span class="mord mathdefault">p</span><span class="mord mathdefault"
 /// style="margin-right:0.03588em;">v</span><span style="margin-right:0.04398em;" class="mord
 /// mathdefault">z</span></span></span></span><span class="vlist-s">​</span></span><span
 /// class="vlist-r"><span style="height:1.5500000000000007em;"
 /// class="vlist"><span></span></span></span></span></span></span></span><span class="mclose"><span
 /// class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-/// style="height:2.05002em;" class="vlist"><span style="top:-2.2500000000000004em;"><span
+/// class="vlist" style="height:2.05002em;"><span style="top:-2.2500000000000004em;"><span
 /// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎠</span></span></span><span style="top:-2.8100000000000005em;"><span
-/// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
+/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎟</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
 /// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎞</span></span></span></span><span class="vlist-s">​</span></span><span
@@ -657,39 +652,29 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 ///and
 /// * [`qw`] = cos(`theta`/2)
 ///Finally, the transform has a translation T constructed from the parameters
-///above by:<span class="katex"><span aria-hidden="true" class="katex-html"><span
+///above by:<span class="katex"><span class="katex-html" aria-hidden="true"><span
 /// class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
-/// style="margin-right:0.13889em;" class="mord mathdefault">T</span><span
+/// class="mord mathdefault" style="margin-right:0.13889em;">T</span><span
 /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
 /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-/// class="mspace"></span></span><span class="base"><span class="strut"
-/// style="height:3.60004em;vertical-align:-1.55002em;"></span><span class="minner"><span
-/// class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span class="vlist" style="height:2.05002em;"><span
+/// class="mspace"></span></span><span class="base"><span
+/// style="height:3.60004em;vertical-align:-1.55002em;" class="strut"></span><span
+/// class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t
+/// vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span
 /// style="top:-2.2500000000000004em;"><span class="pstrut"
 /// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎝</span></span></span><span style="top:-2.8100000000000005em;"><span
+/// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
+/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span
 /// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
-/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
-/// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎛</span></span></span></span><span class="vlist-s">​</span></span><span
 /// class="vlist-r"><span class="vlist"
 /// style="height:1.55002em;"><span></span></span></span></span></span></span><span
 /// class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span
 /// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
-/// class="pstrut" style="height:3em;"></span><span class="mord"><span
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span
 /// class="mord">1</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
-/// class="mord"><span class="mord">0</span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
-/// class="vlist"><span></span></span></span></span></span><span style="width:0.5em;"
-/// class="arraycolsep"></span><span class="arraycolsep" style="width:0.5em;"></span><span
-/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-/// style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span style="height:3em;"
-/// class="pstrut"></span><span class="mord"><span class="mord">0</span></span></span><span
-/// style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span
-/// class="mord"><span class="mord">1</span></span></span><span
 /// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
 /// class="mord"><span class="mord">0</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
@@ -699,35 +684,46 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 /// style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span style="height:3em;"
 /// class="pstrut"></span><span class="mord"><span class="mord">0</span></span></span><span
 /// style="top:-3.0099999999999993em;"><span style="height:3em;" class="pstrut"></span><span
-/// class="mord"><span class="mord">0</span></span></span><span
+/// class="mord"><span class="mord">1</span></span></span><span
+/// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
+/// class="mord"><span class="mord">0</span></span></span></span><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+/// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
+/// class="arraycolsep" style="width:0.5em;"></span><span style="width:0.5em;"
+/// class="arraycolsep"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span
+/// class="mord">0</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
+/// style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span
 /// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
 /// class="mord"><span class="mord">1</span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
-/// class="vlist"><span></span></span></span></span></span><span style="width:0.5em;"
-/// class="arraycolsep"></span><span class="arraycolsep" style="width:0.5em;"></span><span
-/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-/// style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut"
-/// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">t</span><span
-/// class="mord mathdefault">x</span></span></span><span style="top:-3.0099999999999993em;"><span
-/// class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord
-/// mathdefault">t</span><span style="margin-right:0.03588em;" class="mord
-/// mathdefault">y</span></span></span><span style="top:-1.8099999999999994em;"><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+/// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
+/// class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep"
+/// style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
 /// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
-/// mathdefault">t</span><span class="mord mathdefault"
+/// mathdefault">t</span><span class="mord mathdefault">x</span></span></span><span
+/// style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span
+/// class="mord"><span class="mord mathdefault">t</span><span class="mord mathdefault"
+/// style="margin-right:0.03588em;">y</span></span></span><span
+/// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
+/// class="mord"><span class="mord mathdefault">t</span><span class="mord mathdefault"
 /// style="margin-right:0.04398em;">z</span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
-/// class="vlist"><span></span></span></span></span></span></span></span><span class="mclose"><span
-/// class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-/// class="vlist" style="height:2.05002em;"><span style="top:-2.2500000000000004em;"><span
-/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
+/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+/// style="height:1.5500000000000007em;"><span></span></span></span></span></span></span></
+/// span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span class="vlist" style="height:2.05002em;"><span
+/// style="top:-2.2500000000000004em;"><span style="height:3.1550000000000002em;"
+/// class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎠</span></span></span><span style="top:-2.8100000000000005em;"><span
 /// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
-/// delim-size4"><span>⎟</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
-/// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
+/// delim-size4"><span>⎟</span></span></span><span style="top:-4.05002em;"><span
+/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎞</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span style="height:1.55002em;"
-/// class="vlist"><span></span></span></span></span></span></span></span></span></span></span>The
-/// effective derived transform is then given by
+/// class="vlist-r"><span class="vlist"
+/// style="height:1.55002em;"><span></span></span></span></span></span></span></span></span></
+/// span></span>The effective derived transform is then given by
 /// * `T` × `R` × `S`
 ///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
@@ -801,150 +797,6 @@ impl Default for SrtDataNV {
     }
 }
 impl SrtDataNV {
-    ///Gets the raw value of [`Self::sx`]
-    pub fn sx_raw(&self) -> f32 {
-        self.sx
-    }
-    ///Gets the raw value of [`Self::a`]
-    pub fn a_raw(&self) -> f32 {
-        self.a
-    }
-    ///Gets the raw value of [`Self::b`]
-    pub fn b_raw(&self) -> f32 {
-        self.b
-    }
-    ///Gets the raw value of [`Self::pvx`]
-    pub fn pvx_raw(&self) -> f32 {
-        self.pvx
-    }
-    ///Gets the raw value of [`Self::sy`]
-    pub fn sy_raw(&self) -> f32 {
-        self.sy
-    }
-    ///Gets the raw value of [`Self::c`]
-    pub fn c_raw(&self) -> f32 {
-        self.c
-    }
-    ///Gets the raw value of [`Self::pvy`]
-    pub fn pvy_raw(&self) -> f32 {
-        self.pvy
-    }
-    ///Gets the raw value of [`Self::sz`]
-    pub fn sz_raw(&self) -> f32 {
-        self.sz
-    }
-    ///Gets the raw value of [`Self::pvz`]
-    pub fn pvz_raw(&self) -> f32 {
-        self.pvz
-    }
-    ///Gets the raw value of [`Self::qx`]
-    pub fn qx_raw(&self) -> f32 {
-        self.qx
-    }
-    ///Gets the raw value of [`Self::qy`]
-    pub fn qy_raw(&self) -> f32 {
-        self.qy
-    }
-    ///Gets the raw value of [`Self::qz`]
-    pub fn qz_raw(&self) -> f32 {
-        self.qz
-    }
-    ///Gets the raw value of [`Self::qw`]
-    pub fn qw_raw(&self) -> f32 {
-        self.qw
-    }
-    ///Gets the raw value of [`Self::tx`]
-    pub fn tx_raw(&self) -> f32 {
-        self.tx
-    }
-    ///Gets the raw value of [`Self::ty`]
-    pub fn ty_raw(&self) -> f32 {
-        self.ty
-    }
-    ///Gets the raw value of [`Self::tz`]
-    pub fn tz_raw(&self) -> f32 {
-        self.tz
-    }
-    ///Sets the raw value of [`Self::sx`]
-    pub fn set_sx_raw(&mut self, value: f32) -> &mut Self {
-        self.sx = value;
-        self
-    }
-    ///Sets the raw value of [`Self::a`]
-    pub fn set_a_raw(&mut self, value: f32) -> &mut Self {
-        self.a = value;
-        self
-    }
-    ///Sets the raw value of [`Self::b`]
-    pub fn set_b_raw(&mut self, value: f32) -> &mut Self {
-        self.b = value;
-        self
-    }
-    ///Sets the raw value of [`Self::pvx`]
-    pub fn set_pvx_raw(&mut self, value: f32) -> &mut Self {
-        self.pvx = value;
-        self
-    }
-    ///Sets the raw value of [`Self::sy`]
-    pub fn set_sy_raw(&mut self, value: f32) -> &mut Self {
-        self.sy = value;
-        self
-    }
-    ///Sets the raw value of [`Self::c`]
-    pub fn set_c_raw(&mut self, value: f32) -> &mut Self {
-        self.c = value;
-        self
-    }
-    ///Sets the raw value of [`Self::pvy`]
-    pub fn set_pvy_raw(&mut self, value: f32) -> &mut Self {
-        self.pvy = value;
-        self
-    }
-    ///Sets the raw value of [`Self::sz`]
-    pub fn set_sz_raw(&mut self, value: f32) -> &mut Self {
-        self.sz = value;
-        self
-    }
-    ///Sets the raw value of [`Self::pvz`]
-    pub fn set_pvz_raw(&mut self, value: f32) -> &mut Self {
-        self.pvz = value;
-        self
-    }
-    ///Sets the raw value of [`Self::qx`]
-    pub fn set_qx_raw(&mut self, value: f32) -> &mut Self {
-        self.qx = value;
-        self
-    }
-    ///Sets the raw value of [`Self::qy`]
-    pub fn set_qy_raw(&mut self, value: f32) -> &mut Self {
-        self.qy = value;
-        self
-    }
-    ///Sets the raw value of [`Self::qz`]
-    pub fn set_qz_raw(&mut self, value: f32) -> &mut Self {
-        self.qz = value;
-        self
-    }
-    ///Sets the raw value of [`Self::qw`]
-    pub fn set_qw_raw(&mut self, value: f32) -> &mut Self {
-        self.qw = value;
-        self
-    }
-    ///Sets the raw value of [`Self::tx`]
-    pub fn set_tx_raw(&mut self, value: f32) -> &mut Self {
-        self.tx = value;
-        self
-    }
-    ///Sets the raw value of [`Self::ty`]
-    pub fn set_ty_raw(&mut self, value: f32) -> &mut Self {
-        self.ty = value;
-        self
-    }
-    ///Sets the raw value of [`Self::tz`]
-    pub fn set_tz_raw(&mut self, value: f32) -> &mut Self {
-        self.tz = value;
-        self
-    }
     ///Gets the value of [`Self::sx`]
     pub fn sx(&self) -> f32 {
         self.sx
@@ -1176,7 +1028,7 @@ impl SrtDataNV {
 ///   the acceleration structure at time 1.
 /// - [`instance_custom_index`] is a 24-bit user-specified index value accessible to ray shaders in
 ///   the `InstanceCustomIndexKHR` built-in.
-/// - [`mask`] is an 8-bit visibility mask for the geometry. The instance **may** only be hit if
+/// - [`mask`] is an 8-bit visibility mask for the geometry. The instance  **may**  only be hit if
 ///   `Cull Mask & instance.mask != 0`
 /// - [`instance_shader_binding_table_record_offset`] is a 24-bit offset used in calculating the hit
 ///   shader binding table index.
@@ -1200,13 +1052,14 @@ impl SrtDataNV {
 ///   [`instance_shader_binding_table_record_offset`] occupies the 24 least significant bits of that
 ///   memory  - [`flags`] occupies the 8 most significant bits of that memory
 ///If a compiler produces code that diverges from that pattern, applications
-///**must** employ another method to set values according to the correct bit
+/// **must**  employ another method to set values according to the correct bit
 ///pattern.The transform for a SRT motion instance at a point in time is derived from
 ///component-wise linear interpolation of the two SRT transforms.
 ///That is, for a `time` in [0,1] the resulting transform is
 /// * [`transform_t_0`] × (1 - `time`) +  [`transform_t_1`] × `time`
-///Valid Usage (Implicit)
-/// - [`flags`]**must** be a valid combination of [`GeometryInstanceFlagBitsKHR`] values
+///
+///## Valid Usage (Implicit)
+/// - [`flags`] **must**  be a valid combination of [`GeometryInstanceFlagBitsKHR`] values
 ///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
 /// - [`AccelerationStructureMotionInstanceDataNV`]
@@ -1235,7 +1088,7 @@ pub struct AccelerationStructureSrtMotionInstanceNV {
     ///accessible to ray shaders in the `InstanceCustomIndexKHR` built-in.
     instance_custom_index: u32,
     ///[`mask`] is an 8-bit visibility mask for the geometry.
-    ///The instance **may** only be hit if `Cull Mask & instance.mask != 0`
+    ///The instance  **may**  only be hit if `Cull Mask & instance.mask != 0`
     mask: u32,
     ///[`instance_shader_binding_table_record_offset`] is a 24-bit offset used in
     ///calculating the hit shader binding table index.
@@ -1265,42 +1118,6 @@ impl Default for AccelerationStructureSrtMotionInstanceNV {
     }
 }
 impl AccelerationStructureSrtMotionInstanceNV {
-    ///Gets the raw value of [`Self::instance_custom_index`]
-    pub fn instance_custom_index_raw(&self) -> u32 {
-        self.instance_custom_index
-    }
-    ///Gets the raw value of [`Self::mask`]
-    pub fn mask_raw(&self) -> u32 {
-        self.mask
-    }
-    ///Gets the raw value of [`Self::instance_shader_binding_table_record_offset`]
-    pub fn instance_shader_binding_table_record_offset_raw(&self) -> u32 {
-        self.instance_shader_binding_table_record_offset
-    }
-    ///Gets the raw value of [`Self::acceleration_structure_reference`]
-    pub fn acceleration_structure_reference_raw(&self) -> u64 {
-        self.acceleration_structure_reference
-    }
-    ///Sets the raw value of [`Self::instance_custom_index`]
-    pub fn set_instance_custom_index_raw(&mut self, value: u32) -> &mut Self {
-        self.instance_custom_index = value;
-        self
-    }
-    ///Sets the raw value of [`Self::mask`]
-    pub fn set_mask_raw(&mut self, value: u32) -> &mut Self {
-        self.mask = value;
-        self
-    }
-    ///Sets the raw value of [`Self::instance_shader_binding_table_record_offset`]
-    pub fn set_instance_shader_binding_table_record_offset_raw(&mut self, value: u32) -> &mut Self {
-        self.instance_shader_binding_table_record_offset = value;
-        self
-    }
-    ///Sets the raw value of [`Self::acceleration_structure_reference`]
-    pub fn set_acceleration_structure_reference_raw(&mut self, value: u64) -> &mut Self {
-        self.acceleration_structure_reference = value;
-        self
-    }
     ///Gets the value of [`Self::transform_t_0`]
     pub fn transform_t_0(&self) -> SrtDataNV {
         self.transform_t_0
@@ -1420,7 +1237,7 @@ impl AccelerationStructureSrtMotionInstanceNV {
 ///   applied to the acceleration structure at time 1.
 /// - [`instance_custom_index`] is a 24-bit user-specified index value accessible to ray shaders in
 ///   the `InstanceCustomIndexKHR` built-in.
-/// - [`mask`] is an 8-bit visibility mask for the geometry. The instance **may** only be hit if
+/// - [`mask`] is an 8-bit visibility mask for the geometry. The instance  **may**  only be hit if
 ///   `Cull Mask & instance.mask != 0`
 /// - [`instance_shader_binding_table_record_offset`] is a 24-bit offset used in calculating the hit
 ///   shader binding table index.
@@ -1444,13 +1261,14 @@ impl AccelerationStructureSrtMotionInstanceNV {
 ///   [`instance_shader_binding_table_record_offset`] occupies the 24 least significant bits of that
 ///   memory  - [`flags`] occupies the 8 most significant bits of that memory
 ///If a compiler produces code that diverges from that pattern, applications
-///**must** employ another method to set values according to the correct bit
+/// **must**  employ another method to set values according to the correct bit
 ///pattern.The transform for a matrix motion instance at a point in time is derived by
 ///component-wise linear interpolation of the two transforms.
 ///That is, for a `time` in [0,1] the resulting transform is
 /// * [`transform_t_0`] × (1 - `time`) +  [`transform_t_1`] × `time`
-///Valid Usage (Implicit)
-/// - [`flags`]**must** be a valid combination of [`GeometryInstanceFlagBitsKHR`] values
+///
+///## Valid Usage (Implicit)
+/// - [`flags`] **must**  be a valid combination of [`GeometryInstanceFlagBitsKHR`] values
 ///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
 /// - [`AccelerationStructureMotionInstanceDataNV`]
@@ -1479,7 +1297,7 @@ pub struct AccelerationStructureMatrixMotionInstanceNV {
     ///accessible to ray shaders in the `InstanceCustomIndexKHR` built-in.
     instance_custom_index: u32,
     ///[`mask`] is an 8-bit visibility mask for the geometry.
-    ///The instance **may** only be hit if `Cull Mask & instance.mask != 0`
+    ///The instance  **may**  only be hit if `Cull Mask & instance.mask != 0`
     mask: u32,
     ///[`instance_shader_binding_table_record_offset`] is a 24-bit offset used in
     ///calculating the hit shader binding table index.
@@ -1509,42 +1327,6 @@ impl Default for AccelerationStructureMatrixMotionInstanceNV {
     }
 }
 impl AccelerationStructureMatrixMotionInstanceNV {
-    ///Gets the raw value of [`Self::instance_custom_index`]
-    pub fn instance_custom_index_raw(&self) -> u32 {
-        self.instance_custom_index
-    }
-    ///Gets the raw value of [`Self::mask`]
-    pub fn mask_raw(&self) -> u32 {
-        self.mask
-    }
-    ///Gets the raw value of [`Self::instance_shader_binding_table_record_offset`]
-    pub fn instance_shader_binding_table_record_offset_raw(&self) -> u32 {
-        self.instance_shader_binding_table_record_offset
-    }
-    ///Gets the raw value of [`Self::acceleration_structure_reference`]
-    pub fn acceleration_structure_reference_raw(&self) -> u64 {
-        self.acceleration_structure_reference
-    }
-    ///Sets the raw value of [`Self::instance_custom_index`]
-    pub fn set_instance_custom_index_raw(&mut self, value: u32) -> &mut Self {
-        self.instance_custom_index = value;
-        self
-    }
-    ///Sets the raw value of [`Self::mask`]
-    pub fn set_mask_raw(&mut self, value: u32) -> &mut Self {
-        self.mask = value;
-        self
-    }
-    ///Sets the raw value of [`Self::instance_shader_binding_table_record_offset`]
-    pub fn set_instance_shader_binding_table_record_offset_raw(&mut self, value: u32) -> &mut Self {
-        self.instance_shader_binding_table_record_offset = value;
-        self
-    }
-    ///Sets the raw value of [`Self::acceleration_structure_reference`]
-    pub fn set_acceleration_structure_reference_raw(&mut self, value: u64) -> &mut Self {
-        self.acceleration_structure_reference = value;
-        self
-    }
     ///Gets the value of [`Self::transform_t_0`]
     pub fn transform_t_0(&self) -> TransformMatrixKHR {
         self.transform_t_0
@@ -1649,7 +1431,7 @@ impl AccelerationStructureMatrixMotionInstanceNV {
 }
 ///[VkAccelerationStructureMotionInstanceNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMotionInstanceNV.html) - Structure specifying a single acceleration structure motion instance for building into an acceleration structure geometry
 ///# C Specifications
-///*Acceleration structure motion instances***can** be built into top-level
+///*Acceleration structure motion instances* **can**  be built into top-level
 ///acceleration structures.
 ///Each acceleration structure instance is a separate entry in the top-level
 ///acceleration structure which includes all the geometry of a bottom-level
@@ -1671,17 +1453,17 @@ impl AccelerationStructureMatrixMotionInstanceNV {
 /// - [`data`] is a [`AccelerationStructureMotionInstanceDataNV`] containing motion instance data
 ///   for this instance.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`type_`]**must** be a valid [`AccelerationStructureMotionInstanceTypeNV`] value
-/// - [`flags`]**must** be `0`
+///## Valid Usage (Implicit)
+/// - [`type_`] **must**  be a valid [`AccelerationStructureMotionInstanceTypeNV`] value
+/// - [`flags`] **must**  be `0`
 /// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_STATIC_NV`, the
-///   `staticInstance` member of [`data`]**must** be a valid [`AccelerationStructureInstanceKHR`]
+///   `staticInstance` member of [`data`] **must**  be a valid [`AccelerationStructureInstanceKHR`]
 ///   structure
 /// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_MATRIX_MOTION_NV`, the
-///   `matrixMotionInstance` member of [`data`]**must** be a valid
+///   `matrixMotionInstance` member of [`data`] **must**  be a valid
 ///   [`AccelerationStructureMatrixMotionInstanceNV`] structure
 /// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_SRT_MOTION_NV`, the
-///   `srtMotionInstance` member of [`data`]**must** be a valid
+///   `srtMotionInstance` member of [`data`] **must**  be a valid
 ///   [`AccelerationStructureSrtMotionInstanceNV`] structure
 ///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]

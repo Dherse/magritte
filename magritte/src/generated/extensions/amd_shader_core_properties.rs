@@ -44,7 +44,7 @@ pub const AMD_SHADER_CORE_PROPERTIES_EXTENSION_NAME: &'static CStr = crate::cstr
 ///   units. Currently, a shader engine can have one or two shader arrays.
 /// - [`compute_units_per_shader_array`] is an unsigned integer value indicating the physical number
 ///   of compute units within a shader array. The active number of compute units in a shader array
-///   **may** be lower. A compute unit houses a set of SIMDs along with a sequencer module and a
+///   **may**  be lower. A compute unit houses a set of SIMDs along with a sequencer module and a
 ///   local data store.
 /// - [`simd_per_compute_unit`] is an unsigned integer value indicating the number of SIMDs inside a
 ///   compute unit. Each SIMD processes a single instruction at a time.
@@ -70,8 +70,9 @@ pub const AMD_SHADER_CORE_PROPERTIES_EXTENSION_NAME: &'static CStr = crate::cstr
 /// of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD`
 ///# Related
 /// - [`VK_AMD_shader_core_properties`]
 /// - [`StructureType`]
@@ -109,7 +110,7 @@ pub struct PhysicalDeviceShaderCorePropertiesAMD<'lt> {
     ///[`compute_units_per_shader_array`]
     ///is an unsigned integer value indicating the physical number of compute
     ///units within a shader array.
-    ///The active number of compute units in a shader array **may** be lower.
+    ///The active number of compute units in a shader array  **may**  be lower.
     ///A compute unit houses a set of SIMDs along with a sequencer module and a
     ///local data store.
     compute_units_per_shader_array: u32,
@@ -183,135 +184,9 @@ impl<'lt> PhysicalDeviceShaderCorePropertiesAMD<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::shader_engine_count`]
-    pub fn shader_engine_count_raw(&self) -> u32 {
-        self.shader_engine_count
-    }
-    ///Gets the raw value of [`Self::shader_arrays_per_engine_count`]
-    pub fn shader_arrays_per_engine_count_raw(&self) -> u32 {
-        self.shader_arrays_per_engine_count
-    }
-    ///Gets the raw value of [`Self::compute_units_per_shader_array`]
-    pub fn compute_units_per_shader_array_raw(&self) -> u32 {
-        self.compute_units_per_shader_array
-    }
-    ///Gets the raw value of [`Self::simd_per_compute_unit`]
-    pub fn simd_per_compute_unit_raw(&self) -> u32 {
-        self.simd_per_compute_unit
-    }
-    ///Gets the raw value of [`Self::wavefronts_per_simd`]
-    pub fn wavefronts_per_simd_raw(&self) -> u32 {
-        self.wavefronts_per_simd
-    }
-    ///Gets the raw value of [`Self::wavefront_size`]
-    pub fn wavefront_size_raw(&self) -> u32 {
-        self.wavefront_size
-    }
-    ///Gets the raw value of [`Self::sgprs_per_simd`]
-    pub fn sgprs_per_simd_raw(&self) -> u32 {
-        self.sgprs_per_simd
-    }
-    ///Gets the raw value of [`Self::min_sgpr_allocation`]
-    pub fn min_sgpr_allocation_raw(&self) -> u32 {
-        self.min_sgpr_allocation
-    }
-    ///Gets the raw value of [`Self::max_sgpr_allocation`]
-    pub fn max_sgpr_allocation_raw(&self) -> u32 {
-        self.max_sgpr_allocation
-    }
-    ///Gets the raw value of [`Self::sgpr_allocation_granularity`]
-    pub fn sgpr_allocation_granularity_raw(&self) -> u32 {
-        self.sgpr_allocation_granularity
-    }
-    ///Gets the raw value of [`Self::vgprs_per_simd`]
-    pub fn vgprs_per_simd_raw(&self) -> u32 {
-        self.vgprs_per_simd
-    }
-    ///Gets the raw value of [`Self::min_vgpr_allocation`]
-    pub fn min_vgpr_allocation_raw(&self) -> u32 {
-        self.min_vgpr_allocation
-    }
-    ///Gets the raw value of [`Self::max_vgpr_allocation`]
-    pub fn max_vgpr_allocation_raw(&self) -> u32 {
-        self.max_vgpr_allocation
-    }
-    ///Gets the raw value of [`Self::vgpr_allocation_granularity`]
-    pub fn vgpr_allocation_granularity_raw(&self) -> u32 {
-        self.vgpr_allocation_granularity
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::shader_engine_count`]
-    pub fn set_shader_engine_count_raw(&mut self, value: u32) -> &mut Self {
-        self.shader_engine_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::shader_arrays_per_engine_count`]
-    pub fn set_shader_arrays_per_engine_count_raw(&mut self, value: u32) -> &mut Self {
-        self.shader_arrays_per_engine_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::compute_units_per_shader_array`]
-    pub fn set_compute_units_per_shader_array_raw(&mut self, value: u32) -> &mut Self {
-        self.compute_units_per_shader_array = value;
-        self
-    }
-    ///Sets the raw value of [`Self::simd_per_compute_unit`]
-    pub fn set_simd_per_compute_unit_raw(&mut self, value: u32) -> &mut Self {
-        self.simd_per_compute_unit = value;
-        self
-    }
-    ///Sets the raw value of [`Self::wavefronts_per_simd`]
-    pub fn set_wavefronts_per_simd_raw(&mut self, value: u32) -> &mut Self {
-        self.wavefronts_per_simd = value;
-        self
-    }
-    ///Sets the raw value of [`Self::wavefront_size`]
-    pub fn set_wavefront_size_raw(&mut self, value: u32) -> &mut Self {
-        self.wavefront_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::sgprs_per_simd`]
-    pub fn set_sgprs_per_simd_raw(&mut self, value: u32) -> &mut Self {
-        self.sgprs_per_simd = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_sgpr_allocation`]
-    pub fn set_min_sgpr_allocation_raw(&mut self, value: u32) -> &mut Self {
-        self.min_sgpr_allocation = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_sgpr_allocation`]
-    pub fn set_max_sgpr_allocation_raw(&mut self, value: u32) -> &mut Self {
-        self.max_sgpr_allocation = value;
-        self
-    }
-    ///Sets the raw value of [`Self::sgpr_allocation_granularity`]
-    pub fn set_sgpr_allocation_granularity_raw(&mut self, value: u32) -> &mut Self {
-        self.sgpr_allocation_granularity = value;
-        self
-    }
-    ///Sets the raw value of [`Self::vgprs_per_simd`]
-    pub fn set_vgprs_per_simd_raw(&mut self, value: u32) -> &mut Self {
-        self.vgprs_per_simd = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_vgpr_allocation`]
-    pub fn set_min_vgpr_allocation_raw(&mut self, value: u32) -> &mut Self {
-        self.min_vgpr_allocation = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_vgpr_allocation`]
-    pub fn set_max_vgpr_allocation_raw(&mut self, value: u32) -> &mut Self {
-        self.max_vgpr_allocation = value;
-        self
-    }
-    ///Sets the raw value of [`Self::vgpr_allocation_granularity`]
-    pub fn set_vgpr_allocation_granularity_raw(&mut self, value: u32) -> &mut Self {
-        self.vgpr_allocation_granularity = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

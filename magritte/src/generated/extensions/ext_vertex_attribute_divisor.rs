@@ -22,17 +22,19 @@ pub const EXT_VERTEX_ATTRIBUTE_DIVISOR_EXTENSION_NAME: &'static CStr = crate::cs
 ///```
 ///# Members
 /// - [`binding`] is the binding number for which the divisor is specified.
-/// - [`divisor`] is the number of successive instances that will use the same value of the vertex attribute when instanced rendering is enabled. For example, if the divisor is N, the same vertex attribute will be applied to N successive instances before moving on to the next vertex attribute. The maximum value of [`divisor`] is implementation-dependent and can be queried using [`PhysicalDeviceVertexAttributeDivisorPropertiesEXT::max_vertex_attrib_divisor`]. A value of `0`**can** be used for the divisor if the [`vertexAttributeInstanceRateZeroDivisor`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-vertexAttributeInstanceRateZeroDivisor) feature is enabled. In this case, the same vertex attribute will be applied to all instances.
+/// - [`divisor`] is the number of successive instances that will use the same value of the vertex attribute when instanced rendering is enabled. For example, if the divisor is N, the same vertex attribute will be applied to N successive instances before moving on to the next vertex attribute. The maximum value of [`divisor`] is implementation-dependent and can be queried using [`PhysicalDeviceVertexAttributeDivisorPropertiesEXT::max_vertex_attrib_divisor`]. A value of `0` **can**  be used for the divisor if the [`vertexAttributeInstanceRateZeroDivisor`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-vertexAttributeInstanceRateZeroDivisor) feature is enabled. In this case, the same vertex attribute will be applied to all instances.
 ///# Description
 ///If this structure is not used to define a divisor value for an attribute,
-///then the divisor has a logical default value of 1.Valid Usage
-/// - [`binding`]**must** be less than [`PhysicalDeviceLimits::max_vertex_input_bindings`]
-/// - If the `vertexAttributeInstanceRateZeroDivisor` feature is not enabled, [`divisor`]**must**
+///then the divisor has a logical default value of 1.
+///## Valid Usage
+/// - [`binding`] **must**  be less than [`PhysicalDeviceLimits::max_vertex_input_bindings`]
+/// - If the `vertexAttributeInstanceRateZeroDivisor` feature is not enabled, [`divisor`] **must**
 ///   not be `0`
-/// - If the `vertexAttributeInstanceRateDivisor` feature is not enabled, [`divisor`]**must** be `1`
-/// - [`divisor`]**must** be a value between `0` and
+/// - If the `vertexAttributeInstanceRateDivisor` feature is not enabled, [`divisor`] **must**  be
+///   `1`
+/// - [`divisor`] **must**  be a value between `0` and
 ///   [`PhysicalDeviceVertexAttributeDivisorPropertiesEXT::max_vertex_attrib_divisor`], inclusive
-/// - [`VertexInputBindingDescription::input_rate`]**must** be of type
+/// - [`VertexInputBindingDescription::input_rate`] **must**  be of type
 ///   `VK_VERTEX_INPUT_RATE_INSTANCE` for this [`binding`]
 ///# Related
 /// - [`VK_EXT_vertex_attribute_divisor`]
@@ -60,7 +62,7 @@ pub struct VertexInputBindingDivisorDescriptionEXT {
     ///The maximum value of [`divisor`] is implementation-dependent and can
     ///be queried using
     ///[`PhysicalDeviceVertexAttributeDivisorPropertiesEXT`]::`maxVertexAttribDivisor`.
-    ///A value of `0`**can** be used for the divisor if the
+    ///A value of `0` **can**  be used for the divisor if the
     ///[`vertexAttributeInstanceRateZeroDivisor`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-vertexAttributeInstanceRateZeroDivisor)
     ///feature is enabled.
     ///In this case, the same vertex attribute will be applied to all
@@ -73,24 +75,6 @@ impl Default for VertexInputBindingDivisorDescriptionEXT {
     }
 }
 impl VertexInputBindingDivisorDescriptionEXT {
-    ///Gets the raw value of [`Self::binding`]
-    pub fn binding_raw(&self) -> u32 {
-        self.binding
-    }
-    ///Gets the raw value of [`Self::divisor`]
-    pub fn divisor_raw(&self) -> u32 {
-        self.divisor
-    }
-    ///Sets the raw value of [`Self::binding`]
-    pub fn set_binding_raw(&mut self, value: u32) -> &mut Self {
-        self.binding = value;
-        self
-    }
-    ///Sets the raw value of [`Self::divisor`]
-    pub fn set_divisor_raw(&mut self, value: u32) -> &mut Self {
-        self.divisor = value;
-        self
-    }
     ///Gets the value of [`Self::binding`]
     pub fn binding(&self) -> u32 {
         self.binding
@@ -146,11 +130,12 @@ impl VertexInputBindingDivisorDescriptionEXT {
 ///   [`VertexInputBindingDivisorDescriptionEXT`] structures specifying the divisor value for each
 ///   binding.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO_EXT`
-/// - [`vertex_binding_divisors`]**must** be a valid pointer to an array of
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO_EXT`
+/// - [`vertex_binding_divisors`] **must**  be a valid pointer to an array of
 ///   [`vertex_binding_divisor_count`][`VertexInputBindingDivisorDescriptionEXT`] structures
-/// - [`vertex_binding_divisor_count`]**must** be greater than `0`
+/// - [`vertex_binding_divisor_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_EXT_vertex_attribute_divisor`]
 /// - [`StructureType`]
@@ -197,10 +182,6 @@ impl<'lt> PipelineVertexInputDivisorStateCreateInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::vertex_binding_divisor_count`]
-    pub fn vertex_binding_divisor_count_raw(&self) -> u32 {
-        self.vertex_binding_divisor_count
-    }
     ///Gets the raw value of [`Self::vertex_binding_divisors`]
     pub fn vertex_binding_divisors_raw(&self) -> *const VertexInputBindingDivisorDescriptionEXT {
         self.vertex_binding_divisors
@@ -208,11 +189,6 @@ impl<'lt> PipelineVertexInputDivisorStateCreateInfoEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::vertex_binding_divisor_count`]
-    pub fn set_vertex_binding_divisor_count_raw(&mut self, value: u32) -> &mut Self {
-        self.vertex_binding_divisor_count = value;
         self
     }
     ///Sets the raw value of [`Self::vertex_binding_divisors`]
@@ -302,8 +278,9 @@ impl<'lt> PipelineVertexInputDivisorStateCreateInfoEXT<'lt> {
 /// [`p_next`] chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT`
 ///# Related
 /// - [`VK_EXT_vertex_attribute_divisor`]
@@ -346,18 +323,9 @@ impl<'lt> PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::max_vertex_attrib_divisor`]
-    pub fn max_vertex_attrib_divisor_raw(&self) -> u32 {
-        self.max_vertex_attrib_divisor
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_vertex_attrib_divisor`]
-    pub fn set_max_vertex_attrib_divisor_raw(&mut self, value: u32) -> &mut Self {
-        self.max_vertex_attrib_divisor = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -433,10 +401,11 @@ impl<'lt> PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceVertexAttributeDivisorFeaturesEXT`]**can** also be used in the [`p_next`] chain
-/// of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`PhysicalDeviceVertexAttributeDivisorFeaturesEXT`] **can**  also be used in the [`p_next`]
+/// chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_vertex_attribute_divisor`]

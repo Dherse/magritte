@@ -32,18 +32,20 @@ pub const EXT_DEBUG_UTILS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_d
 /// - [`object_name`] is either `NULL` or a null-terminated UTF-8 string specifying the name to
 ///   apply to [`object_handle`].
 ///# Description
-///Applications **may** change the name associated with an object simply by
+///Applications **may**  change the name associated with an object simply by
 ///calling [`SetDebugUtilsObjectNameEXT`] again with a new string.
 ///If [`object_name`] is either `NULL` or an empty string, then any
-///previously set name is removed.Valid Usage
-/// - If [`object_type`] is `VK_OBJECT_TYPE_UNKNOWN`, [`object_handle`]**must** not be
+///previously set name is removed.
+///## Valid Usage
+/// - If [`object_type`] is `VK_OBJECT_TYPE_UNKNOWN`, [`object_handle`] **must**  not be
 ///   [`crate::utils::Handle::null`]
-/// -    If [`object_type`] is not `VK_OBJECT_TYPE_UNKNOWN`, [`object_handle`]**must** be [`crate::utils::Handle::null`] or a valid Vulkan handle of the type associated with [`object_type`] as defined in the [[`ObjectType`] and Vulkan Handle Relationship](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-object-types) table
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_NAME_INFO_EXT`
-/// - [`p_next`]**must** be `NULL`
-/// - [`object_type`]**must** be a valid [`ObjectType`] value
-/// - If [`object_name`] is not `NULL`, [`object_name`]**must** be a null-terminated UTF-8 string
+/// -    If [`object_type`] is not `VK_OBJECT_TYPE_UNKNOWN`, [`object_handle`] **must**  be [`crate::utils::Handle::null`] or a valid Vulkan handle of the type associated with [`object_type`] as defined in the [[`ObjectType`] and Vulkan Handle Relationship](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-object-types) table
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_NAME_INFO_EXT`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`object_type`] **must**  be a valid [`ObjectType`] value
+/// - If [`object_name`] is not `NULL`, [`object_name`] **must**  be a null-terminated UTF-8 string
 ///# Related
 /// - [`VK_EXT_debug_utils`]
 /// - [`DebugUtilsMessengerCallbackDataEXT`]
@@ -94,27 +96,9 @@ impl<'lt> DebugUtilsObjectNameInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::object_handle`]
-    pub fn object_handle_raw(&self) -> u64 {
-        self.object_handle
-    }
-    ///Gets the raw value of [`Self::object_name`]
-    pub fn object_name_raw(&self) -> &'lt CStr {
-        self.object_name
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::object_handle`]
-    pub fn set_object_handle_raw(&mut self, value: u64) -> &mut Self {
-        self.object_handle = value;
-        self
-    }
-    ///Sets the raw value of [`Self::object_name`]
-    pub fn set_object_name_raw(&mut self, value: &'lt CStr) -> &mut Self {
-        self.object_name = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -209,17 +193,17 @@ impl<'lt> DebugUtilsObjectNameInfoEXT<'lt> {
 ///The [`tag_name`] parameter gives a name or identifier to the type of data
 ///being tagged.
 ///This can be used by debugging layers to easily filter for only data that can
-///be used by that implementation.Valid Usage
-/// - [`object_type`]**must** not be `VK_OBJECT_TYPE_UNKNOWN`
-/// - [`object_handle`]**must** be a valid Vulkan handle of the type associated with [`object_type`]
-///   as defined in the [[`ObjectType`] and Vulkan Handle Relationship](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-object-types)
-///   table
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_TAG_INFO_EXT`
-/// - [`p_next`]**must** be `NULL`
-/// - [`object_type`]**must** be a valid [`ObjectType`] value
-/// - [`tag`]**must** be a valid pointer to an array of [`tag_size`] bytes
-/// - [`tag_size`]**must** be greater than `0`
+///be used by that implementation.
+///## Valid Usage
+/// - [`object_type`] **must**  not be `VK_OBJECT_TYPE_UNKNOWN`
+/// -  [`object_handle`] **must**  be a valid Vulkan handle of the type associated with [`object_type`] as defined in the [[`ObjectType`] and Vulkan Handle Relationship](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-object-types) table
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_TAG_INFO_EXT`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`object_type`] **must**  be a valid [`ObjectType`] value
+/// - [`tag`] **must**  be a valid pointer to an array of [`tag_size`] bytes
+/// - [`tag_size`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_EXT_debug_utils`]
 /// - [`ObjectType`]
@@ -275,18 +259,6 @@ impl<'lt> DebugUtilsObjectTagInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::object_handle`]
-    pub fn object_handle_raw(&self) -> u64 {
-        self.object_handle
-    }
-    ///Gets the raw value of [`Self::tag_name`]
-    pub fn tag_name_raw(&self) -> u64 {
-        self.tag_name
-    }
-    ///Gets the raw value of [`Self::tag_size`]
-    pub fn tag_size_raw(&self) -> usize {
-        self.tag_size
-    }
     ///Gets the raw value of [`Self::tag`]
     pub fn tag_raw(&self) -> *const c_void {
         self.tag
@@ -294,21 +266,6 @@ impl<'lt> DebugUtilsObjectTagInfoEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::object_handle`]
-    pub fn set_object_handle_raw(&mut self, value: u64) -> &mut Self {
-        self.object_handle = value;
-        self
-    }
-    ///Sets the raw value of [`Self::tag_name`]
-    pub fn set_tag_name_raw(&mut self, value: u64) -> &mut Self {
-        self.tag_name = value;
-        self
-    }
-    ///Sets the raw value of [`Self::tag_size`]
-    pub fn set_tag_size_raw(&mut self, value: usize) -> &mut Self {
-        self.tag_size = value;
         self
     }
     ///Sets the raw value of [`Self::tag`]
@@ -427,14 +384,14 @@ impl<'lt> DebugUtilsObjectTagInfoEXT<'lt> {
 /// - [`label_name`] is a pointer to a null-terminated UTF-8 string containing the name of the
 ///   label.
 /// - [`color`] is an optional RGBA color value that can be associated with the label. A particular
-///   implementation **may** choose to ignore this color value. The values contain RGBA values in
+///   implementation  **may**  choose to ignore this color value. The values contain RGBA values in
 ///   order, in the range 0.0 to 1.0. If all elements in [`color`] are set to 0.0 then it is
 ///   ignored.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEBUG_UTILS_LABEL_EXT`
-/// - [`p_next`]**must** be `NULL`
-/// - [`label_name`]**must** be a null-terminated UTF-8 string
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEBUG_UTILS_LABEL_EXT`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`label_name`] **must**  be a null-terminated UTF-8 string
 ///# Related
 /// - [`VK_EXT_debug_utils`]
 /// - [`DebugUtilsMessengerCallbackDataEXT`]
@@ -466,7 +423,7 @@ pub struct DebugUtilsLabelEXT<'lt> {
     label_name: &'lt CStr,
     ///[`color`] is an optional RGBA color value that can be associated with
     ///the label.
-    ///A particular implementation **may** choose to ignore this color value.
+    ///A particular implementation  **may**  choose to ignore this color value.
     ///The values contain RGBA values in order, in the range 0.0 to 1.0.
     ///If all elements in [`color`] are set to 0.0 then it is ignored.
     color: [f32; 4],
@@ -487,27 +444,9 @@ impl<'lt> DebugUtilsLabelEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::label_name`]
-    pub fn label_name_raw(&self) -> &'lt CStr {
-        self.label_name
-    }
-    ///Gets the raw value of [`Self::color`]
-    pub fn color_raw(&self) -> [f32; 4] {
-        self.color
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::label_name`]
-    pub fn set_label_name_raw(&mut self, value: &'lt CStr) -> &mut Self {
-        self.label_name = value;
-        self
-    }
-    ///Sets the raw value of [`Self::color`]
-    pub fn set_color_raw(&mut self, value: [f32; 4]) -> &mut Self {
-        self.color = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -603,22 +542,25 @@ impl<'lt> DebugUtilsLabelEXT<'lt> {
 ///4. The callback will trigger a debug message for the current event
 ///The callback will come directly from the component that detected the event,
 ///unless some other layer intercepts the calls for its own purposes (filter
-///them in a different way, log to a system error log, etc.).An application **can** receive
+///them in a different way, log to a system error log, etc.).An application  **can**  receive
 /// multiple callbacks if multiple
 ///[`DebugUtilsMessengerEXT`] objects are created.
 ///A callback will always be executed in the same thread as the originating
-///Vulkan call.A callback **can** be called from multiple threads simultaneously (if the
-///application is making Vulkan calls from multiple threads).Valid Usage
-/// - [`pfn_user_callback`]**must** be a valid [`PFNDebugUtilsMessengerCallbackEXT`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT`
-/// - [`flags`]**must** be `0`
-/// - [`message_severity`]**must** be a valid combination of
+///Vulkan call.A callback  **can**  be called from multiple threads simultaneously (if the
+///application is making Vulkan calls from multiple threads).
+///## Valid Usage
+/// - [`pfn_user_callback`] **must**  be a valid [`PFNDebugUtilsMessengerCallbackEXT`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT`
+/// - [`flags`] **must**  be `0`
+/// - [`message_severity`] **must**  be a valid combination of
 ///   [`DebugUtilsMessageSeverityFlagBitsEXT`] values
-/// - [`message_severity`]**must** not be `0`
-/// - [`message_type`]**must** be a valid combination of [`DebugUtilsMessageTypeFlagBitsEXT`] values
-/// - [`message_type`]**must** not be `0`
-/// - [`pfn_user_callback`]**must** be a valid [`PFNDebugUtilsMessengerCallbackEXT`] value
+/// - [`message_severity`] **must**  not be `0`
+/// - [`message_type`] **must**  be a valid combination of [`DebugUtilsMessageTypeFlagBitsEXT`]
+///   values
+/// - [`message_type`] **must**  not be `0`
+/// - [`pfn_user_callback`] **must**  be a valid [`PFNDebugUtilsMessengerCallbackEXT`] value
 ///# Related
 /// - [`PFNDebugUtilsMessengerCallbackEXT`]
 /// - [`VK_EXT_debug_utils`]
@@ -848,18 +790,19 @@ impl<'lt> DebugUtilsMessengerCreateInfoEXT<'lt> {
 ///[`cmd_buf_labels`] is based on the order the labels were defined.
 ///The result is that the first label in either [`queue_labels`] or
 ///[`cmd_buf_labels`] will be the first defined (and therefore the oldest)
-///while the last label in each list will be the most recent.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
-/// - If [`message_id_name`] is not `NULL`, [`message_id_name`]**must** be a null-terminated UTF-8
+///while the last label in each list will be the most recent.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
+/// - If [`message_id_name`] is not `NULL`, [`message_id_name`] **must**  be a null-terminated UTF-8
 ///   string
-/// - [`message`]**must** be a null-terminated UTF-8 string
-/// - If [`queue_label_count`] is not `0`, [`queue_labels`]**must** be a valid pointer to an array
+/// - [`message`] **must**  be a null-terminated UTF-8 string
+/// - If [`queue_label_count`] is not `0`, [`queue_labels`] **must**  be a valid pointer to an array
 ///   of [`queue_label_count`] valid [`DebugUtilsLabelEXT`] structures
-/// - If [`cmd_buf_label_count`] is not `0`, [`cmd_buf_labels`]**must** be a valid pointer to an
+/// - If [`cmd_buf_label_count`] is not `0`, [`cmd_buf_labels`] **must**  be a valid pointer to an
 ///   array of [`cmd_buf_label_count`] valid [`DebugUtilsLabelEXT`] structures
-/// - If [`object_count`] is not `0`, [`objects`]**must** be a valid pointer to an array of
+/// - If [`object_count`] is not `0`, [`objects`] **must**  be a valid pointer to an array of
 ///   [`object_count`] valid [`DebugUtilsObjectNameInfoEXT`] structures
 ///# Related
 /// - [`VK_EXT_debug_utils`]
@@ -953,37 +896,13 @@ impl<'lt> DebugUtilsMessengerCallbackDataEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::message_id_name`]
-    pub fn message_id_name_raw(&self) -> &'lt CStr {
-        self.message_id_name
-    }
-    ///Gets the raw value of [`Self::message_id_number`]
-    pub fn message_id_number_raw(&self) -> i32 {
-        self.message_id_number
-    }
-    ///Gets the raw value of [`Self::message`]
-    pub fn message_raw(&self) -> &'lt CStr {
-        self.message
-    }
-    ///Gets the raw value of [`Self::queue_label_count`]
-    pub fn queue_label_count_raw(&self) -> u32 {
-        self.queue_label_count
-    }
     ///Gets the raw value of [`Self::queue_labels`]
     pub fn queue_labels_raw(&self) -> *const DebugUtilsLabelEXT<'lt> {
         self.queue_labels
     }
-    ///Gets the raw value of [`Self::cmd_buf_label_count`]
-    pub fn cmd_buf_label_count_raw(&self) -> u32 {
-        self.cmd_buf_label_count
-    }
     ///Gets the raw value of [`Self::cmd_buf_labels`]
     pub fn cmd_buf_labels_raw(&self) -> *const DebugUtilsLabelEXT<'lt> {
         self.cmd_buf_labels
-    }
-    ///Gets the raw value of [`Self::object_count`]
-    pub fn object_count_raw(&self) -> u32 {
-        self.object_count
     }
     ///Gets the raw value of [`Self::objects`]
     pub fn objects_raw(&self) -> *const DebugUtilsObjectNameInfoEXT<'lt> {
@@ -994,44 +913,14 @@ impl<'lt> DebugUtilsMessengerCallbackDataEXT<'lt> {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::message_id_name`]
-    pub fn set_message_id_name_raw(&mut self, value: &'lt CStr) -> &mut Self {
-        self.message_id_name = value;
-        self
-    }
-    ///Sets the raw value of [`Self::message_id_number`]
-    pub fn set_message_id_number_raw(&mut self, value: i32) -> &mut Self {
-        self.message_id_number = value;
-        self
-    }
-    ///Sets the raw value of [`Self::message`]
-    pub fn set_message_raw(&mut self, value: &'lt CStr) -> &mut Self {
-        self.message = value;
-        self
-    }
-    ///Sets the raw value of [`Self::queue_label_count`]
-    pub fn set_queue_label_count_raw(&mut self, value: u32) -> &mut Self {
-        self.queue_label_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::queue_labels`]
     pub fn set_queue_labels_raw(&mut self, value: *const DebugUtilsLabelEXT<'lt>) -> &mut Self {
         self.queue_labels = value;
         self
     }
-    ///Sets the raw value of [`Self::cmd_buf_label_count`]
-    pub fn set_cmd_buf_label_count_raw(&mut self, value: u32) -> &mut Self {
-        self.cmd_buf_label_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::cmd_buf_labels`]
     pub fn set_cmd_buf_labels_raw(&mut self, value: *const DebugUtilsLabelEXT<'lt>) -> &mut Self {
         self.cmd_buf_labels = value;
-        self
-    }
-    ///Sets the raw value of [`Self::object_count`]
-    pub fn set_object_count_raw(&mut self, value: u32) -> &mut Self {
-        self.object_count = value;
         self
     }
     ///Sets the raw value of [`Self::objects`]

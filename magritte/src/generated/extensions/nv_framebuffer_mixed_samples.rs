@@ -89,7 +89,7 @@ impl CoverageModulationModeNV {
 }
 ///[VkPipelineCoverageModulationStateCreateInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineCoverageModulationStateCreateInfoNV.html) - Structure specifying parameters controlling coverage modulation
 ///# C Specifications
-///As part of coverage reduction, fragment color values **can** also be modulated
+///As part of coverage reduction, fragment color values  **can**  also be modulated
 ///(multiplied) by a value that is a function of fraction of covered
 ///rasterization samples associated with that color sample.Pipeline state controlling coverage
 /// modulation is specified through the
@@ -137,11 +137,11 @@ impl CoverageModulationModeNV {
 /// - R = [`coverage_modulation_table`][popcount(associated coverage bits)-1]
 ///Note that the table does not have an entry for popcount(associated
 ///coverage bits) = 0, because such samples would have been killed.The values of
-/// [`coverage_modulation_table`]**may** be rounded to an
+/// [`coverage_modulation_table`] **may**  be rounded to an
 ///implementation-dependent precision, which is at least as fine as 1 /
 ///N, and clamped to [0,1].For each color attachment with a floating point or normalized color
 /// format,
-///each fragment output color value is replicated to M values which **can**
+///each fragment output color value is replicated to M values which  **can**
 ///each be modulated (multiplied) by that color sample’s associated value of
 ///R.
 ///Which components are modulated is controlled by
@@ -151,14 +151,16 @@ impl CoverageModulationModeNV {
 ///`VK_COVERAGE_REDUCTION_MODE_TRUNCATE_NV`, each color sample is
 ///associated with only a single coverage sample.
 ///In this case, it is as if [`coverage_modulation_mode`] is
-///`VK_COVERAGE_MODULATION_MODE_NONE_NV`.Valid Usage
-/// - If [`coverage_modulation_table_enable`] is [`TRUE`],
-///   [`coverage_modulation_table_count`]**must** be equal to the number of rasterization samples
-///   divided by the number of color samples in the subpass
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV`
-/// - [`flags`]**must** be `0`
-/// - [`coverage_modulation_mode`]**must** be a valid [`CoverageModulationModeNV`] value
+///`VK_COVERAGE_MODULATION_MODE_NONE_NV`.
+///## Valid Usage
+/// - If [`coverage_modulation_table_enable`] is [`TRUE`], [`coverage_modulation_table_count`]
+///   **must**  be equal to the number of rasterization samples divided by the number of color
+///   samples in the subpass
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV`
+/// - [`flags`] **must**  be `0`
+/// - [`coverage_modulation_mode`] **must**  be a valid [`CoverageModulationModeNV`] value
 ///# Related
 /// - [`VK_NV_framebuffer_mixed_samples`]
 /// - [`Bool32`]
@@ -221,10 +223,6 @@ impl<'lt> PipelineCoverageModulationStateCreateInfoNV<'lt> {
     pub fn coverage_modulation_table_enable_raw(&self) -> Bool32 {
         self.coverage_modulation_table_enable
     }
-    ///Gets the raw value of [`Self::coverage_modulation_table_count`]
-    pub fn coverage_modulation_table_count_raw(&self) -> u32 {
-        self.coverage_modulation_table_count
-    }
     ///Gets the raw value of [`Self::coverage_modulation_table`]
     pub fn coverage_modulation_table_raw(&self) -> *const f32 {
         self.coverage_modulation_table
@@ -237,11 +235,6 @@ impl<'lt> PipelineCoverageModulationStateCreateInfoNV<'lt> {
     ///Sets the raw value of [`Self::coverage_modulation_table_enable`]
     pub fn set_coverage_modulation_table_enable_raw(&mut self, value: Bool32) -> &mut Self {
         self.coverage_modulation_table_enable = value;
-        self
-    }
-    ///Sets the raw value of [`Self::coverage_modulation_table_count`]
-    pub fn set_coverage_modulation_table_count_raw(&mut self, value: u32) -> &mut Self {
-        self.coverage_modulation_table_count = value;
         self
     }
     ///Sets the raw value of [`Self::coverage_modulation_table`]

@@ -32,10 +32,11 @@ pub const QCOM_FRAGMENT_DENSITY_MAP_OFFSET_EXTENSION_NAME: &'static CStr =
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM`]**can** also be used in the [`p_next`]
+///[`PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM`] **can**  also be used in the [`p_next`]
 /// chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_QCOM`
 ///# Related
 /// - [`VK_QCOM_fragment_density_map_offset`]
@@ -172,8 +173,9 @@ impl<'lt> PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt> {
 /// [`p_next`] chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_QCOM`
 ///# Related
 /// - [`VK_QCOM_fragment_density_map_offset`]
@@ -302,44 +304,46 @@ impl<'lt> PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> {
 ///renderpass does not include
 ///[`SubpassFragmentDensityMapOffsetEndInfoQCOM`], or if
 ///[`fragment_density_offset_count`] is zero, then the offset (0,0) is
-///used for [Fetch Density Value](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragmentdensitymap-fetch-density-value).Valid Usage
+///used for [Fetch Density Value](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragmentdensitymap-fetch-density-value).
+///## Valid Usage
 /// - If the [`fragmentDensityMapOffsets`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-fragmentDensityMapOffsets)
 ///   feature is not enabled or fragment density map is not enabled in the render pass,
-///   [`fragment_density_offset_count`]**must** equal `0`.
+///   [`fragment_density_offset_count`] **must**  equal `0`.
 /// - If [`SubpassDescription`]`::fragmentDensityMapAttachment` is not is not [`ATTACHMENT_UNUSED`]
 ///   and was not created with `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`,
-///   [`fragment_density_offset_count`]**must** equal `0`.
+///   [`fragment_density_offset_count`] **must**  equal `0`.
 /// - If [`SubpassDescription::depth_stencil_attachment`] is not is not [`ATTACHMENT_UNUSED`] and
 ///   was not created with `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`,
-///   [`fragment_density_offset_count`]**must** equal `0`.
+///   [`fragment_density_offset_count`] **must**  equal `0`.
 /// - If any element of [`SubpassDescription::input_attachments`] is not is not
 ///   [`ATTACHMENT_UNUSED`] and was not created with
-///   `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`,
-///   [`fragment_density_offset_count`]**must** equal `0`.
+///   `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`, [`fragment_density_offset_count`]
+///   **must**  equal `0`.
 /// - If any element of [`SubpassDescription::color_attachments`] is not is not
 ///   [`ATTACHMENT_UNUSED`] and was not created with
-///   `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`,
-///   [`fragment_density_offset_count`]**must** equal `0`.
+///   `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`, [`fragment_density_offset_count`]
+///   **must**  equal `0`.
 /// - If any element of [`SubpassDescription::resolve_attachments`] is not is not
 ///   [`ATTACHMENT_UNUSED`] and was not created with
-///   `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`,
-///   [`fragment_density_offset_count`]**must** equal `0`.
+///   `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`, [`fragment_density_offset_count`]
+///   **must**  equal `0`.
 /// - If any element of [`SubpassDescription::preserve_attachments`] is not is not
 ///   [`ATTACHMENT_UNUSED`] and was not created with
-///   `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`,
-///   [`fragment_density_offset_count`]**must** equal `0`.
+///   `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`, [`fragment_density_offset_count`]
+///   **must**  equal `0`.
 /// - If [`fragment_density_offset_count`] is not `0` and multiview is enabled for the render pass,
-///   [`fragment_density_offset_count`]**must** equal the `layerCount` that was specified in
+///   [`fragment_density_offset_count`] **must**  equal the `layerCount` that was specified in
 ///   creating the fragment density map attachment view.
 /// - If [`fragment_density_offset_count`] is not `0` and multiview is not enabled for the render
-///   pass, [`fragment_density_offset_count`]**must** equal `1`.
-/// - The `x` component of each element of [`fragment_density_offsets`]**must** be an integer
+///   pass, [`fragment_density_offset_count`] **must**  equal `1`.
+/// - The `x` component of each element of [`fragment_density_offsets`] **must**  be an integer
 ///   multiple of `fragmentDensityOffsetGranularity.width`.
-/// - The `y` component of each element of [`fragment_density_offsets`]**must** be an integer
+/// - The `y` component of each element of [`fragment_density_offsets`] **must**  be an integer
 ///   multiple of `fragmentDensityOffsetGranularity.height`.
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SUBPASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_QCOM`
-/// - If [`fragment_density_offset_count`] is not `0`, [`fragment_density_offsets`]**must** be a
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBPASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_QCOM`
+/// - If [`fragment_density_offset_count`] is not `0`, [`fragment_density_offsets`] **must**  be a
 ///   valid pointer to an array of [`fragment_density_offset_count`][`Offset2D`] structures
 ///# Related
 /// - [`VK_QCOM_fragment_density_map_offset`]
@@ -386,10 +390,6 @@ impl<'lt> SubpassFragmentDensityMapOffsetEndInfoQCOM<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::fragment_density_offset_count`]
-    pub fn fragment_density_offset_count_raw(&self) -> u32 {
-        self.fragment_density_offset_count
-    }
     ///Gets the raw value of [`Self::fragment_density_offsets`]
     pub fn fragment_density_offsets_raw(&self) -> *const Offset2D {
         self.fragment_density_offsets
@@ -397,11 +397,6 @@ impl<'lt> SubpassFragmentDensityMapOffsetEndInfoQCOM<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::fragment_density_offset_count`]
-    pub fn set_fragment_density_offset_count_raw(&mut self, value: u32) -> &mut Self {
-        self.fragment_density_offset_count = value;
         self
     }
     ///Sets the raw value of [`Self::fragment_density_offsets`]

@@ -34,23 +34,26 @@ pub const KHR_EXTERNAL_FENCE_FD_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// - [`handle_type`] is a [`ExternalFenceHandleTypeFlagBits`] value specifying the type of [`fd`].
 /// - [`fd`] is the external handle to import.
 ///# Description
-///The handle types supported by [`handle_type`] are:Valid Usage
-/// - [`handle_type`]**must** be a value included in the [Handle Types Supported by [`ImportFenceFdInfoKHR`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fence-handletypes-fd)
+///The handle types supported by [`handle_type`] are:
+///## Valid Usage
+/// - [`handle_type`] **must**  be a value included in the [Handle Types Supported by [`ImportFenceFdInfoKHR`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fence-handletypes-fd)
 ///   table
-/// -  [`fd`]**must** obey any requirements listed for [`handle_type`] in [external fence handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-fence-handle-types-compatibility)
+/// -  [`fd`] **must**  obey any requirements listed for [`handle_type`] in [external fence handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-fence-handle-types-compatibility)
 ///If [`handle_type`] is `VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT`, the
 ///special value `-1` for [`fd`] is treated like a valid sync file descriptor
 ///referring to an object that has already signaled.
 ///The import operation will succeed and the [`Fence`] will have a
 ///temporarily imported payload as if a valid file descriptor had been
-///provided.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`fence`]**must** be a valid [`Fence`] handle
-/// - [`flags`]**must** be a valid combination of [`FenceImportFlagBits`] values
-/// - [`handle_type`]**must** be a valid [`ExternalFenceHandleTypeFlagBits`] value
-///Host Synchronization
-/// - Host access to [`fence`]**must** be externally synchronized
+///provided.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`fence`] **must**  be a valid [`Fence`] handle
+/// - [`flags`] **must**  be a valid combination of [`FenceImportFlagBits`] values
+/// - [`handle_type`] **must**  be a valid [`ExternalFenceHandleTypeFlagBits`] value
+///
+///## Host Synchronization
+/// - Host access to [`fence`] **must**  be externally synchronized
 ///# Related
 /// - [`VK_KHR_external_fence_fd`]
 /// - [`ExternalFenceHandleTypeFlagBits`]
@@ -105,18 +108,9 @@ impl<'lt> ImportFenceFdInfoKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::fd`]
-    pub fn fd_raw(&self) -> i32 {
-        self.fd
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::fd`]
-    pub fn set_fd_raw(&mut self, value: i32) -> &mut Self {
-        self.fd = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -219,17 +213,21 @@ impl<'lt> ImportFenceFdInfoKHR<'lt> {
 ///The properties of the file descriptor returned depend on the value of
 ///[`handle_type`].
 ///See [`ExternalFenceHandleTypeFlagBits`] for a description of the
-///properties of the defined external fence handle types.Valid Usage
-/// - [`handle_type`]**must** have been included in [`ExportFenceCreateInfo::handle_types`] when
+///properties of the defined external fence handle types.
+///## Valid Usage
+/// - [`handle_type`] **must**  have been included in [`ExportFenceCreateInfo::handle_types`] when
 ///   [`fence`]’s current payload was created
-/// -    If [`handle_type`] refers to a handle type with copy payload transference semantics, [`fence`]**must** be signaled, or have an associated [fence signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-signaling) pending execution
-/// -  [`fence`]**must** not currently have its payload replaced by an imported payload as described below in [Importing Fence Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-importing) unless that imported payload’s handle type was included in [`ExternalFenceProperties::export_from_imported_handle_types`] for [`handle_type`]
-/// - [`handle_type`]**must** be defined as a POSIX file descriptor handle
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`fence`]**must** be a valid [`Fence`] handle
-/// - [`handle_type`]**must** be a valid [`ExternalFenceHandleTypeFlagBits`] value
+/// - If [`handle_type`] refers to a handle type with copy payload transference semantics, [`fence`]
+///   **must**  be signaled, or have an associated [fence signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-signaling)
+///   pending execution
+/// -  [`fence`] **must**  not currently have its payload replaced by an imported payload as described below in [Importing Fence Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-importing) unless that imported payload’s handle type was included in [`ExternalFenceProperties::export_from_imported_handle_types`] for [`handle_type`]
+/// - [`handle_type`] **must**  be defined as a POSIX file descriptor handle
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`fence`] **must**  be a valid [`Fence`] handle
+/// - [`handle_type`] **must**  be a valid [`ExternalFenceHandleTypeFlagBits`] value
 ///# Related
 /// - [`VK_KHR_external_fence_fd`]
 /// - [`ExternalFenceHandleTypeFlagBits`]

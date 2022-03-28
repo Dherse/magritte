@@ -14,7 +14,7 @@ pub const GGP_FRAME_TOKEN_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_GGP_f
 ///[VkPresentFrameTokenGGP](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPresentFrameTokenGGP.html) - The Google Games Platform frame token
 ///# C Specifications
 ///When the `[`VK_GGP_frame_token`]` extension is enabled, a Google Games
-///Platform frame token **can** be specified when presenting an image to a
+///Platform frame token  **can**  be specified when presenting an image to a
 ///swapchain by adding a [`PresentFrameTokenGGP`] structure to the
 ///[`p_next`] chain of the [`PresentInfoKHR`] structure.The [`PresentFrameTokenGGP`] structure is
 /// defined as:
@@ -31,10 +31,11 @@ pub const GGP_FRAME_TOKEN_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_GGP_f
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`frame_token`] is the Google Games Platform frame token.
 ///# Description
-///Valid Usage
-/// - [`frame_token`]**must** be a valid [`GgpFrameToken`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PRESENT_FRAME_TOKEN_GGP`
+///## Valid Usage
+/// - [`frame_token`] **must**  be a valid [`GgpFrameToken`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PRESENT_FRAME_TOKEN_GGP`
 ///# Related
 /// - [`VK_GGP_frame_token`]
 /// - [`StructureType`]

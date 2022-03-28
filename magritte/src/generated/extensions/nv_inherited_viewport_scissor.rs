@@ -35,10 +35,11 @@ pub const NV_INHERITED_VIEWPORT_SCISSOR_EXTENSION_NAME: &'static CStr =
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceInheritedViewportScissorFeaturesNV`]**can** also be used in the [`p_next`] chain
-/// of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`PhysicalDeviceInheritedViewportScissorFeaturesNV`] **can**  also be used in the [`p_next`]
+/// chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV`
 ///# Related
 /// - [`VK_NV_inherited_viewport_scissor`]
@@ -185,7 +186,7 @@ impl<'lt> PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
 ///# Description
 ///If the [`p_next`] chain of [`CommandBufferInheritanceInfo`] includes a
 ///[`CommandBufferInheritanceViewportScissorInfoNV`] structure, then that
-///structure controls whether a command buffer **can** inherit the following state
+///structure controls whether a command buffer  **can**  inherit the following state
 ///from other command buffers:
 /// - `VK_DYNAMIC_STATE_SCISSOR`
 /// - `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT`
@@ -195,12 +196,12 @@ impl<'lt> PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
 /// - `VK_DYNAMIC_STATE_VIEWPORT`
 /// - `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT`
 ///If [`viewport_scissor_2_d`] is [`FALSE`], then the command buffer does
-///not inherit the listed dynamic state, and **should** set this state itself.
+///not inherit the listed dynamic state, and  **should**  set this state itself.
 ///If this structure is not present, the behavior is as if
 ///[`viewport_scissor_2_d`] is [`FALSE`].If [`viewport_scissor_2_d`] is [`TRUE`], then the listed
 /// dynamic state
-///is inherited, and the command buffer **must** not set this
-///state, except that the viewport and scissor count **may** be set by binding a
+///is inherited, and the command buffer  **must**  not set this
+///state, except that the viewport and scissor count  **may**  be set by binding a
 ///graphics pipeline that does not specify this state as dynamic.When the command buffer is
 /// executed as part of a the execution of a
 ///[`CmdExecuteCommands`] command, the inherited state (if enabled) is
@@ -222,21 +223,24 @@ impl<'lt> PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
 ///   the state is not inherited.
 /// - If the provisional inherited state passes both checks, then it becomes the actual inherited
 ///   state.
-///Valid Usage
+///
+///## Valid Usage
 /// - If the [inherited viewport scissor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-inheritedViewportScissor2D)
-///   feature is not enabled, [`viewport_scissor_2_d`]**must** be [`FALSE`]
+///   feature is not enabled, [`viewport_scissor_2_d`] **must**  be [`FALSE`]
 /// - If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport)
-///   feature is not enabled and [`viewport_scissor_2_d`] is [`TRUE`], then
-///   [`viewport_depth_count`]**must** be `1`
-/// - If [`viewport_scissor_2_d`] is [`TRUE`], then [`viewport_depth_count`]**must** be greater than
-///   `0`
-/// - If [`viewport_scissor_2_d`] is [`TRUE`], then [`viewport_depths`]**must** be a valid pointer
+///   feature is not enabled and [`viewport_scissor_2_d`] is [`TRUE`], then [`viewport_depth_count`]
+///   **must**  be `1`
+/// - If [`viewport_scissor_2_d`] is [`TRUE`], then [`viewport_depth_count`] **must**  be greater
+///   than `0`
+/// - If [`viewport_scissor_2_d`] is [`TRUE`], then [`viewport_depths`] **must**  be a valid pointer
 ///   to an array of [`viewport_depth_count`] valid [`Viewport`] structures, except any requirements
 ///   on `x`, `y`, `width`, and `height` do not apply
-/// - If [`viewport_scissor_2_d`] is [`TRUE`], then the command buffer **must** be recorded with the
-///   `VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV`
+/// - If [`viewport_scissor_2_d`] is [`TRUE`], then the command buffer  **must**  be recorded with
+///   the `VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV`
 ///# Related
 /// - [`VK_NV_inherited_viewport_scissor`]
 /// - [`Bool32`]
@@ -293,10 +297,6 @@ impl<'lt> CommandBufferInheritanceViewportScissorInfoNV<'lt> {
     pub fn viewport_scissor_2_d_raw(&self) -> Bool32 {
         self.viewport_scissor_2_d
     }
-    ///Gets the raw value of [`Self::viewport_depth_count`]
-    pub fn viewport_depth_count_raw(&self) -> u32 {
-        self.viewport_depth_count
-    }
     ///Gets the raw value of [`Self::viewport_depths`]
     pub fn viewport_depths_raw(&self) -> *const Viewport {
         self.viewport_depths
@@ -309,11 +309,6 @@ impl<'lt> CommandBufferInheritanceViewportScissorInfoNV<'lt> {
     ///Sets the raw value of [`Self::viewport_scissor_2_d`]
     pub fn set_viewport_scissor_2_d_raw(&mut self, value: Bool32) -> &mut Self {
         self.viewport_scissor_2_d = value;
-        self
-    }
-    ///Sets the raw value of [`Self::viewport_depth_count`]
-    pub fn set_viewport_depth_count_raw(&mut self, value: u32) -> &mut Self {
-        self.viewport_depth_count = value;
         self
     }
     ///Sets the raw value of [`Self::viewport_depths`]

@@ -25,18 +25,19 @@ pub const KHR_SHADER_CLOCK_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_
 ///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`shader_subgroup_clock`] indicates whether shaders **can** perform `Subgroup` scoped clock
+/// - [`shader_subgroup_clock`] indicates whether shaders  **can**  perform `Subgroup` scoped clock
 ///   reads.
-/// - [`shader_device_clock`] indicates whether shaders **can** perform [`Device`] scoped clock
+/// - [`shader_device_clock`] indicates whether shaders  **can**  perform [`Device`] scoped clock
 ///   reads.
 ///If the [`PhysicalDeviceShaderClockFeaturesKHR`] structure is included in the [`p_next`] chain of
 /// the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceShaderClockFeaturesKHR`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR`
+///[`PhysicalDeviceShaderClockFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR`
 ///# Related
 /// - [`VK_KHR_shader_clock`]
 /// - [`Bool32`]
@@ -60,10 +61,10 @@ pub struct PhysicalDeviceShaderClockFeaturesKHR<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_subgroup_clock`] indicates
-    ///whether shaders **can** perform `Subgroup` scoped clock reads.
+    ///whether shaders  **can**  perform `Subgroup` scoped clock reads.
     shader_subgroup_clock: Bool32,
     ///[`shader_device_clock`] indicates whether
-    ///shaders **can** perform [`Device`] scoped clock reads.
+    ///shaders  **can**  perform [`Device`] scoped clock reads.
     shader_device_clock: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceShaderClockFeaturesKHR<'lt> {

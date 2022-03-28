@@ -27,16 +27,19 @@ pub const EXT_FRAGMENT_DENSITY_MAP_2_EXTENSION_NAME: &'static CStr = crate::cstr
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`fragment_density_map_deferred`] specifies whether the implementation supports deferred reads
 ///   of fragment density map image views. If this feature is not enabled,
-///   `VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DEFERRED_BIT_EXT`**must** not be included in
+///   `VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DEFERRED_BIT_EXT` **must**  not be included in
 ///   [`ImageViewCreateInfo::flags`].
 ///If the [`PhysicalDeviceFragmentDensityMap2FeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceFragmentDensityMap2FeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT`
+///[`PhysicalDeviceFragmentDensityMap2FeaturesEXT`] **can**  also be used in the [`p_next`] chain
+/// of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_fragment_density_map2`]
 /// - [`Bool32`]
@@ -63,7 +66,7 @@ pub struct PhysicalDeviceFragmentDensityMap2FeaturesEXT<'lt> {
     ///specifies whether the implementation supports deferred reads of fragment
     ///density map image views.
     ///If this feature is not enabled,
-    ///`VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DEFERRED_BIT_EXT`**must**
+    ///`VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DEFERRED_BIT_EXT` **must**
     ///not be included in [`ImageViewCreateInfo`]::`flags`.
     fragment_density_map_deferred: Bool32,
 }
@@ -183,14 +186,15 @@ impl<'lt> PhysicalDeviceFragmentDensityMap2FeaturesEXT<'lt> {
 /// - [`max_subsampled_array_layers`] is the maximum number of [`ImageView`] array layers for usages
 ///   supporting subsampled samplers
 /// - [`max_descriptor_set_subsampled_samplers`] is the maximum number of subsampled samplers that
-///   **can** be included in a [`PipelineLayout`]
+///   **can**  be included in a [`PipelineLayout`]
 ///# Description
 ///If the [`PhysicalDeviceFragmentDensityMap2PropertiesEXT`] structure is included in the
 /// [`p_next`] chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_PROPERTIES_EXT`
 ///# Related
 /// - [`VK_EXT_fragment_density_map2`]
@@ -229,7 +233,7 @@ pub struct PhysicalDeviceFragmentDensityMap2PropertiesEXT<'lt> {
     ///supporting subsampled samplers
     max_subsampled_array_layers: u32,
     ///[`max_descriptor_set_subsampled_samplers`] is the maximum number of
-    ///subsampled samplers that **can** be included in a [`PipelineLayout`]
+    ///subsampled samplers that  **can**  be included in a [`PipelineLayout`]
     max_descriptor_set_subsampled_samplers: u32,
 }
 impl<'lt> Default for PhysicalDeviceFragmentDensityMap2PropertiesEXT<'lt> {
@@ -258,14 +262,6 @@ impl<'lt> PhysicalDeviceFragmentDensityMap2PropertiesEXT<'lt> {
     pub fn subsampled_coarse_reconstruction_early_access_raw(&self) -> Bool32 {
         self.subsampled_coarse_reconstruction_early_access
     }
-    ///Gets the raw value of [`Self::max_subsampled_array_layers`]
-    pub fn max_subsampled_array_layers_raw(&self) -> u32 {
-        self.max_subsampled_array_layers
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_subsampled_samplers`]
-    pub fn max_descriptor_set_subsampled_samplers_raw(&self) -> u32 {
-        self.max_descriptor_set_subsampled_samplers
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
@@ -279,16 +275,6 @@ impl<'lt> PhysicalDeviceFragmentDensityMap2PropertiesEXT<'lt> {
     ///Sets the raw value of [`Self::subsampled_coarse_reconstruction_early_access`]
     pub fn set_subsampled_coarse_reconstruction_early_access_raw(&mut self, value: Bool32) -> &mut Self {
         self.subsampled_coarse_reconstruction_early_access = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_subsampled_array_layers`]
-    pub fn set_max_subsampled_array_layers_raw(&mut self, value: u32) -> &mut Self {
-        self.max_subsampled_array_layers = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_subsampled_samplers`]
-    pub fn set_max_descriptor_set_subsampled_samplers_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_subsampled_samplers = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

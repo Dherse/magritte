@@ -25,9 +25,9 @@ pub const EXT_FILTER_CUBIC_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`image_view_type`] is a [`ImageViewType`] value specifying the type of the image view.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT`
-/// - [`image_view_type`]**must** be a valid [`ImageViewType`] value
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT`
+/// - [`image_view_type`] **must**  be a valid [`ImageViewType`] value
 ///# Related
 /// - [`VK_EXT_filter_cubic`]
 /// - [`ImageViewType`]
@@ -136,18 +136,20 @@ impl<'lt> PhysicalDeviceImageViewImageFormatInfoEXT<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`filter_cubic`] tells if image format, image type and image view type **can** be used with
+/// - [`filter_cubic`] tells if image format, image type and image view type  **can**  be used with
 ///   cubic filtering. This field is set by the implementation. User-specified value is ignored.
-/// - [`filter_cubic_minmax`] tells if image format, image type and image view type **can** be used
-///   with cubic filtering and minmax filtering. This field is set by the implementation.
+/// - [`filter_cubic_minmax`] tells if image format, image type and image view type  **can**  be
+///   used with cubic filtering and minmax filtering. This field is set by the implementation.
 ///   User-specified value is ignored.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT`
-///Valid Usage
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT`
+///
+///## Valid Usage
 /// - If the [`p_next`] chain of the [`ImageFormatProperties2`] structure includes a
 ///   [`FilterCubicImageViewImageFormatPropertiesEXT`] structure, the [`p_next`] chain of the
-///   [`PhysicalDeviceImageFormatInfo2`] structure **must** include a
+///   [`PhysicalDeviceImageFormatInfo2`] structure  **must**  include a
 ///   [`PhysicalDeviceImageViewImageFormatInfoEXT`] structure with an `imageViewType` that is
 ///   compatible with `imageType`
 ///# Related
@@ -173,12 +175,12 @@ pub struct FilterCubicImageViewImageFormatPropertiesEXT<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`filter_cubic`] tells if image format, image type and image view type
-    ///**can** be used with cubic filtering.
+    /// **can**  be used with cubic filtering.
     ///This field is set by the implementation.
     ///User-specified value is ignored.
     filter_cubic: Bool32,
     ///[`filter_cubic_minmax`] tells if image format, image type and image view
-    ///type **can** be used with cubic filtering and minmax filtering.
+    ///type  **can**  be used with cubic filtering and minmax filtering.
     ///This field is set by the implementation.
     ///User-specified value is ignored.
     filter_cubic_minmax: Bool32,

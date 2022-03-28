@@ -27,13 +27,14 @@ pub const KHR_PIPELINE_LIBRARY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// - [`libraries`] is a pointer to an array of [`Pipeline`] structures specifying pipeline
 ///   libraries to use when creating a pipeline.
 ///# Description
-///Valid Usage
-/// - Each element of [`libraries`]**must** have been created with
+///## Valid Usage
+/// - Each element of [`libraries`] **must**  have been created with
 ///   `VK_PIPELINE_CREATE_LIBRARY_BIT_KHR`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_LIBRARY_CREATE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - If [`library_count`] is not `0`, [`libraries`]**must** be a valid pointer to an array of
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_LIBRARY_CREATE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - If [`library_count`] is not `0`, [`libraries`] **must**  be a valid pointer to an array of
 ///   [`library_count`] valid [`Pipeline`] handles
 ///# Related
 /// - [`VK_KHR_pipeline_library`]
@@ -81,10 +82,6 @@ impl<'lt> PipelineLibraryCreateInfoKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::library_count`]
-    pub fn library_count_raw(&self) -> u32 {
-        self.library_count
-    }
     ///Gets the raw value of [`Self::libraries`]
     pub fn libraries_raw(&self) -> *const Pipeline {
         self.libraries
@@ -92,11 +89,6 @@ impl<'lt> PipelineLibraryCreateInfoKHR<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::library_count`]
-    pub fn set_library_count_raw(&mut self, value: u32) -> &mut Self {
-        self.library_count = value;
         self
     }
     ///Sets the raw value of [`Self::libraries`]

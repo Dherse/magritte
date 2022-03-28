@@ -36,26 +36,29 @@ pub const KHR_DYNAMIC_RENDERING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment).
 ///If [`image_view`] is [`crate::utils::Handle::null`], or if this structure is not
 ///specified, the implementation behaves as if a valid shading rate attachment
-///was specified with all texels specifying a single pixel per fragment.Valid Usage
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout`**must** be
+///was specified with all texels specifying a single pixel per fragment.
+///## Valid Usage
+/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout` **must**  be
 ///   `VK_IMAGE_LAYOUT_GENERAL` or `VK_IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], it **must** have been created with
+/// - If [`image_view`] is not [`crate::utils::Handle::null`], it  **must**  have been created with
 ///   `VK_IMAGE_USAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
 /// - If [`image_view`] is not [`crate::utils::Handle::null`],
-///   `shadingRateAttachmentTexelSize.width`**must** be a power of two value
-/// -    If [`image_view`] is not [`crate::utils::Handle::null`], `shadingRateAttachmentTexelSize.width`**must** be less than or equal to [`maxFragmentShadingRateAttachmentTexelSize.width`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSize)
-/// -    If [`image_view`] is not [`crate::utils::Handle::null`], `shadingRateAttachmentTexelSize.width`**must** be greater than or equal to [`minFragmentShadingRateAttachmentTexelSize.width`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minFragmentShadingRateAttachmentTexelSize)
+///   `shadingRateAttachmentTexelSize.width` **must**  be a power of two value
+/// -    If [`image_view`] is not [`crate::utils::Handle::null`], `shadingRateAttachmentTexelSize.width` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSize.width`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSize)
+/// -    If [`image_view`] is not [`crate::utils::Handle::null`], `shadingRateAttachmentTexelSize.width` **must**  be greater than or equal to [`minFragmentShadingRateAttachmentTexelSize.width`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minFragmentShadingRateAttachmentTexelSize)
 /// - If [`image_view`] is not [`crate::utils::Handle::null`],
-///   `shadingRateAttachmentTexelSize.height`**must** be a power of two value
-/// -    If [`image_view`] is not [`crate::utils::Handle::null`], `shadingRateAttachmentTexelSize.height`**must** be less than or equal to [`maxFragmentShadingRateAttachmentTexelSize.height`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSize)
-/// -    If [`image_view`] is not [`crate::utils::Handle::null`], `shadingRateAttachmentTexelSize.height`**must** be greater than or equal to [`minFragmentShadingRateAttachmentTexelSize.height`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minFragmentShadingRateAttachmentTexelSize)
-/// -    If [`image_view`] is not [`crate::utils::Handle::null`], the quotient of `shadingRateAttachmentTexelSize.width` and `shadingRateAttachmentTexelSize.height`**must** be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
-/// -    If [`image_view`] is not [`crate::utils::Handle::null`], the quotient of `shadingRateAttachmentTexelSize.height` and `shadingRateAttachmentTexelSize.width`**must** be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], [`image_view`]**must** be a valid
+///   `shadingRateAttachmentTexelSize.height` **must**  be a power of two value
+/// -    If [`image_view`] is not [`crate::utils::Handle::null`], `shadingRateAttachmentTexelSize.height` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSize.height`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSize)
+/// -    If [`image_view`] is not [`crate::utils::Handle::null`], `shadingRateAttachmentTexelSize.height` **must**  be greater than or equal to [`minFragmentShadingRateAttachmentTexelSize.height`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minFragmentShadingRateAttachmentTexelSize)
+/// -    If [`image_view`] is not [`crate::utils::Handle::null`], the quotient of `shadingRateAttachmentTexelSize.width` and `shadingRateAttachmentTexelSize.height` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
+/// -    If [`image_view`] is not [`crate::utils::Handle::null`], the quotient of `shadingRateAttachmentTexelSize.height` and `shadingRateAttachmentTexelSize.width` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR`
+/// - If [`image_view`] is not [`crate::utils::Handle::null`], [`image_view`] **must**  be a valid
 ///   [`ImageView`] handle
-/// - [`image_layout`]**must** be a valid [`ImageLayout`] value
+/// - [`image_layout`] **must**  be a valid [`ImageLayout`] value
 ///# Related
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`VK_KHR_fragment_shading_rate`]
@@ -200,17 +203,19 @@ impl<'lt> RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
 ///This structure can be included in the [`p_next`] chain of
 ///[`RenderingInfo`] to define a fragment density map.
 ///If this structure is not included in the [`p_next`] chain, [`image_view`]
-///is treated as [`crate::utils::Handle::null`].Valid Usage
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout`**must** be
+///is treated as [`crate::utils::Handle::null`].
+///## Valid Usage
+/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout` **must**  be
 ///   `VK_IMAGE_LAYOUT_GENERAL` or `VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], it **must** have been created with
+/// - If [`image_view`] is not [`crate::utils::Handle::null`], it  **must**  have been created with
 ///   `VK_IMAGE_USAGE_FRAGMENT_DENSITY_MAP_BIT_EXT`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], it **must** not have been created
+/// - If [`image_view`] is not [`crate::utils::Handle::null`], it  **must**  not have been created
 ///   with `VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT`
-/// - [`image_view`]**must** be a valid [`ImageView`] handle
-/// - [`image_layout`]**must** be a valid [`ImageLayout`] value
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT`
+/// - [`image_view`] **must**  be a valid [`ImageView`] handle
+/// - [`image_layout`] **must**  be a valid [`ImageLayout`] value
 ///# Related
 /// - [`VK_EXT_fragment_density_map`]
 /// - [`VK_KHR_dynamic_rendering`]
@@ -360,7 +365,7 @@ impl<'lt> RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
 ///[`crate::utils::Handle::null`], or
 ///`VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT` is not specified in
 ///[`CommandBufferBeginInfo::flags`], parameters of this structure
-///are ignored.[`AttachmentSampleCountInfoAMD`]**can** also be included in the
+///are ignored.[`AttachmentSampleCountInfoAMD`] **can**  also be included in the
 ///[`p_next`] chain of [`GraphicsPipelineCreateInfo`].
 ///When a graphics pipeline is created without a [`RenderPass`], if this
 ///structure is present in the [`p_next`] chain of
@@ -371,12 +376,13 @@ impl<'lt> RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
 ///[`PipelineMultisampleStateCreateInfo::rasterization_samples`] is
 ///used as the sample count for each attachment.
 ///If a graphics pipeline is created with a valid [`RenderPass`],
-///parameters of this structure are ignored.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_AMD`
-/// - If [`color_attachment_count`] is not `0`, [`color_attachment_samples`]**must** be a valid
+///parameters of this structure are ignored.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_AMD`
+/// - If [`color_attachment_count`] is not `0`, [`color_attachment_samples`] **must**  be a valid
 ///   pointer to an array of [`color_attachment_count`] valid [`SampleCountFlagBits`] values
-/// - If [`depth_stencil_attachment_samples`] is not `0`,
-///   [`depth_stencil_attachment_samples`]**must** be a valid [`SampleCountFlagBits`] value
+/// - If [`depth_stencil_attachment_samples`] is not `0`, [`depth_stencil_attachment_samples`]
+///   **must**  be a valid [`SampleCountFlagBits`] value
 ///# Related
 /// - [`VK_AMD_mixed_attachment_samples`]
 /// - [`VK_KHR_dynamic_rendering`]
@@ -429,10 +435,6 @@ impl<'lt> AttachmentSampleCountInfoAMD<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::color_attachment_count`]
-    pub fn color_attachment_count_raw(&self) -> u32 {
-        self.color_attachment_count
-    }
     ///Gets the raw value of [`Self::color_attachment_samples`]
     pub fn color_attachment_samples_raw(&self) -> *const SampleCountFlagBits {
         self.color_attachment_samples
@@ -440,11 +442,6 @@ impl<'lt> AttachmentSampleCountInfoAMD<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::color_attachment_count`]
-    pub fn set_color_attachment_count_raw(&mut self, value: u32) -> &mut Self {
-        self.color_attachment_count = value;
         self
     }
     ///Sets the raw value of [`Self::color_attachment_samples`]
@@ -536,27 +533,29 @@ impl<'lt> AttachmentSampleCountInfoAMD<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`per_view_attributes`] specifies that shaders compiled for this pipeline write the attributes
 ///   for all views in a single invocation of each vertex processing stage. All pipelines executed
-///   within a render pass instance that includes this bit **must** write per-view attributes to the
-///   `*PerViewNV[]` shader outputs, in addition to the non-per-view (e.g. `Position`) outputs.
+///   within a render pass instance that includes this bit  **must**  write per-view attributes to
+///   the `*PerViewNV[]` shader outputs, in addition to the non-per-view (e.g. `Position`) outputs.
 /// - [`per_view_attributes_position_x_only`] specifies that shaders compiled for this pipeline use
 ///   per-view positions which only differ in value in the x component. Per-view viewport mask
-///   **can** also be used.
+///   **can**  also be used.
 ///# Description
 ///When dynamic render pass instances are being used, instead of specifying
 ///`VK_SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX` or
 ///`VK_SUBPASS_DESCRIPTION_PER_VIEW_POSITION_X_ONLY_BIT_NVX` in the subpass
 ///description flags, the per-attibute properties of the render pass instance
-///**must** be specified by the [`MultiviewPerViewAttributesInfoNVX`]
+/// **must**  be specified by the [`MultiviewPerViewAttributesInfoNVX`]
 ///structure Include the [`MultiviewPerViewAttributesInfoNVX`] structure in
 ///the [`p_next`] chain of [`GraphicsPipelineCreateInfo`] when creating a
 ///graphics pipeline for dynamic rendering, [`RenderingInfo`] when starting
 ///a dynamic render pass instance, and [`CommandBufferInheritanceInfo`]
 ///when specifying the dynamic render pass instance parameters for secondary
-///command buffers.Valid Usage
-/// - If [`per_view_attributes_position_x_only`] is [`TRUE`] then [`per_view_attributes`]**must**
+///command buffers.
+///## Valid Usage
+/// - If [`per_view_attributes_position_x_only`] is [`TRUE`] then [`per_view_attributes`] **must**
 ///   also be [`TRUE`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX`
 ///# Related
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`VK_NVX_multiview_per_view_attributes`]
@@ -584,13 +583,13 @@ pub struct MultiviewPerViewAttributesInfoNVX<'lt> {
     ///pipeline write the attributes for all views in a single invocation of
     ///each vertex processing stage.
     ///All pipelines executed within a render pass instance that includes this
-    ///bit **must** write per-view attributes to the `*PerViewNV[]` shader
+    ///bit  **must**  write per-view attributes to the `*PerViewNV[]` shader
     ///outputs, in addition to the non-per-view (e.g. `Position`) outputs.
     per_view_attributes: Bool32,
     ///[`per_view_attributes_position_x_only`] specifies that shaders compiled for
     ///this pipeline use per-view positions which only differ in value in the x
     ///component.
-    ///Per-view viewport mask **can** also be used.
+    ///Per-view viewport mask  **can**  also be used.
     per_view_attributes_position_x_only: Bool32,
 }
 impl<'lt> Default for MultiviewPerViewAttributesInfoNVX<'lt> {

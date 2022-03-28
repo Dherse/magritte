@@ -27,7 +27,7 @@ pub const EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`transform_feedback`] indicates whether the implementation supports transform feedback and
-///   shader modules **can** declare the `TransformFeedback` capability.
+///   shader modules  **can**  declare the `TransformFeedback` capability.
 /// - [`geometry_streams`] indicates whether the implementation supports the `GeometryStreams`
 ///   SPIR-V capability.
 ///If the [`PhysicalDeviceTransformFeedbackFeaturesEXT`] structure is included in the [`p_next`]
@@ -35,9 +35,10 @@ pub const EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceTransformFeedbackFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT`
+///[`PhysicalDeviceTransformFeedbackFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_transform_feedback`]
 /// - [`Bool32`]
@@ -61,7 +62,7 @@ pub struct PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`transform_feedback`] indicates whether
-    ///the implementation supports transform feedback and shader modules **can**
+    ///the implementation supports transform feedback and shader modules  **can**
     ///declare the `TransformFeedback` capability.
     transform_feedback: Bool32,
     ///[`geometry_streams`] indicates whether the
@@ -221,7 +222,7 @@ impl<'lt> PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
 /// - [`max_transform_feedback_streams`] is the maximum number of vertex streams that can be output
 ///   from geometry shaders declared with the `GeometryStreams` capability. If the implementation
 ///   does not support [`PhysicalDeviceTransformFeedbackFeaturesEXT::geometry_streams`] then
-///   [`max_transform_feedback_streams`]**must** be set to `1`.
+///   [`max_transform_feedback_streams`] **must**  be set to `1`.
 /// - [`max_transform_feedback_buffers`] is the maximum number of transform feedback buffers that can be bound for capturing shader outputs from the last [pre-rasterization shader stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipeline-graphics-subsets-pre-rasterization).
 /// - [`max_transform_feedback_buffer_size`] is the maximum size that can be specified when binding
 ///   a buffer for transform feedback in [`CmdBindTransformFeedbackBuffersEXT`].
@@ -234,7 +235,7 @@ impl<'lt> PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
 ///   vertex data to the buffer.
 /// - [`transform_feedback_queries`] is [`TRUE`] if the implementation supports the
 ///   `VK_QUERY_TYPE_TRANSFORM_FEEDBACK_STREAM_EXT` query type. [`transform_feedback_queries`] is
-///   [`FALSE`] if queries of this type **cannot** be created.
+///   [`FALSE`] if queries of this type  **cannot**  be created.
 /// - [`transform_feedback_streams_lines_triangles`] is [`TRUE`] if the implementation supports the
 ///   geometry shader `OpExecutionMode` of `OutputLineStrip` and `OutputTriangleStrip` in addition
 ///   to `OutputPoints` when more than one vertex stream is output. If
@@ -244,16 +245,17 @@ impl<'lt> PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
 /// - [`transform_feedback_rasterization_stream_select`] is [`TRUE`] if the implementation supports
 ///   the `GeometryStreams` SPIR-V capability and the application can use
 ///   [`PipelineRasterizationStateStreamCreateInfoEXT`] to modify which vertex stream output is used
-///   for rasterization. Otherwise vertex stream `0`**must** always be used for rasterization.
+///   for rasterization. Otherwise vertex stream `0` **must**  always be used for rasterization.
 /// - [`transform_feedback_draw`] is [`TRUE`] if the implementation supports the
-///   [`CmdDrawIndirectByteCountEXT`] function otherwise the function **must** not be called.
+///   [`CmdDrawIndirectByteCountEXT`] function otherwise the function  **must**  not be called.
 ///# Description
 ///If the [`PhysicalDeviceTransformFeedbackPropertiesEXT`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT`
 ///# Related
 /// - [`VK_EXT_transform_feedback`]
 /// - [`Bool32`]
@@ -282,7 +284,7 @@ pub struct PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
     ///shaders declared with the `GeometryStreams` capability.
     ///If the implementation does not support
     ///[`PhysicalDeviceTransformFeedbackFeaturesEXT`]::`geometryStreams`
-    ///then [`max_transform_feedback_streams`]**must** be set to `1`.
+    ///then [`max_transform_feedback_streams`] **must**  be set to `1`.
     max_transform_feedback_streams: u32,
     ///[`max_transform_feedback_buffers`]
     ///is the maximum number of transform feedback buffers that can be bound
@@ -309,7 +311,7 @@ pub struct PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
     ///[`TRUE`] if the implementation supports the
     ///`VK_QUERY_TYPE_TRANSFORM_FEEDBACK_STREAM_EXT` query type.
     ///[`transform_feedback_queries`] is [`FALSE`] if queries of this type
-    ///**cannot** be created.
+    /// **cannot**  be created.
     transform_feedback_queries: Bool32,
     ///[`transform_feedback_streams_lines_triangles`] is [`TRUE`] if the
     ///implementation supports the geometry shader `OpExecutionMode` of
@@ -325,12 +327,12 @@ pub struct PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
     ///the application can use
     ///[`PipelineRasterizationStateStreamCreateInfoEXT`] to modify which
     ///vertex stream output is used for rasterization.
-    ///Otherwise vertex stream `0`**must** always be used for rasterization.
+    ///Otherwise vertex stream `0` **must**  always be used for rasterization.
     transform_feedback_rasterization_stream_select: Bool32,
     ///[`transform_feedback_draw`] is
     ///[`TRUE`] if the implementation supports the
     ///[`CmdDrawIndirectByteCountEXT`] function otherwise the function
-    ///**must** not be called.
+    /// **must**  not be called.
     transform_feedback_draw: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
@@ -357,26 +359,6 @@ impl<'lt> PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::max_transform_feedback_streams`]
-    pub fn max_transform_feedback_streams_raw(&self) -> u32 {
-        self.max_transform_feedback_streams
-    }
-    ///Gets the raw value of [`Self::max_transform_feedback_buffers`]
-    pub fn max_transform_feedback_buffers_raw(&self) -> u32 {
-        self.max_transform_feedback_buffers
-    }
-    ///Gets the raw value of [`Self::max_transform_feedback_stream_data_size`]
-    pub fn max_transform_feedback_stream_data_size_raw(&self) -> u32 {
-        self.max_transform_feedback_stream_data_size
-    }
-    ///Gets the raw value of [`Self::max_transform_feedback_buffer_data_size`]
-    pub fn max_transform_feedback_buffer_data_size_raw(&self) -> u32 {
-        self.max_transform_feedback_buffer_data_size
-    }
-    ///Gets the raw value of [`Self::max_transform_feedback_buffer_data_stride`]
-    pub fn max_transform_feedback_buffer_data_stride_raw(&self) -> u32 {
-        self.max_transform_feedback_buffer_data_stride
-    }
     ///Gets the raw value of [`Self::transform_feedback_queries`]
     pub fn transform_feedback_queries_raw(&self) -> Bool32 {
         self.transform_feedback_queries
@@ -396,31 +378,6 @@ impl<'lt> PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_transform_feedback_streams`]
-    pub fn set_max_transform_feedback_streams_raw(&mut self, value: u32) -> &mut Self {
-        self.max_transform_feedback_streams = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_transform_feedback_buffers`]
-    pub fn set_max_transform_feedback_buffers_raw(&mut self, value: u32) -> &mut Self {
-        self.max_transform_feedback_buffers = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_transform_feedback_stream_data_size`]
-    pub fn set_max_transform_feedback_stream_data_size_raw(&mut self, value: u32) -> &mut Self {
-        self.max_transform_feedback_stream_data_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_transform_feedback_buffer_data_size`]
-    pub fn set_max_transform_feedback_buffer_data_size_raw(&mut self, value: u32) -> &mut Self {
-        self.max_transform_feedback_buffer_data_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_transform_feedback_buffer_data_stride`]
-    pub fn set_max_transform_feedback_buffer_data_stride_raw(&mut self, value: u32) -> &mut Self {
-        self.max_transform_feedback_buffer_data_stride = value;
         self
     }
     ///Sets the raw value of [`Self::transform_feedback_queries`]
@@ -687,16 +644,19 @@ impl<'lt> PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
 /// - [`rasterization_stream`] is the vertex stream selected for rasterization.
 ///# Description
 ///If this structure is not present, [`rasterization_stream`] is assumed to be
-///zero.Valid Usage
-/// - [`PhysicalDeviceTransformFeedbackFeaturesEXT::geometry_streams`]**must** be enabled
-/// - [`rasterization_stream`]**must** be less than
+///zero.
+///## Valid Usage
+/// - [`PhysicalDeviceTransformFeedbackFeaturesEXT::geometry_streams`] **must**  be enabled
+/// - [`rasterization_stream`] **must**  be less than
 ///   [`PhysicalDeviceTransformFeedbackPropertiesEXT::max_transform_feedback_streams`]
-/// - [`rasterization_stream`]**must** be zero if
+/// - [`rasterization_stream`] **must**  be zero if
 ///   [`PhysicalDeviceTransformFeedbackPropertiesEXT::
 ///   transform_feedback_rasterization_stream_select`] is [`FALSE`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT`
-/// - [`flags`]**must** be `0`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_EXT_transform_feedback`]
 /// - [`PipelineRasterizationStateStreamCreateFlagsEXT`]
@@ -741,18 +701,9 @@ impl<'lt> PipelineRasterizationStateStreamCreateInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::rasterization_stream`]
-    pub fn rasterization_stream_raw(&self) -> u32 {
-        self.rasterization_stream
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::rasterization_stream`]
-    pub fn set_rasterization_stream_raw(&mut self, value: u32) -> &mut Self {
-        self.rasterization_stream = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

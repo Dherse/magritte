@@ -11,11 +11,11 @@ pub const NV_WIN32_KEYED_MUTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///[VkWin32KeyedMutexAcquireReleaseInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWin32KeyedMutexAcquireReleaseInfoNV.html) - Use Windows keyex mutex mechanism to synchronize work
 ///# C Specifications
 ///When submitting work that operates on memory imported from a Direct3D 11
-///resource to a queue, the keyed mutex mechanism **may** be used in addition to
+///resource to a queue, the keyed mutex mechanism  **may**  be used in addition to
 ///Vulkan semaphores to synchronize the work.
 ///Keyed mutexes are a property of a properly created shareable Direct3D 11
 ///resource.
-///They **can** only be used if the imported resource was created with the
+///They  **can**  only be used if the imported resource was created with the
 ///`D3D11_RESOURCE_MISC_SHARED_KEYEDMUTEX` flag.To acquire keyed mutexes before submitted work
 /// and/or release them after,
 ///add a [`Win32KeyedMutexAcquireReleaseInfoNV`] structure to the
@@ -53,20 +53,20 @@ pub const NV_WIN32_KEYED_MUTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///   has completed. Entries refer to the keyed mutex associated with the corresponding entries in
 ///   [`release_syncs`].
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV`
-/// - If [`acquire_count`] is not `0`, [`acquire_syncs`]**must** be a valid pointer to an array of
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV`
+/// - If [`acquire_count`] is not `0`, [`acquire_syncs`] **must**  be a valid pointer to an array of
 ///   [`acquire_count`] valid [`DeviceMemory`] handles
-/// - If [`acquire_count`] is not `0`, [`acquire_keys`]**must** be a valid pointer to an array of
+/// - If [`acquire_count`] is not `0`, [`acquire_keys`] **must**  be a valid pointer to an array of
 ///   [`acquire_count`]`uint64_t` values
-/// - If [`acquire_count`] is not `0`, [`acquire_timeout_milliseconds`]**must** be a valid pointer
+/// - If [`acquire_count`] is not `0`, [`acquire_timeout_milliseconds`] **must**  be a valid pointer
 ///   to an array of [`acquire_count`]`uint32_t` values
-/// - If [`release_count`] is not `0`, [`release_syncs`]**must** be a valid pointer to an array of
+/// - If [`release_count`] is not `0`, [`release_syncs`] **must**  be a valid pointer to an array of
 ///   [`release_count`] valid [`DeviceMemory`] handles
-/// - If [`release_count`] is not `0`, [`release_keys`]**must** be a valid pointer to an array of
+/// - If [`release_count`] is not `0`, [`release_keys`] **must**  be a valid pointer to an array of
 ///   [`release_count`]`uint64_t` values
 /// - Both of the elements of [`acquire_syncs`], and the elements of [`release_syncs`] that are
-///   valid handles of non-ignored parameters **must** have been created, allocated, or retrieved
+///   valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
 ///# Related
 /// - [`VK_NV_win32_keyed_mutex`]
@@ -137,10 +137,6 @@ impl<'lt> Win32KeyedMutexAcquireReleaseInfoNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::acquire_count`]
-    pub fn acquire_count_raw(&self) -> u32 {
-        self.acquire_count
-    }
     ///Gets the raw value of [`Self::acquire_syncs`]
     pub fn acquire_syncs_raw(&self) -> *const DeviceMemory {
         self.acquire_syncs
@@ -153,10 +149,6 @@ impl<'lt> Win32KeyedMutexAcquireReleaseInfoNV<'lt> {
     pub fn acquire_timeout_milliseconds_raw(&self) -> *const u32 {
         self.acquire_timeout_milliseconds
     }
-    ///Gets the raw value of [`Self::release_count`]
-    pub fn release_count_raw(&self) -> u32 {
-        self.release_count
-    }
     ///Gets the raw value of [`Self::release_syncs`]
     pub fn release_syncs_raw(&self) -> *const DeviceMemory {
         self.release_syncs
@@ -168,11 +160,6 @@ impl<'lt> Win32KeyedMutexAcquireReleaseInfoNV<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::acquire_count`]
-    pub fn set_acquire_count_raw(&mut self, value: u32) -> &mut Self {
-        self.acquire_count = value;
         self
     }
     ///Sets the raw value of [`Self::acquire_syncs`]
@@ -188,11 +175,6 @@ impl<'lt> Win32KeyedMutexAcquireReleaseInfoNV<'lt> {
     ///Sets the raw value of [`Self::acquire_timeout_milliseconds`]
     pub fn set_acquire_timeout_milliseconds_raw(&mut self, value: *const u32) -> &mut Self {
         self.acquire_timeout_milliseconds = value;
-        self
-    }
-    ///Sets the raw value of [`Self::release_count`]
-    pub fn set_release_count_raw(&mut self, value: u32) -> &mut Self {
-        self.release_count = value;
         self
     }
     ///Sets the raw value of [`Self::release_syncs`]

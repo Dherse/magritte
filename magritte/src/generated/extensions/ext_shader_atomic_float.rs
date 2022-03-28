@@ -37,38 +37,39 @@ pub const EXT_SHADER_ATOMIC_FLOAT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
-/// - [`shader_buffer_float_32_atomics`] indicates whether shaders **can** perform 32-bit
+/// - [`shader_buffer_float_32_atomics`] indicates whether shaders  **can**  perform 32-bit
 ///   floating-point load, store and exchange atomic operations on storage buffers.
-/// - [`shader_buffer_float_32_atomic_add`] indicates whether shaders **can** perform 32-bit
+/// - [`shader_buffer_float_32_atomic_add`] indicates whether shaders  **can**  perform 32-bit
 ///   floating-point add atomic operations on storage buffers.
-/// - [`shader_buffer_float_64_atomics`] indicates whether shaders **can** perform 64-bit
+/// - [`shader_buffer_float_64_atomics`] indicates whether shaders  **can**  perform 64-bit
 ///   floating-point load, store and exchange atomic operations on storage buffers.
-/// - [`shader_buffer_float_64_atomic_add`] indicates whether shaders **can** perform 64-bit
+/// - [`shader_buffer_float_64_atomic_add`] indicates whether shaders  **can**  perform 64-bit
 ///   floating-point add atomic operations on storage buffers.
-/// - [`shader_shared_float_32_atomics`] indicates whether shaders **can** perform 32-bit
+/// - [`shader_shared_float_32_atomics`] indicates whether shaders  **can**  perform 32-bit
 ///   floating-point load, store and exchange atomic operations on shared memory.
-/// - [`shader_shared_float_32_atomic_add`] indicates whether shaders **can** perform 32-bit
+/// - [`shader_shared_float_32_atomic_add`] indicates whether shaders  **can**  perform 32-bit
 ///   floating-point add atomic operations on shared memory.
-/// - [`shader_shared_float_64_atomics`] indicates whether shaders **can** perform 64-bit
+/// - [`shader_shared_float_64_atomics`] indicates whether shaders  **can**  perform 64-bit
 ///   floating-point load, store and exchange atomic operations on shared memory.
-/// - [`shader_shared_float_64_atomic_add`] indicates whether shaders **can** perform 64-bit
+/// - [`shader_shared_float_64_atomic_add`] indicates whether shaders  **can**  perform 64-bit
 ///   floating-point add atomic operations on shared memory.
-/// - [`shader_image_float_32_atomics`] indicates whether shaders **can** perform 32-bit
+/// - [`shader_image_float_32_atomics`] indicates whether shaders  **can**  perform 32-bit
 ///   floating-point load, store and exchange atomic image operations.
-/// - [`shader_image_float_32_atomic_add`] indicates whether shaders **can** perform 32-bit
+/// - [`shader_image_float_32_atomic_add`] indicates whether shaders  **can**  perform 32-bit
 ///   floating-point add atomic image operations.
 /// - [`sparse_image_float_32_atomics`] indicates whether 32-bit floating-point load, store and
-///   exchange atomic operations **can** be used on sparse images.
+///   exchange atomic operations  **can**  be used on sparse images.
 /// - [`sparse_image_float_32_atomic_add`] indicates whether 32-bit floating-point add atomic
-///   operations **can** be used on sparse images.
+///   operations  **can**  be used on sparse images.
 ///If the [`PhysicalDeviceShaderAtomicFloatFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceShaderAtomicFloatFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT`
+///[`PhysicalDeviceShaderAtomicFloatFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_shader_atomic_float`]
 /// - [`Bool32`]
@@ -92,46 +93,46 @@ pub struct PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_buffer_float_32_atomics`]
-    ///indicates whether shaders **can** perform 32-bit floating-point load, store
+    ///indicates whether shaders  **can**  perform 32-bit floating-point load, store
     ///and exchange atomic operations on storage buffers.
     shader_buffer_float_32_atomics: Bool32,
-    ///[`shader_buffer_float_32_atomic_add`] indicates whether shaders **can**
+    ///[`shader_buffer_float_32_atomic_add`] indicates whether shaders  **can**
     ///perform 32-bit floating-point add atomic operations on storage buffers.
     shader_buffer_float_32_atomic_add: Bool32,
     ///[`shader_buffer_float_64_atomics`]
-    ///indicates whether shaders **can** perform 64-bit floating-point load, store
+    ///indicates whether shaders  **can**  perform 64-bit floating-point load, store
     ///and exchange atomic operations on storage buffers.
     shader_buffer_float_64_atomics: Bool32,
-    ///[`shader_buffer_float_64_atomic_add`] indicates whether shaders **can**
+    ///[`shader_buffer_float_64_atomic_add`] indicates whether shaders  **can**
     ///perform 64-bit floating-point add atomic operations on storage buffers.
     shader_buffer_float_64_atomic_add: Bool32,
     ///[`shader_shared_float_32_atomics`]
-    ///indicates whether shaders **can** perform 32-bit floating-point load, store
+    ///indicates whether shaders  **can**  perform 32-bit floating-point load, store
     ///and exchange atomic operations on shared memory.
     shader_shared_float_32_atomics: Bool32,
-    ///[`shader_shared_float_32_atomic_add`] indicates whether shaders **can**
+    ///[`shader_shared_float_32_atomic_add`] indicates whether shaders  **can**
     ///perform 32-bit floating-point add atomic operations on shared memory.
     shader_shared_float_32_atomic_add: Bool32,
     ///[`shader_shared_float_64_atomics`]
-    ///indicates whether shaders **can** perform 64-bit floating-point load, store
+    ///indicates whether shaders  **can**  perform 64-bit floating-point load, store
     ///and exchange atomic operations on shared memory.
     shader_shared_float_64_atomics: Bool32,
-    ///[`shader_shared_float_64_atomic_add`] indicates whether shaders **can**
+    ///[`shader_shared_float_64_atomic_add`] indicates whether shaders  **can**
     ///perform 64-bit floating-point add atomic operations on shared memory.
     shader_shared_float_64_atomic_add: Bool32,
     ///[`shader_image_float_32_atomics`]
-    ///indicates whether shaders **can** perform 32-bit floating-point load, store
+    ///indicates whether shaders  **can**  perform 32-bit floating-point load, store
     ///and exchange atomic image operations.
     shader_image_float_32_atomics: Bool32,
-    ///[`shader_image_float_32_atomic_add`] indicates whether shaders **can** perform
+    ///[`shader_image_float_32_atomic_add`] indicates whether shaders  **can**  perform
     ///32-bit floating-point add atomic image operations.
     shader_image_float_32_atomic_add: Bool32,
     ///[`sparse_image_float_32_atomics`]
     ///indicates whether 32-bit floating-point load, store and exchange atomic
-    ///operations **can** be used on sparse images.
+    ///operations  **can**  be used on sparse images.
     sparse_image_float_32_atomics: Bool32,
     ///[`sparse_image_float_32_atomic_add`] indicates whether 32-bit
-    ///floating-point add atomic operations **can** be used on sparse images.
+    ///floating-point add atomic operations  **can**  be used on sparse images.
     sparse_image_float_32_atomic_add: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {

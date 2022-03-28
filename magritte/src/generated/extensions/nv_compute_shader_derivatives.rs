@@ -35,10 +35,11 @@ pub const NV_COMPUTE_SHADER_DERIVATIVES_EXTENSION_NAME: &'static CStr =
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///`VkPhysicalDeviceComputeShaderDerivativesFeaturesNVfeatures`. **can** also be used in the
+///`VkPhysicalDeviceComputeShaderDerivativesFeaturesNVfeatures`.  **can**  also be used in the
 /// [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_NV`
 ///# Related
 /// - [`VK_NV_compute_shader_derivatives`]

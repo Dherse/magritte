@@ -27,17 +27,18 @@ pub const EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_EXTENSION_NAME: &'static CStr =
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`pageable_device_local_memory`] indicates that the implementation supports pageable
-///   device-local memory and **may** transparently move device-local memory allocations to
+///   device-local memory and  **may**  transparently move device-local memory allocations to
 ///   host-local memory to better share device-local memory with other applications.
 ///If the [`PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT`] structure is included in the
 /// [`p_next`] chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT`]**can** also be used in the [`p_next`]
+///[`PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT`] **can**  also be used in the [`p_next`]
 /// chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_pageable_device_local_memory`]
@@ -63,7 +64,7 @@ pub struct PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'lt> {
     p_next: *mut BaseOutStructure<'lt>,
     ///[`pageable_device_local_memory`]
     ///indicates that the implementation supports pageable device-local memory
-    ///and **may** transparently move device-local memory allocations to
+    ///and  **may**  transparently move device-local memory allocations to
     ///host-local memory to better share device-local memory with other
     ///applications.
     pageable_device_local_memory: Bool32,

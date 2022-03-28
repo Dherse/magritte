@@ -211,9 +211,10 @@ impl ComponentTypeNV {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceCooperativeMatrixFeaturesNV`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV`
+///[`PhysicalDeviceCooperativeMatrixFeaturesNV`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV`
 ///# Related
 /// - [`VK_NV_cooperative_matrix`]
 /// - [`Bool32`]
@@ -396,8 +397,9 @@ impl<'lt> PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV`
 ///# Related
 /// - [`VK_NV_cooperative_matrix`]
 /// - [`ShaderStageFlags`]
@@ -499,7 +501,7 @@ impl<'lt> PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
 ///Each [`CooperativeMatrixPropertiesNV`] structure describes a single
 ///supported combination of types for a matrix multiply/add operation
 ///(`OpCooperativeMatrixMulAddNV`).
-///The multiply **can** be described in terms of the following variables and types
+///The multiply  **can**  be described in terms of the following variables and types
 ///(in SPIR-V pseudocode):
 ///```c
 ///    %A is of type OpTypeCooperativeMatrixNV %AType %scope %MSize %KSize
@@ -539,17 +541,18 @@ impl<'lt> PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
 /// - [`scope`] is the scope of all the matrix types, of type [`ScopeNV`].
 ///# Description
 ///If some types are preferred over other types (e.g. for performance), they
-///**should** appear earlier in the list enumerated by
-///[`GetPhysicalDeviceCooperativeMatrixPropertiesNV`].At least one entry in the list **must** have
-/// power of two values for all of
-///[`m_size`], [`k_size`], and [`n_size`].Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_COOPERATIVE_MATRIX_PROPERTIES_NV`
-/// - [`p_next`]**must** be `NULL`
-/// - [`a_type`]**must** be a valid [`ComponentTypeNV`] value
-/// - [`b_type`]**must** be a valid [`ComponentTypeNV`] value
-/// - [`c_type`]**must** be a valid [`ComponentTypeNV`] value
-/// - [`d_type`]**must** be a valid [`ComponentTypeNV`] value
-/// - [`scope`]**must** be a valid [`ScopeNV`] value
+/// **should**  appear earlier in the list enumerated by
+///[`GetPhysicalDeviceCooperativeMatrixPropertiesNV`].At least one entry in the list  **must**
+/// have power of two values for all of
+///[`m_size`], [`k_size`], and [`n_size`].
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COOPERATIVE_MATRIX_PROPERTIES_NV`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`a_type`] **must**  be a valid [`ComponentTypeNV`] value
+/// - [`b_type`] **must**  be a valid [`ComponentTypeNV`] value
+/// - [`c_type`] **must**  be a valid [`ComponentTypeNV`] value
+/// - [`d_type`] **must**  be a valid [`ComponentTypeNV`] value
+/// - [`scope`] **must**  be a valid [`ScopeNV`] value
 ///# Related
 /// - [`VK_NV_cooperative_matrix`]
 /// - [`ComponentTypeNV`]
@@ -618,36 +621,9 @@ impl<'lt> CooperativeMatrixPropertiesNV<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::m_size`]
-    pub fn m_size_raw(&self) -> u32 {
-        self.m_size
-    }
-    ///Gets the raw value of [`Self::n_size`]
-    pub fn n_size_raw(&self) -> u32 {
-        self.n_size
-    }
-    ///Gets the raw value of [`Self::k_size`]
-    pub fn k_size_raw(&self) -> u32 {
-        self.k_size
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::m_size`]
-    pub fn set_m_size_raw(&mut self, value: u32) -> &mut Self {
-        self.m_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::n_size`]
-    pub fn set_n_size_raw(&mut self, value: u32) -> &mut Self {
-        self.n_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::k_size`]
-    pub fn set_k_size_raw(&mut self, value: u32) -> &mut Self {
-        self.k_size = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

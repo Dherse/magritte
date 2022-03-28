@@ -29,15 +29,16 @@ pub const MVK_IOS_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_MVK_i
 /// - [`flags`] is reserved for future use.
 /// - [`view`] is a reference to either a [`CaMetalLayer`] object or a `UIView` object.
 ///# Description
-///Valid Usage
-/// - If [`view`] is a [`CaMetalLayer`] object, it **must** be a valid [`CaMetalLayer`]
-/// - If [`view`] is a `UIView` object, it **must** be a valid `UIView`, **must** be backed by a
-///   `CALayer` object of type [`CaMetalLayer`], and [`CreateIosSurfaceMVK`]**must** be called on
+///## Valid Usage
+/// - If [`view`] is a [`CaMetalLayer`] object, it  **must**  be a valid [`CaMetalLayer`]
+/// - If [`view`] is a `UIView` object, it  **must**  be a valid `UIView`,  **must**  be backed by a
+///   `CALayer` object of type [`CaMetalLayer`], and [`CreateIosSurfaceMVK`] **must**  be called on
 ///   the main thread
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IOS_SURFACE_CREATE_INFO_MVK`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IOS_SURFACE_CREATE_INFO_MVK`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_MVK_ios_surface`]
 /// - [`IosSurfaceCreateFlagsMVK`]

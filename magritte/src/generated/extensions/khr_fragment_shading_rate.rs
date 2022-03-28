@@ -128,25 +128,28 @@ impl FragmentShadingRateCombinerOpKHR {
 ///# Description
 ///If no shading rate attachment is specified, or if this structure is not
 ///specified, the implementation behaves as if a valid shading rate attachment
-///was specified with all texels specifying a single pixel per fragment.Valid Usage
+///was specified with all texels specifying a single pixel per fragment.
+///## Valid Usage
 /// - If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not
-///   [`ATTACHMENT_UNUSED`], its `layout` member **must** be equal to `VK_IMAGE_LAYOUT_GENERAL` or
+///   [`ATTACHMENT_UNUSED`], its `layout` member  **must**  be equal to `VK_IMAGE_LAYOUT_GENERAL` or
 ///   `VK_IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR`
 /// - If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not
-///   [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.width`**must** be a power of two value
-/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.width`**must** be less than or equal to [`maxFragmentShadingRateAttachmentTexelSize.width`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSize)
-/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.width`**must** be greater than or equal to [`minFragmentShadingRateAttachmentTexelSize.width`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minFragmentShadingRateAttachmentTexelSize)
+///   [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.width` **must**  be a power of two
+///   value
+/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.width` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSize.width`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSize)
+/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.width` **must**  be greater than or equal to [`minFragmentShadingRateAttachmentTexelSize.width`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minFragmentShadingRateAttachmentTexelSize)
 /// - If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not
-///   [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.height`**must** be a power of two value
-/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.height`**must** be less than or equal to [`maxFragmentShadingRateAttachmentTexelSize.height`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSize)
-/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.height`**must** be greater than or equal to [`minFragmentShadingRateAttachmentTexelSize.height`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minFragmentShadingRateAttachmentTexelSize)
-/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], the quotient of `shadingRateAttachmentTexelSize.width` and `shadingRateAttachmentTexelSize.height`**must** be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
-/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], the quotient of `shadingRateAttachmentTexelSize.height` and `shadingRateAttachmentTexelSize.width`**must** be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR`
-/// - If [`fragment_shading_rate_attachment`] is not `NULL`,
-///   [`fragment_shading_rate_attachment`]**must** be a valid pointer to a valid
-///   [`AttachmentReference2`] structure
+///   [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.height` **must**  be a power of two
+///   value
+/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.height` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSize.height`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSize)
+/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], `shadingRateAttachmentTexelSize.height` **must**  be greater than or equal to [`minFragmentShadingRateAttachmentTexelSize.height`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minFragmentShadingRateAttachmentTexelSize)
+/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], the quotient of `shadingRateAttachmentTexelSize.width` and `shadingRateAttachmentTexelSize.height` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
+/// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], the quotient of `shadingRateAttachmentTexelSize.height` and `shadingRateAttachmentTexelSize.width` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR`
+/// - If [`fragment_shading_rate_attachment`] is not `NULL`, [`fragment_shading_rate_attachment`]
+///   **must**  be a valid pointer to a valid [`AttachmentReference2`] structure
 ///# Related
 /// - [`VK_KHR_fragment_shading_rate`]
 /// - [`AttachmentReference2`]
@@ -292,10 +295,12 @@ impl<'lt> FragmentShadingRateAttachmentInfoKHR<'lt> {
 ///structure includes parameters controlling the pipeline fragment shading
 ///rate.If this structure is not present, [`fragment_size`] is considered to be
 ///equal to (1,1), and both elements of [`combiner_ops`] are considered
-///to be equal to `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR`.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_FRAGMENT_SHADING_RATE_STATE_CREATE_INFO_KHR`
-/// - Any given element of [`combiner_ops`]**must** be a valid [`FragmentShadingRateCombinerOpKHR`]
-///   value
+///to be equal to `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR`.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_PIPELINE_FRAGMENT_SHADING_RATE_STATE_CREATE_INFO_KHR`
+/// - Any given element of [`combiner_ops`] **must**  be a valid
+///   [`FragmentShadingRateCombinerOpKHR`] value
 ///# Related
 /// - [`VK_KHR_fragment_shading_rate`]
 /// - [`Extent2D`]
@@ -435,9 +440,11 @@ impl<'lt> PipelineFragmentShadingRateStateCreateInfoKHR<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceFragmentShadingRateFeaturesKHR`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_FEATURES_KHR`
+///[`PhysicalDeviceFragmentShadingRateFeaturesKHR`] **can**  also be used in the [`p_next`] chain
+/// of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_FEATURES_KHR`
 ///# Related
 /// - [`VK_KHR_fragment_shading_rate`]
 /// - [`Bool32`]
@@ -667,25 +674,25 @@ impl<'lt> PhysicalDeviceFragmentShadingRateFeaturesKHR<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`min_fragment_shading_rate_attachment_texel_size`] indicates minimum supported width and height of the portion of the framebuffer corresponding to each texel in a fragment shading rate attachment. Each value **must** be less than or equal to the values in [`max_fragment_shading_rate_attachment_texel_size`]. Each value **must** be a power-of-two. It **must** be (0,0) if the [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is not supported.
-/// - [`max_fragment_shading_rate_attachment_texel_size`] indicates maximum supported width and height of the portion of the framebuffer corresponding to each texel in a fragment shading rate attachment. Each value **must** be greater than or equal to the values in [`min_fragment_shading_rate_attachment_texel_size`]. Each value **must** be a power-of-two. It **must** be (0,0) if the [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is not supported.
-/// - [`max_fragment_shading_rate_attachment_texel_size_aspect_ratio`] indicates the maximum ratio between the width and height of the portion of the framebuffer corresponding to each texel in a fragment shading rate attachment. [`max_fragment_shading_rate_attachment_texel_size_aspect_ratio`]**must** be a power-of-two value, and **must** be less than or equal to max(`maxFragmentShadingRateAttachmentTexelSize.width` / `minFragmentShadingRateAttachmentTexelSize.height`, `maxFragmentShadingRateAttachmentTexelSize.height` / `minFragmentShadingRateAttachmentTexelSize.width`). It **must** be 0 if the [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is not supported.
-/// - [`primitive_fragment_shading_rate_with_multiple_viewports`] specifies     whether the [primitive     fragment shading rate](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-primitive)**can** be used when multiple viewports are used.     If this value is [`FALSE`], only a single viewport **must** be used,     and applications **must** not write to the     `ViewportMaskNV` or     `ViewportIndex` built-in when setting `PrimitiveShadingRateKHR`.     It **must** be [`FALSE`] if     the [`shaderOutputViewportIndex`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-shaderOutputViewportIndex) feature,     the `[`VK_EXT_shader_viewport_index_layer`]` extension, or     the [`geometryShader`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-geometryShader) feature is not     supported, or if the [`primitiveFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-primitiveFragmentShadingRate) feature is not supported.
-/// - [`layered_shading_rate_attachments`] specifies whether a shading rate     attachment image view **can** be created with multiple layers.     If this value is [`FALSE`], when creating an image view with a     `usage` that includes     `VK_IMAGE_USAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`,     `layerCount`**must** be `1`.     It **must** be [`FALSE`] if     the [`multiview`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiview) feature,     the [`shaderOutputViewportIndex`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-shaderOutputViewportIndex) feature,     the `[`VK_EXT_shader_viewport_index_layer`]` extension, or     the [`geometryShader`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-geometryShader) feature is not     supported, or if the [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is not supported.
-/// - [`fragment_shading_rate_non_trivial_combiner_ops`] specifies whether [`FragmentShadingRateCombinerOpKHR`] enums other than `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR` or `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_REPLACE_KHR`**can** be used. It **must** be [`FALSE`] unless either the [`primitiveFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-primitiveFragmentShadingRate) or [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is supported.
+/// - [`min_fragment_shading_rate_attachment_texel_size`] indicates minimum supported width and height of the portion of the framebuffer corresponding to each texel in a fragment shading rate attachment. Each value  **must**  be less than or equal to the values in [`max_fragment_shading_rate_attachment_texel_size`]. Each value  **must**  be a power-of-two. It  **must**  be (0,0) if the [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is not supported.
+/// - [`max_fragment_shading_rate_attachment_texel_size`] indicates maximum supported width and height of the portion of the framebuffer corresponding to each texel in a fragment shading rate attachment. Each value  **must**  be greater than or equal to the values in [`min_fragment_shading_rate_attachment_texel_size`]. Each value  **must**  be a power-of-two. It  **must**  be (0,0) if the [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is not supported.
+/// - [`max_fragment_shading_rate_attachment_texel_size_aspect_ratio`] indicates the maximum ratio between the width and height of the portion of the framebuffer corresponding to each texel in a fragment shading rate attachment. [`max_fragment_shading_rate_attachment_texel_size_aspect_ratio`] **must**  be a power-of-two value, and  **must**  be less than or equal to max(`maxFragmentShadingRateAttachmentTexelSize.width` / `minFragmentShadingRateAttachmentTexelSize.height`, `maxFragmentShadingRateAttachmentTexelSize.height` / `minFragmentShadingRateAttachmentTexelSize.width`). It  **must**  be 0 if the [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is not supported.
+/// - [`primitive_fragment_shading_rate_with_multiple_viewports`] specifies     whether the [primitive     fragment shading rate](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-primitive) **can**  be used when multiple viewports are used.     If this value is [`FALSE`], only a single viewport  **must**  be used,     and applications  **must**  not write to the     `ViewportMaskNV` or     `ViewportIndex` built-in when setting `PrimitiveShadingRateKHR`.     It  **must**  be [`FALSE`] if     the [`shaderOutputViewportIndex`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-shaderOutputViewportIndex) feature,     the `[`VK_EXT_shader_viewport_index_layer`]` extension, or     the [`geometryShader`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-geometryShader) feature is not     supported, or if the [`primitiveFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-primitiveFragmentShadingRate) feature is not supported.
+/// - [`layered_shading_rate_attachments`] specifies whether a shading rate     attachment image view  **can**  be created with multiple layers.     If this value is [`FALSE`], when creating an image view with a     `usage` that includes     `VK_IMAGE_USAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`,     `layerCount` **must**  be `1`.     It  **must**  be [`FALSE`] if     the [`multiview`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiview) feature,     the [`shaderOutputViewportIndex`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-shaderOutputViewportIndex) feature,     the `[`VK_EXT_shader_viewport_index_layer`]` extension, or     the [`geometryShader`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-geometryShader) feature is not     supported, or if the [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is not supported.
+/// - [`fragment_shading_rate_non_trivial_combiner_ops`] specifies whether [`FragmentShadingRateCombinerOpKHR`] enums other than `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR` or `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_REPLACE_KHR` **can**  be used. It  **must**  be [`FALSE`] unless either the [`primitiveFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-primitiveFragmentShadingRate) or [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is supported.
 /// - [`max_fragment_size`] indicates the maximum supported width and height of a fragment. Its
-///   `width` and `height` members **must** both be power-of-two values. This limit is purely
+///   `width` and `height` members  **must**  both be power-of-two values. This limit is purely
 ///   informational, and is not validated.
 /// - [`max_fragment_size_aspect_ratio`] indicates the maximum ratio between the width and height of
-///   a fragment. [`max_fragment_size_aspect_ratio`]**must** be a power-of-two value, and **must**
-///   be less than or equal to the maximum of the `width` and `height` members of
+///   a fragment. [`max_fragment_size_aspect_ratio`] **must**  be a power-of-two value, and
+///   **must**  be less than or equal to the maximum of the `width` and `height` members of
 ///   [`max_fragment_size`]. This limit is purely informational, and is not validated.
 /// - [`max_fragment_shading_rate_coverage_samples`] specifies the maximum number of coverage
-///   samples supported in a single fragment. [`max_fragment_shading_rate_coverage_samples`]**must**
-///   be less than or equal to the product of the `width` and `height` members of
+///   samples supported in a single fragment. [`max_fragment_shading_rate_coverage_samples`]
+///   **must**  be less than or equal to the product of the `width` and `height` members of
 ///   [`max_fragment_size`], and the sample count reported by
 ///   [`max_fragment_shading_rate_rasterization_samples`].
-///   [`max_fragment_shading_rate_coverage_samples`]**must** be less than or equal to
+///   [`max_fragment_shading_rate_coverage_samples`] **must**  be less than or equal to
 ///   `maxSampleMaskWords` × 32 if [`fragment_shading_rate_with_shader_sample_mask`] is supported.
 ///   This limit is purely informational, and is not validated.
 /// - [`max_fragment_shading_rate_rasterization_samples`] is a [`SampleCountFlagBits`] value
@@ -702,23 +709,25 @@ impl<'lt> PhysicalDeviceFragmentShadingRateFeaturesKHR<'lt> {
 /// - [`fragment_shading_rate_with_shader_sample_mask`] specifies whether the implementation
 ///   supports reading or writing [`SampleMask`] for multi-pixel fragments. If this value is
 ///   [`FALSE`], using that built-in will clamp the fragment shading rate to (1,1).
-/// - [`fragment_shading_rate_with_conservative_rasterization`] specifies whether [conservative rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-conservativeraster) is supported for multi-pixel fragments. It **must** be [`FALSE`] if `[`VK_EXT_conservative_rasterization`]` is not supported. If this value is [`FALSE`], using [conservative rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-conservativeraster) will clamp the fragment shading rate to (1,1).
-/// - [`fragment_shading_rate_with_fragment_shader_interlock`] specifies whether [fragment shader interlock](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-shader-interlock) is supported for multi-pixel fragments. It **must** be [`FALSE`] if `[`VK_EXT_fragment_shader_interlock`]` is not supported. If this value is [`FALSE`], using [fragment shader interlock](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-shader-interlock) will clamp the fragment shading rate to (1,1).
-/// - [`fragment_shading_rate_with_custom_sample_locations`] specifies whether [custom sample locations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-samplelocations) are supported for multi-pixel fragments. It **must** be [`FALSE`] if `[`VK_EXT_sample_locations`]` is not supported. If this value is [`FALSE`], using [custom sample locations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-samplelocations) will clamp the fragment shading rate to (1,1).
+/// - [`fragment_shading_rate_with_conservative_rasterization`] specifies whether [conservative rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-conservativeraster) is supported for multi-pixel fragments. It  **must**  be [`FALSE`] if `[`VK_EXT_conservative_rasterization`]` is not supported. If this value is [`FALSE`], using [conservative rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-conservativeraster) will clamp the fragment shading rate to (1,1).
+/// - [`fragment_shading_rate_with_fragment_shader_interlock`] specifies whether [fragment shader interlock](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-shader-interlock) is supported for multi-pixel fragments. It  **must**  be [`FALSE`] if `[`VK_EXT_fragment_shader_interlock`]` is not supported. If this value is [`FALSE`], using [fragment shader interlock](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-shader-interlock) will clamp the fragment shading rate to (1,1).
+/// - [`fragment_shading_rate_with_custom_sample_locations`] specifies whether [custom sample locations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-samplelocations) are supported for multi-pixel fragments. It  **must**  be [`FALSE`] if `[`VK_EXT_sample_locations`]` is not supported. If this value is [`FALSE`], using [custom sample locations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-samplelocations) will clamp the fragment shading rate to (1,1).
 /// - [`fragment_shading_rate_strict_multiply_combiner`] specifies whether
 ///   `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_MUL_KHR` accurately performs a multiplication or not.
 ///   Implementations where this value is [`FALSE`] will instead combine rates with an addition. If
-///   [`fragment_shading_rate_non_trivial_combiner_ops`] is [`FALSE`], implementations **must**
+///   [`fragment_shading_rate_non_trivial_combiner_ops`] is [`FALSE`], implementations  **must**
 ///   report this as [`FALSE`]. If [`fragment_shading_rate_non_trivial_combiner_ops`] is [`TRUE`],
-///   implementations **should** report this as [`TRUE`].
+///   implementations  **should**  report this as [`TRUE`].
 ///# Description
 ///If the [`PhysicalDeviceFragmentShadingRatePropertiesKHR`] structure is included in the
 /// [`p_next`] chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
 ///corresponding implementation-dependent property.These properties are related to [fragment
-///shading rates](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate).Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_PROPERTIES_KHR`
+///shading rates](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate).
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_PROPERTIES_KHR`
 ///# Related
 /// - [`VK_KHR_fragment_shading_rate`]
 /// - [`Bool32`]
@@ -746,39 +755,39 @@ pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
     ///[`min_fragment_shading_rate_attachment_texel_size`] indicates minimum
     ///supported width and height of the portion of the framebuffer
     ///corresponding to each texel in a fragment shading rate attachment.
-    ///Each value **must** be less than or equal to the values in
+    ///Each value  **must**  be less than or equal to the values in
     ///[`max_fragment_shading_rate_attachment_texel_size`].
-    ///Each value **must** be a power-of-two.
-    ///It **must** be (0,0) if the [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is not supported.
+    ///Each value  **must**  be a power-of-two.
+    ///It  **must**  be (0,0) if the [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is not supported.
     min_fragment_shading_rate_attachment_texel_size: Extent2D,
     ///[`max_fragment_shading_rate_attachment_texel_size`] indicates maximum
     ///supported width and height of the portion of the framebuffer
     ///corresponding to each texel in a fragment shading rate attachment.
-    ///Each value **must** be greater than or equal to the values in
+    ///Each value  **must**  be greater than or equal to the values in
     ///[`min_fragment_shading_rate_attachment_texel_size`].
-    ///Each value **must** be a power-of-two.
-    ///It **must** be (0,0) if the [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is not supported.
+    ///Each value  **must**  be a power-of-two.
+    ///It  **must**  be (0,0) if the [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is not supported.
     max_fragment_shading_rate_attachment_texel_size: Extent2D,
     ///[`max_fragment_shading_rate_attachment_texel_size_aspect_ratio`] indicates the
     ///maximum ratio between the width and height of the portion of the
     ///framebuffer corresponding to each texel in a fragment shading rate
     ///attachment.
-    ///[`max_fragment_shading_rate_attachment_texel_size_aspect_ratio`]**must** be a
-    ///power-of-two value, and **must** be less than or equal to
+    ///[`max_fragment_shading_rate_attachment_texel_size_aspect_ratio`] **must**  be a
+    ///power-of-two value, and  **must**  be less than or equal to
     ///max(`maxFragmentShadingRateAttachmentTexelSize.width` /
     ///`minFragmentShadingRateAttachmentTexelSize.height`,
     ///`maxFragmentShadingRateAttachmentTexelSize.height` /
     ///`minFragmentShadingRateAttachmentTexelSize.width`).
-    ///It **must** be 0 if the [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is not supported.
+    ///It  **must**  be 0 if the [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is not supported.
     max_fragment_shading_rate_attachment_texel_size_aspect_ratio: u32,
     ///[`primitive_fragment_shading_rate_with_multiple_viewports`] specifies
     ///    whether the [primitive
-    ///    fragment shading rate](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-primitive)**can** be used when multiple viewports are used.
-    ///    If this value is [`FALSE`], only a single viewport **must** be used,
-    ///    and applications **must** not write to the
+    ///    fragment shading rate](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-primitive) **can**  be used when multiple viewports are used.
+    ///    If this value is [`FALSE`], only a single viewport  **must**  be used,
+    ///    and applications  **must**  not write to the
     ///    `ViewportMaskNV` or
     ///    `ViewportIndex` built-in when setting `PrimitiveShadingRateKHR`.
-    ///    It **must** be [`FALSE`] if
+    ///    It  **must**  be [`FALSE`] if
     ///    the [`shaderOutputViewportIndex`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-shaderOutputViewportIndex) feature,
     ///    the `[`VK_EXT_shader_viewport_index_layer`]` extension,
     ///or
@@ -786,12 +795,12 @@ pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
     ///    supported, or if the [`primitiveFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-primitiveFragmentShadingRate) feature is not supported.
     primitive_fragment_shading_rate_with_multiple_viewports: Bool32,
     ///[`layered_shading_rate_attachments`] specifies whether a shading rate
-    ///    attachment image view **can** be created with multiple layers.
+    ///    attachment image view  **can**  be created with multiple layers.
     ///    If this value is [`FALSE`], when creating an image view with a
     ///    `usage` that includes
     ///    `VK_IMAGE_USAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`,
-    ///    `layerCount`**must** be `1`.
-    ///    It **must** be [`FALSE`] if
+    ///    `layerCount` **must**  be `1`.
+    ///    It  **must**  be [`FALSE`] if
     ///    the [`multiview`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiview) feature,
     ///    the [`shaderOutputViewportIndex`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-shaderOutputViewportIndex) feature,
     ///    the `[`VK_EXT_shader_viewport_index_layer`]` extension,
@@ -802,31 +811,31 @@ pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
     ///[`fragment_shading_rate_non_trivial_combiner_ops`] specifies whether
     ///[`FragmentShadingRateCombinerOpKHR`] enums other than
     ///`VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR` or
-    ///`VK_FRAGMENT_SHADING_RATE_COMBINER_OP_REPLACE_KHR`**can** be used.
-    ///It **must** be [`FALSE`] unless either the
+    ///`VK_FRAGMENT_SHADING_RATE_COMBINER_OP_REPLACE_KHR` **can**  be used.
+    ///It  **must**  be [`FALSE`] unless either the
     ///[`primitiveFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-primitiveFragmentShadingRate) or
     ///[`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is supported.
     fragment_shading_rate_non_trivial_combiner_ops: Bool32,
     ///[`max_fragment_size`] indicates the maximum
     ///supported width and height of a fragment.
-    ///Its `width` and `height` members **must** both be power-of-two
+    ///Its `width` and `height` members  **must**  both be power-of-two
     ///values.
     ///This limit is purely informational, and is not validated.
     max_fragment_size: Extent2D,
     ///[`max_fragment_size_aspect_ratio`]
     ///indicates the maximum ratio between the width and height of a fragment.
-    ///[`max_fragment_size_aspect_ratio`]**must** be a power-of-two value, and
-    ///**must** be less than or equal to the maximum of the `width` and
+    ///[`max_fragment_size_aspect_ratio`] **must**  be a power-of-two value, and
+    /// **must**  be less than or equal to the maximum of the `width` and
     ///`height` members of [`max_fragment_size`].
     ///This limit is purely informational, and is not validated.
     max_fragment_size_aspect_ratio: u32,
     ///[`max_fragment_shading_rate_coverage_samples`] specifies the maximum number
     ///of coverage samples supported in a single fragment.
-    ///[`max_fragment_shading_rate_coverage_samples`]**must** be less than or equal
+    ///[`max_fragment_shading_rate_coverage_samples`] **must**  be less than or equal
     ///to the product of the `width` and `height` members of
     ///[`max_fragment_size`], and the sample count reported by
     ///[`max_fragment_shading_rate_rasterization_samples`].
-    ///[`max_fragment_shading_rate_coverage_samples`]**must** be less than or equal
+    ///[`max_fragment_shading_rate_coverage_samples`] **must**  be less than or equal
     ///to `maxSampleMaskWords` × 32 if
     ///[`fragment_shading_rate_with_shader_sample_mask`] is supported.
     ///This limit is purely informational, and is not validated.
@@ -859,7 +868,7 @@ pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
     ///[`fragment_shading_rate_with_conservative_rasterization`]
     ///specifies whether [conservative
     ///rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-conservativeraster) is supported for multi-pixel fragments.
-    ///It **must** be [`FALSE`] if `[`VK_EXT_conservative_rasterization`]`
+    ///It  **must**  be [`FALSE`] if `[`VK_EXT_conservative_rasterization`]`
     ///is not supported.
     ///If this value is [`FALSE`], using [conservative rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-conservativeraster) will clamp the fragment shading rate to
     ///(1,1).
@@ -867,7 +876,7 @@ pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
     ///[`fragment_shading_rate_with_fragment_shader_interlock`]
     ///specifies whether [fragment shader
     ///interlock](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-shader-interlock) is supported for multi-pixel fragments.
-    ///It **must** be [`FALSE`] if `[`VK_EXT_fragment_shader_interlock`]`
+    ///It  **must**  be [`FALSE`] if `[`VK_EXT_fragment_shader_interlock`]`
     ///is not supported.
     ///If this value is [`FALSE`], using [fragment shader interlock](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-shader-interlock) will clamp the fragment shading rate to
     ///(1,1).
@@ -875,7 +884,7 @@ pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
     ///[`fragment_shading_rate_with_custom_sample_locations`]
     ///specifies whether [custom sample locations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-samplelocations)
     ///are supported for multi-pixel fragments.
-    ///It **must** be [`FALSE`] if `[`VK_EXT_sample_locations`]` is not
+    ///It  **must**  be [`FALSE`] if `[`VK_EXT_sample_locations`]` is not
     ///supported.
     ///If this value is [`FALSE`], using [custom sample locations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-samplelocations) will clamp the fragment shading rate to
     ///(1,1).
@@ -886,9 +895,9 @@ pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
     ///Implementations where this value is [`FALSE`] will instead combine
     ///rates with an addition.
     ///If [`fragment_shading_rate_non_trivial_combiner_ops`] is [`FALSE`],
-    ///implementations **must** report this as [`FALSE`].
+    ///implementations  **must**  report this as [`FALSE`].
     ///If [`fragment_shading_rate_non_trivial_combiner_ops`] is [`TRUE`],
-    ///implementations **should** report this as [`TRUE`].
+    ///implementations  **should**  report this as [`TRUE`].
     fragment_shading_rate_strict_multiply_combiner: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
@@ -922,10 +931,6 @@ impl<'lt> PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::max_fragment_shading_rate_attachment_texel_size_aspect_ratio`]
-    pub fn max_fragment_shading_rate_attachment_texel_size_aspect_ratio_raw(&self) -> u32 {
-        self.max_fragment_shading_rate_attachment_texel_size_aspect_ratio
-    }
     ///Gets the raw value of [`Self::primitive_fragment_shading_rate_with_multiple_viewports`]
     pub fn primitive_fragment_shading_rate_with_multiple_viewports_raw(&self) -> Bool32 {
         self.primitive_fragment_shading_rate_with_multiple_viewports
@@ -937,14 +942,6 @@ impl<'lt> PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
     ///Gets the raw value of [`Self::fragment_shading_rate_non_trivial_combiner_ops`]
     pub fn fragment_shading_rate_non_trivial_combiner_ops_raw(&self) -> Bool32 {
         self.fragment_shading_rate_non_trivial_combiner_ops
-    }
-    ///Gets the raw value of [`Self::max_fragment_size_aspect_ratio`]
-    pub fn max_fragment_size_aspect_ratio_raw(&self) -> u32 {
-        self.max_fragment_size_aspect_ratio
-    }
-    ///Gets the raw value of [`Self::max_fragment_shading_rate_coverage_samples`]
-    pub fn max_fragment_shading_rate_coverage_samples_raw(&self) -> u32 {
-        self.max_fragment_shading_rate_coverage_samples
     }
     ///Gets the raw value of [`Self::fragment_shading_rate_with_shader_depth_stencil_writes`]
     pub fn fragment_shading_rate_with_shader_depth_stencil_writes_raw(&self) -> Bool32 {
@@ -979,11 +976,6 @@ impl<'lt> PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::max_fragment_shading_rate_attachment_texel_size_aspect_ratio`]
-    pub fn set_max_fragment_shading_rate_attachment_texel_size_aspect_ratio_raw(&mut self, value: u32) -> &mut Self {
-        self.max_fragment_shading_rate_attachment_texel_size_aspect_ratio = value;
-        self
-    }
     ///Sets the raw value of [`Self::primitive_fragment_shading_rate_with_multiple_viewports`]
     pub fn set_primitive_fragment_shading_rate_with_multiple_viewports_raw(&mut self, value: Bool32) -> &mut Self {
         self.primitive_fragment_shading_rate_with_multiple_viewports = value;
@@ -997,16 +989,6 @@ impl<'lt> PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
     ///Sets the raw value of [`Self::fragment_shading_rate_non_trivial_combiner_ops`]
     pub fn set_fragment_shading_rate_non_trivial_combiner_ops_raw(&mut self, value: Bool32) -> &mut Self {
         self.fragment_shading_rate_non_trivial_combiner_ops = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_fragment_size_aspect_ratio`]
-    pub fn set_max_fragment_size_aspect_ratio_raw(&mut self, value: u32) -> &mut Self {
-        self.max_fragment_size_aspect_ratio = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_fragment_shading_rate_coverage_samples`]
-    pub fn set_max_fragment_shading_rate_coverage_samples_raw(&mut self, value: u32) -> &mut Self {
-        self.max_fragment_shading_rate_coverage_samples = value;
         self
     }
     ///Sets the raw value of [`Self::fragment_shading_rate_with_shader_depth_stencil_writes`]
@@ -1480,9 +1462,9 @@ impl<'lt> PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
 /// - [`fragment_size`] is a [`Extent2D`] describing the width and height of a supported shading
 ///   rate.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_KHR`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_fragment_shading_rate`]
 /// - [`Extent2D`]

@@ -31,12 +31,13 @@ pub const GGP_STREAM_DESCRIPTOR_SURFACE_EXTENSION_NAME: &'static CStr =
 /// - [`stream_descriptor`] is a [`GgpStreamDescriptor`] referring to the GGP stream descriptor to
 ///   associate with the surface.
 ///# Description
-///Valid Usage
-/// - [`stream_descriptor`]**must** be a valid [`GgpStreamDescriptor`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
+///## Valid Usage
+/// - [`stream_descriptor`] **must**  be a valid [`GgpStreamDescriptor`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_GGP_stream_descriptor_surface`]
 /// - [`StreamDescriptorSurfaceCreateFlagsGGP`]

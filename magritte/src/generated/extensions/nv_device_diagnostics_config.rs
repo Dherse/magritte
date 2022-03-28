@@ -32,9 +32,10 @@ pub const NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME: &'static CStr = crate::cs
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceDiagnosticsConfigFeaturesNV`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV`
+///[`PhysicalDeviceDiagnosticsConfigFeaturesNV`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV`
 ///# Related
 /// - [`VK_NV_device_diagnostics_config`]
 /// - [`Bool32`]
@@ -170,9 +171,9 @@ impl<'lt> PhysicalDeviceDiagnosticsConfigFeaturesNV<'lt> {
 /// - [`flags`] is a bitmask of [`DeviceDiagnosticsConfigFlagBitsNV`] specifying addtional
 ///   parameters for configuring diagnostic tools.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV`
-/// - [`flags`]**must** be a valid combination of [`DeviceDiagnosticsConfigFlagBitsNV`] values
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV`
+/// - [`flags`] **must**  be a valid combination of [`DeviceDiagnosticsConfigFlagBitsNV`] values
 ///# Related
 /// - [`VK_NV_device_diagnostics_config`]
 /// - [`DeviceDiagnosticsConfigFlagsNV`]

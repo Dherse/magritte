@@ -31,13 +31,14 @@ pub const KHR_XCB_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_x
 /// - [`connection`] is a pointer to an [`xcb_connection_t`] to the X server.
 /// - [`window`] is the [`xcb_window_t`] for the X11 window to associate the surface with.
 ///# Description
-///Valid Usage
-/// - [`connection`]**must** point to a valid X11 [`xcb_connection_t`]
-/// - [`window`]**must** be a valid X11 [`xcb_window_t`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
+///## Valid Usage
+/// - [`connection`] **must**  point to a valid X11 [`xcb_connection_t`]
+/// - [`window`] **must**  be a valid X11 [`xcb_window_t`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_KHR_xcb_surface`]
 /// - [`StructureType`]

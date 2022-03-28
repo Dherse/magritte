@@ -19,7 +19,7 @@ pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///# C Specifications
 ///Performance counters have an associated scope.
 ///This scope describes the granularity of a performance counter.The performance counter scope
-/// types which **may** be returned in
+/// types which  **may**  be returned in
 ///[`PerformanceCounterKHR::scope`] are:
 ///```c
 ///// Provided by VK_KHR_performance_query
@@ -36,7 +36,7 @@ pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// - [`PerformanceCounterScopeCommandBufferKhr`] - the performance counter scope is a single
 ///   complete command buffer.
 /// - [`PerformanceCounterScopeRenderPassKhr`] - the performance counter scope is zero or more
-///   complete render passes. The performance query containing the performance counter **must**
+///   complete render passes. The performance query containing the performance counter  **must**
 ///   begin and end outside a render pass instance.
 /// - [`PerformanceCounterScopeCommandKhr`] - the performance counter scope is zero or more
 ///   commands.
@@ -62,7 +62,7 @@ pub enum PerformanceCounterScopeKHR {
     PerformanceCounterScopeCommandBufferKhr = 0,
     ///[`PerformanceCounterScopeRenderPassKhr`] - the performance
     ///counter scope is zero or more complete render passes.
-    ///The performance query containing the performance counter **must** begin and
+    ///The performance query containing the performance counter  **must**  begin and
     ///end outside a render pass instance.
     PerformanceCounterScopeRenderPassKhr = 1,
     ///[`PerformanceCounterScopeCommandKhr`] - the performance counter
@@ -95,7 +95,7 @@ impl PerformanceCounterScopeKHR {
 ///# C Specifications
 ///Performance counters have an associated unit.
 ///This unit describes how to interpret the performance counter result.The performance counter unit
-/// types which **may** be returned in
+/// types which  **may**  be returned in
 ///[`PerformanceCounterKHR::unit`] are:
 ///```c
 ///// Provided by VK_KHR_performance_query
@@ -205,7 +205,7 @@ impl PerformanceCounterUnitKHR {
 ///# C Specifications
 ///Performance counters have an associated storage.
 ///This storage describes the payload of a counter result.The performance counter storage types
-/// which **may** be returned in
+/// which  **may**  be returned in
 ///[`PerformanceCounterKHR::storage`] are:
 ///```c
 ///// Provided by VK_KHR_performance_query
@@ -317,9 +317,10 @@ impl PerformanceCounterStorageKHR {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDevicePerformanceQueryFeaturesKHR`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR`
+///[`PhysicalDevicePerformanceQueryFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR`
 ///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`Bool32`]
@@ -498,8 +499,9 @@ impl<'lt> PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR`
 ///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`Bool32`]
@@ -641,9 +643,9 @@ impl<'lt> PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
 /// - [`uuid`] is an array of size [`UUID_SIZE`], containing 8-bit values that represent a
 ///   universally unique identifier for the counter of the physical device.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_KHR`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterScopeKHR`]
@@ -701,18 +703,9 @@ impl<'lt> PerformanceCounterKHR<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::uuid`]
-    pub fn uuid_raw(&self) -> [u8; UUID_SIZE] {
-        self.uuid
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::uuid`]
-    pub fn set_uuid_raw(&mut self, value: [u8; UUID_SIZE]) -> &mut Self {
-        self.uuid = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -835,9 +828,9 @@ impl<'lt> PerformanceCounterKHR<'lt> {
 /// - [`description`] is an array of size [`MAX_DESCRIPTION_SIZE`], containing a null-terminated
 ///   UTF-8 string specifying the description of the counter.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_DESCRIPTION_KHR`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_DESCRIPTION_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterDescriptionFlagsKHR`]
@@ -895,36 +888,9 @@ impl<'lt> PerformanceCounterDescriptionKHR<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::name`]
-    pub fn name_raw(&self) -> [c_schar; MAX_DESCRIPTION_SIZE] {
-        self.name
-    }
-    ///Gets the raw value of [`Self::category`]
-    pub fn category_raw(&self) -> [c_schar; MAX_DESCRIPTION_SIZE] {
-        self.category
-    }
-    ///Gets the raw value of [`Self::description`]
-    pub fn description_raw(&self) -> [c_schar; MAX_DESCRIPTION_SIZE] {
-        self.description
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::name`]
-    pub fn set_name_raw(&mut self, value: [c_schar; MAX_DESCRIPTION_SIZE]) -> &mut Self {
-        self.name = value;
-        self
-    }
-    ///Sets the raw value of [`Self::category`]
-    pub fn set_category_raw(&mut self, value: [c_schar; MAX_DESCRIPTION_SIZE]) -> &mut Self {
-        self.category = value;
-        self
-    }
-    ///Sets the raw value of [`Self::description`]
-    pub fn set_description_raw(&mut self, value: [c_schar; MAX_DESCRIPTION_SIZE]) -> &mut Self {
-        self.description = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -1037,18 +1003,19 @@ impl<'lt> PerformanceCounterDescriptionKHR<'lt> {
 ///   [`EnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR`]`::pCounters` to enable in
 ///   this performance query pool.
 ///# Description
-///Valid Usage
-/// - [`queue_family_index`]**must** be a valid queue family index of the device
+///## Valid Usage
+/// - [`queue_family_index`] **must**  be a valid queue family index of the device
 /// - The [`performanceCounterQueryPools`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-performanceCounterQueryPools)
-///   feature **must** be enabled
-/// - Each element of [`counter_indices`]**must** be in the range of counters reported by
+///   feature  **must**  be enabled
+/// - Each element of [`counter_indices`] **must**  be in the range of counters reported by
 ///   [`EnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR`] for the queue family
 ///   specified in [`queue_family_index`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR`
-/// - [`counter_indices`]**must** be a valid pointer to an array of
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR`
+/// - [`counter_indices`] **must**  be a valid pointer to an array of
 ///   [`counter_index_count`]`uint32_t` values
-/// - [`counter_index_count`]**must** be greater than `0`
+/// - [`counter_index_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`StructureType`]
@@ -1099,14 +1066,6 @@ impl<'lt> QueryPoolPerformanceCreateInfoKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::queue_family_index`]
-    pub fn queue_family_index_raw(&self) -> u32 {
-        self.queue_family_index
-    }
-    ///Gets the raw value of [`Self::counter_index_count`]
-    pub fn counter_index_count_raw(&self) -> u32 {
-        self.counter_index_count
-    }
     ///Gets the raw value of [`Self::counter_indices`]
     pub fn counter_indices_raw(&self) -> *const u32 {
         self.counter_indices
@@ -1114,16 +1073,6 @@ impl<'lt> QueryPoolPerformanceCreateInfoKHR<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::queue_family_index`]
-    pub fn set_queue_family_index_raw(&mut self, value: u32) -> &mut Self {
-        self.queue_family_index = value;
-        self
-    }
-    ///Sets the raw value of [`Self::counter_index_count`]
-    pub fn set_counter_index_count_raw(&mut self, value: u32) -> &mut Self {
-        self.counter_index_count = value;
         self
     }
     ///Sets the raw value of [`Self::counter_indices`]
@@ -1217,10 +1166,10 @@ impl<'lt> QueryPoolPerformanceCreateInfoKHR<'lt> {
 /// - [`timeout`] indicates how long the function waits, in nanoseconds, if the profiling lock is
 ///   not available.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ACQUIRE_PROFILING_LOCK_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACQUIRE_PROFILING_LOCK_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
 ///If [`timeout`] is 0, [`AcquireProfilingLockKHR`] will not block while
 ///attempting to acquire the profling lock.
 ///If [`timeout`] is `UINT64_MAX`, the function will not return until the
@@ -1270,18 +1219,9 @@ impl<'lt> AcquireProfilingLockInfoKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::timeout`]
-    pub fn timeout_raw(&self) -> u64 {
-        self.timeout
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::timeout`]
-    pub fn set_timeout_raw(&mut self, value: u64) -> &mut Self {
-        self.timeout = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -1356,12 +1296,14 @@ impl<'lt> AcquireProfilingLockInfoKHR<'lt> {
 /// - [`counter_pass_index`] specifies which counter pass index is active.
 ///# Description
 ///If the [`SubmitInfo`]::[`p_next`] chain does not include this
-///structure, the batch defaults to use counter pass index 0.Valid Usage
-/// - [`counter_pass_index`]**must** be less than the number of counter passes required by any
+///structure, the batch defaults to use counter pass index 0.
+///## Valid Usage
+/// - [`counter_pass_index`] **must**  be less than the number of counter passes required by any
 ///   queries within the batch. The required number of counter passes for a performance query is
 ///   obtained by calling [`GetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PERFORMANCE_QUERY_SUBMIT_INFO_KHR`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_QUERY_SUBMIT_INFO_KHR`
 ///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`StructureType`]
@@ -1401,18 +1343,9 @@ impl<'lt> PerformanceQuerySubmitInfoKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::counter_pass_index`]
-    pub fn counter_pass_index_raw(&self) -> u32 {
-        self.counter_pass_index
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::counter_pass_index`]
-    pub fn set_counter_pass_index_raw(&mut self, value: u32) -> &mut Self {
-        self.counter_pass_index = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

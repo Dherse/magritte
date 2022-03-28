@@ -29,13 +29,13 @@ pub const EXT_FULL_SCREEN_EXCLUSIVE_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///} VkFullScreenExclusiveEXT;
 ///```
 ///# Description
-/// - [`FullScreenExclusiveDefaultExt`] indicates the implementation **should** determine the
+/// - [`FullScreenExclusiveDefaultExt`] indicates the implementation  **should**  determine the
 ///   appropriate full-screen method by whatever means it deems appropriate.
-/// - [`FullScreenExclusiveAllowedExt`] indicates the implementation **may** use full-screen
-///   exclusive mechanisms when available. Such mechanisms **may** result in better performance
-///   and/or the availability of different presentation capabilities, but **may** require a more
+/// - [`FullScreenExclusiveAllowedExt`] indicates the implementation  **may**  use full-screen
+///   exclusive mechanisms when available. Such mechanisms  **may**  result in better performance
+///   and/or the availability of different presentation capabilities, but  **may**  require a more
 ///   disruptive transition during swapchain initialization, first presentation and/or destruction.
-/// - [`FullScreenExclusiveDisallowedExt`] indicates the implementation **should** avoid using
+/// - [`FullScreenExclusiveDisallowedExt`] indicates the implementation  **should**  avoid using
 ///   full-screen mechanisms which rely on disruptive transitions.
 /// - [`FullScreenExclusiveApplicationControlledExt`] indicates the application will manage
 ///   full-screen exclusive mode by using the [`AcquireFullScreenExclusiveModeEXT`] and
@@ -58,18 +58,18 @@ pub const EXT_FULL_SCREEN_EXCLUSIVE_EXTENSION_NAME: &'static CStr = crate::cstr!
 #[repr(i32)]
 pub enum FullScreenExclusiveEXT {
     ///[`FullScreenExclusiveDefaultExt`] indicates the implementation
-    ///**should** determine the appropriate full-screen method by whatever means
+    /// **should**  determine the appropriate full-screen method by whatever means
     ///it deems appropriate.
     FullScreenExclusiveDefaultExt = 0,
     ///[`FullScreenExclusiveAllowedExt`] indicates the implementation
-    ///**may** use full-screen exclusive mechanisms when available.
-    ///Such mechanisms **may** result in better performance and/or the
-    ///availability of different presentation capabilities, but **may** require a
+    /// **may**  use full-screen exclusive mechanisms when available.
+    ///Such mechanisms  **may**  result in better performance and/or the
+    ///availability of different presentation capabilities, but  **may**  require a
     ///more disruptive transition during swapchain initialization, first
     ///presentation and/or destruction.
     FullScreenExclusiveAllowedExt = 1,
     ///[`FullScreenExclusiveDisallowedExt`] indicates the
-    ///implementation **should** avoid using full-screen mechanisms which rely on
+    ///implementation  **should**  avoid using full-screen mechanisms which rely on
     ///disruptive transitions.
     FullScreenExclusiveDisallowedExt = 2,
     ///[`FullScreenExclusiveApplicationControlledExt`] indicates the
@@ -121,9 +121,10 @@ impl FullScreenExclusiveEXT {
 ///   full-screen transition behavior.
 ///# Description
 ///If this structure is not present, [`full_screen_exclusive`] is considered to
-///be `VK_FULL_SCREEN_EXCLUSIVE_DEFAULT_EXT`.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT`
-/// - [`full_screen_exclusive`]**must** be a valid [`FullScreenExclusiveEXT`] value
+///be `VK_FULL_SCREEN_EXCLUSIVE_DEFAULT_EXT`.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT`
+/// - [`full_screen_exclusive`] **must**  be a valid [`FullScreenExclusiveEXT`] value
 ///# Related
 /// - [`VK_EXT_full_screen_exclusive`]
 /// - [`FullScreenExclusiveEXT`]
@@ -236,10 +237,11 @@ impl<'lt> SurfaceFullScreenExclusiveInfoEXT<'lt> {
 /// - [`hmonitor`] is the Win32 [`HMONITOR`] handle identifying the display to create the surface
 ///   with.
 ///# Description
-///Valid Usage
-/// - [`hmonitor`]**must** be a valid [`HMONITOR`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT`
+///## Valid Usage
+/// - [`hmonitor`] **must**  be a valid [`HMONITOR`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT`
 ///# Related
 /// - [`VK_EXT_full_screen_exclusive`]
 /// - [`VK_KHR_win32_surface`]
@@ -352,15 +354,16 @@ impl<'lt> SurfaceFullScreenExclusiveWin32InfoEXT<'lt> {
 /// - `fullScreenExclusiveControlSupported` is a boolean describing whether the surface is able to
 ///   make use of exclusive full-screen access.
 ///# Description
-///This structure **can** be included in the [`p_next`] chain of
+///This structure  **can**  be included in the [`p_next`] chain of
 ///[`SurfaceCapabilities2KHR`] to determine support for exclusive
 ///full-screen access.
 ///If [`full_screen_exclusive_supported`] is [`FALSE`], it indicates that
-///exclusive full-screen access is not obtainable for this surface.Applications **must** not
+///exclusive full-screen access is not obtainable for this surface.Applications  **must**  not
 /// attempt to create swapchains with
 ///`VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT` set if
-///[`full_screen_exclusive_supported`] is [`FALSE`].Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT`
+///[`full_screen_exclusive_supported`] is [`FALSE`].
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT`
 ///# Related
 /// - [`VK_EXT_full_screen_exclusive`]
 /// - [`Bool32`]

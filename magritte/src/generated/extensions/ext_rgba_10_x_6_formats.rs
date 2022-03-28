@@ -26,15 +26,16 @@ pub const EXT_RGBA10X6_FORMATS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`format_rgba_10_x_6_without_y_cb_cr_sampler`] indicates that `VK_FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16`**can** be used with a [`ImageView`] with `subresourceRange.aspectMask` equal to `VK_IMAGE_ASPECT_COLOR_BIT` without a [sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-YCbCr-conversion) enabled.
+/// - [`format_rgba_10_x_6_without_y_cb_cr_sampler`] indicates that `VK_FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16` **can**  be used with a [`ImageView`] with `subresourceRange.aspectMask` equal to `VK_IMAGE_ASPECT_COLOR_BIT` without a [sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-YCbCr-conversion) enabled.
 ///If the [`PhysicalDeviceRgba10X6FormatsFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceRgba10X6FormatsFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT`
+///[`PhysicalDeviceRgba10X6FormatsFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_rgba10x6_formats`]
 /// - [`Bool32`]
@@ -58,7 +59,7 @@ pub struct PhysicalDeviceRgba10X6FormatsFeaturesEXT<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`format_rgba_10_x_6_without_y_cb_cr_sampler`] indicates that
-    ///`VK_FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16`**can** be used with a
+    ///`VK_FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16` **can**  be used with a
     ///[`ImageView`] with `subresourceRange.aspectMask` equal to
     ///`VK_IMAGE_ASPECT_COLOR_BIT` without a [sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-YCbCr-conversion) enabled.
     format_rgba_10_x_6_without_y_cb_cr_sampler: Bool32,

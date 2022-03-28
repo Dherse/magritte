@@ -10,7 +10,7 @@ pub const EXT_CUSTOM_BORDER_COLOR_SPEC_VERSION: u32 = 12;
 pub const EXT_CUSTOM_BORDER_COLOR_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_custom_border_color");
 ///[VkSamplerCustomBorderColorCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerCustomBorderColorCreateInfoEXT.html) - Structure specifying custom border color
 ///# C Specifications
-///In addition to the predefined border color values, applications **can** provide
+///In addition to the predefined border color values, applications  **can**  provide
 ///a custom border color value by including the
 ///[`SamplerCustomBorderColorCreateInfoEXT`] structure in the
 ///[`SamplerCreateInfo`]::[`p_next`] chain.The [`SamplerCustomBorderColorCreateInfoEXT`] structure is defined as:
@@ -30,16 +30,17 @@ pub const EXT_CUSTOM_BORDER_COLOR_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///   border color.
 /// - [`format`] is a [`Format`] representing the format of the sampled image view(s). This field may be `VK_FORMAT_UNDEFINED` if the [customBorderColorWithoutFormat](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-customBorderColorWithoutFormat) feature is enabled.
 ///# Description
-///Valid Usage
-/// -    If provided [`format`] is not `VK_FORMAT_UNDEFINED` then the [`SamplerCreateInfo::border_color`] type **must** match the sampled type of the provided [`format`], as shown in the *SPIR-V Sampled Type* column of the [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-numericformat](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-numericformat) table
+///## Valid Usage
+/// -    If provided [`format`] is not `VK_FORMAT_UNDEFINED` then the [`SamplerCreateInfo::border_color`] type  **must**  match the sampled type of the provided [`format`], as shown in the *SPIR-V Sampled Type* column of the [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-numericformat](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-numericformat) table
 /// - If the [customBorderColorWithoutFormat](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-customBorderColorWithoutFormat)
-///   feature is not enabled then [`format`]**must** not be `VK_FORMAT_UNDEFINED`
+///   feature is not enabled then [`format`] **must**  not be `VK_FORMAT_UNDEFINED`
 /// - If the sampler is used to sample an image view of `VK_FORMAT_B4G4R4A4_UNORM_PACK16`,
-///   `VK_FORMAT_B5G6R5_UNORM_PACK16`, or `VK_FORMAT_B5G5R5A1_UNORM_PACK16` format then
-///   [`format`]**must** not be `VK_FORMAT_UNDEFINED`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT`
-/// - [`format`]**must** be a valid [`Format`] value
+///   `VK_FORMAT_B5G6R5_UNORM_PACK16`, or `VK_FORMAT_B5G5R5A1_UNORM_PACK16` format then [`format`]
+///   **must**  not be `VK_FORMAT_UNDEFINED`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT`
+/// - [`format`] **must**  be a valid [`Format`] value
 ///# Related
 /// - [`VK_EXT_custom_border_color`]
 /// - [`ClearColorValue`]
@@ -160,14 +161,15 @@ impl<'lt> SamplerCustomBorderColorCreateInfoEXT<'lt> {
 ///```
 ///# Members
 /// - [`max_custom_border_color_samplers`] indicates the maximum number of samplers with custom
-///   border colors which **can** simultaneously exist on a device.
+///   border colors which  **can**  simultaneously exist on a device.
 ///# Description
 ///If the [`PhysicalDeviceCustomBorderColorPropertiesEXT`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT`
 ///# Related
 /// - [`VK_EXT_custom_border_color`]
 /// - [`StructureType`]
@@ -189,7 +191,7 @@ pub struct PhysicalDeviceCustomBorderColorPropertiesEXT<'lt> {
     ///No documentation found
     p_next: *mut BaseOutStructure<'lt>,
     ///[`max_custom_border_color_samplers`] indicates the maximum number of
-    ///samplers with custom border colors which **can** simultaneously exist on a
+    ///samplers with custom border colors which  **can**  simultaneously exist on a
     ///device.
     max_custom_border_color_samplers: u32,
 }
@@ -208,18 +210,9 @@ impl<'lt> PhysicalDeviceCustomBorderColorPropertiesEXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::max_custom_border_color_samplers`]
-    pub fn max_custom_border_color_samplers_raw(&self) -> u32 {
-        self.max_custom_border_color_samplers
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_custom_border_color_samplers`]
-    pub fn set_max_custom_border_color_samplers_raw(&mut self, value: u32) -> &mut Self {
-        self.max_custom_border_color_samplers = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -291,18 +284,19 @@ impl<'lt> PhysicalDeviceCustomBorderColorPropertiesEXT<'lt> {
 ///   `VK_BORDER_COLOR_FLOAT_CUSTOM_EXT`  - `VK_BORDER_COLOR_INT_CUSTOM_EXT`
 /// - [`custom_border_color_without_format`] indicates that explicit formats are not required for
 ///   custom border colors and the value of the `format` member of the
-///   [`SamplerCustomBorderColorCreateInfoEXT`] structure **may** be `VK_FORMAT_UNDEFINED`. If this
-///   feature bit is not set, applications **must** provide the [`Format`] of the image view(s)
-///   being sampled by this sampler in the `format` member of the
+///   [`SamplerCustomBorderColorCreateInfoEXT`] structure  **may**  be `VK_FORMAT_UNDEFINED`. If
+///   this feature bit is not set, applications  **must**  provide the [`Format`] of the image
+///   view(s) being sampled by this sampler in the `format` member of the
 ///   [`SamplerCustomBorderColorCreateInfoEXT`] structure.
 ///If the [`PhysicalDeviceCustomBorderColorFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceCustomBorderColorFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT`
+///[`PhysicalDeviceCustomBorderColorFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_custom_border_color`]
 /// - [`Bool32`]
@@ -334,8 +328,8 @@ pub struct PhysicalDeviceCustomBorderColorFeaturesEXT<'lt> {
     ///[`custom_border_color_without_format`] indicates that explicit formats are
     ///not required for custom border colors and the value of the `format`
     ///member of the [`SamplerCustomBorderColorCreateInfoEXT`] structure
-    ///**may** be `VK_FORMAT_UNDEFINED`.
-    ///If this feature bit is not set, applications **must** provide the
+    /// **may**  be `VK_FORMAT_UNDEFINED`.
+    ///If this feature bit is not set, applications  **must**  provide the
     ///[`Format`] of the image view(s) being sampled by this sampler in the
     ///`format` member of the [`SamplerCustomBorderColorCreateInfoEXT`]
     ///structure.

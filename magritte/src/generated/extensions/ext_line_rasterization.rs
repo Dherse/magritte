@@ -129,9 +129,10 @@ impl LineRasterizationModeEXT {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceLineRasterizationFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_EXT`
+///[`PhysicalDeviceLineRasterizationFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_line_rasterization`]
 /// - [`Bool32`]
@@ -479,8 +480,9 @@ impl<'lt> PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES_EXT`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES_EXT`
 ///# Related
 /// - [`VK_EXT_line_rasterization`]
 /// - [`StructureType`]
@@ -523,18 +525,9 @@ impl<'lt> PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::line_sub_pixel_precision_bits`]
-    pub fn line_sub_pixel_precision_bits_raw(&self) -> u32 {
-        self.line_sub_pixel_precision_bits
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::line_sub_pixel_precision_bits`]
-    pub fn set_line_sub_pixel_precision_bits_raw(&mut self, value: u32) -> &mut Self {
-        self.line_sub_pixel_precision_bits = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -610,19 +603,21 @@ impl<'lt> PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
 /// - [`line_stipple_pattern`] is the bit pattern used in stippled line rasterization.
 ///# Description
 ///If [`stippled_line_enable`] is [`FALSE`], the values of
-///[`line_stipple_factor`] and [`line_stipple_pattern`] are ignored.Valid Usage
+///[`line_stipple_factor`] and [`line_stipple_pattern`] are ignored.
+///## Valid Usage
 /// - If [`line_rasterization_mode`] is `VK_LINE_RASTERIZATION_MODE_RECTANGULAR_EXT`, then the [rectangularLines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-rectangularLines)
-///   feature **must** be enabled
+///   feature  **must**  be enabled
 /// - If [`line_rasterization_mode`] is `VK_LINE_RASTERIZATION_MODE_BRESENHAM_EXT`, then the [bresenhamLines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-bresenhamLines)
-///   feature **must** be enabled
-/// -    If [`line_rasterization_mode`] is `VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT`, then the [smoothLines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-bresenhamLines) feature **must** be enabled
-/// -    If [`stippled_line_enable`] is [`TRUE`] and [`line_rasterization_mode`] is `VK_LINE_RASTERIZATION_MODE_RECTANGULAR_EXT`, then the [stippledRectangularLines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-stippledRectangularLines) feature **must** be enabled
-/// -    If [`stippled_line_enable`] is [`TRUE`] and [`line_rasterization_mode`] is `VK_LINE_RASTERIZATION_MODE_BRESENHAM_EXT`, then the [stippledBresenhamLines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-stippledBresenhamLines) feature **must** be enabled
-/// -    If [`stippled_line_enable`] is [`TRUE`] and [`line_rasterization_mode`] is `VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT`, then the [stippledSmoothLines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-stippledSmoothLines) feature **must** be enabled
-/// -    If [`stippled_line_enable`] is [`TRUE`] and [`line_rasterization_mode`] is `VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT`, then the [stippledRectangularLines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-stippledRectangularLines) feature **must** be enabled and [`PhysicalDeviceLimits::strict_lines`]**must** be [`TRUE`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO_EXT`
-/// - [`line_rasterization_mode`]**must** be a valid [`LineRasterizationModeEXT`] value
+///   feature  **must**  be enabled
+/// -    If [`line_rasterization_mode`] is `VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT`, then the [smoothLines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-bresenhamLines) feature  **must**  be enabled
+/// -    If [`stippled_line_enable`] is [`TRUE`] and [`line_rasterization_mode`] is `VK_LINE_RASTERIZATION_MODE_RECTANGULAR_EXT`, then the [stippledRectangularLines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-stippledRectangularLines) feature  **must**  be enabled
+/// -    If [`stippled_line_enable`] is [`TRUE`] and [`line_rasterization_mode`] is `VK_LINE_RASTERIZATION_MODE_BRESENHAM_EXT`, then the [stippledBresenhamLines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-stippledBresenhamLines) feature  **must**  be enabled
+/// -    If [`stippled_line_enable`] is [`TRUE`] and [`line_rasterization_mode`] is `VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT`, then the [stippledSmoothLines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-stippledSmoothLines) feature  **must**  be enabled
+/// -    If [`stippled_line_enable`] is [`TRUE`] and [`line_rasterization_mode`] is `VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT`, then the [stippledRectangularLines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-stippledRectangularLines) feature  **must**  be enabled and [`PhysicalDeviceLimits::strict_lines`] **must**  be [`TRUE`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO_EXT`
+/// - [`line_rasterization_mode`] **must**  be a valid [`LineRasterizationModeEXT`] value
 ///# Related
 /// - [`VK_EXT_line_rasterization`]
 /// - [`Bool32`]
@@ -681,14 +676,6 @@ impl<'lt> PipelineRasterizationLineStateCreateInfoEXT<'lt> {
     pub fn stippled_line_enable_raw(&self) -> Bool32 {
         self.stippled_line_enable
     }
-    ///Gets the raw value of [`Self::line_stipple_factor`]
-    pub fn line_stipple_factor_raw(&self) -> u32 {
-        self.line_stipple_factor
-    }
-    ///Gets the raw value of [`Self::line_stipple_pattern`]
-    pub fn line_stipple_pattern_raw(&self) -> u16 {
-        self.line_stipple_pattern
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
@@ -697,16 +684,6 @@ impl<'lt> PipelineRasterizationLineStateCreateInfoEXT<'lt> {
     ///Sets the raw value of [`Self::stippled_line_enable`]
     pub fn set_stippled_line_enable_raw(&mut self, value: Bool32) -> &mut Self {
         self.stippled_line_enable = value;
-        self
-    }
-    ///Sets the raw value of [`Self::line_stipple_factor`]
-    pub fn set_line_stipple_factor_raw(&mut self, value: u32) -> &mut Self {
-        self.line_stipple_factor = value;
-        self
-    }
-    ///Sets the raw value of [`Self::line_stipple_pattern`]
-    pub fn set_line_stipple_pattern_raw(&mut self, value: u16) -> &mut Self {
-        self.line_stipple_pattern = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

@@ -30,45 +30,47 @@ pub const KHR_GET_SURFACE_CAPABILITIES_2_EXTENSION_NAME: &'static CStr =
 ///# Description
 ///The members of [`PhysicalDeviceSurfaceInfo2KHR`] correspond to the
 ///arguments to [`GetPhysicalDeviceSurfaceCapabilitiesKHR`], with
-///[`s_type`] and [`p_next`] added for extensibility.Additional capabilities of a surface **may**
+///[`s_type`] and [`p_next`] added for extensibility.Additional capabilities of a surface  **may**
 /// be available to swapchains created
 ///with different full-screen exclusive settings - particularly if exclusive
 ///full-screen access is application controlled.
-///These additional capabilities **can** be queried by adding a
+///These additional capabilities  **can**  be queried by adding a
 ///[`SurfaceFullScreenExclusiveInfoEXT`] structure to the [`p_next`] chain
 ///of this structure when used to query surface properties.
 ///Additionally, for Win32 surfaces with application controlled exclusive
 ///full-screen access, chaining a
-///[`SurfaceFullScreenExclusiveWin32InfoEXT`] structure **may** also report
+///[`SurfaceFullScreenExclusiveWin32InfoEXT`] structure  **may**  also report
 ///additional surface capabilities.
 ///These additional capabilities only apply to swapchains created with the same
 ///parameters included in the [`p_next`] chain of
-///[`SwapchainCreateInfoKHR`].Valid Usage
+///[`SwapchainCreateInfoKHR`].
+///## Valid Usage
 /// - If the [`p_next`] chain includes a [`SurfaceFullScreenExclusiveInfoEXT`] structure with its
 ///   `fullScreenExclusive` member set to `VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT`, and
 ///   [`surface`] was created using [`CreateWin32SurfaceKHR`], a
-///   [`SurfaceFullScreenExclusiveWin32InfoEXT`] structure **must** be included in the [`p_next`]
+///   [`SurfaceFullScreenExclusiveWin32InfoEXT`] structure  **must**  be included in the [`p_next`]
 ///   chain
 /// - When passed as the `pSurfaceInfo` parameter of [`GetPhysicalDeviceSurfaceCapabilities2KHR`],
 ///   if the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled and the [`p_next`] chain of the
 ///   `pSurfaceCapabilities` parameter includes [`SurfaceProtectedCapabilitiesKHR`], then
-///   [`surface`]**can** be [`crate::utils::Handle::null`]. Otherwise, [`surface`]**must** be a
+///   [`surface`] **can**  be [`crate::utils::Handle::null`]. Otherwise, [`surface`] **must**  be a
 ///   valid [`SurfaceKHR`] handle
 /// - When passed as the `pSurfaceInfo` parameter of [`GetPhysicalDeviceSurfaceFormats2KHR`], if the
-///   `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, then [`surface`]**can** be
-///   [`crate::utils::Handle::null`]. Otherwise, [`surface`]**must** be a valid [`SurfaceKHR`]
+///   `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, then [`surface`] **can**  be
+///   [`crate::utils::Handle::null`]. Otherwise, [`surface`] **must**  be a valid [`SurfaceKHR`]
 ///   handle
 /// - When passed as the `pSurfaceInfo` parameter of [`GetPhysicalDeviceSurfacePresentModes2EXT`],
-///   if the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, then [`surface`]**can** be
-///   [`crate::utils::Handle::null`]. Otherwise, [`surface`]**must** be a valid [`SurfaceKHR`]
+///   if the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, then [`surface`] **can**  be
+///   [`crate::utils::Handle::null`]. Otherwise, [`surface`] **must**  be a valid [`SurfaceKHR`]
 ///   handle
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SURFACE_INFO_2_KHR`
-/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain **must**
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SURFACE_INFO_2_KHR`
+/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`SurfaceFullScreenExclusiveInfoEXT`] or
 ///   [`SurfaceFullScreenExclusiveWin32InfoEXT`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - If [`surface`] is not [`crate::utils::Handle::null`], [`surface`]**must** be a valid
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - If [`surface`] is not [`crate::utils::Handle::null`], [`surface`] **must**  be a valid
 ///   [`SurfaceKHR`] handle
 ///# Related
 /// - [`VK_KHR_get_surface_capabilities2`]
@@ -175,13 +177,13 @@ impl<'lt> PhysicalDeviceSurfaceInfo2KHR<'lt> {
 /// - [`surface_capabilities`] is a [`SurfaceCapabilitiesKHR`] structure describing the capabilities
 ///   of the specified surface.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_KHR`
-/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain **must**
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_KHR`
+/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of
 ///   [`DisplayNativeHdrSurfaceCapabilitiesAMD`], [`SharedPresentSurfaceCapabilitiesKHR`],
 ///   [`SurfaceCapabilitiesFullScreenExclusiveEXT`], or [`SurfaceProtectedCapabilitiesKHR`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 ///# Related
 /// - [`VK_KHR_get_surface_capabilities2`]
 /// - [`StructureType`]
@@ -295,9 +297,9 @@ impl<'lt> SurfaceCapabilities2KHR<'lt> {
 /// - [`surface_format`] is a [`SurfaceFormatKHR`] structure describing a format-color space pair
 ///   that is compatible with the specified surface.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SURFACE_FORMAT_2_KHR`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SURFACE_FORMAT_2_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_get_surface_capabilities2`]
 /// - [`StructureType`]

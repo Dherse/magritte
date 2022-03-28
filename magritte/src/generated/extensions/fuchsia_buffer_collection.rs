@@ -33,12 +33,13 @@ pub const FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME: &'static CStr = crate::cstr!
 /// - [`collection`] is the [`BufferCollectionFUCHSIA`] handle
 /// - [`index`] the index of the buffer to import from [`collection`]
 ///# Description
-///Valid Usage
-/// - [`index`]**must** be less than the value retrieved as
+///## Valid Usage
+/// - [`index`] **must**  be less than the value retrieved as
 ///   [`BufferCollectionPropertiesFUCHSIA`]:bufferCount
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA`
-/// - [`collection`]**must** be a valid [`BufferCollectionFUCHSIA`] handle
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA`
+/// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
 ///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`BufferCollectionFUCHSIA`]
@@ -82,18 +83,9 @@ impl<'lt> ImportMemoryBufferCollectionFUCHSIA<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::index`]
-    pub fn index_raw(&self) -> u32 {
-        self.index
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::index`]
-    pub fn set_index_raw(&mut self, value: u32) -> &mut Self {
-        self.index = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -170,11 +162,12 @@ impl<'lt> ImportMemoryBufferCollectionFUCHSIA<'lt> {
 /// - [`index`] is the index of the buffer in the buffer collection from which the memory will be
 ///   imported
 ///# Description
-///Valid Usage
-/// - [`index`]**must** be less than [`BufferCollectionPropertiesFUCHSIA::buffer_count`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA`
-/// - [`collection`]**must** be a valid [`BufferCollectionFUCHSIA`] handle
+///## Valid Usage
+/// - [`index`] **must**  be less than [`BufferCollectionPropertiesFUCHSIA::buffer_count`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA`
+/// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
 ///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`BufferCollectionFUCHSIA`]
@@ -219,18 +212,9 @@ impl<'lt> BufferCollectionImageCreateInfoFUCHSIA<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::index`]
-    pub fn index_raw(&self) -> u32 {
-        self.index
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::index`]
-    pub fn set_index_raw(&mut self, value: u32) -> &mut Self {
-        self.index = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -307,11 +291,12 @@ impl<'lt> BufferCollectionImageCreateInfoFUCHSIA<'lt> {
 /// - [`index`] is the index of the buffer in the buffer collection from which the memory will be
 ///   imported
 ///# Description
-///Valid Usage
-/// - [`index`]**must** be less than [`BufferCollectionPropertiesFUCHSIA::buffer_count`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA`
-/// - [`collection`]**must** be a valid [`BufferCollectionFUCHSIA`] handle
+///## Valid Usage
+/// - [`index`] **must**  be less than [`BufferCollectionPropertiesFUCHSIA::buffer_count`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA`
+/// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
 ///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`BufferCollectionFUCHSIA`]
@@ -356,18 +341,9 @@ impl<'lt> BufferCollectionBufferCreateInfoFUCHSIA<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::index`]
-    pub fn index_raw(&self) -> u32 {
-        self.index
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::index`]
-    pub fn set_index_raw(&mut self, value: u32) -> &mut Self {
-        self.index = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -442,13 +418,14 @@ impl<'lt> BufferCollectionBufferCreateInfoFUCHSIA<'lt> {
 /// - [`collection_token`] is a [`zx_handle_t`] containing the Sysmem client’s buffer collection
 ///   token
 ///# Description
-///Valid Usage
-/// - [`collection_token`]**must** be a valid [`zx_handle_t`] to a Zircon channel allocated from
+///## Valid Usage
+/// - [`collection_token`] **must**  be a valid [`zx_handle_t`] to a Zircon channel allocated from
 ///   Sysmem (`fuchsia.sysmem.Allocator`/AllocateSharedCollection) with `ZX_DEFAULT_CHANNEL_RIGHTS`
 ///   rights
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_CREATE_INFO_FUCHSIA`
-/// - [`p_next`]**must** be `NULL`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_CREATE_INFO_FUCHSIA`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`StructureType`]
@@ -602,17 +579,18 @@ impl<'lt> BufferCollectionCreateInfoFUCHSIA<'lt> {
 ///were set in
 ///[`ImageFormatConstraintsInfoFUCHSIA::required_format_features`], by
 ///the call to [`SetBufferCollectionImageConstraintsFUCHSIA`], at
-///[`create_info_index`] (other bits could be set as well).Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_PROPERTIES_FUCHSIA`
-/// - [`p_next`]**must** be `NULL`
-/// - [`format_features`]**must** be a valid combination of [`FormatFeatureFlagBits`] values
-/// - [`format_features`]**must** not be `0`
-/// - [`sysmem_color_space_index`]**must** be a valid [`SysmemColorSpaceFUCHSIA`] structure
-/// - [`sampler_ycbcr_conversion_components`]**must** be a valid [`ComponentMapping`] structure
-/// - [`suggested_ycbcr_model`]**must** be a valid [`SamplerYcbcrModelConversion`] value
-/// - [`suggested_ycbcr_range`]**must** be a valid [`SamplerYcbcrRange`] value
-/// - [`suggested_x_chroma_offset`]**must** be a valid [`ChromaLocation`] value
-/// - [`suggested_y_chroma_offset`]**must** be a valid [`ChromaLocation`] value
+///[`create_info_index`] (other bits could be set as well).
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_PROPERTIES_FUCHSIA`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`format_features`] **must**  be a valid combination of [`FormatFeatureFlagBits`] values
+/// - [`format_features`] **must**  not be `0`
+/// - [`sysmem_color_space_index`] **must**  be a valid [`SysmemColorSpaceFUCHSIA`] structure
+/// - [`sampler_ycbcr_conversion_components`] **must**  be a valid [`ComponentMapping`] structure
+/// - [`suggested_ycbcr_model`] **must**  be a valid [`SamplerYcbcrModelConversion`] value
+/// - [`suggested_ycbcr_range`] **must**  be a valid [`SamplerYcbcrRange`] value
+/// - [`suggested_x_chroma_offset`] **must**  be a valid [`ChromaLocation`] value
+/// - [`suggested_y_chroma_offset`] **must**  be a valid [`ChromaLocation`] value
 ///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`ChromaLocation`]
@@ -699,45 +677,9 @@ impl<'lt> BufferCollectionPropertiesFUCHSIA<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::memory_type_bits`]
-    pub fn memory_type_bits_raw(&self) -> u32 {
-        self.memory_type_bits
-    }
-    ///Gets the raw value of [`Self::buffer_count`]
-    pub fn buffer_count_raw(&self) -> u32 {
-        self.buffer_count
-    }
-    ///Gets the raw value of [`Self::create_info_index`]
-    pub fn create_info_index_raw(&self) -> u32 {
-        self.create_info_index
-    }
-    ///Gets the raw value of [`Self::sysmem_pixel_format`]
-    pub fn sysmem_pixel_format_raw(&self) -> u64 {
-        self.sysmem_pixel_format
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::memory_type_bits`]
-    pub fn set_memory_type_bits_raw(&mut self, value: u32) -> &mut Self {
-        self.memory_type_bits = value;
-        self
-    }
-    ///Sets the raw value of [`Self::buffer_count`]
-    pub fn set_buffer_count_raw(&mut self, value: u32) -> &mut Self {
-        self.buffer_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::create_info_index`]
-    pub fn set_create_info_index_raw(&mut self, value: u32) -> &mut Self {
-        self.create_info_index = value;
-        self
-    }
-    ///Sets the raw value of [`Self::sysmem_pixel_format`]
-    pub fn set_sysmem_pixel_format_raw(&mut self, value: u64) -> &mut Self {
-        self.sysmem_pixel_format = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -942,15 +884,17 @@ impl<'lt> BufferCollectionPropertiesFUCHSIA<'lt> {
 /// - [`buffer_collection_constraints`] is used to supply parameters for the negotiation and
 ///   allocation of the buffer collection
 ///# Description
-///Valid Usage
-/// -    The [`required_format_features`] bitmask of [`FormatFeatureFlagBits`]**must** be chosen from among the buffer compatible format features listed in [buffer compatible format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#buffer-compatible-format-features)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BUFFER_CONSTRAINTS_INFO_FUCHSIA`
-/// - [`p_next`]**must** be `NULL`
-/// - [`create_info`]**must** be a valid [`BufferCreateInfo`] structure
-/// - [`required_format_features`]**must** be a valid combination of [`FormatFeatureFlagBits`]
+///## Valid Usage
+/// - The [`required_format_features`] bitmask of [`FormatFeatureFlagBits`] **must**  be chosen from
+///   among the buffer compatible format features listed in [buffer compatible format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#buffer-compatible-format-features)
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_CONSTRAINTS_INFO_FUCHSIA`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`create_info`] **must**  be a valid [`BufferCreateInfo`] structure
+/// - [`required_format_features`] **must**  be a valid combination of [`FormatFeatureFlagBits`]
 ///   values
-/// - [`buffer_collection_constraints`]**must** be a valid
+/// - [`buffer_collection_constraints`] **must**  be a valid
 ///   [`BufferCollectionConstraintsInfoFUCHSIA`] structure
 ///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
@@ -1092,12 +1036,13 @@ impl<'lt> BufferConstraintsInfoFUCHSIA<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure
 /// - [`color_space`] value of the Sysmem `ColorSpaceType`
 ///# Description
-///Valid Usage
-/// - [`color_space`]**must** be a `ColorSpaceType` as defined in
+///## Valid Usage
+/// - [`color_space`] **must**  be a `ColorSpaceType` as defined in
 ///   `fuchsia.sysmem/image_formats.fidl`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SYSMEM_COLOR_SPACE_FUCHSIA`
-/// - [`p_next`]**must** be `NULL`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SYSMEM_COLOR_SPACE_FUCHSIA`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`BufferCollectionPropertiesFUCHSIA`]
@@ -1139,18 +1084,9 @@ impl<'lt> SysmemColorSpaceFUCHSIA<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::color_space`]
-    pub fn color_space_raw(&self) -> u32 {
-        self.color_space
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::color_space`]
-    pub fn set_color_space_raw(&mut self, value: u32) -> &mut Self {
-        self.color_space = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -1222,17 +1158,17 @@ impl<'lt> SysmemColorSpaceFUCHSIA<'lt> {
 /// - [`color_spaces`] is a pointer to an array of [`SysmemColorSpaceFUCHSIA`] structs of size
 ///   [`color_space_count`]
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA`
-/// - [`p_next`]**must** be `NULL`
-/// - [`image_create_info`]**must** be a valid [`ImageCreateInfo`] structure
-/// - [`required_format_features`]**must** be a valid combination of [`FormatFeatureFlagBits`]
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`image_create_info`] **must**  be a valid [`ImageCreateInfo`] structure
+/// - [`required_format_features`] **must**  be a valid combination of [`FormatFeatureFlagBits`]
 ///   values
-/// - [`required_format_features`]**must** not be `0`
-/// - [`flags`]**must** be `0`
-/// - [`color_spaces`]**must** be a valid pointer to an array of [`color_space_count`] valid
+/// - [`required_format_features`] **must**  not be `0`
+/// - [`flags`] **must**  be `0`
+/// - [`color_spaces`] **must**  be a valid pointer to an array of [`color_space_count`] valid
 ///   [`SysmemColorSpaceFUCHSIA`] structures
-/// - [`color_space_count`]**must** be greater than `0`
+/// - [`color_space_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`FormatFeatureFlags`]
@@ -1298,14 +1234,6 @@ impl<'lt> ImageFormatConstraintsInfoFUCHSIA<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::sysmem_pixel_format`]
-    pub fn sysmem_pixel_format_raw(&self) -> u64 {
-        self.sysmem_pixel_format
-    }
-    ///Gets the raw value of [`Self::color_space_count`]
-    pub fn color_space_count_raw(&self) -> u32 {
-        self.color_space_count
-    }
     ///Gets the raw value of [`Self::color_spaces`]
     pub fn color_spaces_raw(&self) -> *const SysmemColorSpaceFUCHSIA<'lt> {
         self.color_spaces
@@ -1313,16 +1241,6 @@ impl<'lt> ImageFormatConstraintsInfoFUCHSIA<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::sysmem_pixel_format`]
-    pub fn set_sysmem_pixel_format_raw(&mut self, value: u64) -> &mut Self {
-        self.sysmem_pixel_format = value;
-        self
-    }
-    ///Sets the raw value of [`Self::color_space_count`]
-    pub fn set_color_space_count_raw(&mut self, value: u32) -> &mut Self {
-        self.color_space_count = value;
         self
     }
     ///Sets the raw value of [`Self::color_spaces`]
@@ -1469,41 +1387,41 @@ impl<'lt> ImageFormatConstraintsInfoFUCHSIA<'lt> {
 /// - [`flags`] is a [`ImageConstraintsInfoFlagBitsFUCHSIA`] value specifying hints about the type
 ///   of memory Sysmem should allocate for the buffer collection.
 ///# Description
-///Valid Usage
-/// - All elements of [`format_constraints`]**must** have at least one bit set in its
+///## Valid Usage
+/// - All elements of [`format_constraints`] **must**  have at least one bit set in its
 ///   [`ImageFormatConstraintsInfoFUCHSIA::required_format_features`]
 /// - If [`format_constraints`]`::imageCreateInfo`::`usage` contains `VK_IMAGE_USAGE_SAMPLED_BIT`,
-///   then [`format_constraints`]`::requiredFormatFeatures`**must** contain
+///   then [`format_constraints`]`::requiredFormatFeatures` **must**  contain
 ///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`
 /// - If [`format_constraints`]`::imageCreateInfo`::`usage` contains `VK_IMAGE_USAGE_STORAGE_BIT`,
-///   then [`format_constraints`]`::requiredFormatFeatures`**must** contain
+///   then [`format_constraints`]`::requiredFormatFeatures` **must**  contain
 ///   `VK_FORMAT_FEATURE_STORAGE_IMAGE_BIT`
 /// - If [`format_constraints`]`::imageCreateInfo`::`usage` contains
-///   `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT`, then
-///   [`format_constraints`]`::requiredFormatFeatures`**must** contain
-///   `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT`
+///   `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT`, then [`format_constraints`]`::requiredFormatFeatures`
+///   **must**  contain `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT`
 /// - If [`format_constraints`]`::imageCreateInfo`::`usage` contains
 ///   `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`, then
-///   [`format_constraints`]`::requiredFormatFeatures`**must** contain
+///   [`format_constraints`]`::requiredFormatFeatures` **must**  contain
 ///   `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
 /// - If [`format_constraints`]`::imageCreateInfo`::`usage` contains
-///   `VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT`, then
-///   [`format_constraints`]`::requiredFormatFeatures`**must** contain at least one of
-///   `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT` or `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
+///   `VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT`, then [`format_constraints`]`::requiredFormatFeatures`
+///   **must**  contain at least one of `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT` or
+///   `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
 /// - If the [`attachmentFragmentShadingRate` feature](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate)
 ///   is enabled, and [`format_constraints`]`::imageCreateInfo`::`usage` contains
 ///   `VK_IMAGE_USAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`, then
-///   [`format_constraints`]`::requiredFormatFeatures`**must** contain
+///   [`format_constraints`]`::requiredFormatFeatures` **must**  contain
 ///   `VK_FORMAT_FEATURE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMAGE_CONSTRAINTS_INFO_FUCHSIA`
-/// - [`p_next`]**must** be `NULL`
-/// - [`format_constraints`]**must** be a valid pointer to an array of [`format_constraints_count`]
-///   valid [`ImageFormatConstraintsInfoFUCHSIA`] structures
-/// - [`buffer_collection_constraints`]**must** be a valid
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_CONSTRAINTS_INFO_FUCHSIA`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`format_constraints`] **must**  be a valid pointer to an array of
+///   [`format_constraints_count`] valid [`ImageFormatConstraintsInfoFUCHSIA`] structures
+/// - [`buffer_collection_constraints`] **must**  be a valid
 ///   [`BufferCollectionConstraintsInfoFUCHSIA`] structure
-/// - [`flags`]**must** be a valid combination of [`ImageConstraintsInfoFlagBitsFUCHSIA`] values
-/// - [`format_constraints_count`]**must** be greater than `0`
+/// - [`flags`] **must**  be a valid combination of [`ImageConstraintsInfoFlagBitsFUCHSIA`] values
+/// - [`format_constraints_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`BufferCollectionConstraintsInfoFUCHSIA`]
@@ -1565,10 +1483,6 @@ impl<'lt> ImageConstraintsInfoFUCHSIA<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::format_constraints_count`]
-    pub fn format_constraints_count_raw(&self) -> u32 {
-        self.format_constraints_count
-    }
     ///Gets the raw value of [`Self::format_constraints`]
     pub fn format_constraints_raw(&self) -> *const ImageFormatConstraintsInfoFUCHSIA<'lt> {
         self.format_constraints
@@ -1576,11 +1490,6 @@ impl<'lt> ImageConstraintsInfoFUCHSIA<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::format_constraints_count`]
-    pub fn set_format_constraints_count_raw(&mut self, value: u32) -> &mut Self {
-        self.format_constraints_count = value;
         self
     }
     ///Sets the raw value of [`Self::format_constraints`]
@@ -1715,9 +1624,10 @@ impl<'lt> ImageConstraintsInfoFUCHSIA<'lt> {
 ///by participants for optimal performance.
 ///[`min_buffer_count_for_dedicated_slack`] refers to the current participant.
 ///[`min_buffer_count_for_shared_slack`] refers to buffer slack for all
-///participants in the collection.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA`
-/// - [`p_next`]**must** be `NULL`
+///participants in the collection.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`BufferConstraintsInfoFUCHSIA`]
@@ -1776,54 +1686,9 @@ impl<'lt> BufferCollectionConstraintsInfoFUCHSIA<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::min_buffer_count`]
-    pub fn min_buffer_count_raw(&self) -> u32 {
-        self.min_buffer_count
-    }
-    ///Gets the raw value of [`Self::max_buffer_count`]
-    pub fn max_buffer_count_raw(&self) -> u32 {
-        self.max_buffer_count
-    }
-    ///Gets the raw value of [`Self::min_buffer_count_for_camping`]
-    pub fn min_buffer_count_for_camping_raw(&self) -> u32 {
-        self.min_buffer_count_for_camping
-    }
-    ///Gets the raw value of [`Self::min_buffer_count_for_dedicated_slack`]
-    pub fn min_buffer_count_for_dedicated_slack_raw(&self) -> u32 {
-        self.min_buffer_count_for_dedicated_slack
-    }
-    ///Gets the raw value of [`Self::min_buffer_count_for_shared_slack`]
-    pub fn min_buffer_count_for_shared_slack_raw(&self) -> u32 {
-        self.min_buffer_count_for_shared_slack
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_buffer_count`]
-    pub fn set_min_buffer_count_raw(&mut self, value: u32) -> &mut Self {
-        self.min_buffer_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_buffer_count`]
-    pub fn set_max_buffer_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_buffer_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_buffer_count_for_camping`]
-    pub fn set_min_buffer_count_for_camping_raw(&mut self, value: u32) -> &mut Self {
-        self.min_buffer_count_for_camping = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_buffer_count_for_dedicated_slack`]
-    pub fn set_min_buffer_count_for_dedicated_slack_raw(&mut self, value: u32) -> &mut Self {
-        self.min_buffer_count_for_dedicated_slack = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_buffer_count_for_shared_slack`]
-    pub fn set_min_buffer_count_for_shared_slack_raw(&mut self, value: u32) -> &mut Self {
-        self.min_buffer_count_for_shared_slack = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

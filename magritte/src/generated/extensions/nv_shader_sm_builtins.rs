@@ -31,8 +31,9 @@ pub const NV_SHADER_SM_BUILTINS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV`
 ///# Related
 /// - [`VK_NV_shader_sm_builtins`]
 /// - [`StructureType`]
@@ -77,27 +78,9 @@ impl<'lt> PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::shader_sm_count`]
-    pub fn shader_sm_count_raw(&self) -> u32 {
-        self.shader_sm_count
-    }
-    ///Gets the raw value of [`Self::shader_warps_per_sm`]
-    pub fn shader_warps_per_sm_raw(&self) -> u32 {
-        self.shader_warps_per_sm
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::shader_sm_count`]
-    pub fn set_shader_sm_count_raw(&mut self, value: u32) -> &mut Self {
-        self.shader_sm_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::shader_warps_per_sm`]
-    pub fn set_shader_warps_per_sm_raw(&mut self, value: u32) -> &mut Self {
-        self.shader_warps_per_sm = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -183,9 +166,10 @@ impl<'lt> PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceShaderSmBuiltinsFeaturesNV`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV`
+///[`PhysicalDeviceShaderSmBuiltinsFeaturesNV`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV`
 ///# Related
 /// - [`VK_NV_shader_sm_builtins`]
 /// - [`Bool32`]

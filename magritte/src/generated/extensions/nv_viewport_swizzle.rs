@@ -110,11 +110,11 @@ impl ViewportCoordinateSwizzleNV {
 /// - [`w`] is a [`ViewportCoordinateSwizzleNV`] value specifying the swizzle operation to apply to
 ///   the w component of the primitive
 ///# Description
-///Valid Usage (Implicit)
-/// - [`x`]**must** be a valid [`ViewportCoordinateSwizzleNV`] value
-/// - [`y`]**must** be a valid [`ViewportCoordinateSwizzleNV`] value
-/// - [`z`]**must** be a valid [`ViewportCoordinateSwizzleNV`] value
-/// - [`w`]**must** be a valid [`ViewportCoordinateSwizzleNV`] value
+///## Valid Usage (Implicit)
+/// - [`x`] **must**  be a valid [`ViewportCoordinateSwizzleNV`] value
+/// - [`y`] **must**  be a valid [`ViewportCoordinateSwizzleNV`] value
+/// - [`z`] **must**  be a valid [`ViewportCoordinateSwizzleNV`] value
+/// - [`w`] **must**  be a valid [`ViewportCoordinateSwizzleNV`] value
 ///# Related
 /// - [`VK_NV_viewport_swizzle`]
 /// - [`PipelineViewportSwizzleStateCreateInfoNV`]
@@ -211,7 +211,7 @@ impl ViewportSwizzleNV {
 }
 ///[VkPipelineViewportSwizzleStateCreateInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportSwizzleStateCreateInfoNV.html) - Structure specifying swizzle applied to primitive clip coordinates
 ///# C Specifications
-///Each primitive sent to a given viewport has a swizzle and **optional** negation
+///Each primitive sent to a given viewport has a swizzle and  **optional**  negation
 ///applied to its clip coordinates.
 ///The swizzle that is applied depends on the viewport index, and is controlled
 ///by the [`PipelineViewportSwizzleStateCreateInfoNV`] pipeline state:
@@ -233,15 +233,16 @@ impl ViewportSwizzleNV {
 /// - [`viewport_swizzles`] is a pointer to an array of [`ViewportSwizzleNV`] structures, defining
 ///   the viewport swizzles.
 ///# Description
-///Valid Usage
-/// - [`viewport_count`]**must** be greater than or equal to the [`viewport_count`] set in
+///## Valid Usage
+/// - [`viewport_count`] **must**  be greater than or equal to the [`viewport_count`] set in
 ///   [`PipelineViewportStateCreateInfo`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV`
-/// - [`flags`]**must** be `0`
-/// - [`viewport_swizzles`]**must** be a valid pointer to an array of [`viewport_count`] valid
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV`
+/// - [`flags`] **must**  be `0`
+/// - [`viewport_swizzles`] **must**  be a valid pointer to an array of [`viewport_count`] valid
 ///   [`ViewportSwizzleNV`] structures
-/// - [`viewport_count`]**must** be greater than `0`
+/// - [`viewport_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_NV_viewport_swizzle`]
 /// - [`PipelineViewportSwizzleStateCreateFlagsNV`]
@@ -291,10 +292,6 @@ impl<'lt> PipelineViewportSwizzleStateCreateInfoNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::viewport_count`]
-    pub fn viewport_count_raw(&self) -> u32 {
-        self.viewport_count
-    }
     ///Gets the raw value of [`Self::viewport_swizzles`]
     pub fn viewport_swizzles_raw(&self) -> *const ViewportSwizzleNV {
         self.viewport_swizzles
@@ -302,11 +299,6 @@ impl<'lt> PipelineViewportSwizzleStateCreateInfoNV<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::viewport_count`]
-    pub fn set_viewport_count_raw(&mut self, value: u32) -> &mut Self {
-        self.viewport_count = value;
         self
     }
     ///Sets the raw value of [`Self::viewport_swizzles`]

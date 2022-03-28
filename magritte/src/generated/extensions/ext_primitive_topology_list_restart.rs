@@ -32,20 +32,21 @@ pub const EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_EXTENSION_NAME: &'static CStr =
 /// - [`primitive_topology_list_restart`] indicates that list type primitives,
 ///   `VK_PRIMITIVE_TOPOLOGY_POINT_LIST`, `VK_PRIMITIVE_TOPOLOGY_LINE_LIST`,
 ///   `VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST`, `VK_PRIMITIVE_TOPOLOGY_LINE_LIST_WITH_ADJACENCY` and
-///   `VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST_WITH_ADJACENCY`, **can** use the primitive restart index
-///   value in index buffers.
+///   `VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST_WITH_ADJACENCY`,  **can**  use the primitive restart
+///   index value in index buffers.
 /// - [`primitive_topology_patch_list_restart`] indicates that the
-///   `VK_PRIMITIVE_TOPOLOGY_PATCH_LIST` topology **can** use the primitive restart index value in
+///   `VK_PRIMITIVE_TOPOLOGY_PATCH_LIST` topology  **can**  use the primitive restart index value in
 ///   index buffers.
 ///If the [`PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT`] structure is included in the
 /// [`p_next`] chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT`]**can** also be used in the [`p_next`]
-/// chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT`] **can**  also be used in the
+/// [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_primitive_topology_list_restart`]
@@ -74,11 +75,11 @@ pub struct PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'lt> {
     ///`VK_PRIMITIVE_TOPOLOGY_LINE_LIST`,
     ///`VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST`,
     ///`VK_PRIMITIVE_TOPOLOGY_LINE_LIST_WITH_ADJACENCY` and
-    ///`VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST_WITH_ADJACENCY`, **can** use the
+    ///`VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST_WITH_ADJACENCY`,  **can**  use the
     ///primitive restart index value in index buffers.
     primitive_topology_list_restart: Bool32,
     ///[`primitive_topology_patch_list_restart`] indicates that the
-    ///`VK_PRIMITIVE_TOPOLOGY_PATCH_LIST` topology **can** use the primitive
+    ///`VK_PRIMITIVE_TOPOLOGY_PATCH_LIST` topology  **can**  use the primitive
     ///restart index value in index buffers.
     primitive_topology_patch_list_restart: Bool32,
 }

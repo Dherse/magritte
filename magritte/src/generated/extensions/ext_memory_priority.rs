@@ -31,9 +31,10 @@ pub const EXT_MEMORY_PRIORITY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_E
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceMemoryPriorityFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT`
+///[`PhysicalDeviceMemoryPriorityFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_memory_priority`]
 /// - [`Bool32`]
@@ -170,13 +171,15 @@ impl<'lt> PhysicalDeviceMemoryPriorityFeaturesEXT<'lt> {
 ///   allocation relative to other memory allocations. Larger values are higher priority. The
 ///   granularity of the priorities is implementation-dependent.
 ///# Description
-///Memory allocations with higher priority **may** be more likely to stay in
+///Memory allocations with higher priority  **may**  be more likely to stay in
 ///device-local memory when the system is under memory pressure.If this structure is not included,
 /// it is as if the [`priority`] value were
-///`0.5`.Valid Usage
-/// - [`priority`]**must** be between `0` and `1`, inclusive
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_MEMORY_PRIORITY_ALLOCATE_INFO_EXT`
+///`0.5`.
+///## Valid Usage
+/// - [`priority`] **must**  be between `0` and `1`, inclusive
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_PRIORITY_ALLOCATE_INFO_EXT`
 ///# Related
 /// - [`VK_EXT_memory_priority`]
 /// - [`StructureType`]
@@ -219,18 +222,9 @@ impl<'lt> MemoryPriorityAllocateInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::priority`]
-    pub fn priority_raw(&self) -> f32 {
-        self.priority
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::priority`]
-    pub fn set_priority_raw(&mut self, value: f32) -> &mut Self {
-        self.priority = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

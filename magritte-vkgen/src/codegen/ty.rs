@@ -143,12 +143,13 @@ impl<'a> Ty<'a> {
     /// Checks whether the type requires conversion to be a "rustified" type
     pub fn requires_conversion(&self, source: &Source<'a>) -> bool {
         match self {
-            Ty::Native(_) | Ty::Named(Cow::Borrowed("VkBool32")) => true,
+            Ty::Native(_) => false,
+            Ty::Named(Cow::Borrowed("VkBool32")) => true,
             Ty::Pointer(_, ty) => !ty.is_opaque(source),
             Ty::Named(ty) => source.resolve_type(ty).expect("unknown type").is_opaque(),
-            Ty::StringArray(_) => true,
-            Ty::NullTerminatedString(_) => true,
-            Ty::Array(ty, _) => ty.requires_conversion(source),
+            Ty::StringArray(_) => false,
+            Ty::NullTerminatedString(_) => false,
+            Ty::Array(_, _) => false,
             Ty::Slice(_, ty, _) => !ty.is_opaque(source),
         }
     }

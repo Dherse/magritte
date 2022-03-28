@@ -31,13 +31,14 @@ pub const KHR_WAYLAND_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_K
 /// - [`display`] and [`surface`] are pointers to the Wayland [`wl_display`] and [`wl_surface`] to
 ///   associate the surface with.
 ///# Description
-///Valid Usage
-/// - [`display`]**must** point to a valid Wayland [`wl_display`]
-/// - [`surface`]**must** point to a valid Wayland [`wl_surface`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_WAYLAND_SURFACE_CREATE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
+///## Valid Usage
+/// - [`display`] **must**  point to a valid Wayland [`wl_display`]
+/// - [`surface`] **must**  point to a valid Wayland [`wl_surface`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_WAYLAND_SURFACE_CREATE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_KHR_wayland_surface`]
 /// - [`StructureType`]

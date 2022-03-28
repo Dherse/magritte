@@ -30,12 +30,13 @@ pub const FUCHSIA_IMAGEPIPE_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!
 /// - [`image_pipe_handle`] is a [`zx_handle_t`] referring to the ImagePipe to associate with the
 ///   surface.
 ///# Description
-///Valid Usage
-/// - [`image_pipe_handle`]**must** be a valid [`zx_handle_t`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
+///## Valid Usage
+/// - [`image_pipe_handle`] **must**  be a valid [`zx_handle_t`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_FUCHSIA_imagepipe_surface`]
 /// - [`ImagePipeSurfaceCreateFlagsFUCHSIA`]

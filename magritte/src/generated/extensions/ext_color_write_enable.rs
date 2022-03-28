@@ -32,9 +32,10 @@ pub const EXT_COLOR_WRITE_ENABLE_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceColorWriteEnableFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT`
+///[`PhysicalDeviceColorWriteEnableFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_color_write_enable`]
 /// - [`Bool32`]
@@ -179,21 +180,24 @@ impl<'lt> PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
 ///and [`color_write_enables`] pointing to an array of as many [`TRUE`]
 ///values.If the [colorWriteEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-colorWriteEnable) feature is not enabled
 ///on the device, all [`Bool32`] elements in the
-///[`color_write_enables`] array **must** be [`TRUE`].Color Write Enable interacts with the [Color
+///[`color_write_enables`] array  **must**  be [`TRUE`].Color Write Enable interacts with the
+/// [Color
 ///Write Mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-color-write-mask) as follows:
 /// - If `colorWriteEnable` is [`TRUE`], writes to the attachment are determined by the
 ///   `colorWriteMask`.
 /// - If `colorWriteEnable` is [`FALSE`], the `colorWriteMask` is ignored and writes to all
 ///   components of the attachment are disabled. This is equivalent to specifying a `colorWriteMask`
 ///   of 0.
-///Valid Usage
+///
+///## Valid Usage
 /// - If the [colorWriteEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-colorWriteEnable)
-///   feature is not enabled, all elements of [`color_write_enables`]**must** be [`TRUE`]
-/// - [`attachment_count`]**must** be equal to the [`attachment_count`] member of the
+///   feature is not enabled, all elements of [`color_write_enables`] **must**  be [`TRUE`]
+/// - [`attachment_count`] **must**  be equal to the [`attachment_count`] member of the
 ///   [`PipelineColorBlendStateCreateInfo`] structure specified during pipeline creation
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_COLOR_WRITE_CREATE_INFO_EXT`
-/// - If [`attachment_count`] is not `0`, [`color_write_enables`]**must** be a valid pointer to an
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_COLOR_WRITE_CREATE_INFO_EXT`
+/// - If [`attachment_count`] is not `0`, [`color_write_enables`] **must**  be a valid pointer to an
 ///   array of [`attachment_count`][`Bool32`] values
 ///# Related
 /// - [`VK_EXT_color_write_enable`]
@@ -241,10 +245,6 @@ impl<'lt> PipelineColorWriteCreateInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::attachment_count`]
-    pub fn attachment_count_raw(&self) -> u32 {
-        self.attachment_count
-    }
     ///Gets the raw value of [`Self::color_write_enables`]
     pub fn color_write_enables_raw(&self) -> *const Bool32 {
         self.color_write_enables
@@ -252,11 +252,6 @@ impl<'lt> PipelineColorWriteCreateInfoEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::attachment_count`]
-    pub fn set_attachment_count_raw(&mut self, value: u32) -> &mut Self {
-        self.attachment_count = value;
         self
     }
     ///Sets the raw value of [`Self::color_write_enables`]

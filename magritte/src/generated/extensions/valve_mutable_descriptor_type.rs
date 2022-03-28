@@ -26,33 +26,34 @@ pub const VALVE_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME: &'static CStr =
 ///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`mutable_descriptor_type`] indicates that the implementation **must** support using the
+/// - [`mutable_descriptor_type`] indicates that the implementation  **must**  support using the
 ///   [`DescriptorType`] of `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE` with at least the following
-///   descriptor types, where any combination of the types **must** be supported:  -
+///   descriptor types, where any combination of the types  **must**  be supported:  -
 ///   `VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE`  - `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`  -
 ///   `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`  - `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`  -
 ///   `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER`  - `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER`
 /// - Additionally, [`mutable_descriptor_type`] indicates that:  - Non-uniform descriptor indexing
-///   **must** be supported if all descriptor types in a [`MutableDescriptorTypeListVALVE`] for
+///   **must**  be supported if all descriptor types in a [`MutableDescriptorTypeListVALVE`] for
 ///   `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE` have the corresponding non-uniform indexing features
 ///   enabled in [`PhysicalDeviceDescriptorIndexingFeatures`].  -
 ///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` with `descriptorType` of
 ///   `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE` relaxes the list of required descriptor types to the
 ///   descriptor types which have the corresponding update-after-bind feature enabled in
 ///   [`PhysicalDeviceDescriptorIndexingFeatures`].  - Dynamically uniform descriptor indexing
-///   **must** be supported if all descriptor types in a [`MutableDescriptorTypeListVALVE`] for
+///   **must**  be supported if all descriptor types in a [`MutableDescriptorTypeListVALVE`] for
 ///   `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE` have the corresponding dynamic indexing features enabled.
-///   - `VK_DESCRIPTOR_SET_LAYOUT_CREATE_HOST_ONLY_POOL_BIT_VALVE`**must** be supported.  -
-///   `VK_DESCRIPTOR_POOL_CREATE_HOST_ONLY_BIT_VALVE`**must** be supported.
+///   - `VK_DESCRIPTOR_SET_LAYOUT_CREATE_HOST_ONLY_POOL_BIT_VALVE` **must**  be supported.  -
+///   `VK_DESCRIPTOR_POOL_CREATE_HOST_ONLY_BIT_VALVE` **must**  be supported.
 ///If the [`PhysicalDeviceMutableDescriptorTypeFeaturesVALVE`] structure is included in the
 /// [`p_next`] chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceMutableDescriptorTypeFeaturesVALVE`]**can** also be used in the [`p_next`] chain
-/// of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`PhysicalDeviceMutableDescriptorTypeFeaturesVALVE`] **can**  also be used in the [`p_next`]
+/// chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_VALVE`
 ///# Related
 /// - [`VK_VALVE_mutable_descriptor_type`]
@@ -77,9 +78,9 @@ pub struct PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`mutable_descriptor_type`] indicates
-    ///that the implementation **must** support using the [`DescriptorType`]
+    ///that the implementation  **must**  support using the [`DescriptorType`]
     ///of `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE` with at least the following
-    ///descriptor types, where any combination of the types **must** be supported:
+    ///descriptor types, where any combination of the types  **must**  be supported:
     /// - `VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE`
     /// - `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`
     /// - `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`
@@ -179,7 +180,7 @@ impl<'lt> PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
 }
 ///[VkMutableDescriptorTypeListVALVE](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMutableDescriptorTypeListVALVE.html) - Structure describing descriptor types that a given descriptor may mutate to
 ///# C Specifications
-///The list of potential descriptor types a given mutable descriptor **can**
+///The list of potential descriptor types a given mutable descriptor  **can**
 ///mutate to is passed in a [`MutableDescriptorTypeListVALVE`] structure.The
 /// [`MutableDescriptorTypeListVALVE`] structure is defined as:
 ///```c
@@ -195,21 +196,22 @@ impl<'lt> PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
 ///   [`descriptor_type_count`][`DescriptorType`] values defining which descriptor types a given
 ///   binding may mutate to.
 ///# Description
-///Valid Usage
-/// - [`descriptor_type_count`]**must** not be `0` if the corresponding binding is of
+///## Valid Usage
+/// - [`descriptor_type_count`] **must**  not be `0` if the corresponding binding is of
 ///   `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE`
-/// - [`descriptor_types`]**must** be a valid pointer to an array of [`descriptor_type_count`]
+/// - [`descriptor_types`] **must**  be a valid pointer to an array of [`descriptor_type_count`]
 ///   valid, unique [`DescriptorType`] values if the given binding is of
 ///   `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE` type
-/// - [`descriptor_type_count`]**must** be `0` if the corresponding binding is not of
+/// - [`descriptor_type_count`] **must**  be `0` if the corresponding binding is not of
 ///   `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE`
-/// - [`descriptor_types`]**must** not contain `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE`
-/// - [`descriptor_types`]**must** not contain `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`
-/// - [`descriptor_types`]**must** not contain `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`
-/// - [`descriptor_types`]**must** not contain `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`
-///Valid Usage (Implicit)
-/// - If [`descriptor_type_count`] is not `0`, [`descriptor_types`]**must** be a valid pointer to an
-///   array of [`descriptor_type_count`] valid [`DescriptorType`] values
+/// - [`descriptor_types`] **must**  not contain `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE`
+/// - [`descriptor_types`] **must**  not contain `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`
+/// - [`descriptor_types`] **must**  not contain `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`
+/// - [`descriptor_types`] **must**  not contain `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`
+///
+///## Valid Usage (Implicit)
+/// - If [`descriptor_type_count`] is not `0`, [`descriptor_types`] **must**  be a valid pointer to
+///   an array of [`descriptor_type_count`] valid [`DescriptorType`] values
 ///# Related
 /// - [`VK_VALVE_mutable_descriptor_type`]
 /// - [`DescriptorType`]
@@ -245,18 +247,9 @@ impl<'lt> Default for MutableDescriptorTypeListVALVE<'lt> {
     }
 }
 impl<'lt> MutableDescriptorTypeListVALVE<'lt> {
-    ///Gets the raw value of [`Self::descriptor_type_count`]
-    pub fn descriptor_type_count_raw(&self) -> u32 {
-        self.descriptor_type_count
-    }
     ///Gets the raw value of [`Self::descriptor_types`]
     pub fn descriptor_types_raw(&self) -> *const DescriptorType {
         self.descriptor_types
-    }
-    ///Sets the raw value of [`Self::descriptor_type_count`]
-    pub fn set_descriptor_type_count_raw(&mut self, value: u32) -> &mut Self {
-        self.descriptor_type_count = value;
-        self
     }
     ///Sets the raw value of [`Self::descriptor_types`]
     pub fn set_descriptor_types_raw(&mut self, value: *const DescriptorType) -> &mut Self {
@@ -323,11 +316,12 @@ impl<'lt> MutableDescriptorTypeListVALVE<'lt> {
 ///Otherwise, the descriptor set layout binding at
 ///[`DescriptorSetLayoutCreateInfo::bindings`][i] uses the
 ///descriptor type lists in
-///[`MutableDescriptorTypeCreateInfoVALVE`]::[`mutable_descriptor_type_lists`][i].Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_VALVE`
-/// - If [`mutable_descriptor_type_list_count`] is not `0`,
-///   [`mutable_descriptor_type_lists`]**must** be a valid pointer to an array of
-///   [`mutable_descriptor_type_list_count`] valid [`MutableDescriptorTypeListVALVE`] structures
+///[`MutableDescriptorTypeCreateInfoVALVE`]::[`mutable_descriptor_type_lists`][i].
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_VALVE`
+/// - If [`mutable_descriptor_type_list_count`] is not `0`, [`mutable_descriptor_type_lists`]
+///   **must**  be a valid pointer to an array of [`mutable_descriptor_type_list_count`] valid
+///   [`MutableDescriptorTypeListVALVE`] structures
 ///# Related
 /// - [`VK_VALVE_mutable_descriptor_type`]
 /// - [`MutableDescriptorTypeListVALVE`]
@@ -373,10 +367,6 @@ impl<'lt> MutableDescriptorTypeCreateInfoVALVE<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::mutable_descriptor_type_list_count`]
-    pub fn mutable_descriptor_type_list_count_raw(&self) -> u32 {
-        self.mutable_descriptor_type_list_count
-    }
     ///Gets the raw value of [`Self::mutable_descriptor_type_lists`]
     pub fn mutable_descriptor_type_lists_raw(&self) -> *const MutableDescriptorTypeListVALVE<'lt> {
         self.mutable_descriptor_type_lists
@@ -384,11 +374,6 @@ impl<'lt> MutableDescriptorTypeCreateInfoVALVE<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::mutable_descriptor_type_list_count`]
-    pub fn set_mutable_descriptor_type_list_count_raw(&mut self, value: u32) -> &mut Self {
-        self.mutable_descriptor_type_list_count = value;
         self
     }
     ///Sets the raw value of [`Self::mutable_descriptor_type_lists`]

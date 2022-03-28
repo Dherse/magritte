@@ -32,9 +32,10 @@ pub const HUAWEI_INVOCATION_MASK_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceInvocationMaskFeaturesHUAWEI`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI`
+///[`PhysicalDeviceInvocationMaskFeaturesHUAWEI`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI`
 ///# Related
 /// - [`VK_HUAWEI_invocation_mask`]
 /// - [`Bool32`]

@@ -31,13 +31,14 @@ pub const EXT_DIRECTFB_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// - [`dfb`] is a pointer to the [`IDirectFB`] main interface of DirectFB.
 /// - [`surface`] is a pointer to a [`IDirectFBSurface`] surface interface.
 ///# Description
-///Valid Usage
-/// - [`dfb`]**must** point to a valid DirectFB [`IDirectFB`]
-/// - [`surface`]**must** point to a valid DirectFB [`IDirectFBSurface`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DIRECTFB_SURFACE_CREATE_INFO_EXT`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
+///## Valid Usage
+/// - [`dfb`] **must**  point to a valid DirectFB [`IDirectFB`]
+/// - [`surface`] **must**  point to a valid DirectFB [`IDirectFBSurface`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DIRECTFB_SURFACE_CREATE_INFO_EXT`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_EXT_directfb_surface`]
 /// - [`DirectFBSurfaceCreateFlagsEXT`]

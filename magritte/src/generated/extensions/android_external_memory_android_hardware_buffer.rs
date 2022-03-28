@@ -58,16 +58,18 @@ pub type AHardwareBuffer = c_void;
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`buffer`] is the Android hardware buffer to import.
 ///# Description
-///If the [`AllocateMemory`] command succeeds, the implementation **must**
-///acquire a reference to the imported hardware buffer, which it **must** release
+///If the [`AllocateMemory`] command succeeds, the implementation  **must**
+///acquire a reference to the imported hardware buffer, which it  **must**  release
 ///when the device memory object is freed.
-///If the command fails, the implementation **must** not retain a reference.Valid Usage
-/// - If [`buffer`] is not `NULL`, Android hardware buffers **must** be supported for import, as
+///If the command fails, the implementation  **must**  not retain a reference.
+///## Valid Usage
+/// - If [`buffer`] is not `NULL`, Android hardware buffers  **must**  be supported for import, as
 ///   reported by [`ExternalImageFormatProperties`] or [`ExternalBufferProperties`]
-/// -    If [`buffer`] is not `NULL`, it **must** be a valid Android hardware buffer object with `AHardwareBuffer_Desc`::`usage` compatible with Vulkan as described in [Android Hardware Buffers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID`
-/// - [`buffer`]**must** be a valid pointer to an [`AHardwareBuffer`] value
+/// -    If [`buffer`] is not `NULL`, it  **must**  be a valid Android hardware buffer object with `AHardwareBuffer_Desc`::`usage` compatible with Vulkan as described in [Android Hardware Buffers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer)
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID`
+/// - [`buffer`] **must**  be a valid pointer to an [`AHardwareBuffer`] value
 ///# Related
 /// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
 /// - [`StructureType`]
@@ -189,16 +191,17 @@ impl<'lt> ImportAndroidHardwareBufferInfoANDROID<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`android_hardware_buffer_usage`] returns the Android hardware buffer usage flags.
 ///# Description
-///The [`android_hardware_buffer_usage`] field **must** include Android hardware
+///The [`android_hardware_buffer_usage`] field  **must**  include Android hardware
 ///buffer usage flags listed in the
 ///[AHardwareBuffer Usage
 ///Equivalence](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer-usage) table when the corresponding Vulkan image usage or image
 ///creation flags are included in the `usage` or `flags` fields of
 ///[`PhysicalDeviceImageFormatInfo2`].
-///It **must** include at least one GPU usage flag
+///It  **must**  include at least one GPU usage flag
 ///(`AHARDWAREBUFFER_USAGE_GPU_*`), even if none of the corresponding Vulkan
-///usages or flags are requested.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_USAGE_ANDROID`
+///usages or flags are requested.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_USAGE_ANDROID`
 ///# Related
 /// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
 /// - [`StructureType`]
@@ -239,18 +242,9 @@ impl<'lt> AndroidHardwareBufferUsageANDROID<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::android_hardware_buffer_usage`]
-    pub fn android_hardware_buffer_usage_raw(&self) -> u64 {
-        self.android_hardware_buffer_usage
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::android_hardware_buffer_usage`]
-    pub fn set_android_hardware_buffer_usage_raw(&mut self, value: u64) -> &mut Self {
-        self.android_hardware_buffer_usage = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -317,15 +311,15 @@ impl<'lt> AndroidHardwareBufferUsageANDROID<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`allocation_size`] is the size of the external memory
 /// - [`memory_type_bits`] is a bitmask containing one bit set for every memory type which the
-///   specified Android hardware buffer **can** be imported as.
+///   specified Android hardware buffer  **can**  be imported as.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID`
-/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain **must**
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID`
+/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of
 ///   [`AndroidHardwareBufferFormatProperties2ANDROID`] or
 ///   [`AndroidHardwareBufferFormatPropertiesANDROID`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 ///# Related
 /// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
 /// - [`DeviceSize`]
@@ -352,7 +346,7 @@ pub struct AndroidHardwareBufferPropertiesANDROID<'lt> {
     ///[`allocation_size`] is the size of the external memory
     allocation_size: DeviceSize,
     ///[`memory_type_bits`] is a bitmask containing one bit set for every
-    ///memory type which the specified Android hardware buffer **can** be imported
+    ///memory type which the specified Android hardware buffer  **can**  be imported
     ///as.
     memory_type_bits: u32,
 }
@@ -372,18 +366,9 @@ impl<'lt> AndroidHardwareBufferPropertiesANDROID<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::memory_type_bits`]
-    pub fn memory_type_bits_raw(&self) -> u32 {
-        self.memory_type_bits
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::memory_type_bits`]
-    pub fn set_memory_type_bits_raw(&mut self, value: u32) -> &mut Self {
-        self.memory_type_bits = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -462,16 +447,17 @@ impl<'lt> AndroidHardwareBufferPropertiesANDROID<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory`] is the memory object from which the Android hardware buffer will be exported.
 ///# Description
-///Valid Usage
-/// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID`**must** have been
+///## Valid Usage
+/// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID` **must**  have been
 ///   included in [`ExportMemoryAllocateInfo::handle_types`] when [`memory`] was created
 /// - If the [`p_next`] chain of the [`MemoryAllocateInfo`] used to allocate [`memory`] included a
-///   [`MemoryDedicatedAllocateInfo`] with non-`NULL``image` member, then that `image`**must**
+///   [`MemoryDedicatedAllocateInfo`] with non-`NULL``image` member, then that `image` **must**
 ///   already be bound to [`memory`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID`
-/// - [`p_next`]**must** be `NULL`
-/// - [`memory`]**must** be a valid [`DeviceMemory`] handle
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
 ///# Related
 /// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
 /// - [`DeviceMemory`]
@@ -586,10 +572,10 @@ impl<'lt> MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
 /// - [`format`] is the Vulkan format corresponding to the Android hardware buffer’s format, or
 ///   `VK_FORMAT_UNDEFINED` if there is not an equivalent Vulkan format.
 /// - [`external_format`] is an implementation-defined external format identifier for use with
-///   [`ExternalFormatANDROID`]. It **must** not be zero.
+///   [`ExternalFormatANDROID`]. It  **must**  not be zero.
 /// - [`format_features`] describes the capabilities of this external format when used with an image
 ///   bound to memory imported from `buffer`.
-/// - [`sampler_ycbcr_conversion_components`] is the component swizzle that **should** be used in
+/// - [`sampler_ycbcr_conversion_components`] is the component swizzle that  **should**  be used in
 ///   [`SamplerYcbcrConversionCreateInfo`].
 /// - [`suggested_ycbcr_model`] is a suggested color model to use in the
 ///   [`SamplerYcbcrConversionCreateInfo`].
@@ -602,17 +588,17 @@ impl<'lt> MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
 ///# Description
 ///If the Android hardware buffer has one of the formats listed in the
 ///[Format Equivalence
-///table](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer-formats), then [`format`]**must** have the equivalent Vulkan format listed in
+///table](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer-formats), then [`format`] **must**  have the equivalent Vulkan format listed in
 ///the table.
-///Otherwise, [`format`]**may** be `VK_FORMAT_UNDEFINED`, indicating the
-///Android hardware buffer **can** only be used with an external format.The [`format_features`]
-/// member **must** include
+///Otherwise, [`format`] **may**  be `VK_FORMAT_UNDEFINED`, indicating the
+///Android hardware buffer  **can**  only be used with an external format.The [`format_features`]
+/// member  **must**  include
 ///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT` and at least one of
 ///`VK_FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT` or
-///`VK_FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT`, and **should** include
+///`VK_FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT`, and  **should**  include
 ///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT` and
 ///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT`.Android hardware buffers
-/// with the same external format **must** have the same
+/// with the same external format  **must**  have the same
 ///support for `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`,
 ///`VK_FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT`,
 ///`VK_FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT`,
@@ -621,29 +607,30 @@ impl<'lt> MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
 ///and
 ///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT`.
 ///in [`format_features`].
-///Other format features **may** differ between Android hardware buffers that have
+///Other format features  **may**  differ between Android hardware buffers that have
 ///the same external format.
 ///This allows applications to use the same [`SamplerYcbcrConversion`]
 ///object (and samplers and pipelines created from them) for any Android
 ///hardware buffers that have the same external format.If [`format`] is not `VK_FORMAT_UNDEFINED`,
 /// then the value of
-///[`sampler_ycbcr_conversion_components`]**must** be valid when used as the
+///[`sampler_ycbcr_conversion_components`] **must**  be valid when used as the
 ///`components` member of [`SamplerYcbcrConversionCreateInfo`] with
 ///that format.
 ///If [`format`] is `VK_FORMAT_UNDEFINED`, all members of
-///[`sampler_ycbcr_conversion_components`]**must** be the
-///[identity swizzle](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-views-identity-mappings).Implementations **may** not always be able to determine the color model,
+///[`sampler_ycbcr_conversion_components`] **must**  be the
+///[identity swizzle](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-views-identity-mappings).Implementations  **may**  not always be able to determine the color model,
 ///numerical range, or chroma offsets of the image contents, so the values in
 ///[`AndroidHardwareBufferFormatPropertiesANDROID`] are only suggestions.
-///Applications **should** treat these values as sensible defaults to use in the
+///Applications  **should**  treat these values as sensible defaults to use in the
 ///absence of more reliable information obtained through some other means.
 ///If the underlying physical device is also usable via OpenGL ES with the
 ///[`GL_OES_EGL_image_external`](https://www.khronos.org/registry/OpenGL/extensions/OES/OES_EGL_image_external.txt)
-///extension, the implementation **should** suggest values that will produce
+///extension, the implementation  **should**  suggest values that will produce
 ///similar sampled values as would be obtained by sampling the same external
 ///image via `samplerExternalOES` in OpenGL ES using equivalent sampler
-///parameters.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID`
+///parameters.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID`
 ///# Related
 /// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
 /// - [`ChromaLocation`]
@@ -677,13 +664,13 @@ pub struct AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
     format: Format,
     ///[`external_format`] is an implementation-defined external format
     ///identifier for use with [`ExternalFormatANDROID`].
-    ///It **must** not be zero.
+    ///It  **must**  not be zero.
     external_format: u64,
     ///[`format_features`] describes the capabilities of this external format
     ///when used with an image bound to memory imported from `buffer`.
     format_features: FormatFeatureFlags,
     ///[`sampler_ycbcr_conversion_components`] is the component swizzle that
-    ///**should** be used in [`SamplerYcbcrConversionCreateInfo`].
+    /// **should**  be used in [`SamplerYcbcrConversionCreateInfo`].
     sampler_ycbcr_conversion_components: ComponentMapping,
     ///[`suggested_ycbcr_model`] is a suggested color model to use in the
     ///[`SamplerYcbcrConversionCreateInfo`].
@@ -720,18 +707,9 @@ impl<'lt> AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::external_format`]
-    pub fn external_format_raw(&self) -> u64 {
-        self.external_format
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::external_format`]
-    pub fn set_external_format_raw(&mut self, value: u64) -> &mut Self {
-        self.external_format = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -893,12 +871,14 @@ impl<'lt> AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
 ///# Description
 ///If [`external_format`] is zero, the effect is as if the
 ///[`ExternalFormatANDROID`] structure was not present.
-///Otherwise, the `image` will have the specified external format.Valid Usage
-/// - [`external_format`]**must** be `0` or a value returned in the [`external_format`] member of
+///Otherwise, the `image` will have the specified external format.
+///## Valid Usage
+/// - [`external_format`] **must**  be `0` or a value returned in the [`external_format`] member of
 ///   [`AndroidHardwareBufferFormatPropertiesANDROID`] by an earlier call to
 ///   [`GetAndroidHardwareBufferPropertiesANDROID`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_EXTERNAL_FORMAT_ANDROID`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXTERNAL_FORMAT_ANDROID`
 ///# Related
 /// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
 /// - [`StructureType`]
@@ -939,18 +919,9 @@ impl<'lt> ExternalFormatANDROID<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::external_format`]
-    pub fn external_format_raw(&self) -> u64 {
-        self.external_format
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::external_format`]
-    pub fn set_external_format_raw(&mut self, value: u64) -> &mut Self {
-        self.external_format = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -1001,7 +972,7 @@ impl<'lt> ExternalFormatANDROID<'lt> {
 }
 ///[VkAndroidHardwareBufferFormatProperties2ANDROID](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAndroidHardwareBufferFormatProperties2ANDROID.html) - Structure describing the image format properties of an Android hardware buffer
 ///# C Specifications
-///The format properties of an Android hardware buffer **can** be obtained by
+///The format properties of an Android hardware buffer  **can**  be obtained by
 ///including a [`AndroidHardwareBufferFormatProperties2ANDROID`] structure
 ///in the [`p_next`] chain of the
 ///[`AndroidHardwareBufferPropertiesANDROID`] structure passed to
@@ -1029,10 +1000,10 @@ impl<'lt> ExternalFormatANDROID<'lt> {
 /// - [`format`] is the Vulkan format corresponding to the Android hardware buffer’s format, or
 ///   `VK_FORMAT_UNDEFINED` if there is not an equivalent Vulkan format.
 /// - [`external_format`] is an implementation-defined external format identifier for use with
-///   [`ExternalFormatANDROID`]. It **must** not be zero.
+///   [`ExternalFormatANDROID`]. It  **must**  not be zero.
 /// - [`format_features`] describes the capabilities of this external format when used with an image
 ///   bound to memory imported from `buffer`.
-/// - [`sampler_ycbcr_conversion_components`] is the component swizzle that **should** be used in
+/// - [`sampler_ycbcr_conversion_components`] is the component swizzle that  **should**  be used in
 ///   [`SamplerYcbcrConversionCreateInfo`].
 /// - [`suggested_ycbcr_model`] is a suggested color model to use in the
 ///   [`SamplerYcbcrConversionCreateInfo`].
@@ -1043,10 +1014,12 @@ impl<'lt> ExternalFormatANDROID<'lt> {
 /// - [`suggested_y_chroma_offset`] is a suggested Y chroma offset to use in
 ///   [`SamplerYcbcrConversionCreateInfo`].
 ///# Description
-///The bits reported in [`format_features`]**must** include the bits reported in
+///The bits reported in [`format_features`] **must**  include the bits reported in
 ///the corresponding fields of
-///[`AndroidHardwareBufferFormatPropertiesANDROID`]::[`format_features`].Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID`
+///[`AndroidHardwareBufferFormatPropertiesANDROID`]::[`format_features`].
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID`
 ///# Related
 /// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
 /// - [`VK_KHR_format_feature_flags2`]
@@ -1081,13 +1054,13 @@ pub struct AndroidHardwareBufferFormatProperties2ANDROID<'lt> {
     format: Format,
     ///[`external_format`] is an implementation-defined external format
     ///identifier for use with [`ExternalFormatANDROID`].
-    ///It **must** not be zero.
+    ///It  **must**  not be zero.
     external_format: u64,
     ///[`format_features`] describes the capabilities of this external format
     ///when used with an image bound to memory imported from `buffer`.
     format_features: FormatFeatureFlags2,
     ///[`sampler_ycbcr_conversion_components`] is the component swizzle that
-    ///**should** be used in [`SamplerYcbcrConversionCreateInfo`].
+    /// **should**  be used in [`SamplerYcbcrConversionCreateInfo`].
     sampler_ycbcr_conversion_components: ComponentMapping,
     ///[`suggested_ycbcr_model`] is a suggested color model to use in the
     ///[`SamplerYcbcrConversionCreateInfo`].
@@ -1124,18 +1097,9 @@ impl<'lt> AndroidHardwareBufferFormatProperties2ANDROID<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::external_format`]
-    pub fn external_format_raw(&self) -> u64 {
-        self.external_format
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::external_format`]
-    pub fn set_external_format_raw(&mut self, value: u64) -> &mut Self {
-        self.external_format = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

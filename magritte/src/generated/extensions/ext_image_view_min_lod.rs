@@ -29,9 +29,10 @@ pub const EXT_IMAGE_VIEW_MIN_LOD_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceImageViewMinLodFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT`
+///[`PhysicalDeviceImageViewMinLodFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_image_view_min_lod`]
 /// - [`Bool32`]
@@ -49,7 +50,7 @@ pub const EXT_IMAGE_VIEW_MIN_LOD_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 #[repr(C)]
 pub struct PhysicalDeviceImageViewMinLodFeaturesEXT<'lt> {
     _lifetime: PhantomData<&'lt ()>,
-    ///[`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT`
+    ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT`
     s_type: StructureType,
     ///No documentation found
     p_next: *mut BaseOutStructure<'lt>,
@@ -167,13 +168,14 @@ impl<'lt> PhysicalDeviceImageViewMinLodFeaturesEXT<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`min_lod`] is the value to clamp the minimum LOD accessible by this [`ImageView`].
 ///# Description
-///Valid Usage
+///## Valid Usage
 /// - If the [[`min_lod`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-minLod)
-///   feature is not enabled, [`min_lod`]**must** be `0.0`.
-/// - [`min_lod`]**must** be less or equal to the index of the last mipmap level accessible to the
+///   feature is not enabled, [`min_lod`] **must**  be `0.0`.
+/// - [`min_lod`] **must**  be less or equal to the index of the last mipmap level accessible to the
 ///   view.
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT`
 ///# Related
 /// - [`VK_EXT_image_view_min_lod`]
 /// - [`StructureType`]
@@ -214,18 +216,9 @@ impl<'lt> ImageViewMinLodCreateInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::min_lod`]
-    pub fn min_lod_raw(&self) -> f32 {
-        self.min_lod
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_lod`]
-    pub fn set_min_lod_raw(&mut self, value: f32) -> &mut Self {
-        self.min_lod = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

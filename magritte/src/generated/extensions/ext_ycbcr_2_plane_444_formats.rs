@@ -35,10 +35,11 @@ pub const EXT_YCBCR_2PLANE_444_FORMATS_EXTENSION_NAME: &'static CStr = crate::cs
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT`]**can** also be used in the [`p_next`] chain
+///[`PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT`] **can**  also be used in the [`p_next`] chain
 /// of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_2_PLANE_444_FORMATS_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_ycbcr_2plane_444_formats`]

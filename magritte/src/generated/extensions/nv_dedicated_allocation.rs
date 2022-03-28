@@ -29,12 +29,13 @@ pub const NV_DEDICATED_ALLOCATION_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// - [`dedicated_allocation`] specifies whether the image will have a dedicated allocation bound to
 ///   it.
 ///# Description
-///Valid Usage
-/// - If [`dedicated_allocation`] is [`TRUE`], [`ImageCreateInfo::flags`]**must** not include
+///## Valid Usage
+/// - If [`dedicated_allocation`] is [`TRUE`], [`ImageCreateInfo::flags`] **must**  not include
 ///   `VK_IMAGE_CREATE_SPARSE_BINDING_BIT`, `VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT`, or
 ///   `VK_IMAGE_CREATE_SPARSE_ALIASED_BIT`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV`
 ///# Related
 /// - [`VK_NV_dedicated_allocation`]
 /// - [`Bool32`]
@@ -164,8 +165,8 @@ impl<'lt> DedicatedAllocationImageCreateInfoNV<'lt> {
 /// - [`dedicated_allocation`] specifies whether the buffer will have a dedicated allocation bound
 ///   to it.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV`
 ///# Related
 /// - [`VK_NV_dedicated_allocation`]
 /// - [`Bool32`]
@@ -279,8 +280,8 @@ impl<'lt> DedicatedAllocationBufferCreateInfoNV<'lt> {
 ///If the [`p_next`] chain includes a
 ///[`DedicatedAllocationMemoryAllocateInfoNV`] structure, then that
 ///structure includes a handle of the sole buffer or image resource that the
-///memory **can** be bound to.The [`DedicatedAllocationMemoryAllocateInfoNV`] structure is defined
-/// as:
+///memory  **can**  be bound to.The [`DedicatedAllocationMemoryAllocateInfoNV`] structure is
+/// defined as:
 ///```c
 ///// Provided by VK_NV_dedicated_allocation
 ///typedef struct VkDedicatedAllocationMemoryAllocateInfoNV {
@@ -298,32 +299,31 @@ impl<'lt> DedicatedAllocationBufferCreateInfoNV<'lt> {
 /// - [`buffer`] is [`crate::utils::Handle::null`] or a handle of a buffer which this memory will be
 ///   bound to.
 ///# Description
-///Valid Usage
-/// - At least one of [`image`] and [`buffer`]**must** be [`crate::utils::Handle::null`]
-/// - If [`image`] is not [`crate::utils::Handle::null`], the image **must** have been created with
-///   [`DedicatedAllocationImageCreateInfoNV::dedicated_allocation`] equal to [`TRUE`]
-/// - If [`buffer`] is not [`crate::utils::Handle::null`], the buffer **must** have been created
+///## Valid Usage
+/// - At least one of [`image`] and [`buffer`] **must**  be [`crate::utils::Handle::null`]
+/// - If [`image`] is not [`crate::utils::Handle::null`], the image  **must**  have been created
+///   with [`DedicatedAllocationImageCreateInfoNV::dedicated_allocation`] equal to [`TRUE`]
+/// - If [`buffer`] is not [`crate::utils::Handle::null`], the buffer  **must**  have been created
 ///   with [`DedicatedAllocationBufferCreateInfoNV::dedicated_allocation`] equal to [`TRUE`]
-/// - If [`image`] is not [`crate::utils::Handle::null`],
-///   [`MemoryAllocateInfo::allocation_size`]**must** equal the [`MemoryRequirements::size`] of the
-///   image
-/// - If [`buffer`] is not [`crate::utils::Handle::null`],
-///   [`MemoryAllocateInfo::allocation_size`]**must** equal the [`MemoryRequirements::size`] of the
-///   buffer
+/// - If [`image`] is not [`crate::utils::Handle::null`], [`MemoryAllocateInfo::allocation_size`]
+///   **must**  equal the [`MemoryRequirements::size`] of the image
+/// - If [`buffer`] is not [`crate::utils::Handle::null`], [`MemoryAllocateInfo::allocation_size`]
+///   **must**  equal the [`MemoryRequirements::size`] of the buffer
 /// - If [`image`] is not [`crate::utils::Handle::null`] and [`MemoryAllocateInfo`] defines a memory
-///   import operation, the memory being imported **must** also be a dedicated image allocation and
-///   [`image`]**must** be identical to the image associated with the imported memory
+///   import operation, the memory being imported  **must**  also be a dedicated image allocation
+///   and [`image`] **must**  be identical to the image associated with the imported memory
 /// - If [`buffer`] is not [`crate::utils::Handle::null`] and [`MemoryAllocateInfo`] defines a
-///   memory import operation, the memory being imported **must** also be a dedicated buffer
-///   allocation and [`buffer`]**must** be identical to the buffer associated with the imported
+///   memory import operation, the memory being imported  **must**  also be a dedicated buffer
+///   allocation and [`buffer`] **must**  be identical to the buffer associated with the imported
 ///   memory
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV`
-/// - If [`image`] is not [`crate::utils::Handle::null`], [`image`]**must** be a valid [`Image`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV`
+/// - If [`image`] is not [`crate::utils::Handle::null`], [`image`] **must**  be a valid [`Image`]
 ///   handle
-/// - If [`buffer`] is not [`crate::utils::Handle::null`], [`buffer`]**must** be a valid [`Buffer`]
-///   handle
-/// - Both of [`buffer`], and [`image`] that are valid handles of non-ignored parameters **must**
+/// - If [`buffer`] is not [`crate::utils::Handle::null`], [`buffer`] **must**  be a valid
+///   [`Buffer`] handle
+/// - Both of [`buffer`], and [`image`] that are valid handles of non-ignored parameters  **must**
 ///   have been created, allocated, or retrieved from the same [`Device`]
 ///# Related
 /// - [`VK_NV_dedicated_allocation`]

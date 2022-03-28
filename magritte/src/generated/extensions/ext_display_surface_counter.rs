@@ -43,7 +43,7 @@ pub const EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME: &'static CStr = crate::cst
 /// - [`max_image_count`] is the maximum number of images the specified device supports for a
 ///   swapchain created for the surface, and will be either 0, or greater than or equal to
 ///   [`min_image_count`]. A value of 0 means that there is no limit on the number of images, though
-///   there **may** be limits related to the total amount of memory used by presentable images.
+///   there  **may**  be limits related to the total amount of memory used by presentable images.
 /// - [`current_extent`] is the current width and height of the surface, or the special value
 ///   (0xFFFFFFFF, 0xFFFFFFFF) indicating that the surface size will be determined by the extent of
 ///   a swapchain targeting the surface.
@@ -56,8 +56,8 @@ pub const EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME: &'static CStr = crate::cst
 ///   the corresponding `width` and `height` of [`min_image_extent`]. The `width` and `height` of
 ///   the extent will each be greater than or equal to the corresponding `width` and `height` of
 ///   [`current_extent`], unless [`current_extent`] has the special value described above.
-/// - [`max_image_array_layers`] is the maximum number of layers presentable images **can** have for
-///   a swapchain created for this device and surface, and will be at least one.
+/// - [`max_image_array_layers`] is the maximum number of layers presentable images  **can**  have
+///   for a swapchain created for this device and surface, and will be at least one.
 /// - [`supported_transforms`] is a bitmask of [`SurfaceTransformFlagBitsKHR`] indicating the
 ///   presentation transforms supported for the surface on the specified device. At least one bit
 ///   will be set.
@@ -65,23 +65,24 @@ pub const EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME: &'static CStr = crate::cst
 ///   current transform relative to the presentation engine’s natural orientation.
 /// - [`supported_composite_alpha`] is a bitmask of [`CompositeAlphaFlagBitsKHR`], representing the
 ///   alpha compositing modes supported by the presentation engine for the surface on the specified
-///   device, and at least one bit will be set. Opaque composition **can** be achieved in any alpha
-///   compositing mode by either using an image format that has no alpha component, or by ensuring
-///   that all pixels in the presentable images have an alpha value of 1.0.
+///   device, and at least one bit will be set. Opaque composition  **can**  be achieved in any
+///   alpha compositing mode by either using an image format that has no alpha component, or by
+///   ensuring that all pixels in the presentable images have an alpha value of 1.0.
 /// - [`supported_usage_flags`] is a bitmask of [`ImageUsageFlagBits`] representing the ways the
-///   application **can** use the presentable images of a swapchain created with [`PresentModeKHR`]
-///   set to `VK_PRESENT_MODE_IMMEDIATE_KHR`, `VK_PRESENT_MODE_MAILBOX_KHR`,
+///   application  **can**  use the presentable images of a swapchain created with
+///   [`PresentModeKHR`] set to `VK_PRESENT_MODE_IMMEDIATE_KHR`, `VK_PRESENT_MODE_MAILBOX_KHR`,
 ///   `VK_PRESENT_MODE_FIFO_KHR` or `VK_PRESENT_MODE_FIFO_RELAXED_KHR` for the surface on the
-///   specified device. `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT`**must** be included in the set.
-///   Implementations **may** support additional usages.
+///   specified device. `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT` **must**  be included in the set.
+///   Implementations  **may**  support additional usages.
 /// - [`supported_surface_counters`] is a bitmask of [`SurfaceCounterFlagBitsEXT`] indicating the
 ///   supported surface counter types.
 ///# Description
-///Valid Usage
-/// -  [`supported_surface_counters`]**must** not include `VK_SURFACE_COUNTER_VBLANK_BIT_EXT` unless the surface queried is a [display surface](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#wsi-display-surfaces)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_EXT`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage
+/// -  [`supported_surface_counters`] **must**  not include `VK_SURFACE_COUNTER_VBLANK_BIT_EXT` unless the surface queried is a [display surface](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#wsi-display-surfaces)
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_EXT`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_EXT_display_surface_counter`]
 /// - [`CompositeAlphaFlagsKHR`]
@@ -118,7 +119,7 @@ pub struct SurfaceCapabilities2EXT<'lt> {
     ///supports for a swapchain created for the surface, and will be either 0,
     ///or greater than or equal to [`min_image_count`].
     ///A value of 0 means that there is no limit on the number of images,
-    ///though there **may** be limits related to the total amount of memory used
+    ///though there  **may**  be limits related to the total amount of memory used
     ///by presentable images.
     max_image_count: u32,
     ///[`current_extent`] is the current width and height of the surface, or
@@ -144,7 +145,7 @@ pub struct SurfaceCapabilities2EXT<'lt> {
     ///described above.
     max_image_extent: Extent2D,
     ///[`max_image_array_layers`] is the maximum number of layers presentable
-    ///images **can** have for a swapchain created for this device and surface,
+    ///images  **can**  have for a swapchain created for this device and surface,
     ///and will be at least one.
     max_image_array_layers: u32,
     ///[`supported_transforms`] is a bitmask of
@@ -160,19 +161,19 @@ pub struct SurfaceCapabilities2EXT<'lt> {
     ///[`CompositeAlphaFlagBitsKHR`], representing the alpha compositing
     ///modes supported by the presentation engine for the surface on the
     ///specified device, and at least one bit will be set.
-    ///Opaque composition **can** be achieved in any alpha compositing mode by
+    ///Opaque composition  **can**  be achieved in any alpha compositing mode by
     ///either using an image format that has no alpha component, or by ensuring
     ///that all pixels in the presentable images have an alpha value of 1.0.
     supported_composite_alpha: CompositeAlphaFlagsKHR,
     ///[`supported_usage_flags`] is a bitmask of [`ImageUsageFlagBits`]
-    ///representing the ways the application **can** use the presentable images of
+    ///representing the ways the application  **can**  use the presentable images of
     ///a swapchain created
     ///with [`PresentModeKHR`] set to `VK_PRESENT_MODE_IMMEDIATE_KHR`,
     ///`VK_PRESENT_MODE_MAILBOX_KHR`, `VK_PRESENT_MODE_FIFO_KHR` or
     ///`VK_PRESENT_MODE_FIFO_RELAXED_KHR`
     ///for the surface on the specified device.
-    ///`VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT`**must** be included in the set.
-    ///Implementations **may** support additional usages.
+    ///`VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT` **must**  be included in the set.
+    ///Implementations  **may**  support additional usages.
     supported_usage_flags: ImageUsageFlags,
     ///[`supported_surface_counters`] is a bitmask of
     ///[`SurfaceCounterFlagBitsEXT`] indicating the supported surface
@@ -204,36 +205,9 @@ impl<'lt> SurfaceCapabilities2EXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::min_image_count`]
-    pub fn min_image_count_raw(&self) -> u32 {
-        self.min_image_count
-    }
-    ///Gets the raw value of [`Self::max_image_count`]
-    pub fn max_image_count_raw(&self) -> u32 {
-        self.max_image_count
-    }
-    ///Gets the raw value of [`Self::max_image_array_layers`]
-    pub fn max_image_array_layers_raw(&self) -> u32 {
-        self.max_image_array_layers
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_image_count`]
-    pub fn set_min_image_count_raw(&mut self, value: u32) -> &mut Self {
-        self.min_image_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_image_count`]
-    pub fn set_max_image_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_image_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_image_array_layers`]
-    pub fn set_max_image_array_layers_raw(&mut self, value: u32) -> &mut Self {
-        self.max_image_array_layers = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

@@ -303,18 +303,21 @@ impl DebugReportObjectTypeEXT {
 /// - [`object`] is the object to be named.
 /// - [`object_name`] is a null-terminated UTF-8 string specifying the name to apply to [`object`].
 ///# Description
-///Applications **may** change the name associated with an object simply by
+///Applications **may**  change the name associated with an object simply by
 ///calling [`DebugMarkerSetObjectNameEXT`] again with a new string.
-///To remove a previously set name, [`object_name`]**should** be set to an
-///empty string.Valid Usage
-/// - [`object_type`]**must** not be `VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT`
-/// - [`object`]**must** not be [`crate::utils::Handle::null`]
-/// -  [`object`]**must** be a Vulkan object of the type associated with [`object_type`] as defined in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_NAME_INFO_EXT`
-/// - [`p_next`]**must** be `NULL`
-/// - [`object_type`]**must** be a valid [`DebugReportObjectTypeEXT`] value
-/// - [`object_name`]**must** be a null-terminated UTF-8 string
+///To remove a previously set name, [`object_name`] **should**  be set to an
+///empty string.
+///## Valid Usage
+/// - [`object_type`] **must**  not be `VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT`
+/// - [`object`] **must**  not be [`crate::utils::Handle::null`]
+/// - [`object`] **must**  be a Vulkan object of the type associated with [`object_type`] as defined
+///   in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types)
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_NAME_INFO_EXT`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`object_type`] **must**  be a valid [`DebugReportObjectTypeEXT`] value
+/// - [`object_name`] **must**  be a null-terminated UTF-8 string
 ///# Related
 /// - [`VK_EXT_debug_marker`]
 /// - [`DebugReportObjectTypeEXT`]
@@ -364,27 +367,9 @@ impl<'lt> DebugMarkerObjectNameInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::object`]
-    pub fn object_raw(&self) -> u64 {
-        self.object
-    }
-    ///Gets the raw value of [`Self::object_name`]
-    pub fn object_name_raw(&self) -> &'lt CStr {
-        self.object_name
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::object`]
-    pub fn set_object_raw(&mut self, value: u64) -> &mut Self {
-        self.object = value;
-        self
-    }
-    ///Sets the raw value of [`Self::object_name`]
-    pub fn set_object_name_raw(&mut self, value: &'lt CStr) -> &mut Self {
-        self.object_name = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -483,16 +468,19 @@ impl<'lt> DebugMarkerObjectNameInfoEXT<'lt> {
 ///The [`tag_name`] parameter gives a name or identifier to the type of data
 ///being tagged.
 ///This can be used by debugging layers to easily filter for only data that can
-///be used by that implementation.Valid Usage
-/// - [`object_type`]**must** not be `VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT`
-/// - [`object`]**must** not be [`crate::utils::Handle::null`]
-/// -  [`object`]**must** be a Vulkan object of the type associated with [`object_type`] as defined in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_TAG_INFO_EXT`
-/// - [`p_next`]**must** be `NULL`
-/// - [`object_type`]**must** be a valid [`DebugReportObjectTypeEXT`] value
-/// - [`tag`]**must** be a valid pointer to an array of [`tag_size`] bytes
-/// - [`tag_size`]**must** be greater than `0`
+///be used by that implementation.
+///## Valid Usage
+/// - [`object_type`] **must**  not be `VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT`
+/// - [`object`] **must**  not be [`crate::utils::Handle::null`]
+/// - [`object`] **must**  be a Vulkan object of the type associated with [`object_type`] as defined
+///   in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types)
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_TAG_INFO_EXT`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`object_type`] **must**  be a valid [`DebugReportObjectTypeEXT`] value
+/// - [`tag`] **must**  be a valid pointer to an array of [`tag_size`] bytes
+/// - [`tag_size`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_EXT_debug_marker`]
 /// - [`DebugReportObjectTypeEXT`]
@@ -548,18 +536,6 @@ impl<'lt> DebugMarkerObjectTagInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::object`]
-    pub fn object_raw(&self) -> u64 {
-        self.object
-    }
-    ///Gets the raw value of [`Self::tag_name`]
-    pub fn tag_name_raw(&self) -> u64 {
-        self.tag_name
-    }
-    ///Gets the raw value of [`Self::tag_size`]
-    pub fn tag_size_raw(&self) -> usize {
-        self.tag_size
-    }
     ///Gets the raw value of [`Self::tag`]
     pub fn tag_raw(&self) -> *const c_void {
         self.tag
@@ -567,21 +543,6 @@ impl<'lt> DebugMarkerObjectTagInfoEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::object`]
-    pub fn set_object_raw(&mut self, value: u64) -> &mut Self {
-        self.object = value;
-        self
-    }
-    ///Sets the raw value of [`Self::tag_name`]
-    pub fn set_tag_name_raw(&mut self, value: u64) -> &mut Self {
-        self.tag_name = value;
-        self
-    }
-    ///Sets the raw value of [`Self::tag_size`]
-    pub fn set_tag_size_raw(&mut self, value: usize) -> &mut Self {
-        self.tag_size = value;
         self
     }
     ///Sets the raw value of [`Self::tag`]
@@ -702,15 +663,15 @@ impl<'lt> DebugMarkerObjectTagInfoEXT<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`marker_name`] is a pointer to a null-terminated UTF-8 string containing the name of the
 ///   marker.
-/// - [`color`] is an **optional** RGBA color value that can be associated with the marker. A
-///   particular implementation **may** choose to ignore this color value. The values contain RGBA
+/// - [`color`] is an  **optional**  RGBA color value that can be associated with the marker. A
+///   particular implementation  **may**  choose to ignore this color value. The values contain RGBA
 ///   values in order, in the range 0.0 to 1.0. If all elements in [`color`] are set to 0.0 then it
 ///   is ignored.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEBUG_MARKER_MARKER_INFO_EXT`
-/// - [`p_next`]**must** be `NULL`
-/// - [`marker_name`]**must** be a null-terminated UTF-8 string
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEBUG_MARKER_MARKER_INFO_EXT`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`marker_name`] **must**  be a null-terminated UTF-8 string
 ///# Related
 /// - [`VK_EXT_debug_marker`]
 /// - [`StructureType`]
@@ -737,9 +698,9 @@ pub struct DebugMarkerMarkerInfoEXT<'lt> {
     ///[`marker_name`] is a pointer to a null-terminated UTF-8 string
     ///containing the name of the marker.
     marker_name: &'lt CStr,
-    ///[`color`] is an **optional** RGBA color value that can be associated with
+    ///[`color`] is an  **optional**  RGBA color value that can be associated with
     ///the marker.
-    ///A particular implementation **may** choose to ignore this color value.
+    ///A particular implementation  **may**  choose to ignore this color value.
     ///The values contain RGBA values in order, in the range 0.0 to 1.0.
     ///If all elements in [`color`] are set to 0.0 then it is ignored.
     color: [f32; 4],
@@ -760,27 +721,9 @@ impl<'lt> DebugMarkerMarkerInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::marker_name`]
-    pub fn marker_name_raw(&self) -> &'lt CStr {
-        self.marker_name
-    }
-    ///Gets the raw value of [`Self::color`]
-    pub fn color_raw(&self) -> [f32; 4] {
-        self.color
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::marker_name`]
-    pub fn set_marker_name_raw(&mut self, value: &'lt CStr) -> &mut Self {
-        self.marker_name = value;
-        self
-    }
-    ///Sets the raw value of [`Self::color`]
-    pub fn set_color_raw(&mut self, value: [f32; 4]) -> &mut Self {
-        self.color = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

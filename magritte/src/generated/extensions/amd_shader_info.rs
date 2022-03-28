@@ -145,51 +145,6 @@ impl Default for ShaderResourceUsageAMD {
     }
 }
 impl ShaderResourceUsageAMD {
-    ///Gets the raw value of [`Self::num_used_vgprs`]
-    pub fn num_used_vgprs_raw(&self) -> u32 {
-        self.num_used_vgprs
-    }
-    ///Gets the raw value of [`Self::num_used_sgprs`]
-    pub fn num_used_sgprs_raw(&self) -> u32 {
-        self.num_used_sgprs
-    }
-    ///Gets the raw value of [`Self::lds_size_per_local_work_group`]
-    pub fn lds_size_per_local_work_group_raw(&self) -> u32 {
-        self.lds_size_per_local_work_group
-    }
-    ///Gets the raw value of [`Self::lds_usage_size_in_bytes`]
-    pub fn lds_usage_size_in_bytes_raw(&self) -> usize {
-        self.lds_usage_size_in_bytes
-    }
-    ///Gets the raw value of [`Self::scratch_mem_usage_in_bytes`]
-    pub fn scratch_mem_usage_in_bytes_raw(&self) -> usize {
-        self.scratch_mem_usage_in_bytes
-    }
-    ///Sets the raw value of [`Self::num_used_vgprs`]
-    pub fn set_num_used_vgprs_raw(&mut self, value: u32) -> &mut Self {
-        self.num_used_vgprs = value;
-        self
-    }
-    ///Sets the raw value of [`Self::num_used_sgprs`]
-    pub fn set_num_used_sgprs_raw(&mut self, value: u32) -> &mut Self {
-        self.num_used_sgprs = value;
-        self
-    }
-    ///Sets the raw value of [`Self::lds_size_per_local_work_group`]
-    pub fn set_lds_size_per_local_work_group_raw(&mut self, value: u32) -> &mut Self {
-        self.lds_size_per_local_work_group = value;
-        self
-    }
-    ///Sets the raw value of [`Self::lds_usage_size_in_bytes`]
-    pub fn set_lds_usage_size_in_bytes_raw(&mut self, value: usize) -> &mut Self {
-        self.lds_usage_size_in_bytes = value;
-        self
-    }
-    ///Sets the raw value of [`Self::scratch_mem_usage_in_bytes`]
-    pub fn set_scratch_mem_usage_in_bytes_raw(&mut self, value: usize) -> &mut Self {
-        self.scratch_mem_usage_in_bytes = value;
-        self
-    }
     ///Gets the value of [`Self::num_used_vgprs`]
     pub fn num_used_vgprs(&self) -> u32 {
         self.num_used_vgprs
@@ -290,13 +245,13 @@ impl ShaderResourceUsageAMD {
 ///In such cases, [`shader_stage_mask`] will contain a bitmask of all of the
 ///stages that are active within that shader.
 ///Consequently, if specifying those stages as input to
-///[`GetShaderInfoAMD`], the same output information **may** be returned for
+///[`GetShaderInfoAMD`], the same output information  **may**  be returned for
 ///all such shader stage queries.The number of available VGPRs and SGPRs ([`num_available_vgprs`]
 /// and
 ///[`num_available_sgprs`] respectively) are the shader-addressable subset of
 ///physical registers that is given as a limit to the compiler for register
 ///assignment.
-///These values **may** further be limited by implementations due to performance
+///These values  **may**  further be limited by implementations due to performance
 ///optimizations where register pressure is a bottleneck.
 ///# Related
 /// - [`VK_AMD_shader_info`]
@@ -351,51 +306,6 @@ impl Default for ShaderStatisticsInfoAMD {
     }
 }
 impl ShaderStatisticsInfoAMD {
-    ///Gets the raw value of [`Self::num_physical_vgprs`]
-    pub fn num_physical_vgprs_raw(&self) -> u32 {
-        self.num_physical_vgprs
-    }
-    ///Gets the raw value of [`Self::num_physical_sgprs`]
-    pub fn num_physical_sgprs_raw(&self) -> u32 {
-        self.num_physical_sgprs
-    }
-    ///Gets the raw value of [`Self::num_available_vgprs`]
-    pub fn num_available_vgprs_raw(&self) -> u32 {
-        self.num_available_vgprs
-    }
-    ///Gets the raw value of [`Self::num_available_sgprs`]
-    pub fn num_available_sgprs_raw(&self) -> u32 {
-        self.num_available_sgprs
-    }
-    ///Gets the raw value of [`Self::compute_work_group_size`]
-    pub fn compute_work_group_size_raw(&self) -> [u32; 3] {
-        self.compute_work_group_size
-    }
-    ///Sets the raw value of [`Self::num_physical_vgprs`]
-    pub fn set_num_physical_vgprs_raw(&mut self, value: u32) -> &mut Self {
-        self.num_physical_vgprs = value;
-        self
-    }
-    ///Sets the raw value of [`Self::num_physical_sgprs`]
-    pub fn set_num_physical_sgprs_raw(&mut self, value: u32) -> &mut Self {
-        self.num_physical_sgprs = value;
-        self
-    }
-    ///Sets the raw value of [`Self::num_available_vgprs`]
-    pub fn set_num_available_vgprs_raw(&mut self, value: u32) -> &mut Self {
-        self.num_available_vgprs = value;
-        self
-    }
-    ///Sets the raw value of [`Self::num_available_sgprs`]
-    pub fn set_num_available_sgprs_raw(&mut self, value: u32) -> &mut Self {
-        self.num_available_sgprs = value;
-        self
-    }
-    ///Sets the raw value of [`Self::compute_work_group_size`]
-    pub fn set_compute_work_group_size_raw(&mut self, value: [u32; 3]) -> &mut Self {
-        self.compute_work_group_size = value;
-        self
-    }
     ///Gets the value of [`Self::shader_stage_mask`]
     pub fn shader_stage_mask(&self) -> ShaderStageFlags {
         self.shader_stage_mask

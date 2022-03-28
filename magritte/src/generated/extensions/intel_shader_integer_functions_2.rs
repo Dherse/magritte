@@ -33,10 +33,11 @@ pub const INTEL_SHADER_INTEGER_FUNCTIONS_2_EXTENSION_NAME: &'static CStr =
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///`VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTELfeatures`. **can** also be used in the
+///`VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTELfeatures`.  **can**  also be used in the
 /// [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL`
 ///# Related
 /// - [`VK_INTEL_shader_integer_functions2`]

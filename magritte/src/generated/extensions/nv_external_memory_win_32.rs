@@ -36,12 +36,14 @@ pub const NV_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// - [`handle`] is a Windows [`HANDLE`] referring to the memory.
 ///# Description
 ///If [`handle_type`] is `0`, this structure is ignored by consumers of the
-///[`MemoryAllocateInfo`] structure it is chained from.Valid Usage
-/// - [`handle_type`]**must** not have more than one bit set
-/// - [`handle`]**must** be a valid handle to memory, obtained as specified by [`handle_type`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_NV`
-/// - [`handle_type`]**must** be a valid combination of [`ExternalMemoryHandleTypeFlagBitsNV`]
+///[`MemoryAllocateInfo`] structure it is chained from.
+///## Valid Usage
+/// - [`handle_type`] **must**  not have more than one bit set
+/// - [`handle`] **must**  be a valid handle to memory, obtained as specified by [`handle_type`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_NV`
+/// - [`handle_type`] **must**  be a valid combination of [`ExternalMemoryHandleTypeFlagBitsNV`]
 ///   values
 ///# Related
 /// - [`VK_NV_external_memory_win32`]
@@ -187,9 +189,10 @@ impl<'lt> ImportMemoryWin32HandleInfoNV<'lt> {
 ///Further, if the structure is not present, the access rights will be`DXGI_SHARED_RESOURCE_READ` |
 /// `DXGI_SHARED_RESOURCE_WRITE`
 /// * [https://docs.microsoft.com/en-us/windows/win32/sync/synchronization-object-security-and-access-rights](https://docs.microsoft.com/en-us/windows/win32/sync/synchronization-object-security-and-access-rights)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_NV`
-/// - If [`attributes`] is not `NULL`, [`attributes`]**must** be a valid pointer to a valid
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_NV`
+/// - If [`attributes`] is not `NULL`, [`attributes`] **must**  be a valid pointer to a valid
 ///   [`SECURITY_ATTRIBUTES`] value
 ///# Related
 /// - [`VK_NV_external_memory_win32`]

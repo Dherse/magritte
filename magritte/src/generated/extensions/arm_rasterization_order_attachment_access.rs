@@ -38,10 +38,11 @@ pub const ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME: &'static CSt
 ///structure is included in the [`p_next`] chain of
 ///[`PhysicalDeviceFeatures2`], it is filled with values indicating whether
 ///the feature is supported.
-///[`PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM`]**can**
+///[`PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM`] **can**
 ///also be used in the [`p_next`] chain of [`DeviceCreateInfo`] to enable
-///features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_ARM`
 ///# Related
 /// - [`VK_ARM_rasterization_order_attachment_access`]
@@ -60,7 +61,7 @@ pub const ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME: &'static CSt
 #[repr(C)]
 pub struct PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM<'lt> {
     _lifetime: PhantomData<&'lt ()>,
-    ///[`s_type`]**must** be
+    ///[`s_type`] **must**  be
     /// `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_ARM`
     s_type: StructureType,
     ///No documentation found

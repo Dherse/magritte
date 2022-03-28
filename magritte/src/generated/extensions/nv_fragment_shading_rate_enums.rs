@@ -62,10 +62,10 @@ pub const NV_FRAGMENT_SHADING_RATE_ENUMS_EXTENSION_NAME: &'static CStr =
 ///[`FragmentShadingRate8InvocationsPerPixelNv`], and
 ///[`FragmentShadingRate16InvocationsPerPixelNv`] as a pipeline,
 ///primitive, or attachment shading rate, the
-///`supersampleFragmentShadingRates` feature **must** be enabled.
+///`supersampleFragmentShadingRates` feature  **must**  be enabled.
 ///To use the shading rate [`FragmentShadingRateNoInvocationsNv`] as
 ///a pipeline, primitive, or attachment shading rate, the
-///`noInvocationFragmentShadingRates` feature **must** be enabled.
+///`noInvocationFragmentShadingRates` feature  **must**  be enabled.
 ///# Related
 /// - [`VK_NV_fragment_shading_rate_enums`]
 /// - [`PipelineFragmentShadingRateEnumStateCreateInfoNV`]
@@ -257,10 +257,11 @@ impl FragmentShadingRateTypeNV {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceFragmentShadingRateEnumsFeaturesNV`]**can** also be used in the [`p_next`] chain
-/// of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`PhysicalDeviceFragmentShadingRateEnumsFeaturesNV`] **can**  also be used in the [`p_next`]
+/// chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV`
 ///# Related
 /// - [`VK_NV_fragment_shading_rate_enums`]
@@ -484,10 +485,11 @@ impl<'lt> PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
 ///corresponding implementation-dependent property.These properties are related to [fragment
-///shading rates](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate).Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///shading rates](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate).
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV`
-/// - [`max_fragment_shading_rate_invocation_count`]**must** be a valid [`SampleCountFlagBits`]
+/// - [`max_fragment_shading_rate_invocation_count`] **must**  be a valid [`SampleCountFlagBits`]
 ///   value
 ///# Related
 /// - [`VK_NV_fragment_shading_rate_enums`]
@@ -622,13 +624,14 @@ impl<'lt> PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
 ///[`shading_rate`] is considered to be equal to
 ///`VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_PIXEL_NV`, and both elements
 ///of [`combiner_ops`] are considered to be equal to
-///`VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR`.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///`VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR`.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV`
-/// - [`shading_rate_type`]**must** be a valid [`FragmentShadingRateTypeNV`] value
-/// - [`shading_rate`]**must** be a valid [`FragmentShadingRateNV`] value
-/// - Any given element of [`combiner_ops`]**must** be a valid [`FragmentShadingRateCombinerOpKHR`]
-///   value
+/// - [`shading_rate_type`] **must**  be a valid [`FragmentShadingRateTypeNV`] value
+/// - [`shading_rate`] **must**  be a valid [`FragmentShadingRateNV`] value
+/// - Any given element of [`combiner_ops`] **must**  be a valid
+///   [`FragmentShadingRateCombinerOpKHR`] value
 ///# Related
 /// - [`VK_NV_fragment_shading_rate_enums`]
 /// - [`FragmentShadingRateCombinerOpKHR`]

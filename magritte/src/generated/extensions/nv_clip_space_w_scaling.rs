@@ -52,24 +52,6 @@ impl Default for ViewportWScalingNV {
     }
 }
 impl ViewportWScalingNV {
-    ///Gets the raw value of [`Self::xcoeff`]
-    pub fn xcoeff_raw(&self) -> f32 {
-        self.xcoeff
-    }
-    ///Gets the raw value of [`Self::ycoeff`]
-    pub fn ycoeff_raw(&self) -> f32 {
-        self.ycoeff
-    }
-    ///Sets the raw value of [`Self::xcoeff`]
-    pub fn set_xcoeff_raw(&mut self, value: f32) -> &mut Self {
-        self.xcoeff = value;
-        self
-    }
-    ///Sets the raw value of [`Self::ycoeff`]
-    pub fn set_ycoeff_raw(&mut self, value: f32) -> &mut Self {
-        self.ycoeff = value;
-        self
-    }
     ///Gets the value of [`Self::xcoeff`]
     pub fn xcoeff(&self) -> f32 {
         self.xcoeff
@@ -114,16 +96,16 @@ impl ViewportWScalingNV {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`viewport_w_scaling_enable`] controls whether viewport **W** scaling is enabled.
-/// - [`viewport_count`] is the number of viewports used by **W** scaling, and **must** match the
-///   number of viewports in the pipeline if viewport **W** scaling is enabled.
+/// - [`viewport_w_scaling_enable`] controls whether viewport  **W**  scaling is enabled.
+/// - [`viewport_count`] is the number of viewports used by  **W**  scaling, and  **must**  match
+///   the number of viewports in the pipeline if viewport  **W**  scaling is enabled.
 /// - [`viewport_w_scalings`] is a pointer to an array of [`ViewportWScalingNV`] structures defining
-///   the **W** scaling parameters for the corresponding viewports. If the viewport **W** scaling
-///   state is dynamic, this member is ignored.
+///   the  **W**  scaling parameters for the corresponding viewports. If the viewport  **W**
+///   scaling state is dynamic, this member is ignored.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV`
-/// - [`viewport_count`]**must** be greater than `0`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV`
+/// - [`viewport_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_NV_clip_space_w_scaling`]
 /// - [`Bool32`]
@@ -147,17 +129,17 @@ pub struct PipelineViewportWScalingStateCreateInfoNV<'lt> {
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     p_next: *const BaseInStructure<'lt>,
-    ///[`viewport_w_scaling_enable`] controls whether viewport **W** scaling is
+    ///[`viewport_w_scaling_enable`] controls whether viewport  **W**  scaling is
     ///enabled.
     viewport_w_scaling_enable: Bool32,
-    ///[`viewport_count`] is the number of viewports used by **W** scaling, and
-    ///**must** match the number of viewports in the pipeline if viewport **W**
+    ///[`viewport_count`] is the number of viewports used by  **W**  scaling, and
+    /// **must**  match the number of viewports in the pipeline if viewport  **W**
     ///scaling is enabled.
     viewport_count: u32,
     ///[`viewport_w_scalings`] is a pointer to an array of
-    ///[`ViewportWScalingNV`] structures defining the **W** scaling
+    ///[`ViewportWScalingNV`] structures defining the  **W**  scaling
     ///parameters for the corresponding viewports.
-    ///If the viewport **W** scaling state is dynamic, this member is ignored.
+    ///If the viewport  **W**  scaling state is dynamic, this member is ignored.
     viewport_w_scalings: *const ViewportWScalingNV,
 }
 impl<'lt> Default for PipelineViewportWScalingStateCreateInfoNV<'lt> {
@@ -181,10 +163,6 @@ impl<'lt> PipelineViewportWScalingStateCreateInfoNV<'lt> {
     pub fn viewport_w_scaling_enable_raw(&self) -> Bool32 {
         self.viewport_w_scaling_enable
     }
-    ///Gets the raw value of [`Self::viewport_count`]
-    pub fn viewport_count_raw(&self) -> u32 {
-        self.viewport_count
-    }
     ///Gets the raw value of [`Self::viewport_w_scalings`]
     pub fn viewport_w_scalings_raw(&self) -> *const ViewportWScalingNV {
         self.viewport_w_scalings
@@ -197,11 +175,6 @@ impl<'lt> PipelineViewportWScalingStateCreateInfoNV<'lt> {
     ///Sets the raw value of [`Self::viewport_w_scaling_enable`]
     pub fn set_viewport_w_scaling_enable_raw(&mut self, value: Bool32) -> &mut Self {
         self.viewport_w_scaling_enable = value;
-        self
-    }
-    ///Sets the raw value of [`Self::viewport_count`]
-    pub fn set_viewport_count_raw(&mut self, value: u32) -> &mut Self {
-        self.viewport_count = value;
         self
     }
     ///Sets the raw value of [`Self::viewport_w_scalings`]

@@ -1,4 +1,4 @@
-use std::borrow::Cow;
+use std::{borrow::Cow, mem::swap};
 
 use ahash::AHashMap;
 use ego_tree::NodeRef;
@@ -158,6 +158,22 @@ where
             Some("ulist") => self.visit_list(element, |_| "-", &ULIST_UL_LI),
             Some("olist arabic") => self.visit_list(element, |i| format!("{}.", i), &OLIST_OL_LI),
             Some("olist loweralpha") => self.visit_list(element, |i| format!("{}.", i), &OLIST_OL_LI),
+            Some("title") => {
+                let mut temp = String::new();
+
+                swap(&mut self.out, &mut temp);
+
+                for child in element.children() {
+                    self.visit(child);
+                }
+
+                swap(&mut self.out, &mut temp);
+
+                self.out.push_str("\n## ");
+                self.out.push_str(&temp);
+
+                Some(())
+            }
             _ => {
                 for child in element.children() {
                     self.visit(child);
@@ -308,13 +324,13 @@ where
             return None;
         }
 
-        self.out.push_str("**");
+        self.out.push_str(" **");
 
         for child in strong.children() {
             self.visit(child);
         }
 
-        self.out.push_str("**");
+        self.out.push_str("** ");
 
         Some(())
     }

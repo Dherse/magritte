@@ -31,8 +31,8 @@ pub const EXT_VIDEO_DECODE_H265_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// - [`std_profile_idc`] is a [`StdVideoH265ProfileIdc`] value specifying the H.265 codec profile
 ///   IDC.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_PROFILE_EXT`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_PROFILE_EXT`
 ///# Related
 /// - [`VK_EXT_video_decode_h265`]
 /// - [`StructureType`]
@@ -142,7 +142,7 @@ impl<'lt> VideoDecodeH265ProfileEXT<'lt> {
 ///When using [`GetPhysicalDeviceVideoCapabilitiesKHR`] to query the
 ///capabilities for the parameter `videoCodecOperation` specified as
 ///`VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_EXT`, a
-///[`VideoDecodeH265CapabilitiesEXT`] structure **can** be chained to
+///[`VideoDecodeH265CapabilitiesEXT`] structure  **can**  be chained to
 ///[`VideoCapabilitiesKHR`] to return this H.265 extension specific
 ///capabilities.
 ///# Description
@@ -151,8 +151,9 @@ impl<'lt> VideoDecodeH265ProfileEXT<'lt> {
 /// - [`max_level`] is the maximum H.265 level supported by the device.
 /// - [`std_extension_version`] is a [`ExtensionProperties`] structure specifying the H.265
 ///   extension name and version supported by this implementation.
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_CAPABILITIES_EXT`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_CAPABILITIES_EXT`
 ///# Related
 /// - [`VK_EXT_video_decode_h265`]
 /// - [`ExtensionProperties`]
@@ -198,18 +199,9 @@ impl<'lt> VideoDecodeH265CapabilitiesEXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::max_level`]
-    pub fn max_level_raw(&self) -> u32 {
-        self.max_level
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_level`]
-    pub fn set_max_level_raw(&mut self, value: u32) -> &mut Self {
-        self.max_level = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -290,13 +282,14 @@ impl<'lt> VideoDecodeH265CapabilitiesEXT<'lt> {
 /// - [`std_extension_version`] is a pointer to a [`ExtensionProperties`] structure specifying H.265
 ///   codec extensions.
 ///# Description
-///A [`VideoDecodeH265SessionCreateInfoEXT`] structure **can** be chained to
+///A [`VideoDecodeH265SessionCreateInfoEXT`] structure  **can**  be chained to
 ///[`VideoSessionCreateInfoKHR`] when the function
 ///[`CreateVideoSessionKHR`] is called to create a video session for H.265
-///decode operations.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_CREATE_INFO_EXT`
-/// - [`flags`]**must** be `0`
-/// - [`std_extension_version`]**must** be a valid pointer to a valid [`ExtensionProperties`]
+///decode operations.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_CREATE_INFO_EXT`
+/// - [`flags`] **must**  be `0`
+/// - [`std_extension_version`] **must**  be a valid pointer to a valid [`ExtensionProperties`]
 ///   structure
 ///# Related
 /// - [`VK_EXT_video_decode_h265`]
@@ -429,19 +422,19 @@ impl<'lt> VideoDecodeH265SessionCreateInfoEXT<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`sps_std_count`] is the number of SPS elements in the [`sps_std`]. Its value **must** be less
-///   than or equal to the value of `maxSpsStdCount`.
+/// - [`sps_std_count`] is the number of SPS elements in the [`sps_std`]. Its value  **must**  be
+///   less than or equal to the value of `maxSpsStdCount`.
 /// - [`sps_std`] is a pointer to an array of [`StdVideoH265SequenceParameterSet`] structures
-///   representing H.265 sequence parameter sets. Each element of the array **must** have a unique
+///   representing H.265 sequence parameter sets. Each element of the array  **must**  have a unique
 ///   H.265 VPS-SPS ID pair.
-/// - [`pps_std_count`] is the number of PPS provided in [`pps_std`]. Its value **must** be less
+/// - [`pps_std_count`] is the number of PPS provided in [`pps_std`]. Its value  **must**  be less
 ///   than or equal to the value of `maxPpsStdCount`.
 /// - [`pps_std`] is a pointer to an array of [`StdVideoH265PictureParameterSet`] structures
-///   representing H.265 picture parameter sets. Each element of the array entry **must** have a
+///   representing H.265 picture parameter sets. Each element of the array entry  **must**  have a
 ///   unique H.265 VPS-SPS-PPS ID tuple.
 ///# Description
-///Valid Usage
-/// - The values of `vpsStdCount`, [`sps_std_count`] and [`pps_std_count`]**must** be less than or
+///## Valid Usage
+/// - The values of `vpsStdCount`, [`sps_std_count`] and [`pps_std_count`] **must**  be less than or
 ///   equal to the values of `maxVpsStdCount`, `maxSpsStdCount` and `maxPpsStdCount`, respectively
 /// - When the `maxVpsStdCount` number of parameters of type StdVideoH265VideoParameterSet in the
 ///   Video Session Parameters object is reached, no additional parameters of that type can be added
@@ -455,23 +448,24 @@ impl<'lt> VideoDecodeH265SessionCreateInfoEXT<'lt> {
 ///   Video Session Parameters object is reached, no additional parameters of that type can be added
 ///   to the object. `VK_ERROR_TOO_MANY_OBJECTS` will be returned if an attempt is made to add
 ///   additional data to this object at this point
-/// - Each entry to be added **must** have a unique, to the rest of the parameter array entries and
-///   the existing parameters in the Video Session Parameters Object that is being updated,
+/// - Each entry to be added  **must**  have a unique, to the rest of the parameter array entries
+///   and the existing parameters in the Video Session Parameters Object that is being updated,
 ///   VPS-SPS-PPS IDs
 /// - Parameter entries that already exist in Video Session Parameters object with a particular
-///   VPS-SPS-PPS IDs **cannot** be replaced nor updated
+///   VPS-SPS-PPS IDs  **cannot**  be replaced nor updated
 /// - When creating a new object using a Video Session Parameters as a template, the array’s
 ///   parameters with the same VPS-SPS-PPS IDs as the ones from the template take precedence
-/// - VPS/SPS/PPS parameters **must** comply with the limits specified in
+/// - VPS/SPS/PPS parameters  **must**  comply with the limits specified in
 ///   [`VideoSessionCreateInfoKHR`] during Video Session creation
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_ADD_INFO_EXT`
-/// - If [`sps_std`] is not `NULL`, [`sps_std`]**must** be a valid pointer to an array of
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_ADD_INFO_EXT`
+/// - If [`sps_std`] is not `NULL`, [`sps_std`] **must**  be a valid pointer to an array of
 ///   [`sps_std_count`][`StdVideoH265SequenceParameterSet`] values
-/// - If [`pps_std`] is not `NULL`, [`pps_std`]**must** be a valid pointer to an array of
+/// - If [`pps_std`] is not `NULL`, [`pps_std`] **must**  be a valid pointer to an array of
 ///   [`pps_std_count`][`StdVideoH265PictureParameterSet`] values
-/// - [`sps_std_count`]**must** be greater than `0`
-/// - [`pps_std_count`]**must** be greater than `0`
+/// - [`sps_std_count`] **must**  be greater than `0`
+/// - [`pps_std_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_EXT_video_decode_h265`]
 /// - [`StructureType`]
@@ -495,22 +489,22 @@ pub struct VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
     ///structure.
     p_next: *const BaseInStructure<'lt>,
     ///[`sps_std_count`] is the number of SPS elements in the [`sps_std`].
-    ///Its value **must** be less than or equal to the value of
+    ///Its value  **must**  be less than or equal to the value of
     ///`maxSpsStdCount`.
     sps_std_count: u32,
     ///[`sps_std`] is a pointer to an array of
     ///[`StdVideoH265SequenceParameterSet`] structures representing H.265
     ///sequence parameter sets.
-    ///Each element of the array **must** have a unique H.265 VPS-SPS ID pair.
+    ///Each element of the array  **must**  have a unique H.265 VPS-SPS ID pair.
     sps_std: *const StdVideoH265SequenceParameterSet,
     ///[`pps_std_count`] is the number of PPS provided in [`pps_std`].
-    ///Its value **must** be less than or equal to the value of
+    ///Its value  **must**  be less than or equal to the value of
     ///`maxPpsStdCount`.
     pps_std_count: u32,
     ///[`pps_std`] is a pointer to an array of
     ///[`StdVideoH265PictureParameterSet`] structures representing H.265
     ///picture parameter sets.
-    ///Each element of the array entry **must** have a unique H.265 VPS-SPS-PPS ID
+    ///Each element of the array entry  **must**  have a unique H.265 VPS-SPS-PPS ID
     ///tuple.
     pps_std: *const StdVideoH265PictureParameterSet,
 }
@@ -532,27 +526,9 @@ impl<'lt> VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::sps_std_count`]
-    pub fn sps_std_count_raw(&self) -> u32 {
-        self.sps_std_count
-    }
-    ///Gets the raw value of [`Self::pps_std_count`]
-    pub fn pps_std_count_raw(&self) -> u32 {
-        self.pps_std_count
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::sps_std_count`]
-    pub fn set_sps_std_count_raw(&mut self, value: u32) -> &mut Self {
-        self.sps_std_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::pps_std_count`]
-    pub fn set_pps_std_count_raw(&mut self, value: u32) -> &mut Self {
-        self.pps_std_count = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -663,15 +639,17 @@ impl<'lt> VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
 ///   upon object creation.
 ///# Description
 ///A [`VideoDecodeH265SessionParametersCreateInfoEXT`] structure holding
-///one H.265 SPS and at least one H.265 PPS paramater set **must** be chained to
+///one H.265 SPS and at least one H.265 PPS paramater set  **must**  be chained to
 ///[`VideoSessionParametersCreateInfoKHR`] when calling
 ///[`CreateVideoSessionParametersKHR`] to store these parameter set(s) with
 ///the decoder parameter set object for later reference.
-///The provided H.265 SPS/PPS parameters **must** be within the limits specified
+///The provided H.265 SPS/PPS parameters  **must**  be within the limits specified
 ///during decoder creation for the decoder specified in
-///[`VideoSessionParametersCreateInfoKHR`].Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_EXT`
-/// - If [`parameters_add_info`] is not `NULL`, [`parameters_add_info`]**must** be a valid pointer
+///[`VideoSessionParametersCreateInfoKHR`].
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_EXT`
+/// - If [`parameters_add_info`] is not `NULL`, [`parameters_add_info`] **must**  be a valid pointer
 ///   to a valid [`VideoDecodeH265SessionParametersAddInfoEXT`] structure
 ///# Related
 /// - [`VK_EXT_video_decode_h265`]
@@ -723,14 +701,6 @@ impl<'lt> VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::max_sps_std_count`]
-    pub fn max_sps_std_count_raw(&self) -> u32 {
-        self.max_sps_std_count
-    }
-    ///Gets the raw value of [`Self::max_pps_std_count`]
-    pub fn max_pps_std_count_raw(&self) -> u32 {
-        self.max_pps_std_count
-    }
     ///Gets the raw value of [`Self::parameters_add_info`]
     pub fn parameters_add_info_raw(&self) -> *const VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
         self.parameters_add_info
@@ -738,16 +708,6 @@ impl<'lt> VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_sps_std_count`]
-    pub fn set_max_sps_std_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_sps_std_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_pps_std_count`]
-    pub fn set_max_pps_std_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_pps_std_count = value;
         self
     }
     ///Sets the raw value of [`Self::parameters_add_info`]
@@ -847,12 +807,12 @@ impl<'lt> VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
 /// - [`slices_data_offsets`] is a pointer to an array of [`slices_count`] offsets indicating the
 ///   start offset of each slice within the bitstream buffer.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_PICTURE_INFO_EXT`
-/// - [`std_picture_info`]**must** be a valid pointer to a [`StdVideoDecodeH265PictureInfo`] value
-/// - [`slices_data_offsets`]**must** be a valid pointer to an array of [`slices_count`]`uint32_t`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_PICTURE_INFO_EXT`
+/// - [`std_picture_info`] **must**  be a valid pointer to a [`StdVideoDecodeH265PictureInfo`] value
+/// - [`slices_data_offsets`] **must**  be a valid pointer to an array of [`slices_count`]`uint32_t`
 ///   values
-/// - [`slices_count`]**must** be greater than `0`
+/// - [`slices_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_EXT_video_decode_h265`]
 /// - [`StructureType`]
@@ -902,10 +862,6 @@ impl<'lt> VideoDecodeH265PictureInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::slices_count`]
-    pub fn slices_count_raw(&self) -> u32 {
-        self.slices_count
-    }
     ///Gets the raw value of [`Self::slices_data_offsets`]
     pub fn slices_data_offsets_raw(&self) -> *const u32 {
         self.slices_data_offsets
@@ -913,11 +869,6 @@ impl<'lt> VideoDecodeH265PictureInfoEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::slices_count`]
-    pub fn set_slices_count_raw(&mut self, value: u32) -> &mut Self {
-        self.slices_count = value;
         self
     }
     ///Sets the raw value of [`Self::slices_data_offsets`]
@@ -1016,9 +967,9 @@ impl<'lt> VideoDecodeH265PictureInfoEXT<'lt> {
 ///   specifying the codec standard specific picture reference information from the H.264
 ///   specification.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_DPB_SLOT_INFO_EXT`
-/// - [`std_reference_info`]**must** be a valid pointer to a valid
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_DPB_SLOT_INFO_EXT`
+/// - [`std_reference_info`] **must**  be a valid pointer to a valid
 ///   [`StdVideoDecodeH265ReferenceInfo`] value
 ///# Related
 /// - [`VK_EXT_video_decode_h265`]

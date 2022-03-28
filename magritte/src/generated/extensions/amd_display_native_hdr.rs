@@ -23,12 +23,12 @@ pub const AMD_DISPLAY_NATIVE_HDR_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`local_dimming_support`] specifies whether the surface supports local dimming. If this is
-///   [`TRUE`], [`SwapchainDisplayNativeHdrCreateInfoAMD`]**can** be used to explicitly enable or
+///   [`TRUE`], [`SwapchainDisplayNativeHdrCreateInfoAMD`] **can**  be used to explicitly enable or
 ///   disable local dimming for the surface. Local dimming may also be overriden by
 ///   [`SetLocalDimmingAMD`] during the lifetime of the swapchain.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD`
 ///# Related
 /// - [`VK_AMD_display_native_hdr`]
 /// - [`Bool32`]
@@ -53,8 +53,8 @@ pub struct DisplayNativeHdrSurfaceCapabilitiesAMD<'lt> {
     p_next: *mut BaseOutStructure<'lt>,
     ///[`local_dimming_support`] specifies whether the surface supports local
     ///dimming.
-    ///If this is [`TRUE`], [`SwapchainDisplayNativeHdrCreateInfoAMD`]**can** be used to explicitly
-    /// enable or disable local dimming for the surface.
+    ///If this is [`TRUE`], [`SwapchainDisplayNativeHdrCreateInfoAMD`] **can**  be used to
+    /// explicitly enable or disable local dimming for the surface.
     ///Local dimming may also be overriden by [`SetLocalDimmingAMD`] during
     ///the lifetime of the swapchain.
     local_dimming_support: Bool32,
@@ -170,9 +170,11 @@ impl<'lt> DisplayNativeHdrSurfaceCapabilitiesAMD<'lt> {
 ///# Description
 ///If the [`p_next`] chain of [`SwapchainCreateInfoKHR`] does not include
 ///this structure, the default value for [`local_dimming_enable`] is
-///[`TRUE`], meaning local dimming is initially enabled for the swapchain.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD`
-///Valid Usage
+///[`TRUE`], meaning local dimming is initially enabled for the swapchain.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD`
+///
+///## Valid Usage
 /// - It is only valid to set [`local_dimming_enable`] to [`TRUE`] if
 ///   [`DisplayNativeHdrSurfaceCapabilitiesAMD::local_dimming_support`] is supported
 ///# Related

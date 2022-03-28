@@ -26,11 +26,11 @@ pub const NVX_BINARY_IMPORT_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NVX
 ///} VkCuModuleCreateInfoNVX;
 ///```
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_CU_MODULE_CREATE_INFO_NVX`
-/// - [`p_next`]**must** be `NULL`
-/// - [`data`]**must** be a valid pointer to an array of [`data_size`] bytes
-/// - [`data_size`]**must** be greater than `0`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_CU_MODULE_CREATE_INFO_NVX`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`data`] **must**  be a valid pointer to an array of [`data_size`] bytes
+/// - [`data_size`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_NVX_binary_import`]
 /// - [`StructureType`]
@@ -48,13 +48,13 @@ pub const NVX_BINARY_IMPORT_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NVX
 #[repr(C)]
 pub struct CuModuleCreateInfoNVX<'lt> {
     _lifetime: PhantomData<&'lt ()>,
-    ///[`s_type`]**must** be `VK_STRUCTURE_TYPE_CU_MODULE_CREATE_INFO_NVX`
+    ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_CU_MODULE_CREATE_INFO_NVX`
     s_type: StructureType,
-    ///[`p_next`]**must** be `NULL`
+    ///[`p_next`] **must**  be `NULL`
     p_next: *const BaseInStructure<'lt>,
-    ///[`data_size`]**must** be greater than `0`
+    ///[`data_size`] **must**  be greater than `0`
     data_size: usize,
-    ///[`data`]**must** be a valid pointer to an array of [`data_size`] bytes
+    ///[`data`] **must**  be a valid pointer to an array of [`data_size`] bytes
     data: *const c_void,
 }
 impl<'lt> Default for CuModuleCreateInfoNVX<'lt> {
@@ -73,10 +73,6 @@ impl<'lt> CuModuleCreateInfoNVX<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::data_size`]
-    pub fn data_size_raw(&self) -> usize {
-        self.data_size
-    }
     ///Gets the raw value of [`Self::data`]
     pub fn data_raw(&self) -> *const c_void {
         self.data
@@ -84,11 +80,6 @@ impl<'lt> CuModuleCreateInfoNVX<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::data_size`]
-    pub fn set_data_size_raw(&mut self, value: usize) -> &mut Self {
-        self.data_size = value;
         self
     }
     ///Sets the raw value of [`Self::data`]
@@ -165,11 +156,11 @@ impl<'lt> CuModuleCreateInfoNVX<'lt> {
 ///} VkCuFunctionCreateInfoNVX;
 ///```
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_CU_FUNCTION_CREATE_INFO_NVX`
-/// - [`p_next`]**must** be `NULL`
-/// - [`module`]**must** be a valid [`CuModuleNVX`] handle
-/// - [`name`]**must** be a null-terminated UTF-8 string
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_CU_FUNCTION_CREATE_INFO_NVX`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`module`] **must**  be a valid [`CuModuleNVX`] handle
+/// - [`name`] **must**  be a null-terminated UTF-8 string
 ///# Related
 /// - [`VK_NVX_binary_import`]
 /// - [`CuModuleNVX`]
@@ -188,13 +179,13 @@ impl<'lt> CuModuleCreateInfoNVX<'lt> {
 #[repr(C)]
 pub struct CuFunctionCreateInfoNVX<'lt> {
     _lifetime: PhantomData<&'lt ()>,
-    ///[`s_type`]**must** be `VK_STRUCTURE_TYPE_CU_FUNCTION_CREATE_INFO_NVX`
+    ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_CU_FUNCTION_CREATE_INFO_NVX`
     s_type: StructureType,
-    ///[`p_next`]**must** be `NULL`
+    ///[`p_next`] **must**  be `NULL`
     p_next: *const BaseInStructure<'lt>,
-    ///[`module`]**must** be a valid [`CuModuleNVX`] handle
+    ///[`module`] **must**  be a valid [`CuModuleNVX`] handle
     module: CuModuleNVX,
-    ///[`name`]**must** be a null-terminated UTF-8 string
+    ///[`name`] **must**  be a null-terminated UTF-8 string
     name: &'lt CStr,
 }
 impl<'lt> Default for CuFunctionCreateInfoNVX<'lt> {
@@ -213,18 +204,9 @@ impl<'lt> CuFunctionCreateInfoNVX<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::name`]
-    pub fn name_raw(&self) -> &'lt CStr {
-        self.name
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::name`]
-    pub fn set_name_raw(&mut self, value: &'lt CStr) -> &mut Self {
-        self.name = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -303,13 +285,13 @@ impl<'lt> CuFunctionCreateInfoNVX<'lt> {
 ///} VkCuLaunchInfoNVX;
 ///```
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_CU_LAUNCH_INFO_NVX`
-/// - [`p_next`]**must** be `NULL`
-/// - [`function`]**must** be a valid [`CuFunctionNVX`] handle
-/// - If [`param_count`] is not `0`, [`params`]**must** be a valid pointer to an array of
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_CU_LAUNCH_INFO_NVX`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`function`] **must**  be a valid [`CuFunctionNVX`] handle
+/// - If [`param_count`] is not `0`, [`params`] **must**  be a valid pointer to an array of
 ///   [`param_count`] bytes
-/// - If [`extra_count`] is not `0`, [`extras`]**must** be a valid pointer to an array of
+/// - If [`extra_count`] is not `0`, [`extras`] **must**  be a valid pointer to an array of
 ///   [`extra_count`] bytes
 ///# Related
 /// - [`VK_NVX_binary_import`]
@@ -329,11 +311,11 @@ impl<'lt> CuFunctionCreateInfoNVX<'lt> {
 #[repr(C)]
 pub struct CuLaunchInfoNVX<'lt> {
     _lifetime: PhantomData<&'lt ()>,
-    ///[`s_type`]**must** be `VK_STRUCTURE_TYPE_CU_LAUNCH_INFO_NVX`
+    ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_CU_LAUNCH_INFO_NVX`
     s_type: StructureType,
-    ///[`p_next`]**must** be `NULL`
+    ///[`p_next`] **must**  be `NULL`
     p_next: *const BaseInStructure<'lt>,
-    ///[`function`]**must** be a valid [`CuFunctionNVX`] handle
+    ///[`function`] **must**  be a valid [`CuFunctionNVX`] handle
     function: CuFunctionNVX,
     ///No documentation found
     grid_dim_x: u32,
@@ -349,12 +331,12 @@ pub struct CuLaunchInfoNVX<'lt> {
     block_dim_z: u32,
     ///No documentation found
     shared_mem_bytes: u32,
-    ///If [`param_count`] is not `0`, [`params`]**must** be a valid pointer to an array of
+    ///If [`param_count`] is not `0`, [`params`] **must**  be a valid pointer to an array of
     /// [`param_count`] bytes
     param_count: usize,
     ///No documentation found
     params: *const *const c_void,
-    ///If [`extra_count`] is not `0`, [`extras`]**must** be a valid pointer to an array of
+    ///If [`extra_count`] is not `0`, [`extras`] **must**  be a valid pointer to an array of
     /// [`extra_count`] bytes
     extra_count: usize,
     ///No documentation found
@@ -386,45 +368,9 @@ impl<'lt> CuLaunchInfoNVX<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::grid_dim_x`]
-    pub fn grid_dim_x_raw(&self) -> u32 {
-        self.grid_dim_x
-    }
-    ///Gets the raw value of [`Self::grid_dim_y`]
-    pub fn grid_dim_y_raw(&self) -> u32 {
-        self.grid_dim_y
-    }
-    ///Gets the raw value of [`Self::grid_dim_z`]
-    pub fn grid_dim_z_raw(&self) -> u32 {
-        self.grid_dim_z
-    }
-    ///Gets the raw value of [`Self::block_dim_x`]
-    pub fn block_dim_x_raw(&self) -> u32 {
-        self.block_dim_x
-    }
-    ///Gets the raw value of [`Self::block_dim_y`]
-    pub fn block_dim_y_raw(&self) -> u32 {
-        self.block_dim_y
-    }
-    ///Gets the raw value of [`Self::block_dim_z`]
-    pub fn block_dim_z_raw(&self) -> u32 {
-        self.block_dim_z
-    }
-    ///Gets the raw value of [`Self::shared_mem_bytes`]
-    pub fn shared_mem_bytes_raw(&self) -> u32 {
-        self.shared_mem_bytes
-    }
-    ///Gets the raw value of [`Self::param_count`]
-    pub fn param_count_raw(&self) -> usize {
-        self.param_count
-    }
     ///Gets the raw value of [`Self::params`]
     pub fn params_raw(&self) -> *const *const c_void {
         self.params
-    }
-    ///Gets the raw value of [`Self::extra_count`]
-    pub fn extra_count_raw(&self) -> usize {
-        self.extra_count
     }
     ///Gets the raw value of [`Self::extras`]
     pub fn extras_raw(&self) -> *const *const c_void {
@@ -435,54 +381,9 @@ impl<'lt> CuLaunchInfoNVX<'lt> {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::grid_dim_x`]
-    pub fn set_grid_dim_x_raw(&mut self, value: u32) -> &mut Self {
-        self.grid_dim_x = value;
-        self
-    }
-    ///Sets the raw value of [`Self::grid_dim_y`]
-    pub fn set_grid_dim_y_raw(&mut self, value: u32) -> &mut Self {
-        self.grid_dim_y = value;
-        self
-    }
-    ///Sets the raw value of [`Self::grid_dim_z`]
-    pub fn set_grid_dim_z_raw(&mut self, value: u32) -> &mut Self {
-        self.grid_dim_z = value;
-        self
-    }
-    ///Sets the raw value of [`Self::block_dim_x`]
-    pub fn set_block_dim_x_raw(&mut self, value: u32) -> &mut Self {
-        self.block_dim_x = value;
-        self
-    }
-    ///Sets the raw value of [`Self::block_dim_y`]
-    pub fn set_block_dim_y_raw(&mut self, value: u32) -> &mut Self {
-        self.block_dim_y = value;
-        self
-    }
-    ///Sets the raw value of [`Self::block_dim_z`]
-    pub fn set_block_dim_z_raw(&mut self, value: u32) -> &mut Self {
-        self.block_dim_z = value;
-        self
-    }
-    ///Sets the raw value of [`Self::shared_mem_bytes`]
-    pub fn set_shared_mem_bytes_raw(&mut self, value: u32) -> &mut Self {
-        self.shared_mem_bytes = value;
-        self
-    }
-    ///Sets the raw value of [`Self::param_count`]
-    pub fn set_param_count_raw(&mut self, value: usize) -> &mut Self {
-        self.param_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::params`]
     pub fn set_params_raw(&mut self, value: *const *const c_void) -> &mut Self {
         self.params = value;
-        self
-    }
-    ///Sets the raw value of [`Self::extra_count`]
-    pub fn set_extra_count_raw(&mut self, value: usize) -> &mut Self {
-        self.extra_count = value;
         self
     }
     ///Sets the raw value of [`Self::extras`]

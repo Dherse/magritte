@@ -31,9 +31,10 @@ pub const KHR_PRESENT_ID_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_pr
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDevicePresentIdFeaturesKHR`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR`
+///[`PhysicalDevicePresentIdFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR`
 ///# Related
 /// - [`VK_KHR_present_id`]
 /// - [`Bool32`]
@@ -176,7 +177,7 @@ impl<'lt> PhysicalDevicePresentIdFeaturesKHR<'lt> {
 ///by a call to [`QueuePresentKHR`], an identifier needs to be associated
 ///with them.
 ///When the [`presentId`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-presentId) feature is enabled,
-///applications **can** include the [`PresentIdKHR`] structure in the
+///applications  **can**  include the [`PresentIdKHR`] structure in the
 ///[`p_next`] chain of the [`PresentInfoKHR`] structure to supply
 ///identifiers.Each [`SwapchainKHR`] has a presentId associated with it.
 ///This value is initially set to zero when the [`SwapchainKHR`] is
@@ -185,25 +186,27 @@ impl<'lt> PhysicalDevicePresentIdFeaturesKHR<'lt> {
 ///each `pSwapchains` entry has a presentId associated in the
 ///[`present_ids`] array at the same index as the swapchain in the
 ///`pSwapchains` array.
-///If this presentId is non-zero, then the application **can** later use this
+///If this presentId is non-zero, then the application  **can**  later use this
 ///value to refer to that image presentation.
 ///A value of zero indicates that this presentation has no associated
 ///presentId.
-///A non-zero presentId **must** be greater than any non-zero presentId passed
+///A non-zero presentId  **must**  be greater than any non-zero presentId passed
 ///previously by the application for the same swapchain.There is no requirement for any precise
 /// timing relationship between the
 ///presentation of the image to the user and the update of the presentId value,
-///but implementations **should** make this as close as possible to the
-///presentation of the first pixel in the new image to the user.Valid Usage
-/// - [`swapchain_count`]**must** be the same value as [`PresentInfoKHR`]::[`swapchain_count`],
+///but implementations  **should**  make this as close as possible to the
+///presentation of the first pixel in the new image to the user.
+///## Valid Usage
+/// - [`swapchain_count`] **must**  be the same value as [`PresentInfoKHR`]::[`swapchain_count`],
 ///   where this [`PresentIdKHR`] is in the [`p_next`] chain of the [`PresentInfoKHR`] structure
-/// - Each `presentIds` entry **must** be greater than any previous `presentIds` entry passed for
+/// - Each `presentIds` entry  **must**  be greater than any previous `presentIds` entry passed for
 ///   the associated `pSwapchains` entry
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PRESENT_ID_KHR`
-/// - If [`present_ids`] is not `NULL`, [`present_ids`]**must** be a valid pointer to an array of
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PRESENT_ID_KHR`
+/// - If [`present_ids`] is not `NULL`, [`present_ids`] **must**  be a valid pointer to an array of
 ///   [`swapchain_count`]`uint64_t` values
-/// - [`swapchain_count`]**must** be greater than `0`
+/// - [`swapchain_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_KHR_present_id`]
 /// - [`StructureType`]
@@ -251,10 +254,6 @@ impl<'lt> PresentIdKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::swapchain_count`]
-    pub fn swapchain_count_raw(&self) -> u32 {
-        self.swapchain_count
-    }
     ///Gets the raw value of [`Self::present_ids`]
     pub fn present_ids_raw(&self) -> *const u64 {
         self.present_ids
@@ -262,11 +261,6 @@ impl<'lt> PresentIdKHR<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::swapchain_count`]
-    pub fn set_swapchain_count_raw(&mut self, value: u32) -> &mut Self {
-        self.swapchain_count = value;
         self
     }
     ///Sets the raw value of [`Self::present_ids`]

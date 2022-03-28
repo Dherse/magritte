@@ -23,8 +23,8 @@ pub const VALVE_DESCRIPTOR_SET_HOST_MAPPING_EXTENSION_NAME: &'static CStr =
 ///} VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE;
 ///```
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE`
 ///# Related
 /// - [`VK_VALVE_descriptor_set_host_mapping`]
@@ -43,7 +43,7 @@ pub const VALVE_DESCRIPTOR_SET_HOST_MAPPING_EXTENSION_NAME: &'static CStr =
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
     _lifetime: PhantomData<&'lt ()>,
-    ///[`s_type`]**must** be
+    ///[`s_type`] **must**  be
     /// `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE`
     s_type: StructureType,
     ///No documentation found
@@ -155,10 +155,10 @@ impl<'lt> PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
 ///} VkDescriptorSetBindingReferenceVALVE;
 ///```
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_BINDING_REFERENCE_VALVE`
-/// - [`p_next`]**must** be `NULL`
-/// - [`descriptor_set_layout`]**must** be a valid [`DescriptorSetLayout`] handle
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_BINDING_REFERENCE_VALVE`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`descriptor_set_layout`] **must**  be a valid [`DescriptorSetLayout`] handle
 ///# Related
 /// - [`VK_VALVE_descriptor_set_host_mapping`]
 /// - [`DescriptorSetLayout`]
@@ -177,11 +177,11 @@ impl<'lt> PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
 #[repr(C)]
 pub struct DescriptorSetBindingReferenceVALVE<'lt> {
     _lifetime: PhantomData<&'lt ()>,
-    ///[`s_type`]**must** be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_BINDING_REFERENCE_VALVE`
+    ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_BINDING_REFERENCE_VALVE`
     s_type: StructureType,
-    ///[`p_next`]**must** be `NULL`
+    ///[`p_next`] **must**  be `NULL`
     p_next: *const BaseInStructure<'lt>,
-    ///[`descriptor_set_layout`]**must** be a valid [`DescriptorSetLayout`] handle
+    ///[`descriptor_set_layout`] **must**  be a valid [`DescriptorSetLayout`] handle
     descriptor_set_layout: DescriptorSetLayout,
     ///No documentation found
     binding: u32,
@@ -202,18 +202,9 @@ impl<'lt> DescriptorSetBindingReferenceVALVE<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::binding`]
-    pub fn binding_raw(&self) -> u32 {
-        self.binding
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::binding`]
-    pub fn set_binding_raw(&mut self, value: u32) -> &mut Self {
-        self.binding = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -283,9 +274,9 @@ impl<'lt> DescriptorSetBindingReferenceVALVE<'lt> {
 ///} VkDescriptorSetLayoutHostMappingInfoVALVE;
 ///```
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_VALVE_descriptor_set_host_mapping`]
 /// - [`StructureType`]
@@ -303,9 +294,9 @@ impl<'lt> DescriptorSetBindingReferenceVALVE<'lt> {
 #[repr(C)]
 pub struct DescriptorSetLayoutHostMappingInfoVALVE<'lt> {
     _lifetime: PhantomData<&'lt ()>,
-    ///[`s_type`]**must** be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE`
+    ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE`
     s_type: StructureType,
-    ///[`p_next`]**must** be `NULL`
+    ///[`p_next`] **must**  be `NULL`
     p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
     descriptor_offset: usize,
@@ -328,27 +319,9 @@ impl<'lt> DescriptorSetLayoutHostMappingInfoVALVE<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::descriptor_offset`]
-    pub fn descriptor_offset_raw(&self) -> usize {
-        self.descriptor_offset
-    }
-    ///Gets the raw value of [`Self::descriptor_size`]
-    pub fn descriptor_size_raw(&self) -> u32 {
-        self.descriptor_size
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::descriptor_offset`]
-    pub fn set_descriptor_offset_raw(&mut self, value: usize) -> &mut Self {
-        self.descriptor_offset = value;
-        self
-    }
-    ///Sets the raw value of [`Self::descriptor_size`]
-    pub fn set_descriptor_size_raw(&mut self, value: u32) -> &mut Self {
-        self.descriptor_size = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

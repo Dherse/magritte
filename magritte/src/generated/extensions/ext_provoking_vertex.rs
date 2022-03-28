@@ -99,19 +99,20 @@ impl ProvokingVertexModeEXT {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`provoking_vertex_last`] indicates whether the implementation supports the
 ///   `VK_PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT`[`ProvokingVertexModeEXT`] for flat shading.
-/// - [`transform_feedback_preserves_provoking_vertex`] indicates that the order of vertices within each primitive written by transform feedback will preserve the provoking vertex. This does not apply to triangle fan primitives when [`transformFeedbackPreservesTriangleFanProvokingVertex`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-transformFeedbackPreservesTriangleFanProvokingVertex) is [`FALSE`]. [`transform_feedback_preserves_provoking_vertex`]**must** be [`FALSE`] when the [`VK_EXT_transform_feedback`] extension is not supported.
+/// - [`transform_feedback_preserves_provoking_vertex`] indicates that the order of vertices within each primitive written by transform feedback will preserve the provoking vertex. This does not apply to triangle fan primitives when [`transformFeedbackPreservesTriangleFanProvokingVertex`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-transformFeedbackPreservesTriangleFanProvokingVertex) is [`FALSE`]. [`transform_feedback_preserves_provoking_vertex`] **must**  be [`FALSE`] when the [`VK_EXT_transform_feedback`] extension is not supported.
 ///If the [`PhysicalDeviceProvokingVertexFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceProvokingVertexFeaturesEXT`]**can** also be used in the [`p_next`] chain of
+///[`PhysicalDeviceProvokingVertexFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
 ///[`DeviceCreateInfo`] to selectively enable these features.When
 /// [`PhysicalDeviceProvokingVertexFeaturesEXT`] is in the [`p_next`]
 ///chain of [`DeviceCreateInfo`] but the
 ///[transform feedback feature](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-transformFeedback) is not enabled,
-///the value of [`transform_feedback_preserves_provoking_vertex`] is ignored.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT`
+///the value of [`transform_feedback_preserves_provoking_vertex`] is ignored.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_provoking_vertex`]
 /// - [`Bool32`]
@@ -144,7 +145,7 @@ pub struct PhysicalDeviceProvokingVertexFeaturesEXT<'lt> {
     ///This does not apply to triangle fan primitives when
     ///[`transformFeedbackPreservesTriangleFanProvokingVertex`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-transformFeedbackPreservesTriangleFanProvokingVertex)
     ///is [`FALSE`].
-    ///[`transform_feedback_preserves_provoking_vertex`]**must** be [`FALSE`]
+    ///[`transform_feedback_preserves_provoking_vertex`] **must**  be [`FALSE`]
     ///when the [`VK_EXT_transform_feedback`] extension is not supported.
     transform_feedback_preserves_provoking_vertex: Bool32,
 }
@@ -301,8 +302,9 @@ impl<'lt> PhysicalDeviceProvokingVertexFeaturesEXT<'lt> {
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT`
 ///# Related
 /// - [`VK_EXT_provoking_vertex`]
 /// - [`Bool32`]
@@ -488,13 +490,15 @@ impl<'lt> PhysicalDeviceProvokingVertexPropertiesEXT<'lt> {
 ///use the `VK_PROVOKING_VERTEX_MODE_FIRST_VERTEX_EXT` mode.If the
 ///[provokingVertexModePerPipeline](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-provokingVertexModePerPipeline)
 ///limit is [`FALSE`], then all pipelines bound within a render pass
-///instance **must** have the same [`provoking_vertex_mode`].Valid Usage
+///instance  **must**  have the same [`provoking_vertex_mode`].
+///## Valid Usage
 /// - If [`provoking_vertex_mode`] is `VK_PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT`, then the [provokingVertexLast](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-provokingVertexLast)
-///   feature **must** be enabled
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///   feature  **must**  be enabled
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT`
-/// - [`provoking_vertex_mode`]**must** be a valid [`ProvokingVertexModeEXT`] value
+/// - [`provoking_vertex_mode`] **must**  be a valid [`ProvokingVertexModeEXT`] value
 ///# Related
 /// - [`VK_EXT_provoking_vertex`]
 /// - [`ProvokingVertexModeEXT`]

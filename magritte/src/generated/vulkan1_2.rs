@@ -230,7 +230,7 @@ impl SamplerReductionMode {
 }
 ///[VkDriverId](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDriverId.html) - Khronos driver IDs
 ///# C Specifications
-///Khronos driver IDs which **may** be returned in
+///Khronos driver IDs which  **may**  be returned in
 ///[`PhysicalDeviceDriverProperties::driver_id`] are:
 ///```c
 ///// Provided by VK_VERSION_1_2
@@ -378,7 +378,7 @@ impl DriverId {
 }
 ///[VkShaderFloatControlsIndependence](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderFloatControlsIndependence.html) - Bitmask specifying whether, and how, shader float controls can be set separately
 ///# C Specifications
-///Values which **may** be returned in the `denormBehaviorIndependence` and
+///Values which  **may**  be returned in the `denormBehaviorIndependence` and
 ///`roundingModeIndependence` fields of
 ///[`PhysicalDeviceFloatControlsProperties`] are:
 ///```c
@@ -402,10 +402,12 @@ impl DriverId {
 ///typedef VkShaderFloatControlsIndependence VkShaderFloatControlsIndependenceKHR;
 ///```
 ///# Description
-/// - [`32BitOnly`] specifies that shader float controls for 32-bit floating point **can** be set
-///   independently; other bit widths **must** be set identically to each other.
-/// - [`All`] specifies that shader float controls for all bit widths **can** be set independently.
-/// - [`None`] specifies that shader float controls for all bit widths **must** be set identically.
+/// - [`32BitOnly`] specifies that shader float controls for 32-bit floating point  **can**  be set
+///   independently; other bit widths  **must**  be set identically to each other.
+/// - [`All`] specifies that shader float controls for all bit widths  **can**  be set
+///   independently.
+/// - [`None`] specifies that shader float controls for all bit widths  **must**  be set
+///   identically.
 ///# Related
 /// - [`VK_KHR_shader_float_controls`]
 /// - [`crate::vulkan1_2`]
@@ -426,14 +428,14 @@ impl DriverId {
 #[repr(i32)]
 pub enum ShaderFloatControlsIndependence {
     ///[`32BitOnly`] specifies that
-    ///shader float controls for 32-bit floating point **can** be set
-    ///independently; other bit widths **must** be set identically to each other.
+    ///shader float controls for 32-bit floating point  **can**  be set
+    ///independently; other bit widths  **must**  be set identically to each other.
     _32BitOnly = 0,
     ///[`All`] specifies that shader
-    ///float controls for all bit widths **can** be set independently.
+    ///float controls for all bit widths  **can**  be set independently.
     All = 1,
     ///[`None`] specifies that shader
-    ///float controls for all bit widths **must** be set identically.
+    ///float controls for all bit widths  **must**  be set identically.
     None = 2,
 }
 impl const Default for ShaderFloatControlsIndependence {
@@ -520,42 +522,6 @@ impl Default for ConformanceVersion {
     }
 }
 impl ConformanceVersion {
-    ///Gets the raw value of [`Self::major`]
-    pub fn major_raw(&self) -> u8 {
-        self.major
-    }
-    ///Gets the raw value of [`Self::minor`]
-    pub fn minor_raw(&self) -> u8 {
-        self.minor
-    }
-    ///Gets the raw value of [`Self::subminor`]
-    pub fn subminor_raw(&self) -> u8 {
-        self.subminor
-    }
-    ///Gets the raw value of [`Self::patch`]
-    pub fn patch_raw(&self) -> u8 {
-        self.patch
-    }
-    ///Sets the raw value of [`Self::major`]
-    pub fn set_major_raw(&mut self, value: u8) -> &mut Self {
-        self.major = value;
-        self
-    }
-    ///Sets the raw value of [`Self::minor`]
-    pub fn set_minor_raw(&mut self, value: u8) -> &mut Self {
-        self.minor = value;
-        self
-    }
-    ///Sets the raw value of [`Self::subminor`]
-    pub fn set_subminor_raw(&mut self, value: u8) -> &mut Self {
-        self.subminor = value;
-        self
-    }
-    ///Sets the raw value of [`Self::patch`]
-    pub fn set_patch_raw(&mut self, value: u8) -> &mut Self {
-        self.patch = value;
-        self
-    }
     ///Gets the value of [`Self::major`]
     pub fn major(&self) -> u8 {
         self.major
@@ -643,9 +609,10 @@ impl ConformanceVersion {
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
 ///corresponding implementation-dependent property.These are properties of the driver corresponding
-/// to a physical device.[`driver_id`]**must** be immutable for a given driver across instances,
-///processes, driver versions, and system reboots.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES`
+/// to a physical device.[`driver_id`] **must**  be immutable for a given driver across instances,
+///processes, driver versions, and system reboots.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES`
 ///# Related
 /// - [`VK_KHR_driver_properties`]
 /// - [`crate::vulkan1_2`]
@@ -697,27 +664,9 @@ impl<'lt> PhysicalDeviceDriverProperties<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::driver_name`]
-    pub fn driver_name_raw(&self) -> [c_schar; MAX_DRIVER_NAME_SIZE] {
-        self.driver_name
-    }
-    ///Gets the raw value of [`Self::driver_info`]
-    pub fn driver_info_raw(&self) -> [c_schar; MAX_DRIVER_INFO_SIZE] {
-        self.driver_info
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::driver_name`]
-    pub fn set_driver_name_raw(&mut self, value: [c_schar; MAX_DRIVER_NAME_SIZE]) -> &mut Self {
-        self.driver_name = value;
-        self
-    }
-    ///Sets the raw value of [`Self::driver_info`]
-    pub fn set_driver_info_raw(&mut self, value: [c_schar; MAX_DRIVER_INFO_SIZE]) -> &mut Self {
-        self.driver_info = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -845,10 +794,11 @@ impl<'lt> PhysicalDeviceDriverProperties<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceShaderSubgroupExtendedTypesFeatures`]**can** also be used in the [`p_next`]
+///[`PhysicalDeviceShaderSubgroupExtendedTypesFeatures`] **can**  also be used in the [`p_next`]
 /// chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES`
 ///# Related
 /// - [`VK_KHR_shader_subgroup_extended_types`]
@@ -1004,7 +954,7 @@ impl<'lt> PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'lt> {
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
 ///corresponding implementation-dependent property.If [`filter_minmax_single_component_formats`] is
 /// [`TRUE`], the following
-///formats **must** support the
+///formats  **must**  support the
 ///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT` feature with
 ///`VK_IMAGE_TILING_OPTIMAL`, if they support
 ///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`:
@@ -1025,14 +975,15 @@ impl<'lt> PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'lt> {
 ///min/max filtering, and that min/max filtering of the depth aspect is
 ///supported when depth compare is disabled in the sampler.If
 /// [`filter_minmax_image_component_mapping`] is [`FALSE`] the component
-///mapping of the image view used with min/max filtering **must** have been
+///mapping of the image view used with min/max filtering  **must**  have been
 ///created with the `r` component set to the
 ///[identity swizzle](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-views-identity-mappings).
 ///Only the `r` component of the sampled image value is defined and the
 ///other component values are undefined.
 ///If [`filter_minmax_image_component_mapping`] is [`TRUE`] this restriction
-///does not apply and image component mapping works as normal.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES`
+///does not apply and image component mapping works as normal.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES`
 ///# Related
 /// - [`VK_EXT_sampler_filter_minmax`]
 /// - [`crate::vulkan1_2`]
@@ -1213,9 +1164,10 @@ impl<'lt> PhysicalDeviceSamplerFilterMinmaxProperties<'lt> {
 ///[`SamplerReductionModeCreateInfo`] structure, then that structure
 ///includes a mode controlling how texture filtering combines texel values.If this structure is not
 /// present, [`reduction_mode`] is considered to be
-///`VK_SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE`.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO`
-/// - [`reduction_mode`]**must** be a valid [`SamplerReductionMode`] value
+///`VK_SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE`.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO`
+/// - [`reduction_mode`] **must**  be a valid [`SamplerReductionMode`] value
 ///# Related
 /// - [`VK_EXT_sampler_filter_minmax`]
 /// - [`crate::vulkan1_2`]
@@ -1306,7 +1258,7 @@ impl<'lt> SamplerReductionModeCreateInfo<'lt> {
 ///# C Specifications
 ///If the [`p_next`] chain of [`ImageCreateInfo`] includes a
 ///[`ImageFormatListCreateInfo`] structure, then that structure contains a
-///list of all formats that **can** be used when creating views of this image.The
+///list of all formats that  **can**  be used when creating views of this image.The
 /// [`ImageFormatListCreateInfo`] structure is defined as:
 ///```c
 ///// Provided by VK_VERSION_1_2
@@ -1327,13 +1279,14 @@ impl<'lt> SamplerReductionModeCreateInfo<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`view_format_count`] is the number of entries in the [`view_formats`] array.
 /// - [`view_formats`] is a pointer to an array of [`Format`] values specifying all formats which
-///   **can** be used when creating views of this image.
+///   **can**  be used when creating views of this image.
 ///# Description
 ///If [`view_format_count`] is zero, [`view_formats`] is ignored and the
 ///image is created as if the [`ImageFormatListCreateInfo`] structure were
-///not included in the [`p_next`] chain of [`ImageCreateInfo`].Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO`
-/// - If [`view_format_count`] is not `0`, [`view_formats`]**must** be a valid pointer to an array
+///not included in the [`p_next`] chain of [`ImageCreateInfo`].
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO`
+/// - If [`view_format_count`] is not `0`, [`view_formats`] **must**  be a valid pointer to an array
 ///   of [`view_format_count`] valid [`Format`] values
 ///# Related
 /// - [`VK_KHR_image_format_list`]
@@ -1362,7 +1315,7 @@ pub struct ImageFormatListCreateInfo<'lt> {
     ///array.
     view_format_count: u32,
     ///[`view_formats`] is a pointer to an array of [`Format`] values
-    ///specifying all formats which **can** be used when creating views of this
+    ///specifying all formats which  **can**  be used when creating views of this
     ///image.
     view_formats: *const Format,
 }
@@ -1382,10 +1335,6 @@ impl<'lt> ImageFormatListCreateInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::view_format_count`]
-    pub fn view_format_count_raw(&self) -> u32 {
-        self.view_format_count
-    }
     ///Gets the raw value of [`Self::view_formats`]
     pub fn view_formats_raw(&self) -> *const Format {
         self.view_formats
@@ -1393,11 +1342,6 @@ impl<'lt> ImageFormatListCreateInfo<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::view_format_count`]
-    pub fn set_view_format_count_raw(&mut self, value: u32) -> &mut Self {
-        self.view_format_count = value;
         self
     }
     ///Sets the raw value of [`Self::view_formats`]
@@ -1488,27 +1432,28 @@ impl<'lt> ImageFormatListCreateInfo<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`shader_float_16`] indicates whether 16-bit floats (halfs) are supported in shader code. This
-///   also indicates whether shader modules **can** declare the `Float16` capability. However, this
-///   only enables a subset of the storage classes that SPIR-V allows for the `Float16` SPIR-V
+///   also indicates whether shader modules  **can**  declare the `Float16` capability. However,
+///   this only enables a subset of the storage classes that SPIR-V allows for the `Float16` SPIR-V
 ///   capability: Declaring and using 16-bit floats in the `Private`, `Workgroup` (for non-Block
 ///   variables), and `Function` storage classes is enabled, while declaring them in the interface
 ///   storage classes (e.g., `UniformConstant`, `Uniform`, `StorageBuffer`, `Input`, `Output`, and
 ///   `PushConstant`) is not enabled.
 /// - [`shader_int_8`] indicates whether 8-bit integers (signed and unsigned) are supported in
-///   shader code. This also indicates whether shader modules **can** declare the `Int8` capability.
-///   However, this only enables a subset of the storage classes that SPIR-V allows for the `Int8`
-///   SPIR-V capability: Declaring and using 8-bit integers in the `Private`, `Workgroup` (for
-///   non-Block variables), and `Function` storage classes is enabled, while declaring them in the
-///   interface storage classes (e.g., `UniformConstant`, `Uniform`, `StorageBuffer`, `Input`,
+///   shader code. This also indicates whether shader modules  **can**  declare the `Int8`
+///   capability. However, this only enables a subset of the storage classes that SPIR-V allows for
+///   the `Int8` SPIR-V capability: Declaring and using 8-bit integers in the `Private`, `Workgroup`
+///   (for non-Block variables), and `Function` storage classes is enabled, while declaring them in
+///   the interface storage classes (e.g., `UniformConstant`, `Uniform`, `StorageBuffer`, `Input`,
 ///   `Output`, and `PushConstant`) is not enabled.
 ///If the [`PhysicalDeviceShaderFloat16Int8Features`] structure is included in the [`p_next`] chain
 /// of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceShaderFloat16Int8Features`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES`
+///[`PhysicalDeviceShaderFloat16Int8Features`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES`
 ///# Related
 /// - [`VK_KHR_shader_float16_int8`]
 /// - [`crate::vulkan1_2`]
@@ -1534,7 +1479,7 @@ pub struct PhysicalDeviceShaderFloat16Int8Features<'lt> {
     p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_float_16`] indicates
     ///whether 16-bit floats (halfs) are supported in shader code.
-    ///This also indicates whether shader modules **can** declare the `Float16`
+    ///This also indicates whether shader modules  **can**  declare the `Float16`
     ///capability.
     ///However, this only enables a subset of the storage classes that SPIR-V
     ///allows for the `Float16` SPIR-V capability: Declaring and using
@@ -1548,7 +1493,7 @@ pub struct PhysicalDeviceShaderFloat16Int8Features<'lt> {
     ///[`shader_int_8`] indicates
     ///whether 8-bit integers (signed and unsigned) are supported in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the `Int8`
+    ///This also indicates whether shader modules  **can**  declare the `Int8`
     ///capability.
     ///However, this only enables a subset of the storage classes that SPIR-V
     ///allows for the `Int8` SPIR-V capability: Declaring and using 8-bit
@@ -1727,74 +1672,75 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 /// - [`rounding_mode_independence`] is a [`ShaderFloatControlsIndependence`] value indicating
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float_16`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
 ///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
 ///   class="strut"></span><span class="mord">±</span><span
-///   class="mord">∞</span></span></span></span>**can** be preserved in 16-bit floating-point
-///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode **can**
+///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
+///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_32`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
-///   class="mord">∞</span></span></span></span>**can** be preserved in 32-bit floating-point
-///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode **can**
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
+///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
-///   class="mord">∞</span></span></span></span>**can** be preserved in 64-bit floating-point
-///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode **can**
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
+///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 64-bit floating-point types.
-/// - [`shader_denorm_preserve_float_16`] is a boolean value indicating whether denormals **can** be
-///   preserved in 16-bit floating-point computations. It also indicates whether the
-///   `DenormPreserve` execution mode **can** be used for 16-bit floating-point types.
-/// - [`shader_denorm_preserve_float_32`] is a boolean value indicating whether denormals **can** be
-///   preserved in 32-bit floating-point computations. It also indicates whether the
-///   `DenormPreserve` execution mode **can** be used for 32-bit floating-point types.
-/// - [`shader_denorm_preserve_float_64`] is a boolean value indicating whether denormals **can** be
-///   preserved in 64-bit floating-point computations. It also indicates whether the
-///   `DenormPreserve` execution mode **can** be used for 64-bit floating-point types.
+/// - [`shader_denorm_preserve_float_16`] is a boolean value indicating whether denormals  **can**
+///   be preserved in 16-bit floating-point computations. It also indicates whether the
+///   `DenormPreserve` execution mode  **can**  be used for 16-bit floating-point types.
+/// - [`shader_denorm_preserve_float_32`] is a boolean value indicating whether denormals  **can**
+///   be preserved in 32-bit floating-point computations. It also indicates whether the
+///   `DenormPreserve` execution mode  **can**  be used for 32-bit floating-point types.
+/// - [`shader_denorm_preserve_float_64`] is a boolean value indicating whether denormals  **can**
+///   be preserved in 64-bit floating-point computations. It also indicates whether the
+///   `DenormPreserve` execution mode  **can**  be used for 64-bit floating-point types.
 /// - [`shader_denorm_flush_to_zero_float_16`] is a boolean value indicating whether denormals
-///   **can** be flushed to zero in 16-bit floating-point computations. It also indicates whether
-///   the `DenormFlushToZero` execution mode **can** be used for 16-bit floating-point types.
+///   **can**  be flushed to zero in 16-bit floating-point computations. It also indicates whether
+///   the `DenormFlushToZero` execution mode  **can**  be used for 16-bit floating-point types.
 /// - [`shader_denorm_flush_to_zero_float_32`] is a boolean value indicating whether denormals
-///   **can** be flushed to zero in 32-bit floating-point computations. It also indicates whether
-///   the `DenormFlushToZero` execution mode **can** be used for 32-bit floating-point types.
+///   **can**  be flushed to zero in 32-bit floating-point computations. It also indicates whether
+///   the `DenormFlushToZero` execution mode  **can**  be used for 32-bit floating-point types.
 /// - [`shader_denorm_flush_to_zero_float_64`] is a boolean value indicating whether denormals
-///   **can** be flushed to zero in 64-bit floating-point computations. It also indicates whether
-///   the `DenormFlushToZero` execution mode **can** be used for 64-bit floating-point types.
+///   **can**  be flushed to zero in 64-bit floating-point computations. It also indicates whether
+///   the `DenormFlushToZero` execution mode  **can**  be used for 64-bit floating-point types.
 /// - [`shader_rounding_mode_rte_float_16`] is a boolean value indicating whether an implementation
 ///   supports the round-to-nearest-even rounding mode for 16-bit floating-point arithmetic and
 ///   conversion instructions. It also indicates whether the `RoundingModeRTE` execution mode
-///   **can** be used for 16-bit floating-point types.
+///   **can**  be used for 16-bit floating-point types.
 /// - [`shader_rounding_mode_rte_float_32`] is a boolean value indicating whether an implementation
 ///   supports the round-to-nearest-even rounding mode for 32-bit floating-point arithmetic and
 ///   conversion instructions. It also indicates whether the `RoundingModeRTE` execution mode
-///   **can** be used for 32-bit floating-point types.
+///   **can**  be used for 32-bit floating-point types.
 /// - [`shader_rounding_mode_rte_float_64`] is a boolean value indicating whether an implementation
 ///   supports the round-to-nearest-even rounding mode for 64-bit floating-point arithmetic and
 ///   conversion instructions. It also indicates whether the `RoundingModeRTE` execution mode
-///   **can** be used for 64-bit floating-point types.
+///   **can**  be used for 64-bit floating-point types.
 /// - [`shader_rounding_mode_rtz_float_16`] is a boolean value indicating whether an implementation
 ///   supports the round-towards-zero rounding mode for 16-bit floating-point arithmetic and
 ///   conversion instructions. It also indicates whether the `RoundingModeRTZ` execution mode
-///   **can** be used for 16-bit floating-point types.
+///   **can**  be used for 16-bit floating-point types.
 /// - [`shader_rounding_mode_rtz_float_32`] is a boolean value indicating whether an implementation
 ///   supports the round-towards-zero rounding mode for 32-bit floating-point arithmetic and
 ///   conversion instructions. It also indicates whether the `RoundingModeRTZ` execution mode
-///   **can** be used for 32-bit floating-point types.
+///   **can**  be used for 32-bit floating-point types.
 /// - [`shader_rounding_mode_rtz_float_64`] is a boolean value indicating whether an implementation
 ///   supports the round-towards-zero rounding mode for 64-bit floating-point arithmetic and
 ///   conversion instructions. It also indicates whether the `RoundingModeRTZ` execution mode
-///   **can** be used for 64-bit floating-point types.
+///   **can**  be used for 64-bit floating-point types.
 ///If the [`PhysicalDeviceFloatControlsProperties`] structure is included in the [`p_next`] chain
 /// of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES`
 ///# Related
 /// - [`VK_KHR_shader_float_controls`]
 /// - [`crate::vulkan1_2`]
@@ -2527,9 +2473,10 @@ impl<'lt> PhysicalDeviceFloatControlsProperties<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceHostQueryResetFeatures`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES`
+///[`PhysicalDeviceHostQueryResetFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES`
 ///# Related
 /// - [`VK_EXT_host_query_reset`]
 /// - [`crate::vulkan1_2`]
@@ -2691,111 +2638,114 @@ impl<'lt> PhysicalDeviceHostQueryResetFeatures<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`shader_input_attachment_array_dynamic_indexing`] indicates whether arrays of input
-///   attachments **can** be indexed by dynamically uniform integer expressions in shader code. If
+///   attachments  **can**  be indexed by dynamically uniform integer expressions in shader code. If
 ///   this feature is not enabled, resources with a descriptor type of
-///   `VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT`**must** be indexed only by constant integral expressions
-///   when aggregated into arrays in shader code. This also indicates whether shader modules **can**
-///   declare the `InputAttachmentArrayDynamicIndexing` capability.
+///   `VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT` **must**  be indexed only by constant integral
+///   expressions when aggregated into arrays in shader code. This also indicates whether shader
+///   modules  **can**  declare the `InputAttachmentArrayDynamicIndexing` capability.
 /// - [`shader_uniform_texel_buffer_array_dynamic_indexing`] indicates whether arrays of uniform
-///   texel buffers **can** be indexed by dynamically uniform integer expressions in shader code. If
-///   this feature is not enabled, resources with a descriptor type of
-///   `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`**must** be indexed only by constant integral
+///   texel buffers  **can**  be indexed by dynamically uniform integer expressions in shader code.
+///   If this feature is not enabled, resources with a descriptor type of
+///   `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER` **must**  be indexed only by constant integral
 ///   expressions when aggregated into arrays in shader code. This also indicates whether shader
-///   modules **can** declare the `UniformTexelBufferArrayDynamicIndexing` capability.
+///   modules  **can**  declare the `UniformTexelBufferArrayDynamicIndexing` capability.
 /// - [`shader_storage_texel_buffer_array_dynamic_indexing`] indicates whether arrays of storage
-///   texel buffers **can** be indexed by dynamically uniform integer expressions in shader code. If
-///   this feature is not enabled, resources with a descriptor type of
-///   `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`**must** be indexed only by constant integral
+///   texel buffers  **can**  be indexed by dynamically uniform integer expressions in shader code.
+///   If this feature is not enabled, resources with a descriptor type of
+///   `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER` **must**  be indexed only by constant integral
 ///   expressions when aggregated into arrays in shader code. This also indicates whether shader
-///   modules **can** declare the `StorageTexelBufferArrayDynamicIndexing` capability.
+///   modules  **can**  declare the `StorageTexelBufferArrayDynamicIndexing` capability.
 /// - [`shader_uniform_buffer_array_non_uniform_indexing`] indicates whether arrays of uniform
-///   buffers **can** be indexed by non-uniform integer expressions in shader code. If this feature
-///   is not enabled, resources with a descriptor type of `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER` or
-///   `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`**must** not be indexed by non-uniform integer
-///   expressions when aggregated into arrays in shader code. This also indicates whether shader
-///   modules **can** declare the `UniformBufferArrayNonUniformIndexing` capability.
+///   buffers  **can**  be indexed by non-uniform integer expressions in shader code. If this
+///   feature is not enabled, resources with a descriptor type of
+///   `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER` or `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC` **must**
+///   not be indexed by non-uniform integer expressions when aggregated into arrays in shader code.
+///   This also indicates whether shader modules  **can**  declare the
+///   `UniformBufferArrayNonUniformIndexing` capability.
 /// - [`shader_sampled_image_array_non_uniform_indexing`] indicates whether arrays of samplers or
-///   sampled images **can** be indexed by non-uniform integer expressions in shader code. If this
+///   sampled images  **can**  be indexed by non-uniform integer expressions in shader code. If this
 ///   feature is not enabled, resources with a descriptor type of `VK_DESCRIPTOR_TYPE_SAMPLER`,
-///   `VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, or `VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE`**must** not
-///   be indexed by non-uniform integer expressions when aggregated into arrays in shader code. This
-///   also indicates whether shader modules **can** declare the
+///   `VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, or `VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE` **must**
+///   not be indexed by non-uniform integer expressions when aggregated into arrays in shader code.
+///   This also indicates whether shader modules  **can**  declare the
 ///   `SampledImageArrayNonUniformIndexing` capability.
 /// - [`shader_storage_buffer_array_non_uniform_indexing`] indicates whether arrays of storage
-///   buffers **can** be indexed by non-uniform integer expressions in shader code. If this feature
-///   is not enabled, resources with a descriptor type of `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER` or
-///   `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`**must** not be indexed by non-uniform integer
-///   expressions when aggregated into arrays in shader code. This also indicates whether shader
-///   modules **can** declare the `StorageBufferArrayNonUniformIndexing` capability.
+///   buffers  **can**  be indexed by non-uniform integer expressions in shader code. If this
+///   feature is not enabled, resources with a descriptor type of
+///   `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER` or `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC` **must**
+///   not be indexed by non-uniform integer expressions when aggregated into arrays in shader code.
+///   This also indicates whether shader modules  **can**  declare the
+///   `StorageBufferArrayNonUniformIndexing` capability.
 /// - [`shader_storage_image_array_non_uniform_indexing`] indicates whether arrays of storage images
-///   **can** be indexed by non-uniform integer expressions in shader code. If this feature is not
-///   enabled, resources with a descriptor type of `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`**must** not be
-///   indexed by non-uniform integer expressions when aggregated into arrays in shader code. This
-///   also indicates whether shader modules **can** declare the
+///   **can**  be indexed by non-uniform integer expressions in shader code. If this feature is not
+///   enabled, resources with a descriptor type of `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE` **must**  not
+///   be indexed by non-uniform integer expressions when aggregated into arrays in shader code. This
+///   also indicates whether shader modules  **can**  declare the
 ///   `StorageImageArrayNonUniformIndexing` capability.
 /// - [`shader_input_attachment_array_non_uniform_indexing`] indicates whether arrays of input
-///   attachments **can** be indexed by non-uniform integer expressions in shader code. If this
+///   attachments  **can**  be indexed by non-uniform integer expressions in shader code. If this
 ///   feature is not enabled, resources with a descriptor type of
-///   `VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT`**must** not be indexed by non-uniform integer
+///   `VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT` **must**  not be indexed by non-uniform integer
 ///   expressions when aggregated into arrays in shader code. This also indicates whether shader
-///   modules **can** declare the `InputAttachmentArrayNonUniformIndexing` capability.
+///   modules  **can**  declare the `InputAttachmentArrayNonUniformIndexing` capability.
 /// - [`shader_uniform_texel_buffer_array_non_uniform_indexing`] indicates whether arrays of uniform
-///   texel buffers **can** be indexed by non-uniform integer expressions in shader code. If this
+///   texel buffers  **can**  be indexed by non-uniform integer expressions in shader code. If this
 ///   feature is not enabled, resources with a descriptor type of
-///   `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`**must** not be indexed by non-uniform integer
+///   `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER` **must**  not be indexed by non-uniform integer
 ///   expressions when aggregated into arrays in shader code. This also indicates whether shader
-///   modules **can** declare the `UniformTexelBufferArrayNonUniformIndexing` capability.
+///   modules  **can**  declare the `UniformTexelBufferArrayNonUniformIndexing` capability.
 /// - [`shader_storage_texel_buffer_array_non_uniform_indexing`] indicates whether arrays of storage
-///   texel buffers **can** be indexed by non-uniform integer expressions in shader code. If this
+///   texel buffers  **can**  be indexed by non-uniform integer expressions in shader code. If this
 ///   feature is not enabled, resources with a descriptor type of
-///   `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`**must** not be indexed by non-uniform integer
+///   `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER` **must**  not be indexed by non-uniform integer
 ///   expressions when aggregated into arrays in shader code. This also indicates whether shader
-///   modules **can** declare the `StorageTexelBufferArrayNonUniformIndexing` capability.
+///   modules  **can**  declare the `StorageTexelBufferArrayNonUniformIndexing` capability.
 /// - [`descriptor_binding_uniform_buffer_update_after_bind`] indicates whether the implementation
 ///   supports updating uniform buffer descriptors after a set is bound. If this feature is not
-///   enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+///   enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
 ///   `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER`.
 /// - [`descriptor_binding_sampled_image_update_after_bind`] indicates whether the implementation
 ///   supports updating sampled image descriptors after a set is bound. If this feature is not
-///   enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+///   enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
 ///   `VK_DESCRIPTOR_TYPE_SAMPLER`, `VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, or
 ///   `VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE`.
 /// - [`descriptor_binding_storage_image_update_after_bind`] indicates whether the implementation
 ///   supports updating storage image descriptors after a set is bound. If this feature is not
-///   enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+///   enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
 ///   `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`.
 /// - [`descriptor_binding_storage_buffer_update_after_bind`] indicates whether the implementation
 ///   supports updating storage buffer descriptors after a set is bound. If this feature is not
-///   enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+///   enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
 ///   `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER`.
 /// - [`descriptor_binding_uniform_texel_buffer_update_after_bind`] indicates whether the
 ///   implementation supports updating uniform texel buffer descriptors after a set is bound. If
-///   this feature is not enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used
-///   with `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`.
+///   this feature is not enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be
+///   used with `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`.
 /// - [`descriptor_binding_storage_texel_buffer_update_after_bind`] indicates whether the
 ///   implementation supports updating storage texel buffer descriptors after a set is bound. If
-///   this feature is not enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used
-///   with `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`.
+///   this feature is not enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be
+///   used with `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`.
 /// - [`descriptor_binding_update_unused_while_pending`] indicates whether the implementation
 ///   supports updating descriptors while the set is in use. If this feature is not enabled,
-///   `VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT`**must** not be used.
+///   `VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT` **must**  not be used.
 /// - [`descriptor_binding_partially_bound`] indicates whether the implementation supports
 ///   statically using a descriptor set binding in which some descriptors are not valid. If this
-///   feature is not enabled, `VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT`**must** not be used.
+///   feature is not enabled, `VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT` **must**  not be used.
 /// - [`descriptor_binding_variable_descriptor_count`] indicates whether the implementation supports
 ///   descriptor sets with a variable-sized last binding. If this feature is not enabled,
-///   `VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT`**must** not be used.
+///   `VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT` **must**  not be used.
 /// - [`runtime_descriptor_array`] indicates whether the implementation supports the SPIR-V
-///   `RuntimeDescriptorArray` capability. If this feature is not enabled, descriptors **must** not
-///   be declared in runtime arrays.
+///   `RuntimeDescriptorArray` capability. If this feature is not enabled, descriptors  **must**
+///   not be declared in runtime arrays.
 ///If the [`PhysicalDeviceDescriptorIndexingFeatures`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceDescriptorIndexingFeatures`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES`
+///[`PhysicalDeviceDescriptorIndexingFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES`
 ///# Related
 /// - [`VK_EXT_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
@@ -2820,121 +2770,121 @@ pub struct PhysicalDeviceDescriptorIndexingFeatures<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_input_attachment_array_dynamic_indexing`] indicates whether arrays
-    ///of input attachments **can** be indexed by dynamically uniform integer
+    ///of input attachments  **can**  be indexed by dynamically uniform integer
     ///expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
-    ///`VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT`**must** be indexed only by
+    ///`VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT` **must**  be indexed only by
     ///constant integral expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`InputAttachmentArrayDynamicIndexing` capability.
     shader_input_attachment_array_dynamic_indexing: Bool32,
     ///[`shader_uniform_texel_buffer_array_dynamic_indexing`] indicates whether
-    ///arrays of uniform texel buffers **can** be indexed by dynamically uniform
+    ///arrays of uniform texel buffers  **can**  be indexed by dynamically uniform
     ///integer expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
-    ///`VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`**must** be indexed only by
+    ///`VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER` **must**  be indexed only by
     ///constant integral expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`UniformTexelBufferArrayDynamicIndexing` capability.
     shader_uniform_texel_buffer_array_dynamic_indexing: Bool32,
     ///[`shader_storage_texel_buffer_array_dynamic_indexing`] indicates whether
-    ///arrays of storage texel buffers **can** be indexed by dynamically uniform
+    ///arrays of storage texel buffers  **can**  be indexed by dynamically uniform
     ///integer expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
-    ///`VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`**must** be indexed only by
+    ///`VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER` **must**  be indexed only by
     ///constant integral expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`StorageTexelBufferArrayDynamicIndexing` capability.
     shader_storage_texel_buffer_array_dynamic_indexing: Bool32,
     ///[`shader_uniform_buffer_array_non_uniform_indexing`] indicates whether
-    ///arrays of uniform buffers **can** be indexed by non-uniform integer
+    ///arrays of uniform buffers  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
     ///`VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER` or
-    ///`VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`**must** not be indexed by
+    ///`VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC` **must**  not be indexed by
     ///non-uniform integer expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`UniformBufferArrayNonUniformIndexing` capability.
     shader_uniform_buffer_array_non_uniform_indexing: Bool32,
     ///[`shader_sampled_image_array_non_uniform_indexing`] indicates whether arrays
-    ///of samplers or sampled images **can** be indexed by non-uniform integer
+    ///of samplers or sampled images  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
     ///`VK_DESCRIPTOR_TYPE_SAMPLER`,
     ///`VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, or
-    ///`VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE`**must** not be indexed by
+    ///`VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE` **must**  not be indexed by
     ///non-uniform integer expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`SampledImageArrayNonUniformIndexing` capability.
     shader_sampled_image_array_non_uniform_indexing: Bool32,
     ///[`shader_storage_buffer_array_non_uniform_indexing`] indicates whether
-    ///arrays of storage buffers **can** be indexed by non-uniform integer
+    ///arrays of storage buffers  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
     ///`VK_DESCRIPTOR_TYPE_STORAGE_BUFFER` or
-    ///`VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`**must** not be indexed by
+    ///`VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC` **must**  not be indexed by
     ///non-uniform integer expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`StorageBufferArrayNonUniformIndexing` capability.
     shader_storage_buffer_array_non_uniform_indexing: Bool32,
     ///[`shader_storage_image_array_non_uniform_indexing`] indicates whether arrays
-    ///of storage images **can** be indexed by non-uniform integer expressions in
+    ///of storage images  **can**  be indexed by non-uniform integer expressions in
     ///shader code.
     ///If this feature is not enabled, resources with a descriptor type of
-    ///`VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`**must** not be indexed by
+    ///`VK_DESCRIPTOR_TYPE_STORAGE_IMAGE` **must**  not be indexed by
     ///non-uniform integer expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`StorageImageArrayNonUniformIndexing` capability.
     shader_storage_image_array_non_uniform_indexing: Bool32,
     ///[`shader_input_attachment_array_non_uniform_indexing`] indicates whether
-    ///arrays of input attachments **can** be indexed by non-uniform integer
+    ///arrays of input attachments  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
-    ///`VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT`**must** not be indexed by
+    ///`VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT` **must**  not be indexed by
     ///non-uniform integer expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`InputAttachmentArrayNonUniformIndexing` capability.
     shader_input_attachment_array_non_uniform_indexing: Bool32,
     ///[`shader_uniform_texel_buffer_array_non_uniform_indexing`] indicates whether
-    ///arrays of uniform texel buffers **can** be indexed by non-uniform integer
+    ///arrays of uniform texel buffers  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
-    ///`VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`**must** not be indexed by
+    ///`VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER` **must**  not be indexed by
     ///non-uniform integer expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`UniformTexelBufferArrayNonUniformIndexing` capability.
     shader_uniform_texel_buffer_array_non_uniform_indexing: Bool32,
     ///[`shader_storage_texel_buffer_array_non_uniform_indexing`] indicates whether
-    ///arrays of storage texel buffers **can** be indexed by non-uniform integer
+    ///arrays of storage texel buffers  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
-    ///`VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`**must** not be indexed by
+    ///`VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER` **must**  not be indexed by
     ///non-uniform integer expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`StorageTexelBufferArrayNonUniformIndexing` capability.
     shader_storage_texel_buffer_array_non_uniform_indexing: Bool32,
     ///[`descriptor_binding_uniform_buffer_update_after_bind`] indicates whether
     ///the implementation supports updating uniform buffer descriptors after a
     ///set is bound.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER`.
     descriptor_binding_uniform_buffer_update_after_bind: Bool32,
     ///[`descriptor_binding_sampled_image_update_after_bind`] indicates whether the
     ///implementation supports updating sampled image descriptors after a set
     ///is bound.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_SAMPLER`,
     ///`VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, or
     ///`VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE`.
@@ -2943,52 +2893,52 @@ pub struct PhysicalDeviceDescriptorIndexingFeatures<'lt> {
     ///implementation supports updating storage image descriptors after a set
     ///is bound.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`.
     descriptor_binding_storage_image_update_after_bind: Bool32,
     ///[`descriptor_binding_storage_buffer_update_after_bind`] indicates whether
     ///the implementation supports updating storage buffer descriptors after a
     ///set is bound.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_STORAGE_BUFFER`.
     descriptor_binding_storage_buffer_update_after_bind: Bool32,
     ///[`descriptor_binding_uniform_texel_buffer_update_after_bind`] indicates
     ///whether the implementation supports updating uniform texel buffer
     ///descriptors after a set is bound.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`.
     descriptor_binding_uniform_texel_buffer_update_after_bind: Bool32,
     ///[`descriptor_binding_storage_texel_buffer_update_after_bind`] indicates
     ///whether the implementation supports updating storage texel buffer
     ///descriptors after a set is bound.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`.
     descriptor_binding_storage_texel_buffer_update_after_bind: Bool32,
     ///[`descriptor_binding_update_unused_while_pending`] indicates whether the
     ///implementation supports updating descriptors while the set is in use.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT`**must** not be
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT` **must**  not be
     ///used.
     descriptor_binding_update_unused_while_pending: Bool32,
     ///[`descriptor_binding_partially_bound`] indicates whether the
     ///implementation supports statically using a descriptor set binding in
     ///which some descriptors are not valid.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT`**must** not be used.
+    ///`VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT` **must**  not be used.
     descriptor_binding_partially_bound: Bool32,
     ///[`descriptor_binding_variable_descriptor_count`] indicates whether the
     ///implementation supports descriptor sets with a variable-sized last
     ///binding.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT`**must** not be
+    ///`VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT` **must**  not be
     ///used.
     descriptor_binding_variable_descriptor_count: Bool32,
     ///[`runtime_descriptor_array`] indicates whether the implementation
     ///supports the SPIR-V `RuntimeDescriptorArray` capability.
-    ///If this feature is not enabled, descriptors **must** not be declared in
+    ///If this feature is not enabled, descriptors  **must**  not be declared in
     ///runtime arrays.
     runtime_descriptor_array: Bool32,
 }
@@ -3847,37 +3797,38 @@ impl<'lt> PhysicalDeviceDescriptorIndexingFeatures<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///# Description
 /// - [`max_update_after_bind_descriptors_in_all_pools`] is the maximum number of descriptors
-///   (summed over all descriptor types) that **can** be created across all pools that are created
-///   with the `VK_DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT` bit set. Pool creation **may** fail
-///   when this limit is exceeded, or when the space this limit represents is unable to satisfy a
-///   pool creation due to fragmentation.
+///   (summed over all descriptor types) that  **can**  be created across all pools that are created
+///   with the `VK_DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT` bit set. Pool creation  **may**
+///   fail when this limit is exceeded, or when the space this limit represents is unable to satisfy
+///   a pool creation due to fragmentation.
 /// - [`shader_uniform_buffer_array_non_uniform_indexing_native`] is a boolean value indicating
 ///   whether uniform buffer descriptors natively support nonuniform indexing. If this is [`FALSE`],
 ///   then a single dynamic instance of an instruction that nonuniformly indexes an array of uniform
-///   buffers **may** execute multiple times in order to access all the descriptors.
+///   buffers  **may**  execute multiple times in order to access all the descriptors.
 /// - [`shader_sampled_image_array_non_uniform_indexing_native`] is a boolean value indicating
 ///   whether sampler and image descriptors natively support nonuniform indexing. If this is
 ///   [`FALSE`], then a single dynamic instance of an instruction that nonuniformly indexes an array
-///   of samplers or images **may** execute multiple times in order to access all the descriptors.
+///   of samplers or images  **may**  execute multiple times in order to access all the descriptors.
 /// - [`shader_storage_buffer_array_non_uniform_indexing_native`] is a boolean value indicating
 ///   whether storage buffer descriptors natively support nonuniform indexing. If this is [`FALSE`],
 ///   then a single dynamic instance of an instruction that nonuniformly indexes an array of storage
-///   buffers **may** execute multiple times in order to access all the descriptors.
+///   buffers  **may**  execute multiple times in order to access all the descriptors.
 /// - [`shader_storage_image_array_non_uniform_indexing_native`] is a boolean value indicating
 ///   whether storage image descriptors natively support nonuniform indexing. If this is [`FALSE`],
 ///   then a single dynamic instance of an instruction that nonuniformly indexes an array of storage
-///   images **may** execute multiple times in order to access all the descriptors.
+///   images  **may**  execute multiple times in order to access all the descriptors.
 /// - [`shader_input_attachment_array_non_uniform_indexing_native`] is a boolean value indicating
 ///   whether input attachment descriptors natively support nonuniform indexing. If this is
 ///   [`FALSE`], then a single dynamic instance of an instruction that nonuniformly indexes an array
-///   of input attachments **may** execute multiple times in order to access all the descriptors.
-/// - [`robust_buffer_access_update_after_bind`] is a boolean value indicating whether [`robustBufferAccess`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-robustBufferAccess)**can**
-///   be enabled in a device simultaneously with `descriptorBindingUniformBufferUpdateAfterBind`,
+///   of input attachments  **may**  execute multiple times in order to access all the descriptors.
+/// - [`robust_buffer_access_update_after_bind`] is a boolean value indicating whether [`robustBufferAccess`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-robustBufferAccess)
+///   **can**  be enabled in a device simultaneously with
+///   `descriptorBindingUniformBufferUpdateAfterBind`,
 ///   `descriptorBindingStorageBufferUpdateAfterBind`,
 ///   `descriptorBindingUniformTexelBufferUpdateAfterBind`, and/or
 ///   `descriptorBindingStorageTexelBufferUpdateAfterBind`. If this is [`FALSE`], then either
-///   `robustBufferAccess`**must** be disabled or all of these update-after-bind features **must**
-///   be disabled.
+///   `robustBufferAccess` **must**  be disabled or all of these update-after-bind features
+///   **must**  be disabled.
 /// - [`quad_divergent_implicit_lod`] is a boolean value indicating whether implicit level of detail
 ///   calculations for image operations have well-defined results when the image and/or sampler objects
 ///   used for the instruction are not uniform within a quad. See [Derivative Image Operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-derivative-image-operations).
@@ -3911,9 +3862,9 @@ impl<'lt> PhysicalDeviceDescriptorIndexingFeatures<'lt> {
 /// - [`max_descriptor_set_update_after_bind_uniform_buffers_dynamic`] is similar to
 ///   `maxDescriptorSetUniformBuffersDynamic` but counts descriptors from descriptor sets created
 ///   with or without the `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set.
-///   While an application **can** allocate dynamic uniform buffer descriptors from a pool created
+///   While an application  **can**  allocate dynamic uniform buffer descriptors from a pool created
 ///   with the `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT`, bindings for these
-///   descriptors **must** not be present in any descriptor set layout that includes bindings
+///   descriptors  **must**  not be present in any descriptor set layout that includes bindings
 ///   created with `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`.
 /// - [`max_descriptor_set_update_after_bind_storage_buffers`] is similar to
 ///   `maxDescriptorSetStorageBuffers` but counts descriptors from descriptor sets created with or
@@ -3921,9 +3872,9 @@ impl<'lt> PhysicalDeviceDescriptorIndexingFeatures<'lt> {
 /// - [`max_descriptor_set_update_after_bind_storage_buffers_dynamic`] is similar to
 ///   `maxDescriptorSetStorageBuffersDynamic` but counts descriptors from descriptor sets created
 ///   with or without the `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set.
-///   While an application **can** allocate dynamic storage buffer descriptors from a pool created
+///   While an application  **can**  allocate dynamic storage buffer descriptors from a pool created
 ///   with the `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT`, bindings for these
-///   descriptors **must** not be present in any descriptor set layout that includes bindings
+///   descriptors  **must**  not be present in any descriptor set layout that includes bindings
 ///   created with `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`.
 /// - [`max_descriptor_set_update_after_bind_sampled_images`] is similar to
 ///   `maxDescriptorSetSampledImages` but counts descriptors from descriptor sets created with or
@@ -3938,8 +3889,9 @@ impl<'lt> PhysicalDeviceDescriptorIndexingFeatures<'lt> {
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES`
 ///# Related
 /// - [`VK_EXT_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
@@ -4047,10 +3999,6 @@ impl<'lt> PhysicalDeviceDescriptorIndexingProperties<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::max_update_after_bind_descriptors_in_all_pools`]
-    pub fn max_update_after_bind_descriptors_in_all_pools_raw(&self) -> u32 {
-        self.max_update_after_bind_descriptors_in_all_pools
-    }
     ///Gets the raw value of [`Self::shader_uniform_buffer_array_non_uniform_indexing_native`]
     pub fn shader_uniform_buffer_array_non_uniform_indexing_native_raw(&self) -> Bool32 {
         self.shader_uniform_buffer_array_non_uniform_indexing_native
@@ -4079,74 +4027,9 @@ impl<'lt> PhysicalDeviceDescriptorIndexingProperties<'lt> {
     pub fn quad_divergent_implicit_lod_raw(&self) -> Bool32 {
         self.quad_divergent_implicit_lod
     }
-    ///Gets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_samplers`]
-    pub fn max_per_stage_descriptor_update_after_bind_samplers_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_update_after_bind_samplers
-    }
-    ///Gets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_uniform_buffers`]
-    pub fn max_per_stage_descriptor_update_after_bind_uniform_buffers_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_update_after_bind_uniform_buffers
-    }
-    ///Gets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_storage_buffers`]
-    pub fn max_per_stage_descriptor_update_after_bind_storage_buffers_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_update_after_bind_storage_buffers
-    }
-    ///Gets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_sampled_images`]
-    pub fn max_per_stage_descriptor_update_after_bind_sampled_images_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_update_after_bind_sampled_images
-    }
-    ///Gets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_storage_images`]
-    pub fn max_per_stage_descriptor_update_after_bind_storage_images_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_update_after_bind_storage_images
-    }
-    ///Gets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_input_attachments`]
-    pub fn max_per_stage_descriptor_update_after_bind_input_attachments_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_update_after_bind_input_attachments
-    }
-    ///Gets the raw value of [`Self::max_per_stage_update_after_bind_resources`]
-    pub fn max_per_stage_update_after_bind_resources_raw(&self) -> u32 {
-        self.max_per_stage_update_after_bind_resources
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_samplers`]
-    pub fn max_descriptor_set_update_after_bind_samplers_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_samplers
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_uniform_buffers`]
-    pub fn max_descriptor_set_update_after_bind_uniform_buffers_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_uniform_buffers
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_uniform_buffers_dynamic`]
-    pub fn max_descriptor_set_update_after_bind_uniform_buffers_dynamic_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_uniform_buffers_dynamic
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_storage_buffers`]
-    pub fn max_descriptor_set_update_after_bind_storage_buffers_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_storage_buffers
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_storage_buffers_dynamic`]
-    pub fn max_descriptor_set_update_after_bind_storage_buffers_dynamic_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_storage_buffers_dynamic
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_sampled_images`]
-    pub fn max_descriptor_set_update_after_bind_sampled_images_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_sampled_images
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_storage_images`]
-    pub fn max_descriptor_set_update_after_bind_storage_images_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_storage_images
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_input_attachments`]
-    pub fn max_descriptor_set_update_after_bind_input_attachments_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_input_attachments
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_update_after_bind_descriptors_in_all_pools`]
-    pub fn set_max_update_after_bind_descriptors_in_all_pools_raw(&mut self, value: u32) -> &mut Self {
-        self.max_update_after_bind_descriptors_in_all_pools = value;
         self
     }
     ///Sets the raw value of [`Self::shader_uniform_buffer_array_non_uniform_indexing_native`]
@@ -4182,81 +4065,6 @@ impl<'lt> PhysicalDeviceDescriptorIndexingProperties<'lt> {
     ///Sets the raw value of [`Self::quad_divergent_implicit_lod`]
     pub fn set_quad_divergent_implicit_lod_raw(&mut self, value: Bool32) -> &mut Self {
         self.quad_divergent_implicit_lod = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_samplers`]
-    pub fn set_max_per_stage_descriptor_update_after_bind_samplers_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_stage_descriptor_update_after_bind_samplers = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_uniform_buffers`]
-    pub fn set_max_per_stage_descriptor_update_after_bind_uniform_buffers_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_stage_descriptor_update_after_bind_uniform_buffers = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_storage_buffers`]
-    pub fn set_max_per_stage_descriptor_update_after_bind_storage_buffers_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_stage_descriptor_update_after_bind_storage_buffers = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_sampled_images`]
-    pub fn set_max_per_stage_descriptor_update_after_bind_sampled_images_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_stage_descriptor_update_after_bind_sampled_images = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_storage_images`]
-    pub fn set_max_per_stage_descriptor_update_after_bind_storage_images_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_stage_descriptor_update_after_bind_storage_images = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_input_attachments`]
-    pub fn set_max_per_stage_descriptor_update_after_bind_input_attachments_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_stage_descriptor_update_after_bind_input_attachments = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_per_stage_update_after_bind_resources`]
-    pub fn set_max_per_stage_update_after_bind_resources_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_stage_update_after_bind_resources = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_samplers`]
-    pub fn set_max_descriptor_set_update_after_bind_samplers_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_samplers = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_uniform_buffers`]
-    pub fn set_max_descriptor_set_update_after_bind_uniform_buffers_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_uniform_buffers = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_uniform_buffers_dynamic`]
-    pub fn set_max_descriptor_set_update_after_bind_uniform_buffers_dynamic_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_uniform_buffers_dynamic = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_storage_buffers`]
-    pub fn set_max_descriptor_set_update_after_bind_storage_buffers_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_storage_buffers = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_storage_buffers_dynamic`]
-    pub fn set_max_descriptor_set_update_after_bind_storage_buffers_dynamic_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_storage_buffers_dynamic = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_sampled_images`]
-    pub fn set_max_descriptor_set_update_after_bind_sampled_images_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_sampled_images = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_storage_images`]
-    pub fn set_max_descriptor_set_update_after_bind_storage_images_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_storage_images = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_input_attachments`]
-    pub fn set_max_descriptor_set_update_after_bind_input_attachments_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_input_attachments = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -4744,71 +4552,73 @@ impl<'lt> PhysicalDeviceDescriptorIndexingProperties<'lt> {
 ///set layout binding is considered to be zero.
 ///Otherwise, the descriptor set layout binding at
 ///[`DescriptorSetLayoutCreateInfo::bindings`][i] uses the flags in
-///[`binding_flags`][i].Valid Usage
-/// - If [`binding_count`] is not zero, [`binding_count`]**must** equal
+///[`binding_flags`][i].
+///## Valid Usage
+/// - If [`binding_count`] is not zero, [`binding_count`] **must**  equal
 ///   [`DescriptorSetLayoutCreateInfo`]::[`binding_count`]
 /// - If [`DescriptorSetLayoutCreateInfo::flags`] includes
 ///   `VK_DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT_KHR`, then all elements of
-///   [`binding_flags`]**must** not include `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`,
+///   [`binding_flags`] **must**  not include `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`,
 ///   `VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT`, or
 ///   `VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT`
 /// - If an element of [`binding_flags`] includes
 ///   `VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT`, then all other elements of
-///   [`DescriptorSetLayoutCreateInfo::bindings`]**must** have a smaller value of `binding`
+///   [`DescriptorSetLayoutCreateInfo::bindings`] **must**  have a smaller value of `binding`
 /// - If [`PhysicalDeviceDescriptorIndexingFeatures::
 ///   descriptor_binding_uniform_buffer_update_after_bind`] is not enabled, all bindings with
-///   descriptor type `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER`**must** not use
+///   descriptor type `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER` **must**  not use
 ///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
 /// - If [`PhysicalDeviceDescriptorIndexingFeatures::
 ///   descriptor_binding_sampled_image_update_after_bind`] is not enabled, all bindings with
 ///   descriptor type `VK_DESCRIPTOR_TYPE_SAMPLER`, `VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, or
-///   `VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE`**must** not use
+///   `VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE` **must**  not use
 ///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
 /// - If [`PhysicalDeviceDescriptorIndexingFeatures::
 ///   descriptor_binding_storage_image_update_after_bind`] is not enabled, all bindings with
-///   descriptor type `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`**must** not use
+///   descriptor type `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE` **must**  not use
 ///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
 /// - If [`PhysicalDeviceDescriptorIndexingFeatures::
 ///   descriptor_binding_storage_buffer_update_after_bind`] is not enabled, all bindings with
-///   descriptor type `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER`**must** not use
+///   descriptor type `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER` **must**  not use
 ///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
 /// - If [`PhysicalDeviceDescriptorIndexingFeatures::
 ///   descriptor_binding_uniform_texel_buffer_update_after_bind`] is not enabled, all bindings with
-///   descriptor type `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`**must** not use
+///   descriptor type `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER` **must**  not use
 ///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
 /// - If [`PhysicalDeviceDescriptorIndexingFeatures::
 ///   descriptor_binding_storage_texel_buffer_update_after_bind`] is not enabled, all bindings with
-///   descriptor type `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`**must** not use
+///   descriptor type `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER` **must**  not use
 ///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
 /// - If [`PhysicalDeviceInlineUniformBlockFeatures::
 ///   descriptor_binding_inline_uniform_block_update_after_bind`] is not enabled, all bindings with
-///   descriptor type `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`**must** not use
+///   descriptor type `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` **must**  not use
 ///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
 /// - If [`PhysicalDeviceAccelerationStructureFeaturesKHR::
 ///   descriptor_binding_acceleration_structure_update_after_bind`] is not enabled, all bindings
 ///   with descriptor type `VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR` or
-///   `VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_NV`**must** not use
+///   `VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_NV` **must**  not use
 ///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
 /// - All bindings with descriptor type `VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT`,
-///   `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`, or
-///   `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`**must** not use
-///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
+///   `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`, or `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`
+///   **must**  not use `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
 /// - If [`PhysicalDeviceDescriptorIndexingFeatures::
 ///   descriptor_binding_update_unused_while_pending`] is not enabled, all elements of
-///   [`binding_flags`]**must** not include `VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT`
+///   [`binding_flags`] **must**  not include
+///   `VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT`
 /// - If [`PhysicalDeviceDescriptorIndexingFeatures::descriptor_binding_partially_bound`] is not
-///   enabled, all elements of [`binding_flags`]**must** not include
+///   enabled, all elements of [`binding_flags`] **must**  not include
 ///   `VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT`
 /// - If [`PhysicalDeviceDescriptorIndexingFeatures::descriptor_binding_variable_descriptor_count`]
-///   is not enabled, all elements of [`binding_flags`]**must** not include
+///   is not enabled, all elements of [`binding_flags`] **must**  not include
 ///   `VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT`
 /// - If an element of [`binding_flags`] includes
-///   `VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT`, that element’s `descriptorType`**must**
-///   not be `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC` or
+///   `VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT`, that element’s `descriptorType`
+///   **must**  not be `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC` or
 ///   `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO`
-/// - If [`binding_count`] is not `0`, [`binding_flags`]**must** be a valid pointer to an array of
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO`
+/// - If [`binding_count`] is not `0`, [`binding_flags`] **must**  be a valid pointer to an array of
 ///   [`binding_count`] valid combinations of [`DescriptorBindingFlagBits`] values
 ///# Related
 /// - [`VK_EXT_descriptor_indexing`]
@@ -4857,10 +4667,6 @@ impl<'lt> DescriptorSetLayoutBindingFlagsCreateInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::binding_count`]
-    pub fn binding_count_raw(&self) -> u32 {
-        self.binding_count
-    }
     ///Gets the raw value of [`Self::binding_flags`]
     pub fn binding_flags_raw(&self) -> *const DescriptorBindingFlags {
         self.binding_flags
@@ -4868,11 +4674,6 @@ impl<'lt> DescriptorSetLayoutBindingFlagsCreateInfo<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::binding_count`]
-    pub fn set_binding_count_raw(&mut self, value: u32) -> &mut Self {
-        self.binding_count = value;
         self
     }
     ///Sets the raw value of [`Self::binding_flags`]
@@ -4976,17 +4777,19 @@ impl<'lt> DescriptorSetLayoutBindingFlagsCreateInfo<'lt> {
 ///[`descriptor_counts`][i] specifies the binding’s capacity in bytes.
 ///If [`DescriptorSetAllocateInfo::set_layouts`][i] does not include
 ///a variable-sized descriptor binding, then [`descriptor_counts`][i] is
-///ignored.Valid Usage
-/// - If [`descriptor_set_count`] is not zero, [`descriptor_set_count`]**must** equal
+///ignored.
+///## Valid Usage
+/// - If [`descriptor_set_count`] is not zero, [`descriptor_set_count`] **must**  equal
 ///   [`DescriptorSetAllocateInfo`]::[`descriptor_set_count`]
 /// - If [`DescriptorSetAllocateInfo::set_layouts`][i] has a variable-sized descriptor binding, then
-///   [`descriptor_counts`][i] **must** be less than or equal to the descriptor count specified for
-///   that binding when the descriptor set layout was created
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///   [`descriptor_counts`][i]  **must**  be less than or equal to the descriptor count specified
+///   for that binding when the descriptor set layout was created
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO`
-/// - If [`descriptor_set_count`] is not `0`, [`descriptor_counts`]**must** be a valid pointer to an
-///   array of [`descriptor_set_count`]`uint32_t` values
+/// - If [`descriptor_set_count`] is not `0`, [`descriptor_counts`] **must**  be a valid pointer to
+///   an array of [`descriptor_set_count`]`uint32_t` values
 ///# Related
 /// - [`VK_EXT_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
@@ -5034,10 +4837,6 @@ impl<'lt> DescriptorSetVariableDescriptorCountAllocateInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::descriptor_set_count`]
-    pub fn descriptor_set_count_raw(&self) -> u32 {
-        self.descriptor_set_count
-    }
     ///Gets the raw value of [`Self::descriptor_counts`]
     pub fn descriptor_counts_raw(&self) -> *const u32 {
         self.descriptor_counts
@@ -5045,11 +4844,6 @@ impl<'lt> DescriptorSetVariableDescriptorCountAllocateInfo<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::descriptor_set_count`]
-    pub fn set_descriptor_set_count_raw(&mut self, value: u32) -> &mut Self {
-        self.descriptor_set_count = value;
         self
     }
     ///Sets the raw value of [`Self::descriptor_counts`]
@@ -5145,7 +4939,7 @@ impl<'lt> DescriptorSetVariableDescriptorCountAllocateInfo<'lt> {
 ///variable-sized descriptor, then `supported` is determined assuming the
 ///requested size of the variable-sized descriptor, and
 ///[`max_variable_descriptor_count`] is set to the maximum size of that
-///descriptor that **can** be successfully created (which is greater than or equal
+///descriptor that  **can**  be successfully created (which is greater than or equal
 ///to the requested size passed in).
 ///If the [`DescriptorSetLayoutCreateInfo`] structure does not include a
 ///variable-sized descriptor, or if the
@@ -5157,8 +4951,9 @@ impl<'lt> DescriptorSetVariableDescriptorCountAllocateInfo<'lt> {
 ///one, and thus the binding is not ignored and the maximum descriptor count
 ///will be returned.
 ///If the layout is not supported, then the value written to
-///[`max_variable_descriptor_count`] is undefined.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`max_variable_descriptor_count`] is undefined.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT`
 ///# Related
 /// - [`VK_EXT_descriptor_indexing`]
@@ -5206,18 +5001,9 @@ impl<'lt> DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::max_variable_descriptor_count`]
-    pub fn max_variable_descriptor_count_raw(&self) -> u32 {
-        self.max_variable_descriptor_count
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_variable_descriptor_count`]
-    pub fn set_max_variable_descriptor_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_variable_descriptor_count = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -5315,7 +5101,7 @@ impl<'lt> DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
 ///# Description
 ///Parameters defined by this structure with the same name as those in
 ///[`AttachmentDescription`] have the identical effect to those parameters.If the [`separateDepthStencilLayouts`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-separateDepthStencilLayouts) feature is enabled, and [`format`] is
-///a depth/stencil format, [`initial_layout`] and [`final_layout`]**can** be
+///a depth/stencil format, [`initial_layout`] and [`final_layout`] **can**  be
 ///set to a layout that only specifies the layout of the depth aspect.If the [`p_next`] chain
 /// includes a
 ///[`AttachmentDescriptionStencilLayout`] structure, then the
@@ -5330,83 +5116,85 @@ impl<'lt> DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
 ///structure if present, or [`initial_layout`] and [`final_layout`] if not
 ///present.If [`format`] is a depth/stencil format, and either [`initial_layout`] or
 ///[`final_layout`] does not specify a layout for the stencil aspect, then the
-///application **must** specify the initial and final layouts of the stencil
+///application  **must**  specify the initial and final layouts of the stencil
 ///aspect by including a [`AttachmentDescriptionStencilLayout`] structure
-///in the [`p_next`] chain.Valid Usage
-/// - [`final_layout`]**must** not be `VK_IMAGE_LAYOUT_UNDEFINED` or
+///in the [`p_next`] chain.
+///## Valid Usage
+/// - [`final_layout`] **must**  not be `VK_IMAGE_LAYOUT_UNDEFINED` or
 ///   `VK_IMAGE_LAYOUT_PREINITIALIZED`
-/// - If [`format`] is a color format, [`initial_layout`]**must** not be
+/// - If [`format`] is a color format, [`initial_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`, or
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL`
-/// - If [`format`] is a depth/stencil format, [`initial_layout`]**must** not be
+/// - If [`format`] is a depth/stencil format, [`initial_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL`
-/// - If [`format`] is a color format, [`final_layout`]**must** not be
+/// - If [`format`] is a color format, [`final_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`, or
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL`
-/// - If [`format`] is a depth/stencil format, [`final_layout`]**must** not be
+/// - If [`format`] is a depth/stencil format, [`final_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL`
 /// - If the [`separateDepthStencilLayouts`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-separateDepthStencilLayouts)
-///   feature is not enabled, [`initial_layout`]**must** not be
+///   feature is not enabled, [`initial_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`, `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL` or `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
 /// - If the [`separateDepthStencilLayouts`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-separateDepthStencilLayouts)
-///   feature is not enabled, [`final_layout`]**must** not be
+///   feature is not enabled, [`final_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`, `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL` or `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
-/// - If [`format`] is a color format, [`initial_layout`]**must** not be
+/// - If [`format`] is a color format, [`initial_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`, `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL` or `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
-/// - If [`format`] is a color format, [`final_layout`]**must** not be
+/// - If [`format`] is a color format, [`final_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`, `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL` or `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`format`] is a depth/stencil format which includes both depth and stencil aspects, and
 ///   [`initial_layout`] is `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL` or
-///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, the [`p_next`] chain **must** include a
+///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, the [`p_next`] chain  **must**  include a
 ///   [`AttachmentDescriptionStencilLayout`] structure
 /// - If [`format`] is a depth/stencil format which includes both depth and stencil aspects, and
 ///   [`final_layout`] is `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL` or
-///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, the [`p_next`] chain **must** include a
+///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, the [`p_next`] chain  **must**  include a
 ///   [`AttachmentDescriptionStencilLayout`] structure
 /// - If [`format`] is a depth/stencil format which includes only the depth aspect,
-///   [`initial_layout`]**must** not be `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL` or
+///   [`initial_layout`] **must**  not be `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL` or
 ///   `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
-/// - If [`format`] is a depth/stencil format which includes only the depth aspect,
-///   [`final_layout`]**must** not be `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL` or
+/// - If [`format`] is a depth/stencil format which includes only the depth aspect, [`final_layout`]
+///   **must**  not be `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL` or
 ///   `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`format`] is a depth/stencil format which includes only the stencil aspect,
-///   [`initial_layout`]**must** not be `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL` or
+///   [`initial_layout`] **must**  not be `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL` or
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`
 /// - If [`format`] is a depth/stencil format which includes only the stencil aspect,
-///   [`final_layout`]**must** not be `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL` or
+///   [`final_layout`] **must**  not be `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL` or
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`
 /// - If the [`separateDepthStencilLayouts`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-separateDepthStencilLayouts)
 ///   feature is enabled and [`format`] is a depth/stencil format that includes a depth aspect and
 ///   the [`p_next`] chain includes a [`AttachmentDescriptionStencilLayout`] structure,
-///   [`initial_layout`]**must** not be `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL` or
+///   [`initial_layout`] **must**  not be `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL` or
 ///   `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
 /// - If the [`separateDepthStencilLayouts`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-separateDepthStencilLayouts)
 ///   feature is enabled and [`format`] is a depth/stencil format that includes a depth aspect and
 ///   the [`p_next`] chain includes a [`AttachmentDescriptionStencilLayout`] structure,
-///   [`final_layout`]**must** not be `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL` or
+///   [`final_layout`] **must**  not be `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL` or
 ///   `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2`
-/// - [`p_next`]**must** be `NULL` or a pointer to a valid instance of
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2`
+/// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`AttachmentDescriptionStencilLayout`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - [`flags`]**must** be a valid combination of [`AttachmentDescriptionFlagBits`] values
-/// - [`format`]**must** be a valid [`Format`] value
-/// - [`samples`]**must** be a valid [`SampleCountFlagBits`] value
-/// - [`load_op`]**must** be a valid [`AttachmentLoadOp`] value
-/// - [`store_op`]**must** be a valid [`AttachmentStoreOp`] value
-/// - [`stencil_load_op`]**must** be a valid [`AttachmentLoadOp`] value
-/// - [`stencil_store_op`]**must** be a valid [`AttachmentStoreOp`] value
-/// - [`initial_layout`]**must** be a valid [`ImageLayout`] value
-/// - [`final_layout`]**must** be a valid [`ImageLayout`] value
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`flags`] **must**  be a valid combination of [`AttachmentDescriptionFlagBits`] values
+/// - [`format`] **must**  be a valid [`Format`] value
+/// - [`samples`] **must**  be a valid [`SampleCountFlagBits`] value
+/// - [`load_op`] **must**  be a valid [`AttachmentLoadOp`] value
+/// - [`store_op`] **must**  be a valid [`AttachmentStoreOp`] value
+/// - [`stencil_load_op`] **must**  be a valid [`AttachmentLoadOp`] value
+/// - [`stencil_store_op`] **must**  be a valid [`AttachmentStoreOp`] value
+/// - [`initial_layout`] **must**  be a valid [`ImageLayout`] value
+/// - [`final_layout`] **must**  be a valid [`ImageLayout`] value
 ///# Related
 /// - [`VK_KHR_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
@@ -5665,47 +5453,49 @@ impl<'lt> AttachmentDescription2<'lt> {
 ///   attachment is not used.
 /// - [`layout`] is a [`ImageLayout`] value specifying the layout the attachment uses during the
 ///   subpass.
-/// - [`aspect_mask`] is a mask of which aspect(s) **can** be accessed within the specified subpass
-///   as an input attachment.
+/// - [`aspect_mask`] is a mask of which aspect(s)  **can**  be accessed within the specified
+///   subpass as an input attachment.
 ///# Description
 ///Parameters defined by this structure with the same name as those in
 ///[`AttachmentReference`] have the identical effect to those parameters.[`aspect_mask`] is ignored
 /// when this structure is used to describe anything
 ///other than an input attachment reference.If the [`separateDepthStencilLayouts`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-separateDepthStencilLayouts) feature is enabled, and [`attachment`]
-///has a depth/stencil format, [`layout`]**can** be set to a layout that only
+///has a depth/stencil format, [`layout`] **can**  be set to a layout that only
 ///specifies the layout of the depth aspect.If [`layout`] only specifies the layout of the depth
 /// aspect of the
 ///attachment, the layout of the stencil aspect is specified by the
 ///`stencilLayout` member of a [`AttachmentReferenceStencilLayout`]
 ///structure included in the [`p_next`] chain.
-///Otherwise, [`layout`] describes the layout for all relevant image aspects.Valid Usage
-/// - If [`attachment`] is not [`ATTACHMENT_UNUSED`], [`layout`]**must** not be
+///Otherwise, [`layout`] describes the layout for all relevant image aspects.
+///## Valid Usage
+/// - If [`attachment`] is not [`ATTACHMENT_UNUSED`], [`layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_UNDEFINED`, `VK_IMAGE_LAYOUT_PREINITIALIZED`, or
 ///   `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`
 /// - If the [`separateDepthStencilLayouts`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-separateDepthStencilLayouts)
-///   feature is not enabled, and [`attachment`] is not [`ATTACHMENT_UNUSED`], [`layout`]**must**
+///   feature is not enabled, and [`attachment`] is not [`ATTACHMENT_UNUSED`], [`layout`] **must**
 ///   not be `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`, `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL`, or `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`,
 /// - If [`attachment`] is not [`ATTACHMENT_UNUSED`], and the format of the referenced attachment is
-///   a color format, [`layout`]**must** not be `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`,
+///   a color format, [`layout`] **must**  not be `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL` or
 ///   `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`attachment`] is not [`ATTACHMENT_UNUSED`], and the format of the referenced attachment is
 ///   a depth/stencil format which includes both depth and stencil aspects, and [`layout`] is
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL` or `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, the
-///   [`p_next`] chain **must** include a [`AttachmentReferenceStencilLayout`] structure
+///   [`p_next`] chain  **must**  include a [`AttachmentReferenceStencilLayout`] structure
 /// - If [`attachment`] is not [`ATTACHMENT_UNUSED`], and the format of the referenced attachment is
-///   a depth/stencil format which includes only the depth aspect, [`layout`]**must** not be
+///   a depth/stencil format which includes only the depth aspect, [`layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL` or `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`attachment`] is not [`ATTACHMENT_UNUSED`], and the format of the referenced attachment is
-///   a depth/stencil format which includes only the stencil aspect, [`layout`]**must** not be
+///   a depth/stencil format which includes only the stencil aspect, [`layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL` or `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ATTACHMENT_REFERENCE_2`
-/// - [`p_next`]**must** be `NULL` or a pointer to a valid instance of
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ATTACHMENT_REFERENCE_2`
+/// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`AttachmentReferenceStencilLayout`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - [`layout`]**must** be a valid [`ImageLayout`] value
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`layout`] **must**  be a valid [`ImageLayout`] value
 ///# Related
 /// - [`VK_KHR_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
@@ -5741,7 +5531,7 @@ pub struct AttachmentReference2<'lt> {
     ///[`layout`] is a [`ImageLayout`] value specifying the layout the
     ///attachment uses during the subpass.
     layout: ImageLayout,
-    ///[`aspect_mask`] is a mask of which aspect(s) **can** be accessed within
+    ///[`aspect_mask`] is a mask of which aspect(s)  **can**  be accessed within
     ///the specified subpass as an input attachment.
     aspect_mask: ImageAspectFlags,
 }
@@ -5762,18 +5552,9 @@ impl<'lt> AttachmentReference2<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::attachment`]
-    pub fn attachment_raw(&self) -> u32 {
-        self.attachment
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::attachment`]
-    pub fn set_attachment_raw(&mut self, value: u32) -> &mut Self {
-        self.attachment = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -5890,7 +5671,7 @@ impl<'lt> AttachmentReference2<'lt> {
 /// - [`preserve_attachment_count`] is the number of preserved attachments.
 /// - [`preserve_attachments`] is a pointer to an array of [`preserve_attachment_count`] render pass
 ///   attachment indices identifying attachments that are not used by this subpass, but whose
-///   contents **must** be preserved throughout the subpass.
+///   contents  **must**  be preserved throughout the subpass.
 ///# Description
 ///Parameters defined by this structure with the same name as those in
 ///[`SubpassDescription`] have the identical effect to those parameters.[`view_mask`] has the same
@@ -5900,88 +5681,86 @@ impl<'lt> AttachmentReference2<'lt> {
 ///the [`p_next`] chain, `pFragmentShadingRateAttachment` is not `NULL`,
 ///and its `attachment` member is not [`ATTACHMENT_UNUSED`], the
 ///identified attachment defines a fragment shading rate attachment for that
-///subpass.Valid Usage
-/// - [`pipeline_bind_point`]**must** be `VK_PIPELINE_BIND_POINT_GRAPHICS` or
+///subpass.
+///## Valid Usage
+/// - [`pipeline_bind_point`] **must**  be `VK_PIPELINE_BIND_POINT_GRAPHICS` or
 ///   `VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI`
-/// - [`color_attachment_count`]**must** be less than or equal to
+/// - [`color_attachment_count`] **must**  be less than or equal to
 ///   [`PhysicalDeviceLimits::max_color_attachments`]
 /// - If the first use of an attachment in this render pass is as an input attachment, and the
 ///   attachment is not also used as a color or depth/stencil attachment in the same subpass, then
-///   `loadOp`**must** not be `VK_ATTACHMENT_LOAD_OP_CLEAR`
+///   `loadOp` **must**  not be `VK_ATTACHMENT_LOAD_OP_CLEAR`
 /// - If [`resolve_attachments`] is not `NULL`, for each resolve attachment that does not have the
-///   value [`ATTACHMENT_UNUSED`], the corresponding color attachment **must** not have the value
+///   value [`ATTACHMENT_UNUSED`], the corresponding color attachment  **must**  not have the value
 ///   [`ATTACHMENT_UNUSED`]
 /// - If [`resolve_attachments`] is not `NULL`, for each resolve attachment that is not
-///   [`ATTACHMENT_UNUSED`], the corresponding color attachment **must** not have a sample count of
-///   `VK_SAMPLE_COUNT_1_BIT`
+///   [`ATTACHMENT_UNUSED`], the corresponding color attachment  **must**  not have a sample count
+///   of `VK_SAMPLE_COUNT_1_BIT`
 /// - If [`resolve_attachments`] is not `NULL`, each resolve attachment that is not
-///   [`ATTACHMENT_UNUSED`]**must** have a sample count of `VK_SAMPLE_COUNT_1_BIT`
-/// - Any given element of [`resolve_attachments`]**must** have the same [`Format`] as its
+///   [`ATTACHMENT_UNUSED`] **must**  have a sample count of `VK_SAMPLE_COUNT_1_BIT`
+/// - Any given element of [`resolve_attachments`] **must**  have the same [`Format`] as its
 ///   corresponding color attachment
-/// - All attachments in [`color_attachments`] that are not [`ATTACHMENT_UNUSED`]**must** have the
+/// - All attachments in [`color_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have the
 ///   same sample count
-/// - All attachments in [`input_attachments`] that are not [`ATTACHMENT_UNUSED`]**must** have image
-///   formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features)
-///   contain at least `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT` or
-///   `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
-/// - All attachments in [`color_attachments`] that are not [`ATTACHMENT_UNUSED`]**must** have image
-///   formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features)
-///   contain `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT`
-/// -    All attachments in [`resolve_attachments`] that are not [`ATTACHMENT_UNUSED`]**must** have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT`
-/// -    If [`depth_stencil_attachment`] is not `NULL` and the attachment is not [`ATTACHMENT_UNUSED`] then it **must** have an image format whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
-/// -    If the [`linearColorAttachment`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-linearColorAttachment) feature is enabled and the image is created with `VK_IMAGE_TILING_LINEAR`, all attachments in [`input_attachments`] that are not [`ATTACHMENT_UNUSED`]**must** have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features)**must** contain `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
-/// -    If the [`linearColorAttachment`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-linearColorAttachment) feature is enabled and the image is created with `VK_IMAGE_TILING_LINEAR`, all attachments in [`color_attachments`] that are not [`ATTACHMENT_UNUSED`]**must** have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features)**must** contain `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
-/// -    If the [`linearColorAttachment`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-linearColorAttachment) feature is enabled and the image is created with `VK_IMAGE_TILING_LINEAR`, all attachments in [`resolve_attachments`] that are not [`ATTACHMENT_UNUSED`]**must** have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features)**must** contain `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
+/// -    All attachments in [`input_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain at least `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT` or `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
+/// -    All attachments in [`color_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT`
+/// -    All attachments in [`resolve_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT`
+/// -    If [`depth_stencil_attachment`] is not `NULL` and the attachment is not [`ATTACHMENT_UNUSED`] then it  **must**  have an image format whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
+/// -    If the [`linearColorAttachment`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-linearColorAttachment) feature is enabled and the image is created with `VK_IMAGE_TILING_LINEAR`, all attachments in [`input_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) **must**  contain `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
+/// -    If the [`linearColorAttachment`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-linearColorAttachment) feature is enabled and the image is created with `VK_IMAGE_TILING_LINEAR`, all attachments in [`color_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) **must**  contain `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
+/// -    If the [`linearColorAttachment`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-linearColorAttachment) feature is enabled and the image is created with `VK_IMAGE_TILING_LINEAR`, all attachments in [`resolve_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) **must**  contain `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
 /// - If the `[`VK_AMD_mixed_attachment_samples`]` extension is enabled, all attachments in
-///   [`color_attachments`] that are not [`ATTACHMENT_UNUSED`]**must** have a sample count that is
+///   [`color_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have a sample count that is
 ///   smaller than or equal to the sample count of [`depth_stencil_attachment`] if it is not
 ///   [`ATTACHMENT_UNUSED`]
 /// - If neither the `[`VK_AMD_mixed_attachment_samples`]` nor the
 ///   `[`VK_NV_framebuffer_mixed_samples`]` extensions are enabled, and if
 ///   [`depth_stencil_attachment`] is not [`ATTACHMENT_UNUSED`] and any attachments in
-///   [`color_attachments`] are not [`ATTACHMENT_UNUSED`], they **must** have the same sample count
-/// - Each element of [`preserve_attachments`]**must** not be [`ATTACHMENT_UNUSED`]
-/// - Any given element of [`preserve_attachments`]**must** not also be an element of any other
+///   [`color_attachments`] are not [`ATTACHMENT_UNUSED`], they  **must**  have the same sample
+///   count
+/// - Each element of [`preserve_attachments`] **must**  not be [`ATTACHMENT_UNUSED`]
+/// - Any given element of [`preserve_attachments`] **must**  not also be an element of any other
 ///   member of the subpass description
 /// - If any attachment is used by more than one [`AttachmentReference2`] member, then each use
-///   **must** use the same `layout`
-/// - Attachments **must** follow the [image layout requirements](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#attachment-type-imagelayout)
+///   **must**  use the same `layout`
+/// - Attachments  **must**  follow the [image layout requirements](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#attachment-type-imagelayout)
 ///   based on the type of attachment it is being used as
-/// - If [`flags`] includes `VK_SUBPASS_DESCRIPTION_PER_VIEW_POSITION_X_ONLY_BIT_NVX`, it **must**
+/// - If [`flags`] includes `VK_SUBPASS_DESCRIPTION_PER_VIEW_POSITION_X_ONLY_BIT_NVX`, it  **must**
 ///   also include `VK_SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX`
 /// - If the `attachment` member of any element of [`input_attachments`] is not
-///   [`ATTACHMENT_UNUSED`], then the `aspectMask` member **must** be a valid combination of
+///   [`ATTACHMENT_UNUSED`], then the `aspectMask` member  **must**  be a valid combination of
 ///   [`ImageAspectFlagBits`]
 /// - If the `attachment` member of any element of [`input_attachments`] is not
-///   [`ATTACHMENT_UNUSED`], then the `aspectMask` member **must** not be `0`
+///   [`ATTACHMENT_UNUSED`], then the `aspectMask` member  **must**  not be `0`
 /// - If the `attachment` member of any element of [`input_attachments`] is not
-///   [`ATTACHMENT_UNUSED`], then the `aspectMask` member **must** not include
+///   [`ATTACHMENT_UNUSED`], then the `aspectMask` member  **must**  not include
 ///   `VK_IMAGE_ASPECT_METADATA_BIT`
 /// - If the `attachment` member of any element of [`input_attachments`] is not
-///   [`ATTACHMENT_UNUSED`], then the `aspectMask` member **must** not include
+///   [`ATTACHMENT_UNUSED`], then the `aspectMask` member  **must**  not include
 ///   `VK_IMAGE_ASPECT_MEMORY_PLANE*_i_*BIT_EXT` for any index *i*
-/// - An attachment **must** not be used in both [`depth_stencil_attachment`] and
+/// - An attachment  **must**  not be used in both [`depth_stencil_attachment`] and
 ///   [`color_attachments`]
 /// - If the [`multiview`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiview)
-///   feature is not enabled, [`view_mask`]**must** be `0`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2`
-/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain **must**
+///   feature is not enabled, [`view_mask`] **must**  be `0`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2`
+/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`FragmentShadingRateAttachmentInfoKHR`]
 ///   or [`SubpassDescriptionDepthStencilResolve`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - [`flags`]**must** be a valid combination of [`SubpassDescriptionFlagBits`] values
-/// - [`pipeline_bind_point`]**must** be a valid [`PipelineBindPoint`] value
-/// - If [`input_attachment_count`] is not `0`, [`input_attachments`]**must** be a valid pointer to
-///   an array of [`input_attachment_count`] valid [`AttachmentReference2`] structures
-/// - If [`color_attachment_count`] is not `0`, [`color_attachments`]**must** be a valid pointer to
-///   an array of [`color_attachment_count`] valid [`AttachmentReference2`] structures
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`flags`] **must**  be a valid combination of [`SubpassDescriptionFlagBits`] values
+/// - [`pipeline_bind_point`] **must**  be a valid [`PipelineBindPoint`] value
+/// - If [`input_attachment_count`] is not `0`, [`input_attachments`] **must**  be a valid pointer
+///   to an array of [`input_attachment_count`] valid [`AttachmentReference2`] structures
+/// - If [`color_attachment_count`] is not `0`, [`color_attachments`] **must**  be a valid pointer
+///   to an array of [`color_attachment_count`] valid [`AttachmentReference2`] structures
 /// - If [`color_attachment_count`] is not `0`, and [`resolve_attachments`] is not `NULL`,
-///   [`resolve_attachments`]**must** be a valid pointer to an array of [`color_attachment_count`]
+///   [`resolve_attachments`] **must**  be a valid pointer to an array of [`color_attachment_count`]
 ///   valid [`AttachmentReference2`] structures
-/// - If [`depth_stencil_attachment`] is not `NULL`, [`depth_stencil_attachment`]**must** be a valid
-///   pointer to a valid [`AttachmentReference2`] structure
-/// - If [`preserve_attachment_count`] is not `0`, [`preserve_attachments`]**must** be a valid
+/// - If [`depth_stencil_attachment`] is not `NULL`, [`depth_stencil_attachment`] **must**  be a
+///   valid pointer to a valid [`AttachmentReference2`] structure
+/// - If [`preserve_attachment_count`] is not `0`, [`preserve_attachments`] **must**  be a valid
 ///   pointer to an array of [`preserve_attachment_count`]`uint32_t` values
 ///# Related
 /// - [`VK_KHR_create_renderpass2`]
@@ -6042,7 +5821,7 @@ pub struct SubpassDescription2<'lt> {
     preserve_attachment_count: u32,
     ///[`preserve_attachments`] is a pointer to an array of
     ///[`preserve_attachment_count`] render pass attachment indices identifying
-    ///attachments that are not used by this subpass, but whose contents **must**
+    ///attachments that are not used by this subpass, but whose contents  **must**
     ///be preserved throughout the subpass.
     preserve_attachments: *const u32,
 }
@@ -6071,21 +5850,9 @@ impl<'lt> SubpassDescription2<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::view_mask`]
-    pub fn view_mask_raw(&self) -> u32 {
-        self.view_mask
-    }
-    ///Gets the raw value of [`Self::input_attachment_count`]
-    pub fn input_attachment_count_raw(&self) -> u32 {
-        self.input_attachment_count
-    }
     ///Gets the raw value of [`Self::input_attachments`]
     pub fn input_attachments_raw(&self) -> *const AttachmentReference2<'lt> {
         self.input_attachments
-    }
-    ///Gets the raw value of [`Self::color_attachment_count`]
-    pub fn color_attachment_count_raw(&self) -> u32 {
-        self.color_attachment_count
     }
     ///Gets the raw value of [`Self::color_attachments`]
     pub fn color_attachments_raw(&self) -> *const AttachmentReference2<'lt> {
@@ -6099,10 +5866,6 @@ impl<'lt> SubpassDescription2<'lt> {
     pub fn depth_stencil_attachment_raw(&self) -> *const AttachmentReference2<'lt> {
         self.depth_stencil_attachment
     }
-    ///Gets the raw value of [`Self::preserve_attachment_count`]
-    pub fn preserve_attachment_count_raw(&self) -> u32 {
-        self.preserve_attachment_count
-    }
     ///Gets the raw value of [`Self::preserve_attachments`]
     pub fn preserve_attachments_raw(&self) -> *const u32 {
         self.preserve_attachments
@@ -6112,24 +5875,9 @@ impl<'lt> SubpassDescription2<'lt> {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::view_mask`]
-    pub fn set_view_mask_raw(&mut self, value: u32) -> &mut Self {
-        self.view_mask = value;
-        self
-    }
-    ///Sets the raw value of [`Self::input_attachment_count`]
-    pub fn set_input_attachment_count_raw(&mut self, value: u32) -> &mut Self {
-        self.input_attachment_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::input_attachments`]
     pub fn set_input_attachments_raw(&mut self, value: *const AttachmentReference2<'lt>) -> &mut Self {
         self.input_attachments = value;
-        self
-    }
-    ///Sets the raw value of [`Self::color_attachment_count`]
-    pub fn set_color_attachment_count_raw(&mut self, value: u32) -> &mut Self {
-        self.color_attachment_count = value;
         self
     }
     ///Sets the raw value of [`Self::color_attachments`]
@@ -6145,11 +5893,6 @@ impl<'lt> SubpassDescription2<'lt> {
     ///Sets the raw value of [`Self::depth_stencil_attachment`]
     pub fn set_depth_stencil_attachment_raw(&mut self, value: *const AttachmentReference2<'lt>) -> &mut Self {
         self.depth_stencil_attachment = value;
-        self
-    }
-    ///Sets the raw value of [`Self::preserve_attachment_count`]
-    pub fn set_preserve_attachment_count_raw(&mut self, value: u32) -> &mut Self {
-        self.preserve_attachment_count = value;
         self
     }
     ///Sets the raw value of [`Self::preserve_attachments`]
@@ -6383,91 +6126,93 @@ impl<'lt> SubpassDescription2<'lt> {
 ///[`src_stage_mask`], [`dst_stage_mask`], [`src_access_mask`], and
 ///[`dst_access_mask`] parameters are ignored.
 ///The synchronization and access scopes instead are defined by the parameters
-///of [`MemoryBarrier2`].Valid Usage
+///of [`MemoryBarrier2`].
+///## Valid Usage
 /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_GEOMETRY_SHADER_BIT`
 /// - If the [tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-tessellationShader)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT` or
 ///   `VK_PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT`
 /// - If the [conditional rendering](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-conditionalRendering)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT`
 /// - If the [fragment density map](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-fragmentDensityMap)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
 /// - If the [transform feedback](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-transformFeedback)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT`
 /// - If the [mesh shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-meshShader)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_MESH_SHADER_BIT_NV`
 /// - If the [task shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-taskShader)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_TASK_SHADER_BIT_NV`
 /// - If the [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-shadingRateImage)
-///   feature is not enabled, [`src_stage_mask`]**must** not contain
+///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV`
 /// - If the [`synchronization2`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-synchronization2)
-///   feature is not enabled, [`src_stage_mask`]**must** not be `0`
+///   feature is not enabled, [`src_stage_mask`] **must**  not be `0`
 ///
 /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_GEOMETRY_SHADER_BIT`
 /// - If the [tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-tessellationShader)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT` or
 ///   `VK_PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT`
 /// - If the [conditional rendering](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-conditionalRendering)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT`
 /// - If the [fragment density map](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-fragmentDensityMap)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
 /// - If the [transform feedback](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-transformFeedback)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT`
 /// - If the [mesh shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-meshShader)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_MESH_SHADER_BIT_NV`
 /// - If the [task shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-taskShader)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_TASK_SHADER_BIT_NV`
 /// - If the [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-shadingRateImage)
-///   feature is not enabled, [`dst_stage_mask`]**must** not contain
+///   feature is not enabled, [`dst_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV`
 /// - If the [`synchronization2`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-synchronization2)
-///   feature is not enabled, [`dst_stage_mask`]**must** not be `0`
-/// - [`src_subpass`]**must** be less than or equal to [`dst_subpass`], unless one of them is
+///   feature is not enabled, [`dst_stage_mask`] **must**  not be `0`
+/// - [`src_subpass`] **must**  be less than or equal to [`dst_subpass`], unless one of them is
 ///   [`SUBPASS_EXTERNAL`], to avoid cyclic dependencies and ensure a valid execution order
-/// - [`src_subpass`] and [`dst_subpass`]**must** not both be equal to [`SUBPASS_EXTERNAL`]
+/// - [`src_subpass`] and [`dst_subpass`] **must**  not both be equal to [`SUBPASS_EXTERNAL`]
 /// - If [`src_subpass`] is equal to [`dst_subpass`] and not all of the stages in [`src_stage_mask`]
 ///   and [`dst_stage_mask`] are [framebuffer-space stages](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-framebuffer-regions),
 ///   the [logically latest](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-order)
-///   pipeline stage in [`src_stage_mask`]**must** be [logically earlier](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-order)
+///   pipeline stage in [`src_stage_mask`] **must**  be [logically earlier](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-order)
 ///   than or equal to the [logically earliest](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-order)
 ///   pipeline stage in [`dst_stage_mask`]
-/// -    Any access flag included in [`src_access_mask`]**must** be supported by one of the pipeline stages in [`src_stage_mask`], as specified in the [table of supported access types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types-supported)
-/// -    Any access flag included in [`dst_access_mask`]**must** be supported by one of the pipeline stages in [`dst_stage_mask`], as specified in the [table of supported access types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types-supported)
-/// - If [`dependency_flags`] includes `VK_DEPENDENCY_VIEW_LOCAL_BIT`, [`src_subpass`]**must** not
+/// -    Any access flag included in [`src_access_mask`] **must**  be supported by one of the pipeline stages in [`src_stage_mask`], as specified in the [table of supported access types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types-supported)
+/// -    Any access flag included in [`dst_access_mask`] **must**  be supported by one of the pipeline stages in [`dst_stage_mask`], as specified in the [table of supported access types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types-supported)
+/// - If [`dependency_flags`] includes `VK_DEPENDENCY_VIEW_LOCAL_BIT`, [`src_subpass`] **must**  not
 ///   be equal to [`SUBPASS_EXTERNAL`]
-/// - If [`dependency_flags`] includes `VK_DEPENDENCY_VIEW_LOCAL_BIT`, [`dst_subpass`]**must** not
+/// - If [`dependency_flags`] includes `VK_DEPENDENCY_VIEW_LOCAL_BIT`, [`dst_subpass`] **must**  not
 ///   be equal to [`SUBPASS_EXTERNAL`]
-/// -    If [`src_subpass`] equals [`dst_subpass`], and [`src_stage_mask`] and [`dst_stage_mask`] both include a [framebuffer-space stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-framebuffer-regions), then [`dependency_flags`]**must** include `VK_DEPENDENCY_BY_REGION_BIT`
-/// - If [`view_offset`] is not equal to `0`, [`src_subpass`]**must** not be equal to
+/// -    If [`src_subpass`] equals [`dst_subpass`], and [`src_stage_mask`] and [`dst_stage_mask`] both include a [framebuffer-space stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-framebuffer-regions), then [`dependency_flags`] **must**  include `VK_DEPENDENCY_BY_REGION_BIT`
+/// - If [`view_offset`] is not equal to `0`, [`src_subpass`] **must**  not be equal to
 ///   [`dst_subpass`]
-/// - If [`dependency_flags`] does not include `VK_DEPENDENCY_VIEW_LOCAL_BIT`,
-///   [`view_offset`]**must** be `0`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2`
-/// - [`p_next`]**must** be `NULL` or a pointer to a valid instance of [`MemoryBarrier2`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - [`src_stage_mask`]**must** be a valid combination of [`PipelineStageFlagBits`] values
-/// - [`dst_stage_mask`]**must** be a valid combination of [`PipelineStageFlagBits`] values
-/// - [`src_access_mask`]**must** be a valid combination of [`AccessFlagBits`] values
-/// - [`dst_access_mask`]**must** be a valid combination of [`AccessFlagBits`] values
-/// - [`dependency_flags`]**must** be a valid combination of [`DependencyFlagBits`] values
+/// - If [`dependency_flags`] does not include `VK_DEPENDENCY_VIEW_LOCAL_BIT`, [`view_offset`]
+///   **must**  be `0`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2`
+/// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of [`MemoryBarrier2`]
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`src_stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits`] values
+/// - [`dst_stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits`] values
+/// - [`src_access_mask`] **must**  be a valid combination of [`AccessFlagBits`] values
+/// - [`dst_access_mask`] **must**  be a valid combination of [`AccessFlagBits`] values
+/// - [`dependency_flags`] **must**  be a valid combination of [`DependencyFlagBits`] values
 ///# Related
 /// - [`VK_KHR_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
@@ -6542,36 +6287,9 @@ impl<'lt> SubpassDependency2<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::src_subpass`]
-    pub fn src_subpass_raw(&self) -> u32 {
-        self.src_subpass
-    }
-    ///Gets the raw value of [`Self::dst_subpass`]
-    pub fn dst_subpass_raw(&self) -> u32 {
-        self.dst_subpass
-    }
-    ///Gets the raw value of [`Self::view_offset`]
-    pub fn view_offset_raw(&self) -> i32 {
-        self.view_offset
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::src_subpass`]
-    pub fn set_src_subpass_raw(&mut self, value: u32) -> &mut Self {
-        self.src_subpass = value;
-        self
-    }
-    ///Sets the raw value of [`Self::dst_subpass`]
-    pub fn set_dst_subpass_raw(&mut self, value: u32) -> &mut Self {
-        self.dst_subpass = value;
-        self
-    }
-    ///Sets the raw value of [`Self::view_offset`]
-    pub fn set_view_offset_raw(&mut self, value: i32) -> &mut Self {
-        self.view_offset = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -6743,7 +6461,7 @@ impl<'lt> SubpassDependency2<'lt> {
 ///   structures describing dependencies between pairs of subpasses.
 /// - [`correlated_view_mask_count`] is the number of correlation masks.
 /// - [`correlated_view_masks`] is a pointer to an array of view masks indicating sets of views that
-///   **may** be more efficient to render concurrently.
+///   **may**  be more efficient to render concurrently.
 ///# Description
 ///Parameters defined by this structure with the same name as those in
 ///[`RenderPassCreateInfo`] have the identical effect to those parameters;
@@ -6756,97 +6474,99 @@ impl<'lt> SubpassDependency2<'lt> {
 /// the same
 ///effect as [`RenderPassMultiviewCreateInfo::correlation_mask_count`]
 ///and [`RenderPassMultiviewCreateInfo::correlation_masks`],
-///respectively.Valid Usage
+///respectively.
+///## Valid Usage
 /// - If any two subpasses operate on attachments with overlapping ranges of the same
 ///   [`DeviceMemory`] object, and at least one subpass writes to that area of [`DeviceMemory`], a
-///   subpass dependency **must** be included (either directly or via some intermediate subpasses)
+///   subpass dependency  **must**  be included (either directly or via some intermediate subpasses)
 ///   between them
 /// - If the `attachment` member of any element of `pInputAttachments`, `pColorAttachments`,
 ///   `pResolveAttachments` or `pDepthStencilAttachment`, or the attachment indexed by any element
 ///   of `pPreserveAttachments` in any given element of [`subpasses`] is bound to a range of a
 ///   [`DeviceMemory`] object that overlaps with any other attachment in any subpass (including the
-///   same subpass), the [`AttachmentDescription2`] structures describing them **must** include
+///   same subpass), the [`AttachmentDescription2`] structures describing them  **must**  include
 ///   `VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT` in [`flags`]
 /// - If the `attachment` member of any element of `pInputAttachments`, `pColorAttachments`,
 ///   `pResolveAttachments` or `pDepthStencilAttachment`, or any element of `pPreserveAttachments`
-///   in any given element of [`subpasses`] is not [`ATTACHMENT_UNUSED`], then it **must** be less
+///   in any given element of [`subpasses`] is not [`ATTACHMENT_UNUSED`], then it  **must**  be less
 ///   than [`attachment_count`]
 /// - If the pNext chain includes a [`RenderPassFragmentDensityMapCreateInfoEXT`] structure and the
-///   `fragmentDensityMapAttachment` member is not [`ATTACHMENT_UNUSED`], then `attachment`**must**
+///   `fragmentDensityMapAttachment` member is not [`ATTACHMENT_UNUSED`], then `attachment` **must**
 ///   be less than [`attachment_count`]
 /// - If the [`subpasses`] pNext chain includes a [`SubpassDescriptionDepthStencilResolve`]
 ///   structure and the `pDepthStencilResolveAttachment` member is not `NULL` and does not have the
-///   value [`ATTACHMENT_UNUSED`], then `attachment`**must** be less than [`attachment_count`]
+///   value [`ATTACHMENT_UNUSED`], then `attachment` **must**  be less than [`attachment_count`]
 /// - For any member of [`attachments`] with a `loadOp` equal to `VK_ATTACHMENT_LOAD_OP_CLEAR`, the
-///   first use of that attachment **must** not specify a `layout` equal to
+///   first use of that attachment  **must**  not specify a `layout` equal to
 ///   `VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL`, `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`,
 ///   or `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL`
 /// - For any member of [`attachments`] with a `stencilLoadOp` equal to
-///   `VK_ATTACHMENT_LOAD_OP_CLEAR`, the first use of that attachment **must** not specify a
+///   `VK_ATTACHMENT_LOAD_OP_CLEAR`, the first use of that attachment  **must**  not specify a
 ///   `layout` equal to `VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, or
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`
-/// -    For any element of [`dependencies`], if the `srcSubpass` is not [`SUBPASS_EXTERNAL`], all stage flags included in the `srcStageMask` member of that dependency **must** be a pipeline stage supported by the [pipeline](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-types) identified by the `pipelineBindPoint` member of the source subpass
-/// -    For any element of [`dependencies`], if the `dstSubpass` is not [`SUBPASS_EXTERNAL`], all stage flags included in the `dstStageMask` member of that dependency **must** be a pipeline stage supported by the [pipeline](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-types) identified by the `pipelineBindPoint` member of the destination subpass
-/// - The set of bits included in any element of [`correlated_view_masks`]**must** not overlap with
-///   the set of bits included in any other element of [`correlated_view_masks`]
+/// -    For any element of [`dependencies`], if the `srcSubpass` is not [`SUBPASS_EXTERNAL`], all stage flags included in the `srcStageMask` member of that dependency  **must**  be a pipeline stage supported by the [pipeline](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-types) identified by the `pipelineBindPoint` member of the source subpass
+/// -    For any element of [`dependencies`], if the `dstSubpass` is not [`SUBPASS_EXTERNAL`], all stage flags included in the `dstStageMask` member of that dependency  **must**  be a pipeline stage supported by the [pipeline](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-types) identified by the `pipelineBindPoint` member of the destination subpass
+/// - The set of bits included in any element of [`correlated_view_masks`] **must**  not overlap
+///   with the set of bits included in any other element of [`correlated_view_masks`]
 /// - If the [`SubpassDescription2::view_mask`] member of all elements of [`subpasses`] is `0`,
-///   [`correlated_view_mask_count`]**must** be `0`
-/// - The [`SubpassDescription2::view_mask`] member of all elements of [`subpasses`]**must** either
-///   all be `0`, or all not be `0`
+///   [`correlated_view_mask_count`] **must**  be `0`
+/// - The [`SubpassDescription2::view_mask`] member of all elements of [`subpasses`] **must**
+///   either all be `0`, or all not be `0`
 /// - If the [`SubpassDescription2::view_mask`] member of all elements of [`subpasses`] is `0`, the
-///   `dependencyFlags` member of any element of [`dependencies`]**must** not include
+///   `dependencyFlags` member of any element of [`dependencies`] **must**  not include
 ///   `VK_DEPENDENCY_VIEW_LOCAL_BIT`
 /// - For any element of [`dependencies`] where its `srcSubpass` member equals its `dstSubpass`
 ///   member, if the `viewMask` member of the corresponding element of [`subpasses`] includes more
-///   than one bit, its `dependencyFlags` member **must** include `VK_DEPENDENCY_VIEW_LOCAL_BIT`
+///   than one bit, its `dependencyFlags` member  **must**  include `VK_DEPENDENCY_VIEW_LOCAL_BIT`
 /// - If the `attachment` member of any element of the `pInputAttachments` member of any element of
 ///   [`subpasses`] is not [`ATTACHMENT_UNUSED`], the `aspectMask` member of that element of
-///   `pInputAttachments`**must** only include aspects that are present in images of the format
+///   `pInputAttachments` **must**  only include aspects that are present in images of the format
 ///   specified by the element of [`attachments`] specified by `attachment`
-/// - The `srcSubpass` member of each element of [`dependencies`]**must** be less than
+/// - The `srcSubpass` member of each element of [`dependencies`] **must**  be less than
 ///   [`subpass_count`]
-/// - The `dstSubpass` member of each element of [`dependencies`]**must** be less than
+/// - The `dstSubpass` member of each element of [`dependencies`] **must**  be less than
 ///   [`subpass_count`]
 /// - If any element of [`attachments`] is used as a fragment shading rate attachment in any
-///   subpass, it **must** not be used as any other attachment in the render pass
+///   subpass, it  **must**  not be used as any other attachment in the render pass
 /// - If [`flags`] includes `VK_RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM`, an element of [`subpasses`]
 ///   includes an instance of [`FragmentShadingRateAttachmentInfoKHR`] in its [`p_next`] chain, and
 ///   the `pFragmentShadingRateAttachment` member of that structure is not equal to `NULL`, the
-///   `attachment` member of `pFragmentShadingRateAttachment`**must** be [`ATTACHMENT_UNUSED`]
-/// -    If any element of [`attachments`] is used as a fragment shading rate attachment in any subpass, it **must** have an image format whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain `VK_FORMAT_FEATURE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
+///   `attachment` member of `pFragmentShadingRateAttachment` **must**  be [`ATTACHMENT_UNUSED`]
+/// -    If any element of [`attachments`] is used as a fragment shading rate attachment in any subpass, it  **must**  have an image format whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain `VK_FORMAT_FEATURE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
 /// - If the pipeline is being created with fragment shader state, and the
 ///   [`VK_QCOM_render_pass_shader_resolve`] extension is enabled, and if subpass has any input
 ///   attachments, and if the subpass description contains
 ///   `VK_SUBPASS_DESCRIPTION_FRAGMENT_REGION_BIT_QCOM`, then the sample count of the input
-///   attachments **must** equal `rasterizationSamples`
+///   attachments  **must**  equal `rasterizationSamples`
 /// - If the pipeline is being created with fragment shader state, and the
 ///   [`VK_QCOM_render_pass_shader_resolve`] extension is enabled, and if the subpass description
-///   contains `VK_SUBPASS_DESCRIPTION_FRAGMENT_REGION_BIT_QCOM`, then `sampleShadingEnable`**must**
-///   be false
+///   contains `VK_SUBPASS_DESCRIPTION_FRAGMENT_REGION_BIT_QCOM`, then `sampleShadingEnable`
+///   **must**  be false
 /// - If [`flags`] includes `VK_SUBPASS_DESCRIPTION_SHADER_RESOLVE_BIT_QCOM`, and if
-///   `pResolveAttachments` is not `NULL`, then each resolve attachment **must** be
+///   `pResolveAttachments` is not `NULL`, then each resolve attachment  **must**  be
 ///   [`ATTACHMENT_UNUSED`]
 /// - If [`flags`] includes `VK_SUBPASS_DESCRIPTION_SHADER_RESOLVE_BIT_QCOM`, and if
 ///   `pDepthStencilResolveAttachment` is not `NULL`, then the depth/stencil resolve attachment
-///   **must** be [`ATTACHMENT_UNUSED`]
+///   **must**  be [`ATTACHMENT_UNUSED`]
 /// - If [`flags`] includes `VK_SUBPASS_DESCRIPTION_SHADER_RESOLVE_BIT_QCOM`, then the subpass
-///   **must** be the last subpass in a subpass dependency chain
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2`
-/// - [`p_next`]**must** be `NULL` or a pointer to a valid instance of
+///   **must**  be the last subpass in a subpass dependency chain
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2`
+/// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`RenderPassFragmentDensityMapCreateInfoEXT`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - [`flags`]**must** be a valid combination of [`RenderPassCreateFlagBits`] values
-/// - If [`attachment_count`] is not `0`, [`attachments`]**must** be a valid pointer to an array of
-///   [`attachment_count`] valid [`AttachmentDescription2`] structures
-/// - [`subpasses`]**must** be a valid pointer to an array of [`subpass_count`] valid
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`flags`] **must**  be a valid combination of [`RenderPassCreateFlagBits`] values
+/// - If [`attachment_count`] is not `0`, [`attachments`] **must**  be a valid pointer to an array
+///   of [`attachment_count`] valid [`AttachmentDescription2`] structures
+/// - [`subpasses`] **must**  be a valid pointer to an array of [`subpass_count`] valid
 ///   [`SubpassDescription2`] structures
-/// - If [`dependency_count`] is not `0`, [`dependencies`]**must** be a valid pointer to an array of
-///   [`dependency_count`] valid [`SubpassDependency2`] structures
-/// - If [`correlated_view_mask_count`] is not `0`, [`correlated_view_masks`]**must** be a valid
+/// - If [`dependency_count`] is not `0`, [`dependencies`] **must**  be a valid pointer to an array
+///   of [`dependency_count`] valid [`SubpassDependency2`] structures
+/// - If [`correlated_view_mask_count`] is not `0`, [`correlated_view_masks`] **must**  be a valid
 ///   pointer to an array of [`correlated_view_mask_count`]`uint32_t` values
-/// - [`subpass_count`]**must** be greater than `0`
+/// - [`subpass_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_KHR_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
@@ -6897,7 +6617,7 @@ pub struct RenderPassCreateInfo2<'lt> {
     ///[`correlated_view_mask_count`] is the number of correlation masks.
     correlated_view_mask_count: u32,
     ///[`correlated_view_masks`] is a pointer to an array of view masks
-    ///indicating sets of views that **may** be more efficient to render
+    ///indicating sets of views that  **may**  be more efficient to render
     ///concurrently.
     correlated_view_masks: *const u32,
 }
@@ -6924,33 +6644,17 @@ impl<'lt> RenderPassCreateInfo2<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::attachment_count`]
-    pub fn attachment_count_raw(&self) -> u32 {
-        self.attachment_count
-    }
     ///Gets the raw value of [`Self::attachments`]
     pub fn attachments_raw(&self) -> *const AttachmentDescription2<'lt> {
         self.attachments
-    }
-    ///Gets the raw value of [`Self::subpass_count`]
-    pub fn subpass_count_raw(&self) -> u32 {
-        self.subpass_count
     }
     ///Gets the raw value of [`Self::subpasses`]
     pub fn subpasses_raw(&self) -> *const SubpassDescription2<'lt> {
         self.subpasses
     }
-    ///Gets the raw value of [`Self::dependency_count`]
-    pub fn dependency_count_raw(&self) -> u32 {
-        self.dependency_count
-    }
     ///Gets the raw value of [`Self::dependencies`]
     pub fn dependencies_raw(&self) -> *const SubpassDependency2<'lt> {
         self.dependencies
-    }
-    ///Gets the raw value of [`Self::correlated_view_mask_count`]
-    pub fn correlated_view_mask_count_raw(&self) -> u32 {
-        self.correlated_view_mask_count
     }
     ///Gets the raw value of [`Self::correlated_view_masks`]
     pub fn correlated_view_masks_raw(&self) -> *const u32 {
@@ -6961,19 +6665,9 @@ impl<'lt> RenderPassCreateInfo2<'lt> {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::attachment_count`]
-    pub fn set_attachment_count_raw(&mut self, value: u32) -> &mut Self {
-        self.attachment_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::attachments`]
     pub fn set_attachments_raw(&mut self, value: *const AttachmentDescription2<'lt>) -> &mut Self {
         self.attachments = value;
-        self
-    }
-    ///Sets the raw value of [`Self::subpass_count`]
-    pub fn set_subpass_count_raw(&mut self, value: u32) -> &mut Self {
-        self.subpass_count = value;
         self
     }
     ///Sets the raw value of [`Self::subpasses`]
@@ -6981,19 +6675,9 @@ impl<'lt> RenderPassCreateInfo2<'lt> {
         self.subpasses = value;
         self
     }
-    ///Sets the raw value of [`Self::dependency_count`]
-    pub fn set_dependency_count_raw(&mut self, value: u32) -> &mut Self {
-        self.dependency_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::dependencies`]
     pub fn set_dependencies_raw(&mut self, value: *const SubpassDependency2<'lt>) -> &mut Self {
         self.dependencies = value;
-        self
-    }
-    ///Sets the raw value of [`Self::correlated_view_mask_count`]
-    pub fn set_correlated_view_mask_count_raw(&mut self, value: u32) -> &mut Self {
-        self.correlated_view_mask_count = value;
         self
     }
     ///Sets the raw value of [`Self::correlated_view_masks`]
@@ -7174,10 +6858,10 @@ impl<'lt> RenderPassCreateInfo2<'lt> {
 /// - [`contents`] is a [`SubpassContents`] value specifying how the commands in the next subpass
 ///   will be provided.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SUBPASS_BEGIN_INFO`
-/// - [`p_next`]**must** be `NULL`
-/// - [`contents`]**must** be a valid [`SubpassContents`] value
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBPASS_BEGIN_INFO`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`contents`] **must**  be a valid [`SubpassContents`] value
 ///# Related
 /// - [`VK_KHR_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
@@ -7287,11 +6971,11 @@ impl<'lt> SubpassBeginInfo<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SUBPASS_END_INFO`
-/// - [`p_next`]**must** be `NULL` or a pointer to a valid instance of
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBPASS_END_INFO`
+/// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`SubpassFragmentDensityMapOffsetEndInfoQCOM`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 ///# Related
 /// - [`VK_KHR_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
@@ -7393,9 +7077,10 @@ impl<'lt> SubpassEndInfo<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceTimelineSemaphoreFeatures`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES`
+///[`PhysicalDeviceTimelineSemaphoreFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES`
 ///# Related
 /// - [`VK_KHR_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
@@ -7542,8 +7227,9 @@ impl<'lt> PhysicalDeviceTimelineSemaphoreFeatures<'lt> {
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES`
 ///# Related
 /// - [`VK_KHR_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
@@ -7584,18 +7270,9 @@ impl<'lt> PhysicalDeviceTimelineSemaphoreProperties<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::max_timeline_semaphore_value_difference`]
-    pub fn max_timeline_semaphore_value_difference_raw(&self) -> u64 {
-        self.max_timeline_semaphore_value_difference
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_timeline_semaphore_value_difference`]
-    pub fn set_max_timeline_semaphore_value_difference_raw(&mut self, value: u64) -> &mut Self {
-        self.max_timeline_semaphore_value_difference = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -7672,13 +7349,15 @@ impl<'lt> PhysicalDeviceTimelineSemaphoreProperties<'lt> {
 ///[`SemaphoreTypeCreateInfo`] structure to the
 ///[`SemaphoreCreateInfo`]::[`p_next`] chain.If no [`SemaphoreTypeCreateInfo`] structure is included in the
 ///[`p_next`] chain of [`SemaphoreCreateInfo`], then the created semaphore
-///will have a default [`SemaphoreType`] of `VK_SEMAPHORE_TYPE_BINARY`.Valid Usage
+///will have a default [`SemaphoreType`] of `VK_SEMAPHORE_TYPE_BINARY`.
+///## Valid Usage
 /// - If the [`timelineSemaphore`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-timelineSemaphore)
-///   feature is not enabled, [`semaphore_type`]**must** not equal `VK_SEMAPHORE_TYPE_TIMELINE`
-/// - If [`semaphore_type`] is `VK_SEMAPHORE_TYPE_BINARY`, [`initial_value`]**must** be zero
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO`
-/// - [`semaphore_type`]**must** be a valid [`SemaphoreType`] value
+///   feature is not enabled, [`semaphore_type`] **must**  not equal `VK_SEMAPHORE_TYPE_TIMELINE`
+/// - If [`semaphore_type`] is `VK_SEMAPHORE_TYPE_BINARY`, [`initial_value`] **must**  be zero
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO`
+/// - [`semaphore_type`] **must**  be a valid [`SemaphoreType`] value
 ///# Related
 /// - [`VK_KHR_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
@@ -7725,18 +7404,9 @@ impl<'lt> SemaphoreTypeCreateInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::initial_value`]
-    pub fn initial_value_raw(&self) -> u64 {
-        self.initial_value
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::initial_value`]
-    pub fn set_initial_value_raw(&mut self, value: u64) -> &mut Self {
-        self.initial_value = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -7831,14 +7501,15 @@ impl<'lt> SemaphoreTypeCreateInfo<'lt> {
 ///[`SubmitInfo::signal_semaphores`] corresponding to an entry in
 ///[`wait_semaphore_values`] or [`signal_semaphore_values`] respectively was
 ///not created with a [`SemaphoreType`] of
-///`VK_SEMAPHORE_TYPE_TIMELINE`, the implementation **must** ignore the value
-///in the [`wait_semaphore_values`] or [`signal_semaphore_values`] entry.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO`
+///`VK_SEMAPHORE_TYPE_TIMELINE`, the implementation  **must**  ignore the value
+///in the [`wait_semaphore_values`] or [`signal_semaphore_values`] entry.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO`
 /// - If [`wait_semaphore_value_count`] is not `0`, and [`wait_semaphore_values`] is not `NULL`,
-///   [`wait_semaphore_values`]**must** be a valid pointer to an array of
+///   [`wait_semaphore_values`] **must**  be a valid pointer to an array of
 ///   [`wait_semaphore_value_count`]`uint64_t` values
 /// - If [`signal_semaphore_value_count`] is not `0`, and [`signal_semaphore_values`] is not `NULL`,
-///   [`signal_semaphore_values`]**must** be a valid pointer to an array of
+///   [`signal_semaphore_values`] **must**  be a valid pointer to an array of
 ///   [`signal_semaphore_value_count`]`uint64_t` values
 ///# Related
 /// - [`VK_KHR_timeline_semaphore`]
@@ -7895,17 +7566,9 @@ impl<'lt> TimelineSemaphoreSubmitInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::wait_semaphore_value_count`]
-    pub fn wait_semaphore_value_count_raw(&self) -> u32 {
-        self.wait_semaphore_value_count
-    }
     ///Gets the raw value of [`Self::wait_semaphore_values`]
     pub fn wait_semaphore_values_raw(&self) -> *const u64 {
         self.wait_semaphore_values
-    }
-    ///Gets the raw value of [`Self::signal_semaphore_value_count`]
-    pub fn signal_semaphore_value_count_raw(&self) -> u32 {
-        self.signal_semaphore_value_count
     }
     ///Gets the raw value of [`Self::signal_semaphore_values`]
     pub fn signal_semaphore_values_raw(&self) -> *const u64 {
@@ -7916,19 +7579,9 @@ impl<'lt> TimelineSemaphoreSubmitInfo<'lt> {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::wait_semaphore_value_count`]
-    pub fn set_wait_semaphore_value_count_raw(&mut self, value: u32) -> &mut Self {
-        self.wait_semaphore_value_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::wait_semaphore_values`]
     pub fn set_wait_semaphore_values_raw(&mut self, value: *const u64) -> &mut Self {
         self.wait_semaphore_values = value;
-        self
-    }
-    ///Sets the raw value of [`Self::signal_semaphore_value_count`]
-    pub fn set_signal_semaphore_value_count_raw(&mut self, value: u32) -> &mut Self {
-        self.signal_semaphore_value_count = value;
         self
     }
     ///Sets the raw value of [`Self::signal_semaphore_values`]
@@ -8046,17 +7699,18 @@ impl<'lt> TimelineSemaphoreSubmitInfo<'lt> {
 /// - [`semaphores`] is a pointer to an array of [`semaphore_count`] semaphore handles to wait on.
 /// - [`values`] is a pointer to an array of [`semaphore_count`] timeline semaphore values.
 ///# Description
-///Valid Usage
-/// - All of the elements of [`semaphores`]**must** reference a semaphore that was created with a
+///## Valid Usage
+/// - All of the elements of [`semaphores`] **must**  reference a semaphore that was created with a
 ///   [`SemaphoreType`] of `VK_SEMAPHORE_TYPE_TIMELINE`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be a valid combination of [`SemaphoreWaitFlagBits`] values
-/// - [`semaphores`]**must** be a valid pointer to an array of [`semaphore_count`] valid
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be a valid combination of [`SemaphoreWaitFlagBits`] values
+/// - [`semaphores`] **must**  be a valid pointer to an array of [`semaphore_count`] valid
 ///   [`Semaphore`] handles
-/// - [`values`]**must** be a valid pointer to an array of [`semaphore_count`]`uint64_t` values
-/// - [`semaphore_count`]**must** be greater than `0`
+/// - [`values`] **must**  be a valid pointer to an array of [`semaphore_count`]`uint64_t` values
+/// - [`semaphore_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_KHR_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
@@ -8113,10 +7767,6 @@ impl<'lt> SemaphoreWaitInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::semaphore_count`]
-    pub fn semaphore_count_raw(&self) -> u32 {
-        self.semaphore_count
-    }
     ///Gets the raw value of [`Self::semaphores`]
     pub fn semaphores_raw(&self) -> *const Semaphore {
         self.semaphores
@@ -8128,11 +7778,6 @@ impl<'lt> SemaphoreWaitInfo<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::semaphore_count`]
-    pub fn set_semaphore_count_raw(&mut self, value: u32) -> &mut Self {
-        self.semaphore_count = value;
         self
     }
     ///Sets the raw value of [`Self::semaphores`]
@@ -8250,16 +7895,19 @@ impl<'lt> SemaphoreWaitInfo<'lt> {
 /// - [`semaphore`] is the handle of the semaphore to signal.
 /// - [`value`] is the value to signal.
 ///# Description
-///Valid Usage
-/// - [`semaphore`]**must** have been created with a [`SemaphoreType`] of
+///## Valid Usage
+/// - [`semaphore`] **must**  have been created with a [`SemaphoreType`] of
 ///   `VK_SEMAPHORE_TYPE_TIMELINE`
-/// - [`value`]**must** have a value greater than the current value of the semaphore
-/// - [`value`]**must** be less than the value of any pending semaphore signal operations
-/// -  [`value`]**must** have a value which does not differ from the current value of the semaphore or the value of any outstanding semaphore wait or signal operation on [`semaphore`] by more than [`maxTimelineSemaphoreValueDifference`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxTimelineSemaphoreValueDifference)
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SEMAPHORE_SIGNAL_INFO`
-/// - [`p_next`]**must** be `NULL`
-/// - [`semaphore`]**must** be a valid [`Semaphore`] handle
+/// - [`value`] **must**  have a value greater than the current value of the semaphore
+/// - [`value`] **must**  be less than the value of any pending semaphore signal operations
+/// - [`value`] **must**  have a value which does not differ from the current value of the semaphore
+///   or the value of any outstanding semaphore wait or signal operation on [`semaphore`] by more than
+///   [`maxTimelineSemaphoreValueDifference`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxTimelineSemaphoreValueDifference)
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SEMAPHORE_SIGNAL_INFO`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
 ///# Related
 /// - [`VK_KHR_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
@@ -8306,18 +7954,9 @@ impl<'lt> SemaphoreSignalInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::value`]
-    pub fn value_raw(&self) -> u64 {
-        self.value
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::value`]
-    pub fn set_value_raw(&mut self, value: u64) -> &mut Self {
-        self.value = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -8398,25 +8037,26 @@ impl<'lt> SemaphoreSignalInfo<'lt> {
 ///
 /// - [`storage_buffer_8_bit_access`] indicates whether objects in the     `StorageBuffer`,
 ///   `ShaderRecordBufferKHR`,     or `PhysicalStorageBuffer`     storage class with the `Block`
-///   decoration **can** have 8-bit integer     members.     If this feature is not enabled, 8-bit
-///   integer members **must** not be used     in such objects.     This also indicates whether
-///   shader modules **can** declare the     `StorageBuffer8BitAccess` capability.
+///   decoration  **can**  have 8-bit integer     members.     If this feature is not enabled, 8-bit
+///   integer members  **must**  not be used     in such objects.     This also indicates whether
+///   shader modules  **can**  declare the     `StorageBuffer8BitAccess` capability.
 /// - [`uniform_and_storage_buffer_8_bit_access`] indicates whether objects in the `Uniform` storage
-///   class with the `Block` decoration **can** have 8-bit integer members. If this feature is not
-///   enabled, 8-bit integer members **must** not be used in such objects. This also indicates
-///   whether shader modules **can** declare the `UniformAndStorageBuffer8BitAccess` capability.
+///   class with the `Block` decoration  **can**  have 8-bit integer members. If this feature is not
+///   enabled, 8-bit integer members  **must**  not be used in such objects. This also indicates
+///   whether shader modules  **can**  declare the `UniformAndStorageBuffer8BitAccess` capability.
 /// - [`storage_push_constant_8`] indicates whether objects in the `PushConstant` storage class
-///   **can** have 8-bit integer members. If this feature is not enabled, 8-bit integer members
-///   **must** not be used in such objects. This also indicates whether shader modules **can**
+///   **can**  have 8-bit integer members. If this feature is not enabled, 8-bit integer members
+///   **must**  not be used in such objects. This also indicates whether shader modules  **can**
 ///   declare the `StoragePushConstant8` capability.
 ///If the [`PhysicalDevice8BitStorageFeatures`] structure is included in the [`p_next`] chain of
 /// the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDevice8BitStorageFeatures`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES`
+///[`PhysicalDevice8BitStorageFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES`
 ///# Related
 /// - [`VK_KHR_8bit_storage`]
 /// - [`crate::vulkan1_2`]
@@ -8444,26 +8084,26 @@ pub struct PhysicalDevice8BitStorageFeatures<'lt> {
     ///    `StorageBuffer`,
     ///`ShaderRecordBufferKHR`,
     ///    or `PhysicalStorageBuffer`
-    ///    storage class with the `Block` decoration **can** have 8-bit integer
+    ///    storage class with the `Block` decoration  **can**  have 8-bit integer
     ///    members.
-    ///    If this feature is not enabled, 8-bit integer members **must** not be used
+    ///    If this feature is not enabled, 8-bit integer members  **must**  not be used
     ///    in such objects.
-    ///    This also indicates whether shader modules **can** declare the
+    ///    This also indicates whether shader modules  **can**  declare the
     ///    `StorageBuffer8BitAccess` capability.
     storage_buffer_8_bit_access: Bool32,
     ///[`uniform_and_storage_buffer_8_bit_access`] indicates whether objects in the
-    ///`Uniform` storage class with the `Block` decoration **can** have
+    ///`Uniform` storage class with the `Block` decoration  **can**  have
     ///8-bit integer members.
-    ///If this feature is not enabled, 8-bit integer members **must** not be used
+    ///If this feature is not enabled, 8-bit integer members  **must**  not be used
     ///in such objects.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`UniformAndStorageBuffer8BitAccess` capability.
     uniform_and_storage_buffer_8_bit_access: Bool32,
     ///[`storage_push_constant_8`] indicates whether objects in the
-    ///`PushConstant` storage class **can** have 8-bit integer members.
-    ///If this feature is not enabled, 8-bit integer members **must** not be used
+    ///`PushConstant` storage class  **can**  have 8-bit integer members.
+    ///If this feature is not enabled, 8-bit integer members  **must**  not be used
     ///in such objects.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`StoragePushConstant8` capability.
     storage_push_constant_8: Bool32,
 }
@@ -8654,9 +8294,9 @@ impl<'lt> PhysicalDevice8BitStorageFeatures<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
-/// - [`vulkan_memory_model`] indicates whether the Vulkan Memory Model is supported, as defined in [Vulkan Memory Model](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-model). This also indicates whether shader modules **can** declare the `VulkanMemoryModel` capability.
+/// - [`vulkan_memory_model`] indicates whether the Vulkan Memory Model is supported, as defined in [Vulkan Memory Model](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-model). This also indicates whether shader modules  **can**  declare the `VulkanMemoryModel` capability.
 /// - [`vulkan_memory_model_device_scope`] indicates whether the Vulkan Memory Model can use
-///   [`Device`] scope synchronization. This also indicates whether shader modules **can** declare
+///   [`Device`] scope synchronization. This also indicates whether shader modules  **can**  declare
 ///   the `VulkanMemoryModelDeviceScope` capability.
 /// - [`vulkan_memory_model_availability_visibility_chains`] indicates whether the Vulkan Memory Model can use [availability and visibility chains](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-model-availability-visibility) with more than one element.
 ///If the [`PhysicalDeviceVulkanMemoryModelFeaturesKHR`] structure is included in the [`p_next`]
@@ -8664,9 +8304,10 @@ impl<'lt> PhysicalDevice8BitStorageFeatures<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceVulkanMemoryModelFeaturesKHR`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES`
+///[`PhysicalDeviceVulkanMemoryModelFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES`
 ///# Related
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
@@ -8692,12 +8333,12 @@ pub struct PhysicalDeviceVulkanMemoryModelFeatures<'lt> {
     ///[`vulkan_memory_model`]
     ///indicates whether the Vulkan Memory Model is supported, as defined in
     ///[Vulkan Memory Model](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-model).
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`VulkanMemoryModel` capability.
     vulkan_memory_model: Bool32,
     ///[`vulkan_memory_model_device_scope`] indicates whether the Vulkan Memory
     ///Model can use [`Device`] scope synchronization.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`VulkanMemoryModelDeviceScope` capability.
     vulkan_memory_model_device_scope: Bool32,
     ///[`vulkan_memory_model_availability_visibility_chains`] indicates whether
@@ -8891,18 +8532,19 @@ impl<'lt> PhysicalDeviceVulkanMemoryModelFeatures<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
-/// - [`shader_buffer_int_64_atomics`] indicates whether shaders **can** perform 64-bit unsigned and
-///   signed integer atomic operations on buffers.
-/// - [`shader_shared_int_64_atomics`] indicates whether shaders **can** perform 64-bit unsigned and
-///   signed integer atomic operations on shared memory.
+/// - [`shader_buffer_int_64_atomics`] indicates whether shaders  **can**  perform 64-bit unsigned
+///   and signed integer atomic operations on buffers.
+/// - [`shader_shared_int_64_atomics`] indicates whether shaders  **can**  perform 64-bit unsigned
+///   and signed integer atomic operations on shared memory.
 ///If the [`PhysicalDeviceShaderAtomicInt64Features`] structure is included in the [`p_next`] chain
 /// of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceShaderAtomicInt64Features`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES`
+///[`PhysicalDeviceShaderAtomicInt64Features`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES`
 ///# Related
 /// - [`VK_KHR_shader_atomic_int64`]
 /// - [`crate::vulkan1_2`]
@@ -8926,10 +8568,10 @@ pub struct PhysicalDeviceShaderAtomicInt64Features<'lt> {
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
-    ///[`shader_buffer_int_64_atomics`] indicates whether shaders **can** perform
+    ///[`shader_buffer_int_64_atomics`] indicates whether shaders  **can**  perform
     ///64-bit unsigned and signed integer atomic operations on buffers.
     shader_buffer_int_64_atomics: Bool32,
-    ///[`shader_shared_int_64_atomics`] indicates whether shaders **can** perform
+    ///[`shader_shared_int_64_atomics`] indicates whether shaders  **can**  perform
     ///64-bit unsigned and signed integer atomic operations on shared memory.
     shader_shared_int_64_atomics: Bool32,
 }
@@ -9085,25 +8727,26 @@ impl<'lt> PhysicalDeviceShaderAtomicInt64Features<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///# Description
 /// - [`supported_depth_resolve_modes`] is a bitmask of [`ResolveModeFlagBits`] indicating the set
-///   of supported depth resolve modes. `VK_RESOLVE_MODE_SAMPLE_ZERO_BIT`**must** be included in the
-///   set but implementations **may** support additional modes.
+///   of supported depth resolve modes. `VK_RESOLVE_MODE_SAMPLE_ZERO_BIT` **must**  be included in
+///   the set but implementations  **may**  support additional modes.
 /// - [`supported_stencil_resolve_modes`] is a bitmask of [`ResolveModeFlagBits`] indicating the set
-///   of supported stencil resolve modes. `VK_RESOLVE_MODE_SAMPLE_ZERO_BIT`**must** be included in
-///   the set but implementations **may** support additional modes.
-///   `VK_RESOLVE_MODE_AVERAGE_BIT`**must** not be included in the set.
+///   of supported stencil resolve modes. `VK_RESOLVE_MODE_SAMPLE_ZERO_BIT` **must**  be included in
+///   the set but implementations  **may**  support additional modes. `VK_RESOLVE_MODE_AVERAGE_BIT`
+///   **must**  not be included in the set.
 /// - [`independent_resolve_none`] is [`TRUE`] if the implementation supports setting the depth and
 ///   stencil resolve modes to different values when one of those modes is `VK_RESOLVE_MODE_NONE`.
 ///   Otherwise the implementation only supports setting both modes to the same value.
 /// - [`independent_resolve`] is [`TRUE`] if the implementation supports all combinations of the
 ///   supported depth and stencil resolve modes, including setting either depth or stencil resolve
-///   mode to `VK_RESOLVE_MODE_NONE`. An implementation that supports
-///   [`independent_resolve`]**must** also support [`independent_resolve_none`].
+///   mode to `VK_RESOLVE_MODE_NONE`. An implementation that supports [`independent_resolve`]
+///   **must**  also support [`independent_resolve_none`].
 ///If the [`PhysicalDeviceDepthStencilResolveProperties`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES`
 ///# Related
 /// - [`VK_KHR_depth_stencil_resolve`]
 /// - [`crate::vulkan1_2`]
@@ -9323,55 +8966,56 @@ impl<'lt> PhysicalDeviceDepthStencilResolveProperties<'lt> {
 ///# Description
 ///If [`depth_stencil_resolve_attachment`] is `NULL`, or if its attachment
 ///index is [`ATTACHMENT_UNUSED`], it indicates that no depth/stencil
-///resolve attachment will be used in the subpass.Valid Usage
+///resolve attachment will be used in the subpass.
+///## Valid Usage
 /// - If [`depth_stencil_resolve_attachment`] is not `NULL` and does not have the value
-///   [`ATTACHMENT_UNUSED`], `pDepthStencilAttachment`**must** not be `NULL` or have the value
+///   [`ATTACHMENT_UNUSED`], `pDepthStencilAttachment` **must**  not be `NULL` or have the value
 ///   [`ATTACHMENT_UNUSED`]
 /// - If [`depth_stencil_resolve_attachment`] is not `NULL` and does not have the value
-///   [`ATTACHMENT_UNUSED`], [`depth_resolve_mode`] and [`stencil_resolve_mode`]**must** not both be
-///   `VK_RESOLVE_MODE_NONE`
+///   [`ATTACHMENT_UNUSED`], [`depth_resolve_mode`] and [`stencil_resolve_mode`] **must**  not both
+///   be `VK_RESOLVE_MODE_NONE`
 /// - If [`depth_stencil_resolve_attachment`] is not `NULL` and does not have the value
-///   [`ATTACHMENT_UNUSED`], `pDepthStencilAttachment`**must** not have a sample count of
+///   [`ATTACHMENT_UNUSED`], `pDepthStencilAttachment` **must**  not have a sample count of
 ///   `VK_SAMPLE_COUNT_1_BIT`
 /// - If [`depth_stencil_resolve_attachment`] is not `NULL` and does not have the value
-///   [`ATTACHMENT_UNUSED`], [`depth_stencil_resolve_attachment`]**must** have a sample count of
+///   [`ATTACHMENT_UNUSED`], [`depth_stencil_resolve_attachment`] **must**  have a sample count of
 ///   `VK_SAMPLE_COUNT_1_BIT`
-/// -    If [`depth_stencil_resolve_attachment`] is not `NULL` and does not have the value [`ATTACHMENT_UNUSED`] then it **must** have an image format whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
+/// -    If [`depth_stencil_resolve_attachment`] is not `NULL` and does not have the value [`ATTACHMENT_UNUSED`] then it  **must**  have an image format whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
 /// - If [`depth_stencil_resolve_attachment`] is not `NULL` and does not have the value
 ///   [`ATTACHMENT_UNUSED`] and [`Format`] of [`depth_stencil_resolve_attachment`] has a depth
-///   component, then the [`Format`] of `pDepthStencilAttachment`**must** have a depth component
+///   component, then the [`Format`] of `pDepthStencilAttachment` **must**  have a depth component
 ///   with the same number of bits and numerical type
 /// - If [`depth_stencil_resolve_attachment`] is not `NULL` and does not have the value
 ///   [`ATTACHMENT_UNUSED`], and [`Format`] of [`depth_stencil_resolve_attachment`] has a stencil
-///   component, then the [`Format`] of `pDepthStencilAttachment`**must** have a stencil component
+///   component, then the [`Format`] of `pDepthStencilAttachment` **must**  have a stencil component
 ///   with the same number of bits and numerical type
 /// - If [`depth_stencil_resolve_attachment`] is not `NULL` and does not have the value
 ///   [`ATTACHMENT_UNUSED`] and the [`Format`] of [`depth_stencil_resolve_attachment`] has a depth
-///   component, then the value of [`depth_resolve_mode`]**must** be one of the bits set in
+///   component, then the value of [`depth_resolve_mode`] **must**  be one of the bits set in
 ///   [`PhysicalDeviceDepthStencilResolveProperties::supported_depth_resolve_modes`] or
 ///   `VK_RESOLVE_MODE_NONE`
 /// - If [`depth_stencil_resolve_attachment`] is not `NULL` and does not have the value
 ///   [`ATTACHMENT_UNUSED`] and the [`Format`] of [`depth_stencil_resolve_attachment`] has a stencil
-///   component, then the value of [`stencil_resolve_mode`]**must** be one of the bits set in
+///   component, then the value of [`stencil_resolve_mode`] **must**  be one of the bits set in
 ///   [`PhysicalDeviceDepthStencilResolveProperties::supported_stencil_resolve_modes`] or
 ///   `VK_RESOLVE_MODE_NONE`
 /// - If [`depth_stencil_resolve_attachment`] is not `NULL` and does not have the value
 ///   [`ATTACHMENT_UNUSED`], the [`Format`] of [`depth_stencil_resolve_attachment`] has both depth
 ///   and stencil components, [`PhysicalDeviceDepthStencilResolveProperties::independent_resolve`]
 ///   is [`FALSE`], and [`PhysicalDeviceDepthStencilResolveProperties::independent_resolve_none`] is
-///   [`FALSE`], then the values of [`depth_resolve_mode`] and [`stencil_resolve_mode`]**must** be
+///   [`FALSE`], then the values of [`depth_resolve_mode`] and [`stencil_resolve_mode`] **must**  be
 ///   identical
 /// - If [`depth_stencil_resolve_attachment`] is not `NULL` and does not have the value
 ///   [`ATTACHMENT_UNUSED`], the [`Format`] of [`depth_stencil_resolve_attachment`] has both depth
 ///   and stencil components, [`PhysicalDeviceDepthStencilResolveProperties::independent_resolve`]
 ///   is [`FALSE`] and [`PhysicalDeviceDepthStencilResolveProperties::independent_resolve_none`] is
-///   [`TRUE`], then the values of [`depth_resolve_mode`] and [`stencil_resolve_mode`]**must** be
-///   identical or one of them **must** be `VK_RESOLVE_MODE_NONE`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE`
-/// - If [`depth_stencil_resolve_attachment`] is not `NULL`,
-///   [`depth_stencil_resolve_attachment`]**must** be a valid pointer to a valid
-///   [`AttachmentReference2`] structure
+///   [`TRUE`], then the values of [`depth_resolve_mode`] and [`stencil_resolve_mode`] **must**  be
+///   identical or one of them  **must**  be `VK_RESOLVE_MODE_NONE`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE`
+/// - If [`depth_stencil_resolve_attachment`] is not `NULL`, [`depth_stencil_resolve_attachment`]
+///   **must**  be a valid pointer to a valid [`AttachmentReference2`] structure
 ///# Related
 /// - [`VK_KHR_depth_stencil_resolve`]
 /// - [`crate::vulkan1_2`]
@@ -9534,13 +9178,13 @@ impl<'lt> SubpassDescriptionDepthStencilResolve<'lt> {
 /// stencil aspect
 ///of a depth/stencil format image.
 ///When this structure is included in the [`p_next`] chain of
-///[`ImageCreateInfo`], the stencil aspect of the image **must** only be used
+///[`ImageCreateInfo`], the stencil aspect of the image  **must**  only be used
 ///as specified by [`stencil_usage`].
 ///When this structure is not included in the [`p_next`] chain of
-///[`ImageCreateInfo`], the stencil aspect of an image **must** only be used
+///[`ImageCreateInfo`], the stencil aspect of an image  **must**  only be used
 ///as specified by [`ImageCreateInfo::usage`].
-///Use of other aspects of an image are unaffected by this structure.This structure **can** also be
-/// included in the [`p_next`] chain of
+///Use of other aspects of an image are unaffected by this structure.This structure  **can**  also
+/// be included in the [`p_next`] chain of
 ///[`PhysicalDeviceImageFormatInfo2`] to query additional capabilities
 ///specific to image creation parameter combinations including a separate set
 ///of usage flags for the stencil aspect of the image using
@@ -9548,14 +9192,16 @@ impl<'lt> SubpassDescriptionDepthStencilResolve<'lt> {
 ///When this structure is not included in the [`p_next`] chain of
 ///[`PhysicalDeviceImageFormatInfo2`] then the implicit value of
 ///[`stencil_usage`] matches that of
-///[`PhysicalDeviceImageFormatInfo2::usage`].Valid Usage
-/// - If [`stencil_usage`] includes `VK_IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT`, it **must** not
+///[`PhysicalDeviceImageFormatInfo2::usage`].
+///## Valid Usage
+/// - If [`stencil_usage`] includes `VK_IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT`, it  **must**  not
 ///   include bits other than `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT` or
 ///   `VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO`
-/// - [`stencil_usage`]**must** be a valid combination of [`ImageUsageFlagBits`] values
-/// - [`stencil_usage`]**must** not be `0`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO`
+/// - [`stencil_usage`] **must**  be a valid combination of [`ImageUsageFlagBits`] values
+/// - [`stencil_usage`] **must**  not be `0`
 ///# Related
 /// - [`VK_EXT_separate_stencil_usage`]
 /// - [`crate::vulkan1_2`]
@@ -9670,9 +9316,10 @@ impl<'lt> ImageStencilUsageCreateInfo<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceScalarBlockLayoutFeatures`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES`
+///[`PhysicalDeviceScalarBlockLayoutFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES`
 ///# Related
 /// - [`VK_EXT_scalar_block_layout`]
 /// - [`crate::vulkan1_2`]
@@ -9822,10 +9469,11 @@ impl<'lt> PhysicalDeviceScalarBlockLayoutFeatures<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceUniformBufferStandardLayoutFeatures`]**can** also be used in the [`p_next`]
+///[`PhysicalDeviceUniformBufferStandardLayoutFeatures`] **can**  also be used in the [`p_next`]
 /// chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES`
 ///# Related
 /// - [`VK_KHR_uniform_buffer_standard_layout`]
@@ -9978,17 +9626,18 @@ impl<'lt> PhysicalDeviceUniformBufferStandardLayoutFeatures<'lt> {
 /// - [`buffer_device_address_multi_device`] indicates that the implementation supports the
 ///   [`buffer_device_address`] , `rayTracingPipeline` and `rayQuery` features for logical devices
 ///   created with multiple physical devices. If this feature is not supported, buffer and
-///   acceleration structure addresses **must** not be queried on a logical device created with more
-///   than one physical device.
+///   acceleration structure addresses  **must**  not be queried on a logical device created with
+///   more than one physical device.
 ///See [`GetBufferDeviceAddress`] for more information.If the
 /// [`PhysicalDeviceBufferDeviceAddressFeatures`] structure is included in the [`p_next`] chain of
 /// the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceBufferDeviceAddressFeatures`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES`
+///[`PhysicalDeviceBufferDeviceAddressFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES`
 ///# Related
 /// - [`VK_KHR_buffer_device_address`]
 /// - [`crate::vulkan1_2`]
@@ -10026,7 +9675,7 @@ pub struct PhysicalDeviceBufferDeviceAddressFeatures<'lt> {
     ///for logical devices created with multiple physical devices.
     ///If this feature is not supported, buffer
     ///and acceleration structure
-    ///addresses **must** not be queried on a logical device created with more
+    ///addresses  **must**  not be queried on a logical device created with more
     ///than one physical device.
     buffer_device_address_multi_device: Bool32,
 }
@@ -10219,15 +9868,16 @@ impl<'lt> PhysicalDeviceBufferDeviceAddressFeatures<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`buffer`] specifies the buffer whose address is being queried.
 ///# Description
-///Valid Usage
+///## Valid Usage
 /// - If [`buffer`] is non-sparse and was not created with the
-///   `VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT` flag, then it **must** be bound
+///   `VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT` flag, then it  **must**  be bound
 ///   completely and contiguously to a single [`DeviceMemory`] object
-/// - [`buffer`]**must** have been created with `VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO`
-/// - [`p_next`]**must** be `NULL`
-/// - [`buffer`]**must** be a valid [`Buffer`] handle
+/// - [`buffer`] **must**  have been created with `VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`buffer`] **must**  be a valid [`Buffer`] handle
 ///# Related
 /// - [`crate::vulkan1_2`]
 /// - [`Buffer`]
@@ -10342,14 +9992,15 @@ impl<'lt> BufferDeviceAddressInfo<'lt> {
 /// - [`opaque_capture_address`] is the opaque capture address requested for the buffer.
 ///# Description
 ///If [`opaque_capture_address`] is zero, no specific address is requested.If
-/// [`opaque_capture_address`] is not zero, then it **should** be an address
+/// [`opaque_capture_address`] is not zero, then it  **should**  be an address
 ///retrieved from [`GetBufferOpaqueCaptureAddress`] for an identically
 ///created buffer on the same implementation.If this structure is not present, it is as if
 /// [`opaque_capture_address`] is
-///zero.Apps **should** avoid creating buffers with app-provided addresses and
+///zero.Apps  **should**  avoid creating buffers with app-provided addresses and
 ///implementation-provided addresses in the same process, to reduce the
-///likelihood of `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS` errors.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO`
+///likelihood of `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS` errors.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO`
 ///# Related
 /// - [`VK_KHR_buffer_device_address`]
 /// - [`crate::vulkan1_2`]
@@ -10391,18 +10042,9 @@ impl<'lt> BufferOpaqueCaptureAddressCreateInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::opaque_capture_address`]
-    pub fn opaque_capture_address_raw(&self) -> u64 {
-        self.opaque_capture_address
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::opaque_capture_address`]
-    pub fn set_opaque_capture_address_raw(&mut self, value: u64) -> &mut Self {
-        self.opaque_capture_address = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -10475,9 +10117,10 @@ impl<'lt> BufferOpaqueCaptureAddressCreateInfo<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceImagelessFramebufferFeatures`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES`
+///[`PhysicalDeviceImagelessFramebufferFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES`
 ///# Related
 /// - [`VK_KHR_imageless_framebuffer`]
 /// - [`crate::vulkan1_2`]
@@ -10620,9 +10263,9 @@ impl<'lt> PhysicalDeviceImagelessFramebufferFeatures<'lt> {
 ///   structures, each structure describing a number of parameters of the corresponding attachment
 ///   in a render pass instance.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENTS_CREATE_INFO`
-/// - If [`attachment_image_info_count`] is not `0`, [`attachment_image_infos`]**must** be a valid
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENTS_CREATE_INFO`
+/// - If [`attachment_image_info_count`] is not `0`, [`attachment_image_infos`] **must**  be a valid
 ///   pointer to an array of [`attachment_image_info_count`] valid
 ///   [`FramebufferAttachmentImageInfo`] structures
 ///# Related
@@ -10672,10 +10315,6 @@ impl<'lt> FramebufferAttachmentsCreateInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::attachment_image_info_count`]
-    pub fn attachment_image_info_count_raw(&self) -> u32 {
-        self.attachment_image_info_count
-    }
     ///Gets the raw value of [`Self::attachment_image_infos`]
     pub fn attachment_image_infos_raw(&self) -> *const FramebufferAttachmentImageInfo<'lt> {
         self.attachment_image_infos
@@ -10683,11 +10322,6 @@ impl<'lt> FramebufferAttachmentsCreateInfo<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::attachment_image_info_count`]
-    pub fn set_attachment_image_info_count_raw(&mut self, value: u32) -> &mut Self {
-        self.attachment_image_info_count = value;
         self
     }
     ///Sets the raw value of [`Self::attachment_image_infos`]
@@ -10789,19 +10423,20 @@ impl<'lt> FramebufferAttachmentsCreateInfo<'lt> {
 ///   value of [`ImageFormatListCreateInfo`]::[`view_format_count`] used to create an image used
 ///   with this framebuffer.
 /// - [`view_formats`] is a pointer to an array of [`Format`] values specifying all of the formats
-///   which **can** be used when creating views of the image, matching the value of
+///   which  **can**  be used when creating views of the image, matching the value of
 ///   [`ImageFormatListCreateInfo`]::[`view_formats`] used to create an image used with this
 ///   framebuffer.
 ///# Description
-///Images that **can** be used with the framebuffer when beginning a render pass,
-///as specified by [`RenderPassAttachmentBeginInfo`], **must** be created with
-///parameters that are identical to those specified here.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be a valid combination of [`ImageCreateFlagBits`] values
-/// - [`usage`]**must** be a valid combination of [`ImageUsageFlagBits`] values
-/// - [`usage`]**must** not be `0`
-/// - If [`view_format_count`] is not `0`, [`view_formats`]**must** be a valid pointer to an array
+///Images that  **can**  be used with the framebuffer when beginning a render pass,
+///as specified by [`RenderPassAttachmentBeginInfo`],  **must**  be created with
+///parameters that are identical to those specified here.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be a valid combination of [`ImageCreateFlagBits`] values
+/// - [`usage`] **must**  be a valid combination of [`ImageUsageFlagBits`] values
+/// - [`usage`] **must**  not be `0`
+/// - If [`view_format_count`] is not `0`, [`view_formats`] **must**  be a valid pointer to an array
 ///   of [`view_format_count`] valid [`Format`] values
 ///# Related
 /// - [`VK_KHR_imageless_framebuffer`]
@@ -10850,7 +10485,7 @@ pub struct FramebufferAttachmentImageInfo<'lt> {
     ///an image used with this framebuffer.
     view_format_count: u32,
     ///[`view_formats`] is a pointer to an array of [`Format`] values
-    ///specifying all of the formats which **can** be used when creating views of
+    ///specifying all of the formats which  **can**  be used when creating views of
     ///the image, matching the value of
     ///[`ImageFormatListCreateInfo`]::[`view_formats`] used to create an
     ///image used with this framebuffer.
@@ -10877,22 +10512,6 @@ impl<'lt> FramebufferAttachmentImageInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::width`]
-    pub fn width_raw(&self) -> u32 {
-        self.width
-    }
-    ///Gets the raw value of [`Self::height`]
-    pub fn height_raw(&self) -> u32 {
-        self.height
-    }
-    ///Gets the raw value of [`Self::layer_count`]
-    pub fn layer_count_raw(&self) -> u32 {
-        self.layer_count
-    }
-    ///Gets the raw value of [`Self::view_format_count`]
-    pub fn view_format_count_raw(&self) -> u32 {
-        self.view_format_count
-    }
     ///Gets the raw value of [`Self::view_formats`]
     pub fn view_formats_raw(&self) -> *const Format {
         self.view_formats
@@ -10900,26 +10519,6 @@ impl<'lt> FramebufferAttachmentImageInfo<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::width`]
-    pub fn set_width_raw(&mut self, value: u32) -> &mut Self {
-        self.width = value;
-        self
-    }
-    ///Sets the raw value of [`Self::height`]
-    pub fn set_height_raw(&mut self, value: u32) -> &mut Self {
-        self.height = value;
-        self
-    }
-    ///Sets the raw value of [`Self::layer_count`]
-    pub fn set_layer_count_raw(&mut self, value: u32) -> &mut Self {
-        self.layer_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::view_format_count`]
-    pub fn set_view_format_count_raw(&mut self, value: u32) -> &mut Self {
-        self.view_format_count = value;
         self
     }
     ///Sets the raw value of [`Self::view_formats`]
@@ -11070,15 +10669,16 @@ impl<'lt> FramebufferAttachmentImageInfo<'lt> {
 /// - [`attachments`] is a pointer to an array of [`ImageView`] handles, each of which will be used
 ///   as the corresponding attachment in the render pass instance.
 ///# Description
-///Valid Usage
-/// - Each element of [`attachments`]**must** only specify a single mip level
-/// - Each element of [`attachments`]**must** have been created with the identity swizzle
-/// - Each element of [`attachments`]**must** have been created with
+///## Valid Usage
+/// - Each element of [`attachments`] **must**  only specify a single mip level
+/// - Each element of [`attachments`] **must**  have been created with the identity swizzle
+/// - Each element of [`attachments`] **must**  have been created with
 ///   [`ImageViewCreateInfo::view_type`] not equal to `VK_IMAGE_VIEW_TYPE_3D`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RENDER_PASS_ATTACHMENT_BEGIN_INFO`
-/// - If [`attachment_count`] is not `0`, [`attachments`]**must** be a valid pointer to an array of
-///   [`attachment_count`] valid [`ImageView`] handles
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDER_PASS_ATTACHMENT_BEGIN_INFO`
+/// - If [`attachment_count`] is not `0`, [`attachments`] **must**  be a valid pointer to an array
+///   of [`attachment_count`] valid [`ImageView`] handles
 ///# Related
 /// - [`VK_KHR_imageless_framebuffer`]
 /// - [`crate::vulkan1_2`]
@@ -11125,10 +10725,6 @@ impl<'lt> RenderPassAttachmentBeginInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::attachment_count`]
-    pub fn attachment_count_raw(&self) -> u32 {
-        self.attachment_count
-    }
     ///Gets the raw value of [`Self::attachments`]
     pub fn attachments_raw(&self) -> *const ImageView {
         self.attachments
@@ -11136,11 +10732,6 @@ impl<'lt> RenderPassAttachmentBeginInfo<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::attachment_count`]
-    pub fn set_attachment_count_raw(&mut self, value: u32) -> &mut Self {
-        self.attachment_count = value;
         self
     }
     ///Sets the raw value of [`Self::attachments`]
@@ -11236,10 +10827,11 @@ impl<'lt> RenderPassAttachmentBeginInfo<'lt> {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceSeparateDepthStencilLayoutsFeatures`]**can** also be used in the [`p_next`]
+///[`PhysicalDeviceSeparateDepthStencilLayoutsFeatures`] **can**  also be used in the [`p_next`]
 /// chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES`
 ///# Related
 /// - [`VK_KHR_separate_depth_stencil_layouts`]
@@ -11385,8 +10977,8 @@ impl<'lt> PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'lt> {
 /// - [`stencil_layout`] is a [`ImageLayout`] value specifying the layout the stencil aspect of the
 ///   attachment uses during the subpass.
 ///# Description
-///Valid Usage
-/// - [`stencil_layout`]**must** not be `VK_IMAGE_LAYOUT_UNDEFINED`,
+///## Valid Usage
+/// - [`stencil_layout`] **must**  not be `VK_IMAGE_LAYOUT_UNDEFINED`,
 ///   `VK_IMAGE_LAYOUT_PREINITIALIZED`, `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`, `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL`,
@@ -11394,9 +10986,10 @@ impl<'lt> PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'lt> {
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL`, or
 ///   `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ATTACHMENT_REFERENCE_STENCIL_LAYOUT`
-/// - [`stencil_layout`]**must** be a valid [`ImageLayout`] value
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ATTACHMENT_REFERENCE_STENCIL_LAYOUT`
+/// - [`stencil_layout`] **must**  be a valid [`ImageLayout`] value
 ///# Related
 /// - [`VK_KHR_separate_depth_stencil_layouts`]
 /// - [`crate::vulkan1_2`]
@@ -11515,25 +11108,26 @@ impl<'lt> AttachmentReferenceStencilLayout<'lt> {
 /// - [`stencil_final_layout`] is the layout the stencil aspect of the attachment image subresource
 ///   will be transitioned to when a render pass instance ends.
 ///# Description
-///Valid Usage
-/// - [`stencil_initial_layout`]**must** not be `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL`,
+///## Valid Usage
+/// - [`stencil_initial_layout`] **must**  not be `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`, `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`, or
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL`
-/// - [`stencil_final_layout`]**must** not be `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL`,
+/// - [`stencil_final_layout`] **must**  not be `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`, `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`, or
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL`
-/// - [`stencil_final_layout`]**must** not be `VK_IMAGE_LAYOUT_UNDEFINED` or
+/// - [`stencil_final_layout`] **must**  not be `VK_IMAGE_LAYOUT_UNDEFINED` or
 ///   `VK_IMAGE_LAYOUT_PREINITIALIZED`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT`
-/// - [`stencil_initial_layout`]**must** be a valid [`ImageLayout`] value
-/// - [`stencil_final_layout`]**must** be a valid [`ImageLayout`] value
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT`
+/// - [`stencil_initial_layout`] **must**  be a valid [`ImageLayout`] value
+/// - [`stencil_final_layout`] **must**  be a valid [`ImageLayout`] value
 ///# Related
 /// - [`VK_KHR_separate_depth_stencil_layouts`]
 /// - [`crate::vulkan1_2`]
@@ -11671,12 +11265,13 @@ impl<'lt> AttachmentDescriptionStencilLayout<'lt> {
 /// - [`opaque_capture_address`] is the opaque capture address requested for the memory allocation.
 ///# Description
 ///If [`opaque_capture_address`] is zero, no specific address is requested.If
-/// [`opaque_capture_address`] is not zero, it **should** be an address
+/// [`opaque_capture_address`] is not zero, it  **should**  be an address
 ///retrieved from [`GetDeviceMemoryOpaqueCaptureAddress`] on an identically
 ///created memory allocation on the same implementation.If this structure is not present, it is as
 /// if [`opaque_capture_address`] is
-///zero.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO`
+///zero.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO`
 ///# Related
 /// - [`VK_KHR_buffer_device_address`]
 /// - [`crate::vulkan1_2`]
@@ -11718,18 +11313,9 @@ impl<'lt> MemoryOpaqueCaptureAddressAllocateInfo<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::opaque_capture_address`]
-    pub fn opaque_capture_address_raw(&self) -> u64 {
-        self.opaque_capture_address
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::opaque_capture_address`]
-    pub fn set_opaque_capture_address_raw(&mut self, value: u64) -> &mut Self {
-        self.opaque_capture_address = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -11792,12 +11378,13 @@ impl<'lt> MemoryOpaqueCaptureAddressAllocateInfo<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory`] specifies the memory whose address is being queried.
 ///# Description
-///Valid Usage
-/// - [`memory`]**must** have been allocated with `VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO`
-/// - [`p_next`]**must** be `NULL`
-/// - [`memory`]**must** be a valid [`DeviceMemory`] handle
+///## Valid Usage
+/// - [`memory`] **must**  have been allocated with `VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
 ///# Related
 /// - [`VK_KHR_buffer_device_address`]
 /// - [`crate::vulkan1_2`]
@@ -11915,57 +11502,59 @@ impl<'lt> DeviceMemoryOpaqueCaptureAddressInfo<'lt> {
 ///
 /// - [`storage_buffer_16_bit_access`] specifies whether objects in the     `StorageBuffer`,
 ///   `ShaderRecordBufferKHR`,     or `PhysicalStorageBuffer`     storage class with the `Block`
-///   decoration **can** have 16-bit integer     and 16-bit floating-point members.     If this
-///   feature is not enabled, 16-bit integer or 16-bit floating-point     members **must** not be
-///   used in such objects.     This also specifies whether shader modules **can** declare the
+///   decoration  **can**  have 16-bit integer     and 16-bit floating-point members.     If this
+///   feature is not enabled, 16-bit integer or 16-bit floating-point     members  **must**  not be
+///   used in such objects.     This also specifies whether shader modules  **can**  declare the
 ///   `StorageBuffer16BitAccess` capability.
 /// - [`uniform_and_storage_buffer_16_bit_access`] specifies whether objects in the `Uniform`
-///   storage class with the `Block` decoration **can** have 16-bit integer and 16-bit
+///   storage class with the `Block` decoration  **can**  have 16-bit integer and 16-bit
 ///   floating-point members. If this feature is not enabled, 16-bit integer or 16-bit
-///   floating-point members **must** not be used in such objects. This also specifies whether
-///   shader modules **can** declare the `UniformAndStorageBuffer16BitAccess` capability.
+///   floating-point members  **must**  not be used in such objects. This also specifies whether
+///   shader modules  **can**  declare the `UniformAndStorageBuffer16BitAccess` capability.
 /// - [`storage_push_constant_16`] specifies whether objects in the `PushConstant` storage class
-///   **can** have 16-bit integer and 16-bit floating-point members. If this feature is not enabled,
-///   16-bit integer or floating-point members **must** not be used in such objects. This also
-///   specifies whether shader modules **can** declare the `StoragePushConstant16` capability.
-/// - [`storage_input_output_16`] specifies whether objects in the `Input` and `Output` storage
-///   classes **can** have 16-bit integer and 16-bit floating-point members. If this feature is not
-///   enabled, 16-bit integer or 16-bit floating-point members **must** not be used in such objects.
-///   This also specifies whether shader modules **can** declare the `StorageInputOutput16`
+///   **can**  have 16-bit integer and 16-bit floating-point members. If this feature is not
+///   enabled, 16-bit integer or floating-point members  **must**  not be used in such objects. This
+///   also specifies whether shader modules  **can**  declare the `StoragePushConstant16`
 ///   capability.
+/// - [`storage_input_output_16`] specifies whether objects in the `Input` and `Output` storage
+///   classes  **can**  have 16-bit integer and 16-bit floating-point members. If this feature is
+///   not enabled, 16-bit integer or 16-bit floating-point members  **must**  not be used in such
+///   objects. This also specifies whether shader modules  **can**  declare the
+///   `StorageInputOutput16` capability.
 /// - [`multiview`] specifies whether the implementation supports multiview rendering within a
-///   render pass. If this feature is not enabled, the view mask of each subpass **must** always be
-///   zero.
+///   render pass. If this feature is not enabled, the view mask of each subpass  **must**  always
+///   be zero.
 /// - [`multiview_geometry_shader`] specifies whether the implementation supports multiview
 ///   rendering within a render pass, with [geometry shaders](). If this feature is not enabled,
-///   then a pipeline compiled against a subpass with a non-zero view mask **must** not include a
+///   then a pipeline compiled against a subpass with a non-zero view mask  **must**  not include a
 ///   geometry shader.
 /// - [`multiview_tessellation_shader`] specifies whether the implementation supports multiview
 ///   rendering within a render pass, with [tessellation shaders](). If this feature is not enabled,
-///   then a pipeline compiled against a subpass with a non-zero view mask **must** not include any
-///   tessellation shaders.
+///   then a pipeline compiled against a subpass with a non-zero view mask  **must**  not include
+///   any tessellation shaders.
 /// - [`variable_pointers_storage_buffer`] specifies whether the implementation supports the SPIR-V
 ///   `VariablePointersStorageBuffer` capability. When this feature is not enabled, shader modules
-///   **must** not declare the `SPV_KHR_variable_pointers` extension or the
+///   **must**  not declare the `SPV_KHR_variable_pointers` extension or the
 ///   `VariablePointersStorageBuffer` capability.
 /// - [`variable_pointers`] specifies whether the implementation supports the SPIR-V
-///   `VariablePointers` capability. When this feature is not enabled, shader modules **must** not
+///   `VariablePointers` capability. When this feature is not enabled, shader modules  **must**  not
 ///   declare the `VariablePointers` capability.
 /// - [`protected_memory`] specifies whether protected memory is supported.
 /// - [`sampler_ycbcr_conversion`] specifies whether the implementation supports [sampler
 ///   Y′C<sub>B</sub>C<sub>R</sub> conversion](). If [`sampler_ycbcr_conversion`] is [`FALSE`],
 ///   sampler Y′C<sub>B</sub>C<sub>R</sub> conversion is not supported, and samplers using sampler
-///   Y′C<sub>B</sub>C<sub>R</sub> conversion **must** not be used.
+///   Y′C<sub>B</sub>C<sub>R</sub> conversion  **must**  not be used.
 /// - [`shader_draw_parameters`] specifies whether the implementation supports the SPIR-V
-///   `DrawParameters` capability. When this feature is not enabled, shader modules **must** not
+///   `DrawParameters` capability. When this feature is not enabled, shader modules  **must**  not
 ///   declare the `SPV_KHR_shader_draw_parameters` extension or the `DrawParameters` capability.
 ///If the [`PhysicalDeviceVulkan11Features`] structure is included in the [`p_next`] chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceVulkan11Features`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_FEATURES`
+///[`PhysicalDeviceVulkan11Features`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_FEATURES`
 ///# Related
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
@@ -11992,65 +11581,65 @@ pub struct PhysicalDeviceVulkan11Features<'lt> {
     ///    `StorageBuffer`,
     ///`ShaderRecordBufferKHR`,
     ///    or `PhysicalStorageBuffer`
-    ///    storage class with the `Block` decoration **can** have 16-bit integer
+    ///    storage class with the `Block` decoration  **can**  have 16-bit integer
     ///    and 16-bit floating-point members.
     ///    If this feature is not enabled, 16-bit integer or 16-bit floating-point
-    ///    members **must** not be used in such objects.
-    ///    This also specifies whether shader modules **can** declare the
+    ///    members  **must**  not be used in such objects.
+    ///    This also specifies whether shader modules  **can**  declare the
     ///    `StorageBuffer16BitAccess` capability.
     storage_buffer_16_bit_access: Bool32,
     ///[`uniform_and_storage_buffer_16_bit_access`] specifies whether objects in
-    ///the `Uniform` storage class with the `Block` decoration **can** have
+    ///the `Uniform` storage class with the `Block` decoration  **can**  have
     ///16-bit integer and 16-bit floating-point members.
     ///If this feature is not enabled, 16-bit integer or 16-bit floating-point
-    ///members **must** not be used in such objects.
-    ///This also specifies whether shader modules **can** declare the
+    ///members  **must**  not be used in such objects.
+    ///This also specifies whether shader modules  **can**  declare the
     ///`UniformAndStorageBuffer16BitAccess` capability.
     uniform_and_storage_buffer_16_bit_access: Bool32,
     ///[`storage_push_constant_16`] specifies whether objects in the
-    ///`PushConstant` storage class **can** have 16-bit integer and 16-bit
+    ///`PushConstant` storage class  **can**  have 16-bit integer and 16-bit
     ///floating-point members.
     ///If this feature is not enabled, 16-bit integer or floating-point members
-    ///**must** not be used in such objects.
-    ///This also specifies whether shader modules **can** declare the
+    /// **must**  not be used in such objects.
+    ///This also specifies whether shader modules  **can**  declare the
     ///`StoragePushConstant16` capability.
     storage_push_constant_16: Bool32,
     ///[`storage_input_output_16`] specifies whether objects in the `Input`
-    ///and `Output` storage classes **can** have 16-bit integer and 16-bit
+    ///and `Output` storage classes  **can**  have 16-bit integer and 16-bit
     ///floating-point members.
     ///If this feature is not enabled, 16-bit integer or 16-bit floating-point
-    ///members **must** not be used in such objects.
-    ///This also specifies whether shader modules **can** declare the
+    ///members  **must**  not be used in such objects.
+    ///This also specifies whether shader modules  **can**  declare the
     ///`StorageInputOutput16` capability.
     storage_input_output_16: Bool32,
     ///[`multiview`] specifies whether
     ///the implementation supports multiview rendering within a render pass.
-    ///If this feature is not enabled, the view mask of each subpass **must**
+    ///If this feature is not enabled, the view mask of each subpass  **must**
     ///always be zero.
     multiview: Bool32,
     ///[`multiview_geometry_shader`]
     ///specifies whether the implementation supports multiview rendering within
     ///a render pass, with [geometry shaders]().
     ///If this feature is not enabled, then a pipeline compiled against a
-    ///subpass with a non-zero view mask **must** not include a geometry shader.
+    ///subpass with a non-zero view mask  **must**  not include a geometry shader.
     multiview_geometry_shader: Bool32,
     ///[`multiview_tessellation_shader`] specifies whether the implementation
     ///supports multiview rendering within a render pass, with
     ///[tessellation shaders]().
     ///If this feature is not enabled, then a pipeline compiled against a
-    ///subpass with a non-zero view mask **must** not include any tessellation
+    ///subpass with a non-zero view mask  **must**  not include any tessellation
     ///shaders.
     multiview_tessellation_shader: Bool32,
     ///[`variable_pointers_storage_buffer`] specifies whether the implementation
     ///supports the SPIR-V `VariablePointersStorageBuffer` capability.
-    ///When this feature is not enabled, shader modules **must** not declare the
+    ///When this feature is not enabled, shader modules  **must**  not declare the
     ///`SPV_KHR_variable_pointers` extension or the
     ///`VariablePointersStorageBuffer` capability.
     variable_pointers_storage_buffer: Bool32,
     ///[`variable_pointers`]
     ///specifies whether the implementation supports the SPIR-V
     ///`VariablePointers` capability.
-    ///When this feature is not enabled, shader modules **must** not declare the
+    ///When this feature is not enabled, shader modules  **must**  not declare the
     ///`VariablePointers` capability.
     variable_pointers: Bool32,
     ///[`protected_memory`]
@@ -12060,11 +11649,11 @@ pub struct PhysicalDeviceVulkan11Features<'lt> {
     ///supports [sampler Y′C<sub>B</sub>C<sub>R</sub> conversion]().
     ///If [`sampler_ycbcr_conversion`] is [`FALSE`], sampler Y′C<sub>B</sub>C<sub>R</sub>
     ///conversion is not supported, and samplers using sampler Y′C<sub>B</sub>C<sub>R</sub>
-    ///conversion **must** not be used.
+    ///conversion  **must**  not be used.
     sampler_ycbcr_conversion: Bool32,
     ///[`shader_draw_parameters`] specifies whether the implementation supports
     ///the SPIR-V `DrawParameters` capability.
-    ///When this feature is not enabled, shader modules **must** not declare the
+    ///When this feature is not enabled, shader modules  **must**  not declare the
     ///`SPV_KHR_shader_draw_parameters` extension or the `DrawParameters`
     ///capability.
     shader_draw_parameters: Bool32,
@@ -12613,7 +12202,7 @@ impl<'lt> PhysicalDeviceVulkan11Features<'lt> {
 ///   are available in all stages, or are restricted to fragment and compute stages.
 /// - [`point_clipping_behavior`] is a [`PointClippingBehavior`] value specifying the point clipping
 ///   behavior supported by the implementation.
-/// - [`max_multiview_view_count`] is one greater than the maximum view index that **can** be used
+/// - [`max_multiview_view_count`] is one greater than the maximum view index that  **can**  be used
 ///   in a subpass.
 /// - [`max_multiview_instance_index`] is the maximum valid value of instance index allowed to be
 ///   generated by a drawing command recorded within a subpass of a multiview render pass instance.
@@ -12621,14 +12210,14 @@ impl<'lt> PhysicalDeviceVulkan11Features<'lt> {
 ///   write to unprotected memory in a protected queue operation, read from protected memory in an
 ///   unprotected queue operation, or perform a query in a protected queue operation. If this limit
 ///   is [`TRUE`], such writes will be discarded or have undefined values written, reads and queries
-///   will return undefined values. If this limit is [`FALSE`], applications **must** not perform
+///   will return undefined values. If this limit is [`FALSE`], applications  **must**  not perform
 ///   these operations. See [[memory-protected-access-rules]]() for more information.
 /// - [`max_per_set_descriptors`] is a maximum number of descriptors (summed over all descriptor
 ///   types) in a single descriptor set that is guaranteed to satisfy any implementation-dependent
-///   constraints on the size of a descriptor set itself. Applications **can** query whether a
+///   constraints on the size of a descriptor set itself. Applications  **can**  query whether a
 ///   descriptor set that goes beyond this limit is supported using
 ///   [`GetDescriptorSetLayoutSupport`].
-/// - [`max_memory_allocation_size`] is the maximum size of a memory allocation that **can** be
+/// - [`max_memory_allocation_size`] is the maximum size of a memory allocation that  **can**  be
 ///   created, even if there is more space available in the heap.
 ///If the [`PhysicalDeviceVulkan11Properties`] structure is included in the [`p_next`] chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
@@ -12640,8 +12229,9 @@ impl<'lt> PhysicalDeviceVulkan11Features<'lt> {
 ///[`PhysicalDevicePointClippingProperties`],
 ///[`PhysicalDeviceMultiviewProperties`],
 ///[`PhysicalDeviceProtectedMemoryProperties`], and
-///[`PhysicalDeviceMaintenance3Properties`].Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_PROPERTIES`
+///[`PhysicalDeviceMaintenance3Properties`].
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_PROPERTIES`
 ///# Related
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
@@ -12728,73 +12318,21 @@ impl<'lt> PhysicalDeviceVulkan11Properties<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::device_uuid`]
-    pub fn device_uuid_raw(&self) -> [u8; UUID_SIZE] {
-        self.device_uuid
-    }
-    ///Gets the raw value of [`Self::driver_uuid`]
-    pub fn driver_uuid_raw(&self) -> [u8; UUID_SIZE] {
-        self.driver_uuid
-    }
-    ///Gets the raw value of [`Self::device_luid`]
-    pub fn device_luid_raw(&self) -> [u8; LUID_SIZE] {
-        self.device_luid
-    }
-    ///Gets the raw value of [`Self::device_node_mask`]
-    pub fn device_node_mask_raw(&self) -> u32 {
-        self.device_node_mask
-    }
     ///Gets the raw value of [`Self::device_luid_valid`]
     pub fn device_luid_valid_raw(&self) -> Bool32 {
         self.device_luid_valid
-    }
-    ///Gets the raw value of [`Self::subgroup_size`]
-    pub fn subgroup_size_raw(&self) -> u32 {
-        self.subgroup_size
     }
     ///Gets the raw value of [`Self::subgroup_quad_operations_in_all_stages`]
     pub fn subgroup_quad_operations_in_all_stages_raw(&self) -> Bool32 {
         self.subgroup_quad_operations_in_all_stages
     }
-    ///Gets the raw value of [`Self::max_multiview_view_count`]
-    pub fn max_multiview_view_count_raw(&self) -> u32 {
-        self.max_multiview_view_count
-    }
-    ///Gets the raw value of [`Self::max_multiview_instance_index`]
-    pub fn max_multiview_instance_index_raw(&self) -> u32 {
-        self.max_multiview_instance_index
-    }
     ///Gets the raw value of [`Self::protected_no_fault`]
     pub fn protected_no_fault_raw(&self) -> Bool32 {
         self.protected_no_fault
     }
-    ///Gets the raw value of [`Self::max_per_set_descriptors`]
-    pub fn max_per_set_descriptors_raw(&self) -> u32 {
-        self.max_per_set_descriptors
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::device_uuid`]
-    pub fn set_device_uuid_raw(&mut self, value: [u8; UUID_SIZE]) -> &mut Self {
-        self.device_uuid = value;
-        self
-    }
-    ///Sets the raw value of [`Self::driver_uuid`]
-    pub fn set_driver_uuid_raw(&mut self, value: [u8; UUID_SIZE]) -> &mut Self {
-        self.driver_uuid = value;
-        self
-    }
-    ///Sets the raw value of [`Self::device_luid`]
-    pub fn set_device_luid_raw(&mut self, value: [u8; LUID_SIZE]) -> &mut Self {
-        self.device_luid = value;
-        self
-    }
-    ///Sets the raw value of [`Self::device_node_mask`]
-    pub fn set_device_node_mask_raw(&mut self, value: u32) -> &mut Self {
-        self.device_node_mask = value;
         self
     }
     ///Sets the raw value of [`Self::device_luid_valid`]
@@ -12802,34 +12340,14 @@ impl<'lt> PhysicalDeviceVulkan11Properties<'lt> {
         self.device_luid_valid = value;
         self
     }
-    ///Sets the raw value of [`Self::subgroup_size`]
-    pub fn set_subgroup_size_raw(&mut self, value: u32) -> &mut Self {
-        self.subgroup_size = value;
-        self
-    }
     ///Sets the raw value of [`Self::subgroup_quad_operations_in_all_stages`]
     pub fn set_subgroup_quad_operations_in_all_stages_raw(&mut self, value: Bool32) -> &mut Self {
         self.subgroup_quad_operations_in_all_stages = value;
         self
     }
-    ///Sets the raw value of [`Self::max_multiview_view_count`]
-    pub fn set_max_multiview_view_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_multiview_view_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_multiview_instance_index`]
-    pub fn set_max_multiview_instance_index_raw(&mut self, value: u32) -> &mut Self {
-        self.max_multiview_instance_index = value;
-        self
-    }
     ///Sets the raw value of [`Self::protected_no_fault`]
     pub fn set_protected_no_fault_raw(&mut self, value: Bool32) -> &mut Self {
         self.protected_no_fault = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_per_set_descriptors`]
-    pub fn set_max_per_set_descriptors_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_set_descriptors = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -13167,141 +12685,143 @@ impl<'lt> PhysicalDeviceVulkan11Properties<'lt> {
 ///
 /// - [`sampler_mirror_clamp_to_edge`] indicates whether the implementation supports the
 ///   `VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE` sampler address mode. If this feature is not
-///   enabled, the `VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE` sampler address mode **must** not
-///   be used.
+///   enabled, the `VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE` sampler address mode  **must**
+///   not be used.
 /// - [`draw_indirect_count`] indicates whether the implementation supports the
 ///   [`CmdDrawIndirectCount`] and [`CmdDrawIndexedIndirectCount`] functions. If this feature is not
-///   enabled, these functions **must** not be used.
+///   enabled, these functions  **must**  not be used.
 /// - [`storage_buffer_8_bit_access`] indicates whether objects in the     `StorageBuffer`,
 ///   `ShaderRecordBufferKHR`,     or `PhysicalStorageBuffer`     storage class with the `Block`
-///   decoration **can** have 8-bit integer     members.     If this feature is not enabled, 8-bit
-///   integer members **must** not be used     in such objects.     This also indicates whether
-///   shader modules **can** declare the     `StorageBuffer8BitAccess` capability.
+///   decoration  **can**  have 8-bit integer     members.     If this feature is not enabled, 8-bit
+///   integer members  **must**  not be used     in such objects.     This also indicates whether
+///   shader modules  **can**  declare the     `StorageBuffer8BitAccess` capability.
 /// - [`uniform_and_storage_buffer_8_bit_access`] indicates whether objects in the `Uniform` storage
-///   class with the `Block` decoration **can** have 8-bit integer members. If this feature is not
-///   enabled, 8-bit integer members **must** not be used in such objects. This also indicates
-///   whether shader modules **can** declare the `UniformAndStorageBuffer8BitAccess` capability.
+///   class with the `Block` decoration  **can**  have 8-bit integer members. If this feature is not
+///   enabled, 8-bit integer members  **must**  not be used in such objects. This also indicates
+///   whether shader modules  **can**  declare the `UniformAndStorageBuffer8BitAccess` capability.
 /// - [`storage_push_constant_8`] indicates whether objects in the `PushConstant` storage class
-///   **can** have 8-bit integer members. If this feature is not enabled, 8-bit integer members
-///   **must** not be used in such objects. This also indicates whether shader modules **can**
+///   **can**  have 8-bit integer members. If this feature is not enabled, 8-bit integer members
+///   **must**  not be used in such objects. This also indicates whether shader modules  **can**
 ///   declare the `StoragePushConstant8` capability.
-/// - [`shader_buffer_int_64_atomics`] indicates whether shaders **can** perform 64-bit unsigned and
-///   signed integer atomic operations on buffers.
-/// - [`shader_shared_int_64_atomics`] indicates whether shaders **can** perform 64-bit unsigned and
-///   signed integer atomic operations on shared memory.
+/// - [`shader_buffer_int_64_atomics`] indicates whether shaders  **can**  perform 64-bit unsigned
+///   and signed integer atomic operations on buffers.
+/// - [`shader_shared_int_64_atomics`] indicates whether shaders  **can**  perform 64-bit unsigned
+///   and signed integer atomic operations on shared memory.
 /// - [`shader_float_16`] indicates whether 16-bit floats (halfs) are supported in shader code. This
-///   also indicates whether shader modules **can** declare the `Float16` capability. However, this
-///   only enables a subset of the storage classes that SPIR-V allows for the `Float16` SPIR-V
+///   also indicates whether shader modules  **can**  declare the `Float16` capability. However,
+///   this only enables a subset of the storage classes that SPIR-V allows for the `Float16` SPIR-V
 ///   capability: Declaring and using 16-bit floats in the `Private`, `Workgroup` (for non-Block
 ///   variables), and `Function` storage classes is enabled, while declaring them in the interface
 ///   storage classes (e.g., `UniformConstant`, `Uniform`, `StorageBuffer`, `Input`, `Output`, and
 ///   `PushConstant`) is not enabled.
 /// - [`shader_int_8`] indicates whether 8-bit integers (signed and unsigned) are supported in
-///   shader code. This also indicates whether shader modules **can** declare the `Int8` capability.
-///   However, this only enables a subset of the storage classes that SPIR-V allows for the `Int8`
-///   SPIR-V capability: Declaring and using 8-bit integers in the `Private`, `Workgroup` (for
-///   non-Block variables), and `Function` storage classes is enabled, while declaring them in the
-///   interface storage classes (e.g., `UniformConstant`, `Uniform`, `StorageBuffer`, `Input`,
+///   shader code. This also indicates whether shader modules  **can**  declare the `Int8`
+///   capability. However, this only enables a subset of the storage classes that SPIR-V allows for
+///   the `Int8` SPIR-V capability: Declaring and using 8-bit integers in the `Private`, `Workgroup`
+///   (for non-Block variables), and `Function` storage classes is enabled, while declaring them in
+///   the interface storage classes (e.g., `UniformConstant`, `Uniform`, `StorageBuffer`, `Input`,
 ///   `Output`, and `PushConstant`) is not enabled.
-/// - [`descriptor_indexing`] indicates whether the implementation supports the minimum set of descriptor indexing features as described in the [Feature Requirements](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-requirements) section. Enabling the [`descriptor_indexing`] member when [`CreateDevice`] is called does not imply the other minimum descriptor indexing features are also enabled. Those other descriptor indexing features **must** be enabled individually as needed by the application.
+/// - [`descriptor_indexing`] indicates whether the implementation supports the minimum set of descriptor indexing features as described in the [Feature Requirements](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-requirements) section. Enabling the [`descriptor_indexing`] member when [`CreateDevice`] is called does not imply the other minimum descriptor indexing features are also enabled. Those other descriptor indexing features  **must**  be enabled individually as needed by the application.
 /// - [`shader_input_attachment_array_dynamic_indexing`] indicates whether arrays of input
-///   attachments **can** be indexed by dynamically uniform integer expressions in shader code. If
+///   attachments  **can**  be indexed by dynamically uniform integer expressions in shader code. If
 ///   this feature is not enabled, resources with a descriptor type of
-///   `VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT`**must** be indexed only by constant integral expressions
-///   when aggregated into arrays in shader code. This also indicates whether shader modules **can**
-///   declare the `InputAttachmentArrayDynamicIndexing` capability.
+///   `VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT` **must**  be indexed only by constant integral
+///   expressions when aggregated into arrays in shader code. This also indicates whether shader
+///   modules  **can**  declare the `InputAttachmentArrayDynamicIndexing` capability.
 /// - [`shader_uniform_texel_buffer_array_dynamic_indexing`] indicates whether arrays of uniform
-///   texel buffers **can** be indexed by dynamically uniform integer expressions in shader code. If
-///   this feature is not enabled, resources with a descriptor type of
-///   `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`**must** be indexed only by constant integral
+///   texel buffers  **can**  be indexed by dynamically uniform integer expressions in shader code.
+///   If this feature is not enabled, resources with a descriptor type of
+///   `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER` **must**  be indexed only by constant integral
 ///   expressions when aggregated into arrays in shader code. This also indicates whether shader
-///   modules **can** declare the `UniformTexelBufferArrayDynamicIndexing` capability.
+///   modules  **can**  declare the `UniformTexelBufferArrayDynamicIndexing` capability.
 /// - [`shader_storage_texel_buffer_array_dynamic_indexing`] indicates whether arrays of storage
-///   texel buffers **can** be indexed by dynamically uniform integer expressions in shader code. If
-///   this feature is not enabled, resources with a descriptor type of
-///   `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`**must** be indexed only by constant integral
+///   texel buffers  **can**  be indexed by dynamically uniform integer expressions in shader code.
+///   If this feature is not enabled, resources with a descriptor type of
+///   `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER` **must**  be indexed only by constant integral
 ///   expressions when aggregated into arrays in shader code. This also indicates whether shader
-///   modules **can** declare the `StorageTexelBufferArrayDynamicIndexing` capability.
+///   modules  **can**  declare the `StorageTexelBufferArrayDynamicIndexing` capability.
 /// - [`shader_uniform_buffer_array_non_uniform_indexing`] indicates whether arrays of uniform
-///   buffers **can** be indexed by non-uniform integer expressions in shader code. If this feature
-///   is not enabled, resources with a descriptor type of `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER` or
-///   `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`**must** not be indexed by non-uniform integer
-///   expressions when aggregated into arrays in shader code. This also indicates whether shader
-///   modules **can** declare the `UniformBufferArrayNonUniformIndexing` capability.
+///   buffers  **can**  be indexed by non-uniform integer expressions in shader code. If this
+///   feature is not enabled, resources with a descriptor type of
+///   `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER` or `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC` **must**
+///   not be indexed by non-uniform integer expressions when aggregated into arrays in shader code.
+///   This also indicates whether shader modules  **can**  declare the
+///   `UniformBufferArrayNonUniformIndexing` capability.
 /// - [`shader_sampled_image_array_non_uniform_indexing`] indicates whether arrays of samplers or
-///   sampled images **can** be indexed by non-uniform integer expressions in shader code. If this
+///   sampled images  **can**  be indexed by non-uniform integer expressions in shader code. If this
 ///   feature is not enabled, resources with a descriptor type of `VK_DESCRIPTOR_TYPE_SAMPLER`,
-///   `VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, or `VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE`**must** not
-///   be indexed by non-uniform integer expressions when aggregated into arrays in shader code. This
-///   also indicates whether shader modules **can** declare the
+///   `VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, or `VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE` **must**
+///   not be indexed by non-uniform integer expressions when aggregated into arrays in shader code.
+///   This also indicates whether shader modules  **can**  declare the
 ///   `SampledImageArrayNonUniformIndexing` capability.
 /// - [`shader_storage_buffer_array_non_uniform_indexing`] indicates whether arrays of storage
-///   buffers **can** be indexed by non-uniform integer expressions in shader code. If this feature
-///   is not enabled, resources with a descriptor type of `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER` or
-///   `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`**must** not be indexed by non-uniform integer
-///   expressions when aggregated into arrays in shader code. This also indicates whether shader
-///   modules **can** declare the `StorageBufferArrayNonUniformIndexing` capability.
+///   buffers  **can**  be indexed by non-uniform integer expressions in shader code. If this
+///   feature is not enabled, resources with a descriptor type of
+///   `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER` or `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC` **must**
+///   not be indexed by non-uniform integer expressions when aggregated into arrays in shader code.
+///   This also indicates whether shader modules  **can**  declare the
+///   `StorageBufferArrayNonUniformIndexing` capability.
 /// - [`shader_storage_image_array_non_uniform_indexing`] indicates whether arrays of storage images
-///   **can** be indexed by non-uniform integer expressions in shader code. If this feature is not
-///   enabled, resources with a descriptor type of `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`**must** not be
-///   indexed by non-uniform integer expressions when aggregated into arrays in shader code. This
-///   also indicates whether shader modules **can** declare the
+///   **can**  be indexed by non-uniform integer expressions in shader code. If this feature is not
+///   enabled, resources with a descriptor type of `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE` **must**  not
+///   be indexed by non-uniform integer expressions when aggregated into arrays in shader code. This
+///   also indicates whether shader modules  **can**  declare the
 ///   `StorageImageArrayNonUniformIndexing` capability.
 /// - [`shader_input_attachment_array_non_uniform_indexing`] indicates whether arrays of input
-///   attachments **can** be indexed by non-uniform integer expressions in shader code. If this
+///   attachments  **can**  be indexed by non-uniform integer expressions in shader code. If this
 ///   feature is not enabled, resources with a descriptor type of
-///   `VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT`**must** not be indexed by non-uniform integer
+///   `VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT` **must**  not be indexed by non-uniform integer
 ///   expressions when aggregated into arrays in shader code. This also indicates whether shader
-///   modules **can** declare the `InputAttachmentArrayNonUniformIndexing` capability.
+///   modules  **can**  declare the `InputAttachmentArrayNonUniformIndexing` capability.
 /// - [`shader_uniform_texel_buffer_array_non_uniform_indexing`] indicates whether arrays of uniform
-///   texel buffers **can** be indexed by non-uniform integer expressions in shader code. If this
+///   texel buffers  **can**  be indexed by non-uniform integer expressions in shader code. If this
 ///   feature is not enabled, resources with a descriptor type of
-///   `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`**must** not be indexed by non-uniform integer
+///   `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER` **must**  not be indexed by non-uniform integer
 ///   expressions when aggregated into arrays in shader code. This also indicates whether shader
-///   modules **can** declare the `UniformTexelBufferArrayNonUniformIndexing` capability.
+///   modules  **can**  declare the `UniformTexelBufferArrayNonUniformIndexing` capability.
 /// - [`shader_storage_texel_buffer_array_non_uniform_indexing`] indicates whether arrays of storage
-///   texel buffers **can** be indexed by non-uniform integer expressions in shader code. If this
+///   texel buffers  **can**  be indexed by non-uniform integer expressions in shader code. If this
 ///   feature is not enabled, resources with a descriptor type of
-///   `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`**must** not be indexed by non-uniform integer
+///   `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER` **must**  not be indexed by non-uniform integer
 ///   expressions when aggregated into arrays in shader code. This also indicates whether shader
-///   modules **can** declare the `StorageTexelBufferArrayNonUniformIndexing` capability.
+///   modules  **can**  declare the `StorageTexelBufferArrayNonUniformIndexing` capability.
 /// - [`descriptor_binding_uniform_buffer_update_after_bind`] indicates whether the implementation
 ///   supports updating uniform buffer descriptors after a set is bound. If this feature is not
-///   enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+///   enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
 ///   `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER`.
 /// - [`descriptor_binding_sampled_image_update_after_bind`] indicates whether the implementation
 ///   supports updating sampled image descriptors after a set is bound. If this feature is not
-///   enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+///   enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
 ///   `VK_DESCRIPTOR_TYPE_SAMPLER`, `VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, or
 ///   `VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE`.
 /// - [`descriptor_binding_storage_image_update_after_bind`] indicates whether the implementation
 ///   supports updating storage image descriptors after a set is bound. If this feature is not
-///   enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+///   enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
 ///   `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`.
 /// - [`descriptor_binding_storage_buffer_update_after_bind`] indicates whether the implementation
 ///   supports updating storage buffer descriptors after a set is bound. If this feature is not
-///   enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+///   enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
 ///   `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER`.
 /// - [`descriptor_binding_uniform_texel_buffer_update_after_bind`] indicates whether the
 ///   implementation supports updating uniform texel buffer descriptors after a set is bound. If
-///   this feature is not enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used
-///   with `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`.
+///   this feature is not enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be
+///   used with `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`.
 /// - [`descriptor_binding_storage_texel_buffer_update_after_bind`] indicates whether the
 ///   implementation supports updating storage texel buffer descriptors after a set is bound. If
-///   this feature is not enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used
-///   with `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`.
+///   this feature is not enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be
+///   used with `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`.
 /// - [`descriptor_binding_update_unused_while_pending`] indicates whether the implementation
 ///   supports updating descriptors while the set is in use. If this feature is not enabled,
-///   `VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT`**must** not be used.
+///   `VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT` **must**  not be used.
 /// - [`descriptor_binding_partially_bound`] indicates whether the implementation supports
 ///   statically using a descriptor set binding in which some descriptors are not valid. If this
-///   feature is not enabled, `VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT`**must** not be used.
+///   feature is not enabled, `VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT` **must**  not be used.
 /// - [`descriptor_binding_variable_descriptor_count`] indicates whether the implementation supports
 ///   descriptor sets with a variable-sized last binding. If this feature is not enabled,
-///   `VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT`**must** not be used.
+///   `VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT` **must**  not be used.
 /// - [`runtime_descriptor_array`] indicates whether the implementation supports the SPIR-V
-///   `RuntimeDescriptorArray` capability. If this feature is not enabled, descriptors **must** not
-///   be declared in runtime arrays.
+///   `RuntimeDescriptorArray` capability. If this feature is not enabled, descriptors  **must**
+///   not be declared in runtime arrays.
 /// - [`sampler_filter_minmax`] indicates whether the implementation supports a minimum set of required formats supporting min/max filtering as defined by the [`filterMinmaxSingleComponentFormats`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-filterMinmaxSingleComponentFormats-minimum-requirements) property minimum requirements. If this feature is not enabled, then no [`SamplerCreateInfo`][`p_next`] chain can include a [`SamplerReductionModeCreateInfo`] structure.
 /// - [`scalar_block_layout`] indicates that the implementation supports the layout of resource
 ///   blocks in shaders using [scalar alignment]().
@@ -13329,36 +12849,37 @@ impl<'lt> PhysicalDeviceVulkan11Properties<'lt> {
 /// - [`buffer_device_address_multi_device`] indicates that the implementation supports the
 ///   [`buffer_device_address`] , `rayTracingPipeline` and `rayQuery` features for logical devices
 ///   created with multiple physical devices. If this feature is not supported, buffer and
-///   acceleration structure addresses **must** not be queried on a logical device created with more
-///   than one physical device.
+///   acceleration structure addresses  **must**  not be queried on a logical device created with
+///   more than one physical device.
 /// - [`vulkan_memory_model`] indicates whether the Vulkan Memory Model is supported, as defined in
-///   [Vulkan Memory Model](). This also indicates whether shader modules **can** declare the
+///   [Vulkan Memory Model](). This also indicates whether shader modules  **can**  declare the
 ///   `VulkanMemoryModel` capability.
 /// - [`vulkan_memory_model_device_scope`] indicates whether the Vulkan Memory Model can use
-///   [`Device`] scope synchronization. This also indicates whether shader modules **can** declare
+///   [`Device`] scope synchronization. This also indicates whether shader modules  **can**  declare
 ///   the `VulkanMemoryModelDeviceScope` capability.
 /// - [`vulkan_memory_model_availability_visibility_chains`] indicates whether the Vulkan Memory
 ///   Model can use [availability and visibility chains]() with more than one element.
 /// - [`shader_output_viewport_index`] indicates whether the implementation supports the
 ///   `ShaderViewportIndex` SPIR-V capability enabling variables decorated with the `ViewportIndex`
 ///   built-in to be exported from vertex or tessellation evaluation shaders. If this feature is not
-///   enabled, the `ViewportIndex` built-in decoration **must** not be used on outputs in vertex or
-///   tessellation evaluation shaders.
+///   enabled, the `ViewportIndex` built-in decoration  **must**  not be used on outputs in vertex
+///   or tessellation evaluation shaders.
 /// - [`shader_output_layer`] indicates whether the implementation supports the `ShaderLayer` SPIR-V
 ///   capability enabling variables decorated with the `Layer` built-in to be exported from vertex
 ///   or tessellation evaluation shaders. If this feature is not enabled, the `Layer` built-in
-///   decoration **must** not be used on outputs in vertex or tessellation evaluation shaders.
+///   decoration  **must**  not be used on outputs in vertex or tessellation evaluation shaders.
 /// - If [`subgroup_broadcast_dynamic_id`] is [`TRUE`], the “Id” operand of
-///   `OpGroupNonUniformBroadcast`**can** be dynamically uniform within a subgroup, and the “Index”
-///   operand of `OpGroupNonUniformQuadBroadcast`**can** be dynamically uniform within the
-///   derivative group. If it is [`FALSE`], these operands **must** be constants.
+///   `OpGroupNonUniformBroadcast` **can**  be dynamically uniform within a subgroup, and the
+///   “Index” operand of `OpGroupNonUniformQuadBroadcast` **can**  be dynamically uniform within the
+///   derivative group. If it is [`FALSE`], these operands  **must**  be constants.
 ///If the [`PhysicalDeviceVulkan12Features`] structure is included in the [`p_next`] chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceVulkan12Features`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_FEATURES`
+///[`PhysicalDeviceVulkan12Features`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_FEATURES`
 ///# Related
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
@@ -13386,48 +12907,48 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///`VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE` sampler address mode.
     ///If this feature is not enabled, the
     ///`VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE` sampler address mode
-    ///**must** not be used.
+    /// **must**  not be used.
     sampler_mirror_clamp_to_edge: Bool32,
     ///[`draw_indirect_count`] indicates whether
     ///the implementation supports the [`CmdDrawIndirectCount`] and
     ///[`CmdDrawIndexedIndirectCount`] functions.
-    ///If this feature is not enabled, these functions **must** not be used.
+    ///If this feature is not enabled, these functions  **must**  not be used.
     draw_indirect_count: Bool32,
     ///[`storage_buffer_8_bit_access`] indicates whether objects in the
     ///    `StorageBuffer`,
     ///`ShaderRecordBufferKHR`,
     ///    or `PhysicalStorageBuffer`
-    ///    storage class with the `Block` decoration **can** have 8-bit integer
+    ///    storage class with the `Block` decoration  **can**  have 8-bit integer
     ///    members.
-    ///    If this feature is not enabled, 8-bit integer members **must** not be used
+    ///    If this feature is not enabled, 8-bit integer members  **must**  not be used
     ///    in such objects.
-    ///    This also indicates whether shader modules **can** declare the
+    ///    This also indicates whether shader modules  **can**  declare the
     ///    `StorageBuffer8BitAccess` capability.
     storage_buffer_8_bit_access: Bool32,
     ///[`uniform_and_storage_buffer_8_bit_access`] indicates whether objects in the
-    ///`Uniform` storage class with the `Block` decoration **can** have
+    ///`Uniform` storage class with the `Block` decoration  **can**  have
     ///8-bit integer members.
-    ///If this feature is not enabled, 8-bit integer members **must** not be used
+    ///If this feature is not enabled, 8-bit integer members  **must**  not be used
     ///in such objects.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`UniformAndStorageBuffer8BitAccess` capability.
     uniform_and_storage_buffer_8_bit_access: Bool32,
     ///[`storage_push_constant_8`] indicates whether objects in the
-    ///`PushConstant` storage class **can** have 8-bit integer members.
-    ///If this feature is not enabled, 8-bit integer members **must** not be used
+    ///`PushConstant` storage class  **can**  have 8-bit integer members.
+    ///If this feature is not enabled, 8-bit integer members  **must**  not be used
     ///in such objects.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`StoragePushConstant8` capability.
     storage_push_constant_8: Bool32,
-    ///[`shader_buffer_int_64_atomics`] indicates whether shaders **can** perform
+    ///[`shader_buffer_int_64_atomics`] indicates whether shaders  **can**  perform
     ///64-bit unsigned and signed integer atomic operations on buffers.
     shader_buffer_int_64_atomics: Bool32,
-    ///[`shader_shared_int_64_atomics`] indicates whether shaders **can** perform
+    ///[`shader_shared_int_64_atomics`] indicates whether shaders  **can**  perform
     ///64-bit unsigned and signed integer atomic operations on shared memory.
     shader_shared_int_64_atomics: Bool32,
     ///[`shader_float_16`] indicates
     ///whether 16-bit floats (halfs) are supported in shader code.
-    ///This also indicates whether shader modules **can** declare the `Float16`
+    ///This also indicates whether shader modules  **can**  declare the `Float16`
     ///capability.
     ///However, this only enables a subset of the storage classes that SPIR-V
     ///allows for the `Float16` SPIR-V capability: Declaring and using
@@ -13441,7 +12962,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///[`shader_int_8`] indicates
     ///whether 8-bit integers (signed and unsigned) are supported in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the `Int8`
+    ///This also indicates whether shader modules  **can**  declare the `Int8`
     ///capability.
     ///However, this only enables a subset of the storage classes that SPIR-V
     ///allows for the `Int8` SPIR-V capability: Declaring and using 8-bit
@@ -13459,125 +12980,125 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///Enabling the [`descriptor_indexing`] member when [`CreateDevice`]
     ///is called does not imply the other minimum descriptor indexing features
     ///are also enabled.
-    ///Those other descriptor indexing features **must** be enabled individually
+    ///Those other descriptor indexing features  **must**  be enabled individually
     ///as needed by the application.
     descriptor_indexing: Bool32,
     ///[`shader_input_attachment_array_dynamic_indexing`] indicates whether arrays
-    ///of input attachments **can** be indexed by dynamically uniform integer
+    ///of input attachments  **can**  be indexed by dynamically uniform integer
     ///expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
-    ///`VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT`**must** be indexed only by
+    ///`VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT` **must**  be indexed only by
     ///constant integral expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`InputAttachmentArrayDynamicIndexing` capability.
     shader_input_attachment_array_dynamic_indexing: Bool32,
     ///[`shader_uniform_texel_buffer_array_dynamic_indexing`] indicates whether
-    ///arrays of uniform texel buffers **can** be indexed by dynamically uniform
+    ///arrays of uniform texel buffers  **can**  be indexed by dynamically uniform
     ///integer expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
-    ///`VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`**must** be indexed only by
+    ///`VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER` **must**  be indexed only by
     ///constant integral expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`UniformTexelBufferArrayDynamicIndexing` capability.
     shader_uniform_texel_buffer_array_dynamic_indexing: Bool32,
     ///[`shader_storage_texel_buffer_array_dynamic_indexing`] indicates whether
-    ///arrays of storage texel buffers **can** be indexed by dynamically uniform
+    ///arrays of storage texel buffers  **can**  be indexed by dynamically uniform
     ///integer expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
-    ///`VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`**must** be indexed only by
+    ///`VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER` **must**  be indexed only by
     ///constant integral expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`StorageTexelBufferArrayDynamicIndexing` capability.
     shader_storage_texel_buffer_array_dynamic_indexing: Bool32,
     ///[`shader_uniform_buffer_array_non_uniform_indexing`] indicates whether
-    ///arrays of uniform buffers **can** be indexed by non-uniform integer
+    ///arrays of uniform buffers  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
     ///`VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER` or
-    ///`VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`**must** not be indexed by
+    ///`VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC` **must**  not be indexed by
     ///non-uniform integer expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`UniformBufferArrayNonUniformIndexing` capability.
     shader_uniform_buffer_array_non_uniform_indexing: Bool32,
     ///[`shader_sampled_image_array_non_uniform_indexing`] indicates whether arrays
-    ///of samplers or sampled images **can** be indexed by non-uniform integer
+    ///of samplers or sampled images  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
     ///`VK_DESCRIPTOR_TYPE_SAMPLER`,
     ///`VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, or
-    ///`VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE`**must** not be indexed by
+    ///`VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE` **must**  not be indexed by
     ///non-uniform integer expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`SampledImageArrayNonUniformIndexing` capability.
     shader_sampled_image_array_non_uniform_indexing: Bool32,
     ///[`shader_storage_buffer_array_non_uniform_indexing`] indicates whether
-    ///arrays of storage buffers **can** be indexed by non-uniform integer
+    ///arrays of storage buffers  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
     ///`VK_DESCRIPTOR_TYPE_STORAGE_BUFFER` or
-    ///`VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`**must** not be indexed by
+    ///`VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC` **must**  not be indexed by
     ///non-uniform integer expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`StorageBufferArrayNonUniformIndexing` capability.
     shader_storage_buffer_array_non_uniform_indexing: Bool32,
     ///[`shader_storage_image_array_non_uniform_indexing`] indicates whether arrays
-    ///of storage images **can** be indexed by non-uniform integer expressions in
+    ///of storage images  **can**  be indexed by non-uniform integer expressions in
     ///shader code.
     ///If this feature is not enabled, resources with a descriptor type of
-    ///`VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`**must** not be indexed by
+    ///`VK_DESCRIPTOR_TYPE_STORAGE_IMAGE` **must**  not be indexed by
     ///non-uniform integer expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`StorageImageArrayNonUniformIndexing` capability.
     shader_storage_image_array_non_uniform_indexing: Bool32,
     ///[`shader_input_attachment_array_non_uniform_indexing`] indicates whether
-    ///arrays of input attachments **can** be indexed by non-uniform integer
+    ///arrays of input attachments  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
-    ///`VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT`**must** not be indexed by
+    ///`VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT` **must**  not be indexed by
     ///non-uniform integer expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`InputAttachmentArrayNonUniformIndexing` capability.
     shader_input_attachment_array_non_uniform_indexing: Bool32,
     ///[`shader_uniform_texel_buffer_array_non_uniform_indexing`] indicates whether
-    ///arrays of uniform texel buffers **can** be indexed by non-uniform integer
+    ///arrays of uniform texel buffers  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
-    ///`VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`**must** not be indexed by
+    ///`VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER` **must**  not be indexed by
     ///non-uniform integer expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`UniformTexelBufferArrayNonUniformIndexing` capability.
     shader_uniform_texel_buffer_array_non_uniform_indexing: Bool32,
     ///[`shader_storage_texel_buffer_array_non_uniform_indexing`] indicates whether
-    ///arrays of storage texel buffers **can** be indexed by non-uniform integer
+    ///arrays of storage texel buffers  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
     ///If this feature is not enabled, resources with a descriptor type of
-    ///`VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`**must** not be indexed by
+    ///`VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER` **must**  not be indexed by
     ///non-uniform integer expressions when aggregated into arrays in shader
     ///code.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`StorageTexelBufferArrayNonUniformIndexing` capability.
     shader_storage_texel_buffer_array_non_uniform_indexing: Bool32,
     ///[`descriptor_binding_uniform_buffer_update_after_bind`] indicates whether
     ///the implementation supports updating uniform buffer descriptors after a
     ///set is bound.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER`.
     descriptor_binding_uniform_buffer_update_after_bind: Bool32,
     ///[`descriptor_binding_sampled_image_update_after_bind`] indicates whether the
     ///implementation supports updating sampled image descriptors after a set
     ///is bound.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_SAMPLER`,
     ///`VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, or
     ///`VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE`.
@@ -13586,52 +13107,52 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///implementation supports updating storage image descriptors after a set
     ///is bound.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`.
     descriptor_binding_storage_image_update_after_bind: Bool32,
     ///[`descriptor_binding_storage_buffer_update_after_bind`] indicates whether
     ///the implementation supports updating storage buffer descriptors after a
     ///set is bound.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_STORAGE_BUFFER`.
     descriptor_binding_storage_buffer_update_after_bind: Bool32,
     ///[`descriptor_binding_uniform_texel_buffer_update_after_bind`] indicates
     ///whether the implementation supports updating uniform texel buffer
     ///descriptors after a set is bound.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`.
     descriptor_binding_uniform_texel_buffer_update_after_bind: Bool32,
     ///[`descriptor_binding_storage_texel_buffer_update_after_bind`] indicates
     ///whether the implementation supports updating storage texel buffer
     ///descriptors after a set is bound.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`**must** not be used with
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`.
     descriptor_binding_storage_texel_buffer_update_after_bind: Bool32,
     ///[`descriptor_binding_update_unused_while_pending`] indicates whether the
     ///implementation supports updating descriptors while the set is in use.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT`**must** not be
+    ///`VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT` **must**  not be
     ///used.
     descriptor_binding_update_unused_while_pending: Bool32,
     ///[`descriptor_binding_partially_bound`] indicates whether the
     ///implementation supports statically using a descriptor set binding in
     ///which some descriptors are not valid.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT`**must** not be used.
+    ///`VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT` **must**  not be used.
     descriptor_binding_partially_bound: Bool32,
     ///[`descriptor_binding_variable_descriptor_count`] indicates whether the
     ///implementation supports descriptor sets with a variable-sized last
     ///binding.
     ///If this feature is not enabled,
-    ///`VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT`**must** not be
+    ///`VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT` **must**  not be
     ///used.
     descriptor_binding_variable_descriptor_count: Bool32,
     ///[`runtime_descriptor_array`] indicates whether the implementation
     ///supports the SPIR-V `RuntimeDescriptorArray` capability.
-    ///If this feature is not enabled, descriptors **must** not be declared in
+    ///If this feature is not enabled, descriptors  **must**  not be declared in
     ///runtime arrays.
     runtime_descriptor_array: Bool32,
     ///[`sampler_filter_minmax`] indicates
@@ -13694,18 +13215,18 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///for logical devices created with multiple physical devices.
     ///If this feature is not supported, buffer
     ///and acceleration structure
-    ///addresses **must** not be queried on a logical device created with more
+    ///addresses  **must**  not be queried on a logical device created with more
     ///than one physical device.
     buffer_device_address_multi_device: Bool32,
     ///[`vulkan_memory_model`]
     ///indicates whether the Vulkan Memory Model is supported, as defined in
     ///[Vulkan Memory Model]().
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`VulkanMemoryModel` capability.
     vulkan_memory_model: Bool32,
     ///[`vulkan_memory_model_device_scope`] indicates whether the Vulkan Memory
     ///Model can use [`Device`] scope synchronization.
-    ///This also indicates whether shader modules **can** declare the
+    ///This also indicates whether shader modules  **can**  declare the
     ///`VulkanMemoryModelDeviceScope` capability.
     vulkan_memory_model_device_scope: Bool32,
     ///[`vulkan_memory_model_availability_visibility_chains`] indicates whether
@@ -13718,23 +13239,23 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///with the `ViewportIndex` built-in to be exported from vertex or
     ///tessellation evaluation shaders.
     ///If this feature is not enabled, the `ViewportIndex` built-in
-    ///decoration **must** not be used on outputs in vertex or tessellation
+    ///decoration  **must**  not be used on outputs in vertex or tessellation
     ///evaluation shaders.
     shader_output_viewport_index: Bool32,
     ///[`shader_output_layer`] indicates whether
     ///the implementation supports the `ShaderLayer` SPIR-V capability
     ///enabling variables decorated with the `Layer` built-in to be exported
     ///from vertex or tessellation evaluation shaders.
-    ///If this feature is not enabled, the `Layer` built-in decoration **must**
+    ///If this feature is not enabled, the `Layer` built-in decoration  **must**
     ///not be used on outputs in vertex or tessellation evaluation shaders.
     shader_output_layer: Bool32,
     ///If
     ///[`subgroup_broadcast_dynamic_id`] is [`TRUE`], the “Id” operand of
-    ///`OpGroupNonUniformBroadcast`**can** be dynamically uniform within a
+    ///`OpGroupNonUniformBroadcast` **can**  be dynamically uniform within a
     ///subgroup, and the “Index” operand of
-    ///`OpGroupNonUniformQuadBroadcast`**can** be dynamically uniform within
+    ///`OpGroupNonUniformQuadBroadcast` **can**  be dynamically uniform within
     ///the derivative group.
-    ///If it is [`FALSE`], these operands **must** be constants.
+    ///If it is [`FALSE`], these operands  **must**  be constants.
     subgroup_broadcast_dynamic_id: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceVulkan12Features<'lt> {
@@ -15626,100 +15147,100 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float_16`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
-///   class="mord">∞</span></span></span></span>**can** be preserved in 16-bit floating-point
-///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode **can**
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
+///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_32`] is a boolean value indicating whether sign of
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
+///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
+///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
+///   be used for 32-bit floating-point types.
+/// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
 ///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
 ///   class="strut"></span><span class="mord">±</span><span
-///   class="mord">∞</span></span></span></span>**can** be preserved in 32-bit floating-point
-///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode **can**
-///   be used for 32-bit floating-point types.
-/// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
-///   class="mord">∞</span></span></span></span>**can** be preserved in 64-bit floating-point
-///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode **can**
+///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
+///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 64-bit floating-point types.
-/// - [`shader_denorm_preserve_float_16`] is a boolean value indicating whether denormals **can** be
-///   preserved in 16-bit floating-point computations. It also indicates whether the
-///   `DenormPreserve` execution mode **can** be used for 16-bit floating-point types.
-/// - [`shader_denorm_preserve_float_32`] is a boolean value indicating whether denormals **can** be
-///   preserved in 32-bit floating-point computations. It also indicates whether the
-///   `DenormPreserve` execution mode **can** be used for 32-bit floating-point types.
-/// - [`shader_denorm_preserve_float_64`] is a boolean value indicating whether denormals **can** be
-///   preserved in 64-bit floating-point computations. It also indicates whether the
-///   `DenormPreserve` execution mode **can** be used for 64-bit floating-point types.
+/// - [`shader_denorm_preserve_float_16`] is a boolean value indicating whether denormals  **can**
+///   be preserved in 16-bit floating-point computations. It also indicates whether the
+///   `DenormPreserve` execution mode  **can**  be used for 16-bit floating-point types.
+/// - [`shader_denorm_preserve_float_32`] is a boolean value indicating whether denormals  **can**
+///   be preserved in 32-bit floating-point computations. It also indicates whether the
+///   `DenormPreserve` execution mode  **can**  be used for 32-bit floating-point types.
+/// - [`shader_denorm_preserve_float_64`] is a boolean value indicating whether denormals  **can**
+///   be preserved in 64-bit floating-point computations. It also indicates whether the
+///   `DenormPreserve` execution mode  **can**  be used for 64-bit floating-point types.
 /// - [`shader_denorm_flush_to_zero_float_16`] is a boolean value indicating whether denormals
-///   **can** be flushed to zero in 16-bit floating-point computations. It also indicates whether
-///   the `DenormFlushToZero` execution mode **can** be used for 16-bit floating-point types.
+///   **can**  be flushed to zero in 16-bit floating-point computations. It also indicates whether
+///   the `DenormFlushToZero` execution mode  **can**  be used for 16-bit floating-point types.
 /// - [`shader_denorm_flush_to_zero_float_32`] is a boolean value indicating whether denormals
-///   **can** be flushed to zero in 32-bit floating-point computations. It also indicates whether
-///   the `DenormFlushToZero` execution mode **can** be used for 32-bit floating-point types.
+///   **can**  be flushed to zero in 32-bit floating-point computations. It also indicates whether
+///   the `DenormFlushToZero` execution mode  **can**  be used for 32-bit floating-point types.
 /// - [`shader_denorm_flush_to_zero_float_64`] is a boolean value indicating whether denormals
-///   **can** be flushed to zero in 64-bit floating-point computations. It also indicates whether
-///   the `DenormFlushToZero` execution mode **can** be used for 64-bit floating-point types.
+///   **can**  be flushed to zero in 64-bit floating-point computations. It also indicates whether
+///   the `DenormFlushToZero` execution mode  **can**  be used for 64-bit floating-point types.
 /// - [`shader_rounding_mode_rte_float_16`] is a boolean value indicating whether an implementation
 ///   supports the round-to-nearest-even rounding mode for 16-bit floating-point arithmetic and
 ///   conversion instructions. It also indicates whether the `RoundingModeRTE` execution mode
-///   **can** be used for 16-bit floating-point types.
+///   **can**  be used for 16-bit floating-point types.
 /// - [`shader_rounding_mode_rte_float_32`] is a boolean value indicating whether an implementation
 ///   supports the round-to-nearest-even rounding mode for 32-bit floating-point arithmetic and
 ///   conversion instructions. It also indicates whether the `RoundingModeRTE` execution mode
-///   **can** be used for 32-bit floating-point types.
+///   **can**  be used for 32-bit floating-point types.
 /// - [`shader_rounding_mode_rte_float_64`] is a boolean value indicating whether an implementation
 ///   supports the round-to-nearest-even rounding mode for 64-bit floating-point arithmetic and
 ///   conversion instructions. It also indicates whether the `RoundingModeRTE` execution mode
-///   **can** be used for 64-bit floating-point types.
+///   **can**  be used for 64-bit floating-point types.
 /// - [`shader_rounding_mode_rtz_float_16`] is a boolean value indicating whether an implementation
 ///   supports the round-towards-zero rounding mode for 16-bit floating-point arithmetic and
 ///   conversion instructions. It also indicates whether the `RoundingModeRTZ` execution mode
-///   **can** be used for 16-bit floating-point types.
+///   **can**  be used for 16-bit floating-point types.
 /// - [`shader_rounding_mode_rtz_float_32`] is a boolean value indicating whether an implementation
 ///   supports the round-towards-zero rounding mode for 32-bit floating-point arithmetic and
 ///   conversion instructions. It also indicates whether the `RoundingModeRTZ` execution mode
-///   **can** be used for 32-bit floating-point types.
+///   **can**  be used for 32-bit floating-point types.
 /// - [`shader_rounding_mode_rtz_float_64`] is a boolean value indicating whether an implementation
 ///   supports the round-towards-zero rounding mode for 64-bit floating-point arithmetic and
 ///   conversion instructions. It also indicates whether the `RoundingModeRTZ` execution mode
-///   **can** be used for 64-bit floating-point types.
+///   **can**  be used for 64-bit floating-point types.
 /// - [`max_update_after_bind_descriptors_in_all_pools`] is the maximum number of descriptors
-///   (summed over all descriptor types) that **can** be created across all pools that are created
-///   with the `VK_DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT` bit set. Pool creation **may** fail
-///   when this limit is exceeded, or when the space this limit represents is unable to satisfy a
-///   pool creation due to fragmentation.
+///   (summed over all descriptor types) that  **can**  be created across all pools that are created
+///   with the `VK_DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT` bit set. Pool creation  **may**
+///   fail when this limit is exceeded, or when the space this limit represents is unable to satisfy
+///   a pool creation due to fragmentation.
 /// - [`shader_uniform_buffer_array_non_uniform_indexing_native`] is a boolean value indicating
 ///   whether uniform buffer descriptors natively support nonuniform indexing. If this is [`FALSE`],
 ///   then a single dynamic instance of an instruction that nonuniformly indexes an array of uniform
-///   buffers **may** execute multiple times in order to access all the descriptors.
+///   buffers  **may**  execute multiple times in order to access all the descriptors.
 /// - [`shader_sampled_image_array_non_uniform_indexing_native`] is a boolean value indicating
 ///   whether sampler and image descriptors natively support nonuniform indexing. If this is
 ///   [`FALSE`], then a single dynamic instance of an instruction that nonuniformly indexes an array
-///   of samplers or images **may** execute multiple times in order to access all the descriptors.
+///   of samplers or images  **may**  execute multiple times in order to access all the descriptors.
 /// - [`shader_storage_buffer_array_non_uniform_indexing_native`] is a boolean value indicating
 ///   whether storage buffer descriptors natively support nonuniform indexing. If this is [`FALSE`],
 ///   then a single dynamic instance of an instruction that nonuniformly indexes an array of storage
-///   buffers **may** execute multiple times in order to access all the descriptors.
+///   buffers  **may**  execute multiple times in order to access all the descriptors.
 /// - [`shader_storage_image_array_non_uniform_indexing_native`] is a boolean value indicating
 ///   whether storage image descriptors natively support nonuniform indexing. If this is [`FALSE`],
 ///   then a single dynamic instance of an instruction that nonuniformly indexes an array of storage
-///   images **may** execute multiple times in order to access all the descriptors.
+///   images  **may**  execute multiple times in order to access all the descriptors.
 /// - [`shader_input_attachment_array_non_uniform_indexing_native`] is a boolean value indicating
 ///   whether input attachment descriptors natively support nonuniform indexing. If this is
 ///   [`FALSE`], then a single dynamic instance of an instruction that nonuniformly indexes an array
-///   of input attachments **may** execute multiple times in order to access all the descriptors.
+///   of input attachments  **may**  execute multiple times in order to access all the descriptors.
 /// - [`robust_buffer_access_update_after_bind`] is a boolean value indicating whether
-///   [`robustBufferAccess`]()**can** be enabled in a device simultaneously with
+///   [`robustBufferAccess`]() **can**  be enabled in a device simultaneously with
 ///   `descriptorBindingUniformBufferUpdateAfterBind`,
 ///   `descriptorBindingStorageBufferUpdateAfterBind`,
 ///   `descriptorBindingUniformTexelBufferUpdateAfterBind`, and/or
 ///   `descriptorBindingStorageTexelBufferUpdateAfterBind`. If this is [`FALSE`], then either
-///   `robustBufferAccess`**must** be disabled or all of these update-after-bind features **must**
-///   be disabled.
+///   `robustBufferAccess` **must**  be disabled or all of these update-after-bind features
+///   **must**  be disabled.
 /// - [`quad_divergent_implicit_lod`] is a boolean value indicating whether implicit level of detail
 ///   calculations for image operations have well-defined results when the image and/or sampler
 ///   objects used for the instruction are not uniform within a quad. See [Derivative Image
@@ -15754,9 +15275,9 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 /// - [`max_descriptor_set_update_after_bind_uniform_buffers_dynamic`] is similar to
 ///   `maxDescriptorSetUniformBuffersDynamic` but counts descriptors from descriptor sets created
 ///   with or without the `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set.
-///   While an application **can** allocate dynamic uniform buffer descriptors from a pool created
+///   While an application  **can**  allocate dynamic uniform buffer descriptors from a pool created
 ///   with the `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT`, bindings for these
-///   descriptors **must** not be present in any descriptor set layout that includes bindings
+///   descriptors  **must**  not be present in any descriptor set layout that includes bindings
 ///   created with `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`.
 /// - [`max_descriptor_set_update_after_bind_storage_buffers`] is similar to
 ///   `maxDescriptorSetStorageBuffers` but counts descriptors from descriptor sets created with or
@@ -15764,9 +15285,9 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 /// - [`max_descriptor_set_update_after_bind_storage_buffers_dynamic`] is similar to
 ///   `maxDescriptorSetStorageBuffersDynamic` but counts descriptors from descriptor sets created
 ///   with or without the `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set.
-///   While an application **can** allocate dynamic storage buffer descriptors from a pool created
+///   While an application  **can**  allocate dynamic storage buffer descriptors from a pool created
 ///   with the `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT`, bindings for these
-///   descriptors **must** not be present in any descriptor set layout that includes bindings
+///   descriptors  **must**  not be present in any descriptor set layout that includes bindings
 ///   created with `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`.
 /// - [`max_descriptor_set_update_after_bind_sampled_images`] is similar to
 ///   `maxDescriptorSetSampledImages` but counts descriptors from descriptor sets created with or
@@ -15778,19 +15299,19 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///   `maxDescriptorSetInputAttachments` but counts descriptors from descriptor sets created with or
 ///   without the `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set.
 /// - [`supported_depth_resolve_modes`] is a bitmask of [`ResolveModeFlagBits`] indicating the set
-///   of supported depth resolve modes. `VK_RESOLVE_MODE_SAMPLE_ZERO_BIT`**must** be included in the
-///   set but implementations **may** support additional modes.
+///   of supported depth resolve modes. `VK_RESOLVE_MODE_SAMPLE_ZERO_BIT` **must**  be included in
+///   the set but implementations  **may**  support additional modes.
 /// - [`supported_stencil_resolve_modes`] is a bitmask of [`ResolveModeFlagBits`] indicating the set
-///   of supported stencil resolve modes. `VK_RESOLVE_MODE_SAMPLE_ZERO_BIT`**must** be included in
-///   the set but implementations **may** support additional modes.
-///   `VK_RESOLVE_MODE_AVERAGE_BIT`**must** not be included in the set.
+///   of supported stencil resolve modes. `VK_RESOLVE_MODE_SAMPLE_ZERO_BIT` **must**  be included in
+///   the set but implementations  **may**  support additional modes. `VK_RESOLVE_MODE_AVERAGE_BIT`
+///   **must**  not be included in the set.
 /// - [`independent_resolve_none`] is [`TRUE`] if the implementation supports setting the depth and
 ///   stencil resolve modes to different values when one of those modes is `VK_RESOLVE_MODE_NONE`.
 ///   Otherwise the implementation only supports setting both modes to the same value.
 /// - [`independent_resolve`] is [`TRUE`] if the implementation supports all combinations of the
 ///   supported depth and stencil resolve modes, including setting either depth or stencil resolve
-///   mode to `VK_RESOLVE_MODE_NONE`. An implementation that supports
-///   [`independent_resolve`]**must** also support [`independent_resolve_none`].
+///   mode to `VK_RESOLVE_MODE_NONE`. An implementation that supports [`independent_resolve`]
+///   **must**  also support [`independent_resolve_none`].
 /// - [`filter_minmax_single_component_formats`] is a boolean value indicating whether a minimum set
 ///   of required formats support min/max filtering.
 /// - [`filter_minmax_image_component_mapping`] is a boolean value indicating whether the
@@ -15806,15 +15327,16 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
 ///corresponding implementation-dependent property.These properties correspond to Vulkan 1.2
-/// functionality.The members of [`PhysicalDeviceVulkan12Properties`]**must** have the same
+/// functionality.The members of [`PhysicalDeviceVulkan12Properties`] **must**  have the same
 ///values as the corresponding members of
 ///[`PhysicalDeviceDriverProperties`],
 ///[`PhysicalDeviceFloatControlsProperties`],
 ///[`PhysicalDeviceDescriptorIndexingProperties`],
 ///[`PhysicalDeviceDepthStencilResolveProperties`],
 ///[`PhysicalDeviceSamplerFilterMinmaxProperties`], and
-///[`PhysicalDeviceTimelineSemaphoreProperties`].Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_PROPERTIES`
+///[`PhysicalDeviceTimelineSemaphoreProperties`].
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_PROPERTIES`
 ///# Related
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
@@ -16013,14 +15535,6 @@ impl<'lt> PhysicalDeviceVulkan12Properties<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::driver_name`]
-    pub fn driver_name_raw(&self) -> [c_schar; MAX_DRIVER_NAME_SIZE] {
-        self.driver_name
-    }
-    ///Gets the raw value of [`Self::driver_info`]
-    pub fn driver_info_raw(&self) -> [c_schar; MAX_DRIVER_INFO_SIZE] {
-        self.driver_info
-    }
     ///Gets the raw value of [`Self::shader_signed_zero_inf_nan_preserve_float_16`]
     pub fn shader_signed_zero_inf_nan_preserve_float_16_raw(&self) -> Bool32 {
         self.shader_signed_zero_inf_nan_preserve_float_16
@@ -16081,10 +15595,6 @@ impl<'lt> PhysicalDeviceVulkan12Properties<'lt> {
     pub fn shader_rounding_mode_rtz_float_64_raw(&self) -> Bool32 {
         self.shader_rounding_mode_rtz_float_64
     }
-    ///Gets the raw value of [`Self::max_update_after_bind_descriptors_in_all_pools`]
-    pub fn max_update_after_bind_descriptors_in_all_pools_raw(&self) -> u32 {
-        self.max_update_after_bind_descriptors_in_all_pools
-    }
     ///Gets the raw value of [`Self::shader_uniform_buffer_array_non_uniform_indexing_native`]
     pub fn shader_uniform_buffer_array_non_uniform_indexing_native_raw(&self) -> Bool32 {
         self.shader_uniform_buffer_array_non_uniform_indexing_native
@@ -16113,66 +15623,6 @@ impl<'lt> PhysicalDeviceVulkan12Properties<'lt> {
     pub fn quad_divergent_implicit_lod_raw(&self) -> Bool32 {
         self.quad_divergent_implicit_lod
     }
-    ///Gets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_samplers`]
-    pub fn max_per_stage_descriptor_update_after_bind_samplers_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_update_after_bind_samplers
-    }
-    ///Gets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_uniform_buffers`]
-    pub fn max_per_stage_descriptor_update_after_bind_uniform_buffers_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_update_after_bind_uniform_buffers
-    }
-    ///Gets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_storage_buffers`]
-    pub fn max_per_stage_descriptor_update_after_bind_storage_buffers_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_update_after_bind_storage_buffers
-    }
-    ///Gets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_sampled_images`]
-    pub fn max_per_stage_descriptor_update_after_bind_sampled_images_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_update_after_bind_sampled_images
-    }
-    ///Gets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_storage_images`]
-    pub fn max_per_stage_descriptor_update_after_bind_storage_images_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_update_after_bind_storage_images
-    }
-    ///Gets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_input_attachments`]
-    pub fn max_per_stage_descriptor_update_after_bind_input_attachments_raw(&self) -> u32 {
-        self.max_per_stage_descriptor_update_after_bind_input_attachments
-    }
-    ///Gets the raw value of [`Self::max_per_stage_update_after_bind_resources`]
-    pub fn max_per_stage_update_after_bind_resources_raw(&self) -> u32 {
-        self.max_per_stage_update_after_bind_resources
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_samplers`]
-    pub fn max_descriptor_set_update_after_bind_samplers_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_samplers
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_uniform_buffers`]
-    pub fn max_descriptor_set_update_after_bind_uniform_buffers_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_uniform_buffers
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_uniform_buffers_dynamic`]
-    pub fn max_descriptor_set_update_after_bind_uniform_buffers_dynamic_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_uniform_buffers_dynamic
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_storage_buffers`]
-    pub fn max_descriptor_set_update_after_bind_storage_buffers_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_storage_buffers
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_storage_buffers_dynamic`]
-    pub fn max_descriptor_set_update_after_bind_storage_buffers_dynamic_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_storage_buffers_dynamic
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_sampled_images`]
-    pub fn max_descriptor_set_update_after_bind_sampled_images_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_sampled_images
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_storage_images`]
-    pub fn max_descriptor_set_update_after_bind_storage_images_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_storage_images
-    }
-    ///Gets the raw value of [`Self::max_descriptor_set_update_after_bind_input_attachments`]
-    pub fn max_descriptor_set_update_after_bind_input_attachments_raw(&self) -> u32 {
-        self.max_descriptor_set_update_after_bind_input_attachments
-    }
     ///Gets the raw value of [`Self::independent_resolve_none`]
     pub fn independent_resolve_none_raw(&self) -> Bool32 {
         self.independent_resolve_none
@@ -16189,23 +15639,9 @@ impl<'lt> PhysicalDeviceVulkan12Properties<'lt> {
     pub fn filter_minmax_image_component_mapping_raw(&self) -> Bool32 {
         self.filter_minmax_image_component_mapping
     }
-    ///Gets the raw value of [`Self::max_timeline_semaphore_value_difference`]
-    pub fn max_timeline_semaphore_value_difference_raw(&self) -> u64 {
-        self.max_timeline_semaphore_value_difference
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::driver_name`]
-    pub fn set_driver_name_raw(&mut self, value: [c_schar; MAX_DRIVER_NAME_SIZE]) -> &mut Self {
-        self.driver_name = value;
-        self
-    }
-    ///Sets the raw value of [`Self::driver_info`]
-    pub fn set_driver_info_raw(&mut self, value: [c_schar; MAX_DRIVER_INFO_SIZE]) -> &mut Self {
-        self.driver_info = value;
         self
     }
     ///Sets the raw value of [`Self::shader_signed_zero_inf_nan_preserve_float_16`]
@@ -16283,11 +15719,6 @@ impl<'lt> PhysicalDeviceVulkan12Properties<'lt> {
         self.shader_rounding_mode_rtz_float_64 = value;
         self
     }
-    ///Sets the raw value of [`Self::max_update_after_bind_descriptors_in_all_pools`]
-    pub fn set_max_update_after_bind_descriptors_in_all_pools_raw(&mut self, value: u32) -> &mut Self {
-        self.max_update_after_bind_descriptors_in_all_pools = value;
-        self
-    }
     ///Sets the raw value of [`Self::shader_uniform_buffer_array_non_uniform_indexing_native`]
     pub fn set_shader_uniform_buffer_array_non_uniform_indexing_native_raw(&mut self, value: Bool32) -> &mut Self {
         self.shader_uniform_buffer_array_non_uniform_indexing_native = value;
@@ -16323,81 +15754,6 @@ impl<'lt> PhysicalDeviceVulkan12Properties<'lt> {
         self.quad_divergent_implicit_lod = value;
         self
     }
-    ///Sets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_samplers`]
-    pub fn set_max_per_stage_descriptor_update_after_bind_samplers_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_stage_descriptor_update_after_bind_samplers = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_uniform_buffers`]
-    pub fn set_max_per_stage_descriptor_update_after_bind_uniform_buffers_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_stage_descriptor_update_after_bind_uniform_buffers = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_storage_buffers`]
-    pub fn set_max_per_stage_descriptor_update_after_bind_storage_buffers_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_stage_descriptor_update_after_bind_storage_buffers = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_sampled_images`]
-    pub fn set_max_per_stage_descriptor_update_after_bind_sampled_images_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_stage_descriptor_update_after_bind_sampled_images = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_storage_images`]
-    pub fn set_max_per_stage_descriptor_update_after_bind_storage_images_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_stage_descriptor_update_after_bind_storage_images = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_per_stage_descriptor_update_after_bind_input_attachments`]
-    pub fn set_max_per_stage_descriptor_update_after_bind_input_attachments_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_stage_descriptor_update_after_bind_input_attachments = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_per_stage_update_after_bind_resources`]
-    pub fn set_max_per_stage_update_after_bind_resources_raw(&mut self, value: u32) -> &mut Self {
-        self.max_per_stage_update_after_bind_resources = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_samplers`]
-    pub fn set_max_descriptor_set_update_after_bind_samplers_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_samplers = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_uniform_buffers`]
-    pub fn set_max_descriptor_set_update_after_bind_uniform_buffers_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_uniform_buffers = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_uniform_buffers_dynamic`]
-    pub fn set_max_descriptor_set_update_after_bind_uniform_buffers_dynamic_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_uniform_buffers_dynamic = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_storage_buffers`]
-    pub fn set_max_descriptor_set_update_after_bind_storage_buffers_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_storage_buffers = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_storage_buffers_dynamic`]
-    pub fn set_max_descriptor_set_update_after_bind_storage_buffers_dynamic_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_storage_buffers_dynamic = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_sampled_images`]
-    pub fn set_max_descriptor_set_update_after_bind_sampled_images_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_sampled_images = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_storage_images`]
-    pub fn set_max_descriptor_set_update_after_bind_storage_images_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_storage_images = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_input_attachments`]
-    pub fn set_max_descriptor_set_update_after_bind_input_attachments_raw(&mut self, value: u32) -> &mut Self {
-        self.max_descriptor_set_update_after_bind_input_attachments = value;
-        self
-    }
     ///Sets the raw value of [`Self::independent_resolve_none`]
     pub fn set_independent_resolve_none_raw(&mut self, value: Bool32) -> &mut Self {
         self.independent_resolve_none = value;
@@ -16416,11 +15772,6 @@ impl<'lt> PhysicalDeviceVulkan12Properties<'lt> {
     ///Sets the raw value of [`Self::filter_minmax_image_component_mapping`]
     pub fn set_filter_minmax_image_component_mapping_raw(&mut self, value: Bool32) -> &mut Self {
         self.filter_minmax_image_component_mapping = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_timeline_semaphore_value_difference`]
-    pub fn set_max_timeline_semaphore_value_difference_raw(&mut self, value: u64) -> &mut Self {
-        self.max_timeline_semaphore_value_difference = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

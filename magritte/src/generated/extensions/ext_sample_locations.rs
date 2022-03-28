@@ -29,7 +29,7 @@ pub const EXT_SAMPLE_LOCATIONS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// are always
 ///clamped to the implementation-dependent sample location coordinate range
 ///[`sampleLocationCoordinateRange`[0],`sampleLocationCoordinateRange`[1]]
-///that **can** be queried using
+///that  **can**  be queried using
 ///[`PhysicalDeviceSampleLocationsPropertiesEXT`].
 ///# Related
 /// - [`VK_EXT_sample_locations`]
@@ -58,24 +58,6 @@ impl Default for SampleLocationEXT {
     }
 }
 impl SampleLocationEXT {
-    ///Gets the raw value of [`Self::x`]
-    pub fn x_raw(&self) -> f32 {
-        self.x
-    }
-    ///Gets the raw value of [`Self::y`]
-    pub fn y_raw(&self) -> f32 {
-        self.y
-    }
-    ///Sets the raw value of [`Self::x`]
-    pub fn set_x_raw(&mut self, value: f32) -> &mut Self {
-        self.x = value;
-        self
-    }
-    ///Sets the raw value of [`Self::y`]
-    pub fn set_y_raw(&mut self, value: f32) -> &mut Self {
-        self.y = value;
-        self
-    }
     ///Gets the value of [`Self::x`]
     pub fn x(&self) -> f32 {
         self.x
@@ -128,7 +110,7 @@ impl SampleLocationEXT {
 /// - [`sample_locations`] is a pointer to an array of
 ///   [`sample_locations_count`][`SampleLocationEXT`] structures.
 ///# Description
-///This structure **can** be used either to specify the sample locations to be
+///This structure  **can**  be used either to specify the sample locations to be
 ///used for rendering or to specify the set of sample locations an image
 ///subresource has been last rendered with for the purposes of layout
 ///transitions of depth/stencil images created with
@@ -141,14 +123,16 @@ impl SampleLocationEXT {
 ///`sampleLocationGridSize.width`) × [`sample_locations_per_pixel`]
 ///+  i].If the render pass has a fragment density map, the implementation will
 ///choose the sample locations for the fragment and the contents of
-///[`sample_locations`]**may** be ignored.Valid Usage
-/// - [`sample_locations_per_pixel`]**must** be a bit value that is set in
+///[`sample_locations`] **may**  be ignored.
+///## Valid Usage
+/// - [`sample_locations_per_pixel`] **must**  be a bit value that is set in
 ///   [`PhysicalDeviceSampleLocationsPropertiesEXT::sample_location_sample_counts`]
-/// - [`sample_locations_count`]**must** equal [`sample_locations_per_pixel`] ×
+/// - [`sample_locations_count`] **must**  equal [`sample_locations_per_pixel`] ×
 ///   `sampleLocationGridSize.width` × `sampleLocationGridSize.height`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SAMPLE_LOCATIONS_INFO_EXT`
-/// - If [`sample_locations_count`] is not `0`, [`sample_locations`]**must** be a valid pointer to
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SAMPLE_LOCATIONS_INFO_EXT`
+/// - If [`sample_locations_count`] is not `0`, [`sample_locations`] **must**  be a valid pointer to
 ///   an array of [`sample_locations_count`][`SampleLocationEXT`] structures
 ///# Related
 /// - [`VK_EXT_sample_locations`]
@@ -209,10 +193,6 @@ impl<'lt> SampleLocationsInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::sample_locations_count`]
-    pub fn sample_locations_count_raw(&self) -> u32 {
-        self.sample_locations_count
-    }
     ///Gets the raw value of [`Self::sample_locations`]
     pub fn sample_locations_raw(&self) -> *const SampleLocationEXT {
         self.sample_locations
@@ -220,11 +200,6 @@ impl<'lt> SampleLocationsInfoEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::sample_locations_count`]
-    pub fn set_sample_locations_count_raw(&mut self, value: u32) -> &mut Self {
-        self.sample_locations_count = value;
         self
     }
     ///Sets the raw value of [`Self::sample_locations`]
@@ -335,12 +310,14 @@ impl<'lt> SampleLocationsInfoEXT<'lt> {
 ///If the image referenced by the framebuffer attachment at index
 ///[`attachment_index`] was not created with
 ///`VK_IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT` then the
-///values specified in [`sample_locations_info`] are ignored.Valid Usage
-/// - [`attachment_index`]**must** be less than the `attachmentCount` specified in
+///values specified in [`sample_locations_info`] are ignored.
+///## Valid Usage
+/// - [`attachment_index`] **must**  be less than the `attachmentCount` specified in
 ///   [`RenderPassCreateInfo`] the render pass specified by [`RenderPassBeginInfo::render_pass`] was
 ///   created with
-///Valid Usage (Implicit)
-/// - [`sample_locations_info`]**must** be a valid [`SampleLocationsInfoEXT`] structure
+///
+///## Valid Usage (Implicit)
+/// - [`sample_locations_info`] **must**  be a valid [`SampleLocationsInfoEXT`] structure
 ///# Related
 /// - [`VK_EXT_sample_locations`]
 /// - [`RenderPassSampleLocationsBeginInfoEXT`]
@@ -377,15 +354,6 @@ impl<'lt> Default for AttachmentSampleLocationsEXT<'lt> {
     }
 }
 impl<'lt> AttachmentSampleLocationsEXT<'lt> {
-    ///Gets the raw value of [`Self::attachment_index`]
-    pub fn attachment_index_raw(&self) -> u32 {
-        self.attachment_index
-    }
-    ///Sets the raw value of [`Self::attachment_index`]
-    pub fn set_attachment_index_raw(&mut self, value: u32) -> &mut Self {
-        self.attachment_index = value;
-        self
-    }
     ///Gets the value of [`Self::attachment_index`]
     pub fn attachment_index(&self) -> u32 {
         self.attachment_index
@@ -439,12 +407,14 @@ impl<'lt> AttachmentSampleLocationsEXT<'lt> {
 ///subpass does not use a depth/stencil attachment, and
 ///[`PhysicalDeviceSampleLocationsPropertiesEXT::variable_sample_locations`]
 ///is [`TRUE`] then the values specified in [`sample_locations_info`] are
-///ignored.Valid Usage
-/// - [`subpass_index`]**must** be less than the `subpassCount` specified in
+///ignored.
+///## Valid Usage
+/// - [`subpass_index`] **must**  be less than the `subpassCount` specified in
 ///   [`RenderPassCreateInfo`] the render pass specified by [`RenderPassBeginInfo::render_pass`] was
 ///   created with
-///Valid Usage (Implicit)
-/// - [`sample_locations_info`]**must** be a valid [`SampleLocationsInfoEXT`] structure
+///
+///## Valid Usage (Implicit)
+/// - [`sample_locations_info`] **must**  be a valid [`SampleLocationsInfoEXT`] structure
 ///# Related
 /// - [`VK_EXT_sample_locations`]
 /// - [`RenderPassSampleLocationsBeginInfoEXT`]
@@ -481,15 +451,6 @@ impl<'lt> Default for SubpassSampleLocationsEXT<'lt> {
     }
 }
 impl<'lt> SubpassSampleLocationsEXT<'lt> {
-    ///Gets the raw value of [`Self::subpass_index`]
-    pub fn subpass_index_raw(&self) -> u32 {
-        self.subpass_index
-    }
-    ///Sets the raw value of [`Self::subpass_index`]
-    pub fn set_subpass_index_raw(&mut self, value: u32) -> &mut Self {
-        self.subpass_index = value;
-        self
-    }
     ///Gets the value of [`Self::subpass_index`]
     pub fn subpass_index(&self) -> u32 {
         self.subpass_index
@@ -528,8 +489,8 @@ impl<'lt> SubpassSampleLocationsEXT<'lt> {
 ///on the last sample locations used to render to the image subresource, thus
 ///preserving the contents of such depth/stencil attachments across subpass
 ///boundaries requires the application to specify these sample locations
-///whenever a layout transition of the attachment **may** occur.
-///This information **can** be provided by adding a
+///whenever a layout transition of the attachment  **may**  occur.
+///This information  **can**  be provided by adding a
 ///[`RenderPassSampleLocationsBeginInfoEXT`] structure to the [`p_next`]
 ///chain of [`RenderPassBeginInfo`].The [`RenderPassSampleLocationsBeginInfoEXT`] structure is
 /// defined as:
@@ -552,8 +513,8 @@ impl<'lt> SubpassSampleLocationsEXT<'lt> {
 /// - [`attachment_initial_sample_locations`] is a pointer to an array of
 ///   [`attachment_initial_sample_locations_count`][`AttachmentSampleLocationsEXT`] structures
 ///   specifying the attachment indices and their corresponding sample location state. Each element
-///   of [`attachment_initial_sample_locations`]**can** specify the sample location state to use in
-///   the automatic layout transition performed to transition a depth/stencil attachment from the
+///   of [`attachment_initial_sample_locations`] **can**  specify the sample location state to use
+///   in the automatic layout transition performed to transition a depth/stencil attachment from the
 ///   initial layout of the attachment to the image layout specified for the attachment in the first
 ///   subpass using it.
 /// - [`post_subpass_sample_locations_count`] is the number of elements in the
@@ -561,25 +522,25 @@ impl<'lt> SubpassSampleLocationsEXT<'lt> {
 /// - [`post_subpass_sample_locations`] is a pointer to an array of
 ///   [`post_subpass_sample_locations_count`][`SubpassSampleLocationsEXT`] structures specifying the
 ///   subpass indices and their corresponding sample location state. Each element of
-///   [`post_subpass_sample_locations`]**can** specify the sample location state to use in the
+///   [`post_subpass_sample_locations`] **can**  specify the sample location state to use in the
 ///   automatic layout transition performed to transition the depth/stencil attachment used by the
 ///   specified subpass to the image layout specified in a dependent subpass or to the final layout
 ///   of the attachment in case the specified subpass is the last subpass using that attachment. In
 ///   addition, if [`PhysicalDeviceSampleLocationsPropertiesEXT::variable_sample_locations`] is
-///   [`FALSE`], each element of [`post_subpass_sample_locations`]**must** specify the sample
+///   [`FALSE`], each element of [`post_subpass_sample_locations`] **must**  specify the sample
 ///   location state that matches the sample locations used by all pipelines that will be bound to a
 ///   command buffer during the specified subpass. If `variableSampleLocations` is [`TRUE`], the
 ///   sample locations used for rasterization do not depend on [`post_subpass_sample_locations`].
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT`
 /// - If [`attachment_initial_sample_locations_count`] is not `0`,
-///   [`attachment_initial_sample_locations`]**must** be a valid pointer to an array of
+///   [`attachment_initial_sample_locations`] **must**  be a valid pointer to an array of
 ///   [`attachment_initial_sample_locations_count`] valid [`AttachmentSampleLocationsEXT`]
 ///   structures
-/// - If [`post_subpass_sample_locations_count`] is not `0`,
-///   [`post_subpass_sample_locations`]**must** be a valid pointer to an array of
-///   [`post_subpass_sample_locations_count`] valid [`SubpassSampleLocationsEXT`] structures
+/// - If [`post_subpass_sample_locations_count`] is not `0`, [`post_subpass_sample_locations`]
+///   **must**  be a valid pointer to an array of [`post_subpass_sample_locations_count`] valid
+///   [`SubpassSampleLocationsEXT`] structures
 ///# Related
 /// - [`VK_EXT_sample_locations`]
 /// - [`AttachmentSampleLocationsEXT`]
@@ -609,7 +570,7 @@ pub struct RenderPassSampleLocationsBeginInfoEXT<'lt> {
     ///[`attachment_initial_sample_locations`] is a pointer to an array of
     ///[`attachment_initial_sample_locations_count`][`AttachmentSampleLocationsEXT`] structures
     /// specifying the attachment indices and their corresponding sample location state.
-    ///Each element of [`attachment_initial_sample_locations`]**can** specify the
+    ///Each element of [`attachment_initial_sample_locations`] **can**  specify the
     ///sample location state to use in the automatic layout transition
     ///performed to transition a depth/stencil attachment from the initial
     ///layout of the attachment to the image layout specified for the
@@ -622,7 +583,7 @@ pub struct RenderPassSampleLocationsBeginInfoEXT<'lt> {
     ///[`post_subpass_sample_locations_count`][`SubpassSampleLocationsEXT`]
     ///structures specifying the subpass indices and their corresponding sample
     ///location state.
-    ///Each element of [`post_subpass_sample_locations`]**can** specify the
+    ///Each element of [`post_subpass_sample_locations`] **can**  specify the
     ///sample location state to use in the automatic layout transition
     ///performed to transition the depth/stencil attachment used by the
     ///specified subpass to the image layout specified in a dependent subpass
@@ -630,7 +591,7 @@ pub struct RenderPassSampleLocationsBeginInfoEXT<'lt> {
     ///is the last subpass using that attachment.
     ///In addition, if
     ///[`PhysicalDeviceSampleLocationsPropertiesEXT`]::`variableSampleLocations`
-    ///is [`FALSE`], each element of [`post_subpass_sample_locations`]**must** specify the sample
+    ///is [`FALSE`], each element of [`post_subpass_sample_locations`] **must**  specify the sample
     /// location state that matches the sample locations used by all pipelines that will be
     /// bound to a command buffer during the specified subpass.
     ///If `variableSampleLocations` is [`TRUE`], the sample locations
@@ -656,17 +617,9 @@ impl<'lt> RenderPassSampleLocationsBeginInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::attachment_initial_sample_locations_count`]
-    pub fn attachment_initial_sample_locations_count_raw(&self) -> u32 {
-        self.attachment_initial_sample_locations_count
-    }
     ///Gets the raw value of [`Self::attachment_initial_sample_locations`]
     pub fn attachment_initial_sample_locations_raw(&self) -> *const AttachmentSampleLocationsEXT<'lt> {
         self.attachment_initial_sample_locations
-    }
-    ///Gets the raw value of [`Self::post_subpass_sample_locations_count`]
-    pub fn post_subpass_sample_locations_count_raw(&self) -> u32 {
-        self.post_subpass_sample_locations_count
     }
     ///Gets the raw value of [`Self::post_subpass_sample_locations`]
     pub fn post_subpass_sample_locations_raw(&self) -> *const SubpassSampleLocationsEXT<'lt> {
@@ -677,22 +630,12 @@ impl<'lt> RenderPassSampleLocationsBeginInfoEXT<'lt> {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::attachment_initial_sample_locations_count`]
-    pub fn set_attachment_initial_sample_locations_count_raw(&mut self, value: u32) -> &mut Self {
-        self.attachment_initial_sample_locations_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::attachment_initial_sample_locations`]
     pub fn set_attachment_initial_sample_locations_raw(
         &mut self,
         value: *const AttachmentSampleLocationsEXT<'lt>,
     ) -> &mut Self {
         self.attachment_initial_sample_locations = value;
-        self
-    }
-    ///Sets the raw value of [`Self::post_subpass_sample_locations_count`]
-    pub fn set_post_subpass_sample_locations_count_raw(&mut self, value: u32) -> &mut Self {
-        self.post_subpass_sample_locations_count = value;
         self
     }
     ///Sets the raw value of [`Self::post_subpass_sample_locations`]
@@ -796,8 +739,8 @@ impl<'lt> RenderPassSampleLocationsBeginInfoEXT<'lt> {
 }
 ///[VkPipelineSampleLocationsStateCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineSampleLocationsStateCreateInfoEXT.html) - Structure specifying sample locations for a pipeline
 ///# C Specifications
-///Applications **can** also control the sample locations used for rasterization.If the [`p_next`]
-/// chain of the [`PipelineMultisampleStateCreateInfo`]
+///Applications  **can**  also control the sample locations used for rasterization.If the
+/// [`p_next`] chain of the [`PipelineMultisampleStateCreateInfo`]
 ///structure specified at pipeline creation time includes a
 ///[`PipelineSampleLocationsStateCreateInfoEXT`] structure, then that
 ///structure controls the sample locations used when rasterizing primitives
@@ -822,9 +765,9 @@ impl<'lt> RenderPassSampleLocationsBeginInfoEXT<'lt> {
 ///   [`sample_locations_enable`] is [`TRUE`] and the graphics pipeline is not created with
 ///   `VK_DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT`.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT`
-/// - [`sample_locations_info`]**must** be a valid [`SampleLocationsInfoEXT`] structure
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT`
+/// - [`sample_locations_info`] **must**  be a valid [`SampleLocationsInfoEXT`] structure
 ///# Related
 /// - [`VK_EXT_sample_locations`]
 /// - [`Bool32`]
@@ -981,22 +924,23 @@ impl<'lt> PipelineSampleLocationsStateCreateInfoEXT<'lt> {
 /// - [`sample_location_sample_counts`] is a bitmask of [`SampleCountFlagBits`] indicating the
 ///   sample counts supporting custom sample locations.
 /// - [`max_sample_location_grid_size`] is the maximum size of the pixel grid in which sample
-///   locations **can** vary that is supported for all sample counts in
+///   locations  **can**  vary that is supported for all sample counts in
 ///   [`sample_location_sample_counts`].
 /// - [`sample_location_coordinate_range`][2] is the range of supported sample location coordinates.
 /// - [`sample_location_sub_pixel_bits`] is the number of bits of subpixel precision for sample
 ///   locations.
 /// - [`variable_sample_locations`] specifies whether the sample locations used by all pipelines
-///   that will be bound to a command buffer during a subpass **must** match. If set to [`TRUE`],
+///   that will be bound to a command buffer during a subpass  **must**  match. If set to [`TRUE`],
 ///   the implementation supports variable sample locations in a subpass. If set to [`FALSE`], then
-///   the sample locations **must** stay constant in each subpass.
+///   the sample locations  **must**  stay constant in each subpass.
 ///# Description
 ///If the [`PhysicalDeviceSampleLocationsPropertiesEXT`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT`
 ///# Related
 /// - [`VK_EXT_sample_locations`]
 /// - [`Bool32`]
@@ -1026,7 +970,7 @@ pub struct PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
     ///supporting custom sample locations.
     sample_location_sample_counts: SampleCountFlags,
     ///[`max_sample_location_grid_size`] is
-    ///the maximum size of the pixel grid in which sample locations **can** vary
+    ///the maximum size of the pixel grid in which sample locations  **can**  vary
     ///that is supported for all sample counts in
     ///[`sample_location_sample_counts`].
     max_sample_location_grid_size: Extent2D,
@@ -1038,10 +982,10 @@ pub struct PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
     sample_location_sub_pixel_bits: u32,
     ///[`variable_sample_locations`]
     ///specifies whether the sample locations used by all pipelines that will
-    ///be bound to a command buffer during a subpass **must** match.
+    ///be bound to a command buffer during a subpass  **must**  match.
     ///If set to [`TRUE`], the implementation supports variable sample
     ///locations in a subpass.
-    ///If set to [`FALSE`], then the sample locations **must** stay constant
+    ///If set to [`FALSE`], then the sample locations  **must**  stay constant
     ///in each subpass.
     variable_sample_locations: Bool32,
 }
@@ -1064,14 +1008,6 @@ impl<'lt> PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::sample_location_coordinate_range`]
-    pub fn sample_location_coordinate_range_raw(&self) -> [f32; 2] {
-        self.sample_location_coordinate_range
-    }
-    ///Gets the raw value of [`Self::sample_location_sub_pixel_bits`]
-    pub fn sample_location_sub_pixel_bits_raw(&self) -> u32 {
-        self.sample_location_sub_pixel_bits
-    }
     ///Gets the raw value of [`Self::variable_sample_locations`]
     pub fn variable_sample_locations_raw(&self) -> Bool32 {
         self.variable_sample_locations
@@ -1079,16 +1015,6 @@ impl<'lt> PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::sample_location_coordinate_range`]
-    pub fn set_sample_location_coordinate_range_raw(&mut self, value: [f32; 2]) -> &mut Self {
-        self.sample_location_coordinate_range = value;
-        self
-    }
-    ///Sets the raw value of [`Self::sample_location_sub_pixel_bits`]
-    pub fn set_sample_location_sub_pixel_bits_raw(&mut self, value: u32) -> &mut Self {
-        self.sample_location_sub_pixel_bits = value;
         self
     }
     ///Sets the raw value of [`Self::variable_sample_locations`]
@@ -1223,11 +1149,11 @@ impl<'lt> PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_sample_location_grid_size`] is the maximum size of the pixel grid in which sample
-///   locations **can** vary.
+///   locations  **can**  vary.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_MULTISAMPLE_PROPERTIES_EXT`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MULTISAMPLE_PROPERTIES_EXT`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_EXT_sample_locations`]
 /// - [`Extent2D`]
@@ -1252,7 +1178,7 @@ pub struct MultisamplePropertiesEXT<'lt> {
     ///structure.
     p_next: *mut BaseOutStructure<'lt>,
     ///[`max_sample_location_grid_size`] is the maximum size of the pixel grid in
-    ///which sample locations **can** vary.
+    ///which sample locations  **can**  vary.
     max_sample_location_grid_size: Extent2D,
 }
 impl<'lt> Default for MultisamplePropertiesEXT<'lt> {

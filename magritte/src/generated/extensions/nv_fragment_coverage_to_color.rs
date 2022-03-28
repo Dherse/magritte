@@ -47,16 +47,17 @@ pub const NV_FRAGMENT_COVERAGE_TO_COLOR_EXTENSION_NAME: &'static CStr =
 /// [`FALSE`], these operations are
 ///skipped.
 ///If this structure is not included in the [`p_next`] chain, it is as if
-///[`coverage_to_color_enable`] is [`FALSE`].Valid Usage
+///[`coverage_to_color_enable`] is [`FALSE`].
+///## Valid Usage
 /// - If [`coverage_to_color_enable`] is [`TRUE`], then the render pass subpass indicated by
-///   [`GraphicsPipelineCreateInfo::render_pass`] and
-///   [`GraphicsPipelineCreateInfo::subpass`]**must** have a color attachment at the location
-///   selected by [`coverage_to_color_location`], with a [`Format`] of `VK_FORMAT_R8_UINT`,
-///   `VK_FORMAT_R8_SINT`, `VK_FORMAT_R16_UINT`, `VK_FORMAT_R16_SINT`, `VK_FORMAT_R32_UINT`, or
-///   `VK_FORMAT_R32_SINT`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV`
-/// - [`flags`]**must** be `0`
+///   [`GraphicsPipelineCreateInfo::render_pass`] and [`GraphicsPipelineCreateInfo::subpass`]
+///   **must**  have a color attachment at the location selected by [`coverage_to_color_location`],
+///   with a [`Format`] of `VK_FORMAT_R8_UINT`, `VK_FORMAT_R8_SINT`, `VK_FORMAT_R16_UINT`,
+///   `VK_FORMAT_R16_SINT`, `VK_FORMAT_R32_UINT`, or `VK_FORMAT_R32_SINT`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_NV_fragment_coverage_to_color`]
 /// - [`Bool32`]
@@ -110,10 +111,6 @@ impl<'lt> PipelineCoverageToColorStateCreateInfoNV<'lt> {
     pub fn coverage_to_color_enable_raw(&self) -> Bool32 {
         self.coverage_to_color_enable
     }
-    ///Gets the raw value of [`Self::coverage_to_color_location`]
-    pub fn coverage_to_color_location_raw(&self) -> u32 {
-        self.coverage_to_color_location
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
@@ -122,11 +119,6 @@ impl<'lt> PipelineCoverageToColorStateCreateInfoNV<'lt> {
     ///Sets the raw value of [`Self::coverage_to_color_enable`]
     pub fn set_coverage_to_color_enable_raw(&mut self, value: Bool32) -> &mut Self {
         self.coverage_to_color_enable = value;
-        self
-    }
-    ///Sets the raw value of [`Self::coverage_to_color_location`]
-    pub fn set_coverage_to_color_location_raw(&mut self, value: u32) -> &mut Self {
-        self.coverage_to_color_location = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

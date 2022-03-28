@@ -48,12 +48,13 @@ pub type ANativeWindow = c_void;
 /// - [`flags`] is reserved for future use.
 /// - [`window`] is a pointer to the [`ANativeWindow`] to associate the surface with.
 ///# Description
-///Valid Usage
-/// - [`window`]**must** point to a valid Android [`ANativeWindow`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_ANDROID_SURFACE_CREATE_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
+///## Valid Usage
+/// - [`window`] **must**  point to a valid Android [`ANativeWindow`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ANDROID_SURFACE_CREATE_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_KHR_android_surface`]
 /// - [`AndroidSurfaceCreateFlagsKHR`]

@@ -31,13 +31,14 @@ pub const QNX_SCREEN_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_QN
 /// - [`context`] and [`window`] are QNX Screen [`context`] and [`window`] to associate the surface
 ///   with.
 ///# Description
-///Valid Usage
-/// - [`context`]**must** point to a valid QNX Screen `struct` _screen_context
-/// - [`window`]**must** point to a valid QNX Screen `struct` _screen_window
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_SCREEN_SURFACE_CREATE_INFO_QNX`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
+///## Valid Usage
+/// - [`context`] **must**  point to a valid QNX Screen `struct` _screen_context
+/// - [`window`] **must**  point to a valid QNX Screen `struct` _screen_window
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SCREEN_SURFACE_CREATE_INFO_QNX`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_QNX_screen_surface`]
 /// - [`ScreenSurfaceCreateFlagsQNX`]

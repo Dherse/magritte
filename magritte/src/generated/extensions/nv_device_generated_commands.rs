@@ -113,10 +113,11 @@ impl IndirectCommandsTokenTypeNV {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV`]**can** also be used in the [`p_next`] chain
-/// of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV`] **can**  also be used in the [`p_next`]
+/// chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV`
 ///# Related
 /// - [`VK_NV_device_generated_commands`]
@@ -271,9 +272,9 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
 /// - [`max_indirect_commands_stream_stride`] is the maximum stream stride in
 ///   [`IndirectCommandsLayoutCreateInfoNV`].
 /// - [`min_sequences_count_buffer_offset_alignment`] is the minimum alignment for memory addresses
-///   which **can** be used in [`GeneratedCommandsInfoNV`].
+///   which  **can**  be used in [`GeneratedCommandsInfoNV`].
 /// - [`min_sequences_index_buffer_offset_alignment`] is the minimum alignment for memory addresses
-///   which **can** be used in [`GeneratedCommandsInfoNV`].
+///   which  **can**  be used in [`GeneratedCommandsInfoNV`].
 /// - [`min_indirect_commands_buffer_offset_alignment`] is the minimum alignment for memory
 ///   addresses used in [`IndirectCommandsStreamNV`], and as preprocess buffer in
 ///   [`GeneratedCommandsInfoNV`].
@@ -282,8 +283,9 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
 /// [`p_next`] chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV`
 ///# Related
 /// - [`VK_NV_device_generated_commands`]
@@ -326,11 +328,11 @@ pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
     ///[`IndirectCommandsLayoutCreateInfoNV`].
     max_indirect_commands_stream_stride: u32,
     ///[`min_sequences_count_buffer_offset_alignment`] is the minimum alignment
-    ///for memory addresses which **can** be used in
+    ///for memory addresses which  **can**  be used in
     ///[`GeneratedCommandsInfoNV`].
     min_sequences_count_buffer_offset_alignment: u32,
     ///[`min_sequences_index_buffer_offset_alignment`] is the minimum alignment
-    ///for memory addresses which **can** be used in
+    ///for memory addresses which  **can**  be used in
     ///[`GeneratedCommandsInfoNV`].
     min_sequences_index_buffer_offset_alignment: u32,
     ///[`min_indirect_commands_buffer_offset_alignment`] is the minimum alignment
@@ -361,90 +363,9 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::max_graphics_shader_group_count`]
-    pub fn max_graphics_shader_group_count_raw(&self) -> u32 {
-        self.max_graphics_shader_group_count
-    }
-    ///Gets the raw value of [`Self::max_indirect_sequence_count`]
-    pub fn max_indirect_sequence_count_raw(&self) -> u32 {
-        self.max_indirect_sequence_count
-    }
-    ///Gets the raw value of [`Self::max_indirect_commands_token_count`]
-    pub fn max_indirect_commands_token_count_raw(&self) -> u32 {
-        self.max_indirect_commands_token_count
-    }
-    ///Gets the raw value of [`Self::max_indirect_commands_stream_count`]
-    pub fn max_indirect_commands_stream_count_raw(&self) -> u32 {
-        self.max_indirect_commands_stream_count
-    }
-    ///Gets the raw value of [`Self::max_indirect_commands_token_offset`]
-    pub fn max_indirect_commands_token_offset_raw(&self) -> u32 {
-        self.max_indirect_commands_token_offset
-    }
-    ///Gets the raw value of [`Self::max_indirect_commands_stream_stride`]
-    pub fn max_indirect_commands_stream_stride_raw(&self) -> u32 {
-        self.max_indirect_commands_stream_stride
-    }
-    ///Gets the raw value of [`Self::min_sequences_count_buffer_offset_alignment`]
-    pub fn min_sequences_count_buffer_offset_alignment_raw(&self) -> u32 {
-        self.min_sequences_count_buffer_offset_alignment
-    }
-    ///Gets the raw value of [`Self::min_sequences_index_buffer_offset_alignment`]
-    pub fn min_sequences_index_buffer_offset_alignment_raw(&self) -> u32 {
-        self.min_sequences_index_buffer_offset_alignment
-    }
-    ///Gets the raw value of [`Self::min_indirect_commands_buffer_offset_alignment`]
-    pub fn min_indirect_commands_buffer_offset_alignment_raw(&self) -> u32 {
-        self.min_indirect_commands_buffer_offset_alignment
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_graphics_shader_group_count`]
-    pub fn set_max_graphics_shader_group_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_graphics_shader_group_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_indirect_sequence_count`]
-    pub fn set_max_indirect_sequence_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_indirect_sequence_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_indirect_commands_token_count`]
-    pub fn set_max_indirect_commands_token_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_indirect_commands_token_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_indirect_commands_stream_count`]
-    pub fn set_max_indirect_commands_stream_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_indirect_commands_stream_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_indirect_commands_token_offset`]
-    pub fn set_max_indirect_commands_token_offset_raw(&mut self, value: u32) -> &mut Self {
-        self.max_indirect_commands_token_offset = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_indirect_commands_stream_stride`]
-    pub fn set_max_indirect_commands_stream_stride_raw(&mut self, value: u32) -> &mut Self {
-        self.max_indirect_commands_stream_stride = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_sequences_count_buffer_offset_alignment`]
-    pub fn set_min_sequences_count_buffer_offset_alignment_raw(&mut self, value: u32) -> &mut Self {
-        self.min_sequences_count_buffer_offset_alignment = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_sequences_index_buffer_offset_alignment`]
-    pub fn set_min_sequences_index_buffer_offset_alignment_raw(&mut self, value: u32) -> &mut Self {
-        self.min_sequences_index_buffer_offset_alignment = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_indirect_commands_buffer_offset_alignment`]
-    pub fn set_min_indirect_commands_buffer_offset_alignment_raw(&mut self, value: u32) -> &mut Self {
-        self.min_indirect_commands_buffer_offset_alignment = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -629,7 +550,7 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
 ///   and is ignored if the shader group does not include a tessellation control shader stage and
 ///   tessellation evaluation shader stage.
 ///# Description
-///Valid Usage
+///## Valid Usage
 /// - For [`stage_count`], the same restrictions as in
 ///   [`GraphicsPipelineCreateInfo`]::[`stage_count`] apply
 /// - For [`stages`], the same restrictions as in [`GraphicsPipelineCreateInfo`]::[`stages`] apply
@@ -637,12 +558,13 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
 ///   [`GraphicsPipelineCreateInfo`]::[`vertex_input_state`] apply
 /// - For [`tessellation_state`], the same restrictions as in
 ///   [`GraphicsPipelineCreateInfo`]::[`tessellation_state`] apply
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_GRAPHICS_SHADER_GROUP_CREATE_INFO_NV`
-/// - [`p_next`]**must** be `NULL`
-/// - [`stages`]**must** be a valid pointer to an array of [`stage_count`] valid
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_GRAPHICS_SHADER_GROUP_CREATE_INFO_NV`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`stages`] **must**  be a valid pointer to an array of [`stage_count`] valid
 ///   [`PipelineShaderStageCreateInfo`] structures
-/// - [`stage_count`]**must** be greater than `0`
+/// - [`stage_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`GraphicsPipelineShaderGroupsCreateInfoNV`]
@@ -701,10 +623,6 @@ impl<'lt> GraphicsShaderGroupCreateInfoNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::stage_count`]
-    pub fn stage_count_raw(&self) -> u32 {
-        self.stage_count
-    }
     ///Gets the raw value of [`Self::stages`]
     pub fn stages_raw(&self) -> *const PipelineShaderStageCreateInfo<'lt> {
         self.stages
@@ -720,11 +638,6 @@ impl<'lt> GraphicsShaderGroupCreateInfoNV<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::stage_count`]
-    pub fn set_stage_count_raw(&mut self, value: u32) -> &mut Self {
-        self.stage_count = value;
         self
     }
     ///Sets the raw value of [`Self::stages`]
@@ -856,33 +769,35 @@ impl<'lt> GraphicsShaderGroupCreateInfoNV<'lt> {
 ///pipelines are treated as if they were defined as additional entries in
 ///[`groups`].
 ///They are appended in the order they appear in the [`pipelines`] array and
-///in the [`groups`] array when those pipelines were defined.The application **must** maintain the
-/// lifetime of all such referenced pipelines
-///based on the pipelines that make use of them.Valid Usage
-/// - [`group_count`]**must** be at least `1` and as maximum
+///in the [`groups`] array when those pipelines were defined.The application  **must**  maintain
+/// the lifetime of all such referenced pipelines
+///based on the pipelines that make use of them.
+///## Valid Usage
+/// - [`group_count`] **must**  be at least `1` and as maximum
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::max_graphics_shader_group_count`]
-/// - The sum of [`group_count`] including those groups added from referenced [`pipelines`]**must**
+/// - The sum of [`group_count`] including those groups added from referenced [`pipelines`] **must**
 ///   also be as maximum
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::max_graphics_shader_group_count`]
-/// - The state of the first element of [`groups`]**must** match its equivalent within the parent’s
-///   [`GraphicsPipelineCreateInfo`]
-/// - Each element of [`groups`]**must** in combination with the rest of the pipeline state yield a
-///   valid state configuration
-/// - All elements of [`groups`]**must** use the same shader stage combinations unless any mesh
+/// - The state of the first element of [`groups`] **must**  match its equivalent within the
+///   parent’s [`GraphicsPipelineCreateInfo`]
+/// - Each element of [`groups`] **must**  in combination with the rest of the pipeline state yield
+///   a valid state configuration
+/// - All elements of [`groups`] **must**  use the same shader stage combinations unless any mesh
 ///   shader stage is used, then either combination of task and mesh or just mesh shader is valid
 /// - Mesh and regular primitive shading stages cannot be mixed across [`groups`]
-/// - Each element of [`pipelines`]**must** have been created with identical state to the pipeline
+/// - Each element of [`pipelines`] **must**  have been created with identical state to the pipeline
 ///   currently created except the state that can be overridden by
 ///   [`GraphicsShaderGroupCreateInfoNV`]
 /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
-///   feature **must** be enabled
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV`
-/// - [`groups`]**must** be a valid pointer to an array of [`group_count`] valid
+///   feature  **must**  be enabled
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV`
+/// - [`groups`] **must**  be a valid pointer to an array of [`group_count`] valid
 ///   [`GraphicsShaderGroupCreateInfoNV`] structures
-/// - If [`pipeline_count`] is not `0`, [`pipelines`]**must** be a valid pointer to an array of
+/// - If [`pipeline_count`] is not `0`, [`pipelines`] **must**  be a valid pointer to an array of
 ///   [`pipeline_count`] valid [`Pipeline`] handles
-/// - [`group_count`]**must** be greater than `0`
+/// - [`group_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`GraphicsShaderGroupCreateInfoNV`]
@@ -939,17 +854,9 @@ impl<'lt> GraphicsPipelineShaderGroupsCreateInfoNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::group_count`]
-    pub fn group_count_raw(&self) -> u32 {
-        self.group_count
-    }
     ///Gets the raw value of [`Self::groups`]
     pub fn groups_raw(&self) -> *const GraphicsShaderGroupCreateInfoNV<'lt> {
         self.groups
-    }
-    ///Gets the raw value of [`Self::pipeline_count`]
-    pub fn pipeline_count_raw(&self) -> u32 {
-        self.pipeline_count
     }
     ///Gets the raw value of [`Self::pipelines`]
     pub fn pipelines_raw(&self) -> *const Pipeline {
@@ -960,19 +867,9 @@ impl<'lt> GraphicsPipelineShaderGroupsCreateInfoNV<'lt> {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::group_count`]
-    pub fn set_group_count_raw(&mut self, value: u32) -> &mut Self {
-        self.group_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::groups`]
     pub fn set_groups_raw(&mut self, value: *const GraphicsShaderGroupCreateInfoNV<'lt>) -> &mut Self {
         self.groups = value;
-        self
-    }
-    ///Sets the raw value of [`Self::pipeline_count`]
-    pub fn set_pipeline_count_raw(&mut self, value: u32) -> &mut Self {
-        self.pipeline_count = value;
         self
     }
     ///Sets the raw value of [`Self::pipelines`]
@@ -1078,10 +975,10 @@ impl<'lt> GraphicsPipelineShaderGroupsCreateInfoNV<'lt> {
 ///# Members
 /// - `index` specifies which shader group of the current bound graphics pipeline is used.
 ///# Description
-///Valid Usage
-/// - The current bound graphics pipeline, as well as the pipelines it may reference, **must** have
-///   been created with `VK_PIPELINE_CREATE_INDIRECT_BINDABLE_BIT_NV`
-/// - The `index`**must** be within range of the accessible shader groups of the current bound
+///## Valid Usage
+/// - The current bound graphics pipeline, as well as the pipelines it may reference,  **must**
+///   have been created with `VK_PIPELINE_CREATE_INDIRECT_BINDABLE_BIT_NV`
+/// - The `index` **must**  be within range of the accessible shader groups of the current bound
 ///   graphics pipeline. See [`CmdBindPipelineShaderGroupNV`] for further details
 ///# Related
 /// - [`VK_NV_device_generated_commands`]
@@ -1107,15 +1004,6 @@ impl Default for BindShaderGroupIndirectCommandNV {
     }
 }
 impl BindShaderGroupIndirectCommandNV {
-    ///Gets the raw value of [`Self::group_index`]
-    pub fn group_index_raw(&self) -> u32 {
-        self.group_index
-    }
-    ///Sets the raw value of [`Self::group_index`]
-    pub fn set_group_index_raw(&mut self, value: u32) -> &mut Self {
-        self.group_index = value;
-        self
-    }
     ///Gets the value of [`Self::group_index`]
     pub fn group_index(&self) -> u32 {
         self.group_index
@@ -1147,18 +1035,19 @@ impl BindShaderGroupIndirectCommandNV {
 /// - [`size`] is the byte size range which is available for this operation from the provided
 ///   address.
 /// - [`index_type`] is a [`IndexType`] value specifying how indices are treated. Instead of the
-///   Vulkan enum values, a custom `uint32_t` value **can** be mapped to an [`IndexType`] by
+///   Vulkan enum values, a custom `uint32_t` value  **can**  be mapped to an [`IndexType`] by
 ///   specifying the [`IndirectCommandsLayoutTokenNV::index_types`] and
 ///   [`IndirectCommandsLayoutTokenNV::index_type_values`] arrays.
 ///# Description
-///Valid Usage
-/// - The buffer’s usage flag from which the address was acquired **must** have the
+///## Valid Usage
+/// - The buffer’s usage flag from which the address was acquired  **must**  have the
 ///   `VK_BUFFER_USAGE_INDEX_BUFFER_BIT` bit set
-/// - The [`buffer_address`]**must** be aligned to the [`index_type`] used
-/// - Each element of the buffer from which the address was acquired and that is non-sparse **must**
-///   be bound completely and contiguously to a single [`DeviceMemory`] object
-///Valid Usage (Implicit)
-/// - [`index_type`]**must** be a valid [`IndexType`] value
+/// - The [`buffer_address`] **must**  be aligned to the [`index_type`] used
+/// - Each element of the buffer from which the address was acquired and that is non-sparse
+///   **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
+///
+///## Valid Usage (Implicit)
+/// - [`index_type`] **must**  be a valid [`IndexType`] value
 ///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`DeviceAddress`]
@@ -1184,7 +1073,7 @@ pub struct BindIndexBufferIndirectCommandNV {
     size: u32,
     ///[`index_type`] is a [`IndexType`] value specifying how indices are
     ///treated.
-    ///Instead of the Vulkan enum values, a custom `uint32_t` value **can** be
+    ///Instead of the Vulkan enum values, a custom `uint32_t` value  **can**  be
     ///mapped to an [`IndexType`] by specifying the
     ///[`IndirectCommandsLayoutTokenNV`]::`pIndexTypes` and
     ///[`IndirectCommandsLayoutTokenNV`]::`pIndexTypeValues` arrays.
@@ -1200,15 +1089,6 @@ impl Default for BindIndexBufferIndirectCommandNV {
     }
 }
 impl BindIndexBufferIndirectCommandNV {
-    ///Gets the raw value of [`Self::size`]
-    pub fn size_raw(&self) -> u32 {
-        self.size
-    }
-    ///Sets the raw value of [`Self::size`]
-    pub fn set_size_raw(&mut self, value: u32) -> &mut Self {
-        self.size = value;
-        self
-    }
     ///Gets the value of [`Self::buffer_address`]
     pub fn buffer_address(&self) -> DeviceAddress {
         self.buffer_address
@@ -1271,11 +1151,11 @@ impl BindIndexBufferIndirectCommandNV {
 ///   [`IndirectCommandsLayoutTokenNV::vertex_dynamic_stride`] was set, otherwise the stride is
 ///   inherited from the current bound graphics pipeline.
 ///# Description
-///Valid Usage
-/// - The buffer’s usage flag from which the address was acquired **must** have the
+///## Valid Usage
+/// - The buffer’s usage flag from which the address was acquired  **must**  have the
 ///   `VK_BUFFER_USAGE_VERTEX_BUFFER_BIT` bit set
-/// - Each element of the buffer from which the address was acquired and that is non-sparse **must**
-///   be bound completely and contiguously to a single [`DeviceMemory`] object
+/// - Each element of the buffer from which the address was acquired and that is non-sparse
+///   **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 ///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`DeviceAddress`]
@@ -1316,24 +1196,6 @@ impl Default for BindVertexBufferIndirectCommandNV {
     }
 }
 impl BindVertexBufferIndirectCommandNV {
-    ///Gets the raw value of [`Self::size`]
-    pub fn size_raw(&self) -> u32 {
-        self.size
-    }
-    ///Gets the raw value of [`Self::stride`]
-    pub fn stride_raw(&self) -> u32 {
-        self.stride
-    }
-    ///Sets the raw value of [`Self::size`]
-    pub fn set_size_raw(&mut self, value: u32) -> &mut Self {
-        self.size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::stride`]
-    pub fn set_stride_raw(&mut self, value: u32) -> &mut Self {
-        self.stride = value;
-        self
-    }
     ///Gets the value of [`Self::buffer_address`]
     pub fn buffer_address(&self) -> DeviceAddress {
         self.buffer_address
@@ -1415,15 +1277,6 @@ impl Default for SetStateFlagsIndirectCommandNV {
     }
 }
 impl SetStateFlagsIndirectCommandNV {
-    ///Gets the raw value of [`Self::data`]
-    pub fn data_raw(&self) -> u32 {
-        self.data
-    }
-    ///Sets the raw value of [`Self::data`]
-    pub fn set_data_raw(&mut self, value: u32) -> &mut Self {
-        self.data = value;
-        self
-    }
     ///Gets the value of [`Self::data`]
     pub fn data(&self) -> u32 {
         self.data
@@ -1451,18 +1304,19 @@ impl SetStateFlagsIndirectCommandNV {
 ///```
 ///# Members
 /// - [`buffer`] specifies the [`Buffer`] storing the functional arguments for each sequence. These
-///   arguments **can** be written by the device.
+///   arguments  **can**  be written by the device.
 /// - [`offset`] specified an offset into [`buffer`] where the arguments start.
 ///# Description
-///Valid Usage
-/// - The [`buffer`]’s usage flag **must** have the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set
-/// - The [`offset`]**must** be aligned to
+///## Valid Usage
+/// - The [`buffer`]’s usage flag  **must**  have the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set
+/// - The [`offset`] **must**  be aligned to
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::
 ///   min_indirect_commands_buffer_offset_alignment`]
-/// - If [`buffer`] is non-sparse then it **must** be bound completely and contiguously to a single
-///   [`DeviceMemory`] object
-///Valid Usage (Implicit)
-/// - [`buffer`]**must** be a valid [`Buffer`] handle
+/// - If [`buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a
+///   single [`DeviceMemory`] object
+///
+///## Valid Usage (Implicit)
+/// - [`buffer`] **must**  be a valid [`Buffer`] handle
 ///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`Buffer`]
@@ -1482,7 +1336,7 @@ impl SetStateFlagsIndirectCommandNV {
 pub struct IndirectCommandsStreamNV {
     ///[`buffer`] specifies the [`Buffer`] storing the functional
     ///arguments for each sequence.
-    ///These arguments **can** be written by the device.
+    ///These arguments  **can**  be written by the device.
     buffer: Buffer,
     ///[`offset`] specified an offset into [`buffer`] where the arguments
     ///start.
@@ -1570,46 +1424,49 @@ impl IndirectCommandsStreamNV {
 /// - [`index_types`] is the used [`IndexType`] for the corresponding `uint32_t` value entry in
 ///   [`index_type_values`].
 ///# Description
-///Valid Usage
-/// - [`stream`]**must** be smaller than [`IndirectCommandsLayoutCreateInfoNV::stream_count`]
-/// - [`offset`]**must** be less than or equal to
+///## Valid Usage
+/// - [`stream`] **must**  be smaller than [`IndirectCommandsLayoutCreateInfoNV::stream_count`]
+/// - [`offset`] **must**  be less than or equal to
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::max_indirect_commands_token_offset`]
 /// - If [`token_type`] is `VK_INDIRECT_COMMANDS_TOKEN_TYPE_VERTEX_BUFFER_NV`,
-///   [`vertex_binding_unit`]**must** stay within device supported limits for the appropriate
+///   [`vertex_binding_unit`] **must**  stay within device supported limits for the appropriate
 ///   commands
 /// - If [`token_type`] is `VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV`,
-///   [`pushconstant_pipeline_layout`]**must** be valid
+///   [`pushconstant_pipeline_layout`] **must**  be valid
 /// - If [`token_type`] is `VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV`,
-///   [`pushconstant_offset`]**must** be a multiple of `4`
+///   [`pushconstant_offset`] **must**  be a multiple of `4`
+/// - If [`token_type`] is `VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV`, [`pushconstant_size`]
+///   **must**  be a multiple of `4`
 /// - If [`token_type`] is `VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV`,
-///   [`pushconstant_size`]**must** be a multiple of `4`
-/// - If [`token_type`] is `VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV`,
-///   [`pushconstant_offset`]**must** be less than [`PhysicalDeviceLimits::max_push_constants_size`]
-/// - If [`token_type`] is `VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV`,
-///   [`pushconstant_size`]**must** be less than or equal to
-///   [`PhysicalDeviceLimits::max_push_constants_size`] minus [`pushconstant_offset`]
+///   [`pushconstant_offset`] **must**  be less than
+///   [`PhysicalDeviceLimits::max_push_constants_size`]
+/// - If [`token_type`] is `VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV`, [`pushconstant_size`]
+///   **must**  be less than or equal to [`PhysicalDeviceLimits::max_push_constants_size`] minus
+///   [`pushconstant_offset`]
 /// - If [`token_type`] is `VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV`, for each byte in the
 ///   range specified by [`pushconstant_offset`] and [`pushconstant_size`] and for each shader stage
-///   in [`pushconstant_shader_stage_flags`], there **must** be a push constant range in
+///   in [`pushconstant_shader_stage_flags`], there  **must**  be a push constant range in
 ///   [`pushconstant_pipeline_layout`] that includes that byte and that stage
 /// - If [`token_type`] is `VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV`, for each byte in the
 ///   range specified by [`pushconstant_offset`] and [`pushconstant_size`] and for each push
-///   constant range that overlaps that byte, [`pushconstant_shader_stage_flags`]**must** include
+///   constant range that overlaps that byte, [`pushconstant_shader_stage_flags`] **must**  include
 ///   all stages in that push constant range’s [`PushConstantRange::stage_flags`]
 /// - If [`token_type`] is `VK_INDIRECT_COMMANDS_TOKEN_TYPE_STATE_FLAGS_NV`,
-///   [`indirect_state_flags`]**must** not be `0`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_TOKEN_NV`
-/// - [`p_next`]**must** be `NULL`
-/// - [`token_type`]**must** be a valid [`IndirectCommandsTokenTypeNV`] value
+///   [`indirect_state_flags`] **must**  not be `0`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_TOKEN_NV`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`token_type`] **must**  be a valid [`IndirectCommandsTokenTypeNV`] value
 /// - If [`pushconstant_pipeline_layout`] is not [`crate::utils::Handle::null`],
-///   [`pushconstant_pipeline_layout`]**must** be a valid [`PipelineLayout`] handle
-/// - [`pushconstant_shader_stage_flags`]**must** be a valid combination of [`ShaderStageFlagBits`]
+///   [`pushconstant_pipeline_layout`] **must**  be a valid [`PipelineLayout`] handle
+/// - [`pushconstant_shader_stage_flags`] **must**  be a valid combination of
+///   [`ShaderStageFlagBits`] values
+/// - [`indirect_state_flags`] **must**  be a valid combination of [`IndirectStateFlagBitsNV`]
 ///   values
-/// - [`indirect_state_flags`]**must** be a valid combination of [`IndirectStateFlagBitsNV`] values
-/// - If [`index_type_count`] is not `0`, [`index_types`]**must** be a valid pointer to an array of
-///   [`index_type_count`] valid [`IndexType`] values
-/// - If [`index_type_count`] is not `0`, [`index_type_values`]**must** be a valid pointer to an
+/// - If [`index_type_count`] is not `0`, [`index_types`] **must**  be a valid pointer to an array
+///   of [`index_type_count`] valid [`IndexType`] values
+/// - If [`index_type_count`] is not `0`, [`index_type_values`] **must**  be a valid pointer to an
 ///   array of [`index_type_count`]`uint32_t` values
 ///# Related
 /// - [`VK_NV_device_generated_commands`]
@@ -1705,33 +1562,9 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::stream`]
-    pub fn stream_raw(&self) -> u32 {
-        self.stream
-    }
-    ///Gets the raw value of [`Self::offset`]
-    pub fn offset_raw(&self) -> u32 {
-        self.offset
-    }
-    ///Gets the raw value of [`Self::vertex_binding_unit`]
-    pub fn vertex_binding_unit_raw(&self) -> u32 {
-        self.vertex_binding_unit
-    }
     ///Gets the raw value of [`Self::vertex_dynamic_stride`]
     pub fn vertex_dynamic_stride_raw(&self) -> Bool32 {
         self.vertex_dynamic_stride
-    }
-    ///Gets the raw value of [`Self::pushconstant_offset`]
-    pub fn pushconstant_offset_raw(&self) -> u32 {
-        self.pushconstant_offset
-    }
-    ///Gets the raw value of [`Self::pushconstant_size`]
-    pub fn pushconstant_size_raw(&self) -> u32 {
-        self.pushconstant_size
-    }
-    ///Gets the raw value of [`Self::index_type_count`]
-    pub fn index_type_count_raw(&self) -> u32 {
-        self.index_type_count
     }
     ///Gets the raw value of [`Self::index_types`]
     pub fn index_types_raw(&self) -> *const IndexType {
@@ -1746,39 +1579,9 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::stream`]
-    pub fn set_stream_raw(&mut self, value: u32) -> &mut Self {
-        self.stream = value;
-        self
-    }
-    ///Sets the raw value of [`Self::offset`]
-    pub fn set_offset_raw(&mut self, value: u32) -> &mut Self {
-        self.offset = value;
-        self
-    }
-    ///Sets the raw value of [`Self::vertex_binding_unit`]
-    pub fn set_vertex_binding_unit_raw(&mut self, value: u32) -> &mut Self {
-        self.vertex_binding_unit = value;
-        self
-    }
     ///Sets the raw value of [`Self::vertex_dynamic_stride`]
     pub fn set_vertex_dynamic_stride_raw(&mut self, value: Bool32) -> &mut Self {
         self.vertex_dynamic_stride = value;
-        self
-    }
-    ///Sets the raw value of [`Self::pushconstant_offset`]
-    pub fn set_pushconstant_offset_raw(&mut self, value: u32) -> &mut Self {
-        self.pushconstant_offset = value;
-        self
-    }
-    ///Sets the raw value of [`Self::pushconstant_size`]
-    pub fn set_pushconstant_size_raw(&mut self, value: u32) -> &mut Self {
-        self.pushconstant_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::index_type_count`]
-    pub fn set_index_type_count_raw(&mut self, value: u32) -> &mut Self {
-        self.index_type_count = value;
         self
     }
     ///Sets the raw value of [`Self::index_types`]
@@ -2061,35 +1864,38 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
 ///  }
 ///}
 ///```
-///Valid Usage
-/// - The [`pipeline_bind_point`]**must** be `VK_PIPELINE_BIND_POINT_GRAPHICS`
-/// - [`token_count`]**must** be greater than `0` and less than or equal to
+///
+///## Valid Usage
+/// - The [`pipeline_bind_point`] **must**  be `VK_PIPELINE_BIND_POINT_GRAPHICS`
+/// - [`token_count`] **must**  be greater than `0` and less than or equal to
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::max_indirect_commands_token_count`]
 /// - If [`tokens`] contains an entry of `VK_INDIRECT_COMMANDS_TOKEN_TYPE_SHADER_GROUP_NV` it
-///   **must** be the first element of the array and there **must** be only a single element of such
-///   token type
+///   **must**  be the first element of the array and there  **must**  be only a single element of
+///   such token type
 /// - If [`tokens`] contains an entry of `VK_INDIRECT_COMMANDS_TOKEN_TYPE_STATE_FLAGS_NV` there
-///   **must** be only a single element of such token type
-/// - All state tokens in [`tokens`]**must** occur prior work provoking tokens
+///   **must**  be only a single element of such token type
+/// - All state tokens in [`tokens`] **must**  occur prior work provoking tokens
 ///   (`VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_NV`, `VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_INDEXED_NV`,
 ///   `VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_TASKS_NV`)
-/// - The content of [`tokens`]**must** include one single work provoking token that is compatible
+/// - The content of [`tokens`] **must**  include one single work provoking token that is compatible
 ///   with the [`pipeline_bind_point`]
-/// - [`stream_count`]**must** be greater than `0` and less or equal to
+/// - [`stream_count`] **must**  be greater than `0` and less or equal to
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::max_indirect_commands_stream_count`]
-/// - each element of [`stream_strides`]**must** be greater than `0`and less than or equal to
+/// - each element of [`stream_strides`] **must**  be greater than `0`and less than or equal to
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::max_indirect_commands_stream_stride`].
-///   Furthermore the alignment of each token input **must** be ensured
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be a valid combination of [`IndirectCommandsLayoutUsageFlagBitsNV`] values
-/// - [`pipeline_bind_point`]**must** be a valid [`PipelineBindPoint`] value
-/// - [`tokens`]**must** be a valid pointer to an array of [`token_count`] valid
+///   Furthermore the alignment of each token input  **must**  be ensured
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be a valid combination of [`IndirectCommandsLayoutUsageFlagBitsNV`] values
+/// - [`pipeline_bind_point`] **must**  be a valid [`PipelineBindPoint`] value
+/// - [`tokens`] **must**  be a valid pointer to an array of [`token_count`] valid
 ///   [`IndirectCommandsLayoutTokenNV`] structures
-/// - [`stream_strides`]**must** be a valid pointer to an array of [`stream_count`]`uint32_t` values
-/// - [`token_count`]**must** be greater than `0`
-/// - [`stream_count`]**must** be greater than `0`
+/// - [`stream_strides`] **must**  be a valid pointer to an array of [`stream_count`]`uint32_t`
+///   values
+/// - [`token_count`] **must**  be greater than `0`
+/// - [`stream_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`IndirectCommandsLayoutTokenNV`]
@@ -2155,17 +1961,9 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::token_count`]
-    pub fn token_count_raw(&self) -> u32 {
-        self.token_count
-    }
     ///Gets the raw value of [`Self::tokens`]
     pub fn tokens_raw(&self) -> *const IndirectCommandsLayoutTokenNV<'lt> {
         self.tokens
-    }
-    ///Gets the raw value of [`Self::stream_count`]
-    pub fn stream_count_raw(&self) -> u32 {
-        self.stream_count
     }
     ///Gets the raw value of [`Self::stream_strides`]
     pub fn stream_strides_raw(&self) -> *const u32 {
@@ -2176,19 +1974,9 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::token_count`]
-    pub fn set_token_count_raw(&mut self, value: u32) -> &mut Self {
-        self.token_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::tokens`]
     pub fn set_tokens_raw(&mut self, value: *const IndirectCommandsLayoutTokenNV<'lt>) -> &mut Self {
         self.tokens = value;
-        self
-    }
-    ///Sets the raw value of [`Self::stream_count`]
-    pub fn set_stream_count_raw(&mut self, value: u32) -> &mut Self {
-        self.stream_count = value;
         self
     }
     ///Sets the raw value of [`Self::stream_strides`]
@@ -2362,72 +2150,72 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
 /// - [`sequences_index_offset`] is the byte offset into [`sequences_index_buffer`] where the index
 ///   values start.
 ///# Description
-///Valid Usage
-/// - The provided [`pipeline`]**must** match the pipeline bound at execution time
+///## Valid Usage
+/// - The provided [`pipeline`] **must**  match the pipeline bound at execution time
 /// - If the [`indirect_commands_layout`] uses a token of
-///   `VK_INDIRECT_COMMANDS_TOKEN_TYPE_SHADER_GROUP_NV`, then the [`pipeline`]**must** have been
+///   `VK_INDIRECT_COMMANDS_TOKEN_TYPE_SHADER_GROUP_NV`, then the [`pipeline`] **must**  have been
 ///   created with multiple shader groups
 /// - If the [`indirect_commands_layout`] uses a token of
-///   `VK_INDIRECT_COMMANDS_TOKEN_TYPE_SHADER_GROUP_NV`, then the [`pipeline`]**must** have been
+///   `VK_INDIRECT_COMMANDS_TOKEN_TYPE_SHADER_GROUP_NV`, then the [`pipeline`] **must**  have been
 ///   created with `VK_PIPELINE_CREATE_INDIRECT_BINDABLE_BIT_NV` set in
 ///   [`GraphicsPipelineCreateInfo::flags`]
 /// - If the [`indirect_commands_layout`] uses a token of
-///   `VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV`, then the [`pipeline`]`s
-///   [`PipelineLayout`]**must** match the
-///   [`IndirectCommandsLayoutTokenNV::pushconstant_pipeline_layout`]
-/// - [`stream_count`]**must** match the [`indirect_commands_layout`]’s [`stream_count`]
-/// - [`sequences_count`]**must** be less or equal to
+///   `VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV`, then the [`pipeline`]`s [`PipelineLayout`]
+///   **must**  match the [`IndirectCommandsLayoutTokenNV::pushconstant_pipeline_layout`]
+/// - [`stream_count`] **must**  match the [`indirect_commands_layout`]’s [`stream_count`]
+/// - [`sequences_count`] **must**  be less or equal to
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::max_indirect_sequence_count`] and
 ///   [`GeneratedCommandsMemoryRequirementsInfoNV::max_sequences_count`] that was used to determine
 ///   the [`preprocess_size`]
-/// - [`preprocess_buffer`]**must** have the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set in its
+/// - [`preprocess_buffer`] **must**  have the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set in its
 ///   usage flag
-/// - [`preprocess_offset`]**must** be aligned to
+/// - [`preprocess_offset`] **must**  be aligned to
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::
 ///   min_indirect_commands_buffer_offset_alignment`]
-/// - If [`preprocess_buffer`] is non-sparse then it **must** be bound completely and contiguously
+/// - If [`preprocess_buffer`] is non-sparse then it  **must**  be bound completely and contiguously
 ///   to a single [`DeviceMemory`] object
-/// - [`preprocess_size`]**must** be at least equal to the memory requirement`s size returned by
+/// - [`preprocess_size`] **must**  be at least equal to the memory requirement`s size returned by
 ///   [`GetGeneratedCommandsMemoryRequirementsNV`] using the matching inputs
 ///   ([`indirect_commands_layout`], …​) as within this structure
-/// - [`sequences_count_buffer`]**can** be set if the actual used count of sequences is sourced from
-///   the provided buffer. In that case the [`sequences_count`] serves as upper bound
-/// - If [`sequences_count_buffer`] is not [`crate::utils::Handle::null`], its usage flag **must**
+/// - [`sequences_count_buffer`] **can**  be set if the actual used count of sequences is sourced
+///   from the provided buffer. In that case the [`sequences_count`] serves as upper bound
+/// - If [`sequences_count_buffer`] is not [`crate::utils::Handle::null`], its usage flag  **must**
 ///   have the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set
 /// - If [`sequences_count_buffer`] is not [`crate::utils::Handle::null`],
-///   [`sequences_count_offset`]**must** be aligned to
+///   [`sequences_count_offset`] **must**  be aligned to
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::
 ///   min_sequences_count_buffer_offset_alignment`]
 /// - If [`sequences_count_buffer`] is not [`crate::utils::Handle::null`] and is non-sparse then it
-///   **must** be bound completely and contiguously to a single [`DeviceMemory`] object
+///   **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 /// - If [`indirect_commands_layout`]’s `VK_INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT_NV`
-///   is set, [`sequences_index_buffer`]**must** be set otherwise it **must** be
+///   is set, [`sequences_index_buffer`] **must**  be set otherwise it  **must**  be
 ///   [`crate::utils::Handle::null`]
-/// - If [`sequences_index_buffer`] is not [`crate::utils::Handle::null`], its usage flag **must**
+/// - If [`sequences_index_buffer`] is not [`crate::utils::Handle::null`], its usage flag  **must**
 ///   have the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set
 /// - If [`sequences_index_buffer`] is not [`crate::utils::Handle::null`],
-///   [`sequences_index_offset`]**must** be aligned to
+///   [`sequences_index_offset`] **must**  be aligned to
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::
 ///   min_sequences_index_buffer_offset_alignment`]
 /// - If [`sequences_index_buffer`] is not [`crate::utils::Handle::null`] and is non-sparse then it
-///   **must** be bound completely and contiguously to a single [`DeviceMemory`] object
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_GENERATED_COMMANDS_INFO_NV`
-/// - [`p_next`]**must** be `NULL`
-/// - [`pipeline_bind_point`]**must** be a valid [`PipelineBindPoint`] value
-/// - [`pipeline`]**must** be a valid [`Pipeline`] handle
-/// - [`indirect_commands_layout`]**must** be a valid [`IndirectCommandsLayoutNV`] handle
-/// - [`streams`]**must** be a valid pointer to an array of [`stream_count`] valid
+///   **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_GENERATED_COMMANDS_INFO_NV`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`pipeline_bind_point`] **must**  be a valid [`PipelineBindPoint`] value
+/// - [`pipeline`] **must**  be a valid [`Pipeline`] handle
+/// - [`indirect_commands_layout`] **must**  be a valid [`IndirectCommandsLayoutNV`] handle
+/// - [`streams`] **must**  be a valid pointer to an array of [`stream_count`] valid
 ///   [`IndirectCommandsStreamNV`] structures
-/// - [`preprocess_buffer`]**must** be a valid [`Buffer`] handle
+/// - [`preprocess_buffer`] **must**  be a valid [`Buffer`] handle
 /// - If [`sequences_count_buffer`] is not [`crate::utils::Handle::null`],
-///   [`sequences_count_buffer`]**must** be a valid [`Buffer`] handle
+///   [`sequences_count_buffer`] **must**  be a valid [`Buffer`] handle
 /// - If [`sequences_index_buffer`] is not [`crate::utils::Handle::null`],
-///   [`sequences_index_buffer`]**must** be a valid [`Buffer`] handle
-/// - [`stream_count`]**must** be greater than `0`
+///   [`sequences_index_buffer`] **must**  be a valid [`Buffer`] handle
+/// - [`stream_count`] **must**  be greater than `0`
 /// - Each of [`indirect_commands_layout`], [`pipeline`], [`preprocess_buffer`],
 ///   [`sequences_count_buffer`], and [`sequences_index_buffer`] that are valid handles of
-///   non-ignored parameters **must** have been created, allocated, or retrieved from the same
+///   non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
 ///   [`Device`]
 ///# Related
 /// - [`VK_NV_device_generated_commands`]
@@ -2529,36 +2317,18 @@ impl<'lt> GeneratedCommandsInfoNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::stream_count`]
-    pub fn stream_count_raw(&self) -> u32 {
-        self.stream_count
-    }
     ///Gets the raw value of [`Self::streams`]
     pub fn streams_raw(&self) -> *const IndirectCommandsStreamNV {
         self.streams
-    }
-    ///Gets the raw value of [`Self::sequences_count`]
-    pub fn sequences_count_raw(&self) -> u32 {
-        self.sequences_count
     }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::stream_count`]
-    pub fn set_stream_count_raw(&mut self, value: u32) -> &mut Self {
-        self.stream_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::streams`]
     pub fn set_streams_raw(&mut self, value: *const IndirectCommandsStreamNV) -> &mut Self {
         self.streams = value;
-        self
-    }
-    ///Sets the raw value of [`Self::sequences_count`]
-    pub fn set_sequences_count_raw(&mut self, value: u32) -> &mut Self {
-        self.sequences_count = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -2787,18 +2557,19 @@ impl<'lt> GeneratedCommandsInfoNV<'lt> {
 /// - [`indirect_commands_layout`] is the [`IndirectCommandsLayoutNV`] that this buffer memory is
 ///   intended to be used with.
 /// - [`max_sequences_count`] is the maximum number of sequences that this buffer memory in
-///   combination with the other state provided **can** be used with.
+///   combination with the other state provided  **can**  be used with.
 ///# Description
-///Valid Usage
-/// - [`max_sequences_count`]**must** be less or equal to
+///## Valid Usage
+/// - [`max_sequences_count`] **must**  be less or equal to
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::max_indirect_sequence_count`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV`
-/// - [`p_next`]**must** be `NULL`
-/// - [`pipeline_bind_point`]**must** be a valid [`PipelineBindPoint`] value
-/// - [`pipeline`]**must** be a valid [`Pipeline`] handle
-/// - [`indirect_commands_layout`]**must** be a valid [`IndirectCommandsLayoutNV`] handle
-/// - Both of [`indirect_commands_layout`], and [`pipeline`]**must** have been created, allocated,
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`pipeline_bind_point`] **must**  be a valid [`PipelineBindPoint`] value
+/// - [`pipeline`] **must**  be a valid [`Pipeline`] handle
+/// - [`indirect_commands_layout`] **must**  be a valid [`IndirectCommandsLayoutNV`] handle
+/// - Both of [`indirect_commands_layout`], and [`pipeline`] **must**  have been created, allocated,
 ///   or retrieved from the same [`Device`]
 ///# Related
 /// - [`VK_NV_device_generated_commands`]
@@ -2836,7 +2607,7 @@ pub struct GeneratedCommandsMemoryRequirementsInfoNV<'lt> {
     ///that this buffer memory is intended to be used with.
     indirect_commands_layout: IndirectCommandsLayoutNV,
     ///[`max_sequences_count`] is the maximum number of sequences that this
-    ///buffer memory in combination with the other state provided **can** be used
+    ///buffer memory in combination with the other state provided  **can**  be used
     ///with.
     max_sequences_count: u32,
 }
@@ -2858,18 +2629,9 @@ impl<'lt> GeneratedCommandsMemoryRequirementsInfoNV<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::max_sequences_count`]
-    pub fn max_sequences_count_raw(&self) -> u32 {
-        self.max_sequences_count
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_sequences_count`]
-    pub fn set_max_sequences_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_sequences_count = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

@@ -78,9 +78,10 @@ pub const KHR_PORTABILITY_SUBSET_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDevicePortabilitySubsetFeaturesKHR`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR`
+///[`PhysicalDevicePortabilitySubsetFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR`
 ///# Related
 /// - [`VK_KHR_portability_subset`]
 /// - [`Bool32`]
@@ -794,15 +795,16 @@ impl<'lt> PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`min_vertex_input_binding_stride_alignment`] indicates the minimum alignment for vertex input
-///   strides. [`VertexInputBindingDescription::stride`]**must** be a multiple of, and at least as
-///   large as, this value. The value **must** be a power of two.
+///   strides. [`VertexInputBindingDescription::stride`] **must**  be a multiple of, and at least as
+///   large as, this value. The value  **must**  be a power of two.
 ///# Description
 ///If the [`PhysicalDevicePortabilitySubsetPropertiesKHR`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR`
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR`
 ///# Related
 /// - [`VK_KHR_portability_subset`]
 /// - [`StructureType`]
@@ -826,9 +828,9 @@ pub struct PhysicalDevicePortabilitySubsetPropertiesKHR<'lt> {
     p_next: *mut BaseOutStructure<'lt>,
     ///[`min_vertex_input_binding_stride_alignment`] indicates the minimum
     ///alignment for vertex input strides.
-    ///[`VertexInputBindingDescription`]::`stride`**must** be a multiple
+    ///[`VertexInputBindingDescription`]::`stride` **must**  be a multiple
     ///of, and at least as large as, this value.
-    ///The value **must** be a power of two.
+    ///The value  **must**  be a power of two.
     min_vertex_input_binding_stride_alignment: u32,
 }
 impl<'lt> Default for PhysicalDevicePortabilitySubsetPropertiesKHR<'lt> {
@@ -846,18 +848,9 @@ impl<'lt> PhysicalDevicePortabilitySubsetPropertiesKHR<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::min_vertex_input_binding_stride_alignment`]
-    pub fn min_vertex_input_binding_stride_alignment_raw(&self) -> u32 {
-        self.min_vertex_input_binding_stride_alignment
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::min_vertex_input_binding_stride_alignment`]
-    pub fn set_min_vertex_input_binding_stride_alignment_raw(&mut self, value: u32) -> &mut Self {
-        self.min_vertex_input_binding_stride_alignment = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

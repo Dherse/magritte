@@ -31,8 +31,9 @@ pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME: &'static CStr =
 ///# Description
 ///Additional queue family information can be queried by setting
 ///[`QueueFamilyProperties2`]::[`p_next`] to point to a
-///[`QueueFamilyCheckpointPropertiesNV`] structure.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV`
+///[`QueueFamilyCheckpointPropertiesNV`] structure.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV`
 ///# Related
 /// - [`VK_NV_device_diagnostic_checkpoints`]
 /// - [`PipelineStageFlags`]
@@ -145,11 +146,12 @@ impl<'lt> QueueFamilyCheckpointPropertiesNV<'lt> {
 /// - [`checkpoint_marker`] contains the value of the last checkpoint marker executed in the stage
 ///   that [`stage`] refers to.
 ///# Description
-///The stages at which a checkpoint marker **can** be executed are
-///implementation-defined and **can** be queried by calling
-///[`GetPhysicalDeviceQueueFamilyProperties2`].Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_CHECKPOINT_DATA_NV`
-/// - [`p_next`]**must** be `NULL`
+///The stages at which a checkpoint marker  **can**  be executed are
+///implementation-defined and  **can**  be queried by calling
+///[`GetPhysicalDeviceQueueFamilyProperties2`].
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_CHECKPOINT_DATA_NV`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_NV_device_diagnostic_checkpoints`]
 /// - [`PipelineStageFlagBits`]

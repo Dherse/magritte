@@ -260,19 +260,20 @@ impl ValidationFeatureDisableEXT {
 /// - [`disabled_validation_features`] is a pointer to an array of [`ValidationFeatureDisableEXT`]
 ///   values specifying the validation features to be disabled.
 ///# Description
-///Valid Usage
+///## Valid Usage
 /// - If the [`enabled_validation_features`] array contains
-///   `VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT`, then it **must** also
+///   `VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT`, then it  **must**  also
 ///   contain `VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT`
 /// - If the [`enabled_validation_features`] array contains
-///   `VK_VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT`, then it **must** not contain
+///   `VK_VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT`, then it  **must**  not contain
 ///   `VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VALIDATION_FEATURES_EXT`
-/// - If [`enabled_validation_feature_count`] is not `0`, [`enabled_validation_features`]**must** be
-///   a valid pointer to an array of [`enabled_validation_feature_count`] valid
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VALIDATION_FEATURES_EXT`
+/// - If [`enabled_validation_feature_count`] is not `0`, [`enabled_validation_features`] **must**
+///   be a valid pointer to an array of [`enabled_validation_feature_count`] valid
 ///   [`ValidationFeatureEnableEXT`] values
-/// - If [`disabled_validation_feature_count`] is not `0`, [`disabled_validation_features`]**must**
+/// - If [`disabled_validation_feature_count`] is not `0`, [`disabled_validation_features`] **must**
 ///   be a valid pointer to an array of [`disabled_validation_feature_count`] valid
 ///   [`ValidationFeatureDisableEXT`] values
 ///# Related
@@ -330,17 +331,9 @@ impl<'lt> ValidationFeaturesEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::enabled_validation_feature_count`]
-    pub fn enabled_validation_feature_count_raw(&self) -> u32 {
-        self.enabled_validation_feature_count
-    }
     ///Gets the raw value of [`Self::enabled_validation_features`]
     pub fn enabled_validation_features_raw(&self) -> *const ValidationFeatureEnableEXT {
         self.enabled_validation_features
-    }
-    ///Gets the raw value of [`Self::disabled_validation_feature_count`]
-    pub fn disabled_validation_feature_count_raw(&self) -> u32 {
-        self.disabled_validation_feature_count
     }
     ///Gets the raw value of [`Self::disabled_validation_features`]
     pub fn disabled_validation_features_raw(&self) -> *const ValidationFeatureDisableEXT {
@@ -351,19 +344,9 @@ impl<'lt> ValidationFeaturesEXT<'lt> {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::enabled_validation_feature_count`]
-    pub fn set_enabled_validation_feature_count_raw(&mut self, value: u32) -> &mut Self {
-        self.enabled_validation_feature_count = value;
-        self
-    }
     ///Sets the raw value of [`Self::enabled_validation_features`]
     pub fn set_enabled_validation_features_raw(&mut self, value: *const ValidationFeatureEnableEXT) -> &mut Self {
         self.enabled_validation_features = value;
-        self
-    }
-    ///Sets the raw value of [`Self::disabled_validation_feature_count`]
-    pub fn set_disabled_validation_feature_count_raw(&mut self, value: u32) -> &mut Self {
-        self.disabled_validation_feature_count = value;
         self
     }
     ///Sets the raw value of [`Self::disabled_validation_features`]

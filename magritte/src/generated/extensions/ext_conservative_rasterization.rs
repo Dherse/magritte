@@ -110,8 +110,8 @@ impl ConservativeRasterizationModeEXT {
 ///   at each of its edges during conservative rasterization overestimation mode. Even with a size
 ///   of 0.0, conservative rasterization overestimation rules still apply and if any part of the
 ///   pixel rectangle is covered by the generating primitive, fragments are generated for the entire
-///   pixel. However implementations **may** make the pixel coverage area even more conservative by
-///   increasing the size of the generating primitive.
+///   pixel. However implementations  **may**  make the pixel coverage area even more conservative
+///   by increasing the size of the generating primitive.
 /// - [`max_extra_primitive_overestimation_size`] is the maximum size in pixels of extra
 ///   overestimation the implementation supports in the pipeline state. A value of 0.0 means the
 ///   implementation does not support any additional overestimation of the generating primitive
@@ -134,7 +134,7 @@ impl ConservativeRasterizationModeEXT {
 ///   rasterization pixel grid. [`degenerate_triangles_rasterized`] is [`TRUE`] if these primitives
 ///   are not culled and the provoking vertex attributes and depth value are used for the fragments.
 ///   The primitive area calculation is done on the primitive generated from the clipped triangle if
-///   applicable. Zero area primitives are backfacing and the application **can** enable backface
+///   applicable. Zero area primitives are backfacing and the application  **can**  enable backface
 ///   culling if desired.
 /// - [`degenerate_lines_rasterized`] is [`FALSE`] if the implementation culls lines that become
 ///   zero length after they are quantized to the fixed-point rasterization pixel grid.
@@ -146,15 +146,16 @@ impl ConservativeRasterizationModeEXT {
 ///   primitive.
 /// - [`conservative_rasterization_post_depth_coverage`] is [`TRUE`] if the implementation supports
 ///   conservative rasterization with the `PostDepthCoverage` execution mode enabled. Otherwise the
-///   `PostDepthCoverage` execution mode **must** not be used when conservative rasterization is
+///   `PostDepthCoverage` execution mode  **must**  not be used when conservative rasterization is
 ///   enabled.
 ///# Description
 ///If the [`PhysicalDeviceConservativeRasterizationPropertiesEXT`] structure is included in the
 /// [`p_next`] chain of the
 ///[`PhysicalDeviceProperties2`] structure passed to
 ///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT`
 ///# Related
 /// - [`VK_EXT_conservative_rasterization`]
@@ -184,7 +185,7 @@ pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
     ///Even with a size of 0.0, conservative rasterization overestimation rules
     ///still apply and if any part of the pixel rectangle is covered by the
     ///generating primitive, fragments are generated for the entire pixel.
-    ///However implementations **may** make the pixel coverage area even more
+    ///However implementations  **may**  make the pixel coverage area even more
     ///conservative by increasing the size of the generating primitive.
     primitive_overestimation_size: f32,
     ///[`max_extra_primitive_overestimation_size`] is the maximum size in pixels
@@ -225,7 +226,7 @@ pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
     ///used for the fragments.
     ///The primitive area calculation is done on the primitive generated from
     ///the clipped triangle if applicable.
-    ///Zero area primitives are backfacing and the application **can** enable
+    ///Zero area primitives are backfacing and the application  **can**  enable
     ///backface culling if desired.
     degenerate_triangles_rasterized: Bool32,
     ///[`degenerate_lines_rasterized`] is
@@ -244,7 +245,7 @@ pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
     ///[`conservative_rasterization_post_depth_coverage`] is [`TRUE`] if the
     ///implementation supports conservative rasterization with the
     ///`PostDepthCoverage` execution mode enabled.
-    ///Otherwise the `PostDepthCoverage` execution mode **must** not be used
+    ///Otherwise the `PostDepthCoverage` execution mode  **must**  not be used
     ///when conservative rasterization is enabled.
     conservative_rasterization_post_depth_coverage: Bool32,
 }
@@ -270,18 +271,6 @@ impl<'lt> PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
-    }
-    ///Gets the raw value of [`Self::primitive_overestimation_size`]
-    pub fn primitive_overestimation_size_raw(&self) -> f32 {
-        self.primitive_overestimation_size
-    }
-    ///Gets the raw value of [`Self::max_extra_primitive_overestimation_size`]
-    pub fn max_extra_primitive_overestimation_size_raw(&self) -> f32 {
-        self.max_extra_primitive_overestimation_size
-    }
-    ///Gets the raw value of [`Self::extra_primitive_overestimation_size_granularity`]
-    pub fn extra_primitive_overestimation_size_granularity_raw(&self) -> f32 {
-        self.extra_primitive_overestimation_size_granularity
     }
     ///Gets the raw value of [`Self::primitive_underestimation`]
     pub fn primitive_underestimation_raw(&self) -> Bool32 {
@@ -310,21 +299,6 @@ impl<'lt> PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::primitive_overestimation_size`]
-    pub fn set_primitive_overestimation_size_raw(&mut self, value: f32) -> &mut Self {
-        self.primitive_overestimation_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_extra_primitive_overestimation_size`]
-    pub fn set_max_extra_primitive_overestimation_size_raw(&mut self, value: f32) -> &mut Self {
-        self.max_extra_primitive_overestimation_size = value;
-        self
-    }
-    ///Sets the raw value of [`Self::extra_primitive_overestimation_size_granularity`]
-    pub fn set_extra_primitive_overestimation_size_granularity_raw(&mut self, value: f32) -> &mut Self {
-        self.extra_primitive_overestimation_size_granularity = value;
         self
     }
     ///Sets the raw value of [`Self::primitive_underestimation`]
@@ -596,7 +570,7 @@ impl<'lt> PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
 }
 ///[VkPipelineRasterizationConservativeStateCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineRasterizationConservativeStateCreateInfoEXT.html) - Structure specifying conservative raster state
 ///# C Specifications
-///Polygon rasterization **can** be made conservative by setting
+///Polygon rasterization  **can**  be made conservative by setting
 ///[`conservative_rasterization_mode`] to
 ///`VK_CONSERVATIVE_RASTERIZATION_MODE_OVERESTIMATE_EXT` or
 ///`VK_CONSERVATIVE_RASTERIZATION_MODE_UNDERESTIMATE_EXT` in
@@ -630,15 +604,16 @@ impl<'lt> PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
 ///   screen space beyond the base overestimation specified in
 ///   [`PhysicalDeviceConservativeRasterizationPropertiesEXT::primitive_overestimation_size`].
 ///# Description
-///Valid Usage
-/// - [`extra_primitive_overestimation_size`]**must** be in the range of `0.0` to
+///## Valid Usage
+/// - [`extra_primitive_overestimation_size`] **must**  be in the range of `0.0` to
 ///   [`PhysicalDeviceConservativeRasterizationPropertiesEXT::
 ///   max_extra_primitive_overestimation_size`] inclusive
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT`
-/// - [`flags`]**must** be `0`
-/// - [`conservative_rasterization_mode`]**must** be a valid [`ConservativeRasterizationModeEXT`]
+/// - [`flags`] **must**  be `0`
+/// - [`conservative_rasterization_mode`] **must**  be a valid [`ConservativeRasterizationModeEXT`]
 ///   value
 ///# Related
 /// - [`VK_EXT_conservative_rasterization`]
@@ -692,18 +667,9 @@ impl<'lt> PipelineRasterizationConservativeStateCreateInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::extra_primitive_overestimation_size`]
-    pub fn extra_primitive_overestimation_size_raw(&self) -> f32 {
-        self.extra_primitive_overestimation_size
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::extra_primitive_overestimation_size`]
-    pub fn set_extra_primitive_overestimation_size_raw(&mut self, value: f32) -> &mut Self {
-        self.extra_primitive_overestimation_size = value;
         self
     }
     ///Gets the value of [`Self::s_type`]

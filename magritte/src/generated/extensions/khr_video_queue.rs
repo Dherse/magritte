@@ -20,7 +20,7 @@ pub const KHR_VIDEO_QUEUE_SPEC_VERSION: u32 = 2;
 pub const KHR_VIDEO_QUEUE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_video_queue");
 ///[VkQueryResultStatusKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueryResultStatusKHR.html) - Specific status codes for operations
 ///# C Specifications
-///Specific status codes that **can** be returned from a query are:
+///Specific status codes that  **can**  be returned from a query are:
 ///```c
 ///// Provided by VK_KHR_video_queue
 ///typedef enum VkQueryResultStatusKHR {
@@ -99,11 +99,11 @@ impl QueryResultStatusKHR {
 /// - [`video_codec_operations`] is a bitmask of [`VideoCodecOperationFlagBitsKHR`] specifying
 ///   supported video codec operation(s).
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_QUEUE_FAMILY_PROPERTIES_2_KHR`
-/// - [`video_codec_operations`]**must** be a valid combination of
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_QUEUE_FAMILY_PROPERTIES_2_KHR`
+/// - [`video_codec_operations`] **must**  be a valid combination of
 ///   [`VideoCodecOperationFlagBitsKHR`] values
-/// - [`video_codec_operations`]**must** not be `0`
+/// - [`video_codec_operations`] **must**  not be `0`
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`StructureType`]
@@ -218,8 +218,8 @@ impl<'lt> VideoQueueFamilyProperties2KHR<'lt> {
 /// - [`supported`] reports [`TRUE`] if query type `VK_QUERY_TYPE_RESULT_STATUS_ONLY_KHR` and use of
 ///   `VK_QUERY_RESULT_WITH_STATUS_BIT_KHR` are supported.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_2_KHR`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_2_KHR`
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`Bool32`]
@@ -354,14 +354,14 @@ impl<'lt> QueueFamilyQueryResultStatusProperties2KHR<'lt> {
 /// - [`profile_count`] is an integer which holds the number of video profiles included in
 ///   [`profiles`].
 /// - [`profiles`] is a pointer to an array of [`VideoProfileKHR`] structures. Each
-///   [`VideoProfileKHR`] structure **must** chain the corresponding codec-operation specific
+///   [`VideoProfileKHR`] structure  **must**  chain the corresponding codec-operation specific
 ///   extension video profile structure.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_PROFILES_KHR`
-/// - [`profiles`]**must** be a valid pointer to an array of [`profile_count`] valid
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_PROFILES_KHR`
+/// - [`profiles`] **must**  be a valid pointer to an array of [`profile_count`] valid
 ///   [`VideoProfileKHR`] structures
-/// - [`profile_count`]**must** be greater than `0`
+/// - [`profile_count`] **must**  be greater than `0`
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`PhysicalDeviceVideoFormatInfoKHR`]
@@ -390,7 +390,7 @@ pub struct VideoProfilesKHR<'lt> {
     profile_count: u32,
     ///[`profiles`] is a pointer to an array of [`VideoProfileKHR`]
     ///structures.
-    ///Each [`VideoProfileKHR`] structure **must** chain the corresponding
+    ///Each [`VideoProfileKHR`] structure  **must**  chain the corresponding
     ///codec-operation specific extension video profile structure.
     profiles: *const VideoProfileKHR<'lt>,
 }
@@ -410,10 +410,6 @@ impl<'lt> VideoProfilesKHR<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::profile_count`]
-    pub fn profile_count_raw(&self) -> u32 {
-        self.profile_count
-    }
     ///Gets the raw value of [`Self::profiles`]
     pub fn profiles_raw(&self) -> *const VideoProfileKHR<'lt> {
         self.profiles
@@ -421,11 +417,6 @@ impl<'lt> VideoProfilesKHR<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::profile_count`]
-    pub fn set_profile_count_raw(&mut self, value: u32) -> &mut Self {
-        self.profile_count = value;
         self
     }
     ///Sets the raw value of [`Self::profiles`]
@@ -516,13 +507,13 @@ impl<'lt> VideoProfilesKHR<'lt> {
 /// - [`video_profiles`] is a pointer to a [`VideoProfilesKHR`] structure providing the video
 ///   profile(s) of video session(s) that will use the image. For most use cases, the image is used
 ///   by a single video session and a single video profile is provided. For a use case such as
-///   transcode, where a decode session output image **may** be used as encode input for one or more
-///   encode sessions, multiple video profiles representing the video sessions that will share the
-///   image **may** be provided.
+///   transcode, where a decode session output image  **may**  be used as encode input for one or
+///   more encode sessions, multiple video profiles representing the video sessions that will share
+///   the image  **may**  be provided.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`ImageUsageFlags`]
@@ -556,9 +547,9 @@ pub struct PhysicalDeviceVideoFormatInfoKHR<'lt> {
     ///For most use cases, the image is used by a single video session and a
     ///single video profile is provided.
     ///For a use case such as transcode, where a decode session output image
-    ///**may** be used as encode input for one or more encode sessions, multiple
+    /// **may**  be used as encode input for one or more encode sessions, multiple
     ///video profiles representing the video sessions that will share the image
-    ///**may** be provided.
+    /// **may**  be provided.
     video_profiles: *const VideoProfilesKHR<'lt>,
 }
 impl<'lt> Default for PhysicalDeviceVideoFormatInfoKHR<'lt> {
@@ -671,9 +662,10 @@ impl<'lt> PhysicalDeviceVideoFormatInfoKHR<'lt> {
 ///# Description
 ///If the `pVideoProfiles` or `imageUsage` provided in input structure
 ///`pVideoFormatInfo` are not supported,
-///`VK_ERROR_FORMAT_NOT_SUPPORTED` is returned.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_FORMAT_PROPERTIES_KHR`
-/// - [`p_next`]**must** be `NULL`
+///`VK_ERROR_FORMAT_NOT_SUPPORTED` is returned.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_FORMAT_PROPERTIES_KHR`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`Format`]
@@ -793,18 +785,18 @@ impl<'lt> VideoFormatPropertiesKHR<'lt> {
 /// - [`chroma_bit_depth`] is a bitmask of [`VideoComponentBitDepthFlagBitsKHR`] specifying video
 ///   chroma bit depth information.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_PROFILE_KHR`
-/// - [`video_codec_operation`]**must** be a valid [`VideoCodecOperationFlagBitsKHR`] value
-/// - [`chroma_subsampling`]**must** be a valid combination of [`VideoChromaSubsamplingFlagBitsKHR`]
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_PROFILE_KHR`
+/// - [`video_codec_operation`] **must**  be a valid [`VideoCodecOperationFlagBitsKHR`] value
+/// - [`chroma_subsampling`] **must**  be a valid combination of
+///   [`VideoChromaSubsamplingFlagBitsKHR`] values
+/// - [`chroma_subsampling`] **must**  not be `0`
+/// - [`luma_bit_depth`] **must**  be a valid combination of [`VideoComponentBitDepthFlagBitsKHR`]
 ///   values
-/// - [`chroma_subsampling`]**must** not be `0`
-/// - [`luma_bit_depth`]**must** be a valid combination of [`VideoComponentBitDepthFlagBitsKHR`]
+/// - [`luma_bit_depth`] **must**  not be `0`
+/// - [`chroma_bit_depth`] **must**  be a valid combination of [`VideoComponentBitDepthFlagBitsKHR`]
 ///   values
-/// - [`luma_bit_depth`]**must** not be `0`
-/// - [`chroma_bit_depth`]**must** be a valid combination of [`VideoComponentBitDepthFlagBitsKHR`]
-///   values
-/// - [`chroma_bit_depth`]**must** not be `0`
+/// - [`chroma_bit_depth`] **must**  not be `0`
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`StructureType`]
@@ -1004,12 +996,12 @@ impl<'lt> VideoProfileKHR<'lt> {
 /// - [`max_reference_pictures_active_count`] is the maximum slots that can be used as [Reference Pictures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#reference-picture)
 ///   with a single decode or encode operation.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_CAPABILITIES_KHR`
-/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain **must**
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_CAPABILITIES_KHR`
+/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`VideoDecodeCapabilitiesKHR`] or
 ///   [`VideoEncodeCapabilitiesKHR`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`DeviceSize`]
@@ -1084,27 +1076,9 @@ impl<'lt> VideoCapabilitiesKHR<'lt> {
     pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
         &self.p_next
     }
-    ///Gets the raw value of [`Self::max_reference_pictures_slots_count`]
-    pub fn max_reference_pictures_slots_count_raw(&self) -> u32 {
-        self.max_reference_pictures_slots_count
-    }
-    ///Gets the raw value of [`Self::max_reference_pictures_active_count`]
-    pub fn max_reference_pictures_active_count_raw(&self) -> u32 {
-        self.max_reference_pictures_active_count
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_reference_pictures_slots_count`]
-    pub fn set_max_reference_pictures_slots_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_reference_pictures_slots_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_reference_pictures_active_count`]
-    pub fn set_max_reference_pictures_active_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_reference_pictures_active_count = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -1267,10 +1241,10 @@ impl<'lt> VideoCapabilitiesKHR<'lt> {
 /// - [`memory_requirements`] is a pointer to a [`MemoryRequirements2`] structure in which the
 ///   requested memory heap requirements for the heap with index [`memory_bind_index`] are returned.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_GET_MEMORY_PROPERTIES_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`memory_requirements`]**must** be a valid pointer to a [`MemoryRequirements2`] structure
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_GET_MEMORY_PROPERTIES_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`] structure
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`MemoryRequirements2`]
@@ -1318,10 +1292,6 @@ impl<'lt> VideoGetMemoryPropertiesKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::memory_bind_index`]
-    pub fn memory_bind_index_raw(&self) -> u32 {
-        self.memory_bind_index
-    }
     ///Gets the raw value of [`Self::memory_requirements`]
     pub fn memory_requirements_raw(&self) -> &*mut MemoryRequirements2<'lt> {
         &self.memory_requirements
@@ -1329,11 +1299,6 @@ impl<'lt> VideoGetMemoryPropertiesKHR<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::memory_bind_index`]
-    pub fn set_memory_bind_index_raw(&mut self, value: u32) -> &mut Self {
-        self.memory_bind_index = value;
         self
     }
     ///Sets the raw value of [`Self::memory_requirements`]
@@ -1425,10 +1390,10 @@ impl<'lt> VideoGetMemoryPropertiesKHR<'lt> {
 /// - [`memory_size`] is the size in bytes of the region of [`memory`], starting from
 ///   [`memory_offset`] bytes, to be bound.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_BIND_MEMORY_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`memory`]**must** be a valid [`DeviceMemory`] handle
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_BIND_MEMORY_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`DeviceMemory`]
@@ -1485,18 +1450,9 @@ impl<'lt> VideoBindMemoryKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::memory_bind_index`]
-    pub fn memory_bind_index_raw(&self) -> u32 {
-        self.memory_bind_index
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::memory_bind_index`]
-    pub fn set_memory_bind_index_raw(&mut self, value: u32) -> &mut Self {
-        self.memory_bind_index = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -1600,10 +1556,10 @@ impl<'lt> VideoBindMemoryKHR<'lt> {
 ///   Operations.
 /// - [`image_view_binding`] is a [`ImageView`] image view representing this picture resource.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_PICTURE_RESOURCE_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`image_view_binding`]**must** be a valid [`ImageView`] handle
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_PICTURE_RESOURCE_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`image_view_binding`] **must**  be a valid [`ImageView`] handle
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`Extent2D`]
@@ -1660,18 +1616,9 @@ impl<'lt> VideoPictureResourceKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::base_array_layer`]
-    pub fn base_array_layer_raw(&self) -> u32 {
-        self.base_array_layer
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::base_array_layer`]
-    pub fn set_base_array_layer_raw(&mut self, value: u32) -> &mut Self {
-        self.base_array_layer = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -1771,13 +1718,13 @@ impl<'lt> VideoPictureResourceKHR<'lt> {
 /// - [`picture_resource`] is a pointer to a [`VideoPictureResourceKHR`] structure describing the
 ///   picture resource bound to this slot index.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_REFERENCE_SLOT_KHR`
-/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain **must**
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_REFERENCE_SLOT_KHR`
+/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`VideoDecodeH264DpbSlotInfoEXT`] or
 ///   [`VideoDecodeH265DpbSlotInfoEXT`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - [`picture_resource`]**must** be a valid pointer to a valid [`VideoPictureResourceKHR`]
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`picture_resource`] **must**  be a valid pointer to a valid [`VideoPictureResourceKHR`]
 ///   structure
 ///# Related
 /// - [`VK_KHR_video_queue`]
@@ -1827,10 +1774,6 @@ impl<'lt> VideoReferenceSlotKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::slot_index`]
-    pub fn slot_index_raw(&self) -> i8 {
-        self.slot_index
-    }
     ///Gets the raw value of [`Self::picture_resource`]
     pub fn picture_resource_raw(&self) -> *const VideoPictureResourceKHR<'lt> {
         self.picture_resource
@@ -1838,11 +1781,6 @@ impl<'lt> VideoReferenceSlotKHR<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::slot_index`]
-    pub fn set_slot_index_raw(&mut self, value: i8) -> &mut Self {
-        self.slot_index = value;
         self
     }
     ///Sets the raw value of [`Self::picture_resource`]
@@ -1943,50 +1881,51 @@ impl<'lt> VideoReferenceSlotKHR<'lt> {
 ///   that can be used as Dpb or Reconstructed [Reference Pictures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#reference-picture)
 ///   within a single decode or encode operation for the created video session.
 ///# Description
-///Valid Usage
-/// - [`video_profile`]**must** be a pointer to a valid [`VideoProfileKHR`] structure whose
-///   [`p_next`] chain **must** include a valid codec-specific profile structure
+///## Valid Usage
+/// - [`video_profile`] **must**  be a pointer to a valid [`VideoProfileKHR`] structure whose
+///   [`p_next`] chain  **must**  include a valid codec-specific profile structure
 /// - If [Reference Pictures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#reference-picture)
 ///   are required for use with the created video session, the
-///   [`max_reference_pictures_slots_count`]**must** be set to a value bigger than `0`
-/// - [`max_reference_pictures_slots_count`]**cannot** exceed the implementation reported
+///   [`max_reference_pictures_slots_count`] **must**  be set to a value bigger than `0`
+/// - [`max_reference_pictures_slots_count`] **cannot**  exceed the implementation reported
 ///   [`VideoCapabilitiesKHR`]::[`max_reference_pictures_slots_count`]
 /// - If [Reference Pictures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#reference-picture)
 ///   are required for use with the created video session, the
-///   [`max_reference_pictures_active_count`]**must** be set to a value bigger than `0`
-/// - [`max_reference_pictures_active_count`]**cannot** exceed the implementation reported
+///   [`max_reference_pictures_active_count`] **must**  be set to a value bigger than `0`
+/// - [`max_reference_pictures_active_count`] **cannot**  exceed the implementation reported
 ///   [`VideoCapabilitiesKHR`]::[`max_reference_pictures_active_count`]
-/// - [`max_reference_pictures_active_count`]**cannot** exceed the
+/// - [`max_reference_pictures_active_count`] **cannot**  exceed the
 ///   [`max_reference_pictures_slots_count`]
-/// - [`max_coded_extent`]**cannot** be smaller than [`VideoCapabilitiesKHR::min_extent`] and bigger
-///   than [`VideoCapabilitiesKHR::max_extent`]
-/// - [`reference_pictures_format`]**must** be one of the supported formats in
+/// - [`max_coded_extent`] **cannot**  be smaller than [`VideoCapabilitiesKHR::min_extent`] and
+///   bigger than [`VideoCapabilitiesKHR::max_extent`]
+/// - [`reference_pictures_format`] **must**  be one of the supported formats in
 ///   [`VideoFormatPropertiesKHR`]`format` returned by the
 ///   [`GetPhysicalDeviceVideoFormatPropertiesKHR`] when the
 ///   [`PhysicalDeviceVideoFormatInfoKHR`]`imageUsage` contains
 ///   `VK_IMAGE_USAGE_VIDEO_DECODE_DPB_BIT_KHR` or `VK_IMAGE_USAGE_VIDEO_ENCODE_DPB_BIT_KHR`
 ///   depending on the session codec operation
-/// - [`picture_format`] for decode output **must** be one of the supported formats in
+/// - [`picture_format`] for decode output  **must**  be one of the supported formats in
 ///   [`VideoFormatPropertiesKHR`]`format` returned by the
 ///   [`GetPhysicalDeviceVideoFormatPropertiesKHR`] when the
 ///   [`PhysicalDeviceVideoFormatInfoKHR`]`imageUsage` contains
 ///   `VK_IMAGE_USAGE_VIDEO_DECODE_DST_BIT_KHR`
-/// - [`picture_format`] targeting encode operations **must** be one of the supported formats in
+/// - [`picture_format`] targeting encode operations  **must**  be one of the supported formats in
 ///   [`VideoFormatPropertiesKHR`]`format` returned by the
 ///   [`GetPhysicalDeviceVideoFormatPropertiesKHR`] when the
 ///   [`PhysicalDeviceVideoFormatInfoKHR`]`imageUsage` contains
 ///   `VK_IMAGE_USAGE_VIDEO_ENCODE_SRC_BIT_KHR`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_SESSION_CREATE_INFO_KHR`
-/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain **must**
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_SESSION_CREATE_INFO_KHR`
+/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`VideoDecodeH264SessionCreateInfoEXT`],
 ///   [`VideoDecodeH265SessionCreateInfoEXT`], [`VideoEncodeH264SessionCreateInfoEXT`], or
 ///   [`VideoEncodeH265SessionCreateInfoEXT`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - [`flags`]**must** be a valid combination of [`VideoSessionCreateFlagBitsKHR`] values
-/// - [`video_profile`]**must** be a valid pointer to a valid [`VideoProfileKHR`] structure
-/// - [`picture_format`]**must** be a valid [`Format`] value
-/// - [`reference_pictures_format`]**must** be a valid [`Format`] value
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`flags`] **must**  be a valid combination of [`VideoSessionCreateFlagBitsKHR`] values
+/// - [`video_profile`] **must**  be a valid pointer to a valid [`VideoProfileKHR`] structure
+/// - [`picture_format`] **must**  be a valid [`Format`] value
+/// - [`reference_pictures_format`] **must**  be a valid [`Format`] value
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`Extent2D`]
@@ -2063,45 +2002,18 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::queue_family_index`]
-    pub fn queue_family_index_raw(&self) -> u32 {
-        self.queue_family_index
-    }
     ///Gets the raw value of [`Self::video_profile`]
     pub fn video_profile_raw(&self) -> *const VideoProfileKHR<'lt> {
         self.video_profile
-    }
-    ///Gets the raw value of [`Self::max_reference_pictures_slots_count`]
-    pub fn max_reference_pictures_slots_count_raw(&self) -> u32 {
-        self.max_reference_pictures_slots_count
-    }
-    ///Gets the raw value of [`Self::max_reference_pictures_active_count`]
-    pub fn max_reference_pictures_active_count_raw(&self) -> u32 {
-        self.max_reference_pictures_active_count
     }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::queue_family_index`]
-    pub fn set_queue_family_index_raw(&mut self, value: u32) -> &mut Self {
-        self.queue_family_index = value;
-        self
-    }
     ///Sets the raw value of [`Self::video_profile`]
     pub fn set_video_profile_raw(&mut self, value: *const VideoProfileKHR<'lt>) -> &mut Self {
         self.video_profile = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_reference_pictures_slots_count`]
-    pub fn set_max_reference_pictures_slots_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_reference_pictures_slots_count = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_reference_pictures_active_count`]
-    pub fn set_max_reference_pictures_active_count_raw(&mut self, value: u32) -> &mut Self {
-        self.max_reference_pictures_active_count = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -2261,25 +2173,27 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
 /// - [`video_session`] is the video session object against which the video session parameters
 ///   object is going to be created.
 ///# Description
-///Valid Usage
-/// - If [`video_session_parameters_template`] represents a valid handle, it **must** have been
+///## Valid Usage
+/// - If [`video_session_parameters_template`] represents a valid handle, it  **must**  have been
 ///   created against [`video_session`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR`
-/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain **must**
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR`
+/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of
 ///   [`VideoDecodeH264SessionParametersCreateInfoEXT`],
 ///   [`VideoDecodeH265SessionParametersCreateInfoEXT`],
 ///   [`VideoEncodeH264SessionParametersCreateInfoEXT`], or
 ///   [`VideoEncodeH265SessionParametersCreateInfoEXT`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 /// - If [`video_session_parameters_template`] is not [`crate::utils::Handle::null`],
-///   [`video_session_parameters_template`]**must** be a valid [`VideoSessionParametersKHR`] handle
-/// - [`video_session`]**must** be a valid [`VideoSessionKHR`] handle
-/// - If [`video_session_parameters_template`] is a valid handle, it **must** have been created,
+///   [`video_session_parameters_template`] **must**  be a valid [`VideoSessionParametersKHR`]
+///   handle
+/// - [`video_session`] **must**  be a valid [`VideoSessionKHR`] handle
+/// - If [`video_session_parameters_template`] is a valid handle, it  **must**  have been created,
 ///   allocated, or retrieved from [`video_session`]
 /// - Both of [`video_session`], and [`video_session_parameters_template`] that are valid handles of
-///   non-ignored parameters **must** have been created, allocated, or retrieved from the same
+///   non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
 ///   [`Device`]
 ///# Related
 /// - [`VK_KHR_video_queue`]
@@ -2413,15 +2327,15 @@ impl<'lt> VideoSessionParametersCreateInfoKHR<'lt> {
 /// - [`update_sequence_count`] is the sequence number of the object update with parameters,
 ///   starting from `1` and incrementing the value by one with each subsequent update.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR`
-/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain **must**
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR`
+/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of
 ///   [`VideoDecodeH264SessionParametersAddInfoEXT`],
 ///   [`VideoDecodeH265SessionParametersAddInfoEXT`],
 ///   [`VideoEncodeH264SessionParametersAddInfoEXT`], or
 ///   [`VideoEncodeH265SessionParametersAddInfoEXT`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`StructureType`]
@@ -2464,18 +2378,9 @@ impl<'lt> VideoSessionParametersUpdateInfoKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::update_sequence_count`]
-    pub fn update_sequence_count_raw(&self) -> u32 {
-        self.update_sequence_count
-    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::update_sequence_count`]
-    pub fn set_update_sequence_count_raw(&mut self, value: u32) -> &mut Self {
-        self.update_sequence_count = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -2551,31 +2456,32 @@ impl<'lt> VideoSessionParametersUpdateInfoKHR<'lt> {
 ///   specifying reference slots, used within the video command context between this
 ///   [`CmdBeginVideoCodingKHR`] command and the [`CmdEndVideoCodingKHR`] commmand that follows.
 ///   Each reference slot provides a slot index and the [`VideoPictureResourceKHR`] specifying the
-///   reference picture resource bound to this slot index. A slot index **must** not appear more
+///   reference picture resource bound to this slot index. A slot index  **must**  not appear more
 ///   than once in [`reference_slots`] in a given command.
 ///# Description
-///Valid Usage
-/// - [`VideoBeginCodingInfoKHR`]::[`reference_slot_count`]**must** not exceed the value specified
+///## Valid Usage
+/// - [`VideoBeginCodingInfoKHR`]::[`reference_slot_count`] **must**  not exceed the value specified
 ///   in [`VideoSessionCreateInfoKHR::max_reference_pictures_slots_count`] when creating the video
 ///   session object that is being provided in [`video_session`]
-/// - If [`video_session_parameters`] is not [`crate::utils::Handle::null`], it **must** have been
+/// - If [`video_session_parameters`] is not [`crate::utils::Handle::null`], it  **must**  have been
 ///   created using [`video_session`] as a parent object
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_BEGIN_CODING_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
-/// - [`codec_quality_preset`]**must** be a valid combination of
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_BEGIN_CODING_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
+/// - [`codec_quality_preset`] **must**  be a valid combination of
 ///   [`VideoCodingQualityPresetFlagBitsKHR`] values
-/// - [`codec_quality_preset`]**must** not be `0`
-/// - [`video_session`]**must** be a valid [`VideoSessionKHR`] handle
+/// - [`codec_quality_preset`] **must**  not be `0`
+/// - [`video_session`] **must**  be a valid [`VideoSessionKHR`] handle
 /// - If [`video_session_parameters`] is not [`crate::utils::Handle::null`],
-///   [`video_session_parameters`]**must** be a valid [`VideoSessionParametersKHR`] handle
-/// - If [`reference_slot_count`] is not `0`, [`reference_slots`]**must** be a valid pointer to an
+///   [`video_session_parameters`] **must**  be a valid [`VideoSessionParametersKHR`] handle
+/// - If [`reference_slot_count`] is not `0`, [`reference_slots`] **must**  be a valid pointer to an
 ///   array of [`reference_slot_count`] valid [`VideoReferenceSlotKHR`] structures
-/// - If [`video_session_parameters`] is a valid handle, it **must** have been created, allocated,
+/// - If [`video_session_parameters`] is a valid handle, it  **must**  have been created, allocated,
 ///   or retrieved from [`video_session`]
 /// - Both of [`video_session`], and [`video_session_parameters`] that are valid handles of
-///   non-ignored parameters **must** have been created, allocated, or retrieved from the same
+///   non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
 ///   [`Device`]
 ///# Related
 /// - [`VK_KHR_video_queue`]
@@ -2630,7 +2536,7 @@ pub struct VideoBeginCodingInfoKHR<'lt> {
     ///Each reference slot provides a slot index and the
     ///[`VideoPictureResourceKHR`] specifying the reference picture
     ///resource bound to this slot index.
-    ///A slot index **must** not appear more than once in [`reference_slots`] in
+    ///A slot index  **must**  not appear more than once in [`reference_slots`] in
     ///a given command.
     reference_slots: *const VideoReferenceSlotKHR<'lt>,
 }
@@ -2654,10 +2560,6 @@ impl<'lt> VideoBeginCodingInfoKHR<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::reference_slot_count`]
-    pub fn reference_slot_count_raw(&self) -> u32 {
-        self.reference_slot_count
-    }
     ///Gets the raw value of [`Self::reference_slots`]
     pub fn reference_slots_raw(&self) -> *const VideoReferenceSlotKHR<'lt> {
         self.reference_slots
@@ -2665,11 +2567,6 @@ impl<'lt> VideoBeginCodingInfoKHR<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::reference_slot_count`]
-    pub fn set_reference_slot_count_raw(&mut self, value: u32) -> &mut Self {
-        self.reference_slot_count = value;
         self
     }
     ///Sets the raw value of [`Self::reference_slots`]
@@ -2808,10 +2705,10 @@ impl<'lt> VideoBeginCodingInfoKHR<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_END_CODING_INFO_KHR`
-/// - [`p_next`]**must** be `NULL`
-/// - [`flags`]**must** be `0`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_END_CODING_INFO_KHR`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`flags`] **must**  be `0`
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`StructureType`]
@@ -2913,18 +2810,19 @@ impl<'lt> VideoEndCodingInfoKHR<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`VideoCodingControlFlagsKHR`] specifying control flags.
 ///# Description
-///Valid Usage
-/// - The first command buffer submitted for a newly created video session **must** set the
+///## Valid Usage
+/// - The first command buffer submitted for a newly created video session  **must**  set the
 ///   `VK_VIDEO_CODING_CONTROL_RESET_BIT_KHR` bit in [`VideoCodingControlInfoKHR`]::[`flags`] to
 ///   reset the session device context before any video decode or encode operations are performed on
 ///   the session.
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_VIDEO_CODING_CONTROL_INFO_KHR`
-/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain **must**
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_CODING_CONTROL_INFO_KHR`
+/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`VideoEncodeRateControlInfoKHR`] or
 ///   [`VideoEncodeRateControlLayerInfoKHR`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain **must** be unique
-/// - [`flags`]**must** be a valid combination of [`VideoCodingControlFlagBitsKHR`] values
+/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`flags`] **must**  be a valid combination of [`VideoCodingControlFlagBitsKHR`] values
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`StructureType`]

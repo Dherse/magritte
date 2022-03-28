@@ -32,22 +32,24 @@ pub const EXT_CONDITIONAL_RENDERING_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///If the 32-bit value at [`offset`] in [`buffer`] memory is zero, then the
 ///rendering commands are discarded, otherwise they are executed as normal.
 ///If the value of the predicate in buffer memory changes while conditional
-///rendering is active, the rendering commands **may** be discarded in an
+///rendering is active, the rendering commands  **may**  be discarded in an
 ///implementation-dependent way.
 ///Some implementations may latch the value of the predicate upon beginning
 ///conditional rendering while others may read it before every rendering
-///command.Valid Usage
-/// - If [`buffer`] is non-sparse then it **must** be bound completely and contiguously to a single
-///   [`DeviceMemory`] object
-/// - [`buffer`]**must** have been created with the `VK_BUFFER_USAGE_CONDITIONAL_RENDERING_BIT_EXT`
-///   bit set
-/// - [`offset`]**must** be less than the size of [`buffer`] by at least 32 bits
-/// - [`offset`]**must** be a multiple of 4
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_CONDITIONAL_RENDERING_BEGIN_INFO_EXT`
-/// - [`p_next`]**must** be `NULL`
-/// - [`buffer`]**must** be a valid [`Buffer`] handle
-/// - [`flags`]**must** be a valid combination of [`ConditionalRenderingFlagBitsEXT`] values
+///command.
+///## Valid Usage
+/// - If [`buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a
+///   single [`DeviceMemory`] object
+/// - [`buffer`] **must**  have been created with the
+///   `VK_BUFFER_USAGE_CONDITIONAL_RENDERING_BIT_EXT` bit set
+/// - [`offset`] **must**  be less than the size of [`buffer`] by at least 32 bits
+/// - [`offset`] **must**  be a multiple of 4
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_CONDITIONAL_RENDERING_BEGIN_INFO_EXT`
+/// - [`p_next`] **must**  be `NULL`
+/// - [`buffer`] **must**  be a valid [`Buffer`] handle
+/// - [`flags`] **must**  be a valid combination of [`ConditionalRenderingFlagBitsEXT`] values
 ///# Related
 /// - [`VK_EXT_conditional_rendering`]
 /// - [`Buffer`]
@@ -177,7 +179,7 @@ impl<'lt> ConditionalRenderingBeginInfoEXT<'lt> {
 ///# C Specifications
 ///If the [`p_next`] chain of [`CommandBufferInheritanceInfo`] includes a
 ///[`CommandBufferInheritanceConditionalRenderingInfoEXT`] structure, then
-///that structure controls whether a command buffer **can** be executed while
+///that structure controls whether a command buffer  **can**  be executed while
 ///conditional rendering is [active](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#active-conditional-rendering) in the
 ///primary command buffer.The [`CommandBufferInheritanceConditionalRenderingInfoEXT`] structure is
 ///defined as:
@@ -192,18 +194,20 @@ impl<'lt> ConditionalRenderingBeginInfoEXT<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`conditional_rendering_enable`] specifies whether the command buffer **can** be executed
+/// - [`conditional_rendering_enable`] specifies whether the command buffer  **can**  be executed
 ///   while conditional rendering is active in the primary command buffer. If this is [`TRUE`], then
-///   this command buffer **can** be executed whether the primary command buffer has active
-///   conditional rendering or not. If this is [`FALSE`], then the primary command buffer **must**
+///   this command buffer  **can**  be executed whether the primary command buffer has active
+///   conditional rendering or not. If this is [`FALSE`], then the primary command buffer  **must**
 ///   not have conditional rendering active.
 ///# Description
 ///If this structure is not present, the behavior is as if
-///[`conditional_rendering_enable`] is [`FALSE`].Valid Usage
+///[`conditional_rendering_enable`] is [`FALSE`].
+///## Valid Usage
 /// - If the [inherited conditional rendering](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-inheritedConditionalRendering)
-///   feature is not enabled, [`conditional_rendering_enable`]**must** be [`FALSE`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be
+///   feature is not enabled, [`conditional_rendering_enable`] **must**  be [`FALSE`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT`
 ///# Related
 /// - [`VK_EXT_conditional_rendering`]
@@ -228,12 +232,12 @@ pub struct CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
     ///structure.
     p_next: *const BaseInStructure<'lt>,
     ///[`conditional_rendering_enable`] specifies whether the command buffer
-    ///**can** be executed while conditional rendering is active in the primary
+    /// **can**  be executed while conditional rendering is active in the primary
     ///command buffer.
-    ///If this is [`TRUE`], then this command buffer **can** be executed
+    ///If this is [`TRUE`], then this command buffer  **can**  be executed
     ///whether the primary command buffer has active conditional rendering or
     ///not.
-    ///If this is [`FALSE`], then the primary command buffer **must** not
+    ///If this is [`FALSE`], then the primary command buffer  **must**  not
     ///have conditional rendering active.
     conditional_rendering_enable: Bool32,
 }
@@ -338,16 +342,18 @@ impl<'lt> CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`conditional_rendering`] specifies whether conditional rendering is supported.
-/// - [`inherited_conditional_rendering`] specifies whether a secondary command buffer **can** be
+/// - [`inherited_conditional_rendering`] specifies whether a secondary command buffer  **can**  be
 ///   executed while conditional rendering is active in the primary command buffer.
 ///If the [`PhysicalDeviceConditionalRenderingFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceConditionalRenderingFeaturesEXT`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT`
+///[`PhysicalDeviceConditionalRenderingFeaturesEXT`] **can**  also be used in the [`p_next`] chain
+/// of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT`
 ///# Related
 /// - [`VK_EXT_conditional_rendering`]
 /// - [`Bool32`]
@@ -374,7 +380,7 @@ pub struct PhysicalDeviceConditionalRenderingFeaturesEXT<'lt> {
     ///whether conditional rendering is supported.
     conditional_rendering: Bool32,
     ///[`inherited_conditional_rendering`] specifies whether a secondary
-    ///command buffer **can** be executed while conditional rendering is active in
+    ///command buffer  **can**  be executed while conditional rendering is active in
     ///the primary command buffer.
     inherited_conditional_rendering: Bool32,
 }

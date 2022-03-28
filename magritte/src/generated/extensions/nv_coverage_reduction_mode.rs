@@ -107,9 +107,12 @@ impl CoverageReductionModeNV {
 ///[`PhysicalDeviceFeatures2`] structure passed to
 ///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
 ///corresponding feature is supported.
-///[`PhysicalDeviceCoverageReductionModeFeaturesNV`]**can** also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV`
+///[`PhysicalDeviceCoverageReductionModeFeaturesNV`] **can**  also be used in the [`p_next`] chain
+/// of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be
+///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV`
 ///# Related
 /// - [`VK_NV_coverage_reduction_mode`]
 /// - [`Bool32`]
@@ -255,10 +258,11 @@ impl<'lt> PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
 ///   [`coverage_reduction_mode`] is `VK_COVERAGE_REDUCTION_MODE_TRUNCATE_NV`.
 /// - If both `[`VK_NV_framebuffer_mixed_samples`]` and `[`VK_AMD_mixed_attachment_samples`]` are
 ///   enabled, then the default coverage reduction mode is implementation-dependent.
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV`
-/// - [`flags`]**must** be `0`
-/// - [`coverage_reduction_mode`]**must** be a valid [`CoverageReductionModeNV`] value
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV`
+/// - [`flags`] **must**  be `0`
+/// - [`coverage_reduction_mode`] **must**  be a valid [`CoverageReductionModeNV`] value
 ///# Related
 /// - [`VK_NV_coverage_reduction_mode`]
 /// - [`CoverageReductionModeNV`]
@@ -394,9 +398,9 @@ impl<'lt> PipelineCoverageReductionStateCreateInfoNV<'lt> {
 /// - [`color_samples`] specifies the number of color samples in a color attachment in the supported
 ///   combination. A value of 0 indicates the combination does not have a color attachment.
 ///# Description
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV`
-/// - [`p_next`]**must** be `NULL`
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV`
+/// - [`p_next`] **must**  be `NULL`
 ///# Related
 /// - [`VK_NV_coverage_reduction_mode`]
 /// - [`CoverageReductionModeNV`]

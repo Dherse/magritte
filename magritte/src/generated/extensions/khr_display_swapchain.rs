@@ -24,7 +24,7 @@ pub const KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`src_rect`] is a rectangular region of pixels to present. It **must** be a subset of the
+/// - [`src_rect`] is a rectangular region of pixels to present. It  **must**  be a subset of the
 ///   image being presented. If [`DisplayPresentInfoKHR`] is not specified, this region will be
 ///   assumed to be the entire presentable image.
 /// - [`dst_rect`] is a rectangular region within the visible region of the swapchain’s display
@@ -38,20 +38,22 @@ pub const KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// - [`persistent`]: If this is [`TRUE`], the display engine will enable buffered mode on displays
 ///   that support it. This allows the display engine to stop sending content to the display until a
 ///   new image is presented. The display will instead maintain a copy of the last presented image.
-///   This allows less power to be used, but **may** increase presentation latency. If
+///   This allows less power to be used, but  **may**  increase presentation latency. If
 ///   [`DisplayPresentInfoKHR`] is not specified, persistent mode will not be used.
 ///# Description
 ///If the extent of the [`src_rect`] and [`dst_rect`] are not equal, the
-///presented pixels will be scaled accordingly.Valid Usage
-/// - [`src_rect`]**must** specify a rectangular region that is a subset of the image being
+///presented pixels will be scaled accordingly.
+///## Valid Usage
+/// - [`src_rect`] **must**  specify a rectangular region that is a subset of the image being
 ///   presented
-/// - [`dst_rect`]**must** specify a rectangular region that is a subset of the `visibleRegion`
+/// - [`dst_rect`] **must**  specify a rectangular region that is a subset of the `visibleRegion`
 ///   parameter of the display mode the swapchain being presented uses
 /// - If the `persistentContent` member of the [`DisplayPropertiesKHR`] structure returned by
 ///   [`GetPhysicalDeviceDisplayPropertiesKHR`] for the display the present operation targets is
-///   [`FALSE`], then [`persistent`]**must** be [`FALSE`]
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_DISPLAY_PRESENT_INFO_KHR`
+///   [`FALSE`], then [`persistent`] **must**  be [`FALSE`]
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_PRESENT_INFO_KHR`
 ///# Related
 /// - [`VK_KHR_display_swapchain`]
 /// - [`Bool32`]
@@ -76,7 +78,7 @@ pub struct DisplayPresentInfoKHR<'lt> {
     ///structure.
     p_next: *const BaseInStructure<'lt>,
     ///[`src_rect`] is a rectangular region of pixels to present.
-    ///It **must** be a subset of the image being presented.
+    ///It  **must**  be a subset of the image being presented.
     ///If [`DisplayPresentInfoKHR`] is not specified, this region will be
     ///assumed to be the entire presentable image.
     src_rect: Rect2D,
@@ -98,7 +100,7 @@ pub struct DisplayPresentInfoKHR<'lt> {
     ///This allows the display engine to stop sending content to the display
     ///until a new image is presented.
     ///The display will instead maintain a copy of the last presented image.
-    ///This allows less power to be used, but **may** increase presentation
+    ///This allows less power to be used, but  **may**  increase presentation
     ///latency.
     ///If [`DisplayPresentInfoKHR`] is not specified, persistent mode will
     ///not be used.

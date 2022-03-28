@@ -28,12 +28,13 @@ pub const QCOM_ROTATED_COPY_COMMANDS_EXTENSION_NAME: &'static CStr = crate::cstr
 /// - [`transform`] is a [`SurfaceTransformFlagBitsKHR`] value describing the transform to be
 ///   applied.
 ///# Description
-///Valid Usage
-/// - [`transform`]**must** be `VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR`,
+///## Valid Usage
+/// - [`transform`] **must**  be `VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR`,
 ///   `VK_SURFACE_TRANSFORM_ROTATE_90_BIT_KHR`, `VK_SURFACE_TRANSFORM_ROTATE_180_BIT_KHR`, or
 ///   `VK_SURFACE_TRANSFORM_ROTATE_270_BIT_KHR`
-///Valid Usage (Implicit)
-/// - [`s_type`]**must** be `VK_STRUCTURE_TYPE_COPY_COMMAND_TRANSFORM_INFO_QCOM`
+///
+///## Valid Usage (Implicit)
+/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COPY_COMMAND_TRANSFORM_INFO_QCOM`
 ///# Related
 /// - [`VK_QCOM_rotated_copy_commands`]
 /// - [`StructureType`]
