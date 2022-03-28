@@ -20,8 +20,11 @@ pub struct FunctionPointer<'a> {
     /// The rustified name of the function pointer
     pub name: String,
 
-    /// The parent (owner) of this type
+    /// The parent (owner) of this function pointer
     pub arguments: SymbolTable<'a, FunctionPointerArgument<'a>>,
+
+    /// The return type of this function pointer
+    pub return_type: Option<Ty<'a>>,
 
     /// The origin (extension or Vulkan version)
     pub origin: Origin<'a>,
@@ -34,12 +37,14 @@ impl<'a> FunctionPointer<'a> {
         original_name: &'a str,
         name: String,
         arguments: SymbolTable<'a, FunctionPointerArgument<'a>>,
+        return_type: Option<Ty<'a>>,
         origin: Origin<'a>,
     ) -> Self {
         Self {
             original_name: Cow::Borrowed(original_name),
             name,
             arguments,
+            return_type,
             origin,
         }
     }
@@ -49,9 +54,10 @@ impl<'a> FunctionPointer<'a> {
     pub fn new_no_origin(
         original_name: &'a str,
         name: String,
+        return_type: Option<Ty<'a>>,
         arguments: SymbolTable<'a, FunctionPointerArgument<'a>>,
     ) -> Self {
-        Self::new(original_name, name, arguments, Origin::Unknown)
+        Self::new(original_name, name, arguments, return_type, Origin::Unknown)
     }
 
     /// Get a reference to the function pointer's original name.
@@ -67,6 +73,12 @@ impl<'a> FunctionPointer<'a> {
     /// Creates an identifier from the name
     pub fn as_ident(&self) -> Ident {
         Ident::new(self.name(), Span::call_site())
+    }
+
+    /// Gets a reference to the optional return type
+    #[inline]
+    pub fn return_type(&self) -> Option<&Ty<'a>> {
+        self.return_type.as_ref()
     }
 
     /// Get a reference to the function pointer's arguments.

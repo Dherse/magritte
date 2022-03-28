@@ -21,7 +21,8 @@ lazy_static::lazy_static! {
     static ref SELECTOR_RELATED_H2: Selector = Selector::parse("h2#_see_also").unwrap();
     static ref SELECTOR_DESCRIPTION_H2: Selector = Selector::parse("h2#_description").unwrap();
     static ref SELECTOR_MEMBERS_H2: Selector = Selector::parse("h2#_members").unwrap();
-
+    static ref SELECTOR_PARAMETERS_H2: Selector = Selector::parse("h2#_parameters").unwrap();
+    
     static ref SELECTOR_REVISION_H2: Selector = Selector::parse("h2#_revision").unwrap();
     static ref SELECTOR_DEPRECATION_H2: Selector = Selector::parse("h2#_deprecation_state").unwrap();
     static ref SELECTOR_DEPENDENCIES_H2: Selector = Selector::parse("h2#_extension_and_version_dependencies").unwrap();
@@ -314,6 +315,46 @@ impl<'a> DocRef<'a> {
                 out
 
                 #[doc = "# Members"]
+                #(#[doc = #lines])*
+            }
+        }
+
+        Some(())
+    }
+
+    /// Processes the parameters, optionally writing the variants to a map of variants
+    pub fn parameters<'b>(
+        &mut self,
+        source: &Source<'b>,
+        this: &impl Queryable<'b>,
+        mut out: &mut TokenStream,
+        variants: Option<&mut AHashMap<String, String>>,
+    ) -> Option<()> {
+        let text = self.visit_selectable(source, this, variants, &SELECTOR_PARAMETERS_H2, &SELECTOR_SECTIONBODY)?;
+
+        let proc = DOUBLE_WHITE_SPACE_REGEX.replace(&text, " ");
+        let text = match proc {
+            Cow::Borrowed(_) => text,
+            Cow::Owned(text) => text,
+        };
+
+        if text.is_empty() {
+            return None;
+        }
+
+        let lines = text.split('\n');
+        if self.1 {
+            quote::quote_each_token! {
+                out
+
+                #![doc = "# Parameters"]
+                #(#![doc = #lines])*
+            }
+        } else {
+            quote::quote_each_token! {
+                out
+
+                #[doc = "# Parameters"]
                 #(#[doc = #lines])*
             }
         }

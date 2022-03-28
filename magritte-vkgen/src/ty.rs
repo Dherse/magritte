@@ -82,6 +82,11 @@ impl<'a> Ty<'a> {
         }
     }
 
+    /// Is the type void
+    pub fn is_void(&self) -> bool {
+        matches!(self, Self::Native(Native::Void))
+    }
+
     /// Creates a new void pointer type
     #[inline]
     pub fn void_ptr(mut_: Mutability) -> Self {

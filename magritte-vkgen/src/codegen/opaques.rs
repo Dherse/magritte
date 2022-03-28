@@ -4,7 +4,7 @@ use tracing::warn;
 use crate::{source::{OpaqueType, Source}, doc::{Documentation, Queryable}, imports::Imports};
 
 impl<'a> OpaqueType<'a> {
-    /// Generates the code for a base type
+    /// Generates the code for an opaque type
     pub(super) fn generate_code(
         &self,
         source: &Source<'a>,

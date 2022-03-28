@@ -18,7 +18,7 @@ mod tag;
 mod unions;
 mod vendors;
 
-use std::borrow::Cow;
+use std::{borrow::Cow, ops::Not};
 
 use ahash::AHashSet;
 use convert_case::{Case, Casing};
@@ -1213,7 +1213,9 @@ impl<'a> Source<'a> {
         let (_, ret) = Ty::new(code.split(' ').nth(1).expect("no return type"), "");
         info!(?ret, "return type parsed");
 
-        let arguments: SymbolTable<_> = code
+        let return_type = ret.is_void().not().then(|| ret);
+
+        let mut arguments: SymbolTable<_> = code
             .split('(')
             .nth(2)
             .expect("no arguments for function pointer")
@@ -1227,10 +1229,16 @@ impl<'a> Source<'a> {
             })
             .collect();
 
+        // in the C-specification, functions that do not take arguments contain a `c_void` argument,
+        // this filter those out.
+        if arguments.len() == 1 && arguments[0].ty().is_void() {
+            arguments.clear();
+        }
+
         info!("arguments parsed");
 
         self.funcpointers
-            .push(FunctionPointer::new_no_origin(original_name, name, arguments));
+            .push(FunctionPointer::new_no_origin(original_name, name, return_type, arguments));
     }
 
     fn handle_no_name(&mut self, ty: &'a Type) {

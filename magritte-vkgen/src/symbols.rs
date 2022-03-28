@@ -129,6 +129,13 @@ where
         }
     }
 
+    /// Clears the symbol table.
+    pub fn clear(&mut self)  {
+        self.values.clear();
+        self.symbols.clear();
+        self.symbols_pretty.clear();
+    }
+
     /// Returns `true` if the table is empty.
     #[inline]
     pub fn is_empty(&self) -> bool {

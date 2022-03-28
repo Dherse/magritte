@@ -13,6 +13,7 @@ mod bitmasks;
 mod unions;
 pub mod ty;
 mod opaques;
+mod funcpointers;
 
 use ahash::AHashMap;
 use proc_macro2::TokenStream;
@@ -62,6 +63,16 @@ impl<'a> Source<'a> {
             let (imports, _, out) = per_origin.get_mut(basetype.origin()).unwrap();
 
             basetype.generate_code(self, doc, imports, out);
+        }
+
+        for funcpointer in &self.funcpointers {
+            if funcpointer.origin().is_disabled() {
+                continue;
+            }
+
+            let (imports, _, out) = per_origin.get_mut(funcpointer.origin()).unwrap();
+
+            funcpointer.generate_code(self, doc, imports, out);
         }
 
         for enum_ in &self.enums {

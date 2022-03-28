@@ -230,13 +230,13 @@ impl<'a> Ty<'a> {
                 setter(field, quote! { #value_ident as u8 as u32})
             },
             Ty::Native(_) | Ty::Named(_) | Ty::StringArray(_) | Ty::NullTerminatedString(_) | Ty::Array(_, _) => {
-                let ty = self.as_raw_ty(source, None).0;
+                let ty = self.as_raw_ty(source, None, false).0;
                 fields.push(quote! { value: #ty });
 
                 setter(field, value_ident.to_token_stream())
             },
             Ty::Pointer(mutability, ty) => {
-                let ty = ty.as_raw_ty(source, None).0;
+                let ty = ty.as_raw_ty(source, None, false).0;
                 let mut_ = mutability.as_mutability_token();
                 fields.push(quote! { value: &#lt #mut_ #ty});
 
@@ -250,7 +250,7 @@ impl<'a> Ty<'a> {
                 )
             },
             Ty::Slice(mutability, ty, len) => {
-                let ty = ty.as_raw_ty(source, None).0;
+                let ty = ty.as_raw_ty(source, None, false).0;
                 let mut_ = mutability.as_mutability_token();
 
                 fields.push(quote! { value: &#lt #mut_ [#ty]});
@@ -390,7 +390,7 @@ impl<'a> Ty<'a> {
     }
 
     /// Turns a type into a tokenized raw C-compatible type and an optional lifetime argument
-    pub fn as_raw_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> (Type, bool) {
+    pub fn as_raw_ty(&self, source: &Source<'a>, imports: Option<&Imports>, pointer_has_lifetime: bool) -> (Type, bool) {
         match self {
             Ty::Native(_) | Ty::StringArray(_) => (self.as_const_ty(source, imports), false),
             Ty::Pointer(mutability, ty) => (
@@ -398,9 +398,9 @@ impl<'a> Ty<'a> {
                     star_token: Default::default(),
                     const_token: mutability.as_const_token(),
                     mutability: mutability.as_mutability_token(),
-                    elem: box ty.as_raw_ty(source, imports).0,
+                    elem: box ty.as_raw_ty(source, imports, false).0,
                 }),
-                true,
+                pointer_has_lifetime,
             ),
             Ty::Named(name) => source
                 .find(name)
@@ -410,7 +410,7 @@ impl<'a> Ty<'a> {
                 .as_type(source, imports),
             Ty::NullTerminatedString(_) => (Native::NullTerminatedString.as_type(imports), true),
             Ty::Array(ty, len) => {
-                let (elem, lt) = ty.as_raw_ty(source, imports);
+                let (elem, lt) = ty.as_raw_ty(source, imports, pointer_has_lifetime);
                 let len = len.as_const_expr(source, imports);
 
                 (
@@ -428,9 +428,9 @@ impl<'a> Ty<'a> {
                     star_token: Default::default(),
                     const_token: mutability.as_const_token(),
                     mutability: mutability.as_mutability_token(),
-                    elem: box ty.as_raw_ty(source, imports).0,
+                    elem: box ty.as_raw_ty(source, imports, false).0,
                 }),
-                true,
+                pointer_has_lifetime,
             ),
         }
     }
@@ -439,7 +439,7 @@ impl<'a> Ty<'a> {
     pub fn as_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> (Type, bool) {
         match self {
             Ty::Native(_) | Ty::StringArray(_) => (self.as_const_ty(source, imports), false),
-            Ty::Pointer(_, ty) => (ty.as_raw_ty(source, imports).0, true),
+            Ty::Pointer(_, ty) => (ty.as_raw_ty(source, imports, true).0, true),
             Ty::Named(Cow::Borrowed("VkBool32")) => (
                 Type::Path(TypePath {
                     qself: None,
@@ -455,7 +455,7 @@ impl<'a> Ty<'a> {
                 .as_type(source, imports),
             Ty::NullTerminatedString(_) => (Native::NullTerminatedString.as_type(imports), true),
             Ty::Array(ty, len) => {
-                let (elem, lt) = ty.as_raw_ty(source, imports);
+                let (elem, lt) = ty.as_raw_ty(source, imports, false);
                 let len = len.as_const_expr(source, imports);
 
                 (
@@ -471,7 +471,7 @@ impl<'a> Ty<'a> {
             Ty::Slice(_, ty, _) => (
                 Type::Slice(TypeSlice {
                     bracket_token: Default::default(),
-                    elem: box ty.as_raw_ty(source, imports).0,
+                    elem: box ty.as_raw_ty(source, imports, false).0,
                 }),
                 true,
             ),

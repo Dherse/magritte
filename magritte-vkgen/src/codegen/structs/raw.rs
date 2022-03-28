@@ -185,7 +185,7 @@ impl<'a> Field<'a> {
         let name = self.as_ident();
 
         // get the type of the field
-        let ty = self.ty().as_raw_ty(source, Some(imports)).0;
+        let ty = self.ty().as_raw_ty(source, Some(imports), true).0;
 
         // get the doc of the field
         let doc = doc.get(self.name()).map_or_else(
@@ -213,7 +213,7 @@ impl<'a> Field<'a> {
         let ident = Ident::new(&getter_name, Span::call_site());
 
         // get the type of the field
-        let ty = self.ty().as_raw_ty(source, Some(imports)).0;
+        let ty = self.ty().as_raw_ty(source, Some(imports), true).0;
 
         // generate the ref or not
         let is_not_copy = !self.ty().is_copy(source);
@@ -372,7 +372,7 @@ impl<'a> Field<'a> {
         let ident = Ident::new(&setter_name, Span::call_site());
 
         // get the type of the field
-        let ty = self.ty().as_raw_ty(source, Some(imports)).0;
+        let ty = self.ty().as_raw_ty(source, Some(imports), true).0;
 
         // generate the documentation
         let doc = format!("Sets the raw value of [`Self::{}`]", self.name());
