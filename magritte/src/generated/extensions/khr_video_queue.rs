@@ -170,7 +170,11 @@ use crate::{
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData};
+use std::{
+    ffi::CStr,
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_VIDEO_QUEUE_SPEC_VERSION")]
@@ -206,7 +210,6 @@ pub const KHR_VIDEO_QUEUE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_v
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueryResultStatusKHR")]
-#[doc(alias = "VkQueryResultStatusKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -237,7 +240,7 @@ impl QueryResultStatusKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -337,7 +340,7 @@ impl VideoCodecOperationFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -420,7 +423,7 @@ impl VideoChromaSubsamplingFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -488,7 +491,7 @@ impl VideoComponentBitDepthFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -558,7 +561,7 @@ impl VideoCapabilityFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -618,7 +621,7 @@ impl VideoSessionCreateFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -685,7 +688,7 @@ impl VideoCodingQualityPresetFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -761,7 +764,7 @@ impl VideoCodingControlFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -818,7 +821,7 @@ impl VideoCodingControlFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCodecOperationFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -836,26 +839,26 @@ impl From<VideoCodecOperationFlagBitsKHR> for VideoCodecOperationFlagsKHR {
 impl VideoCodecOperationFlagsKHR {
     ///[`VideoCodecOperationInvalidKhr`] - No video operations are
     ///supported for this queue family.
-    const VideoCodecOperationInvalidKhr: Self = Self(0);
+    pub const VIDEO_CODEC_OPERATION_INVALID_KHR: Self = Self(0);
     ///[`VideoCodecOperationEncodeH264Ext`] - H.264 video encode
     ///operations are supported by this queue family.
     ///
     ///Provided by [`crate::extensions::ext_video_encode_h_264`]
-    const VideoCodecOperationEncodeH264Ext: Self = Self(65536);
+    pub const VIDEO_CODEC_OPERATION_ENCODE_H_264_EXT: Self = Self(65536);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_video_encode_h_265`]
-    const VideoCodecOperationEncodeH265Ext: Self = Self(131072);
+    pub const VIDEO_CODEC_OPERATION_ENCODE_H_265_EXT: Self = Self(131072);
     ///[`VideoCodecOperationDecodeH264Ext`] - H.264 video decode
     ///operations are supported by this queue family.
     ///
     ///Provided by [`crate::extensions::ext_video_decode_h_264`]
-    const VideoCodecOperationDecodeH264Ext: Self = Self(1);
+    pub const VIDEO_CODEC_OPERATION_DECODE_H_264_EXT: Self = Self(1);
     ///[`VideoCodecOperationDecodeH265Ext`] - H.265 video decode
     ///operations are supported by this queue family.
     ///
     ///Provided by [`crate::extensions::ext_video_decode_h_265`]
-    const VideoCodecOperationDecodeH265Ext: Self = Self(2);
+    pub const VIDEO_CODEC_OPERATION_DECODE_H_265_EXT: Self = Self(2);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -865,11 +868,11 @@ impl VideoCodecOperationFlagsKHR {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::VideoCodecOperationInvalidKhr
-            | Self::VideoCodecOperationEncodeH264Ext
-            | Self::VideoCodecOperationEncodeH265Ext
-            | Self::VideoCodecOperationDecodeH264Ext
-            | Self::VideoCodecOperationDecodeH265Ext
+            | Self::VIDEO_CODEC_OPERATION_INVALID_KHR
+            | Self::VIDEO_CODEC_OPERATION_ENCODE_H_264_EXT
+            | Self::VIDEO_CODEC_OPERATION_ENCODE_H_265_EXT
+            | Self::VIDEO_CODEC_OPERATION_DECODE_H_264_EXT
+            | Self::VIDEO_CODEC_OPERATION_DECODE_H_265_EXT
     }
     ///Returns the raw bits
     #[inline]
@@ -1031,35 +1034,31 @@ impl const std::ops::Not for VideoCodecOperationFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoCodecOperationFlagsKHR> for VideoCodecOperationFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoCodecOperationFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoCodecOperationFlagsKHR> for VideoCodecOperationFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoCodecOperationFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoCodecOperationFlagBitsKHR> for VideoCodecOperationFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoCodecOperationFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoCodecOperationFlagBitsKHR> for VideoCodecOperationFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoCodecOperationFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoCodecOperationFlagsKHR::from(i));
+            Self::insert(self, <Self as From<VideoCodecOperationFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<VideoCodecOperationFlagsKHR> for VideoCodecOperationFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoCodecOperationFlagsKHR>>(
-        iterator: T,
-    ) -> VideoCodecOperationFlagsKHR {
-        let mut out = VideoCodecOperationFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<VideoCodecOperationFlagsKHR> for VideoCodecOperationFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoCodecOperationFlagsKHR>>(iterator: T) -> VideoCodecOperationFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<VideoCodecOperationFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoCodecOperationFlagBitsKHR> for VideoCodecOperationFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoCodecOperationFlagBitsKHR>>(
-        iterator: T,
-    ) -> VideoCodecOperationFlagsKHR {
-        let mut out = VideoCodecOperationFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<VideoCodecOperationFlagBitsKHR> for VideoCodecOperationFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoCodecOperationFlagBitsKHR>>(iterator: T) -> VideoCodecOperationFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<VideoCodecOperationFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -1074,53 +1073,53 @@ impl std::fmt::Debug for VideoCodecOperationFlagsKHR {
                     let mut first = true;
                     if self
                         .0
-                        .contains(VideoCodecOperationFlagsKHR::VideoCodecOperationInvalidKhr)
+                        .contains(VideoCodecOperationFlagsKHR::VIDEO_CODEC_OPERATION_INVALID_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoCodecOperationInvalidKhr))?;
+                        f.write_str(stringify!(VIDEO_CODEC_OPERATION_INVALID_KHR))?;
                     }
                     if self
                         .0
-                        .contains(VideoCodecOperationFlagsKHR::VideoCodecOperationEncodeH264Ext)
+                        .contains(VideoCodecOperationFlagsKHR::VIDEO_CODEC_OPERATION_ENCODE_H_264_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoCodecOperationEncodeH264Ext))?;
+                        f.write_str(stringify!(VIDEO_CODEC_OPERATION_ENCODE_H_264_EXT))?;
                     }
                     if self
                         .0
-                        .contains(VideoCodecOperationFlagsKHR::VideoCodecOperationEncodeH265Ext)
+                        .contains(VideoCodecOperationFlagsKHR::VIDEO_CODEC_OPERATION_ENCODE_H_265_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoCodecOperationEncodeH265Ext))?;
+                        f.write_str(stringify!(VIDEO_CODEC_OPERATION_ENCODE_H_265_EXT))?;
                     }
                     if self
                         .0
-                        .contains(VideoCodecOperationFlagsKHR::VideoCodecOperationDecodeH264Ext)
+                        .contains(VideoCodecOperationFlagsKHR::VIDEO_CODEC_OPERATION_DECODE_H_264_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoCodecOperationDecodeH264Ext))?;
+                        f.write_str(stringify!(VIDEO_CODEC_OPERATION_DECODE_H_264_EXT))?;
                     }
                     if self
                         .0
-                        .contains(VideoCodecOperationFlagsKHR::VideoCodecOperationDecodeH265Ext)
+                        .contains(VideoCodecOperationFlagsKHR::VIDEO_CODEC_OPERATION_DECODE_H_265_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoCodecOperationDecodeH265Ext))?;
+                        f.write_str(stringify!(VIDEO_CODEC_OPERATION_DECODE_H_265_EXT))?;
                     }
                 }
                 Ok(())
@@ -1161,7 +1160,7 @@ impl std::fmt::Debug for VideoCodecOperationFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCapabilityFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1179,13 +1178,13 @@ impl From<VideoCapabilityFlagBitsKHR> for VideoCapabilityFlagsKHR {
 impl VideoCapabilityFlagsKHR {
     ///[`VideoCapabilityProtectedContentKhr`] - the decode or
     ///encode session supports protected content.
-    const VideoCapabilityProtectedContentKhr: Self = Self(1);
+    pub const VIDEO_CAPABILITY_PROTECTED_CONTENT_KHR: Self = Self(1);
     ///[`VideoCapabilitySeparateReferenceImagesKhr`] - the DPB or
     ///Reconstructed Video Picture Resources for the video session  **may**  be
     ///created as a separate [`Image`] for each DPB picture.
     ///If not supported, the DPB  **must**  be created as single multi-layered image
     ///where each layer represents one of the DPB Video Picture Resources.
-    const VideoCapabilitySeparateReferenceImagesKhr: Self = Self(2);
+    pub const VIDEO_CAPABILITY_SEPARATE_REFERENCE_IMAGES_KHR: Self = Self(2);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1194,7 +1193,9 @@ impl VideoCapabilityFlagsKHR {
     ///Returns a value with all of the flags enabled
     #[inline]
     pub const fn all() -> Self {
-        Self::empty() | Self::VideoCapabilityProtectedContentKhr | Self::VideoCapabilitySeparateReferenceImagesKhr
+        Self::empty()
+            | Self::VIDEO_CAPABILITY_PROTECTED_CONTENT_KHR
+            | Self::VIDEO_CAPABILITY_SEPARATE_REFERENCE_IMAGES_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -1356,33 +1357,31 @@ impl const std::ops::Not for VideoCapabilityFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoCapabilityFlagsKHR> for VideoCapabilityFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoCapabilityFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoCapabilityFlagsKHR> for VideoCapabilityFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoCapabilityFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoCapabilityFlagBitsKHR> for VideoCapabilityFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoCapabilityFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoCapabilityFlagBitsKHR> for VideoCapabilityFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoCapabilityFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoCapabilityFlagsKHR::from(i));
+            Self::insert(self, <Self as From<VideoCapabilityFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<VideoCapabilityFlagsKHR> for VideoCapabilityFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoCapabilityFlagsKHR>>(iterator: T) -> VideoCapabilityFlagsKHR {
-        let mut out = VideoCapabilityFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<VideoCapabilityFlagsKHR> for VideoCapabilityFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoCapabilityFlagsKHR>>(iterator: T) -> VideoCapabilityFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<VideoCapabilityFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoCapabilityFlagBitsKHR> for VideoCapabilityFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoCapabilityFlagBitsKHR>>(
-        iterator: T,
-    ) -> VideoCapabilityFlagsKHR {
-        let mut out = VideoCapabilityFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<VideoCapabilityFlagBitsKHR> for VideoCapabilityFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoCapabilityFlagBitsKHR>>(iterator: T) -> VideoCapabilityFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<VideoCapabilityFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -1397,23 +1396,23 @@ impl std::fmt::Debug for VideoCapabilityFlagsKHR {
                     let mut first = true;
                     if self
                         .0
-                        .contains(VideoCapabilityFlagsKHR::VideoCapabilityProtectedContentKhr)
+                        .contains(VideoCapabilityFlagsKHR::VIDEO_CAPABILITY_PROTECTED_CONTENT_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoCapabilityProtectedContentKhr))?;
+                        f.write_str(stringify!(VIDEO_CAPABILITY_PROTECTED_CONTENT_KHR))?;
                     }
                     if self
                         .0
-                        .contains(VideoCapabilityFlagsKHR::VideoCapabilitySeparateReferenceImagesKhr)
+                        .contains(VideoCapabilityFlagsKHR::VIDEO_CAPABILITY_SEPARATE_REFERENCE_IMAGES_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoCapabilitySeparateReferenceImagesKhr))?;
+                        f.write_str(stringify!(VIDEO_CAPABILITY_SEPARATE_REFERENCE_IMAGES_KHR))?;
                     }
                 }
                 Ok(())
@@ -1450,7 +1449,7 @@ impl std::fmt::Debug for VideoCapabilityFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoSessionCreateFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1467,10 +1466,10 @@ impl From<VideoSessionCreateFlagBitsKHR> for VideoSessionCreateFlagsKHR {
 }
 impl VideoSessionCreateFlagsKHR {
     ///No documentation found
-    const VideoSessionCreateDefaultKhr: Self = Self(0);
+    pub const VIDEO_SESSION_CREATE_DEFAULT_KHR: Self = Self(0);
     ///[`VideoSessionCreateProtectedContentKhr`] - create the
     ///video session for use with protected video content
-    const VideoSessionCreateProtectedContentKhr: Self = Self(1);
+    pub const VIDEO_SESSION_CREATE_PROTECTED_CONTENT_KHR: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1479,7 +1478,7 @@ impl VideoSessionCreateFlagsKHR {
     ///Returns a value with all of the flags enabled
     #[inline]
     pub const fn all() -> Self {
-        Self::empty() | Self::VideoSessionCreateDefaultKhr | Self::VideoSessionCreateProtectedContentKhr
+        Self::empty() | Self::VIDEO_SESSION_CREATE_DEFAULT_KHR | Self::VIDEO_SESSION_CREATE_PROTECTED_CONTENT_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -1641,35 +1640,31 @@ impl const std::ops::Not for VideoSessionCreateFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoSessionCreateFlagsKHR> for VideoSessionCreateFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoSessionCreateFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoSessionCreateFlagsKHR> for VideoSessionCreateFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoSessionCreateFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoSessionCreateFlagBitsKHR> for VideoSessionCreateFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoSessionCreateFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoSessionCreateFlagBitsKHR> for VideoSessionCreateFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoSessionCreateFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoSessionCreateFlagsKHR::from(i));
+            Self::insert(self, <Self as From<VideoSessionCreateFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<VideoSessionCreateFlagsKHR> for VideoSessionCreateFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoSessionCreateFlagsKHR>>(
-        iterator: T,
-    ) -> VideoSessionCreateFlagsKHR {
-        let mut out = VideoSessionCreateFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<VideoSessionCreateFlagsKHR> for VideoSessionCreateFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoSessionCreateFlagsKHR>>(iterator: T) -> VideoSessionCreateFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<VideoSessionCreateFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoSessionCreateFlagBitsKHR> for VideoSessionCreateFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoSessionCreateFlagBitsKHR>>(
-        iterator: T,
-    ) -> VideoSessionCreateFlagsKHR {
-        let mut out = VideoSessionCreateFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<VideoSessionCreateFlagBitsKHR> for VideoSessionCreateFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoSessionCreateFlagBitsKHR>>(iterator: T) -> VideoSessionCreateFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<VideoSessionCreateFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -1684,23 +1679,23 @@ impl std::fmt::Debug for VideoSessionCreateFlagsKHR {
                     let mut first = true;
                     if self
                         .0
-                        .contains(VideoSessionCreateFlagsKHR::VideoSessionCreateDefaultKhr)
+                        .contains(VideoSessionCreateFlagsKHR::VIDEO_SESSION_CREATE_DEFAULT_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoSessionCreateDefaultKhr))?;
+                        f.write_str(stringify!(VIDEO_SESSION_CREATE_DEFAULT_KHR))?;
                     }
                     if self
                         .0
-                        .contains(VideoSessionCreateFlagsKHR::VideoSessionCreateProtectedContentKhr)
+                        .contains(VideoSessionCreateFlagsKHR::VIDEO_SESSION_CREATE_PROTECTED_CONTENT_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoSessionCreateProtectedContentKhr))?;
+                        f.write_str(stringify!(VIDEO_SESSION_CREATE_PROTECTED_CONTENT_KHR))?;
                     }
                 }
                 Ok(())
@@ -1728,7 +1723,7 @@ impl std::fmt::Debug for VideoSessionCreateFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1762,7 +1757,7 @@ impl std::fmt::Debug for VideoBeginCodingFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1806,7 +1801,7 @@ impl std::fmt::Debug for VideoEndCodingFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCodingQualityPresetFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1824,13 +1819,13 @@ impl From<VideoCodingQualityPresetFlagBitsKHR> for VideoCodingQualityPresetFlags
 impl VideoCodingQualityPresetFlagsKHR {
     ///[`VideoCodingQualityPresetNormalKhr`] defines normal
     ///decode case.
-    const VideoCodingQualityPresetNormalKhr: Self = Self(1);
+    pub const VIDEO_CODING_QUALITY_PRESET_NORMAL_KHR: Self = Self(1);
     ///[`VideoCodingQualityPresetPowerKhr`] defines power
     ///efficient case.
-    const VideoCodingQualityPresetPowerKhr: Self = Self(2);
+    pub const VIDEO_CODING_QUALITY_PRESET_POWER_KHR: Self = Self(2);
     ///[`VideoCodingQualityPresetQualityKhr`] defines quality
     ///focus case.
-    const VideoCodingQualityPresetQualityKhr: Self = Self(4);
+    pub const VIDEO_CODING_QUALITY_PRESET_QUALITY_KHR: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1840,9 +1835,9 @@ impl VideoCodingQualityPresetFlagsKHR {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::VideoCodingQualityPresetNormalKhr
-            | Self::VideoCodingQualityPresetPowerKhr
-            | Self::VideoCodingQualityPresetQualityKhr
+            | Self::VIDEO_CODING_QUALITY_PRESET_NORMAL_KHR
+            | Self::VIDEO_CODING_QUALITY_PRESET_POWER_KHR
+            | Self::VIDEO_CODING_QUALITY_PRESET_QUALITY_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -2004,35 +1999,35 @@ impl const std::ops::Not for VideoCodingQualityPresetFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoCodingQualityPresetFlagsKHR> for VideoCodingQualityPresetFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoCodingQualityPresetFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoCodingQualityPresetFlagsKHR> for VideoCodingQualityPresetFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoCodingQualityPresetFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoCodingQualityPresetFlagBitsKHR> for VideoCodingQualityPresetFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoCodingQualityPresetFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoCodingQualityPresetFlagBitsKHR> for VideoCodingQualityPresetFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoCodingQualityPresetFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoCodingQualityPresetFlagsKHR::from(i));
+            Self::insert(self, <Self as From<VideoCodingQualityPresetFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<VideoCodingQualityPresetFlagsKHR> for VideoCodingQualityPresetFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoCodingQualityPresetFlagsKHR>>(
+impl FromIterator<VideoCodingQualityPresetFlagsKHR> for VideoCodingQualityPresetFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoCodingQualityPresetFlagsKHR>>(
         iterator: T,
     ) -> VideoCodingQualityPresetFlagsKHR {
-        let mut out = VideoCodingQualityPresetFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoCodingQualityPresetFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoCodingQualityPresetFlagBitsKHR> for VideoCodingQualityPresetFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoCodingQualityPresetFlagBitsKHR>>(
+impl FromIterator<VideoCodingQualityPresetFlagBitsKHR> for VideoCodingQualityPresetFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoCodingQualityPresetFlagBitsKHR>>(
         iterator: T,
     ) -> VideoCodingQualityPresetFlagsKHR {
-        let mut out = VideoCodingQualityPresetFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoCodingQualityPresetFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -2047,33 +2042,33 @@ impl std::fmt::Debug for VideoCodingQualityPresetFlagsKHR {
                     let mut first = true;
                     if self
                         .0
-                        .contains(VideoCodingQualityPresetFlagsKHR::VideoCodingQualityPresetNormalKhr)
+                        .contains(VideoCodingQualityPresetFlagsKHR::VIDEO_CODING_QUALITY_PRESET_NORMAL_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoCodingQualityPresetNormalKhr))?;
+                        f.write_str(stringify!(VIDEO_CODING_QUALITY_PRESET_NORMAL_KHR))?;
                     }
                     if self
                         .0
-                        .contains(VideoCodingQualityPresetFlagsKHR::VideoCodingQualityPresetPowerKhr)
+                        .contains(VideoCodingQualityPresetFlagsKHR::VIDEO_CODING_QUALITY_PRESET_POWER_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoCodingQualityPresetPowerKhr))?;
+                        f.write_str(stringify!(VIDEO_CODING_QUALITY_PRESET_POWER_KHR))?;
                     }
                     if self
                         .0
-                        .contains(VideoCodingQualityPresetFlagsKHR::VideoCodingQualityPresetQualityKhr)
+                        .contains(VideoCodingQualityPresetFlagsKHR::VIDEO_CODING_QUALITY_PRESET_QUALITY_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoCodingQualityPresetQualityKhr))?;
+                        f.write_str(stringify!(VIDEO_CODING_QUALITY_PRESET_QUALITY_KHR))?;
                     }
                 }
                 Ok(())
@@ -2123,7 +2118,7 @@ impl std::fmt::Debug for VideoCodingQualityPresetFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCodingControlFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -2142,11 +2137,11 @@ impl VideoCodingControlFlagsKHR {
     ///[`VideoCodingControlDefaultKhr`] indicates a request for the
     ///coding control paramaters to be applied to the current state of the
     ///bound video session.
-    const VideoCodingControlDefaultKhr: Self = Self(0);
+    pub const VIDEO_CODING_CONTROL_DEFAULT_KHR: Self = Self(0);
     ///[`VideoCodingControlResetKhr`] indicates a request for the
     ///bound video session device context to be reset before the coding control
     ///parameters are applied.
-    const VideoCodingControlResetKhr: Self = Self(1);
+    pub const VIDEO_CODING_CONTROL_RESET_KHR: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2155,7 +2150,7 @@ impl VideoCodingControlFlagsKHR {
     ///Returns a value with all of the flags enabled
     #[inline]
     pub const fn all() -> Self {
-        Self::empty() | Self::VideoCodingControlDefaultKhr | Self::VideoCodingControlResetKhr
+        Self::empty() | Self::VIDEO_CODING_CONTROL_DEFAULT_KHR | Self::VIDEO_CODING_CONTROL_RESET_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -2317,35 +2312,31 @@ impl const std::ops::Not for VideoCodingControlFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoCodingControlFlagsKHR> for VideoCodingControlFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoCodingControlFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoCodingControlFlagsKHR> for VideoCodingControlFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoCodingControlFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoCodingControlFlagBitsKHR> for VideoCodingControlFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoCodingControlFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoCodingControlFlagBitsKHR> for VideoCodingControlFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoCodingControlFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoCodingControlFlagsKHR::from(i));
+            Self::insert(self, <Self as From<VideoCodingControlFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<VideoCodingControlFlagsKHR> for VideoCodingControlFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoCodingControlFlagsKHR>>(
-        iterator: T,
-    ) -> VideoCodingControlFlagsKHR {
-        let mut out = VideoCodingControlFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<VideoCodingControlFlagsKHR> for VideoCodingControlFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoCodingControlFlagsKHR>>(iterator: T) -> VideoCodingControlFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<VideoCodingControlFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoCodingControlFlagBitsKHR> for VideoCodingControlFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoCodingControlFlagBitsKHR>>(
-        iterator: T,
-    ) -> VideoCodingControlFlagsKHR {
-        let mut out = VideoCodingControlFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<VideoCodingControlFlagBitsKHR> for VideoCodingControlFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoCodingControlFlagBitsKHR>>(iterator: T) -> VideoCodingControlFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<VideoCodingControlFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -2360,20 +2351,23 @@ impl std::fmt::Debug for VideoCodingControlFlagsKHR {
                     let mut first = true;
                     if self
                         .0
-                        .contains(VideoCodingControlFlagsKHR::VideoCodingControlDefaultKhr)
+                        .contains(VideoCodingControlFlagsKHR::VIDEO_CODING_CONTROL_DEFAULT_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoCodingControlDefaultKhr))?;
+                        f.write_str(stringify!(VIDEO_CODING_CONTROL_DEFAULT_KHR))?;
                     }
-                    if self.0.contains(VideoCodingControlFlagsKHR::VideoCodingControlResetKhr) {
+                    if self
+                        .0
+                        .contains(VideoCodingControlFlagsKHR::VIDEO_CODING_CONTROL_RESET_KHR)
+                    {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoCodingControlResetKhr))?;
+                        f.write_str(stringify!(VIDEO_CODING_CONTROL_RESET_KHR))?;
                     }
                 }
                 Ok(())
@@ -2418,7 +2412,7 @@ impl std::fmt::Debug for VideoCodingControlFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoChromaSubsamplingFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -2435,25 +2429,25 @@ impl From<VideoChromaSubsamplingFlagBitsKHR> for VideoChromaSubsamplingFlagsKHR 
 }
 impl VideoChromaSubsamplingFlagsKHR {
     ///No documentation found
-    const VideoChromaSubsamplingInvalidKhr: Self = Self(0);
+    pub const VIDEO_CHROMA_SUBSAMPLING_INVALID_KHR: Self = Self(0);
     ///[`VideoChromaSubsamplingMonochromeKhr`] - the format is
     ///monochrome.
-    const VideoChromaSubsamplingMonochromeKhr: Self = Self(1);
+    pub const VIDEO_CHROMA_SUBSAMPLING_MONOCHROME_KHR: Self = Self(1);
     ///[`VideoChromaSubsampling420Khr`] - the format is 4:2:0
     ///chroma subsampled.
     ///The two chroma components are each subsampled at a factor of 2 both
     ///horizontally and vertically.
-    const VideoChromaSubsampling420Khr: Self = Self(2);
+    pub const VIDEO_CHROMA_SUBSAMPLING_420_KHR: Self = Self(2);
     ///[`VideoChromaSubsampling422Khr`] - the format is 4:2:2
     ///chroma subsampled.
     ///The two chroma components are sampled at half the sample rate of luma.
     ///The horizontal chroma resolution is halved.
-    const VideoChromaSubsampling422Khr: Self = Self(4);
+    pub const VIDEO_CHROMA_SUBSAMPLING_422_KHR: Self = Self(4);
     ///[`VideoChromaSubsampling444Khr`] - the format is 4:4:4
     ///chroma sampled.
     ///Each of the three YCbCr components have the same sample rate, thus there
     ///is no chroma subsampling.
-    const VideoChromaSubsampling444Khr: Self = Self(8);
+    pub const VIDEO_CHROMA_SUBSAMPLING_444_KHR: Self = Self(8);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2463,11 +2457,11 @@ impl VideoChromaSubsamplingFlagsKHR {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::VideoChromaSubsamplingInvalidKhr
-            | Self::VideoChromaSubsamplingMonochromeKhr
-            | Self::VideoChromaSubsampling420Khr
-            | Self::VideoChromaSubsampling422Khr
-            | Self::VideoChromaSubsampling444Khr
+            | Self::VIDEO_CHROMA_SUBSAMPLING_INVALID_KHR
+            | Self::VIDEO_CHROMA_SUBSAMPLING_MONOCHROME_KHR
+            | Self::VIDEO_CHROMA_SUBSAMPLING_420_KHR
+            | Self::VIDEO_CHROMA_SUBSAMPLING_422_KHR
+            | Self::VIDEO_CHROMA_SUBSAMPLING_444_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -2629,35 +2623,35 @@ impl const std::ops::Not for VideoChromaSubsamplingFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoChromaSubsamplingFlagsKHR> for VideoChromaSubsamplingFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoChromaSubsamplingFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoChromaSubsamplingFlagsKHR> for VideoChromaSubsamplingFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoChromaSubsamplingFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoChromaSubsamplingFlagBitsKHR> for VideoChromaSubsamplingFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoChromaSubsamplingFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoChromaSubsamplingFlagBitsKHR> for VideoChromaSubsamplingFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoChromaSubsamplingFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoChromaSubsamplingFlagsKHR::from(i));
+            Self::insert(self, <Self as From<VideoChromaSubsamplingFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<VideoChromaSubsamplingFlagsKHR> for VideoChromaSubsamplingFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoChromaSubsamplingFlagsKHR>>(
+impl FromIterator<VideoChromaSubsamplingFlagsKHR> for VideoChromaSubsamplingFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoChromaSubsamplingFlagsKHR>>(
         iterator: T,
     ) -> VideoChromaSubsamplingFlagsKHR {
-        let mut out = VideoChromaSubsamplingFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoChromaSubsamplingFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoChromaSubsamplingFlagBitsKHR> for VideoChromaSubsamplingFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoChromaSubsamplingFlagBitsKHR>>(
+impl FromIterator<VideoChromaSubsamplingFlagBitsKHR> for VideoChromaSubsamplingFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoChromaSubsamplingFlagBitsKHR>>(
         iterator: T,
     ) -> VideoChromaSubsamplingFlagsKHR {
-        let mut out = VideoChromaSubsamplingFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoChromaSubsamplingFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -2672,53 +2666,53 @@ impl std::fmt::Debug for VideoChromaSubsamplingFlagsKHR {
                     let mut first = true;
                     if self
                         .0
-                        .contains(VideoChromaSubsamplingFlagsKHR::VideoChromaSubsamplingInvalidKhr)
+                        .contains(VideoChromaSubsamplingFlagsKHR::VIDEO_CHROMA_SUBSAMPLING_INVALID_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoChromaSubsamplingInvalidKhr))?;
+                        f.write_str(stringify!(VIDEO_CHROMA_SUBSAMPLING_INVALID_KHR))?;
                     }
                     if self
                         .0
-                        .contains(VideoChromaSubsamplingFlagsKHR::VideoChromaSubsamplingMonochromeKhr)
+                        .contains(VideoChromaSubsamplingFlagsKHR::VIDEO_CHROMA_SUBSAMPLING_MONOCHROME_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoChromaSubsamplingMonochromeKhr))?;
+                        f.write_str(stringify!(VIDEO_CHROMA_SUBSAMPLING_MONOCHROME_KHR))?;
                     }
                     if self
                         .0
-                        .contains(VideoChromaSubsamplingFlagsKHR::VideoChromaSubsampling420Khr)
+                        .contains(VideoChromaSubsamplingFlagsKHR::VIDEO_CHROMA_SUBSAMPLING_420_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoChromaSubsampling420Khr))?;
+                        f.write_str(stringify!(VIDEO_CHROMA_SUBSAMPLING_420_KHR))?;
                     }
                     if self
                         .0
-                        .contains(VideoChromaSubsamplingFlagsKHR::VideoChromaSubsampling422Khr)
+                        .contains(VideoChromaSubsamplingFlagsKHR::VIDEO_CHROMA_SUBSAMPLING_422_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoChromaSubsampling422Khr))?;
+                        f.write_str(stringify!(VIDEO_CHROMA_SUBSAMPLING_422_KHR))?;
                     }
                     if self
                         .0
-                        .contains(VideoChromaSubsamplingFlagsKHR::VideoChromaSubsampling444Khr)
+                        .contains(VideoChromaSubsamplingFlagsKHR::VIDEO_CHROMA_SUBSAMPLING_444_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoChromaSubsampling444Khr))?;
+                        f.write_str(stringify!(VIDEO_CHROMA_SUBSAMPLING_444_KHR))?;
                     }
                 }
                 Ok(())
@@ -2757,7 +2751,7 @@ impl std::fmt::Debug for VideoChromaSubsamplingFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoComponentBitDepthFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -2774,16 +2768,16 @@ impl From<VideoComponentBitDepthFlagBitsKHR> for VideoComponentBitDepthFlagsKHR 
 }
 impl VideoComponentBitDepthFlagsKHR {
     ///No documentation found
-    const VideoComponentDepthInvalidKhr: Self = Self(0);
+    pub const VIDEO_COMPONENT_DEPTH_INVALID_KHR: Self = Self(0);
     ///[`VideoComponentDepth8Khr`] - the format component bit
     ///depth is 8 bits.
-    const VideoComponentDepth8Khr: Self = Self(1);
+    pub const VIDEO_COMPONENT_DEPTH_8_KHR: Self = Self(1);
     ///[`VideoComponentDepth10Khr`] - the format component bit
     ///depth is 10 bits.
-    const VideoComponentDepth10Khr: Self = Self(4);
+    pub const VIDEO_COMPONENT_DEPTH_10_KHR: Self = Self(4);
     ///[`VideoComponentDepth12Khr`] - the format component bit
     ///depth is 12 bits.
-    const VideoComponentDepth12Khr: Self = Self(16);
+    pub const VIDEO_COMPONENT_DEPTH_12_KHR: Self = Self(16);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2793,10 +2787,10 @@ impl VideoComponentBitDepthFlagsKHR {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::VideoComponentDepthInvalidKhr
-            | Self::VideoComponentDepth8Khr
-            | Self::VideoComponentDepth10Khr
-            | Self::VideoComponentDepth12Khr
+            | Self::VIDEO_COMPONENT_DEPTH_INVALID_KHR
+            | Self::VIDEO_COMPONENT_DEPTH_8_KHR
+            | Self::VIDEO_COMPONENT_DEPTH_10_KHR
+            | Self::VIDEO_COMPONENT_DEPTH_12_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -2958,35 +2952,35 @@ impl const std::ops::Not for VideoComponentBitDepthFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoComponentBitDepthFlagsKHR> for VideoComponentBitDepthFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoComponentBitDepthFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoComponentBitDepthFlagsKHR> for VideoComponentBitDepthFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoComponentBitDepthFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoComponentBitDepthFlagBitsKHR> for VideoComponentBitDepthFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoComponentBitDepthFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoComponentBitDepthFlagBitsKHR> for VideoComponentBitDepthFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoComponentBitDepthFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoComponentBitDepthFlagsKHR::from(i));
+            Self::insert(self, <Self as From<VideoComponentBitDepthFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<VideoComponentBitDepthFlagsKHR> for VideoComponentBitDepthFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoComponentBitDepthFlagsKHR>>(
+impl FromIterator<VideoComponentBitDepthFlagsKHR> for VideoComponentBitDepthFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoComponentBitDepthFlagsKHR>>(
         iterator: T,
     ) -> VideoComponentBitDepthFlagsKHR {
-        let mut out = VideoComponentBitDepthFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoComponentBitDepthFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoComponentBitDepthFlagBitsKHR> for VideoComponentBitDepthFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoComponentBitDepthFlagBitsKHR>>(
+impl FromIterator<VideoComponentBitDepthFlagBitsKHR> for VideoComponentBitDepthFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoComponentBitDepthFlagBitsKHR>>(
         iterator: T,
     ) -> VideoComponentBitDepthFlagsKHR {
-        let mut out = VideoComponentBitDepthFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoComponentBitDepthFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -3001,40 +2995,43 @@ impl std::fmt::Debug for VideoComponentBitDepthFlagsKHR {
                     let mut first = true;
                     if self
                         .0
-                        .contains(VideoComponentBitDepthFlagsKHR::VideoComponentDepthInvalidKhr)
+                        .contains(VideoComponentBitDepthFlagsKHR::VIDEO_COMPONENT_DEPTH_INVALID_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoComponentDepthInvalidKhr))?;
-                    }
-                    if self.0.contains(VideoComponentBitDepthFlagsKHR::VideoComponentDepth8Khr) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VideoComponentDepth8Khr))?;
+                        f.write_str(stringify!(VIDEO_COMPONENT_DEPTH_INVALID_KHR))?;
                     }
                     if self
                         .0
-                        .contains(VideoComponentBitDepthFlagsKHR::VideoComponentDepth10Khr)
+                        .contains(VideoComponentBitDepthFlagsKHR::VIDEO_COMPONENT_DEPTH_8_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoComponentDepth10Khr))?;
+                        f.write_str(stringify!(VIDEO_COMPONENT_DEPTH_8_KHR))?;
                     }
                     if self
                         .0
-                        .contains(VideoComponentBitDepthFlagsKHR::VideoComponentDepth12Khr)
+                        .contains(VideoComponentBitDepthFlagsKHR::VIDEO_COMPONENT_DEPTH_10_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoComponentDepth12Khr))?;
+                        f.write_str(stringify!(VIDEO_COMPONENT_DEPTH_10_KHR))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoComponentBitDepthFlagsKHR::VIDEO_COMPONENT_DEPTH_12_KHR)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VIDEO_COMPONENT_DEPTH_12_KHR))?;
                     }
                 }
                 Ok(())
@@ -3080,10 +3077,11 @@ impl std::fmt::Debug for VideoComponentBitDepthFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoQueueFamilyProperties2KHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoQueueFamilyProperties2KHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -3197,10 +3195,11 @@ impl<'lt> VideoQueueFamilyProperties2KHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueueFamilyQueryResultStatusProperties2KHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct QueueFamilyQueryResultStatusProperties2KHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -3341,10 +3340,11 @@ impl<'lt> QueueFamilyQueryResultStatusProperties2KHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoProfilesKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoProfilesKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -3425,7 +3425,7 @@ impl<'lt> VideoProfilesKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::profile_count`]
     pub fn profile_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.profile_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -3495,10 +3495,11 @@ impl<'lt> VideoProfilesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVideoFormatInfoKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVideoFormatInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -3647,10 +3648,11 @@ impl<'lt> PhysicalDeviceVideoFormatInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoFormatPropertiesKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoFormatPropertiesKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -3783,10 +3785,11 @@ impl<'lt> VideoFormatPropertiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoProfileKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoProfileKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -3987,10 +3990,11 @@ impl<'lt> VideoProfileKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCapabilitiesKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoCapabilitiesKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -4131,11 +4135,11 @@ impl<'lt> VideoCapabilitiesKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_reference_pictures_slots_count`]
     pub fn max_reference_pictures_slots_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_reference_pictures_slots_count
     }
     ///Gets a mutable reference to the value of [`Self::max_reference_pictures_active_count`]
     pub fn max_reference_pictures_active_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_reference_pictures_active_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -4229,10 +4233,11 @@ impl<'lt> VideoCapabilitiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoGetMemoryPropertiesKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoGetMemoryPropertiesKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -4305,7 +4310,7 @@ impl<'lt> VideoGetMemoryPropertiesKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::memory_bind_index`]
     pub fn memory_bind_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.memory_bind_index
     }
     ///Gets a mutable reference to the value of [`Self::memory_requirements`]
     ///# Safety
@@ -4384,6 +4389,7 @@ impl<'lt> VideoGetMemoryPropertiesKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoBindMemoryKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -4460,7 +4466,7 @@ impl<'lt> VideoBindMemoryKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::memory_bind_index`]
     pub fn memory_bind_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.memory_bind_index
     }
     ///Gets a mutable reference to the value of [`Self::memory`]
     pub fn memory_mut(&mut self) -> &mut DeviceMemory {
@@ -4554,6 +4560,7 @@ impl<'lt> VideoBindMemoryKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoPictureResourceKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -4635,7 +4642,7 @@ impl<'lt> VideoPictureResourceKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::base_array_layer`]
     pub fn base_array_layer_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.base_array_layer
     }
     ///Gets a mutable reference to the value of [`Self::image_view_binding`]
     pub fn image_view_binding_mut(&mut self) -> &mut ImageView {
@@ -4719,6 +4726,7 @@ impl<'lt> VideoPictureResourceKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoReferenceSlotKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -4790,7 +4798,7 @@ impl<'lt> VideoReferenceSlotKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::slot_index`]
     pub fn slot_index_mut(&mut self) -> &mut i8 {
-        &mut getter
+        &mut self.slot_index
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -4921,6 +4929,7 @@ impl<'lt> VideoReferenceSlotKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoSessionCreateInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -5043,7 +5052,7 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::queue_family_index`]
     pub fn queue_family_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.queue_family_index
     }
     ///Gets a mutable reference to the value of [`Self::flags`]
     pub fn flags_mut(&mut self) -> &mut VideoSessionCreateFlagsKHR {
@@ -5063,11 +5072,11 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_reference_pictures_slots_count`]
     pub fn max_reference_pictures_slots_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_reference_pictures_slots_count
     }
     ///Gets a mutable reference to the value of [`Self::max_reference_pictures_active_count`]
     pub fn max_reference_pictures_active_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_reference_pictures_active_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -5189,6 +5198,7 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoSessionParametersCreateInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -5329,6 +5339,7 @@ impl<'lt> VideoSessionParametersCreateInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoSessionParametersUpdateInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -5381,7 +5392,7 @@ impl<'lt> VideoSessionParametersUpdateInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::update_sequence_count`]
     pub fn update_sequence_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.update_sequence_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -5482,6 +5493,7 @@ impl<'lt> VideoSessionParametersUpdateInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoBeginCodingInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -5612,7 +5624,7 @@ impl<'lt> VideoBeginCodingInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::reference_slot_count`]
     pub fn reference_slot_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.reference_slot_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -5705,6 +5717,7 @@ impl<'lt> VideoBeginCodingInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEndCodingInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -5820,6 +5833,7 @@ impl<'lt> VideoEndCodingInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoCodingControlInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -5914,7 +5928,7 @@ impl<'lt> VideoCodingControlInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoSessionKHR")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct VideoSessionKHR(pub u64);
@@ -5926,7 +5940,7 @@ impl VideoSessionKHR {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -5938,17 +5952,7 @@ impl VideoSessionKHR {
 unsafe impl Send for VideoSessionKHR {}
 impl Default for VideoSessionKHR {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for VideoSessionKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for VideoSessionKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }
 ///[VkVideoSessionParametersKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoSessionParametersKHR.html) - Opaque handle to a video video session parameters object
@@ -5975,7 +5979,7 @@ impl std::fmt::Debug for VideoSessionKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoSessionParametersKHR")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct VideoSessionParametersKHR(pub u64);
@@ -5987,7 +5991,7 @@ impl VideoSessionParametersKHR {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -5999,16 +6003,6 @@ impl VideoSessionParametersKHR {
 unsafe impl Send for VideoSessionParametersKHR {}
 impl Default for VideoSessionParametersKHR {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for VideoSessionParametersKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for VideoSessionParametersKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }

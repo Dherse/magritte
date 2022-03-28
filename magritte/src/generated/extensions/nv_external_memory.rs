@@ -120,6 +120,7 @@ pub const NV_EXTERNAL_MEMORY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExternalMemoryImageCreateInfoNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -233,6 +234,7 @@ impl<'lt> ExternalMemoryImageCreateInfoNV<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExportMemoryAllocateInfoNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,

@@ -129,11 +129,11 @@ impl XyColorEXT {
     }
     ///Gets a mutable reference to the value of [`Self::x`]
     pub fn x_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.x
     }
     ///Gets a mutable reference to the value of [`Self::y`]
     pub fn y_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.y
     }
     ///Sets the raw value of [`Self::x`]
     pub fn set_x(&mut self, value: f32) -> &mut Self {
@@ -201,6 +201,7 @@ impl XyColorEXT {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct HdrMetadataEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -323,19 +324,19 @@ impl<'lt> HdrMetadataEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_luminance`]
     pub fn max_luminance_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.max_luminance
     }
     ///Gets a mutable reference to the value of [`Self::min_luminance`]
     pub fn min_luminance_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.min_luminance
     }
     ///Gets a mutable reference to the value of [`Self::max_content_light_level`]
     pub fn max_content_light_level_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.max_content_light_level
     }
     ///Gets a mutable reference to the value of [`Self::max_frame_average_light_level`]
     pub fn max_frame_average_light_level_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.max_frame_average_light_level
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {

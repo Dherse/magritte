@@ -131,7 +131,7 @@ impl PipelineCacheCreateFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]

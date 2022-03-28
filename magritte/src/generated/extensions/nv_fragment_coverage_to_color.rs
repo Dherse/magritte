@@ -73,7 +73,7 @@ pub const NV_FRAGMENT_COVERAGE_TO_COLOR_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -157,6 +157,7 @@ impl std::fmt::Debug for PipelineCoverageToColorStateCreateFlagsNV {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineCoverageToColorStateCreateInfoNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -254,7 +255,7 @@ impl<'lt> PipelineCoverageToColorStateCreateInfoNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::coverage_to_color_location`]
     pub fn coverage_to_color_location_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.coverage_to_color_location
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {

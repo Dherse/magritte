@@ -96,10 +96,11 @@ pub const EXT_PCI_BUS_INFO_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePCIBusInfoPropertiesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePciBusInfoPropertiesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -178,19 +179,19 @@ impl<'lt> PhysicalDevicePciBusInfoPropertiesEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::pci_domain`]
     pub fn pci_domain_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.pci_domain
     }
     ///Gets a mutable reference to the value of [`Self::pci_bus`]
     pub fn pci_bus_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.pci_bus
     }
     ///Gets a mutable reference to the value of [`Self::pci_device`]
     pub fn pci_device_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.pci_device
     }
     ///Gets a mutable reference to the value of [`Self::pci_function`]
     pub fn pci_function_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.pci_function
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {

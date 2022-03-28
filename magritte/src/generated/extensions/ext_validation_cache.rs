@@ -105,7 +105,6 @@ pub const EXT_VALIDATION_CACHE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkValidationCacheHeaderVersionEXT")]
-#[doc(alias = "VkValidationCacheHeaderVersionEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -132,7 +131,7 @@ impl ValidationCacheHeaderVersionEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -157,7 +156,7 @@ impl ValidationCacheHeaderVersionEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -227,6 +226,7 @@ impl std::fmt::Debug for ValidationCacheCreateFlagsEXT {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ValidationCacheCreateInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -313,7 +313,7 @@ impl<'lt> ValidationCacheCreateInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::initial_data_size`]
     pub fn initial_data_size_mut(&mut self) -> &mut usize {
-        &mut getter
+        &mut self.initial_data_size
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -340,7 +340,7 @@ impl<'lt> ValidationCacheCreateInfoEXT<'lt> {
     }
     ///Sets the raw value of [`Self::initial_data`]
     pub fn set_initial_data(&mut self, value: &'lt [std::ffi::c_void]) -> &mut Self {
-        let len_ = value.len() as u32;
+        let len_ = value.len() as usize;
         let len_ = len_;
         self.initial_data = value.as_ptr();
         self.initial_data_size = len_;
@@ -389,6 +389,7 @@ impl<'lt> ValidationCacheCreateInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ShaderModuleValidationCacheCreateInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -498,7 +499,7 @@ impl<'lt> ShaderModuleValidationCacheCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkValidationCacheEXT")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct ValidationCacheEXT(pub u64);
@@ -510,7 +511,7 @@ impl ValidationCacheEXT {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -522,16 +523,6 @@ impl ValidationCacheEXT {
 unsafe impl Send for ValidationCacheEXT {}
 impl Default for ValidationCacheEXT {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for ValidationCacheEXT {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for ValidationCacheEXT {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }

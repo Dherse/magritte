@@ -107,7 +107,7 @@ pub const KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME: &'static CStr = crate::cs
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeferredOperationKHR")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct DeferredOperationKHR(pub u64);
@@ -119,7 +119,7 @@ impl DeferredOperationKHR {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -131,16 +131,6 @@ impl DeferredOperationKHR {
 unsafe impl Send for DeferredOperationKHR {}
 impl Default for DeferredOperationKHR {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for DeferredOperationKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for DeferredOperationKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }

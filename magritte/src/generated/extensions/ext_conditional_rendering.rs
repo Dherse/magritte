@@ -77,7 +77,11 @@ use crate::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, Buffer, Device
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData};
+use std::{
+    ffi::CStr,
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_CONDITIONAL_RENDERING_SPEC_VERSION")]
@@ -143,7 +147,7 @@ impl ConditionalRenderingFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -179,7 +183,7 @@ impl ConditionalRenderingFlagBitsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkConditionalRenderingFlagsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -200,7 +204,7 @@ impl ConditionalRenderingFlagsEXT {
     ///That is, if the 32-bit predicate read from `buffer` memory at
     ///`offset` is zero, the rendering commands are not discarded, and if
     ///non zero, then they are discarded.
-    const ConditionalRenderingInvertedExt: Self = Self(1);
+    pub const CONDITIONAL_RENDERING_INVERTED_EXT: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -209,7 +213,7 @@ impl ConditionalRenderingFlagsEXT {
     ///Returns a value with all of the flags enabled
     #[inline]
     pub const fn all() -> Self {
-        Self::empty() | Self::ConditionalRenderingInvertedExt
+        Self::empty() | Self::CONDITIONAL_RENDERING_INVERTED_EXT
     }
     ///Returns the raw bits
     #[inline]
@@ -371,35 +375,31 @@ impl const std::ops::Not for ConditionalRenderingFlagsEXT {
         self.complement()
     }
 }
-impl std::iter::Extend<ConditionalRenderingFlagsEXT> for ConditionalRenderingFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = ConditionalRenderingFlagsEXT>>(&mut self, iterator: T) {
+impl Extend<ConditionalRenderingFlagsEXT> for ConditionalRenderingFlagsEXT {
+    fn extend<T: IntoIterator<Item = ConditionalRenderingFlagsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<ConditionalRenderingFlagBitsEXT> for ConditionalRenderingFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = ConditionalRenderingFlagBitsEXT>>(&mut self, iterator: T) {
+impl Extend<ConditionalRenderingFlagBitsEXT> for ConditionalRenderingFlagsEXT {
+    fn extend<T: IntoIterator<Item = ConditionalRenderingFlagBitsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(ConditionalRenderingFlagsEXT::from(i));
+            Self::insert(self, <Self as From<ConditionalRenderingFlagBitsEXT>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<ConditionalRenderingFlagsEXT> for ConditionalRenderingFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = ConditionalRenderingFlagsEXT>>(
-        iterator: T,
-    ) -> ConditionalRenderingFlagsEXT {
-        let mut out = ConditionalRenderingFlagsEXT::empty();
-        out.extend(iterator);
+impl FromIterator<ConditionalRenderingFlagsEXT> for ConditionalRenderingFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = ConditionalRenderingFlagsEXT>>(iterator: T) -> ConditionalRenderingFlagsEXT {
+        let mut out = Self::empty();
+        <Self as Extend<ConditionalRenderingFlagsEXT>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<ConditionalRenderingFlagBitsEXT> for ConditionalRenderingFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = ConditionalRenderingFlagBitsEXT>>(
-        iterator: T,
-    ) -> ConditionalRenderingFlagsEXT {
-        let mut out = ConditionalRenderingFlagsEXT::empty();
-        out.extend(iterator);
+impl FromIterator<ConditionalRenderingFlagBitsEXT> for ConditionalRenderingFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = ConditionalRenderingFlagBitsEXT>>(iterator: T) -> ConditionalRenderingFlagsEXT {
+        let mut out = Self::empty();
+        <Self as Extend<ConditionalRenderingFlagBitsEXT>>::extend(&mut out, iterator);
         out
     }
 }
@@ -414,13 +414,13 @@ impl std::fmt::Debug for ConditionalRenderingFlagsEXT {
                     let mut first = true;
                     if self
                         .0
-                        .contains(ConditionalRenderingFlagsEXT::ConditionalRenderingInvertedExt)
+                        .contains(ConditionalRenderingFlagsEXT::CONDITIONAL_RENDERING_INVERTED_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ConditionalRenderingInvertedExt))?;
+                        f.write_str(stringify!(CONDITIONAL_RENDERING_INVERTED_EXT))?;
                     }
                 }
                 Ok(())
@@ -493,6 +493,7 @@ impl std::fmt::Debug for ConditionalRenderingFlagsEXT {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ConditionalRenderingBeginInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -650,6 +651,7 @@ impl<'lt> ConditionalRenderingBeginInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -792,10 +794,11 @@ impl<'lt> CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceConditionalRenderingFeaturesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceConditionalRenderingFeaturesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,

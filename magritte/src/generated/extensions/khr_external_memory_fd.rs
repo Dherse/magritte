@@ -145,6 +145,7 @@ pub const KHR_EXTERNAL_MEMORY_FD_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImportMemoryFdInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -207,7 +208,7 @@ impl<'lt> ImportMemoryFdInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::fd`]
     pub fn fd_mut(&mut self) -> &mut i32 {
-        &mut getter
+        &mut self.fd
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -263,10 +264,11 @@ impl<'lt> ImportMemoryFdInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryFdPropertiesKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryFdPropertiesKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -325,7 +327,7 @@ impl<'lt> MemoryFdPropertiesKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::memory_type_bits`]
     pub fn memory_type_bits_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.memory_type_bits
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -396,6 +398,7 @@ impl<'lt> MemoryFdPropertiesKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryGetFdInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,

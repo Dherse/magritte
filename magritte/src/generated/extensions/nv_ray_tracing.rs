@@ -244,7 +244,6 @@ pub const NV_RAY_TRACING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_ray
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureMemoryRequirementsTypeNV")]
-#[doc(alias = "VkAccelerationStructureMemoryRequirementsTypeNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -277,7 +276,7 @@ impl AccelerationStructureMemoryRequirementsTypeNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -364,6 +363,7 @@ impl AccelerationStructureMemoryRequirementsTypeNV {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RayTracingShaderGroupCreateInfoNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -460,24 +460,24 @@ impl<'lt> RayTracingShaderGroupCreateInfoNV<'lt> {
         &mut self.s_type
     }
     ///Gets a mutable reference to the value of [`Self::type_`]
-    pub fn type__mut(&mut self) -> &mut RayTracingShaderGroupTypeKHR {
+    pub fn type_mut(&mut self) -> &mut RayTracingShaderGroupTypeKHR {
         &mut self.type_
     }
     ///Gets a mutable reference to the value of [`Self::general_shader`]
     pub fn general_shader_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.general_shader
     }
     ///Gets a mutable reference to the value of [`Self::closest_hit_shader`]
     pub fn closest_hit_shader_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.closest_hit_shader
     }
     ///Gets a mutable reference to the value of [`Self::any_hit_shader`]
     pub fn any_hit_shader_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.any_hit_shader
     }
     ///Gets a mutable reference to the value of [`Self::intersection_shader`]
     pub fn intersection_shader_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.intersection_shader
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -640,6 +640,7 @@ impl<'lt> RayTracingShaderGroupCreateInfoNV<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RayTracingPipelineCreateInfoNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -783,15 +784,15 @@ impl<'lt> RayTracingPipelineCreateInfoNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::stage_count`]
     pub fn stage_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.stage_count
     }
     ///Gets a mutable reference to the value of [`Self::group_count`]
     pub fn group_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.group_count
     }
     ///Gets a mutable reference to the value of [`Self::max_recursion_depth`]
     pub fn max_recursion_depth_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_recursion_depth
     }
     ///Gets a mutable reference to the value of [`Self::layout`]
     pub fn layout_mut(&mut self) -> &mut PipelineLayout {
@@ -803,7 +804,7 @@ impl<'lt> RayTracingPipelineCreateInfoNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::base_pipeline_index`]
     pub fn base_pipeline_index_mut(&mut self) -> &mut i32 {
-        &mut getter
+        &mut self.base_pipeline_index
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -969,6 +970,7 @@ impl<'lt> RayTracingPipelineCreateInfoNV<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GeometryTrianglesNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1104,7 +1106,7 @@ impl<'lt> GeometryTrianglesNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::vertex_count`]
     pub fn vertex_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.vertex_count
     }
     ///Gets a mutable reference to the value of [`Self::vertex_stride`]
     pub fn vertex_stride_mut(&mut self) -> &mut DeviceSize {
@@ -1124,7 +1126,7 @@ impl<'lt> GeometryTrianglesNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::index_count`]
     pub fn index_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.index_count
     }
     ///Gets a mutable reference to the value of [`Self::index_type`]
     pub fn index_type_mut(&mut self) -> &mut IndexType {
@@ -1258,6 +1260,7 @@ impl<'lt> GeometryTrianglesNV<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GeometryAabbNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1333,11 +1336,11 @@ impl<'lt> GeometryAabbNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::num_aab_bs`]
     pub fn num_aab_bs_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.num_aab_bs
     }
     ///Gets a mutable reference to the value of [`Self::stride`]
     pub fn stride_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.stride
     }
     ///Gets a mutable reference to the value of [`Self::offset`]
     pub fn offset_mut(&mut self) -> &mut DeviceSize {
@@ -1412,6 +1415,7 @@ impl<'lt> GeometryAabbNV<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GeometryDataNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`triangles`] contains triangle data if
     ///[`GeometryNV`]::`geometryType` is
@@ -1509,6 +1513,7 @@ impl<'lt> GeometryDataNV<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GeometryNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1697,6 +1702,7 @@ impl<'lt> GeometryNV<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureInfoNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1791,7 +1797,7 @@ impl<'lt> AccelerationStructureInfoNV<'lt> {
         &mut self.s_type
     }
     ///Gets a mutable reference to the value of [`Self::type_`]
-    pub fn type__mut(&mut self) -> &mut AccelerationStructureTypeNV {
+    pub fn type_mut(&mut self) -> &mut AccelerationStructureTypeNV {
         &mut self.type_
     }
     ///Gets a mutable reference to the value of [`Self::flags`]
@@ -1800,11 +1806,11 @@ impl<'lt> AccelerationStructureInfoNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::instance_count`]
     pub fn instance_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.instance_count
     }
     ///Gets a mutable reference to the value of [`Self::geometry_count`]
     pub fn geometry_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.geometry_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1896,6 +1902,7 @@ impl<'lt> AccelerationStructureInfoNV<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureCreateInfoNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2058,6 +2065,7 @@ impl<'lt> AccelerationStructureCreateInfoNV<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BindAccelerationStructureMemoryInfoNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2168,7 +2176,7 @@ impl<'lt> BindAccelerationStructureMemoryInfoNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::device_index_count`]
     pub fn device_index_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.device_index_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -2264,6 +2272,7 @@ impl<'lt> BindAccelerationStructureMemoryInfoNV<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct WriteDescriptorSetAccelerationStructureNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2336,7 +2345,7 @@ impl<'lt> WriteDescriptorSetAccelerationStructureNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::acceleration_structure_count`]
     pub fn acceleration_structure_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.acceleration_structure_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -2414,6 +2423,7 @@ impl<'lt> WriteDescriptorSetAccelerationStructureNV<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureMemoryRequirementsInfoNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2479,7 +2489,7 @@ impl<'lt> AccelerationStructureMemoryRequirementsInfoNV<'lt> {
         &mut self.s_type
     }
     ///Gets a mutable reference to the value of [`Self::type_`]
-    pub fn type__mut(&mut self) -> &mut AccelerationStructureMemoryRequirementsTypeNV {
+    pub fn type_mut(&mut self) -> &mut AccelerationStructureMemoryRequirementsTypeNV {
         &mut self.type_
     }
     ///Gets a mutable reference to the value of [`Self::acceleration_structure`]
@@ -2575,10 +2585,11 @@ impl<'lt> AccelerationStructureMemoryRequirementsInfoNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRayTracingPropertiesNV")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPropertiesNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2692,36 +2703,36 @@ impl<'lt> PhysicalDeviceRayTracingPropertiesNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::shader_group_handle_size`]
     pub fn shader_group_handle_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.shader_group_handle_size
     }
     ///Gets a mutable reference to the value of [`Self::max_recursion_depth`]
     pub fn max_recursion_depth_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_recursion_depth
     }
     ///Gets a mutable reference to the value of [`Self::max_shader_group_stride`]
     pub fn max_shader_group_stride_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_shader_group_stride
     }
     ///Gets a mutable reference to the value of [`Self::shader_group_base_alignment`]
     pub fn shader_group_base_alignment_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.shader_group_base_alignment
     }
     ///Gets a mutable reference to the value of [`Self::max_geometry_count`]
     pub fn max_geometry_count_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.max_geometry_count
     }
     ///Gets a mutable reference to the value of [`Self::max_instance_count`]
     pub fn max_instance_count_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.max_instance_count
     }
     ///Gets a mutable reference to the value of [`Self::max_triangle_count`]
     pub fn max_triangle_count_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.max_triangle_count
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_acceleration_structures`]
     pub fn max_descriptor_set_acceleration_structures_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_acceleration_structures
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -2802,7 +2813,7 @@ impl<'lt> PhysicalDeviceRayTracingPropertiesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureNV")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct AccelerationStructureNV(pub u64);
@@ -2814,7 +2825,7 @@ impl AccelerationStructureNV {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -2826,16 +2837,6 @@ impl AccelerationStructureNV {
 unsafe impl Send for AccelerationStructureNV {}
 impl Default for AccelerationStructureNV {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for AccelerationStructureNV {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for AccelerationStructureNV {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }

@@ -114,7 +114,7 @@ impl RefreshCycleDurationGOOGLE {
     }
     ///Gets a mutable reference to the value of [`Self::refresh_duration`]
     pub fn refresh_duration_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.refresh_duration
     }
     ///Sets the raw value of [`Self::refresh_duration`]
     pub fn set_refresh_duration(&mut self, value: u64) -> &mut Self {
@@ -250,23 +250,23 @@ impl PastPresentationTimingGOOGLE {
     }
     ///Gets a mutable reference to the value of [`Self::present_id`]
     pub fn present_id_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.present_id
     }
     ///Gets a mutable reference to the value of [`Self::desired_present_time`]
     pub fn desired_present_time_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.desired_present_time
     }
     ///Gets a mutable reference to the value of [`Self::actual_present_time`]
     pub fn actual_present_time_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.actual_present_time
     }
     ///Gets a mutable reference to the value of [`Self::earliest_present_time`]
     pub fn earliest_present_time_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.earliest_present_time
     }
     ///Gets a mutable reference to the value of [`Self::present_margin`]
     pub fn present_margin_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.present_margin
     }
     ///Sets the raw value of [`Self::present_id`]
     pub fn set_present_id(&mut self, value: u32) -> &mut Self {
@@ -353,6 +353,7 @@ impl PastPresentationTimingGOOGLE {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PresentTimesInfoGOOGLE<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -427,7 +428,7 @@ impl<'lt> PresentTimesInfoGOOGLE<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::swapchain_count`]
     pub fn swapchain_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.swapchain_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -532,11 +533,11 @@ impl PresentTimeGOOGLE {
     }
     ///Gets a mutable reference to the value of [`Self::present_id`]
     pub fn present_id_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.present_id
     }
     ///Gets a mutable reference to the value of [`Self::desired_present_time`]
     pub fn desired_present_time_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.desired_present_time
     }
     ///Sets the raw value of [`Self::present_id`]
     pub fn set_present_id(&mut self, value: u32) -> &mut Self {

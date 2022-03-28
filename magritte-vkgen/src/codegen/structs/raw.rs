@@ -7,7 +7,10 @@ use syn::{Ident, Token};
 use tracing::warn;
 
 use crate::{
-    codegen::{ty::{lifetime_as_generic_argument, lifetime_as_lifetime}, alias_of},
+    codegen::{
+        alias_of,
+        ty::{lifetime_as_generic_argument, lifetime_as_lifetime},
+    },
     doc::Documentation,
     expr::Expr,
     imports::Imports,
@@ -28,9 +31,10 @@ impl<'a> Struct<'a> {
         let name = self.as_ident();
 
         // generate the derives
+        let debug = self.is_debug(source).then(|| quote! { #[derive(Debug)] });
         let copy = self.is_copy(source).then(|| quote! { #[derive(Clone, Copy)] });
         let partial_eq_ord = self
-            .is_copy(source)
+            .is_partial_eq(source)
             .then(|| quote! { #[derive(PartialEq, PartialOrd)] });
         let eq_ord = self.is_eq(source).then(|| quote! { #[derive(Eq, Ord)] });
         let hash = self.is_hash(source).then(|| quote! { #[derive(Hash)] });
@@ -52,6 +56,7 @@ impl<'a> Struct<'a> {
 
             let lt = lifetime_as_lifetime();
             quote! {
+                #[doc = "Lifetime field"]
                 pub _lifetime: PhantomData<&#lt ()>,
             }
         });
@@ -99,7 +104,7 @@ impl<'a> Struct<'a> {
         quote_each_token! {
             out
 
-            #[derive(Debug)]
+            #debug
             #copy
             #eq_ord
             #partial_eq_ord
@@ -209,7 +214,7 @@ impl<'a> Field<'a> {
         let name = self.as_ident();
 
         // create the function name
-        let getter_name = format!("{}_raw", self.name());
+        let getter_name = format!("{}_raw", self.name()).replace("__", "_");
         let ident = Ident::new(&getter_name, Span::call_site());
 
         // get the type of the field
@@ -231,7 +236,12 @@ impl<'a> Field<'a> {
     }
 
     /// Generates the prettified getter for this field
-    pub(super) fn generate_getter(&self, owner: &Struct<'a>, source: &Source<'a>, imports: &Imports) -> TokenStream {
+    pub(super) fn generate_getter(
+        &self,
+        owner: &Struct<'a>,
+        source: &Source<'a>,
+        imports: &Imports,
+    ) -> Option<TokenStream> {
         // get the name as an identifier of the field
         let name = self.as_ident();
 
@@ -253,6 +263,18 @@ impl<'a> Field<'a> {
                 #[doc = "that the pointer is valid before dereferencing."]
             }
         });
+
+        // check that the length is a native type otherwise abort
+        if let Some(len) = self.ty().length() {
+            let vars = len.variables();
+            for var in vars {
+                if let Some(var) = owner.get_field(&var) {
+                    if !var.ty().is_native() {
+                        return None;
+                    }
+                }
+            }
+        }
 
         // get the length expression if needed
         let len = {
@@ -281,13 +303,13 @@ impl<'a> Field<'a> {
         // if the output is a reference, get it
         let ref_ = ref_.then(|| Token![&](Span::call_site()));
 
-        quote! {
+        Some(quote! {
             #[doc = #doc]
             #safety_doc
             pub #unsafe_ fn #name(&self) -> #ref_ #ty {
                 #converter
             }
-        }
+        })
     }
 
     /// Generates the prettified getter for this field
@@ -298,7 +320,7 @@ impl<'a> Field<'a> {
         owner: &Struct<'a>,
     ) -> Option<TokenStream> {
         // get the name as an identifier of the field
-        let fn_name = format!("{}_mut", self.name());
+        let fn_name = format!("{}_mut", self.name()).replace("__", "_");
         let ident = Ident::new(&fn_name, Span::call_site());
 
         let name = self.as_ident();
@@ -368,7 +390,7 @@ impl<'a> Field<'a> {
         let name = self.as_ident();
 
         // create the function name
-        let setter_name = format!("set_{}_raw", self.name());
+        let setter_name = format!("set_{}_raw", self.name()).replace("__", "_");
         let ident = Ident::new(&setter_name, Span::call_site());
 
         // get the type of the field
@@ -411,9 +433,10 @@ impl<'a> Field<'a> {
                     self.#field = #ident;
                 }
             },
+            &|field| owner.get_field(field).unwrap().ty().clone(),
             self.name(),
             len_field.as_ref().map(|s| s as &str),
-        );
+        )?;
 
         Some(quote! {
             #[doc = #doc]

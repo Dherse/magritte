@@ -130,7 +130,7 @@ where
     }
 
     /// Clears the symbol table.
-    pub fn clear(&mut self)  {
+    pub fn clear(&mut self) {
         self.values.clear();
         self.symbols.clear();
         self.symbols_pretty.clear();

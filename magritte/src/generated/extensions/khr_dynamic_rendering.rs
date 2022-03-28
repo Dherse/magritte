@@ -181,6 +181,7 @@ pub const KHR_DYNAMIC_RENDERING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -338,6 +339,7 @@ impl<'lt> RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -506,6 +508,7 @@ impl<'lt> RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AttachmentSampleCountInfoAMD<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
     pub s_type: StructureType,
@@ -586,7 +589,7 @@ impl<'lt> AttachmentSampleCountInfoAMD<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::color_attachment_count`]
     pub fn color_attachment_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.color_attachment_count
     }
     ///Gets a mutable reference to the value of [`Self::depth_stencil_attachment_samples`]
     pub fn depth_stencil_attachment_samples_mut(&mut self) -> &mut SampleCountFlagBits {
@@ -679,6 +682,7 @@ impl<'lt> AttachmentSampleCountInfoAMD<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MultiviewPerViewAttributesInfoNVX<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,

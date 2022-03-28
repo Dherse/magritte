@@ -148,6 +148,12 @@ impl<'a> Ty<'a> {
         matches!(self, Ty::NullTerminatedString(Mutability::Const))
     }
 
+    /// Is `self` a native type
+    #[inline]
+    pub const fn is_native(&self) -> bool {
+        matches!(self, Self::Native(_))
+    }
+
     /// Gets the length expression, returns some if `self` is an array or a slice
     pub fn length(&self) -> Option<&Expr<'a>> {
         match self {

@@ -294,7 +294,11 @@ use crate::vulkan1_0::{
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData};
+use std::{
+    ffi::CStr,
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_NV_DEVICE_GENERATED_COMMANDS_SPEC_VERSION")]
@@ -333,7 +337,6 @@ pub const NV_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME: &'static CStr = crate::cs
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectCommandsTokenTypeNV")]
-#[doc(alias = "VkIndirectCommandsTokenTypeNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -371,7 +374,7 @@ impl IndirectCommandsTokenTypeNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -453,7 +456,7 @@ impl IndirectCommandsLayoutUsageFlagBitsNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -512,7 +515,7 @@ impl IndirectStateFlagBitsNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -555,7 +558,7 @@ impl IndirectStateFlagBitsNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectCommandsLayoutUsageFlagsNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -576,17 +579,17 @@ impl IndirectCommandsLayoutUsageFlagsNV {
     ///step through calling [`CmdPreprocessGeneratedCommandsNV`] and
     ///executed by [`CmdExecuteGeneratedCommandsNV`] with `isPreprocessed`
     ///set to [`TRUE`].
-    const IndirectCommandsLayoutUsageExplicitPreprocessNv: Self = Self(1);
+    pub const INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_NV: Self = Self(1);
     ///[`IndirectCommandsLayoutUsageIndexedSequencesNv`]
     ///specifies that the input data for the sequences is not implicitly
     ///indexed from 0..sequencesUsed but a user provided [`Buffer`]
     ///encoding the index is provided.
-    const IndirectCommandsLayoutUsageIndexedSequencesNv: Self = Self(2);
+    pub const INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_NV: Self = Self(2);
     ///[`IndirectCommandsLayoutUsageUnorderedSequencesNv`]
     ///specifies that the processing of sequences  **can**  happen at an
     ///implementation-dependent order, which is not: guaranteed to be coherent
     ///using the same input data.
-    const IndirectCommandsLayoutUsageUnorderedSequencesNv: Self = Self(4);
+    pub const INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_NV: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -596,9 +599,9 @@ impl IndirectCommandsLayoutUsageFlagsNV {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::IndirectCommandsLayoutUsageExplicitPreprocessNv
-            | Self::IndirectCommandsLayoutUsageIndexedSequencesNv
-            | Self::IndirectCommandsLayoutUsageUnorderedSequencesNv
+            | Self::INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_NV
+            | Self::INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_NV
+            | Self::INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_NV
     }
     ///Returns the raw bits
     #[inline]
@@ -760,35 +763,35 @@ impl const std::ops::Not for IndirectCommandsLayoutUsageFlagsNV {
         self.complement()
     }
 }
-impl std::iter::Extend<IndirectCommandsLayoutUsageFlagsNV> for IndirectCommandsLayoutUsageFlagsNV {
-    fn extend<T: std::iter::IntoIterator<Item = IndirectCommandsLayoutUsageFlagsNV>>(&mut self, iterator: T) {
+impl Extend<IndirectCommandsLayoutUsageFlagsNV> for IndirectCommandsLayoutUsageFlagsNV {
+    fn extend<T: IntoIterator<Item = IndirectCommandsLayoutUsageFlagsNV>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<IndirectCommandsLayoutUsageFlagBitsNV> for IndirectCommandsLayoutUsageFlagsNV {
-    fn extend<T: std::iter::IntoIterator<Item = IndirectCommandsLayoutUsageFlagBitsNV>>(&mut self, iterator: T) {
+impl Extend<IndirectCommandsLayoutUsageFlagBitsNV> for IndirectCommandsLayoutUsageFlagsNV {
+    fn extend<T: IntoIterator<Item = IndirectCommandsLayoutUsageFlagBitsNV>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(IndirectCommandsLayoutUsageFlagsNV::from(i));
+            Self::insert(self, <Self as From<IndirectCommandsLayoutUsageFlagBitsNV>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<IndirectCommandsLayoutUsageFlagsNV> for IndirectCommandsLayoutUsageFlagsNV {
-    fn from_iter<T: std::iter::IntoIterator<Item = IndirectCommandsLayoutUsageFlagsNV>>(
+impl FromIterator<IndirectCommandsLayoutUsageFlagsNV> for IndirectCommandsLayoutUsageFlagsNV {
+    fn from_iter<T: IntoIterator<Item = IndirectCommandsLayoutUsageFlagsNV>>(
         iterator: T,
     ) -> IndirectCommandsLayoutUsageFlagsNV {
-        let mut out = IndirectCommandsLayoutUsageFlagsNV::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<IndirectCommandsLayoutUsageFlagsNV>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<IndirectCommandsLayoutUsageFlagBitsNV> for IndirectCommandsLayoutUsageFlagsNV {
-    fn from_iter<T: std::iter::IntoIterator<Item = IndirectCommandsLayoutUsageFlagBitsNV>>(
+impl FromIterator<IndirectCommandsLayoutUsageFlagBitsNV> for IndirectCommandsLayoutUsageFlagsNV {
+    fn from_iter<T: IntoIterator<Item = IndirectCommandsLayoutUsageFlagBitsNV>>(
         iterator: T,
     ) -> IndirectCommandsLayoutUsageFlagsNV {
-        let mut out = IndirectCommandsLayoutUsageFlagsNV::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<IndirectCommandsLayoutUsageFlagBitsNV>>::extend(&mut out, iterator);
         out
     }
 }
@@ -801,35 +804,32 @@ impl std::fmt::Debug for IndirectCommandsLayoutUsageFlagsNV {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(IndirectCommandsLayoutUsageFlagsNV::IndirectCommandsLayoutUsageExplicitPreprocessNv)
-                    {
+                    if self.0.contains(
+                        IndirectCommandsLayoutUsageFlagsNV::INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_NV,
+                    ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(IndirectCommandsLayoutUsageExplicitPreprocessNv))?;
+                        f.write_str(stringify!(INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_NV))?;
                     }
-                    if self
-                        .0
-                        .contains(IndirectCommandsLayoutUsageFlagsNV::IndirectCommandsLayoutUsageIndexedSequencesNv)
-                    {
+                    if self.0.contains(
+                        IndirectCommandsLayoutUsageFlagsNV::INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_NV,
+                    ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(IndirectCommandsLayoutUsageIndexedSequencesNv))?;
+                        f.write_str(stringify!(INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_NV))?;
                     }
-                    if self
-                        .0
-                        .contains(IndirectCommandsLayoutUsageFlagsNV::IndirectCommandsLayoutUsageUnorderedSequencesNv)
-                    {
+                    if self.0.contains(
+                        IndirectCommandsLayoutUsageFlagsNV::INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_NV,
+                    ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(IndirectCommandsLayoutUsageUnorderedSequencesNv))?;
+                        f.write_str(stringify!(INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_NV))?;
                     }
                 }
                 Ok(())
@@ -865,7 +865,7 @@ impl std::fmt::Debug for IndirectCommandsLayoutUsageFlagsNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectStateFlagsNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -883,7 +883,7 @@ impl From<IndirectStateFlagBitsNV> for IndirectStateFlagsNV {
 impl IndirectStateFlagsNV {
     ///[`IndirectStateFlagFrontfaceNv`] allows to toggle the
     ///[`FrontFace`] rasterization state for subsequent draw operations.
-    const IndirectStateFlagFrontfaceNv: Self = Self(1);
+    pub const INDIRECT_STATE_FLAG_FRONTFACE_NV: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -892,7 +892,7 @@ impl IndirectStateFlagsNV {
     ///Returns a value with all of the flags enabled
     #[inline]
     pub const fn all() -> Self {
-        Self::empty() | Self::IndirectStateFlagFrontfaceNv
+        Self::empty() | Self::INDIRECT_STATE_FLAG_FRONTFACE_NV
     }
     ///Returns the raw bits
     #[inline]
@@ -1054,31 +1054,31 @@ impl const std::ops::Not for IndirectStateFlagsNV {
         self.complement()
     }
 }
-impl std::iter::Extend<IndirectStateFlagsNV> for IndirectStateFlagsNV {
-    fn extend<T: std::iter::IntoIterator<Item = IndirectStateFlagsNV>>(&mut self, iterator: T) {
+impl Extend<IndirectStateFlagsNV> for IndirectStateFlagsNV {
+    fn extend<T: IntoIterator<Item = IndirectStateFlagsNV>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<IndirectStateFlagBitsNV> for IndirectStateFlagsNV {
-    fn extend<T: std::iter::IntoIterator<Item = IndirectStateFlagBitsNV>>(&mut self, iterator: T) {
+impl Extend<IndirectStateFlagBitsNV> for IndirectStateFlagsNV {
+    fn extend<T: IntoIterator<Item = IndirectStateFlagBitsNV>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(IndirectStateFlagsNV::from(i));
+            Self::insert(self, <Self as From<IndirectStateFlagBitsNV>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<IndirectStateFlagsNV> for IndirectStateFlagsNV {
-    fn from_iter<T: std::iter::IntoIterator<Item = IndirectStateFlagsNV>>(iterator: T) -> IndirectStateFlagsNV {
-        let mut out = IndirectStateFlagsNV::empty();
-        out.extend(iterator);
+impl FromIterator<IndirectStateFlagsNV> for IndirectStateFlagsNV {
+    fn from_iter<T: IntoIterator<Item = IndirectStateFlagsNV>>(iterator: T) -> IndirectStateFlagsNV {
+        let mut out = Self::empty();
+        <Self as Extend<IndirectStateFlagsNV>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<IndirectStateFlagBitsNV> for IndirectStateFlagsNV {
-    fn from_iter<T: std::iter::IntoIterator<Item = IndirectStateFlagBitsNV>>(iterator: T) -> IndirectStateFlagsNV {
-        let mut out = IndirectStateFlagsNV::empty();
-        out.extend(iterator);
+impl FromIterator<IndirectStateFlagBitsNV> for IndirectStateFlagsNV {
+    fn from_iter<T: IntoIterator<Item = IndirectStateFlagBitsNV>>(iterator: T) -> IndirectStateFlagsNV {
+        let mut out = Self::empty();
+        <Self as Extend<IndirectStateFlagBitsNV>>::extend(&mut out, iterator);
         out
     }
 }
@@ -1091,12 +1091,12 @@ impl std::fmt::Debug for IndirectStateFlagsNV {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(IndirectStateFlagsNV::IndirectStateFlagFrontfaceNv) {
+                    if self.0.contains(IndirectStateFlagsNV::INDIRECT_STATE_FLAG_FRONTFACE_NV) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(IndirectStateFlagFrontfaceNv))?;
+                        f.write_str(stringify!(INDIRECT_STATE_FLAG_FRONTFACE_NV))?;
                     }
                 }
                 Ok(())
@@ -1149,10 +1149,11 @@ impl std::fmt::Debug for IndirectStateFlagsNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1317,10 +1318,11 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1447,42 +1449,42 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_graphics_shader_group_count`]
     pub fn max_graphics_shader_group_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_graphics_shader_group_count
     }
     ///Gets a mutable reference to the value of [`Self::max_indirect_sequence_count`]
     pub fn max_indirect_sequence_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_indirect_sequence_count
     }
     ///Gets a mutable reference to the value of [`Self::max_indirect_commands_token_count`]
     pub fn max_indirect_commands_token_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_indirect_commands_token_count
     }
     ///Gets a mutable reference to the value of [`Self::max_indirect_commands_stream_count`]
     pub fn max_indirect_commands_stream_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_indirect_commands_stream_count
     }
     ///Gets a mutable reference to the value of [`Self::max_indirect_commands_token_offset`]
     pub fn max_indirect_commands_token_offset_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_indirect_commands_token_offset
     }
     ///Gets a mutable reference to the value of [`Self::max_indirect_commands_stream_stride`]
     pub fn max_indirect_commands_stream_stride_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_indirect_commands_stream_stride
     }
     ///Gets a mutable reference to the value of
     /// [`Self::min_sequences_count_buffer_offset_alignment`]
     pub fn min_sequences_count_buffer_offset_alignment_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.min_sequences_count_buffer_offset_alignment
     }
     ///Gets a mutable reference to the value of
     /// [`Self::min_sequences_index_buffer_offset_alignment`]
     pub fn min_sequences_index_buffer_offset_alignment_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.min_sequences_index_buffer_offset_alignment
     }
     ///Gets a mutable reference to the value of
     /// [`Self::min_indirect_commands_buffer_offset_alignment`]
     pub fn min_indirect_commands_buffer_offset_alignment_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.min_indirect_commands_buffer_offset_alignment
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1604,6 +1606,7 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GraphicsShaderGroupCreateInfoNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1717,7 +1720,7 @@ impl<'lt> GraphicsShaderGroupCreateInfoNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::stage_count`]
     pub fn stage_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.stage_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1836,6 +1839,7 @@ impl<'lt> GraphicsShaderGroupCreateInfoNV<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GraphicsPipelineShaderGroupsCreateInfoNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1937,11 +1941,11 @@ impl<'lt> GraphicsPipelineShaderGroupsCreateInfoNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::group_count`]
     pub fn group_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.group_count
     }
     ///Gets a mutable reference to the value of [`Self::pipeline_count`]
     pub fn pipeline_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.pipeline_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -2032,7 +2036,7 @@ impl BindShaderGroupIndirectCommandNV {
     }
     ///Gets a mutable reference to the value of [`Self::group_index`]
     pub fn group_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.group_index
     }
     ///Sets the raw value of [`Self::group_index`]
     pub fn set_group_index(&mut self, value: u32) -> &mut Self {
@@ -2130,7 +2134,7 @@ impl BindIndexBufferIndirectCommandNV {
     }
     ///Gets a mutable reference to the value of [`Self::size`]
     pub fn size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.size
     }
     ///Gets a mutable reference to the value of [`Self::index_type`]
     pub fn index_type_mut(&mut self) -> &mut IndexType {
@@ -2238,11 +2242,11 @@ impl BindVertexBufferIndirectCommandNV {
     }
     ///Gets a mutable reference to the value of [`Self::size`]
     pub fn size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.size
     }
     ///Gets a mutable reference to the value of [`Self::stride`]
     pub fn stride_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.stride
     }
     ///Sets the raw value of [`Self::buffer_address`]
     pub fn set_buffer_address(&mut self, value: crate::vulkan1_0::DeviceAddress) -> &mut Self {
@@ -2308,7 +2312,7 @@ impl SetStateFlagsIndirectCommandNV {
     }
     ///Gets a mutable reference to the value of [`Self::data`]
     pub fn data_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.data
     }
     ///Sets the raw value of [`Self::data`]
     pub fn set_data(&mut self, value: u32) -> &mut Self {
@@ -2517,6 +2521,7 @@ impl IndirectCommandsStreamNV {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct IndirectCommandsLayoutTokenNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2700,15 +2705,15 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::stream`]
     pub fn stream_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.stream
     }
     ///Gets a mutable reference to the value of [`Self::offset`]
     pub fn offset_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.offset
     }
     ///Gets a mutable reference to the value of [`Self::vertex_binding_unit`]
     pub fn vertex_binding_unit_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.vertex_binding_unit
     }
     ///Gets a mutable reference to the value of [`Self::vertex_dynamic_stride`]
     pub fn vertex_dynamic_stride_mut(&mut self) -> &mut bool {
@@ -2738,11 +2743,11 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::pushconstant_offset`]
     pub fn pushconstant_offset_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.pushconstant_offset
     }
     ///Gets a mutable reference to the value of [`Self::pushconstant_size`]
     pub fn pushconstant_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.pushconstant_size
     }
     ///Gets a mutable reference to the value of [`Self::indirect_state_flags`]
     pub fn indirect_state_flags_mut(&mut self) -> &mut IndirectStateFlagsNV {
@@ -2750,7 +2755,7 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::index_type_count`]
     pub fn index_type_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.index_type_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -2943,6 +2948,7 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct IndirectCommandsLayoutCreateInfoNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -3067,11 +3073,11 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::token_count`]
     pub fn token_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.token_count
     }
     ///Gets a mutable reference to the value of [`Self::stream_count`]
     pub fn stream_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.stream_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -3269,6 +3275,7 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GeneratedCommandsInfoNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -3444,11 +3451,11 @@ impl<'lt> GeneratedCommandsInfoNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::stream_count`]
     pub fn stream_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.stream_count
     }
     ///Gets a mutable reference to the value of [`Self::sequences_count`]
     pub fn sequences_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.sequences_count
     }
     ///Gets a mutable reference to the value of [`Self::preprocess_buffer`]
     pub fn preprocess_buffer_mut(&mut self) -> &mut Buffer {
@@ -3620,6 +3627,7 @@ impl<'lt> GeneratedCommandsInfoNV<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GeneratedCommandsMemoryRequirementsInfoNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -3709,7 +3717,7 @@ impl<'lt> GeneratedCommandsMemoryRequirementsInfoNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_sequences_count`]
     pub fn max_sequences_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_sequences_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -3768,7 +3776,7 @@ impl<'lt> GeneratedCommandsMemoryRequirementsInfoNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectCommandsLayoutNV")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct IndirectCommandsLayoutNV(pub u64);
@@ -3780,7 +3788,7 @@ impl IndirectCommandsLayoutNV {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -3792,16 +3800,6 @@ impl IndirectCommandsLayoutNV {
 unsafe impl Send for IndirectCommandsLayoutNV {}
 impl Default for IndirectCommandsLayoutNV {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for IndirectCommandsLayoutNV {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for IndirectCommandsLayoutNV {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }

@@ -116,7 +116,6 @@ pub const EXT_CONSERVATIVE_RASTERIZATION_EXTENSION_NAME: &'static CStr =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkConservativeRasterizationModeEXT")]
-#[doc(alias = "VkConservativeRasterizationModeEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -148,7 +147,7 @@ impl ConservativeRasterizationModeEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -173,7 +172,7 @@ impl ConservativeRasterizationModeEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -277,10 +276,11 @@ impl std::fmt::Debug for PipelineRasterizationConservativeStateCreateFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceConservativeRasterizationPropertiesEXT")]
-#[derive(Debug)]
+#[derive(Debug, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -499,16 +499,16 @@ impl<'lt> PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::primitive_overestimation_size`]
     pub fn primitive_overestimation_size_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.primitive_overestimation_size
     }
     ///Gets a mutable reference to the value of [`Self::max_extra_primitive_overestimation_size`]
     pub fn max_extra_primitive_overestimation_size_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.max_extra_primitive_overestimation_size
     }
     ///Gets a mutable reference to the value of
     /// [`Self::extra_primitive_overestimation_size_granularity`]
     pub fn extra_primitive_overestimation_size_granularity_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.extra_primitive_overestimation_size_granularity
     }
     ///Gets a mutable reference to the value of [`Self::primitive_underestimation`]
     pub fn primitive_underestimation_mut(&mut self) -> &mut bool {
@@ -741,6 +741,7 @@ impl<'lt> PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineRasterizationConservativeStateCreateInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -818,7 +819,7 @@ impl<'lt> PipelineRasterizationConservativeStateCreateInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::extra_primitive_overestimation_size`]
     pub fn extra_primitive_overestimation_size_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.extra_primitive_overestimation_size
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {

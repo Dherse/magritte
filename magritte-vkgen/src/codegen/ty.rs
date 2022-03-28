@@ -5,8 +5,8 @@ use std::{borrow::Cow, iter::once};
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, ToTokens};
 use syn::{
-    punctuated::Punctuated, AngleBracketedGenericArguments, GenericArgument, Lifetime, Path, PathArguments,
-    PathSegment, Token, Type, TypeArray, TypePath, TypePtr, TypeReference, TypeSlice,
+    parse_quote, punctuated::Punctuated, AngleBracketedGenericArguments, GenericArgument, Lifetime, Path,
+    PathArguments, PathSegment, Token, Type, TypeArray, TypePath, TypePtr, TypeReference, TypeSlice,
 };
 
 use crate::{
@@ -56,13 +56,26 @@ impl<'a> Ty<'a> {
     }
 
     /// Does the type have a lifetime (with deep checking)
-    pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
+    pub fn has_lifetime(&self, source: &Source<'a>, pointer_has_lifetime: bool) -> bool {
         match self {
-            Ty::Pointer(_, ty) | Ty::Slice(_, ty, _) => !ty.has_opaque(source),
+            Ty::Pointer(_, ty) | Ty::Slice(_, ty, _) => pointer_has_lifetime && !ty.has_opaque(source),
             Ty::NullTerminatedString(_) => true,
             Ty::Native(_) | Ty::StringArray(_) => false,
-            Ty::Array(ty, _) => ty.has_lifetime(source),
+            Ty::Array(ty, _) => ty.has_lifetime(source, false),
             Ty::Named(named) => source.resolve_type(named).expect("unknown type").has_lifetime(source),
+        }
+    }
+
+    /// Checks whether the type is copy
+    pub fn is_debug(&self, source: &Source<'a>) -> bool {
+        match self {
+            Ty::Pointer(_, _)
+            | Ty::Native(_)
+            | Ty::StringArray(_)
+            | Ty::NullTerminatedString(_)
+            | Ty::Slice(_, _, _) => true,
+            Ty::Named(name) => source.resolve_type(name).expect("unknown type").is_debug(source),
+            Ty::Array(ty, _) => ty.is_debug(source),
         }
     }
 
@@ -148,7 +161,7 @@ impl<'a> Ty<'a> {
             Ty::Pointer(_, ty) => !ty.is_opaque(source),
             Ty::Named(ty) => source.resolve_type(ty).expect("unknown type").is_opaque(),
             Ty::StringArray(_) => false,
-            Ty::NullTerminatedString(_) => false,
+            Ty::NullTerminatedString(_) => true,
             Ty::Array(_, _) => false,
             Ty::Slice(_, ty, _) => !ty.is_opaque(source),
         }
@@ -186,7 +199,7 @@ impl<'a> Ty<'a> {
             },
             Ty::StringArray(len) => {
                 let len = len.as_const_expr(source, imports);
-                quote! { [0; #len]}
+                quote! { [0; #len as usize]}
             },
             Ty::NullTerminatedString(_) => quote! {
                 std::ptr::null()
@@ -201,7 +214,7 @@ impl<'a> Ty<'a> {
                 let len = len.as_const_expr(source, imports);
                 let default = ty.default_tokens(source, imports);
                 quote! {
-                    [#default; #len]
+                    [#default; #len as usize]
                 }
             },
         }
@@ -209,16 +222,14 @@ impl<'a> Ty<'a> {
 
     /// Creates a converter from the "raw" type to its "rustified type", only one layer deep
     /// so as to not allocate. Returns the converter and whether or not the output is a reference.
-    pub fn rust_to_c_converter<F>(
+    pub fn rust_to_c_converter(
         &self,
         source: &Source<'a>,
-        setter: &F,
+        setter: &impl Fn(&str, TokenStream) -> TokenStream,
+        type_of_field: &impl Fn(&str) -> Ty<'a>,
         field: &str,
         len_field: Option<&str>,
-    ) -> (Vec<TokenStream>, TokenStream)
-    where
-        F: Fn(&str, TokenStream) -> TokenStream,
-    {
+    ) -> Option<(Vec<TokenStream>, TokenStream)> {
         let mut fields = Vec::with_capacity(1);
 
         let value_ident = Ident::new("value", Span::call_site());
@@ -278,14 +289,26 @@ impl<'a> Ty<'a> {
                 } else {
                     assert_eq!(vars.len(), 1, "more than one variable");
 
-                    let len_expr = len.pivot("len_").as_expr(source, &|_| quote! { len_ }, None);
+                    let ty = type_of_field(len_field.unwrap_or_else(|| &vars[0]));
+
+                    if !ty.is_native() {
+                        return None;
+                    }
+
+                    let ty = ty.as_const_ty(source, None);
+
+                    let len_expr = len.pivot("len_", len_field.unwrap_or_else(|| &vars[0])).as_expr(
+                        source,
+                        &|_| quote! { len_ },
+                        None,
+                    );
                     let len_setter = setter(
                         len_field.unwrap_or_else(|| &vars[0]),
                         Ident::new("len_", Span::call_site()).to_token_stream(),
                     );
 
                     quote! {
-                        let len_ = value.len() as u32;
+                        let len_ = value.len() as #ty;
                         let len_ = #len_expr;
 
                         #value_setter
@@ -295,7 +318,7 @@ impl<'a> Ty<'a> {
             },
         };
 
-        (fields, out)
+        Some((fields, out))
     }
 
     /// Creates a converter from the "raw" type to its "rustified type", only one layer deep
@@ -314,7 +337,7 @@ impl<'a> Ty<'a> {
                 if mutability.is_const() {
                     Some((getter, false))
                 } else {
-                    Some((quote! { &#mut_ getter }, true))
+                    Some((quote! { &#mut_ #getter }, true))
                 }
             },
             Ty::Named(Cow::Borrowed("VkBool32")) => {
@@ -360,13 +383,18 @@ impl<'a> Ty<'a> {
                 },
                 true,
             )),
-            Ty::StringArray(_) | Ty::Array(_, _) => Some((quote! { &#mut_ getter }, true)),
+            Ty::StringArray(_) | Ty::Array(_, _) => Some((quote! { &#mut_ #getter }, true)),
             Ty::NullTerminatedString(_) => {
                 if mutability.is_mut() {
                     return None;
                 }
 
-                Some((getter, false))
+                Some((
+                    quote! {
+                        CStr::from_ptr(#getter)
+                    },
+                    false,
+                ))
             },
             Ty::Slice(this_mut, _, this_len) => {
                 let len = len.unwrap_or_else(|| this_len.as_const_expr(source, None).to_token_stream());
@@ -390,7 +418,12 @@ impl<'a> Ty<'a> {
     }
 
     /// Turns a type into a tokenized raw C-compatible type and an optional lifetime argument
-    pub fn as_raw_ty(&self, source: &Source<'a>, imports: Option<&Imports>, pointer_has_lifetime: bool) -> (Type, bool) {
+    pub fn as_raw_ty(
+        &self,
+        source: &Source<'a>,
+        imports: Option<&Imports>,
+        pointer_has_lifetime: bool,
+    ) -> (Type, bool) {
         match self {
             Ty::Native(_) | Ty::StringArray(_) => (self.as_const_ty(source, imports), false),
             Ty::Pointer(mutability, ty) => (
@@ -408,10 +441,13 @@ impl<'a> Ty<'a> {
                 .as_type_ref()
                 .expect("not a type")
                 .as_type(source, imports),
-            Ty::NullTerminatedString(_) => (Native::NullTerminatedString.as_type(imports), true),
+            Ty::NullTerminatedString(_) => (Native::NullTerminatedString.as_raw_type(imports), true),
             Ty::Array(ty, len) => {
                 let (elem, lt) = ty.as_raw_ty(source, imports, pointer_has_lifetime);
                 let len = len.as_const_expr(source, imports);
+                let len = parse_quote! {
+                    #len as usize
+                };
 
                 (
                     Type::Array(TypeArray {
@@ -457,6 +493,9 @@ impl<'a> Ty<'a> {
             Ty::Array(ty, len) => {
                 let (elem, lt) = ty.as_raw_ty(source, imports, false);
                 let len = len.as_const_expr(source, imports);
+                let len = parse_quote! {
+                    #len as usize
+                };
 
                 (
                     Type::Array(TypeArray {
@@ -498,11 +537,19 @@ impl<'a> Ty<'a> {
                 bracket_token: Default::default(),
                 elem: box Native::Char.as_type(None),
                 semi_token: Default::default(),
-                len: len.as_const_expr(source, imports),
+                len: {
+                    let len = len.as_const_expr(source, imports);
+                    parse_quote! {
+                        #len as usize
+                    }
+                },
             }),
             Ty::Array(ty, len) => {
                 let elem = box ty.as_const_ty(source, imports);
                 let len = len.as_const_expr(source, imports);
+                let len = parse_quote! {
+                    #len as usize
+                };
 
                 Type::Array(TypeArray {
                     bracket_token: Default::default(),
@@ -633,6 +680,45 @@ impl Native {
         self.as_type_with_lifetime(Ident::new("static", Span::call_site()), imports)
     }
 
+    /// Gets the native type has a pointer type
+    pub fn as_raw_type(&self, imports: Option<&Imports>) -> Type {
+        if let Some(imports) = imports {
+            imports.push("std::os::raw::c_char");
+
+            let path = Type::Path(TypePath {
+                qself: None,
+                path: Path::from(PathSegment::from(Ident::new("c_char", Span::call_site()))),
+            });
+
+            Type::Ptr(TypePtr {
+                star_token: Default::default(),
+                const_token: Some(Default::default()),
+                mutability: None,
+                elem: box path,
+            })
+        } else {
+            Type::Ptr(TypePtr {
+                star_token: Default::default(),
+                const_token: Some(Default::default()),
+                mutability: None,
+                elem: box Type::Path(TypePath {
+                    qself: None,
+                    path: Path {
+                        leading_colon: None,
+                        segments: [
+                            PathSegment::from(Ident::new("std", Span::call_site())),
+                            PathSegment::from(Ident::new("os", Span::call_site())),
+                            PathSegment::from(Ident::new("raw", Span::call_site())),
+                            PathSegment::from(Ident::new("c_char", Span::call_site())),
+                        ]
+                        .into_iter()
+                        .collect(),
+                    },
+                }),
+            })
+        }
+    }
+
     /// Gets a type from this native type, imports it if needed
     pub fn as_type_with_lifetime(&self, lifetime: Ident, imports: Option<&Imports>) -> Type {
         if let Some(imports) = imports {
@@ -712,7 +798,7 @@ impl Native {
                 Native::Int(other) => panic!("unsupported signed int size: {}", other),
                 Native::USize => "usize",
                 Native::SSize => "isize",
-                Native::Char => "c_schar",
+                Native::Char => "c_char",
                 Native::UChar => "c_uchar",
                 Native::Float => "f32",
                 Native::Double => "f64",

@@ -124,7 +124,11 @@ use crate::{
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData};
+use std::{
+    ffi::CStr,
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_FUCHSIA_BUFFER_COLLECTION_SPEC_VERSION")]
@@ -206,7 +210,7 @@ impl ImageConstraintsInfoFlagBitsFUCHSIA {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -231,7 +235,7 @@ impl ImageConstraintsInfoFlagBitsFUCHSIA {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -287,7 +291,7 @@ impl std::fmt::Debug for ImageFormatConstraintsFlagsFUCHSIA {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageConstraintsInfoFlagsFUCHSIA")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -304,16 +308,16 @@ impl From<ImageConstraintsInfoFlagBitsFUCHSIA> for ImageConstraintsInfoFlagsFUCH
 }
 impl ImageConstraintsInfoFlagsFUCHSIA {
     ///[`ImageConstraintsInfoCpuReadRarelyFuchsia`]
-    const ImageConstraintsInfoCpuReadRarelyFuchsia: Self = Self(1);
+    pub const IMAGE_CONSTRAINTS_INFO_CPU_READ_RARELY_FUCHSIA: Self = Self(1);
     ///[`ImageConstraintsInfoCpuReadOftenFuchsia`]
-    const ImageConstraintsInfoCpuReadOftenFuchsia: Self = Self(2);
+    pub const IMAGE_CONSTRAINTS_INFO_CPU_READ_OFTEN_FUCHSIA: Self = Self(2);
     ///[`ImageConstraintsInfoCpuWriteRarelyFuchsia`]
-    const ImageConstraintsInfoCpuWriteRarelyFuchsia: Self = Self(4);
+    pub const IMAGE_CONSTRAINTS_INFO_CPU_WRITE_RARELY_FUCHSIA: Self = Self(4);
     ///[`ImageConstraintsInfoCpuWriteOftenFuchsia`]
-    const ImageConstraintsInfoCpuWriteOftenFuchsia: Self = Self(8);
+    pub const IMAGE_CONSTRAINTS_INFO_CPU_WRITE_OFTEN_FUCHSIA: Self = Self(8);
     ///[`ImageConstraintsInfoProtectedOptionalFuchsia`] specifies
     ///that protected memory is optional for the buffer collection.
-    const ImageConstraintsInfoProtectedOptionalFuchsia: Self = Self(16);
+    pub const IMAGE_CONSTRAINTS_INFO_PROTECTED_OPTIONAL_FUCHSIA: Self = Self(16);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -323,11 +327,11 @@ impl ImageConstraintsInfoFlagsFUCHSIA {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::ImageConstraintsInfoCpuReadRarelyFuchsia
-            | Self::ImageConstraintsInfoCpuReadOftenFuchsia
-            | Self::ImageConstraintsInfoCpuWriteRarelyFuchsia
-            | Self::ImageConstraintsInfoCpuWriteOftenFuchsia
-            | Self::ImageConstraintsInfoProtectedOptionalFuchsia
+            | Self::IMAGE_CONSTRAINTS_INFO_CPU_READ_RARELY_FUCHSIA
+            | Self::IMAGE_CONSTRAINTS_INFO_CPU_READ_OFTEN_FUCHSIA
+            | Self::IMAGE_CONSTRAINTS_INFO_CPU_WRITE_RARELY_FUCHSIA
+            | Self::IMAGE_CONSTRAINTS_INFO_CPU_WRITE_OFTEN_FUCHSIA
+            | Self::IMAGE_CONSTRAINTS_INFO_PROTECTED_OPTIONAL_FUCHSIA
     }
     ///Returns the raw bits
     #[inline]
@@ -489,35 +493,35 @@ impl const std::ops::Not for ImageConstraintsInfoFlagsFUCHSIA {
         self.complement()
     }
 }
-impl std::iter::Extend<ImageConstraintsInfoFlagsFUCHSIA> for ImageConstraintsInfoFlagsFUCHSIA {
-    fn extend<T: std::iter::IntoIterator<Item = ImageConstraintsInfoFlagsFUCHSIA>>(&mut self, iterator: T) {
+impl Extend<ImageConstraintsInfoFlagsFUCHSIA> for ImageConstraintsInfoFlagsFUCHSIA {
+    fn extend<T: IntoIterator<Item = ImageConstraintsInfoFlagsFUCHSIA>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<ImageConstraintsInfoFlagBitsFUCHSIA> for ImageConstraintsInfoFlagsFUCHSIA {
-    fn extend<T: std::iter::IntoIterator<Item = ImageConstraintsInfoFlagBitsFUCHSIA>>(&mut self, iterator: T) {
+impl Extend<ImageConstraintsInfoFlagBitsFUCHSIA> for ImageConstraintsInfoFlagsFUCHSIA {
+    fn extend<T: IntoIterator<Item = ImageConstraintsInfoFlagBitsFUCHSIA>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(ImageConstraintsInfoFlagsFUCHSIA::from(i));
+            Self::insert(self, <Self as From<ImageConstraintsInfoFlagBitsFUCHSIA>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<ImageConstraintsInfoFlagsFUCHSIA> for ImageConstraintsInfoFlagsFUCHSIA {
-    fn from_iter<T: std::iter::IntoIterator<Item = ImageConstraintsInfoFlagsFUCHSIA>>(
+impl FromIterator<ImageConstraintsInfoFlagsFUCHSIA> for ImageConstraintsInfoFlagsFUCHSIA {
+    fn from_iter<T: IntoIterator<Item = ImageConstraintsInfoFlagsFUCHSIA>>(
         iterator: T,
     ) -> ImageConstraintsInfoFlagsFUCHSIA {
-        let mut out = ImageConstraintsInfoFlagsFUCHSIA::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<ImageConstraintsInfoFlagsFUCHSIA>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<ImageConstraintsInfoFlagBitsFUCHSIA> for ImageConstraintsInfoFlagsFUCHSIA {
-    fn from_iter<T: std::iter::IntoIterator<Item = ImageConstraintsInfoFlagBitsFUCHSIA>>(
+impl FromIterator<ImageConstraintsInfoFlagBitsFUCHSIA> for ImageConstraintsInfoFlagsFUCHSIA {
+    fn from_iter<T: IntoIterator<Item = ImageConstraintsInfoFlagBitsFUCHSIA>>(
         iterator: T,
     ) -> ImageConstraintsInfoFlagsFUCHSIA {
-        let mut out = ImageConstraintsInfoFlagsFUCHSIA::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<ImageConstraintsInfoFlagBitsFUCHSIA>>::extend(&mut out, iterator);
         out
     }
 }
@@ -532,53 +536,53 @@ impl std::fmt::Debug for ImageConstraintsInfoFlagsFUCHSIA {
                     let mut first = true;
                     if self
                         .0
-                        .contains(ImageConstraintsInfoFlagsFUCHSIA::ImageConstraintsInfoCpuReadRarelyFuchsia)
+                        .contains(ImageConstraintsInfoFlagsFUCHSIA::IMAGE_CONSTRAINTS_INFO_CPU_READ_RARELY_FUCHSIA)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ImageConstraintsInfoCpuReadRarelyFuchsia))?;
+                        f.write_str(stringify!(IMAGE_CONSTRAINTS_INFO_CPU_READ_RARELY_FUCHSIA))?;
                     }
                     if self
                         .0
-                        .contains(ImageConstraintsInfoFlagsFUCHSIA::ImageConstraintsInfoCpuReadOftenFuchsia)
+                        .contains(ImageConstraintsInfoFlagsFUCHSIA::IMAGE_CONSTRAINTS_INFO_CPU_READ_OFTEN_FUCHSIA)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ImageConstraintsInfoCpuReadOftenFuchsia))?;
+                        f.write_str(stringify!(IMAGE_CONSTRAINTS_INFO_CPU_READ_OFTEN_FUCHSIA))?;
                     }
                     if self
                         .0
-                        .contains(ImageConstraintsInfoFlagsFUCHSIA::ImageConstraintsInfoCpuWriteRarelyFuchsia)
+                        .contains(ImageConstraintsInfoFlagsFUCHSIA::IMAGE_CONSTRAINTS_INFO_CPU_WRITE_RARELY_FUCHSIA)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ImageConstraintsInfoCpuWriteRarelyFuchsia))?;
+                        f.write_str(stringify!(IMAGE_CONSTRAINTS_INFO_CPU_WRITE_RARELY_FUCHSIA))?;
                     }
                     if self
                         .0
-                        .contains(ImageConstraintsInfoFlagsFUCHSIA::ImageConstraintsInfoCpuWriteOftenFuchsia)
+                        .contains(ImageConstraintsInfoFlagsFUCHSIA::IMAGE_CONSTRAINTS_INFO_CPU_WRITE_OFTEN_FUCHSIA)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ImageConstraintsInfoCpuWriteOftenFuchsia))?;
+                        f.write_str(stringify!(IMAGE_CONSTRAINTS_INFO_CPU_WRITE_OFTEN_FUCHSIA))?;
                     }
                     if self
                         .0
-                        .contains(ImageConstraintsInfoFlagsFUCHSIA::ImageConstraintsInfoProtectedOptionalFuchsia)
+                        .contains(ImageConstraintsInfoFlagsFUCHSIA::IMAGE_CONSTRAINTS_INFO_PROTECTED_OPTIONAL_FUCHSIA)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ImageConstraintsInfoProtectedOptionalFuchsia))?;
+                        f.write_str(stringify!(IMAGE_CONSTRAINTS_INFO_PROTECTED_OPTIONAL_FUCHSIA))?;
                     }
                 }
                 Ok(())
@@ -631,6 +635,7 @@ impl std::fmt::Debug for ImageConstraintsInfoFlagsFUCHSIA {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImportMemoryBufferCollectionFUCHSIA<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
     pub s_type: StructureType,
@@ -692,7 +697,7 @@ impl<'lt> ImportMemoryBufferCollectionFUCHSIA<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::index`]
     pub fn index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.index
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -760,6 +765,7 @@ impl<'lt> ImportMemoryBufferCollectionFUCHSIA<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCollectionImageCreateInfoFUCHSIA<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
     pub s_type: StructureType,
@@ -822,7 +828,7 @@ impl<'lt> BufferCollectionImageCreateInfoFUCHSIA<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::index`]
     pub fn index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.index
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -890,6 +896,7 @@ impl<'lt> BufferCollectionImageCreateInfoFUCHSIA<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCollectionBufferCreateInfoFUCHSIA<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
     pub s_type: StructureType,
@@ -952,7 +959,7 @@ impl<'lt> BufferCollectionBufferCreateInfoFUCHSIA<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::index`]
     pub fn index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.index
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1016,10 +1023,10 @@ impl<'lt> BufferCollectionBufferCreateInfoFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCollectionCreateInfoFUCHSIA")]
-#[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCollectionCreateInfoFUCHSIA<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
     pub s_type: StructureType,
@@ -1188,10 +1195,11 @@ impl<'lt> BufferCollectionCreateInfoFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCollectionPropertiesFUCHSIA")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCollectionPropertiesFUCHSIA<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
     pub s_type: StructureType,
@@ -1329,19 +1337,19 @@ impl<'lt> BufferCollectionPropertiesFUCHSIA<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::memory_type_bits`]
     pub fn memory_type_bits_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.memory_type_bits
     }
     ///Gets a mutable reference to the value of [`Self::buffer_count`]
     pub fn buffer_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.buffer_count
     }
     ///Gets a mutable reference to the value of [`Self::create_info_index`]
     pub fn create_info_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.create_info_index
     }
     ///Gets a mutable reference to the value of [`Self::sysmem_pixel_format`]
     pub fn sysmem_pixel_format_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.sysmem_pixel_format
     }
     ///Gets a mutable reference to the value of [`Self::format_features`]
     pub fn format_features_mut(&mut self) -> &mut FormatFeatureFlags {
@@ -1495,6 +1503,7 @@ impl<'lt> BufferCollectionPropertiesFUCHSIA<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferConstraintsInfoFUCHSIA<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
     pub s_type: StructureType,
@@ -1641,6 +1650,7 @@ impl<'lt> BufferConstraintsInfoFUCHSIA<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SysmemColorSpaceFUCHSIA<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
     pub s_type: StructureType,
@@ -1691,7 +1701,7 @@ impl<'lt> SysmemColorSpaceFUCHSIA<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::color_space`]
     pub fn color_space_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.color_space
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1771,6 +1781,7 @@ impl<'lt> SysmemColorSpaceFUCHSIA<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageFormatConstraintsInfoFUCHSIA<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
     pub s_type: StructureType,
@@ -1886,11 +1897,11 @@ impl<'lt> ImageFormatConstraintsInfoFUCHSIA<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::sysmem_pixel_format`]
     pub fn sysmem_pixel_format_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.sysmem_pixel_format
     }
     ///Gets a mutable reference to the value of [`Self::color_space_count`]
     pub fn color_space_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.color_space_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -2024,6 +2035,7 @@ impl<'lt> ImageFormatConstraintsInfoFUCHSIA<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageConstraintsInfoFUCHSIA<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2116,7 +2128,7 @@ impl<'lt> ImageConstraintsInfoFUCHSIA<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::format_constraints_count`]
     pub fn format_constraints_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.format_constraints_count
     }
     ///Gets a mutable reference to the value of [`Self::buffer_collection_constraints`]
     pub fn buffer_collection_constraints_mut(&mut self) -> &mut BufferCollectionConstraintsInfoFUCHSIA<'lt> {
@@ -2229,6 +2241,7 @@ impl<'lt> ImageConstraintsInfoFUCHSIA<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCollectionConstraintsInfoFUCHSIA<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
     pub s_type: StructureType,
@@ -2312,23 +2325,23 @@ impl<'lt> BufferCollectionConstraintsInfoFUCHSIA<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::min_buffer_count`]
     pub fn min_buffer_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.min_buffer_count
     }
     ///Gets a mutable reference to the value of [`Self::max_buffer_count`]
     pub fn max_buffer_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_buffer_count
     }
     ///Gets a mutable reference to the value of [`Self::min_buffer_count_for_camping`]
     pub fn min_buffer_count_for_camping_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.min_buffer_count_for_camping
     }
     ///Gets a mutable reference to the value of [`Self::min_buffer_count_for_dedicated_slack`]
     pub fn min_buffer_count_for_dedicated_slack_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.min_buffer_count_for_dedicated_slack
     }
     ///Gets a mutable reference to the value of [`Self::min_buffer_count_for_shared_slack`]
     pub fn min_buffer_count_for_shared_slack_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.min_buffer_count_for_shared_slack
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -2402,7 +2415,7 @@ impl<'lt> BufferCollectionConstraintsInfoFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCollectionFUCHSIA")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct BufferCollectionFUCHSIA(pub u64);
@@ -2414,7 +2427,7 @@ impl BufferCollectionFUCHSIA {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -2426,16 +2439,6 @@ impl BufferCollectionFUCHSIA {
 unsafe impl Send for BufferCollectionFUCHSIA {}
 impl Default for BufferCollectionFUCHSIA {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for BufferCollectionFUCHSIA {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for BufferCollectionFUCHSIA {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }

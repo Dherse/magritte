@@ -1,12 +1,28 @@
 use ahash::AHashMap;
-use proc_macro2::{TokenStream, Literal};
+use convert_case::{Casing, Case};
+use proc_macro2::{Literal, TokenStream, Span, Ident};
 use quote::quote;
 use tracing::warn;
 
-use crate::{source::{Bitmask, Source, BitFlag, Bit}, doc::Documentation, imports::Imports, origin::Origin, codegen::alias_of};
-
+use crate::{
+    codegen::alias_of,
+    doc::Documentation,
+    imports::Imports,
+    origin::Origin,
+    source::{Bit, BitFlag, Bitmask, Source},
+};
 
 impl<'a> Bit<'a> {
+    /// Generates an identifier for flags
+    fn as_flag_ident(&self) -> Ident {
+        let name = self.name().to_case(Case::ScreamingSnake);
+        Ident::new(&if name.starts_with(char::is_numeric) {
+            format!("_{}", self.name().to_case(Case::ScreamingSnake))
+        } else {
+            self.name().to_case(Case::ScreamingSnake)
+        }, Span::call_site())
+    }
+
     /// Generate the code for a Bitflag variant
     fn generate_bitmask_variant(&self, parent: &Origin<'a>, doc: &AHashMap<String, String>) -> TokenStream {
         // get the doc of the bit
@@ -25,13 +41,13 @@ impl<'a> Bit<'a> {
         });
 
         // get the name
-        let name = self.as_ident();
+        let name = self.as_flag_ident();
         let value = Literal::i64_unsuffixed(self.value());
 
         quote! {
             #doc
             #provided_by
-            const #name: Self = Self(#value)
+            pub const #name: Self = Self(#value)
         }
     }
 }
@@ -45,21 +61,14 @@ impl<'a> Bitmask<'a> {
         imports: &Imports,
         out: &mut TokenStream,
     ) {
-
-        if let Some(bit_flag) = self.bits().and_then(|bits| source.resolve_type(bits)).and_then(|bit| bit.as_bitflag()) {
-            self.generate_code_with_bitflag(
-                source,
-                doc,
-                imports,
-                bit_flag,
-                out
-            );
+        if let Some(bit_flag) = self
+            .bits()
+            .and_then(|bits| source.resolve_type(bits))
+            .and_then(|bit| bit.as_bitflag())
+        {
+            self.generate_code_with_bitflag(source, doc, imports, bit_flag, out);
         } else {
-            self.generate_code_without_bitflag(
-                source,
-                doc,
-                out
-            );
+            self.generate_code_without_bitflag(source, doc, out);
         }
     }
 
@@ -71,8 +80,6 @@ impl<'a> Bitmask<'a> {
         bit_flag: &BitFlag<'a>,
         mut out: &mut TokenStream,
     ) {
-        imports.push_origin(bit_flag.origin(), bit_flag.name());
-
         // the name of the bitflag
         let name = self.as_ident();
 
@@ -89,20 +96,48 @@ impl<'a> Bitmask<'a> {
             _ => unreachable!("unknown bit width for a mask: {:?}", self),
         };
 
-        let bits = bit_flag.bits().iter().map(|bit| bit.generate_bitmask_variant(
-            self.origin(),
-            &variant_docs
-        ));
+        let bits = bit_flag
+            .bits()
+            .iter()
+            .map(|bit| bit.generate_bitmask_variant(self.origin(), &variant_docs));
 
-        let bit_idents = bit_flag.bits().iter().map(Bit::as_ident).collect::<Vec<_>>();
+        let bit_idents = bit_flag.bits().iter().map(Bit::as_flag_ident).collect::<Vec<_>>();
 
         // creates a doc alias if the name has been changed
         alias_of(self.original_name(), self.name(), out);
 
+        imports.push("std::iter::Extend");
+        imports.push("std::iter::FromIterator");
+        imports.push("std::iter::IntoIterator");
+
+        // dealing with conditional compilation of flag bits
+        let bits_conditional_compilation = if bit_flag.origin() != self.origin() {
+            if let Some(condition) = bit_flag.origin().conditon() {
+                imports.push_str(&format!(
+                    r##"
+                    {}
+                    pub use {}::{};
+                "##,
+                    bit_flag.origin().feature_gate().unwrap_or_default(),
+                    bit_flag.origin().as_path_str(),
+                    bit_flag.name()
+                ));
+                Some(condition)
+            } else {
+                imports.push_origin(bit_flag.origin(), bit_flag.name());
+
+                None
+            }
+        } else {
+            imports.push_origin(bit_flag.origin(), bit_flag.name());
+
+            None
+        };
+
         quote::quote_each_token! {
             out
 
-            #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+            #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
             #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
             #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
             #[repr(transparent)]
@@ -114,6 +149,7 @@ impl<'a> Bitmask<'a> {
                 }
             }
 
+            #bits_conditional_compilation
             impl From<#bits_name> for #name {
                 fn from(from: #bits_name) -> Self {
                     unsafe {
@@ -330,34 +366,36 @@ impl<'a> Bitmask<'a> {
                 }
             }
 
-            impl std::iter::Extend<#name> for #name {
-                fn extend<T: std::iter::IntoIterator<Item = #name>>(&mut self, iterator: T) {
+            impl Extend<#name> for #name {
+                fn extend<T: IntoIterator<Item = #name>>(&mut self, iterator: T) {
                     for i in iterator {
-                        self.insert(i);
+                        Self::insert(self, i);
                     }
                 }
             }
 
-            impl std::iter::Extend<#bits_name> for #name {
-                fn extend<T: std::iter::IntoIterator<Item = #bits_name>>(&mut self, iterator: T) {
+            #bits_conditional_compilation
+            impl Extend<#bits_name> for #name {
+                fn extend<T: IntoIterator<Item = #bits_name>>(&mut self, iterator: T) {
                     for i in iterator {
-                        self.insert(#name::from(i));
+                        Self::insert(self, <Self as From<#bits_name>>::from(i));
                     }
                 }
             }
 
-            impl std::iter::FromIterator<#name> for #name {
-                fn from_iter<T: std::iter::IntoIterator<Item = #name>>(iterator: T) -> #name {
-                    let mut out = #name::empty();
-                    out.extend(iterator);
+            impl FromIterator<#name> for #name {
+                fn from_iter<T: IntoIterator<Item = #name>>(iterator: T) -> #name {
+                    let mut out = Self::empty();
+                    <Self as Extend<#name>>::extend(&mut out, iterator);
                     out
                 }
             }
 
-            impl std::iter::FromIterator<#bits_name> for #name {
-                fn from_iter<T: std::iter::IntoIterator<Item = #bits_name>>(iterator: T) -> #name {
-                    let mut out = #name::empty();
-                    out.extend(iterator);
+            #bits_conditional_compilation
+            impl FromIterator<#bits_name> for #name {
+                fn from_iter<T: IntoIterator<Item = #bits_name>>(iterator: T) -> #name {
+                    let mut out = Self::empty();
+                    <Self as Extend<#bits_name>>::extend(&mut out, iterator);
                     out
                 }
             }
@@ -393,15 +431,9 @@ impl<'a> Bitmask<'a> {
                 }
             }
         }
-
     }
 
-    fn generate_code_without_bitflag(
-        &self,
-        source: &Source<'a>,
-        doc: &mut Documentation,
-        mut out: &mut TokenStream,
-    ) {
+    fn generate_code_without_bitflag(&self, source: &Source<'a>, doc: &mut Documentation, mut out: &mut TokenStream) {
         warn!("Bitmask without a bitflag: {}", self.original_name());
 
         // the name of the bitflag
@@ -412,7 +444,7 @@ impl<'a> Bitmask<'a> {
         quote::quote_each_token! {
             out
 
-            #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+            #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
             #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
             #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
             #[repr(transparent)]

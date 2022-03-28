@@ -96,7 +96,11 @@ use crate::{
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData};
+use std::{
+    ffi::CStr,
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_VIDEO_ENCODE_QUEUE_SPEC_VERSION")]
@@ -157,7 +161,7 @@ impl VideoEncodeFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -218,7 +222,7 @@ impl VideoEncodeCapabilityFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -275,7 +279,7 @@ impl VideoEncodeRateControlFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -341,7 +345,7 @@ impl VideoEncodeRateControlModeFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -375,7 +379,7 @@ impl VideoEncodeRateControlModeFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -392,10 +396,10 @@ impl From<VideoEncodeFlagBitsKHR> for VideoEncodeFlagsKHR {
 }
 impl VideoEncodeFlagsKHR {
     ///No documentation found
-    const VideoEncodeDefaultKhr: Self = Self(0);
+    pub const VIDEO_ENCODE_DEFAULT_KHR: Self = Self(0);
     ///[`VideoEncodeReserved0Khr`] The current version of the
     ///specification has reserved this value for future use.
-    const VideoEncodeReserved0Khr: Self = Self(1);
+    pub const VIDEO_ENCODE_RESERVED_0_KHR: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -404,7 +408,7 @@ impl VideoEncodeFlagsKHR {
     ///Returns a value with all of the flags enabled
     #[inline]
     pub const fn all() -> Self {
-        Self::empty() | Self::VideoEncodeDefaultKhr | Self::VideoEncodeReserved0Khr
+        Self::empty() | Self::VIDEO_ENCODE_DEFAULT_KHR | Self::VIDEO_ENCODE_RESERVED_0_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -566,31 +570,31 @@ impl const std::ops::Not for VideoEncodeFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoEncodeFlagsKHR> for VideoEncodeFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeFlagsKHR> for VideoEncodeFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoEncodeFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoEncodeFlagBitsKHR> for VideoEncodeFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeFlagBitsKHR> for VideoEncodeFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoEncodeFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoEncodeFlagsKHR::from(i));
+            Self::insert(self, <Self as From<VideoEncodeFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<VideoEncodeFlagsKHR> for VideoEncodeFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeFlagsKHR>>(iterator: T) -> VideoEncodeFlagsKHR {
-        let mut out = VideoEncodeFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<VideoEncodeFlagsKHR> for VideoEncodeFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeFlagsKHR>>(iterator: T) -> VideoEncodeFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoEncodeFlagBitsKHR> for VideoEncodeFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeFlagBitsKHR>>(iterator: T) -> VideoEncodeFlagsKHR {
-        let mut out = VideoEncodeFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<VideoEncodeFlagBitsKHR> for VideoEncodeFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeFlagBitsKHR>>(iterator: T) -> VideoEncodeFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -603,19 +607,19 @@ impl std::fmt::Debug for VideoEncodeFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(VideoEncodeFlagsKHR::VideoEncodeDefaultKhr) {
+                    if self.0.contains(VideoEncodeFlagsKHR::VIDEO_ENCODE_DEFAULT_KHR) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeDefaultKhr))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_DEFAULT_KHR))?;
                     }
-                    if self.0.contains(VideoEncodeFlagsKHR::VideoEncodeReserved0Khr) {
+                    if self.0.contains(VideoEncodeFlagsKHR::VIDEO_ENCODE_RESERVED_0_KHR) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeReserved0Khr))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_RESERVED_0_KHR))?;
                     }
                 }
                 Ok(())
@@ -652,7 +656,7 @@ impl std::fmt::Debug for VideoEncodeFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeCapabilityFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -669,11 +673,11 @@ impl From<VideoEncodeCapabilityFlagBitsKHR> for VideoEncodeCapabilityFlagsKHR {
 }
 impl VideoEncodeCapabilityFlagsKHR {
     ///No documentation found
-    const VideoEncodeCapabilityDefaultKhr: Self = Self(0);
+    pub const VIDEO_ENCODE_CAPABILITY_DEFAULT_KHR: Self = Self(0);
     ///[`VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr`]
     ///reports that the implementation supports use of
     ///[`VideoEncodeInfoKHR`]::`precedingExternallyEncodedBytes`.
-    const VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr: Self = Self(1);
+    pub const VIDEO_ENCODE_CAPABILITY_PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -683,8 +687,8 @@ impl VideoEncodeCapabilityFlagsKHR {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::VideoEncodeCapabilityDefaultKhr
-            | Self::VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr
+            | Self::VIDEO_ENCODE_CAPABILITY_DEFAULT_KHR
+            | Self::VIDEO_ENCODE_CAPABILITY_PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -846,35 +850,33 @@ impl const std::ops::Not for VideoEncodeCapabilityFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoEncodeCapabilityFlagsKHR> for VideoEncodeCapabilityFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeCapabilityFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeCapabilityFlagsKHR> for VideoEncodeCapabilityFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoEncodeCapabilityFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoEncodeCapabilityFlagBitsKHR> for VideoEncodeCapabilityFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeCapabilityFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeCapabilityFlagBitsKHR> for VideoEncodeCapabilityFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoEncodeCapabilityFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoEncodeCapabilityFlagsKHR::from(i));
+            Self::insert(self, <Self as From<VideoEncodeCapabilityFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<VideoEncodeCapabilityFlagsKHR> for VideoEncodeCapabilityFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeCapabilityFlagsKHR>>(
-        iterator: T,
-    ) -> VideoEncodeCapabilityFlagsKHR {
-        let mut out = VideoEncodeCapabilityFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<VideoEncodeCapabilityFlagsKHR> for VideoEncodeCapabilityFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeCapabilityFlagsKHR>>(iterator: T) -> VideoEncodeCapabilityFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeCapabilityFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoEncodeCapabilityFlagBitsKHR> for VideoEncodeCapabilityFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeCapabilityFlagBitsKHR>>(
+impl FromIterator<VideoEncodeCapabilityFlagBitsKHR> for VideoEncodeCapabilityFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeCapabilityFlagBitsKHR>>(
         iterator: T,
     ) -> VideoEncodeCapabilityFlagsKHR {
-        let mut out = VideoEncodeCapabilityFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeCapabilityFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -889,22 +891,24 @@ impl std::fmt::Debug for VideoEncodeCapabilityFlagsKHR {
                     let mut first = true;
                     if self
                         .0
-                        .contains(VideoEncodeCapabilityFlagsKHR::VideoEncodeCapabilityDefaultKhr)
+                        .contains(VideoEncodeCapabilityFlagsKHR::VIDEO_ENCODE_CAPABILITY_DEFAULT_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeCapabilityDefaultKhr))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_CAPABILITY_DEFAULT_KHR))?;
                     }
                     if self.0.contains(
-                        VideoEncodeCapabilityFlagsKHR::VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr,
+                        VideoEncodeCapabilityFlagsKHR::VIDEO_ENCODE_CAPABILITY_PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR,
                     ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr))?;
+                        f.write_str(stringify!(
+                            VIDEO_ENCODE_CAPABILITY_PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR
+                        ))?;
                     }
                 }
                 Ok(())
@@ -939,7 +943,7 @@ impl std::fmt::Debug for VideoEncodeCapabilityFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeRateControlFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -956,9 +960,9 @@ impl From<VideoEncodeRateControlFlagBitsKHR> for VideoEncodeRateControlFlagsKHR 
 }
 impl VideoEncodeRateControlFlagsKHR {
     ///No documentation found
-    const VideoEncodeRateControlDefaultKhr: Self = Self(0);
+    pub const VIDEO_ENCODE_RATE_CONTROL_DEFAULT_KHR: Self = Self(0);
     ///No documentation found
-    const VideoEncodeRateControlReserved0Khr: Self = Self(1);
+    pub const VIDEO_ENCODE_RATE_CONTROL_RESERVED_0_KHR: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -967,7 +971,7 @@ impl VideoEncodeRateControlFlagsKHR {
     ///Returns a value with all of the flags enabled
     #[inline]
     pub const fn all() -> Self {
-        Self::empty() | Self::VideoEncodeRateControlDefaultKhr | Self::VideoEncodeRateControlReserved0Khr
+        Self::empty() | Self::VIDEO_ENCODE_RATE_CONTROL_DEFAULT_KHR | Self::VIDEO_ENCODE_RATE_CONTROL_RESERVED_0_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -1129,35 +1133,35 @@ impl const std::ops::Not for VideoEncodeRateControlFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoEncodeRateControlFlagsKHR> for VideoEncodeRateControlFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeRateControlFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeRateControlFlagsKHR> for VideoEncodeRateControlFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoEncodeRateControlFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoEncodeRateControlFlagBitsKHR> for VideoEncodeRateControlFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeRateControlFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeRateControlFlagBitsKHR> for VideoEncodeRateControlFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoEncodeRateControlFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoEncodeRateControlFlagsKHR::from(i));
+            Self::insert(self, <Self as From<VideoEncodeRateControlFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<VideoEncodeRateControlFlagsKHR> for VideoEncodeRateControlFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeRateControlFlagsKHR>>(
+impl FromIterator<VideoEncodeRateControlFlagsKHR> for VideoEncodeRateControlFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeRateControlFlagsKHR>>(
         iterator: T,
     ) -> VideoEncodeRateControlFlagsKHR {
-        let mut out = VideoEncodeRateControlFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeRateControlFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoEncodeRateControlFlagBitsKHR> for VideoEncodeRateControlFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeRateControlFlagBitsKHR>>(
+impl FromIterator<VideoEncodeRateControlFlagBitsKHR> for VideoEncodeRateControlFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeRateControlFlagBitsKHR>>(
         iterator: T,
     ) -> VideoEncodeRateControlFlagsKHR {
-        let mut out = VideoEncodeRateControlFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeRateControlFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -1172,23 +1176,23 @@ impl std::fmt::Debug for VideoEncodeRateControlFlagsKHR {
                     let mut first = true;
                     if self
                         .0
-                        .contains(VideoEncodeRateControlFlagsKHR::VideoEncodeRateControlDefaultKhr)
+                        .contains(VideoEncodeRateControlFlagsKHR::VIDEO_ENCODE_RATE_CONTROL_DEFAULT_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeRateControlDefaultKhr))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_RATE_CONTROL_DEFAULT_KHR))?;
                     }
                     if self
                         .0
-                        .contains(VideoEncodeRateControlFlagsKHR::VideoEncodeRateControlReserved0Khr)
+                        .contains(VideoEncodeRateControlFlagsKHR::VIDEO_ENCODE_RATE_CONTROL_RESERVED_0_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeRateControlReserved0Khr))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_RATE_CONTROL_RESERVED_0_KHR))?;
                     }
                 }
                 Ok(())
@@ -1227,7 +1231,7 @@ impl std::fmt::Debug for VideoEncodeRateControlFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeRateControlModeFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1245,13 +1249,13 @@ impl From<VideoEncodeRateControlModeFlagBitsKHR> for VideoEncodeRateControlModeF
 impl VideoEncodeRateControlModeFlagsKHR {
     ///[`VideoEncodeRateControlModeNoneKhr`] for disabling rate
     ///control.
-    const VideoEncodeRateControlModeNoneKhr: Self = Self(0);
+    pub const VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_KHR: Self = Self(0);
     ///[`VideoEncodeRateControlModeCbrKhr`] for constant bitrate
     ///rate control mode.
-    const VideoEncodeRateControlModeCbrKhr: Self = Self(1);
+    pub const VIDEO_ENCODE_RATE_CONTROL_MODE_CBR_KHR: Self = Self(1);
     ///[`VideoEncodeRateControlModeVbrKhr`] for variable bitrate
     ///rate control mode.
-    const VideoEncodeRateControlModeVbrKhr: Self = Self(2);
+    pub const VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_KHR: Self = Self(2);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1261,9 +1265,9 @@ impl VideoEncodeRateControlModeFlagsKHR {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::VideoEncodeRateControlModeNoneKhr
-            | Self::VideoEncodeRateControlModeCbrKhr
-            | Self::VideoEncodeRateControlModeVbrKhr
+            | Self::VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_KHR
+            | Self::VIDEO_ENCODE_RATE_CONTROL_MODE_CBR_KHR
+            | Self::VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -1425,35 +1429,35 @@ impl const std::ops::Not for VideoEncodeRateControlModeFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoEncodeRateControlModeFlagsKHR> for VideoEncodeRateControlModeFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeRateControlModeFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeRateControlModeFlagsKHR> for VideoEncodeRateControlModeFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoEncodeRateControlModeFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoEncodeRateControlModeFlagBitsKHR> for VideoEncodeRateControlModeFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeRateControlModeFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeRateControlModeFlagBitsKHR> for VideoEncodeRateControlModeFlagsKHR {
+    fn extend<T: IntoIterator<Item = VideoEncodeRateControlModeFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoEncodeRateControlModeFlagsKHR::from(i));
+            Self::insert(self, <Self as From<VideoEncodeRateControlModeFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<VideoEncodeRateControlModeFlagsKHR> for VideoEncodeRateControlModeFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeRateControlModeFlagsKHR>>(
+impl FromIterator<VideoEncodeRateControlModeFlagsKHR> for VideoEncodeRateControlModeFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeRateControlModeFlagsKHR>>(
         iterator: T,
     ) -> VideoEncodeRateControlModeFlagsKHR {
-        let mut out = VideoEncodeRateControlModeFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeRateControlModeFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoEncodeRateControlModeFlagBitsKHR> for VideoEncodeRateControlModeFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeRateControlModeFlagBitsKHR>>(
+impl FromIterator<VideoEncodeRateControlModeFlagBitsKHR> for VideoEncodeRateControlModeFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeRateControlModeFlagBitsKHR>>(
         iterator: T,
     ) -> VideoEncodeRateControlModeFlagsKHR {
-        let mut out = VideoEncodeRateControlModeFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeRateControlModeFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -1468,33 +1472,33 @@ impl std::fmt::Debug for VideoEncodeRateControlModeFlagsKHR {
                     let mut first = true;
                     if self
                         .0
-                        .contains(VideoEncodeRateControlModeFlagsKHR::VideoEncodeRateControlModeNoneKhr)
+                        .contains(VideoEncodeRateControlModeFlagsKHR::VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeRateControlModeNoneKhr))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_KHR))?;
                     }
                     if self
                         .0
-                        .contains(VideoEncodeRateControlModeFlagsKHR::VideoEncodeRateControlModeCbrKhr)
+                        .contains(VideoEncodeRateControlModeFlagsKHR::VIDEO_ENCODE_RATE_CONTROL_MODE_CBR_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeRateControlModeCbrKhr))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_RATE_CONTROL_MODE_CBR_KHR))?;
                     }
                     if self
                         .0
-                        .contains(VideoEncodeRateControlModeFlagsKHR::VideoEncodeRateControlModeVbrKhr)
+                        .contains(VideoEncodeRateControlModeFlagsKHR::VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeRateControlModeVbrKhr))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_KHR))?;
                     }
                 }
                 Ok(())
@@ -1624,6 +1628,7 @@ impl std::fmt::Debug for VideoEncodeRateControlModeFlagsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1812,7 +1817,7 @@ impl<'lt> VideoEncodeInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::quality_level`]
     pub fn quality_level_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.quality_level
     }
     ///Gets a mutable reference to the value of [`Self::coded_extent`]
     pub fn coded_extent_mut(&mut self) -> &mut Extent2D {
@@ -1836,11 +1841,11 @@ impl<'lt> VideoEncodeInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::reference_slot_count`]
     pub fn reference_slot_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.reference_slot_count
     }
     ///Gets a mutable reference to the value of [`Self::preceding_externally_encoded_bytes`]
     pub fn preceding_externally_encoded_bytes_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.preceding_externally_encoded_bytes
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -2009,6 +2014,7 @@ impl<'lt> VideoEncodeInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeRateControlInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2105,7 +2111,7 @@ impl<'lt> VideoEncodeRateControlInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::layer_count`]
     pub fn layer_count_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.layer_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -2143,7 +2149,7 @@ impl<'lt> VideoEncodeRateControlInfoKHR<'lt> {
         &mut self,
         value: &'lt [crate::extensions::khr_video_encode_queue::VideoEncodeRateControlLayerInfoKHR<'lt>],
     ) -> &mut Self {
-        let len_ = value.len() as u32;
+        let len_ = value.len() as u8;
         let len_ = len_;
         self.layer_configs = value.as_ptr();
         self.layer_count = len_;
@@ -2241,6 +2247,7 @@ impl<'lt> VideoEncodeRateControlInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeRateControlLayerInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2341,27 +2348,27 @@ impl<'lt> VideoEncodeRateControlLayerInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::average_bitrate`]
     pub fn average_bitrate_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.average_bitrate
     }
     ///Gets a mutable reference to the value of [`Self::max_bitrate`]
     pub fn max_bitrate_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_bitrate
     }
     ///Gets a mutable reference to the value of [`Self::frame_rate_numerator`]
     pub fn frame_rate_numerator_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.frame_rate_numerator
     }
     ///Gets a mutable reference to the value of [`Self::frame_rate_denominator`]
     pub fn frame_rate_denominator_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.frame_rate_denominator
     }
     ///Gets a mutable reference to the value of [`Self::virtual_buffer_size_in_ms`]
     pub fn virtual_buffer_size_in_ms_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.virtual_buffer_size_in_ms
     }
     ///Gets a mutable reference to the value of [`Self::initial_virtual_buffer_size_in_ms`]
     pub fn initial_virtual_buffer_size_in_ms_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.initial_virtual_buffer_size_in_ms
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -2498,6 +2505,7 @@ impl<'lt> VideoEncodeRateControlLayerInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeCapabilitiesKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2595,11 +2603,11 @@ impl<'lt> VideoEncodeCapabilitiesKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::rate_control_layer_count`]
     pub fn rate_control_layer_count_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.rate_control_layer_count
     }
     ///Gets a mutable reference to the value of [`Self::quality_level_count`]
     pub fn quality_level_count_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.quality_level_count
     }
     ///Gets a mutable reference to the value of [`Self::input_image_data_fill_alignment`]
     pub fn input_image_data_fill_alignment_mut(&mut self) -> &mut Extent2D {

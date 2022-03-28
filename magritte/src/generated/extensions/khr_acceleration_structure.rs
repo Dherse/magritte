@@ -505,6 +505,7 @@ use bytemuck::{Pod, Zeroable};
 use serde::{Deserialize, Serialize};
 use std::{
     ffi::{c_void, CStr},
+    iter::{Extend, FromIterator, IntoIterator},
     marker::PhantomData,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -569,7 +570,6 @@ pub const KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME: &'static CStr = crate::cstr
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCopyAccelerationStructureModeKHR")]
-#[doc(alias = "VkCopyAccelerationStructureModeKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -617,7 +617,7 @@ impl CopyAccelerationStructureModeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -653,7 +653,6 @@ impl CopyAccelerationStructureModeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBuildAccelerationStructureModeKHR")]
-#[doc(alias = "VkBuildAccelerationStructureModeKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -683,7 +682,7 @@ impl BuildAccelerationStructureModeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -738,7 +737,6 @@ impl BuildAccelerationStructureModeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureTypeKHR")]
-#[doc(alias = "VkAccelerationStructureTypeKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -772,7 +770,7 @@ impl AccelerationStructureTypeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -819,7 +817,6 @@ impl AccelerationStructureTypeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeometryTypeKHR")]
-#[doc(alias = "VkGeometryTypeKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -850,7 +847,7 @@ impl GeometryTypeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -889,7 +886,6 @@ impl GeometryTypeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureBuildTypeKHR")]
-#[doc(alias = "VkAccelerationStructureBuildTypeKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -921,7 +917,7 @@ impl AccelerationStructureBuildTypeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -957,7 +953,6 @@ impl AccelerationStructureBuildTypeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureCompatibilityKHR")]
-#[doc(alias = "VkAccelerationStructureCompatibilityKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -987,7 +982,7 @@ impl AccelerationStructureCompatibilityKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1095,7 +1090,7 @@ impl GeometryInstanceFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1175,7 +1170,7 @@ impl GeometryFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1307,7 +1302,7 @@ impl BuildAccelerationStructureFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1374,7 +1369,7 @@ impl AccelerationStructureCreateFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1422,7 +1417,7 @@ impl AccelerationStructureCreateFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeometryFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1440,13 +1435,13 @@ impl From<GeometryFlagBitsKHR> for GeometryFlagsKHR {
 impl GeometryFlagsKHR {
     ///[`GeometryOpaqueKhr`] indicates that this geometry does not
     ///invoke the any-hit shaders even if present in a hit group.
-    const GeometryOpaqueKhr: Self = Self(1);
+    pub const GEOMETRY_OPAQUE_KHR: Self = Self(1);
     ///[`GeometryNoDuplicateAnyHitInvocationKhr`] indicates that
     ///the implementation  **must**  only call the any-hit shader a single time for
     ///each primitive in this geometry.
     ///If this bit is absent an implementation  **may**  invoke the any-hit shader
     ///more than once for this geometry.
-    const GeometryNoDuplicateAnyHitInvocationKhr: Self = Self(2);
+    pub const GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_KHR: Self = Self(2);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1455,7 +1450,7 @@ impl GeometryFlagsKHR {
     ///Returns a value with all of the flags enabled
     #[inline]
     pub const fn all() -> Self {
-        Self::empty() | Self::GeometryOpaqueKhr | Self::GeometryNoDuplicateAnyHitInvocationKhr
+        Self::empty() | Self::GEOMETRY_OPAQUE_KHR | Self::GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -1617,31 +1612,31 @@ impl const std::ops::Not for GeometryFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<GeometryFlagsKHR> for GeometryFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = GeometryFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<GeometryFlagsKHR> for GeometryFlagsKHR {
+    fn extend<T: IntoIterator<Item = GeometryFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<GeometryFlagBitsKHR> for GeometryFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = GeometryFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<GeometryFlagBitsKHR> for GeometryFlagsKHR {
+    fn extend<T: IntoIterator<Item = GeometryFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(GeometryFlagsKHR::from(i));
+            Self::insert(self, <Self as From<GeometryFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<GeometryFlagsKHR> for GeometryFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = GeometryFlagsKHR>>(iterator: T) -> GeometryFlagsKHR {
-        let mut out = GeometryFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<GeometryFlagsKHR> for GeometryFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = GeometryFlagsKHR>>(iterator: T) -> GeometryFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<GeometryFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<GeometryFlagBitsKHR> for GeometryFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = GeometryFlagBitsKHR>>(iterator: T) -> GeometryFlagsKHR {
-        let mut out = GeometryFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<GeometryFlagBitsKHR> for GeometryFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = GeometryFlagBitsKHR>>(iterator: T) -> GeometryFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<GeometryFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -1654,22 +1649,22 @@ impl std::fmt::Debug for GeometryFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(GeometryFlagsKHR::GeometryOpaqueKhr) {
+                    if self.0.contains(GeometryFlagsKHR::GEOMETRY_OPAQUE_KHR) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(GeometryOpaqueKhr))?;
+                        f.write_str(stringify!(GEOMETRY_OPAQUE_KHR))?;
                     }
                     if self
                         .0
-                        .contains(GeometryFlagsKHR::GeometryNoDuplicateAnyHitInvocationKhr)
+                        .contains(GeometryFlagsKHR::GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(GeometryNoDuplicateAnyHitInvocationKhr))?;
+                        f.write_str(stringify!(GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_KHR))?;
                     }
                 }
                 Ok(())
@@ -1737,7 +1732,7 @@ impl std::fmt::Debug for GeometryFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeometryInstanceFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1755,24 +1750,24 @@ impl From<GeometryInstanceFlagBitsKHR> for GeometryInstanceFlagsKHR {
 impl GeometryInstanceFlagsKHR {
     ///[`GeometryInstanceTriangleFacingCullDisableKhr`] disables
     ///face culling for this instance.
-    const GeometryInstanceTriangleFacingCullDisableKhr: Self = Self(1);
+    pub const GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_KHR: Self = Self(1);
     ///[`GeometryInstanceTriangleFlipFacingKhr`] indicates that
     ///the [facing determination](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-traversal-culling-face) for geometry in
     ///this instance is inverted.
     ///Because the facing is determined in object space, an instance transform
     ///does not change the winding, but a geometry transform does.
-    const GeometryInstanceTriangleFlipFacingKhr: Self = Self(2);
+    pub const GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_KHR: Self = Self(2);
     ///[`GeometryInstanceForceOpaqueKhr`] causes this instance to
     ///act as though `VK_GEOMETRY_OPAQUE_BIT_KHR` were specified on all
     ///geometries referenced by this instance.
     ///This behavior  **can**  be overridden by the SPIR-V `NoOpaqueKHR` ray
     ///flag.
-    const GeometryInstanceForceOpaqueKhr: Self = Self(4);
+    pub const GEOMETRY_INSTANCE_FORCE_OPAQUE_KHR: Self = Self(4);
     ///[`GeometryInstanceForceNoOpaqueKhr`] causes this instance
     ///to act as though `VK_GEOMETRY_OPAQUE_BIT_KHR` were not specified on
     ///all geometries referenced by this instance.
     ///This behavior  **can**  be overridden by the SPIR-V `OpaqueKHR` ray flag.
-    const GeometryInstanceForceNoOpaqueKhr: Self = Self(8);
+    pub const GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_KHR: Self = Self(8);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1782,10 +1777,10 @@ impl GeometryInstanceFlagsKHR {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::GeometryInstanceTriangleFacingCullDisableKhr
-            | Self::GeometryInstanceTriangleFlipFacingKhr
-            | Self::GeometryInstanceForceOpaqueKhr
-            | Self::GeometryInstanceForceNoOpaqueKhr
+            | Self::GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_KHR
+            | Self::GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_KHR
+            | Self::GEOMETRY_INSTANCE_FORCE_OPAQUE_KHR
+            | Self::GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -1947,33 +1942,31 @@ impl const std::ops::Not for GeometryInstanceFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<GeometryInstanceFlagsKHR> for GeometryInstanceFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = GeometryInstanceFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<GeometryInstanceFlagsKHR> for GeometryInstanceFlagsKHR {
+    fn extend<T: IntoIterator<Item = GeometryInstanceFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<GeometryInstanceFlagBitsKHR> for GeometryInstanceFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = GeometryInstanceFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<GeometryInstanceFlagBitsKHR> for GeometryInstanceFlagsKHR {
+    fn extend<T: IntoIterator<Item = GeometryInstanceFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(GeometryInstanceFlagsKHR::from(i));
+            Self::insert(self, <Self as From<GeometryInstanceFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<GeometryInstanceFlagsKHR> for GeometryInstanceFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = GeometryInstanceFlagsKHR>>(iterator: T) -> GeometryInstanceFlagsKHR {
-        let mut out = GeometryInstanceFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<GeometryInstanceFlagsKHR> for GeometryInstanceFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = GeometryInstanceFlagsKHR>>(iterator: T) -> GeometryInstanceFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<GeometryInstanceFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<GeometryInstanceFlagBitsKHR> for GeometryInstanceFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = GeometryInstanceFlagBitsKHR>>(
-        iterator: T,
-    ) -> GeometryInstanceFlagsKHR {
-        let mut out = GeometryInstanceFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<GeometryInstanceFlagBitsKHR> for GeometryInstanceFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = GeometryInstanceFlagBitsKHR>>(iterator: T) -> GeometryInstanceFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<GeometryInstanceFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -1988,43 +1981,43 @@ impl std::fmt::Debug for GeometryInstanceFlagsKHR {
                     let mut first = true;
                     if self
                         .0
-                        .contains(GeometryInstanceFlagsKHR::GeometryInstanceTriangleFacingCullDisableKhr)
+                        .contains(GeometryInstanceFlagsKHR::GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(GeometryInstanceTriangleFacingCullDisableKhr))?;
+                        f.write_str(stringify!(GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_KHR))?;
                     }
                     if self
                         .0
-                        .contains(GeometryInstanceFlagsKHR::GeometryInstanceTriangleFlipFacingKhr)
+                        .contains(GeometryInstanceFlagsKHR::GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(GeometryInstanceTriangleFlipFacingKhr))?;
+                        f.write_str(stringify!(GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_KHR))?;
                     }
                     if self
                         .0
-                        .contains(GeometryInstanceFlagsKHR::GeometryInstanceForceOpaqueKhr)
+                        .contains(GeometryInstanceFlagsKHR::GEOMETRY_INSTANCE_FORCE_OPAQUE_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(GeometryInstanceForceOpaqueKhr))?;
+                        f.write_str(stringify!(GEOMETRY_INSTANCE_FORCE_OPAQUE_KHR))?;
                     }
                     if self
                         .0
-                        .contains(GeometryInstanceFlagsKHR::GeometryInstanceForceNoOpaqueKhr)
+                        .contains(GeometryInstanceFlagsKHR::GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(GeometryInstanceForceNoOpaqueKhr))?;
+                        f.write_str(stringify!(GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_KHR))?;
                     }
                 }
                 Ok(())
@@ -2104,7 +2097,7 @@ impl std::fmt::Debug for GeometryInstanceFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBuildAccelerationStructureFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -2128,30 +2121,30 @@ impl BuildAccelerationStructureFlagsKHR {
     ///    an `update` of [`TRUE`] in
     ///    [`CmdBuildAccelerationStructureNV`]
     ///    .
-    const BuildAccelerationStructureAllowUpdateKhr: Self = Self(1);
+    pub const BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_KHR: Self = Self(1);
     ///[`BuildAccelerationStructureAllowCompactionKhr`] indicates
     ///that the specified acceleration structure  **can**  act as the source for a
     ///copy acceleration structure command with `mode` of
     ///`VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR` to produce a
     ///compacted acceleration structure.
-    const BuildAccelerationStructureAllowCompactionKhr: Self = Self(2);
+    pub const BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_KHR: Self = Self(2);
     ///[`BuildAccelerationStructurePreferFastTraceKhr`]
     ///indicates that the given acceleration structure build  **should**  prioritize
     ///trace performance over build time.
-    const BuildAccelerationStructurePreferFastTraceKhr: Self = Self(4);
+    pub const BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_KHR: Self = Self(4);
     ///[`BuildAccelerationStructurePreferFastBuildKhr`]
     ///indicates that the given acceleration structure build  **should**  prioritize
     ///build time over trace performance.
-    const BuildAccelerationStructurePreferFastBuildKhr: Self = Self(8);
+    pub const BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_KHR: Self = Self(8);
     ///[`BuildAccelerationStructureLowMemoryKhr`] indicates that
     ///this acceleration structure  **should**  minimize the size of the scratch
     ///memory and the final result acceleration structure, potentially at the
     ///expense of build time or trace performance.
-    const BuildAccelerationStructureLowMemoryKhr: Self = Self(16);
+    pub const BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_KHR: Self = Self(16);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing_motion_blur`]
-    const BuildAccelerationStructureMotionNv: Self = Self(32);
+    pub const BUILD_ACCELERATION_STRUCTURE_MOTION_NV: Self = Self(32);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2161,12 +2154,12 @@ impl BuildAccelerationStructureFlagsKHR {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::BuildAccelerationStructureAllowUpdateKhr
-            | Self::BuildAccelerationStructureAllowCompactionKhr
-            | Self::BuildAccelerationStructurePreferFastTraceKhr
-            | Self::BuildAccelerationStructurePreferFastBuildKhr
-            | Self::BuildAccelerationStructureLowMemoryKhr
-            | Self::BuildAccelerationStructureMotionNv
+            | Self::BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_KHR
+            | Self::BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_KHR
+            | Self::BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_KHR
+            | Self::BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_KHR
+            | Self::BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_KHR
+            | Self::BUILD_ACCELERATION_STRUCTURE_MOTION_NV
     }
     ///Returns the raw bits
     #[inline]
@@ -2328,35 +2321,35 @@ impl const std::ops::Not for BuildAccelerationStructureFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<BuildAccelerationStructureFlagsKHR> for BuildAccelerationStructureFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = BuildAccelerationStructureFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<BuildAccelerationStructureFlagsKHR> for BuildAccelerationStructureFlagsKHR {
+    fn extend<T: IntoIterator<Item = BuildAccelerationStructureFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<BuildAccelerationStructureFlagBitsKHR> for BuildAccelerationStructureFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = BuildAccelerationStructureFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<BuildAccelerationStructureFlagBitsKHR> for BuildAccelerationStructureFlagsKHR {
+    fn extend<T: IntoIterator<Item = BuildAccelerationStructureFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(BuildAccelerationStructureFlagsKHR::from(i));
+            Self::insert(self, <Self as From<BuildAccelerationStructureFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<BuildAccelerationStructureFlagsKHR> for BuildAccelerationStructureFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = BuildAccelerationStructureFlagsKHR>>(
+impl FromIterator<BuildAccelerationStructureFlagsKHR> for BuildAccelerationStructureFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = BuildAccelerationStructureFlagsKHR>>(
         iterator: T,
     ) -> BuildAccelerationStructureFlagsKHR {
-        let mut out = BuildAccelerationStructureFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<BuildAccelerationStructureFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<BuildAccelerationStructureFlagBitsKHR> for BuildAccelerationStructureFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = BuildAccelerationStructureFlagBitsKHR>>(
+impl FromIterator<BuildAccelerationStructureFlagBitsKHR> for BuildAccelerationStructureFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = BuildAccelerationStructureFlagBitsKHR>>(
         iterator: T,
     ) -> BuildAccelerationStructureFlagsKHR {
-        let mut out = BuildAccelerationStructureFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<BuildAccelerationStructureFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -2371,63 +2364,61 @@ impl std::fmt::Debug for BuildAccelerationStructureFlagsKHR {
                     let mut first = true;
                     if self
                         .0
-                        .contains(BuildAccelerationStructureFlagsKHR::BuildAccelerationStructureAllowUpdateKhr)
+                        .contains(BuildAccelerationStructureFlagsKHR::BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(BuildAccelerationStructureAllowUpdateKhr))?;
+                        f.write_str(stringify!(BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_KHR))?;
                     }
                     if self
                         .0
-                        .contains(BuildAccelerationStructureFlagsKHR::BuildAccelerationStructureAllowCompactionKhr)
+                        .contains(BuildAccelerationStructureFlagsKHR::BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(BuildAccelerationStructureAllowCompactionKhr))?;
+                        f.write_str(stringify!(BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_KHR))?;
+                    }
+                    if self.0.contains(
+                        BuildAccelerationStructureFlagsKHR::BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_KHR,
+                    ) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_KHR))?;
+                    }
+                    if self.0.contains(
+                        BuildAccelerationStructureFlagsKHR::BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_KHR,
+                    ) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_KHR))?;
                     }
                     if self
                         .0
-                        .contains(BuildAccelerationStructureFlagsKHR::BuildAccelerationStructurePreferFastTraceKhr)
+                        .contains(BuildAccelerationStructureFlagsKHR::BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(BuildAccelerationStructurePreferFastTraceKhr))?;
+                        f.write_str(stringify!(BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_KHR))?;
                     }
                     if self
                         .0
-                        .contains(BuildAccelerationStructureFlagsKHR::BuildAccelerationStructurePreferFastBuildKhr)
+                        .contains(BuildAccelerationStructureFlagsKHR::BUILD_ACCELERATION_STRUCTURE_MOTION_NV)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(BuildAccelerationStructurePreferFastBuildKhr))?;
-                    }
-                    if self
-                        .0
-                        .contains(BuildAccelerationStructureFlagsKHR::BuildAccelerationStructureLowMemoryKhr)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(BuildAccelerationStructureLowMemoryKhr))?;
-                    }
-                    if self
-                        .0
-                        .contains(BuildAccelerationStructureFlagsKHR::BuildAccelerationStructureMotionNv)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(BuildAccelerationStructureMotionNv))?;
+                        f.write_str(stringify!(BUILD_ACCELERATION_STRUCTURE_MOTION_NV))?;
                     }
                 }
                 Ok(())
@@ -2466,7 +2457,7 @@ impl std::fmt::Debug for BuildAccelerationStructureFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureCreateFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -2485,11 +2476,11 @@ impl AccelerationStructureCreateFlagsKHR {
     ///[`AccelerationStructureCreateDeviceAddressCaptureReplayKhr`]
     ///specifies that the acceleration structure’s address  **can**  be saved and
     ///reused on a subsequent run.
-    const AccelerationStructureCreateDeviceAddressCaptureReplayKhr: Self = Self(1);
+    pub const ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_KHR: Self = Self(1);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing_motion_blur`]
-    const AccelerationStructureCreateMotionNv: Self = Self(4);
+    pub const ACCELERATION_STRUCTURE_CREATE_MOTION_NV: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2499,8 +2490,8 @@ impl AccelerationStructureCreateFlagsKHR {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::AccelerationStructureCreateDeviceAddressCaptureReplayKhr
-            | Self::AccelerationStructureCreateMotionNv
+            | Self::ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_KHR
+            | Self::ACCELERATION_STRUCTURE_CREATE_MOTION_NV
     }
     ///Returns the raw bits
     #[inline]
@@ -2662,35 +2653,35 @@ impl const std::ops::Not for AccelerationStructureCreateFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<AccelerationStructureCreateFlagsKHR> for AccelerationStructureCreateFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = AccelerationStructureCreateFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<AccelerationStructureCreateFlagsKHR> for AccelerationStructureCreateFlagsKHR {
+    fn extend<T: IntoIterator<Item = AccelerationStructureCreateFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<AccelerationStructureCreateFlagBitsKHR> for AccelerationStructureCreateFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = AccelerationStructureCreateFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<AccelerationStructureCreateFlagBitsKHR> for AccelerationStructureCreateFlagsKHR {
+    fn extend<T: IntoIterator<Item = AccelerationStructureCreateFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(AccelerationStructureCreateFlagsKHR::from(i));
+            Self::insert(self, <Self as From<AccelerationStructureCreateFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<AccelerationStructureCreateFlagsKHR> for AccelerationStructureCreateFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = AccelerationStructureCreateFlagsKHR>>(
+impl FromIterator<AccelerationStructureCreateFlagsKHR> for AccelerationStructureCreateFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = AccelerationStructureCreateFlagsKHR>>(
         iterator: T,
     ) -> AccelerationStructureCreateFlagsKHR {
-        let mut out = AccelerationStructureCreateFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<AccelerationStructureCreateFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<AccelerationStructureCreateFlagBitsKHR> for AccelerationStructureCreateFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = AccelerationStructureCreateFlagBitsKHR>>(
+impl FromIterator<AccelerationStructureCreateFlagBitsKHR> for AccelerationStructureCreateFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = AccelerationStructureCreateFlagBitsKHR>>(
         iterator: T,
     ) -> AccelerationStructureCreateFlagsKHR {
-        let mut out = AccelerationStructureCreateFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<AccelerationStructureCreateFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -2703,24 +2694,16 @@ impl std::fmt::Debug for AccelerationStructureCreateFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(
-                        AccelerationStructureCreateFlagsKHR::AccelerationStructureCreateDeviceAddressCaptureReplayKhr,
-                    ) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(AccelerationStructureCreateDeviceAddressCaptureReplayKhr))?;
-                    }
+                    if self . 0 . contains (AccelerationStructureCreateFlagsKHR :: ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_KHR) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_KHR)) ? ; }
                     if self
                         .0
-                        .contains(AccelerationStructureCreateFlagsKHR::AccelerationStructureCreateMotionNv)
+                        .contains(AccelerationStructureCreateFlagsKHR::ACCELERATION_STRUCTURE_CREATE_MOTION_NV)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(AccelerationStructureCreateMotionNv))?;
+                        f.write_str(stringify!(ACCELERATION_STRUCTURE_CREATE_MOTION_NV))?;
                     }
                 }
                 Ok(())
@@ -2784,6 +2767,7 @@ impl std::fmt::Debug for AccelerationStructureCreateFlagsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct WriteDescriptorSetAccelerationStructureKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2856,7 +2840,7 @@ impl<'lt> WriteDescriptorSetAccelerationStructureKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::acceleration_structure_count`]
     pub fn acceleration_structure_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.acceleration_structure_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -2944,10 +2928,11 @@ impl<'lt> WriteDescriptorSetAccelerationStructureKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceAccelerationStructureFeaturesKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceAccelerationStructureFeaturesKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -3300,10 +3285,11 @@ impl<'lt> PhysicalDeviceAccelerationStructureFeaturesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceAccelerationStructurePropertiesKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -3443,40 +3429,40 @@ impl<'lt> PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_geometry_count`]
     pub fn max_geometry_count_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.max_geometry_count
     }
     ///Gets a mutable reference to the value of [`Self::max_instance_count`]
     pub fn max_instance_count_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.max_instance_count
     }
     ///Gets a mutable reference to the value of [`Self::max_primitive_count`]
     pub fn max_primitive_count_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.max_primitive_count
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_acceleration_structures`]
     pub fn max_per_stage_descriptor_acceleration_structures_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_acceleration_structures
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_update_after_bind_acceleration_structures`]
     pub fn max_per_stage_descriptor_update_after_bind_acceleration_structures_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_update_after_bind_acceleration_structures
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_acceleration_structures`]
     pub fn max_descriptor_set_acceleration_structures_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_acceleration_structures
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_acceleration_structures`]
     pub fn max_descriptor_set_update_after_bind_acceleration_structures_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_acceleration_structures
     }
     ///Gets a mutable reference to the value of
     /// [`Self::min_acceleration_structure_scratch_offset_alignment`]
     pub fn min_acceleration_structure_scratch_offset_alignment_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.min_acceleration_structure_scratch_offset_alignment
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -3598,10 +3584,11 @@ impl<'lt> PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureGeometryTrianglesDataKHR")]
-#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
+#[derive(Clone, Copy)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureGeometryTrianglesDataKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -3713,7 +3700,7 @@ impl<'lt> AccelerationStructureGeometryTrianglesDataKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_vertex`]
     pub fn max_vertex_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_vertex
     }
     ///Gets a mutable reference to the value of [`Self::index_type`]
     pub fn index_type_mut(&mut self) -> &mut IndexType {
@@ -3825,10 +3812,11 @@ impl<'lt> AccelerationStructureGeometryTrianglesDataKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureGeometryAabbsDataKHR")]
-#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
+#[derive(Clone, Copy)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureGeometryAabbsDataKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -3957,10 +3945,11 @@ impl<'lt> AccelerationStructureGeometryAabbsDataKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureGeometryInstancesDataKHR")]
-#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
+#[derive(Clone, Copy)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureGeometryInstancesDataKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -4134,10 +4123,11 @@ impl<'lt> AccelerationStructureGeometryInstancesDataKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureGeometryKHR")]
-#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
+#[derive(Clone, Copy)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureGeometryKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -4403,10 +4393,10 @@ impl<'lt> AccelerationStructureGeometryKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureBuildGeometryInfoKHR")]
-#[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureBuildGeometryInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -4548,7 +4538,7 @@ impl<'lt> AccelerationStructureBuildGeometryInfoKHR<'lt> {
         &mut self.s_type
     }
     ///Gets a mutable reference to the value of [`Self::type_`]
-    pub fn type__mut(&mut self) -> &mut AccelerationStructureTypeKHR {
+    pub fn type_mut(&mut self) -> &mut AccelerationStructureTypeKHR {
         &mut self.type_
     }
     ///Gets a mutable reference to the value of [`Self::flags`]
@@ -4569,7 +4559,7 @@ impl<'lt> AccelerationStructureBuildGeometryInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::geometry_count`]
     pub fn geometry_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.geometry_count
     }
     ///Gets a mutable reference to the value of [`Self::scratch_data`]
     pub fn scratch_data_mut(&mut self) -> &mut DeviceOrHostAddressKHR<'lt> {
@@ -4785,19 +4775,19 @@ impl AccelerationStructureBuildRangeInfoKHR {
     }
     ///Gets a mutable reference to the value of [`Self::primitive_count`]
     pub fn primitive_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.primitive_count
     }
     ///Gets a mutable reference to the value of [`Self::primitive_offset`]
     pub fn primitive_offset_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.primitive_offset
     }
     ///Gets a mutable reference to the value of [`Self::first_vertex`]
     pub fn first_vertex_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.first_vertex
     }
     ///Gets a mutable reference to the value of [`Self::transform_offset`]
     pub fn transform_offset_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.transform_offset
     }
     ///Sets the raw value of [`Self::primitive_count`]
     pub fn set_primitive_count(&mut self, value: u32) -> &mut Self {
@@ -4924,6 +4914,7 @@ impl AccelerationStructureBuildRangeInfoKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureCreateInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -5031,7 +5022,7 @@ impl<'lt> AccelerationStructureCreateInfoKHR<'lt> {
         &mut self.size
     }
     ///Gets a mutable reference to the value of [`Self::type_`]
-    pub fn type__mut(&mut self) -> &mut AccelerationStructureTypeKHR {
+    pub fn type_mut(&mut self) -> &mut AccelerationStructureTypeKHR {
         &mut self.type_
     }
     ///Gets a mutable reference to the value of [`Self::device_address`]
@@ -5188,27 +5179,27 @@ impl AabbPositionsKHR {
     }
     ///Gets a mutable reference to the value of [`Self::min_x`]
     pub fn min_x_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.min_x
     }
     ///Gets a mutable reference to the value of [`Self::min_y`]
     pub fn min_y_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.min_y
     }
     ///Gets a mutable reference to the value of [`Self::min_z`]
     pub fn min_z_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.min_z
     }
     ///Gets a mutable reference to the value of [`Self::max_x`]
     pub fn max_x_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.max_x
     }
     ///Gets a mutable reference to the value of [`Self::max_y`]
     pub fn max_y_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.max_y
     }
     ///Gets a mutable reference to the value of [`Self::max_z`]
     pub fn max_z_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.max_z
     }
     ///Sets the raw value of [`Self::min_x`]
     pub fn set_min_x(&mut self, value: f32) -> &mut Self {
@@ -5280,24 +5271,26 @@ impl AabbPositionsKHR {
 #[repr(C)]
 pub struct TransformMatrixKHR {
     ///[`matrix`] is a 3x4 row-major affine transformation matrix.
-    pub matrix: [f32; 3],
+    pub matrix: [f32; 3 as usize],
 }
 impl Default for TransformMatrixKHR {
     fn default() -> Self {
-        Self { matrix: [0.0; 3] }
+        Self {
+            matrix: [0.0; 3 as usize],
+        }
     }
 }
 impl TransformMatrixKHR {
     ///Gets the value of [`Self::matrix`]
-    pub fn matrix(&self) -> &[f32; 3] {
-        &getter
+    pub fn matrix(&self) -> &[f32; 3 as usize] {
+        &self.matrix
     }
     ///Gets a mutable reference to the value of [`Self::matrix`]
-    pub fn matrix_mut(&mut self) -> &mut [f32; 3] {
-        &mut getter
+    pub fn matrix_mut(&mut self) -> &mut [f32; 3 as usize] {
+        &mut self.matrix
     }
     ///Sets the raw value of [`Self::matrix`]
-    pub fn set_matrix(&mut self, value: [f32; 3]) -> &mut Self {
+    pub fn set_matrix(&mut self, value: [f32; 3 as usize]) -> &mut Self {
         self.matrix = value;
         self
     }
@@ -5446,16 +5439,16 @@ impl AccelerationStructureInstanceKHR {
     }
     ///Gets a mutable reference to the value of [`Self::instance_custom_index`]
     pub fn instance_custom_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.instance_custom_index
     }
     ///Gets a mutable reference to the value of [`Self::mask`]
     pub fn mask_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.mask
     }
     ///Gets a mutable reference to the value of
     /// [`Self::instance_shader_binding_table_record_offset`]
     pub fn instance_shader_binding_table_record_offset_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.instance_shader_binding_table_record_offset
     }
     ///Gets a mutable reference to the value of [`Self::flags`]
     pub fn flags_mut(&mut self) -> &mut GeometryInstanceFlagsKHR {
@@ -5463,7 +5456,7 @@ impl AccelerationStructureInstanceKHR {
     }
     ///Gets a mutable reference to the value of [`Self::acceleration_structure_reference`]
     pub fn acceleration_structure_reference_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.acceleration_structure_reference
     }
     ///Sets the raw value of [`Self::transform`]
     pub fn set_transform(
@@ -5542,6 +5535,7 @@ impl AccelerationStructureInstanceKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureDeviceAddressInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -5637,16 +5631,15 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 /// - [`version_data`] **must**  be a valid pointer to an array of <span class="katex"><span
 ///   class="katex-html" aria-hidden="true"><span class="base"><span
 ///   style="height:0.72777em;vertical-align:-0.08333em;" class="strut"></span><span
-///   class="mord">2</span><span style="margin-right:0.2222222222222222em;"
-///   class="mspace"></span><span class="mbin">×</span><span
+///   class="mord">2</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
 ///   style="margin-right:0.2222222222222222em;" class="mspace"></span></span><span
-///   class="base"><span class="strut"
-///   style="height:0.70625em;vertical-align:-0.09514em;"></span><span class="mord"><span
-///   class="mord mathtt">V</span><span class="mord mathtt">K</span><span class="mord
-///   mathtt">_</span><span class="mord mathtt">U</span><span class="mord mathtt">U</span><span
-///   class="mord mathtt">I</span><span class="mord mathtt">D</span><span class="mord
-///   mathtt">_</span><span class="mord mathtt">S</span><span class="mord mathtt">I</span><span
-///   class="mord mathtt">Z</span><span class="mord
+///   class="base"><span style="height:0.70625em;vertical-align:-0.09514em;"
+///   class="strut"></span><span class="mord"><span class="mord mathtt">V</span><span class="mord
+///   mathtt">K</span><span class="mord mathtt">_</span><span class="mord mathtt">U</span><span
+///   class="mord mathtt">U</span><span class="mord mathtt">I</span><span class="mord
+///   mathtt">D</span><span class="mord mathtt">_</span><span class="mord mathtt">S</span><span
+///   class="mord mathtt">I</span><span class="mord mathtt">Z</span><span class="mord
 ///   mathtt">E</span></span></span></span></span>`uint8_t` values
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
@@ -5665,6 +5658,7 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureVersionInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -5802,6 +5796,7 @@ impl<'lt> AccelerationStructureVersionInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CopyAccelerationStructureInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -5963,10 +5958,10 @@ impl<'lt> CopyAccelerationStructureInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCopyAccelerationStructureToMemoryInfoKHR")]
-#[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CopyAccelerationStructureToMemoryInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6132,10 +6127,11 @@ impl<'lt> CopyAccelerationStructureToMemoryInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCopyMemoryToAccelerationStructureInfoKHR")]
-#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
+#[derive(Clone, Copy)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CopyMemoryToAccelerationStructureInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6293,6 +6289,7 @@ impl<'lt> CopyMemoryToAccelerationStructureInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureBuildSizesInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6574,7 +6571,7 @@ impl Default for AccelerationStructureGeometryDataKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureKHR")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct AccelerationStructureKHR(pub u64);
@@ -6586,7 +6583,7 @@ impl AccelerationStructureKHR {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -6598,16 +6595,6 @@ impl AccelerationStructureKHR {
 unsafe impl Send for AccelerationStructureKHR {}
 impl Default for AccelerationStructureKHR {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for AccelerationStructureKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for AccelerationStructureKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }

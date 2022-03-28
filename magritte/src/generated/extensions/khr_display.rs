@@ -254,6 +254,8 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+#[cfg(feature = "VK_KHR_surface")]
+pub use crate::extensions::khr_surface::SurfaceTransformFlagBitsKHR;
 use crate::{
     extensions::khr_surface::SurfaceTransformFlagBitsKHR,
     vulkan1_0::{BaseInStructure, Bool32, Extent2D, Offset2D, StructureType},
@@ -262,7 +264,12 @@ use crate::{
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData};
+use std::{
+    ffi::CStr,
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+    os::raw::c_char,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_DISPLAY_SPEC_VERSION")]
@@ -352,7 +359,7 @@ impl DisplayPlaneAlphaFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -398,7 +405,7 @@ impl DisplayPlaneAlphaFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayPlaneAlphaFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -416,11 +423,11 @@ impl From<DisplayPlaneAlphaFlagBitsKHR> for DisplayPlaneAlphaFlagsKHR {
 impl DisplayPlaneAlphaFlagsKHR {
     ///[`DisplayPlaneAlphaOpaqueKhr`] specifies that the source
     ///image will be treated as opaque.
-    const DisplayPlaneAlphaOpaqueKhr: Self = Self(1);
+    pub const DISPLAY_PLANE_ALPHA_OPAQUE_KHR: Self = Self(1);
     ///[`DisplayPlaneAlphaGlobalKhr`] specifies that a global
     ///alpha value  **must**  be specified that will be applied to all pixels in the
     ///source image.
-    const DisplayPlaneAlphaGlobalKhr: Self = Self(2);
+    pub const DISPLAY_PLANE_ALPHA_GLOBAL_KHR: Self = Self(2);
     ///[`DisplayPlaneAlphaPerPixelKhr`] specifies that the alpha
     ///value will be determined by the alpha component of the source image’s
     ///pixels.
@@ -428,12 +435,12 @@ impl DisplayPlaneAlphaFlagsKHR {
     ///applied.
     ///The source alpha values are not premultiplied into the source image’s
     ///other color components.
-    const DisplayPlaneAlphaPerPixelKhr: Self = Self(4);
+    pub const DISPLAY_PLANE_ALPHA_PER_PIXEL_KHR: Self = Self(4);
     ///[`DisplayPlaneAlphaPerPixelPremultipliedKhr`] is
     ///equivalent to [`DisplayPlaneAlphaPerPixelKhr`], except the
     ///source alpha values are assumed to be premultiplied into the source
     ///image’s other color components.
-    const DisplayPlaneAlphaPerPixelPremultipliedKhr: Self = Self(8);
+    pub const DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_KHR: Self = Self(8);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -443,10 +450,10 @@ impl DisplayPlaneAlphaFlagsKHR {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::DisplayPlaneAlphaOpaqueKhr
-            | Self::DisplayPlaneAlphaGlobalKhr
-            | Self::DisplayPlaneAlphaPerPixelKhr
-            | Self::DisplayPlaneAlphaPerPixelPremultipliedKhr
+            | Self::DISPLAY_PLANE_ALPHA_OPAQUE_KHR
+            | Self::DISPLAY_PLANE_ALPHA_GLOBAL_KHR
+            | Self::DISPLAY_PLANE_ALPHA_PER_PIXEL_KHR
+            | Self::DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -608,35 +615,31 @@ impl const std::ops::Not for DisplayPlaneAlphaFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<DisplayPlaneAlphaFlagsKHR> for DisplayPlaneAlphaFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = DisplayPlaneAlphaFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<DisplayPlaneAlphaFlagsKHR> for DisplayPlaneAlphaFlagsKHR {
+    fn extend<T: IntoIterator<Item = DisplayPlaneAlphaFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<DisplayPlaneAlphaFlagBitsKHR> for DisplayPlaneAlphaFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = DisplayPlaneAlphaFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<DisplayPlaneAlphaFlagBitsKHR> for DisplayPlaneAlphaFlagsKHR {
+    fn extend<T: IntoIterator<Item = DisplayPlaneAlphaFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(DisplayPlaneAlphaFlagsKHR::from(i));
+            Self::insert(self, <Self as From<DisplayPlaneAlphaFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<DisplayPlaneAlphaFlagsKHR> for DisplayPlaneAlphaFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = DisplayPlaneAlphaFlagsKHR>>(
-        iterator: T,
-    ) -> DisplayPlaneAlphaFlagsKHR {
-        let mut out = DisplayPlaneAlphaFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<DisplayPlaneAlphaFlagsKHR> for DisplayPlaneAlphaFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = DisplayPlaneAlphaFlagsKHR>>(iterator: T) -> DisplayPlaneAlphaFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<DisplayPlaneAlphaFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<DisplayPlaneAlphaFlagBitsKHR> for DisplayPlaneAlphaFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = DisplayPlaneAlphaFlagBitsKHR>>(
-        iterator: T,
-    ) -> DisplayPlaneAlphaFlagsKHR {
-        let mut out = DisplayPlaneAlphaFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<DisplayPlaneAlphaFlagBitsKHR> for DisplayPlaneAlphaFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = DisplayPlaneAlphaFlagBitsKHR>>(iterator: T) -> DisplayPlaneAlphaFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<DisplayPlaneAlphaFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -649,36 +652,45 @@ impl std::fmt::Debug for DisplayPlaneAlphaFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(DisplayPlaneAlphaFlagsKHR::DisplayPlaneAlphaOpaqueKhr) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(DisplayPlaneAlphaOpaqueKhr))?;
-                    }
-                    if self.0.contains(DisplayPlaneAlphaFlagsKHR::DisplayPlaneAlphaGlobalKhr) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(DisplayPlaneAlphaGlobalKhr))?;
-                    }
-                    if self.0.contains(DisplayPlaneAlphaFlagsKHR::DisplayPlaneAlphaPerPixelKhr) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(DisplayPlaneAlphaPerPixelKhr))?;
-                    }
                     if self
                         .0
-                        .contains(DisplayPlaneAlphaFlagsKHR::DisplayPlaneAlphaPerPixelPremultipliedKhr)
+                        .contains(DisplayPlaneAlphaFlagsKHR::DISPLAY_PLANE_ALPHA_OPAQUE_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DisplayPlaneAlphaPerPixelPremultipliedKhr))?;
+                        f.write_str(stringify!(DISPLAY_PLANE_ALPHA_OPAQUE_KHR))?;
+                    }
+                    if self
+                        .0
+                        .contains(DisplayPlaneAlphaFlagsKHR::DISPLAY_PLANE_ALPHA_GLOBAL_KHR)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DISPLAY_PLANE_ALPHA_GLOBAL_KHR))?;
+                    }
+                    if self
+                        .0
+                        .contains(DisplayPlaneAlphaFlagsKHR::DISPLAY_PLANE_ALPHA_PER_PIXEL_KHR)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DISPLAY_PLANE_ALPHA_PER_PIXEL_KHR))?;
+                    }
+                    if self
+                        .0
+                        .contains(DisplayPlaneAlphaFlagsKHR::DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_KHR)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_KHR))?;
                     }
                 }
                 Ok(())
@@ -748,7 +760,7 @@ impl std::fmt::Debug for DisplayPlaneAlphaFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceTransformFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -758,6 +770,7 @@ impl const Default for SurfaceTransformFlagsKHR {
         Self(0)
     }
 }
+#[cfg(feature = "VK_KHR_surface")]
 impl From<SurfaceTransformFlagBitsKHR> for SurfaceTransformFlagsKHR {
     fn from(from: SurfaceTransformFlagBitsKHR) -> Self {
         unsafe { Self::from_bits_unchecked(from as u32) }
@@ -768,51 +781,51 @@ impl SurfaceTransformFlagsKHR {
     ///is presented without being transformed.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    const SurfaceTransformIdentityKhr: Self = Self(1);
+    pub const SURFACE_TRANSFORM_IDENTITY_KHR: Self = Self(1);
     ///[`SurfaceTransformRotate90Khr`] specifies that image
     ///content is rotated 90 degrees clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    const SurfaceTransformRotate90Khr: Self = Self(2);
+    pub const SURFACE_TRANSFORM_ROTATE_90_KHR: Self = Self(2);
     ///[`SurfaceTransformRotate180Khr`] specifies that image
     ///content is rotated 180 degrees clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    const SurfaceTransformRotate180Khr: Self = Self(4);
+    pub const SURFACE_TRANSFORM_ROTATE_180_KHR: Self = Self(4);
     ///[`SurfaceTransformRotate270Khr`] specifies that image
     ///content is rotated 270 degrees clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    const SurfaceTransformRotate270Khr: Self = Self(8);
+    pub const SURFACE_TRANSFORM_ROTATE_270_KHR: Self = Self(8);
     ///[`SurfaceTransformHorizontalMirrorKhr`] specifies that
     ///image content is mirrored horizontally.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    const SurfaceTransformHorizontalMirrorKhr: Self = Self(16);
+    pub const SURFACE_TRANSFORM_HORIZONTAL_MIRROR_KHR: Self = Self(16);
     ///[`SurfaceTransformHorizontalMirrorRotate90Khr`] specifies
     ///that image content is mirrored horizontally, then rotated 90 degrees
     ///clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    const SurfaceTransformHorizontalMirrorRotate90Khr: Self = Self(32);
+    pub const SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_KHR: Self = Self(32);
     ///[`SurfaceTransformHorizontalMirrorRotate180Khr`]
     ///specifies that image content is mirrored horizontally, then rotated 180
     ///degrees clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    const SurfaceTransformHorizontalMirrorRotate180Khr: Self = Self(64);
+    pub const SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_KHR: Self = Self(64);
     ///[`SurfaceTransformHorizontalMirrorRotate270Khr`]
     ///specifies that image content is mirrored horizontally, then rotated 270
     ///degrees clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    const SurfaceTransformHorizontalMirrorRotate270Khr: Self = Self(128);
+    pub const SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_KHR: Self = Self(128);
     ///[`SurfaceTransformInheritKhr`] specifies that the
     ///presentation transform is not specified, and is instead determined by
     ///platform-specific considerations and mechanisms outside Vulkan.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    const SurfaceTransformInheritKhr: Self = Self(256);
+    pub const SURFACE_TRANSFORM_INHERIT_KHR: Self = Self(256);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -822,15 +835,15 @@ impl SurfaceTransformFlagsKHR {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::SurfaceTransformIdentityKhr
-            | Self::SurfaceTransformRotate90Khr
-            | Self::SurfaceTransformRotate180Khr
-            | Self::SurfaceTransformRotate270Khr
-            | Self::SurfaceTransformHorizontalMirrorKhr
-            | Self::SurfaceTransformHorizontalMirrorRotate90Khr
-            | Self::SurfaceTransformHorizontalMirrorRotate180Khr
-            | Self::SurfaceTransformHorizontalMirrorRotate270Khr
-            | Self::SurfaceTransformInheritKhr
+            | Self::SURFACE_TRANSFORM_IDENTITY_KHR
+            | Self::SURFACE_TRANSFORM_ROTATE_90_KHR
+            | Self::SURFACE_TRANSFORM_ROTATE_180_KHR
+            | Self::SURFACE_TRANSFORM_ROTATE_270_KHR
+            | Self::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_KHR
+            | Self::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_KHR
+            | Self::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_KHR
+            | Self::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_KHR
+            | Self::SURFACE_TRANSFORM_INHERIT_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -992,33 +1005,33 @@ impl const std::ops::Not for SurfaceTransformFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<SurfaceTransformFlagsKHR> for SurfaceTransformFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = SurfaceTransformFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<SurfaceTransformFlagsKHR> for SurfaceTransformFlagsKHR {
+    fn extend<T: IntoIterator<Item = SurfaceTransformFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<SurfaceTransformFlagBitsKHR> for SurfaceTransformFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = SurfaceTransformFlagBitsKHR>>(&mut self, iterator: T) {
+#[cfg(feature = "VK_KHR_surface")]
+impl Extend<SurfaceTransformFlagBitsKHR> for SurfaceTransformFlagsKHR {
+    fn extend<T: IntoIterator<Item = SurfaceTransformFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(SurfaceTransformFlagsKHR::from(i));
+            Self::insert(self, <Self as From<SurfaceTransformFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<SurfaceTransformFlagsKHR> for SurfaceTransformFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = SurfaceTransformFlagsKHR>>(iterator: T) -> SurfaceTransformFlagsKHR {
-        let mut out = SurfaceTransformFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<SurfaceTransformFlagsKHR> for SurfaceTransformFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = SurfaceTransformFlagsKHR>>(iterator: T) -> SurfaceTransformFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<SurfaceTransformFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<SurfaceTransformFlagBitsKHR> for SurfaceTransformFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = SurfaceTransformFlagBitsKHR>>(
-        iterator: T,
-    ) -> SurfaceTransformFlagsKHR {
-        let mut out = SurfaceTransformFlagsKHR::empty();
-        out.extend(iterator);
+#[cfg(feature = "VK_KHR_surface")]
+impl FromIterator<SurfaceTransformFlagBitsKHR> for SurfaceTransformFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = SurfaceTransformFlagBitsKHR>>(iterator: T) -> SurfaceTransformFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<SurfaceTransformFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -1031,80 +1044,92 @@ impl std::fmt::Debug for SurfaceTransformFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(SurfaceTransformFlagsKHR::SurfaceTransformIdentityKhr) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(SurfaceTransformIdentityKhr))?;
-                    }
-                    if self.0.contains(SurfaceTransformFlagsKHR::SurfaceTransformRotate90Khr) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(SurfaceTransformRotate90Khr))?;
-                    }
-                    if self.0.contains(SurfaceTransformFlagsKHR::SurfaceTransformRotate180Khr) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(SurfaceTransformRotate180Khr))?;
-                    }
-                    if self.0.contains(SurfaceTransformFlagsKHR::SurfaceTransformRotate270Khr) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(SurfaceTransformRotate270Khr))?;
-                    }
                     if self
                         .0
-                        .contains(SurfaceTransformFlagsKHR::SurfaceTransformHorizontalMirrorKhr)
+                        .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_IDENTITY_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SurfaceTransformHorizontalMirrorKhr))?;
+                        f.write_str(stringify!(SURFACE_TRANSFORM_IDENTITY_KHR))?;
                     }
                     if self
                         .0
-                        .contains(SurfaceTransformFlagsKHR::SurfaceTransformHorizontalMirrorRotate90Khr)
+                        .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_ROTATE_90_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SurfaceTransformHorizontalMirrorRotate90Khr))?;
+                        f.write_str(stringify!(SURFACE_TRANSFORM_ROTATE_90_KHR))?;
                     }
                     if self
                         .0
-                        .contains(SurfaceTransformFlagsKHR::SurfaceTransformHorizontalMirrorRotate180Khr)
+                        .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_ROTATE_180_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SurfaceTransformHorizontalMirrorRotate180Khr))?;
+                        f.write_str(stringify!(SURFACE_TRANSFORM_ROTATE_180_KHR))?;
                     }
                     if self
                         .0
-                        .contains(SurfaceTransformFlagsKHR::SurfaceTransformHorizontalMirrorRotate270Khr)
+                        .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_ROTATE_270_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SurfaceTransformHorizontalMirrorRotate270Khr))?;
+                        f.write_str(stringify!(SURFACE_TRANSFORM_ROTATE_270_KHR))?;
                     }
-                    if self.0.contains(SurfaceTransformFlagsKHR::SurfaceTransformInheritKhr) {
+                    if self
+                        .0
+                        .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_KHR)
+                    {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SurfaceTransformInheritKhr))?;
+                        f.write_str(stringify!(SURFACE_TRANSFORM_HORIZONTAL_MIRROR_KHR))?;
+                    }
+                    if self
+                        .0
+                        .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_KHR)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_KHR))?;
+                    }
+                    if self
+                        .0
+                        .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_KHR)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_KHR))?;
+                    }
+                    if self
+                        .0
+                        .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_KHR)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_KHR))?;
+                    }
+                    if self.0.contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_INHERIT_KHR) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(SURFACE_TRANSFORM_INHERIT_KHR))?;
                     }
                 }
                 Ok(())
@@ -1132,7 +1157,7 @@ impl std::fmt::Debug for SurfaceTransformFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1166,7 +1191,7 @@ impl std::fmt::Debug for DisplayModeCreateFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1239,6 +1264,7 @@ impl std::fmt::Debug for DisplaySurfaceCreateFlagsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DisplayPropertiesKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`display`] is a handle that is used to refer to the display described
     ///here.
@@ -1250,7 +1276,7 @@ pub struct DisplayPropertiesKHR<'lt> {
     ///If `NULL`, no suitable name is available.
     ///If not `NULL`, the string pointed to  **must**  remain accessible and
     ///unmodified as long as [`display`] is valid.
-    pub display_name: &'lt CStr,
+    pub display_name: *const c_char,
     ///[`physical_dimensions`] describes the physical width and height of the
     ///visible portion of the display, in millimeters.
     pub physical_dimensions: Extent2D,
@@ -1279,6 +1305,10 @@ impl<'lt> Default for DisplayPropertiesKHR<'lt> {
     }
 }
 impl<'lt> DisplayPropertiesKHR<'lt> {
+    ///Gets the raw value of [`Self::display_name`]
+    pub fn display_name_raw(&self) -> *const c_char {
+        self.display_name
+    }
     ///Gets the raw value of [`Self::plane_reorder_possible`]
     pub fn plane_reorder_possible_raw(&self) -> Bool32 {
         self.plane_reorder_possible
@@ -1286,6 +1316,11 @@ impl<'lt> DisplayPropertiesKHR<'lt> {
     ///Gets the raw value of [`Self::persistent_content`]
     pub fn persistent_content_raw(&self) -> Bool32 {
         self.persistent_content
+    }
+    ///Sets the raw value of [`Self::display_name`]
+    pub fn set_display_name_raw(&mut self, value: *const c_char) -> &mut Self {
+        self.display_name = value;
+        self
     }
     ///Sets the raw value of [`Self::plane_reorder_possible`]
     pub fn set_plane_reorder_possible_raw(&mut self, value: Bool32) -> &mut Self {
@@ -1306,7 +1341,7 @@ impl<'lt> DisplayPropertiesKHR<'lt> {
     ///This function converts a pointer into a value which may be invalid, make sure
     ///that the pointer is valid before dereferencing.
     pub unsafe fn display_name(&self) -> &'lt CStr {
-        self.display_name
+        CStr::from_ptr(self.display_name)
     }
     ///Gets the value of [`Self::physical_dimensions`]
     pub fn physical_dimensions(&self) -> Extent2D {
@@ -1386,7 +1421,7 @@ impl<'lt> DisplayPropertiesKHR<'lt> {
         self
     }
     ///Sets the raw value of [`Self::display_name`]
-    pub fn set_display_name(&mut self, value: &'lt std::ffi::CStr) -> &mut Self {
+    pub fn set_display_name(&mut self, value: *const std::os::raw::c_char) -> &mut Self {
         self.display_name = value;
         self
     }
@@ -1487,7 +1522,7 @@ impl DisplayPlanePropertiesKHR {
     }
     ///Gets a mutable reference to the value of [`Self::current_stack_index`]
     pub fn current_stack_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.current_stack_index
     }
     ///Sets the raw value of [`Self::current_display`]
     pub fn set_current_display(&mut self, value: crate::extensions::khr_display::DisplayKHR) -> &mut Self {
@@ -1567,7 +1602,7 @@ impl DisplayModeParametersKHR {
     }
     ///Gets a mutable reference to the value of [`Self::refresh_rate`]
     pub fn refresh_rate_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.refresh_rate
     }
     ///Sets the raw value of [`Self::visible_region`]
     pub fn set_visible_region(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
@@ -1702,6 +1737,7 @@ impl DisplayModePropertiesKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DisplayModeCreateInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2123,6 +2159,7 @@ impl DisplayPlaneCapabilitiesKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DisplaySurfaceCreateInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2237,11 +2274,11 @@ impl<'lt> DisplaySurfaceCreateInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::plane_index`]
     pub fn plane_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.plane_index
     }
     ///Gets a mutable reference to the value of [`Self::plane_stack_index`]
     pub fn plane_stack_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.plane_stack_index
     }
     ///Gets a mutable reference to the value of [`Self::transform`]
     pub fn transform_mut(&mut self) -> &mut SurfaceTransformFlagBitsKHR {
@@ -2249,7 +2286,7 @@ impl<'lt> DisplaySurfaceCreateInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::global_alpha`]
     pub fn global_alpha_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.global_alpha
     }
     ///Gets a mutable reference to the value of [`Self::alpha_mode`]
     pub fn alpha_mode_mut(&mut self) -> &mut DisplayPlaneAlphaFlagBitsKHR {
@@ -2343,7 +2380,7 @@ impl<'lt> DisplaySurfaceCreateInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayKHR")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct DisplayKHR(pub u64);
@@ -2355,7 +2392,7 @@ impl DisplayKHR {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -2367,17 +2404,7 @@ impl DisplayKHR {
 unsafe impl Send for DisplayKHR {}
 impl Default for DisplayKHR {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for DisplayKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for DisplayKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }
 ///[VkDisplayModeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayModeKHR.html) - Opaque handle to a display mode object
@@ -2403,7 +2430,7 @@ impl std::fmt::Debug for DisplayKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayModeKHR")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct DisplayModeKHR(pub u64);
@@ -2415,7 +2442,7 @@ impl DisplayModeKHR {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -2427,16 +2454,6 @@ impl DisplayModeKHR {
 unsafe impl Send for DisplayModeKHR {}
 impl Default for DisplayModeKHR {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for DisplayModeKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for DisplayModeKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }

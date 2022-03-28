@@ -1,7 +1,11 @@
 use proc_macro2::TokenStream;
 use tracing::warn;
 
-use crate::{source::{OpaqueType, Source}, doc::{Documentation, Queryable}, imports::Imports};
+use crate::{
+    doc::{Documentation, Queryable},
+    imports::Imports,
+    source::{OpaqueType, Source},
+};
 
 impl<'a> OpaqueType<'a> {
     /// Generates the code for an opaque type
@@ -34,7 +38,6 @@ impl<'a> OpaqueType<'a> {
                 pub type #name = c_void;
             }
         }
-
     }
 
     /// Generates the documentation for a base type

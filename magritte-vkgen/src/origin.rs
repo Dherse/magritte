@@ -301,6 +301,57 @@ impl<'a> Origin<'a> {
             Origin::Opaque => Origin::Opaque,
         }
     }
+
+    /// Gets the name/module name of the origin
+    pub fn as_name(&self) -> String {
+        match self {
+            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
+            Origin::Core => "core".to_string(),
+            Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
+            Origin::Extension(ext, _, _) => ext.trim_start_matches("VK_").to_case(Case::Snake),
+            Origin::Vulkan1_0 => "vulkan1_0".to_string(),
+            Origin::Vulkan1_1 => "vulkan1_1".to_string(),
+            Origin::Vulkan1_2 => "vulkan1_2".to_string(),
+            Origin::Vulkan1_3 => "vulkan1_3".to_string(),
+            Origin::Opaque => "native".to_string(),
+        }
+    }
+
+    /// Generate the feature gate (if any) for this origin
+    pub fn conditon(&self) -> Option<TokenStream> {
+        match self {
+            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
+            Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
+            Origin::Core => None,
+            Origin::Extension(ext, _, _) => Some(quote! {
+                #[cfg(feature = #ext)]
+            }),
+            Origin::Vulkan1_0 => None,
+            Origin::Vulkan1_1 => None,
+            Origin::Vulkan1_2 => Some(quote! {
+                #[cfg(feature = "VULKAN_1_2")]
+            }),
+            Origin::Vulkan1_3 => Some(quote! {
+                #[cfg(feature = "VULKAN_1_3")]
+            }),
+            Origin::Opaque => None,
+        }
+    }
+
+    /// Generate the feature gate (if any) for this origin
+    pub fn feature_gate(&self) -> Option<String> {
+        match self {
+            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
+            Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
+            Origin::Core => None,
+            Origin::Extension(ext, _, _) => Some(format!("#[cfg(feature = \"{}\")]\n", ext)),
+            Origin::Vulkan1_0 => None,
+            Origin::Vulkan1_1 => None,
+            Origin::Vulkan1_2 => Some("#[cfg(feature = \"VULKAN_1_2\")]\n".to_string()),
+            Origin::Vulkan1_3 => Some("#[cfg(feature = \"VULKAN_1_3\")]\n".to_string()),
+            Origin::Opaque => None,
+        }
+    }
 }
 
 impl<'a> ToTokens for Origin<'a> {

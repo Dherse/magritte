@@ -79,7 +79,10 @@ use crate::vulkan1_0::ImageFormatProperties;
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::ffi::CStr;
+use std::{
+    ffi::CStr,
+    iter::{Extend, FromIterator, IntoIterator},
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_NV_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION")]
@@ -162,7 +165,7 @@ impl ExternalMemoryHandleTypeFlagBitsNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -237,7 +240,7 @@ impl ExternalMemoryFeatureFlagBitsNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -280,7 +283,7 @@ impl ExternalMemoryFeatureFlagBitsNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryHandleTypeFlagsNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -299,18 +302,18 @@ impl ExternalMemoryHandleTypeFlagsNV {
     ///[`ExternalMemoryHandleTypeOpaqueWin32Nv`] specifies a
     ///handle to memory returned by [`GetMemoryWin32HandleNV`], or one
     ///duplicated from such a handle using `DuplicateHandle()`.
-    const ExternalMemoryHandleTypeOpaqueWin32Nv: Self = Self(1);
+    pub const EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_NV: Self = Self(1);
     ///[`ExternalMemoryHandleTypeOpaqueWin32KmtNv`] specifies a
     ///handle to memory returned by [`GetMemoryWin32HandleNV`].
-    const ExternalMemoryHandleTypeOpaqueWin32KmtNv: Self = Self(2);
+    pub const EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_KMT_NV: Self = Self(2);
     ///[`ExternalMemoryHandleTypeD3D11ImageNv`] specifies a
     ///valid NT handle to memory returned by
     ///`IDXGIResource1::CreateSharedHandle`, or a handle duplicated from such a
     ///handle using `DuplicateHandle()`.
-    const ExternalMemoryHandleTypeD3D11ImageNv: Self = Self(4);
+    pub const EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_NV: Self = Self(4);
     ///[`ExternalMemoryHandleTypeD3D11ImageKmtNv`] specifies a
     ///handle to memory returned by `IDXGIResource::GetSharedHandle()`.
-    const ExternalMemoryHandleTypeD3D11ImageKmtNv: Self = Self(8);
+    pub const EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_KMT_NV: Self = Self(8);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -320,10 +323,10 @@ impl ExternalMemoryHandleTypeFlagsNV {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::ExternalMemoryHandleTypeOpaqueWin32Nv
-            | Self::ExternalMemoryHandleTypeOpaqueWin32KmtNv
-            | Self::ExternalMemoryHandleTypeD3D11ImageNv
-            | Self::ExternalMemoryHandleTypeD3D11ImageKmtNv
+            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_NV
+            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_KMT_NV
+            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_NV
+            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_KMT_NV
     }
     ///Returns the raw bits
     #[inline]
@@ -485,35 +488,35 @@ impl const std::ops::Not for ExternalMemoryHandleTypeFlagsNV {
         self.complement()
     }
 }
-impl std::iter::Extend<ExternalMemoryHandleTypeFlagsNV> for ExternalMemoryHandleTypeFlagsNV {
-    fn extend<T: std::iter::IntoIterator<Item = ExternalMemoryHandleTypeFlagsNV>>(&mut self, iterator: T) {
+impl Extend<ExternalMemoryHandleTypeFlagsNV> for ExternalMemoryHandleTypeFlagsNV {
+    fn extend<T: IntoIterator<Item = ExternalMemoryHandleTypeFlagsNV>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<ExternalMemoryHandleTypeFlagBitsNV> for ExternalMemoryHandleTypeFlagsNV {
-    fn extend<T: std::iter::IntoIterator<Item = ExternalMemoryHandleTypeFlagBitsNV>>(&mut self, iterator: T) {
+impl Extend<ExternalMemoryHandleTypeFlagBitsNV> for ExternalMemoryHandleTypeFlagsNV {
+    fn extend<T: IntoIterator<Item = ExternalMemoryHandleTypeFlagBitsNV>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(ExternalMemoryHandleTypeFlagsNV::from(i));
+            Self::insert(self, <Self as From<ExternalMemoryHandleTypeFlagBitsNV>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<ExternalMemoryHandleTypeFlagsNV> for ExternalMemoryHandleTypeFlagsNV {
-    fn from_iter<T: std::iter::IntoIterator<Item = ExternalMemoryHandleTypeFlagsNV>>(
+impl FromIterator<ExternalMemoryHandleTypeFlagsNV> for ExternalMemoryHandleTypeFlagsNV {
+    fn from_iter<T: IntoIterator<Item = ExternalMemoryHandleTypeFlagsNV>>(
         iterator: T,
     ) -> ExternalMemoryHandleTypeFlagsNV {
-        let mut out = ExternalMemoryHandleTypeFlagsNV::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<ExternalMemoryHandleTypeFlagsNV>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<ExternalMemoryHandleTypeFlagBitsNV> for ExternalMemoryHandleTypeFlagsNV {
-    fn from_iter<T: std::iter::IntoIterator<Item = ExternalMemoryHandleTypeFlagBitsNV>>(
+impl FromIterator<ExternalMemoryHandleTypeFlagBitsNV> for ExternalMemoryHandleTypeFlagsNV {
+    fn from_iter<T: IntoIterator<Item = ExternalMemoryHandleTypeFlagBitsNV>>(
         iterator: T,
     ) -> ExternalMemoryHandleTypeFlagsNV {
-        let mut out = ExternalMemoryHandleTypeFlagsNV::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<ExternalMemoryHandleTypeFlagBitsNV>>::extend(&mut out, iterator);
         out
     }
 }
@@ -528,43 +531,43 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlagsNV {
                     let mut first = true;
                     if self
                         .0
-                        .contains(ExternalMemoryHandleTypeFlagsNV::ExternalMemoryHandleTypeOpaqueWin32Nv)
+                        .contains(ExternalMemoryHandleTypeFlagsNV::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_NV)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalMemoryHandleTypeOpaqueWin32Nv))?;
+                        f.write_str(stringify!(EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_NV))?;
                     }
                     if self
                         .0
-                        .contains(ExternalMemoryHandleTypeFlagsNV::ExternalMemoryHandleTypeOpaqueWin32KmtNv)
+                        .contains(ExternalMemoryHandleTypeFlagsNV::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_KMT_NV)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalMemoryHandleTypeOpaqueWin32KmtNv))?;
+                        f.write_str(stringify!(EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_KMT_NV))?;
                     }
                     if self
                         .0
-                        .contains(ExternalMemoryHandleTypeFlagsNV::ExternalMemoryHandleTypeD3D11ImageNv)
+                        .contains(ExternalMemoryHandleTypeFlagsNV::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_NV)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalMemoryHandleTypeD3D11ImageNv))?;
+                        f.write_str(stringify!(EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_NV))?;
                     }
                     if self
                         .0
-                        .contains(ExternalMemoryHandleTypeFlagsNV::ExternalMemoryHandleTypeD3D11ImageKmtNv)
+                        .contains(ExternalMemoryHandleTypeFlagsNV::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_KMT_NV)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalMemoryHandleTypeD3D11ImageKmtNv))?;
+                        f.write_str(stringify!(EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_KMT_NV))?;
                     }
                 }
                 Ok(())
@@ -609,7 +612,7 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlagsNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryFeatureFlagsNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -628,13 +631,13 @@ impl ExternalMemoryFeatureFlagsNV {
     ///[`ExternalMemoryFeatureDedicatedOnlyNv`] specifies that
     ///external memory of the specified type  **must**  be created as a dedicated
     ///allocation when used in the manner specified.
-    const ExternalMemoryFeatureDedicatedOnlyNv: Self = Self(1);
+    pub const EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_NV: Self = Self(1);
     ///[`ExternalMemoryFeatureExportableNv`] specifies that the
     ///implementation supports exporting handles of the specified type.
-    const ExternalMemoryFeatureExportableNv: Self = Self(2);
+    pub const EXTERNAL_MEMORY_FEATURE_EXPORTABLE_NV: Self = Self(2);
     ///[`ExternalMemoryFeatureImportableNv`] specifies that the
     ///implementation supports importing handles of the specified type.
-    const ExternalMemoryFeatureImportableNv: Self = Self(4);
+    pub const EXTERNAL_MEMORY_FEATURE_IMPORTABLE_NV: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -644,9 +647,9 @@ impl ExternalMemoryFeatureFlagsNV {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::ExternalMemoryFeatureDedicatedOnlyNv
-            | Self::ExternalMemoryFeatureExportableNv
-            | Self::ExternalMemoryFeatureImportableNv
+            | Self::EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_NV
+            | Self::EXTERNAL_MEMORY_FEATURE_EXPORTABLE_NV
+            | Self::EXTERNAL_MEMORY_FEATURE_IMPORTABLE_NV
     }
     ///Returns the raw bits
     #[inline]
@@ -808,35 +811,31 @@ impl const std::ops::Not for ExternalMemoryFeatureFlagsNV {
         self.complement()
     }
 }
-impl std::iter::Extend<ExternalMemoryFeatureFlagsNV> for ExternalMemoryFeatureFlagsNV {
-    fn extend<T: std::iter::IntoIterator<Item = ExternalMemoryFeatureFlagsNV>>(&mut self, iterator: T) {
+impl Extend<ExternalMemoryFeatureFlagsNV> for ExternalMemoryFeatureFlagsNV {
+    fn extend<T: IntoIterator<Item = ExternalMemoryFeatureFlagsNV>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<ExternalMemoryFeatureFlagBitsNV> for ExternalMemoryFeatureFlagsNV {
-    fn extend<T: std::iter::IntoIterator<Item = ExternalMemoryFeatureFlagBitsNV>>(&mut self, iterator: T) {
+impl Extend<ExternalMemoryFeatureFlagBitsNV> for ExternalMemoryFeatureFlagsNV {
+    fn extend<T: IntoIterator<Item = ExternalMemoryFeatureFlagBitsNV>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(ExternalMemoryFeatureFlagsNV::from(i));
+            Self::insert(self, <Self as From<ExternalMemoryFeatureFlagBitsNV>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<ExternalMemoryFeatureFlagsNV> for ExternalMemoryFeatureFlagsNV {
-    fn from_iter<T: std::iter::IntoIterator<Item = ExternalMemoryFeatureFlagsNV>>(
-        iterator: T,
-    ) -> ExternalMemoryFeatureFlagsNV {
-        let mut out = ExternalMemoryFeatureFlagsNV::empty();
-        out.extend(iterator);
+impl FromIterator<ExternalMemoryFeatureFlagsNV> for ExternalMemoryFeatureFlagsNV {
+    fn from_iter<T: IntoIterator<Item = ExternalMemoryFeatureFlagsNV>>(iterator: T) -> ExternalMemoryFeatureFlagsNV {
+        let mut out = Self::empty();
+        <Self as Extend<ExternalMemoryFeatureFlagsNV>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<ExternalMemoryFeatureFlagBitsNV> for ExternalMemoryFeatureFlagsNV {
-    fn from_iter<T: std::iter::IntoIterator<Item = ExternalMemoryFeatureFlagBitsNV>>(
-        iterator: T,
-    ) -> ExternalMemoryFeatureFlagsNV {
-        let mut out = ExternalMemoryFeatureFlagsNV::empty();
-        out.extend(iterator);
+impl FromIterator<ExternalMemoryFeatureFlagBitsNV> for ExternalMemoryFeatureFlagsNV {
+    fn from_iter<T: IntoIterator<Item = ExternalMemoryFeatureFlagBitsNV>>(iterator: T) -> ExternalMemoryFeatureFlagsNV {
+        let mut out = Self::empty();
+        <Self as Extend<ExternalMemoryFeatureFlagBitsNV>>::extend(&mut out, iterator);
         out
     }
 }
@@ -851,33 +850,33 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlagsNV {
                     let mut first = true;
                     if self
                         .0
-                        .contains(ExternalMemoryFeatureFlagsNV::ExternalMemoryFeatureDedicatedOnlyNv)
+                        .contains(ExternalMemoryFeatureFlagsNV::EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_NV)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalMemoryFeatureDedicatedOnlyNv))?;
+                        f.write_str(stringify!(EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_NV))?;
                     }
                     if self
                         .0
-                        .contains(ExternalMemoryFeatureFlagsNV::ExternalMemoryFeatureExportableNv)
+                        .contains(ExternalMemoryFeatureFlagsNV::EXTERNAL_MEMORY_FEATURE_EXPORTABLE_NV)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalMemoryFeatureExportableNv))?;
+                        f.write_str(stringify!(EXTERNAL_MEMORY_FEATURE_EXPORTABLE_NV))?;
                     }
                     if self
                         .0
-                        .contains(ExternalMemoryFeatureFlagsNV::ExternalMemoryFeatureImportableNv)
+                        .contains(ExternalMemoryFeatureFlagsNV::EXTERNAL_MEMORY_FEATURE_IMPORTABLE_NV)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalMemoryFeatureImportableNv))?;
+                        f.write_str(stringify!(EXTERNAL_MEMORY_FEATURE_IMPORTABLE_NV))?;
                     }
                 }
                 Ok(())

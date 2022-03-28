@@ -2,9 +2,14 @@ use std::borrow::Cow;
 
 use proc_macro2::{Ident, Span};
 
-use crate::{origin::Origin, symbols::SymbolName, doc::Queryable};
+use crate::{
+    doc::Queryable,
+    origin::Origin,
+    symbols::SymbolName,
+    ty::{Native, Ty},
+};
 
-use super::{Source, BitFlag};
+use super::{BitFlag, Source};
 
 /// A type bitmask.
 #[derive(Debug, Clone, PartialEq)]
@@ -69,6 +74,14 @@ impl<'a> Bitmask<'a> {
     /// Get a reference to the bitmask's of.
     pub fn bits(&self) -> Option<&str> {
         self.bits.as_ref().map(|s| s as &str)
+    }
+
+    /// Gets the storage type of this bitflag
+    pub fn ty(&self, source: &Source<'a>) -> Ty<'a> {
+        self.bits()
+            .and_then(|bits| source.resolve_type(bits))
+            .and_then(|bits| bits.as_bitflag())
+            .map_or_else(|| Ty::Native(Native::UInt(4)), |bits| bits.ty())
     }
 }
 

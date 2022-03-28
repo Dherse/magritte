@@ -120,11 +120,11 @@ impl MultiDrawInfoEXT {
     }
     ///Gets a mutable reference to the value of [`Self::first_vertex`]
     pub fn first_vertex_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.first_vertex
     }
     ///Gets a mutable reference to the value of [`Self::vertex_count`]
     pub fn vertex_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.vertex_count
     }
     ///Sets the raw value of [`Self::first_vertex`]
     pub fn set_first_vertex(&mut self, value: u32) -> &mut Self {
@@ -207,15 +207,15 @@ impl MultiDrawIndexedInfoEXT {
     }
     ///Gets a mutable reference to the value of [`Self::first_index`]
     pub fn first_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.first_index
     }
     ///Gets a mutable reference to the value of [`Self::index_count`]
     pub fn index_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.index_count
     }
     ///Gets a mutable reference to the value of [`Self::vertex_offset`]
     pub fn vertex_offset_mut(&mut self) -> &mut i32 {
-        &mut getter
+        &mut self.vertex_offset
     }
     ///Sets the raw value of [`Self::first_index`]
     pub fn set_first_index(&mut self, value: u32) -> &mut Self {
@@ -269,10 +269,11 @@ impl MultiDrawIndexedInfoEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMultiDrawPropertiesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMultiDrawPropertiesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT`
     pub s_type: StructureType,
@@ -331,7 +332,7 @@ impl<'lt> PhysicalDeviceMultiDrawPropertiesEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_multi_draw_count`]
     pub fn max_multi_draw_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_multi_draw_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -390,10 +391,11 @@ impl<'lt> PhysicalDeviceMultiDrawPropertiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMultiDrawFeaturesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMultiDrawFeaturesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,

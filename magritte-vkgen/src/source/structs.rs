@@ -116,6 +116,11 @@ impl<'a> Struct<'a> {
         self.fields.iter().any(|f| f.has_lifetime(source))
     }
 
+    /// Checks if this structure is debug
+    pub fn is_debug(&self, source: &Source<'a>) -> bool {
+        self.fields.iter().all(|f| f.is_debug(source))
+    }
+
     /// Checks if this structure is copy
     pub fn is_copy(&self, source: &Source<'a>) -> bool {
         self.fields.iter().all(|f| f.is_copy(source))
@@ -324,7 +329,12 @@ impl<'a> Field<'a> {
 
     /// Does this field has a lifetime
     pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
-        self.ty().has_lifetime(source)
+        self.ty().has_lifetime(source, true)
+    }
+
+    /// Checks if this field is debug
+    pub fn is_debug(&self, source: &Source<'a>) -> bool {
+        self.ty().is_debug(source)
     }
 
     /// Checks if this field is copy

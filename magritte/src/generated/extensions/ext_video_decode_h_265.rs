@@ -92,7 +92,7 @@ pub const EXT_VIDEO_DECODE_H265_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -140,10 +140,10 @@ impl std::fmt::Debug for VideoDecodeH265CreateFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH265ProfileEXT")]
-#[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH265ProfileEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -263,10 +263,11 @@ impl<'lt> VideoDecodeH265ProfileEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH265CapabilitiesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH265CapabilitiesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -333,7 +334,7 @@ impl<'lt> VideoDecodeH265CapabilitiesEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_level`]
     pub fn max_level_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_level
     }
     ///Gets a mutable reference to the value of [`Self::std_extension_version`]
     pub fn std_extension_version_mut(&mut self) -> &mut ExtensionProperties {
@@ -406,6 +407,7 @@ impl<'lt> VideoDecodeH265CapabilitiesEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH265SessionCreateInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -581,6 +583,7 @@ impl<'lt> VideoDecodeH265SessionCreateInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -669,11 +672,11 @@ impl<'lt> VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::sps_std_count`]
     pub fn sps_std_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.sps_std_count
     }
     ///Gets a mutable reference to the value of [`Self::pps_std_count`]
     pub fn pps_std_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.pps_std_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -767,6 +770,7 @@ impl<'lt> VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -850,11 +854,11 @@ impl<'lt> VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_sps_std_count`]
     pub fn max_sps_std_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_sps_std_count
     }
     ///Gets a mutable reference to the value of [`Self::max_pps_std_count`]
     pub fn max_pps_std_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_pps_std_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -925,10 +929,11 @@ impl<'lt> VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH265PictureInfoEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH265PictureInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1019,7 +1024,7 @@ impl<'lt> VideoDecodeH265PictureInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::slices_count`]
     pub fn slices_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.slices_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1088,6 +1093,7 @@ impl<'lt> VideoDecodeH265PictureInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH265DpbSlotInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,

@@ -93,6 +93,7 @@ use serde::{Deserialize, Serialize};
 use std::{
     ffi::{c_void, CStr},
     marker::PhantomData,
+    os::raw::c_char,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -184,7 +185,6 @@ pub const EXT_DEBUG_MARKER_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[doc(alias = "VkDebugReportObjectTypeEXT")]
 #[doc(alias = "VkDebugReportObjectTypeEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -363,7 +363,7 @@ impl DebugReportObjectTypeEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -425,6 +425,7 @@ impl DebugReportObjectTypeEXT {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugMarkerObjectNameInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -438,7 +439,7 @@ pub struct DebugMarkerObjectNameInfoEXT<'lt> {
     pub object: u64,
     ///[`object_name`] is a null-terminated UTF-8 string specifying the name
     ///to apply to [`object`].
-    pub object_name: &'lt CStr,
+    pub object_name: *const c_char,
 }
 impl<'lt> Default for DebugMarkerObjectNameInfoEXT<'lt> {
     fn default() -> Self {
@@ -457,9 +458,18 @@ impl<'lt> DebugMarkerObjectNameInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
+    ///Gets the raw value of [`Self::object_name`]
+    pub fn object_name_raw(&self) -> *const c_char {
+        self.object_name
+    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::object_name`]
+    pub fn set_object_name_raw(&mut self, value: *const c_char) -> &mut Self {
+        self.object_name = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -486,7 +496,7 @@ impl<'lt> DebugMarkerObjectNameInfoEXT<'lt> {
     ///This function converts a pointer into a value which may be invalid, make sure
     ///that the pointer is valid before dereferencing.
     pub unsafe fn object_name(&self) -> &'lt CStr {
-        self.object_name
+        CStr::from_ptr(self.object_name)
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -498,7 +508,7 @@ impl<'lt> DebugMarkerObjectNameInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::object`]
     pub fn object_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.object
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -524,7 +534,7 @@ impl<'lt> DebugMarkerObjectNameInfoEXT<'lt> {
         self
     }
     ///Sets the raw value of [`Self::object_name`]
-    pub fn set_object_name(&mut self, value: &'lt std::ffi::CStr) -> &mut Self {
+    pub fn set_object_name(&mut self, value: *const std::os::raw::c_char) -> &mut Self {
         self.object_name = value;
         self
     }
@@ -589,6 +599,7 @@ impl<'lt> DebugMarkerObjectNameInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugMarkerObjectTagInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -685,15 +696,15 @@ impl<'lt> DebugMarkerObjectTagInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::object`]
     pub fn object_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.object
     }
     ///Gets a mutable reference to the value of [`Self::tag_name`]
     pub fn tag_name_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.tag_name
     }
     ///Gets a mutable reference to the value of [`Self::tag_size`]
     pub fn tag_size_mut(&mut self) -> &mut usize {
-        &mut getter
+        &mut self.tag_size
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -730,7 +741,7 @@ impl<'lt> DebugMarkerObjectTagInfoEXT<'lt> {
     }
     ///Sets the raw value of [`Self::tag`]
     pub fn set_tag(&mut self, value: &'lt [std::ffi::c_void]) -> &mut Self {
-        let len_ = value.len() as u32;
+        let len_ = value.len() as usize;
         let len_ = len_;
         self.tag = value.as_ptr();
         self.tag_size = len_;
@@ -781,6 +792,7 @@ impl<'lt> DebugMarkerObjectTagInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugMarkerMarkerInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -789,13 +801,13 @@ pub struct DebugMarkerMarkerInfoEXT<'lt> {
     pub p_next: *const BaseInStructure<'lt>,
     ///[`marker_name`] is a pointer to a null-terminated UTF-8 string
     ///containing the name of the marker.
-    pub marker_name: &'lt CStr,
+    pub marker_name: *const c_char,
     ///[`color`] is an  **optional**  RGBA color value that can be associated with
     ///the marker.
     ///A particular implementation  **may**  choose to ignore this color value.
     ///The values contain RGBA values in order, in the range 0.0 to 1.0.
     ///If all elements in [`color`] are set to 0.0 then it is ignored.
-    pub color: [f32; 4],
+    pub color: [f32; 4 as usize],
 }
 impl<'lt> Default for DebugMarkerMarkerInfoEXT<'lt> {
     fn default() -> Self {
@@ -804,7 +816,7 @@ impl<'lt> Default for DebugMarkerMarkerInfoEXT<'lt> {
             s_type: Default::default(),
             p_next: std::ptr::null(),
             marker_name: std::ptr::null(),
-            color: [0.0; 4],
+            color: [0.0; 4 as usize],
         }
     }
 }
@@ -813,9 +825,18 @@ impl<'lt> DebugMarkerMarkerInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
+    ///Gets the raw value of [`Self::marker_name`]
+    pub fn marker_name_raw(&self) -> *const c_char {
+        self.marker_name
+    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::marker_name`]
+    pub fn set_marker_name_raw(&mut self, value: *const c_char) -> &mut Self {
+        self.marker_name = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -834,19 +855,19 @@ impl<'lt> DebugMarkerMarkerInfoEXT<'lt> {
     ///This function converts a pointer into a value which may be invalid, make sure
     ///that the pointer is valid before dereferencing.
     pub unsafe fn marker_name(&self) -> &'lt CStr {
-        self.marker_name
+        CStr::from_ptr(self.marker_name)
     }
     ///Gets the value of [`Self::color`]
-    pub fn color(&self) -> &[f32; 4] {
-        &getter
+    pub fn color(&self) -> &[f32; 4 as usize] {
+        &self.color
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
         &mut self.s_type
     }
     ///Gets a mutable reference to the value of [`Self::color`]
-    pub fn color_mut(&mut self) -> &mut [f32; 4] {
-        &mut getter
+    pub fn color_mut(&mut self) -> &mut [f32; 4 as usize] {
+        &mut self.color
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -859,12 +880,12 @@ impl<'lt> DebugMarkerMarkerInfoEXT<'lt> {
         self
     }
     ///Sets the raw value of [`Self::marker_name`]
-    pub fn set_marker_name(&mut self, value: &'lt std::ffi::CStr) -> &mut Self {
+    pub fn set_marker_name(&mut self, value: *const std::os::raw::c_char) -> &mut Self {
         self.marker_name = value;
         self
     }
     ///Sets the raw value of [`Self::color`]
-    pub fn set_color(&mut self, value: [f32; 4]) -> &mut Self {
+    pub fn set_color(&mut self, value: [f32; 4 as usize]) -> &mut Self {
         self.color = value;
         self
     }

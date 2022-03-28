@@ -3,8 +3,9 @@ use quote::quote;
 use tracing::warn;
 
 use crate::{
+    codegen::alias_of,
     doc::Documentation,
-    source::{Handle, Source}, codegen::alias_of,
+    source::{Handle, Source},
 };
 
 impl<'a> Handle<'a> {
@@ -35,7 +36,7 @@ impl<'a> Handle<'a> {
         quote::quote_each_token! {
             out
 
-            #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+            #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
             #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
             #[repr(transparent)]
             pub struct #name(pub #ty);
@@ -49,7 +50,7 @@ impl<'a> Handle<'a> {
 
                 #[doc = "Checks if this is a null handle"]
                 #[inline]
-                pub const fn is_null(&self) -> bool {
+                pub fn is_null(&self) -> bool {
                     self == &Self::null()
                 }
 
@@ -64,19 +65,7 @@ impl<'a> Handle<'a> {
 
             impl Default for #name {
                 fn default() -> Self {
-                    Self::default()
-                }
-            }
-
-            impl std::fmt::Pointer for #name {
-                fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-                    write!(f, "0x{:x}", self.0)
-                }
-            }
-
-            impl std::fmt::Debug for #name {
-                fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-                    write!(f, "0x{:x}", self.0)
+                    Self::null()
                 }
             }
         }

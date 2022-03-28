@@ -48,7 +48,11 @@ use crate::vulkan1_0::{BaseInStructure, StructureType};
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData};
+use std::{
+    ffi::CStr,
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_AMD_PIPELINE_COMPILER_CONTROL_SPEC_VERSION")]
@@ -102,7 +106,7 @@ impl PipelineCompilerControlFlagBitsAMD {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -131,7 +135,7 @@ impl PipelineCompilerControlFlagBitsAMD {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCompilerControlFlagsAMD")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -317,35 +321,35 @@ impl const std::ops::Not for PipelineCompilerControlFlagsAMD {
         self.complement()
     }
 }
-impl std::iter::Extend<PipelineCompilerControlFlagsAMD> for PipelineCompilerControlFlagsAMD {
-    fn extend<T: std::iter::IntoIterator<Item = PipelineCompilerControlFlagsAMD>>(&mut self, iterator: T) {
+impl Extend<PipelineCompilerControlFlagsAMD> for PipelineCompilerControlFlagsAMD {
+    fn extend<T: IntoIterator<Item = PipelineCompilerControlFlagsAMD>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<PipelineCompilerControlFlagBitsAMD> for PipelineCompilerControlFlagsAMD {
-    fn extend<T: std::iter::IntoIterator<Item = PipelineCompilerControlFlagBitsAMD>>(&mut self, iterator: T) {
+impl Extend<PipelineCompilerControlFlagBitsAMD> for PipelineCompilerControlFlagsAMD {
+    fn extend<T: IntoIterator<Item = PipelineCompilerControlFlagBitsAMD>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(PipelineCompilerControlFlagsAMD::from(i));
+            Self::insert(self, <Self as From<PipelineCompilerControlFlagBitsAMD>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<PipelineCompilerControlFlagsAMD> for PipelineCompilerControlFlagsAMD {
-    fn from_iter<T: std::iter::IntoIterator<Item = PipelineCompilerControlFlagsAMD>>(
+impl FromIterator<PipelineCompilerControlFlagsAMD> for PipelineCompilerControlFlagsAMD {
+    fn from_iter<T: IntoIterator<Item = PipelineCompilerControlFlagsAMD>>(
         iterator: T,
     ) -> PipelineCompilerControlFlagsAMD {
-        let mut out = PipelineCompilerControlFlagsAMD::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<PipelineCompilerControlFlagsAMD>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<PipelineCompilerControlFlagBitsAMD> for PipelineCompilerControlFlagsAMD {
-    fn from_iter<T: std::iter::IntoIterator<Item = PipelineCompilerControlFlagBitsAMD>>(
+impl FromIterator<PipelineCompilerControlFlagBitsAMD> for PipelineCompilerControlFlagsAMD {
+    fn from_iter<T: IntoIterator<Item = PipelineCompilerControlFlagBitsAMD>>(
         iterator: T,
     ) -> PipelineCompilerControlFlagsAMD {
-        let mut out = PipelineCompilerControlFlagsAMD::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<PipelineCompilerControlFlagBitsAMD>>::extend(&mut out, iterator);
         out
     }
 }
@@ -407,6 +411,7 @@ impl std::fmt::Debug for PipelineCompilerControlFlagsAMD {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineCompilerControlCreateInfoAMD<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,

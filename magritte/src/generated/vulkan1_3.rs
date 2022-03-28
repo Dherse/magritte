@@ -12,7 +12,12 @@ use crate::{
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::c_void, marker::PhantomData, os::raw::c_char};
+use std::{
+    ffi::c_void,
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+    os::raw::c_char,
+};
 ///[VkPipelineCreationFeedbackFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineCreationFeedbackFlagBits.html) - Bitmask specifying pipeline or pipeline stage creation feedback
 ///# C Specifications
 ///Possible values of the `flags` member of
@@ -113,7 +118,7 @@ impl PipelineCreationFeedbackFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -241,7 +246,7 @@ impl ToolPurposeFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -758,7 +763,7 @@ impl AccessFlagBits2 {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u64 {
-        self as u64
+        *self as u64
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1198,7 +1203,7 @@ impl PipelineStageFlagBits2 {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u64 {
-        self as u64
+        *self as u64
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1263,7 +1268,7 @@ impl SubmitFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1762,7 +1767,7 @@ impl FormatFeatureFlagBits2 {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u64 {
-        self as u64
+        *self as u64
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1850,7 +1855,7 @@ impl RenderingFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1881,7 +1886,7 @@ impl RenderingFlagBits {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1950,7 +1955,7 @@ impl std::fmt::Debug for PrivateDataSlotCreateFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCreationFeedbackFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1968,7 +1973,7 @@ impl From<PipelineCreationFeedbackFlagBits> for PipelineCreationFeedbackFlags {
 impl PipelineCreationFeedbackFlags {
     ///[`PipelineCreationFeedbackValid`] indicates that the
     ///feedback information is valid.
-    const PipelineCreationFeedbackValid: Self = Self(1);
+    pub const PIPELINE_CREATION_FEEDBACK_VALID: Self = Self(1);
     ///[`PipelineCreationFeedbackApplicationPipelineCacheHit`]
     ///indicates that a readily usable pipeline or pipeline stage was found in
     ///the `pipelineCache` specified by the application in the pipeline
@@ -1982,7 +1987,7 @@ impl PipelineCreationFeedbackFlags {
     ///or [`CreateComputePipelines`].
     ///When an implementation sets this bit for the entire pipeline, it  **may**  leave
     ///it unset for any stage.
-    const PipelineCreationFeedbackApplicationPipelineCacheHit: Self = Self(2);
+    pub const PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT: Self = Self(2);
     ///[`PipelineCreationFeedbackBasePipelineAcceleration`]
     ///indicates that the base pipeline specified by the
     ///`basePipelineHandle` or `basePipelineIndex` member of the
@@ -1990,7 +1995,7 @@ impl PipelineCreationFeedbackFlags {
     ///creation of the pipeline.An implementation  **should**  set the
     ///[`PipelineCreationFeedbackBasePipelineAcceleration`] bit if it
     ///was able to avoid a significant amount of work by using the base pipeline.
-    const PipelineCreationFeedbackBasePipelineAcceleration: Self = Self(4);
+    pub const PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2000,9 +2005,9 @@ impl PipelineCreationFeedbackFlags {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::PipelineCreationFeedbackValid
-            | Self::PipelineCreationFeedbackApplicationPipelineCacheHit
-            | Self::PipelineCreationFeedbackBasePipelineAcceleration
+            | Self::PIPELINE_CREATION_FEEDBACK_VALID
+            | Self::PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT
+            | Self::PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION
     }
     ///Returns the raw bits
     #[inline]
@@ -2164,35 +2169,33 @@ impl const std::ops::Not for PipelineCreationFeedbackFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<PipelineCreationFeedbackFlags> for PipelineCreationFeedbackFlags {
-    fn extend<T: std::iter::IntoIterator<Item = PipelineCreationFeedbackFlags>>(&mut self, iterator: T) {
+impl Extend<PipelineCreationFeedbackFlags> for PipelineCreationFeedbackFlags {
+    fn extend<T: IntoIterator<Item = PipelineCreationFeedbackFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<PipelineCreationFeedbackFlagBits> for PipelineCreationFeedbackFlags {
-    fn extend<T: std::iter::IntoIterator<Item = PipelineCreationFeedbackFlagBits>>(&mut self, iterator: T) {
+impl Extend<PipelineCreationFeedbackFlagBits> for PipelineCreationFeedbackFlags {
+    fn extend<T: IntoIterator<Item = PipelineCreationFeedbackFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(PipelineCreationFeedbackFlags::from(i));
+            Self::insert(self, <Self as From<PipelineCreationFeedbackFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<PipelineCreationFeedbackFlags> for PipelineCreationFeedbackFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = PipelineCreationFeedbackFlags>>(
-        iterator: T,
-    ) -> PipelineCreationFeedbackFlags {
-        let mut out = PipelineCreationFeedbackFlags::empty();
-        out.extend(iterator);
+impl FromIterator<PipelineCreationFeedbackFlags> for PipelineCreationFeedbackFlags {
+    fn from_iter<T: IntoIterator<Item = PipelineCreationFeedbackFlags>>(iterator: T) -> PipelineCreationFeedbackFlags {
+        let mut out = Self::empty();
+        <Self as Extend<PipelineCreationFeedbackFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<PipelineCreationFeedbackFlagBits> for PipelineCreationFeedbackFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = PipelineCreationFeedbackFlagBits>>(
+impl FromIterator<PipelineCreationFeedbackFlagBits> for PipelineCreationFeedbackFlags {
+    fn from_iter<T: IntoIterator<Item = PipelineCreationFeedbackFlagBits>>(
         iterator: T,
     ) -> PipelineCreationFeedbackFlags {
-        let mut out = PipelineCreationFeedbackFlags::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<PipelineCreationFeedbackFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -2207,33 +2210,32 @@ impl std::fmt::Debug for PipelineCreationFeedbackFlags {
                     let mut first = true;
                     if self
                         .0
-                        .contains(PipelineCreationFeedbackFlags::PipelineCreationFeedbackValid)
+                        .contains(PipelineCreationFeedbackFlags::PIPELINE_CREATION_FEEDBACK_VALID)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineCreationFeedbackValid))?;
+                        f.write_str(stringify!(PIPELINE_CREATION_FEEDBACK_VALID))?;
+                    }
+                    if self.0.contains(
+                        PipelineCreationFeedbackFlags::PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT,
+                    ) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT))?;
                     }
                     if self
                         .0
-                        .contains(PipelineCreationFeedbackFlags::PipelineCreationFeedbackApplicationPipelineCacheHit)
+                        .contains(PipelineCreationFeedbackFlags::PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineCreationFeedbackApplicationPipelineCacheHit))?;
-                    }
-                    if self
-                        .0
-                        .contains(PipelineCreationFeedbackFlags::PipelineCreationFeedbackBasePipelineAcceleration)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineCreationFeedbackBasePipelineAcceleration))?;
+                        f.write_str(stringify!(PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION))?;
                     }
                 }
                 Ok(())
@@ -2474,7 +2476,7 @@ impl std::fmt::Debug for PipelineCreationFeedbackFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccessFlags2")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -2491,7 +2493,7 @@ impl From<AccessFlagBits2> for AccessFlags2 {
 }
 impl AccessFlags2 {
     ///[`Access2None`] specifies no accesses.
-    const Access2None: Self = Self(0);
+    pub const ACCESS_2_NONE: Self = Self(0);
     ///[`Access2IndirectCommandRead`] specifies read access to
     ///    command data read from indirect buffers as part of an indirect
     ///build,
@@ -2499,23 +2501,23 @@ impl AccessFlags2 {
     ///    drawing or dispatch command.
     ///    Such access occurs in the `VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT`
     ///    pipeline stage.
-    const Access2IndirectCommandRead: Self = Self(1);
+    pub const ACCESS_2_INDIRECT_COMMAND_READ: Self = Self(1);
     ///[`Access2IndexRead`] specifies read access to an index
     ///buffer as part of an indexed drawing command, bound by
     ///[`CmdBindIndexBuffer`].
     ///Such access occurs in the `VK_PIPELINE_STAGE_2_INDEX_INPUT_BIT`
     ///pipeline stage.
-    const Access2IndexRead: Self = Self(2);
+    pub const ACCESS_2_INDEX_READ: Self = Self(2);
     ///[`Access2VertexAttributeRead`] specifies read access to a
     ///vertex buffer as part of a drawing command, bound by
     ///[`CmdBindVertexBuffers`].
     ///Such access occurs in the
     ///`VK_PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT` pipeline stage.
-    const Access2VertexAttributeRead: Self = Self(4);
+    pub const ACCESS_2_VERTEX_ATTRIBUTE_READ: Self = Self(4);
     ///[`Access2UniformRead`] specifies read access to a
     ///[uniform buffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformbuffer) in any shader pipeline
     ///stage.
-    const Access2UniformRead: Self = Self(8);
+    pub const ACCESS_2_UNIFORM_READ: Self = Self(8);
     ///[`Access2InputAttachmentRead`] specifies read access to an
     ///[input attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass) within a render pass during
     ///subpass shading or
@@ -2523,7 +2525,7 @@ impl AccessFlags2 {
     ///Such access occurs in the
     ///`VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI` or
     ///`VK_PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT` pipeline stage.
-    const Access2InputAttachmentRead: Self = Self(16);
+    pub const ACCESS_2_INPUT_ATTACHMENT_READ: Self = Self(16);
     ///[`Access2ShaderRead`]
     ///specifies read access to a [shader binding
     ///table](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shader-binding-table) in any shader pipeline.
@@ -2532,10 +2534,10 @@ impl AccessFlags2 {
     /// - [`Access2UniformRead`]
     /// - [`Access2ShaderSampledRead`]
     /// - [`Access2ShaderStorageRead`]
-    const Access2ShaderRead: Self = Self(32);
+    pub const ACCESS_2_SHADER_READ: Self = Self(32);
     ///[`Access2ShaderWrite`] is equivalent to
     ///[`Access2ShaderStorageWrite`].
-    const Access2ShaderWrite: Self = Self(64);
+    pub const ACCESS_2_SHADER_WRITE: Self = Self(64);
     ///[`Access2ColorAttachmentRead`] specifies read access to a
     ///[color attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass), such as via [blending](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blending), [logic operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-logicop), or via certain
     ///[subpass load operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-load-store-ops).
@@ -2543,14 +2545,14 @@ impl AccessFlags2 {
     ///operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blend-advanced).
     ///Such access occurs in the
     ///`VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT` pipeline stage.
-    const Access2ColorAttachmentRead: Self = Self(128);
+    pub const ACCESS_2_COLOR_ATTACHMENT_READ: Self = Self(128);
     ///[`Access2ColorAttachmentWrite`] specifies write access to a
     ///[color, resolve, or depth/stencil resolve attachment](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#renderpass)
     ///during a [render pass](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass) or via certain
     ///[subpass load and store operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-load-store-ops).
     ///Such access occurs in the
     ///`VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT` pipeline stage.
-    const Access2ColorAttachmentWrite: Self = Self(256);
+    pub const ACCESS_2_COLOR_ATTACHMENT_WRITE: Self = Self(256);
     ///[`Access2DepthStencilAttachmentRead`] specifies read
     ///access to a [depth/stencil attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass), via
     ///[depth or stencil operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-ds-state) or via certain
@@ -2558,7 +2560,7 @@ impl AccessFlags2 {
     ///Such access occurs in the
     ///`VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT` or
     ///`VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT` pipeline stages.
-    const Access2DepthStencilAttachmentRead: Self = Self(512);
+    pub const ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ: Self = Self(512);
     ///[`Access2DepthStencilAttachmentWrite`] specifies write
     ///access to a [depth/stencil attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass), via
     ///[depth or stencil operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-ds-state) or via certain
@@ -2566,60 +2568,60 @@ impl AccessFlags2 {
     ///Such access occurs in the
     ///`VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT` or
     ///`VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT` pipeline stages.
-    const Access2DepthStencilAttachmentWrite: Self = Self(1024);
+    pub const ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE: Self = Self(1024);
     ///[`Access2TransferRead`] specifies read access to an image or
     ///buffer in a [copy](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies) operation.
     ///Such access occurs in the `VK_PIPELINE_STAGE_2_COPY_BIT`,
     ///`VK_PIPELINE_STAGE_2_BLIT_BIT`, or
     ///`VK_PIPELINE_STAGE_2_RESOLVE_BIT` pipeline stages.
-    const Access2TransferRead: Self = Self(2048);
+    pub const ACCESS_2_TRANSFER_READ: Self = Self(2048);
     ///[`Access2TransferWrite`] specifies write access to an image
     ///or buffer in a [clear](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#clears) or [copy](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies) operation.
     ///Such access occurs in the `VK_PIPELINE_STAGE_2_COPY_BIT`,
     ///`VK_PIPELINE_STAGE_2_BLIT_BIT`, `VK_PIPELINE_STAGE_2_CLEAR_BIT`,
     ///or `VK_PIPELINE_STAGE_2_RESOLVE_BIT` pipeline stages.
-    const Access2TransferWrite: Self = Self(4096);
+    pub const ACCESS_2_TRANSFER_WRITE: Self = Self(4096);
     ///[`Access2HostRead`] specifies read access by a host
     ///operation.
     ///Accesses of this type are not performed through a resource, but directly
     ///on memory.
     ///Such access occurs in the `VK_PIPELINE_STAGE_2_HOST_BIT` pipeline
     ///stage.
-    const Access2HostRead: Self = Self(8192);
+    pub const ACCESS_2_HOST_READ: Self = Self(8192);
     ///[`Access2HostWrite`] specifies write access by a host
     ///operation.
     ///Accesses of this type are not performed through a resource, but directly
     ///on memory.
     ///Such access occurs in the `VK_PIPELINE_STAGE_2_HOST_BIT` pipeline
     ///stage.
-    const Access2HostWrite: Self = Self(16384);
+    pub const ACCESS_2_HOST_WRITE: Self = Self(16384);
     ///[`Access2MemoryRead`] specifies all read accesses.
     ///It is always valid in any access mask, and is treated as equivalent to
     ///setting all `READ` access flags that are valid where it is used.
-    const Access2MemoryRead: Self = Self(32768);
+    pub const ACCESS_2_MEMORY_READ: Self = Self(32768);
     ///[`Access2MemoryWrite`] specifies all write accesses.
     ///It is always valid in any access mask, and is treated as equivalent to
     ///setting all `WRITE` access flags that are valid where it is used.
-    const Access2MemoryWrite: Self = Self(65536);
+    pub const ACCESS_2_MEMORY_WRITE: Self = Self(65536);
     ///[`Access2ShaderSampledRead`] specifies read access to a
     ///[uniform texel buffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformtexelbuffer) or
     ///[sampled image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sampledimage) in any shader pipeline
     ///stage.
-    const Access2ShaderSampledRead: Self = Self(4294967296);
+    pub const ACCESS_2_SHADER_SAMPLED_READ: Self = Self(4294967296);
     ///[`Access2ShaderStorageRead`] specifies read access to a
     ///[storage buffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagebuffer),
     ///[physical storage buffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-physical-storage-buffer),
     ///[storage texel buffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagetexelbuffer), or
     ///[storage image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage) in any shader pipeline
     ///stage.
-    const Access2ShaderStorageRead: Self = Self(8589934592);
+    pub const ACCESS_2_SHADER_STORAGE_READ: Self = Self(8589934592);
     ///[`Access2ShaderStorageWrite`] specifies write access to a
     ///[storage buffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagebuffer),
     ///[physical storage buffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-physical-storage-buffer),
     ///[storage texel buffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagetexelbuffer), or
     ///[storage image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage) in any shader pipeline
     ///stage.
-    const Access2ShaderStorageWrite: Self = Self(17179869184);
+    pub const ACCESS_2_SHADER_STORAGE_WRITE: Self = Self(17179869184);
     ///[`Access2VideoDecodeReadKhr`] specifies read access to an
     ///image or buffer resource as part of a [video
     ///decode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-decode-operations).
@@ -2627,14 +2629,14 @@ impl AccessFlags2 {
     ///pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_video_decode_queue`]
-    const Access2VideoDecodeReadKhr: Self = Self(34359738368);
+    pub const ACCESS_2_VIDEO_DECODE_READ_KHR: Self = Self(34359738368);
     ///[`Access2VideoDecodeWriteKhr`] specifies write access to
     ///an image or buffer resource as part of a [video decode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-decode-operations).
     ///Such access occurs in the `VK_PIPELINE_STAGE_2_VIDEO_DECODE_BIT_KHR`
     ///pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_video_decode_queue`]
-    const Access2VideoDecodeWriteKhr: Self = Self(68719476736);
+    pub const ACCESS_2_VIDEO_DECODE_WRITE_KHR: Self = Self(68719476736);
     ///[`Access2VideoEncodeReadKhr`] specifies read access to an
     ///image or buffer resource as part of a [video
     ///encode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations).
@@ -2642,14 +2644,14 @@ impl AccessFlags2 {
     ///pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_video_encode_queue`]
-    const Access2VideoEncodeReadKhr: Self = Self(137438953472);
+    pub const ACCESS_2_VIDEO_ENCODE_READ_KHR: Self = Self(137438953472);
     ///[`Access2VideoEncodeWriteKhr`] specifies write access to
     ///an image or buffer resource as part of a [video encode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations).
     ///Such access occurs in the `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
     ///pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_video_encode_queue`]
-    const Access2VideoEncodeWriteKhr: Self = Self(274877906944);
+    pub const ACCESS_2_VIDEO_ENCODE_WRITE_KHR: Self = Self(274877906944);
     ///[`Access2TransformFeedbackWriteExt`] specifies write
     ///access to a transform feedback buffer made when transform feedback is
     ///active.
@@ -2657,7 +2659,7 @@ impl AccessFlags2 {
     ///`VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const Access2TransformFeedbackWriteExt: Self = Self(33554432);
+    pub const ACCESS_2_TRANSFORM_FEEDBACK_WRITE_EXT: Self = Self(33554432);
     ///[`Access2TransformFeedbackCounterReadExt`] specifies read
     ///access to a transform feedback counter buffer which is read when
     ///[`CmdBeginTransformFeedbackEXT`] executes.
@@ -2665,7 +2667,7 @@ impl AccessFlags2 {
     ///`VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const Access2TransformFeedbackCounterReadExt: Self = Self(67108864);
+    pub const ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_READ_EXT: Self = Self(67108864);
     ///[`Access2TransformFeedbackCounterWriteExt`] specifies
     ///write access to a transform feedback counter buffer which is written
     ///when [`CmdEndTransformFeedbackEXT`] executes.
@@ -2673,28 +2675,28 @@ impl AccessFlags2 {
     ///`VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const Access2TransformFeedbackCounterWriteExt: Self = Self(134217728);
+    pub const ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT: Self = Self(134217728);
     ///[`Access2ConditionalRenderingReadExt`] specifies read
     ///access to a predicate as part of conditional rendering.
     ///Such access occurs in the
     ///`VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const Access2ConditionalRenderingReadExt: Self = Self(1048576);
+    pub const ACCESS_2_CONDITIONAL_RENDERING_READ_EXT: Self = Self(1048576);
     ///[`Access2CommandPreprocessReadNv`] specifies reads from
     ///buffer inputs to [`CmdPreprocessGeneratedCommandsNV`].
     ///Such access occurs in the
     ///`VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const Access2CommandPreprocessReadNv: Self = Self(131072);
+    pub const ACCESS_2_COMMAND_PREPROCESS_READ_NV: Self = Self(131072);
     ///[`Access2CommandPreprocessWriteNv`] specifies writes to
     ///the target command buffer preprocess outputs.
     ///Such access occurs in the
     ///`VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const Access2CommandPreprocessWriteNv: Self = Self(262144);
+    pub const ACCESS_2_COMMAND_PREPROCESS_WRITE_NV: Self = Self(262144);
     ///[`Access2FragmentShadingRateAttachmentReadKhr`]
     ///specifies read access to a fragment shading rate attachment during
     ///rasterization.
@@ -2703,7 +2705,7 @@ impl AccessFlags2 {
     ///pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const Access2FragmentShadingRateAttachmentReadKhr: Self = Self(8388608);
+    pub const ACCESS_2_FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR: Self = Self(8388608);
     ///[`Access2AccelerationStructureReadKhr`] specifies read
     ///access to an acceleration structure as part of a trace, build, or copy
     ///command, or to an [acceleration
@@ -2714,7 +2716,7 @@ impl AccessFlags2 {
     ///stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const Access2AccelerationStructureReadKhr: Self = Self(2097152);
+    pub const ACCESS_2_ACCELERATION_STRUCTURE_READ_KHR: Self = Self(2097152);
     ///[`Access2AccelerationStructureWriteKhr`] specifies write
     ///access to an acceleration structure or [acceleration structure scratch buffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-scratch) as part of a build or copy
     ///command.
@@ -2723,7 +2725,7 @@ impl AccessFlags2 {
     ///stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const Access2AccelerationStructureWriteKhr: Self = Self(4194304);
+    pub const ACCESS_2_ACCELERATION_STRUCTURE_WRITE_KHR: Self = Self(4194304);
     ///[`Access2FragmentDensityMapReadExt`] specifies read
     ///access to a [fragment density
     ///map attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-fragmentdensitymapattachment) during dynamic [fragment
@@ -2733,7 +2735,7 @@ impl AccessFlags2 {
     ///stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const Access2FragmentDensityMapReadExt: Self = Self(16777216);
+    pub const ACCESS_2_FRAGMENT_DENSITY_MAP_READ_EXT: Self = Self(16777216);
     ///[`Access2ColorAttachmentReadNoncoherentExt`] specifies
     ///read access to [color attachments](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass), including
     ///[advanced blend operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blend-advanced).
@@ -2741,21 +2743,21 @@ impl AccessFlags2 {
     ///`VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const Access2ColorAttachmentReadNoncoherentExt: Self = Self(524288);
+    pub const ACCESS_2_COLOR_ATTACHMENT_READ_NONCOHERENT_EXT: Self = Self(524288);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::amd_extension_317`]
-    const Access2Reserved41Amd: Self = Self(2199023255552);
+    pub const ACCESS_2_RESERVED_41_AMD: Self = Self(2199023255552);
     ///[`Access2InvocationMaskReadHuawei`] specifies read access
     ///to a invocation mask image in the
     ///`VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI` pipeline stage.
     ///
     ///Provided by [`crate::extensions::huawei_invocation_mask`]
-    const Access2InvocationMaskReadHuawei: Self = Self(549755813888);
+    pub const ACCESS_2_INVOCATION_MASK_READ_HUAWEI: Self = Self(549755813888);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_extension_387`]
-    const Access2Reserved387Khr: Self = Self(1099511627776);
+    pub const ACCESS_2_RESERVED_387_KHR: Self = Self(1099511627776);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2765,45 +2767,45 @@ impl AccessFlags2 {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::Access2None
-            | Self::Access2IndirectCommandRead
-            | Self::Access2IndexRead
-            | Self::Access2VertexAttributeRead
-            | Self::Access2UniformRead
-            | Self::Access2InputAttachmentRead
-            | Self::Access2ShaderRead
-            | Self::Access2ShaderWrite
-            | Self::Access2ColorAttachmentRead
-            | Self::Access2ColorAttachmentWrite
-            | Self::Access2DepthStencilAttachmentRead
-            | Self::Access2DepthStencilAttachmentWrite
-            | Self::Access2TransferRead
-            | Self::Access2TransferWrite
-            | Self::Access2HostRead
-            | Self::Access2HostWrite
-            | Self::Access2MemoryRead
-            | Self::Access2MemoryWrite
-            | Self::Access2ShaderSampledRead
-            | Self::Access2ShaderStorageRead
-            | Self::Access2ShaderStorageWrite
-            | Self::Access2VideoDecodeReadKhr
-            | Self::Access2VideoDecodeWriteKhr
-            | Self::Access2VideoEncodeReadKhr
-            | Self::Access2VideoEncodeWriteKhr
-            | Self::Access2TransformFeedbackWriteExt
-            | Self::Access2TransformFeedbackCounterReadExt
-            | Self::Access2TransformFeedbackCounterWriteExt
-            | Self::Access2ConditionalRenderingReadExt
-            | Self::Access2CommandPreprocessReadNv
-            | Self::Access2CommandPreprocessWriteNv
-            | Self::Access2FragmentShadingRateAttachmentReadKhr
-            | Self::Access2AccelerationStructureReadKhr
-            | Self::Access2AccelerationStructureWriteKhr
-            | Self::Access2FragmentDensityMapReadExt
-            | Self::Access2ColorAttachmentReadNoncoherentExt
-            | Self::Access2Reserved41Amd
-            | Self::Access2InvocationMaskReadHuawei
-            | Self::Access2Reserved387Khr
+            | Self::ACCESS_2_NONE
+            | Self::ACCESS_2_INDIRECT_COMMAND_READ
+            | Self::ACCESS_2_INDEX_READ
+            | Self::ACCESS_2_VERTEX_ATTRIBUTE_READ
+            | Self::ACCESS_2_UNIFORM_READ
+            | Self::ACCESS_2_INPUT_ATTACHMENT_READ
+            | Self::ACCESS_2_SHADER_READ
+            | Self::ACCESS_2_SHADER_WRITE
+            | Self::ACCESS_2_COLOR_ATTACHMENT_READ
+            | Self::ACCESS_2_COLOR_ATTACHMENT_WRITE
+            | Self::ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ
+            | Self::ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE
+            | Self::ACCESS_2_TRANSFER_READ
+            | Self::ACCESS_2_TRANSFER_WRITE
+            | Self::ACCESS_2_HOST_READ
+            | Self::ACCESS_2_HOST_WRITE
+            | Self::ACCESS_2_MEMORY_READ
+            | Self::ACCESS_2_MEMORY_WRITE
+            | Self::ACCESS_2_SHADER_SAMPLED_READ
+            | Self::ACCESS_2_SHADER_STORAGE_READ
+            | Self::ACCESS_2_SHADER_STORAGE_WRITE
+            | Self::ACCESS_2_VIDEO_DECODE_READ_KHR
+            | Self::ACCESS_2_VIDEO_DECODE_WRITE_KHR
+            | Self::ACCESS_2_VIDEO_ENCODE_READ_KHR
+            | Self::ACCESS_2_VIDEO_ENCODE_WRITE_KHR
+            | Self::ACCESS_2_TRANSFORM_FEEDBACK_WRITE_EXT
+            | Self::ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_READ_EXT
+            | Self::ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT
+            | Self::ACCESS_2_CONDITIONAL_RENDERING_READ_EXT
+            | Self::ACCESS_2_COMMAND_PREPROCESS_READ_NV
+            | Self::ACCESS_2_COMMAND_PREPROCESS_WRITE_NV
+            | Self::ACCESS_2_FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR
+            | Self::ACCESS_2_ACCELERATION_STRUCTURE_READ_KHR
+            | Self::ACCESS_2_ACCELERATION_STRUCTURE_WRITE_KHR
+            | Self::ACCESS_2_FRAGMENT_DENSITY_MAP_READ_EXT
+            | Self::ACCESS_2_COLOR_ATTACHMENT_READ_NONCOHERENT_EXT
+            | Self::ACCESS_2_RESERVED_41_AMD
+            | Self::ACCESS_2_INVOCATION_MASK_READ_HUAWEI
+            | Self::ACCESS_2_RESERVED_387_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -2965,31 +2967,31 @@ impl const std::ops::Not for AccessFlags2 {
         self.complement()
     }
 }
-impl std::iter::Extend<AccessFlags2> for AccessFlags2 {
-    fn extend<T: std::iter::IntoIterator<Item = AccessFlags2>>(&mut self, iterator: T) {
+impl Extend<AccessFlags2> for AccessFlags2 {
+    fn extend<T: IntoIterator<Item = AccessFlags2>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<AccessFlagBits2> for AccessFlags2 {
-    fn extend<T: std::iter::IntoIterator<Item = AccessFlagBits2>>(&mut self, iterator: T) {
+impl Extend<AccessFlagBits2> for AccessFlags2 {
+    fn extend<T: IntoIterator<Item = AccessFlagBits2>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(AccessFlags2::from(i));
+            Self::insert(self, <Self as From<AccessFlagBits2>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<AccessFlags2> for AccessFlags2 {
-    fn from_iter<T: std::iter::IntoIterator<Item = AccessFlags2>>(iterator: T) -> AccessFlags2 {
-        let mut out = AccessFlags2::empty();
-        out.extend(iterator);
+impl FromIterator<AccessFlags2> for AccessFlags2 {
+    fn from_iter<T: IntoIterator<Item = AccessFlags2>>(iterator: T) -> AccessFlags2 {
+        let mut out = Self::empty();
+        <Self as Extend<AccessFlags2>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<AccessFlagBits2> for AccessFlags2 {
-    fn from_iter<T: std::iter::IntoIterator<Item = AccessFlagBits2>>(iterator: T) -> AccessFlags2 {
-        let mut out = AccessFlags2::empty();
-        out.extend(iterator);
+impl FromIterator<AccessFlagBits2> for AccessFlags2 {
+    fn from_iter<T: IntoIterator<Item = AccessFlagBits2>>(iterator: T) -> AccessFlags2 {
+        let mut out = Self::empty();
+        <Self as Extend<AccessFlagBits2>>::extend(&mut out, iterator);
         out
     }
 }
@@ -3002,281 +3004,290 @@ impl std::fmt::Debug for AccessFlags2 {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(AccessFlags2::Access2None) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_NONE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2None))?;
+                        f.write_str(stringify!(ACCESS_2_NONE))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2IndirectCommandRead) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_INDIRECT_COMMAND_READ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2IndirectCommandRead))?;
+                        f.write_str(stringify!(ACCESS_2_INDIRECT_COMMAND_READ))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2IndexRead) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_INDEX_READ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2IndexRead))?;
+                        f.write_str(stringify!(ACCESS_2_INDEX_READ))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2VertexAttributeRead) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_VERTEX_ATTRIBUTE_READ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2VertexAttributeRead))?;
+                        f.write_str(stringify!(ACCESS_2_VERTEX_ATTRIBUTE_READ))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2UniformRead) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_UNIFORM_READ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2UniformRead))?;
+                        f.write_str(stringify!(ACCESS_2_UNIFORM_READ))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2InputAttachmentRead) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_INPUT_ATTACHMENT_READ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2InputAttachmentRead))?;
+                        f.write_str(stringify!(ACCESS_2_INPUT_ATTACHMENT_READ))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2ShaderRead) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_SHADER_READ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2ShaderRead))?;
+                        f.write_str(stringify!(ACCESS_2_SHADER_READ))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2ShaderWrite) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_SHADER_WRITE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2ShaderWrite))?;
+                        f.write_str(stringify!(ACCESS_2_SHADER_WRITE))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2ColorAttachmentRead) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_COLOR_ATTACHMENT_READ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2ColorAttachmentRead))?;
+                        f.write_str(stringify!(ACCESS_2_COLOR_ATTACHMENT_READ))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2ColorAttachmentWrite) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_COLOR_ATTACHMENT_WRITE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2ColorAttachmentWrite))?;
+                        f.write_str(stringify!(ACCESS_2_COLOR_ATTACHMENT_WRITE))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2DepthStencilAttachmentRead) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2DepthStencilAttachmentRead))?;
+                        f.write_str(stringify!(ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2DepthStencilAttachmentWrite) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2DepthStencilAttachmentWrite))?;
+                        f.write_str(stringify!(ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2TransferRead) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_TRANSFER_READ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2TransferRead))?;
+                        f.write_str(stringify!(ACCESS_2_TRANSFER_READ))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2TransferWrite) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_TRANSFER_WRITE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2TransferWrite))?;
+                        f.write_str(stringify!(ACCESS_2_TRANSFER_WRITE))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2HostRead) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_HOST_READ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2HostRead))?;
+                        f.write_str(stringify!(ACCESS_2_HOST_READ))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2HostWrite) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_HOST_WRITE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2HostWrite))?;
+                        f.write_str(stringify!(ACCESS_2_HOST_WRITE))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2MemoryRead) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_MEMORY_READ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2MemoryRead))?;
+                        f.write_str(stringify!(ACCESS_2_MEMORY_READ))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2MemoryWrite) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_MEMORY_WRITE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2MemoryWrite))?;
+                        f.write_str(stringify!(ACCESS_2_MEMORY_WRITE))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2ShaderSampledRead) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_SHADER_SAMPLED_READ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2ShaderSampledRead))?;
+                        f.write_str(stringify!(ACCESS_2_SHADER_SAMPLED_READ))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2ShaderStorageRead) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_SHADER_STORAGE_READ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2ShaderStorageRead))?;
+                        f.write_str(stringify!(ACCESS_2_SHADER_STORAGE_READ))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2ShaderStorageWrite) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_SHADER_STORAGE_WRITE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2ShaderStorageWrite))?;
+                        f.write_str(stringify!(ACCESS_2_SHADER_STORAGE_WRITE))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2VideoDecodeReadKhr) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_VIDEO_DECODE_READ_KHR) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2VideoDecodeReadKhr))?;
+                        f.write_str(stringify!(ACCESS_2_VIDEO_DECODE_READ_KHR))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2VideoDecodeWriteKhr) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_VIDEO_DECODE_WRITE_KHR) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2VideoDecodeWriteKhr))?;
+                        f.write_str(stringify!(ACCESS_2_VIDEO_DECODE_WRITE_KHR))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2VideoEncodeReadKhr) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_VIDEO_ENCODE_READ_KHR) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2VideoEncodeReadKhr))?;
+                        f.write_str(stringify!(ACCESS_2_VIDEO_ENCODE_READ_KHR))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2VideoEncodeWriteKhr) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_VIDEO_ENCODE_WRITE_KHR) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2VideoEncodeWriteKhr))?;
+                        f.write_str(stringify!(ACCESS_2_VIDEO_ENCODE_WRITE_KHR))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2TransformFeedbackWriteExt) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_TRANSFORM_FEEDBACK_WRITE_EXT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2TransformFeedbackWriteExt))?;
-                    }
-                    if self.0.contains(AccessFlags2::Access2TransformFeedbackCounterReadExt) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(Access2TransformFeedbackCounterReadExt))?;
-                    }
-                    if self.0.contains(AccessFlags2::Access2TransformFeedbackCounterWriteExt) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(Access2TransformFeedbackCounterWriteExt))?;
-                    }
-                    if self.0.contains(AccessFlags2::Access2ConditionalRenderingReadExt) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(Access2ConditionalRenderingReadExt))?;
-                    }
-                    if self.0.contains(AccessFlags2::Access2CommandPreprocessReadNv) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(Access2CommandPreprocessReadNv))?;
-                    }
-                    if self.0.contains(AccessFlags2::Access2CommandPreprocessWriteNv) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(Access2CommandPreprocessWriteNv))?;
+                        f.write_str(stringify!(ACCESS_2_TRANSFORM_FEEDBACK_WRITE_EXT))?;
                     }
                     if self
                         .0
-                        .contains(AccessFlags2::Access2FragmentShadingRateAttachmentReadKhr)
+                        .contains(AccessFlags2::ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_READ_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2FragmentShadingRateAttachmentReadKhr))?;
+                        f.write_str(stringify!(ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_READ_EXT))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2AccelerationStructureReadKhr) {
+                    if self
+                        .0
+                        .contains(AccessFlags2::ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT)
+                    {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2AccelerationStructureReadKhr))?;
+                        f.write_str(stringify!(ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2AccelerationStructureWriteKhr) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_CONDITIONAL_RENDERING_READ_EXT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2AccelerationStructureWriteKhr))?;
+                        f.write_str(stringify!(ACCESS_2_CONDITIONAL_RENDERING_READ_EXT))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2FragmentDensityMapReadExt) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_COMMAND_PREPROCESS_READ_NV) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2FragmentDensityMapReadExt))?;
+                        f.write_str(stringify!(ACCESS_2_COMMAND_PREPROCESS_READ_NV))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2ColorAttachmentReadNoncoherentExt) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_COMMAND_PREPROCESS_WRITE_NV) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2ColorAttachmentReadNoncoherentExt))?;
+                        f.write_str(stringify!(ACCESS_2_COMMAND_PREPROCESS_WRITE_NV))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2Reserved41Amd) {
+                    if self
+                        .0
+                        .contains(AccessFlags2::ACCESS_2_FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR)
+                    {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2Reserved41Amd))?;
+                        f.write_str(stringify!(ACCESS_2_FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2InvocationMaskReadHuawei) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_ACCELERATION_STRUCTURE_READ_KHR) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2InvocationMaskReadHuawei))?;
+                        f.write_str(stringify!(ACCESS_2_ACCELERATION_STRUCTURE_READ_KHR))?;
                     }
-                    if self.0.contains(AccessFlags2::Access2Reserved387Khr) {
+                    if self.0.contains(AccessFlags2::ACCESS_2_ACCELERATION_STRUCTURE_WRITE_KHR) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Access2Reserved387Khr))?;
+                        f.write_str(stringify!(ACCESS_2_ACCELERATION_STRUCTURE_WRITE_KHR))?;
+                    }
+                    if self.0.contains(AccessFlags2::ACCESS_2_FRAGMENT_DENSITY_MAP_READ_EXT) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ACCESS_2_FRAGMENT_DENSITY_MAP_READ_EXT))?;
+                    }
+                    if self
+                        .0
+                        .contains(AccessFlags2::ACCESS_2_COLOR_ATTACHMENT_READ_NONCOHERENT_EXT)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ACCESS_2_COLOR_ATTACHMENT_READ_NONCOHERENT_EXT))?;
+                    }
+                    if self.0.contains(AccessFlags2::ACCESS_2_RESERVED_41_AMD) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ACCESS_2_RESERVED_41_AMD))?;
+                    }
+                    if self.0.contains(AccessFlags2::ACCESS_2_INVOCATION_MASK_READ_HUAWEI) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ACCESS_2_INVOCATION_MASK_READ_HUAWEI))?;
+                    }
+                    if self.0.contains(AccessFlags2::ACCESS_2_RESERVED_387_KHR) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(ACCESS_2_RESERVED_387_KHR))?;
                     }
                 }
                 Ok(())
@@ -3500,7 +3511,7 @@ impl std::fmt::Debug for AccessFlags2 {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineStageFlags2")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -3517,49 +3528,49 @@ impl From<PipelineStageFlagBits2> for PipelineStageFlags2 {
 }
 impl PipelineStageFlags2 {
     ///[`PipelineStage2None`] specifies no stages of execution.
-    const PipelineStage2None: Self = Self(0);
+    pub const PIPELINE_STAGE_2_NONE: Self = Self(0);
     ///[`PipelineStage2TopOfPipe`] is equivalent to
     ///[`PipelineStage2AllCommands`] with [`AccessFlags2`] set
     ///to `0` when specified in the second synchronization scope, but
     ///equivalent to [`PipelineStage2None`] in the first scope.
-    const PipelineStage2TopOfPipe: Self = Self(1);
+    pub const PIPELINE_STAGE_2_TOP_OF_PIPE: Self = Self(1);
     ///[`PipelineStage2DrawIndirect`] specifies the stage of the
     ///pipeline where indirect command parameters are consumed.
     ///This stage also includes reading commands written by
     ///[`CmdPreprocessGeneratedCommandsNV`].
-    const PipelineStage2DrawIndirect: Self = Self(2);
+    pub const PIPELINE_STAGE_2_DRAW_INDIRECT: Self = Self(2);
     ///[`PipelineStage2VertexInput`] is equivalent to the logical
     ///OR of:
     /// - [`PipelineStage2IndexInput`]
     /// - [`PipelineStage2VertexAttributeInput`]
-    const PipelineStage2VertexInput: Self = Self(4);
+    pub const PIPELINE_STAGE_2_VERTEX_INPUT: Self = Self(4);
     ///[`PipelineStage2VertexShader`] specifies the vertex shader
     ///stage.
-    const PipelineStage2VertexShader: Self = Self(8);
+    pub const PIPELINE_STAGE_2_VERTEX_SHADER: Self = Self(8);
     ///[`PipelineStage2TessellationControlShader`] specifies the
     ///tessellation control shader stage.
-    const PipelineStage2TessellationControlShader: Self = Self(16);
+    pub const PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER: Self = Self(16);
     ///[`PipelineStage2TessellationEvaluationShader`] specifies
     ///the tessellation evaluation shader stage.
-    const PipelineStage2TessellationEvaluationShader: Self = Self(32);
+    pub const PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER: Self = Self(32);
     ///[`PipelineStage2GeometryShader`] specifies the geometry
     ///shader stage.
-    const PipelineStage2GeometryShader: Self = Self(64);
+    pub const PIPELINE_STAGE_2_GEOMETRY_SHADER: Self = Self(64);
     ///[`PipelineStage2FragmentShader`] specifies the fragment
     ///shader stage.
-    const PipelineStage2FragmentShader: Self = Self(128);
+    pub const PIPELINE_STAGE_2_FRAGMENT_SHADER: Self = Self(128);
     ///[`PipelineStage2EarlyFragmentTests`] specifies the stage
     ///of the pipeline where early fragment tests (depth and stencil tests
     ///before fragment shading) are performed.
     ///This stage also includes [subpass load
     ///operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-load-store-ops) for framebuffer attachments with a depth/stencil format.
-    const PipelineStage2EarlyFragmentTests: Self = Self(256);
+    pub const PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS: Self = Self(256);
     ///[`PipelineStage2LateFragmentTests`] specifies the stage of
     ///the pipeline where late fragment tests (depth and stencil tests after
     ///fragment shading) are performed.
     ///This stage also includes [subpass store
     ///operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-load-store-ops) for framebuffer attachments with a depth/stencil format.
-    const PipelineStage2LateFragmentTests: Self = Self(512);
+    pub const PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS: Self = Self(512);
     ///[`PipelineStage2ColorAttachmentOutput`] specifies the
     ///stage of the pipeline after blending where the final color values are
     ///output from the pipeline.
@@ -3568,26 +3579,26 @@ impl PipelineStageFlags2 {
     ///attachments with a color
     ///or depth/stencil
     ///format.
-    const PipelineStage2ColorAttachmentOutput: Self = Self(1024);
+    pub const PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT: Self = Self(1024);
     ///[`PipelineStage2ComputeShader`] specifies the compute
     ///shader stage.
-    const PipelineStage2ComputeShader: Self = Self(2048);
+    pub const PIPELINE_STAGE_2_COMPUTE_SHADER: Self = Self(2048);
     ///[`PipelineStage2AllTransfer`] is equivalent to specifying
     ///all of:
     /// - [`PipelineStage2Copy`]
     /// - [`PipelineStage2Blit`]
     /// - [`PipelineStage2Resolve`]
     /// - [`PipelineStage2Clear`]
-    const PipelineStage2AllTransfer: Self = Self(4096);
+    pub const PIPELINE_STAGE_2_ALL_TRANSFER: Self = Self(4096);
     ///[`PipelineStage2BottomOfPipe`] is equivalent to
     ///[`PipelineStage2AllCommands`] with [`AccessFlags2`] set
     ///to `0` when specified in the first synchronization scope, but equivalent
     ///to [`PipelineStage2None`] in the second scope.
-    const PipelineStage2BottomOfPipe: Self = Self(8192);
+    pub const PIPELINE_STAGE_2_BOTTOM_OF_PIPE: Self = Self(8192);
     ///[`PipelineStage2Host`] specifies a pseudo-stage indicating
     ///execution on the host of reads/writes of device memory.
     ///This stage is not invoked by any commands recorded in a command buffer.
-    const PipelineStage2Host: Self = Self(16384);
+    pub const PIPELINE_STAGE_2_HOST: Self = Self(16384);
     ///[`PipelineStage2AllGraphics`] specifies the execution of
     ///all graphics pipeline stages, and is equivalent to the logical OR of:
     /// - [`PipelineStage2DrawIndirect`]
@@ -3607,29 +3618,29 @@ impl PipelineStageFlags2 {
     /// - [`PipelineStage2ShadingRateImageNv`]
     /// - [`PipelineStage2FragmentDensityProcessExt`]
     /// - [`PipelineStage2InvocationMaskHuawei`]
-    const PipelineStage2AllGraphics: Self = Self(32768);
+    pub const PIPELINE_STAGE_2_ALL_GRAPHICS: Self = Self(32768);
     ///[`PipelineStage2AllCommands`] specifies all operations
     ///performed by all commands supported on the queue it is used with.
-    const PipelineStage2AllCommands: Self = Self(65536);
+    pub const PIPELINE_STAGE_2_ALL_COMMANDS: Self = Self(65536);
     ///[`PipelineStage2Copy`] specifies the execution of all
     ///[copy commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies), including [`CmdCopyQueryPoolResults`].
-    const PipelineStage2Copy: Self = Self(4294967296);
+    pub const PIPELINE_STAGE_2_COPY: Self = Self(4294967296);
     ///[`PipelineStage2Resolve`] specifies the execution of
     ///[`CmdResolveImage`].
-    const PipelineStage2Resolve: Self = Self(8589934592);
+    pub const PIPELINE_STAGE_2_RESOLVE: Self = Self(8589934592);
     ///[`PipelineStage2Blit`] specifies the execution of
     ///[`CmdBlitImage`].
-    const PipelineStage2Blit: Self = Self(17179869184);
+    pub const PIPELINE_STAGE_2_BLIT: Self = Self(17179869184);
     ///[`PipelineStage2Clear`] specifies the execution of
     ///[clear commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#clears), with the exception of
     ///[`CmdClearAttachments`].
-    const PipelineStage2Clear: Self = Self(34359738368);
+    pub const PIPELINE_STAGE_2_CLEAR: Self = Self(34359738368);
     ///[`PipelineStage2IndexInput`] specifies the stage of the
     ///pipeline where index buffers are consumed.
-    const PipelineStage2IndexInput: Self = Self(68719476736);
+    pub const PIPELINE_STAGE_2_INDEX_INPUT: Self = Self(68719476736);
     ///[`PipelineStage2VertexAttributeInput`] specifies the stage
     ///of the pipeline where vertex buffers are consumed.
-    const PipelineStage2VertexAttributeInput: Self = Self(137438953472);
+    pub const PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT: Self = Self(137438953472);
     ///[`PipelineStage2PreRasterizationShaders`] is equivalent to
     ///specifying all supported
     ///[pre-rasterization shader
@@ -3640,33 +3651,33 @@ impl PipelineStageFlags2 {
     /// - [`PipelineStage2GeometryShader`]
     /// - [`PipelineStage2TaskShaderNv`]
     /// - [`PipelineStage2MeshShaderNv`]
-    const PipelineStage2PreRasterizationShaders: Self = Self(274877906944);
+    pub const PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS: Self = Self(274877906944);
     ///[`PipelineStage2VideoDecodeKhr`] specifies the stage of
     ///the pipeline where [video decode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-decode-operations)
     ///are performed.
     ///
     ///Provided by [`crate::extensions::khr_video_decode_queue`]
-    const PipelineStage2VideoDecodeKhr: Self = Self(67108864);
+    pub const PIPELINE_STAGE_2_VIDEO_DECODE_KHR: Self = Self(67108864);
     ///[`PipelineStage2VideoEncodeKhr`] specifies the stage of
     ///the pipeline where [video encode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations)
     ///are performed.
     ///
     ///Provided by [`crate::extensions::khr_video_encode_queue`]
-    const PipelineStage2VideoEncodeKhr: Self = Self(134217728);
+    pub const PIPELINE_STAGE_2_VIDEO_ENCODE_KHR: Self = Self(134217728);
     ///[`PipelineStage2TransformFeedbackExt`]
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const PipelineStage2TransformFeedbackExt: Self = Self(16777216);
+    pub const PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_EXT: Self = Self(16777216);
     ///[`PipelineStage2ConditionalRenderingExt`]
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const PipelineStage2ConditionalRenderingExt: Self = Self(262144);
+    pub const PIPELINE_STAGE_2_CONDITIONAL_RENDERING_EXT: Self = Self(262144);
     ///[`PipelineStage2CommandPreprocessNv`] specifies the stage
     ///of the pipeline where device-side generation of commands via
     ///[`CmdPreprocessGeneratedCommandsNV`] is handled.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const PipelineStage2CommandPreprocessNv: Self = Self(131072);
+    pub const PIPELINE_STAGE_2_COMMAND_PREPROCESS_NV: Self = Self(131072);
     ///[`PipelineStage2FragmentShadingRateAttachmentKhr`]
     ///    specifies the stage of the pipeline where the
     ///    [fragment shading rate
@@ -3677,45 +3688,45 @@ impl PipelineStageFlags2 {
     ///    rasterized primitive.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const PipelineStage2FragmentShadingRateAttachmentKhr: Self = Self(4194304);
+    pub const PIPELINE_STAGE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(4194304);
     ///[`PipelineStage2AccelerationStructureBuildKhr`] specifies
     ///the execution of [acceleration structure
     ///commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure).
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const PipelineStage2AccelerationStructureBuildKhr: Self = Self(33554432);
+    pub const PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_KHR: Self = Self(33554432);
     ///[`PipelineStage2RayTracingShaderKhr`] specifies the
     ///execution of the ray tracing shader stages.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const PipelineStage2RayTracingShaderKhr: Self = Self(2097152);
+    pub const PIPELINE_STAGE_2_RAY_TRACING_SHADER_KHR: Self = Self(2097152);
     ///[`PipelineStage2FragmentDensityProcessExt`]
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const PipelineStage2FragmentDensityProcessExt: Self = Self(8388608);
+    pub const PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_EXT: Self = Self(8388608);
     ///[`PipelineStage2TaskShaderNv`] specifies the task shader
     ///stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const PipelineStage2TaskShaderNv: Self = Self(524288);
+    pub const PIPELINE_STAGE_2_TASK_SHADER_NV: Self = Self(524288);
     ///[`PipelineStage2MeshShaderNv`] specifies the mesh shader
     ///stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
-    const PipelineStage2MeshShaderNv: Self = Self(1048576);
+    pub const PIPELINE_STAGE_2_MESH_SHADER_NV: Self = Self(1048576);
     ///[`PipelineStage2SubpassShadingHuawei`] specifies the
     ///subpass shading shader stage.
     ///
     ///Provided by [`crate::extensions::huawei_subpass_shading`]
-    const PipelineStage2SubpassShadingHuawei: Self = Self(549755813888);
+    pub const PIPELINE_STAGE_2_SUBPASS_SHADING_HUAWEI: Self = Self(549755813888);
     ///[`PipelineStage2InvocationMaskHuawei`]
     ///
     ///Provided by [`crate::extensions::huawei_invocation_mask`]
-    const PipelineStage2InvocationMaskHuawei: Self = Self(1099511627776);
+    pub const PIPELINE_STAGE_2_INVOCATION_MASK_HUAWEI: Self = Self(1099511627776);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_extension_387`]
-    const PipelineStage2Reserved387Khr: Self = Self(268435456);
+    pub const PIPELINE_STAGE_2_RESERVED_387_KHR: Self = Self(268435456);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -3725,45 +3736,45 @@ impl PipelineStageFlags2 {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::PipelineStage2None
-            | Self::PipelineStage2TopOfPipe
-            | Self::PipelineStage2DrawIndirect
-            | Self::PipelineStage2VertexInput
-            | Self::PipelineStage2VertexShader
-            | Self::PipelineStage2TessellationControlShader
-            | Self::PipelineStage2TessellationEvaluationShader
-            | Self::PipelineStage2GeometryShader
-            | Self::PipelineStage2FragmentShader
-            | Self::PipelineStage2EarlyFragmentTests
-            | Self::PipelineStage2LateFragmentTests
-            | Self::PipelineStage2ColorAttachmentOutput
-            | Self::PipelineStage2ComputeShader
-            | Self::PipelineStage2AllTransfer
-            | Self::PipelineStage2BottomOfPipe
-            | Self::PipelineStage2Host
-            | Self::PipelineStage2AllGraphics
-            | Self::PipelineStage2AllCommands
-            | Self::PipelineStage2Copy
-            | Self::PipelineStage2Resolve
-            | Self::PipelineStage2Blit
-            | Self::PipelineStage2Clear
-            | Self::PipelineStage2IndexInput
-            | Self::PipelineStage2VertexAttributeInput
-            | Self::PipelineStage2PreRasterizationShaders
-            | Self::PipelineStage2VideoDecodeKhr
-            | Self::PipelineStage2VideoEncodeKhr
-            | Self::PipelineStage2TransformFeedbackExt
-            | Self::PipelineStage2ConditionalRenderingExt
-            | Self::PipelineStage2CommandPreprocessNv
-            | Self::PipelineStage2FragmentShadingRateAttachmentKhr
-            | Self::PipelineStage2AccelerationStructureBuildKhr
-            | Self::PipelineStage2RayTracingShaderKhr
-            | Self::PipelineStage2FragmentDensityProcessExt
-            | Self::PipelineStage2TaskShaderNv
-            | Self::PipelineStage2MeshShaderNv
-            | Self::PipelineStage2SubpassShadingHuawei
-            | Self::PipelineStage2InvocationMaskHuawei
-            | Self::PipelineStage2Reserved387Khr
+            | Self::PIPELINE_STAGE_2_NONE
+            | Self::PIPELINE_STAGE_2_TOP_OF_PIPE
+            | Self::PIPELINE_STAGE_2_DRAW_INDIRECT
+            | Self::PIPELINE_STAGE_2_VERTEX_INPUT
+            | Self::PIPELINE_STAGE_2_VERTEX_SHADER
+            | Self::PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER
+            | Self::PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER
+            | Self::PIPELINE_STAGE_2_GEOMETRY_SHADER
+            | Self::PIPELINE_STAGE_2_FRAGMENT_SHADER
+            | Self::PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS
+            | Self::PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS
+            | Self::PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT
+            | Self::PIPELINE_STAGE_2_COMPUTE_SHADER
+            | Self::PIPELINE_STAGE_2_ALL_TRANSFER
+            | Self::PIPELINE_STAGE_2_BOTTOM_OF_PIPE
+            | Self::PIPELINE_STAGE_2_HOST
+            | Self::PIPELINE_STAGE_2_ALL_GRAPHICS
+            | Self::PIPELINE_STAGE_2_ALL_COMMANDS
+            | Self::PIPELINE_STAGE_2_COPY
+            | Self::PIPELINE_STAGE_2_RESOLVE
+            | Self::PIPELINE_STAGE_2_BLIT
+            | Self::PIPELINE_STAGE_2_CLEAR
+            | Self::PIPELINE_STAGE_2_INDEX_INPUT
+            | Self::PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT
+            | Self::PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS
+            | Self::PIPELINE_STAGE_2_VIDEO_DECODE_KHR
+            | Self::PIPELINE_STAGE_2_VIDEO_ENCODE_KHR
+            | Self::PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_EXT
+            | Self::PIPELINE_STAGE_2_CONDITIONAL_RENDERING_EXT
+            | Self::PIPELINE_STAGE_2_COMMAND_PREPROCESS_NV
+            | Self::PIPELINE_STAGE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR
+            | Self::PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_KHR
+            | Self::PIPELINE_STAGE_2_RAY_TRACING_SHADER_KHR
+            | Self::PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_EXT
+            | Self::PIPELINE_STAGE_2_TASK_SHADER_NV
+            | Self::PIPELINE_STAGE_2_MESH_SHADER_NV
+            | Self::PIPELINE_STAGE_2_SUBPASS_SHADING_HUAWEI
+            | Self::PIPELINE_STAGE_2_INVOCATION_MASK_HUAWEI
+            | Self::PIPELINE_STAGE_2_RESERVED_387_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -3925,31 +3936,31 @@ impl const std::ops::Not for PipelineStageFlags2 {
         self.complement()
     }
 }
-impl std::iter::Extend<PipelineStageFlags2> for PipelineStageFlags2 {
-    fn extend<T: std::iter::IntoIterator<Item = PipelineStageFlags2>>(&mut self, iterator: T) {
+impl Extend<PipelineStageFlags2> for PipelineStageFlags2 {
+    fn extend<T: IntoIterator<Item = PipelineStageFlags2>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<PipelineStageFlagBits2> for PipelineStageFlags2 {
-    fn extend<T: std::iter::IntoIterator<Item = PipelineStageFlagBits2>>(&mut self, iterator: T) {
+impl Extend<PipelineStageFlagBits2> for PipelineStageFlags2 {
+    fn extend<T: IntoIterator<Item = PipelineStageFlagBits2>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(PipelineStageFlags2::from(i));
+            Self::insert(self, <Self as From<PipelineStageFlagBits2>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<PipelineStageFlags2> for PipelineStageFlags2 {
-    fn from_iter<T: std::iter::IntoIterator<Item = PipelineStageFlags2>>(iterator: T) -> PipelineStageFlags2 {
-        let mut out = PipelineStageFlags2::empty();
-        out.extend(iterator);
+impl FromIterator<PipelineStageFlags2> for PipelineStageFlags2 {
+    fn from_iter<T: IntoIterator<Item = PipelineStageFlags2>>(iterator: T) -> PipelineStageFlags2 {
+        let mut out = Self::empty();
+        <Self as Extend<PipelineStageFlags2>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<PipelineStageFlagBits2> for PipelineStageFlags2 {
-    fn from_iter<T: std::iter::IntoIterator<Item = PipelineStageFlagBits2>>(iterator: T) -> PipelineStageFlags2 {
-        let mut out = PipelineStageFlags2::empty();
-        out.extend(iterator);
+impl FromIterator<PipelineStageFlagBits2> for PipelineStageFlags2 {
+    fn from_iter<T: IntoIterator<Item = PipelineStageFlagBits2>>(iterator: T) -> PipelineStageFlags2 {
+        let mut out = Self::empty();
+        <Self as Extend<PipelineStageFlagBits2>>::extend(&mut out, iterator);
         out
     }
 }
@@ -3962,302 +3973,326 @@ impl std::fmt::Debug for PipelineStageFlags2 {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2None) {
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_NONE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2None))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_NONE))?;
                     }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2TopOfPipe) {
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_TOP_OF_PIPE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2TopOfPipe))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_TOP_OF_PIPE))?;
                     }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2DrawIndirect) {
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_DRAW_INDIRECT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2DrawIndirect))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_DRAW_INDIRECT))?;
                     }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2VertexInput) {
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_VERTEX_INPUT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2VertexInput))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_VERTEX_INPUT))?;
                     }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2VertexShader) {
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_VERTEX_SHADER) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2VertexShader))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_VERTEX_SHADER))?;
                     }
                     if self
                         .0
-                        .contains(PipelineStageFlags2::PipelineStage2TessellationControlShader)
+                        .contains(PipelineStageFlags2::PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2TessellationControlShader))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER))?;
                     }
                     if self
                         .0
-                        .contains(PipelineStageFlags2::PipelineStage2TessellationEvaluationShader)
+                        .contains(PipelineStageFlags2::PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2TessellationEvaluationShader))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER))?;
                     }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2GeometryShader) {
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_GEOMETRY_SHADER) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2GeometryShader))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_GEOMETRY_SHADER))?;
                     }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2FragmentShader) {
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_FRAGMENT_SHADER) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2FragmentShader))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2EarlyFragmentTests) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineStage2EarlyFragmentTests))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2LateFragmentTests) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineStage2LateFragmentTests))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_FRAGMENT_SHADER))?;
                     }
                     if self
                         .0
-                        .contains(PipelineStageFlags2::PipelineStage2ColorAttachmentOutput)
+                        .contains(PipelineStageFlags2::PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2ColorAttachmentOutput))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2ComputeShader) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineStage2ComputeShader))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2AllTransfer) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineStage2AllTransfer))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2BottomOfPipe) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineStage2BottomOfPipe))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2Host) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineStage2Host))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2AllGraphics) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineStage2AllGraphics))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2AllCommands) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineStage2AllCommands))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2Copy) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineStage2Copy))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2Resolve) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineStage2Resolve))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2Blit) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineStage2Blit))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2Clear) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineStage2Clear))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2IndexInput) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineStage2IndexInput))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2VertexAttributeInput) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineStage2VertexAttributeInput))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS))?;
                     }
                     if self
                         .0
-                        .contains(PipelineStageFlags2::PipelineStage2PreRasterizationShaders)
+                        .contains(PipelineStageFlags2::PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2PreRasterizationShaders))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2VideoDecodeKhr) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineStage2VideoDecodeKhr))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2VideoEncodeKhr) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineStage2VideoEncodeKhr))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2TransformFeedbackExt) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PipelineStage2TransformFeedbackExt))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS))?;
                     }
                     if self
                         .0
-                        .contains(PipelineStageFlags2::PipelineStage2ConditionalRenderingExt)
+                        .contains(PipelineStageFlags2::PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2ConditionalRenderingExt))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT))?;
                     }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2CommandPreprocessNv) {
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_COMPUTE_SHADER) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2CommandPreprocessNv))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_COMPUTE_SHADER))?;
+                    }
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_ALL_TRANSFER) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_STAGE_2_ALL_TRANSFER))?;
+                    }
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_BOTTOM_OF_PIPE) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_STAGE_2_BOTTOM_OF_PIPE))?;
+                    }
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_HOST) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_STAGE_2_HOST))?;
+                    }
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_ALL_GRAPHICS) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_STAGE_2_ALL_GRAPHICS))?;
+                    }
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_ALL_COMMANDS) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_STAGE_2_ALL_COMMANDS))?;
+                    }
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_COPY) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_STAGE_2_COPY))?;
+                    }
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_RESOLVE) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_STAGE_2_RESOLVE))?;
+                    }
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_BLIT) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_STAGE_2_BLIT))?;
+                    }
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_CLEAR) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_STAGE_2_CLEAR))?;
+                    }
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_INDEX_INPUT) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_STAGE_2_INDEX_INPUT))?;
                     }
                     if self
                         .0
-                        .contains(PipelineStageFlags2::PipelineStage2FragmentShadingRateAttachmentKhr)
+                        .contains(PipelineStageFlags2::PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2FragmentShadingRateAttachmentKhr))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT))?;
                     }
                     if self
                         .0
-                        .contains(PipelineStageFlags2::PipelineStage2AccelerationStructureBuildKhr)
+                        .contains(PipelineStageFlags2::PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2AccelerationStructureBuildKhr))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS))?;
                     }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2RayTracingShaderKhr) {
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_VIDEO_DECODE_KHR) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2RayTracingShaderKhr))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_VIDEO_DECODE_KHR))?;
+                    }
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_VIDEO_ENCODE_KHR) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_STAGE_2_VIDEO_ENCODE_KHR))?;
                     }
                     if self
                         .0
-                        .contains(PipelineStageFlags2::PipelineStage2FragmentDensityProcessExt)
+                        .contains(PipelineStageFlags2::PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2FragmentDensityProcessExt))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_EXT))?;
                     }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2TaskShaderNv) {
+                    if self
+                        .0
+                        .contains(PipelineStageFlags2::PIPELINE_STAGE_2_CONDITIONAL_RENDERING_EXT)
+                    {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2TaskShaderNv))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_CONDITIONAL_RENDERING_EXT))?;
                     }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2MeshShaderNv) {
+                    if self
+                        .0
+                        .contains(PipelineStageFlags2::PIPELINE_STAGE_2_COMMAND_PREPROCESS_NV)
+                    {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2MeshShaderNv))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_COMMAND_PREPROCESS_NV))?;
                     }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2SubpassShadingHuawei) {
+                    if self
+                        .0
+                        .contains(PipelineStageFlags2::PIPELINE_STAGE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR)
+                    {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2SubpassShadingHuawei))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR))?;
                     }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2InvocationMaskHuawei) {
+                    if self
+                        .0
+                        .contains(PipelineStageFlags2::PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_KHR)
+                    {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2InvocationMaskHuawei))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_KHR))?;
                     }
-                    if self.0.contains(PipelineStageFlags2::PipelineStage2Reserved387Khr) {
+                    if self
+                        .0
+                        .contains(PipelineStageFlags2::PIPELINE_STAGE_2_RAY_TRACING_SHADER_KHR)
+                    {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PipelineStage2Reserved387Khr))?;
+                        f.write_str(stringify!(PIPELINE_STAGE_2_RAY_TRACING_SHADER_KHR))?;
+                    }
+                    if self
+                        .0
+                        .contains(PipelineStageFlags2::PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_EXT)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_EXT))?;
+                    }
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_TASK_SHADER_NV) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_STAGE_2_TASK_SHADER_NV))?;
+                    }
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_MESH_SHADER_NV) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_STAGE_2_MESH_SHADER_NV))?;
+                    }
+                    if self
+                        .0
+                        .contains(PipelineStageFlags2::PIPELINE_STAGE_2_SUBPASS_SHADING_HUAWEI)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_STAGE_2_SUBPASS_SHADING_HUAWEI))?;
+                    }
+                    if self
+                        .0
+                        .contains(PipelineStageFlags2::PIPELINE_STAGE_2_INVOCATION_MASK_HUAWEI)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_STAGE_2_INVOCATION_MASK_HUAWEI))?;
+                    }
+                    if self.0.contains(PipelineStageFlags2::PIPELINE_STAGE_2_RESERVED_387_KHR) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PIPELINE_STAGE_2_RESERVED_387_KHR))?;
                     }
                 }
                 Ok(())
@@ -4515,7 +4550,7 @@ impl std::fmt::Debug for PipelineStageFlags2 {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFormatFeatureFlags2")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -4533,52 +4568,52 @@ impl From<FormatFeatureFlagBits2> for FormatFeatureFlags2 {
 impl FormatFeatureFlags2 {
     ///[`FormatFeature2SampledImage`] specifies that an image view
     /// **can**  be [sampled from](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sampledimage).
-    const FormatFeature2SampledImage: Self = Self(1);
+    pub const FORMAT_FEATURE_2_SAMPLED_IMAGE: Self = Self(1);
     ///[`FormatFeature2StorageImage`] specifies that an image view
     /// **can**  be used as a [storage image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage).
-    const FormatFeature2StorageImage: Self = Self(2);
+    pub const FORMAT_FEATURE_2_STORAGE_IMAGE: Self = Self(2);
     ///[`FormatFeature2StorageImageAtomic`] specifies that an
     ///image view  **can**  be used as storage image that supports atomic
     ///operations.
-    const FormatFeature2StorageImageAtomic: Self = Self(4);
+    pub const FORMAT_FEATURE_2_STORAGE_IMAGE_ATOMIC: Self = Self(4);
     ///[`FormatFeature2UniformTexelBuffer`] specifies that the
     ///format  **can**  be used to create a buffer view that  **can**  be bound to a
     ///`VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER` descriptor.
-    const FormatFeature2UniformTexelBuffer: Self = Self(8);
+    pub const FORMAT_FEATURE_2_UNIFORM_TEXEL_BUFFER: Self = Self(8);
     ///[`FormatFeature2StorageTexelBuffer`] specifies that the
     ///format  **can**  be used to create a buffer view that  **can**  be bound to a
     ///`VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER` descriptor.
-    const FormatFeature2StorageTexelBuffer: Self = Self(16);
+    pub const FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER: Self = Self(16);
     ///[`FormatFeature2StorageTexelBufferAtomic`] specifies that
     ///atomic operations are supported on
     ///`VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER` with this format.
-    const FormatFeature2StorageTexelBufferAtomic: Self = Self(32);
+    pub const FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_ATOMIC: Self = Self(32);
     ///[`FormatFeature2VertexBuffer`] specifies that the format
     /// **can**  be used as a vertex attribute format
     ///([`VertexInputAttributeDescription`]::`format`).
-    const FormatFeature2VertexBuffer: Self = Self(64);
+    pub const FORMAT_FEATURE_2_VERTEX_BUFFER: Self = Self(64);
     ///[`FormatFeature2ColorAttachment`] specifies that an image
     ///view  **can**  be used as a framebuffer color attachment and as an input
     ///attachment.
-    const FormatFeature2ColorAttachment: Self = Self(128);
+    pub const FORMAT_FEATURE_2_COLOR_ATTACHMENT: Self = Self(128);
     ///[`FormatFeature2ColorAttachmentBlend`] specifies that an
     ///image view  **can**  be used as a framebuffer color attachment that supports
     ///blending and as an input attachment.
-    const FormatFeature2ColorAttachmentBlend: Self = Self(256);
+    pub const FORMAT_FEATURE_2_COLOR_ATTACHMENT_BLEND: Self = Self(256);
     ///[`FormatFeature2DepthStencilAttachment`] specifies that an
     ///image view  **can**  be used as a framebuffer depth/stencil attachment and as
     ///an input attachment.
-    const FormatFeature2DepthStencilAttachment: Self = Self(512);
+    pub const FORMAT_FEATURE_2_DEPTH_STENCIL_ATTACHMENT: Self = Self(512);
     ///[`FormatFeature2BlitSrc`] specifies that an image  **can**  be
     ///    used as the `srcImage` for
     ///[`CmdBlitImage2`] and
     ///    [`CmdBlitImage`].
-    const FormatFeature2BlitSrc: Self = Self(1024);
+    pub const FORMAT_FEATURE_2_BLIT_SRC: Self = Self(1024);
     ///[`FormatFeature2BlitDst`] specifies that an image  **can**  be
     ///    used as the `dstImage` for
     ///[`CmdBlitImage2`] and
     ///    [`CmdBlitImage`].
-    const FormatFeature2BlitDst: Self = Self(2048);
+    pub const FORMAT_FEATURE_2_BLIT_DST: Self = Self(2048);
     ///[`FormatFeature2SampledImageFilterLinear`] specifies that
     ///    if [`FormatFeature2SampledImage`] is also set, an image
     ///    view  **can**  be used with a sampler that has either of `magFilter` or
@@ -4600,7 +4635,7 @@ impl FormatFeatureFlags2 {
     ///The resulting value  **must**  be in the range [0,1] and  **should**  be
     ///proportional to, or a weighted average of, the number of comparison passes
     ///or failures.
-    const FormatFeature2SampledImageFilterLinear: Self = Self(4096);
+    pub const FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_LINEAR: Self = Self(4096);
     ///[`FormatFeature2SampledImageFilterCubic`] specifies that
     ///[`Image`] **can**  be used with a sampler that has either of
     ///`magFilter` or `minFilter` set to `VK_FILTER_CUBIC_EXT`, or
@@ -4610,20 +4645,20 @@ impl FormatFeatureFlags2 {
     ///[`FormatFeature2SampledImage`].
     ///If the format being queried is a depth/stencil format, this only
     ///specifies that the depth aspect is cubic filterable.
-    const FormatFeature2SampledImageFilterCubic: Self = Self(8192);
+    pub const FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_CUBIC: Self = Self(8192);
     ///[`FormatFeature2TransferSrc`] specifies that an image  **can**
     ///be used as a source image for [copy commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies).
-    const FormatFeature2TransferSrc: Self = Self(16384);
+    pub const FORMAT_FEATURE_2_TRANSFER_SRC: Self = Self(16384);
     ///[`FormatFeature2TransferDst`] specifies that an image  **can**
     ///be used as a destination image for [copy commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies) and
     ///[clear commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#clears).
-    const FormatFeature2TransferDst: Self = Self(32768);
+    pub const FORMAT_FEATURE_2_TRANSFER_DST: Self = Self(32768);
     ///[`FormatFeature2SampledImageFilterMinmax`] specifies
     ///[`Image`] **can**  be used as a sampled image with a min or max
     ///[`SamplerReductionMode`].
     ///This bit  **must**  only be exposed for formats that also support the
     ///[`FormatFeature2SampledImage`].
-    const FormatFeature2SampledImageFilterMinmax: Self = Self(65536);
+    pub const FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_MINMAX: Self = Self(65536);
     ///[`FormatFeature2MidpointChromaSamples`] specifies that an
     ///application  **can**  define a [sampler Y′C<sub>B</sub>C<sub>R</sub>
     ///conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-YCbCr-conversion) using this format as a source, and that an image of this
@@ -4635,22 +4670,22 @@ impl FormatFeatureFlags2 {
     ///“422” or “420” format) but the implementation supports sampler
     ///Y′C<sub>B</sub>C<sub>R</sub> conversion for this format, the implementation  **must**  set
     ///[`FormatFeature2MidpointChromaSamples`].
-    const FormatFeature2MidpointChromaSamples: Self = Self(131072);
+    pub const FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES: Self = Self(131072);
     ///[`FormatFeature2SampledImageYcbcrConversionLinearFilter`]
     ///specifies that an application  **can**  define a
     ///[sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-YCbCr-conversion) using this
     ///format as a source with `chromaFilter` set to
     ///`VK_FILTER_LINEAR`.
-    const FormatFeature2SampledImageYcbcrConversionLinearFilter: Self = Self(262144);
+    pub const FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER: Self = Self(262144);
     ///[`FormatFeature2SampledImageYcbcrConversionSeparateReconstructionFilter`]
     ///specifies that the format can have different chroma, min, and mag
     ///filters.
-    const FormatFeature2SampledImageYcbcrConversionSeparateReconstructionFilter: Self = Self(524288);
+    pub const FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER: Self = Self(524288);
     ///[`FormatFeature2SampledImageYcbcrConversionChromaReconstructionExplicit`]
     ///specifies that reconstruction is explicit, as described in
     ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-chroma-reconstruction](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-chroma-reconstruction).
     ///If this bit is not present, reconstruction is implicit by default.
-    const FormatFeature2SampledImageYcbcrConversionChromaReconstructionExplicit: Self = Self(1048576);
+    pub const FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT: Self = Self(1048576);
     ///[`FormatFeature2SampledImageYcbcrConversionChromaReconstructionExplicitForceable`]
     ///specifies that reconstruction  **can**  be forcibly made explicit by setting
     ///[`SamplerYcbcrConversionCreateInfo`]::`forceExplicitReconstruction`
@@ -4659,13 +4694,14 @@ impl FormatFeatureFlags2 {
     ///[`FormatFeature2SampledImageYcbcrConversionChromaReconstructionExplicit`]
     ///it  **must**  also support
     ///[`FormatFeature2SampledImageYcbcrConversionChromaReconstructionExplicitForceable`].
-    const FormatFeature2SampledImageYcbcrConversionChromaReconstructionExplicitForceable: Self = Self(2097152);
+    pub const FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE: Self =
+        Self(2097152);
     ///[`FormatFeature2Disjoint`] specifies that a multi-planar
     ///image  **can**  have the `VK_IMAGE_CREATE_DISJOINT_BIT` set during image
     ///creation.
     ///An implementation  **must**  not set [`FormatFeature2Disjoint`]
     ///for *single-plane formats*.
-    const FormatFeature2Disjoint: Self = Self(4194304);
+    pub const FORMAT_FEATURE_2_DISJOINT: Self = Self(4194304);
     ///[`FormatFeature2CositedChromaSamples`] specifies that an
     ///application  **can**  define a [sampler Y′C<sub>B</sub>C<sub>R</sub>
     ///conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-YCbCr-conversion) using this format as a source, and that an image of this
@@ -4677,33 +4713,33 @@ impl FormatFeatureFlags2 {
     ///[`FormatFeature2MidpointChromaSamples`] is set, the
     ///application  **must**  not define a [sampler
     ///Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-YCbCr-conversion) using this format as a source.
-    const FormatFeature2CositedChromaSamples: Self = Self(8388608);
+    pub const FORMAT_FEATURE_2_COSITED_CHROMA_SAMPLES: Self = Self(8388608);
     ///[`FormatFeature2StorageReadWithoutFormat`] specifies that
     ///image views created with this format  **can**  be used as
     ///[storage images](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage) for read operations
     ///without specifying a format.
-    const FormatFeature2StorageReadWithoutFormat: Self = Self(2147483648);
+    pub const FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT: Self = Self(2147483648);
     ///[`FormatFeature2StorageWriteWithoutFormat`] specifies
     ///that image views created with this format  **can**  be used as
     ///[storage images](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage) for write operations
     ///without specifying a format.
-    const FormatFeature2StorageWriteWithoutFormat: Self = Self(4294967296);
+    pub const FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT: Self = Self(4294967296);
     ///[`FormatFeature2SampledImageDepthComparison`] specifies
     ///that image views created with this format  **can**  be used for depth
     ///comparison performed by `OpImage*Dref` instructions.
-    const FormatFeature2SampledImageDepthComparison: Self = Self(8589934592);
+    pub const FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON: Self = Self(8589934592);
     ///[`FormatFeature2VideoDecodeOutputKhr`] specifies that an
     ///image view with this format  **can**  be used as an output for
     ///[video decode operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-decode-operations)
     ///
     ///Provided by [`crate::extensions::khr_video_decode_queue`]
-    const FormatFeature2VideoDecodeOutputKhr: Self = Self(33554432);
+    pub const FORMAT_FEATURE_2_VIDEO_DECODE_OUTPUT_KHR: Self = Self(33554432);
     ///[`FormatFeature2VideoDecodeDpbKhr`] specifies that an
     ///image view with this format  **can**  be used as a DPB for
     ///[video decode operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-decode-operations)
     ///
     ///Provided by [`crate::extensions::khr_video_decode_queue`]
-    const FormatFeature2VideoDecodeDpbKhr: Self = Self(67108864);
+    pub const FORMAT_FEATURE_2_VIDEO_DECODE_DPB_KHR: Self = Self(67108864);
     ///[`FormatFeature2AccelerationStructureVertexBufferKhr`]
     ///specifies that the format  **can**  be used as the vertex format when
     ///creating an [acceleration structure](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure)
@@ -4713,14 +4749,14 @@ impl FormatFeatureFlags2 {
     ///builds.
     ///
     ///Provided by [`crate::extensions::khr_acceleration_structure`]
-    const FormatFeature2AccelerationStructureVertexBufferKhr: Self = Self(536870912);
+    pub const FORMAT_FEATURE_2_ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR: Self = Self(536870912);
     ///[`FormatFeature2FragmentDensityMapExt`] specifies that an
     ///image view  **can**  be used as a
     ///[fragment density map
     ///attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-fragmentdensitymapattachment).
     ///
     ///Provided by [`crate::extensions::ext_fragment_density_map`]
-    const FormatFeature2FragmentDensityMapExt: Self = Self(16777216);
+    pub const FORMAT_FEATURE_2_FRAGMENT_DENSITY_MAP_EXT: Self = Self(16777216);
     ///[`FormatFeature2FragmentShadingRateAttachmentKhr`]
     ///specifies that an image view  **can**  be used as a
     ///[fragment shading rate
@@ -4729,19 +4765,19 @@ impl FormatFeatureFlags2 {
     ///type other than `*UINT`, or set it as a buffer feature.
     ///
     ///Provided by [`crate::extensions::khr_fragment_shading_rate`]
-    const FormatFeature2FragmentShadingRateAttachmentKhr: Self = Self(1073741824);
+    pub const FORMAT_FEATURE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1073741824);
     ///[`FormatFeature2VideoEncodeInputKhr`] specifies that an
     ///image view with this format  **can**  be used as an input to
     ///[video encode operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations)
     ///
     ///Provided by [`crate::extensions::khr_video_encode_queue`]
-    const FormatFeature2VideoEncodeInputKhr: Self = Self(134217728);
+    pub const FORMAT_FEATURE_2_VIDEO_ENCODE_INPUT_KHR: Self = Self(134217728);
     ///[`FormatFeature2VideoEncodeDpbKhr`] specifies that an
     ///image view with this format  **can**  be used as a DPB for
     ///[video encode operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations)
     ///
     ///Provided by [`crate::extensions::khr_video_encode_queue`]
-    const FormatFeature2VideoEncodeDpbKhr: Self = Self(268435456);
+    pub const FORMAT_FEATURE_2_VIDEO_ENCODE_DPB_KHR: Self = Self(268435456);
     ///[`FormatFeature2LinearColorAttachmentNv`] specifies that
     ///   the format is supported as a renderable [Linear Color
     ///   Attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary).
@@ -4751,23 +4787,23 @@ impl FormatFeatureFlags2 {
     ///`bufferFeatures` members.
     ///
     ///Provided by [`crate::extensions::nv_linear_color_attachment`]
-    const FormatFeature2LinearColorAttachmentNv: Self = Self(274877906944);
+    pub const FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_NV: Self = Self(274877906944);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::qcom_extension_441`]
-    const FormatFeature2Reserved34Qcom: Self = Self(17179869184);
+    pub const FORMAT_FEATURE_2_RESERVED_34_QCOM: Self = Self(17179869184);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::qcom_extension_441`]
-    const FormatFeature2Reserved35Qcom: Self = Self(34359738368);
+    pub const FORMAT_FEATURE_2_RESERVED_35_QCOM: Self = Self(34359738368);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::qcom_extension_441`]
-    const FormatFeature2Reserved36Qcom: Self = Self(68719476736);
+    pub const FORMAT_FEATURE_2_RESERVED_36_QCOM: Self = Self(68719476736);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::qcom_extension_441`]
-    const FormatFeature2Reserved37Qcom: Self = Self(137438953472);
+    pub const FORMAT_FEATURE_2_RESERVED_37_QCOM: Self = Self(137438953472);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -4777,45 +4813,45 @@ impl FormatFeatureFlags2 {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::FormatFeature2SampledImage
-            | Self::FormatFeature2StorageImage
-            | Self::FormatFeature2StorageImageAtomic
-            | Self::FormatFeature2UniformTexelBuffer
-            | Self::FormatFeature2StorageTexelBuffer
-            | Self::FormatFeature2StorageTexelBufferAtomic
-            | Self::FormatFeature2VertexBuffer
-            | Self::FormatFeature2ColorAttachment
-            | Self::FormatFeature2ColorAttachmentBlend
-            | Self::FormatFeature2DepthStencilAttachment
-            | Self::FormatFeature2BlitSrc
-            | Self::FormatFeature2BlitDst
-            | Self::FormatFeature2SampledImageFilterLinear
-            | Self::FormatFeature2SampledImageFilterCubic
-            | Self::FormatFeature2TransferSrc
-            | Self::FormatFeature2TransferDst
-            | Self::FormatFeature2SampledImageFilterMinmax
-            | Self::FormatFeature2MidpointChromaSamples
-            | Self::FormatFeature2SampledImageYcbcrConversionLinearFilter
-            | Self::FormatFeature2SampledImageYcbcrConversionSeparateReconstructionFilter
-            | Self::FormatFeature2SampledImageYcbcrConversionChromaReconstructionExplicit
-            | Self::FormatFeature2SampledImageYcbcrConversionChromaReconstructionExplicitForceable
-            | Self::FormatFeature2Disjoint
-            | Self::FormatFeature2CositedChromaSamples
-            | Self::FormatFeature2StorageReadWithoutFormat
-            | Self::FormatFeature2StorageWriteWithoutFormat
-            | Self::FormatFeature2SampledImageDepthComparison
-            | Self::FormatFeature2VideoDecodeOutputKhr
-            | Self::FormatFeature2VideoDecodeDpbKhr
-            | Self::FormatFeature2AccelerationStructureVertexBufferKhr
-            | Self::FormatFeature2FragmentDensityMapExt
-            | Self::FormatFeature2FragmentShadingRateAttachmentKhr
-            | Self::FormatFeature2VideoEncodeInputKhr
-            | Self::FormatFeature2VideoEncodeDpbKhr
-            | Self::FormatFeature2LinearColorAttachmentNv
-            | Self::FormatFeature2Reserved34Qcom
-            | Self::FormatFeature2Reserved35Qcom
-            | Self::FormatFeature2Reserved36Qcom
-            | Self::FormatFeature2Reserved37Qcom
+            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE
+            | Self::FORMAT_FEATURE_2_STORAGE_IMAGE
+            | Self::FORMAT_FEATURE_2_STORAGE_IMAGE_ATOMIC
+            | Self::FORMAT_FEATURE_2_UNIFORM_TEXEL_BUFFER
+            | Self::FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER
+            | Self::FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_ATOMIC
+            | Self::FORMAT_FEATURE_2_VERTEX_BUFFER
+            | Self::FORMAT_FEATURE_2_COLOR_ATTACHMENT
+            | Self::FORMAT_FEATURE_2_COLOR_ATTACHMENT_BLEND
+            | Self::FORMAT_FEATURE_2_DEPTH_STENCIL_ATTACHMENT
+            | Self::FORMAT_FEATURE_2_BLIT_SRC
+            | Self::FORMAT_FEATURE_2_BLIT_DST
+            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_LINEAR
+            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_CUBIC
+            | Self::FORMAT_FEATURE_2_TRANSFER_SRC
+            | Self::FORMAT_FEATURE_2_TRANSFER_DST
+            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_MINMAX
+            | Self::FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES
+            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER
+            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER
+            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT
+            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE
+            | Self::FORMAT_FEATURE_2_DISJOINT
+            | Self::FORMAT_FEATURE_2_COSITED_CHROMA_SAMPLES
+            | Self::FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT
+            | Self::FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT
+            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON
+            | Self::FORMAT_FEATURE_2_VIDEO_DECODE_OUTPUT_KHR
+            | Self::FORMAT_FEATURE_2_VIDEO_DECODE_DPB_KHR
+            | Self::FORMAT_FEATURE_2_ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR
+            | Self::FORMAT_FEATURE_2_FRAGMENT_DENSITY_MAP_EXT
+            | Self::FORMAT_FEATURE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR
+            | Self::FORMAT_FEATURE_2_VIDEO_ENCODE_INPUT_KHR
+            | Self::FORMAT_FEATURE_2_VIDEO_ENCODE_DPB_KHR
+            | Self::FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_NV
+            | Self::FORMAT_FEATURE_2_RESERVED_34_QCOM
+            | Self::FORMAT_FEATURE_2_RESERVED_35_QCOM
+            | Self::FORMAT_FEATURE_2_RESERVED_36_QCOM
+            | Self::FORMAT_FEATURE_2_RESERVED_37_QCOM
     }
     ///Returns the raw bits
     #[inline]
@@ -4977,31 +5013,31 @@ impl const std::ops::Not for FormatFeatureFlags2 {
         self.complement()
     }
 }
-impl std::iter::Extend<FormatFeatureFlags2> for FormatFeatureFlags2 {
-    fn extend<T: std::iter::IntoIterator<Item = FormatFeatureFlags2>>(&mut self, iterator: T) {
+impl Extend<FormatFeatureFlags2> for FormatFeatureFlags2 {
+    fn extend<T: IntoIterator<Item = FormatFeatureFlags2>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<FormatFeatureFlagBits2> for FormatFeatureFlags2 {
-    fn extend<T: std::iter::IntoIterator<Item = FormatFeatureFlagBits2>>(&mut self, iterator: T) {
+impl Extend<FormatFeatureFlagBits2> for FormatFeatureFlags2 {
+    fn extend<T: IntoIterator<Item = FormatFeatureFlagBits2>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(FormatFeatureFlags2::from(i));
+            Self::insert(self, <Self as From<FormatFeatureFlagBits2>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<FormatFeatureFlags2> for FormatFeatureFlags2 {
-    fn from_iter<T: std::iter::IntoIterator<Item = FormatFeatureFlags2>>(iterator: T) -> FormatFeatureFlags2 {
-        let mut out = FormatFeatureFlags2::empty();
-        out.extend(iterator);
+impl FromIterator<FormatFeatureFlags2> for FormatFeatureFlags2 {
+    fn from_iter<T: IntoIterator<Item = FormatFeatureFlags2>>(iterator: T) -> FormatFeatureFlags2 {
+        let mut out = Self::empty();
+        <Self as Extend<FormatFeatureFlags2>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<FormatFeatureFlagBits2> for FormatFeatureFlags2 {
-    fn from_iter<T: std::iter::IntoIterator<Item = FormatFeatureFlagBits2>>(iterator: T) -> FormatFeatureFlags2 {
-        let mut out = FormatFeatureFlags2::empty();
-        out.extend(iterator);
+impl FromIterator<FormatFeatureFlagBits2> for FormatFeatureFlags2 {
+    fn from_iter<T: IntoIterator<Item = FormatFeatureFlagBits2>>(iterator: T) -> FormatFeatureFlags2 {
+        let mut out = Self::empty();
+        <Self as Extend<FormatFeatureFlagBits2>>::extend(&mut out, iterator);
         out
     }
 }
@@ -5014,322 +5050,331 @@ impl std::fmt::Debug for FormatFeatureFlags2 {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2SampledImage) {
+                    if self.0.contains(FormatFeatureFlags2::FORMAT_FEATURE_2_SAMPLED_IMAGE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2SampledImage))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_SAMPLED_IMAGE))?;
                     }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2StorageImage) {
+                    if self.0.contains(FormatFeatureFlags2::FORMAT_FEATURE_2_STORAGE_IMAGE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2StorageImage))?;
-                    }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2StorageImageAtomic) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(FormatFeature2StorageImageAtomic))?;
-                    }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2UniformTexelBuffer) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(FormatFeature2UniformTexelBuffer))?;
-                    }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2StorageTexelBuffer) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(FormatFeature2StorageTexelBuffer))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_STORAGE_IMAGE))?;
                     }
                     if self
                         .0
-                        .contains(FormatFeatureFlags2::FormatFeature2StorageTexelBufferAtomic)
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_STORAGE_IMAGE_ATOMIC)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2StorageTexelBufferAtomic))?;
-                    }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2VertexBuffer) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(FormatFeature2VertexBuffer))?;
-                    }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2ColorAttachment) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(FormatFeature2ColorAttachment))?;
-                    }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2ColorAttachmentBlend) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(FormatFeature2ColorAttachmentBlend))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_STORAGE_IMAGE_ATOMIC))?;
                     }
                     if self
                         .0
-                        .contains(FormatFeatureFlags2::FormatFeature2DepthStencilAttachment)
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_UNIFORM_TEXEL_BUFFER)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2DepthStencilAttachment))?;
-                    }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2BlitSrc) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(FormatFeature2BlitSrc))?;
-                    }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2BlitDst) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(FormatFeature2BlitDst))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_UNIFORM_TEXEL_BUFFER))?;
                     }
                     if self
                         .0
-                        .contains(FormatFeatureFlags2::FormatFeature2SampledImageFilterLinear)
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2SampledImageFilterLinear))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER))?;
                     }
                     if self
                         .0
-                        .contains(FormatFeatureFlags2::FormatFeature2SampledImageFilterCubic)
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_ATOMIC)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2SampledImageFilterCubic))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_ATOMIC))?;
                     }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2TransferSrc) {
+                    if self.0.contains(FormatFeatureFlags2::FORMAT_FEATURE_2_VERTEX_BUFFER) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2TransferSrc))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_VERTEX_BUFFER))?;
                     }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2TransferDst) {
+                    if self.0.contains(FormatFeatureFlags2::FORMAT_FEATURE_2_COLOR_ATTACHMENT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2TransferDst))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_COLOR_ATTACHMENT))?;
                     }
                     if self
                         .0
-                        .contains(FormatFeatureFlags2::FormatFeature2SampledImageFilterMinmax)
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_COLOR_ATTACHMENT_BLEND)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2SampledImageFilterMinmax))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_COLOR_ATTACHMENT_BLEND))?;
                     }
                     if self
                         .0
-                        .contains(FormatFeatureFlags2::FormatFeature2MidpointChromaSamples)
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_DEPTH_STENCIL_ATTACHMENT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2MidpointChromaSamples))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_DEPTH_STENCIL_ATTACHMENT))?;
+                    }
+                    if self.0.contains(FormatFeatureFlags2::FORMAT_FEATURE_2_BLIT_SRC) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(FORMAT_FEATURE_2_BLIT_SRC))?;
+                    }
+                    if self.0.contains(FormatFeatureFlags2::FORMAT_FEATURE_2_BLIT_DST) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(FORMAT_FEATURE_2_BLIT_DST))?;
                     }
                     if self
                         .0
-                        .contains(FormatFeatureFlags2::FormatFeature2SampledImageYcbcrConversionLinearFilter)
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_LINEAR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2SampledImageYcbcrConversionLinearFilter))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_LINEAR))?;
                     }
-                    if self.0.contains(
-                        FormatFeatureFlags2::FormatFeature2SampledImageYcbcrConversionSeparateReconstructionFilter,
-                    ) {
+                    if self
+                        .0
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_CUBIC)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_CUBIC))?;
+                    }
+                    if self.0.contains(FormatFeatureFlags2::FORMAT_FEATURE_2_TRANSFER_SRC) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(FORMAT_FEATURE_2_TRANSFER_SRC))?;
+                    }
+                    if self.0.contains(FormatFeatureFlags2::FORMAT_FEATURE_2_TRANSFER_DST) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(FORMAT_FEATURE_2_TRANSFER_DST))?;
+                    }
+                    if self
+                        .0
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_MINMAX)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_MINMAX))?;
+                    }
+                    if self
+                        .0
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES))?;
+                    }
+                    if self
+                        .0
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER)
+                    {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
                         f.write_str(stringify!(
-                            FormatFeature2SampledImageYcbcrConversionSeparateReconstructionFilter
+                            FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER
                         ))?;
                     }
-                    if self.0.contains(
-                        FormatFeatureFlags2::FormatFeature2SampledImageYcbcrConversionChromaReconstructionExplicit,
-                    ) {
+                    if self . 0 . contains (FormatFeatureFlags2 :: FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER)) ? ; }
+                    if self . 0 . contains (FormatFeatureFlags2 :: FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT)) ? ; }
+                    if self . 0 . contains (FormatFeatureFlags2 :: FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE)) ? ; }
+                    if self.0.contains(FormatFeatureFlags2::FORMAT_FEATURE_2_DISJOINT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(
-                            FormatFeature2SampledImageYcbcrConversionChromaReconstructionExplicit
-                        ))?;
-                    }
-                    if self . 0 . contains (FormatFeatureFlags2 :: FormatFeature2SampledImageYcbcrConversionChromaReconstructionExplicitForceable) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (FormatFeature2SampledImageYcbcrConversionChromaReconstructionExplicitForceable)) ? ; }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2Disjoint) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(FormatFeature2Disjoint))?;
-                    }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2CositedChromaSamples) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(FormatFeature2CositedChromaSamples))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_DISJOINT))?;
                     }
                     if self
                         .0
-                        .contains(FormatFeatureFlags2::FormatFeature2StorageReadWithoutFormat)
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_COSITED_CHROMA_SAMPLES)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2StorageReadWithoutFormat))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_COSITED_CHROMA_SAMPLES))?;
                     }
                     if self
                         .0
-                        .contains(FormatFeatureFlags2::FormatFeature2StorageWriteWithoutFormat)
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2StorageWriteWithoutFormat))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT))?;
                     }
                     if self
                         .0
-                        .contains(FormatFeatureFlags2::FormatFeature2SampledImageDepthComparison)
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2SampledImageDepthComparison))?;
-                    }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2VideoDecodeOutputKhr) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(FormatFeature2VideoDecodeOutputKhr))?;
-                    }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2VideoDecodeDpbKhr) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(FormatFeature2VideoDecodeDpbKhr))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT))?;
                     }
                     if self
                         .0
-                        .contains(FormatFeatureFlags2::FormatFeature2AccelerationStructureVertexBufferKhr)
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2AccelerationStructureVertexBufferKhr))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON))?;
                     }
                     if self
                         .0
-                        .contains(FormatFeatureFlags2::FormatFeature2FragmentDensityMapExt)
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_VIDEO_DECODE_OUTPUT_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2FragmentDensityMapExt))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_VIDEO_DECODE_OUTPUT_KHR))?;
                     }
                     if self
                         .0
-                        .contains(FormatFeatureFlags2::FormatFeature2FragmentShadingRateAttachmentKhr)
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_VIDEO_DECODE_DPB_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2FragmentShadingRateAttachmentKhr))?;
-                    }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2VideoEncodeInputKhr) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(FormatFeature2VideoEncodeInputKhr))?;
-                    }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2VideoEncodeDpbKhr) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(FormatFeature2VideoEncodeDpbKhr))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_VIDEO_DECODE_DPB_KHR))?;
                     }
                     if self
                         .0
-                        .contains(FormatFeatureFlags2::FormatFeature2LinearColorAttachmentNv)
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2LinearColorAttachmentNv))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR))?;
                     }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2Reserved34Qcom) {
+                    if self
+                        .0
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_FRAGMENT_DENSITY_MAP_EXT)
+                    {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2Reserved34Qcom))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_FRAGMENT_DENSITY_MAP_EXT))?;
                     }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2Reserved35Qcom) {
+                    if self
+                        .0
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR)
+                    {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2Reserved35Qcom))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR))?;
                     }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2Reserved36Qcom) {
+                    if self
+                        .0
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_VIDEO_ENCODE_INPUT_KHR)
+                    {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2Reserved36Qcom))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_VIDEO_ENCODE_INPUT_KHR))?;
                     }
-                    if self.0.contains(FormatFeatureFlags2::FormatFeature2Reserved37Qcom) {
+                    if self
+                        .0
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_VIDEO_ENCODE_DPB_KHR)
+                    {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FormatFeature2Reserved37Qcom))?;
+                        f.write_str(stringify!(FORMAT_FEATURE_2_VIDEO_ENCODE_DPB_KHR))?;
+                    }
+                    if self
+                        .0
+                        .contains(FormatFeatureFlags2::FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_NV)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_NV))?;
+                    }
+                    if self.0.contains(FormatFeatureFlags2::FORMAT_FEATURE_2_RESERVED_34_QCOM) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(FORMAT_FEATURE_2_RESERVED_34_QCOM))?;
+                    }
+                    if self.0.contains(FormatFeatureFlags2::FORMAT_FEATURE_2_RESERVED_35_QCOM) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(FORMAT_FEATURE_2_RESERVED_35_QCOM))?;
+                    }
+                    if self.0.contains(FormatFeatureFlags2::FORMAT_FEATURE_2_RESERVED_36_QCOM) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(FORMAT_FEATURE_2_RESERVED_36_QCOM))?;
+                    }
+                    if self.0.contains(FormatFeatureFlags2::FORMAT_FEATURE_2_RESERVED_37_QCOM) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(FORMAT_FEATURE_2_RESERVED_37_QCOM))?;
                     }
                 }
                 Ok(())
@@ -5387,7 +5432,7 @@ impl std::fmt::Debug for FormatFeatureFlags2 {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderingFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -5406,13 +5451,13 @@ impl RenderingFlags {
     ///[`RenderingContentsSecondaryCommandBuffers`] specifies that
     ///draw calls for the render pass instance will be recorded in secondary
     ///command buffers.
-    const RenderingContentsSecondaryCommandBuffers: Self = Self(1);
+    pub const RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS: Self = Self(1);
     ///[`RenderingSuspending`] specifies that the render pass
     ///instance will be suspended.
-    const RenderingSuspending: Self = Self(2);
+    pub const RENDERING_SUSPENDING: Self = Self(2);
     ///[`RenderingResuming`] specifies that the render pass instance
     ///is resuming an earlier suspended render pass instance.
-    const RenderingResuming: Self = Self(4);
+    pub const RENDERING_RESUMING: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -5422,9 +5467,9 @@ impl RenderingFlags {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::RenderingContentsSecondaryCommandBuffers
-            | Self::RenderingSuspending
-            | Self::RenderingResuming
+            | Self::RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS
+            | Self::RENDERING_SUSPENDING
+            | Self::RENDERING_RESUMING
     }
     ///Returns the raw bits
     #[inline]
@@ -5586,31 +5631,31 @@ impl const std::ops::Not for RenderingFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<RenderingFlags> for RenderingFlags {
-    fn extend<T: std::iter::IntoIterator<Item = RenderingFlags>>(&mut self, iterator: T) {
+impl Extend<RenderingFlags> for RenderingFlags {
+    fn extend<T: IntoIterator<Item = RenderingFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<RenderingFlagBits> for RenderingFlags {
-    fn extend<T: std::iter::IntoIterator<Item = RenderingFlagBits>>(&mut self, iterator: T) {
+impl Extend<RenderingFlagBits> for RenderingFlags {
+    fn extend<T: IntoIterator<Item = RenderingFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(RenderingFlags::from(i));
+            Self::insert(self, <Self as From<RenderingFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<RenderingFlags> for RenderingFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = RenderingFlags>>(iterator: T) -> RenderingFlags {
-        let mut out = RenderingFlags::empty();
-        out.extend(iterator);
+impl FromIterator<RenderingFlags> for RenderingFlags {
+    fn from_iter<T: IntoIterator<Item = RenderingFlags>>(iterator: T) -> RenderingFlags {
+        let mut out = Self::empty();
+        <Self as Extend<RenderingFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<RenderingFlagBits> for RenderingFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = RenderingFlagBits>>(iterator: T) -> RenderingFlags {
-        let mut out = RenderingFlags::empty();
-        out.extend(iterator);
+impl FromIterator<RenderingFlagBits> for RenderingFlags {
+    fn from_iter<T: IntoIterator<Item = RenderingFlagBits>>(iterator: T) -> RenderingFlags {
+        let mut out = Self::empty();
+        <Self as Extend<RenderingFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -5625,27 +5670,27 @@ impl std::fmt::Debug for RenderingFlags {
                     let mut first = true;
                     if self
                         .0
-                        .contains(RenderingFlags::RenderingContentsSecondaryCommandBuffers)
+                        .contains(RenderingFlags::RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(RenderingContentsSecondaryCommandBuffers))?;
+                        f.write_str(stringify!(RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS))?;
                     }
-                    if self.0.contains(RenderingFlags::RenderingSuspending) {
+                    if self.0.contains(RenderingFlags::RENDERING_SUSPENDING) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(RenderingSuspending))?;
+                        f.write_str(stringify!(RENDERING_SUSPENDING))?;
                     }
-                    if self.0.contains(RenderingFlags::RenderingResuming) {
+                    if self.0.contains(RenderingFlags::RENDERING_RESUMING) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(RenderingResuming))?;
+                        f.write_str(stringify!(RENDERING_RESUMING))?;
                     }
                 }
                 Ok(())
@@ -5714,7 +5759,7 @@ impl std::fmt::Debug for RenderingFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkToolPurposeFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -5732,22 +5777,22 @@ impl From<ToolPurposeFlagBits> for ToolPurposeFlags {
 impl ToolPurposeFlags {
     ///[`ToolPurposeValidation`] specifies that the tool provides
     ///validation of API usage.
-    const ToolPurposeValidation: Self = Self(1);
+    pub const TOOL_PURPOSE_VALIDATION: Self = Self(1);
     ///[`ToolPurposeProfiling`] specifies that the tool provides
     ///profiling of API usage.
-    const ToolPurposeProfiling: Self = Self(2);
+    pub const TOOL_PURPOSE_PROFILING: Self = Self(2);
     ///[`ToolPurposeTracing`] specifies that the tool is capturing
     ///data about the application’s API usage, including anything from simple
     ///logging to capturing data for later replay.
-    const ToolPurposeTracing: Self = Self(4);
+    pub const TOOL_PURPOSE_TRACING: Self = Self(4);
     ///[`ToolPurposeAdditionalFeatures`] specifies that the tool
     ///provides additional API features/extensions on top of the underlying
     ///implementation.
-    const ToolPurposeAdditionalFeatures: Self = Self(8);
+    pub const TOOL_PURPOSE_ADDITIONAL_FEATURES: Self = Self(8);
     ///[`ToolPurposeModifyingFeatures`] specifies that the tool
     ///modifies the API features/limits/extensions presented to the
     ///application.
-    const ToolPurposeModifyingFeatures: Self = Self(16);
+    pub const TOOL_PURPOSE_MODIFYING_FEATURES: Self = Self(16);
     ///[`DebugReportingExt`] specifies that the tool
     ///reports additional information to the application via callbacks
     ///specified by
@@ -5756,7 +5801,7 @@ impl ToolPurposeFlags {
     ///[`CreateDebugUtilsMessengerEXT`]
     ///
     ///Provided by [`crate::extensions::ext_tooling_info`]
-    const DebugReportingExt: Self = Self(32);
+    pub const DEBUG_REPORTING_EXT: Self = Self(32);
     ///[`DebugMarkersExt`] specifies that the tool
     ///consumes
     ///[debug markers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-debug-markers)
@@ -5766,7 +5811,7 @@ impl ToolPurposeFlags {
     ///[command buffer labels](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-command-buffer-labels)
     ///
     ///Provided by [`crate::extensions::ext_tooling_info`]
-    const DebugMarkersExt: Self = Self(64);
+    pub const DEBUG_MARKERS_EXT: Self = Self(64);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -5776,13 +5821,13 @@ impl ToolPurposeFlags {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::ToolPurposeValidation
-            | Self::ToolPurposeProfiling
-            | Self::ToolPurposeTracing
-            | Self::ToolPurposeAdditionalFeatures
-            | Self::ToolPurposeModifyingFeatures
-            | Self::DebugReportingExt
-            | Self::DebugMarkersExt
+            | Self::TOOL_PURPOSE_VALIDATION
+            | Self::TOOL_PURPOSE_PROFILING
+            | Self::TOOL_PURPOSE_TRACING
+            | Self::TOOL_PURPOSE_ADDITIONAL_FEATURES
+            | Self::TOOL_PURPOSE_MODIFYING_FEATURES
+            | Self::DEBUG_REPORTING_EXT
+            | Self::DEBUG_MARKERS_EXT
     }
     ///Returns the raw bits
     #[inline]
@@ -5944,31 +5989,31 @@ impl const std::ops::Not for ToolPurposeFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<ToolPurposeFlags> for ToolPurposeFlags {
-    fn extend<T: std::iter::IntoIterator<Item = ToolPurposeFlags>>(&mut self, iterator: T) {
+impl Extend<ToolPurposeFlags> for ToolPurposeFlags {
+    fn extend<T: IntoIterator<Item = ToolPurposeFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<ToolPurposeFlagBits> for ToolPurposeFlags {
-    fn extend<T: std::iter::IntoIterator<Item = ToolPurposeFlagBits>>(&mut self, iterator: T) {
+impl Extend<ToolPurposeFlagBits> for ToolPurposeFlags {
+    fn extend<T: IntoIterator<Item = ToolPurposeFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(ToolPurposeFlags::from(i));
+            Self::insert(self, <Self as From<ToolPurposeFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<ToolPurposeFlags> for ToolPurposeFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = ToolPurposeFlags>>(iterator: T) -> ToolPurposeFlags {
-        let mut out = ToolPurposeFlags::empty();
-        out.extend(iterator);
+impl FromIterator<ToolPurposeFlags> for ToolPurposeFlags {
+    fn from_iter<T: IntoIterator<Item = ToolPurposeFlags>>(iterator: T) -> ToolPurposeFlags {
+        let mut out = Self::empty();
+        <Self as Extend<ToolPurposeFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<ToolPurposeFlagBits> for ToolPurposeFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = ToolPurposeFlagBits>>(iterator: T) -> ToolPurposeFlags {
-        let mut out = ToolPurposeFlags::empty();
-        out.extend(iterator);
+impl FromIterator<ToolPurposeFlagBits> for ToolPurposeFlags {
+    fn from_iter<T: IntoIterator<Item = ToolPurposeFlagBits>>(iterator: T) -> ToolPurposeFlags {
+        let mut out = Self::empty();
+        <Self as Extend<ToolPurposeFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -5981,54 +6026,54 @@ impl std::fmt::Debug for ToolPurposeFlags {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(ToolPurposeFlags::ToolPurposeValidation) {
+                    if self.0.contains(ToolPurposeFlags::TOOL_PURPOSE_VALIDATION) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ToolPurposeValidation))?;
+                        f.write_str(stringify!(TOOL_PURPOSE_VALIDATION))?;
                     }
-                    if self.0.contains(ToolPurposeFlags::ToolPurposeProfiling) {
+                    if self.0.contains(ToolPurposeFlags::TOOL_PURPOSE_PROFILING) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ToolPurposeProfiling))?;
+                        f.write_str(stringify!(TOOL_PURPOSE_PROFILING))?;
                     }
-                    if self.0.contains(ToolPurposeFlags::ToolPurposeTracing) {
+                    if self.0.contains(ToolPurposeFlags::TOOL_PURPOSE_TRACING) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ToolPurposeTracing))?;
+                        f.write_str(stringify!(TOOL_PURPOSE_TRACING))?;
                     }
-                    if self.0.contains(ToolPurposeFlags::ToolPurposeAdditionalFeatures) {
+                    if self.0.contains(ToolPurposeFlags::TOOL_PURPOSE_ADDITIONAL_FEATURES) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ToolPurposeAdditionalFeatures))?;
+                        f.write_str(stringify!(TOOL_PURPOSE_ADDITIONAL_FEATURES))?;
                     }
-                    if self.0.contains(ToolPurposeFlags::ToolPurposeModifyingFeatures) {
+                    if self.0.contains(ToolPurposeFlags::TOOL_PURPOSE_MODIFYING_FEATURES) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ToolPurposeModifyingFeatures))?;
+                        f.write_str(stringify!(TOOL_PURPOSE_MODIFYING_FEATURES))?;
                     }
-                    if self.0.contains(ToolPurposeFlags::DebugReportingExt) {
+                    if self.0.contains(ToolPurposeFlags::DEBUG_REPORTING_EXT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DebugReportingExt))?;
+                        f.write_str(stringify!(DEBUG_REPORTING_EXT))?;
                     }
-                    if self.0.contains(ToolPurposeFlags::DebugMarkersExt) {
+                    if self.0.contains(ToolPurposeFlags::DEBUG_MARKERS_EXT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DebugMarkersExt))?;
+                        f.write_str(stringify!(DEBUG_MARKERS_EXT))?;
                     }
                 }
                 Ok(())
@@ -6070,7 +6115,7 @@ impl std::fmt::Debug for ToolPurposeFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubmitFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -6088,7 +6133,7 @@ impl From<SubmitFlagBits> for SubmitFlags {
 impl SubmitFlags {
     ///[`SubmitProtected`] specifies that this batch is a protected
     ///submission.
-    const SubmitProtected: Self = Self(1);
+    pub const SUBMIT_PROTECTED: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -6097,7 +6142,7 @@ impl SubmitFlags {
     ///Returns a value with all of the flags enabled
     #[inline]
     pub const fn all() -> Self {
-        Self::empty() | Self::SubmitProtected
+        Self::empty() | Self::SUBMIT_PROTECTED
     }
     ///Returns the raw bits
     #[inline]
@@ -6259,31 +6304,31 @@ impl const std::ops::Not for SubmitFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<SubmitFlags> for SubmitFlags {
-    fn extend<T: std::iter::IntoIterator<Item = SubmitFlags>>(&mut self, iterator: T) {
+impl Extend<SubmitFlags> for SubmitFlags {
+    fn extend<T: IntoIterator<Item = SubmitFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<SubmitFlagBits> for SubmitFlags {
-    fn extend<T: std::iter::IntoIterator<Item = SubmitFlagBits>>(&mut self, iterator: T) {
+impl Extend<SubmitFlagBits> for SubmitFlags {
+    fn extend<T: IntoIterator<Item = SubmitFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(SubmitFlags::from(i));
+            Self::insert(self, <Self as From<SubmitFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<SubmitFlags> for SubmitFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = SubmitFlags>>(iterator: T) -> SubmitFlags {
-        let mut out = SubmitFlags::empty();
-        out.extend(iterator);
+impl FromIterator<SubmitFlags> for SubmitFlags {
+    fn from_iter<T: IntoIterator<Item = SubmitFlags>>(iterator: T) -> SubmitFlags {
+        let mut out = Self::empty();
+        <Self as Extend<SubmitFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<SubmitFlagBits> for SubmitFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = SubmitFlagBits>>(iterator: T) -> SubmitFlags {
-        let mut out = SubmitFlags::empty();
-        out.extend(iterator);
+impl FromIterator<SubmitFlagBits> for SubmitFlags {
+    fn from_iter<T: IntoIterator<Item = SubmitFlagBits>>(iterator: T) -> SubmitFlags {
+        let mut out = Self::empty();
+        <Self as Extend<SubmitFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -6296,12 +6341,12 @@ impl std::fmt::Debug for SubmitFlags {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(SubmitFlags::SubmitProtected) {
+                    if self.0.contains(SubmitFlags::SUBMIT_PROTECTED) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SubmitProtected))?;
+                        f.write_str(stringify!(SUBMIT_PROTECTED))?;
                     }
                 }
                 Ok(())
@@ -6354,6 +6399,7 @@ impl std::fmt::Debug for SubmitFlags {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DevicePrivateDataCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6404,7 +6450,7 @@ impl<'lt> DevicePrivateDataCreateInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::private_data_slot_request_count`]
     pub fn private_data_slot_request_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.private_data_slot_request_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -6467,6 +6513,7 @@ impl<'lt> DevicePrivateDataCreateInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PrivateDataSlotCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6581,10 +6628,11 @@ impl<'lt> PrivateDataSlotCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePrivateDataFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePrivateDataFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6731,6 +6779,7 @@ impl<'lt> PhysicalDevicePrivateDataFeatures<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceBufferMemoryRequirements<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6882,6 +6931,7 @@ impl<'lt> DeviceBufferMemoryRequirements<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceImageMemoryRequirements<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -7036,10 +7086,11 @@ impl<'lt> DeviceImageMemoryRequirements<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceInlineUniformBlockFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceInlineUniformBlockFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -7254,10 +7305,11 @@ impl<'lt> PhysicalDeviceInlineUniformBlockFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceInlineUniformBlockProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceInlineUniformBlockProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -7343,26 +7395,26 @@ impl<'lt> PhysicalDeviceInlineUniformBlockProperties<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_inline_uniform_block_size`]
     pub fn max_inline_uniform_block_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_inline_uniform_block_size
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_inline_uniform_blocks`]
     pub fn max_per_stage_descriptor_inline_uniform_blocks_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_inline_uniform_blocks
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_update_after_bind_inline_uniform_blocks`]
     pub fn max_per_stage_descriptor_update_after_bind_inline_uniform_blocks_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_update_after_bind_inline_uniform_blocks
     }
     ///Gets a mutable reference to the value of [`Self::max_descriptor_set_inline_uniform_blocks`]
     pub fn max_descriptor_set_inline_uniform_blocks_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_inline_uniform_blocks
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_inline_uniform_blocks`]
     pub fn max_descriptor_set_update_after_bind_inline_uniform_blocks_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_inline_uniform_blocks
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -7454,6 +7506,7 @@ impl<'lt> PhysicalDeviceInlineUniformBlockProperties<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct WriteDescriptorSetInlineUniformBlock<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -7525,7 +7578,7 @@ impl<'lt> WriteDescriptorSetInlineUniformBlock<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::data_size`]
     pub fn data_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.data_size
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -7604,6 +7657,7 @@ impl<'lt> WriteDescriptorSetInlineUniformBlock<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorPoolInlineUniformBlockCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -7655,7 +7709,7 @@ impl<'lt> DescriptorPoolInlineUniformBlockCreateInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_inline_uniform_block_bindings`]
     pub fn max_inline_uniform_block_bindings_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_inline_uniform_block_bindings
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -7724,10 +7778,11 @@ impl<'lt> DescriptorPoolInlineUniformBlockCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMaintenance4Features")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance4Features<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES`
     pub s_type: StructureType,
@@ -7879,10 +7934,11 @@ impl<'lt> PhysicalDeviceMaintenance4Features<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMaintenance4Properties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance4Properties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8022,10 +8078,11 @@ impl<'lt> PhysicalDeviceMaintenance4Properties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceTextureCompressionASTCHDRFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceTextureCompressionAstchdrFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8223,7 +8280,7 @@ impl PipelineCreationFeedback {
     }
     ///Gets a mutable reference to the value of [`Self::duration`]
     pub fn duration_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.duration
     }
     ///Sets the raw value of [`Self::flags`]
     pub fn set_flags(&mut self, value: crate::vulkan1_3::PipelineCreationFeedbackFlags) -> &mut Self {
@@ -8327,10 +8384,11 @@ impl PipelineCreationFeedback {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCreationFeedbackCreateInfo")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineCreationFeedbackCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8432,7 +8490,7 @@ impl<'lt> PipelineCreationFeedbackCreateInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::pipeline_stage_creation_feedback_count`]
     pub fn pipeline_stage_creation_feedback_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.pipeline_stage_creation_feedback_count
     }
     ///Gets a mutable reference to the value of [`Self::pipeline_stage_creation_feedbacks`]
     ///# Safety
@@ -8530,10 +8588,11 @@ impl<'lt> PipelineCreationFeedbackCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8703,10 +8762,11 @@ impl<'lt> PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceTexelBufferAlignmentProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceTexelBufferAlignmentProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8940,10 +9000,11 @@ impl<'lt> PhysicalDeviceTexelBufferAlignmentProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSubgroupSizeControlFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSubgroupSizeControlFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -9142,10 +9203,11 @@ impl<'lt> PhysicalDeviceSubgroupSizeControlFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSubgroupSizeControlProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSubgroupSizeControlProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -9224,15 +9286,15 @@ impl<'lt> PhysicalDeviceSubgroupSizeControlProperties<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::min_subgroup_size`]
     pub fn min_subgroup_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.min_subgroup_size
     }
     ///Gets a mutable reference to the value of [`Self::max_subgroup_size`]
     pub fn max_subgroup_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_subgroup_size
     }
     ///Gets a mutable reference to the value of [`Self::max_compute_workgroup_subgroups`]
     pub fn max_compute_workgroup_subgroups_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_compute_workgroup_subgroups
     }
     ///Gets a mutable reference to the value of [`Self::required_subgroup_size_stages`]
     pub fn required_subgroup_size_stages_mut(&mut self) -> &mut ShaderStageFlags {
@@ -9318,10 +9380,11 @@ impl<'lt> PhysicalDeviceSubgroupSizeControlProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineShaderStageRequiredSubgroupSizeCreateInfo")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineShaderStageRequiredSubgroupSizeCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -9381,7 +9444,7 @@ impl<'lt> PipelineShaderStageRequiredSubgroupSizeCreateInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::required_subgroup_size`]
     pub fn required_subgroup_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.required_subgroup_size
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -9453,10 +9516,11 @@ impl<'lt> PipelineShaderStageRequiredSubgroupSizeCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePipelineCreationCacheControlFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -9674,10 +9738,11 @@ impl<'lt> PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVulkan13Features")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVulkan13Features<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -10634,10 +10699,11 @@ impl<'lt> PhysicalDeviceVulkan13Features<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVulkan13Properties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVulkan13Properties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -11425,15 +11491,15 @@ impl<'lt> PhysicalDeviceVulkan13Properties<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::min_subgroup_size`]
     pub fn min_subgroup_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.min_subgroup_size
     }
     ///Gets a mutable reference to the value of [`Self::max_subgroup_size`]
     pub fn max_subgroup_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_subgroup_size
     }
     ///Gets a mutable reference to the value of [`Self::max_compute_workgroup_subgroups`]
     pub fn max_compute_workgroup_subgroups_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_compute_workgroup_subgroups
     }
     ///Gets a mutable reference to the value of [`Self::required_subgroup_size_stages`]
     pub fn required_subgroup_size_stages_mut(&mut self) -> &mut ShaderStageFlags {
@@ -11441,30 +11507,30 @@ impl<'lt> PhysicalDeviceVulkan13Properties<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_inline_uniform_block_size`]
     pub fn max_inline_uniform_block_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_inline_uniform_block_size
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_inline_uniform_blocks`]
     pub fn max_per_stage_descriptor_inline_uniform_blocks_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_inline_uniform_blocks
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_update_after_bind_inline_uniform_blocks`]
     pub fn max_per_stage_descriptor_update_after_bind_inline_uniform_blocks_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_update_after_bind_inline_uniform_blocks
     }
     ///Gets a mutable reference to the value of [`Self::max_descriptor_set_inline_uniform_blocks`]
     pub fn max_descriptor_set_inline_uniform_blocks_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_inline_uniform_blocks
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_inline_uniform_blocks`]
     pub fn max_descriptor_set_update_after_bind_inline_uniform_blocks_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_inline_uniform_blocks
     }
     ///Gets a mutable reference to the value of [`Self::max_inline_uniform_total_size`]
     pub fn max_inline_uniform_total_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_inline_uniform_total_size
     }
     ///Gets a mutable reference to the value of
     /// [`Self::integer_dot_product_8_bit_unsigned_accelerated`]
@@ -12461,10 +12527,11 @@ impl<'lt> PhysicalDeviceVulkan13Properties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceToolProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceToolProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -12473,20 +12540,20 @@ pub struct PhysicalDeviceToolProperties<'lt> {
     pub p_next: *mut BaseOutStructure<'lt>,
     ///[`name`] is a null-terminated UTF-8 string containing the name of the
     ///tool.
-    pub name: [c_schar; MAX_EXTENSION_NAME_SIZE],
+    pub name: [c_char; MAX_EXTENSION_NAME_SIZE as usize],
     ///[`version`] is a null-terminated UTF-8 string containing the version
     ///of the tool.
-    pub version: [c_schar; MAX_EXTENSION_NAME_SIZE],
+    pub version: [c_char; MAX_EXTENSION_NAME_SIZE as usize],
     ///[`purposes`] is a bitmask of [`ToolPurposeFlagBits`] which is
     ///populated with purposes supported by the tool.
     pub purposes: ToolPurposeFlags,
     ///[`description`] is a null-terminated UTF-8 string containing a
     ///description of the tool.
-    pub description: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub description: [c_char; MAX_DESCRIPTION_SIZE as usize],
     ///[`layer`] is a null-terminated UTF-8 string containing the name of the
     ///layer implementing the tool, if the tool is implemented in a layer -
     ///otherwise it  **may**  be an empty string.
-    pub layer: [c_schar; MAX_EXTENSION_NAME_SIZE],
+    pub layer: [c_char; MAX_EXTENSION_NAME_SIZE as usize],
 }
 impl<'lt> Default for PhysicalDeviceToolProperties<'lt> {
     fn default() -> Self {
@@ -12494,11 +12561,11 @@ impl<'lt> Default for PhysicalDeviceToolProperties<'lt> {
             _lifetime: PhantomData,
             s_type: Default::default(),
             p_next: std::ptr::null_mut(),
-            name: [b'\0' as i8; MAX_EXTENSION_NAME_SIZE],
-            version: [b'\0' as i8; MAX_EXTENSION_NAME_SIZE],
+            name: [b'\0' as i8; MAX_EXTENSION_NAME_SIZE as usize],
+            version: [b'\0' as i8; MAX_EXTENSION_NAME_SIZE as usize],
             purposes: Default::default(),
-            description: [b'\0' as i8; MAX_DESCRIPTION_SIZE],
-            layer: [b'\0' as i8; MAX_EXTENSION_NAME_SIZE],
+            description: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
+            layer: [b'\0' as i8; MAX_EXTENSION_NAME_SIZE as usize],
         }
     }
 }
@@ -12524,24 +12591,24 @@ impl<'lt> PhysicalDeviceToolProperties<'lt> {
         &*self.p_next
     }
     ///Gets the value of [`Self::name`]
-    pub fn name(&self) -> &[c_schar; MAX_EXTENSION_NAME_SIZE] {
-        &getter
+    pub fn name(&self) -> &[c_char; MAX_EXTENSION_NAME_SIZE as usize] {
+        &self.name
     }
     ///Gets the value of [`Self::version`]
-    pub fn version(&self) -> &[c_schar; MAX_EXTENSION_NAME_SIZE] {
-        &getter
+    pub fn version(&self) -> &[c_char; MAX_EXTENSION_NAME_SIZE as usize] {
+        &self.version
     }
     ///Gets the value of [`Self::purposes`]
     pub fn purposes(&self) -> ToolPurposeFlags {
         self.purposes
     }
     ///Gets the value of [`Self::description`]
-    pub fn description(&self) -> &[c_schar; MAX_DESCRIPTION_SIZE] {
-        &getter
+    pub fn description(&self) -> &[c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &self.description
     }
     ///Gets the value of [`Self::layer`]
-    pub fn layer(&self) -> &[c_schar; MAX_EXTENSION_NAME_SIZE] {
-        &getter
+    pub fn layer(&self) -> &[c_char; MAX_EXTENSION_NAME_SIZE as usize] {
+        &self.layer
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -12555,24 +12622,24 @@ impl<'lt> PhysicalDeviceToolProperties<'lt> {
         &mut *self.p_next
     }
     ///Gets a mutable reference to the value of [`Self::name`]
-    pub fn name_mut(&mut self) -> &mut [c_schar; MAX_EXTENSION_NAME_SIZE] {
-        &mut getter
+    pub fn name_mut(&mut self) -> &mut [c_char; MAX_EXTENSION_NAME_SIZE as usize] {
+        &mut self.name
     }
     ///Gets a mutable reference to the value of [`Self::version`]
-    pub fn version_mut(&mut self) -> &mut [c_schar; MAX_EXTENSION_NAME_SIZE] {
-        &mut getter
+    pub fn version_mut(&mut self) -> &mut [c_char; MAX_EXTENSION_NAME_SIZE as usize] {
+        &mut self.version
     }
     ///Gets a mutable reference to the value of [`Self::purposes`]
     pub fn purposes_mut(&mut self) -> &mut ToolPurposeFlags {
         &mut self.purposes
     }
     ///Gets a mutable reference to the value of [`Self::description`]
-    pub fn description_mut(&mut self) -> &mut [c_schar; MAX_DESCRIPTION_SIZE] {
-        &mut getter
+    pub fn description_mut(&mut self) -> &mut [c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &mut self.description
     }
     ///Gets a mutable reference to the value of [`Self::layer`]
-    pub fn layer_mut(&mut self) -> &mut [c_schar; MAX_EXTENSION_NAME_SIZE] {
-        &mut getter
+    pub fn layer_mut(&mut self) -> &mut [c_char; MAX_EXTENSION_NAME_SIZE as usize] {
+        &mut self.layer
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -12585,12 +12652,18 @@ impl<'lt> PhysicalDeviceToolProperties<'lt> {
         self
     }
     ///Sets the raw value of [`Self::name`]
-    pub fn set_name(&mut self, value: [std::os::raw::c_char; crate::core::MAX_EXTENSION_NAME_SIZE]) -> &mut Self {
+    pub fn set_name(
+        &mut self,
+        value: [std::os::raw::c_char; crate::core::MAX_EXTENSION_NAME_SIZE as usize],
+    ) -> &mut Self {
         self.name = value;
         self
     }
     ///Sets the raw value of [`Self::version`]
-    pub fn set_version(&mut self, value: [std::os::raw::c_char; crate::core::MAX_EXTENSION_NAME_SIZE]) -> &mut Self {
+    pub fn set_version(
+        &mut self,
+        value: [std::os::raw::c_char; crate::core::MAX_EXTENSION_NAME_SIZE as usize],
+    ) -> &mut Self {
         self.version = value;
         self
     }
@@ -12600,12 +12673,18 @@ impl<'lt> PhysicalDeviceToolProperties<'lt> {
         self
     }
     ///Sets the raw value of [`Self::description`]
-    pub fn set_description(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE]) -> &mut Self {
+    pub fn set_description(
+        &mut self,
+        value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize],
+    ) -> &mut Self {
         self.description = value;
         self
     }
     ///Sets the raw value of [`Self::layer`]
-    pub fn set_layer(&mut self, value: [std::os::raw::c_char; crate::core::MAX_EXTENSION_NAME_SIZE]) -> &mut Self {
+    pub fn set_layer(
+        &mut self,
+        value: [std::os::raw::c_char; crate::core::MAX_EXTENSION_NAME_SIZE as usize],
+    ) -> &mut Self {
         self.layer = value;
         self
     }
@@ -12661,10 +12740,11 @@ impl<'lt> PhysicalDeviceToolProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -12811,10 +12891,11 @@ impl<'lt> PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceImageRobustnessFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceImageRobustnessFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -12970,6 +13051,7 @@ impl<'lt> PhysicalDeviceImageRobustnessFeatures<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCopy2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -13133,6 +13215,7 @@ impl<'lt> BufferCopy2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageCopy2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -13333,6 +13416,7 @@ impl<'lt> ImageCopy2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageBlit2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -13344,13 +13428,13 @@ pub struct ImageBlit2<'lt> {
     ///[`src_offsets`] is a pointer to an array of two [`Offset3D`]
     ///structures specifying the bounds of the source region within
     ///[`src_subresource`].
-    pub src_offsets: [Offset3D; 2],
+    pub src_offsets: [Offset3D; 2 as usize],
     ///[`dst_subresource`] is the subresource to blit into.
     pub dst_subresource: ImageSubresourceLayers,
     ///[`dst_offsets`] is a pointer to an array of two [`Offset3D`]
     ///structures specifying the bounds of the destination region within
     ///[`dst_subresource`].
-    pub dst_offsets: [Offset3D; 2],
+    pub dst_offsets: [Offset3D; 2 as usize],
 }
 impl<'lt> Default for ImageBlit2<'lt> {
     fn default() -> Self {
@@ -13359,9 +13443,9 @@ impl<'lt> Default for ImageBlit2<'lt> {
             s_type: Default::default(),
             p_next: std::ptr::null(),
             src_subresource: Default::default(),
-            src_offsets: [Default::default(); 2],
+            src_offsets: [Default::default(); 2 as usize],
             dst_subresource: Default::default(),
-            dst_offsets: [Default::default(); 2],
+            dst_offsets: [Default::default(); 2 as usize],
         }
     }
 }
@@ -13391,16 +13475,16 @@ impl<'lt> ImageBlit2<'lt> {
         self.src_subresource
     }
     ///Gets the value of [`Self::src_offsets`]
-    pub fn src_offsets(&self) -> &[Offset3D; 2] {
-        &getter
+    pub fn src_offsets(&self) -> &[Offset3D; 2 as usize] {
+        &self.src_offsets
     }
     ///Gets the value of [`Self::dst_subresource`]
     pub fn dst_subresource(&self) -> ImageSubresourceLayers {
         self.dst_subresource
     }
     ///Gets the value of [`Self::dst_offsets`]
-    pub fn dst_offsets(&self) -> &[Offset3D; 2] {
-        &getter
+    pub fn dst_offsets(&self) -> &[Offset3D; 2 as usize] {
+        &self.dst_offsets
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -13411,16 +13495,16 @@ impl<'lt> ImageBlit2<'lt> {
         &mut self.src_subresource
     }
     ///Gets a mutable reference to the value of [`Self::src_offsets`]
-    pub fn src_offsets_mut(&mut self) -> &mut [Offset3D; 2] {
-        &mut getter
+    pub fn src_offsets_mut(&mut self) -> &mut [Offset3D; 2 as usize] {
+        &mut self.src_offsets
     }
     ///Gets a mutable reference to the value of [`Self::dst_subresource`]
     pub fn dst_subresource_mut(&mut self) -> &mut ImageSubresourceLayers {
         &mut self.dst_subresource
     }
     ///Gets a mutable reference to the value of [`Self::dst_offsets`]
-    pub fn dst_offsets_mut(&mut self) -> &mut [Offset3D; 2] {
-        &mut getter
+    pub fn dst_offsets_mut(&mut self) -> &mut [Offset3D; 2 as usize] {
+        &mut self.dst_offsets
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -13438,7 +13522,7 @@ impl<'lt> ImageBlit2<'lt> {
         self
     }
     ///Sets the raw value of [`Self::src_offsets`]
-    pub fn set_src_offsets(&mut self, value: [crate::vulkan1_0::Offset3D; 2]) -> &mut Self {
+    pub fn set_src_offsets(&mut self, value: [crate::vulkan1_0::Offset3D; 2 as usize]) -> &mut Self {
         self.src_offsets = value;
         self
     }
@@ -13448,7 +13532,7 @@ impl<'lt> ImageBlit2<'lt> {
         self
     }
     ///Sets the raw value of [`Self::dst_offsets`]
-    pub fn set_dst_offsets(&mut self, value: [crate::vulkan1_0::Offset3D; 2]) -> &mut Self {
+    pub fn set_dst_offsets(&mut self, value: [crate::vulkan1_0::Offset3D; 2 as usize]) -> &mut Self {
         self.dst_offsets = value;
         self
     }
@@ -13529,6 +13613,7 @@ impl<'lt> ImageBlit2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferImageCopy2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -13627,11 +13712,11 @@ impl<'lt> BufferImageCopy2<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::buffer_row_length`]
     pub fn buffer_row_length_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.buffer_row_length
     }
     ///Gets a mutable reference to the value of [`Self::buffer_image_height`]
     pub fn buffer_image_height_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.buffer_image_height
     }
     ///Gets a mutable reference to the value of [`Self::image_subresource`]
     pub fn image_subresource_mut(&mut self) -> &mut ImageSubresourceLayers {
@@ -13748,6 +13833,7 @@ impl<'lt> BufferImageCopy2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageResolve2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -13968,6 +14054,7 @@ impl<'lt> ImageResolve2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CopyBufferInfo2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -14060,7 +14147,7 @@ impl<'lt> CopyBufferInfo2<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::region_count`]
     pub fn region_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.region_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -14305,6 +14392,7 @@ impl<'lt> CopyBufferInfo2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CopyImageInfo2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -14421,7 +14509,7 @@ impl<'lt> CopyImageInfo2<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::region_count`]
     pub fn region_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.region_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -14633,6 +14721,7 @@ impl<'lt> CopyImageInfo2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BlitImageInfo2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -14757,7 +14846,7 @@ impl<'lt> BlitImageInfo2<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::region_count`]
     pub fn region_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.region_count
     }
     ///Gets a mutable reference to the value of [`Self::filter`]
     pub fn filter_mut(&mut self) -> &mut Filter {
@@ -14982,6 +15071,7 @@ impl<'lt> BlitImageInfo2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CopyBufferToImageInfo2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -15086,7 +15176,7 @@ impl<'lt> CopyBufferToImageInfo2<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::region_count`]
     pub fn region_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.region_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -15293,6 +15383,7 @@ impl<'lt> CopyBufferToImageInfo2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CopyImageToBufferInfo2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -15397,7 +15488,7 @@ impl<'lt> CopyImageToBufferInfo2<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::region_count`]
     pub fn region_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.region_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -15571,6 +15662,7 @@ impl<'lt> CopyImageToBufferInfo2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ResolveImageInfo2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -15687,7 +15779,7 @@ impl<'lt> ResolveImageInfo2<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::region_count`]
     pub fn region_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.region_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -15784,10 +15876,11 @@ impl<'lt> ResolveImageInfo2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderTerminateInvocationFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderTerminateInvocationFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -16248,6 +16341,7 @@ impl<'lt> PhysicalDeviceShaderTerminateInvocationFeatures<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryBarrier2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -16903,6 +16997,7 @@ impl<'lt> MemoryBarrier2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageMemoryBarrier2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -17051,11 +17146,11 @@ impl<'lt> ImageMemoryBarrier2<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::src_queue_family_index`]
     pub fn src_queue_family_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.src_queue_family_index
     }
     ///Gets a mutable reference to the value of [`Self::dst_queue_family_index`]
     pub fn dst_queue_family_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.dst_queue_family_index
     }
     ///Gets a mutable reference to the value of [`Self::image`]
     pub fn image_mut(&mut self) -> &mut Image {
@@ -17543,6 +17638,7 @@ impl<'lt> ImageMemoryBarrier2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferMemoryBarrier2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -17678,11 +17774,11 @@ impl<'lt> BufferMemoryBarrier2<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::src_queue_family_index`]
     pub fn src_queue_family_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.src_queue_family_index
     }
     ///Gets a mutable reference to the value of [`Self::dst_queue_family_index`]
     pub fn dst_queue_family_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.dst_queue_family_index
     }
     ///Gets a mutable reference to the value of [`Self::buffer`]
     pub fn buffer_mut(&mut self) -> &mut Buffer {
@@ -17831,6 +17927,7 @@ impl<'lt> BufferMemoryBarrier2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DependencyInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -17972,15 +18069,15 @@ impl<'lt> DependencyInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::memory_barrier_count`]
     pub fn memory_barrier_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.memory_barrier_count
     }
     ///Gets a mutable reference to the value of [`Self::buffer_memory_barrier_count`]
     pub fn buffer_memory_barrier_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.buffer_memory_barrier_count
     }
     ///Gets a mutable reference to the value of [`Self::image_memory_barrier_count`]
     pub fn image_memory_barrier_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.image_memory_barrier_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -18133,6 +18230,7 @@ impl<'lt> DependencyInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SemaphoreSubmitInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -18219,7 +18317,7 @@ impl<'lt> SemaphoreSubmitInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::value`]
     pub fn value_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.value
     }
     ///Gets a mutable reference to the value of [`Self::stage_mask`]
     pub fn stage_mask_mut(&mut self) -> &mut PipelineStageFlags2 {
@@ -18227,7 +18325,7 @@ impl<'lt> SemaphoreSubmitInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::device_index`]
     pub fn device_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.device_index
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -18312,6 +18410,7 @@ impl<'lt> SemaphoreSubmitInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CommandBufferSubmitInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -18377,7 +18476,7 @@ impl<'lt> CommandBufferSubmitInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::device_mask`]
     pub fn device_mask_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.device_mask
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -18490,6 +18589,7 @@ impl<'lt> CommandBufferSubmitInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SubmitInfo2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -18632,15 +18732,15 @@ impl<'lt> SubmitInfo2<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::wait_semaphore_info_count`]
     pub fn wait_semaphore_info_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.wait_semaphore_info_count
     }
     ///Gets a mutable reference to the value of [`Self::command_buffer_info_count`]
     pub fn command_buffer_info_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.command_buffer_info_count
     }
     ///Gets a mutable reference to the value of [`Self::signal_semaphore_info_count`]
     pub fn signal_semaphore_info_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.signal_semaphore_info_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -18750,10 +18850,11 @@ impl<'lt> SubmitInfo2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSynchronization2Features")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSynchronization2Features<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -18907,10 +19008,11 @@ impl<'lt> PhysicalDeviceSynchronization2Features<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderIntegerDotProductFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderIntegerDotProductFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -19125,10 +19227,11 @@ impl<'lt> PhysicalDeviceShaderIntegerDotProductFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderIntegerDotProductProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderIntegerDotProductProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -20649,10 +20752,11 @@ impl<'lt> PhysicalDeviceShaderIntegerDotProductProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFormatProperties3")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct FormatProperties3<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///No documentation found
     pub s_type: StructureType,
@@ -20850,6 +20954,7 @@ impl<'lt> FormatProperties3<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineRenderingCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -20944,11 +21049,11 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::view_mask`]
     pub fn view_mask_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.view_mask
     }
     ///Gets a mutable reference to the value of [`Self::color_attachment_count`]
     pub fn color_attachment_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.color_attachment_count
     }
     ///Gets a mutable reference to the value of [`Self::depth_attachment_format`]
     pub fn depth_attachment_format_mut(&mut self) -> &mut Format {
@@ -21187,11 +21292,264 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
 ///   not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or equal
 ///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.9019679999999999em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">F</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">a</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
+///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.15122857142857138em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
+///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
+///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
+///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
+///   not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or equal
+///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
 ///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
 ///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.9019679999999999em;"><span
+///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.05764em;">S</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.3448em;"
+///   class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.16454285714285719em;" class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.15122857142857138em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose
+///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
+///   class="delimsizing size2">⌉</span></span></span></span></span></span> for each element of
+///   `pDeviceRenderAreas`
+/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
+///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
+///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
+///   not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or equal
+///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">F</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">a</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span><span style="margin-right:0.13889em;" class="mord
+///   mathdefault mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
+///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.51308em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.16454285714285716em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
+///   class="mbin mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   class="vlist"
+///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
+///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
+///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
+///   not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or equal
+///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
 ///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
@@ -21205,311 +21563,13 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
 ///   mathdefault mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
-///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.16454285714285719em;" class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
-///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
-///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or equal
-///   to <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
-///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   mtight">y</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span
 ///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
 ///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
-///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.16454285714285719em;" class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span> for
-///   each element of `pDeviceRenderAreas`
-/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
-///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
-///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or equal
-///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
-///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
-///   mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">t</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span><span style="margin-right:0.13889em;" class="mord
-///   mathdefault mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
 ///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
 ///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
-///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.16454285714285716em;" class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
-///   class="mbin mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.5480799999999999em;"
-///   class="vlist"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
-///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
-///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or equal
-///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
-///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
-///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285716em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
-///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
 ///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
@@ -21520,12 +21580,60 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span style="height:0.29011428571428566em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
+///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span
+///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
+///   style="top:-3.51308em;"><span class="pstrut" style="height:3em;"></span><span class="sizing
+///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault
+///   mtight">p</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">D</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.03588em;">v</span><span class="mord mathdefault
+///   mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.16454285714285716em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
+///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.29011428571428566em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span> for
-///   each element of `pDeviceRenderAreas`
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.5480799999999999em;"
+///   class="vlist"><span></span></span></span></span></span><span class="mclose
+///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
+///   class="delimsizing size2">⌉</span></span></span></span></span></span> for each element of
+///   `pDeviceRenderAreas`
 /// - If the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure
 ///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], it  **must**  not be
 ///   equal to the `imageView` or `resolveImageView` member of [`depth_attachment`],
@@ -21537,7 +21645,7 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
 ///   class="base"><span class="strut"
 ///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
-///   class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.9019679999999999em;"><span
@@ -21557,139 +21665,49 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mtight">t</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span
 ///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
 ///   mathdefault mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
 ///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
 ///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="frac-line"
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.15122857142857138em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
+///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
 ///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
 ///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
 ///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
 ///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
 ///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
 ///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
 ///   mtight">+</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
 ///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
-///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
-///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
-///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or
-///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
-///   class="mopen delimcenter" style="top:0em;"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
-///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.16454285714285719em;" class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
@@ -21697,22 +21715,20 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span
 ///   style="height:0.15122857142857138em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span> for each element of
-///   `pDeviceRenderAreas`
-/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
-///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
+///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
-///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or
-///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
+///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or
+///   equal to <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   class="base"><span style="height:1.80002em;vertical-align:-0.65002em;"
+///   class="strut"></span><span class="minner"><span style="top:0em;" class="mopen
+///   delimcenter"><span class="delimsizing size2">⌈</span></span><span class="mord"><span
+///   class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
 ///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
@@ -21729,14 +21745,106 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
 ///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
-///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
+///   mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+///   class="pstrut"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.446108em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">p</span><span style="margin-right:0.02778em;"
+///   class="mord mathdefault mtight">D</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord mtight"><span
+///   class="mord mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.16454285714285719em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault
+///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span> for
+///   each element of `pDeviceRenderAreas`
+/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
+///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
+///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
+///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or
+///   equal to <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   class="base"><span class="strut"
+///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
+///   class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
+///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
 ///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
@@ -21744,11 +21852,11 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span style="height:0.29011428571428566em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span
-///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-///   style="top:-3.51308em;"><span style="height:3em;" class="pstrut"></span><span class="sizing
-///   reset-size6 size3 mtight"><span class="mord mtight"><span style="margin-right:0.02778em;"
-///   class="mord mathdefault mtight">r</span><span class="mord mathdefault mtight">e</span><span
+///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
@@ -21772,7 +21880,7 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
@@ -21781,42 +21889,43 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
 ///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.5480799999999999em;"
-///   class="vlist"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   class="vlist"
+///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
 ///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
 ///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or
-///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:1.80002em;vertical-align:-0.65002em;"
-///   class="strut"></span><span class="minner"><span style="top:0em;" class="mopen
-///   delimcenter"><span class="delimsizing size2">⌈</span></span><span class="mord"><span
-///   class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
+///   equal to <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   class="base"><span class="strut"
+///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
+///   class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
 ///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
 ///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span
-///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
-///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.3448em;" class="vlist"><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
+///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.05764em;">S</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.3448em;"
+///   class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
@@ -21826,59 +21935,59 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
-///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
+///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+///   class="pstrut"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.51308em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">p</span><span style="margin-right:0.02778em;"
+///   class="mord mathdefault mtight">D</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">v</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord mtight"><span
+///   class="mord mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285716em;"
+///   class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.03588em;" class="mord
+///   mathdefault mtight">y</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.2818857142857143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight">p</span><span
 ///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.16454285714285716em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
-///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.3448em;" class="vlist"><span
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   class="vlist"
-///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span> for
-///   each element of `pDeviceRenderAreas`
+///   class="vlist-r"><span style="height:0.29011428571428566em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.5480799999999999em;"
+///   class="vlist"><span></span></span></span></span></span><span class="mclose
+///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
+///   class="delimsizing size2">⌉</span></span></span></span></span></span> for each element of
+///   `pDeviceRenderAreas`
 /// - If the `imageView` member of a [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure
 ///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], and [`view_mask`] is
 ///   `0`, `imageView` **must**  have a [`layer_count`] that is either equal to `1` or greater than
@@ -21935,6 +22044,7 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderingInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -22087,15 +22197,15 @@ impl<'lt> RenderingInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::layer_count`]
     pub fn layer_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.layer_count
     }
     ///Gets a mutable reference to the value of [`Self::view_mask`]
     pub fn view_mask_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.view_mask
     }
     ///Gets a mutable reference to the value of [`Self::color_attachment_count`]
     pub fn color_attachment_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.color_attachment_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -22299,10 +22409,11 @@ impl<'lt> RenderingInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderingAttachmentInfo")]
-#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
+#[derive(Clone, Copy)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderingAttachmentInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -22538,10 +22649,11 @@ impl<'lt> RenderingAttachmentInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDynamicRenderingFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDynamicRenderingFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES`
     pub s_type: StructureType,
@@ -22743,6 +22855,7 @@ impl<'lt> PhysicalDeviceDynamicRenderingFeatures<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CommandBufferInheritanceRenderingInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
     pub s_type: StructureType,
@@ -22857,11 +22970,11 @@ impl<'lt> CommandBufferInheritanceRenderingInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::view_mask`]
     pub fn view_mask_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.view_mask
     }
     ///Gets a mutable reference to the value of [`Self::color_attachment_count`]
     pub fn color_attachment_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.color_attachment_count
     }
     ///Gets a mutable reference to the value of [`Self::depth_attachment_format`]
     pub fn depth_attachment_format_mut(&mut self) -> &mut Format {
@@ -22956,7 +23069,7 @@ impl<'lt> CommandBufferInheritanceRenderingInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPrivateDataSlot")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct PrivateDataSlot(pub u64);
@@ -22968,7 +23081,7 @@ impl PrivateDataSlot {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -22980,16 +23093,6 @@ impl PrivateDataSlot {
 unsafe impl Send for PrivateDataSlot {}
 impl Default for PrivateDataSlot {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for PrivateDataSlot {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for PrivateDataSlot {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }

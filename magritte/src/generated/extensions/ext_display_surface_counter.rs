@@ -57,7 +57,11 @@ use crate::{
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData};
+use std::{
+    ffi::CStr,
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_DISPLAY_SURFACE_COUNTER_SPEC_VERSION")]
@@ -121,7 +125,7 @@ impl SurfaceCounterFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -157,7 +161,7 @@ impl SurfaceCounterFlagBitsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceCounterFlagsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -176,7 +180,7 @@ impl SurfaceCounterFlagsEXT {
     ///[`SurfaceCounterVblankExt`] specifies a counter incrementing
     ///once every time a vertical blanking period occurs on the display
     ///associated with the surface.
-    const SurfaceCounterVblankExt: Self = Self(1);
+    pub const SURFACE_COUNTER_VBLANK_EXT: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -185,7 +189,7 @@ impl SurfaceCounterFlagsEXT {
     ///Returns a value with all of the flags enabled
     #[inline]
     pub const fn all() -> Self {
-        Self::empty() | Self::SurfaceCounterVblankExt
+        Self::empty() | Self::SURFACE_COUNTER_VBLANK_EXT
     }
     ///Returns the raw bits
     #[inline]
@@ -347,31 +351,31 @@ impl const std::ops::Not for SurfaceCounterFlagsEXT {
         self.complement()
     }
 }
-impl std::iter::Extend<SurfaceCounterFlagsEXT> for SurfaceCounterFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = SurfaceCounterFlagsEXT>>(&mut self, iterator: T) {
+impl Extend<SurfaceCounterFlagsEXT> for SurfaceCounterFlagsEXT {
+    fn extend<T: IntoIterator<Item = SurfaceCounterFlagsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<SurfaceCounterFlagBitsEXT> for SurfaceCounterFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = SurfaceCounterFlagBitsEXT>>(&mut self, iterator: T) {
+impl Extend<SurfaceCounterFlagBitsEXT> for SurfaceCounterFlagsEXT {
+    fn extend<T: IntoIterator<Item = SurfaceCounterFlagBitsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(SurfaceCounterFlagsEXT::from(i));
+            Self::insert(self, <Self as From<SurfaceCounterFlagBitsEXT>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<SurfaceCounterFlagsEXT> for SurfaceCounterFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = SurfaceCounterFlagsEXT>>(iterator: T) -> SurfaceCounterFlagsEXT {
-        let mut out = SurfaceCounterFlagsEXT::empty();
-        out.extend(iterator);
+impl FromIterator<SurfaceCounterFlagsEXT> for SurfaceCounterFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = SurfaceCounterFlagsEXT>>(iterator: T) -> SurfaceCounterFlagsEXT {
+        let mut out = Self::empty();
+        <Self as Extend<SurfaceCounterFlagsEXT>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<SurfaceCounterFlagBitsEXT> for SurfaceCounterFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = SurfaceCounterFlagBitsEXT>>(iterator: T) -> SurfaceCounterFlagsEXT {
-        let mut out = SurfaceCounterFlagsEXT::empty();
-        out.extend(iterator);
+impl FromIterator<SurfaceCounterFlagBitsEXT> for SurfaceCounterFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = SurfaceCounterFlagBitsEXT>>(iterator: T) -> SurfaceCounterFlagsEXT {
+        let mut out = Self::empty();
+        <Self as Extend<SurfaceCounterFlagBitsEXT>>::extend(&mut out, iterator);
         out
     }
 }
@@ -384,12 +388,12 @@ impl std::fmt::Debug for SurfaceCounterFlagsEXT {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(SurfaceCounterFlagsEXT::SurfaceCounterVblankExt) {
+                    if self.0.contains(SurfaceCounterFlagsEXT::SURFACE_COUNTER_VBLANK_EXT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SurfaceCounterVblankExt))?;
+                        f.write_str(stringify!(SURFACE_COUNTER_VBLANK_EXT))?;
                     }
                 }
                 Ok(())
@@ -488,10 +492,11 @@ impl std::fmt::Debug for SurfaceCounterFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceCapabilities2EXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SurfaceCapabilities2EXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -665,11 +670,11 @@ impl<'lt> SurfaceCapabilities2EXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::min_image_count`]
     pub fn min_image_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.min_image_count
     }
     ///Gets a mutable reference to the value of [`Self::max_image_count`]
     pub fn max_image_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_image_count
     }
     ///Gets a mutable reference to the value of [`Self::current_extent`]
     pub fn current_extent_mut(&mut self) -> &mut Extent2D {
@@ -685,7 +690,7 @@ impl<'lt> SurfaceCapabilities2EXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_image_array_layers`]
     pub fn max_image_array_layers_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_image_array_layers
     }
     ///Gets a mutable reference to the value of [`Self::supported_transforms`]
     pub fn supported_transforms_mut(&mut self) -> &mut SurfaceTransformFlagsKHR {

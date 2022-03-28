@@ -99,7 +99,7 @@ impl<'a> FunctionPointer<'a> {
 
     /// Checks whether the functions needs a lifetime
     pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
-        self.arguments.iter().any(|a| a.has_lifetime(source))
+        self.arguments.iter().any(|a| a.has_lifetime(source, false))
     }
 }
 
@@ -163,8 +163,8 @@ impl<'a> FunctionPointerArgument<'a> {
     }
 
     /// Checks whether the argument needs a lifetime
-    pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
-        self.ty().has_lifetime(source)
+    pub fn has_lifetime(&self, source: &Source<'a>, pointer_has_lifetime: bool) -> bool {
+        self.ty().has_lifetime(source, pointer_has_lifetime)
     }
 }
 

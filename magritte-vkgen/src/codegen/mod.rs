@@ -15,6 +15,8 @@ pub mod ty;
 mod opaques;
 mod funcpointers;
 
+use std::fmt::Write;
+
 use ahash::AHashMap;
 use proc_macro2::TokenStream;
 
@@ -149,6 +151,37 @@ impl<'a> Source<'a> {
             .into_iter()
             .map(|(key, (i, h, t))| CodeOut(key.as_static(), i, h, t))
             .collect()
+    }
+
+    /// Generate the global module file
+    pub fn generate_mod(&self) -> String {
+        let out = format!(r##"
+            #![doc = "# Generated code"]
+            #![doc = "This module contains all of the generated code for Vulkan gated by relevant feature gates."]
+
+            pub mod extensions;
+        "##);
+
+        self.origins.iter().filter(|origin| !origin.is_extension()).fold(out, |mut out, origin| {
+            writeln!(out, "{}pub mod {};", origin.feature_gate().unwrap_or_default(), origin.as_name()).unwrap();
+
+            out
+        })
+    }
+
+    /// Generate the extension module file
+    pub fn generate_extension_mod(&self) -> String {
+        let out = format!(r##"
+            #![doc = "# Extensions"]
+            #![doc = "This module contains all of the registered extensions gated by relevant feature gates."]
+        
+        "##);
+
+        self.origins.iter().filter(|origin| origin.is_extension() && !origin.is_disabled()).fold(out, |mut out, origin| {
+            writeln!(out, "{}pub mod {};", origin.feature_gate().unwrap_or_default(), origin.as_name()).unwrap();
+
+            out
+        })
     }
 }
 

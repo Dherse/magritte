@@ -140,7 +140,6 @@ pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_EXTENSION_NAME: &'static CStr =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineExecutableStatisticFormatKHR")]
-#[doc(alias = "VkPipelineExecutableStatisticFormatKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -181,7 +180,7 @@ impl PipelineExecutableStatisticFormatKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -232,10 +231,11 @@ impl PipelineExecutableStatisticFormatKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -375,6 +375,7 @@ impl<'lt> PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -496,10 +497,11 @@ impl<'lt> PipelineInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineExecutablePropertiesKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineExecutablePropertiesKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -513,11 +515,11 @@ pub struct PipelineExecutablePropertiesKHR<'lt> {
     ///[`name`] is an array of [`MAX_DESCRIPTION_SIZE`]`char`
     ///containing a null-terminated UTF-8 string which is a short human
     ///readable name for this pipeline executable.
-    pub name: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub name: [c_char; MAX_DESCRIPTION_SIZE as usize],
     ///[`description`] is an array of [`MAX_DESCRIPTION_SIZE`]`char`
     ///containing a null-terminated UTF-8 string which is a human readable
     ///description for this pipeline executable.
-    pub description: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub description: [c_char; MAX_DESCRIPTION_SIZE as usize],
     ///[`subgroup_size`] is the subgroup size with which this pipeline
     ///executable is dispatched.
     pub subgroup_size: u32,
@@ -529,8 +531,8 @@ impl<'lt> Default for PipelineExecutablePropertiesKHR<'lt> {
             s_type: Default::default(),
             p_next: std::ptr::null_mut(),
             stages: Default::default(),
-            name: [b'\0' as i8; MAX_DESCRIPTION_SIZE],
-            description: [b'\0' as i8; MAX_DESCRIPTION_SIZE],
+            name: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
+            description: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
             subgroup_size: 0,
         }
     }
@@ -561,12 +563,12 @@ impl<'lt> PipelineExecutablePropertiesKHR<'lt> {
         self.stages
     }
     ///Gets the value of [`Self::name`]
-    pub fn name(&self) -> &[c_schar; MAX_DESCRIPTION_SIZE] {
-        &getter
+    pub fn name(&self) -> &[c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &self.name
     }
     ///Gets the value of [`Self::description`]
-    pub fn description(&self) -> &[c_schar; MAX_DESCRIPTION_SIZE] {
-        &getter
+    pub fn description(&self) -> &[c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &self.description
     }
     ///Gets the value of [`Self::subgroup_size`]
     pub fn subgroup_size(&self) -> u32 {
@@ -588,16 +590,16 @@ impl<'lt> PipelineExecutablePropertiesKHR<'lt> {
         &mut self.stages
     }
     ///Gets a mutable reference to the value of [`Self::name`]
-    pub fn name_mut(&mut self) -> &mut [c_schar; MAX_DESCRIPTION_SIZE] {
-        &mut getter
+    pub fn name_mut(&mut self) -> &mut [c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &mut self.name
     }
     ///Gets a mutable reference to the value of [`Self::description`]
-    pub fn description_mut(&mut self) -> &mut [c_schar; MAX_DESCRIPTION_SIZE] {
-        &mut getter
+    pub fn description_mut(&mut self) -> &mut [c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &mut self.description
     }
     ///Gets a mutable reference to the value of [`Self::subgroup_size`]
     pub fn subgroup_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.subgroup_size
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -615,12 +617,15 @@ impl<'lt> PipelineExecutablePropertiesKHR<'lt> {
         self
     }
     ///Sets the raw value of [`Self::name`]
-    pub fn set_name(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE]) -> &mut Self {
+    pub fn set_name(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize]) -> &mut Self {
         self.name = value;
         self
     }
     ///Sets the raw value of [`Self::description`]
-    pub fn set_description(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE]) -> &mut Self {
+    pub fn set_description(
+        &mut self,
+        value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize],
+    ) -> &mut Self {
         self.description = value;
         self
     }
@@ -677,6 +682,7 @@ impl<'lt> PipelineExecutablePropertiesKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineExecutableInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -740,7 +746,7 @@ impl<'lt> PipelineExecutableInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::executable_index`]
     pub fn executable_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.executable_index
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -806,10 +812,10 @@ impl<'lt> PipelineExecutableInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineExecutableStatisticKHR")]
-#[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineExecutableStatisticKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -819,11 +825,11 @@ pub struct PipelineExecutableStatisticKHR<'lt> {
     ///[`name`] is an array of [`MAX_DESCRIPTION_SIZE`]`char`
     ///containing a null-terminated UTF-8 string which is a short human
     ///readable name for this statistic.
-    pub name: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub name: [c_char; MAX_DESCRIPTION_SIZE as usize],
     ///[`description`] is an array of [`MAX_DESCRIPTION_SIZE`]`char`
     ///containing a null-terminated UTF-8 string which is a human readable
     ///description for this statistic.
-    pub description: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub description: [c_char; MAX_DESCRIPTION_SIZE as usize],
     ///[`format`] is a [`PipelineExecutableStatisticFormatKHR`] value
     ///specifying the format of the data found in [`value`].
     pub format: PipelineExecutableStatisticFormatKHR,
@@ -836,8 +842,8 @@ impl<'lt> Default for PipelineExecutableStatisticKHR<'lt> {
             _lifetime: PhantomData,
             s_type: Default::default(),
             p_next: std::ptr::null_mut(),
-            name: [b'\0' as i8; MAX_DESCRIPTION_SIZE],
-            description: [b'\0' as i8; MAX_DESCRIPTION_SIZE],
+            name: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
+            description: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
             format: Default::default(),
             value: Default::default(),
         }
@@ -865,12 +871,12 @@ impl<'lt> PipelineExecutableStatisticKHR<'lt> {
         &*self.p_next
     }
     ///Gets the value of [`Self::name`]
-    pub fn name(&self) -> &[c_schar; MAX_DESCRIPTION_SIZE] {
-        &getter
+    pub fn name(&self) -> &[c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &self.name
     }
     ///Gets the value of [`Self::description`]
-    pub fn description(&self) -> &[c_schar; MAX_DESCRIPTION_SIZE] {
-        &getter
+    pub fn description(&self) -> &[c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &self.description
     }
     ///Gets the value of [`Self::format`]
     pub fn format(&self) -> PipelineExecutableStatisticFormatKHR {
@@ -892,12 +898,12 @@ impl<'lt> PipelineExecutableStatisticKHR<'lt> {
         &mut *self.p_next
     }
     ///Gets a mutable reference to the value of [`Self::name`]
-    pub fn name_mut(&mut self) -> &mut [c_schar; MAX_DESCRIPTION_SIZE] {
-        &mut getter
+    pub fn name_mut(&mut self) -> &mut [c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &mut self.name
     }
     ///Gets a mutable reference to the value of [`Self::description`]
-    pub fn description_mut(&mut self) -> &mut [c_schar; MAX_DESCRIPTION_SIZE] {
-        &mut getter
+    pub fn description_mut(&mut self) -> &mut [c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &mut self.description
     }
     ///Gets a mutable reference to the value of [`Self::format`]
     pub fn format_mut(&mut self) -> &mut PipelineExecutableStatisticFormatKHR {
@@ -918,12 +924,15 @@ impl<'lt> PipelineExecutableStatisticKHR<'lt> {
         self
     }
     ///Sets the raw value of [`Self::name`]
-    pub fn set_name(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE]) -> &mut Self {
+    pub fn set_name(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize]) -> &mut Self {
         self.name = value;
         self
     }
     ///Sets the raw value of [`Self::description`]
-    pub fn set_description(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE]) -> &mut Self {
+    pub fn set_description(
+        &mut self,
+        value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize],
+    ) -> &mut Self {
         self.description = value;
         self
     }
@@ -1005,10 +1014,11 @@ impl<'lt> PipelineExecutableStatisticKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineExecutableInternalRepresentationKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineExecutableInternalRepresentationKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1018,11 +1028,11 @@ pub struct PipelineExecutableInternalRepresentationKHR<'lt> {
     ///[`name`] is an array of [`MAX_DESCRIPTION_SIZE`]`char`
     ///containing a null-terminated UTF-8 string which is a short human
     ///readable name for this internal representation.
-    pub name: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub name: [c_char; MAX_DESCRIPTION_SIZE as usize],
     ///[`description`] is an array of [`MAX_DESCRIPTION_SIZE`]`char`
     ///containing a null-terminated UTF-8 string which is a human readable
     ///description for this internal representation.
-    pub description: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub description: [c_char; MAX_DESCRIPTION_SIZE as usize],
     ///[`is_text`] specifies whether the returned data is text or opaque data.
     ///If [`is_text`] is [`TRUE`] then the data returned in [`data`]
     ///is text and is guaranteed to be a null-terminated UTF-8 string.
@@ -1040,8 +1050,8 @@ impl<'lt> Default for PipelineExecutableInternalRepresentationKHR<'lt> {
             _lifetime: PhantomData,
             s_type: Default::default(),
             p_next: std::ptr::null_mut(),
-            name: [b'\0' as i8; MAX_DESCRIPTION_SIZE],
-            description: [b'\0' as i8; MAX_DESCRIPTION_SIZE],
+            name: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
+            description: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
             is_text: 0,
             data_size: 0,
             data: std::ptr::null_mut(),
@@ -1088,12 +1098,12 @@ impl<'lt> PipelineExecutableInternalRepresentationKHR<'lt> {
         &*self.p_next
     }
     ///Gets the value of [`Self::name`]
-    pub fn name(&self) -> &[c_schar; MAX_DESCRIPTION_SIZE] {
-        &getter
+    pub fn name(&self) -> &[c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &self.name
     }
     ///Gets the value of [`Self::description`]
-    pub fn description(&self) -> &[c_schar; MAX_DESCRIPTION_SIZE] {
-        &getter
+    pub fn description(&self) -> &[c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &self.description
     }
     ///Gets the value of [`Self::is_text`]
     pub fn is_text(&self) -> bool {
@@ -1122,12 +1132,12 @@ impl<'lt> PipelineExecutableInternalRepresentationKHR<'lt> {
         &mut *self.p_next
     }
     ///Gets a mutable reference to the value of [`Self::name`]
-    pub fn name_mut(&mut self) -> &mut [c_schar; MAX_DESCRIPTION_SIZE] {
-        &mut getter
+    pub fn name_mut(&mut self) -> &mut [c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &mut self.name
     }
     ///Gets a mutable reference to the value of [`Self::description`]
-    pub fn description_mut(&mut self) -> &mut [c_schar; MAX_DESCRIPTION_SIZE] {
-        &mut getter
+    pub fn description_mut(&mut self) -> &mut [c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &mut self.description
     }
     ///Gets a mutable reference to the value of [`Self::is_text`]
     pub fn is_text_mut(&mut self) -> &mut bool {
@@ -1146,7 +1156,7 @@ impl<'lt> PipelineExecutableInternalRepresentationKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::data_size`]
     pub fn data_size_mut(&mut self) -> &mut usize {
-        &mut getter
+        &mut self.data_size
     }
     ///Gets a mutable reference to the value of [`Self::data`]
     ///# Safety
@@ -1166,12 +1176,15 @@ impl<'lt> PipelineExecutableInternalRepresentationKHR<'lt> {
         self
     }
     ///Sets the raw value of [`Self::name`]
-    pub fn set_name(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE]) -> &mut Self {
+    pub fn set_name(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize]) -> &mut Self {
         self.name = value;
         self
     }
     ///Sets the raw value of [`Self::description`]
-    pub fn set_description(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE]) -> &mut Self {
+    pub fn set_description(
+        &mut self,
+        value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize],
+    ) -> &mut Self {
         self.description = value;
         self
     }
@@ -1187,7 +1200,7 @@ impl<'lt> PipelineExecutableInternalRepresentationKHR<'lt> {
     }
     ///Sets the raw value of [`Self::data`]
     pub fn set_data(&mut self, value: &'lt mut [std::ffi::c_void]) -> &mut Self {
-        let len_ = value.len() as u32;
+        let len_ = value.len() as usize;
         let len_ = len_;
         self.data = value.as_mut_ptr();
         self.data_size = len_;

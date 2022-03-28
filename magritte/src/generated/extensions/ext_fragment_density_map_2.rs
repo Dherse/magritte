@@ -111,10 +111,11 @@ pub const EXT_FRAGMENT_DENSITY_MAP_2_EXTENSION_NAME: &'static CStr = crate::cstr
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentDensityMap2FeaturesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMap2FeaturesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -268,10 +269,11 @@ impl<'lt> PhysicalDeviceFragmentDensityMap2FeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentDensityMap2PropertiesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMap2PropertiesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -414,11 +416,11 @@ impl<'lt> PhysicalDeviceFragmentDensityMap2PropertiesEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_subsampled_array_layers`]
     pub fn max_subsampled_array_layers_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_subsampled_array_layers
     }
     ///Gets a mutable reference to the value of [`Self::max_descriptor_set_subsampled_samplers`]
     pub fn max_descriptor_set_subsampled_samplers_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_subsampled_samplers
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {

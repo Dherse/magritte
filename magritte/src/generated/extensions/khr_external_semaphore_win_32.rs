@@ -169,10 +169,10 @@ pub const KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME: &'static CStr = crate::cs
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportSemaphoreWin32HandleInfoKHR")]
-#[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImportSemaphoreWin32HandleInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -392,10 +392,10 @@ impl<'lt> ImportSemaphoreWin32HandleInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExportSemaphoreWin32HandleInfoKHR")]
-#[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExportSemaphoreWin32HandleInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -585,6 +585,7 @@ impl<'lt> ExportSemaphoreWin32HandleInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct D3D12FenceSubmitInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -689,11 +690,11 @@ impl<'lt> D3D12FenceSubmitInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::wait_semaphore_values_count`]
     pub fn wait_semaphore_values_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.wait_semaphore_values_count
     }
     ///Gets a mutable reference to the value of [`Self::signal_semaphore_values_count`]
     pub fn signal_semaphore_values_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.signal_semaphore_values_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -790,6 +791,7 @@ impl<'lt> D3D12FenceSubmitInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SemaphoreGetWin32HandleInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,

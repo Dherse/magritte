@@ -3,9 +3,13 @@ use proc_macro2::TokenStream;
 use quote::{quote, quote_each_token};
 use tracing::warn;
 
-use crate::{source::{Union, Source}, doc::Documentation, imports::Imports};
+use crate::{
+    doc::Documentation,
+    imports::Imports,
+    source::{Source, Union},
+};
 
-use super::{ty::lifetime_as_generic_argument, alias_of};
+use super::{alias_of, ty::lifetime_as_generic_argument};
 
 impl<'a> Union<'a> {
     /// Generates the code for a union

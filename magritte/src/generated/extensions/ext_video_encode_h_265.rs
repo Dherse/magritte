@@ -129,7 +129,11 @@ use crate::{
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData};
+use std::{
+    ffi::CStr,
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_VIDEO_ENCODE_H265_SPEC_VERSION")]
@@ -400,7 +404,7 @@ impl VideoEncodeH265CapabilityFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -493,7 +497,7 @@ impl VideoEncodeH265InputModeFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -599,7 +603,7 @@ impl VideoEncodeH265OutputModeFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -670,7 +674,7 @@ impl VideoEncodeH265RateControlStructureFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -739,7 +743,7 @@ impl VideoEncodeH265CtbSizeFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -817,7 +821,7 @@ impl VideoEncodeH265TransformBlockSizeFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -941,7 +945,7 @@ impl VideoEncodeH265TransformBlockSizeFlagBitsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265CapabilityFlagsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -960,88 +964,88 @@ impl VideoEncodeH265CapabilityFlagsEXT {
     ///[`VideoEncodeH265CapabilitySeparateColourPlaneExt`]
     ///reports if enabling separate_colour_plane_flag in StdVideoH265SpsFlags
     ///is supported.
-    const VideoEncodeH265CapabilitySeparateColourPlaneExt: Self = Self(1);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_SEPARATE_COLOUR_PLANE_EXT: Self = Self(1);
     ///[`VideoEncodeH265CapabilityScalingListsExt`] reports if
     ///enabling scaling_list_enabled_flag and
     ///sps_scaling_list_data_present_flag in StdVideoH265SpsFlags, or enabling
     ///pps_scaling_list_data_present_flag in StdVideoH265PpsFlags are
     ///supproted.
-    const VideoEncodeH265CapabilityScalingListsExt: Self = Self(2);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_SCALING_LISTS_EXT: Self = Self(2);
     ///[`VideoEncodeH265CapabilitySampleAdaptiveOffsetEnabledExt`]
     ///reports if enabling sample_adaptive_offset_enabled_flag in
     ///StdVideoH265SpsFlags is supported.
-    const VideoEncodeH265CapabilitySampleAdaptiveOffsetEnabledExt: Self = Self(4);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_SAMPLE_ADAPTIVE_OFFSET_ENABLED_EXT: Self = Self(4);
     ///[`VideoEncodeH265CapabilityPcmEnableExt`] reports if
     ///enabling pcm_enable_flag in StdVideoH265SpsFlags is supported.
-    const VideoEncodeH265CapabilityPcmEnableExt: Self = Self(8);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_PCM_ENABLE_EXT: Self = Self(8);
     ///[`VideoEncodeH265CapabilitySpsTemporalMvpEnabledExt`]
     ///reports if enabling sps_temporal_mvp_enabled_flag in
     ///StdVideoH265SpsFlags is supported.
-    const VideoEncodeH265CapabilitySpsTemporalMvpEnabledExt: Self = Self(16);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_SPS_TEMPORAL_MVP_ENABLED_EXT: Self = Self(16);
     ///[`VideoEncodeH265CapabilityHrdComplianceExt`] reports if
     ///the implementation guarantees generating a HRD compliant bitstream if
     ///nal_hrd_parameters_present_flag, vcl_hrd_parameters_present_flag, or
     ///sub_pic_hrd_params_present_flag are enabled in StdVideoH265HrdFlags, or
     ///vui_hrd_parameters_present_flag is enabled in StdVideoH265SpsVuiFlags.
-    const VideoEncodeH265CapabilityHrdComplianceExt: Self = Self(32);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_HRD_COMPLIANCE_EXT: Self = Self(32);
     ///[`VideoEncodeH265CapabilityInitQpMinus26Ext`] reports if
     ///setting non-zero init_qp_minus26 in StdVideoH265PictureParameterSet is
     ///supported.
-    const VideoEncodeH265CapabilityInitQpMinus26Ext: Self = Self(64);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_INIT_QP_MINUS_26_EXT: Self = Self(64);
     ///[`VideoEncodeH265CapabilityLog2ParallelMergeLevelMinus2Ext`]
     ///reports if setting non-zero value for log2_parallel_merge_level_minus2
     ///in StdVideoH265PictureParameterSet is supported.
-    const VideoEncodeH265CapabilityLog2ParallelMergeLevelMinus2Ext: Self = Self(128);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_LOG_2_PARALLEL_MERGE_LEVEL_MINUS_2_EXT: Self = Self(128);
     ///[`VideoEncodeH265CapabilitySignDataHidingEnabledExt`]
     ///reports if enabling sign_data_hiding_enabled_flag in
     ///StdVideoH265PpsFlags is supported.
-    const VideoEncodeH265CapabilitySignDataHidingEnabledExt: Self = Self(256);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_SIGN_DATA_HIDING_ENABLED_EXT: Self = Self(256);
     ///[`VideoEncodeH265CapabilityTransformSkipEnabledExt`]
     ///reports if enabling transform_skip_enabled_flag in StdVideoH265PpsFlags
     ///is supported.
-    const VideoEncodeH265CapabilityTransformSkipEnabledExt: Self = Self(512);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_TRANSFORM_SKIP_ENABLED_EXT: Self = Self(512);
     ///[`VideoEncodeH265CapabilityPpsSliceChromaQpOffsetsPresentExt`]
     ///reports if enabling pps_slice_chroma_qp_offsets_present_flag in
     ///StdVideoH265PpsFlags is supported.
-    const VideoEncodeH265CapabilityPpsSliceChromaQpOffsetsPresentExt: Self = Self(1024);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT_EXT: Self = Self(1024);
     ///[`VideoEncodeH265CapabilityWeightedPredExt`] reports if
     ///enabling weighted_pred_flag in StdVideoH265PpsFlags is supported.
-    const VideoEncodeH265CapabilityWeightedPredExt: Self = Self(2048);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_WEIGHTED_PRED_EXT: Self = Self(2048);
     ///[`VideoEncodeH265CapabilityWeightedBipredExt`] reports if
     ///enabling weighted_bipred_flag in StdVideoH265PpsFlags is supported.
-    const VideoEncodeH265CapabilityWeightedBipredExt: Self = Self(4096);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_WEIGHTED_BIPRED_EXT: Self = Self(4096);
     ///[`VideoEncodeH265CapabilityWeightedPredNoTableExt`]
     ///reports that when weighted_pred_flag or weighted_bipred_flag in
     ///StdVideoH265PpsFlags are enabled, the implementation is able to
     ///internally decide syntax for pred_weight_table.
-    const VideoEncodeH265CapabilityWeightedPredNoTableExt: Self = Self(8192);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_WEIGHTED_PRED_NO_TABLE_EXT: Self = Self(8192);
     ///[`VideoEncodeH265CapabilityTransquantBypassEnabledExt`]
     ///reports if enabling transquant_bypass_enabled_flag in
     ///StdVideoH265PpsFlags is supported.
-    const VideoEncodeH265CapabilityTransquantBypassEnabledExt: Self = Self(16384);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_TRANSQUANT_BYPASS_ENABLED_EXT: Self = Self(16384);
     ///[`VideoEncodeH265CapabilityEntropyCodingSyncEnabledExt`]
     ///reports if enabling entropy_coding_sync_enabled_flag in
     ///StdVideoH265PpsFlags is supported.
-    const VideoEncodeH265CapabilityEntropyCodingSyncEnabledExt: Self = Self(32768);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_ENTROPY_CODING_SYNC_ENABLED_EXT: Self = Self(32768);
     ///[`VideoEncodeH265CapabilityDeblockingFilterOverrideEnabledExt`]
     ///reports if enabling deblocking_filter_override_enabled_flag in
     ///StdVideoH265PpsFlags is supported.
-    const VideoEncodeH265CapabilityDeblockingFilterOverrideEnabledExt: Self = Self(65536);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_DEBLOCKING_FILTER_OVERRIDE_ENABLED_EXT: Self = Self(65536);
     ///[`VideoEncodeH265CapabilityMultipleTilePerFrameExt`]
     ///reports if encoding multiple tiles per frame is supported.
     ///If not set, the implementation is only able to encode a single tile for
     ///each frame.
-    const VideoEncodeH265CapabilityMultipleTilePerFrameExt: Self = Self(131072);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_MULTIPLE_TILE_PER_FRAME_EXT: Self = Self(131072);
     ///[`VideoEncodeH265CapabilityMultipleSlicePerTileExt`]
     ///reports if encoding multiple slices per tile is supported.
     ///If not set, the implementation is only able to encode a single slice for
     ///each tile.
-    const VideoEncodeH265CapabilityMultipleSlicePerTileExt: Self = Self(262144);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_MULTIPLE_SLICE_PER_TILE_EXT: Self = Self(262144);
     ///[`VideoEncodeH265CapabilityMultipleTilePerSliceExt`]
     ///reports if encoding multiple tiles per slice is supported.
     ///If not set, the implementation is only able to encode a single tile for
     ///each slice.
-    const VideoEncodeH265CapabilityMultipleTilePerSliceExt: Self = Self(524288);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_MULTIPLE_TILE_PER_SLICE_EXT: Self = Self(524288);
     ///[`VideoEncodeH265CapabilitySliceSegmentCtbCountExt`]
     ///reports support for configuring
     ///[`VideoEncodeH265NaluSliceSegmentEXT`]::`ctbCount` and
@@ -1050,7 +1054,7 @@ impl VideoEncodeH265CapabilityFlagsEXT {
     ///If not supported, the implementation decides the number of CTBs in each
     ///slice segment based on
     ///[`VideoEncodeH265VclFrameInfoEXT`]::`naluSliceSegmentEntryCount`.
-    const VideoEncodeH265CapabilitySliceSegmentCtbCountExt: Self = Self(1048576);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_SLICE_SEGMENT_CTB_COUNT_EXT: Self = Self(1048576);
     ///[`VideoEncodeH265CapabilityRowUnalignedSliceSegmentExt`]
     ///reports that each slice segment in a frame with a single or multiple
     ///tiles per slice may begin or finish at any offset in a CTB row.
@@ -1063,11 +1067,11 @@ impl VideoEncodeH265CapabilityFlagsEXT {
     ///If not supported, slice segments in such a frame  **must**  begin at the
     ///start of the enclosing tile’s CTB row (and hence each slice segment
     /// **must**  finish at the end of the enclosing tile’s CTB row).
-    const VideoEncodeH265CapabilityRowUnalignedSliceSegmentExt: Self = Self(2097152);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_ROW_UNALIGNED_SLICE_SEGMENT_EXT: Self = Self(2097152);
     ///[`VideoEncodeH265CapabilityDependentSliceSegmentExt`]
     ///reports if enabling dependent_slice_segment_flag in
     ///StdVideoEncodeH265SliceHeaderFlags is supported.
-    const VideoEncodeH265CapabilityDependentSliceSegmentExt: Self = Self(4194304);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_DEPENDENT_SLICE_SEGMENT_EXT: Self = Self(4194304);
     ///[`VideoEncodeH265CapabilityDifferentSliceTypeExt`]
     ///reports that when
     ///[`VideoEncodeH265CapabilityMultipleSlicePerTileExt`] is
@@ -1079,7 +1083,7 @@ impl VideoEncodeH265CapabilityFlagsEXT {
     ///frame.
     ///For example, all slice segments of a P-frame would be encoded as
     ///P-slices.
-    const VideoEncodeH265CapabilityDifferentSliceTypeExt: Self = Self(8388608);
+    pub const VIDEO_ENCODE_H_265_CAPABILITY_DIFFERENT_SLICE_TYPE_EXT: Self = Self(8388608);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1089,30 +1093,30 @@ impl VideoEncodeH265CapabilityFlagsEXT {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::VideoEncodeH265CapabilitySeparateColourPlaneExt
-            | Self::VideoEncodeH265CapabilityScalingListsExt
-            | Self::VideoEncodeH265CapabilitySampleAdaptiveOffsetEnabledExt
-            | Self::VideoEncodeH265CapabilityPcmEnableExt
-            | Self::VideoEncodeH265CapabilitySpsTemporalMvpEnabledExt
-            | Self::VideoEncodeH265CapabilityHrdComplianceExt
-            | Self::VideoEncodeH265CapabilityInitQpMinus26Ext
-            | Self::VideoEncodeH265CapabilityLog2ParallelMergeLevelMinus2Ext
-            | Self::VideoEncodeH265CapabilitySignDataHidingEnabledExt
-            | Self::VideoEncodeH265CapabilityTransformSkipEnabledExt
-            | Self::VideoEncodeH265CapabilityPpsSliceChromaQpOffsetsPresentExt
-            | Self::VideoEncodeH265CapabilityWeightedPredExt
-            | Self::VideoEncodeH265CapabilityWeightedBipredExt
-            | Self::VideoEncodeH265CapabilityWeightedPredNoTableExt
-            | Self::VideoEncodeH265CapabilityTransquantBypassEnabledExt
-            | Self::VideoEncodeH265CapabilityEntropyCodingSyncEnabledExt
-            | Self::VideoEncodeH265CapabilityDeblockingFilterOverrideEnabledExt
-            | Self::VideoEncodeH265CapabilityMultipleTilePerFrameExt
-            | Self::VideoEncodeH265CapabilityMultipleSlicePerTileExt
-            | Self::VideoEncodeH265CapabilityMultipleTilePerSliceExt
-            | Self::VideoEncodeH265CapabilitySliceSegmentCtbCountExt
-            | Self::VideoEncodeH265CapabilityRowUnalignedSliceSegmentExt
-            | Self::VideoEncodeH265CapabilityDependentSliceSegmentExt
-            | Self::VideoEncodeH265CapabilityDifferentSliceTypeExt
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_SEPARATE_COLOUR_PLANE_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_SCALING_LISTS_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_SAMPLE_ADAPTIVE_OFFSET_ENABLED_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_PCM_ENABLE_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_SPS_TEMPORAL_MVP_ENABLED_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_HRD_COMPLIANCE_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_INIT_QP_MINUS_26_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_LOG_2_PARALLEL_MERGE_LEVEL_MINUS_2_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_SIGN_DATA_HIDING_ENABLED_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_TRANSFORM_SKIP_ENABLED_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_WEIGHTED_PRED_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_WEIGHTED_BIPRED_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_WEIGHTED_PRED_NO_TABLE_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_TRANSQUANT_BYPASS_ENABLED_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_ENTROPY_CODING_SYNC_ENABLED_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_DEBLOCKING_FILTER_OVERRIDE_ENABLED_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_MULTIPLE_TILE_PER_FRAME_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_MULTIPLE_SLICE_PER_TILE_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_MULTIPLE_TILE_PER_SLICE_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_SLICE_SEGMENT_CTB_COUNT_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_ROW_UNALIGNED_SLICE_SEGMENT_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_DEPENDENT_SLICE_SEGMENT_EXT
+            | Self::VIDEO_ENCODE_H_265_CAPABILITY_DIFFERENT_SLICE_TYPE_EXT
     }
     ///Returns the raw bits
     #[inline]
@@ -1274,35 +1278,35 @@ impl const std::ops::Not for VideoEncodeH265CapabilityFlagsEXT {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoEncodeH265CapabilityFlagsEXT> for VideoEncodeH265CapabilityFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeH265CapabilityFlagsEXT>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeH265CapabilityFlagsEXT> for VideoEncodeH265CapabilityFlagsEXT {
+    fn extend<T: IntoIterator<Item = VideoEncodeH265CapabilityFlagsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoEncodeH265CapabilityFlagBitsEXT> for VideoEncodeH265CapabilityFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeH265CapabilityFlagBitsEXT>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeH265CapabilityFlagBitsEXT> for VideoEncodeH265CapabilityFlagsEXT {
+    fn extend<T: IntoIterator<Item = VideoEncodeH265CapabilityFlagBitsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoEncodeH265CapabilityFlagsEXT::from(i));
+            Self::insert(self, <Self as From<VideoEncodeH265CapabilityFlagBitsEXT>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<VideoEncodeH265CapabilityFlagsEXT> for VideoEncodeH265CapabilityFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeH265CapabilityFlagsEXT>>(
+impl FromIterator<VideoEncodeH265CapabilityFlagsEXT> for VideoEncodeH265CapabilityFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeH265CapabilityFlagsEXT>>(
         iterator: T,
     ) -> VideoEncodeH265CapabilityFlagsEXT {
-        let mut out = VideoEncodeH265CapabilityFlagsEXT::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeH265CapabilityFlagsEXT>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoEncodeH265CapabilityFlagBitsEXT> for VideoEncodeH265CapabilityFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeH265CapabilityFlagBitsEXT>>(
+impl FromIterator<VideoEncodeH265CapabilityFlagBitsEXT> for VideoEncodeH265CapabilityFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeH265CapabilityFlagBitsEXT>>(
         iterator: T,
     ) -> VideoEncodeH265CapabilityFlagsEXT {
-        let mut out = VideoEncodeH265CapabilityFlagsEXT::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeH265CapabilityFlagBitsEXT>>::extend(&mut out, iterator);
         out
     }
 }
@@ -1315,238 +1319,179 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilitySeparateColourPlaneExt)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VideoEncodeH265CapabilitySeparateColourPlaneExt))?;
-                    }
-                    if self
-                        .0
-                        .contains(VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityScalingListsExt)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityScalingListsExt))?;
-                    }
                     if self.0.contains(
-                        VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilitySampleAdaptiveOffsetEnabledExt,
+                        VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_SEPARATE_COLOUR_PLANE_EXT,
                     ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265CapabilitySampleAdaptiveOffsetEnabledExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_SEPARATE_COLOUR_PLANE_EXT))?;
                     }
                     if self
                         .0
-                        .contains(VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityPcmEnableExt)
+                        .contains(VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_SCALING_LISTS_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityPcmEnableExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_SCALING_LISTS_EXT))?;
                     }
+                    if self . 0 . contains (VideoEncodeH265CapabilityFlagsEXT :: VIDEO_ENCODE_H_265_CAPABILITY_SAMPLE_ADAPTIVE_OFFSET_ENABLED_EXT) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (VIDEO_ENCODE_H_265_CAPABILITY_SAMPLE_ADAPTIVE_OFFSET_ENABLED_EXT)) ? ; }
                     if self
                         .0
-                        .contains(VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilitySpsTemporalMvpEnabledExt)
+                        .contains(VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_PCM_ENABLE_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265CapabilitySpsTemporalMvpEnabledExt))?;
-                    }
-                    if self
-                        .0
-                        .contains(VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityHrdComplianceExt)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityHrdComplianceExt))?;
-                    }
-                    if self
-                        .0
-                        .contains(VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityInitQpMinus26Ext)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityInitQpMinus26Ext))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_PCM_ENABLE_EXT))?;
                     }
                     if self.0.contains(
-                        VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityLog2ParallelMergeLevelMinus2Ext,
+                        VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_SPS_TEMPORAL_MVP_ENABLED_EXT,
                     ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityLog2ParallelMergeLevelMinus2Ext))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_SPS_TEMPORAL_MVP_ENABLED_EXT))?;
                     }
                     if self
                         .0
-                        .contains(VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilitySignDataHidingEnabledExt)
+                        .contains(VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_HRD_COMPLIANCE_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265CapabilitySignDataHidingEnabledExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_HRD_COMPLIANCE_EXT))?;
                     }
                     if self
                         .0
-                        .contains(VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityTransformSkipEnabledExt)
+                        .contains(VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_INIT_QP_MINUS_26_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityTransformSkipEnabledExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_INIT_QP_MINUS_26_EXT))?;
                     }
+                    if self . 0 . contains (VideoEncodeH265CapabilityFlagsEXT :: VIDEO_ENCODE_H_265_CAPABILITY_LOG_2_PARALLEL_MERGE_LEVEL_MINUS_2_EXT) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (VIDEO_ENCODE_H_265_CAPABILITY_LOG_2_PARALLEL_MERGE_LEVEL_MINUS_2_EXT)) ? ; }
                     if self.0.contains(
-                        VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityPpsSliceChromaQpOffsetsPresentExt,
+                        VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_SIGN_DATA_HIDING_ENABLED_EXT,
                     ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityPpsSliceChromaQpOffsetsPresentExt))?;
-                    }
-                    if self
-                        .0
-                        .contains(VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityWeightedPredExt)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityWeightedPredExt))?;
-                    }
-                    if self
-                        .0
-                        .contains(VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityWeightedBipredExt)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityWeightedBipredExt))?;
-                    }
-                    if self
-                        .0
-                        .contains(VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityWeightedPredNoTableExt)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityWeightedPredNoTableExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_SIGN_DATA_HIDING_ENABLED_EXT))?;
                     }
                     if self.0.contains(
-                        VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityTransquantBypassEnabledExt,
+                        VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_TRANSFORM_SKIP_ENABLED_EXT,
                     ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityTransquantBypassEnabledExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_TRANSFORM_SKIP_ENABLED_EXT))?;
+                    }
+                    if self . 0 . contains (VideoEncodeH265CapabilityFlagsEXT :: VIDEO_ENCODE_H_265_CAPABILITY_PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT_EXT) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (VIDEO_ENCODE_H_265_CAPABILITY_PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT_EXT)) ? ; }
+                    if self
+                        .0
+                        .contains(VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_WEIGHTED_PRED_EXT)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_WEIGHTED_PRED_EXT))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_WEIGHTED_BIPRED_EXT)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_WEIGHTED_BIPRED_EXT))?;
                     }
                     if self.0.contains(
-                        VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityEntropyCodingSyncEnabledExt,
+                        VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_WEIGHTED_PRED_NO_TABLE_EXT,
                     ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityEntropyCodingSyncEnabledExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_WEIGHTED_PRED_NO_TABLE_EXT))?;
                     }
                     if self.0.contains(
-                        VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityDeblockingFilterOverrideEnabledExt,
+                        VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_TRANSQUANT_BYPASS_ENABLED_EXT,
                     ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityDeblockingFilterOverrideEnabledExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_TRANSQUANT_BYPASS_ENABLED_EXT))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityMultipleTilePerFrameExt)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityMultipleTilePerFrameExt))?;
-                    }
-                    if self
-                        .0
-                        .contains(VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityMultipleSlicePerTileExt)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityMultipleSlicePerTileExt))?;
-                    }
-                    if self
-                        .0
-                        .contains(VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityMultipleTilePerSliceExt)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityMultipleTilePerSliceExt))?;
-                    }
-                    if self
-                        .0
-                        .contains(VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilitySliceSegmentCtbCountExt)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VideoEncodeH265CapabilitySliceSegmentCtbCountExt))?;
-                    }
+                    if self . 0 . contains (VideoEncodeH265CapabilityFlagsEXT :: VIDEO_ENCODE_H_265_CAPABILITY_ENTROPY_CODING_SYNC_ENABLED_EXT) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (VIDEO_ENCODE_H_265_CAPABILITY_ENTROPY_CODING_SYNC_ENABLED_EXT)) ? ; }
+                    if self . 0 . contains (VideoEncodeH265CapabilityFlagsEXT :: VIDEO_ENCODE_H_265_CAPABILITY_DEBLOCKING_FILTER_OVERRIDE_ENABLED_EXT) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (VIDEO_ENCODE_H_265_CAPABILITY_DEBLOCKING_FILTER_OVERRIDE_ENABLED_EXT)) ? ; }
                     if self.0.contains(
-                        VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityRowUnalignedSliceSegmentExt,
+                        VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_MULTIPLE_TILE_PER_FRAME_EXT,
                     ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityRowUnalignedSliceSegmentExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_MULTIPLE_TILE_PER_FRAME_EXT))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityDependentSliceSegmentExt)
-                    {
+                    if self.0.contains(
+                        VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_MULTIPLE_SLICE_PER_TILE_EXT,
+                    ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityDependentSliceSegmentExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_MULTIPLE_SLICE_PER_TILE_EXT))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoEncodeH265CapabilityFlagsEXT::VideoEncodeH265CapabilityDifferentSliceTypeExt)
-                    {
+                    if self.0.contains(
+                        VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_MULTIPLE_TILE_PER_SLICE_EXT,
+                    ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265CapabilityDifferentSliceTypeExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_MULTIPLE_TILE_PER_SLICE_EXT))?;
+                    }
+                    if self.0.contains(
+                        VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_SLICE_SEGMENT_CTB_COUNT_EXT,
+                    ) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_SLICE_SEGMENT_CTB_COUNT_EXT))?;
+                    }
+                    if self . 0 . contains (VideoEncodeH265CapabilityFlagsEXT :: VIDEO_ENCODE_H_265_CAPABILITY_ROW_UNALIGNED_SLICE_SEGMENT_EXT) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (VIDEO_ENCODE_H_265_CAPABILITY_ROW_UNALIGNED_SLICE_SEGMENT_EXT)) ? ; }
+                    if self.0.contains(
+                        VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_DEPENDENT_SLICE_SEGMENT_EXT,
+                    ) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_DEPENDENT_SLICE_SEGMENT_EXT))?;
+                    }
+                    if self.0.contains(
+                        VideoEncodeH265CapabilityFlagsEXT::VIDEO_ENCODE_H_265_CAPABILITY_DIFFERENT_SLICE_TYPE_EXT,
+                    ) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CAPABILITY_DIFFERENT_SLICE_TYPE_EXT))?;
                     }
                 }
                 Ok(())
@@ -1603,7 +1548,7 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265InputModeFlagsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1624,17 +1569,17 @@ impl VideoEncodeH265InputModeFlagsEXT {
     ///Any non-VCL NALUs  **must**  be encoded using the same command buffer as the
     ///frame if [`VideoEncodeH265InputModeNonVclExt`] is not
     ///supported.
-    const VideoEncodeH265InputModeFrameExt: Self = Self(1);
+    pub const VIDEO_ENCODE_H_265_INPUT_MODE_FRAME_EXT: Self = Self(1);
     ///[`VideoEncodeH265InputModeSliceSegmentExt`] indicates
     ///that a single command buffer  **must**  at least encode a single slice
     ///segment.
     ///Any non-VCL NALUs  **must**  be encoded using the same command buffer as the
     ///first slice segment of the frame if
     ///[`VideoEncodeH265InputModeNonVclExt`] is not supported.
-    const VideoEncodeH265InputModeSliceSegmentExt: Self = Self(2);
+    pub const VIDEO_ENCODE_H_265_INPUT_MODE_SLICE_SEGMENT_EXT: Self = Self(2);
     ///[`VideoEncodeH265InputModeNonVclExt`] indicates that a
     ///single command buffer  **may**  encode a non-VCL NALU by itself.
-    const VideoEncodeH265InputModeNonVclExt: Self = Self(4);
+    pub const VIDEO_ENCODE_H_265_INPUT_MODE_NON_VCL_EXT: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1644,9 +1589,9 @@ impl VideoEncodeH265InputModeFlagsEXT {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::VideoEncodeH265InputModeFrameExt
-            | Self::VideoEncodeH265InputModeSliceSegmentExt
-            | Self::VideoEncodeH265InputModeNonVclExt
+            | Self::VIDEO_ENCODE_H_265_INPUT_MODE_FRAME_EXT
+            | Self::VIDEO_ENCODE_H_265_INPUT_MODE_SLICE_SEGMENT_EXT
+            | Self::VIDEO_ENCODE_H_265_INPUT_MODE_NON_VCL_EXT
     }
     ///Returns the raw bits
     #[inline]
@@ -1808,35 +1753,35 @@ impl const std::ops::Not for VideoEncodeH265InputModeFlagsEXT {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoEncodeH265InputModeFlagsEXT> for VideoEncodeH265InputModeFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeH265InputModeFlagsEXT>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeH265InputModeFlagsEXT> for VideoEncodeH265InputModeFlagsEXT {
+    fn extend<T: IntoIterator<Item = VideoEncodeH265InputModeFlagsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoEncodeH265InputModeFlagBitsEXT> for VideoEncodeH265InputModeFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeH265InputModeFlagBitsEXT>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeH265InputModeFlagBitsEXT> for VideoEncodeH265InputModeFlagsEXT {
+    fn extend<T: IntoIterator<Item = VideoEncodeH265InputModeFlagBitsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoEncodeH265InputModeFlagsEXT::from(i));
+            Self::insert(self, <Self as From<VideoEncodeH265InputModeFlagBitsEXT>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<VideoEncodeH265InputModeFlagsEXT> for VideoEncodeH265InputModeFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeH265InputModeFlagsEXT>>(
+impl FromIterator<VideoEncodeH265InputModeFlagsEXT> for VideoEncodeH265InputModeFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeH265InputModeFlagsEXT>>(
         iterator: T,
     ) -> VideoEncodeH265InputModeFlagsEXT {
-        let mut out = VideoEncodeH265InputModeFlagsEXT::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeH265InputModeFlagsEXT>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoEncodeH265InputModeFlagBitsEXT> for VideoEncodeH265InputModeFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeH265InputModeFlagBitsEXT>>(
+impl FromIterator<VideoEncodeH265InputModeFlagBitsEXT> for VideoEncodeH265InputModeFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeH265InputModeFlagBitsEXT>>(
         iterator: T,
     ) -> VideoEncodeH265InputModeFlagsEXT {
-        let mut out = VideoEncodeH265InputModeFlagsEXT::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeH265InputModeFlagBitsEXT>>::extend(&mut out, iterator);
         out
     }
 }
@@ -1851,33 +1796,33 @@ impl std::fmt::Debug for VideoEncodeH265InputModeFlagsEXT {
                     let mut first = true;
                     if self
                         .0
-                        .contains(VideoEncodeH265InputModeFlagsEXT::VideoEncodeH265InputModeFrameExt)
+                        .contains(VideoEncodeH265InputModeFlagsEXT::VIDEO_ENCODE_H_265_INPUT_MODE_FRAME_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265InputModeFrameExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_INPUT_MODE_FRAME_EXT))?;
                     }
                     if self
                         .0
-                        .contains(VideoEncodeH265InputModeFlagsEXT::VideoEncodeH265InputModeSliceSegmentExt)
+                        .contains(VideoEncodeH265InputModeFlagsEXT::VIDEO_ENCODE_H_265_INPUT_MODE_SLICE_SEGMENT_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265InputModeSliceSegmentExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_INPUT_MODE_SLICE_SEGMENT_EXT))?;
                     }
                     if self
                         .0
-                        .contains(VideoEncodeH265InputModeFlagsEXT::VideoEncodeH265InputModeNonVclExt)
+                        .contains(VideoEncodeH265InputModeFlagsEXT::VIDEO_ENCODE_H_265_INPUT_MODE_NON_VCL_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265InputModeNonVclExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_INPUT_MODE_NON_VCL_EXT))?;
                     }
                 }
                 Ok(())
@@ -1945,7 +1890,7 @@ impl std::fmt::Debug for VideoEncodeH265InputModeFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265OutputModeFlagsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1966,19 +1911,19 @@ impl VideoEncodeH265OutputModeFlagsEXT {
     ///begin/end pair.
     ///Any non-VCL NALUs  **must**  be encoded within the same begin/end pair if
     ///[`VideoEncodeH265OutputModeNonVclExt`] is not supported.
-    const VideoEncodeH265OutputModeFrameExt: Self = Self(1);
+    pub const VIDEO_ENCODE_H_265_OUTPUT_MODE_FRAME_EXT: Self = Self(1);
     ///[`VideoEncodeH265OutputModeSliceSegmentExt`] indicates
     ///that each begin/end pair  **must**  encode at least one slice segment.
     ///Any non-VCL NALUs  **must**  be encoded within the same begin/end pair as the
     ///first slice segment of the frame if
     ///[`VideoEncodeH265OutputModeNonVclExt`] is not supported.
-    const VideoEncodeH265OutputModeSliceSegmentExt: Self = Self(2);
+    pub const VIDEO_ENCODE_H_265_OUTPUT_MODE_SLICE_SEGMENT_EXT: Self = Self(2);
     ///[`VideoEncodeH265OutputModeNonVclExt`] indicates that
     ///each begin/end pair  **may**  encode only a non-VCL NALU by itself.
     ///An implementation  **must**  support at least one of
     ///[`VideoEncodeH265OutputModeFrameExt`] or
     ///[`VideoEncodeH265OutputModeSliceSegmentExt`].
-    const VideoEncodeH265OutputModeNonVclExt: Self = Self(4);
+    pub const VIDEO_ENCODE_H_265_OUTPUT_MODE_NON_VCL_EXT: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1988,9 +1933,9 @@ impl VideoEncodeH265OutputModeFlagsEXT {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::VideoEncodeH265OutputModeFrameExt
-            | Self::VideoEncodeH265OutputModeSliceSegmentExt
-            | Self::VideoEncodeH265OutputModeNonVclExt
+            | Self::VIDEO_ENCODE_H_265_OUTPUT_MODE_FRAME_EXT
+            | Self::VIDEO_ENCODE_H_265_OUTPUT_MODE_SLICE_SEGMENT_EXT
+            | Self::VIDEO_ENCODE_H_265_OUTPUT_MODE_NON_VCL_EXT
     }
     ///Returns the raw bits
     #[inline]
@@ -2152,35 +2097,35 @@ impl const std::ops::Not for VideoEncodeH265OutputModeFlagsEXT {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoEncodeH265OutputModeFlagsEXT> for VideoEncodeH265OutputModeFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeH265OutputModeFlagsEXT>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeH265OutputModeFlagsEXT> for VideoEncodeH265OutputModeFlagsEXT {
+    fn extend<T: IntoIterator<Item = VideoEncodeH265OutputModeFlagsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoEncodeH265OutputModeFlagBitsEXT> for VideoEncodeH265OutputModeFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeH265OutputModeFlagBitsEXT>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeH265OutputModeFlagBitsEXT> for VideoEncodeH265OutputModeFlagsEXT {
+    fn extend<T: IntoIterator<Item = VideoEncodeH265OutputModeFlagBitsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoEncodeH265OutputModeFlagsEXT::from(i));
+            Self::insert(self, <Self as From<VideoEncodeH265OutputModeFlagBitsEXT>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<VideoEncodeH265OutputModeFlagsEXT> for VideoEncodeH265OutputModeFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeH265OutputModeFlagsEXT>>(
+impl FromIterator<VideoEncodeH265OutputModeFlagsEXT> for VideoEncodeH265OutputModeFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeH265OutputModeFlagsEXT>>(
         iterator: T,
     ) -> VideoEncodeH265OutputModeFlagsEXT {
-        let mut out = VideoEncodeH265OutputModeFlagsEXT::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeH265OutputModeFlagsEXT>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoEncodeH265OutputModeFlagBitsEXT> for VideoEncodeH265OutputModeFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeH265OutputModeFlagBitsEXT>>(
+impl FromIterator<VideoEncodeH265OutputModeFlagBitsEXT> for VideoEncodeH265OutputModeFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeH265OutputModeFlagBitsEXT>>(
         iterator: T,
     ) -> VideoEncodeH265OutputModeFlagsEXT {
-        let mut out = VideoEncodeH265OutputModeFlagsEXT::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeH265OutputModeFlagBitsEXT>>::extend(&mut out, iterator);
         out
     }
 }
@@ -2195,33 +2140,33 @@ impl std::fmt::Debug for VideoEncodeH265OutputModeFlagsEXT {
                     let mut first = true;
                     if self
                         .0
-                        .contains(VideoEncodeH265OutputModeFlagsEXT::VideoEncodeH265OutputModeFrameExt)
+                        .contains(VideoEncodeH265OutputModeFlagsEXT::VIDEO_ENCODE_H_265_OUTPUT_MODE_FRAME_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265OutputModeFrameExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_OUTPUT_MODE_FRAME_EXT))?;
                     }
                     if self
                         .0
-                        .contains(VideoEncodeH265OutputModeFlagsEXT::VideoEncodeH265OutputModeSliceSegmentExt)
+                        .contains(VideoEncodeH265OutputModeFlagsEXT::VIDEO_ENCODE_H_265_OUTPUT_MODE_SLICE_SEGMENT_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265OutputModeSliceSegmentExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_OUTPUT_MODE_SLICE_SEGMENT_EXT))?;
                     }
                     if self
                         .0
-                        .contains(VideoEncodeH265OutputModeFlagsEXT::VideoEncodeH265OutputModeNonVclExt)
+                        .contains(VideoEncodeH265OutputModeFlagsEXT::VIDEO_ENCODE_H_265_OUTPUT_MODE_NON_VCL_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265OutputModeNonVclExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_OUTPUT_MODE_NON_VCL_EXT))?;
                     }
                 }
                 Ok(())
@@ -2249,7 +2194,7 @@ impl std::fmt::Debug for VideoEncodeH265OutputModeFlagsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -2298,7 +2243,7 @@ impl std::fmt::Debug for VideoEncodeH265CreateFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265RateControlStructureFlagsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -2317,13 +2262,13 @@ impl VideoEncodeH265RateControlStructureFlagsEXT {
     ///[`VideoEncodeH265RateControlStructureUnknownExt`] is `0`,
     ///and specifies a reference structure unknown at the time of stream rate
     ///control configuration.
-    const VideoEncodeH265RateControlStructureUnknownExt: Self = Self(0);
+    pub const VIDEO_ENCODE_H_265_RATE_CONTROL_STRUCTURE_UNKNOWN_EXT: Self = Self(0);
     ///[`VideoEncodeH265RateControlStructureFlatExt`] specifies
     ///a flat reference structure.
-    const VideoEncodeH265RateControlStructureFlatExt: Self = Self(1);
+    pub const VIDEO_ENCODE_H_265_RATE_CONTROL_STRUCTURE_FLAT_EXT: Self = Self(1);
     ///[`VideoEncodeH265RateControlStructureDyadicExt`]
     ///specifies a dyadic reference structure.
-    const VideoEncodeH265RateControlStructureDyadicExt: Self = Self(2);
+    pub const VIDEO_ENCODE_H_265_RATE_CONTROL_STRUCTURE_DYADIC_EXT: Self = Self(2);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2333,9 +2278,9 @@ impl VideoEncodeH265RateControlStructureFlagsEXT {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::VideoEncodeH265RateControlStructureUnknownExt
-            | Self::VideoEncodeH265RateControlStructureFlatExt
-            | Self::VideoEncodeH265RateControlStructureDyadicExt
+            | Self::VIDEO_ENCODE_H_265_RATE_CONTROL_STRUCTURE_UNKNOWN_EXT
+            | Self::VIDEO_ENCODE_H_265_RATE_CONTROL_STRUCTURE_FLAT_EXT
+            | Self::VIDEO_ENCODE_H_265_RATE_CONTROL_STRUCTURE_DYADIC_EXT
     }
     ///Returns the raw bits
     #[inline]
@@ -2497,42 +2442,38 @@ impl const std::ops::Not for VideoEncodeH265RateControlStructureFlagsEXT {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoEncodeH265RateControlStructureFlagsEXT> for VideoEncodeH265RateControlStructureFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeH265RateControlStructureFlagsEXT>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeH265RateControlStructureFlagsEXT> for VideoEncodeH265RateControlStructureFlagsEXT {
+    fn extend<T: IntoIterator<Item = VideoEncodeH265RateControlStructureFlagsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoEncodeH265RateControlStructureFlagBitsEXT> for VideoEncodeH265RateControlStructureFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeH265RateControlStructureFlagBitsEXT>>(
-        &mut self,
-        iterator: T,
-    ) {
+impl Extend<VideoEncodeH265RateControlStructureFlagBitsEXT> for VideoEncodeH265RateControlStructureFlagsEXT {
+    fn extend<T: IntoIterator<Item = VideoEncodeH265RateControlStructureFlagBitsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoEncodeH265RateControlStructureFlagsEXT::from(i));
+            Self::insert(
+                self,
+                <Self as From<VideoEncodeH265RateControlStructureFlagBitsEXT>>::from(i),
+            );
         }
     }
 }
-impl std::iter::FromIterator<VideoEncodeH265RateControlStructureFlagsEXT>
-    for VideoEncodeH265RateControlStructureFlagsEXT
-{
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeH265RateControlStructureFlagsEXT>>(
+impl FromIterator<VideoEncodeH265RateControlStructureFlagsEXT> for VideoEncodeH265RateControlStructureFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeH265RateControlStructureFlagsEXT>>(
         iterator: T,
     ) -> VideoEncodeH265RateControlStructureFlagsEXT {
-        let mut out = VideoEncodeH265RateControlStructureFlagsEXT::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeH265RateControlStructureFlagsEXT>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoEncodeH265RateControlStructureFlagBitsEXT>
-    for VideoEncodeH265RateControlStructureFlagsEXT
-{
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeH265RateControlStructureFlagBitsEXT>>(
+impl FromIterator<VideoEncodeH265RateControlStructureFlagBitsEXT> for VideoEncodeH265RateControlStructureFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeH265RateControlStructureFlagBitsEXT>>(
         iterator: T,
     ) -> VideoEncodeH265RateControlStructureFlagsEXT {
-        let mut out = VideoEncodeH265RateControlStructureFlagsEXT::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeH265RateControlStructureFlagBitsEXT>>::extend(&mut out, iterator);
         out
     }
 }
@@ -2545,33 +2486,17 @@ impl std::fmt::Debug for VideoEncodeH265RateControlStructureFlagsEXT {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
+                    if self . 0 . contains (VideoEncodeH265RateControlStructureFlagsEXT :: VIDEO_ENCODE_H_265_RATE_CONTROL_STRUCTURE_UNKNOWN_EXT) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (VIDEO_ENCODE_H_265_RATE_CONTROL_STRUCTURE_UNKNOWN_EXT)) ? ; }
                     if self.0.contains(
-                        VideoEncodeH265RateControlStructureFlagsEXT::VideoEncodeH265RateControlStructureUnknownExt,
+                        VideoEncodeH265RateControlStructureFlagsEXT::VIDEO_ENCODE_H_265_RATE_CONTROL_STRUCTURE_FLAT_EXT,
                     ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265RateControlStructureUnknownExt))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_RATE_CONTROL_STRUCTURE_FLAT_EXT))?;
                     }
-                    if self.0.contains(
-                        VideoEncodeH265RateControlStructureFlagsEXT::VideoEncodeH265RateControlStructureFlatExt,
-                    ) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VideoEncodeH265RateControlStructureFlatExt))?;
-                    }
-                    if self.0.contains(
-                        VideoEncodeH265RateControlStructureFlagsEXT::VideoEncodeH265RateControlStructureDyadicExt,
-                    ) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VideoEncodeH265RateControlStructureDyadicExt))?;
-                    }
+                    if self . 0 . contains (VideoEncodeH265RateControlStructureFlagsEXT :: VIDEO_ENCODE_H_265_RATE_CONTROL_STRUCTURE_DYADIC_EXT) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (VIDEO_ENCODE_H_265_RATE_CONTROL_STRUCTURE_DYADIC_EXT)) ? ; }
                 }
                 Ok(())
             }
@@ -2610,7 +2535,7 @@ impl std::fmt::Debug for VideoEncodeH265RateControlStructureFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265CtbSizeFlagsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -2628,13 +2553,13 @@ impl From<VideoEncodeH265CtbSizeFlagBitsEXT> for VideoEncodeH265CtbSizeFlagsEXT 
 impl VideoEncodeH265CtbSizeFlagsEXT {
     ///[`VideoEncodeH265CtbSize16Ext`] specifies that a CTB size
     ///of 16x16 is supported.
-    const VideoEncodeH265CtbSize16Ext: Self = Self(1);
+    pub const VIDEO_ENCODE_H_265_CTB_SIZE_16_EXT: Self = Self(1);
     ///[`VideoEncodeH265CtbSize32Ext`] specifies that a CTB size
     ///of 32x32 is supported.
-    const VideoEncodeH265CtbSize32Ext: Self = Self(2);
+    pub const VIDEO_ENCODE_H_265_CTB_SIZE_32_EXT: Self = Self(2);
     ///[`VideoEncodeH265CtbSize64Ext`] specifies that a CTB size
     ///of 64x64 is supported.
-    const VideoEncodeH265CtbSize64Ext: Self = Self(4);
+    pub const VIDEO_ENCODE_H_265_CTB_SIZE_64_EXT: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2644,9 +2569,9 @@ impl VideoEncodeH265CtbSizeFlagsEXT {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::VideoEncodeH265CtbSize16Ext
-            | Self::VideoEncodeH265CtbSize32Ext
-            | Self::VideoEncodeH265CtbSize64Ext
+            | Self::VIDEO_ENCODE_H_265_CTB_SIZE_16_EXT
+            | Self::VIDEO_ENCODE_H_265_CTB_SIZE_32_EXT
+            | Self::VIDEO_ENCODE_H_265_CTB_SIZE_64_EXT
     }
     ///Returns the raw bits
     #[inline]
@@ -2808,35 +2733,35 @@ impl const std::ops::Not for VideoEncodeH265CtbSizeFlagsEXT {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoEncodeH265CtbSizeFlagsEXT> for VideoEncodeH265CtbSizeFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeH265CtbSizeFlagsEXT>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeH265CtbSizeFlagsEXT> for VideoEncodeH265CtbSizeFlagsEXT {
+    fn extend<T: IntoIterator<Item = VideoEncodeH265CtbSizeFlagsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoEncodeH265CtbSizeFlagBitsEXT> for VideoEncodeH265CtbSizeFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeH265CtbSizeFlagBitsEXT>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeH265CtbSizeFlagBitsEXT> for VideoEncodeH265CtbSizeFlagsEXT {
+    fn extend<T: IntoIterator<Item = VideoEncodeH265CtbSizeFlagBitsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoEncodeH265CtbSizeFlagsEXT::from(i));
+            Self::insert(self, <Self as From<VideoEncodeH265CtbSizeFlagBitsEXT>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<VideoEncodeH265CtbSizeFlagsEXT> for VideoEncodeH265CtbSizeFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeH265CtbSizeFlagsEXT>>(
+impl FromIterator<VideoEncodeH265CtbSizeFlagsEXT> for VideoEncodeH265CtbSizeFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeH265CtbSizeFlagsEXT>>(
         iterator: T,
     ) -> VideoEncodeH265CtbSizeFlagsEXT {
-        let mut out = VideoEncodeH265CtbSizeFlagsEXT::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeH265CtbSizeFlagsEXT>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoEncodeH265CtbSizeFlagBitsEXT> for VideoEncodeH265CtbSizeFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeH265CtbSizeFlagBitsEXT>>(
+impl FromIterator<VideoEncodeH265CtbSizeFlagBitsEXT> for VideoEncodeH265CtbSizeFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeH265CtbSizeFlagBitsEXT>>(
         iterator: T,
     ) -> VideoEncodeH265CtbSizeFlagsEXT {
-        let mut out = VideoEncodeH265CtbSizeFlagsEXT::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeH265CtbSizeFlagBitsEXT>>::extend(&mut out, iterator);
         out
     }
 }
@@ -2851,33 +2776,33 @@ impl std::fmt::Debug for VideoEncodeH265CtbSizeFlagsEXT {
                     let mut first = true;
                     if self
                         .0
-                        .contains(VideoEncodeH265CtbSizeFlagsEXT::VideoEncodeH265CtbSize16Ext)
+                        .contains(VideoEncodeH265CtbSizeFlagsEXT::VIDEO_ENCODE_H_265_CTB_SIZE_16_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265CtbSize16Ext))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CTB_SIZE_16_EXT))?;
                     }
                     if self
                         .0
-                        .contains(VideoEncodeH265CtbSizeFlagsEXT::VideoEncodeH265CtbSize32Ext)
+                        .contains(VideoEncodeH265CtbSizeFlagsEXT::VIDEO_ENCODE_H_265_CTB_SIZE_32_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265CtbSize32Ext))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CTB_SIZE_32_EXT))?;
                     }
                     if self
                         .0
-                        .contains(VideoEncodeH265CtbSizeFlagsEXT::VideoEncodeH265CtbSize64Ext)
+                        .contains(VideoEncodeH265CtbSizeFlagsEXT::VIDEO_ENCODE_H_265_CTB_SIZE_64_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265CtbSize64Ext))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_CTB_SIZE_64_EXT))?;
                     }
                 }
                 Ok(())
@@ -2923,7 +2848,7 @@ impl std::fmt::Debug for VideoEncodeH265CtbSizeFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265TransformBlockSizeFlagsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -2941,16 +2866,16 @@ impl From<VideoEncodeH265TransformBlockSizeFlagBitsEXT> for VideoEncodeH265Trans
 impl VideoEncodeH265TransformBlockSizeFlagsEXT {
     ///[`VideoEncodeH265TransformBlockSize4Ext`] specifies that
     ///a transform block size of 4x4 is supported.
-    const VideoEncodeH265TransformBlockSize4Ext: Self = Self(1);
+    pub const VIDEO_ENCODE_H_265_TRANSFORM_BLOCK_SIZE_4_EXT: Self = Self(1);
     ///[`VideoEncodeH265TransformBlockSize8Ext`] specifies that
     ///a transform block size of 8x8 is supported.
-    const VideoEncodeH265TransformBlockSize8Ext: Self = Self(2);
+    pub const VIDEO_ENCODE_H_265_TRANSFORM_BLOCK_SIZE_8_EXT: Self = Self(2);
     ///[`VideoEncodeH265TransformBlockSize16Ext`] specifies
     ///that a transform block size of 16x16 is supported.
-    const VideoEncodeH265TransformBlockSize16Ext: Self = Self(4);
+    pub const VIDEO_ENCODE_H_265_TRANSFORM_BLOCK_SIZE_16_EXT: Self = Self(4);
     ///[`VideoEncodeH265TransformBlockSize32Ext`] specifies
     ///that a transform block size of 32x32 is supported.
-    const VideoEncodeH265TransformBlockSize32Ext: Self = Self(8);
+    pub const VIDEO_ENCODE_H_265_TRANSFORM_BLOCK_SIZE_32_EXT: Self = Self(8);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2960,10 +2885,10 @@ impl VideoEncodeH265TransformBlockSizeFlagsEXT {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::VideoEncodeH265TransformBlockSize4Ext
-            | Self::VideoEncodeH265TransformBlockSize8Ext
-            | Self::VideoEncodeH265TransformBlockSize16Ext
-            | Self::VideoEncodeH265TransformBlockSize32Ext
+            | Self::VIDEO_ENCODE_H_265_TRANSFORM_BLOCK_SIZE_4_EXT
+            | Self::VIDEO_ENCODE_H_265_TRANSFORM_BLOCK_SIZE_8_EXT
+            | Self::VIDEO_ENCODE_H_265_TRANSFORM_BLOCK_SIZE_16_EXT
+            | Self::VIDEO_ENCODE_H_265_TRANSFORM_BLOCK_SIZE_32_EXT
     }
     ///Returns the raw bits
     #[inline]
@@ -3125,37 +3050,38 @@ impl const std::ops::Not for VideoEncodeH265TransformBlockSizeFlagsEXT {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoEncodeH265TransformBlockSizeFlagsEXT> for VideoEncodeH265TransformBlockSizeFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeH265TransformBlockSizeFlagsEXT>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeH265TransformBlockSizeFlagsEXT> for VideoEncodeH265TransformBlockSizeFlagsEXT {
+    fn extend<T: IntoIterator<Item = VideoEncodeH265TransformBlockSizeFlagsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoEncodeH265TransformBlockSizeFlagBitsEXT> for VideoEncodeH265TransformBlockSizeFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = VideoEncodeH265TransformBlockSizeFlagBitsEXT>>(&mut self, iterator: T) {
+impl Extend<VideoEncodeH265TransformBlockSizeFlagBitsEXT> for VideoEncodeH265TransformBlockSizeFlagsEXT {
+    fn extend<T: IntoIterator<Item = VideoEncodeH265TransformBlockSizeFlagBitsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoEncodeH265TransformBlockSizeFlagsEXT::from(i));
+            Self::insert(
+                self,
+                <Self as From<VideoEncodeH265TransformBlockSizeFlagBitsEXT>>::from(i),
+            );
         }
     }
 }
-impl std::iter::FromIterator<VideoEncodeH265TransformBlockSizeFlagsEXT> for VideoEncodeH265TransformBlockSizeFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeH265TransformBlockSizeFlagsEXT>>(
+impl FromIterator<VideoEncodeH265TransformBlockSizeFlagsEXT> for VideoEncodeH265TransformBlockSizeFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeH265TransformBlockSizeFlagsEXT>>(
         iterator: T,
     ) -> VideoEncodeH265TransformBlockSizeFlagsEXT {
-        let mut out = VideoEncodeH265TransformBlockSizeFlagsEXT::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeH265TransformBlockSizeFlagsEXT>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoEncodeH265TransformBlockSizeFlagBitsEXT>
-    for VideoEncodeH265TransformBlockSizeFlagsEXT
-{
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoEncodeH265TransformBlockSizeFlagBitsEXT>>(
+impl FromIterator<VideoEncodeH265TransformBlockSizeFlagBitsEXT> for VideoEncodeH265TransformBlockSizeFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = VideoEncodeH265TransformBlockSizeFlagBitsEXT>>(
         iterator: T,
     ) -> VideoEncodeH265TransformBlockSizeFlagsEXT {
-        let mut out = VideoEncodeH265TransformBlockSizeFlagsEXT::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoEncodeH265TransformBlockSizeFlagBitsEXT>>::extend(&mut out, iterator);
         out
     }
 }
@@ -3168,45 +3094,41 @@ impl std::fmt::Debug for VideoEncodeH265TransformBlockSizeFlagsEXT {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(VideoEncodeH265TransformBlockSizeFlagsEXT::VideoEncodeH265TransformBlockSize4Ext)
-                    {
+                    if self.0.contains(
+                        VideoEncodeH265TransformBlockSizeFlagsEXT::VIDEO_ENCODE_H_265_TRANSFORM_BLOCK_SIZE_4_EXT,
+                    ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265TransformBlockSize4Ext))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_TRANSFORM_BLOCK_SIZE_4_EXT))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoEncodeH265TransformBlockSizeFlagsEXT::VideoEncodeH265TransformBlockSize8Ext)
-                    {
+                    if self.0.contains(
+                        VideoEncodeH265TransformBlockSizeFlagsEXT::VIDEO_ENCODE_H_265_TRANSFORM_BLOCK_SIZE_8_EXT,
+                    ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265TransformBlockSize8Ext))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_TRANSFORM_BLOCK_SIZE_8_EXT))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoEncodeH265TransformBlockSizeFlagsEXT::VideoEncodeH265TransformBlockSize16Ext)
-                    {
+                    if self.0.contains(
+                        VideoEncodeH265TransformBlockSizeFlagsEXT::VIDEO_ENCODE_H_265_TRANSFORM_BLOCK_SIZE_16_EXT,
+                    ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265TransformBlockSize16Ext))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_TRANSFORM_BLOCK_SIZE_16_EXT))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoEncodeH265TransformBlockSizeFlagsEXT::VideoEncodeH265TransformBlockSize32Ext)
-                    {
+                    if self.0.contains(
+                        VideoEncodeH265TransformBlockSizeFlagsEXT::VIDEO_ENCODE_H_265_TRANSFORM_BLOCK_SIZE_32_EXT,
+                    ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoEncodeH265TransformBlockSize32Ext))?;
+                        f.write_str(stringify!(VIDEO_ENCODE_H_265_TRANSFORM_BLOCK_SIZE_32_EXT))?;
                     }
                 }
                 Ok(())
@@ -3337,6 +3259,7 @@ impl std::fmt::Debug for VideoEncodeH265TransformBlockSizeFlagsEXT {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeH265CapabilitiesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -3585,67 +3508,67 @@ impl<'lt> VideoEncodeH265CapabilitiesEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_p_picture_l_0_reference_count`]
     pub fn max_p_picture_l_0_reference_count_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.max_p_picture_l_0_reference_count
     }
     ///Gets a mutable reference to the value of [`Self::max_b_picture_l_0_reference_count`]
     pub fn max_b_picture_l_0_reference_count_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.max_b_picture_l_0_reference_count
     }
     ///Gets a mutable reference to the value of [`Self::max_l_1_reference_count`]
     pub fn max_l_1_reference_count_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.max_l_1_reference_count
     }
     ///Gets a mutable reference to the value of [`Self::max_sub_layers_count`]
     pub fn max_sub_layers_count_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.max_sub_layers_count
     }
     ///Gets a mutable reference to the value of
     /// [`Self::min_log_2_min_luma_coding_block_size_minus_3`]
     pub fn min_log_2_min_luma_coding_block_size_minus_3_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.min_log_2_min_luma_coding_block_size_minus_3
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_log_2_min_luma_coding_block_size_minus_3`]
     pub fn max_log_2_min_luma_coding_block_size_minus_3_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.max_log_2_min_luma_coding_block_size_minus_3
     }
     ///Gets a mutable reference to the value of
     /// [`Self::min_log_2_min_luma_transform_block_size_minus_2`]
     pub fn min_log_2_min_luma_transform_block_size_minus_2_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.min_log_2_min_luma_transform_block_size_minus_2
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_log_2_min_luma_transform_block_size_minus_2`]
     pub fn max_log_2_min_luma_transform_block_size_minus_2_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.max_log_2_min_luma_transform_block_size_minus_2
     }
     ///Gets a mutable reference to the value of [`Self::min_max_transform_hierarchy_depth_inter`]
     pub fn min_max_transform_hierarchy_depth_inter_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.min_max_transform_hierarchy_depth_inter
     }
     ///Gets a mutable reference to the value of [`Self::max_max_transform_hierarchy_depth_inter`]
     pub fn max_max_transform_hierarchy_depth_inter_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.max_max_transform_hierarchy_depth_inter
     }
     ///Gets a mutable reference to the value of [`Self::min_max_transform_hierarchy_depth_intra`]
     pub fn min_max_transform_hierarchy_depth_intra_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.min_max_transform_hierarchy_depth_intra
     }
     ///Gets a mutable reference to the value of [`Self::max_max_transform_hierarchy_depth_intra`]
     pub fn max_max_transform_hierarchy_depth_intra_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.max_max_transform_hierarchy_depth_intra
     }
     ///Gets a mutable reference to the value of [`Self::max_diff_cu_qp_delta_depth`]
     pub fn max_diff_cu_qp_delta_depth_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.max_diff_cu_qp_delta_depth
     }
     ///Gets a mutable reference to the value of [`Self::min_max_num_merge_cand`]
     pub fn min_max_num_merge_cand_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.min_max_num_merge_cand
     }
     ///Gets a mutable reference to the value of [`Self::max_max_num_merge_cand`]
     pub fn max_max_num_merge_cand_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.max_max_num_merge_cand
     }
     ///Gets a mutable reference to the value of [`Self::std_extension_version`]
     pub fn std_extension_version_mut(&mut self) -> &mut ExtensionProperties {
@@ -3831,6 +3754,7 @@ impl<'lt> VideoEncodeH265CapabilitiesEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeH265SessionCreateInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -4007,6 +3931,7 @@ impl<'lt> VideoEncodeH265SessionCreateInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeH265SessionParametersAddInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -4105,15 +4030,15 @@ impl<'lt> VideoEncodeH265SessionParametersAddInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::vps_std_count`]
     pub fn vps_std_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.vps_std_count
     }
     ///Gets a mutable reference to the value of [`Self::sps_std_count`]
     pub fn sps_std_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.sps_std_count
     }
     ///Gets a mutable reference to the value of [`Self::pps_std_count`]
     pub fn pps_std_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.pps_std_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -4230,6 +4155,7 @@ impl<'lt> VideoEncodeH265SessionParametersAddInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeH265SessionParametersCreateInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -4324,15 +4250,15 @@ impl<'lt> VideoEncodeH265SessionParametersCreateInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_vps_std_count`]
     pub fn max_vps_std_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_vps_std_count
     }
     ///Gets a mutable reference to the value of [`Self::max_sps_std_count`]
     pub fn max_sps_std_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_sps_std_count
     }
     ///Gets a mutable reference to the value of [`Self::max_pps_std_count`]
     pub fn max_pps_std_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_pps_std_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -4423,6 +4349,7 @@ impl<'lt> VideoEncodeH265SessionParametersCreateInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeH265VclFrameInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -4536,7 +4463,7 @@ impl<'lt> VideoEncodeH265VclFrameInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::nalu_slice_segment_entry_count`]
     pub fn nalu_slice_segment_entry_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.nalu_slice_segment_entry_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -4637,6 +4564,7 @@ impl<'lt> VideoEncodeH265VclFrameInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeH265EmitPictureParametersEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -4774,11 +4702,11 @@ impl<'lt> VideoEncodeH265EmitPictureParametersEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::vps_id`]
     pub fn vps_id_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.vps_id
     }
     ///Gets a mutable reference to the value of [`Self::sps_id`]
     pub fn sps_id_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.sps_id
     }
     ///Gets a mutable reference to the value of [`Self::emit_vps_enable`]
     pub fn emit_vps_enable_mut(&mut self) -> &mut bool {
@@ -4818,7 +4746,7 @@ impl<'lt> VideoEncodeH265EmitPictureParametersEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::pps_id_entry_count`]
     pub fn pps_id_entry_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.pps_id_entry_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -4914,6 +4842,7 @@ impl<'lt> VideoEncodeH265EmitPictureParametersEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeH265NaluSliceSegmentEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -5000,7 +4929,7 @@ impl<'lt> VideoEncodeH265NaluSliceSegmentEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::ctb_count`]
     pub fn ctb_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.ctb_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -5101,6 +5030,7 @@ impl<'lt> VideoEncodeH265NaluSliceSegmentEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeH265RateControlInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -5191,15 +5121,15 @@ impl<'lt> VideoEncodeH265RateControlInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::gop_frame_count`]
     pub fn gop_frame_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.gop_frame_count
     }
     ///Gets a mutable reference to the value of [`Self::idr_period`]
     pub fn idr_period_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.idr_period
     }
     ///Gets a mutable reference to the value of [`Self::consecutive_b_frame_count`]
     pub fn consecutive_b_frame_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.consecutive_b_frame_count
     }
     ///Gets a mutable reference to the value of [`Self::rate_control_structure`]
     pub fn rate_control_structure_mut(&mut self) -> &mut VideoEncodeH265RateControlStructureFlagBitsEXT {
@@ -5207,7 +5137,7 @@ impl<'lt> VideoEncodeH265RateControlInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::sub_layer_count`]
     pub fn sub_layer_count_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.sub_layer_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -5311,15 +5241,15 @@ impl VideoEncodeH265QpEXT {
     }
     ///Gets a mutable reference to the value of [`Self::qp_i`]
     pub fn qp_i_mut(&mut self) -> &mut i32 {
-        &mut getter
+        &mut self.qp_i
     }
     ///Gets a mutable reference to the value of [`Self::qp_p`]
     pub fn qp_p_mut(&mut self) -> &mut i32 {
-        &mut getter
+        &mut self.qp_p
     }
     ///Gets a mutable reference to the value of [`Self::qp_b`]
     pub fn qp_b_mut(&mut self) -> &mut i32 {
-        &mut getter
+        &mut self.qp_b
     }
     ///Sets the raw value of [`Self::qp_i`]
     pub fn set_qp_i(&mut self, value: i32) -> &mut Self {
@@ -5400,15 +5330,15 @@ impl VideoEncodeH265FrameSizeEXT {
     }
     ///Gets a mutable reference to the value of [`Self::frame_i_size`]
     pub fn frame_i_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.frame_i_size
     }
     ///Gets a mutable reference to the value of [`Self::frame_p_size`]
     pub fn frame_p_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.frame_p_size
     }
     ///Gets a mutable reference to the value of [`Self::frame_b_size`]
     pub fn frame_b_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.frame_b_size
     }
     ///Sets the raw value of [`Self::frame_i_size`]
     pub fn set_frame_i_size(&mut self, value: u32) -> &mut Self {
@@ -5514,6 +5444,7 @@ impl VideoEncodeH265FrameSizeEXT {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeH265RateControlLayerInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -5680,7 +5611,7 @@ impl<'lt> VideoEncodeH265RateControlLayerInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::temporal_id`]
     pub fn temporal_id_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.temporal_id
     }
     ///Gets a mutable reference to the value of [`Self::use_initial_rc_qp`]
     pub fn use_initial_rc_qp_mut(&mut self) -> &mut bool {
@@ -5863,10 +5794,10 @@ impl<'lt> VideoEncodeH265RateControlLayerInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265ProfileEXT")]
-#[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeH265ProfileEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -5990,6 +5921,7 @@ impl<'lt> VideoEncodeH265ProfileEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeH265DpbSlotInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6053,7 +5985,7 @@ impl<'lt> VideoEncodeH265DpbSlotInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::slot_index`]
     pub fn slot_index_mut(&mut self) -> &mut i8 {
-        &mut getter
+        &mut self.slot_index
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -6138,6 +6070,7 @@ impl<'lt> VideoEncodeH265DpbSlotInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeH265ReferenceListsEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6263,11 +6196,11 @@ impl<'lt> VideoEncodeH265ReferenceListsEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::reference_list_0_entry_count`]
     pub fn reference_list_0_entry_count_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.reference_list_0_entry_count
     }
     ///Gets a mutable reference to the value of [`Self::reference_list_1_entry_count`]
     pub fn reference_list_1_entry_count_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.reference_list_1_entry_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -6289,7 +6222,7 @@ impl<'lt> VideoEncodeH265ReferenceListsEXT<'lt> {
         &mut self,
         value: &'lt [crate::extensions::ext_video_encode_h_265::VideoEncodeH265DpbSlotInfoEXT<'lt>],
     ) -> &mut Self {
-        let len_ = value.len() as u32;
+        let len_ = value.len() as u8;
         let len_ = len_;
         self.reference_list_0_entries = value.as_ptr();
         self.reference_list_0_entry_count = len_;
@@ -6305,7 +6238,7 @@ impl<'lt> VideoEncodeH265ReferenceListsEXT<'lt> {
         &mut self,
         value: &'lt [crate::extensions::ext_video_encode_h_265::VideoEncodeH265DpbSlotInfoEXT<'lt>],
     ) -> &mut Self {
-        let len_ = value.len() as u32;
+        let len_ = value.len() as u8;
         let len_ = len_;
         self.reference_list_1_entries = value.as_ptr();
         self.reference_list_1_entry_count = len_;

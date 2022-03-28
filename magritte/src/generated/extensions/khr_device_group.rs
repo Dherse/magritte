@@ -129,7 +129,11 @@ use crate::{
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData};
+use std::{
+    ffi::CStr,
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_DEVICE_GROUP_SPEC_VERSION")]
@@ -224,7 +228,7 @@ impl DeviceGroupPresentModeFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -271,7 +275,7 @@ impl DeviceGroupPresentModeFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupPresentModeFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -292,25 +296,25 @@ impl DeviceGroupPresentModeFlagsKHR {
     ///swapchain images.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
-    const DeviceGroupPresentModeLocalKhr: Self = Self(1);
+    pub const DEVICE_GROUP_PRESENT_MODE_LOCAL_KHR: Self = Self(1);
     ///[`DeviceGroupPresentModeRemoteKhr`] specifies that any
     ///physical device with a presentation engine  **can**  present swapchain images
     ///from any physical device in its `presentMask`.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
-    const DeviceGroupPresentModeRemoteKhr: Self = Self(2);
+    pub const DEVICE_GROUP_PRESENT_MODE_REMOTE_KHR: Self = Self(2);
     ///[`DeviceGroupPresentModeSumKhr`] specifies that any
     ///physical device with a presentation engine  **can**  present the sum of
     ///swapchain images from any physical devices in its `presentMask`.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
-    const DeviceGroupPresentModeSumKhr: Self = Self(4);
+    pub const DEVICE_GROUP_PRESENT_MODE_SUM_KHR: Self = Self(4);
     ///[`DeviceGroupPresentModeLocalMultiDeviceKhr`] specifies
     ///that multiple physical devices with a presentation engine  **can**  each
     ///present their own swapchain images.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
-    const DeviceGroupPresentModeLocalMultiDeviceKhr: Self = Self(8);
+    pub const DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_KHR: Self = Self(8);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -320,10 +324,10 @@ impl DeviceGroupPresentModeFlagsKHR {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::DeviceGroupPresentModeLocalKhr
-            | Self::DeviceGroupPresentModeRemoteKhr
-            | Self::DeviceGroupPresentModeSumKhr
-            | Self::DeviceGroupPresentModeLocalMultiDeviceKhr
+            | Self::DEVICE_GROUP_PRESENT_MODE_LOCAL_KHR
+            | Self::DEVICE_GROUP_PRESENT_MODE_REMOTE_KHR
+            | Self::DEVICE_GROUP_PRESENT_MODE_SUM_KHR
+            | Self::DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -485,35 +489,35 @@ impl const std::ops::Not for DeviceGroupPresentModeFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<DeviceGroupPresentModeFlagsKHR> for DeviceGroupPresentModeFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = DeviceGroupPresentModeFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<DeviceGroupPresentModeFlagsKHR> for DeviceGroupPresentModeFlagsKHR {
+    fn extend<T: IntoIterator<Item = DeviceGroupPresentModeFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<DeviceGroupPresentModeFlagBitsKHR> for DeviceGroupPresentModeFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = DeviceGroupPresentModeFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<DeviceGroupPresentModeFlagBitsKHR> for DeviceGroupPresentModeFlagsKHR {
+    fn extend<T: IntoIterator<Item = DeviceGroupPresentModeFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(DeviceGroupPresentModeFlagsKHR::from(i));
+            Self::insert(self, <Self as From<DeviceGroupPresentModeFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<DeviceGroupPresentModeFlagsKHR> for DeviceGroupPresentModeFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = DeviceGroupPresentModeFlagsKHR>>(
+impl FromIterator<DeviceGroupPresentModeFlagsKHR> for DeviceGroupPresentModeFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = DeviceGroupPresentModeFlagsKHR>>(
         iterator: T,
     ) -> DeviceGroupPresentModeFlagsKHR {
-        let mut out = DeviceGroupPresentModeFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<DeviceGroupPresentModeFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<DeviceGroupPresentModeFlagBitsKHR> for DeviceGroupPresentModeFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = DeviceGroupPresentModeFlagBitsKHR>>(
+impl FromIterator<DeviceGroupPresentModeFlagBitsKHR> for DeviceGroupPresentModeFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = DeviceGroupPresentModeFlagBitsKHR>>(
         iterator: T,
     ) -> DeviceGroupPresentModeFlagsKHR {
-        let mut out = DeviceGroupPresentModeFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<DeviceGroupPresentModeFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -528,43 +532,43 @@ impl std::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
                     let mut first = true;
                     if self
                         .0
-                        .contains(DeviceGroupPresentModeFlagsKHR::DeviceGroupPresentModeLocalKhr)
+                        .contains(DeviceGroupPresentModeFlagsKHR::DEVICE_GROUP_PRESENT_MODE_LOCAL_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DeviceGroupPresentModeLocalKhr))?;
+                        f.write_str(stringify!(DEVICE_GROUP_PRESENT_MODE_LOCAL_KHR))?;
                     }
                     if self
                         .0
-                        .contains(DeviceGroupPresentModeFlagsKHR::DeviceGroupPresentModeRemoteKhr)
+                        .contains(DeviceGroupPresentModeFlagsKHR::DEVICE_GROUP_PRESENT_MODE_REMOTE_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DeviceGroupPresentModeRemoteKhr))?;
+                        f.write_str(stringify!(DEVICE_GROUP_PRESENT_MODE_REMOTE_KHR))?;
                     }
                     if self
                         .0
-                        .contains(DeviceGroupPresentModeFlagsKHR::DeviceGroupPresentModeSumKhr)
+                        .contains(DeviceGroupPresentModeFlagsKHR::DEVICE_GROUP_PRESENT_MODE_SUM_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DeviceGroupPresentModeSumKhr))?;
+                        f.write_str(stringify!(DEVICE_GROUP_PRESENT_MODE_SUM_KHR))?;
                     }
                     if self
                         .0
-                        .contains(DeviceGroupPresentModeFlagsKHR::DeviceGroupPresentModeLocalMultiDeviceKhr)
+                        .contains(DeviceGroupPresentModeFlagsKHR::DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DeviceGroupPresentModeLocalMultiDeviceKhr))?;
+                        f.write_str(stringify!(DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_KHR))?;
                     }
                 }
                 Ok(())
@@ -621,10 +625,11 @@ impl std::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupPresentCapabilitiesKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceGroupPresentCapabilitiesKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -636,7 +641,7 @@ pub struct DeviceGroupPresentCapabilitiesKHR<'lt> {
     ///is set in element i if physical device i **can**  present
     ///swapchain images from physical device j.
     ///If element i is non-zero, then bit i **must**  be set.
-    pub present_mask: [u32; MAX_DEVICE_GROUP_SIZE],
+    pub present_mask: [u32; MAX_DEVICE_GROUP_SIZE as usize],
     ///[`modes`] is a bitmask of [`DeviceGroupPresentModeFlagBitsKHR`]
     ///indicating which device group presentation modes are supported.
     pub modes: DeviceGroupPresentModeFlagsKHR,
@@ -647,7 +652,7 @@ impl<'lt> Default for DeviceGroupPresentCapabilitiesKHR<'lt> {
             _lifetime: PhantomData,
             s_type: Default::default(),
             p_next: std::ptr::null_mut(),
-            present_mask: [0; MAX_DEVICE_GROUP_SIZE],
+            present_mask: [0; MAX_DEVICE_GROUP_SIZE as usize],
             modes: Default::default(),
         }
     }
@@ -674,8 +679,8 @@ impl<'lt> DeviceGroupPresentCapabilitiesKHR<'lt> {
         &*self.p_next
     }
     ///Gets the value of [`Self::present_mask`]
-    pub fn present_mask(&self) -> &[u32; MAX_DEVICE_GROUP_SIZE] {
-        &getter
+    pub fn present_mask(&self) -> &[u32; MAX_DEVICE_GROUP_SIZE as usize] {
+        &self.present_mask
     }
     ///Gets the value of [`Self::modes`]
     pub fn modes(&self) -> DeviceGroupPresentModeFlagsKHR {
@@ -693,8 +698,8 @@ impl<'lt> DeviceGroupPresentCapabilitiesKHR<'lt> {
         &mut *self.p_next
     }
     ///Gets a mutable reference to the value of [`Self::present_mask`]
-    pub fn present_mask_mut(&mut self) -> &mut [u32; MAX_DEVICE_GROUP_SIZE] {
-        &mut getter
+    pub fn present_mask_mut(&mut self) -> &mut [u32; MAX_DEVICE_GROUP_SIZE as usize] {
+        &mut self.present_mask
     }
     ///Gets a mutable reference to the value of [`Self::modes`]
     pub fn modes_mut(&mut self) -> &mut DeviceGroupPresentModeFlagsKHR {
@@ -711,7 +716,7 @@ impl<'lt> DeviceGroupPresentCapabilitiesKHR<'lt> {
         self
     }
     ///Sets the raw value of [`Self::present_mask`]
-    pub fn set_present_mask(&mut self, value: [u32; crate::vulkan1_1::MAX_DEVICE_GROUP_SIZE]) -> &mut Self {
+    pub fn set_present_mask(&mut self, value: [u32; crate::vulkan1_1::MAX_DEVICE_GROUP_SIZE as usize]) -> &mut Self {
         self.present_mask = value;
         self
     }
@@ -770,6 +775,7 @@ impl<'lt> DeviceGroupPresentCapabilitiesKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageSwapchainCreateInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -895,6 +901,7 @@ impl<'lt> ImageSwapchainCreateInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BindImageMemorySwapchainInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -956,7 +963,7 @@ impl<'lt> BindImageMemorySwapchainInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::image_index`]
     pub fn image_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.image_index
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1056,6 +1063,7 @@ impl<'lt> BindImageMemorySwapchainInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AcquireNextImageInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1141,7 +1149,7 @@ impl<'lt> AcquireNextImageInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::timeout`]
     pub fn timeout_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.timeout
     }
     ///Gets a mutable reference to the value of [`Self::semaphore`]
     pub fn semaphore_mut(&mut self) -> &mut Semaphore {
@@ -1153,7 +1161,7 @@ impl<'lt> AcquireNextImageInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::device_mask`]
     pub fn device_mask_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.device_mask
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1289,6 +1297,7 @@ impl<'lt> AcquireNextImageInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceGroupPresentInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1369,7 +1378,7 @@ impl<'lt> DeviceGroupPresentInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::swapchain_count`]
     pub fn swapchain_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.swapchain_count
     }
     ///Gets a mutable reference to the value of [`Self::mode`]
     pub fn mode_mut(&mut self) -> &mut DeviceGroupPresentModeFlagBitsKHR {
@@ -1451,6 +1460,7 @@ impl<'lt> DeviceGroupPresentInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceGroupSwapchainCreateInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,

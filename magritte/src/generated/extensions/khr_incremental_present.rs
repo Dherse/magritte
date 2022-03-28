@@ -154,6 +154,7 @@ pub const KHR_INCREMENTAL_PRESENT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PresentRegionsKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -228,7 +229,7 @@ impl<'lt> PresentRegionsKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::swapchain_count`]
     pub fn swapchain_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.swapchain_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -300,6 +301,7 @@ impl<'lt> PresentRegionsKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PresentRegionKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`rectangle_count`] is the number of rectangles in [`rectangles`],
     ///or zero if the entire image has changed and should be presented.
@@ -352,7 +354,7 @@ impl<'lt> PresentRegionKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::rectangle_count`]
     pub fn rectangle_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.rectangle_count
     }
     ///Sets the raw value of [`Self::rectangle_count`]
     pub fn set_rectangle_count(&mut self, value: u32) -> &mut Self {
@@ -458,7 +460,7 @@ impl RectLayerKHR {
     }
     ///Gets a mutable reference to the value of [`Self::layer`]
     pub fn layer_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.layer
     }
     ///Sets the raw value of [`Self::offset`]
     pub fn set_offset(&mut self, value: crate::vulkan1_0::Offset2D) -> &mut Self {

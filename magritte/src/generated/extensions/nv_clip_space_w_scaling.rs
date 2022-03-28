@@ -136,11 +136,11 @@ impl ViewportWScalingNV {
     }
     ///Gets a mutable reference to the value of [`Self::xcoeff`]
     pub fn xcoeff_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.xcoeff
     }
     ///Gets a mutable reference to the value of [`Self::ycoeff`]
     pub fn ycoeff_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.ycoeff
     }
     ///Sets the raw value of [`Self::xcoeff`]
     pub fn set_xcoeff(&mut self, value: f32) -> &mut Self {
@@ -198,6 +198,7 @@ impl ViewportWScalingNV {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineViewportWScalingStateCreateInfoNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -307,7 +308,7 @@ impl<'lt> PipelineViewportWScalingStateCreateInfoNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::viewport_count`]
     pub fn viewport_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.viewport_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {

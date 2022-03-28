@@ -158,11 +158,11 @@ impl SampleLocationEXT {
     }
     ///Gets a mutable reference to the value of [`Self::x`]
     pub fn x_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.x
     }
     ///Gets a mutable reference to the value of [`Self::y`]
     pub fn y_mut(&mut self) -> &mut f32 {
-        &mut getter
+        &mut self.y
     }
     ///Sets the raw value of [`Self::x`]
     pub fn set_x(&mut self, value: f32) -> &mut Self {
@@ -247,6 +247,7 @@ impl SampleLocationEXT {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SampleLocationsInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -342,7 +343,7 @@ impl<'lt> SampleLocationsInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::sample_locations_count`]
     pub fn sample_locations_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.sample_locations_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -426,6 +427,7 @@ impl<'lt> SampleLocationsInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AttachmentSampleLocationsEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`attachment_index`] is the index of the attachment for which the
     ///sample locations state is provided.
@@ -456,7 +458,7 @@ impl<'lt> AttachmentSampleLocationsEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::attachment_index`]
     pub fn attachment_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.attachment_index
     }
     ///Gets a mutable reference to the value of [`Self::sample_locations_info`]
     pub fn sample_locations_info_mut(&mut self) -> &mut SampleLocationsInfoEXT<'lt> {
@@ -524,6 +526,7 @@ impl<'lt> AttachmentSampleLocationsEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SubpassSampleLocationsEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`subpass_index`] is the index of the subpass for which the sample
     ///locations state is provided.
@@ -554,7 +557,7 @@ impl<'lt> SubpassSampleLocationsEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::subpass_index`]
     pub fn subpass_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.subpass_index
     }
     ///Gets a mutable reference to the value of [`Self::sample_locations_info`]
     pub fn sample_locations_info_mut(&mut self) -> &mut SampleLocationsInfoEXT<'lt> {
@@ -652,6 +655,7 @@ impl<'lt> SubpassSampleLocationsEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderPassSampleLocationsBeginInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -782,11 +786,11 @@ impl<'lt> RenderPassSampleLocationsBeginInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::attachment_initial_sample_locations_count`]
     pub fn attachment_initial_sample_locations_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.attachment_initial_sample_locations_count
     }
     ///Gets a mutable reference to the value of [`Self::post_subpass_sample_locations_count`]
     pub fn post_subpass_sample_locations_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.post_subpass_sample_locations_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -880,6 +884,7 @@ impl<'lt> RenderPassSampleLocationsBeginInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineSampleLocationsStateCreateInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1051,10 +1056,11 @@ impl<'lt> PipelineSampleLocationsStateCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSampleLocationsPropertiesEXT")]
-#[derive(Debug)]
+#[derive(Debug, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1072,7 +1078,7 @@ pub struct PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
     pub max_sample_location_grid_size: Extent2D,
     ///[`sample_location_coordinate_range`][2] is the range of supported sample
     ///location coordinates.
-    pub sample_location_coordinate_range: [f32; 2],
+    pub sample_location_coordinate_range: [f32; 2 as usize],
     ///[`sample_location_sub_pixel_bits`]
     ///is the number of bits of subpixel precision for sample locations.
     pub sample_location_sub_pixel_bits: u32,
@@ -1093,7 +1099,7 @@ impl<'lt> Default for PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
             p_next: std::ptr::null_mut(),
             sample_location_sample_counts: Default::default(),
             max_sample_location_grid_size: Default::default(),
-            sample_location_coordinate_range: [0.0; 2],
+            sample_location_coordinate_range: [0.0; 2 as usize],
             sample_location_sub_pixel_bits: 0,
             variable_sample_locations: 0,
         }
@@ -1138,8 +1144,8 @@ impl<'lt> PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
         self.max_sample_location_grid_size
     }
     ///Gets the value of [`Self::sample_location_coordinate_range`]
-    pub fn sample_location_coordinate_range(&self) -> &[f32; 2] {
-        &getter
+    pub fn sample_location_coordinate_range(&self) -> &[f32; 2 as usize] {
+        &self.sample_location_coordinate_range
     }
     ///Gets the value of [`Self::sample_location_sub_pixel_bits`]
     pub fn sample_location_sub_pixel_bits(&self) -> u32 {
@@ -1169,12 +1175,12 @@ impl<'lt> PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
         &mut self.max_sample_location_grid_size
     }
     ///Gets a mutable reference to the value of [`Self::sample_location_coordinate_range`]
-    pub fn sample_location_coordinate_range_mut(&mut self) -> &mut [f32; 2] {
-        &mut getter
+    pub fn sample_location_coordinate_range_mut(&mut self) -> &mut [f32; 2 as usize] {
+        &mut self.sample_location_coordinate_range
     }
     ///Gets a mutable reference to the value of [`Self::sample_location_sub_pixel_bits`]
     pub fn sample_location_sub_pixel_bits_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.sample_location_sub_pixel_bits
     }
     ///Gets a mutable reference to the value of [`Self::variable_sample_locations`]
     pub fn variable_sample_locations_mut(&mut self) -> &mut bool {
@@ -1215,7 +1221,7 @@ impl<'lt> PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
         self
     }
     ///Sets the raw value of [`Self::sample_location_coordinate_range`]
-    pub fn set_sample_location_coordinate_range(&mut self, value: [f32; 2]) -> &mut Self {
+    pub fn set_sample_location_coordinate_range(&mut self, value: [f32; 2 as usize]) -> &mut Self {
         self.sample_location_coordinate_range = value;
         self
     }
@@ -1264,10 +1270,11 @@ impl<'lt> PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMultisamplePropertiesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MultisamplePropertiesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,

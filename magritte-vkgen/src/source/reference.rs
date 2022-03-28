@@ -226,7 +226,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     pub const fn as_enum(self) -> Option<&'b Enum<'a>> {
         match self {
             TypeRef::Enum(ref_) => Some(ref_),
-            _ => None
+            _ => None,
         }
     }
 
@@ -235,7 +235,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     pub const fn as_bitflag(self) -> Option<&'b BitFlag<'a>> {
         match self {
             TypeRef::BitFlag(ref_) => Some(ref_),
-            _ => None
+            _ => None,
         }
     }
 
@@ -244,7 +244,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     pub const fn as_bitmask(self) -> Option<&'b Bitmask<'a>> {
         match self {
             TypeRef::Bitmask(ref_) => Some(ref_),
-            _ => None
+            _ => None,
         }
     }
 
@@ -253,7 +253,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     pub const fn as_basetype(self) -> Option<&'b Basetype<'a>> {
         match self {
             TypeRef::Basetype(ref_) => Some(ref_),
-            _ => None
+            _ => None,
         }
     }
 
@@ -262,7 +262,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     pub const fn as_function_pointer(self) -> Option<&'b FunctionPointer<'a>> {
         match self {
             TypeRef::FunctionPointer(ref_) => Some(ref_),
-            _ => None
+            _ => None,
         }
     }
 
@@ -271,7 +271,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     pub const fn as_handle(self) -> Option<&'b Handle<'a>> {
         match self {
             TypeRef::Handle(ref_) => Some(ref_),
-            _ => None
+            _ => None,
         }
     }
 
@@ -280,7 +280,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     pub const fn as_union(self) -> Option<&'b Union<'a>> {
         match self {
             TypeRef::Union(ref_) => Some(ref_),
-            _ => None
+            _ => None,
         }
     }
 
@@ -289,7 +289,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     pub const fn as_struct(self) -> Option<&'b Struct<'a>> {
         match self {
             TypeRef::Struct(ref_) => Some(ref_),
-            _ => None
+            _ => None,
         }
     }
 
@@ -298,7 +298,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     pub const fn as_alias(self) -> Option<&'b Alias<'a>> {
         match self {
             TypeRef::Alias(ref_) => Some(ref_),
-            _ => None
+            _ => None,
         }
     }
 
@@ -307,7 +307,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     pub const fn as_opaque_type(self) -> Option<&'b OpaqueType<'a>> {
         match self {
             TypeRef::OpaqueType(ref_) => Some(ref_),
-            _ => None
+            _ => None,
         }
     }
 
@@ -461,6 +461,20 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
         }
     }
 
+    /// Checks if the type is debug
+    pub fn is_debug(&self, source: &Source<'a>) -> bool {
+        match self {
+            TypeRef::Alias(alias) => source.resolve_type(alias.of()).expect("unknown alias").is_debug(source),
+            TypeRef::Struct(struct_) => struct_.is_debug(source),
+            TypeRef::Handle(_)
+            | TypeRef::Basetype(_)
+            | TypeRef::Bitmask(_)
+            | TypeRef::BitFlag(_)
+            | TypeRef::Enum(_) => true,
+            TypeRef::OpaqueType(_) | TypeRef::Union(_) | TypeRef::FunctionPointer(_) => false,
+        }
+    }
+
     /// Checks if the type is eq/ord
     pub fn is_partial_eq(&self, source: &Source<'a>) -> bool {
         match self {
@@ -474,11 +488,10 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
             | TypeRef::Basetype(_)
             | TypeRef::Bitmask(_)
             | TypeRef::BitFlag(_)
-            | TypeRef::Enum(_)
-            | TypeRef::FunctionPointer(_) => true,
+            | TypeRef::Enum(_) => true,
 
             // unions are not eq because we cannot know the variant, would require bitwise comparison
-            TypeRef::Union(_) => false,
+            TypeRef::Union(_) | TypeRef::FunctionPointer(_) => false,
         }
     }
 
@@ -492,11 +505,10 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
             | TypeRef::Basetype(_)
             | TypeRef::Bitmask(_)
             | TypeRef::BitFlag(_)
-            | TypeRef::Enum(_)
-            | TypeRef::FunctionPointer(_) => true,
+            | TypeRef::Enum(_) => true,
 
             // unions are not eq because we cannot know the variant, would require bitwise comparison
-            TypeRef::Union(_) => false,
+            TypeRef::Union(_) | TypeRef::FunctionPointer(_) => false,
         }
     }
 
@@ -510,11 +522,10 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
             | TypeRef::Basetype(_)
             | TypeRef::Bitmask(_)
             | TypeRef::BitFlag(_)
-            | TypeRef::Enum(_)
-            | TypeRef::FunctionPointer(_) => true,
+            | TypeRef::Enum(_) => true,
 
             // unions are not hash because we cannot know the variant
-            TypeRef::Union(_) => false,
+            TypeRef::FunctionPointer(_) | TypeRef::Union(_) => false,
         }
     }
 

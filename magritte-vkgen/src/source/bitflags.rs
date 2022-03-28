@@ -6,6 +6,7 @@ use crate::{
     doc::Queryable,
     origin::Origin,
     symbols::{SymbolName, SymbolTable},
+    ty::{Native, Ty},
 };
 
 use super::{Alias, Source};
@@ -114,6 +115,15 @@ impl<'a> BitFlag<'a> {
     /// Get a mutable reference to the bit flags's aliases.
     pub fn aliases_mut(&mut self) -> &mut SymbolTable<'a, Alias<'a>> {
         &mut self.aliases
+    }
+
+    /// Gets the storage type of this bitflag
+    pub fn ty(&self) -> Ty<'a> {
+        match self.width() {
+            4 => Ty::Native(Native::UInt(4)),
+            8 => Ty::Native(Native::UInt(8)),
+            _ => unreachable!("unsupported bit width"),
+        }
     }
 }
 

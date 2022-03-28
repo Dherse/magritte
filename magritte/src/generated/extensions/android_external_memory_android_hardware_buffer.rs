@@ -249,10 +249,11 @@ pub type AHardwareBuffer = c_void;
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportAndroidHardwareBufferInfoANDROID")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImportAndroidHardwareBufferInfoANDROID<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -382,10 +383,11 @@ impl<'lt> ImportAndroidHardwareBufferInfoANDROID<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAndroidHardwareBufferUsageANDROID")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AndroidHardwareBufferUsageANDROID<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -444,7 +446,7 @@ impl<'lt> AndroidHardwareBufferUsageANDROID<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::android_hardware_buffer_usage`]
     pub fn android_hardware_buffer_usage_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.android_hardware_buffer_usage
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -503,10 +505,11 @@ impl<'lt> AndroidHardwareBufferUsageANDROID<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAndroidHardwareBufferPropertiesANDROID")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AndroidHardwareBufferPropertiesANDROID<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -577,7 +580,7 @@ impl<'lt> AndroidHardwareBufferPropertiesANDROID<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::memory_type_bits`]
     pub fn memory_type_bits_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.memory_type_bits
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -646,6 +649,7 @@ impl<'lt> AndroidHardwareBufferPropertiesANDROID<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -820,10 +824,11 @@ impl<'lt> MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAndroidHardwareBufferFormatPropertiesANDROID")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -944,7 +949,7 @@ impl<'lt> AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::external_format`]
     pub fn external_format_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.external_format
     }
     ///Gets a mutable reference to the value of [`Self::format_features`]
     pub fn format_features_mut(&mut self) -> &mut FormatFeatureFlags {
@@ -1063,10 +1068,11 @@ impl<'lt> AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalFormatANDROID")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExternalFormatANDROID<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1125,7 +1131,7 @@ impl<'lt> ExternalFormatANDROID<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::external_format`]
     pub fn external_format_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.external_format
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1212,10 +1218,11 @@ impl<'lt> ExternalFormatANDROID<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAndroidHardwareBufferFormatProperties2ANDROID")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AndroidHardwareBufferFormatProperties2ANDROID<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1336,7 +1343,7 @@ impl<'lt> AndroidHardwareBufferFormatProperties2ANDROID<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::external_format`]
     pub fn external_format_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.external_format
     }
     ///Gets a mutable reference to the value of [`Self::format_features`]
     pub fn format_features_mut(&mut self) -> &mut FormatFeatureFlags2 {

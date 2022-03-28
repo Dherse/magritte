@@ -93,6 +93,7 @@ pub const KHR_PIPELINE_LIBRARY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineLibraryCreateInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -164,7 +165,7 @@ impl<'lt> PipelineLibraryCreateInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::library_count`]
     pub fn library_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.library_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {

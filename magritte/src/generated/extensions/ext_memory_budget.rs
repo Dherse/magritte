@@ -116,10 +116,11 @@ pub const EXT_MEMORY_BUDGET_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMemoryBudgetPropertiesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMemoryBudgetPropertiesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -132,12 +133,12 @@ pub struct PhysicalDeviceMemoryBudgetPropertiesEXT<'lt> {
     ///allocate from that heap before allocations  **may**  fail or cause
     ///performance degradation.
     ///The budget includes any currently allocated device memory.
-    pub heap_budget: [DeviceSize; MAX_MEMORY_HEAPS],
+    pub heap_budget: [DeviceSize; MAX_MEMORY_HEAPS as usize],
     ///[`heap_usage`] is an array of [`MAX_MEMORY_HEAPS`][`DeviceSize`] values in which memory
     /// usages are returned, with one element for each memory heap.
     ///A heap’s usage is an estimate of how much memory the process is
     ///currently using in that heap.
-    pub heap_usage: [DeviceSize; MAX_MEMORY_HEAPS],
+    pub heap_usage: [DeviceSize; MAX_MEMORY_HEAPS as usize],
 }
 impl<'lt> Default for PhysicalDeviceMemoryBudgetPropertiesEXT<'lt> {
     fn default() -> Self {
@@ -145,8 +146,8 @@ impl<'lt> Default for PhysicalDeviceMemoryBudgetPropertiesEXT<'lt> {
             _lifetime: PhantomData,
             s_type: Default::default(),
             p_next: std::ptr::null_mut(),
-            heap_budget: [Default::default(); MAX_MEMORY_HEAPS],
-            heap_usage: [Default::default(); MAX_MEMORY_HEAPS],
+            heap_budget: [Default::default(); MAX_MEMORY_HEAPS as usize],
+            heap_usage: [Default::default(); MAX_MEMORY_HEAPS as usize],
         }
     }
 }
@@ -172,12 +173,12 @@ impl<'lt> PhysicalDeviceMemoryBudgetPropertiesEXT<'lt> {
         &*self.p_next
     }
     ///Gets the value of [`Self::heap_budget`]
-    pub fn heap_budget(&self) -> &[DeviceSize; MAX_MEMORY_HEAPS] {
-        &getter
+    pub fn heap_budget(&self) -> &[DeviceSize; MAX_MEMORY_HEAPS as usize] {
+        &self.heap_budget
     }
     ///Gets the value of [`Self::heap_usage`]
-    pub fn heap_usage(&self) -> &[DeviceSize; MAX_MEMORY_HEAPS] {
-        &getter
+    pub fn heap_usage(&self) -> &[DeviceSize; MAX_MEMORY_HEAPS as usize] {
+        &self.heap_usage
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -191,12 +192,12 @@ impl<'lt> PhysicalDeviceMemoryBudgetPropertiesEXT<'lt> {
         &mut *self.p_next
     }
     ///Gets a mutable reference to the value of [`Self::heap_budget`]
-    pub fn heap_budget_mut(&mut self) -> &mut [DeviceSize; MAX_MEMORY_HEAPS] {
-        &mut getter
+    pub fn heap_budget_mut(&mut self) -> &mut [DeviceSize; MAX_MEMORY_HEAPS as usize] {
+        &mut self.heap_budget
     }
     ///Gets a mutable reference to the value of [`Self::heap_usage`]
-    pub fn heap_usage_mut(&mut self) -> &mut [DeviceSize; MAX_MEMORY_HEAPS] {
-        &mut getter
+    pub fn heap_usage_mut(&mut self) -> &mut [DeviceSize; MAX_MEMORY_HEAPS as usize] {
+        &mut self.heap_usage
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -211,7 +212,7 @@ impl<'lt> PhysicalDeviceMemoryBudgetPropertiesEXT<'lt> {
     ///Sets the raw value of [`Self::heap_budget`]
     pub fn set_heap_budget(
         &mut self,
-        value: [crate::vulkan1_0::DeviceSize; crate::core::MAX_MEMORY_HEAPS],
+        value: [crate::vulkan1_0::DeviceSize; crate::core::MAX_MEMORY_HEAPS as usize],
     ) -> &mut Self {
         self.heap_budget = value;
         self
@@ -219,7 +220,7 @@ impl<'lt> PhysicalDeviceMemoryBudgetPropertiesEXT<'lt> {
     ///Sets the raw value of [`Self::heap_usage`]
     pub fn set_heap_usage(
         &mut self,
-        value: [crate::vulkan1_0::DeviceSize; crate::core::MAX_MEMORY_HEAPS],
+        value: [crate::vulkan1_0::DeviceSize; crate::core::MAX_MEMORY_HEAPS as usize],
     ) -> &mut Self {
         self.heap_usage = value;
         self

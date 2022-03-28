@@ -60,9 +60,6 @@ impl<'a> Enum<'a> {
         // generate the doc for the enum
         let variant_docs = self.generate_doc(source, doc, out).unwrap_or_default();
 
-        // creates a doc alias if the name has been changed
-        alias_of(self.original_name(), self.name(), out);
-
         let has_empty = self.variants().iter().any(|v| v.value() == 0);
 
         // create an empty declaration if none exists
@@ -119,7 +116,7 @@ impl<'a> Enum<'a> {
                 #[doc = "Gets the raw underlying value"]
                 #[inline]
                 pub const fn bits(&self) -> i32 {
-                    self as i32
+                    *self as i32
                 }
 
                 #[doc = "Gets a value from a raw underlying value, unchecked and therefore unsafe"]

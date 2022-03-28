@@ -31,7 +31,7 @@ use vk_parse::{
 
 use crate::{
     expr::Expr,
-    name::{const_name, enum_name, funcpointer_name, tag_of_type, type_name, bit_name},
+    name::{bit_name, const_name, enum_name, funcpointer_name, tag_of_type, type_name},
     origin::Origin,
     symbols::{SymbolName, SymbolTable},
     ty::{Mutability, Ty},
@@ -1237,8 +1237,12 @@ impl<'a> Source<'a> {
 
         info!("arguments parsed");
 
-        self.funcpointers
-            .push(FunctionPointer::new_no_origin(original_name, name, return_type, arguments));
+        self.funcpointers.push(FunctionPointer::new_no_origin(
+            original_name,
+            name,
+            return_type,
+            arguments,
+        ));
     }
 
     fn handle_no_name(&mut self, ty: &'a Type) {

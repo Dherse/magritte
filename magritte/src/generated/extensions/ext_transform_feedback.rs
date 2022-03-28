@@ -142,7 +142,7 @@ pub const EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -203,10 +203,11 @@ impl std::fmt::Debug for PipelineRasterizationStateStreamCreateFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceTransformFeedbackFeaturesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -422,10 +423,11 @@ impl<'lt> PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceTransformFeedbackPropertiesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -617,11 +619,11 @@ impl<'lt> PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_transform_feedback_streams`]
     pub fn max_transform_feedback_streams_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_transform_feedback_streams
     }
     ///Gets a mutable reference to the value of [`Self::max_transform_feedback_buffers`]
     pub fn max_transform_feedback_buffers_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_transform_feedback_buffers
     }
     ///Gets a mutable reference to the value of [`Self::max_transform_feedback_buffer_size`]
     pub fn max_transform_feedback_buffer_size_mut(&mut self) -> &mut DeviceSize {
@@ -629,15 +631,15 @@ impl<'lt> PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_transform_feedback_stream_data_size`]
     pub fn max_transform_feedback_stream_data_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_transform_feedback_stream_data_size
     }
     ///Gets a mutable reference to the value of [`Self::max_transform_feedback_buffer_data_size`]
     pub fn max_transform_feedback_buffer_data_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_transform_feedback_buffer_data_size
     }
     ///Gets a mutable reference to the value of [`Self::max_transform_feedback_buffer_data_stride`]
     pub fn max_transform_feedback_buffer_data_stride_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_transform_feedback_buffer_data_stride
     }
     ///Gets a mutable reference to the value of [`Self::transform_feedback_queries`]
     pub fn transform_feedback_queries_mut(&mut self) -> &mut bool {
@@ -827,6 +829,7 @@ impl<'lt> PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineRasterizationStateStreamCreateInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -889,7 +892,7 @@ impl<'lt> PipelineRasterizationStateStreamCreateInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::rasterization_stream`]
     pub fn rasterization_stream_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.rasterization_stream
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {

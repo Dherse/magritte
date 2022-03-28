@@ -46,7 +46,11 @@ use crate::vulkan1_0::{BaseOutStructure, StructureType};
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData};
+use std::{
+    ffi::CStr,
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_AMD_SHADER_CORE_PROPERTIES_2_SPEC_VERSION")]
@@ -102,7 +106,7 @@ impl ShaderCorePropertiesFlagBitsAMD {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -134,7 +138,7 @@ impl ShaderCorePropertiesFlagBitsAMD {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkShaderCorePropertiesFlagsAMD")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -320,35 +324,31 @@ impl const std::ops::Not for ShaderCorePropertiesFlagsAMD {
         self.complement()
     }
 }
-impl std::iter::Extend<ShaderCorePropertiesFlagsAMD> for ShaderCorePropertiesFlagsAMD {
-    fn extend<T: std::iter::IntoIterator<Item = ShaderCorePropertiesFlagsAMD>>(&mut self, iterator: T) {
+impl Extend<ShaderCorePropertiesFlagsAMD> for ShaderCorePropertiesFlagsAMD {
+    fn extend<T: IntoIterator<Item = ShaderCorePropertiesFlagsAMD>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<ShaderCorePropertiesFlagBitsAMD> for ShaderCorePropertiesFlagsAMD {
-    fn extend<T: std::iter::IntoIterator<Item = ShaderCorePropertiesFlagBitsAMD>>(&mut self, iterator: T) {
+impl Extend<ShaderCorePropertiesFlagBitsAMD> for ShaderCorePropertiesFlagsAMD {
+    fn extend<T: IntoIterator<Item = ShaderCorePropertiesFlagBitsAMD>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(ShaderCorePropertiesFlagsAMD::from(i));
+            Self::insert(self, <Self as From<ShaderCorePropertiesFlagBitsAMD>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<ShaderCorePropertiesFlagsAMD> for ShaderCorePropertiesFlagsAMD {
-    fn from_iter<T: std::iter::IntoIterator<Item = ShaderCorePropertiesFlagsAMD>>(
-        iterator: T,
-    ) -> ShaderCorePropertiesFlagsAMD {
-        let mut out = ShaderCorePropertiesFlagsAMD::empty();
-        out.extend(iterator);
+impl FromIterator<ShaderCorePropertiesFlagsAMD> for ShaderCorePropertiesFlagsAMD {
+    fn from_iter<T: IntoIterator<Item = ShaderCorePropertiesFlagsAMD>>(iterator: T) -> ShaderCorePropertiesFlagsAMD {
+        let mut out = Self::empty();
+        <Self as Extend<ShaderCorePropertiesFlagsAMD>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<ShaderCorePropertiesFlagBitsAMD> for ShaderCorePropertiesFlagsAMD {
-    fn from_iter<T: std::iter::IntoIterator<Item = ShaderCorePropertiesFlagBitsAMD>>(
-        iterator: T,
-    ) -> ShaderCorePropertiesFlagsAMD {
-        let mut out = ShaderCorePropertiesFlagsAMD::empty();
-        out.extend(iterator);
+impl FromIterator<ShaderCorePropertiesFlagBitsAMD> for ShaderCorePropertiesFlagsAMD {
+    fn from_iter<T: IntoIterator<Item = ShaderCorePropertiesFlagBitsAMD>>(iterator: T) -> ShaderCorePropertiesFlagsAMD {
+        let mut out = Self::empty();
+        <Self as Extend<ShaderCorePropertiesFlagBitsAMD>>::extend(&mut out, iterator);
         out
     }
 }
@@ -410,10 +410,11 @@ impl std::fmt::Debug for ShaderCorePropertiesFlagsAMD {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderCoreProperties2AMD")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderCoreProperties2AMD<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -486,7 +487,7 @@ impl<'lt> PhysicalDeviceShaderCoreProperties2AMD<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::active_compute_unit_count`]
     pub fn active_compute_unit_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.active_compute_unit_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {

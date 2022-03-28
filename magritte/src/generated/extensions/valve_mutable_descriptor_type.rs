@@ -131,10 +131,11 @@ pub const VALVE_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME: &'static CStr =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -293,6 +294,7 @@ impl<'lt> PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MutableDescriptorTypeListVALVE<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`descriptor_type_count`] is the number of elements in
     ///[`descriptor_types`].
@@ -334,7 +336,7 @@ impl<'lt> MutableDescriptorTypeListVALVE<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::descriptor_type_count`]
     pub fn descriptor_type_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.descriptor_type_count
     }
     ///Sets the raw value of [`Self::descriptor_type_count`]
     pub fn set_descriptor_type_count(&mut self, value: u32) -> &mut Self {
@@ -404,6 +406,7 @@ impl<'lt> MutableDescriptorTypeListVALVE<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MutableDescriptorTypeCreateInfoVALVE<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -481,7 +484,7 @@ impl<'lt> MutableDescriptorTypeCreateInfoVALVE<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::mutable_descriptor_type_list_count`]
     pub fn mutable_descriptor_type_list_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.mutable_descriptor_type_list_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {

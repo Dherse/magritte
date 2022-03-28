@@ -101,10 +101,11 @@ pub const EXT_PHYSICAL_DEVICE_DRM_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDrmPropertiesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDrmPropertiesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -253,19 +254,19 @@ impl<'lt> PhysicalDeviceDrmPropertiesEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::primary_major`]
     pub fn primary_major_mut(&mut self) -> &mut i64 {
-        &mut getter
+        &mut self.primary_major
     }
     ///Gets a mutable reference to the value of [`Self::primary_minor`]
     pub fn primary_minor_mut(&mut self) -> &mut i64 {
-        &mut getter
+        &mut self.primary_minor
     }
     ///Gets a mutable reference to the value of [`Self::render_major`]
     pub fn render_major_mut(&mut self) -> &mut i64 {
-        &mut getter
+        &mut self.render_major
     }
     ///Gets a mutable reference to the value of [`Self::render_minor`]
     pub fn render_minor_mut(&mut self) -> &mut i64 {
-        &mut getter
+        &mut self.render_minor
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {

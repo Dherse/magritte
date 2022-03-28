@@ -2,9 +2,12 @@ use proc_macro2::TokenStream;
 use quote::quote;
 use tracing::warn;
 
-use crate::{source::{FunctionPointer, Source, FunctionPointerArgument}, doc::Documentation, imports::Imports, codegen::{ty::lifetime_as_generic_argument, alias_of}};
-
-
+use crate::{
+    codegen::{alias_of, ty::lifetime_as_generic_argument},
+    doc::Documentation,
+    imports::Imports,
+    source::{FunctionPointer, FunctionPointerArgument, Source},
+};
 
 impl<'a> FunctionPointer<'a> {
     /// Generates the code for a function pointer
@@ -52,7 +55,7 @@ impl<'a> FunctionPointer<'a> {
 
         // creates a doc alias if the name has been changed
         alias_of(self.original_name(), self.name(), out);
-        
+
         quote::quote_each_token! {
             out
 
@@ -61,12 +64,7 @@ impl<'a> FunctionPointer<'a> {
     }
 
     /// Generates the documentation for a constant
-    fn generate_doc(
-        &self,
-        source: &Source<'a>,
-        doc: &mut Documentation,
-        out: &mut TokenStream,
-    ) -> Option<()> {
+    fn generate_doc(&self, source: &Source<'a>, doc: &mut Documentation, out: &mut TokenStream) -> Option<()> {
         if let Some(mut doc) = doc.find(self.original_name()) {
             // parse the name section and write it out
             doc.name(source, self, out);
@@ -100,18 +98,17 @@ impl<'a> FunctionPointer<'a> {
 }
 
 impl<'a> FunctionPointerArgument<'a> {
-    pub(super) fn generate_funcpointer_arg(
-        &self,
-        source: &Source<'a>,
-        imports: &Imports,
-    ) -> (TokenStream, bool) {
+    pub(super) fn generate_funcpointer_arg(&self, source: &Source<'a>, imports: &Imports) -> (TokenStream, bool) {
         // get the name as an identifier
         let name = self.as_ident();
 
         let (ty, lt) = self.ty().as_raw_ty(source, Some(imports), false);
 
-        (quote! {
-            #name: #ty
-        }, lt)
+        (
+            quote! {
+                #name: #ty
+            },
+            lt,
+        )
     }
 }

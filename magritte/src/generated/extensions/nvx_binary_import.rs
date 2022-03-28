@@ -63,6 +63,7 @@ use crate::vulkan1_0::{BaseInStructure, StructureType};
 use std::{
     ffi::{c_void, CStr},
     marker::PhantomData,
+    os::raw::c_char,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -109,6 +110,7 @@ pub const NVX_BINARY_IMPORT_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NVX
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CuModuleCreateInfoNVX<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_CU_MODULE_CREATE_INFO_NVX`
     pub s_type: StructureType,
@@ -177,7 +179,7 @@ impl<'lt> CuModuleCreateInfoNVX<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::data_size`]
     pub fn data_size_mut(&mut self) -> &mut usize {
-        &mut getter
+        &mut self.data_size
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -196,7 +198,7 @@ impl<'lt> CuModuleCreateInfoNVX<'lt> {
     }
     ///Sets the raw value of [`Self::data`]
     pub fn set_data(&mut self, value: &'lt [std::ffi::c_void]) -> &mut Self {
-        let len_ = value.len() as u32;
+        let len_ = value.len() as usize;
         let len_ = len_;
         self.data = value.as_ptr();
         self.data_size = len_;
@@ -241,6 +243,7 @@ impl<'lt> CuModuleCreateInfoNVX<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CuFunctionCreateInfoNVX<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_CU_FUNCTION_CREATE_INFO_NVX`
     pub s_type: StructureType,
@@ -249,7 +252,7 @@ pub struct CuFunctionCreateInfoNVX<'lt> {
     ///[`module`] **must**  be a valid [`CuModuleNVX`] handle
     pub module: CuModuleNVX,
     ///[`name`] **must**  be a null-terminated UTF-8 string
-    pub name: &'lt CStr,
+    pub name: *const c_char,
 }
 impl<'lt> Default for CuFunctionCreateInfoNVX<'lt> {
     fn default() -> Self {
@@ -267,9 +270,18 @@ impl<'lt> CuFunctionCreateInfoNVX<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
+    ///Gets the raw value of [`Self::name`]
+    pub fn name_raw(&self) -> *const c_char {
+        self.name
+    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::name`]
+    pub fn set_name_raw(&mut self, value: *const c_char) -> &mut Self {
+        self.name = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -292,7 +304,7 @@ impl<'lt> CuFunctionCreateInfoNVX<'lt> {
     ///This function converts a pointer into a value which may be invalid, make sure
     ///that the pointer is valid before dereferencing.
     pub unsafe fn name(&self) -> &'lt CStr {
-        self.name
+        CStr::from_ptr(self.name)
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -318,7 +330,7 @@ impl<'lt> CuFunctionCreateInfoNVX<'lt> {
         self
     }
     ///Sets the raw value of [`Self::name`]
-    pub fn set_name(&mut self, value: &'lt std::ffi::CStr) -> &mut Self {
+    pub fn set_name(&mut self, value: *const std::os::raw::c_char) -> &mut Self {
         self.name = value;
         self
     }
@@ -374,6 +386,7 @@ impl<'lt> CuFunctionCreateInfoNVX<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CuLaunchInfoNVX<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_CU_LAUNCH_INFO_NVX`
     pub s_type: StructureType,
@@ -530,39 +543,39 @@ impl<'lt> CuLaunchInfoNVX<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::grid_dim_x`]
     pub fn grid_dim_x_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.grid_dim_x
     }
     ///Gets a mutable reference to the value of [`Self::grid_dim_y`]
     pub fn grid_dim_y_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.grid_dim_y
     }
     ///Gets a mutable reference to the value of [`Self::grid_dim_z`]
     pub fn grid_dim_z_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.grid_dim_z
     }
     ///Gets a mutable reference to the value of [`Self::block_dim_x`]
     pub fn block_dim_x_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.block_dim_x
     }
     ///Gets a mutable reference to the value of [`Self::block_dim_y`]
     pub fn block_dim_y_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.block_dim_y
     }
     ///Gets a mutable reference to the value of [`Self::block_dim_z`]
     pub fn block_dim_z_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.block_dim_z
     }
     ///Gets a mutable reference to the value of [`Self::shared_mem_bytes`]
     pub fn shared_mem_bytes_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.shared_mem_bytes
     }
     ///Gets a mutable reference to the value of [`Self::param_count`]
     pub fn param_count_mut(&mut self) -> &mut usize {
-        &mut getter
+        &mut self.param_count
     }
     ///Gets a mutable reference to the value of [`Self::extra_count`]
     pub fn extra_count_mut(&mut self) -> &mut usize {
-        &mut getter
+        &mut self.extra_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -621,7 +634,7 @@ impl<'lt> CuLaunchInfoNVX<'lt> {
     }
     ///Sets the raw value of [`Self::params`]
     pub fn set_params(&mut self, value: &'lt [*const std::ffi::c_void]) -> &mut Self {
-        let len_ = value.len() as u32;
+        let len_ = value.len() as usize;
         let len_ = len_;
         self.params = value.as_ptr();
         self.param_count = len_;
@@ -634,7 +647,7 @@ impl<'lt> CuLaunchInfoNVX<'lt> {
     }
     ///Sets the raw value of [`Self::extras`]
     pub fn set_extras(&mut self, value: &'lt [*const std::ffi::c_void]) -> &mut Self {
-        let len_ = value.len() as u32;
+        let len_ = value.len() as usize;
         let len_ = len_;
         self.extras = value.as_ptr();
         self.extra_count = len_;
@@ -664,7 +677,7 @@ impl<'lt> CuLaunchInfoNVX<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCuModuleNVX")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct CuModuleNVX(pub u64);
@@ -676,7 +689,7 @@ impl CuModuleNVX {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -688,17 +701,7 @@ impl CuModuleNVX {
 unsafe impl Send for CuModuleNVX {}
 impl Default for CuModuleNVX {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for CuModuleNVX {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for CuModuleNVX {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }
 ///[VkCuFunctionNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCuFunctionNVX.html) - Stub description of VkCuFunctionNVX
@@ -724,7 +727,7 @@ impl std::fmt::Debug for CuModuleNVX {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCuFunctionNVX")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct CuFunctionNVX(pub u64);
@@ -736,7 +739,7 @@ impl CuFunctionNVX {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -748,16 +751,6 @@ impl CuFunctionNVX {
 unsafe impl Send for CuFunctionNVX {}
 impl Default for CuFunctionNVX {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for CuFunctionNVX {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for CuFunctionNVX {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }

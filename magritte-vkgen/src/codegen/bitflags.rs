@@ -1,4 +1,3 @@
-
 use ahash::AHashMap;
 use proc_macro2::{Ident, Literal, Span, TokenStream};
 use quote::quote;
@@ -8,7 +7,7 @@ use crate::{
     doc::Documentation,
     imports::Imports,
     origin::Origin,
-    source::{Bit, Source, BitFlag},
+    source::{Bit, BitFlag, Source},
 };
 
 use super::alias_of;
@@ -125,7 +124,7 @@ impl<'a> BitFlag<'a> {
                 #[doc = "Gets the raw underlying value"]
                 #[inline]
                 pub const fn bits(&self) -> #ty {
-                    self as #ty
+                    *self as #ty
                 }
 
                 #[doc = "Gets a value from a raw underlying value, unchecked and therefore unsafe"]

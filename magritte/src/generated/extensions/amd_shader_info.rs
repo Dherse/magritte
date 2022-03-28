@@ -91,7 +91,6 @@ pub const AMD_SHADER_INFO_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_AMD_s
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkShaderInfoTypeAMD")]
-#[doc(alias = "VkShaderInfoTypeAMD")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -122,7 +121,7 @@ impl ShaderInfoTypeAMD {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -219,23 +218,23 @@ impl ShaderResourceUsageAMD {
     }
     ///Gets a mutable reference to the value of [`Self::num_used_vgprs`]
     pub fn num_used_vgprs_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.num_used_vgprs
     }
     ///Gets a mutable reference to the value of [`Self::num_used_sgprs`]
     pub fn num_used_sgprs_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.num_used_sgprs
     }
     ///Gets a mutable reference to the value of [`Self::lds_size_per_local_work_group`]
     pub fn lds_size_per_local_work_group_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.lds_size_per_local_work_group
     }
     ///Gets a mutable reference to the value of [`Self::lds_usage_size_in_bytes`]
     pub fn lds_usage_size_in_bytes_mut(&mut self) -> &mut usize {
-        &mut getter
+        &mut self.lds_usage_size_in_bytes
     }
     ///Gets a mutable reference to the value of [`Self::scratch_mem_usage_in_bytes`]
     pub fn scratch_mem_usage_in_bytes_mut(&mut self) -> &mut usize {
-        &mut getter
+        &mut self.scratch_mem_usage_in_bytes
     }
     ///Sets the raw value of [`Self::num_used_vgprs`]
     pub fn set_num_used_vgprs(&mut self, value: u32) -> &mut Self {
@@ -343,7 +342,7 @@ pub struct ShaderStatisticsInfoAMD {
     pub num_available_sgprs: u32,
     ///[`compute_work_group_size`] is the local workgroup size of this shader in
     ///{ X, Y, Z } dimensions.
-    pub compute_work_group_size: [u32; 3],
+    pub compute_work_group_size: [u32; 3 as usize],
 }
 impl Default for ShaderStatisticsInfoAMD {
     fn default() -> Self {
@@ -354,7 +353,7 @@ impl Default for ShaderStatisticsInfoAMD {
             num_physical_sgprs: 0,
             num_available_vgprs: 0,
             num_available_sgprs: 0,
-            compute_work_group_size: [0; 3],
+            compute_work_group_size: [0; 3 as usize],
         }
     }
 }
@@ -384,8 +383,8 @@ impl ShaderStatisticsInfoAMD {
         self.num_available_sgprs
     }
     ///Gets the value of [`Self::compute_work_group_size`]
-    pub fn compute_work_group_size(&self) -> &[u32; 3] {
-        &getter
+    pub fn compute_work_group_size(&self) -> &[u32; 3 as usize] {
+        &self.compute_work_group_size
     }
     ///Gets a mutable reference to the value of [`Self::shader_stage_mask`]
     pub fn shader_stage_mask_mut(&mut self) -> &mut ShaderStageFlags {
@@ -397,23 +396,23 @@ impl ShaderStatisticsInfoAMD {
     }
     ///Gets a mutable reference to the value of [`Self::num_physical_vgprs`]
     pub fn num_physical_vgprs_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.num_physical_vgprs
     }
     ///Gets a mutable reference to the value of [`Self::num_physical_sgprs`]
     pub fn num_physical_sgprs_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.num_physical_sgprs
     }
     ///Gets a mutable reference to the value of [`Self::num_available_vgprs`]
     pub fn num_available_vgprs_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.num_available_vgprs
     }
     ///Gets a mutable reference to the value of [`Self::num_available_sgprs`]
     pub fn num_available_sgprs_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.num_available_sgprs
     }
     ///Gets a mutable reference to the value of [`Self::compute_work_group_size`]
-    pub fn compute_work_group_size_mut(&mut self) -> &mut [u32; 3] {
-        &mut getter
+    pub fn compute_work_group_size_mut(&mut self) -> &mut [u32; 3 as usize] {
+        &mut self.compute_work_group_size
     }
     ///Sets the raw value of [`Self::shader_stage_mask`]
     pub fn set_shader_stage_mask(&mut self, value: crate::vulkan1_0::ShaderStageFlags) -> &mut Self {
@@ -449,7 +448,7 @@ impl ShaderStatisticsInfoAMD {
         self
     }
     ///Sets the raw value of [`Self::compute_work_group_size`]
-    pub fn set_compute_work_group_size(&mut self, value: [u32; 3]) -> &mut Self {
+    pub fn set_compute_work_group_size(&mut self, value: [u32; 3 as usize]) -> &mut Self {
         self.compute_work_group_size = value;
         self
     }

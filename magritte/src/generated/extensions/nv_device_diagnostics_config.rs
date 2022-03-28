@@ -48,7 +48,11 @@ use crate::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType}
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData};
+use std::{
+    ffi::CStr,
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_NV_DEVICE_DIAGNOSTICS_CONFIG_SPEC_VERSION")]
@@ -124,7 +128,7 @@ impl DeviceDiagnosticsConfigFlagBitsNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -162,7 +166,7 @@ impl DeviceDiagnosticsConfigFlagBitsNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceDiagnosticsConfigFlagsNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -180,18 +184,18 @@ impl From<DeviceDiagnosticsConfigFlagBitsNV> for DeviceDiagnosticsConfigFlagsNV 
 impl DeviceDiagnosticsConfigFlagsNV {
     ///[`DeviceDiagnosticsConfigEnableShaderDebugInfoNv`]
     ///enables the generation of debug information for shaders.
-    const DeviceDiagnosticsConfigEnableShaderDebugInfoNv: Self = Self(1);
+    pub const DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(1);
     ///[`DeviceDiagnosticsConfigEnableResourceTrackingNv`]
     ///enables driver side tracking of resources (images, buffers, etc.) used
     ///to augment the device fault information.
-    const DeviceDiagnosticsConfigEnableResourceTrackingNv: Self = Self(2);
+    pub const DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_NV: Self = Self(2);
     ///[`DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv`]
     ///enables automatic insertion of [diagnostic checkpoints](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-diagnostic-checkpoints) for draw calls, dispatches,
     ///trace rays,
     ///and copies.
     ///The CPU call stack at the time of the command will be associated as the
     ///marker data for the automatically inserted checkpoints.
-    const DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv: Self = Self(4);
+    pub const DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_NV: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -201,9 +205,9 @@ impl DeviceDiagnosticsConfigFlagsNV {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::DeviceDiagnosticsConfigEnableShaderDebugInfoNv
-            | Self::DeviceDiagnosticsConfigEnableResourceTrackingNv
-            | Self::DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv
+            | Self::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_NV
+            | Self::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_NV
+            | Self::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_NV
     }
     ///Returns the raw bits
     #[inline]
@@ -365,35 +369,35 @@ impl const std::ops::Not for DeviceDiagnosticsConfigFlagsNV {
         self.complement()
     }
 }
-impl std::iter::Extend<DeviceDiagnosticsConfigFlagsNV> for DeviceDiagnosticsConfigFlagsNV {
-    fn extend<T: std::iter::IntoIterator<Item = DeviceDiagnosticsConfigFlagsNV>>(&mut self, iterator: T) {
+impl Extend<DeviceDiagnosticsConfigFlagsNV> for DeviceDiagnosticsConfigFlagsNV {
+    fn extend<T: IntoIterator<Item = DeviceDiagnosticsConfigFlagsNV>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<DeviceDiagnosticsConfigFlagBitsNV> for DeviceDiagnosticsConfigFlagsNV {
-    fn extend<T: std::iter::IntoIterator<Item = DeviceDiagnosticsConfigFlagBitsNV>>(&mut self, iterator: T) {
+impl Extend<DeviceDiagnosticsConfigFlagBitsNV> for DeviceDiagnosticsConfigFlagsNV {
+    fn extend<T: IntoIterator<Item = DeviceDiagnosticsConfigFlagBitsNV>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(DeviceDiagnosticsConfigFlagsNV::from(i));
+            Self::insert(self, <Self as From<DeviceDiagnosticsConfigFlagBitsNV>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<DeviceDiagnosticsConfigFlagsNV> for DeviceDiagnosticsConfigFlagsNV {
-    fn from_iter<T: std::iter::IntoIterator<Item = DeviceDiagnosticsConfigFlagsNV>>(
+impl FromIterator<DeviceDiagnosticsConfigFlagsNV> for DeviceDiagnosticsConfigFlagsNV {
+    fn from_iter<T: IntoIterator<Item = DeviceDiagnosticsConfigFlagsNV>>(
         iterator: T,
     ) -> DeviceDiagnosticsConfigFlagsNV {
-        let mut out = DeviceDiagnosticsConfigFlagsNV::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<DeviceDiagnosticsConfigFlagsNV>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<DeviceDiagnosticsConfigFlagBitsNV> for DeviceDiagnosticsConfigFlagsNV {
-    fn from_iter<T: std::iter::IntoIterator<Item = DeviceDiagnosticsConfigFlagBitsNV>>(
+impl FromIterator<DeviceDiagnosticsConfigFlagBitsNV> for DeviceDiagnosticsConfigFlagsNV {
+    fn from_iter<T: IntoIterator<Item = DeviceDiagnosticsConfigFlagBitsNV>>(
         iterator: T,
     ) -> DeviceDiagnosticsConfigFlagsNV {
-        let mut out = DeviceDiagnosticsConfigFlagsNV::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<DeviceDiagnosticsConfigFlagBitsNV>>::extend(&mut out, iterator);
         out
     }
 }
@@ -408,33 +412,32 @@ impl std::fmt::Debug for DeviceDiagnosticsConfigFlagsNV {
                     let mut first = true;
                     if self
                         .0
-                        .contains(DeviceDiagnosticsConfigFlagsNV::DeviceDiagnosticsConfigEnableShaderDebugInfoNv)
+                        .contains(DeviceDiagnosticsConfigFlagsNV::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_NV)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DeviceDiagnosticsConfigEnableShaderDebugInfoNv))?;
+                        f.write_str(stringify!(DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_NV))?;
                     }
                     if self
                         .0
-                        .contains(DeviceDiagnosticsConfigFlagsNV::DeviceDiagnosticsConfigEnableResourceTrackingNv)
+                        .contains(DeviceDiagnosticsConfigFlagsNV::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_NV)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DeviceDiagnosticsConfigEnableResourceTrackingNv))?;
+                        f.write_str(stringify!(DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_NV))?;
                     }
-                    if self
-                        .0
-                        .contains(DeviceDiagnosticsConfigFlagsNV::DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv)
-                    {
+                    if self.0.contains(
+                        DeviceDiagnosticsConfigFlagsNV::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_NV,
+                    ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv))?;
+                        f.write_str(stringify!(DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_NV))?;
                     }
                 }
                 Ok(())
@@ -486,10 +489,11 @@ impl std::fmt::Debug for DeviceDiagnosticsConfigFlagsNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDiagnosticsConfigFeaturesNV")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDiagnosticsConfigFeaturesNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -629,6 +633,7 @@ impl<'lt> PhysicalDeviceDiagnosticsConfigFeaturesNV<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceDiagnosticsConfigCreateInfoNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,

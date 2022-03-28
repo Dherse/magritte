@@ -157,7 +157,9 @@ use bytemuck::{Pod, Zeroable};
 use serde::{Deserialize, Serialize};
 use std::{
     ffi::{c_void, CStr},
+    iter::{Extend, FromIterator, IntoIterator},
     marker::PhantomData,
+    os::raw::c_char,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -298,7 +300,7 @@ impl DebugUtilsMessageSeverityFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -376,7 +378,7 @@ impl DebugUtilsMessageTypeFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -424,7 +426,7 @@ impl DebugUtilsMessageTypeFlagBitsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsMessageSeverityFlagsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -443,11 +445,11 @@ impl DebugUtilsMessageSeverityFlagsEXT {
     ///[`DebugUtilsMessageSeverityVerboseExt`] specifies the most
     ///verbose output indicating all diagnostic messages from the Vulkan
     ///loader, layers, and drivers should be captured.
-    const DebugUtilsMessageSeverityVerboseExt: Self = Self(1);
+    pub const DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_EXT: Self = Self(1);
     ///[`DebugUtilsMessageSeverityInfoExt`] specifies an
     ///informational message such as resource details that may be handy when
     ///debugging an application.
-    const DebugUtilsMessageSeverityInfoExt: Self = Self(16);
+    pub const DEBUG_UTILS_MESSAGE_SEVERITY_INFO_EXT: Self = Self(16);
     ///[`DebugUtilsMessageSeverityWarningExt`] specifies use of
     ///Vulkan that  **may**  expose an app bug.
     ///Such cases may not be immediately harmful, such as a fragment shader
@@ -456,10 +458,10 @@ impl DebugUtilsMessageSeverityFlagsEXT {
     ///unintended such as using an image whose memory has not been filled.
     ///In general if you see a warning but you know that the behavior is
     ///intended/desired, then simply ignore the warning.
-    const DebugUtilsMessageSeverityWarningExt: Self = Self(256);
+    pub const DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_EXT: Self = Self(256);
     ///[`DebugUtilsMessageSeverityErrorExt`] specifies that the
     ///application has violated a valid usage condition of the specification.
-    const DebugUtilsMessageSeverityErrorExt: Self = Self(4096);
+    pub const DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_EXT: Self = Self(4096);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -469,10 +471,10 @@ impl DebugUtilsMessageSeverityFlagsEXT {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::DebugUtilsMessageSeverityVerboseExt
-            | Self::DebugUtilsMessageSeverityInfoExt
-            | Self::DebugUtilsMessageSeverityWarningExt
-            | Self::DebugUtilsMessageSeverityErrorExt
+            | Self::DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_EXT
+            | Self::DEBUG_UTILS_MESSAGE_SEVERITY_INFO_EXT
+            | Self::DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_EXT
+            | Self::DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_EXT
     }
     ///Returns the raw bits
     #[inline]
@@ -634,35 +636,35 @@ impl const std::ops::Not for DebugUtilsMessageSeverityFlagsEXT {
         self.complement()
     }
 }
-impl std::iter::Extend<DebugUtilsMessageSeverityFlagsEXT> for DebugUtilsMessageSeverityFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = DebugUtilsMessageSeverityFlagsEXT>>(&mut self, iterator: T) {
+impl Extend<DebugUtilsMessageSeverityFlagsEXT> for DebugUtilsMessageSeverityFlagsEXT {
+    fn extend<T: IntoIterator<Item = DebugUtilsMessageSeverityFlagsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<DebugUtilsMessageSeverityFlagBitsEXT> for DebugUtilsMessageSeverityFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = DebugUtilsMessageSeverityFlagBitsEXT>>(&mut self, iterator: T) {
+impl Extend<DebugUtilsMessageSeverityFlagBitsEXT> for DebugUtilsMessageSeverityFlagsEXT {
+    fn extend<T: IntoIterator<Item = DebugUtilsMessageSeverityFlagBitsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(DebugUtilsMessageSeverityFlagsEXT::from(i));
+            Self::insert(self, <Self as From<DebugUtilsMessageSeverityFlagBitsEXT>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<DebugUtilsMessageSeverityFlagsEXT> for DebugUtilsMessageSeverityFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = DebugUtilsMessageSeverityFlagsEXT>>(
+impl FromIterator<DebugUtilsMessageSeverityFlagsEXT> for DebugUtilsMessageSeverityFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = DebugUtilsMessageSeverityFlagsEXT>>(
         iterator: T,
     ) -> DebugUtilsMessageSeverityFlagsEXT {
-        let mut out = DebugUtilsMessageSeverityFlagsEXT::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<DebugUtilsMessageSeverityFlagsEXT>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<DebugUtilsMessageSeverityFlagBitsEXT> for DebugUtilsMessageSeverityFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = DebugUtilsMessageSeverityFlagBitsEXT>>(
+impl FromIterator<DebugUtilsMessageSeverityFlagBitsEXT> for DebugUtilsMessageSeverityFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = DebugUtilsMessageSeverityFlagBitsEXT>>(
         iterator: T,
     ) -> DebugUtilsMessageSeverityFlagsEXT {
-        let mut out = DebugUtilsMessageSeverityFlagsEXT::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<DebugUtilsMessageSeverityFlagBitsEXT>>::extend(&mut out, iterator);
         out
     }
 }
@@ -677,43 +679,43 @@ impl std::fmt::Debug for DebugUtilsMessageSeverityFlagsEXT {
                     let mut first = true;
                     if self
                         .0
-                        .contains(DebugUtilsMessageSeverityFlagsEXT::DebugUtilsMessageSeverityVerboseExt)
+                        .contains(DebugUtilsMessageSeverityFlagsEXT::DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DebugUtilsMessageSeverityVerboseExt))?;
+                        f.write_str(stringify!(DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_EXT))?;
                     }
                     if self
                         .0
-                        .contains(DebugUtilsMessageSeverityFlagsEXT::DebugUtilsMessageSeverityInfoExt)
+                        .contains(DebugUtilsMessageSeverityFlagsEXT::DEBUG_UTILS_MESSAGE_SEVERITY_INFO_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DebugUtilsMessageSeverityInfoExt))?;
+                        f.write_str(stringify!(DEBUG_UTILS_MESSAGE_SEVERITY_INFO_EXT))?;
                     }
                     if self
                         .0
-                        .contains(DebugUtilsMessageSeverityFlagsEXT::DebugUtilsMessageSeverityWarningExt)
+                        .contains(DebugUtilsMessageSeverityFlagsEXT::DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DebugUtilsMessageSeverityWarningExt))?;
+                        f.write_str(stringify!(DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_EXT))?;
                     }
                     if self
                         .0
-                        .contains(DebugUtilsMessageSeverityFlagsEXT::DebugUtilsMessageSeverityErrorExt)
+                        .contains(DebugUtilsMessageSeverityFlagsEXT::DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DebugUtilsMessageSeverityErrorExt))?;
+                        f.write_str(stringify!(DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_EXT))?;
                     }
                 }
                 Ok(())
@@ -757,7 +759,7 @@ impl std::fmt::Debug for DebugUtilsMessageSeverityFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsMessageTypeFlagsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -776,17 +778,17 @@ impl DebugUtilsMessageTypeFlagsEXT {
     ///[`DebugUtilsMessageTypeGeneralExt`] specifies that some
     ///general event has occurred.
     ///This is typically a non-specification, non-performance event.
-    const DebugUtilsMessageTypeGeneralExt: Self = Self(1);
+    pub const DEBUG_UTILS_MESSAGE_TYPE_GENERAL_EXT: Self = Self(1);
     ///[`DebugUtilsMessageTypeValidationExt`] specifies that
     ///something has occurred during validation against the Vulkan
     ///specification that may indicate invalid behavior.
-    const DebugUtilsMessageTypeValidationExt: Self = Self(2);
+    pub const DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_EXT: Self = Self(2);
     ///[`DebugUtilsMessageTypePerformanceExt`] specifies a
     ///potentially non-optimal use of Vulkan, e.g. using
     ///[`CmdClearColorImage`] when setting
     ///[`AttachmentDescription`]::`loadOp` to
     ///`VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
-    const DebugUtilsMessageTypePerformanceExt: Self = Self(4);
+    pub const DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_EXT: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -796,9 +798,9 @@ impl DebugUtilsMessageTypeFlagsEXT {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::DebugUtilsMessageTypeGeneralExt
-            | Self::DebugUtilsMessageTypeValidationExt
-            | Self::DebugUtilsMessageTypePerformanceExt
+            | Self::DEBUG_UTILS_MESSAGE_TYPE_GENERAL_EXT
+            | Self::DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_EXT
+            | Self::DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_EXT
     }
     ///Returns the raw bits
     #[inline]
@@ -960,35 +962,33 @@ impl const std::ops::Not for DebugUtilsMessageTypeFlagsEXT {
         self.complement()
     }
 }
-impl std::iter::Extend<DebugUtilsMessageTypeFlagsEXT> for DebugUtilsMessageTypeFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = DebugUtilsMessageTypeFlagsEXT>>(&mut self, iterator: T) {
+impl Extend<DebugUtilsMessageTypeFlagsEXT> for DebugUtilsMessageTypeFlagsEXT {
+    fn extend<T: IntoIterator<Item = DebugUtilsMessageTypeFlagsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<DebugUtilsMessageTypeFlagBitsEXT> for DebugUtilsMessageTypeFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = DebugUtilsMessageTypeFlagBitsEXT>>(&mut self, iterator: T) {
+impl Extend<DebugUtilsMessageTypeFlagBitsEXT> for DebugUtilsMessageTypeFlagsEXT {
+    fn extend<T: IntoIterator<Item = DebugUtilsMessageTypeFlagBitsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(DebugUtilsMessageTypeFlagsEXT::from(i));
+            Self::insert(self, <Self as From<DebugUtilsMessageTypeFlagBitsEXT>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<DebugUtilsMessageTypeFlagsEXT> for DebugUtilsMessageTypeFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = DebugUtilsMessageTypeFlagsEXT>>(
-        iterator: T,
-    ) -> DebugUtilsMessageTypeFlagsEXT {
-        let mut out = DebugUtilsMessageTypeFlagsEXT::empty();
-        out.extend(iterator);
+impl FromIterator<DebugUtilsMessageTypeFlagsEXT> for DebugUtilsMessageTypeFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = DebugUtilsMessageTypeFlagsEXT>>(iterator: T) -> DebugUtilsMessageTypeFlagsEXT {
+        let mut out = Self::empty();
+        <Self as Extend<DebugUtilsMessageTypeFlagsEXT>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<DebugUtilsMessageTypeFlagBitsEXT> for DebugUtilsMessageTypeFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = DebugUtilsMessageTypeFlagBitsEXT>>(
+impl FromIterator<DebugUtilsMessageTypeFlagBitsEXT> for DebugUtilsMessageTypeFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = DebugUtilsMessageTypeFlagBitsEXT>>(
         iterator: T,
     ) -> DebugUtilsMessageTypeFlagsEXT {
-        let mut out = DebugUtilsMessageTypeFlagsEXT::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<DebugUtilsMessageTypeFlagBitsEXT>>::extend(&mut out, iterator);
         out
     }
 }
@@ -1003,33 +1003,33 @@ impl std::fmt::Debug for DebugUtilsMessageTypeFlagsEXT {
                     let mut first = true;
                     if self
                         .0
-                        .contains(DebugUtilsMessageTypeFlagsEXT::DebugUtilsMessageTypeGeneralExt)
+                        .contains(DebugUtilsMessageTypeFlagsEXT::DEBUG_UTILS_MESSAGE_TYPE_GENERAL_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DebugUtilsMessageTypeGeneralExt))?;
+                        f.write_str(stringify!(DEBUG_UTILS_MESSAGE_TYPE_GENERAL_EXT))?;
                     }
                     if self
                         .0
-                        .contains(DebugUtilsMessageTypeFlagsEXT::DebugUtilsMessageTypeValidationExt)
+                        .contains(DebugUtilsMessageTypeFlagsEXT::DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DebugUtilsMessageTypeValidationExt))?;
+                        f.write_str(stringify!(DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_EXT))?;
                     }
                     if self
                         .0
-                        .contains(DebugUtilsMessageTypeFlagsEXT::DebugUtilsMessageTypePerformanceExt)
+                        .contains(DebugUtilsMessageTypeFlagsEXT::DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DebugUtilsMessageTypePerformanceExt))?;
+                        f.write_str(stringify!(DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_EXT))?;
                     }
                 }
                 Ok(())
@@ -1057,7 +1057,7 @@ impl std::fmt::Debug for DebugUtilsMessageTypeFlagsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1091,7 +1091,7 @@ impl std::fmt::Debug for DebugUtilsMessengerCreateFlagsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1162,6 +1162,7 @@ impl std::fmt::Debug for DebugUtilsMessengerCallbackDataFlagsEXT {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugUtilsObjectNameInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1175,7 +1176,7 @@ pub struct DebugUtilsObjectNameInfoEXT<'lt> {
     pub object_handle: u64,
     ///[`object_name`] is either `NULL` or a null-terminated UTF-8 string
     ///specifying the name to apply to [`object_handle`].
-    pub object_name: &'lt CStr,
+    pub object_name: *const c_char,
 }
 impl<'lt> Default for DebugUtilsObjectNameInfoEXT<'lt> {
     fn default() -> Self {
@@ -1194,9 +1195,18 @@ impl<'lt> DebugUtilsObjectNameInfoEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
+    ///Gets the raw value of [`Self::object_name`]
+    pub fn object_name_raw(&self) -> *const c_char {
+        self.object_name
+    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::object_name`]
+    pub fn set_object_name_raw(&mut self, value: *const c_char) -> &mut Self {
+        self.object_name = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -1223,7 +1233,7 @@ impl<'lt> DebugUtilsObjectNameInfoEXT<'lt> {
     ///This function converts a pointer into a value which may be invalid, make sure
     ///that the pointer is valid before dereferencing.
     pub unsafe fn object_name(&self) -> &'lt CStr {
-        self.object_name
+        CStr::from_ptr(self.object_name)
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -1235,7 +1245,7 @@ impl<'lt> DebugUtilsObjectNameInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::object_handle`]
     pub fn object_handle_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.object_handle
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1258,7 +1268,7 @@ impl<'lt> DebugUtilsObjectNameInfoEXT<'lt> {
         self
     }
     ///Sets the raw value of [`Self::object_name`]
-    pub fn set_object_name(&mut self, value: &'lt std::ffi::CStr) -> &mut Self {
+    pub fn set_object_name(&mut self, value: *const std::os::raw::c_char) -> &mut Self {
         self.object_name = value;
         self
     }
@@ -1320,6 +1330,7 @@ impl<'lt> DebugUtilsObjectNameInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugUtilsObjectTagInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1416,15 +1427,15 @@ impl<'lt> DebugUtilsObjectTagInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::object_handle`]
     pub fn object_handle_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.object_handle
     }
     ///Gets a mutable reference to the value of [`Self::tag_name`]
     pub fn tag_name_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.tag_name
     }
     ///Gets a mutable reference to the value of [`Self::tag_size`]
     pub fn tag_size_mut(&mut self) -> &mut usize {
-        &mut getter
+        &mut self.tag_size
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1458,7 +1469,7 @@ impl<'lt> DebugUtilsObjectTagInfoEXT<'lt> {
     }
     ///Sets the raw value of [`Self::tag`]
     pub fn set_tag(&mut self, value: &'lt [std::ffi::c_void]) -> &mut Self {
-        let len_ = value.len() as u32;
+        let len_ = value.len() as usize;
         let len_ = len_;
         self.tag = value.as_ptr();
         self.tag_size = len_;
@@ -1512,6 +1523,7 @@ impl<'lt> DebugUtilsObjectTagInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugUtilsLabelEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1520,13 +1532,13 @@ pub struct DebugUtilsLabelEXT<'lt> {
     pub p_next: *const BaseInStructure<'lt>,
     ///[`label_name`] is a pointer to a null-terminated UTF-8 string
     ///containing the name of the label.
-    pub label_name: &'lt CStr,
+    pub label_name: *const c_char,
     ///[`color`] is an optional RGBA color value that can be associated with
     ///the label.
     ///A particular implementation  **may**  choose to ignore this color value.
     ///The values contain RGBA values in order, in the range 0.0 to 1.0.
     ///If all elements in [`color`] are set to 0.0 then it is ignored.
-    pub color: [f32; 4],
+    pub color: [f32; 4 as usize],
 }
 impl<'lt> Default for DebugUtilsLabelEXT<'lt> {
     fn default() -> Self {
@@ -1535,7 +1547,7 @@ impl<'lt> Default for DebugUtilsLabelEXT<'lt> {
             s_type: Default::default(),
             p_next: std::ptr::null(),
             label_name: std::ptr::null(),
-            color: [0.0; 4],
+            color: [0.0; 4 as usize],
         }
     }
 }
@@ -1544,9 +1556,18 @@ impl<'lt> DebugUtilsLabelEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
+    ///Gets the raw value of [`Self::label_name`]
+    pub fn label_name_raw(&self) -> *const c_char {
+        self.label_name
+    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::label_name`]
+    pub fn set_label_name_raw(&mut self, value: *const c_char) -> &mut Self {
+        self.label_name = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -1565,19 +1586,19 @@ impl<'lt> DebugUtilsLabelEXT<'lt> {
     ///This function converts a pointer into a value which may be invalid, make sure
     ///that the pointer is valid before dereferencing.
     pub unsafe fn label_name(&self) -> &'lt CStr {
-        self.label_name
+        CStr::from_ptr(self.label_name)
     }
     ///Gets the value of [`Self::color`]
-    pub fn color(&self) -> &[f32; 4] {
-        &getter
+    pub fn color(&self) -> &[f32; 4 as usize] {
+        &self.color
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
         &mut self.s_type
     }
     ///Gets a mutable reference to the value of [`Self::color`]
-    pub fn color_mut(&mut self) -> &mut [f32; 4] {
-        &mut getter
+    pub fn color_mut(&mut self) -> &mut [f32; 4 as usize] {
+        &mut self.color
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1590,12 +1611,12 @@ impl<'lt> DebugUtilsLabelEXT<'lt> {
         self
     }
     ///Sets the raw value of [`Self::label_name`]
-    pub fn set_label_name(&mut self, value: &'lt std::ffi::CStr) -> &mut Self {
+    pub fn set_label_name(&mut self, value: *const std::os::raw::c_char) -> &mut Self {
         self.label_name = value;
         self
     }
     ///Sets the raw value of [`Self::color`]
-    pub fn set_color(&mut self, value: [f32; 4]) -> &mut Self {
+    pub fn set_color(&mut self, value: [f32; 4 as usize]) -> &mut Self {
         self.color = value;
         self
     }
@@ -1678,10 +1699,10 @@ impl<'lt> DebugUtilsLabelEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsMessengerCreateInfoEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugUtilsMessengerCreateInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1699,7 +1720,7 @@ pub struct DebugUtilsMessengerCreateInfoEXT<'lt> {
     ///event(s) will cause this callback to be called.
     pub message_type: DebugUtilsMessageTypeFlagsEXT,
     ///[`pfn_user_callback`] is the application callback function to call.
-    pub pfn_user_callback: PFNDebugUtilsMessengerCallbackEXT<'lt>,
+    pub pfn_user_callback: PFNDebugUtilsMessengerCallbackEXT,
     ///[`user_data`] is user data to be passed to the callback.
     pub user_data: *mut c_void,
 }
@@ -1760,7 +1781,7 @@ impl<'lt> DebugUtilsMessengerCreateInfoEXT<'lt> {
         self.message_type
     }
     ///Gets the value of [`Self::pfn_user_callback`]
-    pub fn pfn_user_callback(&self) -> &PFNDebugUtilsMessengerCallbackEXT<'lt> {
+    pub fn pfn_user_callback(&self) -> &PFNDebugUtilsMessengerCallbackEXT {
         &self.pfn_user_callback
     }
     ///Gets the value of [`Self::user_data`]
@@ -1787,7 +1808,7 @@ impl<'lt> DebugUtilsMessengerCreateInfoEXT<'lt> {
         &mut self.message_type
     }
     ///Gets a mutable reference to the value of [`Self::pfn_user_callback`]
-    pub fn pfn_user_callback_mut(&mut self) -> &mut PFNDebugUtilsMessengerCallbackEXT<'lt> {
+    pub fn pfn_user_callback_mut(&mut self) -> &mut PFNDebugUtilsMessengerCallbackEXT {
         &mut self.pfn_user_callback
     }
     ///Gets a mutable reference to the value of [`Self::user_data`]
@@ -1834,7 +1855,7 @@ impl<'lt> DebugUtilsMessengerCreateInfoEXT<'lt> {
     ///Sets the raw value of [`Self::pfn_user_callback`]
     pub fn set_pfn_user_callback(
         &mut self,
-        value: crate::extensions::ext_debug_utils::PFNDebugUtilsMessengerCallbackEXT<'lt>,
+        value: crate::extensions::ext_debug_utils::PFNDebugUtilsMessengerCallbackEXT,
     ) -> &mut Self {
         self.pfn_user_callback = value;
         self
@@ -1925,6 +1946,7 @@ impl<'lt> DebugUtilsMessengerCreateInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugUtilsMessengerCallbackDataEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1938,7 +1960,7 @@ pub struct DebugUtilsMessengerCallbackDataEXT<'lt> {
     ///If the message corresponds to a validation layer message, then this
     ///string may contain the portion of the Vulkan specification that is
     ///believed to have been violated.
-    pub message_id_name: &'lt CStr,
+    pub message_id_name: *const c_char,
     ///[`message_id_number`] is the ID number of the triggering message.
     ///If the message corresponds to a validation layer message, then this
     ///number is related to the internal number associated with the message
@@ -1946,7 +1968,7 @@ pub struct DebugUtilsMessengerCallbackDataEXT<'lt> {
     pub message_id_number: i32,
     ///[`message`] is a null-terminated string detailing the trigger
     ///conditions.
-    pub message: &'lt CStr,
+    pub message: *const c_char,
     ///[`queue_label_count`] is a count of items contained in the
     ///[`queue_labels`] array.
     pub queue_label_count: u32,
@@ -1998,6 +2020,14 @@ impl<'lt> DebugUtilsMessengerCallbackDataEXT<'lt> {
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
     }
+    ///Gets the raw value of [`Self::message_id_name`]
+    pub fn message_id_name_raw(&self) -> *const c_char {
+        self.message_id_name
+    }
+    ///Gets the raw value of [`Self::message`]
+    pub fn message_raw(&self) -> *const c_char {
+        self.message
+    }
     ///Gets the raw value of [`Self::queue_labels`]
     pub fn queue_labels_raw(&self) -> *const DebugUtilsLabelEXT<'lt> {
         self.queue_labels
@@ -2013,6 +2043,16 @@ impl<'lt> DebugUtilsMessengerCallbackDataEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::message_id_name`]
+    pub fn set_message_id_name_raw(&mut self, value: *const c_char) -> &mut Self {
+        self.message_id_name = value;
+        self
+    }
+    ///Sets the raw value of [`Self::message`]
+    pub fn set_message_raw(&mut self, value: *const c_char) -> &mut Self {
+        self.message = value;
         self
     }
     ///Sets the raw value of [`Self::queue_labels`]
@@ -2050,7 +2090,7 @@ impl<'lt> DebugUtilsMessengerCallbackDataEXT<'lt> {
     ///This function converts a pointer into a value which may be invalid, make sure
     ///that the pointer is valid before dereferencing.
     pub unsafe fn message_id_name(&self) -> &'lt CStr {
-        self.message_id_name
+        CStr::from_ptr(self.message_id_name)
     }
     ///Gets the value of [`Self::message_id_number`]
     pub fn message_id_number(&self) -> i32 {
@@ -2061,7 +2101,7 @@ impl<'lt> DebugUtilsMessengerCallbackDataEXT<'lt> {
     ///This function converts a pointer into a value which may be invalid, make sure
     ///that the pointer is valid before dereferencing.
     pub unsafe fn message(&self) -> &'lt CStr {
-        self.message
+        CStr::from_ptr(self.message)
     }
     ///Gets the value of [`Self::queue_label_count`]
     pub fn queue_label_count(&self) -> u32 {
@@ -2106,19 +2146,19 @@ impl<'lt> DebugUtilsMessengerCallbackDataEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::message_id_number`]
     pub fn message_id_number_mut(&mut self) -> &mut i32 {
-        &mut getter
+        &mut self.message_id_number
     }
     ///Gets a mutable reference to the value of [`Self::queue_label_count`]
     pub fn queue_label_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.queue_label_count
     }
     ///Gets a mutable reference to the value of [`Self::cmd_buf_label_count`]
     pub fn cmd_buf_label_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.cmd_buf_label_count
     }
     ///Gets a mutable reference to the value of [`Self::object_count`]
     pub fn object_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.object_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -2139,7 +2179,7 @@ impl<'lt> DebugUtilsMessengerCallbackDataEXT<'lt> {
         self
     }
     ///Sets the raw value of [`Self::message_id_name`]
-    pub fn set_message_id_name(&mut self, value: &'lt std::ffi::CStr) -> &mut Self {
+    pub fn set_message_id_name(&mut self, value: *const std::os::raw::c_char) -> &mut Self {
         self.message_id_name = value;
         self
     }
@@ -2149,7 +2189,7 @@ impl<'lt> DebugUtilsMessengerCallbackDataEXT<'lt> {
         self
     }
     ///Sets the raw value of [`Self::message`]
-    pub fn set_message(&mut self, value: &'lt std::ffi::CStr) -> &mut Self {
+    pub fn set_message(&mut self, value: *const std::os::raw::c_char) -> &mut Self {
         self.message = value;
         self
     }
@@ -2223,7 +2263,7 @@ impl<'lt> DebugUtilsMessengerCallbackDataEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsMessengerEXT")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct DebugUtilsMessengerEXT(pub u64);
@@ -2235,7 +2275,7 @@ impl DebugUtilsMessengerEXT {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -2247,16 +2287,6 @@ impl DebugUtilsMessengerEXT {
 unsafe impl Send for DebugUtilsMessengerEXT {}
 impl Default for DebugUtilsMessengerEXT {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for DebugUtilsMessengerEXT {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for DebugUtilsMessengerEXT {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }

@@ -13,7 +13,11 @@ use crate::{
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{marker::PhantomData, os::raw::c_char};
+use std::{
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+    os::raw::c_char,
+};
 ///[VK_MAX_DRIVER_NAME_SIZE](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_MAX_DRIVER_NAME_SIZE.html) - Maximum length of a physical device driver name string
 ///# C Specifications
 ///[`MAX_DRIVER_NAME_SIZE`] is the length in `char` values of an array
@@ -105,7 +109,6 @@ pub const MAX_DRIVER_INFO_SIZE: u32 = 256;
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreType")]
-#[doc(alias = "VkSemaphoreType")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -139,7 +142,7 @@ impl SemaphoreType {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -189,7 +192,6 @@ impl SemaphoreType {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerReductionMode")]
-#[doc(alias = "VkSamplerReductionMode")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -224,7 +226,7 @@ impl SamplerReductionMode {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -306,7 +308,6 @@ impl SamplerReductionMode {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDriverId")]
-#[doc(alias = "VkDriverId")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -374,7 +375,7 @@ impl DriverId {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -428,7 +429,6 @@ impl DriverId {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkShaderFloatControlsIndependence")]
-#[doc(alias = "VkShaderFloatControlsIndependence")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -460,7 +460,7 @@ impl ShaderFloatControlsIndependence {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -539,7 +539,7 @@ impl SemaphoreWaitFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -688,7 +688,7 @@ impl DescriptorBindingFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -787,7 +787,7 @@ impl ResolveModeFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -832,7 +832,7 @@ impl ResolveModeFlagBits {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreWaitFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -858,7 +858,7 @@ impl SemaphoreWaitFlags {
     ///[`SemaphoreWaitInfo`]::`pSemaphores` have reached the value
     ///specified by the corresponding element of
     ///[`SemaphoreWaitInfo`]::`pValues`.
-    const SemaphoreWaitAny: Self = Self(1);
+    pub const SEMAPHORE_WAIT_ANY: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -867,7 +867,7 @@ impl SemaphoreWaitFlags {
     ///Returns a value with all of the flags enabled
     #[inline]
     pub const fn all() -> Self {
-        Self::empty() | Self::SemaphoreWaitAny
+        Self::empty() | Self::SEMAPHORE_WAIT_ANY
     }
     ///Returns the raw bits
     #[inline]
@@ -1029,31 +1029,31 @@ impl const std::ops::Not for SemaphoreWaitFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<SemaphoreWaitFlags> for SemaphoreWaitFlags {
-    fn extend<T: std::iter::IntoIterator<Item = SemaphoreWaitFlags>>(&mut self, iterator: T) {
+impl Extend<SemaphoreWaitFlags> for SemaphoreWaitFlags {
+    fn extend<T: IntoIterator<Item = SemaphoreWaitFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<SemaphoreWaitFlagBits> for SemaphoreWaitFlags {
-    fn extend<T: std::iter::IntoIterator<Item = SemaphoreWaitFlagBits>>(&mut self, iterator: T) {
+impl Extend<SemaphoreWaitFlagBits> for SemaphoreWaitFlags {
+    fn extend<T: IntoIterator<Item = SemaphoreWaitFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(SemaphoreWaitFlags::from(i));
+            Self::insert(self, <Self as From<SemaphoreWaitFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<SemaphoreWaitFlags> for SemaphoreWaitFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = SemaphoreWaitFlags>>(iterator: T) -> SemaphoreWaitFlags {
-        let mut out = SemaphoreWaitFlags::empty();
-        out.extend(iterator);
+impl FromIterator<SemaphoreWaitFlags> for SemaphoreWaitFlags {
+    fn from_iter<T: IntoIterator<Item = SemaphoreWaitFlags>>(iterator: T) -> SemaphoreWaitFlags {
+        let mut out = Self::empty();
+        <Self as Extend<SemaphoreWaitFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<SemaphoreWaitFlagBits> for SemaphoreWaitFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = SemaphoreWaitFlagBits>>(iterator: T) -> SemaphoreWaitFlags {
-        let mut out = SemaphoreWaitFlags::empty();
-        out.extend(iterator);
+impl FromIterator<SemaphoreWaitFlagBits> for SemaphoreWaitFlags {
+    fn from_iter<T: IntoIterator<Item = SemaphoreWaitFlagBits>>(iterator: T) -> SemaphoreWaitFlags {
+        let mut out = Self::empty();
+        <Self as Extend<SemaphoreWaitFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -1066,12 +1066,12 @@ impl std::fmt::Debug for SemaphoreWaitFlags {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(SemaphoreWaitFlags::SemaphoreWaitAny) {
+                    if self.0.contains(SemaphoreWaitFlags::SEMAPHORE_WAIT_ANY) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SemaphoreWaitAny))?;
+                        f.write_str(stringify!(SEMAPHORE_WAIT_ANY))?;
                     }
                 }
                 Ok(())
@@ -1148,7 +1148,7 @@ impl std::fmt::Debug for SemaphoreWaitFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorBindingFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1180,7 +1180,7 @@ impl DescriptorBindingFlags {
     ///Descriptors with this flag set  **can**  be updated concurrently with the set
     ///being bound to a command buffer in another thread, but not concurrently
     ///with the set being reset or freed.
-    const DescriptorBindingUpdateAfterBind: Self = Self(1);
+    pub const DESCRIPTOR_BINDING_UPDATE_AFTER_BIND: Self = Self(1);
     ///[`DescriptorBindingUpdateUnusedWhilePending`] indicates
     ///that descriptors in this binding  **can**  be updated after a command buffer
     ///has bound this descriptor set, or while a command buffer that uses this
@@ -1192,13 +1192,13 @@ impl DescriptorBindingFlags {
     ///If [`DescriptorBindingPartiallyBound`] is not set, then
     ///descriptors  **can**  be updated as long as they are not statically used by
     ///any shader invocations.
-    const DescriptorBindingUpdateUnusedWhilePending: Self = Self(2);
+    pub const DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING: Self = Self(2);
     ///[`DescriptorBindingPartiallyBound`] indicates that
     ///descriptors in this binding that are not *dynamically used* need not
     ///contain valid descriptors at the time the descriptors are consumed.
     ///A descriptor is dynamically used if any shader invocation executes an
     ///instruction that performs any memory access using the descriptor.
-    const DescriptorBindingPartiallyBound: Self = Self(4);
+    pub const DESCRIPTOR_BINDING_PARTIALLY_BOUND: Self = Self(4);
     ///[`DescriptorBindingVariableDescriptorCount`] indicates that
     ///    this is a *variable-sized descriptor binding* whose size will be
     ///    specified when a descriptor set is allocated using this layout.
@@ -1215,11 +1215,11 @@ impl DescriptorBindingFlags {
     ///    byte size of the binding; thus it counts against the
     ///[`maxInlineUniformBlockSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformBlockSize) and [`maxInlineUniformTotalSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformTotalSize) limits
     ///instead.
-    const DescriptorBindingVariableDescriptorCount: Self = Self(8);
+    pub const DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT: Self = Self(8);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::qcom_extension_369`]
-    const Reserved4Qcom: Self = Self(16);
+    pub const RESERVED_4_QCOM: Self = Self(16);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1229,11 +1229,11 @@ impl DescriptorBindingFlags {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::DescriptorBindingUpdateAfterBind
-            | Self::DescriptorBindingUpdateUnusedWhilePending
-            | Self::DescriptorBindingPartiallyBound
-            | Self::DescriptorBindingVariableDescriptorCount
-            | Self::Reserved4Qcom
+            | Self::DESCRIPTOR_BINDING_UPDATE_AFTER_BIND
+            | Self::DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING
+            | Self::DESCRIPTOR_BINDING_PARTIALLY_BOUND
+            | Self::DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT
+            | Self::RESERVED_4_QCOM
     }
     ///Returns the raw bits
     #[inline]
@@ -1395,31 +1395,31 @@ impl const std::ops::Not for DescriptorBindingFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<DescriptorBindingFlags> for DescriptorBindingFlags {
-    fn extend<T: std::iter::IntoIterator<Item = DescriptorBindingFlags>>(&mut self, iterator: T) {
+impl Extend<DescriptorBindingFlags> for DescriptorBindingFlags {
+    fn extend<T: IntoIterator<Item = DescriptorBindingFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<DescriptorBindingFlagBits> for DescriptorBindingFlags {
-    fn extend<T: std::iter::IntoIterator<Item = DescriptorBindingFlagBits>>(&mut self, iterator: T) {
+impl Extend<DescriptorBindingFlagBits> for DescriptorBindingFlags {
+    fn extend<T: IntoIterator<Item = DescriptorBindingFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(DescriptorBindingFlags::from(i));
+            Self::insert(self, <Self as From<DescriptorBindingFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<DescriptorBindingFlags> for DescriptorBindingFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = DescriptorBindingFlags>>(iterator: T) -> DescriptorBindingFlags {
-        let mut out = DescriptorBindingFlags::empty();
-        out.extend(iterator);
+impl FromIterator<DescriptorBindingFlags> for DescriptorBindingFlags {
+    fn from_iter<T: IntoIterator<Item = DescriptorBindingFlags>>(iterator: T) -> DescriptorBindingFlags {
+        let mut out = Self::empty();
+        <Self as Extend<DescriptorBindingFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<DescriptorBindingFlagBits> for DescriptorBindingFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = DescriptorBindingFlagBits>>(iterator: T) -> DescriptorBindingFlags {
-        let mut out = DescriptorBindingFlags::empty();
-        out.extend(iterator);
+impl FromIterator<DescriptorBindingFlagBits> for DescriptorBindingFlags {
+    fn from_iter<T: IntoIterator<Item = DescriptorBindingFlagBits>>(iterator: T) -> DescriptorBindingFlags {
+        let mut out = Self::empty();
+        <Self as Extend<DescriptorBindingFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -1434,47 +1434,50 @@ impl std::fmt::Debug for DescriptorBindingFlags {
                     let mut first = true;
                     if self
                         .0
-                        .contains(DescriptorBindingFlags::DescriptorBindingUpdateAfterBind)
+                        .contains(DescriptorBindingFlags::DESCRIPTOR_BINDING_UPDATE_AFTER_BIND)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DescriptorBindingUpdateAfterBind))?;
+                        f.write_str(stringify!(DESCRIPTOR_BINDING_UPDATE_AFTER_BIND))?;
                     }
                     if self
                         .0
-                        .contains(DescriptorBindingFlags::DescriptorBindingUpdateUnusedWhilePending)
+                        .contains(DescriptorBindingFlags::DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DescriptorBindingUpdateUnusedWhilePending))?;
-                    }
-                    if self.0.contains(DescriptorBindingFlags::DescriptorBindingPartiallyBound) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(DescriptorBindingPartiallyBound))?;
+                        f.write_str(stringify!(DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING))?;
                     }
                     if self
                         .0
-                        .contains(DescriptorBindingFlags::DescriptorBindingVariableDescriptorCount)
+                        .contains(DescriptorBindingFlags::DESCRIPTOR_BINDING_PARTIALLY_BOUND)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DescriptorBindingVariableDescriptorCount))?;
+                        f.write_str(stringify!(DESCRIPTOR_BINDING_PARTIALLY_BOUND))?;
                     }
-                    if self.0.contains(DescriptorBindingFlags::Reserved4Qcom) {
+                    if self
+                        .0
+                        .contains(DescriptorBindingFlags::DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT)
+                    {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Reserved4Qcom))?;
+                        f.write_str(stringify!(DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT))?;
+                    }
+                    if self.0.contains(DescriptorBindingFlags::RESERVED_4_QCOM) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(RESERVED_4_QCOM))?;
                     }
                 }
                 Ok(())
@@ -1541,7 +1544,7 @@ impl std::fmt::Debug for DescriptorBindingFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkResolveModeFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1558,19 +1561,19 @@ impl From<ResolveModeFlagBits> for ResolveModeFlags {
 }
 impl ResolveModeFlags {
     ///[`ResolveModeNone`] indicates that no resolve operation is done.
-    const ResolveModeNone: Self = Self(0);
+    pub const RESOLVE_MODE_NONE: Self = Self(0);
     ///[`ResolveModeSampleZero`] indicates that result of the
     ///resolve operation is equal to the value of sample 0.
-    const ResolveModeSampleZero: Self = Self(1);
+    pub const RESOLVE_MODE_SAMPLE_ZERO: Self = Self(1);
     ///[`ResolveModeAverage`] indicates that result of the resolve
     ///operation is the average of the sample values.
-    const ResolveModeAverage: Self = Self(2);
+    pub const RESOLVE_MODE_AVERAGE: Self = Self(2);
     ///[`ResolveModeMin`] indicates that result of the resolve
     ///operation is the minimum of the sample values.
-    const ResolveModeMin: Self = Self(4);
+    pub const RESOLVE_MODE_MIN: Self = Self(4);
     ///[`ResolveModeMax`] indicates that result of the resolve
     ///operation is the maximum of the sample values.
-    const ResolveModeMax: Self = Self(8);
+    pub const RESOLVE_MODE_MAX: Self = Self(8);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1580,11 +1583,11 @@ impl ResolveModeFlags {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::ResolveModeNone
-            | Self::ResolveModeSampleZero
-            | Self::ResolveModeAverage
-            | Self::ResolveModeMin
-            | Self::ResolveModeMax
+            | Self::RESOLVE_MODE_NONE
+            | Self::RESOLVE_MODE_SAMPLE_ZERO
+            | Self::RESOLVE_MODE_AVERAGE
+            | Self::RESOLVE_MODE_MIN
+            | Self::RESOLVE_MODE_MAX
     }
     ///Returns the raw bits
     #[inline]
@@ -1746,31 +1749,31 @@ impl const std::ops::Not for ResolveModeFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<ResolveModeFlags> for ResolveModeFlags {
-    fn extend<T: std::iter::IntoIterator<Item = ResolveModeFlags>>(&mut self, iterator: T) {
+impl Extend<ResolveModeFlags> for ResolveModeFlags {
+    fn extend<T: IntoIterator<Item = ResolveModeFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<ResolveModeFlagBits> for ResolveModeFlags {
-    fn extend<T: std::iter::IntoIterator<Item = ResolveModeFlagBits>>(&mut self, iterator: T) {
+impl Extend<ResolveModeFlagBits> for ResolveModeFlags {
+    fn extend<T: IntoIterator<Item = ResolveModeFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(ResolveModeFlags::from(i));
+            Self::insert(self, <Self as From<ResolveModeFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<ResolveModeFlags> for ResolveModeFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = ResolveModeFlags>>(iterator: T) -> ResolveModeFlags {
-        let mut out = ResolveModeFlags::empty();
-        out.extend(iterator);
+impl FromIterator<ResolveModeFlags> for ResolveModeFlags {
+    fn from_iter<T: IntoIterator<Item = ResolveModeFlags>>(iterator: T) -> ResolveModeFlags {
+        let mut out = Self::empty();
+        <Self as Extend<ResolveModeFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<ResolveModeFlagBits> for ResolveModeFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = ResolveModeFlagBits>>(iterator: T) -> ResolveModeFlags {
-        let mut out = ResolveModeFlags::empty();
-        out.extend(iterator);
+impl FromIterator<ResolveModeFlagBits> for ResolveModeFlags {
+    fn from_iter<T: IntoIterator<Item = ResolveModeFlagBits>>(iterator: T) -> ResolveModeFlags {
+        let mut out = Self::empty();
+        <Self as Extend<ResolveModeFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -1783,40 +1786,40 @@ impl std::fmt::Debug for ResolveModeFlags {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(ResolveModeFlags::ResolveModeNone) {
+                    if self.0.contains(ResolveModeFlags::RESOLVE_MODE_NONE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ResolveModeNone))?;
+                        f.write_str(stringify!(RESOLVE_MODE_NONE))?;
                     }
-                    if self.0.contains(ResolveModeFlags::ResolveModeSampleZero) {
+                    if self.0.contains(ResolveModeFlags::RESOLVE_MODE_SAMPLE_ZERO) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ResolveModeSampleZero))?;
+                        f.write_str(stringify!(RESOLVE_MODE_SAMPLE_ZERO))?;
                     }
-                    if self.0.contains(ResolveModeFlags::ResolveModeAverage) {
+                    if self.0.contains(ResolveModeFlags::RESOLVE_MODE_AVERAGE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ResolveModeAverage))?;
+                        f.write_str(stringify!(RESOLVE_MODE_AVERAGE))?;
                     }
-                    if self.0.contains(ResolveModeFlags::ResolveModeMin) {
+                    if self.0.contains(ResolveModeFlags::RESOLVE_MODE_MIN) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ResolveModeMin))?;
+                        f.write_str(stringify!(RESOLVE_MODE_MIN))?;
                     }
-                    if self.0.contains(ResolveModeFlags::ResolveModeMax) {
+                    if self.0.contains(ResolveModeFlags::RESOLVE_MODE_MAX) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ResolveModeMax))?;
+                        f.write_str(stringify!(RESOLVE_MODE_MAX))?;
                     }
                 }
                 Ok(())
@@ -1908,19 +1911,19 @@ impl ConformanceVersion {
     }
     ///Gets a mutable reference to the value of [`Self::major`]
     pub fn major_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.major
     }
     ///Gets a mutable reference to the value of [`Self::minor`]
     pub fn minor_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.minor
     }
     ///Gets a mutable reference to the value of [`Self::subminor`]
     pub fn subminor_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.subminor
     }
     ///Gets a mutable reference to the value of [`Self::patch`]
     pub fn patch_mut(&mut self) -> &mut u8 {
-        &mut getter
+        &mut self.patch
     }
     ///Sets the raw value of [`Self::major`]
     pub fn set_major(&mut self, value: u8) -> &mut Self {
@@ -1996,10 +1999,11 @@ impl ConformanceVersion {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDriverProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDriverProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2009,9 +2013,9 @@ pub struct PhysicalDeviceDriverProperties<'lt> {
     ///No documentation found
     pub driver_id: DriverId,
     ///No documentation found
-    pub driver_name: [c_schar; MAX_DRIVER_NAME_SIZE],
+    pub driver_name: [c_char; MAX_DRIVER_NAME_SIZE as usize],
     ///No documentation found
-    pub driver_info: [c_schar; MAX_DRIVER_INFO_SIZE],
+    pub driver_info: [c_char; MAX_DRIVER_INFO_SIZE as usize],
     ///No documentation found
     pub conformance_version: ConformanceVersion,
 }
@@ -2022,8 +2026,8 @@ impl<'lt> Default for PhysicalDeviceDriverProperties<'lt> {
             s_type: Default::default(),
             p_next: std::ptr::null_mut(),
             driver_id: Default::default(),
-            driver_name: [b'\0' as i8; MAX_DRIVER_NAME_SIZE],
-            driver_info: [b'\0' as i8; MAX_DRIVER_INFO_SIZE],
+            driver_name: [b'\0' as i8; MAX_DRIVER_NAME_SIZE as usize],
+            driver_info: [b'\0' as i8; MAX_DRIVER_INFO_SIZE as usize],
             conformance_version: Default::default(),
         }
     }
@@ -2054,12 +2058,12 @@ impl<'lt> PhysicalDeviceDriverProperties<'lt> {
         self.driver_id
     }
     ///Gets the value of [`Self::driver_name`]
-    pub fn driver_name(&self) -> &[c_schar; MAX_DRIVER_NAME_SIZE] {
-        &getter
+    pub fn driver_name(&self) -> &[c_char; MAX_DRIVER_NAME_SIZE as usize] {
+        &self.driver_name
     }
     ///Gets the value of [`Self::driver_info`]
-    pub fn driver_info(&self) -> &[c_schar; MAX_DRIVER_INFO_SIZE] {
-        &getter
+    pub fn driver_info(&self) -> &[c_char; MAX_DRIVER_INFO_SIZE as usize] {
+        &self.driver_info
     }
     ///Gets the value of [`Self::conformance_version`]
     pub fn conformance_version(&self) -> ConformanceVersion {
@@ -2081,12 +2085,12 @@ impl<'lt> PhysicalDeviceDriverProperties<'lt> {
         &mut self.driver_id
     }
     ///Gets a mutable reference to the value of [`Self::driver_name`]
-    pub fn driver_name_mut(&mut self) -> &mut [c_schar; MAX_DRIVER_NAME_SIZE] {
-        &mut getter
+    pub fn driver_name_mut(&mut self) -> &mut [c_char; MAX_DRIVER_NAME_SIZE as usize] {
+        &mut self.driver_name
     }
     ///Gets a mutable reference to the value of [`Self::driver_info`]
-    pub fn driver_info_mut(&mut self) -> &mut [c_schar; MAX_DRIVER_INFO_SIZE] {
-        &mut getter
+    pub fn driver_info_mut(&mut self) -> &mut [c_char; MAX_DRIVER_INFO_SIZE as usize] {
+        &mut self.driver_info
     }
     ///Gets a mutable reference to the value of [`Self::conformance_version`]
     pub fn conformance_version_mut(&mut self) -> &mut ConformanceVersion {
@@ -2110,7 +2114,7 @@ impl<'lt> PhysicalDeviceDriverProperties<'lt> {
     ///Sets the raw value of [`Self::driver_name`]
     pub fn set_driver_name(
         &mut self,
-        value: [std::os::raw::c_char; crate::vulkan1_2::MAX_DRIVER_NAME_SIZE],
+        value: [std::os::raw::c_char; crate::vulkan1_2::MAX_DRIVER_NAME_SIZE as usize],
     ) -> &mut Self {
         self.driver_name = value;
         self
@@ -2118,7 +2122,7 @@ impl<'lt> PhysicalDeviceDriverProperties<'lt> {
     ///Sets the raw value of [`Self::driver_info`]
     pub fn set_driver_info(
         &mut self,
-        value: [std::os::raw::c_char; crate::vulkan1_2::MAX_DRIVER_INFO_SIZE],
+        value: [std::os::raw::c_char; crate::vulkan1_2::MAX_DRIVER_INFO_SIZE as usize],
     ) -> &mut Self {
         self.driver_info = value;
         self
@@ -2183,10 +2187,11 @@ impl<'lt> PhysicalDeviceDriverProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2368,10 +2373,11 @@ impl<'lt> PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSamplerFilterMinmaxProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSamplerFilterMinmaxProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2557,6 +2563,7 @@ impl<'lt> PhysicalDeviceSamplerFilterMinmaxProperties<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SamplerReductionModeCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2678,6 +2685,7 @@ impl<'lt> SamplerReductionModeCreateInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageFormatListCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2750,7 +2758,7 @@ impl<'lt> ImageFormatListCreateInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::view_format_count`]
     pub fn view_format_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.view_format_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -2841,10 +2849,11 @@ impl<'lt> ImageFormatListCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderFloat16Int8Features")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderFloat16Int8Features<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -3046,21 +3055,21 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 /// - [`rounding_mode_independence`] is a [`ShaderFloatControlsIndependence`] value indicating
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float_16`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_32`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
 ///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
 ///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
@@ -3130,10 +3139,11 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFloatControlsProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFloatControlsProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -3866,10 +3876,11 @@ impl<'lt> PhysicalDeviceFloatControlsProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceHostQueryResetFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceHostQueryResetFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -4136,10 +4147,11 @@ impl<'lt> PhysicalDeviceHostQueryResetFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDescriptorIndexingFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorIndexingFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -5283,10 +5295,11 @@ impl<'lt> PhysicalDeviceDescriptorIndexingFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDescriptorIndexingProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorIndexingProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -5562,7 +5575,7 @@ impl<'lt> PhysicalDeviceDescriptorIndexingProperties<'lt> {
     ///Gets a mutable reference to the value of
     /// [`Self::max_update_after_bind_descriptors_in_all_pools`]
     pub fn max_update_after_bind_descriptors_in_all_pools_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_update_after_bind_descriptors_in_all_pools
     }
     ///Gets a mutable reference to the value of
     /// [`Self::shader_uniform_buffer_array_non_uniform_indexing_native`]
@@ -5698,76 +5711,76 @@ impl<'lt> PhysicalDeviceDescriptorIndexingProperties<'lt> {
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_update_after_bind_samplers`]
     pub fn max_per_stage_descriptor_update_after_bind_samplers_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_update_after_bind_samplers
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_update_after_bind_uniform_buffers`]
     pub fn max_per_stage_descriptor_update_after_bind_uniform_buffers_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_update_after_bind_uniform_buffers
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_update_after_bind_storage_buffers`]
     pub fn max_per_stage_descriptor_update_after_bind_storage_buffers_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_update_after_bind_storage_buffers
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_update_after_bind_sampled_images`]
     pub fn max_per_stage_descriptor_update_after_bind_sampled_images_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_update_after_bind_sampled_images
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_update_after_bind_storage_images`]
     pub fn max_per_stage_descriptor_update_after_bind_storage_images_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_update_after_bind_storage_images
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_update_after_bind_input_attachments`]
     pub fn max_per_stage_descriptor_update_after_bind_input_attachments_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_update_after_bind_input_attachments
     }
     ///Gets a mutable reference to the value of [`Self::max_per_stage_update_after_bind_resources`]
     pub fn max_per_stage_update_after_bind_resources_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_update_after_bind_resources
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_samplers`]
     pub fn max_descriptor_set_update_after_bind_samplers_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_samplers
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_uniform_buffers`]
     pub fn max_descriptor_set_update_after_bind_uniform_buffers_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_uniform_buffers
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_uniform_buffers_dynamic`]
     pub fn max_descriptor_set_update_after_bind_uniform_buffers_dynamic_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_uniform_buffers_dynamic
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_storage_buffers`]
     pub fn max_descriptor_set_update_after_bind_storage_buffers_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_storage_buffers
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_storage_buffers_dynamic`]
     pub fn max_descriptor_set_update_after_bind_storage_buffers_dynamic_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_storage_buffers_dynamic
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_sampled_images`]
     pub fn max_descriptor_set_update_after_bind_sampled_images_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_sampled_images
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_storage_images`]
     pub fn max_descriptor_set_update_after_bind_storage_images_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_storage_images
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_input_attachments`]
     pub fn max_descriptor_set_update_after_bind_input_attachments_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_input_attachments
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -6016,6 +6029,7 @@ impl<'lt> PhysicalDeviceDescriptorIndexingProperties<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorSetLayoutBindingFlagsCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6088,7 +6102,7 @@ impl<'lt> DescriptorSetLayoutBindingFlagsCreateInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::binding_count`]
     pub fn binding_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.binding_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -6186,6 +6200,7 @@ impl<'lt> DescriptorSetLayoutBindingFlagsCreateInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorSetVariableDescriptorCountAllocateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6259,7 +6274,7 @@ impl<'lt> DescriptorSetVariableDescriptorCountAllocateInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::descriptor_set_count`]
     pub fn descriptor_set_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.descriptor_set_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -6348,10 +6363,11 @@ impl<'lt> DescriptorSetVariableDescriptorCountAllocateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorSetVariableDescriptorCountLayoutSupport")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6415,7 +6431,7 @@ impl<'lt> DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_variable_descriptor_count`]
     pub fn max_variable_descriptor_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_variable_descriptor_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -6600,6 +6616,7 @@ impl<'lt> DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AttachmentDescription2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6900,6 +6917,7 @@ impl<'lt> AttachmentDescription2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AttachmentReference2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6969,7 +6987,7 @@ impl<'lt> AttachmentReference2<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::attachment`]
     pub fn attachment_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.attachment
     }
     ///Gets a mutable reference to the value of [`Self::layout`]
     pub fn layout_mut(&mut self) -> &mut ImageLayout {
@@ -7166,6 +7184,7 @@ impl<'lt> AttachmentReference2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SubpassDescription2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -7368,19 +7387,19 @@ impl<'lt> SubpassDescription2<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::view_mask`]
     pub fn view_mask_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.view_mask
     }
     ///Gets a mutable reference to the value of [`Self::input_attachment_count`]
     pub fn input_attachment_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.input_attachment_count
     }
     ///Gets a mutable reference to the value of [`Self::color_attachment_count`]
     pub fn color_attachment_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.color_attachment_count
     }
     ///Gets a mutable reference to the value of [`Self::preserve_attachment_count`]
     pub fn preserve_attachment_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.preserve_attachment_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -7618,6 +7637,7 @@ impl<'lt> SubpassDescription2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SubpassDependency2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -7726,11 +7746,11 @@ impl<'lt> SubpassDependency2<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::src_subpass`]
     pub fn src_subpass_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.src_subpass
     }
     ///Gets a mutable reference to the value of [`Self::dst_subpass`]
     pub fn dst_subpass_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.dst_subpass
     }
     ///Gets a mutable reference to the value of [`Self::src_stage_mask`]
     pub fn src_stage_mask_mut(&mut self) -> &mut PipelineStageFlags {
@@ -7754,7 +7774,7 @@ impl<'lt> SubpassDependency2<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::view_offset`]
     pub fn view_offset_mut(&mut self) -> &mut i32 {
-        &mut getter
+        &mut self.view_offset
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -7975,6 +7995,7 @@ impl<'lt> SubpassDependency2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderPassCreateInfo2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8140,19 +8161,19 @@ impl<'lt> RenderPassCreateInfo2<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::attachment_count`]
     pub fn attachment_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.attachment_count
     }
     ///Gets a mutable reference to the value of [`Self::subpass_count`]
     pub fn subpass_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.subpass_count
     }
     ///Gets a mutable reference to the value of [`Self::dependency_count`]
     pub fn dependency_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.dependency_count
     }
     ///Gets a mutable reference to the value of [`Self::correlated_view_mask_count`]
     pub fn correlated_view_mask_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.correlated_view_mask_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -8270,6 +8291,7 @@ impl<'lt> RenderPassCreateInfo2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SubpassBeginInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8384,6 +8406,7 @@ impl<'lt> SubpassBeginInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SubpassEndInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8483,10 +8506,11 @@ impl<'lt> SubpassEndInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceTimelineSemaphoreFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceTimelineSemaphoreFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8632,10 +8656,11 @@ impl<'lt> PhysicalDeviceTimelineSemaphoreFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceTimelineSemaphoreProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceTimelineSemaphoreProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8693,7 +8718,7 @@ impl<'lt> PhysicalDeviceTimelineSemaphoreProperties<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_timeline_semaphore_value_difference`]
     pub fn max_timeline_semaphore_value_difference_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.max_timeline_semaphore_value_difference
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -8766,6 +8791,7 @@ impl<'lt> PhysicalDeviceTimelineSemaphoreProperties<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SemaphoreTypeCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8829,7 +8855,7 @@ impl<'lt> SemaphoreTypeCreateInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::initial_value`]
     pub fn initial_value_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.initial_value
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -8919,6 +8945,7 @@ impl<'lt> SemaphoreTypeCreateInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct TimelineSemaphoreSubmitInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -9020,11 +9047,11 @@ impl<'lt> TimelineSemaphoreSubmitInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::wait_semaphore_value_count`]
     pub fn wait_semaphore_value_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.wait_semaphore_value_count
     }
     ///Gets a mutable reference to the value of [`Self::signal_semaphore_value_count`]
     pub fn signal_semaphore_value_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.signal_semaphore_value_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -9124,6 +9151,7 @@ impl<'lt> TimelineSemaphoreSubmitInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SemaphoreWaitInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -9226,7 +9254,7 @@ impl<'lt> SemaphoreWaitInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::semaphore_count`]
     pub fn semaphore_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.semaphore_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -9321,6 +9349,7 @@ impl<'lt> SemaphoreWaitInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SemaphoreSignalInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -9382,7 +9411,7 @@ impl<'lt> SemaphoreSignalInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::value`]
     pub fn value_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.value
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -9465,10 +9494,11 @@ impl<'lt> SemaphoreSignalInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevice8BitStorageFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevice8BitStorageFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -9716,10 +9746,11 @@ impl<'lt> PhysicalDevice8BitStorageFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVulkanMemoryModelFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVulkanMemoryModelFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -9955,10 +9986,11 @@ impl<'lt> PhysicalDeviceVulkanMemoryModelFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderAtomicInt64Features")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderAtomicInt64Features<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -10159,10 +10191,11 @@ impl<'lt> PhysicalDeviceShaderAtomicInt64Features<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDepthStencilResolveProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDepthStencilResolveProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -10433,6 +10466,7 @@ impl<'lt> PhysicalDeviceDepthStencilResolveProperties<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SubpassDescriptionDepthStencilResolve<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -10619,6 +10653,7 @@ impl<'lt> SubpassDescriptionDepthStencilResolve<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageStencilUsageCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -10734,10 +10769,11 @@ impl<'lt> ImageStencilUsageCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceScalarBlockLayoutFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceScalarBlockLayoutFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -10890,10 +10926,11 @@ impl<'lt> PhysicalDeviceScalarBlockLayoutFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceUniformBufferStandardLayoutFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceUniformBufferStandardLayoutFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -11054,10 +11091,11 @@ impl<'lt> PhysicalDeviceUniformBufferStandardLayoutFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceBufferDeviceAddressFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceBufferDeviceAddressFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -11303,6 +11341,7 @@ impl<'lt> PhysicalDeviceBufferDeviceAddressFeatures<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferDeviceAddressInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -11422,6 +11461,7 @@ impl<'lt> BufferDeviceAddressInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferOpaqueCaptureAddressCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -11473,7 +11513,7 @@ impl<'lt> BufferOpaqueCaptureAddressCreateInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::opaque_capture_address`]
     pub fn opaque_capture_address_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.opaque_capture_address
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -11540,10 +11580,11 @@ impl<'lt> BufferOpaqueCaptureAddressCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceImagelessFramebufferFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceImagelessFramebufferFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -11691,6 +11732,7 @@ impl<'lt> PhysicalDeviceImagelessFramebufferFeatures<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct FramebufferAttachmentsCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -11764,7 +11806,7 @@ impl<'lt> FramebufferAttachmentsCreateInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::attachment_image_info_count`]
     pub fn attachment_image_info_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.attachment_image_info_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -11866,6 +11908,7 @@ impl<'lt> FramebufferAttachmentsCreateInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct FramebufferAttachmentImageInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -11990,19 +12033,19 @@ impl<'lt> FramebufferAttachmentImageInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::width`]
     pub fn width_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.width
     }
     ///Gets a mutable reference to the value of [`Self::height`]
     pub fn height_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.height
     }
     ///Gets a mutable reference to the value of [`Self::layer_count`]
     pub fn layer_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.layer_count
     }
     ///Gets a mutable reference to the value of [`Self::view_format_count`]
     pub fn view_format_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.view_format_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -12105,6 +12148,7 @@ impl<'lt> FramebufferAttachmentImageInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderPassAttachmentBeginInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -12176,7 +12220,7 @@ impl<'lt> RenderPassAttachmentBeginInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::attachment_count`]
     pub fn attachment_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.attachment_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -12256,10 +12300,11 @@ impl<'lt> RenderPassAttachmentBeginInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -12414,10 +12459,11 @@ impl<'lt> PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAttachmentReferenceStencilLayout")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AttachmentReferenceStencilLayout<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -12553,10 +12599,11 @@ impl<'lt> AttachmentReferenceStencilLayout<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAttachmentDescriptionStencilLayout")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AttachmentDescriptionStencilLayout<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -12701,6 +12748,7 @@ impl<'lt> AttachmentDescriptionStencilLayout<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryOpaqueCaptureAddressAllocateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -12752,7 +12800,7 @@ impl<'lt> MemoryOpaqueCaptureAddressAllocateInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::opaque_capture_address`]
     pub fn opaque_capture_address_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.opaque_capture_address
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -12818,6 +12866,7 @@ impl<'lt> MemoryOpaqueCaptureAddressAllocateInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceMemoryOpaqueCaptureAddressInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -12982,10 +13031,11 @@ impl<'lt> DeviceMemoryOpaqueCaptureAddressInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVulkan11Features")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVulkan11Features<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -13664,10 +13714,11 @@ impl<'lt> PhysicalDeviceVulkan11Features<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVulkan11Properties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVulkan11Properties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -13675,11 +13726,11 @@ pub struct PhysicalDeviceVulkan11Properties<'lt> {
     ///structure.
     pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    pub device_uuid: [u8; UUID_SIZE],
+    pub device_uuid: [u8; UUID_SIZE as usize],
     ///No documentation found
-    pub driver_uuid: [u8; UUID_SIZE],
+    pub driver_uuid: [u8; UUID_SIZE as usize],
     ///No documentation found
-    pub device_luid: [u8; LUID_SIZE],
+    pub device_luid: [u8; LUID_SIZE as usize],
     ///No documentation found
     pub device_node_mask: u32,
     ///No documentation found
@@ -13711,9 +13762,9 @@ impl<'lt> Default for PhysicalDeviceVulkan11Properties<'lt> {
             _lifetime: PhantomData,
             s_type: Default::default(),
             p_next: std::ptr::null_mut(),
-            device_uuid: [0; UUID_SIZE],
-            driver_uuid: [0; UUID_SIZE],
-            device_luid: [0; LUID_SIZE],
+            device_uuid: [0; UUID_SIZE as usize],
+            driver_uuid: [0; UUID_SIZE as usize],
+            device_luid: [0; LUID_SIZE as usize],
             device_node_mask: 0,
             device_luid_valid: 0,
             subgroup_size: 0,
@@ -13778,16 +13829,16 @@ impl<'lt> PhysicalDeviceVulkan11Properties<'lt> {
         &*self.p_next
     }
     ///Gets the value of [`Self::device_uuid`]
-    pub fn device_uuid(&self) -> &[u8; UUID_SIZE] {
-        &getter
+    pub fn device_uuid(&self) -> &[u8; UUID_SIZE as usize] {
+        &self.device_uuid
     }
     ///Gets the value of [`Self::driver_uuid`]
-    pub fn driver_uuid(&self) -> &[u8; UUID_SIZE] {
-        &getter
+    pub fn driver_uuid(&self) -> &[u8; UUID_SIZE as usize] {
+        &self.driver_uuid
     }
     ///Gets the value of [`Self::device_luid`]
-    pub fn device_luid(&self) -> &[u8; LUID_SIZE] {
-        &getter
+    pub fn device_luid(&self) -> &[u8; LUID_SIZE as usize] {
+        &self.device_luid
     }
     ///Gets the value of [`Self::device_node_mask`]
     pub fn device_node_mask(&self) -> u32 {
@@ -13849,20 +13900,20 @@ impl<'lt> PhysicalDeviceVulkan11Properties<'lt> {
         &mut *self.p_next
     }
     ///Gets a mutable reference to the value of [`Self::device_uuid`]
-    pub fn device_uuid_mut(&mut self) -> &mut [u8; UUID_SIZE] {
-        &mut getter
+    pub fn device_uuid_mut(&mut self) -> &mut [u8; UUID_SIZE as usize] {
+        &mut self.device_uuid
     }
     ///Gets a mutable reference to the value of [`Self::driver_uuid`]
-    pub fn driver_uuid_mut(&mut self) -> &mut [u8; UUID_SIZE] {
-        &mut getter
+    pub fn driver_uuid_mut(&mut self) -> &mut [u8; UUID_SIZE as usize] {
+        &mut self.driver_uuid
     }
     ///Gets a mutable reference to the value of [`Self::device_luid`]
-    pub fn device_luid_mut(&mut self) -> &mut [u8; LUID_SIZE] {
-        &mut getter
+    pub fn device_luid_mut(&mut self) -> &mut [u8; LUID_SIZE as usize] {
+        &mut self.device_luid
     }
     ///Gets a mutable reference to the value of [`Self::device_node_mask`]
     pub fn device_node_mask_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.device_node_mask
     }
     ///Gets a mutable reference to the value of [`Self::device_luid_valid`]
     pub fn device_luid_valid_mut(&mut self) -> &mut bool {
@@ -13884,7 +13935,7 @@ impl<'lt> PhysicalDeviceVulkan11Properties<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::subgroup_size`]
     pub fn subgroup_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.subgroup_size
     }
     ///Gets a mutable reference to the value of [`Self::subgroup_supported_stages`]
     pub fn subgroup_supported_stages_mut(&mut self) -> &mut ShaderStageFlags {
@@ -13918,11 +13969,11 @@ impl<'lt> PhysicalDeviceVulkan11Properties<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_multiview_view_count`]
     pub fn max_multiview_view_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_multiview_view_count
     }
     ///Gets a mutable reference to the value of [`Self::max_multiview_instance_index`]
     pub fn max_multiview_instance_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_multiview_instance_index
     }
     ///Gets a mutable reference to the value of [`Self::protected_no_fault`]
     pub fn protected_no_fault_mut(&mut self) -> &mut bool {
@@ -13944,7 +13995,7 @@ impl<'lt> PhysicalDeviceVulkan11Properties<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_per_set_descriptors`]
     pub fn max_per_set_descriptors_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_set_descriptors
     }
     ///Gets a mutable reference to the value of [`Self::max_memory_allocation_size`]
     pub fn max_memory_allocation_size_mut(&mut self) -> &mut DeviceSize {
@@ -13961,17 +14012,17 @@ impl<'lt> PhysicalDeviceVulkan11Properties<'lt> {
         self
     }
     ///Sets the raw value of [`Self::device_uuid`]
-    pub fn set_device_uuid(&mut self, value: [u8; crate::core::UUID_SIZE]) -> &mut Self {
+    pub fn set_device_uuid(&mut self, value: [u8; crate::core::UUID_SIZE as usize]) -> &mut Self {
         self.device_uuid = value;
         self
     }
     ///Sets the raw value of [`Self::driver_uuid`]
-    pub fn set_driver_uuid(&mut self, value: [u8; crate::core::UUID_SIZE]) -> &mut Self {
+    pub fn set_driver_uuid(&mut self, value: [u8; crate::core::UUID_SIZE as usize]) -> &mut Self {
         self.driver_uuid = value;
         self
     }
     ///Sets the raw value of [`Self::device_luid`]
-    pub fn set_device_luid(&mut self, value: [u8; crate::vulkan1_1::LUID_SIZE]) -> &mut Self {
+    pub fn set_device_luid(&mut self, value: [u8; crate::vulkan1_1::LUID_SIZE as usize]) -> &mut Self {
         self.device_luid = value;
         self
     }
@@ -14309,10 +14360,11 @@ impl<'lt> PhysicalDeviceVulkan11Properties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVulkan12Features")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVulkan12Features<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -16563,16 +16615,16 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 /// - [`rounding_mode_independence`] is a [`ShaderFloatControlsIndependence`] value indicating
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float_16`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_32`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
@@ -16772,10 +16824,11 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVulkan12Properties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVulkan12Properties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -16785,9 +16838,9 @@ pub struct PhysicalDeviceVulkan12Properties<'lt> {
     ///No documentation found
     pub driver_id: DriverId,
     ///No documentation found
-    pub driver_name: [c_schar; MAX_DRIVER_NAME_SIZE],
+    pub driver_name: [c_char; MAX_DRIVER_NAME_SIZE as usize],
     ///No documentation found
-    pub driver_info: [c_schar; MAX_DRIVER_INFO_SIZE],
+    pub driver_info: [c_char; MAX_DRIVER_INFO_SIZE as usize],
     ///No documentation found
     pub conformance_version: ConformanceVersion,
     ///No documentation found
@@ -16894,8 +16947,8 @@ impl<'lt> Default for PhysicalDeviceVulkan12Properties<'lt> {
             s_type: Default::default(),
             p_next: std::ptr::null_mut(),
             driver_id: Default::default(),
-            driver_name: [b'\0' as i8; MAX_DRIVER_NAME_SIZE],
-            driver_info: [b'\0' as i8; MAX_DRIVER_INFO_SIZE],
+            driver_name: [b'\0' as i8; MAX_DRIVER_NAME_SIZE as usize],
+            driver_info: [b'\0' as i8; MAX_DRIVER_INFO_SIZE as usize],
             conformance_version: Default::default(),
             denorm_behavior_independence: Default::default(),
             rounding_mode_independence: Default::default(),
@@ -17208,12 +17261,12 @@ impl<'lt> PhysicalDeviceVulkan12Properties<'lt> {
         self.driver_id
     }
     ///Gets the value of [`Self::driver_name`]
-    pub fn driver_name(&self) -> &[c_schar; MAX_DRIVER_NAME_SIZE] {
-        &getter
+    pub fn driver_name(&self) -> &[c_char; MAX_DRIVER_NAME_SIZE as usize] {
+        &self.driver_name
     }
     ///Gets the value of [`Self::driver_info`]
-    pub fn driver_info(&self) -> &[c_schar; MAX_DRIVER_INFO_SIZE] {
-        &getter
+    pub fn driver_info(&self) -> &[c_char; MAX_DRIVER_INFO_SIZE as usize] {
+        &self.driver_info
     }
     ///Gets the value of [`Self::conformance_version`]
     pub fn conformance_version(&self) -> ConformanceVersion {
@@ -17427,12 +17480,12 @@ impl<'lt> PhysicalDeviceVulkan12Properties<'lt> {
         &mut self.driver_id
     }
     ///Gets a mutable reference to the value of [`Self::driver_name`]
-    pub fn driver_name_mut(&mut self) -> &mut [c_schar; MAX_DRIVER_NAME_SIZE] {
-        &mut getter
+    pub fn driver_name_mut(&mut self) -> &mut [c_char; MAX_DRIVER_NAME_SIZE as usize] {
+        &mut self.driver_name
     }
     ///Gets a mutable reference to the value of [`Self::driver_info`]
-    pub fn driver_info_mut(&mut self) -> &mut [c_schar; MAX_DRIVER_INFO_SIZE] {
-        &mut getter
+    pub fn driver_info_mut(&mut self) -> &mut [c_char; MAX_DRIVER_INFO_SIZE as usize] {
+        &mut self.driver_info
     }
     ///Gets a mutable reference to the value of [`Self::conformance_version`]
     pub fn conformance_version_mut(&mut self) -> &mut ConformanceVersion {
@@ -17722,7 +17775,7 @@ impl<'lt> PhysicalDeviceVulkan12Properties<'lt> {
     ///Gets a mutable reference to the value of
     /// [`Self::max_update_after_bind_descriptors_in_all_pools`]
     pub fn max_update_after_bind_descriptors_in_all_pools_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_update_after_bind_descriptors_in_all_pools
     }
     ///Gets a mutable reference to the value of
     /// [`Self::shader_uniform_buffer_array_non_uniform_indexing_native`]
@@ -17858,76 +17911,76 @@ impl<'lt> PhysicalDeviceVulkan12Properties<'lt> {
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_update_after_bind_samplers`]
     pub fn max_per_stage_descriptor_update_after_bind_samplers_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_update_after_bind_samplers
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_update_after_bind_uniform_buffers`]
     pub fn max_per_stage_descriptor_update_after_bind_uniform_buffers_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_update_after_bind_uniform_buffers
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_update_after_bind_storage_buffers`]
     pub fn max_per_stage_descriptor_update_after_bind_storage_buffers_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_update_after_bind_storage_buffers
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_update_after_bind_sampled_images`]
     pub fn max_per_stage_descriptor_update_after_bind_sampled_images_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_update_after_bind_sampled_images
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_update_after_bind_storage_images`]
     pub fn max_per_stage_descriptor_update_after_bind_storage_images_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_update_after_bind_storage_images
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_per_stage_descriptor_update_after_bind_input_attachments`]
     pub fn max_per_stage_descriptor_update_after_bind_input_attachments_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_descriptor_update_after_bind_input_attachments
     }
     ///Gets a mutable reference to the value of [`Self::max_per_stage_update_after_bind_resources`]
     pub fn max_per_stage_update_after_bind_resources_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_stage_update_after_bind_resources
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_samplers`]
     pub fn max_descriptor_set_update_after_bind_samplers_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_samplers
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_uniform_buffers`]
     pub fn max_descriptor_set_update_after_bind_uniform_buffers_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_uniform_buffers
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_uniform_buffers_dynamic`]
     pub fn max_descriptor_set_update_after_bind_uniform_buffers_dynamic_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_uniform_buffers_dynamic
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_storage_buffers`]
     pub fn max_descriptor_set_update_after_bind_storage_buffers_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_storage_buffers
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_storage_buffers_dynamic`]
     pub fn max_descriptor_set_update_after_bind_storage_buffers_dynamic_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_storage_buffers_dynamic
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_sampled_images`]
     pub fn max_descriptor_set_update_after_bind_sampled_images_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_sampled_images
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_storage_images`]
     pub fn max_descriptor_set_update_after_bind_storage_images_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_storage_images
     }
     ///Gets a mutable reference to the value of
     /// [`Self::max_descriptor_set_update_after_bind_input_attachments`]
     pub fn max_descriptor_set_update_after_bind_input_attachments_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_descriptor_set_update_after_bind_input_attachments
     }
     ///Gets a mutable reference to the value of [`Self::supported_depth_resolve_modes`]
     pub fn supported_depth_resolve_modes_mut(&mut self) -> &mut ResolveModeFlags {
@@ -18011,7 +18064,7 @@ impl<'lt> PhysicalDeviceVulkan12Properties<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_timeline_semaphore_value_difference`]
     pub fn max_timeline_semaphore_value_difference_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.max_timeline_semaphore_value_difference
     }
     ///Gets a mutable reference to the value of [`Self::framebuffer_integer_color_sample_counts`]
     pub fn framebuffer_integer_color_sample_counts_mut(&mut self) -> &mut SampleCountFlags {
@@ -18035,7 +18088,7 @@ impl<'lt> PhysicalDeviceVulkan12Properties<'lt> {
     ///Sets the raw value of [`Self::driver_name`]
     pub fn set_driver_name(
         &mut self,
-        value: [std::os::raw::c_char; crate::vulkan1_2::MAX_DRIVER_NAME_SIZE],
+        value: [std::os::raw::c_char; crate::vulkan1_2::MAX_DRIVER_NAME_SIZE as usize],
     ) -> &mut Self {
         self.driver_name = value;
         self
@@ -18043,7 +18096,7 @@ impl<'lt> PhysicalDeviceVulkan12Properties<'lt> {
     ///Sets the raw value of [`Self::driver_info`]
     pub fn set_driver_info(
         &mut self,
-        value: [std::os::raw::c_char; crate::vulkan1_2::MAX_DRIVER_INFO_SIZE],
+        value: [std::os::raw::c_char; crate::vulkan1_2::MAX_DRIVER_INFO_SIZE as usize],
     ) -> &mut Self {
         self.driver_info = value;
         self

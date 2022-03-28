@@ -14,7 +14,10 @@ use crate::{
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::marker::PhantomData;
+use std::{
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+};
 ///[VK_LUID_SIZE](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_LUID_SIZE.html) - Length of a locally unique device identifier
 ///# C Specifications
 ///[`LUID_SIZE`] is the length in `uint8_t` values of an array
@@ -137,7 +140,6 @@ pub const MAX_DEVICE_GROUP_SIZE: u32 = 32;
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorUpdateTemplateType")]
-#[doc(alias = "VkDescriptorUpdateTemplateType")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -169,7 +171,7 @@ impl DescriptorUpdateTemplateType {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -218,7 +220,6 @@ impl DescriptorUpdateTemplateType {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPointClippingBehavior")]
-#[doc(alias = "VkPointClippingBehavior")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -248,7 +249,7 @@ impl PointClippingBehavior {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -294,7 +295,6 @@ impl PointClippingBehavior {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkTessellationDomainOrigin")]
-#[doc(alias = "VkTessellationDomainOrigin")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -324,7 +324,7 @@ impl TessellationDomainOrigin {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -402,7 +402,6 @@ impl TessellationDomainOrigin {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerYcbcrModelConversion")]
-#[doc(alias = "VkSamplerYcbcrModelConversion")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -445,7 +444,7 @@ impl SamplerYcbcrModelConversion {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -501,7 +500,6 @@ impl SamplerYcbcrModelConversion {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerYcbcrRange")]
-#[doc(alias = "VkSamplerYcbcrRange")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -532,7 +530,7 @@ impl SamplerYcbcrRange {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -580,7 +578,6 @@ impl SamplerYcbcrRange {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkChromaLocation")]
-#[doc(alias = "VkChromaLocation")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -609,7 +606,7 @@ impl ChromaLocation {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -668,7 +665,7 @@ impl DeviceQueueCreateFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -791,7 +788,7 @@ impl SubgroupFeatureFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1038,7 +1035,7 @@ impl ExternalMemoryHandleTypeFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1144,7 +1141,7 @@ impl ExternalMemoryFeatureFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1324,7 +1321,7 @@ impl ExternalSemaphoreHandleTypeFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1401,7 +1398,7 @@ impl ExternalSemaphoreFeatureFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1472,7 +1469,7 @@ impl SemaphoreImportFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1614,7 +1611,7 @@ impl ExternalFenceHandleTypeFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1689,7 +1686,7 @@ impl ExternalFenceFeatureFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1758,7 +1755,7 @@ impl FenceImportFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1859,7 +1856,7 @@ impl PeerMemoryFeatureFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -1957,7 +1954,7 @@ impl MemoryAllocateFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -2019,7 +2016,7 @@ impl MemoryAllocateFlagBits {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubgroupFeatureFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -2038,41 +2035,41 @@ impl SubgroupFeatureFlags {
     ///[`SubgroupFeatureBasic`]
     ///specifies the device will accept SPIR-V shader modules containing the
     ///`GroupNonUniform` capability.
-    const SubgroupFeatureBasic: Self = Self(1);
+    pub const SUBGROUP_FEATURE_BASIC: Self = Self(1);
     ///[`SubgroupFeatureVote`] specifies
     ///the device will accept SPIR-V shader modules containing the
     ///`GroupNonUniformVote` capability.
-    const SubgroupFeatureVote: Self = Self(2);
+    pub const SUBGROUP_FEATURE_VOTE: Self = Self(2);
     ///[`SubgroupFeatureArithmetic`] specifies the device will
     ///accept SPIR-V shader modules containing the
     ///`GroupNonUniformArithmetic` capability.
-    const SubgroupFeatureArithmetic: Self = Self(4);
+    pub const SUBGROUP_FEATURE_ARITHMETIC: Self = Self(4);
     ///[`SubgroupFeatureBallot`]
     ///specifies the device will accept SPIR-V shader modules containing the
     ///`GroupNonUniformBallot` capability.
-    const SubgroupFeatureBallot: Self = Self(8);
+    pub const SUBGROUP_FEATURE_BALLOT: Self = Self(8);
     ///[`SubgroupFeatureShuffle`]
     ///specifies the device will accept SPIR-V shader modules containing the
     ///`GroupNonUniformShuffle` capability.
-    const SubgroupFeatureShuffle: Self = Self(16);
+    pub const SUBGROUP_FEATURE_SHUFFLE: Self = Self(16);
     ///[`SubgroupFeatureShuffleRelative`] specifies the device will
     ///accept SPIR-V shader modules containing the
     ///`GroupNonUniformShuffleRelative` capability.
-    const SubgroupFeatureShuffleRelative: Self = Self(32);
+    pub const SUBGROUP_FEATURE_SHUFFLE_RELATIVE: Self = Self(32);
     ///[`SubgroupFeatureClustered`]
     ///specifies the device will accept SPIR-V shader modules containing the
     ///`GroupNonUniformClustered` capability.
-    const SubgroupFeatureClustered: Self = Self(64);
+    pub const SUBGROUP_FEATURE_CLUSTERED: Self = Self(64);
     ///[`SubgroupFeatureQuad`] specifies
     ///the device will accept SPIR-V shader modules containing the
     ///`GroupNonUniformQuad` capability.
-    const SubgroupFeatureQuad: Self = Self(128);
+    pub const SUBGROUP_FEATURE_QUAD: Self = Self(128);
     ///[`PartitionedNv`] specifies the device will
     ///accept SPIR-V shader modules containing the
     ///`GroupNonUniformPartitionedNV` capability.
     ///
     ///Provided by [`crate::extensions::nv_shader_subgroup_partitioned`]
-    const PartitionedNv: Self = Self(256);
+    pub const PARTITIONED_NV: Self = Self(256);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2082,15 +2079,15 @@ impl SubgroupFeatureFlags {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::SubgroupFeatureBasic
-            | Self::SubgroupFeatureVote
-            | Self::SubgroupFeatureArithmetic
-            | Self::SubgroupFeatureBallot
-            | Self::SubgroupFeatureShuffle
-            | Self::SubgroupFeatureShuffleRelative
-            | Self::SubgroupFeatureClustered
-            | Self::SubgroupFeatureQuad
-            | Self::PartitionedNv
+            | Self::SUBGROUP_FEATURE_BASIC
+            | Self::SUBGROUP_FEATURE_VOTE
+            | Self::SUBGROUP_FEATURE_ARITHMETIC
+            | Self::SUBGROUP_FEATURE_BALLOT
+            | Self::SUBGROUP_FEATURE_SHUFFLE
+            | Self::SUBGROUP_FEATURE_SHUFFLE_RELATIVE
+            | Self::SUBGROUP_FEATURE_CLUSTERED
+            | Self::SUBGROUP_FEATURE_QUAD
+            | Self::PARTITIONED_NV
     }
     ///Returns the raw bits
     #[inline]
@@ -2252,31 +2249,31 @@ impl const std::ops::Not for SubgroupFeatureFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<SubgroupFeatureFlags> for SubgroupFeatureFlags {
-    fn extend<T: std::iter::IntoIterator<Item = SubgroupFeatureFlags>>(&mut self, iterator: T) {
+impl Extend<SubgroupFeatureFlags> for SubgroupFeatureFlags {
+    fn extend<T: IntoIterator<Item = SubgroupFeatureFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<SubgroupFeatureFlagBits> for SubgroupFeatureFlags {
-    fn extend<T: std::iter::IntoIterator<Item = SubgroupFeatureFlagBits>>(&mut self, iterator: T) {
+impl Extend<SubgroupFeatureFlagBits> for SubgroupFeatureFlags {
+    fn extend<T: IntoIterator<Item = SubgroupFeatureFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(SubgroupFeatureFlags::from(i));
+            Self::insert(self, <Self as From<SubgroupFeatureFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<SubgroupFeatureFlags> for SubgroupFeatureFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = SubgroupFeatureFlags>>(iterator: T) -> SubgroupFeatureFlags {
-        let mut out = SubgroupFeatureFlags::empty();
-        out.extend(iterator);
+impl FromIterator<SubgroupFeatureFlags> for SubgroupFeatureFlags {
+    fn from_iter<T: IntoIterator<Item = SubgroupFeatureFlags>>(iterator: T) -> SubgroupFeatureFlags {
+        let mut out = Self::empty();
+        <Self as Extend<SubgroupFeatureFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<SubgroupFeatureFlagBits> for SubgroupFeatureFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = SubgroupFeatureFlagBits>>(iterator: T) -> SubgroupFeatureFlags {
-        let mut out = SubgroupFeatureFlags::empty();
-        out.extend(iterator);
+impl FromIterator<SubgroupFeatureFlagBits> for SubgroupFeatureFlags {
+    fn from_iter<T: IntoIterator<Item = SubgroupFeatureFlagBits>>(iterator: T) -> SubgroupFeatureFlags {
+        let mut out = Self::empty();
+        <Self as Extend<SubgroupFeatureFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -2289,68 +2286,68 @@ impl std::fmt::Debug for SubgroupFeatureFlags {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(SubgroupFeatureFlags::SubgroupFeatureBasic) {
+                    if self.0.contains(SubgroupFeatureFlags::SUBGROUP_FEATURE_BASIC) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SubgroupFeatureBasic))?;
+                        f.write_str(stringify!(SUBGROUP_FEATURE_BASIC))?;
                     }
-                    if self.0.contains(SubgroupFeatureFlags::SubgroupFeatureVote) {
+                    if self.0.contains(SubgroupFeatureFlags::SUBGROUP_FEATURE_VOTE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SubgroupFeatureVote))?;
+                        f.write_str(stringify!(SUBGROUP_FEATURE_VOTE))?;
                     }
-                    if self.0.contains(SubgroupFeatureFlags::SubgroupFeatureArithmetic) {
+                    if self.0.contains(SubgroupFeatureFlags::SUBGROUP_FEATURE_ARITHMETIC) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SubgroupFeatureArithmetic))?;
+                        f.write_str(stringify!(SUBGROUP_FEATURE_ARITHMETIC))?;
                     }
-                    if self.0.contains(SubgroupFeatureFlags::SubgroupFeatureBallot) {
+                    if self.0.contains(SubgroupFeatureFlags::SUBGROUP_FEATURE_BALLOT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SubgroupFeatureBallot))?;
+                        f.write_str(stringify!(SUBGROUP_FEATURE_BALLOT))?;
                     }
-                    if self.0.contains(SubgroupFeatureFlags::SubgroupFeatureShuffle) {
+                    if self.0.contains(SubgroupFeatureFlags::SUBGROUP_FEATURE_SHUFFLE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SubgroupFeatureShuffle))?;
+                        f.write_str(stringify!(SUBGROUP_FEATURE_SHUFFLE))?;
                     }
-                    if self.0.contains(SubgroupFeatureFlags::SubgroupFeatureShuffleRelative) {
+                    if self.0.contains(SubgroupFeatureFlags::SUBGROUP_FEATURE_SHUFFLE_RELATIVE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SubgroupFeatureShuffleRelative))?;
+                        f.write_str(stringify!(SUBGROUP_FEATURE_SHUFFLE_RELATIVE))?;
                     }
-                    if self.0.contains(SubgroupFeatureFlags::SubgroupFeatureClustered) {
+                    if self.0.contains(SubgroupFeatureFlags::SUBGROUP_FEATURE_CLUSTERED) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SubgroupFeatureClustered))?;
+                        f.write_str(stringify!(SUBGROUP_FEATURE_CLUSTERED))?;
                     }
-                    if self.0.contains(SubgroupFeatureFlags::SubgroupFeatureQuad) {
+                    if self.0.contains(SubgroupFeatureFlags::SUBGROUP_FEATURE_QUAD) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SubgroupFeatureQuad))?;
+                        f.write_str(stringify!(SUBGROUP_FEATURE_QUAD))?;
                     }
-                    if self.0.contains(SubgroupFeatureFlags::PartitionedNv) {
+                    if self.0.contains(SubgroupFeatureFlags::PARTITIONED_NV) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PartitionedNv))?;
+                        f.write_str(stringify!(PARTITIONED_NV))?;
                     }
                 }
                 Ok(())
@@ -2383,7 +2380,7 @@ impl std::fmt::Debug for SubgroupFeatureFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -2457,7 +2454,7 @@ impl std::fmt::Debug for DescriptorUpdateTemplateCreateFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPeerMemoryFeatureFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -2475,17 +2472,17 @@ impl From<PeerMemoryFeatureFlagBits> for PeerMemoryFeatureFlags {
 impl PeerMemoryFeatureFlags {
     ///[`PeerMemoryFeatureCopySrc`] specifies that the memory  **can**
     ///be accessed as the source of any `vkCmdCopy*` command.
-    const PeerMemoryFeatureCopySrc: Self = Self(1);
+    pub const PEER_MEMORY_FEATURE_COPY_SRC: Self = Self(1);
     ///[`PeerMemoryFeatureCopyDst`] specifies that the memory  **can**
     ///be accessed as the destination of any `vkCmdCopy*` command.
-    const PeerMemoryFeatureCopyDst: Self = Self(2);
+    pub const PEER_MEMORY_FEATURE_COPY_DST: Self = Self(2);
     ///[`PeerMemoryFeatureGenericSrc`] specifies that the memory
     /// **can**  be read as any memory access type.
-    const PeerMemoryFeatureGenericSrc: Self = Self(4);
+    pub const PEER_MEMORY_FEATURE_GENERIC_SRC: Self = Self(4);
     ///[`PeerMemoryFeatureGenericDst`] specifies that the memory
     /// **can**  be written as any memory access type.
     ///Shader atomics are considered to be writes.
-    const PeerMemoryFeatureGenericDst: Self = Self(8);
+    pub const PEER_MEMORY_FEATURE_GENERIC_DST: Self = Self(8);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2495,10 +2492,10 @@ impl PeerMemoryFeatureFlags {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::PeerMemoryFeatureCopySrc
-            | Self::PeerMemoryFeatureCopyDst
-            | Self::PeerMemoryFeatureGenericSrc
-            | Self::PeerMemoryFeatureGenericDst
+            | Self::PEER_MEMORY_FEATURE_COPY_SRC
+            | Self::PEER_MEMORY_FEATURE_COPY_DST
+            | Self::PEER_MEMORY_FEATURE_GENERIC_SRC
+            | Self::PEER_MEMORY_FEATURE_GENERIC_DST
     }
     ///Returns the raw bits
     #[inline]
@@ -2660,31 +2657,31 @@ impl const std::ops::Not for PeerMemoryFeatureFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<PeerMemoryFeatureFlags> for PeerMemoryFeatureFlags {
-    fn extend<T: std::iter::IntoIterator<Item = PeerMemoryFeatureFlags>>(&mut self, iterator: T) {
+impl Extend<PeerMemoryFeatureFlags> for PeerMemoryFeatureFlags {
+    fn extend<T: IntoIterator<Item = PeerMemoryFeatureFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<PeerMemoryFeatureFlagBits> for PeerMemoryFeatureFlags {
-    fn extend<T: std::iter::IntoIterator<Item = PeerMemoryFeatureFlagBits>>(&mut self, iterator: T) {
+impl Extend<PeerMemoryFeatureFlagBits> for PeerMemoryFeatureFlags {
+    fn extend<T: IntoIterator<Item = PeerMemoryFeatureFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(PeerMemoryFeatureFlags::from(i));
+            Self::insert(self, <Self as From<PeerMemoryFeatureFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<PeerMemoryFeatureFlags> for PeerMemoryFeatureFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = PeerMemoryFeatureFlags>>(iterator: T) -> PeerMemoryFeatureFlags {
-        let mut out = PeerMemoryFeatureFlags::empty();
-        out.extend(iterator);
+impl FromIterator<PeerMemoryFeatureFlags> for PeerMemoryFeatureFlags {
+    fn from_iter<T: IntoIterator<Item = PeerMemoryFeatureFlags>>(iterator: T) -> PeerMemoryFeatureFlags {
+        let mut out = Self::empty();
+        <Self as Extend<PeerMemoryFeatureFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<PeerMemoryFeatureFlagBits> for PeerMemoryFeatureFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = PeerMemoryFeatureFlagBits>>(iterator: T) -> PeerMemoryFeatureFlags {
-        let mut out = PeerMemoryFeatureFlags::empty();
-        out.extend(iterator);
+impl FromIterator<PeerMemoryFeatureFlagBits> for PeerMemoryFeatureFlags {
+    fn from_iter<T: IntoIterator<Item = PeerMemoryFeatureFlagBits>>(iterator: T) -> PeerMemoryFeatureFlags {
+        let mut out = Self::empty();
+        <Self as Extend<PeerMemoryFeatureFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -2697,33 +2694,33 @@ impl std::fmt::Debug for PeerMemoryFeatureFlags {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(PeerMemoryFeatureFlags::PeerMemoryFeatureCopySrc) {
+                    if self.0.contains(PeerMemoryFeatureFlags::PEER_MEMORY_FEATURE_COPY_SRC) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PeerMemoryFeatureCopySrc))?;
+                        f.write_str(stringify!(PEER_MEMORY_FEATURE_COPY_SRC))?;
                     }
-                    if self.0.contains(PeerMemoryFeatureFlags::PeerMemoryFeatureCopyDst) {
+                    if self.0.contains(PeerMemoryFeatureFlags::PEER_MEMORY_FEATURE_COPY_DST) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PeerMemoryFeatureCopyDst))?;
+                        f.write_str(stringify!(PEER_MEMORY_FEATURE_COPY_DST))?;
                     }
-                    if self.0.contains(PeerMemoryFeatureFlags::PeerMemoryFeatureGenericSrc) {
+                    if self.0.contains(PeerMemoryFeatureFlags::PEER_MEMORY_FEATURE_GENERIC_SRC) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PeerMemoryFeatureGenericSrc))?;
+                        f.write_str(stringify!(PEER_MEMORY_FEATURE_GENERIC_SRC))?;
                     }
-                    if self.0.contains(PeerMemoryFeatureFlags::PeerMemoryFeatureGenericDst) {
+                    if self.0.contains(PeerMemoryFeatureFlags::PEER_MEMORY_FEATURE_GENERIC_DST) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(PeerMemoryFeatureGenericDst))?;
+                        f.write_str(stringify!(PEER_MEMORY_FEATURE_GENERIC_DST))?;
                     }
                 }
                 Ok(())
@@ -2782,7 +2779,7 @@ impl std::fmt::Debug for PeerMemoryFeatureFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryAllocateFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -2801,7 +2798,7 @@ impl MemoryAllocateFlags {
     ///[`MemoryAllocateDeviceMask`] specifies that memory will be
     ///allocated for the devices in
     ///[`MemoryAllocateFlagsInfo`]::`deviceMask`.
-    const MemoryAllocateDeviceMask: Self = Self(1);
+    pub const MEMORY_ALLOCATE_DEVICE_MASK: Self = Self(1);
     ///[`DeviceAddress`] specifies that the memory
     /// **can**  be attached to a buffer object created with the
     ///`VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT` bit set in `usage`,
@@ -2809,14 +2806,14 @@ impl MemoryAllocateFlags {
     ///via [`GetDeviceMemoryOpaqueCaptureAddress`].
     ///
     ///Provided by [`crate::vulkan1_2`]
-    const DeviceAddress: Self = Self(2);
+    pub const DEVICE_ADDRESS: Self = Self(2);
     ///[`DeviceAddressCaptureReplay`] specifies
     ///that the memory’s address  **can**  be saved and reused on a subsequent run
     ///(e.g. for trace capture and replay), see
     ///[`BufferOpaqueCaptureAddressCreateInfo`] for more detail.
     ///
     ///Provided by [`crate::vulkan1_2`]
-    const DeviceAddressCaptureReplay: Self = Self(4);
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2825,7 +2822,7 @@ impl MemoryAllocateFlags {
     ///Returns a value with all of the flags enabled
     #[inline]
     pub const fn all() -> Self {
-        Self::empty() | Self::MemoryAllocateDeviceMask | Self::DeviceAddress | Self::DeviceAddressCaptureReplay
+        Self::empty() | Self::MEMORY_ALLOCATE_DEVICE_MASK | Self::DEVICE_ADDRESS | Self::DEVICE_ADDRESS_CAPTURE_REPLAY
     }
     ///Returns the raw bits
     #[inline]
@@ -2987,31 +2984,31 @@ impl const std::ops::Not for MemoryAllocateFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<MemoryAllocateFlags> for MemoryAllocateFlags {
-    fn extend<T: std::iter::IntoIterator<Item = MemoryAllocateFlags>>(&mut self, iterator: T) {
+impl Extend<MemoryAllocateFlags> for MemoryAllocateFlags {
+    fn extend<T: IntoIterator<Item = MemoryAllocateFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<MemoryAllocateFlagBits> for MemoryAllocateFlags {
-    fn extend<T: std::iter::IntoIterator<Item = MemoryAllocateFlagBits>>(&mut self, iterator: T) {
+impl Extend<MemoryAllocateFlagBits> for MemoryAllocateFlags {
+    fn extend<T: IntoIterator<Item = MemoryAllocateFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(MemoryAllocateFlags::from(i));
+            Self::insert(self, <Self as From<MemoryAllocateFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<MemoryAllocateFlags> for MemoryAllocateFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = MemoryAllocateFlags>>(iterator: T) -> MemoryAllocateFlags {
-        let mut out = MemoryAllocateFlags::empty();
-        out.extend(iterator);
+impl FromIterator<MemoryAllocateFlags> for MemoryAllocateFlags {
+    fn from_iter<T: IntoIterator<Item = MemoryAllocateFlags>>(iterator: T) -> MemoryAllocateFlags {
+        let mut out = Self::empty();
+        <Self as Extend<MemoryAllocateFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<MemoryAllocateFlagBits> for MemoryAllocateFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = MemoryAllocateFlagBits>>(iterator: T) -> MemoryAllocateFlags {
-        let mut out = MemoryAllocateFlags::empty();
-        out.extend(iterator);
+impl FromIterator<MemoryAllocateFlagBits> for MemoryAllocateFlags {
+    fn from_iter<T: IntoIterator<Item = MemoryAllocateFlagBits>>(iterator: T) -> MemoryAllocateFlags {
+        let mut out = Self::empty();
+        <Self as Extend<MemoryAllocateFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -3024,26 +3021,26 @@ impl std::fmt::Debug for MemoryAllocateFlags {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(MemoryAllocateFlags::MemoryAllocateDeviceMask) {
+                    if self.0.contains(MemoryAllocateFlags::MEMORY_ALLOCATE_DEVICE_MASK) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(MemoryAllocateDeviceMask))?;
+                        f.write_str(stringify!(MEMORY_ALLOCATE_DEVICE_MASK))?;
                     }
-                    if self.0.contains(MemoryAllocateFlags::DeviceAddress) {
+                    if self.0.contains(MemoryAllocateFlags::DEVICE_ADDRESS) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DeviceAddress))?;
+                        f.write_str(stringify!(DEVICE_ADDRESS))?;
                     }
-                    if self.0.contains(MemoryAllocateFlags::DeviceAddressCaptureReplay) {
+                    if self.0.contains(MemoryAllocateFlags::DEVICE_ADDRESS_CAPTURE_REPLAY) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DeviceAddressCaptureReplay))?;
+                        f.write_str(stringify!(DEVICE_ADDRESS_CAPTURE_REPLAY))?;
                     }
                 }
                 Ok(())
@@ -3077,7 +3074,7 @@ impl std::fmt::Debug for MemoryAllocateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -3218,7 +3215,7 @@ impl std::fmt::Debug for CommandPoolTrimFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryHandleTypeFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -3243,7 +3240,7 @@ impl ExternalMemoryHandleTypeFlags {
     ///`SCM_RIGHTS` control message.
     ///It owns a reference to the underlying memory resource represented by its
     ///Vulkan memory object.
-    const ExternalMemoryHandleTypeOpaqueFd: Self = Self(1);
+    pub const EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD: Self = Self(1);
     ///[`ExternalMemoryHandleTypeOpaqueWin32`] specifies an NT
     ///handle that has only limited valid usage outside of Vulkan and other
     ///compatible APIs.
@@ -3252,7 +3249,7 @@ impl ExternalMemoryHandleTypeFlags {
     ///and `SetHandleInformation`.
     ///It owns a reference to the underlying memory resource represented by its
     ///Vulkan memory object.
-    const ExternalMemoryHandleTypeOpaqueWin32: Self = Self(2);
+    pub const EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32: Self = Self(2);
     ///[`ExternalMemoryHandleTypeOpaqueWin32Kmt`] specifies a
     ///global share handle that has only limited valid usage outside of Vulkan
     ///and other compatible APIs.
@@ -3260,50 +3257,50 @@ impl ExternalMemoryHandleTypeFlags {
     ///It does not own a reference to the underlying memory resource
     ///represented by its Vulkan memory object, and will therefore become
     ///invalid when all Vulkan memory objects associated with it are destroyed.
-    const ExternalMemoryHandleTypeOpaqueWin32Kmt: Self = Self(4);
+    pub const EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_KMT: Self = Self(4);
     ///[`ExternalMemoryHandleTypeD3D11Texture`] specifies an NT
     ///handle returned by `IDXGIResource1`::`CreateSharedHandle`
     ///referring to a Direct3D 10 or 11 texture resource.
     ///It owns a reference to the memory used by the Direct3D resource.
-    const ExternalMemoryHandleTypeD3D11Texture: Self = Self(8);
+    pub const EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_TEXTURE: Self = Self(8);
     ///[`ExternalMemoryHandleTypeD3D11TextureKmt`] specifies a
     ///global share handle returned by `IDXGIResource`::`GetSharedHandle`
     ///referring to a Direct3D 10 or 11 texture resource.
     ///It does not own a reference to the underlying Direct3D resource, and
     ///will therefore become invalid when all Vulkan memory objects and
     ///Direct3D resources associated with it are destroyed.
-    const ExternalMemoryHandleTypeD3D11TextureKmt: Self = Self(16);
+    pub const EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_TEXTURE_KMT: Self = Self(16);
     ///[`ExternalMemoryHandleTypeD3D12Heap`] specifies an NT
     ///handle returned by `ID3D12Device`::`CreateSharedHandle` referring
     ///to a Direct3D 12 heap resource.
     ///It owns a reference to the resources used by the Direct3D heap.
-    const ExternalMemoryHandleTypeD3D12Heap: Self = Self(32);
+    pub const EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_12_HEAP: Self = Self(32);
     ///[`ExternalMemoryHandleTypeD3D12Resource`] specifies an NT
     ///handle returned by `ID3D12Device`::`CreateSharedHandle` referring
     ///to a Direct3D 12 committed resource.
     ///It owns a reference to the memory used by the Direct3D resource.
-    const ExternalMemoryHandleTypeD3D12Resource: Self = Self(64);
+    pub const EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_12_RESOURCE: Self = Self(64);
     ///[`DmaBufExt`] is a file
     ///descriptor for a Linux dma_buf.
     ///It owns a reference to the underlying memory resource represented by its
     ///Vulkan memory object.
     ///
     ///Provided by [`crate::extensions::ext_external_memory_dma_buf`]
-    const DmaBufExt: Self = Self(512);
+    pub const DMA_BUF_EXT: Self = Self(512);
     ///[`AndroidHardwareBufferAndroid`]
     ///specifies an [`AHardwareBuffer`] object defined by the Android NDK.
     ///See [Android Hardware Buffers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer)
     ///for more details of this handle type.
     ///
     ///Provided by [`crate::extensions::android_external_memory_android_hardware_buffer`]
-    const AndroidHardwareBufferAndroid: Self = Self(1024);
+    pub const ANDROID_HARDWARE_BUFFER_ANDROID: Self = Self(1024);
     ///[`HostAllocationExt`] specifies a
     ///host pointer returned by a host memory allocation command.
     ///It does not own a reference to the underlying memory resource, and will
     ///therefore become invalid if the host memory is freed.
     ///
     ///Provided by [`crate::extensions::ext_external_memory_host`]
-    const HostAllocationExt: Self = Self(128);
+    pub const HOST_ALLOCATION_EXT: Self = Self(128);
     ///[`HostMappedForeignMemoryExt`]
     ///specifies a host pointer to *host mapped foreign memory*.
     ///It does not own a reference to the underlying memory resource, and will
@@ -3311,23 +3308,23 @@ impl ExternalMemoryHandleTypeFlags {
     ///becomes no longer available.
     ///
     ///Provided by [`crate::extensions::ext_external_memory_host`]
-    const HostMappedForeignMemoryExt: Self = Self(256);
+    pub const HOST_MAPPED_FOREIGN_MEMORY_EXT: Self = Self(256);
     ///[`ZirconVmoFuchsia`] is a Zircon
     ///handle to a virtual memory object.
     ///
     ///Provided by [`crate::extensions::fuchsia_external_memory`]
-    const ZirconVmoFuchsia: Self = Self(2048);
+    pub const ZIRCON_VMO_FUCHSIA: Self = Self(2048);
     ///[`RdmaAddressNv`] is a handle to
     ///an allocation accessible by remote devices.
     ///It owns a reference to the underlying memory resource represented by its
     ///Vulkan memory object.
     ///
     ///Provided by [`crate::extensions::nv_external_memory_rdma`]
-    const RdmaAddressNv: Self = Self(4096);
+    pub const RDMA_ADDRESS_NV: Self = Self(4096);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_extension_375`]
-    const Reserved13Nv: Self = Self(8192);
+    pub const RESERVED_13_NV: Self = Self(8192);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -3337,20 +3334,20 @@ impl ExternalMemoryHandleTypeFlags {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::ExternalMemoryHandleTypeOpaqueFd
-            | Self::ExternalMemoryHandleTypeOpaqueWin32
-            | Self::ExternalMemoryHandleTypeOpaqueWin32Kmt
-            | Self::ExternalMemoryHandleTypeD3D11Texture
-            | Self::ExternalMemoryHandleTypeD3D11TextureKmt
-            | Self::ExternalMemoryHandleTypeD3D12Heap
-            | Self::ExternalMemoryHandleTypeD3D12Resource
-            | Self::DmaBufExt
-            | Self::AndroidHardwareBufferAndroid
-            | Self::HostAllocationExt
-            | Self::HostMappedForeignMemoryExt
-            | Self::ZirconVmoFuchsia
-            | Self::RdmaAddressNv
-            | Self::Reserved13Nv
+            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD
+            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32
+            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_KMT
+            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_TEXTURE
+            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_TEXTURE_KMT
+            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_12_HEAP
+            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_12_RESOURCE
+            | Self::DMA_BUF_EXT
+            | Self::ANDROID_HARDWARE_BUFFER_ANDROID
+            | Self::HOST_ALLOCATION_EXT
+            | Self::HOST_MAPPED_FOREIGN_MEMORY_EXT
+            | Self::ZIRCON_VMO_FUCHSIA
+            | Self::RDMA_ADDRESS_NV
+            | Self::RESERVED_13_NV
     }
     ///Returns the raw bits
     #[inline]
@@ -3512,35 +3509,33 @@ impl const std::ops::Not for ExternalMemoryHandleTypeFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<ExternalMemoryHandleTypeFlags> for ExternalMemoryHandleTypeFlags {
-    fn extend<T: std::iter::IntoIterator<Item = ExternalMemoryHandleTypeFlags>>(&mut self, iterator: T) {
+impl Extend<ExternalMemoryHandleTypeFlags> for ExternalMemoryHandleTypeFlags {
+    fn extend<T: IntoIterator<Item = ExternalMemoryHandleTypeFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<ExternalMemoryHandleTypeFlagBits> for ExternalMemoryHandleTypeFlags {
-    fn extend<T: std::iter::IntoIterator<Item = ExternalMemoryHandleTypeFlagBits>>(&mut self, iterator: T) {
+impl Extend<ExternalMemoryHandleTypeFlagBits> for ExternalMemoryHandleTypeFlags {
+    fn extend<T: IntoIterator<Item = ExternalMemoryHandleTypeFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(ExternalMemoryHandleTypeFlags::from(i));
+            Self::insert(self, <Self as From<ExternalMemoryHandleTypeFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<ExternalMemoryHandleTypeFlags> for ExternalMemoryHandleTypeFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = ExternalMemoryHandleTypeFlags>>(
-        iterator: T,
-    ) -> ExternalMemoryHandleTypeFlags {
-        let mut out = ExternalMemoryHandleTypeFlags::empty();
-        out.extend(iterator);
+impl FromIterator<ExternalMemoryHandleTypeFlags> for ExternalMemoryHandleTypeFlags {
+    fn from_iter<T: IntoIterator<Item = ExternalMemoryHandleTypeFlags>>(iterator: T) -> ExternalMemoryHandleTypeFlags {
+        let mut out = Self::empty();
+        <Self as Extend<ExternalMemoryHandleTypeFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<ExternalMemoryHandleTypeFlagBits> for ExternalMemoryHandleTypeFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = ExternalMemoryHandleTypeFlagBits>>(
+impl FromIterator<ExternalMemoryHandleTypeFlagBits> for ExternalMemoryHandleTypeFlags {
+    fn from_iter<T: IntoIterator<Item = ExternalMemoryHandleTypeFlagBits>>(
         iterator: T,
     ) -> ExternalMemoryHandleTypeFlags {
-        let mut out = ExternalMemoryHandleTypeFlags::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<ExternalMemoryHandleTypeFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -3555,128 +3550,128 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlags {
                     let mut first = true;
                     if self
                         .0
-                        .contains(ExternalMemoryHandleTypeFlags::ExternalMemoryHandleTypeOpaqueFd)
+                        .contains(ExternalMemoryHandleTypeFlags::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalMemoryHandleTypeOpaqueFd))?;
+                        f.write_str(stringify!(EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD))?;
                     }
                     if self
                         .0
-                        .contains(ExternalMemoryHandleTypeFlags::ExternalMemoryHandleTypeOpaqueWin32)
+                        .contains(ExternalMemoryHandleTypeFlags::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalMemoryHandleTypeOpaqueWin32))?;
+                        f.write_str(stringify!(EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32))?;
                     }
                     if self
                         .0
-                        .contains(ExternalMemoryHandleTypeFlags::ExternalMemoryHandleTypeOpaqueWin32Kmt)
+                        .contains(ExternalMemoryHandleTypeFlags::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_KMT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalMemoryHandleTypeOpaqueWin32Kmt))?;
+                        f.write_str(stringify!(EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_KMT))?;
                     }
                     if self
                         .0
-                        .contains(ExternalMemoryHandleTypeFlags::ExternalMemoryHandleTypeD3D11Texture)
+                        .contains(ExternalMemoryHandleTypeFlags::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_TEXTURE)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalMemoryHandleTypeD3D11Texture))?;
+                        f.write_str(stringify!(EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_TEXTURE))?;
                     }
                     if self
                         .0
-                        .contains(ExternalMemoryHandleTypeFlags::ExternalMemoryHandleTypeD3D11TextureKmt)
+                        .contains(ExternalMemoryHandleTypeFlags::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_TEXTURE_KMT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalMemoryHandleTypeD3D11TextureKmt))?;
+                        f.write_str(stringify!(EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_TEXTURE_KMT))?;
                     }
                     if self
                         .0
-                        .contains(ExternalMemoryHandleTypeFlags::ExternalMemoryHandleTypeD3D12Heap)
+                        .contains(ExternalMemoryHandleTypeFlags::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_12_HEAP)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalMemoryHandleTypeD3D12Heap))?;
+                        f.write_str(stringify!(EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_12_HEAP))?;
                     }
                     if self
                         .0
-                        .contains(ExternalMemoryHandleTypeFlags::ExternalMemoryHandleTypeD3D12Resource)
+                        .contains(ExternalMemoryHandleTypeFlags::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_12_RESOURCE)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalMemoryHandleTypeD3D12Resource))?;
+                        f.write_str(stringify!(EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_12_RESOURCE))?;
                     }
-                    if self.0.contains(ExternalMemoryHandleTypeFlags::DmaBufExt) {
+                    if self.0.contains(ExternalMemoryHandleTypeFlags::DMA_BUF_EXT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DmaBufExt))?;
+                        f.write_str(stringify!(DMA_BUF_EXT))?;
                     }
                     if self
                         .0
-                        .contains(ExternalMemoryHandleTypeFlags::AndroidHardwareBufferAndroid)
+                        .contains(ExternalMemoryHandleTypeFlags::ANDROID_HARDWARE_BUFFER_ANDROID)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(AndroidHardwareBufferAndroid))?;
+                        f.write_str(stringify!(ANDROID_HARDWARE_BUFFER_ANDROID))?;
                     }
-                    if self.0.contains(ExternalMemoryHandleTypeFlags::HostAllocationExt) {
+                    if self.0.contains(ExternalMemoryHandleTypeFlags::HOST_ALLOCATION_EXT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(HostAllocationExt))?;
+                        f.write_str(stringify!(HOST_ALLOCATION_EXT))?;
                     }
                     if self
                         .0
-                        .contains(ExternalMemoryHandleTypeFlags::HostMappedForeignMemoryExt)
+                        .contains(ExternalMemoryHandleTypeFlags::HOST_MAPPED_FOREIGN_MEMORY_EXT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(HostMappedForeignMemoryExt))?;
+                        f.write_str(stringify!(HOST_MAPPED_FOREIGN_MEMORY_EXT))?;
                     }
-                    if self.0.contains(ExternalMemoryHandleTypeFlags::ZirconVmoFuchsia) {
+                    if self.0.contains(ExternalMemoryHandleTypeFlags::ZIRCON_VMO_FUCHSIA) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ZirconVmoFuchsia))?;
+                        f.write_str(stringify!(ZIRCON_VMO_FUCHSIA))?;
                     }
-                    if self.0.contains(ExternalMemoryHandleTypeFlags::RdmaAddressNv) {
+                    if self.0.contains(ExternalMemoryHandleTypeFlags::RDMA_ADDRESS_NV) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(RdmaAddressNv))?;
+                        f.write_str(stringify!(RDMA_ADDRESS_NV))?;
                     }
-                    if self.0.contains(ExternalMemoryHandleTypeFlags::Reserved13Nv) {
+                    if self.0.contains(ExternalMemoryHandleTypeFlags::RESERVED_13_NV) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Reserved13Nv))?;
+                        f.write_str(stringify!(RESERVED_13_NV))?;
                     }
                 }
                 Ok(())
@@ -3750,7 +3745,7 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryFeatureFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -3771,13 +3766,13 @@ impl ExternalMemoryFeatureFlags {
     /// **must**  use the mechanisms defined by [`MemoryDedicatedRequirements`]
     ///and [`MemoryDedicatedAllocateInfo`] to create (or import) a
     ///dedicated allocation for the image or buffer.
-    const ExternalMemoryFeatureDedicatedOnly: Self = Self(1);
+    pub const EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY: Self = Self(1);
     ///[`ExternalMemoryFeatureExportable`] specifies that handles
     ///of this type  **can**  be exported from Vulkan memory objects.
-    const ExternalMemoryFeatureExportable: Self = Self(2);
+    pub const EXTERNAL_MEMORY_FEATURE_EXPORTABLE: Self = Self(2);
     ///[`ExternalMemoryFeatureImportable`] specifies that handles
     ///of this type  **can**  be imported as Vulkan memory objects.
-    const ExternalMemoryFeatureImportable: Self = Self(4);
+    pub const EXTERNAL_MEMORY_FEATURE_IMPORTABLE: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -3787,9 +3782,9 @@ impl ExternalMemoryFeatureFlags {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::ExternalMemoryFeatureDedicatedOnly
-            | Self::ExternalMemoryFeatureExportable
-            | Self::ExternalMemoryFeatureImportable
+            | Self::EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY
+            | Self::EXTERNAL_MEMORY_FEATURE_EXPORTABLE
+            | Self::EXTERNAL_MEMORY_FEATURE_IMPORTABLE
     }
     ///Returns the raw bits
     #[inline]
@@ -3951,35 +3946,31 @@ impl const std::ops::Not for ExternalMemoryFeatureFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<ExternalMemoryFeatureFlags> for ExternalMemoryFeatureFlags {
-    fn extend<T: std::iter::IntoIterator<Item = ExternalMemoryFeatureFlags>>(&mut self, iterator: T) {
+impl Extend<ExternalMemoryFeatureFlags> for ExternalMemoryFeatureFlags {
+    fn extend<T: IntoIterator<Item = ExternalMemoryFeatureFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<ExternalMemoryFeatureFlagBits> for ExternalMemoryFeatureFlags {
-    fn extend<T: std::iter::IntoIterator<Item = ExternalMemoryFeatureFlagBits>>(&mut self, iterator: T) {
+impl Extend<ExternalMemoryFeatureFlagBits> for ExternalMemoryFeatureFlags {
+    fn extend<T: IntoIterator<Item = ExternalMemoryFeatureFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(ExternalMemoryFeatureFlags::from(i));
+            Self::insert(self, <Self as From<ExternalMemoryFeatureFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<ExternalMemoryFeatureFlags> for ExternalMemoryFeatureFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = ExternalMemoryFeatureFlags>>(
-        iterator: T,
-    ) -> ExternalMemoryFeatureFlags {
-        let mut out = ExternalMemoryFeatureFlags::empty();
-        out.extend(iterator);
+impl FromIterator<ExternalMemoryFeatureFlags> for ExternalMemoryFeatureFlags {
+    fn from_iter<T: IntoIterator<Item = ExternalMemoryFeatureFlags>>(iterator: T) -> ExternalMemoryFeatureFlags {
+        let mut out = Self::empty();
+        <Self as Extend<ExternalMemoryFeatureFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<ExternalMemoryFeatureFlagBits> for ExternalMemoryFeatureFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = ExternalMemoryFeatureFlagBits>>(
-        iterator: T,
-    ) -> ExternalMemoryFeatureFlags {
-        let mut out = ExternalMemoryFeatureFlags::empty();
-        out.extend(iterator);
+impl FromIterator<ExternalMemoryFeatureFlagBits> for ExternalMemoryFeatureFlags {
+    fn from_iter<T: IntoIterator<Item = ExternalMemoryFeatureFlagBits>>(iterator: T) -> ExternalMemoryFeatureFlags {
+        let mut out = Self::empty();
+        <Self as Extend<ExternalMemoryFeatureFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -3994,33 +3985,33 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlags {
                     let mut first = true;
                     if self
                         .0
-                        .contains(ExternalMemoryFeatureFlags::ExternalMemoryFeatureDedicatedOnly)
+                        .contains(ExternalMemoryFeatureFlags::EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalMemoryFeatureDedicatedOnly))?;
+                        f.write_str(stringify!(EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY))?;
                     }
                     if self
                         .0
-                        .contains(ExternalMemoryFeatureFlags::ExternalMemoryFeatureExportable)
+                        .contains(ExternalMemoryFeatureFlags::EXTERNAL_MEMORY_FEATURE_EXPORTABLE)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalMemoryFeatureExportable))?;
+                        f.write_str(stringify!(EXTERNAL_MEMORY_FEATURE_EXPORTABLE))?;
                     }
                     if self
                         .0
-                        .contains(ExternalMemoryFeatureFlags::ExternalMemoryFeatureImportable)
+                        .contains(ExternalMemoryFeatureFlags::EXTERNAL_MEMORY_FEATURE_IMPORTABLE)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalMemoryFeatureImportable))?;
+                        f.write_str(stringify!(EXTERNAL_MEMORY_FEATURE_IMPORTABLE))?;
                     }
                 }
                 Ok(())
@@ -4125,7 +4116,7 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalSemaphoreHandleTypeFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -4150,7 +4141,7 @@ impl ExternalSemaphoreHandleTypeFlags {
     ///`SCM_RIGHTS` control message.
     ///It owns a reference to the underlying synchronization primitive
     ///represented by its Vulkan semaphore object.
-    const ExternalSemaphoreHandleTypeOpaqueFd: Self = Self(1);
+    pub const EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD: Self = Self(1);
     ///[`ExternalSemaphoreHandleTypeOpaqueWin32`] specifies an NT
     ///handle that has only limited valid usage outside of Vulkan and other
     ///compatible APIs.
@@ -4159,7 +4150,7 @@ impl ExternalSemaphoreHandleTypeFlags {
     ///and `SetHandleInformation`.
     ///It owns a reference to the underlying synchronization primitive
     ///represented by its Vulkan semaphore object.
-    const ExternalSemaphoreHandleTypeOpaqueWin32: Self = Self(2);
+    pub const EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN_32: Self = Self(2);
     ///[`ExternalSemaphoreHandleTypeOpaqueWin32Kmt`] specifies a
     ///global share handle that has only limited valid usage outside of Vulkan
     ///and other compatible APIs.
@@ -4168,14 +4159,14 @@ impl ExternalSemaphoreHandleTypeFlags {
     ///represented by its Vulkan semaphore object, and will therefore become
     ///invalid when all Vulkan semaphore objects associated with it are
     ///destroyed.
-    const ExternalSemaphoreHandleTypeOpaqueWin32Kmt: Self = Self(4);
+    pub const EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN_32_KMT: Self = Self(4);
     ///[`ExternalSemaphoreHandleTypeD3D12Fence`] specifies an NT
     ///handle returned by `ID3D12Device`::`CreateSharedHandle` referring
     ///to a Direct3D 12 fence, or `ID3D11Device5`::[`CreateFence`]
     ///referring to a Direct3D 11 fence.
     ///It owns a reference to the underlying synchronization primitive
     ///associated with the Direct3D fence.
-    const ExternalSemaphoreHandleTypeD3D12Fence: Self = Self(8);
+    pub const EXTERNAL_SEMAPHORE_HANDLE_TYPE_D_3_D_12_FENCE: Self = Self(8);
     ///[`ExternalSemaphoreHandleTypeSyncFd`] specifies a POSIX
     ///file descriptor handle to a Linux Sync File or Android Fence object.
     ///It can be used with any native API accepting a valid sync file or fence
@@ -4185,7 +4176,7 @@ impl ExternalSemaphoreHandleTypeFlags {
     ///Implementations which support importing this handle type  **must**  accept
     ///any type of sync or fence FD supported by the native system they are
     ///running on.
-    const ExternalSemaphoreHandleTypeSyncFd: Self = Self(16);
+    pub const EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD: Self = Self(16);
     ///[`ZirconEventFuchsia`]
     ///specifies a handle to a Zircon event object.
     ///It can be used with any native API that accepts a Zircon event handle.
@@ -4195,15 +4186,15 @@ impl ExternalSemaphoreHandleTypeFlags {
     ///waiting.
     ///
     ///Provided by [`crate::extensions::fuchsia_external_semaphore`]
-    const ZirconEventFuchsia: Self = Self(128);
+    pub const ZIRCON_EVENT_FUCHSIA: Self = Self(128);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_extension_374`]
-    const Reserved5Nv: Self = Self(32);
+    pub const RESERVED_5_NV: Self = Self(32);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_extension_374`]
-    const Reserved6Nv: Self = Self(64);
+    pub const RESERVED_6_NV: Self = Self(64);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -4213,14 +4204,14 @@ impl ExternalSemaphoreHandleTypeFlags {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::ExternalSemaphoreHandleTypeOpaqueFd
-            | Self::ExternalSemaphoreHandleTypeOpaqueWin32
-            | Self::ExternalSemaphoreHandleTypeOpaqueWin32Kmt
-            | Self::ExternalSemaphoreHandleTypeD3D12Fence
-            | Self::ExternalSemaphoreHandleTypeSyncFd
-            | Self::ZirconEventFuchsia
-            | Self::Reserved5Nv
-            | Self::Reserved6Nv
+            | Self::EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD
+            | Self::EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN_32
+            | Self::EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN_32_KMT
+            | Self::EXTERNAL_SEMAPHORE_HANDLE_TYPE_D_3_D_12_FENCE
+            | Self::EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD
+            | Self::ZIRCON_EVENT_FUCHSIA
+            | Self::RESERVED_5_NV
+            | Self::RESERVED_6_NV
     }
     ///Returns the raw bits
     #[inline]
@@ -4382,35 +4373,35 @@ impl const std::ops::Not for ExternalSemaphoreHandleTypeFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<ExternalSemaphoreHandleTypeFlags> for ExternalSemaphoreHandleTypeFlags {
-    fn extend<T: std::iter::IntoIterator<Item = ExternalSemaphoreHandleTypeFlags>>(&mut self, iterator: T) {
+impl Extend<ExternalSemaphoreHandleTypeFlags> for ExternalSemaphoreHandleTypeFlags {
+    fn extend<T: IntoIterator<Item = ExternalSemaphoreHandleTypeFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<ExternalSemaphoreHandleTypeFlagBits> for ExternalSemaphoreHandleTypeFlags {
-    fn extend<T: std::iter::IntoIterator<Item = ExternalSemaphoreHandleTypeFlagBits>>(&mut self, iterator: T) {
+impl Extend<ExternalSemaphoreHandleTypeFlagBits> for ExternalSemaphoreHandleTypeFlags {
+    fn extend<T: IntoIterator<Item = ExternalSemaphoreHandleTypeFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(ExternalSemaphoreHandleTypeFlags::from(i));
+            Self::insert(self, <Self as From<ExternalSemaphoreHandleTypeFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<ExternalSemaphoreHandleTypeFlags> for ExternalSemaphoreHandleTypeFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = ExternalSemaphoreHandleTypeFlags>>(
+impl FromIterator<ExternalSemaphoreHandleTypeFlags> for ExternalSemaphoreHandleTypeFlags {
+    fn from_iter<T: IntoIterator<Item = ExternalSemaphoreHandleTypeFlags>>(
         iterator: T,
     ) -> ExternalSemaphoreHandleTypeFlags {
-        let mut out = ExternalSemaphoreHandleTypeFlags::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<ExternalSemaphoreHandleTypeFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<ExternalSemaphoreHandleTypeFlagBits> for ExternalSemaphoreHandleTypeFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = ExternalSemaphoreHandleTypeFlagBits>>(
+impl FromIterator<ExternalSemaphoreHandleTypeFlagBits> for ExternalSemaphoreHandleTypeFlags {
+    fn from_iter<T: IntoIterator<Item = ExternalSemaphoreHandleTypeFlagBits>>(
         iterator: T,
     ) -> ExternalSemaphoreHandleTypeFlags {
-        let mut out = ExternalSemaphoreHandleTypeFlags::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<ExternalSemaphoreHandleTypeFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -4425,74 +4416,74 @@ impl std::fmt::Debug for ExternalSemaphoreHandleTypeFlags {
                     let mut first = true;
                     if self
                         .0
-                        .contains(ExternalSemaphoreHandleTypeFlags::ExternalSemaphoreHandleTypeOpaqueFd)
+                        .contains(ExternalSemaphoreHandleTypeFlags::EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalSemaphoreHandleTypeOpaqueFd))?;
+                        f.write_str(stringify!(EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD))?;
                     }
                     if self
                         .0
-                        .contains(ExternalSemaphoreHandleTypeFlags::ExternalSemaphoreHandleTypeOpaqueWin32)
+                        .contains(ExternalSemaphoreHandleTypeFlags::EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN_32)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalSemaphoreHandleTypeOpaqueWin32))?;
+                        f.write_str(stringify!(EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN_32))?;
                     }
                     if self
                         .0
-                        .contains(ExternalSemaphoreHandleTypeFlags::ExternalSemaphoreHandleTypeOpaqueWin32Kmt)
+                        .contains(ExternalSemaphoreHandleTypeFlags::EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN_32_KMT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalSemaphoreHandleTypeOpaqueWin32Kmt))?;
+                        f.write_str(stringify!(EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN_32_KMT))?;
                     }
                     if self
                         .0
-                        .contains(ExternalSemaphoreHandleTypeFlags::ExternalSemaphoreHandleTypeD3D12Fence)
+                        .contains(ExternalSemaphoreHandleTypeFlags::EXTERNAL_SEMAPHORE_HANDLE_TYPE_D_3_D_12_FENCE)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalSemaphoreHandleTypeD3D12Fence))?;
+                        f.write_str(stringify!(EXTERNAL_SEMAPHORE_HANDLE_TYPE_D_3_D_12_FENCE))?;
                     }
                     if self
                         .0
-                        .contains(ExternalSemaphoreHandleTypeFlags::ExternalSemaphoreHandleTypeSyncFd)
+                        .contains(ExternalSemaphoreHandleTypeFlags::EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalSemaphoreHandleTypeSyncFd))?;
+                        f.write_str(stringify!(EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD))?;
                     }
-                    if self.0.contains(ExternalSemaphoreHandleTypeFlags::ZirconEventFuchsia) {
+                    if self.0.contains(ExternalSemaphoreHandleTypeFlags::ZIRCON_EVENT_FUCHSIA) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ZirconEventFuchsia))?;
+                        f.write_str(stringify!(ZIRCON_EVENT_FUCHSIA))?;
                     }
-                    if self.0.contains(ExternalSemaphoreHandleTypeFlags::Reserved5Nv) {
+                    if self.0.contains(ExternalSemaphoreHandleTypeFlags::RESERVED_5_NV) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Reserved5Nv))?;
+                        f.write_str(stringify!(RESERVED_5_NV))?;
                     }
-                    if self.0.contains(ExternalSemaphoreHandleTypeFlags::Reserved6Nv) {
+                    if self.0.contains(ExternalSemaphoreHandleTypeFlags::RESERVED_6_NV) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Reserved6Nv))?;
+                        f.write_str(stringify!(RESERVED_6_NV))?;
                     }
                 }
                 Ok(())
@@ -4543,7 +4534,7 @@ impl std::fmt::Debug for ExternalSemaphoreHandleTypeFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalSemaphoreFeatureFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -4561,10 +4552,10 @@ impl From<ExternalSemaphoreFeatureFlagBits> for ExternalSemaphoreFeatureFlags {
 impl ExternalSemaphoreFeatureFlags {
     ///[`ExternalSemaphoreFeatureExportable`] specifies that
     ///handles of this type  **can**  be exported from Vulkan semaphore objects.
-    const ExternalSemaphoreFeatureExportable: Self = Self(1);
+    pub const EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE: Self = Self(1);
     ///[`ExternalSemaphoreFeatureImportable`] specifies that
     ///handles of this type  **can**  be imported as Vulkan semaphore objects.
-    const ExternalSemaphoreFeatureImportable: Self = Self(2);
+    pub const EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE: Self = Self(2);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -4573,7 +4564,7 @@ impl ExternalSemaphoreFeatureFlags {
     ///Returns a value with all of the flags enabled
     #[inline]
     pub const fn all() -> Self {
-        Self::empty() | Self::ExternalSemaphoreFeatureExportable | Self::ExternalSemaphoreFeatureImportable
+        Self::empty() | Self::EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE | Self::EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE
     }
     ///Returns the raw bits
     #[inline]
@@ -4735,35 +4726,33 @@ impl const std::ops::Not for ExternalSemaphoreFeatureFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<ExternalSemaphoreFeatureFlags> for ExternalSemaphoreFeatureFlags {
-    fn extend<T: std::iter::IntoIterator<Item = ExternalSemaphoreFeatureFlags>>(&mut self, iterator: T) {
+impl Extend<ExternalSemaphoreFeatureFlags> for ExternalSemaphoreFeatureFlags {
+    fn extend<T: IntoIterator<Item = ExternalSemaphoreFeatureFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<ExternalSemaphoreFeatureFlagBits> for ExternalSemaphoreFeatureFlags {
-    fn extend<T: std::iter::IntoIterator<Item = ExternalSemaphoreFeatureFlagBits>>(&mut self, iterator: T) {
+impl Extend<ExternalSemaphoreFeatureFlagBits> for ExternalSemaphoreFeatureFlags {
+    fn extend<T: IntoIterator<Item = ExternalSemaphoreFeatureFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(ExternalSemaphoreFeatureFlags::from(i));
+            Self::insert(self, <Self as From<ExternalSemaphoreFeatureFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<ExternalSemaphoreFeatureFlags> for ExternalSemaphoreFeatureFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = ExternalSemaphoreFeatureFlags>>(
-        iterator: T,
-    ) -> ExternalSemaphoreFeatureFlags {
-        let mut out = ExternalSemaphoreFeatureFlags::empty();
-        out.extend(iterator);
+impl FromIterator<ExternalSemaphoreFeatureFlags> for ExternalSemaphoreFeatureFlags {
+    fn from_iter<T: IntoIterator<Item = ExternalSemaphoreFeatureFlags>>(iterator: T) -> ExternalSemaphoreFeatureFlags {
+        let mut out = Self::empty();
+        <Self as Extend<ExternalSemaphoreFeatureFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<ExternalSemaphoreFeatureFlagBits> for ExternalSemaphoreFeatureFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = ExternalSemaphoreFeatureFlagBits>>(
+impl FromIterator<ExternalSemaphoreFeatureFlagBits> for ExternalSemaphoreFeatureFlags {
+    fn from_iter<T: IntoIterator<Item = ExternalSemaphoreFeatureFlagBits>>(
         iterator: T,
     ) -> ExternalSemaphoreFeatureFlags {
-        let mut out = ExternalSemaphoreFeatureFlags::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<ExternalSemaphoreFeatureFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -4778,23 +4767,23 @@ impl std::fmt::Debug for ExternalSemaphoreFeatureFlags {
                     let mut first = true;
                     if self
                         .0
-                        .contains(ExternalSemaphoreFeatureFlags::ExternalSemaphoreFeatureExportable)
+                        .contains(ExternalSemaphoreFeatureFlags::EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalSemaphoreFeatureExportable))?;
+                        f.write_str(stringify!(EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE))?;
                     }
                     if self
                         .0
-                        .contains(ExternalSemaphoreFeatureFlags::ExternalSemaphoreFeatureImportable)
+                        .contains(ExternalSemaphoreFeatureFlags::EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalSemaphoreFeatureImportable))?;
+                        f.write_str(stringify!(EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE))?;
                     }
                 }
                 Ok(())
@@ -4840,7 +4829,7 @@ impl std::fmt::Debug for ExternalSemaphoreFeatureFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreImportFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -4860,7 +4849,7 @@ impl SemaphoreImportFlags {
     ///payload will be imported only temporarily, as described in
     ///[Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing),
     ///regardless of the permanence of `handleType`.
-    const SemaphoreImportTemporary: Self = Self(1);
+    pub const SEMAPHORE_IMPORT_TEMPORARY: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -4869,7 +4858,7 @@ impl SemaphoreImportFlags {
     ///Returns a value with all of the flags enabled
     #[inline]
     pub const fn all() -> Self {
-        Self::empty() | Self::SemaphoreImportTemporary
+        Self::empty() | Self::SEMAPHORE_IMPORT_TEMPORARY
     }
     ///Returns the raw bits
     #[inline]
@@ -5031,31 +5020,31 @@ impl const std::ops::Not for SemaphoreImportFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<SemaphoreImportFlags> for SemaphoreImportFlags {
-    fn extend<T: std::iter::IntoIterator<Item = SemaphoreImportFlags>>(&mut self, iterator: T) {
+impl Extend<SemaphoreImportFlags> for SemaphoreImportFlags {
+    fn extend<T: IntoIterator<Item = SemaphoreImportFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<SemaphoreImportFlagBits> for SemaphoreImportFlags {
-    fn extend<T: std::iter::IntoIterator<Item = SemaphoreImportFlagBits>>(&mut self, iterator: T) {
+impl Extend<SemaphoreImportFlagBits> for SemaphoreImportFlags {
+    fn extend<T: IntoIterator<Item = SemaphoreImportFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(SemaphoreImportFlags::from(i));
+            Self::insert(self, <Self as From<SemaphoreImportFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<SemaphoreImportFlags> for SemaphoreImportFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = SemaphoreImportFlags>>(iterator: T) -> SemaphoreImportFlags {
-        let mut out = SemaphoreImportFlags::empty();
-        out.extend(iterator);
+impl FromIterator<SemaphoreImportFlags> for SemaphoreImportFlags {
+    fn from_iter<T: IntoIterator<Item = SemaphoreImportFlags>>(iterator: T) -> SemaphoreImportFlags {
+        let mut out = Self::empty();
+        <Self as Extend<SemaphoreImportFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<SemaphoreImportFlagBits> for SemaphoreImportFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = SemaphoreImportFlagBits>>(iterator: T) -> SemaphoreImportFlags {
-        let mut out = SemaphoreImportFlags::empty();
-        out.extend(iterator);
+impl FromIterator<SemaphoreImportFlagBits> for SemaphoreImportFlags {
+    fn from_iter<T: IntoIterator<Item = SemaphoreImportFlagBits>>(iterator: T) -> SemaphoreImportFlags {
+        let mut out = Self::empty();
+        <Self as Extend<SemaphoreImportFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -5068,12 +5057,12 @@ impl std::fmt::Debug for SemaphoreImportFlags {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(SemaphoreImportFlags::SemaphoreImportTemporary) {
+                    if self.0.contains(SemaphoreImportFlags::SEMAPHORE_IMPORT_TEMPORARY) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SemaphoreImportTemporary))?;
+                        f.write_str(stringify!(SEMAPHORE_IMPORT_TEMPORARY))?;
                     }
                 }
                 Ok(())
@@ -5158,7 +5147,7 @@ impl std::fmt::Debug for SemaphoreImportFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalFenceHandleTypeFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -5183,7 +5172,7 @@ impl ExternalFenceHandleTypeFlags {
     ///`SCM_RIGHTS` control message.
     ///It owns a reference to the underlying synchronization primitive
     ///represented by its Vulkan fence object.
-    const ExternalFenceHandleTypeOpaqueFd: Self = Self(1);
+    pub const EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD: Self = Self(1);
     ///[`ExternalFenceHandleTypeOpaqueWin32`] specifies an NT
     ///handle that has only limited valid usage outside of Vulkan and other
     ///compatible APIs.
@@ -5192,7 +5181,7 @@ impl ExternalFenceHandleTypeFlags {
     ///and `SetHandleInformation`.
     ///It owns a reference to the underlying synchronization primitive
     ///represented by its Vulkan fence object.
-    const ExternalFenceHandleTypeOpaqueWin32: Self = Self(2);
+    pub const EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN_32: Self = Self(2);
     ///[`ExternalFenceHandleTypeOpaqueWin32Kmt`] specifies a
     ///global share handle that has only limited valid usage outside of Vulkan
     ///and other compatible APIs.
@@ -5200,7 +5189,7 @@ impl ExternalFenceHandleTypeFlags {
     ///It does not own a reference to the underlying synchronization primitive
     ///represented by its Vulkan fence object, and will therefore become
     ///invalid when all Vulkan fence objects associated with it are destroyed.
-    const ExternalFenceHandleTypeOpaqueWin32Kmt: Self = Self(4);
+    pub const EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN_32_KMT: Self = Self(4);
     ///[`ExternalFenceHandleTypeSyncFd`] specifies a POSIX file
     ///descriptor handle to a Linux Sync File or Android Fence.
     ///It can be used with any native API accepting a valid sync file or fence
@@ -5210,15 +5199,15 @@ impl ExternalFenceHandleTypeFlags {
     ///Implementations which support importing this handle type  **must**  accept
     ///any type of sync or fence FD supported by the native system they are
     ///running on.
-    const ExternalFenceHandleTypeSyncFd: Self = Self(8);
+    pub const EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD: Self = Self(8);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_extension_374`]
-    const Reserved4Nv: Self = Self(16);
+    pub const RESERVED_4_NV: Self = Self(16);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_extension_374`]
-    const Reserved5Nv: Self = Self(32);
+    pub const RESERVED_5_NV: Self = Self(32);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -5228,12 +5217,12 @@ impl ExternalFenceHandleTypeFlags {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::ExternalFenceHandleTypeOpaqueFd
-            | Self::ExternalFenceHandleTypeOpaqueWin32
-            | Self::ExternalFenceHandleTypeOpaqueWin32Kmt
-            | Self::ExternalFenceHandleTypeSyncFd
-            | Self::Reserved4Nv
-            | Self::Reserved5Nv
+            | Self::EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD
+            | Self::EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN_32
+            | Self::EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN_32_KMT
+            | Self::EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD
+            | Self::RESERVED_4_NV
+            | Self::RESERVED_5_NV
     }
     ///Returns the raw bits
     #[inline]
@@ -5395,35 +5384,31 @@ impl const std::ops::Not for ExternalFenceHandleTypeFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<ExternalFenceHandleTypeFlags> for ExternalFenceHandleTypeFlags {
-    fn extend<T: std::iter::IntoIterator<Item = ExternalFenceHandleTypeFlags>>(&mut self, iterator: T) {
+impl Extend<ExternalFenceHandleTypeFlags> for ExternalFenceHandleTypeFlags {
+    fn extend<T: IntoIterator<Item = ExternalFenceHandleTypeFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<ExternalFenceHandleTypeFlagBits> for ExternalFenceHandleTypeFlags {
-    fn extend<T: std::iter::IntoIterator<Item = ExternalFenceHandleTypeFlagBits>>(&mut self, iterator: T) {
+impl Extend<ExternalFenceHandleTypeFlagBits> for ExternalFenceHandleTypeFlags {
+    fn extend<T: IntoIterator<Item = ExternalFenceHandleTypeFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(ExternalFenceHandleTypeFlags::from(i));
+            Self::insert(self, <Self as From<ExternalFenceHandleTypeFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<ExternalFenceHandleTypeFlags> for ExternalFenceHandleTypeFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = ExternalFenceHandleTypeFlags>>(
-        iterator: T,
-    ) -> ExternalFenceHandleTypeFlags {
-        let mut out = ExternalFenceHandleTypeFlags::empty();
-        out.extend(iterator);
+impl FromIterator<ExternalFenceHandleTypeFlags> for ExternalFenceHandleTypeFlags {
+    fn from_iter<T: IntoIterator<Item = ExternalFenceHandleTypeFlags>>(iterator: T) -> ExternalFenceHandleTypeFlags {
+        let mut out = Self::empty();
+        <Self as Extend<ExternalFenceHandleTypeFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<ExternalFenceHandleTypeFlagBits> for ExternalFenceHandleTypeFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = ExternalFenceHandleTypeFlagBits>>(
-        iterator: T,
-    ) -> ExternalFenceHandleTypeFlags {
-        let mut out = ExternalFenceHandleTypeFlags::empty();
-        out.extend(iterator);
+impl FromIterator<ExternalFenceHandleTypeFlagBits> for ExternalFenceHandleTypeFlags {
+    fn from_iter<T: IntoIterator<Item = ExternalFenceHandleTypeFlagBits>>(iterator: T) -> ExternalFenceHandleTypeFlags {
+        let mut out = Self::empty();
+        <Self as Extend<ExternalFenceHandleTypeFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -5438,57 +5423,57 @@ impl std::fmt::Debug for ExternalFenceHandleTypeFlags {
                     let mut first = true;
                     if self
                         .0
-                        .contains(ExternalFenceHandleTypeFlags::ExternalFenceHandleTypeOpaqueFd)
+                        .contains(ExternalFenceHandleTypeFlags::EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalFenceHandleTypeOpaqueFd))?;
+                        f.write_str(stringify!(EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD))?;
                     }
                     if self
                         .0
-                        .contains(ExternalFenceHandleTypeFlags::ExternalFenceHandleTypeOpaqueWin32)
+                        .contains(ExternalFenceHandleTypeFlags::EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN_32)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalFenceHandleTypeOpaqueWin32))?;
+                        f.write_str(stringify!(EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN_32))?;
                     }
                     if self
                         .0
-                        .contains(ExternalFenceHandleTypeFlags::ExternalFenceHandleTypeOpaqueWin32Kmt)
+                        .contains(ExternalFenceHandleTypeFlags::EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN_32_KMT)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalFenceHandleTypeOpaqueWin32Kmt))?;
+                        f.write_str(stringify!(EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN_32_KMT))?;
                     }
                     if self
                         .0
-                        .contains(ExternalFenceHandleTypeFlags::ExternalFenceHandleTypeSyncFd)
+                        .contains(ExternalFenceHandleTypeFlags::EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalFenceHandleTypeSyncFd))?;
+                        f.write_str(stringify!(EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD))?;
                     }
-                    if self.0.contains(ExternalFenceHandleTypeFlags::Reserved4Nv) {
+                    if self.0.contains(ExternalFenceHandleTypeFlags::RESERVED_4_NV) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Reserved4Nv))?;
+                        f.write_str(stringify!(RESERVED_4_NV))?;
                     }
-                    if self.0.contains(ExternalFenceHandleTypeFlags::Reserved5Nv) {
+                    if self.0.contains(ExternalFenceHandleTypeFlags::RESERVED_5_NV) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(Reserved5Nv))?;
+                        f.write_str(stringify!(RESERVED_5_NV))?;
                     }
                 }
                 Ok(())
@@ -5537,7 +5522,7 @@ impl std::fmt::Debug for ExternalFenceHandleTypeFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalFenceFeatureFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -5555,10 +5540,10 @@ impl From<ExternalFenceFeatureFlagBits> for ExternalFenceFeatureFlags {
 impl ExternalFenceFeatureFlags {
     ///[`ExternalFenceFeatureExportable`] specifies handles of this
     ///type  **can**  be exported from Vulkan fence objects.
-    const ExternalFenceFeatureExportable: Self = Self(1);
+    pub const EXTERNAL_FENCE_FEATURE_EXPORTABLE: Self = Self(1);
     ///[`ExternalFenceFeatureImportable`] specifies handles of this
     ///type  **can**  be imported to Vulkan fence objects.
-    const ExternalFenceFeatureImportable: Self = Self(2);
+    pub const EXTERNAL_FENCE_FEATURE_IMPORTABLE: Self = Self(2);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -5567,7 +5552,7 @@ impl ExternalFenceFeatureFlags {
     ///Returns a value with all of the flags enabled
     #[inline]
     pub const fn all() -> Self {
-        Self::empty() | Self::ExternalFenceFeatureExportable | Self::ExternalFenceFeatureImportable
+        Self::empty() | Self::EXTERNAL_FENCE_FEATURE_EXPORTABLE | Self::EXTERNAL_FENCE_FEATURE_IMPORTABLE
     }
     ///Returns the raw bits
     #[inline]
@@ -5729,35 +5714,31 @@ impl const std::ops::Not for ExternalFenceFeatureFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<ExternalFenceFeatureFlags> for ExternalFenceFeatureFlags {
-    fn extend<T: std::iter::IntoIterator<Item = ExternalFenceFeatureFlags>>(&mut self, iterator: T) {
+impl Extend<ExternalFenceFeatureFlags> for ExternalFenceFeatureFlags {
+    fn extend<T: IntoIterator<Item = ExternalFenceFeatureFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<ExternalFenceFeatureFlagBits> for ExternalFenceFeatureFlags {
-    fn extend<T: std::iter::IntoIterator<Item = ExternalFenceFeatureFlagBits>>(&mut self, iterator: T) {
+impl Extend<ExternalFenceFeatureFlagBits> for ExternalFenceFeatureFlags {
+    fn extend<T: IntoIterator<Item = ExternalFenceFeatureFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(ExternalFenceFeatureFlags::from(i));
+            Self::insert(self, <Self as From<ExternalFenceFeatureFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<ExternalFenceFeatureFlags> for ExternalFenceFeatureFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = ExternalFenceFeatureFlags>>(
-        iterator: T,
-    ) -> ExternalFenceFeatureFlags {
-        let mut out = ExternalFenceFeatureFlags::empty();
-        out.extend(iterator);
+impl FromIterator<ExternalFenceFeatureFlags> for ExternalFenceFeatureFlags {
+    fn from_iter<T: IntoIterator<Item = ExternalFenceFeatureFlags>>(iterator: T) -> ExternalFenceFeatureFlags {
+        let mut out = Self::empty();
+        <Self as Extend<ExternalFenceFeatureFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<ExternalFenceFeatureFlagBits> for ExternalFenceFeatureFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = ExternalFenceFeatureFlagBits>>(
-        iterator: T,
-    ) -> ExternalFenceFeatureFlags {
-        let mut out = ExternalFenceFeatureFlags::empty();
-        out.extend(iterator);
+impl FromIterator<ExternalFenceFeatureFlagBits> for ExternalFenceFeatureFlags {
+    fn from_iter<T: IntoIterator<Item = ExternalFenceFeatureFlagBits>>(iterator: T) -> ExternalFenceFeatureFlags {
+        let mut out = Self::empty();
+        <Self as Extend<ExternalFenceFeatureFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -5772,23 +5753,23 @@ impl std::fmt::Debug for ExternalFenceFeatureFlags {
                     let mut first = true;
                     if self
                         .0
-                        .contains(ExternalFenceFeatureFlags::ExternalFenceFeatureExportable)
+                        .contains(ExternalFenceFeatureFlags::EXTERNAL_FENCE_FEATURE_EXPORTABLE)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalFenceFeatureExportable))?;
+                        f.write_str(stringify!(EXTERNAL_FENCE_FEATURE_EXPORTABLE))?;
                     }
                     if self
                         .0
-                        .contains(ExternalFenceFeatureFlags::ExternalFenceFeatureImportable)
+                        .contains(ExternalFenceFeatureFlags::EXTERNAL_FENCE_FEATURE_IMPORTABLE)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ExternalFenceFeatureImportable))?;
+                        f.write_str(stringify!(EXTERNAL_FENCE_FEATURE_IMPORTABLE))?;
                     }
                 }
                 Ok(())
@@ -5832,7 +5813,7 @@ impl std::fmt::Debug for ExternalFenceFeatureFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFenceImportFlags")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -5852,7 +5833,7 @@ impl FenceImportFlags {
     ///will be imported only temporarily, as described in
     ///[Importing Fence Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-importing),
     ///regardless of the permanence of `handleType`.
-    const FenceImportTemporary: Self = Self(1);
+    pub const FENCE_IMPORT_TEMPORARY: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -5861,7 +5842,7 @@ impl FenceImportFlags {
     ///Returns a value with all of the flags enabled
     #[inline]
     pub const fn all() -> Self {
-        Self::empty() | Self::FenceImportTemporary
+        Self::empty() | Self::FENCE_IMPORT_TEMPORARY
     }
     ///Returns the raw bits
     #[inline]
@@ -6023,31 +6004,31 @@ impl const std::ops::Not for FenceImportFlags {
         self.complement()
     }
 }
-impl std::iter::Extend<FenceImportFlags> for FenceImportFlags {
-    fn extend<T: std::iter::IntoIterator<Item = FenceImportFlags>>(&mut self, iterator: T) {
+impl Extend<FenceImportFlags> for FenceImportFlags {
+    fn extend<T: IntoIterator<Item = FenceImportFlags>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<FenceImportFlagBits> for FenceImportFlags {
-    fn extend<T: std::iter::IntoIterator<Item = FenceImportFlagBits>>(&mut self, iterator: T) {
+impl Extend<FenceImportFlagBits> for FenceImportFlags {
+    fn extend<T: IntoIterator<Item = FenceImportFlagBits>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(FenceImportFlags::from(i));
+            Self::insert(self, <Self as From<FenceImportFlagBits>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<FenceImportFlags> for FenceImportFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = FenceImportFlags>>(iterator: T) -> FenceImportFlags {
-        let mut out = FenceImportFlags::empty();
-        out.extend(iterator);
+impl FromIterator<FenceImportFlags> for FenceImportFlags {
+    fn from_iter<T: IntoIterator<Item = FenceImportFlags>>(iterator: T) -> FenceImportFlags {
+        let mut out = Self::empty();
+        <Self as Extend<FenceImportFlags>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<FenceImportFlagBits> for FenceImportFlags {
-    fn from_iter<T: std::iter::IntoIterator<Item = FenceImportFlagBits>>(iterator: T) -> FenceImportFlags {
-        let mut out = FenceImportFlags::empty();
-        out.extend(iterator);
+impl FromIterator<FenceImportFlagBits> for FenceImportFlags {
+    fn from_iter<T: IntoIterator<Item = FenceImportFlagBits>>(iterator: T) -> FenceImportFlags {
+        let mut out = Self::empty();
+        <Self as Extend<FenceImportFlagBits>>::extend(&mut out, iterator);
         out
     }
 }
@@ -6060,12 +6041,12 @@ impl std::fmt::Debug for FenceImportFlags {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(FenceImportFlags::FenceImportTemporary) {
+                    if self.0.contains(FenceImportFlags::FENCE_IMPORT_TEMPORARY) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(FenceImportTemporary))?;
+                        f.write_str(stringify!(FENCE_IMPORT_TEMPORARY))?;
                     }
                 }
                 Ok(())
@@ -6121,10 +6102,11 @@ impl std::fmt::Debug for FenceImportFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFeatures2")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFeatures2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6284,10 +6266,11 @@ impl<'lt> PhysicalDeviceFeatures2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceProperties2")]
-#[derive(Debug)]
+#[derive(Debug, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceProperties2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6411,10 +6394,11 @@ impl<'lt> PhysicalDeviceProperties2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFormatProperties2")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct FormatProperties2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6541,10 +6525,11 @@ impl<'lt> FormatProperties2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageFormatProperties2")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageFormatProperties2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6707,6 +6692,7 @@ impl<'lt> ImageFormatProperties2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceImageFormatInfo2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -6798,7 +6784,7 @@ impl<'lt> PhysicalDeviceImageFormatInfo2<'lt> {
         &mut self.format
     }
     ///Gets a mutable reference to the value of [`Self::type_`]
-    pub fn type__mut(&mut self) -> &mut ImageType {
+    pub fn type_mut(&mut self) -> &mut ImageType {
         &mut self.type_
     }
     ///Gets a mutable reference to the value of [`Self::tiling`]
@@ -6893,10 +6879,11 @@ impl<'lt> PhysicalDeviceImageFormatInfo2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueueFamilyProperties2")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct QueueFamilyProperties2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -7016,10 +7003,11 @@ impl<'lt> QueueFamilyProperties2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMemoryProperties2")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMemoryProperties2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -7137,10 +7125,11 @@ impl<'lt> PhysicalDeviceMemoryProperties2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSparseImageFormatProperties2")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SparseImageFormatProperties2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -7285,6 +7274,7 @@ impl<'lt> SparseImageFormatProperties2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSparseImageFormatInfo2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -7367,7 +7357,7 @@ impl<'lt> PhysicalDeviceSparseImageFormatInfo2<'lt> {
         &mut self.format
     }
     ///Gets a mutable reference to the value of [`Self::type_`]
-    pub fn type__mut(&mut self) -> &mut ImageType {
+    pub fn type_mut(&mut self) -> &mut ImageType {
         &mut self.type_
     }
     ///Gets a mutable reference to the value of [`Self::samples`]
@@ -7485,10 +7475,11 @@ impl<'lt> PhysicalDeviceSparseImageFormatInfo2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVariablePointersFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVariablePointersFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -7810,6 +7801,7 @@ impl ExternalMemoryProperties {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceExternalImageFormatInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -7918,10 +7910,11 @@ impl<'lt> PhysicalDeviceExternalImageFormatInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalImageFormatProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExternalImageFormatProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8055,6 +8048,7 @@ impl<'lt> ExternalImageFormatProperties<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceExternalBufferInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8202,10 +8196,11 @@ impl<'lt> PhysicalDeviceExternalBufferInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalBufferProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExternalBufferProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8363,10 +8358,11 @@ impl<'lt> ExternalBufferProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceIDProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceIdProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8374,11 +8370,11 @@ pub struct PhysicalDeviceIdProperties<'lt> {
     ///structure.
     pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    pub device_uuid: [u8; UUID_SIZE],
+    pub device_uuid: [u8; UUID_SIZE as usize],
     ///No documentation found
-    pub driver_uuid: [u8; UUID_SIZE],
+    pub driver_uuid: [u8; UUID_SIZE as usize],
     ///No documentation found
-    pub device_luid: [u8; LUID_SIZE],
+    pub device_luid: [u8; LUID_SIZE as usize],
     ///No documentation found
     pub device_node_mask: u32,
     ///No documentation found
@@ -8390,9 +8386,9 @@ impl<'lt> Default for PhysicalDeviceIdProperties<'lt> {
             _lifetime: PhantomData,
             s_type: Default::default(),
             p_next: std::ptr::null_mut(),
-            device_uuid: [0; UUID_SIZE],
-            driver_uuid: [0; UUID_SIZE],
-            device_luid: [0; LUID_SIZE],
+            device_uuid: [0; UUID_SIZE as usize],
+            driver_uuid: [0; UUID_SIZE as usize],
+            device_luid: [0; LUID_SIZE as usize],
             device_node_mask: 0,
             device_luid_valid: 0,
         }
@@ -8429,16 +8425,16 @@ impl<'lt> PhysicalDeviceIdProperties<'lt> {
         &*self.p_next
     }
     ///Gets the value of [`Self::device_uuid`]
-    pub fn device_uuid(&self) -> &[u8; UUID_SIZE] {
-        &getter
+    pub fn device_uuid(&self) -> &[u8; UUID_SIZE as usize] {
+        &self.device_uuid
     }
     ///Gets the value of [`Self::driver_uuid`]
-    pub fn driver_uuid(&self) -> &[u8; UUID_SIZE] {
-        &getter
+    pub fn driver_uuid(&self) -> &[u8; UUID_SIZE as usize] {
+        &self.driver_uuid
     }
     ///Gets the value of [`Self::device_luid`]
-    pub fn device_luid(&self) -> &[u8; LUID_SIZE] {
-        &getter
+    pub fn device_luid(&self) -> &[u8; LUID_SIZE as usize] {
+        &self.device_luid
     }
     ///Gets the value of [`Self::device_node_mask`]
     pub fn device_node_mask(&self) -> u32 {
@@ -8460,20 +8456,20 @@ impl<'lt> PhysicalDeviceIdProperties<'lt> {
         &mut *self.p_next
     }
     ///Gets a mutable reference to the value of [`Self::device_uuid`]
-    pub fn device_uuid_mut(&mut self) -> &mut [u8; UUID_SIZE] {
-        &mut getter
+    pub fn device_uuid_mut(&mut self) -> &mut [u8; UUID_SIZE as usize] {
+        &mut self.device_uuid
     }
     ///Gets a mutable reference to the value of [`Self::driver_uuid`]
-    pub fn driver_uuid_mut(&mut self) -> &mut [u8; UUID_SIZE] {
-        &mut getter
+    pub fn driver_uuid_mut(&mut self) -> &mut [u8; UUID_SIZE as usize] {
+        &mut self.driver_uuid
     }
     ///Gets a mutable reference to the value of [`Self::device_luid`]
-    pub fn device_luid_mut(&mut self) -> &mut [u8; LUID_SIZE] {
-        &mut getter
+    pub fn device_luid_mut(&mut self) -> &mut [u8; LUID_SIZE as usize] {
+        &mut self.device_luid
     }
     ///Gets a mutable reference to the value of [`Self::device_node_mask`]
     pub fn device_node_mask_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.device_node_mask
     }
     ///Gets a mutable reference to the value of [`Self::device_luid_valid`]
     pub fn device_luid_valid_mut(&mut self) -> &mut bool {
@@ -8504,17 +8500,17 @@ impl<'lt> PhysicalDeviceIdProperties<'lt> {
         self
     }
     ///Sets the raw value of [`Self::device_uuid`]
-    pub fn set_device_uuid(&mut self, value: [u8; crate::core::UUID_SIZE]) -> &mut Self {
+    pub fn set_device_uuid(&mut self, value: [u8; crate::core::UUID_SIZE as usize]) -> &mut Self {
         self.device_uuid = value;
         self
     }
     ///Sets the raw value of [`Self::driver_uuid`]
-    pub fn set_driver_uuid(&mut self, value: [u8; crate::core::UUID_SIZE]) -> &mut Self {
+    pub fn set_driver_uuid(&mut self, value: [u8; crate::core::UUID_SIZE as usize]) -> &mut Self {
         self.driver_uuid = value;
         self
     }
     ///Sets the raw value of [`Self::device_luid`]
-    pub fn set_device_luid(&mut self, value: [u8; crate::vulkan1_1::LUID_SIZE]) -> &mut Self {
+    pub fn set_device_luid(&mut self, value: [u8; crate::vulkan1_1::LUID_SIZE as usize]) -> &mut Self {
         self.device_luid = value;
         self
     }
@@ -8575,6 +8571,7 @@ impl<'lt> PhysicalDeviceIdProperties<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExternalMemoryImageCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8691,6 +8688,7 @@ impl<'lt> ExternalMemoryImageCreateInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExternalMemoryBufferCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8813,6 +8811,7 @@ impl<'lt> ExternalMemoryBufferCreateInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExportMemoryAllocateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -8931,6 +8930,7 @@ impl<'lt> ExportMemoryAllocateInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceExternalSemaphoreInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -9052,10 +9052,11 @@ impl<'lt> PhysicalDeviceExternalSemaphoreInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalSemaphoreProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExternalSemaphoreProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
     pub s_type: StructureType,
@@ -9230,6 +9231,7 @@ impl<'lt> ExternalSemaphoreProperties<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExportSemaphoreCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -9348,6 +9350,7 @@ impl<'lt> ExportSemaphoreCreateInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceExternalFenceInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -9467,10 +9470,11 @@ impl<'lt> PhysicalDeviceExternalFenceInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalFenceProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExternalFenceProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///No documentation found
     pub s_type: StructureType,
@@ -9638,6 +9642,7 @@ impl<'lt> ExternalFenceProperties<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExportFenceCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -9763,10 +9768,11 @@ impl<'lt> ExportFenceCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMultiviewFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMultiviewFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -9999,10 +10005,11 @@ impl<'lt> PhysicalDeviceMultiviewFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMultiviewProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMultiviewProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -10067,11 +10074,11 @@ impl<'lt> PhysicalDeviceMultiviewProperties<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_multiview_view_count`]
     pub fn max_multiview_view_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_multiview_view_count
     }
     ///Gets a mutable reference to the value of [`Self::max_multiview_instance_index`]
     pub fn max_multiview_instance_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_multiview_instance_index
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -10240,6 +10247,7 @@ impl<'lt> PhysicalDeviceMultiviewProperties<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderPassMultiviewCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -10374,15 +10382,15 @@ impl<'lt> RenderPassMultiviewCreateInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::subpass_count`]
     pub fn subpass_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.subpass_count
     }
     ///Gets a mutable reference to the value of [`Self::dependency_count`]
     pub fn dependency_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.dependency_count
     }
     ///Gets a mutable reference to the value of [`Self::correlation_mask_count`]
     pub fn correlation_mask_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.correlation_mask_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -10484,10 +10492,11 @@ impl<'lt> RenderPassMultiviewCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceGroupProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceGroupProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -10500,7 +10509,7 @@ pub struct PhysicalDeviceGroupProperties<'lt> {
     ///[`physical_devices`] is an array of [`MAX_DEVICE_GROUP_SIZE`][`PhysicalDevice`] handles
     /// representing all physical devices in the group.
     ///The first [`physical_device_count`] elements of the array will be valid.
-    pub physical_devices: [PhysicalDevice; MAX_DEVICE_GROUP_SIZE],
+    pub physical_devices: [PhysicalDevice; MAX_DEVICE_GROUP_SIZE as usize],
     ///[`subset_allocation`] specifies whether logical devices created from
     ///the group support allocating device memory on a subset of devices, via
     ///the `deviceMask` member of the [`MemoryAllocateFlagsInfo`].
@@ -10517,7 +10526,7 @@ impl<'lt> Default for PhysicalDeviceGroupProperties<'lt> {
             s_type: Default::default(),
             p_next: std::ptr::null_mut(),
             physical_device_count: 0,
-            physical_devices: [Default::default(); MAX_DEVICE_GROUP_SIZE],
+            physical_devices: [Default::default(); MAX_DEVICE_GROUP_SIZE as usize],
             subset_allocation: 0,
         }
     }
@@ -10557,8 +10566,8 @@ impl<'lt> PhysicalDeviceGroupProperties<'lt> {
         self.physical_device_count
     }
     ///Gets the value of [`Self::physical_devices`]
-    pub fn physical_devices(&self) -> &[PhysicalDevice; MAX_DEVICE_GROUP_SIZE] {
-        &getter
+    pub fn physical_devices(&self) -> &[PhysicalDevice; MAX_DEVICE_GROUP_SIZE as usize] {
+        &self.physical_devices
     }
     ///Gets the value of [`Self::subset_allocation`]
     pub fn subset_allocation(&self) -> bool {
@@ -10577,11 +10586,11 @@ impl<'lt> PhysicalDeviceGroupProperties<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::physical_device_count`]
     pub fn physical_device_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.physical_device_count
     }
     ///Gets a mutable reference to the value of [`Self::physical_devices`]
-    pub fn physical_devices_mut(&mut self) -> &mut [PhysicalDevice; MAX_DEVICE_GROUP_SIZE] {
-        &mut getter
+    pub fn physical_devices_mut(&mut self) -> &mut [PhysicalDevice; MAX_DEVICE_GROUP_SIZE as usize] {
+        &mut self.physical_devices
     }
     ///Gets a mutable reference to the value of [`Self::subset_allocation`]
     pub fn subset_allocation_mut(&mut self) -> &mut bool {
@@ -10619,7 +10628,7 @@ impl<'lt> PhysicalDeviceGroupProperties<'lt> {
     ///Sets the raw value of [`Self::physical_devices`]
     pub fn set_physical_devices(
         &mut self,
-        value: [crate::vulkan1_0::PhysicalDevice; crate::vulkan1_1::MAX_DEVICE_GROUP_SIZE],
+        value: [crate::vulkan1_0::PhysicalDevice; crate::vulkan1_1::MAX_DEVICE_GROUP_SIZE as usize],
     ) -> &mut Self {
         self.physical_devices = value;
         self
@@ -10697,6 +10706,7 @@ impl<'lt> PhysicalDeviceGroupProperties<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryAllocateFlagsInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -10761,7 +10771,7 @@ impl<'lt> MemoryAllocateFlagsInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::device_mask`]
     pub fn device_mask_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.device_mask
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -10896,6 +10906,7 @@ impl<'lt> MemoryAllocateFlagsInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BindBufferMemoryInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -11064,6 +11075,7 @@ impl<'lt> BindBufferMemoryInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BindBufferMemoryDeviceGroupInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -11134,7 +11146,7 @@ impl<'lt> BindBufferMemoryDeviceGroupInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::device_index_count`]
     pub fn device_index_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.device_index_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -11317,6 +11329,7 @@ impl<'lt> BindBufferMemoryDeviceGroupInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BindImageMemoryInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -11529,6 +11542,7 @@ impl<'lt> BindImageMemoryInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BindImageMemoryDeviceGroupInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -11631,11 +11645,11 @@ impl<'lt> BindImageMemoryDeviceGroupInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::device_index_count`]
     pub fn device_index_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.device_index_count
     }
     ///Gets a mutable reference to the value of [`Self::split_instance_bind_region_count`]
     pub fn split_instance_bind_region_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.split_instance_bind_region_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -11761,6 +11775,7 @@ impl<'lt> BindImageMemoryDeviceGroupInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceGroupRenderPassBeginInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -11839,11 +11854,11 @@ impl<'lt> DeviceGroupRenderPassBeginInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::device_mask`]
     pub fn device_mask_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.device_mask
     }
     ///Gets a mutable reference to the value of [`Self::device_render_area_count`]
     pub fn device_render_area_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.device_render_area_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -11925,6 +11940,7 @@ impl<'lt> DeviceGroupRenderPassBeginInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceGroupCommandBufferBeginInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -11976,7 +11992,7 @@ impl<'lt> DeviceGroupCommandBufferBeginInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::device_mask`]
     pub fn device_mask_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.device_mask
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -12072,6 +12088,7 @@ impl<'lt> DeviceGroupCommandBufferBeginInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceGroupSubmitInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -12210,15 +12227,15 @@ impl<'lt> DeviceGroupSubmitInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::wait_semaphore_count`]
     pub fn wait_semaphore_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.wait_semaphore_count
     }
     ///Gets a mutable reference to the value of [`Self::command_buffer_count`]
     pub fn command_buffer_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.command_buffer_count
     }
     ///Gets a mutable reference to the value of [`Self::signal_semaphore_count`]
     pub fn signal_semaphore_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.signal_semaphore_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -12327,6 +12344,7 @@ impl<'lt> DeviceGroupSubmitInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceGroupBindSparseInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -12386,11 +12404,11 @@ impl<'lt> DeviceGroupBindSparseInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::resource_device_index`]
     pub fn resource_device_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.resource_device_index
     }
     ///Gets a mutable reference to the value of [`Self::memory_device_index`]
     pub fn memory_device_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.memory_device_index
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -12482,6 +12500,7 @@ impl<'lt> DeviceGroupBindSparseInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceGroupDeviceCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -12553,7 +12572,7 @@ impl<'lt> DeviceGroupDeviceCreateInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::physical_device_count`]
     pub fn physical_device_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.physical_device_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -12732,15 +12751,15 @@ impl DescriptorUpdateTemplateEntry {
     }
     ///Gets a mutable reference to the value of [`Self::dst_binding`]
     pub fn dst_binding_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.dst_binding
     }
     ///Gets a mutable reference to the value of [`Self::dst_array_element`]
     pub fn dst_array_element_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.dst_array_element
     }
     ///Gets a mutable reference to the value of [`Self::descriptor_count`]
     pub fn descriptor_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.descriptor_count
     }
     ///Gets a mutable reference to the value of [`Self::descriptor_type`]
     pub fn descriptor_type_mut(&mut self) -> &mut DescriptorType {
@@ -12748,11 +12767,11 @@ impl DescriptorUpdateTemplateEntry {
     }
     ///Gets a mutable reference to the value of [`Self::offset`]
     pub fn offset_mut(&mut self) -> &mut usize {
-        &mut getter
+        &mut self.offset
     }
     ///Gets a mutable reference to the value of [`Self::stride`]
     pub fn stride_mut(&mut self) -> &mut usize {
-        &mut getter
+        &mut self.stride
     }
     ///Sets the raw value of [`Self::dst_binding`]
     pub fn set_dst_binding(&mut self, value: u32) -> &mut Self {
@@ -12886,6 +12905,7 @@ impl DescriptorUpdateTemplateEntry {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorUpdateTemplateCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -13028,7 +13048,7 @@ impl<'lt> DescriptorUpdateTemplateCreateInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::descriptor_update_entry_count`]
     pub fn descriptor_update_entry_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.descriptor_update_entry_count
     }
     ///Gets a mutable reference to the value of [`Self::template_type`]
     pub fn template_type_mut(&mut self) -> &mut DescriptorUpdateTemplateType {
@@ -13048,7 +13068,7 @@ impl<'lt> DescriptorUpdateTemplateCreateInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::set`]
     pub fn set_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.set
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -13197,11 +13217,11 @@ impl InputAttachmentAspectReference {
     }
     ///Gets a mutable reference to the value of [`Self::subpass`]
     pub fn subpass_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.subpass
     }
     ///Gets a mutable reference to the value of [`Self::input_attachment_index`]
     pub fn input_attachment_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.input_attachment_index
     }
     ///Gets a mutable reference to the value of [`Self::aspect_mask`]
     pub fn aspect_mask_mut(&mut self) -> &mut ImageAspectFlags {
@@ -13280,6 +13300,7 @@ impl InputAttachmentAspectReference {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderPassInputAttachmentAspectCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -13353,7 +13374,7 @@ impl<'lt> RenderPassInputAttachmentAspectCreateInfo<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::aspect_reference_count`]
     pub fn aspect_reference_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.aspect_reference_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -13450,10 +13471,11 @@ impl<'lt> RenderPassInputAttachmentAspectCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevice16BitStorageFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevice16BitStorageFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -13744,10 +13766,11 @@ impl<'lt> PhysicalDevice16BitStorageFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSubgroupProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSubgroupProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -13835,7 +13858,7 @@ impl<'lt> PhysicalDeviceSubgroupProperties<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::subgroup_size`]
     pub fn subgroup_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.subgroup_size
     }
     ///Gets a mutable reference to the value of [`Self::supported_stages`]
     pub fn supported_stages_mut(&mut self) -> &mut ShaderStageFlags {
@@ -13938,6 +13961,7 @@ impl<'lt> PhysicalDeviceSubgroupProperties<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferMemoryRequirementsInfo2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -14071,6 +14095,7 @@ impl<'lt> BufferMemoryRequirementsInfo2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageMemoryRequirementsInfo2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -14183,6 +14208,7 @@ impl<'lt> ImageMemoryRequirementsInfo2<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageSparseMemoryRequirementsInfo2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -14301,10 +14327,11 @@ impl<'lt> ImageSparseMemoryRequirementsInfo2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryRequirements2")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryRequirements2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -14423,10 +14450,11 @@ impl<'lt> MemoryRequirements2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSparseImageMemoryRequirements2")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SparseImageMemoryRequirements2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -14545,10 +14573,11 @@ impl<'lt> SparseImageMemoryRequirements2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePointClippingProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePointClippingProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -14695,10 +14724,11 @@ impl<'lt> PhysicalDevicePointClippingProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryDedicatedRequirements")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryDedicatedRequirements<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -14945,6 +14975,7 @@ impl<'lt> MemoryDedicatedRequirements<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryDedicatedAllocateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -15080,6 +15111,7 @@ impl<'lt> MemoryDedicatedAllocateInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageViewUsageCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -15200,6 +15232,7 @@ impl<'lt> ImageViewUsageCreateInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineTessellationDomainOriginStateCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -15325,6 +15358,7 @@ impl<'lt> PipelineTessellationDomainOriginStateCreateInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SamplerYcbcrConversionInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -15518,6 +15552,7 @@ impl<'lt> SamplerYcbcrConversionInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SamplerYcbcrConversionCreateInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -15790,6 +15825,7 @@ impl<'lt> SamplerYcbcrConversionCreateInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BindImagePlaneMemoryInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -15916,6 +15952,7 @@ impl<'lt> BindImagePlaneMemoryInfo<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImagePlaneMemoryRequirementsInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -16034,10 +16071,11 @@ impl<'lt> ImagePlaneMemoryRequirementsInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSamplerYcbcrConversionFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSamplerYcbcrConversionFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -16182,10 +16220,11 @@ impl<'lt> PhysicalDeviceSamplerYcbcrConversionFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerYcbcrConversionImageFormatProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SamplerYcbcrConversionImageFormatProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -16245,7 +16284,7 @@ impl<'lt> SamplerYcbcrConversionImageFormatProperties<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::combined_image_sampler_descriptor_count`]
     pub fn combined_image_sampler_descriptor_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.combined_image_sampler_descriptor_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -16302,6 +16341,7 @@ impl<'lt> SamplerYcbcrConversionImageFormatProperties<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ProtectedSubmitInfo<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///No documentation found
     pub s_type: StructureType,
@@ -16436,10 +16476,11 @@ impl<'lt> ProtectedSubmitInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceProtectedMemoryFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceProtectedMemoryFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -16580,10 +16621,11 @@ impl<'lt> PhysicalDeviceProtectedMemoryFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceProtectedMemoryProperties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceProtectedMemoryProperties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -16742,6 +16784,7 @@ impl<'lt> PhysicalDeviceProtectedMemoryProperties<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceQueueInfo2<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -16815,11 +16858,11 @@ impl<'lt> DeviceQueueInfo2<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::queue_family_index`]
     pub fn queue_family_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.queue_family_index
     }
     ///Gets a mutable reference to the value of [`Self::queue_index`]
     pub fn queue_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.queue_index
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -16895,10 +16938,11 @@ impl<'lt> DeviceQueueInfo2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMaintenance3Properties")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance3Properties<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -16963,7 +17007,7 @@ impl<'lt> PhysicalDeviceMaintenance3Properties<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_per_set_descriptors`]
     pub fn max_per_set_descriptors_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_per_set_descriptors
     }
     ///Gets a mutable reference to the value of [`Self::max_memory_allocation_size`]
     pub fn max_memory_allocation_size_mut(&mut self) -> &mut DeviceSize {
@@ -17034,10 +17078,11 @@ impl<'lt> PhysicalDeviceMaintenance3Properties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorSetLayoutSupport")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorSetLayoutSupport<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -17186,10 +17231,11 @@ impl<'lt> DescriptorSetLayoutSupport<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderDrawParametersFeatures")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderDrawParametersFeatures<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -17327,7 +17373,7 @@ impl<'lt> PhysicalDeviceShaderDrawParametersFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorUpdateTemplate")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct DescriptorUpdateTemplate(pub u64);
@@ -17339,7 +17385,7 @@ impl DescriptorUpdateTemplate {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -17351,17 +17397,7 @@ impl DescriptorUpdateTemplate {
 unsafe impl Send for DescriptorUpdateTemplate {}
 impl Default for DescriptorUpdateTemplate {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for DescriptorUpdateTemplate {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for DescriptorUpdateTemplate {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }
 ///[VkSamplerYcbcrConversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerYcbcrConversion.html) - Opaque handle to a device-specific sampler Y′C<sub>B</sub>C<sub>R</sub> conversion description
@@ -17394,7 +17430,7 @@ impl std::fmt::Debug for DescriptorUpdateTemplate {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerYcbcrConversion")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct SamplerYcbcrConversion(pub u64);
@@ -17406,7 +17442,7 @@ impl SamplerYcbcrConversion {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -17418,16 +17454,6 @@ impl SamplerYcbcrConversion {
 unsafe impl Send for SamplerYcbcrConversion {}
 impl Default for SamplerYcbcrConversion {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for SamplerYcbcrConversion {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for SamplerYcbcrConversion {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }

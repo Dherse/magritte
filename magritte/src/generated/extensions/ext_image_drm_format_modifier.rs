@@ -254,10 +254,11 @@ pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_EXTENSION_NAME: &'static CStr =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDrmFormatModifierPropertiesListEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DrmFormatModifierPropertiesListEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -339,7 +340,7 @@ impl<'lt> DrmFormatModifierPropertiesListEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::drm_format_modifier_count`]
     pub fn drm_format_modifier_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.drm_format_modifier_count
     }
     ///Gets a mutable reference to the value of [`Self::drm_format_modifier_properties`]
     ///# Safety
@@ -512,11 +513,11 @@ impl DrmFormatModifierPropertiesEXT {
     }
     ///Gets a mutable reference to the value of [`Self::drm_format_modifier`]
     pub fn drm_format_modifier_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.drm_format_modifier
     }
     ///Gets a mutable reference to the value of [`Self::drm_format_modifier_plane_count`]
     pub fn drm_format_modifier_plane_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.drm_format_modifier_plane_count
     }
     ///Gets a mutable reference to the value of [`Self::drm_format_modifier_tiling_features`]
     pub fn drm_format_modifier_tiling_features_mut(&mut self) -> &mut FormatFeatureFlags {
@@ -609,6 +610,7 @@ impl DrmFormatModifierPropertiesEXT {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -700,7 +702,7 @@ impl<'lt> PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::drm_format_modifier`]
     pub fn drm_format_modifier_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.drm_format_modifier
     }
     ///Gets a mutable reference to the value of [`Self::sharing_mode`]
     pub fn sharing_mode_mut(&mut self) -> &mut SharingMode {
@@ -708,7 +710,7 @@ impl<'lt> PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::queue_family_index_count`]
     pub fn queue_family_index_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.queue_family_index_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -794,6 +796,7 @@ impl<'lt> PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageDrmFormatModifierListCreateInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -865,7 +868,7 @@ impl<'lt> ImageDrmFormatModifierListCreateInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::drm_format_modifier_count`]
     pub fn drm_format_modifier_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.drm_format_modifier_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -970,6 +973,7 @@ impl<'lt> ImageDrmFormatModifierListCreateInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageDrmFormatModifierExplicitCreateInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1051,11 +1055,11 @@ impl<'lt> ImageDrmFormatModifierExplicitCreateInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::drm_format_modifier`]
     pub fn drm_format_modifier_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.drm_format_modifier
     }
     ///Gets a mutable reference to the value of [`Self::drm_format_modifier_plane_count`]
     pub fn drm_format_modifier_plane_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.drm_format_modifier_plane_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1128,10 +1132,11 @@ impl<'lt> ImageDrmFormatModifierExplicitCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageDrmFormatModifierPropertiesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageDrmFormatModifierPropertiesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1190,7 +1195,7 @@ impl<'lt> ImageDrmFormatModifierPropertiesEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::drm_format_modifier`]
     pub fn drm_format_modifier_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.drm_format_modifier
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1261,10 +1266,11 @@ impl<'lt> ImageDrmFormatModifierPropertiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDrmFormatModifierPropertiesList2EXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DrmFormatModifierPropertiesList2EXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1346,7 +1352,7 @@ impl<'lt> DrmFormatModifierPropertiesList2EXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::drm_format_modifier_count`]
     pub fn drm_format_modifier_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.drm_format_modifier_count
     }
     ///Gets a mutable reference to the value of [`Self::drm_format_modifier_properties`]
     ///# Safety
@@ -1462,11 +1468,11 @@ impl DrmFormatModifierProperties2EXT {
     }
     ///Gets a mutable reference to the value of [`Self::drm_format_modifier`]
     pub fn drm_format_modifier_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.drm_format_modifier
     }
     ///Gets a mutable reference to the value of [`Self::drm_format_modifier_plane_count`]
     pub fn drm_format_modifier_plane_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.drm_format_modifier_plane_count
     }
     ///Gets a mutable reference to the value of [`Self::drm_format_modifier_tiling_features`]
     pub fn drm_format_modifier_tiling_features_mut(&mut self) -> &mut FormatFeatureFlags2 {

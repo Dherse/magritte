@@ -129,6 +129,7 @@ pub const NV_WIN32_KEYED_MUTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct Win32KeyedMutexAcquireReleaseInfoNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///No documentation found
     pub s_type: StructureType,
@@ -292,11 +293,11 @@ impl<'lt> Win32KeyedMutexAcquireReleaseInfoNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::acquire_count`]
     pub fn acquire_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.acquire_count
     }
     ///Gets a mutable reference to the value of [`Self::release_count`]
     pub fn release_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.release_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {

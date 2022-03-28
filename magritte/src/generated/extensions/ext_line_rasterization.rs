@@ -111,7 +111,6 @@ pub const EXT_LINE_RASTERIZATION_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkLineRasterizationModeEXT")]
-#[doc(alias = "VkLineRasterizationModeEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -152,7 +151,7 @@ impl LineRasterizationModeEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -215,10 +214,11 @@ impl LineRasterizationModeEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceLineRasterizationFeaturesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -565,10 +565,11 @@ impl<'lt> PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceLineRasterizationPropertiesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -629,7 +630,7 @@ impl<'lt> PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::line_sub_pixel_precision_bits`]
     pub fn line_sub_pixel_precision_bits_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.line_sub_pixel_precision_bits
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -707,6 +708,7 @@ impl<'lt> PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineRasterizationLineStateCreateInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -813,11 +815,11 @@ impl<'lt> PipelineRasterizationLineStateCreateInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::line_stipple_factor`]
     pub fn line_stipple_factor_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.line_stipple_factor
     }
     ///Gets a mutable reference to the value of [`Self::line_stipple_pattern`]
     pub fn line_stipple_pattern_mut(&mut self) -> &mut u16 {
-        &mut getter
+        &mut self.line_stipple_pattern
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {

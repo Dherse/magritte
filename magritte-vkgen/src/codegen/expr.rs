@@ -103,7 +103,7 @@ impl<'a> Expr<'a> {
     }
 
     /// Pivots the expression to solve the expression
-    pub fn pivot(&self, replace: &'a str) -> Expr<'a> {
+    pub fn pivot(&self, replace: &'a str, target: &str) -> Expr<'a> {
         let as_string = format!("{} - {}", self.to_string(), replace);
 
         let result = Box::leak(
@@ -124,7 +124,7 @@ impl<'a> Expr<'a> {
 
                 py.run(&code, None, None)?;
 
-                py.eval(&format!("str(sympy.solveset(eq, {}))", replace), None, None)?
+                py.eval(&format!("str(sympy.solveset(eq, {}))", target), None, None)?
                     .extract::<String>()
             })
             .expect("failed to pivot the expression"),
@@ -187,7 +187,7 @@ impl<'a> Expr<'a> {
                 let b = b.as_expr(source, getter, imports);
 
                 quote! {
-                    #a / #b
+                    (#a / #b)
                 }
             },
             Expr::Multiply(a, b) => {
@@ -195,7 +195,7 @@ impl<'a> Expr<'a> {
                 let b = b.as_expr(source, getter, imports);
 
                 quote! {
-                    #a * #b
+                    (#a * #b)
                 }
             },
             Expr::Add(a, b) => {
@@ -203,7 +203,7 @@ impl<'a> Expr<'a> {
                 let b = b.as_expr(source, getter, imports);
 
                 quote! {
-                    #a + #b
+                    (#a + #b)
                 }
             },
             Expr::Subtract(a, b) => {
@@ -211,7 +211,7 @@ impl<'a> Expr<'a> {
                 let b = b.as_expr(source, getter, imports);
 
                 quote! {
-                    #a - #b
+                    (#a - #b)
                 }
             },
             Expr::BitwiseNot(a) => {

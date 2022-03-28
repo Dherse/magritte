@@ -61,6 +61,7 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
 
     info!("Built the thread pool");
 
+    let path = PathBuf::from(BINDING_OUT_PATH);
     source
         .generate_code(&mut doc)
         .into_par_iter()
@@ -71,14 +72,28 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
             write!(out, "{}", imports.to_token_stream()).unwrap();
             write!(out, "{}", code).unwrap();
 
-            let path = PathBuf::from(BINDING_OUT_PATH);
-
             let out = run_rustfmt(out).unwrap();
 
             std::fs::write(origin.as_file_path(&path), &out).unwrap();
 
             std::mem::forget(out);
         });
+
+    {
+        let mut path = path.clone();
+        path.push("mod.rs");
+
+        let code = run_rustfmt(source.generate_mod()).unwrap();
+        std::fs::write(&path, &code).unwrap();
+    }
+
+    {
+        let mut path = path.clone();
+        path.push("extensions.rs");
+
+        let code = run_rustfmt(source.generate_extension_mod()).unwrap();
+        std::fs::write(&path, &code).unwrap();
+    }
 
     Ok(())
 }

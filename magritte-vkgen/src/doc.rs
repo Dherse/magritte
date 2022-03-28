@@ -22,7 +22,7 @@ lazy_static::lazy_static! {
     static ref SELECTOR_DESCRIPTION_H2: Selector = Selector::parse("h2#_description").unwrap();
     static ref SELECTOR_MEMBERS_H2: Selector = Selector::parse("h2#_members").unwrap();
     static ref SELECTOR_PARAMETERS_H2: Selector = Selector::parse("h2#_parameters").unwrap();
-    
+
     static ref SELECTOR_REVISION_H2: Selector = Selector::parse("h2#_revision").unwrap();
     static ref SELECTOR_DEPRECATION_H2: Selector = Selector::parse("h2#_deprecation_state").unwrap();
     static ref SELECTOR_DEPENDENCIES_H2: Selector = Selector::parse("h2#_extension_and_version_dependencies").unwrap();
@@ -171,7 +171,12 @@ impl<'a> DocRef<'a> {
     }
 
     /// Gets the `Name` section as markdown
-    pub fn name<'b>(&mut self, source: &Source<'b>, this: &impl Queryable<'b>, mut out: &mut TokenStream) -> Option<()> {
+    pub fn name<'b>(
+        &mut self,
+        source: &Source<'b>,
+        this: &impl Queryable<'b>,
+        mut out: &mut TokenStream,
+    ) -> Option<()> {
         let mut text = self.visit_selectable(source, this, None, &SELECTOR_NAME_H2, &SELECTOR_SECTIONBODY)?;
 
         // generate the link for the type itself

@@ -240,7 +240,6 @@ pub type PFNDeviceMemoryReportCallbackEXT = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceMemoryReportEventTypeEXT")]
-#[doc(alias = "VkDeviceMemoryReportEventTypeEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -280,7 +279,7 @@ impl DeviceMemoryReportEventTypeEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -306,7 +305,7 @@ impl DeviceMemoryReportEventTypeEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -364,10 +363,11 @@ impl std::fmt::Debug for DeviceMemoryReportFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDeviceMemoryReportFeaturesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -513,10 +513,10 @@ impl<'lt> PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceDeviceMemoryReportCreateInfoEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -526,7 +526,7 @@ pub struct DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
     ///[`flags`] is 0 and reserved for future use.
     pub flags: DeviceMemoryReportFlagsEXT,
     ///[`pfn_user_callback`] is the application callback function to call.
-    pub pfn_user_callback: PFNDeviceMemoryReportCallbackEXT<'lt>,
+    pub pfn_user_callback: PFNDeviceMemoryReportCallbackEXT,
     ///[`user_data`] is user data to be passed to the callback.
     pub user_data: *mut c_void,
 }
@@ -577,7 +577,7 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
         self.flags
     }
     ///Gets the value of [`Self::pfn_user_callback`]
-    pub fn pfn_user_callback(&self) -> &PFNDeviceMemoryReportCallbackEXT<'lt> {
+    pub fn pfn_user_callback(&self) -> &PFNDeviceMemoryReportCallbackEXT {
         &self.pfn_user_callback
     }
     ///Gets the value of [`Self::user_data`]
@@ -596,7 +596,7 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
         &mut self.flags
     }
     ///Gets a mutable reference to the value of [`Self::pfn_user_callback`]
-    pub fn pfn_user_callback_mut(&mut self) -> &mut PFNDeviceMemoryReportCallbackEXT<'lt> {
+    pub fn pfn_user_callback_mut(&mut self) -> &mut PFNDeviceMemoryReportCallbackEXT {
         &mut self.pfn_user_callback
     }
     ///Gets a mutable reference to the value of [`Self::user_data`]
@@ -627,7 +627,7 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
     ///Sets the raw value of [`Self::pfn_user_callback`]
     pub fn set_pfn_user_callback(
         &mut self,
-        value: crate::extensions::ext_device_memory_report::PFNDeviceMemoryReportCallbackEXT<'lt>,
+        value: crate::extensions::ext_device_memory_report::PFNDeviceMemoryReportCallbackEXT,
     ) -> &mut Self {
         self.pfn_user_callback = value;
         self
@@ -718,10 +718,11 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceMemoryReportCallbackDataEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceMemoryReportCallbackDataEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -854,12 +855,12 @@ impl<'lt> DeviceMemoryReportCallbackDataEXT<'lt> {
         &mut self.flags
     }
     ///Gets a mutable reference to the value of [`Self::type_`]
-    pub fn type__mut(&mut self) -> &mut DeviceMemoryReportEventTypeEXT {
+    pub fn type_mut(&mut self) -> &mut DeviceMemoryReportEventTypeEXT {
         &mut self.type_
     }
     ///Gets a mutable reference to the value of [`Self::memory_object_id`]
     pub fn memory_object_id_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.memory_object_id
     }
     ///Gets a mutable reference to the value of [`Self::size`]
     pub fn size_mut(&mut self) -> &mut DeviceSize {
@@ -871,11 +872,11 @@ impl<'lt> DeviceMemoryReportCallbackDataEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::object_handle`]
     pub fn object_handle_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.object_handle
     }
     ///Gets a mutable reference to the value of [`Self::heap_index`]
     pub fn heap_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.heap_index
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {

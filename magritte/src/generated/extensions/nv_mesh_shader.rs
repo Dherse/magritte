@@ -136,10 +136,11 @@ pub const NV_MESH_SHADER_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_mes
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMeshShaderFeaturesNV")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMeshShaderFeaturesNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -361,10 +362,11 @@ impl<'lt> PhysicalDeviceMeshShaderFeaturesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMeshShaderPropertiesNV")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMeshShaderPropertiesNV<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -393,7 +395,7 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     ///    execution mode or by the object decorated by the `WorkgroupSize`
     ///    decoration in shader modules,  **must**  be less than or equal to the
     ///    corresponding limit.
-    pub max_task_work_group_size: [u32; 3],
+    pub max_task_work_group_size: [u32; 3 as usize],
     ///[`max_task_total_memory_size`] is the maximum number of bytes that the
     ///task shader can use in total for shared and output memory combined.
     pub max_task_total_memory_size: u32,
@@ -418,7 +420,7 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     ///    execution mode or by the object decorated by the `WorkgroupSize`
     ///    decoration in shader modules,  **must**  be less than or equal to the
     ///    corresponding limit.
-    pub max_mesh_work_group_size: [u32; 3],
+    pub max_mesh_work_group_size: [u32; 3 as usize],
     ///[`max_mesh_total_memory_size`] is the maximum number of bytes that the
     ///mesh shader can use in total for shared and output memory combined.
     pub max_mesh_total_memory_size: u32,
@@ -452,11 +454,11 @@ impl<'lt> Default for PhysicalDeviceMeshShaderPropertiesNV<'lt> {
             p_next: std::ptr::null_mut(),
             max_draw_mesh_tasks_count: 0,
             max_task_work_group_invocations: 0,
-            max_task_work_group_size: [0; 3],
+            max_task_work_group_size: [0; 3 as usize],
             max_task_total_memory_size: 0,
             max_task_output_count: 0,
             max_mesh_work_group_invocations: 0,
-            max_mesh_work_group_size: [0; 3],
+            max_mesh_work_group_size: [0; 3 as usize],
             max_mesh_total_memory_size: 0,
             max_mesh_output_vertices: 0,
             max_mesh_output_primitives: 0,
@@ -496,8 +498,8 @@ impl<'lt> PhysicalDeviceMeshShaderPropertiesNV<'lt> {
         self.max_task_work_group_invocations
     }
     ///Gets the value of [`Self::max_task_work_group_size`]
-    pub fn max_task_work_group_size(&self) -> &[u32; 3] {
-        &getter
+    pub fn max_task_work_group_size(&self) -> &[u32; 3 as usize] {
+        &self.max_task_work_group_size
     }
     ///Gets the value of [`Self::max_task_total_memory_size`]
     pub fn max_task_total_memory_size(&self) -> u32 {
@@ -512,8 +514,8 @@ impl<'lt> PhysicalDeviceMeshShaderPropertiesNV<'lt> {
         self.max_mesh_work_group_invocations
     }
     ///Gets the value of [`Self::max_mesh_work_group_size`]
-    pub fn max_mesh_work_group_size(&self) -> &[u32; 3] {
-        &getter
+    pub fn max_mesh_work_group_size(&self) -> &[u32; 3 as usize] {
+        &self.max_mesh_work_group_size
     }
     ///Gets the value of [`Self::max_mesh_total_memory_size`]
     pub fn max_mesh_total_memory_size(&self) -> u32 {
@@ -552,55 +554,55 @@ impl<'lt> PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_draw_mesh_tasks_count`]
     pub fn max_draw_mesh_tasks_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_draw_mesh_tasks_count
     }
     ///Gets a mutable reference to the value of [`Self::max_task_work_group_invocations`]
     pub fn max_task_work_group_invocations_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_task_work_group_invocations
     }
     ///Gets a mutable reference to the value of [`Self::max_task_work_group_size`]
-    pub fn max_task_work_group_size_mut(&mut self) -> &mut [u32; 3] {
-        &mut getter
+    pub fn max_task_work_group_size_mut(&mut self) -> &mut [u32; 3 as usize] {
+        &mut self.max_task_work_group_size
     }
     ///Gets a mutable reference to the value of [`Self::max_task_total_memory_size`]
     pub fn max_task_total_memory_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_task_total_memory_size
     }
     ///Gets a mutable reference to the value of [`Self::max_task_output_count`]
     pub fn max_task_output_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_task_output_count
     }
     ///Gets a mutable reference to the value of [`Self::max_mesh_work_group_invocations`]
     pub fn max_mesh_work_group_invocations_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_mesh_work_group_invocations
     }
     ///Gets a mutable reference to the value of [`Self::max_mesh_work_group_size`]
-    pub fn max_mesh_work_group_size_mut(&mut self) -> &mut [u32; 3] {
-        &mut getter
+    pub fn max_mesh_work_group_size_mut(&mut self) -> &mut [u32; 3 as usize] {
+        &mut self.max_mesh_work_group_size
     }
     ///Gets a mutable reference to the value of [`Self::max_mesh_total_memory_size`]
     pub fn max_mesh_total_memory_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_mesh_total_memory_size
     }
     ///Gets a mutable reference to the value of [`Self::max_mesh_output_vertices`]
     pub fn max_mesh_output_vertices_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_mesh_output_vertices
     }
     ///Gets a mutable reference to the value of [`Self::max_mesh_output_primitives`]
     pub fn max_mesh_output_primitives_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_mesh_output_primitives
     }
     ///Gets a mutable reference to the value of [`Self::max_mesh_multiview_view_count`]
     pub fn max_mesh_multiview_view_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_mesh_multiview_view_count
     }
     ///Gets a mutable reference to the value of [`Self::mesh_output_per_vertex_granularity`]
     pub fn mesh_output_per_vertex_granularity_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.mesh_output_per_vertex_granularity
     }
     ///Gets a mutable reference to the value of [`Self::mesh_output_per_primitive_granularity`]
     pub fn mesh_output_per_primitive_granularity_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.mesh_output_per_primitive_granularity
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -623,7 +625,7 @@ impl<'lt> PhysicalDeviceMeshShaderPropertiesNV<'lt> {
         self
     }
     ///Sets the raw value of [`Self::max_task_work_group_size`]
-    pub fn set_max_task_work_group_size(&mut self, value: [u32; 3]) -> &mut Self {
+    pub fn set_max_task_work_group_size(&mut self, value: [u32; 3 as usize]) -> &mut Self {
         self.max_task_work_group_size = value;
         self
     }
@@ -643,7 +645,7 @@ impl<'lt> PhysicalDeviceMeshShaderPropertiesNV<'lt> {
         self
     }
     ///Sets the raw value of [`Self::max_mesh_work_group_size`]
-    pub fn set_max_mesh_work_group_size(&mut self, value: [u32; 3]) -> &mut Self {
+    pub fn set_max_mesh_work_group_size(&mut self, value: [u32; 3 as usize]) -> &mut Self {
         self.max_mesh_work_group_size = value;
         self
     }
@@ -741,11 +743,11 @@ impl DrawMeshTasksIndirectCommandNV {
     }
     ///Gets a mutable reference to the value of [`Self::task_count`]
     pub fn task_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.task_count
     }
     ///Gets a mutable reference to the value of [`Self::first_task`]
     pub fn first_task_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.first_task
     }
     ///Sets the raw value of [`Self::task_count`]
     pub fn set_task_count(&mut self, value: u32) -> &mut Self {

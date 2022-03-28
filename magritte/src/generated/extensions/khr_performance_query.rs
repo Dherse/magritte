@@ -128,7 +128,12 @@ use crate::{
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData, os::raw::c_char};
+use std::{
+    ffi::CStr,
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+    os::raw::c_char,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_PERFORMANCE_QUERY_SPEC_VERSION")]
@@ -174,7 +179,6 @@ pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterScopeKHR")]
-#[doc(alias = "VkPerformanceCounterScopeKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -207,7 +211,7 @@ impl PerformanceCounterScopeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -264,7 +268,6 @@ impl PerformanceCounterScopeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterUnitKHR")]
-#[doc(alias = "VkPerformanceCounterUnitKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -319,7 +322,7 @@ impl PerformanceCounterUnitKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -369,7 +372,6 @@ impl PerformanceCounterUnitKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterStorageKHR")]
-#[doc(alias = "VkPerformanceCounterStorageKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -409,7 +411,7 @@ impl PerformanceCounterStorageKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -482,7 +484,7 @@ impl PerformanceCounterDescriptionFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -532,7 +534,7 @@ impl AcquireProfilingLockFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -574,7 +576,7 @@ impl AcquireProfilingLockFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterDescriptionFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -593,11 +595,11 @@ impl PerformanceCounterDescriptionFlagsKHR {
     ///[`PerformanceCounterDescriptionPerformanceImpactingKhr`]
     ///specifies that recording the counter  **may**  have a noticeable performance
     ///impact.
-    const PerformanceCounterDescriptionPerformanceImpactingKhr: Self = Self(1);
+    pub const PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR: Self = Self(1);
     ///[`PerformanceCounterDescriptionConcurrentlyImpactedKhr`]
     ///specifies that concurrently recording the counter while other submitted
     ///command buffers are running  **may**  impact the accuracy of the recording.
-    const PerformanceCounterDescriptionConcurrentlyImpactedKhr: Self = Self(2);
+    pub const PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR: Self = Self(2);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -607,8 +609,8 @@ impl PerformanceCounterDescriptionFlagsKHR {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::PerformanceCounterDescriptionPerformanceImpactingKhr
-            | Self::PerformanceCounterDescriptionConcurrentlyImpactedKhr
+            | Self::PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR
+            | Self::PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -770,35 +772,35 @@ impl const std::ops::Not for PerformanceCounterDescriptionFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<PerformanceCounterDescriptionFlagsKHR> for PerformanceCounterDescriptionFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = PerformanceCounterDescriptionFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<PerformanceCounterDescriptionFlagsKHR> for PerformanceCounterDescriptionFlagsKHR {
+    fn extend<T: IntoIterator<Item = PerformanceCounterDescriptionFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<PerformanceCounterDescriptionFlagBitsKHR> for PerformanceCounterDescriptionFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = PerformanceCounterDescriptionFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<PerformanceCounterDescriptionFlagBitsKHR> for PerformanceCounterDescriptionFlagsKHR {
+    fn extend<T: IntoIterator<Item = PerformanceCounterDescriptionFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(PerformanceCounterDescriptionFlagsKHR::from(i));
+            Self::insert(self, <Self as From<PerformanceCounterDescriptionFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<PerformanceCounterDescriptionFlagsKHR> for PerformanceCounterDescriptionFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = PerformanceCounterDescriptionFlagsKHR>>(
+impl FromIterator<PerformanceCounterDescriptionFlagsKHR> for PerformanceCounterDescriptionFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = PerformanceCounterDescriptionFlagsKHR>>(
         iterator: T,
     ) -> PerformanceCounterDescriptionFlagsKHR {
-        let mut out = PerformanceCounterDescriptionFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<PerformanceCounterDescriptionFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<PerformanceCounterDescriptionFlagBitsKHR> for PerformanceCounterDescriptionFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = PerformanceCounterDescriptionFlagBitsKHR>>(
+impl FromIterator<PerformanceCounterDescriptionFlagBitsKHR> for PerformanceCounterDescriptionFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = PerformanceCounterDescriptionFlagBitsKHR>>(
         iterator: T,
     ) -> PerformanceCounterDescriptionFlagsKHR {
-        let mut out = PerformanceCounterDescriptionFlagsKHR::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<PerformanceCounterDescriptionFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -811,24 +813,8 @@ impl std::fmt::Debug for PerformanceCounterDescriptionFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(
-                        PerformanceCounterDescriptionFlagsKHR::PerformanceCounterDescriptionPerformanceImpactingKhr,
-                    ) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PerformanceCounterDescriptionPerformanceImpactingKhr))?;
-                    }
-                    if self.0.contains(
-                        PerformanceCounterDescriptionFlagsKHR::PerformanceCounterDescriptionConcurrentlyImpactedKhr,
-                    ) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(PerformanceCounterDescriptionConcurrentlyImpactedKhr))?;
-                    }
+                    if self . 0 . contains (PerformanceCounterDescriptionFlagsKHR :: PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR)) ? ; }
+                    if self . 0 . contains (PerformanceCounterDescriptionFlagsKHR :: PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR)) ? ; }
                 }
                 Ok(())
             }
@@ -857,7 +843,7 @@ impl std::fmt::Debug for PerformanceCounterDescriptionFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAcquireProfilingLockFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1043,35 +1029,31 @@ impl const std::ops::Not for AcquireProfilingLockFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<AcquireProfilingLockFlagsKHR> for AcquireProfilingLockFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = AcquireProfilingLockFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<AcquireProfilingLockFlagsKHR> for AcquireProfilingLockFlagsKHR {
+    fn extend<T: IntoIterator<Item = AcquireProfilingLockFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<AcquireProfilingLockFlagBitsKHR> for AcquireProfilingLockFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = AcquireProfilingLockFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<AcquireProfilingLockFlagBitsKHR> for AcquireProfilingLockFlagsKHR {
+    fn extend<T: IntoIterator<Item = AcquireProfilingLockFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(AcquireProfilingLockFlagsKHR::from(i));
+            Self::insert(self, <Self as From<AcquireProfilingLockFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<AcquireProfilingLockFlagsKHR> for AcquireProfilingLockFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = AcquireProfilingLockFlagsKHR>>(
-        iterator: T,
-    ) -> AcquireProfilingLockFlagsKHR {
-        let mut out = AcquireProfilingLockFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<AcquireProfilingLockFlagsKHR> for AcquireProfilingLockFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = AcquireProfilingLockFlagsKHR>>(iterator: T) -> AcquireProfilingLockFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<AcquireProfilingLockFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<AcquireProfilingLockFlagBitsKHR> for AcquireProfilingLockFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = AcquireProfilingLockFlagBitsKHR>>(
-        iterator: T,
-    ) -> AcquireProfilingLockFlagsKHR {
-        let mut out = AcquireProfilingLockFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<AcquireProfilingLockFlagBitsKHR> for AcquireProfilingLockFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = AcquireProfilingLockFlagBitsKHR>>(iterator: T) -> AcquireProfilingLockFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<AcquireProfilingLockFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -1138,10 +1120,11 @@ impl std::fmt::Debug for AcquireProfilingLockFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePerformanceQueryFeaturesKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1320,10 +1303,11 @@ impl<'lt> PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePerformanceQueryPropertiesKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1468,10 +1452,11 @@ impl<'lt> PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceCounterKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1490,7 +1475,7 @@ pub struct PerformanceCounterKHR<'lt> {
     ///[`uuid`] is an array of size [`UUID_SIZE`], containing 8-bit
     ///values that represent a universally unique identifier for the counter of
     ///the physical device.
-    pub uuid: [u8; UUID_SIZE],
+    pub uuid: [u8; UUID_SIZE as usize],
 }
 impl<'lt> Default for PerformanceCounterKHR<'lt> {
     fn default() -> Self {
@@ -1501,7 +1486,7 @@ impl<'lt> Default for PerformanceCounterKHR<'lt> {
             unit: Default::default(),
             scope: Default::default(),
             storage: Default::default(),
-            uuid: [0; UUID_SIZE],
+            uuid: [0; UUID_SIZE as usize],
         }
     }
 }
@@ -1539,8 +1524,8 @@ impl<'lt> PerformanceCounterKHR<'lt> {
         self.storage
     }
     ///Gets the value of [`Self::uuid`]
-    pub fn uuid(&self) -> &[u8; UUID_SIZE] {
-        &getter
+    pub fn uuid(&self) -> &[u8; UUID_SIZE as usize] {
+        &self.uuid
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -1566,8 +1551,8 @@ impl<'lt> PerformanceCounterKHR<'lt> {
         &mut self.storage
     }
     ///Gets a mutable reference to the value of [`Self::uuid`]
-    pub fn uuid_mut(&mut self) -> &mut [u8; UUID_SIZE] {
-        &mut getter
+    pub fn uuid_mut(&mut self) -> &mut [u8; UUID_SIZE as usize] {
+        &mut self.uuid
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1604,7 +1589,7 @@ impl<'lt> PerformanceCounterKHR<'lt> {
         self
     }
     ///Sets the raw value of [`Self::uuid`]
-    pub fn set_uuid(&mut self, value: [u8; crate::core::UUID_SIZE]) -> &mut Self {
+    pub fn set_uuid(&mut self, value: [u8; crate::core::UUID_SIZE as usize]) -> &mut Self {
         self.uuid = value;
         self
     }
@@ -1652,10 +1637,11 @@ impl<'lt> PerformanceCounterKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterDescriptionKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceCounterDescriptionKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1668,15 +1654,15 @@ pub struct PerformanceCounterDescriptionKHR<'lt> {
     pub flags: PerformanceCounterDescriptionFlagsKHR,
     ///[`name`] is an array of size [`MAX_DESCRIPTION_SIZE`], containing
     ///a null-terminated UTF-8 string specifying the name of the counter.
-    pub name: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub name: [c_char; MAX_DESCRIPTION_SIZE as usize],
     ///[`category`] is an array of size [`MAX_DESCRIPTION_SIZE`],
     ///containing a null-terminated UTF-8 string specifying the category of the
     ///counter.
-    pub category: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub category: [c_char; MAX_DESCRIPTION_SIZE as usize],
     ///[`description`] is an array of size [`MAX_DESCRIPTION_SIZE`],
     ///containing a null-terminated UTF-8 string specifying the description of
     ///the counter.
-    pub description: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub description: [c_char; MAX_DESCRIPTION_SIZE as usize],
 }
 impl<'lt> Default for PerformanceCounterDescriptionKHR<'lt> {
     fn default() -> Self {
@@ -1685,9 +1671,9 @@ impl<'lt> Default for PerformanceCounterDescriptionKHR<'lt> {
             s_type: Default::default(),
             p_next: std::ptr::null_mut(),
             flags: Default::default(),
-            name: [b'\0' as i8; MAX_DESCRIPTION_SIZE],
-            category: [b'\0' as i8; MAX_DESCRIPTION_SIZE],
-            description: [b'\0' as i8; MAX_DESCRIPTION_SIZE],
+            name: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
+            category: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
+            description: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
         }
     }
 }
@@ -1717,16 +1703,16 @@ impl<'lt> PerformanceCounterDescriptionKHR<'lt> {
         self.flags
     }
     ///Gets the value of [`Self::name`]
-    pub fn name(&self) -> &[c_schar; MAX_DESCRIPTION_SIZE] {
-        &getter
+    pub fn name(&self) -> &[c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &self.name
     }
     ///Gets the value of [`Self::category`]
-    pub fn category(&self) -> &[c_schar; MAX_DESCRIPTION_SIZE] {
-        &getter
+    pub fn category(&self) -> &[c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &self.category
     }
     ///Gets the value of [`Self::description`]
-    pub fn description(&self) -> &[c_schar; MAX_DESCRIPTION_SIZE] {
-        &getter
+    pub fn description(&self) -> &[c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &self.description
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -1744,16 +1730,16 @@ impl<'lt> PerformanceCounterDescriptionKHR<'lt> {
         &mut self.flags
     }
     ///Gets a mutable reference to the value of [`Self::name`]
-    pub fn name_mut(&mut self) -> &mut [c_schar; MAX_DESCRIPTION_SIZE] {
-        &mut getter
+    pub fn name_mut(&mut self) -> &mut [c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &mut self.name
     }
     ///Gets a mutable reference to the value of [`Self::category`]
-    pub fn category_mut(&mut self) -> &mut [c_schar; MAX_DESCRIPTION_SIZE] {
-        &mut getter
+    pub fn category_mut(&mut self) -> &mut [c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &mut self.category
     }
     ///Gets a mutable reference to the value of [`Self::description`]
-    pub fn description_mut(&mut self) -> &mut [c_schar; MAX_DESCRIPTION_SIZE] {
-        &mut getter
+    pub fn description_mut(&mut self) -> &mut [c_char; MAX_DESCRIPTION_SIZE as usize] {
+        &mut self.description
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1774,17 +1760,23 @@ impl<'lt> PerformanceCounterDescriptionKHR<'lt> {
         self
     }
     ///Sets the raw value of [`Self::name`]
-    pub fn set_name(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE]) -> &mut Self {
+    pub fn set_name(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize]) -> &mut Self {
         self.name = value;
         self
     }
     ///Sets the raw value of [`Self::category`]
-    pub fn set_category(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE]) -> &mut Self {
+    pub fn set_category(
+        &mut self,
+        value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize],
+    ) -> &mut Self {
         self.category = value;
         self
     }
     ///Sets the raw value of [`Self::description`]
-    pub fn set_description(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE]) -> &mut Self {
+    pub fn set_description(
+        &mut self,
+        value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize],
+    ) -> &mut Self {
         self.description = value;
         self
     }
@@ -1841,6 +1833,7 @@ impl<'lt> PerformanceCounterDescriptionKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct QueryPoolPerformanceCreateInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1921,11 +1914,11 @@ impl<'lt> QueryPoolPerformanceCreateInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::queue_family_index`]
     pub fn queue_family_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.queue_family_index
     }
     ///Gets a mutable reference to the value of [`Self::counter_index_count`]
     pub fn counter_index_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.counter_index_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -2001,6 +1994,7 @@ impl<'lt> QueryPoolPerformanceCreateInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AcquireProfilingLockInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2063,7 +2057,7 @@ impl<'lt> AcquireProfilingLockInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::timeout`]
     pub fn timeout_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.timeout
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -2130,6 +2124,7 @@ impl<'lt> AcquireProfilingLockInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceQuerySubmitInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2180,7 +2175,7 @@ impl<'lt> PerformanceQuerySubmitInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::counter_pass_index`]
     pub fn counter_pass_index_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.counter_pass_index
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {

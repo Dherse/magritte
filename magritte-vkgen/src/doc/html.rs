@@ -173,7 +173,7 @@ where
                 self.out.push_str(&temp);
 
                 Some(())
-            }
+            },
             _ => {
                 for child in element.children() {
                     self.visit(child);

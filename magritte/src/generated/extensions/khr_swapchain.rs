@@ -550,7 +550,11 @@ use crate::{
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData};
+use std::{
+    ffi::CStr,
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_SWAPCHAIN_SPEC_VERSION")]
@@ -645,7 +649,7 @@ impl SwapchainCreateFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -693,7 +697,7 @@ impl SwapchainCreateFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSwapchainCreateFlagsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -715,10 +719,10 @@ impl SwapchainCreateFlagsKHR {
     ///handle)  **must**  use `VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT`.
     ///
     ///Provided by [`crate::extensions::khr_device_group`]
-    const SwapchainCreateSplitInstanceBindRegionsKhr: Self = Self(1);
+    pub const SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(1);
     ///[`SwapchainCreateProtectedKhr`] specifies that images
     ///created from the swapchain are protected images.
-    const SwapchainCreateProtectedKhr: Self = Self(2);
+    pub const SWAPCHAIN_CREATE_PROTECTED_KHR: Self = Self(2);
     ///[`SwapchainCreateMutableFormatKhr`] specifies that the
     ///images of the swapchain  **can**  be used to create a [`ImageView`] with
     ///a different format than what the swapchain was created with.
@@ -731,7 +735,7 @@ impl SwapchainCreateFlagsKHR {
     ///view formats.
     ///
     ///Provided by [`crate::extensions::khr_swapchain_mutable_format`]
-    const SwapchainCreateMutableFormatKhr: Self = Self(4);
+    pub const SWAPCHAIN_CREATE_MUTABLE_FORMAT_KHR: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -741,9 +745,9 @@ impl SwapchainCreateFlagsKHR {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::SwapchainCreateSplitInstanceBindRegionsKhr
-            | Self::SwapchainCreateProtectedKhr
-            | Self::SwapchainCreateMutableFormatKhr
+            | Self::SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_KHR
+            | Self::SWAPCHAIN_CREATE_PROTECTED_KHR
+            | Self::SWAPCHAIN_CREATE_MUTABLE_FORMAT_KHR
     }
     ///Returns the raw bits
     #[inline]
@@ -905,33 +909,31 @@ impl const std::ops::Not for SwapchainCreateFlagsKHR {
         self.complement()
     }
 }
-impl std::iter::Extend<SwapchainCreateFlagsKHR> for SwapchainCreateFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = SwapchainCreateFlagsKHR>>(&mut self, iterator: T) {
+impl Extend<SwapchainCreateFlagsKHR> for SwapchainCreateFlagsKHR {
+    fn extend<T: IntoIterator<Item = SwapchainCreateFlagsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<SwapchainCreateFlagBitsKHR> for SwapchainCreateFlagsKHR {
-    fn extend<T: std::iter::IntoIterator<Item = SwapchainCreateFlagBitsKHR>>(&mut self, iterator: T) {
+impl Extend<SwapchainCreateFlagBitsKHR> for SwapchainCreateFlagsKHR {
+    fn extend<T: IntoIterator<Item = SwapchainCreateFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(SwapchainCreateFlagsKHR::from(i));
+            Self::insert(self, <Self as From<SwapchainCreateFlagBitsKHR>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<SwapchainCreateFlagsKHR> for SwapchainCreateFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = SwapchainCreateFlagsKHR>>(iterator: T) -> SwapchainCreateFlagsKHR {
-        let mut out = SwapchainCreateFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<SwapchainCreateFlagsKHR> for SwapchainCreateFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = SwapchainCreateFlagsKHR>>(iterator: T) -> SwapchainCreateFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<SwapchainCreateFlagsKHR>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<SwapchainCreateFlagBitsKHR> for SwapchainCreateFlagsKHR {
-    fn from_iter<T: std::iter::IntoIterator<Item = SwapchainCreateFlagBitsKHR>>(
-        iterator: T,
-    ) -> SwapchainCreateFlagsKHR {
-        let mut out = SwapchainCreateFlagsKHR::empty();
-        out.extend(iterator);
+impl FromIterator<SwapchainCreateFlagBitsKHR> for SwapchainCreateFlagsKHR {
+    fn from_iter<T: IntoIterator<Item = SwapchainCreateFlagBitsKHR>>(iterator: T) -> SwapchainCreateFlagsKHR {
+        let mut out = Self::empty();
+        <Self as Extend<SwapchainCreateFlagBitsKHR>>::extend(&mut out, iterator);
         out
     }
 }
@@ -946,30 +948,30 @@ impl std::fmt::Debug for SwapchainCreateFlagsKHR {
                     let mut first = true;
                     if self
                         .0
-                        .contains(SwapchainCreateFlagsKHR::SwapchainCreateSplitInstanceBindRegionsKhr)
+                        .contains(SwapchainCreateFlagsKHR::SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SwapchainCreateSplitInstanceBindRegionsKhr))?;
+                        f.write_str(stringify!(SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_KHR))?;
                     }
-                    if self.0.contains(SwapchainCreateFlagsKHR::SwapchainCreateProtectedKhr) {
+                    if self.0.contains(SwapchainCreateFlagsKHR::SWAPCHAIN_CREATE_PROTECTED_KHR) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SwapchainCreateProtectedKhr))?;
+                        f.write_str(stringify!(SWAPCHAIN_CREATE_PROTECTED_KHR))?;
                     }
                     if self
                         .0
-                        .contains(SwapchainCreateFlagsKHR::SwapchainCreateMutableFormatKhr)
+                        .contains(SwapchainCreateFlagsKHR::SWAPCHAIN_CREATE_MUTABLE_FORMAT_KHR)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SwapchainCreateMutableFormatKhr))?;
+                        f.write_str(stringify!(SWAPCHAIN_CREATE_MUTABLE_FORMAT_KHR))?;
                     }
                 }
                 Ok(())
@@ -1198,6 +1200,7 @@ impl std::fmt::Debug for SwapchainCreateFlagsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SwapchainCreateInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1426,7 +1429,7 @@ impl<'lt> SwapchainCreateInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::min_image_count`]
     pub fn min_image_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.min_image_count
     }
     ///Gets a mutable reference to the value of [`Self::image_format`]
     pub fn image_format_mut(&mut self) -> &mut Format {
@@ -1442,7 +1445,7 @@ impl<'lt> SwapchainCreateInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::image_array_layers`]
     pub fn image_array_layers_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.image_array_layers
     }
     ///Gets a mutable reference to the value of [`Self::image_usage`]
     pub fn image_usage_mut(&mut self) -> &mut ImageUsageFlags {
@@ -1454,7 +1457,7 @@ impl<'lt> SwapchainCreateInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::queue_family_index_count`]
     pub fn queue_family_index_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.queue_family_index_count
     }
     ///Gets a mutable reference to the value of [`Self::pre_transform`]
     pub fn pre_transform_mut(&mut self) -> &mut SurfaceTransformFlagBitsKHR {
@@ -1672,10 +1675,11 @@ impl<'lt> SwapchainCreateInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPresentInfoKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PresentInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1826,11 +1830,11 @@ impl<'lt> PresentInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::wait_semaphore_count`]
     pub fn wait_semaphore_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.wait_semaphore_count
     }
     ///Gets a mutable reference to the value of [`Self::swapchain_count`]
     pub fn swapchain_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.swapchain_count
     }
     ///Gets a mutable reference to the value of [`Self::results`]
     ///# Safety
@@ -1932,7 +1936,7 @@ impl<'lt> PresentInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSwapchainKHR")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct SwapchainKHR(pub u64);
@@ -1944,7 +1948,7 @@ impl SwapchainKHR {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -1956,16 +1960,6 @@ impl SwapchainKHR {
 unsafe impl Send for SwapchainKHR {}
 impl Default for SwapchainKHR {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for SwapchainKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for SwapchainKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }

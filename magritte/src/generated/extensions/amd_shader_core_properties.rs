@@ -122,10 +122,11 @@ pub const AMD_SHADER_CORE_PROPERTIES_EXTENSION_NAME: &'static CStr = crate::cstr
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderCorePropertiesAMD")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderCorePropertiesAMD<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -307,59 +308,59 @@ impl<'lt> PhysicalDeviceShaderCorePropertiesAMD<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::shader_engine_count`]
     pub fn shader_engine_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.shader_engine_count
     }
     ///Gets a mutable reference to the value of [`Self::shader_arrays_per_engine_count`]
     pub fn shader_arrays_per_engine_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.shader_arrays_per_engine_count
     }
     ///Gets a mutable reference to the value of [`Self::compute_units_per_shader_array`]
     pub fn compute_units_per_shader_array_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.compute_units_per_shader_array
     }
     ///Gets a mutable reference to the value of [`Self::simd_per_compute_unit`]
     pub fn simd_per_compute_unit_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.simd_per_compute_unit
     }
     ///Gets a mutable reference to the value of [`Self::wavefronts_per_simd`]
     pub fn wavefronts_per_simd_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.wavefronts_per_simd
     }
     ///Gets a mutable reference to the value of [`Self::wavefront_size`]
     pub fn wavefront_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.wavefront_size
     }
     ///Gets a mutable reference to the value of [`Self::sgprs_per_simd`]
     pub fn sgprs_per_simd_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.sgprs_per_simd
     }
     ///Gets a mutable reference to the value of [`Self::min_sgpr_allocation`]
     pub fn min_sgpr_allocation_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.min_sgpr_allocation
     }
     ///Gets a mutable reference to the value of [`Self::max_sgpr_allocation`]
     pub fn max_sgpr_allocation_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_sgpr_allocation
     }
     ///Gets a mutable reference to the value of [`Self::sgpr_allocation_granularity`]
     pub fn sgpr_allocation_granularity_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.sgpr_allocation_granularity
     }
     ///Gets a mutable reference to the value of [`Self::vgprs_per_simd`]
     pub fn vgprs_per_simd_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.vgprs_per_simd
     }
     ///Gets a mutable reference to the value of [`Self::min_vgpr_allocation`]
     pub fn min_vgpr_allocation_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.min_vgpr_allocation
     }
     ///Gets a mutable reference to the value of [`Self::max_vgpr_allocation`]
     pub fn max_vgpr_allocation_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_vgpr_allocation
     }
     ///Gets a mutable reference to the value of [`Self::vgpr_allocation_granularity`]
     pub fn vgpr_allocation_granularity_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.vgpr_allocation_granularity
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {

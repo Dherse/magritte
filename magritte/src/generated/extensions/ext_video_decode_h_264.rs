@@ -83,7 +83,11 @@ use crate::{
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData};
+use std::{
+    ffi::CStr,
+    iter::{Extend, FromIterator, IntoIterator},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_VIDEO_DECODE_H264_SPEC_VERSION")]
@@ -165,7 +169,7 @@ impl VideoDecodeH264PictureLayoutFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -208,7 +212,7 @@ impl VideoDecodeH264PictureLayoutFlagBitsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH264PictureLayoutFlagsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -227,20 +231,20 @@ impl VideoDecodeH264PictureLayoutFlagsEXT {
     ///[`VideoDecodeH264PictureLayoutProgressiveExt`] specifies
     ///support for progressive content.
     ///This flag has the value `0`.
-    const VideoDecodeH264PictureLayoutProgressiveExt: Self = Self(0);
+    pub const VIDEO_DECODE_H_264_PICTURE_LAYOUT_PROGRESSIVE_EXT: Self = Self(0);
     ///[`VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt`]
     ///specifies support for or use of a picture layout for interlaced content
     ///where all lines belonging to the first field are decoded to the
     ///even-numbered lines within the picture resource, and all lines belonging
     ///to the second field are decoded to the odd-numbered lines within the
     ///picture resource.
-    const VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt: Self = Self(1);
+    pub const VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_INTERLEAVED_LINES_EXT: Self = Self(1);
     ///[`VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt`]
     ///specifies support for or use of a picture layout for interlaced content
     ///where all lines belonging to the first field are grouped together in a
     ///single plane, followed by another plane containing all lines belonging
     ///to the second field.
-    const VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt: Self = Self(2);
+    pub const VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_SEPARATE_PLANES_EXT: Self = Self(2);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -250,9 +254,9 @@ impl VideoDecodeH264PictureLayoutFlagsEXT {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::VideoDecodeH264PictureLayoutProgressiveExt
-            | Self::VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt
-            | Self::VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt
+            | Self::VIDEO_DECODE_H_264_PICTURE_LAYOUT_PROGRESSIVE_EXT
+            | Self::VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_INTERLEAVED_LINES_EXT
+            | Self::VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_SEPARATE_PLANES_EXT
     }
     ///Returns the raw bits
     #[inline]
@@ -414,35 +418,35 @@ impl const std::ops::Not for VideoDecodeH264PictureLayoutFlagsEXT {
         self.complement()
     }
 }
-impl std::iter::Extend<VideoDecodeH264PictureLayoutFlagsEXT> for VideoDecodeH264PictureLayoutFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = VideoDecodeH264PictureLayoutFlagsEXT>>(&mut self, iterator: T) {
+impl Extend<VideoDecodeH264PictureLayoutFlagsEXT> for VideoDecodeH264PictureLayoutFlagsEXT {
+    fn extend<T: IntoIterator<Item = VideoDecodeH264PictureLayoutFlagsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<VideoDecodeH264PictureLayoutFlagBitsEXT> for VideoDecodeH264PictureLayoutFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = VideoDecodeH264PictureLayoutFlagBitsEXT>>(&mut self, iterator: T) {
+impl Extend<VideoDecodeH264PictureLayoutFlagBitsEXT> for VideoDecodeH264PictureLayoutFlagsEXT {
+    fn extend<T: IntoIterator<Item = VideoDecodeH264PictureLayoutFlagBitsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(VideoDecodeH264PictureLayoutFlagsEXT::from(i));
+            Self::insert(self, <Self as From<VideoDecodeH264PictureLayoutFlagBitsEXT>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<VideoDecodeH264PictureLayoutFlagsEXT> for VideoDecodeH264PictureLayoutFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoDecodeH264PictureLayoutFlagsEXT>>(
+impl FromIterator<VideoDecodeH264PictureLayoutFlagsEXT> for VideoDecodeH264PictureLayoutFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = VideoDecodeH264PictureLayoutFlagsEXT>>(
         iterator: T,
     ) -> VideoDecodeH264PictureLayoutFlagsEXT {
-        let mut out = VideoDecodeH264PictureLayoutFlagsEXT::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoDecodeH264PictureLayoutFlagsEXT>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<VideoDecodeH264PictureLayoutFlagBitsEXT> for VideoDecodeH264PictureLayoutFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = VideoDecodeH264PictureLayoutFlagBitsEXT>>(
+impl FromIterator<VideoDecodeH264PictureLayoutFlagBitsEXT> for VideoDecodeH264PictureLayoutFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = VideoDecodeH264PictureLayoutFlagBitsEXT>>(
         iterator: T,
     ) -> VideoDecodeH264PictureLayoutFlagsEXT {
-        let mut out = VideoDecodeH264PictureLayoutFlagsEXT::empty();
-        out.extend(iterator);
+        let mut out = Self::empty();
+        <Self as Extend<VideoDecodeH264PictureLayoutFlagBitsEXT>>::extend(&mut out, iterator);
         out
     }
 }
@@ -455,34 +459,17 @@ impl std::fmt::Debug for VideoDecodeH264PictureLayoutFlagsEXT {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(VideoDecodeH264PictureLayoutFlagsEXT::VideoDecodeH264PictureLayoutProgressiveExt)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VideoDecodeH264PictureLayoutProgressiveExt))?;
-                    }
                     if self.0.contains(
-                        VideoDecodeH264PictureLayoutFlagsEXT::VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt,
+                        VideoDecodeH264PictureLayoutFlagsEXT::VIDEO_DECODE_H_264_PICTURE_LAYOUT_PROGRESSIVE_EXT,
                     ) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt))?;
+                        f.write_str(stringify!(VIDEO_DECODE_H_264_PICTURE_LAYOUT_PROGRESSIVE_EXT))?;
                     }
-                    if self.0.contains(
-                        VideoDecodeH264PictureLayoutFlagsEXT::VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt,
-                    ) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt))?;
-                    }
+                    if self . 0 . contains (VideoDecodeH264PictureLayoutFlagsEXT :: VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_INTERLEAVED_LINES_EXT) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_INTERLEAVED_LINES_EXT)) ? ; }
+                    if self . 0 . contains (VideoDecodeH264PictureLayoutFlagsEXT :: VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_SEPARATE_PLANES_EXT) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_SEPARATE_PLANES_EXT)) ? ; }
                 }
                 Ok(())
             }
@@ -509,7 +496,7 @@ impl std::fmt::Debug for VideoDecodeH264PictureLayoutFlagsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -575,10 +562,10 @@ impl std::fmt::Debug for VideoDecodeH264CreateFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH264ProfileEXT")]
-#[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH264ProfileEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -725,10 +712,11 @@ impl<'lt> VideoDecodeH264ProfileEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH264CapabilitiesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH264CapabilitiesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -803,7 +791,7 @@ impl<'lt> VideoDecodeH264CapabilitiesEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_level`]
     pub fn max_level_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_level
     }
     ///Gets a mutable reference to the value of [`Self::field_offset_granularity`]
     pub fn field_offset_granularity_mut(&mut self) -> &mut Offset2D {
@@ -886,6 +874,7 @@ impl<'lt> VideoDecodeH264CapabilitiesEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH264SessionCreateInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1058,6 +1047,7 @@ impl<'lt> VideoDecodeH264SessionCreateInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH264SessionParametersAddInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1145,11 +1135,11 @@ impl<'lt> VideoDecodeH264SessionParametersAddInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::sps_std_count`]
     pub fn sps_std_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.sps_std_count
     }
     ///Gets a mutable reference to the value of [`Self::pps_std_count`]
     pub fn pps_std_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.pps_std_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1244,6 +1234,7 @@ impl<'lt> VideoDecodeH264SessionParametersAddInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH264SessionParametersCreateInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1327,11 +1318,11 @@ impl<'lt> VideoDecodeH264SessionParametersCreateInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_sps_std_count`]
     pub fn max_sps_std_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_sps_std_count
     }
     ///Gets a mutable reference to the value of [`Self::max_pps_std_count`]
     pub fn max_pps_std_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_pps_std_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1408,6 +1399,7 @@ impl<'lt> VideoDecodeH264SessionParametersCreateInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH264PictureInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1491,7 +1483,7 @@ impl<'lt> VideoDecodeH264PictureInfoEXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::slices_count`]
     pub fn slices_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.slices_count
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1560,6 +1552,7 @@ impl<'lt> VideoDecodeH264PictureInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH264DpbSlotInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1667,6 +1660,7 @@ impl<'lt> VideoDecodeH264DpbSlotInfoEXT<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH264MvcEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,

@@ -101,6 +101,7 @@ use serde::{Deserialize, Serialize};
 use std::{
     ffi::{c_void, CStr},
     marker::PhantomData,
+    os::raw::c_char,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -133,7 +134,6 @@ pub const INTEL_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceConfigurationTypeINTEL")]
-#[doc(alias = "VkPerformanceConfigurationTypeINTEL")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -157,7 +157,7 @@ impl PerformanceConfigurationTypeINTEL {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -191,7 +191,6 @@ impl PerformanceConfigurationTypeINTEL {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueryPoolSamplingModeINTEL")]
-#[doc(alias = "VkQueryPoolSamplingModeINTEL")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -217,7 +216,7 @@ impl QueryPoolSamplingModeINTEL {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -252,7 +251,6 @@ impl QueryPoolSamplingModeINTEL {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceOverrideTypeINTEL")]
-#[doc(alias = "VkPerformanceOverrideTypeINTEL")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -281,7 +279,7 @@ impl PerformanceOverrideTypeINTEL {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -317,7 +315,6 @@ impl PerformanceOverrideTypeINTEL {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceParameterTypeINTEL")]
-#[doc(alias = "VkPerformanceParameterTypeINTEL")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -346,7 +343,7 @@ impl PerformanceParameterTypeINTEL {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -392,7 +389,6 @@ impl PerformanceParameterTypeINTEL {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceValueTypeINTEL")]
-#[doc(alias = "VkPerformanceValueTypeINTEL")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -424,7 +420,7 @@ impl PerformanceValueTypeINTEL {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -464,10 +460,11 @@ impl PerformanceValueTypeINTEL {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceValueINTEL")]
-#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
+#[derive(Clone, Copy)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceValueINTEL<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`type_`] is a [`PerformanceValueTypeINTEL`] value specifying the
     ///type of the returned data.
@@ -495,7 +492,7 @@ impl<'lt> PerformanceValueINTEL<'lt> {
         self.data
     }
     ///Gets a mutable reference to the value of [`Self::type_`]
-    pub fn type__mut(&mut self) -> &mut PerformanceValueTypeINTEL {
+    pub fn type_mut(&mut self) -> &mut PerformanceValueTypeINTEL {
         &mut self.type_
     }
     ///Gets a mutable reference to the value of [`Self::data`]
@@ -551,10 +548,11 @@ impl<'lt> PerformanceValueINTEL<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkInitializePerformanceApiInfoINTEL")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct InitializePerformanceApiInfoINTEL<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -686,6 +684,7 @@ impl<'lt> InitializePerformanceApiInfoINTEL<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -794,6 +793,7 @@ impl<'lt> QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceMarkerInfoINTEL<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -845,7 +845,7 @@ impl<'lt> PerformanceMarkerInfoINTEL<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::marker`]
     pub fn marker_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.marker
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -905,6 +905,7 @@ impl<'lt> PerformanceMarkerInfoINTEL<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceStreamMarkerInfoINTEL<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -956,7 +957,7 @@ impl<'lt> PerformanceStreamMarkerInfoINTEL<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::marker`]
     pub fn marker_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.marker
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1015,6 +1016,7 @@ impl<'lt> PerformanceStreamMarkerInfoINTEL<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceOverrideInfoINTEL<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///No documentation found
     pub s_type: StructureType,
@@ -1087,7 +1089,7 @@ impl<'lt> PerformanceOverrideInfoINTEL<'lt> {
         &mut self.s_type
     }
     ///Gets a mutable reference to the value of [`Self::type_`]
-    pub fn type__mut(&mut self) -> &mut PerformanceOverrideTypeINTEL {
+    pub fn type_mut(&mut self) -> &mut PerformanceOverrideTypeINTEL {
         &mut self.type_
     }
     ///Gets a mutable reference to the value of [`Self::enable`]
@@ -1107,7 +1109,7 @@ impl<'lt> PerformanceOverrideInfoINTEL<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::parameter`]
     pub fn parameter_mut(&mut self) -> &mut u64 {
-        &mut getter
+        &mut self.parameter
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1178,6 +1180,7 @@ impl<'lt> PerformanceOverrideInfoINTEL<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceConfigurationAcquireInfoINTEL<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1228,7 +1231,7 @@ impl<'lt> PerformanceConfigurationAcquireInfoINTEL<'lt> {
         &mut self.s_type
     }
     ///Gets a mutable reference to the value of [`Self::type_`]
-    pub fn type__mut(&mut self) -> &mut PerformanceConfigurationTypeINTEL {
+    pub fn type_mut(&mut self) -> &mut PerformanceConfigurationTypeINTEL {
         &mut self.type_
     }
     ///Sets the raw value of [`Self::s_type`]
@@ -1298,7 +1301,7 @@ pub union PerformanceValueDataINTEL<'lt> {
     ///No documentation found
     pub value_bool: Bool32,
     ///No documentation found
-    pub value_string: &'lt CStr,
+    pub value_string: *const c_char,
 }
 impl Default for PerformanceValueDataINTEL {
     fn default() -> Self {
@@ -1330,7 +1333,7 @@ impl Default for PerformanceValueDataINTEL {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceConfigurationINTEL")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct PerformanceConfigurationINTEL(pub u64);
@@ -1342,7 +1345,7 @@ impl PerformanceConfigurationINTEL {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -1354,16 +1357,6 @@ impl PerformanceConfigurationINTEL {
 unsafe impl Send for PerformanceConfigurationINTEL {}
 impl Default for PerformanceConfigurationINTEL {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for PerformanceConfigurationINTEL {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for PerformanceConfigurationINTEL {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }

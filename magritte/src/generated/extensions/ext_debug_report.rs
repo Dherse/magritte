@@ -137,6 +137,7 @@ use bytemuck::{Pod, Zeroable};
 use serde::{Deserialize, Serialize};
 use std::{
     ffi::{c_void, CStr},
+    iter::{Extend, FromIterator, IntoIterator},
     marker::PhantomData,
     os::raw::c_char,
 };
@@ -210,8 +211,8 @@ pub type PFNDebugReportCallbackEXT = Option<
         object: u64,
         location: usize,
         message_code: i32,
-        p_layer_prefix: *const c_schar,
-        p_message: *const c_schar,
+        p_layer_prefix: *const c_char,
+        p_message: *const c_char,
         p_user_data: *mut c_void,
     ) -> Bool32,
 >;
@@ -304,7 +305,7 @@ impl DebugReportFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        self as u32
+        *self as u32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -353,7 +354,7 @@ impl DebugReportFlagBitsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugReportFlagsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -372,7 +373,7 @@ impl DebugReportFlagsEXT {
     ///[`DebugReportInformationExt`] specifies an informational
     ///message such as resource details that may be handy when debugging an
     ///application.
-    const DebugReportInformationExt: Self = Self(1);
+    pub const DEBUG_REPORT_INFORMATION_EXT: Self = Self(1);
     ///[`DebugReportWarningExt`] specifies use of Vulkan that  **may**
     ///expose an app bug.
     ///Such cases may not be immediately harmful, such as a fragment shader
@@ -381,19 +382,19 @@ impl DebugReportFlagsEXT {
     ///unintended such as using an image whose memory has not been filled.
     ///In general if you see a warning but you know that the behavior is
     ///intended/desired, then simply ignore the warning.
-    const DebugReportWarningExt: Self = Self(2);
+    pub const DEBUG_REPORT_WARNING_EXT: Self = Self(2);
     ///[`DebugReportPerformanceWarningExt`] specifies a
     ///potentially non-optimal use of Vulkan, e.g. using
     ///[`CmdClearColorImage`] when setting
     ///[`AttachmentDescription`]::`loadOp` to
     ///`VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
-    const DebugReportPerformanceWarningExt: Self = Self(4);
+    pub const DEBUG_REPORT_PERFORMANCE_WARNING_EXT: Self = Self(4);
     ///[`DebugReportErrorExt`] specifies that the application has
     ///violated a valid usage condition of the specification.
-    const DebugReportErrorExt: Self = Self(8);
+    pub const DEBUG_REPORT_ERROR_EXT: Self = Self(8);
     ///[`DebugReportDebugExt`] specifies diagnostic information
     ///from the implementation and layers.
-    const DebugReportDebugExt: Self = Self(16);
+    pub const DEBUG_REPORT_DEBUG_EXT: Self = Self(16);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -403,11 +404,11 @@ impl DebugReportFlagsEXT {
     #[inline]
     pub const fn all() -> Self {
         Self::empty()
-            | Self::DebugReportInformationExt
-            | Self::DebugReportWarningExt
-            | Self::DebugReportPerformanceWarningExt
-            | Self::DebugReportErrorExt
-            | Self::DebugReportDebugExt
+            | Self::DEBUG_REPORT_INFORMATION_EXT
+            | Self::DEBUG_REPORT_WARNING_EXT
+            | Self::DEBUG_REPORT_PERFORMANCE_WARNING_EXT
+            | Self::DEBUG_REPORT_ERROR_EXT
+            | Self::DEBUG_REPORT_DEBUG_EXT
     }
     ///Returns the raw bits
     #[inline]
@@ -569,31 +570,31 @@ impl const std::ops::Not for DebugReportFlagsEXT {
         self.complement()
     }
 }
-impl std::iter::Extend<DebugReportFlagsEXT> for DebugReportFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = DebugReportFlagsEXT>>(&mut self, iterator: T) {
+impl Extend<DebugReportFlagsEXT> for DebugReportFlagsEXT {
+    fn extend<T: IntoIterator<Item = DebugReportFlagsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(i);
+            Self::insert(self, i);
         }
     }
 }
-impl std::iter::Extend<DebugReportFlagBitsEXT> for DebugReportFlagsEXT {
-    fn extend<T: std::iter::IntoIterator<Item = DebugReportFlagBitsEXT>>(&mut self, iterator: T) {
+impl Extend<DebugReportFlagBitsEXT> for DebugReportFlagsEXT {
+    fn extend<T: IntoIterator<Item = DebugReportFlagBitsEXT>>(&mut self, iterator: T) {
         for i in iterator {
-            self.insert(DebugReportFlagsEXT::from(i));
+            Self::insert(self, <Self as From<DebugReportFlagBitsEXT>>::from(i));
         }
     }
 }
-impl std::iter::FromIterator<DebugReportFlagsEXT> for DebugReportFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = DebugReportFlagsEXT>>(iterator: T) -> DebugReportFlagsEXT {
-        let mut out = DebugReportFlagsEXT::empty();
-        out.extend(iterator);
+impl FromIterator<DebugReportFlagsEXT> for DebugReportFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = DebugReportFlagsEXT>>(iterator: T) -> DebugReportFlagsEXT {
+        let mut out = Self::empty();
+        <Self as Extend<DebugReportFlagsEXT>>::extend(&mut out, iterator);
         out
     }
 }
-impl std::iter::FromIterator<DebugReportFlagBitsEXT> for DebugReportFlagsEXT {
-    fn from_iter<T: std::iter::IntoIterator<Item = DebugReportFlagBitsEXT>>(iterator: T) -> DebugReportFlagsEXT {
-        let mut out = DebugReportFlagsEXT::empty();
-        out.extend(iterator);
+impl FromIterator<DebugReportFlagBitsEXT> for DebugReportFlagsEXT {
+    fn from_iter<T: IntoIterator<Item = DebugReportFlagBitsEXT>>(iterator: T) -> DebugReportFlagsEXT {
+        let mut out = Self::empty();
+        <Self as Extend<DebugReportFlagBitsEXT>>::extend(&mut out, iterator);
         out
     }
 }
@@ -606,40 +607,43 @@ impl std::fmt::Debug for DebugReportFlagsEXT {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(DebugReportFlagsEXT::DebugReportInformationExt) {
+                    if self.0.contains(DebugReportFlagsEXT::DEBUG_REPORT_INFORMATION_EXT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DebugReportInformationExt))?;
+                        f.write_str(stringify!(DEBUG_REPORT_INFORMATION_EXT))?;
                     }
-                    if self.0.contains(DebugReportFlagsEXT::DebugReportWarningExt) {
+                    if self.0.contains(DebugReportFlagsEXT::DEBUG_REPORT_WARNING_EXT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DebugReportWarningExt))?;
+                        f.write_str(stringify!(DEBUG_REPORT_WARNING_EXT))?;
                     }
-                    if self.0.contains(DebugReportFlagsEXT::DebugReportPerformanceWarningExt) {
+                    if self
+                        .0
+                        .contains(DebugReportFlagsEXT::DEBUG_REPORT_PERFORMANCE_WARNING_EXT)
+                    {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DebugReportPerformanceWarningExt))?;
+                        f.write_str(stringify!(DEBUG_REPORT_PERFORMANCE_WARNING_EXT))?;
                     }
-                    if self.0.contains(DebugReportFlagsEXT::DebugReportErrorExt) {
+                    if self.0.contains(DebugReportFlagsEXT::DEBUG_REPORT_ERROR_EXT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DebugReportErrorExt))?;
+                        f.write_str(stringify!(DEBUG_REPORT_ERROR_EXT))?;
                     }
-                    if self.0.contains(DebugReportFlagsEXT::DebugReportDebugExt) {
+                    if self.0.contains(DebugReportFlagsEXT::DEBUG_REPORT_DEBUG_EXT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DebugReportDebugExt))?;
+                        f.write_str(stringify!(DEBUG_REPORT_DEBUG_EXT))?;
                     }
                 }
                 Ok(())
@@ -705,10 +709,10 @@ impl std::fmt::Debug for DebugReportFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugReportCallbackCreateInfoEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugReportCallbackCreateInfoEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -719,7 +723,7 @@ pub struct DebugReportCallbackCreateInfoEXT<'lt> {
     ///which event(s) will cause this callback to be called.
     pub flags: DebugReportFlagsEXT,
     ///[`pfn_callback`] is the application callback function to call.
-    pub pfn_callback: PFNDebugReportCallbackEXT<'lt>,
+    pub pfn_callback: PFNDebugReportCallbackEXT,
     ///[`user_data`] is user data to be passed to the callback.
     pub user_data: *mut c_void,
 }
@@ -770,7 +774,7 @@ impl<'lt> DebugReportCallbackCreateInfoEXT<'lt> {
         self.flags
     }
     ///Gets the value of [`Self::pfn_callback`]
-    pub fn pfn_callback(&self) -> &PFNDebugReportCallbackEXT<'lt> {
+    pub fn pfn_callback(&self) -> &PFNDebugReportCallbackEXT {
         &self.pfn_callback
     }
     ///Gets the value of [`Self::user_data`]
@@ -789,7 +793,7 @@ impl<'lt> DebugReportCallbackCreateInfoEXT<'lt> {
         &mut self.flags
     }
     ///Gets a mutable reference to the value of [`Self::pfn_callback`]
-    pub fn pfn_callback_mut(&mut self) -> &mut PFNDebugReportCallbackEXT<'lt> {
+    pub fn pfn_callback_mut(&mut self) -> &mut PFNDebugReportCallbackEXT {
         &mut self.pfn_callback
     }
     ///Gets a mutable reference to the value of [`Self::user_data`]
@@ -817,7 +821,7 @@ impl<'lt> DebugReportCallbackCreateInfoEXT<'lt> {
     ///Sets the raw value of [`Self::pfn_callback`]
     pub fn set_pfn_callback(
         &mut self,
-        value: crate::extensions::ext_debug_report::PFNDebugReportCallbackEXT<'lt>,
+        value: crate::extensions::ext_debug_report::PFNDebugReportCallbackEXT,
     ) -> &mut Self {
         self.pfn_callback = value;
         self
@@ -849,7 +853,7 @@ impl<'lt> DebugReportCallbackCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugReportCallbackEXT")]
-#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct DebugReportCallbackEXT(pub u64);
@@ -861,7 +865,7 @@ impl DebugReportCallbackEXT {
     }
     ///Checks if this is a null handle
     #[inline]
-    pub const fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self == &Self::null()
     }
     ///Gets the raw value
@@ -873,16 +877,6 @@ impl DebugReportCallbackEXT {
 unsafe impl Send for DebugReportCallbackEXT {}
 impl Default for DebugReportCallbackEXT {
     fn default() -> Self {
-        Self::default()
-    }
-}
-impl std::fmt::Pointer for DebugReportCallbackEXT {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
-    }
-}
-impl std::fmt::Debug for DebugReportCallbackEXT {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "0x{:x}", self.0)
+        Self::null()
     }
 }

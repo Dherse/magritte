@@ -107,10 +107,11 @@ pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME: &'static CStr =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -264,10 +265,11 @@ impl<'lt> PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVertexInputBindingDescription2EXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VertexInputBindingDescription2EXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -363,11 +365,11 @@ impl<'lt> VertexInputBindingDescription2EXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::binding`]
     pub fn binding_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.binding
     }
     ///Gets a mutable reference to the value of [`Self::stride`]
     pub fn stride_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.stride
     }
     ///Gets a mutable reference to the value of [`Self::input_rate`]
     pub fn input_rate_mut(&mut self) -> &mut VertexInputRate {
@@ -375,7 +377,7 @@ impl<'lt> VertexInputBindingDescription2EXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::divisor`]
     pub fn divisor_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.divisor
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -462,10 +464,11 @@ impl<'lt> VertexInputBindingDescription2EXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVertexInputAttributeDescription2EXT")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VertexInputAttributeDescription2EXT<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -546,11 +549,11 @@ impl<'lt> VertexInputAttributeDescription2EXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::location`]
     pub fn location_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.location
     }
     ///Gets a mutable reference to the value of [`Self::binding`]
     pub fn binding_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.binding
     }
     ///Gets a mutable reference to the value of [`Self::format`]
     pub fn format_mut(&mut self) -> &mut Format {
@@ -558,7 +561,7 @@ impl<'lt> VertexInputAttributeDescription2EXT<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::offset`]
     pub fn offset_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.offset
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {

@@ -350,7 +350,6 @@ pub const KHR_RAY_TRACING_PIPELINE_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRayTracingShaderGroupTypeKHR")]
-#[doc(alias = "VkRayTracingShaderGroupTypeKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -386,7 +385,7 @@ impl RayTracingShaderGroupTypeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -428,7 +427,6 @@ impl RayTracingShaderGroupTypeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkShaderGroupShaderKHR")]
-#[doc(alias = "VkShaderGroupShaderKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -466,7 +464,7 @@ impl ShaderGroupShaderKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        self as i32
+        *self as i32
     }
     ///Gets a value from a raw underlying value, unchecked and therefore unsafe
     #[inline]
@@ -567,6 +565,7 @@ impl ShaderGroupShaderKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RayTracingShaderGroupCreateInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -686,24 +685,24 @@ impl<'lt> RayTracingShaderGroupCreateInfoKHR<'lt> {
         &mut self.s_type
     }
     ///Gets a mutable reference to the value of [`Self::type_`]
-    pub fn type__mut(&mut self) -> &mut RayTracingShaderGroupTypeKHR {
+    pub fn type_mut(&mut self) -> &mut RayTracingShaderGroupTypeKHR {
         &mut self.type_
     }
     ///Gets a mutable reference to the value of [`Self::general_shader`]
     pub fn general_shader_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.general_shader
     }
     ///Gets a mutable reference to the value of [`Self::closest_hit_shader`]
     pub fn closest_hit_shader_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.closest_hit_shader
     }
     ///Gets a mutable reference to the value of [`Self::any_hit_shader`]
     pub fn any_hit_shader_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.any_hit_shader
     }
     ///Gets a mutable reference to the value of [`Self::intersection_shader`]
     pub fn intersection_shader_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.intersection_shader
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -959,6 +958,7 @@ impl<'lt> RayTracingShaderGroupCreateInfoKHR<'lt> {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RayTracingPipelineCreateInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1169,15 +1169,15 @@ impl<'lt> RayTracingPipelineCreateInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::stage_count`]
     pub fn stage_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.stage_count
     }
     ///Gets a mutable reference to the value of [`Self::group_count`]
     pub fn group_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.group_count
     }
     ///Gets a mutable reference to the value of [`Self::max_pipeline_ray_recursion_depth`]
     pub fn max_pipeline_ray_recursion_depth_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_pipeline_ray_recursion_depth
     }
     ///Gets a mutable reference to the value of [`Self::layout`]
     pub fn layout_mut(&mut self) -> &mut PipelineLayout {
@@ -1189,7 +1189,7 @@ impl<'lt> RayTracingPipelineCreateInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::base_pipeline_index`]
     pub fn base_pipeline_index_mut(&mut self) -> &mut i32 {
-        &mut getter
+        &mut self.base_pipeline_index
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -1338,10 +1338,11 @@ impl<'lt> RayTracingPipelineCreateInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRayTracingPipelineFeaturesKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1677,10 +1678,11 @@ impl<'lt> PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRayTracingPipelinePropertiesKHR")]
-#[derive(Debug, Eq, Ord, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -1796,35 +1798,35 @@ impl<'lt> PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::shader_group_handle_size`]
     pub fn shader_group_handle_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.shader_group_handle_size
     }
     ///Gets a mutable reference to the value of [`Self::max_ray_recursion_depth`]
     pub fn max_ray_recursion_depth_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_ray_recursion_depth
     }
     ///Gets a mutable reference to the value of [`Self::max_shader_group_stride`]
     pub fn max_shader_group_stride_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_shader_group_stride
     }
     ///Gets a mutable reference to the value of [`Self::shader_group_base_alignment`]
     pub fn shader_group_base_alignment_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.shader_group_base_alignment
     }
     ///Gets a mutable reference to the value of [`Self::shader_group_handle_capture_replay_size`]
     pub fn shader_group_handle_capture_replay_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.shader_group_handle_capture_replay_size
     }
     ///Gets a mutable reference to the value of [`Self::max_ray_dispatch_invocation_count`]
     pub fn max_ray_dispatch_invocation_count_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_ray_dispatch_invocation_count
     }
     ///Gets a mutable reference to the value of [`Self::shader_group_handle_alignment`]
     pub fn shader_group_handle_alignment_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.shader_group_handle_alignment
     }
     ///Gets a mutable reference to the value of [`Self::max_ray_hit_attribute_size`]
     pub fn max_ray_hit_attribute_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_ray_hit_attribute_size
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -2056,15 +2058,15 @@ impl TraceRaysIndirectCommandKHR {
     }
     ///Gets a mutable reference to the value of [`Self::width`]
     pub fn width_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.width
     }
     ///Gets a mutable reference to the value of [`Self::height`]
     pub fn height_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.height
     }
     ///Gets a mutable reference to the value of [`Self::depth`]
     pub fn depth_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.depth
     }
     ///Sets the raw value of [`Self::width`]
     pub fn set_width(&mut self, value: u32) -> &mut Self {
@@ -2136,6 +2138,7 @@ impl TraceRaysIndirectCommandKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RayTracingPipelineInterfaceCreateInfoKHR<'lt> {
+    ///Lifetime field
     pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
     pub s_type: StructureType,
@@ -2195,11 +2198,11 @@ impl<'lt> RayTracingPipelineInterfaceCreateInfoKHR<'lt> {
     }
     ///Gets a mutable reference to the value of [`Self::max_pipeline_ray_payload_size`]
     pub fn max_pipeline_ray_payload_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_pipeline_ray_payload_size
     }
     ///Gets a mutable reference to the value of [`Self::max_pipeline_ray_hit_attribute_size`]
     pub fn max_pipeline_ray_hit_attribute_size_mut(&mut self) -> &mut u32 {
-        &mut getter
+        &mut self.max_pipeline_ray_hit_attribute_size
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
