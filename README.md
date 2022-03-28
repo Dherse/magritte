@@ -167,7 +167,7 @@ One of the end goals for magritte is to support all common Vulkan formats using 
 Here are the following families that need to be implemented in the code generator (crossed items refer to deliberately unsupported features):
 
 - [ ] Documentation for Vulkan version
-- [ ] Documentation for extensions
+- [x] Documentation for extensions
 - [x] Handles
 - [ ] Higher level handles (wrappers)
 - [ ] Loaders
