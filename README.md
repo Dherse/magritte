@@ -176,7 +176,7 @@ Here are the following families that need to be implemented in the code generato
 - [x] ~Type aliases~
 - [x] Structs
 - [x] ~Struct builders~
-- [ ] Unions
+- [x] Unions
 - [ ] Function pointers
 - [x] Base types
 - [x] Constants
