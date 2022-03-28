@@ -1,4 +1,4 @@
-# Magritte
+# ⚗️ Magritte
 
 Magritte will be a single-backend, asynchronous rendering API for rust. Inspired by [`wgpu-rs`](https://github.com/gfx-rs/wgpu) but designed for native Desktop use instead of compatibility with [*WebGPU*](https://www.w3.org/TR/webgpu/). The final API will be designed to enabled high performance graphics and compute applications with the latest features.
 
