@@ -6,3 +6,5 @@
 
 #![warn(clippy::pedantic, clippy::cargo)]
 #![deny(missing_docs)]
+
+pub mod video;

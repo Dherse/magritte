@@ -172,7 +172,7 @@ Here are the following families that need to be implemented in the code generato
 - [ ] Higher level handles (wrappers)
 - [ ] Loaders
 - [x] Extensions (doc only)
-- [ ] Opaque types (aliases of `c_void`)
+- [x] Opaque types (aliases of `c_void`)
 - [x] ~Type aliases~
 - [x] Structs
 - [x] ~Struct builders~

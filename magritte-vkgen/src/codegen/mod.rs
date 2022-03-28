@@ -12,6 +12,7 @@ mod structs;
 mod bitmasks;
 mod unions;
 pub mod ty;
+mod opaques;
 
 use ahash::AHashMap;
 use proc_macro2::TokenStream;
@@ -121,6 +122,16 @@ impl<'a> Source<'a> {
             let (_, _, out) = per_origin.get_mut(handle.origin()).unwrap();
 
             handle.generate_code(self, doc, out);
+        }
+
+        for opaque in &self.opaque_types {
+            if opaque.origin().is_disabled() {
+                continue;
+            }
+
+            let (imports, _, out) = per_origin.get_mut(opaque.origin()).unwrap();
+
+            opaque.generate_code(self, doc, imports, out);
         }
 
         per_origin

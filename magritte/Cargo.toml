@@ -8,5 +8,9 @@ readme = "../README.md"
 keywords = [ "vulkan", "GFX", "GPU", "graphics", "bindings" ]
 categories = [ "api-bindings", "game-development", "graphics", "rendering" ]
 description = "A high performance, high level graphics API around Vulkan"
+build = "build.rs"
 
 [dependencies]
+
+[build-dependencies]
+bindgen = "0.59.2"
