@@ -152,24 +152,25 @@ impl std::fmt::Debug for PipelineCoverageToColorStateCreateFlagsNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineCoverageToColorStateCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineCoverageToColorStateCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: PipelineCoverageToColorStateCreateFlagsNV,
+    pub flags: PipelineCoverageToColorStateCreateFlagsNV,
     ///[`coverage_to_color_enable`] controls whether the fragment coverage value
     ///replaces a fragment color output.
-    coverage_to_color_enable: Bool32,
+    pub coverage_to_color_enable: Bool32,
     ///[`coverage_to_color_location`] controls which fragment shader color
     ///output value is replaced.
-    coverage_to_color_location: u32,
+    pub coverage_to_color_location: u32,
 }
 impl<'lt> Default for PipelineCoverageToColorStateCreateInfoNV<'lt> {
     fn default() -> Self {

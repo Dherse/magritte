@@ -162,25 +162,26 @@ pub const EXT_CUSTOM_BORDER_COLOR_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSamplerCustomBorderColorCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SamplerCustomBorderColorCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`custom_border_color`] is a [`ClearColorValue`] representing the
     ///desired custom sampler border color.
-    custom_border_color: ClearColorValue,
+    pub custom_border_color: ClearColorValue,
     ///[`format`] is a [`Format`] representing the format of the sampled
     ///image view(s).
     ///This field may be `VK_FORMAT_UNDEFINED` if the
     ///[customBorderColorWithoutFormat](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-customBorderColorWithoutFormat)
     ///feature is enabled.
-    format: Format,
+    pub format: Format,
 }
 impl<'lt> Default for SamplerCustomBorderColorCreateInfoEXT<'lt> {
     fn default() -> Self {
@@ -289,19 +290,20 @@ impl<'lt> SamplerCustomBorderColorCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceCustomBorderColorPropertiesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceCustomBorderColorPropertiesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///No documentation found
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///No documentation found
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`max_custom_border_color_samplers`] indicates the maximum number of
     ///samplers with custom border colors which  **can**  simultaneously exist on a
     ///device.
-    max_custom_border_color_samplers: u32,
+    pub max_custom_border_color_samplers: u32,
 }
 impl<'lt> Default for PhysicalDeviceCustomBorderColorPropertiesEXT<'lt> {
     fn default() -> Self {
@@ -417,22 +419,23 @@ impl<'lt> PhysicalDeviceCustomBorderColorPropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceCustomBorderColorFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceCustomBorderColorFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`custom_border_colors`] indicates that
     ///the implementation supports providing a `borderColor` value with one
     ///of the following values at sampler creation time:
     /// - `VK_BORDER_COLOR_FLOAT_CUSTOM_EXT`
     /// - `VK_BORDER_COLOR_INT_CUSTOM_EXT`
-    custom_border_colors: Bool32,
+    pub custom_border_colors: Bool32,
     ///[`custom_border_color_without_format`] indicates that explicit formats are
     ///not required for custom border colors and the value of the `format`
     ///member of the [`SamplerCustomBorderColorCreateInfoEXT`] structure
@@ -441,7 +444,7 @@ pub struct PhysicalDeviceCustomBorderColorFeaturesEXT<'lt> {
     ///[`Format`] of the image view(s) being sampled by this sampler in the
     ///`format` member of the [`SamplerCustomBorderColorCreateInfoEXT`]
     ///structure.
-    custom_border_color_without_format: Bool32,
+    pub custom_border_color_without_format: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceCustomBorderColorFeaturesEXT<'lt> {
     fn default() -> Self {

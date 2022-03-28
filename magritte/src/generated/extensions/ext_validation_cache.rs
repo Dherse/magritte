@@ -105,6 +105,7 @@ pub const EXT_VALIDATION_CACHE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkValidationCacheHeaderVersionEXT")]
+#[doc(alias = "VkValidationCacheHeaderVersionEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -221,28 +222,29 @@ impl std::fmt::Debug for ValidationCacheCreateFlagsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkValidationCacheCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ValidationCacheCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: ValidationCacheCreateFlagsEXT,
+    pub flags: ValidationCacheCreateFlagsEXT,
     ///[`initial_data_size`] is the number of bytes in [`initial_data`].
     ///If [`initial_data_size`] is zero, the validation cache will initially be
     ///empty.
-    initial_data_size: usize,
+    pub initial_data_size: usize,
     ///[`initial_data`] is a pointer to previously retrieved validation cache
     ///data.
     ///If the validation cache data is incompatible (as defined below) with the
     ///device, the validation cache will be initially empty.
     ///If [`initial_data_size`] is zero, [`initial_data`] is ignored.
-    initial_data: *const c_void,
+    pub initial_data: *const c_void,
 }
 impl<'lt> Default for ValidationCacheCreateInfoEXT<'lt> {
     fn default() -> Self {
@@ -382,21 +384,22 @@ impl<'lt> ValidationCacheCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkShaderModuleValidationCacheCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ShaderModuleValidationCacheCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`validation_cache`] is the validation cache object from which the
     ///results of prior validation attempts will be written, and to which new
     ///validation results for this [`ShaderModule`] will be written (if not
     ///already present).
-    validation_cache: ValidationCacheEXT,
+    pub validation_cache: ValidationCacheEXT,
 }
 impl<'lt> Default for ShaderModuleValidationCacheCreateInfoEXT<'lt> {
     fn default() -> Self {
@@ -494,6 +497,7 @@ impl<'lt> ShaderModuleValidationCacheCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkValidationCacheEXT")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]

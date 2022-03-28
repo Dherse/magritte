@@ -95,22 +95,23 @@ pub const NV_SHADER_SM_BUILTINS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceShaderSMBuiltinsPropertiesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_sm_count`] is the number of SMs on the
     ///device.
-    shader_sm_count: u32,
+    pub shader_sm_count: u32,
     ///[`shader_warps_per_sm`] is the maximum number
     ///of simultaneously executing warps on an SM.
-    shader_warps_per_sm: u32,
+    pub shader_warps_per_sm: u32,
 }
 impl<'lt> Default for PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt> {
     fn default() -> Self {
@@ -232,20 +233,21 @@ impl<'lt> PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceShaderSMBuiltinsFeaturesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderSmBuiltinsFeaturesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_sm_builtins`] indicates whether
     ///the implementation supports the SPIR-V `ShaderSMBuiltinsNV`
     ///capability.
-    shader_sm_builtins: Bool32,
+    pub shader_sm_builtins: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceShaderSmBuiltinsFeaturesNV<'lt> {
     fn default() -> Self {

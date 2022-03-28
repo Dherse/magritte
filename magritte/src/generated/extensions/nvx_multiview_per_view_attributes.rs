@@ -114,20 +114,21 @@ pub const NVX_MULTIVIEW_PER_VIEW_ATTRIBUTES_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`per_view_position_all_components`] is [`TRUE`] if the
     ///implementation supports per-view position values that differ in
     ///components other than the X component.
-    per_view_position_all_components: Bool32,
+    pub per_view_position_all_components: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'lt> {
     fn default() -> Self {

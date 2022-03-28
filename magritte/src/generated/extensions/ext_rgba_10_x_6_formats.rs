@@ -99,21 +99,22 @@ pub const EXT_RGBA10X6_FORMATS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRgba10X6FormatsFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`format_rgba_10_x_6_without_y_cb_cr_sampler`] indicates that
     ///`VK_FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16` **can**  be used with a
     ///[`ImageView`] with `subresourceRange.aspectMask` equal to
     ///`VK_IMAGE_ASPECT_COLOR_BIT` without a [sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-YCbCr-conversion) enabled.
-    format_rgba_10_x_6_without_y_cb_cr_sampler: Bool32,
+    pub format_rgba_10_x_6_without_y_cb_cr_sampler: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceRgba10X6FormatsFeaturesEXT<'lt> {
     fn default() -> Self {

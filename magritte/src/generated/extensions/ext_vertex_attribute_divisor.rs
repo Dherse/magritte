@@ -105,13 +105,14 @@ pub const EXT_VERTEX_ATTRIBUTE_DIVISOR_EXTENSION_NAME: &'static CStr = crate::cs
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVertexInputBindingDivisorDescriptionEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct VertexInputBindingDivisorDescriptionEXT {
     ///[`binding`] is the binding number for which the divisor is specified.
-    binding: u32,
+    pub binding: u32,
     ///[`divisor`] is the number of successive instances that will use the
     ///same value of the vertex attribute when instanced rendering is enabled.
     ///For example, if the divisor is N, the same vertex attribute will be
@@ -125,7 +126,7 @@ pub struct VertexInputBindingDivisorDescriptionEXT {
     ///feature is enabled.
     ///In this case, the same vertex attribute will be applied to all
     ///instances.
-    divisor: u32,
+    pub divisor: u32,
 }
 impl Default for VertexInputBindingDivisorDescriptionEXT {
     fn default() -> Self {
@@ -206,23 +207,24 @@ impl VertexInputBindingDivisorDescriptionEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineVertexInputDivisorStateCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineVertexInputDivisorStateCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`vertex_binding_divisor_count`] is the number of elements in the
     ///[`vertex_binding_divisors`] array.
-    vertex_binding_divisor_count: u32,
+    pub vertex_binding_divisor_count: u32,
     ///[`vertex_binding_divisors`] is a pointer to an array of
     ///[`VertexInputBindingDivisorDescriptionEXT`] structures specifying
     ///the divisor value for each binding.
-    vertex_binding_divisors: *const VertexInputBindingDivisorDescriptionEXT,
+    pub vertex_binding_divisors: *const VertexInputBindingDivisorDescriptionEXT,
 }
 impl<'lt> Default for PipelineVertexInputDivisorStateCreateInfoEXT<'lt> {
     fn default() -> Self {
@@ -351,20 +353,21 @@ impl<'lt> PipelineVertexInputDivisorStateCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`max_vertex_attrib_divisor`] is the
     ///maximum value of the number of instances that will repeat the value of
     ///vertex attribute data when instanced rendering is enabled.
-    max_vertex_attrib_divisor: u32,
+    pub max_vertex_attrib_divisor: u32,
 }
 impl<'lt> Default for PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'lt> {
     fn default() -> Self {
@@ -477,23 +480,24 @@ impl<'lt> PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`vertex_attribute_instance_rate_divisor`] specifies whether vertex
     ///attribute fetching may be repeated in case of instanced rendering.
-    vertex_attribute_instance_rate_divisor: Bool32,
+    pub vertex_attribute_instance_rate_divisor: Bool32,
     ///[`vertex_attribute_instance_rate_zero_divisor`] specifies whether a zero
     ///value for [`VertexInputBindingDivisorDescriptionEXT`]::`divisor`
     ///is supported.
-    vertex_attribute_instance_rate_zero_divisor: Bool32,
+    pub vertex_attribute_instance_rate_zero_divisor: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'lt> {
     fn default() -> Self {

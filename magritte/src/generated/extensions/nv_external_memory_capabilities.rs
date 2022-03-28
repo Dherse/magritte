@@ -279,6 +279,7 @@ impl ExternalMemoryFeatureFlagBitsNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalMemoryHandleTypeFlagsNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -607,6 +608,7 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlagsNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalMemoryFeatureFlagsNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -931,6 +933,7 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlagsNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalImageFormatPropertiesNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -939,19 +942,19 @@ pub struct ExternalImageFormatPropertiesNV {
     ///[`image_format_properties`] will be filled in as when calling
     ///[`GetPhysicalDeviceImageFormatProperties`], but the values returned
     /// **may**  vary depending on the external handle type requested.
-    image_format_properties: ImageFormatProperties,
+    pub image_format_properties: ImageFormatProperties,
     ///[`external_memory_features`] is a bitmask of
     ///[`ExternalMemoryFeatureFlagBitsNV`], indicating properties of the
     ///external memory handle type
     ///([`GetPhysicalDeviceExternalImageFormatPropertiesNV`]::`externalHandleType`)
     ///being queried, or 0 if the external memory handle type is 0.
-    external_memory_features: ExternalMemoryFeatureFlagsNV,
+    pub external_memory_features: ExternalMemoryFeatureFlagsNV,
     ///[`export_from_imported_handle_types`] is a bitmask of
     ///[`ExternalMemoryHandleTypeFlagBitsNV`] containing a bit set for
     ///every external handle type that  **may**  be used to create memory from which
     ///the handles of the type specified in
     ///[`GetPhysicalDeviceExternalImageFormatPropertiesNV`]::`externalHandleType` **can**  be exported, or 0 if the external memory handle type is 0.
-    export_from_imported_handle_types: ExternalMemoryHandleTypeFlagsNV,
+    pub export_from_imported_handle_types: ExternalMemoryHandleTypeFlagsNV,
     ///[`compatible_handle_types`] is a bitmask of
     ///[`ExternalMemoryHandleTypeFlagBitsNV`] containing a bit set for
     ///every external handle type that  **may**  be specified simultaneously with
@@ -961,7 +964,7 @@ pub struct ExternalImageFormatPropertiesNV {
     ///type is 0.
     ///[`compatible_handle_types`] will always contain
     ///[`GetPhysicalDeviceExternalImageFormatPropertiesNV`]::`externalHandleType`
-    compatible_handle_types: ExternalMemoryHandleTypeFlagsNV,
+    pub compatible_handle_types: ExternalMemoryHandleTypeFlagsNV,
 }
 impl Default for ExternalImageFormatPropertiesNV {
     fn default() -> Self {

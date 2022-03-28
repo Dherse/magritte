@@ -133,6 +133,7 @@ impl ShaderCorePropertiesFlagBitsAMD {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkShaderCorePropertiesFlagsAMD")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -408,24 +409,25 @@ impl std::fmt::Debug for ShaderCorePropertiesFlagsAMD {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceShaderCoreProperties2AMD")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderCoreProperties2AMD<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_core_features`] is a bitmask of
     ///[`ShaderCorePropertiesFlagBitsAMD`] indicating the set of features
     ///supported by the shader core.
-    shader_core_features: ShaderCorePropertiesFlagsAMD,
+    pub shader_core_features: ShaderCorePropertiesFlagsAMD,
     ///[`active_compute_unit_count`] is an
     ///unsigned integer value indicating the number of compute units that have
     ///been enabled.
-    active_compute_unit_count: u32,
+    pub active_compute_unit_count: u32,
 }
 impl<'lt> Default for PhysicalDeviceShaderCoreProperties2AMD<'lt> {
     fn default() -> Self {

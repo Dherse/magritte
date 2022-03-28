@@ -102,20 +102,21 @@ pub const EXT_COLOR_WRITE_ENABLE_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceColorWriteEnableFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`color_write_enable`] indicates that the
     ///implementation supports the dynamic state
     ///`VK_DYNAMIC_STATE_COLOR_WRITE_ENABLE_EXT`.
-    color_write_enable: Bool32,
+    pub color_write_enable: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
     fn default() -> Self {
@@ -265,23 +266,24 @@ impl<'lt> PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineColorWriteCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineColorWriteCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`attachment_count`] is the number of [`Bool32`] elements in
     ///[`color_write_enables`].
-    attachment_count: u32,
+    pub attachment_count: u32,
     ///[`color_write_enables`] is a pointer to an array of per target
     ///attachment boolean values specifying whether color writes are enabled
     ///for the given attachment.
-    color_write_enables: *const Bool32,
+    pub color_write_enables: *const Bool32,
 }
 impl<'lt> Default for PipelineColorWriteCreateInfoEXT<'lt> {
     fn default() -> Self {

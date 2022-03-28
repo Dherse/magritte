@@ -91,20 +91,21 @@ pub const EXT_MEMORY_PRIORITY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_E
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceMemoryPriorityFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMemoryPriorityFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`memory_priority`] indicates that the
     ///implementation supports memory priorities specified at memory allocation
     ///time via [`MemoryPriorityAllocateInfoEXT`].
-    memory_priority: Bool32,
+    pub memory_priority: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceMemoryPriorityFeaturesEXT<'lt> {
     fn default() -> Self {
@@ -235,21 +236,22 @@ impl<'lt> PhysicalDeviceMemoryPriorityFeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryPriorityAllocateInfoEXT")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryPriorityAllocateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`priority`] is a floating-point value between `0` and `1`, indicating
     ///the priority of the allocation relative to other memory allocations.
     ///Larger values are higher priority.
     ///The granularity of the priorities is implementation-dependent.
-    priority: f32,
+    pub priority: f32,
 }
 impl<'lt> Default for MemoryPriorityAllocateInfoEXT<'lt> {
     fn default() -> Self {

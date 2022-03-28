@@ -111,6 +111,7 @@ pub const EXT_LINE_RASTERIZATION_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkLineRasterizationModeEXT")]
+#[doc(alias = "VkLineRasterizationModeEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -213,45 +214,46 @@ impl LineRasterizationModeEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceLineRasterizationFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`rectangular_lines`] indicates whether
     ///the implementation supports [rectangular line
     ///rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines).
-    rectangular_lines: Bool32,
+    pub rectangular_lines: Bool32,
     ///[`bresenham_lines`] indicates whether the
     ///implementation supports [Bresenham-style line
     ///rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-bresenham).
-    bresenham_lines: Bool32,
+    pub bresenham_lines: Bool32,
     ///[`smooth_lines`] indicates whether the
     ///implementation supports [smooth line
     ///rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-smooth).
-    smooth_lines: Bool32,
+    pub smooth_lines: Bool32,
     ///[`stippled_rectangular_lines`]
     ///indicates whether the implementation supports
     ///[stippled line rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-stipple) with
     ///`VK_LINE_RASTERIZATION_MODE_RECTANGULAR_EXT` lines, or with
     ///`VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT` lines if
     ///[`PhysicalDeviceLimits`]::`strictLines` is [`TRUE`].
-    stippled_rectangular_lines: Bool32,
+    pub stippled_rectangular_lines: Bool32,
     ///[`stippled_bresenham_lines`]
     ///indicates whether the implementation supports
     ///[stippled line rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-stipple) with
     ///`VK_LINE_RASTERIZATION_MODE_BRESENHAM_EXT` lines.
-    stippled_bresenham_lines: Bool32,
+    pub stippled_bresenham_lines: Bool32,
     ///[`stippled_smooth_lines`] indicates
     ///whether the implementation supports [stippled
     ///line rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-stipple) with
     ///`VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT` lines.
-    stippled_smooth_lines: Bool32,
+    pub stippled_smooth_lines: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
     fn default() -> Self {
@@ -562,21 +564,22 @@ impl<'lt> PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceLineRasterizationPropertiesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`line_sub_pixel_precision_bits`] is
     ///the number of bits of subpixel precision in framebuffer coordinates
     ///x<sub>f</sub> and y<sub>f</sub> when rasterizing [line
     ///segments](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines).
-    line_sub_pixel_precision_bits: u32,
+    pub line_sub_pixel_precision_bits: u32,
 }
 impl<'lt> Default for PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
     fn default() -> Self {
@@ -699,28 +702,29 @@ impl<'lt> PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineRasterizationLineStateCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineRasterizationLineStateCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`line_rasterization_mode`] is a [`LineRasterizationModeEXT`] value
     ///selecting the style of line rasterization.
-    line_rasterization_mode: LineRasterizationModeEXT,
+    pub line_rasterization_mode: LineRasterizationModeEXT,
     ///[`stippled_line_enable`] enables [stippled
     ///line rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-stipple).
-    stippled_line_enable: Bool32,
+    pub stippled_line_enable: Bool32,
     ///[`line_stipple_factor`] is the repeat factor used in stippled line
     ///rasterization.
-    line_stipple_factor: u32,
+    pub line_stipple_factor: u32,
     ///[`line_stipple_pattern`] is the bit pattern used in stippled line
     ///rasterization.
-    line_stipple_pattern: u16,
+    pub line_stipple_pattern: u16,
 }
 impl<'lt> Default for PipelineRasterizationLineStateCreateInfoEXT<'lt> {
     fn default() -> Self {

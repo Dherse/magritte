@@ -114,20 +114,21 @@ pub const EXT_DEPTH_CLIP_CONTROL_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceDepthClipControlFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDepthClipControlFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT`
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///No documentation found
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`depth_clip_control`] indicates that the
     ///implementation supports setting
     ///[`PipelineViewportDepthClipControlCreateInfoEXT`]::`negativeOneToOne`
     ///to [`TRUE`].
-    depth_clip_control: Bool32,
+    pub depth_clip_control: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceDepthClipControlFeaturesEXT<'lt> {
     fn default() -> Self {
@@ -254,19 +255,20 @@ impl<'lt> PhysicalDeviceDepthClipControlFeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineViewportDepthClipControlCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineViewportDepthClipControlCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`negative_one_to_one`] sets the z<sub>m</sub> in the *view volume* to
     ///-w<sub>c</sub>
-    negative_one_to_one: Bool32,
+    pub negative_one_to_one: Bool32,
 }
 impl<'lt> Default for PipelineViewportDepthClipControlCreateInfoEXT<'lt> {
     fn default() -> Self {

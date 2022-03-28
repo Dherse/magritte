@@ -102,15 +102,16 @@ pub const EXT_HDR_METADATA_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkXYColorEXT")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct XyColorEXT {
     ///[`x`] is the x chromaticity coordinate.
-    x: f32,
+    pub x: f32,
     ///[`y`] is the y chromaticity coordinate.
-    y: f32,
+    pub y: f32,
 }
 impl Default for XyColorEXT {
     fn default() -> Self {
@@ -195,39 +196,40 @@ impl XyColorEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkHdrMetadataEXT")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct HdrMetadataEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`display_primary_red`] is a [`XyColorEXT`] structure specifying the
     ///reference monitor’s red primary in chromaticity coordinates
-    display_primary_red: XyColorEXT,
+    pub display_primary_red: XyColorEXT,
     ///[`display_primary_green`] is a [`XyColorEXT`] structure specifying
     ///the reference monitor’s green primary in chromaticity coordinates
-    display_primary_green: XyColorEXT,
+    pub display_primary_green: XyColorEXT,
     ///[`display_primary_blue`] is a [`XyColorEXT`] structure specifying
     ///the reference monitor’s blue primary in chromaticity coordinates
-    display_primary_blue: XyColorEXT,
+    pub display_primary_blue: XyColorEXT,
     ///[`white_point`] is a [`XyColorEXT`] structure specifying the
     ///reference monitor’s white-point in chromaticity coordinates
-    white_point: XyColorEXT,
+    pub white_point: XyColorEXT,
     ///[`max_luminance`] is the maximum luminance of the reference monitor in
     ///nits
-    max_luminance: f32,
+    pub max_luminance: f32,
     ///[`min_luminance`] is the minimum luminance of the reference monitor in
     ///nits
-    min_luminance: f32,
+    pub min_luminance: f32,
     ///[`max_content_light_level`] is content’s maximum luminance in nits
-    max_content_light_level: f32,
+    pub max_content_light_level: f32,
     ///[`max_frame_average_light_level`] is the maximum frame average light level
     ///in nits
-    max_frame_average_light_level: f32,
+    pub max_frame_average_light_level: f32,
 }
 impl<'lt> Default for HdrMetadataEXT<'lt> {
     fn default() -> Self {

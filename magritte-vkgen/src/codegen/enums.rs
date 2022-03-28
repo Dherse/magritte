@@ -87,6 +87,9 @@ impl<'a> Enum<'a> {
             .filter(|v| !v.origin().is_disabled())
             .map(|v| v.generate_enum_variant(self.origin(), &variant_docs));
 
+        // creates a doc alias if the name has been changed
+        alias_of(self.original_name(), self.name(), out);
+
         quote::quote_each_token! {
             out
 

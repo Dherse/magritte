@@ -101,16 +101,17 @@ pub const EXT_4444_FORMATS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDevice4444FormatsFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevice4444FormatsFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`format_a_4_r_4_g_4_b_4`] indicates that the
     ///implementation  **must**  support using a [`Format`] of
     ///`VK_FORMAT_A4R4G4B4_UNORM_PACK16_EXT` with at least the following
@@ -118,7 +119,7 @@ pub struct PhysicalDevice4444FormatsFeaturesEXT<'lt> {
     /// - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`
     /// - `VK_FORMAT_FEATURE_BLIT_SRC_BIT`
     /// - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
-    format_a_4_r_4_g_4_b_4: Bool32,
+    pub format_a_4_r_4_g_4_b_4: Bool32,
     ///[`format_a_4_b_4_g_4_r_4`] indicates that the
     ///implementation  **must**  support using a [`Format`] of
     ///`VK_FORMAT_A4B4G4R4_UNORM_PACK16_EXT` with at least the following
@@ -126,7 +127,7 @@ pub struct PhysicalDevice4444FormatsFeaturesEXT<'lt> {
     /// - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`
     /// - `VK_FORMAT_FEATURE_BLIT_SRC_BIT`
     /// - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
-    format_a_4_b_4_g_4_r_4: Bool32,
+    pub format_a_4_b_4_g_4_r_4: Bool32,
 }
 impl<'lt> Default for PhysicalDevice4444FormatsFeaturesEXT<'lt> {
     fn default() -> Self {

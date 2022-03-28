@@ -116,23 +116,24 @@ pub const KHR_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`workgroup_memory_explicit_layout`] indicates whether the implementation
     ///supports the SPIR-V `WorkgroupMemoryExplicitLayoutKHR` capability.
-    workgroup_memory_explicit_layout: Bool32,
+    pub workgroup_memory_explicit_layout: Bool32,
     ///[`workgroup_memory_explicit_layout_scalar_block_layout`] indicates whether
     ///the implementation supports scalar alignment for laying out Workgroup
     ///Blocks.
-    workgroup_memory_explicit_layout_scalar_block_layout: Bool32,
+    pub workgroup_memory_explicit_layout_scalar_block_layout: Bool32,
     ///[`workgroup_memory_explicit_layout_8_bit_access`] indicates whether objects
     ///in the `Workgroup` storage class with the `Block` decoration  **can**
     ///have 8-bit integer members.
@@ -140,7 +141,7 @@ pub struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
     ///in such objects.
     ///This also indicates whether shader modules  **can**  declare the
     ///`WorkgroupMemoryExplicitLayout8BitAccessKHR` capability.
-    workgroup_memory_explicit_layout_8_bit_access: Bool32,
+    pub workgroup_memory_explicit_layout_8_bit_access: Bool32,
     ///[`workgroup_memory_explicit_layout_16_bit_access`] indicates whether objects
     ///in the `Workgroup` storage class with the `Block` decoration  **can**
     ///have 16-bit integer and 16-bit floating-point members.
@@ -148,7 +149,7 @@ pub struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
     ///members  **must**  not be used in such objects.
     ///This also indicates whether shader modules  **can**  declare the
     ///`WorkgroupMemoryExplicitLayout16BitAccessKHR` capability.
-    workgroup_memory_explicit_layout_16_bit_access: Bool32,
+    pub workgroup_memory_explicit_layout_16_bit_access: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
     fn default() -> Self {

@@ -171,6 +171,7 @@ pub const EXT_FULL_SCREEN_EXCLUSIVE_EXTENSION_NAME: &'static CStr = crate::cstr!
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFullScreenExclusiveEXT")]
+#[doc(alias = "VkFullScreenExclusiveEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -257,19 +258,20 @@ impl FullScreenExclusiveEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSurfaceFullScreenExclusiveInfoEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SurfaceFullScreenExclusiveInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`full_screen_exclusive`] is a [`FullScreenExclusiveEXT`] value
     ///specifying the preferred full-screen transition behavior.
-    full_screen_exclusive: FullScreenExclusiveEXT,
+    pub full_screen_exclusive: FullScreenExclusiveEXT,
 }
 impl<'lt> Default for SurfaceFullScreenExclusiveInfoEXT<'lt> {
     fn default() -> Self {
@@ -374,19 +376,20 @@ impl<'lt> SurfaceFullScreenExclusiveInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSurfaceFullScreenExclusiveWin32InfoEXT")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SurfaceFullScreenExclusiveWin32InfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`hmonitor`] is the Win32 [`HMONITOR`] handle identifying the display
     ///to create the surface with.
-    hmonitor: HMONITOR,
+    pub hmonitor: HMONITOR,
 }
 impl<'lt> Default for SurfaceFullScreenExclusiveWin32InfoEXT<'lt> {
     fn default() -> Self {
@@ -496,18 +499,19 @@ impl<'lt> SurfaceFullScreenExclusiveWin32InfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSurfaceCapabilitiesFullScreenExclusiveEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SurfaceCapabilitiesFullScreenExclusiveEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    full_screen_exclusive_supported: Bool32,
+    pub full_screen_exclusive_supported: Bool32,
 }
 impl<'lt> Default for SurfaceCapabilitiesFullScreenExclusiveEXT<'lt> {
     fn default() -> Self {

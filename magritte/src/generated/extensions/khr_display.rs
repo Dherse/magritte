@@ -397,6 +397,7 @@ impl DisplayPlaneAlphaFlagBitsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplayPlaneAlphaFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -746,6 +747,7 @@ impl std::fmt::Debug for DisplayPlaneAlphaFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSurfaceTransformFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1232,34 +1234,35 @@ impl std::fmt::Debug for DisplaySurfaceCreateFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplayPropertiesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DisplayPropertiesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`display`] is a handle that is used to refer to the display described
     ///here.
     ///This handle will be valid for the lifetime of the Vulkan instance.
-    display: DisplayKHR,
+    pub display: DisplayKHR,
     ///[`display_name`] is `NULL` or a pointer to a null-terminated UTF-8
     ///string containing the name of the display.
     ///Generally, this will be the name provided by the display’s EDID.
     ///If `NULL`, no suitable name is available.
     ///If not `NULL`, the string pointed to  **must**  remain accessible and
     ///unmodified as long as [`display`] is valid.
-    display_name: &'lt CStr,
+    pub display_name: &'lt CStr,
     ///[`physical_dimensions`] describes the physical width and height of the
     ///visible portion of the display, in millimeters.
-    physical_dimensions: Extent2D,
+    pub physical_dimensions: Extent2D,
     ///[`physical_resolution`] describes the physical, native, or preferred
     ///resolution of the display.
-    physical_resolution: Extent2D,
+    pub physical_resolution: Extent2D,
     ///No documentation found
-    supported_transforms: SurfaceTransformFlagsKHR,
+    pub supported_transforms: SurfaceTransformFlagsKHR,
     ///No documentation found
-    plane_reorder_possible: Bool32,
+    pub plane_reorder_possible: Bool32,
     ///No documentation found
-    persistent_content: Bool32,
+    pub persistent_content: Bool32,
 }
 impl<'lt> Default for DisplayPropertiesKHR<'lt> {
     fn default() -> Self {
@@ -1445,6 +1448,7 @@ impl<'lt> DisplayPropertiesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplayPlanePropertiesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
@@ -1453,12 +1457,12 @@ pub struct DisplayPlanePropertiesKHR {
     ///associated with.
     ///If the plane is not currently attached to any displays, this will be
     ///[`crate::utils::Handle::null`].
-    current_display: DisplayKHR,
+    pub current_display: DisplayKHR,
     ///[`current_stack_index`] is the current z-order of the plane.
     ///This will be between 0 and the value returned by
     ///[`GetPhysicalDeviceDisplayPlanePropertiesKHR`] in
     ///`pPropertyCount`.
-    current_stack_index: u32,
+    pub current_stack_index: u32,
 }
 impl Default for DisplayPlanePropertiesKHR {
     fn default() -> Self {
@@ -1528,16 +1532,17 @@ impl DisplayPlanePropertiesKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplayModeParametersKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct DisplayModeParametersKHR {
     ///[`visible_region`] is the 2D extents of the visible region.
-    visible_region: Extent2D,
+    pub visible_region: Extent2D,
     ///[`refresh_rate`] is a `uint32_t` that is the number of times the
     ///display is refreshed each second multiplied by 1000.
-    refresh_rate: u32,
+    pub refresh_rate: u32,
 }
 impl Default for DisplayModeParametersKHR {
     fn default() -> Self {
@@ -1604,6 +1609,7 @@ impl DisplayModeParametersKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplayModePropertiesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
@@ -1611,10 +1617,10 @@ pub struct DisplayModePropertiesKHR {
     ///[`display_mode`] is a handle to the display mode described in this
     ///structure.
     ///This handle will be valid for the lifetime of the Vulkan instance.
-    display_mode: DisplayModeKHR,
+    pub display_mode: DisplayModeKHR,
     ///[`parameters`] is a [`DisplayModeParametersKHR`] structure
     ///describing the display parameters associated with [`display_mode`].
-    parameters: DisplayModeParametersKHR,
+    pub parameters: DisplayModeParametersKHR,
 }
 impl Default for DisplayModePropertiesKHR {
     fn default() -> Self {
@@ -1691,23 +1697,24 @@ impl DisplayModePropertiesKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplayModeCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DisplayModeCreateInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use, and  **must**  be zero.
-    flags: DisplayModeCreateFlagsKHR,
+    pub flags: DisplayModeCreateFlagsKHR,
     ///[`parameters`] is a [`DisplayModeParametersKHR`] structure
     ///describing the display parameters to use in creating the new mode.
     ///If the parameters are not compatible with the specified display, the
     ///implementation  **must**  return `VK_ERROR_INITIALIZATION_FAILED`.
-    parameters: DisplayModeParametersKHR,
+    pub parameters: DisplayModeParametersKHR,
 }
 impl<'lt> Default for DisplayModeCreateInfoKHR<'lt> {
     fn default() -> Self {
@@ -1859,6 +1866,7 @@ impl<'lt> DisplayModeCreateInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplayPlaneCapabilitiesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1867,35 +1875,35 @@ pub struct DisplayPlaneCapabilitiesKHR {
     ///[`supported_alpha`] is a bitmask of
     ///[`DisplayPlaneAlphaFlagBitsKHR`] describing the supported alpha
     ///blending modes.
-    supported_alpha: DisplayPlaneAlphaFlagsKHR,
+    pub supported_alpha: DisplayPlaneAlphaFlagsKHR,
     ///[`min_src_position`] is the minimum source rectangle offset supported by
     ///this plane using the specified mode.
-    min_src_position: Offset2D,
+    pub min_src_position: Offset2D,
     ///[`max_src_position`] is the maximum source rectangle offset supported by
     ///this plane using the specified mode.
     ///The `x` and `y` components of [`max_src_position`] **must**  each be
     ///greater than or equal to the `x` and `y` components of
     ///[`min_src_position`], respectively.
-    max_src_position: Offset2D,
+    pub max_src_position: Offset2D,
     ///[`min_src_extent`] is the minimum source rectangle size supported by
     ///this plane using the specified mode.
-    min_src_extent: Extent2D,
+    pub min_src_extent: Extent2D,
     ///[`max_src_extent`] is the maximum source rectangle size supported by
     ///this plane using the specified mode.
-    max_src_extent: Extent2D,
+    pub max_src_extent: Extent2D,
     ///[`min_dst_position`], [`max_dst_position`], [`min_dst_extent`],
     ///[`max_dst_extent`] all have similar semantics to their corresponding
     ///`*Src*` equivalents, but apply to the output region within the mode
     ///rather than the input region within the source image.
     ///Unlike the `*Src*` offsets, [`min_dst_position`] and
     ///[`max_dst_position`] **may**  contain negative values.
-    min_dst_position: Offset2D,
+    pub min_dst_position: Offset2D,
     ///No documentation found
-    max_dst_position: Offset2D,
+    pub max_dst_position: Offset2D,
     ///No documentation found
-    min_dst_extent: Extent2D,
+    pub min_dst_extent: Extent2D,
     ///No documentation found
-    max_dst_extent: Extent2D,
+    pub max_dst_extent: Extent2D,
 }
 impl Default for DisplayPlaneCapabilitiesKHR {
     fn default() -> Self {
@@ -2110,39 +2118,40 @@ impl DisplayPlaneCapabilitiesKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplaySurfaceCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DisplaySurfaceCreateInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use, and  **must**  be zero.
-    flags: DisplaySurfaceCreateFlagsKHR,
+    pub flags: DisplaySurfaceCreateFlagsKHR,
     ///[`display_mode`] is a [`DisplayModeKHR`] handle specifying the mode
     ///to use when displaying this surface.
-    display_mode: DisplayModeKHR,
+    pub display_mode: DisplayModeKHR,
     ///[`plane_index`] is the plane on which this surface appears.
-    plane_index: u32,
+    pub plane_index: u32,
     ///[`plane_stack_index`] is the z-order of the plane.
-    plane_stack_index: u32,
+    pub plane_stack_index: u32,
     ///[`transform`] is a [`SurfaceTransformFlagBitsKHR`] value
     ///specifying the transformation to apply to images as part of the scanout
     ///operation.
-    transform: SurfaceTransformFlagBitsKHR,
+    pub transform: SurfaceTransformFlagBitsKHR,
     ///[`global_alpha`] is the global alpha value.
     ///This value is ignored if [`alpha_mode`] is not
     ///`VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR`.
-    global_alpha: f32,
+    pub global_alpha: f32,
     ///[`alpha_mode`] is a [`DisplayPlaneAlphaFlagBitsKHR`] value
     ///specifying the type of alpha blending to use.
-    alpha_mode: DisplayPlaneAlphaFlagBitsKHR,
+    pub alpha_mode: DisplayPlaneAlphaFlagBitsKHR,
     ///[`image_extent`] is the size of the presentable images to use with the
     ///surface.
-    image_extent: Extent2D,
+    pub image_extent: Extent2D,
 }
 impl<'lt> Default for DisplaySurfaceCreateInfoKHR<'lt> {
     fn default() -> Self {
@@ -2333,6 +2342,7 @@ impl<'lt> DisplaySurfaceCreateInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplayKHR")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -2392,6 +2402,7 @@ impl std::fmt::Debug for DisplayKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplayModeKHR")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]

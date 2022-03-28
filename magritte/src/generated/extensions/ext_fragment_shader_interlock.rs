@@ -112,26 +112,27 @@ pub const EXT_FRAGMENT_SHADER_INTERLOCK_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`fragment_shader_sample_interlock`] indicates that the implementation
     ///supports the `FragmentShaderSampleInterlockEXT` SPIR-V capability.
-    fragment_shader_sample_interlock: Bool32,
+    pub fragment_shader_sample_interlock: Bool32,
     ///[`fragment_shader_pixel_interlock`] indicates that the implementation
     ///supports the `FragmentShaderPixelInterlockEXT` SPIR-V capability.
-    fragment_shader_pixel_interlock: Bool32,
+    pub fragment_shader_pixel_interlock: Bool32,
     ///[`fragment_shader_shading_rate_interlock`] indicates that the
     ///implementation supports the `FragmentShaderShadingRateInterlockEXT`
     ///SPIR-V capability.
-    fragment_shader_shading_rate_interlock: Bool32,
+    pub fragment_shader_shading_rate_interlock: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'lt> {
     fn default() -> Self {

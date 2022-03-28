@@ -87,22 +87,23 @@ pub const AMD_TEXTURE_GATHER_BIAS_LOD_EXTENSION_NAME: &'static CStr = crate::cst
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkTextureLODGatherFormatPropertiesAMD")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct TextureLodGatherFormatPropertiesAMD<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`supports_texture_gather_lod_bias_amd`] tells if the image format can be
     ///used with texture gather bias/LOD functions, as introduced by the
     ///`[`VK_AMD_texture_gather_bias_lod`]` extension.
     ///This field is set by the implementation.
     ///User-specified value is ignored.
-    supports_texture_gather_lod_bias_amd: Bool32,
+    pub supports_texture_gather_lod_bias_amd: Bool32,
 }
 impl<'lt> Default for TextureLodGatherFormatPropertiesAMD<'lt> {
     fn default() -> Self {

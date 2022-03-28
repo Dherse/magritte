@@ -109,6 +109,7 @@ pub const NV_COOPERATIVE_MATRIX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkScopeNV")]
+#[doc(alias = "VkScopeNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -191,6 +192,7 @@ impl ScopeNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkComponentTypeNV")]
 #[doc(alias = "VkComponentTypeNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -296,25 +298,26 @@ impl ComponentTypeNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceCooperativeMatrixFeaturesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`cooperative_matrix`] indicates that
     ///the implementation supports the `CooperativeMatrixNV` SPIR-V
     ///capability.
-    cooperative_matrix: Bool32,
+    pub cooperative_matrix: Bool32,
     ///[`cooperative_matrix_robust_buffer_access`] indicates that the
     ///implementation supports robust buffer access for SPIR-V
     ///`OpCooperativeMatrixLoadNV` and `OpCooperativeMatrixStoreNV`
     ///instructions.
-    cooperative_matrix_robust_buffer_access: Bool32,
+    pub cooperative_matrix_robust_buffer_access: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
     fn default() -> Self {
@@ -481,23 +484,24 @@ impl<'lt> PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceCooperativeMatrixPropertiesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`cooperative_matrix_supported_stages`] is a bitfield of
     ///[`ShaderStageFlagBits`] describing the shader stages that
     ///cooperative matrix instructions are supported in.
     ///[`cooperative_matrix_supported_stages`] will have the
     ///`VK_SHADER_STAGE_COMPUTE_BIT` bit set if any of the physical
     ///device’s queues support `VK_QUEUE_COMPUTE_BIT`.
-    cooperative_matrix_supported_stages: ShaderStageFlags,
+    pub cooperative_matrix_supported_stages: ShaderStageFlags,
 }
 impl<'lt> Default for PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
     fn default() -> Self {
@@ -636,37 +640,38 @@ impl<'lt> PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCooperativeMatrixPropertiesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CooperativeMatrixPropertiesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`m_size`] is the number of rows in matrices A, C, and D.
-    m_size: u32,
+    pub m_size: u32,
     ///[`n_size`] is the number of columns in matrices B, C, D.
-    n_size: u32,
+    pub n_size: u32,
     ///[`k_size`] is the number of columns in matrix A and rows in matrix B.
-    k_size: u32,
+    pub k_size: u32,
     ///[`a_type`] is the component type of matrix A, of type
     ///[`ComponentTypeNV`].
-    a_type: ComponentTypeNV,
+    pub a_type: ComponentTypeNV,
     ///[`b_type`] is the component type of matrix B, of type
     ///[`ComponentTypeNV`].
-    b_type: ComponentTypeNV,
+    pub b_type: ComponentTypeNV,
     ///[`c_type`] is the component type of matrix C, of type
     ///[`ComponentTypeNV`].
-    c_type: ComponentTypeNV,
+    pub c_type: ComponentTypeNV,
     ///[`d_type`] is the component type of matrix D, of type
     ///[`ComponentTypeNV`].
-    d_type: ComponentTypeNV,
+    pub d_type: ComponentTypeNV,
     ///[`scope`] is the scope of all the matrix types, of type
     ///[`ScopeNV`].
-    scope: ScopeNV,
+    pub scope: ScopeNV,
 }
 impl<'lt> Default for CooperativeMatrixPropertiesNV<'lt> {
     fn default() -> Self {

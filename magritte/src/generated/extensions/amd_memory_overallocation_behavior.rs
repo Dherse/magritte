@@ -88,6 +88,7 @@ pub const AMD_MEMORY_OVERALLOCATION_BEHAVIOR_EXTENSION_NAME: &'static CStr =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryOverallocationBehaviorAMD")]
+#[doc(alias = "VkMemoryOverallocationBehaviorAMD")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -165,18 +166,19 @@ impl MemoryOverallocationBehaviorAMD {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceMemoryOverallocationCreateInfoAMD")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceMemoryOverallocationCreateInfoAMD<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`overallocation_behavior`] is the desired overallocation behavior.
-    overallocation_behavior: MemoryOverallocationBehaviorAMD,
+    pub overallocation_behavior: MemoryOverallocationBehaviorAMD,
 }
 impl<'lt> Default for DeviceMemoryOverallocationCreateInfoAMD<'lt> {
     fn default() -> Self {

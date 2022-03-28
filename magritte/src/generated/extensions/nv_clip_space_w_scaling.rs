@@ -105,6 +105,7 @@ pub const NV_CLIP_SPACE_W_SCALING_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkViewportWScalingNV")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -112,9 +113,9 @@ pub const NV_CLIP_SPACE_W_SCALING_EXTENSION_NAME: &'static CStr = crate::cstr!("
 pub struct ViewportWScalingNV {
     ///[`xcoeff`] and [`ycoeff`] are the viewport’s W scaling factor for x
     ///and y respectively.
-    xcoeff: f32,
+    pub xcoeff: f32,
     ///No documentation found
-    ycoeff: f32,
+    pub ycoeff: f32,
 }
 impl Default for ViewportWScalingNV {
     fn default() -> Self {
@@ -192,28 +193,29 @@ impl ViewportWScalingNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineViewportWScalingStateCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineViewportWScalingStateCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`viewport_w_scaling_enable`] controls whether viewport  **W**  scaling is
     ///enabled.
-    viewport_w_scaling_enable: Bool32,
+    pub viewport_w_scaling_enable: Bool32,
     ///[`viewport_count`] is the number of viewports used by  **W**  scaling, and
     /// **must**  match the number of viewports in the pipeline if viewport  **W**
     ///scaling is enabled.
-    viewport_count: u32,
+    pub viewport_count: u32,
     ///[`viewport_w_scalings`] is a pointer to an array of
     ///[`ViewportWScalingNV`] structures defining the  **W**  scaling
     ///parameters for the corresponding viewports.
     ///If the viewport  **W**  scaling state is dynamic, this member is ignored.
-    viewport_w_scalings: *const ViewportWScalingNV,
+    pub viewport_w_scalings: *const ViewportWScalingNV,
 }
 impl<'lt> Default for PipelineViewportWScalingStateCreateInfoNV<'lt> {
     fn default() -> Self {

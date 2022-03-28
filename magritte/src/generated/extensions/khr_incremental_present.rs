@@ -149,25 +149,26 @@ pub const KHR_INCREMENTAL_PRESENT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPresentRegionsKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PresentRegionsKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`swapchain_count`] is the number of swapchains being presented to by
     ///this command.
-    swapchain_count: u32,
+    pub swapchain_count: u32,
     ///[`regions`] is `NULL` or a pointer to an array of
     ///[`PresentRegionKHR`] elements with [`swapchain_count`] entries.
     ///If not `NULL`, each element of [`regions`] contains the region that
     ///has changed since the last present to the swapchain in the corresponding
     ///entry in the [`PresentInfoKHR`]::`pSwapchains` array.
-    regions: *const PresentRegionKHR<'lt>,
+    pub regions: *const PresentRegionKHR<'lt>,
 }
 impl<'lt> Default for PresentRegionsKHR<'lt> {
     fn default() -> Self {
@@ -294,14 +295,15 @@ impl<'lt> PresentRegionsKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPresentRegionKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PresentRegionKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`rectangle_count`] is the number of rectangles in [`rectangles`],
     ///or zero if the entire image has changed and should be presented.
-    rectangle_count: u32,
+    pub rectangle_count: u32,
     ///[`rectangles`] is either `NULL` or a pointer to an array of
     ///[`RectLayerKHR`] structures.
     ///The [`RectLayerKHR`] structure is the framebuffer coordinates, plus
@@ -316,7 +318,7 @@ pub struct PresentRegionKHR<'lt> {
     ///The presentation engine will apply the `preTransform` transformation
     ///to the rectangles, along with any further transformation it applies to
     ///the image content.
-    rectangles: *const RectLayerKHR,
+    pub rectangles: *const RectLayerKHR,
 }
 impl<'lt> Default for PresentRegionKHR<'lt> {
     fn default() -> Self {
@@ -410,18 +412,19 @@ impl<'lt> PresentRegionKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRectLayerKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct RectLayerKHR {
     ///[`offset`] is the origin of the rectangle, in pixels.
-    offset: Offset2D,
+    pub offset: Offset2D,
     ///[`extent`] is the size of the rectangle, in pixels.
-    extent: Extent2D,
+    pub extent: Extent2D,
     ///[`layer`] is the layer of the image.
     ///For images with only one layer, the value of [`layer`] **must**  be 0.
-    layer: u32,
+    pub layer: u32,
 }
 impl Default for RectLayerKHR {
     fn default() -> Self {

@@ -350,6 +350,7 @@ pub const KHR_RAY_TRACING_PIPELINE_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRayTracingShaderGroupTypeKHR")]
+#[doc(alias = "VkRayTracingShaderGroupTypeKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -426,6 +427,7 @@ impl RayTracingShaderGroupTypeKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkShaderGroupShaderKHR")]
 #[doc(alias = "VkShaderGroupShaderKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -560,51 +562,52 @@ impl ShaderGroupShaderKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRayTracingShaderGroupCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RayTracingShaderGroupCreateInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`type_`] is the type of hit group specified in this structure.
-    type_: RayTracingShaderGroupTypeKHR,
+    pub type_: RayTracingShaderGroupTypeKHR,
     ///[`general_shader`] is the index of the ray generation, miss, or
     ///callable shader from
     ///[`RayTracingPipelineCreateInfoKHR`]::`pStages` in the group if
     ///the shader group has [`type_`] of
     ///`VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_KHR`, and
     ///[`SHADER_UNUSED_KHR`] otherwise.
-    general_shader: u32,
+    pub general_shader: u32,
     ///[`closest_hit_shader`] is the optional index of the closest hit shader
     ///from [`RayTracingPipelineCreateInfoKHR`]::`pStages` in the group
     ///if the shader group has [`type_`] of
     ///`VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR` or
     ///`VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR`, and
     ///[`SHADER_UNUSED_KHR`] otherwise.
-    closest_hit_shader: u32,
+    pub closest_hit_shader: u32,
     ///[`any_hit_shader`] is the optional index of the any-hit shader from
     ///[`RayTracingPipelineCreateInfoKHR`]::`pStages` in the group if
     ///the shader group has [`type_`] of
     ///`VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR` or
     ///`VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR`, and
     ///[`SHADER_UNUSED_KHR`] otherwise.
-    any_hit_shader: u32,
+    pub any_hit_shader: u32,
     ///[`intersection_shader`] is the index of the intersection shader from
     ///[`RayTracingPipelineCreateInfoKHR`]::`pStages` in the group if
     ///the shader group has [`type_`] of
     ///`VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR`, and
     ///[`SHADER_UNUSED_KHR`] otherwise.
-    intersection_shader: u32,
+    pub intersection_shader: u32,
     ///[`shader_group_capture_replay_handle`] is `NULL` or a pointer to replay
     ///information for this shader group.
     ///Ignored if
     ///[`PhysicalDeviceRayTracingPipelineFeaturesKHR`]::`rayTracingPipelineShaderGroupHandleCaptureReplay`
     ///is [`FALSE`].
-    shader_group_capture_replay_handle: *const c_void,
+    pub shader_group_capture_replay_handle: *const c_void,
 }
 impl<'lt> Default for RayTracingShaderGroupCreateInfoKHR<'lt> {
     fn default() -> Self {
@@ -951,56 +954,57 @@ impl<'lt> RayTracingShaderGroupCreateInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRayTracingPipelineCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RayTracingPipelineCreateInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`PipelineCreateFlagBits`] specifying
     ///how the pipeline will be generated.
-    flags: PipelineCreateFlags,
+    pub flags: PipelineCreateFlags,
     ///[`stage_count`] is the number of entries in the [`stages`] array.
-    stage_count: u32,
+    pub stage_count: u32,
     ///[`stages`] is a pointer to an array of [`stage_count`][`PipelineShaderStageCreateInfo`]
     /// structures describing the set of the shader stages to be included in the ray tracing
     /// pipeline.
-    stages: *const PipelineShaderStageCreateInfo<'lt>,
+    pub stages: *const PipelineShaderStageCreateInfo<'lt>,
     ///[`group_count`] is the number of entries in the [`groups`] array.
-    group_count: u32,
+    pub group_count: u32,
     ///[`groups`] is a pointer to an array of [`group_count`][`RayTracingShaderGroupCreateInfoKHR`]
     /// structures describing the set of the shader stages to be included in each shader group
     /// in the ray tracing pipeline.
-    groups: *const RayTracingShaderGroupCreateInfoKHR<'lt>,
+    pub groups: *const RayTracingShaderGroupCreateInfoKHR<'lt>,
     ///[`max_pipeline_ray_recursion_depth`] is the [maximum recursion depth](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-tracing-recursion-depth) of shaders executed by this pipeline.
-    max_pipeline_ray_recursion_depth: u32,
+    pub max_pipeline_ray_recursion_depth: u32,
     ///[`library_info`] is a pointer to a
     ///[`PipelineLibraryCreateInfoKHR`] structure defining pipeline
     ///libraries to include.
-    library_info: *const PipelineLibraryCreateInfoKHR<'lt>,
+    pub library_info: *const PipelineLibraryCreateInfoKHR<'lt>,
     ///[`library_interface`] is a pointer to a
     ///[`RayTracingPipelineInterfaceCreateInfoKHR`] structure defining
     ///additional information when using pipeline libraries.
-    library_interface: *const RayTracingPipelineInterfaceCreateInfoKHR<'lt>,
+    pub library_interface: *const RayTracingPipelineInterfaceCreateInfoKHR<'lt>,
     ///[`dynamic_state`] is a pointer to a
     ///[`PipelineDynamicStateCreateInfo`] structure, and is used to
     ///indicate which properties of the pipeline state object are dynamic and
     /// **can**  be changed independently of the pipeline state.
     ///This  **can**  be `NULL`, which means no state in the pipeline is considered
     ///dynamic.
-    dynamic_state: *const PipelineDynamicStateCreateInfo<'lt>,
+    pub dynamic_state: *const PipelineDynamicStateCreateInfo<'lt>,
     ///[`layout`] is the description of binding locations used by both the
     ///pipeline and descriptor sets used with the pipeline.
-    layout: PipelineLayout,
+    pub layout: PipelineLayout,
     ///[`base_pipeline_handle`] is a pipeline to derive from.
-    base_pipeline_handle: Pipeline,
+    pub base_pipeline_handle: Pipeline,
     ///[`base_pipeline_index`] is an index into the `pCreateInfos`
     ///parameter to use as a pipeline to derive from.
-    base_pipeline_index: i32,
+    pub base_pipeline_index: i32,
 }
 impl<'lt> Default for RayTracingPipelineCreateInfoKHR<'lt> {
     fn default() -> Self {
@@ -1333,39 +1337,40 @@ impl<'lt> RayTracingPipelineCreateInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceRayTracingPipelineFeaturesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`ray_tracing_pipeline`] indicates
     ///whether the implementation supports the ray tracing pipeline
     ///functionality.
     ///See [Ray Tracing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-tracing).
-    ray_tracing_pipeline: Bool32,
+    pub ray_tracing_pipeline: Bool32,
     ///[`ray_tracing_pipeline_shader_group_handle_capture_replay`] indicates whether
     ///the implementation supports saving and reusing shader group handles,
     ///e.g. for trace capture and replay.
-    ray_tracing_pipeline_shader_group_handle_capture_replay: Bool32,
+    pub ray_tracing_pipeline_shader_group_handle_capture_replay: Bool32,
     ///[`ray_tracing_pipeline_shader_group_handle_capture_replay_mixed`] indicates
     ///whether the implementation supports reuse of shader group handles being
     ///arbitrarily mixed with creation of non-reused shader group handles.
     ///If this is [`FALSE`], all reused shader group handles  **must**  be
     ///specified before any non-reused handles  **may**  be created.
-    ray_tracing_pipeline_shader_group_handle_capture_replay_mixed: Bool32,
+    pub ray_tracing_pipeline_shader_group_handle_capture_replay_mixed: Bool32,
     ///[`ray_tracing_pipeline_trace_rays_indirect`] indicates whether the
     ///implementation supports indirect ray tracing commands, e.g.
     ///[`CmdTraceRaysIndirectKHR`].
-    ray_tracing_pipeline_trace_rays_indirect: Bool32,
+    pub ray_tracing_pipeline_trace_rays_indirect: Bool32,
     ///[`ray_traversal_primitive_culling`] indicates whether the implementation
     ///supports [primitive culling during ray
     ///traversal](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-traversal-culling-primitive).
-    ray_traversal_primitive_culling: Bool32,
+    pub ray_traversal_primitive_culling: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
     fn default() -> Self {
@@ -1671,41 +1676,42 @@ impl<'lt> PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceRayTracingPipelinePropertiesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_group_handle_size`] is the size in bytes of the shader header.
-    shader_group_handle_size: u32,
+    pub shader_group_handle_size: u32,
     ///[`max_ray_recursion_depth`] is the
     ///maximum number of levels of ray recursion allowed in a trace command.
-    max_ray_recursion_depth: u32,
+    pub max_ray_recursion_depth: u32,
     ///[`max_shader_group_stride`] is the maximum stride in bytes allowed
     ///between shader groups in the shader binding table.
-    max_shader_group_stride: u32,
+    pub max_shader_group_stride: u32,
     ///[`shader_group_base_alignment`] is the  **required**  alignment in bytes for
     ///the base of the shader binding table.
-    shader_group_base_alignment: u32,
+    pub shader_group_base_alignment: u32,
     ///[`shader_group_handle_capture_replay_size`] is the number of bytes for the
     ///information required to do capture and replay for shader group handles.
-    shader_group_handle_capture_replay_size: u32,
+    pub shader_group_handle_capture_replay_size: u32,
     ///[`max_ray_dispatch_invocation_count`] is the maximum number of ray
     ///generation shader invocations which  **may**  be produced by a single
     ///[`CmdTraceRaysIndirectKHR`] or [`CmdTraceRaysKHR`] command.
-    max_ray_dispatch_invocation_count: u32,
+    pub max_ray_dispatch_invocation_count: u32,
     ///[`shader_group_handle_alignment`] is the  **required**  alignment in bytes for
     ///each shader binding table entry.
     ///The value  **must**  be a power of two.
-    shader_group_handle_alignment: u32,
+    pub shader_group_handle_alignment: u32,
     ///[`max_ray_hit_attribute_size`] is the maximum size in bytes for a ray
     ///attribute structure
-    max_ray_hit_attribute_size: u32,
+    pub max_ray_hit_attribute_size: u32,
 }
 impl<'lt> Default for PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
     fn default() -> Self {
@@ -1907,6 +1913,7 @@ impl<'lt> PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkStridedDeviceAddressRegionKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1915,12 +1922,12 @@ pub struct StridedDeviceAddressRegionKHR {
     ///[`device_address`] is the device address (as returned by the
     ///[`GetBufferDeviceAddress`] command) at which the region starts, or
     ///zero if the region is unused.
-    device_address: DeviceAddress,
+    pub device_address: DeviceAddress,
     ///[`stride`] is the byte stride between consecutive elements.
-    stride: DeviceSize,
+    pub stride: DeviceSize,
     ///[`size`] is the size in bytes of the region starting at
     ///[`device_address`].
-    size: DeviceSize,
+    pub size: DeviceSize,
 }
 impl Default for StridedDeviceAddressRegionKHR {
     fn default() -> Self {
@@ -2012,17 +2019,18 @@ impl StridedDeviceAddressRegionKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkTraceRaysIndirectCommandKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct TraceRaysIndirectCommandKHR {
     ///[`width`] is the width of the ray trace query dimensions.
-    width: u32,
+    pub width: u32,
     ///[`height`] is height of the ray trace query dimensions.
-    height: u32,
+    pub height: u32,
     ///[`depth`] is depth of the ray trace query dimensions.
-    depth: u32,
+    pub depth: u32,
 }
 impl Default for TraceRaysIndirectCommandKHR {
     fn default() -> Self {
@@ -2123,22 +2131,23 @@ impl TraceRaysIndirectCommandKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRayTracingPipelineInterfaceCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RayTracingPipelineInterfaceCreateInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`max_pipeline_ray_payload_size`] is the maximum payload size in bytes
     ///used by any shader in the pipeline.
-    max_pipeline_ray_payload_size: u32,
+    pub max_pipeline_ray_payload_size: u32,
     ///[`max_pipeline_ray_hit_attribute_size`] is the maximum attribute structure
     ///size in bytes used by any shader in the pipeline.
-    max_pipeline_ray_hit_attribute_size: u32,
+    pub max_pipeline_ray_hit_attribute_size: u32,
 }
 impl<'lt> Default for RayTracingPipelineInterfaceCreateInfoKHR<'lt> {
     fn default() -> Self {

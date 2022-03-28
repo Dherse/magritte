@@ -101,19 +101,20 @@ pub const NV_DEDICATED_ALLOCATION_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDedicatedAllocationImageCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DedicatedAllocationImageCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`dedicated_allocation`] specifies whether the image will have a
     ///dedicated allocation bound to it.
-    dedicated_allocation: Bool32,
+    pub dedicated_allocation: Bool32,
 }
 impl<'lt> Default for DedicatedAllocationImageCreateInfoNV<'lt> {
     fn default() -> Self {
@@ -232,19 +233,20 @@ impl<'lt> DedicatedAllocationImageCreateInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDedicatedAllocationBufferCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DedicatedAllocationBufferCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`dedicated_allocation`] specifies whether the buffer will have a
     ///dedicated allocation bound to it.
-    dedicated_allocation: Bool32,
+    pub dedicated_allocation: Bool32,
 }
 impl<'lt> Default for DedicatedAllocationBufferCreateInfoNV<'lt> {
     fn default() -> Self {
@@ -391,22 +393,23 @@ impl<'lt> DedicatedAllocationBufferCreateInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDedicatedAllocationMemoryAllocateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DedicatedAllocationMemoryAllocateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`image`] is [`crate::utils::Handle::null`] or a handle of an image which this
     ///memory will be bound to.
-    image: Image,
+    pub image: Image,
     ///[`buffer`] is [`crate::utils::Handle::null`] or a handle of a buffer which this
     ///memory will be bound to.
-    buffer: Buffer,
+    pub buffer: Buffer,
 }
 impl<'lt> Default for DedicatedAllocationMemoryAllocateInfoNV<'lt> {
     fn default() -> Self {

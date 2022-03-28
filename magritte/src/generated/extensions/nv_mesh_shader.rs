@@ -135,22 +135,23 @@ pub const NV_MESH_SHADER_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_mes
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceMeshShaderFeaturesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMeshShaderFeaturesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`task_shader`] indicates whether the task
     ///shader stage is supported.
-    task_shader: Bool32,
+    pub task_shader: Bool32,
     ///[`mesh_shader`] indicates whether the mesh
     ///shader stage is supported.
-    mesh_shader: Bool32,
+    pub mesh_shader: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceMeshShaderFeaturesNV<'lt> {
     fn default() -> Self {
@@ -359,20 +360,21 @@ impl<'lt> PhysicalDeviceMeshShaderFeaturesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceMeshShaderPropertiesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMeshShaderPropertiesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`max_draw_mesh_tasks_count`] is the maximum number of local workgroups
     ///that  **can**  be launched by a single draw mesh tasks command.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-mesh-shading](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-mesh-shading).
-    max_draw_mesh_tasks_count: u32,
+    pub max_draw_mesh_tasks_count: u32,
     ///[`max_task_work_group_invocations`] is the maximum total number of task
     ///    shader invocations in a single local workgroup.
     ///    The product of the X, Y, and Z sizes, as specified by the `LocalSize`
@@ -380,7 +382,7 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     ///    execution mode in shader modules or by the object decorated by the
     ///    `WorkgroupSize` decoration,  **must**  be less than or equal to this
     ///    limit.
-    max_task_work_group_invocations: u32,
+    pub max_task_work_group_invocations: u32,
     ///[`max_task_work_group_size`][3] is the maximum size of a local task
     ///    workgroup.
     ///    These three values represent the maximum local workgroup size in the X,
@@ -391,13 +393,13 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     ///    execution mode or by the object decorated by the `WorkgroupSize`
     ///    decoration in shader modules,  **must**  be less than or equal to the
     ///    corresponding limit.
-    max_task_work_group_size: [u32; 3],
+    pub max_task_work_group_size: [u32; 3],
     ///[`max_task_total_memory_size`] is the maximum number of bytes that the
     ///task shader can use in total for shared and output memory combined.
-    max_task_total_memory_size: u32,
+    pub max_task_total_memory_size: u32,
     ///[`max_task_output_count`] is the maximum number of output tasks a single
     ///task shader workgroup can emit.
-    max_task_output_count: u32,
+    pub max_task_output_count: u32,
     ///[`max_mesh_work_group_invocations`] is the maximum total number of mesh
     ///    shader invocations in a single local workgroup.
     ///    The product of the X, Y, and Z sizes, as specified by the `LocalSize`
@@ -405,7 +407,7 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     ///    execution mode in shader modules or by the object decorated by the
     ///    `WorkgroupSize` decoration,  **must**  be less than or equal to this
     ///    limit.
-    max_mesh_work_group_invocations: u32,
+    pub max_mesh_work_group_invocations: u32,
     ///[`max_mesh_work_group_size`][3] is the maximum size of a local mesh
     ///    workgroup.
     ///    These three values represent the maximum local workgroup size in the X,
@@ -416,31 +418,31 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     ///    execution mode or by the object decorated by the `WorkgroupSize`
     ///    decoration in shader modules,  **must**  be less than or equal to the
     ///    corresponding limit.
-    max_mesh_work_group_size: [u32; 3],
+    pub max_mesh_work_group_size: [u32; 3],
     ///[`max_mesh_total_memory_size`] is the maximum number of bytes that the
     ///mesh shader can use in total for shared and output memory combined.
-    max_mesh_total_memory_size: u32,
+    pub max_mesh_total_memory_size: u32,
     ///[`max_mesh_output_vertices`] is the maximum number of vertices a mesh
     ///shader output can store.
-    max_mesh_output_vertices: u32,
+    pub max_mesh_output_vertices: u32,
     ///[`max_mesh_output_primitives`] is the maximum number of primitives a mesh
     ///shader output can store.
-    max_mesh_output_primitives: u32,
+    pub max_mesh_output_primitives: u32,
     ///[`max_mesh_multiview_view_count`] is the maximum number of multi-view
     ///views a mesh shader can use.
-    max_mesh_multiview_view_count: u32,
+    pub max_mesh_multiview_view_count: u32,
     ///[`mesh_output_per_vertex_granularity`] is the granularity with which mesh
     ///vertex outputs are allocated.
     ///The value can be used to compute the memory size used by the mesh
     ///shader, which must be less than or equal to
     ///[`max_mesh_total_memory_size`].
-    mesh_output_per_vertex_granularity: u32,
+    pub mesh_output_per_vertex_granularity: u32,
     ///[`mesh_output_per_primitive_granularity`] is the granularity with which
     ///mesh outputs qualified as per-primitive are allocated.
     ///The value can be used to compute the memory size used by the mesh
     ///shader, which must be less than or equal to
     ///[`max_mesh_total_memory_size`].
-    mesh_output_per_primitive_granularity: u32,
+    pub mesh_output_per_primitive_granularity: u32,
 }
 impl<'lt> Default for PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     fn default() -> Self {
@@ -707,6 +709,7 @@ impl<'lt> PhysicalDeviceMeshShaderPropertiesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDrawMeshTasksIndirectCommandNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -715,9 +718,9 @@ pub struct DrawMeshTasksIndirectCommandNV {
     ///[`task_count`] is the number of local workgroups to dispatch in the X
     ///dimension.
     ///Y and Z dimension are implicitly set to one.
-    task_count: u32,
+    pub task_count: u32,
     ///[`first_task`] is the X component of the first workgroup ID.
-    first_task: u32,
+    pub first_task: u32,
 }
 impl Default for DrawMeshTasksIndirectCommandNV {
     fn default() -> Self {

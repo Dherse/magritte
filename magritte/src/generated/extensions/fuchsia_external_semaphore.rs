@@ -128,27 +128,28 @@ pub const FUCHSIA_EXTERNAL_SEMAPHORE_EXTENSION_NAME: &'static CStr = crate::cstr
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImportSemaphoreZirconHandleInfoFUCHSIA")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImportSemaphoreZirconHandleInfoFUCHSIA<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`semaphore`] is the semaphore into which the payload will be
     ///imported.
-    semaphore: Semaphore,
+    pub semaphore: Semaphore,
     ///[`flags`] is a bitmask of [`SemaphoreImportFlagBits`] specifying
     ///additional parameters for the semaphore payload import operation.
-    flags: SemaphoreImportFlags,
+    pub flags: SemaphoreImportFlags,
     ///[`handle_type`] is a [`ExternalSemaphoreHandleTypeFlagBits`] value
     ///specifying the type of [`zircon_handle`].
-    handle_type: ExternalSemaphoreHandleTypeFlagBits,
+    pub handle_type: ExternalSemaphoreHandleTypeFlagBits,
     ///[`zircon_handle`] is the external handle to import.
-    zircon_handle: zx_handle_t,
+    pub zircon_handle: zx_handle_t,
 }
 impl<'lt> Default for ImportSemaphoreZirconHandleInfoFUCHSIA<'lt> {
     fn default() -> Self {
@@ -312,21 +313,22 @@ impl<'lt> ImportSemaphoreZirconHandleInfoFUCHSIA<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSemaphoreGetZirconHandleInfoFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SemaphoreGetZirconHandleInfoFUCHSIA<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`semaphore`] is the semaphore from which state will be exported.
-    semaphore: Semaphore,
+    pub semaphore: Semaphore,
     ///[`handle_type`] is a [`ExternalSemaphoreHandleTypeFlagBits`] value
     ///specifying the type of handle requested.
-    handle_type: ExternalSemaphoreHandleTypeFlagBits,
+    pub handle_type: ExternalSemaphoreHandleTypeFlagBits,
 }
 impl<'lt> Default for SemaphoreGetZirconHandleInfoFUCHSIA<'lt> {
     fn default() -> Self {

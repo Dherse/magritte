@@ -107,22 +107,23 @@ pub const NV_COMPUTE_SHADER_DERIVATIVES_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceComputeShaderDerivativesFeaturesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceComputeShaderDerivativesFeaturesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`compute_derivative_group_quads`] indicates that the implementation
     ///supports the `ComputeDerivativeGroupQuadsNV` SPIR-V capability.
-    compute_derivative_group_quads: Bool32,
+    pub compute_derivative_group_quads: Bool32,
     ///[`compute_derivative_group_linear`] indicates that the implementation
     ///supports the `ComputeDerivativeGroupLinearNV` SPIR-V capability.
-    compute_derivative_group_linear: Bool32,
+    pub compute_derivative_group_linear: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceComputeShaderDerivativesFeaturesNV<'lt> {
     fn default() -> Self {

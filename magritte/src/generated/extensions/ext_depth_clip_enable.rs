@@ -133,16 +133,17 @@ impl std::fmt::Debug for PipelineRasterizationDepthClipStateCreateFlagsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceDepthClipEnableFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDepthClipEnableFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`depth_clip_enable`] indicates that the
     ///implementation supports setting the depth clipping operation explicitly
     ///via the [`PipelineRasterizationDepthClipStateCreateInfoEXT`]
@@ -150,7 +151,7 @@ pub struct PhysicalDeviceDepthClipEnableFeaturesEXT<'lt> {
     ///Otherwise depth clipping is only enabled when
     ///[`PipelineRasterizationStateCreateInfo`]::`depthClampEnable` is
     ///set to [`FALSE`].
-    depth_clip_enable: Bool32,
+    pub depth_clip_enable: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceDepthClipEnableFeaturesEXT<'lt> {
     fn default() -> Self {
@@ -280,21 +281,22 @@ impl<'lt> PhysicalDeviceDepthClipEnableFeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineRasterizationDepthClipStateCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineRasterizationDepthClipStateCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: PipelineRasterizationDepthClipStateCreateFlagsEXT,
+    pub flags: PipelineRasterizationDepthClipStateCreateFlagsEXT,
     ///[`depth_clip_enable`] controls whether depth clipping is enabled as
     ///described in [Primitive Clipping](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#vertexpostproc-clipping).
-    depth_clip_enable: Bool32,
+    pub depth_clip_enable: Bool32,
 }
 impl<'lt> Default for PipelineRasterizationDepthClipStateCreateInfoEXT<'lt> {
     fn default() -> Self {

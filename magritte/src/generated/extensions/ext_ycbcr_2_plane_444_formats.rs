@@ -97,16 +97,17 @@ pub const EXT_YCBCR_2PLANE_444_FORMATS_EXTENSION_NAME: &'static CStr = crate::cs
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`ycbcr_2_plane_444_formats`] indicates
     ///that the implementation supports the following 2-plane 444 Y′C<sub>B</sub>C<sub>R</sub>
     ///formats:
@@ -114,7 +115,7 @@ pub struct PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'lt> {
     /// - `VK_FORMAT_G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16`
     /// - `VK_FORMAT_G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16`
     /// - `VK_FORMAT_G16_B16R16_2PLANE_444_UNORM`
-    ycbcr_2_plane_444_formats: Bool32,
+    pub ycbcr_2_plane_444_formats: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'lt> {
     fn default() -> Self {

@@ -253,22 +253,23 @@ pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDrmFormatModifierPropertiesListEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DrmFormatModifierPropertiesListEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`drm_format_modifier_count`] is an inout parameter related to the number
     ///of modifiers compatible with the `format`, as described below.
-    drm_format_modifier_count: u32,
+    pub drm_format_modifier_count: u32,
     ///[`drm_format_modifier_properties`] is either `NULL` or a pointer to an
     ///array of [`DrmFormatModifierPropertiesEXT`] structures.
-    drm_format_modifier_properties: *mut DrmFormatModifierPropertiesEXT,
+    pub drm_format_modifier_properties: *mut DrmFormatModifierPropertiesEXT,
 }
 impl<'lt> Default for DrmFormatModifierPropertiesListEXT<'lt> {
     fn default() -> Self {
@@ -469,22 +470,23 @@ impl<'lt> DrmFormatModifierPropertiesListEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDrmFormatModifierPropertiesEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct DrmFormatModifierPropertiesEXT {
     ///[`drm_format_modifier`] is a *Linux DRM format modifier*.
-    drm_format_modifier: u64,
+    pub drm_format_modifier: u64,
     ///[`drm_format_modifier_plane_count`] is the number of *memory planes* in
     ///any image created with `format` and [`drm_format_modifier`].
     ///An image’s *memory planecount* is distinct from its *format planecount*,
     ///as explained below.
-    drm_format_modifier_plane_count: u32,
+    pub drm_format_modifier_plane_count: u32,
     ///[`drm_format_modifier_tiling_features`] is a bitmask of
     ///[`FormatFeatureFlagBits`] that are supported by any image created
     ///with `format` and [`drm_format_modifier`].
-    drm_format_modifier_tiling_features: FormatFeatureFlags,
+    pub drm_format_modifier_tiling_features: FormatFeatureFlags,
 }
 impl Default for DrmFormatModifierPropertiesEXT {
     fn default() -> Self {
@@ -602,32 +604,33 @@ impl DrmFormatModifierPropertiesEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceImageDrmFormatModifierInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`drm_format_modifier`] is the image’s *Linux DRM format modifier*,
     ///corresponding to
     ///[`ImageDrmFormatModifierExplicitCreateInfoEXT`]::`modifier` or
     ///to [`ImageDrmFormatModifierListCreateInfoEXT`]::`pModifiers`.
-    drm_format_modifier: u64,
+    pub drm_format_modifier: u64,
     ///[`sharing_mode`] specifies how the image will be accessed by multiple
     ///queue families.
-    sharing_mode: SharingMode,
+    pub sharing_mode: SharingMode,
     ///[`queue_family_index_count`] is the number of entries in the
     ///[`queue_family_indices`] array.
-    queue_family_index_count: u32,
+    pub queue_family_index_count: u32,
     ///[`queue_family_indices`] is a pointer to an array of queue families
     ///that will access the image.
     ///It is ignored if [`sharing_mode`] is not
     ///`VK_SHARING_MODE_CONCURRENT`.
-    queue_family_indices: *const u32,
+    pub queue_family_indices: *const u32,
 }
 impl<'lt> Default for PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt> {
     fn default() -> Self {
@@ -786,22 +789,23 @@ impl<'lt> PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageDrmFormatModifierListCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageDrmFormatModifierListCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`drm_format_modifier_count`] is the length of the
     ///[`drm_format_modifiers`] array.
-    drm_format_modifier_count: u32,
+    pub drm_format_modifier_count: u32,
     ///[`drm_format_modifiers`] is a pointer to an array of *Linux DRM format
     ///modifiers*.
-    drm_format_modifiers: *const u64,
+    pub drm_format_modifiers: *const u64,
 }
 impl<'lt> Default for ImageDrmFormatModifierListCreateInfoEXT<'lt> {
     fn default() -> Self {
@@ -961,27 +965,28 @@ impl<'lt> ImageDrmFormatModifierListCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageDrmFormatModifierExplicitCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageDrmFormatModifierExplicitCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`drm_format_modifier`] is the *Linux DRM format modifier* with which
     ///the image will be created.
-    drm_format_modifier: u64,
+    pub drm_format_modifier: u64,
     ///[`drm_format_modifier_plane_count`] is the number of *memory planes* in
     ///the image (as reported by [`DrmFormatModifierPropertiesEXT`]) as
     ///well as the length of the [`plane_layouts`] array.
-    drm_format_modifier_plane_count: u32,
+    pub drm_format_modifier_plane_count: u32,
     ///[`plane_layouts`] is a pointer to an array of
     ///[`SubresourceLayout`] structures describing the image’s *memory
     ///planes*.
-    plane_layouts: *const SubresourceLayout,
+    pub plane_layouts: *const SubresourceLayout,
 }
 impl<'lt> Default for ImageDrmFormatModifierExplicitCreateInfoEXT<'lt> {
     fn default() -> Self {
@@ -1122,19 +1127,20 @@ impl<'lt> ImageDrmFormatModifierExplicitCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageDrmFormatModifierPropertiesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageDrmFormatModifierPropertiesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`drm_format_modifier`] returns the image’s
     ///[Linux DRM format modifier](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary-drm-format-modifier).
-    drm_format_modifier: u64,
+    pub drm_format_modifier: u64,
 }
 impl<'lt> Default for ImageDrmFormatModifierPropertiesEXT<'lt> {
     fn default() -> Self {
@@ -1254,22 +1260,23 @@ impl<'lt> ImageDrmFormatModifierPropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDrmFormatModifierPropertiesList2EXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DrmFormatModifierPropertiesList2EXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`drm_format_modifier_count`] is an inout parameter related to the number
     ///of modifiers compatible with the `format`, as described below.
-    drm_format_modifier_count: u32,
+    pub drm_format_modifier_count: u32,
     ///[`drm_format_modifier_properties`] is either `NULL` or a pointer to an
     ///array of [`DrmFormatModifierProperties2EXT`] structures.
-    drm_format_modifier_properties: *mut DrmFormatModifierProperties2EXT,
+    pub drm_format_modifier_properties: *mut DrmFormatModifierProperties2EXT,
 }
 impl<'lt> Default for DrmFormatModifierPropertiesList2EXT<'lt> {
     fn default() -> Self {
@@ -1413,22 +1420,23 @@ impl<'lt> DrmFormatModifierPropertiesList2EXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDrmFormatModifierProperties2EXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct DrmFormatModifierProperties2EXT {
     ///[`drm_format_modifier`] is a *Linux DRM format modifier*.
-    drm_format_modifier: u64,
+    pub drm_format_modifier: u64,
     ///[`drm_format_modifier_plane_count`] is the number of *memory planes* in
     ///any image created with `format` and [`drm_format_modifier`].
     ///An image’s *memory planecount* is distinct from its *format planecount*,
     ///as explained below.
-    drm_format_modifier_plane_count: u32,
+    pub drm_format_modifier_plane_count: u32,
     ///[`drm_format_modifier_tiling_features`] is a bitmask of
     ///[`FormatFeatureFlagBits2`] that are supported by any image created
     ///with `format` and [`drm_format_modifier`].
-    drm_format_modifier_tiling_features: FormatFeatureFlags2,
+    pub drm_format_modifier_tiling_features: FormatFeatureFlags2,
 }
 impl Default for DrmFormatModifierProperties2EXT {
     fn default() -> Self {

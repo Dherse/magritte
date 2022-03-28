@@ -268,28 +268,29 @@ impl PipelineDepthStencilStateCreateFlagBits {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] **must**  be
     /// `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_ARM`
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///No documentation found
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`rasterization_order_color_attachment_access`] indicates that
     ///rasterization order access to color and input attachments is supported
     ///by the implementation.
-    rasterization_order_color_attachment_access: Bool32,
+    pub rasterization_order_color_attachment_access: Bool32,
     ///[`rasterization_order_depth_attachment_access`] indicates that
     ///rasterization order access to the depth aspect of depth/stencil and
     ///input attachments is supported by the implementation.
-    rasterization_order_depth_attachment_access: Bool32,
+    pub rasterization_order_depth_attachment_access: Bool32,
     ///[`rasterization_order_stencil_attachment_access`] indicates that
     ///rasterization order access to the stencil aspect of depth/stencil and
     ///input attachments is supported by the implementation.
-    rasterization_order_stencil_attachment_access: Bool32,
+    pub rasterization_order_stencil_attachment_access: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM<'lt> {
     fn default() -> Self {

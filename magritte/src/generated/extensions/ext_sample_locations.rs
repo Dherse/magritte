@@ -131,15 +131,16 @@ pub const EXT_SAMPLE_LOCATIONS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSampleLocationEXT")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct SampleLocationEXT {
     ///[`x`] is the horizontal coordinate of the sample’s location.
-    x: f32,
+    pub x: f32,
     ///[`y`] is the vertical coordinate of the sample’s location.
-    y: f32,
+    pub y: f32,
 }
 impl Default for SampleLocationEXT {
     fn default() -> Self {
@@ -241,28 +242,29 @@ impl SampleLocationEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSampleLocationsInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SampleLocationsInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`sample_locations_per_pixel`] is a [`SampleCountFlagBits`] value
     ///specifying the number of sample locations per pixel.
-    sample_locations_per_pixel: SampleCountFlagBits,
+    pub sample_locations_per_pixel: SampleCountFlagBits,
     ///[`sample_location_grid_size`] is the size of the sample location grid to
     ///select custom sample locations for.
-    sample_location_grid_size: Extent2D,
+    pub sample_location_grid_size: Extent2D,
     ///[`sample_locations_count`] is the number of sample locations in
     ///[`sample_locations`].
-    sample_locations_count: u32,
+    pub sample_locations_count: u32,
     ///[`sample_locations`] is a pointer to an array of
     ///[`sample_locations_count`][`SampleLocationEXT`] structures.
-    sample_locations: *const SampleLocationEXT,
+    pub sample_locations: *const SampleLocationEXT,
 }
 impl<'lt> Default for SampleLocationsInfoEXT<'lt> {
     fn default() -> Self {
@@ -419,19 +421,20 @@ impl<'lt> SampleLocationsInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAttachmentSampleLocationsEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AttachmentSampleLocationsEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`attachment_index`] is the index of the attachment for which the
     ///sample locations state is provided.
-    attachment_index: u32,
+    pub attachment_index: u32,
     ///[`sample_locations_info`] is the sample locations state to use for the
     ///layout transition of the given attachment from the initial layout of the
     ///attachment to the image layout specified for the attachment in the first
     ///subpass using it.
-    sample_locations_info: SampleLocationsInfoEXT<'lt>,
+    pub sample_locations_info: SampleLocationsInfoEXT<'lt>,
 }
 impl<'lt> Default for AttachmentSampleLocationsEXT<'lt> {
     fn default() -> Self {
@@ -516,19 +519,20 @@ impl<'lt> AttachmentSampleLocationsEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSubpassSampleLocationsEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SubpassSampleLocationsEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`subpass_index`] is the index of the subpass for which the sample
     ///locations state is provided.
-    subpass_index: u32,
+    pub subpass_index: u32,
     ///[`sample_locations_info`] is the sample locations state to use for the
     ///layout transition of the depth/stencil attachment away from the image
     ///layout the attachment is used with in the subpass specified in
     ///[`subpass_index`].
-    sample_locations_info: SampleLocationsInfoEXT<'lt>,
+    pub sample_locations_info: SampleLocationsInfoEXT<'lt>,
 }
 impl<'lt> Default for SubpassSampleLocationsEXT<'lt> {
     fn default() -> Self {
@@ -643,19 +647,20 @@ impl<'lt> SubpassSampleLocationsEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRenderPassSampleLocationsBeginInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderPassSampleLocationsBeginInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`attachment_initial_sample_locations_count`] is the number of elements in
     ///the [`attachment_initial_sample_locations`] array.
-    attachment_initial_sample_locations_count: u32,
+    pub attachment_initial_sample_locations_count: u32,
     ///[`attachment_initial_sample_locations`] is a pointer to an array of
     ///[`attachment_initial_sample_locations_count`][`AttachmentSampleLocationsEXT`] structures
     /// specifying the attachment indices and their corresponding sample location state.
@@ -664,10 +669,10 @@ pub struct RenderPassSampleLocationsBeginInfoEXT<'lt> {
     ///performed to transition a depth/stencil attachment from the initial
     ///layout of the attachment to the image layout specified for the
     ///attachment in the first subpass using it.
-    attachment_initial_sample_locations: *const AttachmentSampleLocationsEXT<'lt>,
+    pub attachment_initial_sample_locations: *const AttachmentSampleLocationsEXT<'lt>,
     ///[`post_subpass_sample_locations_count`] is the number of elements in the
     ///[`post_subpass_sample_locations`] array.
-    post_subpass_sample_locations_count: u32,
+    pub post_subpass_sample_locations_count: u32,
     ///[`post_subpass_sample_locations`] is a pointer to an array of
     ///[`post_subpass_sample_locations_count`][`SubpassSampleLocationsEXT`]
     ///structures specifying the subpass indices and their corresponding sample
@@ -686,7 +691,7 @@ pub struct RenderPassSampleLocationsBeginInfoEXT<'lt> {
     ///If `variableSampleLocations` is [`TRUE`], the sample locations
     ///used for rasterization do not depend on
     ///[`post_subpass_sample_locations`].
-    post_subpass_sample_locations: *const SubpassSampleLocationsEXT<'lt>,
+    pub post_subpass_sample_locations: *const SubpassSampleLocationsEXT<'lt>,
 }
 impl<'lt> Default for RenderPassSampleLocationsBeginInfoEXT<'lt> {
     fn default() -> Self {
@@ -870,27 +875,28 @@ impl<'lt> RenderPassSampleLocationsBeginInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineSampleLocationsStateCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineSampleLocationsStateCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`sample_locations_enable`] controls whether custom sample locations are
     ///used.
     ///If [`sample_locations_enable`] is [`FALSE`], the default sample
     ///locations are used and the values specified in [`sample_locations_info`]
     ///are ignored.
-    sample_locations_enable: Bool32,
+    pub sample_locations_enable: Bool32,
     ///[`sample_locations_info`] is the sample locations to use during
     ///rasterization if [`sample_locations_enable`] is [`TRUE`] and the
     ///graphics pipeline is not created with
     ///`VK_DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT`.
-    sample_locations_info: SampleLocationsInfoEXT<'lt>,
+    pub sample_locations_info: SampleLocationsInfoEXT<'lt>,
 }
 impl<'lt> Default for PipelineSampleLocationsStateCreateInfoEXT<'lt> {
     fn default() -> Self {
@@ -1044,31 +1050,32 @@ impl<'lt> PipelineSampleLocationsStateCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceSampleLocationsPropertiesEXT")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`sample_location_sample_counts`]
     ///is a bitmask of [`SampleCountFlagBits`] indicating the sample counts
     ///supporting custom sample locations.
-    sample_location_sample_counts: SampleCountFlags,
+    pub sample_location_sample_counts: SampleCountFlags,
     ///[`max_sample_location_grid_size`] is
     ///the maximum size of the pixel grid in which sample locations  **can**  vary
     ///that is supported for all sample counts in
     ///[`sample_location_sample_counts`].
-    max_sample_location_grid_size: Extent2D,
+    pub max_sample_location_grid_size: Extent2D,
     ///[`sample_location_coordinate_range`][2] is the range of supported sample
     ///location coordinates.
-    sample_location_coordinate_range: [f32; 2],
+    pub sample_location_coordinate_range: [f32; 2],
     ///[`sample_location_sub_pixel_bits`]
     ///is the number of bits of subpixel precision for sample locations.
-    sample_location_sub_pixel_bits: u32,
+    pub sample_location_sub_pixel_bits: u32,
     ///[`variable_sample_locations`]
     ///specifies whether the sample locations used by all pipelines that will
     ///be bound to a command buffer during a subpass  **must**  match.
@@ -1076,7 +1083,7 @@ pub struct PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
     ///locations in a subpass.
     ///If set to [`FALSE`], then the sample locations  **must**  stay constant
     ///in each subpass.
-    variable_sample_locations: Bool32,
+    pub variable_sample_locations: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
     fn default() -> Self {
@@ -1256,19 +1263,20 @@ impl<'lt> PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMultisamplePropertiesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MultisamplePropertiesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`max_sample_location_grid_size`] is the maximum size of the pixel grid in
     ///which sample locations  **can**  vary.
-    max_sample_location_grid_size: Extent2D,
+    pub max_sample_location_grid_size: Extent2D,
 }
 impl<'lt> Default for MultisamplePropertiesEXT<'lt> {
     fn default() -> Self {

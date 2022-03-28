@@ -104,19 +104,20 @@ pub const NVX_BINARY_IMPORT_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NVX
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCuModuleCreateInfoNVX")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CuModuleCreateInfoNVX<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_CU_MODULE_CREATE_INFO_NVX`
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] **must**  be `NULL`
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`data_size`] **must**  be greater than `0`
-    data_size: usize,
+    pub data_size: usize,
     ///[`data`] **must**  be a valid pointer to an array of [`data_size`] bytes
-    data: *const c_void,
+    pub data: *const c_void,
 }
 impl<'lt> Default for CuModuleCreateInfoNVX<'lt> {
     fn default() -> Self {
@@ -235,19 +236,20 @@ impl<'lt> CuModuleCreateInfoNVX<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCuFunctionCreateInfoNVX")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CuFunctionCreateInfoNVX<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_CU_FUNCTION_CREATE_INFO_NVX`
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] **must**  be `NULL`
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`module`] **must**  be a valid [`CuModuleNVX`] handle
-    module: CuModuleNVX,
+    pub module: CuModuleNVX,
     ///[`name`] **must**  be a null-terminated UTF-8 string
-    name: &'lt CStr,
+    pub name: &'lt CStr,
 }
 impl<'lt> Default for CuFunctionCreateInfoNVX<'lt> {
     fn default() -> Self {
@@ -367,41 +369,42 @@ impl<'lt> CuFunctionCreateInfoNVX<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCuLaunchInfoNVX")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CuLaunchInfoNVX<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_CU_LAUNCH_INFO_NVX`
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] **must**  be `NULL`
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`function`] **must**  be a valid [`CuFunctionNVX`] handle
-    function: CuFunctionNVX,
+    pub function: CuFunctionNVX,
     ///No documentation found
-    grid_dim_x: u32,
+    pub grid_dim_x: u32,
     ///No documentation found
-    grid_dim_y: u32,
+    pub grid_dim_y: u32,
     ///No documentation found
-    grid_dim_z: u32,
+    pub grid_dim_z: u32,
     ///No documentation found
-    block_dim_x: u32,
+    pub block_dim_x: u32,
     ///No documentation found
-    block_dim_y: u32,
+    pub block_dim_y: u32,
     ///No documentation found
-    block_dim_z: u32,
+    pub block_dim_z: u32,
     ///No documentation found
-    shared_mem_bytes: u32,
+    pub shared_mem_bytes: u32,
     ///If [`param_count`] is not `0`, [`params`] **must**  be a valid pointer to an array of
     /// [`param_count`] bytes
-    param_count: usize,
+    pub param_count: usize,
     ///No documentation found
-    params: *const *const c_void,
+    pub params: *const *const c_void,
     ///If [`extra_count`] is not `0`, [`extras`] **must**  be a valid pointer to an array of
     /// [`extra_count`] bytes
-    extra_count: usize,
+    pub extra_count: usize,
     ///No documentation found
-    extras: *const *const c_void,
+    pub extras: *const *const c_void,
 }
 impl<'lt> Default for CuLaunchInfoNVX<'lt> {
     fn default() -> Self {
@@ -660,6 +663,7 @@ impl<'lt> CuLaunchInfoNVX<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCuModuleNVX")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -719,6 +723,7 @@ impl std::fmt::Debug for CuModuleNVX {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCuFunctionNVX")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]

@@ -222,6 +222,7 @@ pub const NV_SHADING_RATE_IMAGE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkShadingRatePaletteEntryNV")]
+#[doc(alias = "VkShadingRatePaletteEntryNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -311,6 +312,7 @@ impl ShadingRatePaletteEntryNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCoarseSampleOrderTypeNV")]
+#[doc(alias = "VkCoarseSampleOrderTypeNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -397,18 +399,19 @@ impl CoarseSampleOrderTypeNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkShadingRatePaletteNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ShadingRatePaletteNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`shading_rate_palette_entry_count`] specifies the number of entries in
     ///the shading rate image palette.
-    shading_rate_palette_entry_count: u32,
+    pub shading_rate_palette_entry_count: u32,
     ///[`shading_rate_palette_entries`] is a pointer to an array of
     ///[`ShadingRatePaletteEntryNV`] enums defining the shading rate for
     ///each palette entry.
-    shading_rate_palette_entries: *const ShadingRatePaletteEntryNV,
+    pub shading_rate_palette_entries: *const ShadingRatePaletteEntryNV,
 }
 impl<'lt> Default for ShadingRatePaletteNV<'lt> {
     fn default() -> Self {
@@ -517,27 +520,28 @@ impl<'lt> ShadingRatePaletteNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineViewportShadingRateImageStateCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`shading_rate_image_enable`] specifies whether shading rate image and
     ///palettes are used during rasterization.
-    shading_rate_image_enable: Bool32,
+    pub shading_rate_image_enable: Bool32,
     ///[`viewport_count`] specifies the number of per-viewport palettes used
     ///to translate values stored in shading rate images.
-    viewport_count: u32,
+    pub viewport_count: u32,
     ///[`shading_rate_palettes`] is a pointer to an array of
     ///[`ShadingRatePaletteNV`] structures defining the palette for each
     ///viewport.
     ///If the shading rate palette state is dynamic, this member is ignored.
-    shading_rate_palettes: *const ShadingRatePaletteNV<'lt>,
+    pub shading_rate_palettes: *const ShadingRatePaletteNV<'lt>,
 }
 impl<'lt> Default for PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
     fn default() -> Self {
@@ -708,26 +712,27 @@ impl<'lt> PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceShadingRateImageFeaturesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shading_rate_image`] indicates that the
     ///implementation supports the use of a shading rate image to derive an
     ///effective shading rate for fragment processing.
     ///It also indicates that the implementation supports the
     ///`ShadingRateNV` SPIR-V execution mode.
-    shading_rate_image: Bool32,
+    pub shading_rate_image: Bool32,
     ///[`shading_rate_coarse_sample_order`] indicates that the implementation
     ///supports a user-configurable ordering of coverage samples in fragments
     ///larger than one pixel.
-    shading_rate_coarse_sample_order: Bool32,
+    pub shading_rate_coarse_sample_order: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
     fn default() -> Self {
@@ -901,24 +906,25 @@ impl<'lt> PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceShadingRateImagePropertiesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shading_rate_texel_size`] indicates the
     ///width and height of the portion of the framebuffer corresponding to each
     ///texel in the shading rate image.
-    shading_rate_texel_size: Extent2D,
+    pub shading_rate_texel_size: Extent2D,
     ///[`shading_rate_palette_size`] indicates
     ///the maximum number of palette entries supported for the shading rate
     ///image.
-    shading_rate_palette_size: u32,
+    pub shading_rate_palette_size: u32,
     ///[`shading_rate_max_coarse_samples`]
     ///specifies the maximum number of coverage samples supported in a single
     ///fragment.
@@ -926,7 +932,7 @@ pub struct PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
     ///and the number of coverage samples per pixel exceeds this limit, the
     ///final shading rate will be adjusted so that its product does not exceed
     ///the limit.
-    shading_rate_max_coarse_samples: u32,
+    pub shading_rate_max_coarse_samples: u32,
 }
 impl<'lt> Default for PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
     fn default() -> Self {
@@ -1060,6 +1066,7 @@ impl<'lt> PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCoarseSampleLocationNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1067,13 +1074,13 @@ impl<'lt> PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
 pub struct CoarseSampleLocationNV {
     ///[`pixel_x`] is added to the x coordinate of the upper-leftmost pixel of
     ///each fragment to identify the pixel containing the coverage sample.
-    pixel_x: u32,
+    pub pixel_x: u32,
     ///[`pixel_y`] is added to the y coordinate of the upper-leftmost pixel of
     ///each fragment to identify the pixel containing the coverage sample.
-    pixel_y: u32,
+    pub pixel_y: u32,
     ///[`sample`] is the number of the coverage sample in the pixel
     ///identified by [`pixel_x`] and [`pixel_y`].
-    sample: u32,
+    pub sample: u32,
 }
 impl Default for CoarseSampleLocationNV {
     fn default() -> Self {
@@ -1187,25 +1194,26 @@ impl CoarseSampleLocationNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCoarseSampleOrderCustomNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CoarseSampleOrderCustomNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`shading_rate`] is a shading rate palette entry that identifies the
     ///fragment width and height for the combination of fragment area and
     ///per-pixel coverage sample count to control.
-    shading_rate: ShadingRatePaletteEntryNV,
+    pub shading_rate: ShadingRatePaletteEntryNV,
     ///[`sample_count`] identifies the per-pixel coverage sample count for the
     ///combination of fragment area and coverage sample count to control.
-    sample_count: u32,
+    pub sample_count: u32,
     ///[`sample_location_count`] specifies the number of sample locations in
     ///the custom ordering.
-    sample_location_count: u32,
+    pub sample_location_count: u32,
     ///[`sample_locations`] is a pointer to an array of
     ///[`CoarseSampleLocationNV`] structures specifying the location of
     ///each sample in the custom ordering.
-    sample_locations: *const CoarseSampleLocationNV,
+    pub sample_locations: *const CoarseSampleLocationNV,
 }
 impl<'lt> Default for CoarseSampleOrderCustomNV<'lt> {
     fn default() -> Self {
@@ -1354,27 +1362,28 @@ impl<'lt> CoarseSampleOrderCustomNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineViewportCoarseSampleOrderStateCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineViewportCoarseSampleOrderStateCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`sample_order_type`] specifies the mechanism used to order coverage
     ///samples in fragments larger than one pixel.
-    sample_order_type: CoarseSampleOrderTypeNV,
+    pub sample_order_type: CoarseSampleOrderTypeNV,
     ///[`custom_sample_order_count`] specifies the number of custom sample
     ///orderings to use when ordering coverage samples.
-    custom_sample_order_count: u32,
+    pub custom_sample_order_count: u32,
     ///[`custom_sample_orders`] is a pointer to an array of
     ///[`custom_sample_order_count`][`CoarseSampleOrderCustomNV`]
     ///structures, each structure specifying the coverage sample order for a
     ///single combination of fragment area and coverage sample count.
-    custom_sample_orders: *const CoarseSampleOrderCustomNV<'lt>,
+    pub custom_sample_orders: *const CoarseSampleOrderCustomNV<'lt>,
 }
 impl<'lt> Default for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'lt> {
     fn default() -> Self {

@@ -115,20 +115,21 @@ pub const NV_EXTERNAL_MEMORY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalMemoryImageCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExternalMemoryImageCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`handle_types`] is zero, or a bitmask of
     ///[`ExternalMemoryHandleTypeFlagBitsNV`] specifying one or more
     ///external memory handle types.
-    handle_types: ExternalMemoryHandleTypeFlagsNV,
+    pub handle_types: ExternalMemoryHandleTypeFlagsNV,
 }
 impl<'lt> Default for ExternalMemoryImageCreateInfoNV<'lt> {
     fn default() -> Self {
@@ -227,23 +228,24 @@ impl<'lt> ExternalMemoryImageCreateInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExportMemoryAllocateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExportMemoryAllocateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`handle_types`] is a bitmask of
     ///[`ExternalMemoryHandleTypeFlagBitsNV`] specifying one or more memory
     ///handle types that  **may**  be exported.
     ///Multiple handle types  **may**  be requested for the same allocation as long
     ///as they are compatible, as reported by
     ///[`GetPhysicalDeviceExternalImageFormatPropertiesNV`].
-    handle_types: ExternalMemoryHandleTypeFlagsNV,
+    pub handle_types: ExternalMemoryHandleTypeFlagsNV,
 }
 impl<'lt> Default for ExportMemoryAllocateInfoNV<'lt> {
     fn default() -> Self {

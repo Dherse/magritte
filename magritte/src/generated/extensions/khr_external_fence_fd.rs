@@ -119,26 +119,27 @@ pub const KHR_EXTERNAL_FENCE_FD_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImportFenceFdInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImportFenceFdInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`fence`] is the fence into which the payload will be imported.
-    fence: Fence,
+    pub fence: Fence,
     ///[`flags`] is a bitmask of [`FenceImportFlagBits`] specifying
     ///additional parameters for the fence payload import operation.
-    flags: FenceImportFlags,
+    pub flags: FenceImportFlags,
     ///[`handle_type`] is a [`ExternalFenceHandleTypeFlagBits`] value
     ///specifying the type of [`fd`].
-    handle_type: ExternalFenceHandleTypeFlagBits,
+    pub handle_type: ExternalFenceHandleTypeFlagBits,
     ///[`fd`] is the external handle to import.
-    fd: i32,
+    pub fd: i32,
 }
 impl<'lt> Default for ImportFenceFdInfoKHR<'lt> {
     fn default() -> Self {
@@ -292,21 +293,22 @@ impl<'lt> ImportFenceFdInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFenceGetFdInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct FenceGetFdInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`fence`] is the fence from which state will be exported.
-    fence: Fence,
+    pub fence: Fence,
     ///[`handle_type`] is a [`ExternalFenceHandleTypeFlagBits`] value
     ///specifying the type of handle requested.
-    handle_type: ExternalFenceHandleTypeFlagBits,
+    pub handle_type: ExternalFenceHandleTypeFlagBits,
 }
 impl<'lt> Default for FenceGetFdInfoKHR<'lt> {
     fn default() -> Self {

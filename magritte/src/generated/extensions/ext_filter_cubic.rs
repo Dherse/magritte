@@ -89,19 +89,20 @@ pub const EXT_FILTER_CUBIC_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceImageViewImageFormatInfoEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceImageViewImageFormatInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`image_view_type`] is a [`ImageViewType`] value specifying the type
     ///of the image view.
-    image_view_type: ImageViewType,
+    pub image_view_type: ImageViewType,
 }
 impl<'lt> Default for PhysicalDeviceImageViewImageFormatInfoEXT<'lt> {
     fn default() -> Self {
@@ -213,26 +214,27 @@ impl<'lt> PhysicalDeviceImageViewImageFormatInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFilterCubicImageViewImageFormatPropertiesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct FilterCubicImageViewImageFormatPropertiesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`filter_cubic`] tells if image format, image type and image view type
     /// **can**  be used with cubic filtering.
     ///This field is set by the implementation.
     ///User-specified value is ignored.
-    filter_cubic: Bool32,
+    pub filter_cubic: Bool32,
     ///[`filter_cubic_minmax`] tells if image format, image type and image view
     ///type  **can**  be used with cubic filtering and minmax filtering.
     ///This field is set by the implementation.
     ///User-specified value is ignored.
-    filter_cubic_minmax: Bool32,
+    pub filter_cubic_minmax: Bool32,
 }
 impl<'lt> Default for FilterCubicImageViewImageFormatPropertiesEXT<'lt> {
     fn default() -> Self {

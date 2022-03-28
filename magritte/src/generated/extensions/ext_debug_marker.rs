@@ -185,6 +185,7 @@ pub const EXT_DEBUG_MARKER_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugReportObjectTypeEXT")]
+#[doc(alias = "VkDebugReportObjectTypeEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -419,24 +420,25 @@ impl DebugReportObjectTypeEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDebugMarkerObjectNameInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugMarkerObjectNameInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`object_type`] is a [`DebugReportObjectTypeEXT`] specifying the
     ///type of the object to be named.
-    object_type: DebugReportObjectTypeEXT,
+    pub object_type: DebugReportObjectTypeEXT,
     ///[`object`] is the object to be named.
-    object: u64,
+    pub object: u64,
     ///[`object_name`] is a null-terminated UTF-8 string specifying the name
     ///to apply to [`object`].
-    object_name: &'lt CStr,
+    pub object_name: &'lt CStr,
 }
 impl<'lt> Default for DebugMarkerObjectNameInfoEXT<'lt> {
     fn default() -> Self {
@@ -582,28 +584,29 @@ impl<'lt> DebugMarkerObjectNameInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDebugMarkerObjectTagInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugMarkerObjectTagInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`object_type`] is a [`DebugReportObjectTypeEXT`] specifying the
     ///type of the object to be named.
-    object_type: DebugReportObjectTypeEXT,
+    pub object_type: DebugReportObjectTypeEXT,
     ///[`object`] is the object to be tagged.
-    object: u64,
+    pub object: u64,
     ///[`tag_name`] is a numerical identifier of the tag.
-    tag_name: u64,
+    pub tag_name: u64,
     ///[`tag_size`] is the number of bytes of data to attach to the object.
-    tag_size: usize,
+    pub tag_size: usize,
     ///[`tag`] is a pointer to an array of [`tag_size`] bytes containing
     ///the data to be associated with the object.
-    tag: *const c_void,
+    pub tag: *const c_void,
 }
 impl<'lt> Default for DebugMarkerObjectTagInfoEXT<'lt> {
     fn default() -> Self {
@@ -773,25 +776,26 @@ impl<'lt> DebugMarkerObjectTagInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDebugMarkerMarkerInfoEXT")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugMarkerMarkerInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`marker_name`] is a pointer to a null-terminated UTF-8 string
     ///containing the name of the marker.
-    marker_name: &'lt CStr,
+    pub marker_name: &'lt CStr,
     ///[`color`] is an  **optional**  RGBA color value that can be associated with
     ///the marker.
     ///A particular implementation  **may**  choose to ignore this color value.
     ///The values contain RGBA values in order, in the range 0.0 to 1.0.
     ///If all elements in [`color`] are set to 0.0 then it is ignored.
-    color: [f32; 4],
+    pub color: [f32; 4],
 }
 impl<'lt> Default for DebugMarkerMarkerInfoEXT<'lt> {
     fn default() -> Self {

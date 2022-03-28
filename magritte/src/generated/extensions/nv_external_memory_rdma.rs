@@ -105,22 +105,23 @@ pub type RemoteAddressNV = c_void;
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceExternalMemoryRDMAFeaturesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceExternalMemoryRdmaFeaturesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`external_memory_rdma`] indicates
     ///whether the implementation has support for the
     ///`VK_MEMORY_PROPERTY_RDMA_CAPABLE_BIT_NV` memory property and the
     ///`VK_EXTERNAL_MEMORY_HANDLE_TYPE_RDMA_ADDRESS_BIT_NV` external memory
     ///handle type.
-    external_memory_rdma: Bool32,
+    pub external_memory_rdma: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceExternalMemoryRdmaFeaturesNV<'lt> {
     fn default() -> Self {
@@ -252,21 +253,22 @@ impl<'lt> PhysicalDeviceExternalMemoryRdmaFeaturesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryGetRemoteAddressInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryGetRemoteAddressInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`memory`] is the memory object from which the remote accessible
     ///address will be exported.
-    memory: DeviceMemory,
+    pub memory: DeviceMemory,
     ///[`handle_type`] is the type of handle requested.
-    handle_type: ExternalMemoryHandleTypeFlagBits,
+    pub handle_type: ExternalMemoryHandleTypeFlagBits,
 }
 impl<'lt> Default for MemoryGetRemoteAddressInfoNV<'lt> {
     fn default() -> Self {

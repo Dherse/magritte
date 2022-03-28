@@ -4,7 +4,7 @@ use tracing::warn;
 
 use crate::{
     doc::Documentation,
-    source::{Handle, Source},
+    source::{Handle, Source}, codegen::alias_of,
 };
 
 impl<'a> Handle<'a> {
@@ -28,6 +28,9 @@ impl<'a> Handle<'a> {
 
         // append the doc first
         self.generate_doc(source, doc, out);
+
+        // creates a doc alias if the name has been changed
+        alias_of(self.original_name(), self.name(), out);
 
         quote::quote_each_token! {
             out

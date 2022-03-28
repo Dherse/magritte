@@ -125,26 +125,27 @@ pub const HUAWEI_SUBPASS_SHADING_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSubpassShadingPipelineCreateInfoHUAWEI")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`render_pass`] is a handle to a render pass object describing the
     ///environment in which the pipeline will be used.
     ///The pipeline  **must**  only be used with a render pass instance compatible
     ///with the one provided.
     ///See [Render Pass Compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-compatibility) for more
     ///information.
-    render_pass: RenderPass,
+    pub render_pass: RenderPass,
     ///[`subpass`] is the index of the subpass in the render pass where this
     ///pipeline will be used.
-    subpass: u32,
+    pub subpass: u32,
 }
 impl<'lt> Default for SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
     fn default() -> Self {
@@ -265,23 +266,24 @@ impl<'lt> SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceSubpassShadingPropertiesHUAWEI")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`max_subpass_shading_workgroup_size_aspect_ratio`] indicates the maximum
     ///ratio between the width and height of the portion of the subpass shading
     ///shader workgroup size.
     ///[`max_subpass_shading_workgroup_size_aspect_ratio`] **must**  be a power-of-two
     ///value, and  **must**  be less than or equal to max(`WorkgroupSize.x` /
     ///`WorkgroupSize.y`, `WorkgroupSize.y` / `WorkgroupSize.x`).
-    max_subpass_shading_workgroup_size_aspect_ratio: u32,
+    pub max_subpass_shading_workgroup_size_aspect_ratio: u32,
 }
 impl<'lt> Default for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
     fn default() -> Self {
@@ -389,19 +391,20 @@ impl<'lt> PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceSubpassShadingFeaturesHUAWEI")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSubpassShadingFeaturesHUAWEI<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`subpass_shading`] specifies whether
     ///subpass shading is supported.
-    subpass_shading: Bool32,
+    pub subpass_shading: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'lt> {
     fn default() -> Self {

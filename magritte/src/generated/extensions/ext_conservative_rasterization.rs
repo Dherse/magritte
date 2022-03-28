@@ -116,6 +116,7 @@ pub const EXT_CONSERVATIVE_RASTERIZATION_EXTENSION_NAME: &'static CStr =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkConservativeRasterizationModeEXT")]
+#[doc(alias = "VkConservativeRasterizationModeEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -275,16 +276,17 @@ impl std::fmt::Debug for PipelineRasterizationConservativeStateCreateFlagsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceConservativeRasterizationPropertiesEXT")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`primitive_overestimation_size`]
     ///is the size in pixels the generating primitive is increased at each of
     ///its edges during conservative rasterization overestimation mode.
@@ -293,7 +295,7 @@ pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
     ///generating primitive, fragments are generated for the entire pixel.
     ///However implementations  **may**  make the pixel coverage area even more
     ///conservative by increasing the size of the generating primitive.
-    primitive_overestimation_size: f32,
+    pub primitive_overestimation_size: f32,
     ///[`max_extra_primitive_overestimation_size`] is the maximum size in pixels
     ///of extra overestimation the implementation supports in the pipeline
     ///state.
@@ -303,13 +305,13 @@ pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
     ///A value above 0.0 allows the application to further increase the size of
     ///the generating primitive during conservative rasterization
     ///overestimation.
-    max_extra_primitive_overestimation_size: f32,
+    pub max_extra_primitive_overestimation_size: f32,
     ///[`extra_primitive_overestimation_size_granularity`] is the granularity of
     ///extra overestimation that can be specified in the pipeline state between
     ///0.0 and [`max_extra_primitive_overestimation_size`] inclusive.
     ///A value of 0.0 means the implementation can use the smallest
     ///representable non-zero value in the screen space pixel fixed-point grid.
-    extra_primitive_overestimation_size_granularity: f32,
+    pub extra_primitive_overestimation_size_granularity: f32,
     ///[`primitive_underestimation`] is
     ///[`TRUE`] if the implementation supports the
     ///`VK_CONSERVATIVE_RASTERIZATION_MODE_UNDERESTIMATE_EXT` conservative
@@ -317,12 +319,12 @@ pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
     ///`VK_CONSERVATIVE_RASTERIZATION_MODE_OVERESTIMATE_EXT`.
     ///Otherwise the implementation only supports
     ///`VK_CONSERVATIVE_RASTERIZATION_MODE_OVERESTIMATE_EXT`.
-    primitive_underestimation: Bool32,
+    pub primitive_underestimation: Bool32,
     ///[`conservative_point_and_line_rasterization`] is [`TRUE`] if the
     ///implementation supports conservative rasterization of point and line
     ///primitives as well as triangle primitives.
     ///Otherwise the implementation only supports triangle primitives.
-    conservative_point_and_line_rasterization: Bool32,
+    pub conservative_point_and_line_rasterization: Bool32,
     ///[`degenerate_triangles_rasterized`] is [`FALSE`] if the
     ///implementation culls primitives generated from triangles that become
     ///zero area after they are quantized to the fixed-point rasterization
@@ -334,26 +336,26 @@ pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
     ///the clipped triangle if applicable.
     ///Zero area primitives are backfacing and the application  **can**  enable
     ///backface culling if desired.
-    degenerate_triangles_rasterized: Bool32,
+    pub degenerate_triangles_rasterized: Bool32,
     ///[`degenerate_lines_rasterized`] is
     ///[`FALSE`] if the implementation culls lines that become zero length
     ///after they are quantized to the fixed-point rasterization pixel grid.
     ///[`degenerate_lines_rasterized`] is [`TRUE`] if zero length lines
     ///are not culled and the provoking vertex attributes and depth value are
     ///used for the fragments.
-    degenerate_lines_rasterized: Bool32,
+    pub degenerate_lines_rasterized: Bool32,
     ///[`fully_covered_fragment_shader_input_variable`] is [`TRUE`] if the
     ///implementation supports the SPIR-V builtin fragment shader input
     ///variable `FullyCoveredEXT` specifying that conservative rasterization
     ///is enabled and the fragment area is fully covered by the generating
     ///primitive.
-    fully_covered_fragment_shader_input_variable: Bool32,
+    pub fully_covered_fragment_shader_input_variable: Bool32,
     ///[`conservative_rasterization_post_depth_coverage`] is [`TRUE`] if the
     ///implementation supports conservative rasterization with the
     ///`PostDepthCoverage` execution mode enabled.
     ///Otherwise the `PostDepthCoverage` execution mode  **must**  not be used
     ///when conservative rasterization is enabled.
-    conservative_rasterization_post_depth_coverage: Bool32,
+    pub conservative_rasterization_post_depth_coverage: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
     fn default() -> Self {
@@ -734,27 +736,28 @@ impl<'lt> PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineRasterizationConservativeStateCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineRasterizationConservativeStateCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: PipelineRasterizationConservativeStateCreateFlagsEXT,
+    pub flags: PipelineRasterizationConservativeStateCreateFlagsEXT,
     ///[`conservative_rasterization_mode`] is the conservative rasterization
     ///mode to use.
-    conservative_rasterization_mode: ConservativeRasterizationModeEXT,
+    pub conservative_rasterization_mode: ConservativeRasterizationModeEXT,
     ///[`extra_primitive_overestimation_size`] is the extra size in pixels to
     ///increase the generating primitive during conservative rasterization at
     ///each of its edges in `X` and `Y` equally in screen space beyond the base
     ///overestimation specified in
     ///[`PhysicalDeviceConservativeRasterizationPropertiesEXT`]::`primitiveOverestimationSize`.
-    extra_primitive_overestimation_size: f32,
+    pub extra_primitive_overestimation_size: f32,
 }
 impl<'lt> Default for PipelineRasterizationConservativeStateCreateInfoEXT<'lt> {
     fn default() -> Self {

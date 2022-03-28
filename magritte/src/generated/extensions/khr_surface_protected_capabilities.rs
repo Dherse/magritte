@@ -104,23 +104,24 @@ pub const KHR_SURFACE_PROTECTED_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSurfaceProtectedCapabilitiesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SurfaceProtectedCapabilitiesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`supports_protected`] specifies whether a protected swapchain created
     ///from [`PhysicalDeviceSurfaceInfo2KHR`]::`surface` for a
     ///particular windowing system  **can**  be displayed on screen or not.
     ///If [`supports_protected`] is [`TRUE`], then creation of swapchains
     ///with the `VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR` flag set  **must**  be
     ///supported for `surface`.
-    supports_protected: Bool32,
+    pub supports_protected: Bool32,
 }
 impl<'lt> Default for SurfaceProtectedCapabilitiesKHR<'lt> {
     fn default() -> Self {

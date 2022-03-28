@@ -186,24 +186,25 @@ impl std::fmt::Debug for Win32SurfaceCreateFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkWin32SurfaceCreateInfoKHR")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct Win32SurfaceCreateInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: Win32SurfaceCreateFlagsKHR,
+    pub flags: Win32SurfaceCreateFlagsKHR,
     ///[`hinstance`] is the Win32 [`HINSTANCE`] for the window to associate
     ///the surface with.
-    hinstance: HINSTANCE,
+    pub hinstance: HINSTANCE,
     ///[`hwnd`] is the Win32 [`HWND`] for the window to associate the
     ///surface with.
-    hwnd: HWND,
+    pub hwnd: HWND,
 }
 impl<'lt> Default for Win32SurfaceCreateInfoKHR<'lt> {
     fn default() -> Self {

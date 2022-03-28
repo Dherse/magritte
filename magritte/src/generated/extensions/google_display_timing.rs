@@ -92,6 +92,7 @@ pub const GOOGLE_DISPLAY_TIMING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRefreshCycleDurationGOOGLE")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -99,7 +100,7 @@ pub const GOOGLE_DISPLAY_TIMING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 pub struct RefreshCycleDurationGOOGLE {
     ///[`refresh_duration`] is the number of nanoseconds from the start of one
     ///refresh cycle to the next.
-    refresh_duration: u64,
+    pub refresh_duration: u64,
 }
 impl Default for RefreshCycleDurationGOOGLE {
     fn default() -> Self {
@@ -182,6 +183,7 @@ impl RefreshCycleDurationGOOGLE {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPastPresentationTimingGOOGLE")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -192,27 +194,27 @@ pub struct PastPresentationTimingGOOGLE {
     ///[`PresentTimeGOOGLE`]::[`present_id`] (see below).
     ///It  **can**  be used to uniquely identify a previous present with the
     ///[`QueuePresentKHR`] command.
-    present_id: u32,
+    pub present_id: u32,
     ///[`desired_present_time`] is an application-provided value that was given
     ///to a previous [`QueuePresentKHR`] command via
     ///[`PresentTimeGOOGLE`]::[`desired_present_time`].
     ///If non-zero, it was used by the application to indicate that an image
     ///not be presented any sooner than [`desired_present_time`].
-    desired_present_time: u64,
+    pub desired_present_time: u64,
     ///[`actual_present_time`] is the time when the image of the
     ///`swapchain` was actually displayed.
-    actual_present_time: u64,
+    pub actual_present_time: u64,
     ///[`earliest_present_time`] is the time when the image of the
     ///`swapchain` could have been displayed.
     ///This  **may**  differ from [`actual_present_time`] if the application
     ///requested that the image be presented no sooner than
     ///[`PresentTimeGOOGLE`]::[`desired_present_time`].
-    earliest_present_time: u64,
+    pub earliest_present_time: u64,
     ///[`present_margin`] is an indication of how early the
     ///[`QueuePresentKHR`] command was processed compared to how soon it
     ///needed to be processed, and still be presented at
     ///[`earliest_present_time`].
-    present_margin: u64,
+    pub present_margin: u64,
 }
 impl Default for PastPresentationTimingGOOGLE {
     fn default() -> Self {
@@ -346,25 +348,26 @@ impl PastPresentationTimingGOOGLE {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPresentTimesInfoGOOGLE")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PresentTimesInfoGOOGLE<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`swapchain_count`] is the number of swapchains being presented to by
     ///this command.
-    swapchain_count: u32,
+    pub swapchain_count: u32,
     ///[`times`] is `NULL` or a pointer to an array of
     ///[`PresentTimeGOOGLE`] elements with [`swapchain_count`] entries.
     ///If not `NULL`, each element of [`times`] contains the earliest time
     ///to present the image corresponding to the entry in the
     ///[`PresentInfoKHR`]::`pImageIndices` array.
-    times: *const PresentTimeGOOGLE,
+    pub times: *const PresentTimeGOOGLE,
 }
 impl<'lt> Default for PresentTimesInfoGOOGLE<'lt> {
     fn default() -> Self {
@@ -487,6 +490,7 @@ impl<'lt> PresentTimesInfoGOOGLE<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPresentTimeGOOGLE")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -498,7 +502,7 @@ pub struct PresentTimeGOOGLE {
     ///this present.
     ///In order to be useful to the application, it  **should**  be unique within
     ///some period of time that is meaningful to the application.
-    present_id: u32,
+    pub present_id: u32,
     ///[`desired_present_time`] specifies that the image given  **should**  not be
     ///displayed to the user any earlier than this time.
     ///[`desired_present_time`] is a time in nanoseconds, relative to a
@@ -507,7 +511,7 @@ pub struct PresentTimeGOOGLE {
     ///A value of zero specifies that the presentation engine  **may**  display the
     ///image at any time.
     ///This is useful when the application desires to provide [`present_id`],
-    desired_present_time: u64,
+    pub desired_present_time: u64,
 }
 impl Default for PresentTimeGOOGLE {
     fn default() -> Self {

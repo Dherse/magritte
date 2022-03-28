@@ -106,22 +106,23 @@ pub const FUCHSIA_EXTERNAL_MEMORY_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImportMemoryZirconHandleInfoFUCHSIA")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImportMemoryZirconHandleInfoFUCHSIA<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value
     ///specifying the type of [`handle`].
-    handle_type: ExternalMemoryHandleTypeFlagBits,
+    pub handle_type: ExternalMemoryHandleTypeFlagBits,
     ///[`handle`] is a [`zx_handle_t`] (Zircon) handle to the external
     ///memory.
-    handle: zx_handle_t,
+    pub handle: zx_handle_t,
 }
 impl<'lt> Default for ImportMemoryZirconHandleInfoFUCHSIA<'lt> {
     fn default() -> Self {
@@ -237,19 +238,20 @@ impl<'lt> ImportMemoryZirconHandleInfoFUCHSIA<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryZirconHandlePropertiesFUCHSIA")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryZirconHandlePropertiesFUCHSIA<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`memory_type_bits`] a bitmask containing one bit set for every memory
     ///type which the specified handle can be imported as.
-    memory_type_bits: u32,
+    pub memory_type_bits: u32,
 }
 impl<'lt> Default for MemoryZirconHandlePropertiesFUCHSIA<'lt> {
     fn default() -> Self {
@@ -360,22 +362,23 @@ impl<'lt> MemoryZirconHandlePropertiesFUCHSIA<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryGetZirconHandleInfoFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryGetZirconHandleInfoFUCHSIA<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`memory`] the [`DeviceMemory`] being exported.
-    memory: DeviceMemory,
+    pub memory: DeviceMemory,
     ///[`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value
     ///specifying the type of the handle pointed to by
     ///[`GetMemoryZirconHandleFUCHSIA`]::`pZirconHandle`.
-    handle_type: ExternalMemoryHandleTypeFlagBits,
+    pub handle_type: ExternalMemoryHandleTypeFlagBits,
 }
 impl<'lt> Default for MemoryGetZirconHandleInfoFUCHSIA<'lt> {
     fn default() -> Self {

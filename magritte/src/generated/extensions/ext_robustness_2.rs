@@ -119,16 +119,17 @@ pub const EXT_ROBUSTNESS_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceRobustness2FeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRobustness2FeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`robust_buffer_access_2`] indicates
     ///whether buffer accesses are tightly bounds-checked against the range of
     ///the descriptor.
@@ -141,19 +142,19 @@ pub struct PhysicalDeviceRobustness2FeaturesEXT<'lt> {
     ///Out of bounds buffer loads will return zero values, and formatted loads
     ///will have (0,0,1) values inserted for missing G, B, or A
     ///components based on the format.
-    robust_buffer_access_2: Bool32,
+    pub robust_buffer_access_2: Bool32,
     ///[`robust_image_access_2`] indicates
     ///whether image accesses are tightly bounds-checked against the dimensions
     ///of the image view.
     ///Out of bounds image loads will return zero values, with (0,0,1)
     ///values [inserted for missing G, B, or A
     ///components]() based on the format.
-    robust_image_access_2: Bool32,
+    pub robust_image_access_2: Bool32,
     ///[`null_descriptor`] indicates whether
     ///descriptors  **can**  be written with a [`crate::utils::Handle::null`] resource or
     ///view, which are considered valid to access and act as if the descriptor
     ///were bound to nothing.
-    null_descriptor: Bool32,
+    pub null_descriptor: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceRobustness2FeaturesEXT<'lt> {
     fn default() -> Self {
@@ -355,28 +356,29 @@ impl<'lt> PhysicalDeviceRobustness2FeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceRobustness2PropertiesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRobustness2PropertiesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`robust_storage_buffer_access_size_alignment`] is the number of bytes that
     ///the range of a storage buffer descriptor is rounded up to when used for
     ///bounds-checking when
     ///[`robustBufferAccess2`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-robustBufferAccess2) is enabled.
     ///This value  **must**  be either 1 or 4.
-    robust_storage_buffer_access_size_alignment: DeviceSize,
+    pub robust_storage_buffer_access_size_alignment: DeviceSize,
     ///[`robust_uniform_buffer_access_size_alignment`] is the number of bytes that
     ///the range of a uniform buffer descriptor is rounded up to when used for
     ///bounds-checking when
     ///[`robustBufferAccess2`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-robustBufferAccess2) is enabled.
     ///This value  **must**  be a power of two in the range [1, 256].
-    robust_uniform_buffer_access_size_alignment: DeviceSize,
+    pub robust_uniform_buffer_access_size_alignment: DeviceSize,
 }
 impl<'lt> Default for PhysicalDeviceRobustness2PropertiesEXT<'lt> {
     fn default() -> Self {

@@ -90,15 +90,16 @@ pub const EXT_MULTI_DRAW_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_mu
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMultiDrawInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct MultiDrawInfoEXT {
     ///[`first_vertex`] is the first vertex to draw.
-    first_vertex: u32,
+    pub first_vertex: u32,
     ///[`vertex_count`] is the number of vertices to draw.
-    vertex_count: u32,
+    pub vertex_count: u32,
 }
 impl Default for MultiDrawInfoEXT {
     fn default() -> Self {
@@ -168,18 +169,19 @@ impl MultiDrawInfoEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMultiDrawIndexedInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct MultiDrawIndexedInfoEXT {
     ///[`first_index`] is the first index to draw.
-    first_index: u32,
+    pub first_index: u32,
     ///[`index_count`] is the number of vertices to draw.
-    index_count: u32,
+    pub index_count: u32,
     ///[`vertex_offset`] is the value added to the vertex index before
     ///indexing into the vertex buffer for indexed multidraws.
-    vertex_offset: i32,
+    pub vertex_offset: i32,
 }
 impl Default for MultiDrawIndexedInfoEXT {
     fn default() -> Self {
@@ -266,19 +268,20 @@ impl MultiDrawIndexedInfoEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceMultiDrawPropertiesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMultiDrawPropertiesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT`
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///No documentation found
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`max_multi_draw_count`] indicates the
     ///maximum number of draw calls which  **can**  be batched into a single
     ///multidraw.
-    max_multi_draw_count: u32,
+    pub max_multi_draw_count: u32,
 }
 impl<'lt> Default for PhysicalDeviceMultiDrawPropertiesEXT<'lt> {
     fn default() -> Self {
@@ -386,19 +389,20 @@ impl<'lt> PhysicalDeviceMultiDrawPropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceMultiDrawFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMultiDrawFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`multi_draw`] indicates that the implementation
     ///supports [`CmdDrawMultiEXT`] and [`CmdDrawMultiIndexedEXT`].
-    multi_draw: Bool32,
+    pub multi_draw: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceMultiDrawFeaturesEXT<'lt> {
     fn default() -> Self {

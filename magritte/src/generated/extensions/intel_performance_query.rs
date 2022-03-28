@@ -133,6 +133,7 @@ pub const INTEL_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceConfigurationTypeINTEL")]
+#[doc(alias = "VkPerformanceConfigurationTypeINTEL")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -189,6 +190,7 @@ impl PerformanceConfigurationTypeINTEL {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkQueryPoolSamplingModeINTEL")]
 #[doc(alias = "VkQueryPoolSamplingModeINTEL")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -249,6 +251,7 @@ impl QueryPoolSamplingModeINTEL {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPerformanceOverrideTypeINTEL")]
 #[doc(alias = "VkPerformanceOverrideTypeINTEL")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -313,6 +316,7 @@ impl PerformanceOverrideTypeINTEL {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPerformanceParameterTypeINTEL")]
 #[doc(alias = "VkPerformanceParameterTypeINTEL")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -388,6 +392,7 @@ impl PerformanceParameterTypeINTEL {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceValueTypeINTEL")]
+#[doc(alias = "VkPerformanceValueTypeINTEL")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -458,17 +463,18 @@ impl PerformanceValueTypeINTEL {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPerformanceValueINTEL")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceValueINTEL<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`type_`] is a [`PerformanceValueTypeINTEL`] value specifying the
     ///type of the returned data.
-    type_: PerformanceValueTypeINTEL,
+    pub type_: PerformanceValueTypeINTEL,
     ///[`data`] is a [`PerformanceValueDataINTEL`] union specifying the
     ///value of the returned data.
-    data: PerformanceValueDataINTEL<'lt>,
+    pub data: PerformanceValueDataINTEL<'lt>,
 }
 impl<'lt> Default for PerformanceValueINTEL<'lt> {
     fn default() -> Self {
@@ -544,18 +550,19 @@ impl<'lt> PerformanceValueINTEL<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkInitializePerformanceApiInfoINTEL")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct InitializePerformanceApiInfoINTEL<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`user_data`] is a pointer for application data.
-    user_data: *mut c_void,
+    pub user_data: *mut c_void,
 }
 impl<'lt> Default for InitializePerformanceApiInfoINTEL<'lt> {
     fn default() -> Self {
@@ -674,19 +681,20 @@ impl<'lt> InitializePerformanceApiInfoINTEL<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkQueryPoolPerformanceQueryCreateInfoINTEL")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`performance_counters_sampling`] describe how performance queries
     ///should be captured.
-    performance_counters_sampling: QueryPoolSamplingModeINTEL,
+    pub performance_counters_sampling: QueryPoolSamplingModeINTEL,
 }
 impl<'lt> Default for QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
     fn default() -> Self {
@@ -781,19 +789,20 @@ impl<'lt> QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPerformanceMarkerInfoINTEL")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceMarkerInfoINTEL<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`marker`] is the marker value that will be recorded into the opaque
     ///query results.
-    marker: u64,
+    pub marker: u64,
 }
 impl<'lt> Default for PerformanceMarkerInfoINTEL<'lt> {
     fn default() -> Self {
@@ -891,19 +900,20 @@ impl<'lt> PerformanceMarkerInfoINTEL<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPerformanceStreamMarkerInfoINTEL")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceStreamMarkerInfoINTEL<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`marker`] is the marker value that will be recorded into the reports
     ///consumed by an external application.
-    marker: u32,
+    pub marker: u32,
 }
 impl<'lt> Default for PerformanceStreamMarkerInfoINTEL<'lt> {
     fn default() -> Self {
@@ -1000,22 +1010,23 @@ impl<'lt> PerformanceStreamMarkerInfoINTEL<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPerformanceOverrideInfoINTEL")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceOverrideInfoINTEL<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///No documentation found
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///No documentation found
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`type_`] is the particular [`PerformanceOverrideTypeINTEL`] to
     ///set.
-    type_: PerformanceOverrideTypeINTEL,
+    pub type_: PerformanceOverrideTypeINTEL,
     ///[`enable`] defines whether the override is enabled.
-    enable: Bool32,
+    pub enable: Bool32,
     ///[`parameter`] is a potential required parameter for the override.
-    parameter: u64,
+    pub parameter: u64,
 }
 impl<'lt> Default for PerformanceOverrideInfoINTEL<'lt> {
     fn default() -> Self {
@@ -1162,19 +1173,20 @@ impl<'lt> PerformanceOverrideInfoINTEL<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPerformanceConfigurationAcquireInfoINTEL")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceConfigurationAcquireInfoINTEL<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`type_`] is one of the [`PerformanceConfigurationTypeINTEL`] type
     ///of performance configuration that will be acquired.
-    type_: PerformanceConfigurationTypeINTEL,
+    pub type_: PerformanceConfigurationTypeINTEL,
 }
 impl<'lt> Default for PerformanceConfigurationAcquireInfoINTEL<'lt> {
     fn default() -> Self {
@@ -1238,6 +1250,61 @@ impl<'lt> PerformanceConfigurationAcquireInfoINTEL<'lt> {
         self
     }
 }
+///[VkPerformanceValueDataINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceValueDataINTEL.html) - Values returned for the parameters
+///# C Specifications
+///The [`PerformanceValueDataINTEL`] union is defined as:
+///```c
+///// Provided by VK_INTEL_performance_query
+///typedef union VkPerformanceValueDataINTEL {
+///    uint32_t       value32;
+///    uint64_t       value64;
+///    float          valueFloat;
+///    VkBool32       valueBool;
+///    const char*    valueString;
+///} VkPerformanceValueDataINTEL;
+///```
+///# Members
+/// - `data.value32` represents 32-bit integer data.
+/// - `data.value64` represents 64-bit integer data.
+/// - `data.valueFloat` represents floating-point data.
+/// - `data.valueBool` represents [`Bool32`] data.
+/// - `data.valueString` represents a pointer to a null-terminated UTF-8 string.
+///# Description
+///The correct member of the union is determined by the associated
+///[`PerformanceValueTypeINTEL`] value.
+///# Related
+/// - [`VK_INTEL_performance_query`]
+/// - [`Bool32`]
+/// - [`PerformanceValueINTEL`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPerformanceValueDataINTEL")]
+#[derive(Clone, Copy)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(C)]
+pub union PerformanceValueDataINTEL<'lt> {
+    ///No documentation found
+    pub value_32: u32,
+    ///No documentation found
+    pub value_64: u64,
+    ///No documentation found
+    pub value_float: f32,
+    ///No documentation found
+    pub value_bool: Bool32,
+    ///No documentation found
+    pub value_string: &'lt CStr,
+}
+impl Default for PerformanceValueDataINTEL {
+    fn default() -> Self {
+        unsafe { std::mem::zeroed() }
+    }
+}
 ///[VkPerformanceConfigurationINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceConfigurationINTEL.html) - Device configuration for performance queries
 ///# C Specifications
 ///Before submitting command buffers containing performance queries commands to
@@ -1262,6 +1329,7 @@ impl<'lt> PerformanceConfigurationAcquireInfoINTEL<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPerformanceConfigurationINTEL")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]

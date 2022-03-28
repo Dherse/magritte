@@ -124,41 +124,42 @@ pub const NV_WIN32_KEYED_MUTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkWin32KeyedMutexAcquireReleaseInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct Win32KeyedMutexAcquireReleaseInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///No documentation found
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///No documentation found
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`acquire_count`] is the number of entries in the [`acquire_syncs`],
     ///[`acquire_keys`], and [`acquire_timeout_milliseconds`] arrays.
-    acquire_count: u32,
+    pub acquire_count: u32,
     ///[`acquire_syncs`] is a pointer to an array of [`DeviceMemory`]
     ///objects which were imported from Direct3D 11 resources.
-    acquire_syncs: *const DeviceMemory,
+    pub acquire_syncs: *const DeviceMemory,
     ///[`acquire_keys`] is a pointer to an array of mutex key values to wait
     ///for prior to beginning the submitted work.
     ///Entries refer to the keyed mutex associated with the corresponding
     ///entries in [`acquire_syncs`].
-    acquire_keys: *const u64,
+    pub acquire_keys: *const u64,
     ///[`acquire_timeout_milliseconds`] is a pointer to an array of timeout
     ///values, in millisecond units, for each acquire specified in
     ///[`acquire_keys`].
-    acquire_timeout_milliseconds: *const u32,
+    pub acquire_timeout_milliseconds: *const u32,
     ///[`release_count`] is the number of entries in the [`release_syncs`]
     ///and [`release_keys`] arrays.
-    release_count: u32,
+    pub release_count: u32,
     ///[`release_syncs`] is a pointer to an array of [`DeviceMemory`]
     ///objects which were imported from Direct3D 11 resources.
-    release_syncs: *const DeviceMemory,
+    pub release_syncs: *const DeviceMemory,
     ///[`release_keys`] is a pointer to an array of mutex key values to set
     ///when the submitted work has completed.
     ///Entries refer to the keyed mutex associated with the corresponding
     ///entries in [`release_syncs`].
-    release_keys: *const u64,
+    pub release_keys: *const u64,
 }
 impl<'lt> Default for Win32KeyedMutexAcquireReleaseInfoNV<'lt> {
     fn default() -> Self {

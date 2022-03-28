@@ -106,20 +106,21 @@ pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`vertex_input_dynamic_state`]
     ///indicates that the implementation supports the following dynamic states:
     /// - `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
-    vertex_input_dynamic_state: Bool32,
+    pub vertex_input_dynamic_state: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
     fn default() -> Self {
@@ -262,25 +263,26 @@ impl<'lt> PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVertexInputBindingDescription2EXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VertexInputBindingDescription2EXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`binding`] is the binding number that this structure describes.
-    binding: u32,
+    pub binding: u32,
     ///[`stride`] is the byte stride between consecutive elements within the
     ///buffer.
-    stride: u32,
+    pub stride: u32,
     ///[`input_rate`] is a [`VertexInputRate`] value specifying whether
     ///vertex attribute addressing is a function of the vertex index or of the
     ///instance index.
-    input_rate: VertexInputRate,
+    pub input_rate: VertexInputRate,
     ///[`divisor`] is the number of successive instances that will use the
     ///same value of the vertex attribute when instanced rendering is enabled.
     ///This member  **can**  be set to a value other than `1` if the
@@ -296,7 +298,7 @@ pub struct VertexInputBindingDescription2EXT<'lt> {
     ///feature is enabled.
     ///In this case, the same vertex attribute will be applied to all
     ///instances.
-    divisor: u32,
+    pub divisor: u32,
 }
 impl<'lt> Default for VertexInputBindingDescription2EXT<'lt> {
     fn default() -> Self {
@@ -459,26 +461,27 @@ impl<'lt> VertexInputBindingDescription2EXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVertexInputAttributeDescription2EXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VertexInputAttributeDescription2EXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`location`] is the shader input location number for this attribute.
-    location: u32,
+    pub location: u32,
     ///[`binding`] is the binding number which this attribute takes its data
     ///from.
-    binding: u32,
+    pub binding: u32,
     ///[`format`] is the size and type of the vertex attribute data.
-    format: Format,
+    pub format: Format,
     ///[`offset`] is a byte offset of this attribute relative to the start of
     ///an element in the vertex input binding.
-    offset: u32,
+    pub offset: u32,
 }
 impl<'lt> Default for VertexInputAttributeDescription2EXT<'lt> {
     fn default() -> Self {

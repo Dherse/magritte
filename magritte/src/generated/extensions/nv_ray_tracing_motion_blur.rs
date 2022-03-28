@@ -86,7 +86,7 @@
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     extensions::khr_acceleration_structure::{
-        DeviceOrHostAddressConstKHR, GeometryInstanceFlagsKHR, TransformMatrixKHR,
+        AccelerationStructureInstanceKHR, DeviceOrHostAddressConstKHR, GeometryInstanceFlagsKHR, TransformMatrixKHR,
     },
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType},
 };
@@ -133,6 +133,7 @@ pub const NV_RAY_TRACING_MOTION_BLUR_EXTENSION_NAME: &'static CStr = crate::cstr
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureMotionInstanceTypeNV")]
 #[doc(alias = "VkAccelerationStructureMotionInstanceTypeNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -287,23 +288,24 @@ impl std::fmt::Debug for AccelerationStructureMotionInstanceFlagsNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceRayTracingMotionBlurFeaturesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`ray_tracing_motion_blur`] indicates
     ///whether the implementation supports the motion blur feature.
-    ray_tracing_motion_blur: Bool32,
+    pub ray_tracing_motion_blur: Bool32,
     ///[`ray_tracing_motion_blur_pipeline_trace_rays_indirect`] indicates whether
     ///the implementation supports indirect ray tracing commands with the
     ///motion blur feature enabled.
-    ray_tracing_motion_blur_pipeline_trace_rays_indirect: Bool32,
+    pub ray_tracing_motion_blur_pipeline_trace_rays_indirect: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt> {
     fn default() -> Self {
@@ -474,19 +476,20 @@ impl<'lt> PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureGeometryMotionTrianglesDataNV")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureGeometryMotionTrianglesDataNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`vertex_data`] is a pointer to vertex data for this geometry at time
     ///1.0
-    vertex_data: DeviceOrHostAddressConstKHR<'lt>,
+    pub vertex_data: DeviceOrHostAddressConstKHR<'lt>,
 }
 impl<'lt> Default for AccelerationStructureGeometryMotionTrianglesDataNV<'lt> {
     fn default() -> Self {
@@ -584,21 +587,22 @@ impl<'lt> AccelerationStructureGeometryMotionTrianglesDataNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureMotionInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureMotionInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`max_instances`] is the maximum number of instances that  **may**  be used
     ///in the motion top-level acceleration structure.
-    max_instances: u32,
+    pub max_instances: u32,
     ///[`flags`] is 0 and reserved for future use.
-    flags: AccelerationStructureMotionInfoFlagsNV,
+    pub flags: AccelerationStructureMotionInfoFlagsNV,
 }
 impl<'lt> Default for AccelerationStructureMotionInfoNV<'lt> {
     fn default() -> Self {
@@ -722,26 +726,26 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 ///The first is a matrix S, consisting of a scale, shear, and translation,
 ///usually used to define the pivot point of the following rotation.
 ///This matrix is constructed from the parameters above by:<span class="katex"><span
-/// aria-hidden="true" class="katex-html"><span class="base"><span class="strut"
+/// class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
 /// style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
 /// style="margin-right:0.05764em;">S</span><span class="mspace"
 /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-/// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+/// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span class="base"><span
 /// class="strut" style="height:3.60004em;vertical-align:-1.55002em;"></span><span
 /// class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t
 /// vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span
-/// style="top:-2.2500000000000004em;"><span style="height:3.1550000000000002em;"
-/// class="pstrut"></span><span class="delimsizinginner
-/// delim-size4"><span>⎝</span></span></span><span style="top:-2.8100000000000005em;"><span
-/// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
-/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
+/// style="top:-2.2500000000000004em;"><span class="pstrut"
 /// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
+/// delim-size4"><span>⎝</span></span></span><span style="top:-2.8100000000000005em;"><span
+/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
+/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span
+/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎛</span></span></span></span><span class="vlist-s">​</span></span><span
 /// class="vlist-r"><span style="height:1.55002em;"
 /// class="vlist"><span></span></span></span></span></span></span><span class="mord"><span
 /// class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span
 /// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
-/// class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
 /// mathdefault">s</span><span class="mord mathdefault">x</span></span></span><span
 /// style="top:-3.0099999999999993em;"><span style="height:3em;" class="pstrut"></span><span
 /// class="mord"><span class="mord">0</span></span></span><span
@@ -750,56 +754,53 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
 /// class="vlist"><span></span></span></span></span></span><span style="width:0.5em;"
 /// class="arraycolsep"></span><span class="arraycolsep" style="width:0.5em;"></span><span
-/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-/// style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut"
-/// style="height:3em;"></span><span class="mord"><span class="mord
+/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+/// style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span style="height:3em;"
+/// class="pstrut"></span><span class="mord"><span class="mord
 /// mathdefault">a</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">s</span><span
 /// class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span><span
 /// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
 /// class="mord"><span class="mord">0</span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-/// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
-/// style="width:0.5em;" class="arraycolsep"></span><span style="width:0.5em;"
-/// class="arraycolsep"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
-/// class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord
-/// mathdefault">b</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
-/// style="height:3em;"></span><span class="mord"><span class="mord
-/// mathdefault">c</span></span></span><span style="top:-1.8099999999999994em;"><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
+/// class="vlist"><span></span></span></span></span></span><span style="width:0.5em;"
+/// class="arraycolsep"></span><span style="width:0.5em;" class="arraycolsep"></span><span
+/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+/// style="height:2.05em;"><span style="top:-4.21em;"><span style="height:3em;"
+/// class="pstrut"></span><span class="mord"><span class="mord
+/// mathdefault">b</span></span></span><span style="top:-3.0099999999999993em;"><span
 /// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
-/// mathdefault">s</span><span style="margin-right:0.04398em;" class="mord
-/// mathdefault">z</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span class="vlist"
-/// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
-/// class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep"
-/// style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
-/// class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord
-/// mathdefault">p</span><span class="mord mathdefault"
-/// style="margin-right:0.03588em;">v</span><span class="mord
+/// mathdefault">c</span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut"
+/// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">s</span><span
+/// style="margin-right:0.04398em;" class="mord mathdefault">z</span></span></span></span><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
+/// class="vlist"><span></span></span></span></span></span><span class="arraycolsep"
+/// style="width:0.5em;"></span><span style="width:0.5em;" class="arraycolsep"></span><span
+/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+/// style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span class="pstrut"
+/// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">p</span><span
+/// class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord
 /// mathdefault">x</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">p</span><span
 /// style="margin-right:0.03588em;" class="mord mathdefault">v</span><span
 /// style="margin-right:0.03588em;" class="mord mathdefault">y</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
-/// class="mord"><span class="mord mathdefault">p</span><span class="mord mathdefault"
-/// style="margin-right:0.03588em;">v</span><span style="margin-right:0.04398em;" class="mord
+/// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
+/// class="mord"><span class="mord mathdefault">p</span><span style="margin-right:0.03588em;"
+/// class="mord mathdefault">v</span><span style="margin-right:0.04398em;" class="mord
 /// mathdefault">z</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span class="vlist"
-/// style="height:1.5500000000000007em;"><span></span></span></span></span></span></span></
-/// span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span style="height:2.05002em;" class="vlist"><span
-/// style="top:-2.2500000000000004em;"><span style="height:3.1550000000000002em;"
-/// class="pstrut"></span><span class="delimsizinginner
+/// class="vlist-r"><span style="height:1.5500000000000007em;"
+/// class="vlist"><span></span></span></span></span></span></span></span><span class="mclose"><span
+/// class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+/// class="vlist" style="height:2.05002em;"><span style="top:-2.2500000000000004em;"><span
+/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎠</span></span></span><span style="top:-2.8100000000000005em;"><span
-/// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
-/// delim-size4"><span>⎟</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
-/// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
+/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
+/// delim-size4"><span>⎟</span></span></span><span style="top:-4.05002em;"><span
+/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎞</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span style="height:1.55002em;"
-/// class="vlist"><span></span></span></span></span></span></span></span></span></span></span>The
-/// rotation quaternion is defined as:
+/// class="vlist-r"><span class="vlist"
+/// style="height:1.55002em;"><span></span></span></span></span></span></span></span></span></
+/// span></span>The rotation quaternion is defined as:
 /// * `R` = [ [`qx`], [`qy`], [`qz`], [`qw`] ]
 ///This is a rotation around a conceptual normalized axis [ ax, ay, az ]
 ///of amount `theta` such that:
@@ -807,14 +808,14 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 ///and
 /// * [`qw`] = cos(`theta`/2)
 ///Finally, the transform has a translation T constructed from the parameters
-///above by:<span class="katex"><span aria-hidden="true" class="katex-html"><span
-/// class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+///above by:<span class="katex"><span class="katex-html" aria-hidden="true"><span
+/// class="base"><span style="height:0.68333em;vertical-align:0em;" class="strut"></span><span
 /// class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace"
 /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-/// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+/// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span class="base"><span
 /// style="height:3.60004em;vertical-align:-1.55002em;" class="strut"></span><span
 /// class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t
-/// vlist-t2"><span class="vlist-r"><span style="height:2.05002em;" class="vlist"><span
+/// vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span
 /// style="top:-2.2500000000000004em;"><span class="pstrut"
 /// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎝</span></span></span><span style="top:-2.8100000000000005em;"><span
@@ -829,43 +830,42 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 /// style="height:3em;" class="pstrut"></span><span class="mord"><span
 /// class="mord">1</span></span></span><span style="top:-3.0099999999999993em;"><span
 /// style="height:3em;" class="pstrut"></span><span class="mord"><span
-/// class="mord">0</span></span></span><span style="top:-1.8099999999999994em;"><span
-/// style="height:3em;" class="pstrut"></span><span class="mord"><span
+/// class="mord">0</span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut"
+/// style="height:3em;"></span><span class="mord"><span
 /// class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span
 /// class="vlist-r"><span class="vlist"
 /// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
 /// class="arraycolsep" style="width:0.5em;"></span><span style="width:0.5em;"
 /// class="arraycolsep"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
-/// class="pstrut" style="height:3em;"></span><span class="mord"><span
-/// class="mord">0</span></span></span><span style="top:-3.0099999999999993em;"><span
+/// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
 /// style="height:3em;" class="pstrut"></span><span class="mord"><span
-/// class="mord">1</span></span></span><span style="top:-1.8099999999999994em;"><span
-/// style="height:3em;" class="pstrut"></span><span class="mord"><span
-/// class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span class="vlist"
+/// class="mord">0</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
+/// style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span
+/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
+/// class="mord"><span class="mord">0</span></span></span></span><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 /// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
-/// class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep"
+/// style="width:0.5em;" class="arraycolsep"></span><span class="arraycolsep"
 /// style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
 /// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
 /// style="height:3em;" class="pstrut"></span><span class="mord"><span
 /// class="mord">0</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
+/// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
 /// class="mord"><span class="mord">1</span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-/// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
-/// style="width:0.5em;" class="arraycolsep"></span><span class="arraycolsep"
-/// style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
-/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
-/// mathdefault">t</span><span class="mord mathdefault">x</span></span></span><span
-/// style="top:-3.0099999999999993em;"><span style="height:3em;" class="pstrut"></span><span
-/// class="mord"><span class="mord mathdefault">t</span><span style="margin-right:0.03588em;"
-/// class="mord mathdefault">y</span></span></span><span style="top:-1.8099999999999994em;"><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
+/// class="vlist"><span></span></span></span></span></span><span style="width:0.5em;"
+/// class="arraycolsep"></span><span style="width:0.5em;" class="arraycolsep"></span><span
+/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+/// style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span class="pstrut"
+/// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">t</span><span
+/// class="mord mathdefault">x</span></span></span><span style="top:-3.0099999999999993em;"><span
 /// class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord
-/// mathdefault">t</span><span style="margin-right:0.04398em;" class="mord
-/// mathdefault">z</span></span></span></span><span class="vlist-s">​</span></span><span
+/// mathdefault">t</span><span class="mord mathdefault"
+/// style="margin-right:0.03588em;">y</span></span></span><span
+/// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
+/// class="mord"><span class="mord mathdefault">t</span><span style="margin-right:0.04398em;"
+/// class="mord mathdefault">z</span></span></span></span><span class="vlist-s">​</span></span><span
 /// class="vlist-r"><span style="height:1.5500000000000007em;"
 /// class="vlist"><span></span></span></span></span></span></span></span><span class="mclose"><span
 /// class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
@@ -891,43 +891,44 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSRTDataNV")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct SrtDataNV {
     ///[`sx`] is the x component of the scale of the transform
-    sx: f32,
+    pub sx: f32,
     ///[`a`] is one component of the shear for the transform
-    a: f32,
+    pub a: f32,
     ///[`b`] is one component of the shear for the transform
-    b: f32,
+    pub b: f32,
     ///[`pvx`] is the x component of the pivot point of the transform
-    pvx: f32,
+    pub pvx: f32,
     ///[`sy`] is the y component of the scale of the transform
-    sy: f32,
+    pub sy: f32,
     ///[`c`] is one component of the shear for the transform
-    c: f32,
+    pub c: f32,
     ///[`pvy`] is the y component of the pivot point of the transform
-    pvy: f32,
+    pub pvy: f32,
     ///[`sz`] is the z component of the scale of the transform
-    sz: f32,
+    pub sz: f32,
     ///[`pvz`] is the z component of the pivot point of the transform
-    pvz: f32,
+    pub pvz: f32,
     ///[`qx`] is the x component of the rotation quaternion
-    qx: f32,
+    pub qx: f32,
     ///[`qy`] is the y component of the rotation quaternion
-    qy: f32,
+    pub qy: f32,
     ///[`qz`] is the z component of the rotation quaternion
-    qz: f32,
+    pub qz: f32,
     ///[`qw`] is the w component of the rotation quaternion
-    qw: f32,
+    pub qw: f32,
     ///[`tx`] is the x component of the post-rotation translation
-    tx: f32,
+    pub tx: f32,
     ///[`ty`] is the y component of the post-rotation translation
-    ty: f32,
+    pub ty: f32,
     ///[`tz`] is the z component of the post-rotation translation
-    tz: f32,
+    pub tz: f32,
 }
 impl Default for SrtDataNV {
     fn default() -> Self {
@@ -1228,6 +1229,7 @@ impl SrtDataNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureSRTMotionInstanceNV")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1235,29 +1237,29 @@ impl SrtDataNV {
 pub struct AccelerationStructureSrtMotionInstanceNV {
     ///[`transform_t_0`] is a [`SrtDataNV`] structure describing a
     ///transformation to be applied to the acceleration structure at time 0.
-    transform_t_0: SrtDataNV,
+    pub transform_t_0: SrtDataNV,
     ///[`transform_t_1`] is a [`SrtDataNV`] structure describing a
     ///transformation to be applied to the acceleration structure at time 1.
-    transform_t_1: SrtDataNV,
+    pub transform_t_1: SrtDataNV,
     ///[`instance_custom_index`] is a 24-bit user-specified index value
     ///accessible to ray shaders in the `InstanceCustomIndexKHR` built-in.
-    instance_custom_index: u32,
+    pub instance_custom_index: u32,
     ///[`mask`] is an 8-bit visibility mask for the geometry.
     ///The instance  **may**  only be hit if `Cull Mask & instance.mask != 0`
-    mask: u32,
+    pub mask: u32,
     ///[`instance_shader_binding_table_record_offset`] is a 24-bit offset used in
     ///calculating the hit shader binding table index.
-    instance_shader_binding_table_record_offset: u32,
+    pub instance_shader_binding_table_record_offset: u32,
     ///[`flags`] is an 8-bit mask of [`GeometryInstanceFlagBitsKHR`]
     ///values to apply to this instance.
-    flags: GeometryInstanceFlagsKHR,
+    pub flags: GeometryInstanceFlagsKHR,
     ///[`acceleration_structure_reference`] is either:
     /// - a device address containing the value obtained from
     ///   [`GetAccelerationStructureDeviceAddressKHR`] or [`GetAccelerationStructureHandleNV`]
     ///   (used by device operations which reference acceleration structures) or,
     /// - a [`AccelerationStructureKHR`] object (used by host operations which reference
     ///   acceleration structures).
-    acceleration_structure_reference: u64,
+    pub acceleration_structure_reference: u64,
 }
 impl Default for AccelerationStructureSrtMotionInstanceNV {
     fn default() -> Self {
@@ -1437,6 +1439,7 @@ impl AccelerationStructureSrtMotionInstanceNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureMatrixMotionInstanceNV")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1444,29 +1447,29 @@ impl AccelerationStructureSrtMotionInstanceNV {
 pub struct AccelerationStructureMatrixMotionInstanceNV {
     ///[`transform_t_0`] is a [`TransformMatrixKHR`] structure describing a
     ///transformation to be applied to the acceleration structure at time 0.
-    transform_t_0: TransformMatrixKHR,
+    pub transform_t_0: TransformMatrixKHR,
     ///[`transform_t_1`] is a [`TransformMatrixKHR`] structure describing a
     ///transformation to be applied to the acceleration structure at time 1.
-    transform_t_1: TransformMatrixKHR,
+    pub transform_t_1: TransformMatrixKHR,
     ///[`instance_custom_index`] is a 24-bit user-specified index value
     ///accessible to ray shaders in the `InstanceCustomIndexKHR` built-in.
-    instance_custom_index: u32,
+    pub instance_custom_index: u32,
     ///[`mask`] is an 8-bit visibility mask for the geometry.
     ///The instance  **may**  only be hit if `Cull Mask & instance.mask != 0`
-    mask: u32,
+    pub mask: u32,
     ///[`instance_shader_binding_table_record_offset`] is a 24-bit offset used in
     ///calculating the hit shader binding table index.
-    instance_shader_binding_table_record_offset: u32,
+    pub instance_shader_binding_table_record_offset: u32,
     ///[`flags`] is an 8-bit mask of [`GeometryInstanceFlagBitsKHR`]
     ///values to apply to this instance.
-    flags: GeometryInstanceFlagsKHR,
+    pub flags: GeometryInstanceFlagsKHR,
     ///[`acceleration_structure_reference`] is either:
     /// - a device address containing the value obtained from
     ///   [`GetAccelerationStructureDeviceAddressKHR`] or [`GetAccelerationStructureHandleNV`]
     ///   (used by device operations which reference acceleration structures) or,
     /// - a [`AccelerationStructureKHR`] object (used by host operations which reference
     ///   acceleration structures).
-    acceleration_structure_reference: u64,
+    pub acceleration_structure_reference: u64,
 }
 impl Default for AccelerationStructureMatrixMotionInstanceNV {
     fn default() -> Self {
@@ -1633,6 +1636,7 @@ impl AccelerationStructureMatrixMotionInstanceNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureMotionInstanceNV")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
@@ -1640,13 +1644,13 @@ pub struct AccelerationStructureMotionInstanceNV {
     ///[`type_`] is a [`AccelerationStructureMotionInstanceTypeNV`]
     ///enumerant identifying which type of motion instance this is and which
     ///type of the union is valid.
-    type_: AccelerationStructureMotionInstanceTypeNV,
+    pub type_: AccelerationStructureMotionInstanceTypeNV,
     ///[`flags`] is currently unused, but is required to keep natural
     ///alignment of [`data`].
-    flags: AccelerationStructureMotionInstanceFlagsNV,
+    pub flags: AccelerationStructureMotionInstanceFlagsNV,
     ///[`data`] is a [`AccelerationStructureMotionInstanceDataNV`]
     ///containing motion instance data for this instance.
-    data: AccelerationStructureMotionInstanceDataNV,
+    pub data: AccelerationStructureMotionInstanceDataNV,
 }
 impl Default for AccelerationStructureMotionInstanceNV {
     fn default() -> Self {
@@ -1705,5 +1709,59 @@ impl AccelerationStructureMotionInstanceNV {
     ) -> &mut Self {
         self.data = value;
         self
+    }
+}
+///[VkAccelerationStructureMotionInstanceDataNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMotionInstanceDataNV.html) - Union specifying a acceleration structure motion instance data for building into an acceleration structure geometry
+///# C Specifications
+///Acceleration structure motion instance is defined by the union:
+///```c
+///// Provided by VK_NV_ray_tracing_motion_blur
+///typedef union VkAccelerationStructureMotionInstanceDataNV {
+///    VkAccelerationStructureInstanceKHR               staticInstance;
+///    VkAccelerationStructureMatrixMotionInstanceNV    matrixMotionInstance;
+///    VkAccelerationStructureSRTMotionInstanceNV       srtMotionInstance;
+///} VkAccelerationStructureMotionInstanceDataNV;
+///```
+///# Members
+/// - [`static_instance`] is a [`AccelerationStructureInstanceKHR`] structure containing data for a
+///   static instance.
+/// - [`matrix_motion_instance`] is a [`AccelerationStructureMatrixMotionInstanceNV`] structure
+///   containing data for a matrix motion instance.
+/// - [`srt_motion_instance`] is a [`AccelerationStructureSrtMotionInstanceNV`] structure containing
+///   data for an SRT motion instance.
+///# Related
+/// - [`VK_NV_ray_tracing_motion_blur`]
+/// - [`AccelerationStructureInstanceKHR`]
+/// - [`AccelerationStructureMatrixMotionInstanceNV`]
+/// - [`AccelerationStructureMotionInstanceNV`]
+/// - [`AccelerationStructureSrtMotionInstanceNV`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureMotionInstanceDataNV")]
+#[derive(Clone, Copy)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(C)]
+pub union AccelerationStructureMotionInstanceDataNV {
+    ///[`static_instance`] is a [`AccelerationStructureInstanceKHR`]
+    ///structure containing data for a static instance.
+    pub static_instance: AccelerationStructureInstanceKHR,
+    ///[`matrix_motion_instance`] is a
+    ///[`AccelerationStructureMatrixMotionInstanceNV`] structure containing
+    ///data for a matrix motion instance.
+    pub matrix_motion_instance: AccelerationStructureMatrixMotionInstanceNV,
+    ///[`srt_motion_instance`] is a
+    ///[`AccelerationStructureSrtMotionInstanceNV`] structure containing
+    ///data for an SRT motion instance.
+    pub srt_motion_instance: AccelerationStructureSrtMotionInstanceNV,
+}
+impl Default for AccelerationStructureMotionInstanceDataNV {
+    fn default() -> Self {
+        unsafe { std::mem::zeroed() }
     }
 }

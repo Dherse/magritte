@@ -1949,6 +1949,7 @@ impl std::fmt::Debug for PrivateDataSlotCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineCreationFeedbackFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2472,6 +2473,7 @@ impl std::fmt::Debug for PipelineCreationFeedbackFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccessFlags2")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3497,6 +3499,7 @@ impl std::fmt::Debug for AccessFlags2 {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineStageFlags2")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -4511,6 +4514,7 @@ impl std::fmt::Debug for PipelineStageFlags2 {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFormatFeatureFlags2")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -5382,6 +5386,7 @@ impl std::fmt::Debug for FormatFeatureFlags2 {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRenderingFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -5708,6 +5713,7 @@ impl std::fmt::Debug for RenderingFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkToolPurposeFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -6063,6 +6069,7 @@ impl std::fmt::Debug for ToolPurposeFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSubmitFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -6342,18 +6349,19 @@ impl std::fmt::Debug for SubmitFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDevicePrivateDataCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DevicePrivateDataCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`private_data_slot_request_count`] is the amount of slots to reserve.
-    private_data_slot_request_count: u32,
+    pub private_data_slot_request_count: u32,
 }
 impl<'lt> Default for DevicePrivateDataCreateInfo<'lt> {
     fn default() -> Self {
@@ -6454,18 +6462,19 @@ impl<'lt> DevicePrivateDataCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPrivateDataSlotCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PrivateDataSlotCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: PrivateDataSlotCreateFlags,
+    pub flags: PrivateDataSlotCreateFlags,
 }
 impl<'lt> Default for PrivateDataSlotCreateInfo<'lt> {
     fn default() -> Self {
@@ -6571,20 +6580,21 @@ impl<'lt> PrivateDataSlotCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDevicePrivateDataFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePrivateDataFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`private_data`] indicates
     ///whether the implementation supports private data.
     ///See [Private Data](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#private-data).
-    private_data: Bool32,
+    pub private_data: Bool32,
 }
 impl<'lt> Default for PhysicalDevicePrivateDataFeatures<'lt> {
     fn default() -> Self {
@@ -6716,19 +6726,20 @@ impl<'lt> PhysicalDevicePrivateDataFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceBufferMemoryRequirements")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceBufferMemoryRequirements<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`create_info`] is a pointer to a [`BufferCreateInfo`] structure
     ///containing parameters affecting creation of the buffer to query.
-    create_info: *const BufferCreateInfo<'lt>,
+    pub create_info: *const BufferCreateInfo<'lt>,
 }
 impl<'lt> Default for DeviceBufferMemoryRequirements<'lt> {
     fn default() -> Self {
@@ -6866,19 +6877,20 @@ impl<'lt> DeviceBufferMemoryRequirements<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceImageMemoryRequirements")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceImageMemoryRequirements<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`create_info`] is a pointer to a [`ImageCreateInfo`] structure
     ///containing parameters affecting creation of the image to query.
-    create_info: *const ImageCreateInfo<'lt>,
+    pub create_info: *const ImageCreateInfo<'lt>,
     ///[`plane_aspect`] is a [`ImageAspectFlagBits`] value specifying the
     ///aspect corresponding to the image plane to query.
     ///This parameter is ignored unless
@@ -6886,7 +6898,7 @@ pub struct DeviceImageMemoryRequirements<'lt> {
     ///`VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT`, or
     ///[`create_info`]::`flags` has `VK_IMAGE_CREATE_DISJOINT_BIT`
     ///set.
-    plane_aspect: ImageAspectFlagBits,
+    pub plane_aspect: ImageAspectFlagBits,
 }
 impl<'lt> Default for DeviceImageMemoryRequirements<'lt> {
     fn default() -> Self {
@@ -7023,29 +7035,30 @@ impl<'lt> DeviceImageMemoryRequirements<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceInlineUniformBlockFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceInlineUniformBlockFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`inline_uniform_block`]
     ///indicates whether the implementation supports inline uniform block
     ///descriptors.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` **must**  not be used.
-    inline_uniform_block: Bool32,
+    pub inline_uniform_block: Bool32,
     ///[`descriptor_binding_inline_uniform_block_update_after_bind`]
     ///indicates whether the implementation supports updating inline uniform
     ///block descriptors after a set is bound.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.
-    descriptor_binding_inline_uniform_block_update_after_bind: Bool32,
+    pub descriptor_binding_inline_uniform_block_update_after_bind: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceInlineUniformBlockFeatures<'lt> {
     fn default() -> Self {
@@ -7240,26 +7253,27 @@ impl<'lt> PhysicalDeviceInlineUniformBlockFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceInlineUniformBlockProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceInlineUniformBlockProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    max_inline_uniform_block_size: u32,
+    pub max_inline_uniform_block_size: u32,
     ///No documentation found
-    max_per_stage_descriptor_inline_uniform_blocks: u32,
+    pub max_per_stage_descriptor_inline_uniform_blocks: u32,
     ///No documentation found
-    max_per_stage_descriptor_update_after_bind_inline_uniform_blocks: u32,
+    pub max_per_stage_descriptor_update_after_bind_inline_uniform_blocks: u32,
     ///No documentation found
-    max_descriptor_set_inline_uniform_blocks: u32,
+    pub max_descriptor_set_inline_uniform_blocks: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_inline_uniform_blocks: u32,
+    pub max_descriptor_set_update_after_bind_inline_uniform_blocks: u32,
 }
 impl<'lt> Default for PhysicalDeviceInlineUniformBlockProperties<'lt> {
     fn default() -> Self {
@@ -7435,22 +7449,23 @@ impl<'lt> PhysicalDeviceInlineUniformBlockProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkWriteDescriptorSetInlineUniformBlock")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct WriteDescriptorSetInlineUniformBlock<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`data_size`] is the number of bytes of inline uniform block data
     ///pointed to by [`data`].
-    data_size: u32,
+    pub data_size: u32,
     ///[`data`] is a pointer to [`data_size`] number of bytes of data to
     ///write to the inline uniform block.
-    data: *const c_void,
+    pub data: *const c_void,
 }
 impl<'lt> Default for WriteDescriptorSetInlineUniformBlock<'lt> {
     fn default() -> Self {
@@ -7584,19 +7599,20 @@ impl<'lt> WriteDescriptorSetInlineUniformBlock<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorPoolInlineUniformBlockCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorPoolInlineUniformBlockCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`max_inline_uniform_block_bindings`] is the number of inline uniform
     ///block bindings to allocate.
-    max_inline_uniform_block_bindings: u32,
+    pub max_inline_uniform_block_bindings: u32,
 }
 impl<'lt> Default for DescriptorPoolInlineUniformBlockCreateInfo<'lt> {
     fn default() -> Self {
@@ -7707,15 +7723,16 @@ impl<'lt> DescriptorPoolInlineUniformBlockCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceMaintenance4Features")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance4Features<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES`
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///No documentation found
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`maintenance_4`] indicates
     ///that the implementation supports the following:
     /// - The application  **may**  destroy a [`PipelineLayout`] object immediately after using it
@@ -7729,7 +7746,7 @@ pub struct PhysicalDeviceMaintenance4Features<'lt> {
     /// - Push constants do not have to be initialized before they are dynamically accessed.
     /// - The interface matching rules allow a larger output vector to match with a smaller input
     ///   vector, with additional values being discarded.
-    maintenance_4: Bool32,
+    pub maintenance_4: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceMaintenance4Features<'lt> {
     fn default() -> Self {
@@ -7861,18 +7878,19 @@ impl<'lt> PhysicalDeviceMaintenance4Features<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceMaintenance4Properties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance4Properties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    max_buffer_size: DeviceSize,
+    pub max_buffer_size: DeviceSize,
 }
 impl<'lt> Default for PhysicalDeviceMaintenance4Properties<'lt> {
     fn default() -> Self {
@@ -8003,16 +8021,17 @@ impl<'lt> PhysicalDeviceMaintenance4Properties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceTextureCompressionASTCHDRFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceTextureCompressionAstchdrFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`texture_compression_astc_hdr`] indicates whether all of the ASTC HDR
     ///compressed texture formats are supported.
     ///If this feature is enabled, then the
@@ -8038,7 +8057,7 @@ pub struct PhysicalDeviceTextureCompressionAstchdrFeatures<'lt> {
     ///[`GetPhysicalDeviceFormatProperties`] and
     ///[`GetPhysicalDeviceImageFormatProperties`] **can**  be used to check for
     ///supported properties of individual formats as normal.
-    texture_compression_astc_hdr: Bool32,
+    pub texture_compression_astc_hdr: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceTextureCompressionAstchdrFeatures<'lt> {
     fn default() -> Self {
@@ -8167,6 +8186,7 @@ impl<'lt> PhysicalDeviceTextureCompressionAstchdrFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineCreationFeedback")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -8175,10 +8195,10 @@ pub struct PipelineCreationFeedback {
     ///[`flags`] is a bitmask of [`PipelineCreationFeedbackFlagBits`]
     ///providing feedback about the creation of a pipeline or of a pipeline
     ///stage.
-    flags: PipelineCreationFeedbackFlags,
+    pub flags: PipelineCreationFeedbackFlags,
     ///[`duration`] is the duration spent creating a pipeline or pipeline
     ///stage in nanoseconds.
-    duration: u64,
+    pub duration: u64,
 }
 impl Default for PipelineCreationFeedback {
     fn default() -> Self {
@@ -8306,25 +8326,26 @@ impl PipelineCreationFeedback {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineCreationFeedbackCreateInfo")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineCreationFeedbackCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`pipeline_creation_feedback`] is a pointer to a
     ///[`PipelineCreationFeedback`] structure.
-    pipeline_creation_feedback: *mut PipelineCreationFeedback,
+    pub pipeline_creation_feedback: *mut PipelineCreationFeedback,
     ///[`pipeline_stage_creation_feedback_count`] is the number of elements in
     ///[`pipeline_stage_creation_feedbacks`].
-    pipeline_stage_creation_feedback_count: u32,
+    pub pipeline_stage_creation_feedback_count: u32,
     ///[`pipeline_stage_creation_feedbacks`] is a pointer to an array of
     ///[`pipeline_stage_creation_feedback_count`][`PipelineCreationFeedback`] structures.
-    pipeline_stage_creation_feedbacks: *mut PipelineCreationFeedback,
+    pub pipeline_stage_creation_feedbacks: *mut PipelineCreationFeedback,
 }
 impl<'lt> Default for PipelineCreationFeedbackCreateInfo<'lt> {
     fn default() -> Self {
@@ -8508,20 +8529,21 @@ impl<'lt> PipelineCreationFeedbackCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_demote_to_helper_invocation`] indicates whether the
     ///implementation supports the SPIR-V `DemoteToHelperInvocationEXT`
     ///capability.
-    shader_demote_to_helper_invocation: Bool32,
+    pub shader_demote_to_helper_invocation: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'lt> {
     fn default() -> Self {
@@ -8680,24 +8702,25 @@ impl<'lt> PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceTexelBufferAlignmentProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceTexelBufferAlignmentProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    storage_texel_buffer_offset_alignment_bytes: DeviceSize,
+    pub storage_texel_buffer_offset_alignment_bytes: DeviceSize,
     ///No documentation found
-    storage_texel_buffer_offset_single_texel_alignment: Bool32,
+    pub storage_texel_buffer_offset_single_texel_alignment: Bool32,
     ///No documentation found
-    uniform_texel_buffer_offset_alignment_bytes: DeviceSize,
+    pub uniform_texel_buffer_offset_alignment_bytes: DeviceSize,
     ///No documentation found
-    uniform_texel_buffer_offset_single_texel_alignment: Bool32,
+    pub uniform_texel_buffer_offset_single_texel_alignment: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceTexelBufferAlignmentProperties<'lt> {
     fn default() -> Self {
@@ -8916,26 +8939,27 @@ impl<'lt> PhysicalDeviceTexelBufferAlignmentProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceSubgroupSizeControlFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSubgroupSizeControlFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`subgroup_size_control`] indicates whether the implementation supports
     ///controlling shader subgroup sizes via the
     ///`VK_PIPELINE_SHADER_STAGE_CREATE_ALLOW_VARYING_SUBGROUP_SIZE_BIT`
     ///flag and the [`PipelineShaderStageRequiredSubgroupSizeCreateInfo`]
     ///structure.
-    subgroup_size_control: Bool32,
+    pub subgroup_size_control: Bool32,
     ///[`compute_full_subgroups`] indicates whether the implementation supports
     ///requiring full subgroups in compute shaders via the
     ///`VK_PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT` flag.
-    compute_full_subgroups: Bool32,
+    pub compute_full_subgroups: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceSubgroupSizeControlFeatures<'lt> {
     fn default() -> Self {
@@ -9117,24 +9141,25 @@ impl<'lt> PhysicalDeviceSubgroupSizeControlFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceSubgroupSizeControlProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSubgroupSizeControlProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    min_subgroup_size: u32,
+    pub min_subgroup_size: u32,
     ///No documentation found
-    max_subgroup_size: u32,
+    pub max_subgroup_size: u32,
     ///No documentation found
-    max_compute_workgroup_subgroups: u32,
+    pub max_compute_workgroup_subgroups: u32,
     ///No documentation found
-    required_subgroup_size_stages: ShaderStageFlags,
+    pub required_subgroup_size_stages: ShaderStageFlags,
 }
 impl<'lt> Default for PhysicalDeviceSubgroupSizeControlProperties<'lt> {
     fn default() -> Self {
@@ -9292,20 +9317,21 @@ impl<'lt> PhysicalDeviceSubgroupSizeControlProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineShaderStageRequiredSubgroupSizeCreateInfo")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineShaderStageRequiredSubgroupSizeCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`required_subgroup_size`] is an
     ///unsigned integer value specifying the required subgroup size for the
     ///newly created pipeline shader stage.
-    required_subgroup_size: u32,
+    pub required_subgroup_size: u32,
 }
 impl<'lt> Default for PipelineShaderStageRequiredSubgroupSizeCreateInfo<'lt> {
     fn default() -> Self {
@@ -9426,16 +9452,17 @@ impl<'lt> PipelineShaderStageRequiredSubgroupSizeCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDevicePipelineCreationCacheControlFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`pipeline_creation_cache_control`] indicates that the implementation
     ///supports:
     /// - The following  **can**  be used in `Vk*PipelineCreateInfo`::`flags`:   -
@@ -9443,7 +9470,7 @@ pub struct PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
     ///   `VK_PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT`
     /// - The following  **can**  be used in [`PipelineCacheCreateInfo`]::`flags`:   -
     ///   `VK_PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT`
-    pipeline_creation_cache_control: Bool32,
+    pub pipeline_creation_cache_control: Bool32,
 }
 impl<'lt> Default for PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
     fn default() -> Self {
@@ -9646,16 +9673,17 @@ impl<'lt> PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceVulkan13Features")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVulkan13Features<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`robust_image_access`]
     ///indicates whether image accesses are tightly bounds-checked against the
     ///dimensions of the image view.
@@ -9664,20 +9692,20 @@ pub struct PhysicalDeviceVulkan13Features<'lt> {
     ///[Texel Replacement](), with either
     ///(0,0,1) or (0,0,0) values inserted for missing G, B, or A
     ///components based on the format.
-    robust_image_access: Bool32,
+    pub robust_image_access: Bool32,
     ///[`inline_uniform_block`]
     ///indicates whether the implementation supports inline uniform block
     ///descriptors.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` **must**  not be used.
-    inline_uniform_block: Bool32,
+    pub inline_uniform_block: Bool32,
     ///[`descriptor_binding_inline_uniform_block_update_after_bind`]
     ///indicates whether the implementation supports updating inline uniform
     ///block descriptors after a set is bound.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.
-    descriptor_binding_inline_uniform_block_update_after_bind: Bool32,
+    pub descriptor_binding_inline_uniform_block_update_after_bind: Bool32,
     ///[`pipeline_creation_cache_control`] indicates that the implementation
     ///supports:
     /// - The following  **can**  be used in `Vk*PipelineCreateInfo`::`flags`:   -
@@ -9685,33 +9713,33 @@ pub struct PhysicalDeviceVulkan13Features<'lt> {
     ///   `VK_PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT`
     /// - The following  **can**  be used in [`PipelineCacheCreateInfo`]::`flags`:   -
     ///   `VK_PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT`
-    pipeline_creation_cache_control: Bool32,
+    pub pipeline_creation_cache_control: Bool32,
     ///[`private_data`] indicates
     ///whether the implementation supports private data.
     ///See [Private Data]().
-    private_data: Bool32,
+    pub private_data: Bool32,
     ///[`shader_demote_to_helper_invocation`] indicates whether the
     ///implementation supports the SPIR-V `DemoteToHelperInvocationEXT`
     ///capability.
-    shader_demote_to_helper_invocation: Bool32,
+    pub shader_demote_to_helper_invocation: Bool32,
     ///[`shader_terminate_invocation`] specifies whether the implementation
     ///supports SPIR-V modules that use the `SPV_KHR_terminate_invocation`
     ///extension.
-    shader_terminate_invocation: Bool32,
+    pub shader_terminate_invocation: Bool32,
     ///[`subgroup_size_control`] indicates whether the implementation supports
     ///controlling shader subgroup sizes via the
     ///`VK_PIPELINE_SHADER_STAGE_CREATE_ALLOW_VARYING_SUBGROUP_SIZE_BIT`
     ///flag and the [`PipelineShaderStageRequiredSubgroupSizeCreateInfo`]
     ///structure.
-    subgroup_size_control: Bool32,
+    pub subgroup_size_control: Bool32,
     ///[`compute_full_subgroups`] indicates whether the implementation supports
     ///requiring full subgroups in compute shaders via the
     ///`VK_PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT` flag.
-    compute_full_subgroups: Bool32,
+    pub compute_full_subgroups: Bool32,
     ///[`synchronization_2`]
     ///indicates whether the implementation supports the new set of
     ///synchronization commands introduced in `[`VK_KHR_synchronization2`]`.
-    synchronization_2: Bool32,
+    pub synchronization_2: Bool32,
     ///[`texture_compression_astc_hdr`] indicates whether all of the ASTC HDR
     ///compressed texture formats are supported.
     ///If this feature is enabled, then the
@@ -9737,19 +9765,19 @@ pub struct PhysicalDeviceVulkan13Features<'lt> {
     ///[`GetPhysicalDeviceFormatProperties`] and
     ///[`GetPhysicalDeviceImageFormatProperties`] **can**  be used to check for
     ///supported properties of individual formats as normal.
-    texture_compression_astc_hdr: Bool32,
+    pub texture_compression_astc_hdr: Bool32,
     ///[`shader_zero_initialize_workgroup_memory`] specifies whether the
     ///implementation supports initializing a variable in Workgroup storage
     ///class.
-    shader_zero_initialize_workgroup_memory: Bool32,
+    pub shader_zero_initialize_workgroup_memory: Bool32,
     ///[`dynamic_rendering`]
     ///specifies that the implementation supports dynamic render pass instances
     ///using the [`CmdBeginRendering`] command.
-    dynamic_rendering: Bool32,
+    pub dynamic_rendering: Bool32,
     ///[`shader_integer_dot_product`] specifies whether shader modules  **can**
     ///declare the `DotProductInputAllKHR`, `DotProductInput4x8BitKHR`,
     ///`DotProductInput4x8BitPackedKHR` and `DotProductKHR` capabilities.
-    shader_integer_dot_product: Bool32,
+    pub shader_integer_dot_product: Bool32,
     ///[`maintenance_4`] indicates
     ///that the implementation supports the following:
     /// - The application  **may**  destroy a [`PipelineLayout`] object immediately after using it
@@ -9763,7 +9791,7 @@ pub struct PhysicalDeviceVulkan13Features<'lt> {
     /// - Push constants do not have to be initialized before they are dynamically accessed.
     /// - The interface matching rules allow a larger output vector to match with a smaller input
     ///   vector, with additional values being discarded.
-    maintenance_4: Bool32,
+    pub maintenance_4: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceVulkan13Features<'lt> {
     fn default() -> Self {
@@ -10605,106 +10633,107 @@ impl<'lt> PhysicalDeviceVulkan13Features<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceVulkan13Properties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVulkan13Properties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    min_subgroup_size: u32,
+    pub min_subgroup_size: u32,
     ///No documentation found
-    max_subgroup_size: u32,
+    pub max_subgroup_size: u32,
     ///No documentation found
-    max_compute_workgroup_subgroups: u32,
+    pub max_compute_workgroup_subgroups: u32,
     ///No documentation found
-    required_subgroup_size_stages: ShaderStageFlags,
+    pub required_subgroup_size_stages: ShaderStageFlags,
     ///No documentation found
-    max_inline_uniform_block_size: u32,
+    pub max_inline_uniform_block_size: u32,
     ///No documentation found
-    max_per_stage_descriptor_inline_uniform_blocks: u32,
+    pub max_per_stage_descriptor_inline_uniform_blocks: u32,
     ///No documentation found
-    max_per_stage_descriptor_update_after_bind_inline_uniform_blocks: u32,
+    pub max_per_stage_descriptor_update_after_bind_inline_uniform_blocks: u32,
     ///No documentation found
-    max_descriptor_set_inline_uniform_blocks: u32,
+    pub max_descriptor_set_inline_uniform_blocks: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_inline_uniform_blocks: u32,
+    pub max_descriptor_set_update_after_bind_inline_uniform_blocks: u32,
     ///No documentation found
-    max_inline_uniform_total_size: u32,
+    pub max_inline_uniform_total_size: u32,
     ///No documentation found
-    integer_dot_product_8_bit_unsigned_accelerated: Bool32,
+    pub integer_dot_product_8_bit_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_8_bit_signed_accelerated: Bool32,
+    pub integer_dot_product_8_bit_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_8_bit_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_8_bit_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_4_x_8_bit_packed_unsigned_accelerated: Bool32,
+    pub integer_dot_product_4_x_8_bit_packed_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_4_x_8_bit_packed_signed_accelerated: Bool32,
+    pub integer_dot_product_4_x_8_bit_packed_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_16_bit_unsigned_accelerated: Bool32,
+    pub integer_dot_product_16_bit_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_16_bit_signed_accelerated: Bool32,
+    pub integer_dot_product_16_bit_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_16_bit_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_16_bit_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_32_bit_unsigned_accelerated: Bool32,
+    pub integer_dot_product_32_bit_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_32_bit_signed_accelerated: Bool32,
+    pub integer_dot_product_32_bit_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_32_bit_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_32_bit_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_64_bit_unsigned_accelerated: Bool32,
+    pub integer_dot_product_64_bit_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_64_bit_signed_accelerated: Bool32,
+    pub integer_dot_product_64_bit_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_64_bit_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_64_bit_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_8_bit_signed_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_8_bit_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_4_x_8_bit_packed_unsigned_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_4_x_8_bit_packed_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_4_x_8_bit_packed_signed_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_4_x_8_bit_packed_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_4_x_8_bit_packed_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_4_x_8_bit_packed_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_16_bit_signed_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_16_bit_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_32_bit_signed_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_32_bit_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_64_bit_signed_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_64_bit_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    storage_texel_buffer_offset_alignment_bytes: DeviceSize,
+    pub storage_texel_buffer_offset_alignment_bytes: DeviceSize,
     ///No documentation found
-    storage_texel_buffer_offset_single_texel_alignment: Bool32,
+    pub storage_texel_buffer_offset_single_texel_alignment: Bool32,
     ///No documentation found
-    uniform_texel_buffer_offset_alignment_bytes: DeviceSize,
+    pub uniform_texel_buffer_offset_alignment_bytes: DeviceSize,
     ///No documentation found
-    uniform_texel_buffer_offset_single_texel_alignment: Bool32,
+    pub uniform_texel_buffer_offset_single_texel_alignment: Bool32,
     ///No documentation found
-    max_buffer_size: DeviceSize,
+    pub max_buffer_size: DeviceSize,
 }
 impl<'lt> Default for PhysicalDeviceVulkan13Properties<'lt> {
     fn default() -> Self {
@@ -12431,32 +12460,33 @@ impl<'lt> PhysicalDeviceVulkan13Properties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceToolProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceToolProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`name`] is a null-terminated UTF-8 string containing the name of the
     ///tool.
-    name: [c_schar; MAX_EXTENSION_NAME_SIZE],
+    pub name: [c_schar; MAX_EXTENSION_NAME_SIZE],
     ///[`version`] is a null-terminated UTF-8 string containing the version
     ///of the tool.
-    version: [c_schar; MAX_EXTENSION_NAME_SIZE],
+    pub version: [c_schar; MAX_EXTENSION_NAME_SIZE],
     ///[`purposes`] is a bitmask of [`ToolPurposeFlagBits`] which is
     ///populated with purposes supported by the tool.
-    purposes: ToolPurposeFlags,
+    pub purposes: ToolPurposeFlags,
     ///[`description`] is a null-terminated UTF-8 string containing a
     ///description of the tool.
-    description: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub description: [c_schar; MAX_DESCRIPTION_SIZE],
     ///[`layer`] is a null-terminated UTF-8 string containing the name of the
     ///layer implementing the tool, if the tool is implemented in a layer -
     ///otherwise it  **may**  be an empty string.
-    layer: [c_schar; MAX_EXTENSION_NAME_SIZE],
+    pub layer: [c_schar; MAX_EXTENSION_NAME_SIZE],
 }
 impl<'lt> Default for PhysicalDeviceToolProperties<'lt> {
     fn default() -> Self {
@@ -12630,20 +12660,21 @@ impl<'lt> PhysicalDeviceToolProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_zero_initialize_workgroup_memory`] specifies whether the
     ///implementation supports initializing a variable in Workgroup storage
     ///class.
-    shader_zero_initialize_workgroup_memory: Bool32,
+    pub shader_zero_initialize_workgroup_memory: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'lt> {
     fn default() -> Self {
@@ -12779,16 +12810,17 @@ impl<'lt> PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceImageRobustnessFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceImageRobustnessFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`robust_image_access`]
     ///indicates whether image accesses are tightly bounds-checked against the
     ///dimensions of the image view.
@@ -12797,7 +12829,7 @@ pub struct PhysicalDeviceImageRobustnessFeatures<'lt> {
     ///[Texel Replacement](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-texel-replacement), with either
     ///(0,0,1) or (0,0,0) values inserted for missing G, B, or A
     ///components based on the format.
-    robust_image_access: Bool32,
+    pub robust_image_access: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceImageRobustnessFeatures<'lt> {
     fn default() -> Self {
@@ -12933,24 +12965,25 @@ impl<'lt> PhysicalDeviceImageRobustnessFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferCopy2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCopy2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_offset`] is the starting offset in bytes from the start of
     ///`srcBuffer`.
-    src_offset: DeviceSize,
+    pub src_offset: DeviceSize,
     ///[`dst_offset`] is the starting offset in bytes from the start of
     ///`dstBuffer`.
-    dst_offset: DeviceSize,
+    pub dst_offset: DeviceSize,
     ///[`size`] is the number of bytes to copy.
-    size: DeviceSize,
+    pub size: DeviceSize,
 }
 impl<'lt> Default for BufferCopy2<'lt> {
     fn default() -> Self {
@@ -13095,32 +13128,33 @@ impl<'lt> BufferCopy2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageCopy2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageCopy2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_subresource`] and [`dst_subresource`] are
     ///[`ImageSubresourceLayers`] structures specifying the image
     ///subresources of the images used for the source and destination image
     ///data, respectively.
-    src_subresource: ImageSubresourceLayers,
+    pub src_subresource: ImageSubresourceLayers,
     ///[`src_offset`] and [`dst_offset`] select the initial `x`, `y`,
     ///and `z` offsets in texels of the sub-regions of the source and
     ///destination image data.
-    src_offset: Offset3D,
+    pub src_offset: Offset3D,
     ///No documentation found
-    dst_subresource: ImageSubresourceLayers,
+    pub dst_subresource: ImageSubresourceLayers,
     ///No documentation found
-    dst_offset: Offset3D,
+    pub dst_offset: Offset3D,
     ///[`extent`] is the size in texels of the image to copy in `width`,
     ///`height` and `depth`.
-    extent: Extent3D,
+    pub extent: Extent3D,
 }
 impl<'lt> Default for ImageCopy2<'lt> {
     fn default() -> Self {
@@ -13294,28 +13328,29 @@ impl<'lt> ImageCopy2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageBlit2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageBlit2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_subresource`] is the subresource to blit from.
-    src_subresource: ImageSubresourceLayers,
+    pub src_subresource: ImageSubresourceLayers,
     ///[`src_offsets`] is a pointer to an array of two [`Offset3D`]
     ///structures specifying the bounds of the source region within
     ///[`src_subresource`].
-    src_offsets: [Offset3D; 2],
+    pub src_offsets: [Offset3D; 2],
     ///[`dst_subresource`] is the subresource to blit into.
-    dst_subresource: ImageSubresourceLayers,
+    pub dst_subresource: ImageSubresourceLayers,
     ///[`dst_offsets`] is a pointer to an array of two [`Offset3D`]
     ///structures specifying the bounds of the destination region within
     ///[`dst_subresource`].
-    dst_offsets: [Offset3D; 2],
+    pub dst_offsets: [Offset3D; 2],
 }
 impl<'lt> Default for ImageBlit2<'lt> {
     fn default() -> Self {
@@ -13489,37 +13524,38 @@ impl<'lt> ImageBlit2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferImageCopy2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferImageCopy2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`buffer_offset`] is the offset in bytes from the start of the buffer
     ///object where the image data is copied from or to.
-    buffer_offset: DeviceSize,
+    pub buffer_offset: DeviceSize,
     ///[`buffer_row_length`] and [`buffer_image_height`] specify in texels a
     ///subregion of a larger two- or three-dimensional image in buffer memory,
     ///and control the addressing calculations.
     ///If either of these values is zero, that aspect of the buffer memory is
     ///considered to be tightly packed according to the [`image_extent`].
-    buffer_row_length: u32,
+    pub buffer_row_length: u32,
     ///No documentation found
-    buffer_image_height: u32,
+    pub buffer_image_height: u32,
     ///[`image_subresource`] is a [`ImageSubresourceLayers`] used to
     ///specify the specific image subresources of the image used for the source
     ///or destination image data.
-    image_subresource: ImageSubresourceLayers,
+    pub image_subresource: ImageSubresourceLayers,
     ///[`image_offset`] selects the initial `x`, `y`, `z` offsets
     ///in texels of the sub-region of the source or destination image data.
-    image_offset: Offset3D,
+    pub image_offset: Offset3D,
     ///[`image_extent`] is the size in texels of the image to copy in
     ///`width`, `height` and `depth`.
-    image_extent: Extent3D,
+    pub image_extent: Extent3D,
 }
 impl<'lt> Default for BufferImageCopy2<'lt> {
     fn default() -> Self {
@@ -13707,33 +13743,34 @@ impl<'lt> BufferImageCopy2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageResolve2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageResolve2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_subresource`] and [`dst_subresource`] are
     ///[`ImageSubresourceLayers`] structures specifying the image
     ///subresources of the images used for the source and destination image
     ///data, respectively.
     ///Resolve of depth/stencil images is not supported.
-    src_subresource: ImageSubresourceLayers,
+    pub src_subresource: ImageSubresourceLayers,
     ///[`src_offset`] and [`dst_offset`] select the initial `x`, `y`,
     ///and `z` offsets in texels of the sub-regions of the source and
     ///destination image data.
-    src_offset: Offset3D,
+    pub src_offset: Offset3D,
     ///No documentation found
-    dst_subresource: ImageSubresourceLayers,
+    pub dst_subresource: ImageSubresourceLayers,
     ///No documentation found
-    dst_offset: Offset3D,
+    pub dst_offset: Offset3D,
     ///[`extent`] is the size in texels of the source image to resolve in
     ///`width`, `height` and `depth`.
-    extent: Extent3D,
+    pub extent: Extent3D,
 }
 impl<'lt> Default for ImageResolve2<'lt> {
     fn default() -> Self {
@@ -13926,25 +13963,26 @@ impl<'lt> ImageResolve2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCopyBufferInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CopyBufferInfo2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_buffer`] is the source buffer.
-    src_buffer: Buffer,
+    pub src_buffer: Buffer,
     ///[`dst_buffer`] is the destination buffer.
-    dst_buffer: Buffer,
+    pub dst_buffer: Buffer,
     ///[`region_count`] is the number of regions to copy.
-    region_count: u32,
+    pub region_count: u32,
     ///[`regions`] is a pointer to an array of [`BufferCopy2`]
     ///structures specifying the regions to copy.
-    regions: *const BufferCopy2<'lt>,
+    pub regions: *const BufferCopy2<'lt>,
 }
 impl<'lt> Default for CopyBufferInfo2<'lt> {
     fn default() -> Self {
@@ -14262,31 +14300,32 @@ impl<'lt> CopyBufferInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCopyImageInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CopyImageInfo2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_image`] is the source image.
-    src_image: Image,
+    pub src_image: Image,
     ///[`src_image_layout`] is the current layout of the source image
     ///subresource.
-    src_image_layout: ImageLayout,
+    pub src_image_layout: ImageLayout,
     ///[`dst_image`] is the destination image.
-    dst_image: Image,
+    pub dst_image: Image,
     ///[`dst_image_layout`] is the current layout of the destination image
     ///subresource.
-    dst_image_layout: ImageLayout,
+    pub dst_image_layout: ImageLayout,
     ///[`region_count`] is the number of regions to copy.
-    region_count: u32,
+    pub region_count: u32,
     ///[`regions`] is a pointer to an array of [`ImageCopy2`] structures
     ///specifying the regions to copy.
-    regions: *const ImageCopy2<'lt>,
+    pub regions: *const ImageCopy2<'lt>,
 }
 impl<'lt> Default for CopyImageInfo2<'lt> {
     fn default() -> Self {
@@ -14589,34 +14628,35 @@ impl<'lt> CopyImageInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBlitImageInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BlitImageInfo2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_image`] is the source image.
-    src_image: Image,
+    pub src_image: Image,
     ///[`src_image_layout`] is the layout of the source image subresources for
     ///the blit.
-    src_image_layout: ImageLayout,
+    pub src_image_layout: ImageLayout,
     ///[`dst_image`] is the destination image.
-    dst_image: Image,
+    pub dst_image: Image,
     ///[`dst_image_layout`] is the layout of the destination image subresources
     ///for the blit.
-    dst_image_layout: ImageLayout,
+    pub dst_image_layout: ImageLayout,
     ///[`region_count`] is the number of regions to blit.
-    region_count: u32,
+    pub region_count: u32,
     ///[`regions`] is a pointer to an array of [`ImageBlit2`] structures
     ///specifying the regions to blit.
-    regions: *const ImageBlit2<'lt>,
+    pub regions: *const ImageBlit2<'lt>,
     ///[`filter`] is a [`Filter`] specifying the filter to apply if the
     ///blits require scaling.
-    filter: Filter,
+    pub filter: Filter,
 }
 impl<'lt> Default for BlitImageInfo2<'lt> {
     fn default() -> Self {
@@ -14937,28 +14977,29 @@ impl<'lt> BlitImageInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCopyBufferToImageInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CopyBufferToImageInfo2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_buffer`] is the source buffer.
-    src_buffer: Buffer,
+    pub src_buffer: Buffer,
     ///[`dst_image`] is the destination image.
-    dst_image: Image,
+    pub dst_image: Image,
     ///[`dst_image_layout`] is the layout of the destination image subresources
     ///for the copy.
-    dst_image_layout: ImageLayout,
+    pub dst_image_layout: ImageLayout,
     ///[`region_count`] is the number of regions to copy.
-    region_count: u32,
+    pub region_count: u32,
     ///[`regions`] is a pointer to an array of [`BufferImageCopy2`]
     ///structures specifying the regions to copy.
-    regions: *const BufferImageCopy2<'lt>,
+    pub regions: *const BufferImageCopy2<'lt>,
 }
 impl<'lt> Default for CopyBufferToImageInfo2<'lt> {
     fn default() -> Self {
@@ -15247,28 +15288,29 @@ impl<'lt> CopyBufferToImageInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCopyImageToBufferInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CopyImageToBufferInfo2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_image`] is the source image.
-    src_image: Image,
+    pub src_image: Image,
     ///[`src_image_layout`] is the layout of the source image subresources for
     ///the copy.
-    src_image_layout: ImageLayout,
+    pub src_image_layout: ImageLayout,
     ///[`dst_buffer`] is the destination buffer.
-    dst_buffer: Buffer,
+    pub dst_buffer: Buffer,
     ///[`region_count`] is the number of regions to copy.
-    region_count: u32,
+    pub region_count: u32,
     ///[`regions`] is a pointer to an array of [`BufferImageCopy2`]
     ///structures specifying the regions to copy.
-    regions: *const BufferImageCopy2<'lt>,
+    pub regions: *const BufferImageCopy2<'lt>,
 }
 impl<'lt> Default for CopyImageToBufferInfo2<'lt> {
     fn default() -> Self {
@@ -15524,31 +15566,32 @@ impl<'lt> CopyImageToBufferInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkResolveImageInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ResolveImageInfo2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_image`] is the source image.
-    src_image: Image,
+    pub src_image: Image,
     ///[`src_image_layout`] is the layout of the source image subresources for
     ///the resolve.
-    src_image_layout: ImageLayout,
+    pub src_image_layout: ImageLayout,
     ///[`dst_image`] is the destination image.
-    dst_image: Image,
+    pub dst_image: Image,
     ///[`dst_image_layout`] is the layout of the destination image subresources
     ///for the resolve.
-    dst_image_layout: ImageLayout,
+    pub dst_image_layout: ImageLayout,
     ///[`region_count`] is the number of regions to resolve.
-    region_count: u32,
+    pub region_count: u32,
     ///[`regions`] is a pointer to an array of [`ImageResolve2`]
     ///structures specifying the regions to resolve.
-    regions: *const ImageResolve2<'lt>,
+    pub regions: *const ImageResolve2<'lt>,
 }
 impl<'lt> Default for ResolveImageInfo2<'lt> {
     fn default() -> Self {
@@ -15740,20 +15783,21 @@ impl<'lt> ResolveImageInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceShaderTerminateInvocationFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderTerminateInvocationFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_terminate_invocation`] specifies whether the implementation
     ///supports SPIR-V modules that use the `SPV_KHR_terminate_invocation`
     ///extension.
-    shader_terminate_invocation: Bool32,
+    pub shader_terminate_invocation: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceShaderTerminateInvocationFeatures<'lt> {
     fn default() -> Self {
@@ -16199,30 +16243,31 @@ impl<'lt> PhysicalDeviceShaderTerminateInvocationFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryBarrier2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryBarrier2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_stage_mask`] is a [`PipelineStageFlags2`] mask of pipeline
     ///stages to be included in the [first synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).
-    src_stage_mask: PipelineStageFlags2,
+    pub src_stage_mask: PipelineStageFlags2,
     ///[`src_access_mask`] is a [`AccessFlags2`] mask of access flags to be
     ///included in the [first
     ///access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes).
-    src_access_mask: AccessFlags2,
+    pub src_access_mask: AccessFlags2,
     ///[`dst_stage_mask`] is a [`PipelineStageFlags2`] mask of pipeline
     ///stages to be included in the [second synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).
-    dst_stage_mask: PipelineStageFlags2,
+    pub dst_stage_mask: PipelineStageFlags2,
     ///[`dst_access_mask`] is a [`AccessFlags2`] mask of access flags to be
     ///included in the [second
     ///access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes).
-    dst_access_mask: AccessFlags2,
+    pub dst_access_mask: AccessFlags2,
 }
 impl<'lt> Default for MemoryBarrier2<'lt> {
     fn default() -> Self {
@@ -16853,47 +16898,48 @@ impl<'lt> MemoryBarrier2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageMemoryBarrier2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageMemoryBarrier2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_stage_mask`] is a [`PipelineStageFlags2`] mask of pipeline
     ///stages to be included in the [first synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).
-    src_stage_mask: PipelineStageFlags2,
+    pub src_stage_mask: PipelineStageFlags2,
     ///[`src_access_mask`] is a [`AccessFlags2`] mask of access flags to be
     ///included in the [first
     ///access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes).
-    src_access_mask: AccessFlags2,
+    pub src_access_mask: AccessFlags2,
     ///[`dst_stage_mask`] is a [`PipelineStageFlags2`] mask of pipeline
     ///stages to be included in the [second synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).
-    dst_stage_mask: PipelineStageFlags2,
+    pub dst_stage_mask: PipelineStageFlags2,
     ///[`dst_access_mask`] is a [`AccessFlags2`] mask of access flags to be
     ///included in the [second
     ///access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes).
-    dst_access_mask: AccessFlags2,
+    pub dst_access_mask: AccessFlags2,
     ///[`old_layout`] is the old layout in an
     ///[image layout transition](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions).
-    old_layout: ImageLayout,
+    pub old_layout: ImageLayout,
     ///[`new_layout`] is the new layout in an
     ///[image layout transition](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions).
-    new_layout: ImageLayout,
+    pub new_layout: ImageLayout,
     ///[`src_queue_family_index`] is the source queue family for a
     ///[queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).
-    src_queue_family_index: u32,
+    pub src_queue_family_index: u32,
     ///[`dst_queue_family_index`] is the destination queue family for a
     ///[queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).
-    dst_queue_family_index: u32,
+    pub dst_queue_family_index: u32,
     ///[`image`] is a handle to the image affected by this barrier.
-    image: Image,
+    pub image: Image,
     ///[`subresource_range`] describes the [image
     ///subresource range](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-views) within [`image`] that is affected by this barrier.
-    subresource_range: ImageSubresourceRange,
+    pub subresource_range: ImageSubresourceRange,
 }
 impl<'lt> Default for ImageMemoryBarrier2<'lt> {
     fn default() -> Self {
@@ -17492,47 +17538,48 @@ impl<'lt> ImageMemoryBarrier2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferMemoryBarrier2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferMemoryBarrier2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_stage_mask`] is a [`PipelineStageFlags2`] mask of pipeline
     ///stages to be included in the [first synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).
-    src_stage_mask: PipelineStageFlags2,
+    pub src_stage_mask: PipelineStageFlags2,
     ///[`src_access_mask`] is a [`AccessFlags2`] mask of access flags to be
     ///included in the [first
     ///access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes).
-    src_access_mask: AccessFlags2,
+    pub src_access_mask: AccessFlags2,
     ///[`dst_stage_mask`] is a [`PipelineStageFlags2`] mask of pipeline
     ///stages to be included in the [second synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).
-    dst_stage_mask: PipelineStageFlags2,
+    pub dst_stage_mask: PipelineStageFlags2,
     ///[`dst_access_mask`] is a [`AccessFlags2`] mask of access flags to be
     ///included in the [second
     ///access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes).
-    dst_access_mask: AccessFlags2,
+    pub dst_access_mask: AccessFlags2,
     ///[`src_queue_family_index`] is the source queue family for a
     ///[queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).
-    src_queue_family_index: u32,
+    pub src_queue_family_index: u32,
     ///[`dst_queue_family_index`] is the destination queue family for a
     ///[queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).
-    dst_queue_family_index: u32,
+    pub dst_queue_family_index: u32,
     ///[`buffer`] is a handle to the buffer whose backing memory is affected
     ///by the barrier.
-    buffer: Buffer,
+    pub buffer: Buffer,
     ///[`offset`] is an offset in bytes into the backing memory for
     ///[`buffer`]; this is relative to the base offset as bound to the buffer
     ///(see [`BindBufferMemory`]).
-    offset: DeviceSize,
+    pub offset: DeviceSize,
     ///[`size`] is a size in bytes of the affected area of backing memory for
     ///[`buffer`], or [`WHOLE_SIZE`] to use the range from [`offset`]
     ///to the end of the buffer.
-    size: DeviceSize,
+    pub size: DeviceSize,
 }
 impl<'lt> Default for BufferMemoryBarrier2<'lt> {
     fn default() -> Self {
@@ -17779,39 +17826,40 @@ impl<'lt> BufferMemoryBarrier2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDependencyInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DependencyInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`dependency_flags`] is a bitmask of [`DependencyFlagBits`]
     ///specifying how execution and memory dependencies are formed.
-    dependency_flags: DependencyFlags,
+    pub dependency_flags: DependencyFlags,
     ///[`memory_barrier_count`] is the length of the [`memory_barriers`]
     ///array.
-    memory_barrier_count: u32,
+    pub memory_barrier_count: u32,
     ///[`memory_barriers`] is a pointer to an array of [`MemoryBarrier2`]
     ///structures defining memory dependencies between any memory accesses.
-    memory_barriers: *const MemoryBarrier2<'lt>,
+    pub memory_barriers: *const MemoryBarrier2<'lt>,
     ///[`buffer_memory_barrier_count`] is the length of the
     ///[`buffer_memory_barriers`] array.
-    buffer_memory_barrier_count: u32,
+    pub buffer_memory_barrier_count: u32,
     ///[`buffer_memory_barriers`] is a pointer to an array of
     ///[`BufferMemoryBarrier2`] structures defining memory dependencies
     ///between buffer ranges.
-    buffer_memory_barriers: *const BufferMemoryBarrier2<'lt>,
+    pub buffer_memory_barriers: *const BufferMemoryBarrier2<'lt>,
     ///[`image_memory_barrier_count`] is the length of the
     ///[`image_memory_barriers`] array.
-    image_memory_barrier_count: u32,
+    pub image_memory_barrier_count: u32,
     ///[`image_memory_barriers`] is a pointer to an array of
     ///[`ImageMemoryBarrier2`] structures defining memory dependencies
     ///between image subresources.
-    image_memory_barriers: *const ImageMemoryBarrier2<'lt>,
+    pub image_memory_barriers: *const ImageMemoryBarrier2<'lt>,
 }
 impl<'lt> Default for DependencyInfo<'lt> {
     fn default() -> Self {
@@ -18080,24 +18128,25 @@ impl<'lt> DependencyInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSemaphoreSubmitInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SemaphoreSubmitInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`semaphore`] is a [`Semaphore`] affected by this operation.
-    semaphore: Semaphore,
+    pub semaphore: Semaphore,
     ///[`value`] is
     ///either the value used to signal [`semaphore`] or the value waited on
     ///by [`semaphore`], if [`semaphore`] is a timeline semaphore.
     ///Otherwise it is
     ///ignored.
-    value: u64,
+    pub value: u64,
     ///[`stage_mask`] is a [`PipelineStageFlags2`] mask of pipeline stages
     ///which limit the first synchronization scope of a semaphore signal
     ///operation, or second synchronization scope of a semaphore wait operation
@@ -18105,10 +18154,10 @@ pub struct SemaphoreSubmitInfo<'lt> {
     ///operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-waiting) and [semaphore signal
     ///operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling) sections of [the synchronization
     ///chapter](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization).
-    stage_mask: PipelineStageFlags2,
+    pub stage_mask: PipelineStageFlags2,
     ///[`device_index`] is the index of the device within a device group that
     ///executes the semaphore wait or signal operation.
-    device_index: u32,
+    pub device_index: u32,
 }
 impl<'lt> Default for SemaphoreSubmitInfo<'lt> {
     fn default() -> Self {
@@ -18258,24 +18307,25 @@ impl<'lt> SemaphoreSubmitInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCommandBufferSubmitInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CommandBufferSubmitInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`command_buffer`] is a [`CommandBuffer`] to be submitted for
     ///execution.
-    command_buffer: CommandBuffer,
+    pub command_buffer: CommandBuffer,
     ///[`device_mask`] is a bitmask indicating which devices in a device group
     ///execute the command buffer.
     ///A [`device_mask`] of `0` is equivalent to setting all bits
     ///corresponding to valid devices in the group to `1`.
-    device_mask: u32,
+    pub device_mask: u32,
 }
 impl<'lt> Default for CommandBufferSubmitInfo<'lt> {
     fn default() -> Self {
@@ -18435,40 +18485,41 @@ impl<'lt> CommandBufferSubmitInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSubmitInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SubmitInfo2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`SubmitFlagBits`].
-    flags: SubmitFlags,
+    pub flags: SubmitFlags,
     ///[`wait_semaphore_info_count`] is the number of elements in
     ///[`wait_semaphore_infos`].
-    wait_semaphore_info_count: u32,
+    pub wait_semaphore_info_count: u32,
     ///[`wait_semaphore_infos`] is a pointer to an array of
     ///[`SemaphoreSubmitInfo`] structures defining
     ///[semaphore wait operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-waiting).
-    wait_semaphore_infos: *const SemaphoreSubmitInfo<'lt>,
+    pub wait_semaphore_infos: *const SemaphoreSubmitInfo<'lt>,
     ///[`command_buffer_info_count`] is the number of elements in
     ///[`command_buffer_infos`] and the number of command buffers to execute
     ///in the batch.
-    command_buffer_info_count: u32,
+    pub command_buffer_info_count: u32,
     ///[`command_buffer_infos`] is a pointer to an array of
     ///[`CommandBufferSubmitInfo`] structures describing command buffers to
     ///execute in the batch.
-    command_buffer_infos: *const CommandBufferSubmitInfo<'lt>,
+    pub command_buffer_infos: *const CommandBufferSubmitInfo<'lt>,
     ///[`signal_semaphore_info_count`] is the number of elements in
     ///[`signal_semaphore_infos`].
-    signal_semaphore_info_count: u32,
+    pub signal_semaphore_info_count: u32,
     ///[`signal_semaphore_infos`] is a pointer to an array of
     ///[`SemaphoreSubmitInfo`] describing
     ///[semaphore signal operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling).
-    signal_semaphore_infos: *const SemaphoreSubmitInfo<'lt>,
+    pub signal_semaphore_infos: *const SemaphoreSubmitInfo<'lt>,
 }
 impl<'lt> Default for SubmitInfo2<'lt> {
     fn default() -> Self {
@@ -18698,20 +18749,21 @@ impl<'lt> SubmitInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceSynchronization2Features")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSynchronization2Features<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`synchronization_2`]
     ///indicates whether the implementation supports the new set of
     ///synchronization commands introduced in `[`VK_KHR_synchronization2`]`.
-    synchronization_2: Bool32,
+    pub synchronization_2: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceSynchronization2Features<'lt> {
     fn default() -> Self {
@@ -18854,20 +18906,21 @@ impl<'lt> PhysicalDeviceSynchronization2Features<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceShaderIntegerDotProductFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderIntegerDotProductFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_integer_dot_product`] specifies whether shader modules  **can**
     ///declare the `DotProductInputAllKHR`, `DotProductInput4x8BitKHR`,
     ///`DotProductInput4x8BitPackedKHR` and `DotProductKHR` capabilities.
-    shader_integer_dot_product: Bool32,
+    pub shader_integer_dot_product: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceShaderIntegerDotProductFeatures<'lt> {
     fn default() -> Self {
@@ -19071,76 +19124,77 @@ impl<'lt> PhysicalDeviceShaderIntegerDotProductFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceShaderIntegerDotProductProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderIntegerDotProductProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    integer_dot_product_8_bit_unsigned_accelerated: Bool32,
+    pub integer_dot_product_8_bit_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_8_bit_signed_accelerated: Bool32,
+    pub integer_dot_product_8_bit_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_8_bit_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_8_bit_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_4_x_8_bit_packed_unsigned_accelerated: Bool32,
+    pub integer_dot_product_4_x_8_bit_packed_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_4_x_8_bit_packed_signed_accelerated: Bool32,
+    pub integer_dot_product_4_x_8_bit_packed_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_16_bit_unsigned_accelerated: Bool32,
+    pub integer_dot_product_16_bit_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_16_bit_signed_accelerated: Bool32,
+    pub integer_dot_product_16_bit_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_16_bit_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_16_bit_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_32_bit_unsigned_accelerated: Bool32,
+    pub integer_dot_product_32_bit_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_32_bit_signed_accelerated: Bool32,
+    pub integer_dot_product_32_bit_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_32_bit_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_32_bit_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_64_bit_unsigned_accelerated: Bool32,
+    pub integer_dot_product_64_bit_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_64_bit_signed_accelerated: Bool32,
+    pub integer_dot_product_64_bit_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_64_bit_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_64_bit_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_8_bit_signed_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_8_bit_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_4_x_8_bit_packed_unsigned_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_4_x_8_bit_packed_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_4_x_8_bit_packed_signed_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_4_x_8_bit_packed_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_4_x_8_bit_packed_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_4_x_8_bit_packed_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_16_bit_signed_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_16_bit_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_32_bit_signed_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_32_bit_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_64_bit_signed_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_64_bit_signed_accelerated: Bool32,
     ///No documentation found
-    integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated: Bool32,
+    pub integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceShaderIntegerDotProductProperties<'lt> {
     fn default() -> Self {
@@ -20594,26 +20648,27 @@ impl<'lt> PhysicalDeviceShaderIntegerDotProductProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFormatProperties3")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct FormatProperties3<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///No documentation found
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///No documentation found
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`linear_tiling_features`] is a bitmask of
     ///[`FormatFeatureFlagBits2`] specifying features supported by images
     ///created with a `tiling` parameter of `VK_IMAGE_TILING_LINEAR`.
-    linear_tiling_features: FormatFeatureFlags2,
+    pub linear_tiling_features: FormatFeatureFlags2,
     ///[`optimal_tiling_features`] is a bitmask of
     ///[`FormatFeatureFlagBits2`] specifying features supported by images
     ///created with a `tiling` parameter of `VK_IMAGE_TILING_OPTIMAL`.
-    optimal_tiling_features: FormatFeatureFlags2,
+    pub optimal_tiling_features: FormatFeatureFlags2,
     ///[`buffer_features`] is a bitmask of [`FormatFeatureFlagBits2`]
     ///specifying features supported by buffers.
-    buffer_features: FormatFeatureFlags2,
+    pub buffer_features: FormatFeatureFlags2,
 }
 impl<'lt> Default for FormatProperties3<'lt> {
     fn default() -> Self {
@@ -20790,30 +20845,31 @@ impl<'lt> FormatProperties3<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineRenderingCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineRenderingCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`view_mask`] is the viewMask used for rendering.
-    view_mask: u32,
+    pub view_mask: u32,
     ///[`color_attachment_count`] is the number of entries in
     ///[`color_attachment_formats`]
-    color_attachment_count: u32,
+    pub color_attachment_count: u32,
     ///[`color_attachment_formats`] is a pointer to an array of [`Format`]
     ///values defining the format of color attachments used in this pipeline.
-    color_attachment_formats: *const Format,
+    pub color_attachment_formats: *const Format,
     ///[`depth_attachment_format`] is a [`Format`] value defining the
     ///format of the depth attachment used in this pipeline.
-    depth_attachment_format: Format,
+    pub depth_attachment_format: Format,
     ///[`stencil_attachment_format`] is a [`Format`] value defining the
     ///format of the stencil attachment used in this pipeline.
-    stencil_attachment_format: Format,
+    pub stencil_attachment_format: Format,
 }
 impl<'lt> Default for PipelineRenderingCreateInfo<'lt> {
     fn default() -> Self {
@@ -21130,17 +21186,17 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
 ///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
 ///   not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or equal
-///   to <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
 ///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.9019679999999999em;"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   class="vlist-r"><span style="height:0.9019679999999999em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
+///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">F</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
 ///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
@@ -21149,62 +21205,63 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
 ///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span><span style="margin-right:0.13889em;" class="mord
-///   mathdefault mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
+///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
 ///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
-///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
+///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
+///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
 ///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
 ///   style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.41586em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mtight"><span
+///   class="mord mathdefault mtight">a</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285719em;"
+///   class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault
+///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
 ///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
 ///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
 ///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
@@ -21214,7 +21271,7 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
+///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
@@ -21243,17 +21300,17 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
 ///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="frac-line"
+///   class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.15122857142857138em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
+///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line"
 ///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
 ///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
 ///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
@@ -21271,18 +21328,372 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
 ///   mtight">+</span><span class="mord mathdefault mtight">p</span><span
 ///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.15122857142857138em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   for each element of `pDeviceRenderAreas`
+/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
+///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
+///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
+///   not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or equal
+///   to <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">F</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">t</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.16454285714285716em;" class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.2818857142857143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.5480799999999999em;"
+///   class="vlist"><span></span></span></span></span></span><span class="mclose
+///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
+///   class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
+///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
+///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
+///   not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or equal
+///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+///   class="pstrut"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.51308em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">p</span><span style="margin-right:0.02778em;"
+///   class="mord mathdefault mtight">D</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">e</span><span style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285716em;"
+///   class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
+///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
 ///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
 ///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   class="vlist"
+///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span> for
+///   each element of `pDeviceRenderAreas`
+/// - If the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure
+///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], it  **must**  not be
+///   equal to the `imageView` or `resolveImageView` member of [`depth_attachment`],
+///   [`stencil_attachment`], or any element of [`color_attachments`]
+/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
+///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
+///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
+///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or
+///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span style="height:1.80002em;vertical-align:-0.65002em;"
+///   class="strut"></span><span class="minner"><span class="mopen delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌈</span></span><span class="mord"><span
+///   class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span style="height:0.9019679999999999em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
+///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.41586em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.16454285714285719em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault
+///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
+///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
+///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
+///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or
+///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span class="strut"
+///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
+///   style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord
+///   mathdefault mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault
+///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
@@ -21298,54 +21709,55 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   each element of `pDeviceRenderAreas`
 /// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
 ///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
-///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or equal
-///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
+///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or
+///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span class="strut"
+///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
+///   class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
+///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
+///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span><span style="margin-right:0.13889em;" class="mord
-///   mathdefault mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.01968em;">l</span><span
-///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.05764em;">S</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.04398em;" class="mord mathdefault mtight">z</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span style="height:0.29011428571428566em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
 ///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line"
 ///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
 ///   class="mord mtight"><span style="margin-right:0.02778em;" class="mord mathdefault
 ///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
 ///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
 ///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.16454285714285716em;" class="vlist"><span
@@ -21353,19 +21765,19 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.2818857142857143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight"
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
+///   class="mbin mtight">+</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
 ///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
@@ -21380,291 +21792,20 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
 ///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
-///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or equal
-///   to <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.01968em;">l</span><span style="margin-right:0.05764em;"
-///   class="mord mathdefault mtight">S</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord
-///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285716em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.03588em;" class="mord
-///   mathdefault mtight">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
-///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.5480799999999999em;"
-///   class="vlist"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span> for each element of
-///   `pDeviceRenderAreas`
-/// - If the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure
-///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], it  **must**  not be
-///   equal to the `imageView` or `resolveImageView` member of [`depth_attachment`],
-///   [`stencil_attachment`], or any element of [`color_attachments`]
-/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
-///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
-///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
-///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or
-///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:1.80002em;vertical-align:-0.65002em;"
-///   class="strut"></span><span class="minner"><span class="mopen delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌈</span></span><span class="mord"><span
-///   class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9019679999999999em;"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
-///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.16454285714285719em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
-///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
-///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
-///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or
-///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
-///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.446108em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">D</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">v</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.16454285714285719em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-///   for each element of `pDeviceRenderAreas`
-/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
-///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
 ///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or
-///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   equal to <span class="katex"><span aria-hidden="true" class="katex-html"><span
 ///   class="base"><span style="height:1.80002em;vertical-align:-0.65002em;"
-///   class="strut"></span><span class="minner"><span class="mopen delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌈</span></span><span class="mord"><span
+///   class="strut"></span><span class="minner"><span style="top:0em;" class="mopen
+///   delimcenter"><span class="delimsizing size2">⌈</span></span><span class="mord"><span
 ///   class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t
 ///   vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
 ///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span
 ///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
 ///   mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord
@@ -21688,130 +21829,46 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285716em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.2818857142857143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   class="vlist"
-///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
-///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
-///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
-///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or
-///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
-///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.51308em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight"
+///   class="vlist-r"><span style="height:0.29011428571428566em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
+///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span
+///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
+///   style="top:-3.51308em;"><span style="height:3em;" class="pstrut"></span><span class="sizing
+///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault
+///   mtight">p</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">D</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord
 ///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">e</span><span style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord mtight"><span
 ///   class="mord mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t
 ///   vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.16454285714285716em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.2818857142857143em;"
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.2818857142857143em;"
 ///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
 ///   mtight">+</span><span class="mord mathdefault mtight">p</span><span
 ///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
 ///   mtight">A</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
@@ -21878,41 +21935,42 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRenderingInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderingInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`RenderingFlagBits`].
-    flags: RenderingFlags,
+    pub flags: RenderingFlags,
     ///[`render_area`] is the render area that is affected by the render pass
     ///instance.
-    render_area: Rect2D,
+    pub render_area: Rect2D,
     ///[`layer_count`] is the number of layers rendered to in each attachment
     ///when [`view_mask`] is `0`.
-    layer_count: u32,
+    pub layer_count: u32,
     ///[`view_mask`] is the view mask indicating the indices of attachment
     ///layers that will be rendered when it is not `0`.
-    view_mask: u32,
+    pub view_mask: u32,
     ///[`color_attachment_count`] is the number of elements in
     ///[`color_attachments`].
-    color_attachment_count: u32,
+    pub color_attachment_count: u32,
     ///[`color_attachments`] is a pointer to an array of
     ///[`color_attachment_count`][`RenderingAttachmentInfo`] structures
     ///describing any color attachments used.
-    color_attachments: *const RenderingAttachmentInfo<'lt>,
+    pub color_attachments: *const RenderingAttachmentInfo<'lt>,
     ///[`depth_attachment`] is a pointer to a [`RenderingAttachmentInfo`]
     ///structure describing a depth attachment.
-    depth_attachment: *const RenderingAttachmentInfo<'lt>,
+    pub depth_attachment: *const RenderingAttachmentInfo<'lt>,
     ///[`stencil_attachment`] is a pointer to a
     ///[`RenderingAttachmentInfo`] structure describing a stencil
     ///attachment.
-    stencil_attachment: *const RenderingAttachmentInfo<'lt>,
+    pub stencil_attachment: *const RenderingAttachmentInfo<'lt>,
 }
 impl<'lt> Default for RenderingInfo<'lt> {
     fn default() -> Self {
@@ -22245,42 +22303,43 @@ impl<'lt> RenderingInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRenderingAttachmentInfo")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderingAttachmentInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`image_view`] is the image view that will be used for rendering.
-    image_view: ImageView,
+    pub image_view: ImageView,
     ///[`image_layout`] is the layout that [`image_view`] will be in during
     ///rendering.
-    image_layout: ImageLayout,
+    pub image_layout: ImageLayout,
     ///[`resolve_mode`] is a [`ResolveModeFlagBits`] value defining how
     ///multisampled data written to [`image_view`] will be resolved.
-    resolve_mode: ResolveModeFlagBits,
+    pub resolve_mode: ResolveModeFlagBits,
     ///[`resolve_image_view`] is an image view used to write resolved
     ///multisample data at the end of rendering.
-    resolve_image_view: ImageView,
+    pub resolve_image_view: ImageView,
     ///[`resolve_image_layout`] is the layout that [`resolve_image_view`] will
     ///be in during rendering.
-    resolve_image_layout: ImageLayout,
+    pub resolve_image_layout: ImageLayout,
     ///[`load_op`] is a [`AttachmentLoadOp`] value specifying how the
     ///contents of [`image_view`] are treated at the start of the render pass
     ///instance.
-    load_op: AttachmentLoadOp,
+    pub load_op: AttachmentLoadOp,
     ///[`store_op`] is a [`AttachmentStoreOp`] value specifying how the
     ///contents of [`image_view`] are treated at the end of the render pass
     ///instance.
-    store_op: AttachmentStoreOp,
+    pub store_op: AttachmentStoreOp,
     ///[`clear_value`] is a [`ClearValue`] structure defining values used
     ///to clear [`image_view`] when [`load_op`] is
     ///`VK_ATTACHMENT_LOAD_OP_CLEAR`.
-    clear_value: ClearValue,
+    pub clear_value: ClearValue,
 }
 impl<'lt> Default for RenderingAttachmentInfo<'lt> {
     fn default() -> Self {
@@ -22483,19 +22542,20 @@ impl<'lt> RenderingAttachmentInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceDynamicRenderingFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDynamicRenderingFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES`
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///No documentation found
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`dynamic_rendering`]
     ///specifies that the implementation supports dynamic render pass instances
     ///using the [`CmdBeginRendering`] command.
-    dynamic_rendering: Bool32,
+    pub dynamic_rendering: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceDynamicRenderingFeatures<'lt> {
     fn default() -> Self {
@@ -22683,36 +22743,37 @@ impl<'lt> PhysicalDeviceDynamicRenderingFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCommandBufferInheritanceRenderingInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CommandBufferInheritanceRenderingInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`RenderingFlagBits`] used by the render
     ///pass instance.
-    flags: RenderingFlags,
+    pub flags: RenderingFlags,
     ///[`view_mask`] is the view mask used for rendering.
-    view_mask: u32,
+    pub view_mask: u32,
     ///[`color_attachment_count`] is the number of color attachments specified
     ///in the render pass instance.
-    color_attachment_count: u32,
+    pub color_attachment_count: u32,
     ///[`color_attachment_formats`] is a pointer to an array of [`Format`]
     ///values defining the format of color attachments.
-    color_attachment_formats: *const Format,
+    pub color_attachment_formats: *const Format,
     ///[`depth_attachment_format`] is a [`Format`] value defining the
     ///format of the depth attachment.
-    depth_attachment_format: Format,
+    pub depth_attachment_format: Format,
     ///[`stencil_attachment_format`] is a [`Format`] value defining the
     ///format of the stencil attachment.
-    stencil_attachment_format: Format,
+    pub stencil_attachment_format: Format,
     ///[`rasterization_samples`] is a [`SampleCountFlagBits`] specifying
     ///the number of samples used in rasterization.
-    rasterization_samples: SampleCountFlagBits,
+    pub rasterization_samples: SampleCountFlagBits,
 }
 impl<'lt> Default for CommandBufferInheritanceRenderingInfo<'lt> {
     fn default() -> Self {
@@ -22899,6 +22960,7 @@ impl<'lt> CommandBufferInheritanceRenderingInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPrivateDataSlot")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]

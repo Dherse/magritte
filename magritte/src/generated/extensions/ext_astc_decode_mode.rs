@@ -123,19 +123,20 @@ pub const EXT_ASTC_DECODE_MODE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageViewASTCDecodeModeEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageViewAstcDecodeModeEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`decode_mode`] is the intermediate format used to decode ASTC
     ///compressed formats.
-    decode_mode: Format,
+    pub decode_mode: Format,
 }
 impl<'lt> Default for ImageViewAstcDecodeModeEXT<'lt> {
     fn default() -> Self {
@@ -235,20 +236,21 @@ impl<'lt> ImageViewAstcDecodeModeEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceASTCDecodeFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceAstcDecodeFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`decode_mode_shared_exponent`] indicates whether the implementation
     ///supports decoding ASTC compressed formats to
     ///`VK_FORMAT_E5B9G9R9_UFLOAT_PACK32` internal precision.
-    decode_mode_shared_exponent: Bool32,
+    pub decode_mode_shared_exponent: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceAstcDecodeFeaturesEXT<'lt> {
     fn default() -> Self {

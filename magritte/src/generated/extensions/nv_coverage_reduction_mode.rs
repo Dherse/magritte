@@ -113,6 +113,7 @@ pub const NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME: &'static CStr = crate::cstr
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCoverageReductionModeNV")]
+#[doc(alias = "VkCoverageReductionModeNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -229,20 +230,21 @@ impl std::fmt::Debug for PipelineCoverageReductionStateCreateFlagsNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceCoverageReductionModeFeaturesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`coverage_reduction_mode`] indicates
     ///whether the implementation supports coverage reduction modes.
     ///See [Coverage Reduction](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-coverage-reduction).
-    coverage_reduction_mode: Bool32,
+    pub coverage_reduction_mode: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
     fn default() -> Self {
@@ -380,21 +382,22 @@ impl<'lt> PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineCoverageReductionStateCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineCoverageReductionStateCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: PipelineCoverageReductionStateCreateFlagsNV,
+    pub flags: PipelineCoverageReductionStateCreateFlagsNV,
     ///[`coverage_reduction_mode`] is a [`CoverageReductionModeNV`] value
     ///controlling how color sample coverage is generated from pixel coverage.
-    coverage_reduction_mode: CoverageReductionModeNV,
+    pub coverage_reduction_mode: CoverageReductionModeNV,
 }
 impl<'lt> Default for PipelineCoverageReductionStateCreateInfoNV<'lt> {
     fn default() -> Self {
@@ -520,31 +523,32 @@ impl<'lt> PipelineCoverageReductionStateCreateInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFramebufferMixedSamplesCombinationNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct FramebufferMixedSamplesCombinationNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`coverage_reduction_mode`] is a [`CoverageReductionModeNV`] value
     ///specifying the coverage reduction mode.
-    coverage_reduction_mode: CoverageReductionModeNV,
+    pub coverage_reduction_mode: CoverageReductionModeNV,
     ///[`rasterization_samples`] is a [`SampleCountFlagBits`] specifying
     ///the number of rasterization samples in the supported combination.
-    rasterization_samples: SampleCountFlagBits,
+    pub rasterization_samples: SampleCountFlagBits,
     ///[`depth_stencil_samples`] specifies the number of samples in the depth
     ///stencil attachment in the supported combination.
     ///A value of 0 indicates the combination does not have a depth stencil
     ///attachment.
-    depth_stencil_samples: SampleCountFlags,
+    pub depth_stencil_samples: SampleCountFlags,
     ///[`color_samples`] specifies the number of color samples in a color
     ///attachment in the supported combination.
     ///A value of 0 indicates the combination does not have a color attachment.
-    color_samples: SampleCountFlags,
+    pub color_samples: SampleCountFlags,
 }
 impl<'lt> Default for FramebufferMixedSamplesCombinationNV<'lt> {
     fn default() -> Self {

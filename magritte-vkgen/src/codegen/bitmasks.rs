@@ -3,7 +3,7 @@ use proc_macro2::{TokenStream, Literal};
 use quote::quote;
 use tracing::warn;
 
-use crate::{source::{Bitmask, Source, BitFlag, Bit}, doc::Documentation, imports::Imports, origin::Origin};
+use crate::{source::{Bitmask, Source, BitFlag, Bit}, doc::Documentation, imports::Imports, origin::Origin, codegen::alias_of};
 
 
 impl<'a> Bit<'a> {
@@ -95,6 +95,9 @@ impl<'a> Bitmask<'a> {
         ));
 
         let bit_idents = bit_flag.bits().iter().map(Bit::as_ident).collect::<Vec<_>>();
+
+        // creates a doc alias if the name has been changed
+        alias_of(self.original_name(), self.name(), out);
 
         quote::quote_each_token! {
             out

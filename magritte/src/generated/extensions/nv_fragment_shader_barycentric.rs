@@ -148,22 +148,23 @@ pub const NV_FRAGMENT_SHADER_BARYCENTRIC_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShaderBarycentricFeaturesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`fragment_shader_barycentric`]
     ///indicates that the implementation supports the `BaryCoordNV` and
     ///`BaryCoordNoPerspNV` SPIR-V fragment shader built-ins and supports
     ///the `PerVertexNV` SPIR-V decoration on fragment shader input
     ///variables.
-    fragment_shader_barycentric: Bool32,
+    pub fragment_shader_barycentric: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceFragmentShaderBarycentricFeaturesNV<'lt> {
     fn default() -> Self {

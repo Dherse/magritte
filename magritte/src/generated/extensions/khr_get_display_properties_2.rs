@@ -120,18 +120,19 @@ pub const KHR_GET_DISPLAY_PROPERTIES_2_EXTENSION_NAME: &'static CStr = crate::cs
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplayProperties2KHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DisplayProperties2KHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`display_properties`] is a [`DisplayPropertiesKHR`] structure.
-    display_properties: DisplayPropertiesKHR<'lt>,
+    pub display_properties: DisplayPropertiesKHR<'lt>,
 }
 impl<'lt> Default for DisplayProperties2KHR<'lt> {
     fn default() -> Self {
@@ -234,19 +235,20 @@ impl<'lt> DisplayProperties2KHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplayPlaneProperties2KHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DisplayPlaneProperties2KHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`display_plane_properties`] is a [`DisplayPlanePropertiesKHR`]
     ///structure.
-    display_plane_properties: DisplayPlanePropertiesKHR,
+    pub display_plane_properties: DisplayPlanePropertiesKHR,
 }
 impl<'lt> Default for DisplayPlaneProperties2KHR<'lt> {
     fn default() -> Self {
@@ -349,19 +351,20 @@ impl<'lt> DisplayPlaneProperties2KHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplayModeProperties2KHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DisplayModeProperties2KHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`display_mode_properties`] is a [`DisplayModePropertiesKHR`]
     ///structure.
-    display_mode_properties: DisplayModePropertiesKHR,
+    pub display_mode_properties: DisplayModePropertiesKHR,
 }
 impl<'lt> Default for DisplayModeProperties2KHR<'lt> {
     fn default() -> Self {
@@ -474,21 +477,22 @@ impl<'lt> DisplayModeProperties2KHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplayPlaneInfo2KHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DisplayPlaneInfo2KHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`mode`] is the display mode the application intends to program when
     ///using the specified plane.
-    mode: DisplayModeKHR,
+    pub mode: DisplayModeKHR,
     ///No documentation found
-    plane_index: u32,
+    pub plane_index: u32,
 }
 impl<'lt> Default for DisplayPlaneInfo2KHR<'lt> {
     fn default() -> Self {
@@ -595,18 +599,19 @@ impl<'lt> DisplayPlaneInfo2KHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplayPlaneCapabilities2KHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DisplayPlaneCapabilities2KHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`capabilities`] is a [`DisplayPlaneCapabilitiesKHR`] structure.
-    capabilities: DisplayPlaneCapabilitiesKHR,
+    pub capabilities: DisplayPlaneCapabilitiesKHR,
 }
 impl<'lt> Default for DisplayPlaneCapabilities2KHR<'lt> {
     fn default() -> Self {

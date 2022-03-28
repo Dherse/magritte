@@ -87,18 +87,19 @@ pub const VALVE_DESCRIPTOR_SET_HOST_MAPPING_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] **must**  be
     /// `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE`
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///No documentation found
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    descriptor_set_host_mapping: Bool32,
+    pub descriptor_set_host_mapping: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
     fn default() -> Self {
@@ -221,19 +222,20 @@ impl<'lt> PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorSetBindingReferenceVALVE")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorSetBindingReferenceVALVE<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_BINDING_REFERENCE_VALVE`
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] **must**  be `NULL`
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`descriptor_set_layout`] **must**  be a valid [`DescriptorSetLayout`] handle
-    descriptor_set_layout: DescriptorSetLayout,
+    pub descriptor_set_layout: DescriptorSetLayout,
     ///No documentation found
-    binding: u32,
+    pub binding: u32,
 }
 impl<'lt> Default for DescriptorSetBindingReferenceVALVE<'lt> {
     fn default() -> Self {
@@ -338,19 +340,20 @@ impl<'lt> DescriptorSetBindingReferenceVALVE<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorSetLayoutHostMappingInfoVALVE")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorSetLayoutHostMappingInfoVALVE<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE`
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] **must**  be `NULL`
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    descriptor_offset: usize,
+    pub descriptor_offset: usize,
     ///No documentation found
-    descriptor_size: u32,
+    pub descriptor_size: u32,
 }
 impl<'lt> Default for DescriptorSetLayoutHostMappingInfoVALVE<'lt> {
     fn default() -> Self {

@@ -131,21 +131,22 @@ impl std::fmt::Debug for StreamDescriptorSurfaceCreateFlagsGGP {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkStreamDescriptorSurfaceCreateInfoGGP")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct StreamDescriptorSurfaceCreateInfoGGP<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: StreamDescriptorSurfaceCreateFlagsGGP,
+    pub flags: StreamDescriptorSurfaceCreateFlagsGGP,
     ///[`stream_descriptor`] is a [`GgpStreamDescriptor`] referring to the
     ///GGP stream descriptor to associate with the surface.
-    stream_descriptor: GgpStreamDescriptor,
+    pub stream_descriptor: GgpStreamDescriptor,
 }
 impl<'lt> Default for StreamDescriptorSurfaceCreateInfoGGP<'lt> {
     fn default() -> Self {

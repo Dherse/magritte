@@ -108,24 +108,25 @@ pub const NVX_IMAGE_VIEW_HANDLE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageViewHandleInfoNVX")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageViewHandleInfoNVX<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`image_view`] is the image view to query.
-    image_view: ImageView,
+    pub image_view: ImageView,
     ///[`descriptor_type`] is the type of descriptor for which to query a
     ///handle.
-    descriptor_type: DescriptorType,
+    pub descriptor_type: DescriptorType,
     ///[`sampler`] is the sampler to combine with the image view when
     ///generating the handle.
-    sampler: Sampler,
+    pub sampler: Sampler,
 }
 impl<'lt> Default for ImageViewHandleInfoNVX<'lt> {
     fn default() -> Self {
@@ -249,20 +250,21 @@ impl<'lt> ImageViewHandleInfoNVX<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageViewAddressPropertiesNVX")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageViewAddressPropertiesNVX<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`device_address`] is the device address of the image view.
-    device_address: DeviceAddress,
+    pub device_address: DeviceAddress,
     ///[`size`] is the size in bytes of the image view device memory.
-    size: DeviceSize,
+    pub size: DeviceSize,
 }
 impl<'lt> Default for ImageViewAddressPropertiesNVX<'lt> {
     fn default() -> Self {

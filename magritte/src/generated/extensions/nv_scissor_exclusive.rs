@@ -108,19 +108,20 @@ pub const NV_SCISSOR_EXCLUSIVE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceExclusiveScissorFeaturesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`exclusive_scissor`] indicates that the
     ///implementation supports the exclusive scissor test.
-    exclusive_scissor: Bool32,
+    pub exclusive_scissor: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
     fn default() -> Self {
@@ -261,22 +262,23 @@ impl<'lt> PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineViewportExclusiveScissorStateCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineViewportExclusiveScissorStateCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`exclusive_scissor_count`] is the number of exclusive scissor
     ///rectangles.
-    exclusive_scissor_count: u32,
+    pub exclusive_scissor_count: u32,
     ///[`exclusive_scissors`] is a pointer to an array of [`Rect2D`]
     ///structures defining exclusive scissor rectangles.
-    exclusive_scissors: *const Rect2D,
+    pub exclusive_scissors: *const Rect2D,
 }
 impl<'lt> Default for PipelineViewportExclusiveScissorStateCreateInfoNV<'lt> {
     fn default() -> Self {

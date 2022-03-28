@@ -196,19 +196,20 @@ pub const QCOM_RENDER_PASS_TRANSFORM_EXTENSION_NAME: &'static CStr = crate::cstr
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRenderPassTransformBeginInfoQCOM")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderPassTransformBeginInfoQCOM<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`transform`] is a [`SurfaceTransformFlagBitsKHR`] value
     ///describing the transform to be applied to rasterization.
-    transform: SurfaceTransformFlagBitsKHR,
+    pub transform: SurfaceTransformFlagBitsKHR,
 }
 impl<'lt> Default for RenderPassTransformBeginInfoQCOM<'lt> {
     fn default() -> Self {
@@ -331,22 +332,23 @@ impl<'lt> RenderPassTransformBeginInfoQCOM<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCommandBufferInheritanceRenderPassTransformInfoQCOM")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CommandBufferInheritanceRenderPassTransformInfoQCOM<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`transform`] is a [`SurfaceTransformFlagBitsKHR`] value
     ///describing the transform to be applied to the render pass.
-    transform: SurfaceTransformFlagBitsKHR,
+    pub transform: SurfaceTransformFlagBitsKHR,
     ///[`render_area`] is the render area that is affected by the command
     ///buffer.
-    render_area: Rect2D,
+    pub render_area: Rect2D,
 }
 impl<'lt> Default for CommandBufferInheritanceRenderPassTransformInfoQCOM<'lt> {
     fn default() -> Self {

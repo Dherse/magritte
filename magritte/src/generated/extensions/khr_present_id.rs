@@ -91,20 +91,21 @@ pub const KHR_PRESENT_ID_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_pr
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDevicePresentIdFeaturesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePresentIdFeaturesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`present_id`] indicates that the implementation
     ///supports specifying present ID values in the [`PresentIdKHR`]
     ///extension to the [`PresentInfoKHR`] struct.
-    present_id: Bool32,
+    pub present_id: Bool32,
 }
 impl<'lt> Default for PhysicalDevicePresentIdFeaturesKHR<'lt> {
     fn default() -> Self {
@@ -262,25 +263,26 @@ impl<'lt> PhysicalDevicePresentIdFeaturesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPresentIdKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PresentIdKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`swapchain_count`] is the number of swapchains being presented to the
     ///[`QueuePresentKHR`] command.
-    swapchain_count: u32,
+    pub swapchain_count: u32,
     ///[`present_ids`] is `NULL` or a pointer to an array of uint64_t with
     ///[`swapchain_count`] entries.
     ///If not `NULL`, each non-zero value in [`present_ids`] specifies the
     ///present id to be associated with the presentation of the swapchain with
     ///the same index in the [`QueuePresentKHR`] call.
-    present_ids: *const u64,
+    pub present_ids: *const u64,
 }
 impl<'lt> Default for PresentIdKHR<'lt> {
     fn default() -> Self {

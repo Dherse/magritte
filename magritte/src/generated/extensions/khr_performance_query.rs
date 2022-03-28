@@ -174,6 +174,7 @@ pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterScopeKHR")]
+#[doc(alias = "VkPerformanceCounterScopeKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -262,6 +263,7 @@ impl PerformanceCounterScopeKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPerformanceCounterUnitKHR")]
 #[doc(alias = "VkPerformanceCounterUnitKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -366,6 +368,7 @@ impl PerformanceCounterUnitKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPerformanceCounterStorageKHR")]
 #[doc(alias = "VkPerformanceCounterStorageKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -570,6 +573,7 @@ impl AcquireProfilingLockFlagBitsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPerformanceCounterDescriptionFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -852,6 +856,7 @@ impl std::fmt::Debug for PerformanceCounterDescriptionFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAcquireProfilingLockFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1132,23 +1137,24 @@ impl std::fmt::Debug for AcquireProfilingLockFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDevicePerformanceQueryFeaturesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`performance_counter_query_pools`] indicates whether the implementation
     ///supports performance counter query pools.
-    performance_counter_query_pools: Bool32,
+    pub performance_counter_query_pools: Bool32,
     ///[`performance_counter_multiple_query_pools`] indicates whether the
     ///implementation supports using multiple performance query pools in a
     ///primary command buffer and secondary command buffers executed within it.
-    performance_counter_multiple_query_pools: Bool32,
+    pub performance_counter_multiple_query_pools: Bool32,
 }
 impl<'lt> Default for PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
     fn default() -> Self {
@@ -1313,19 +1319,20 @@ impl<'lt> PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDevicePerformanceQueryPropertiesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`allow_command_buffer_query_copies`] is [`TRUE`] if the performance
     ///query pools are allowed to be used with [`CmdCopyQueryPoolResults`].
-    allow_command_buffer_query_copies: Bool32,
+    pub allow_command_buffer_query_copies: Bool32,
 }
 impl<'lt> Default for PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
     fn default() -> Self {
@@ -1460,29 +1467,30 @@ impl<'lt> PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPerformanceCounterKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceCounterKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`unit`] is a [`PerformanceCounterUnitKHR`] specifying the unit
     ///that the counter data will record.
-    unit: PerformanceCounterUnitKHR,
+    pub unit: PerformanceCounterUnitKHR,
     ///[`scope`] is a [`PerformanceCounterScopeKHR`] specifying the scope
     ///that the counter belongs to.
-    scope: PerformanceCounterScopeKHR,
+    pub scope: PerformanceCounterScopeKHR,
     ///[`storage`] is a [`PerformanceCounterStorageKHR`] specifying the
     ///storage type that the counter’s data uses.
-    storage: PerformanceCounterStorageKHR,
+    pub storage: PerformanceCounterStorageKHR,
     ///[`uuid`] is an array of size [`UUID_SIZE`], containing 8-bit
     ///values that represent a universally unique identifier for the counter of
     ///the physical device.
-    uuid: [u8; UUID_SIZE],
+    pub uuid: [u8; UUID_SIZE],
 }
 impl<'lt> Default for PerformanceCounterKHR<'lt> {
     fn default() -> Self {
@@ -1643,31 +1651,32 @@ impl<'lt> PerformanceCounterKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPerformanceCounterDescriptionKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceCounterDescriptionKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`flags`] is a bitmask of
     ///[`PerformanceCounterDescriptionFlagBitsKHR`] indicating the usage
     ///behavior for the counter.
-    flags: PerformanceCounterDescriptionFlagsKHR,
+    pub flags: PerformanceCounterDescriptionFlagsKHR,
     ///[`name`] is an array of size [`MAX_DESCRIPTION_SIZE`], containing
     ///a null-terminated UTF-8 string specifying the name of the counter.
-    name: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub name: [c_schar; MAX_DESCRIPTION_SIZE],
     ///[`category`] is an array of size [`MAX_DESCRIPTION_SIZE`],
     ///containing a null-terminated UTF-8 string specifying the category of the
     ///counter.
-    category: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub category: [c_schar; MAX_DESCRIPTION_SIZE],
     ///[`description`] is an array of size [`MAX_DESCRIPTION_SIZE`],
     ///containing a null-terminated UTF-8 string specifying the description of
     ///the counter.
-    description: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub description: [c_schar; MAX_DESCRIPTION_SIZE],
 }
 impl<'lt> Default for PerformanceCounterDescriptionKHR<'lt> {
     fn default() -> Self {
@@ -1827,26 +1836,27 @@ impl<'lt> PerformanceCounterDescriptionKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkQueryPoolPerformanceCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct QueryPoolPerformanceCreateInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`queue_family_index`] is the queue family index to create this
     ///performance query pool for.
-    queue_family_index: u32,
+    pub queue_family_index: u32,
     ///[`counter_index_count`] is the length of the [`counter_indices`]
     ///array.
-    counter_index_count: u32,
+    pub counter_index_count: u32,
     ///[`counter_indices`] is a pointer to an array of indices into the
     ///[`EnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR`]::`pCounters`
     ///to enable in this performance query pool.
-    counter_indices: *const u32,
+    pub counter_indices: *const u32,
 }
 impl<'lt> Default for QueryPoolPerformanceCreateInfoKHR<'lt> {
     fn default() -> Self {
@@ -1986,21 +1996,22 @@ impl<'lt> QueryPoolPerformanceCreateInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAcquireProfilingLockInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AcquireProfilingLockInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: AcquireProfilingLockFlagsKHR,
+    pub flags: AcquireProfilingLockFlagsKHR,
     ///[`timeout`] indicates how long the function waits, in nanoseconds, if
     ///the profiling lock is not available.
-    timeout: u64,
+    pub timeout: u64,
 }
 impl<'lt> Default for AcquireProfilingLockInfoKHR<'lt> {
     fn default() -> Self {
@@ -2114,18 +2125,19 @@ impl<'lt> AcquireProfilingLockInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPerformanceQuerySubmitInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceQuerySubmitInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`counter_pass_index`] specifies which counter pass index is active.
-    counter_pass_index: u32,
+    pub counter_pass_index: u32,
 }
 impl<'lt> Default for PerformanceQuerySubmitInfoKHR<'lt> {
     fn default() -> Self {
@@ -2184,5 +2196,64 @@ impl<'lt> PerformanceQuerySubmitInfoKHR<'lt> {
     pub fn set_counter_pass_index(&mut self, value: u32) -> &mut Self {
         self.counter_pass_index = value;
         self
+    }
+}
+///[VkPerformanceCounterResultKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterResultKHR.html) - Union containing a performance counter result
+///# C Specifications
+///The [`PerformanceCounterResultKHR`] union is defined as:
+/// - [`int_32`] is a 32-bit signed integer value.
+/// - [`int_64`] is a 64-bit signed integer value.
+/// - [`uint_32`] is a 32-bit unsigned integer value.
+/// - [`uint_64`] is a 64-bit unsigned integer value.
+/// - [`float_32`] is a 32-bit floating-point value.
+/// - [`float_64`] is a 64-bit floating-point value.
+///Performance query results are returned in an array of
+///[`PerformanceCounterResultKHR`] unions containing the data associated
+///with each counter in the query, stored in the same order as the counters
+///supplied in `pCounterIndices` when creating the performance query.
+///The [`PerformanceCounterKHR::unit`] enumeration specifies how to
+///parse the counter data.
+///```c
+///// Provided by VK_KHR_performance_query
+///typedef union VkPerformanceCounterResultKHR {
+///    int32_t     int32;
+///    int64_t     int64;
+///    uint32_t    uint32;
+///    uint64_t    uint64;
+///    float       float32;
+///    double      float64;
+///} VkPerformanceCounterResultKHR;
+///```
+///# Related
+/// - [`VK_KHR_performance_query`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPerformanceCounterResultKHR")]
+#[derive(Clone, Copy)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(C)]
+pub union PerformanceCounterResultKHR {
+    ///No documentation found
+    pub int_32: i32,
+    ///No documentation found
+    pub int_64: i64,
+    ///No documentation found
+    pub uint_32: u32,
+    ///No documentation found
+    pub uint_64: u64,
+    ///No documentation found
+    pub float_32: f32,
+    ///No documentation found
+    pub float_64: f64,
+}
+impl Default for PerformanceCounterResultKHR {
+    fn default() -> Self {
+        unsafe { std::mem::zeroed() }
     }
 }

@@ -161,23 +161,24 @@ impl std::fmt::Debug for XlibSurfaceCreateFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkXlibSurfaceCreateInfoKHR")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct XlibSurfaceCreateInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: XlibSurfaceCreateFlagsKHR,
+    pub flags: XlibSurfaceCreateFlagsKHR,
     ///[`dpy`] is a pointer to an Xlib [`Display`] connection to the X
     ///server.
-    dpy: *mut Display,
+    pub dpy: *mut Display,
     ///[`window`] is an Xlib [`Window`] to associate the surface with.
-    window: Window,
+    pub window: Window,
 }
 impl<'lt> Default for XlibSurfaceCreateInfoKHR<'lt> {
     fn default() -> Self {

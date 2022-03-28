@@ -808,6 +808,7 @@ pub type DeviceAddress = u64;
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageLayout")]
+#[doc(alias = "VkImageLayout")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1073,6 +1074,7 @@ impl ImageLayout {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAttachmentLoadOp")]
+#[doc(alias = "VkAttachmentLoadOp")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1179,6 +1181,7 @@ impl AttachmentLoadOp {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAttachmentStoreOp")]
+#[doc(alias = "VkAttachmentStoreOp")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1263,6 +1266,7 @@ impl AttachmentStoreOp {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageType")]
+#[doc(alias = "VkImageType")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1336,6 +1340,7 @@ impl ImageType {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageTiling")]
 #[doc(alias = "VkImageTiling")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1412,6 +1417,7 @@ impl ImageTiling {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageViewType")]
+#[doc(alias = "VkImageViewType")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1480,6 +1486,7 @@ impl ImageViewType {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCommandBufferLevel")]
 #[doc(alias = "VkCommandBufferLevel")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1554,6 +1561,7 @@ impl CommandBufferLevel {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkComponentSwizzle")]
 #[doc(alias = "VkComponentSwizzle")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1704,6 +1712,7 @@ impl ComponentSwizzle {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorType")]
+#[doc(alias = "VkDescriptorType")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1848,6 +1857,7 @@ impl DescriptorType {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueryType")]
+#[doc(alias = "VkQueryType")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1974,6 +1984,7 @@ impl QueryType {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBorderColor")]
+#[doc(alias = "VkBorderColor")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2078,6 +2089,7 @@ impl BorderColor {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineBindPoint")]
+#[doc(alias = "VkPipelineBindPoint")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2148,6 +2160,7 @@ impl PipelineBindPoint {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineCacheHeaderVersion")]
 #[doc(alias = "VkPipelineCacheHeaderVersion")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2242,6 +2255,7 @@ impl PipelineCacheHeaderVersion {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPrimitiveTopology")]
 #[doc(alias = "VkPrimitiveTopology")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2369,6 +2383,7 @@ impl PrimitiveTopology {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSharingMode")]
+#[doc(alias = "VkSharingMode")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2443,6 +2458,7 @@ impl SharingMode {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkIndexType")]
 #[doc(alias = "VkIndexType")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2525,6 +2541,7 @@ impl IndexType {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFilter")]
+#[doc(alias = "VkFilter")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2589,6 +2606,7 @@ impl Filter {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSamplerMipmapMode")]
 #[doc(alias = "VkSamplerMipmapMode")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2661,6 +2679,7 @@ impl SamplerMipmapMode {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSamplerAddressMode")]
 #[doc(alias = "VkSamplerAddressMode")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2754,6 +2773,7 @@ impl SamplerAddressMode {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCompareOp")]
 #[doc(alias = "VkCompareOp")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2851,6 +2871,7 @@ impl CompareOp {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPolygonMode")]
+#[doc(alias = "VkPolygonMode")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2914,94 +2935,94 @@ impl PolygonMode {
 ///This determination is made based on the sign of the (clipped or unclipped)
 ///polygon’s area computed in framebuffer coordinates.
 ///One way to compute this area is:<span class="katex"><span class="katex-html"
-/// aria-hidden="true"><span class="base"><span style="height:0.43056em;vertical-align:0em;"
-/// class="strut"></span><span class="mord mathdefault">a</span><span class="mspace"
-/// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-/// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span class="base"><span
-/// class="strut" style="height:3.0787820000000004em;vertical-align:-1.277669em;"></span><span
+/// aria-hidden="true"><span class="base"><span class="strut"
+/// style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span
+/// class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+/// class="mrel">=</span><span class="mspace"
+/// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+/// style="height:3.0787820000000004em;vertical-align:-1.277669em;" class="strut"></span><span
 /// class="mord">−</span><span class="mord"><span class="mord"><span class="mopen
 /// nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
 /// class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span
 /// class="pstrut" style="height:3em;"></span><span class="mord"><span
-/// class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut"
-/// style="height:3em;"></span><span style="border-bottom-width:0.04em;"
-/// class="frac-line"></span></span><span style="top:-3.677em;"><span class="pstrut"
-/// style="height:3em;"></span><span class="mord"><span
+/// class="mord">2</span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+/// class="pstrut"></span><span class="frac-line"
+/// style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span
+/// class="pstrut" style="height:3em;"></span><span class="mord"><span
 /// class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span style="height:0.686em;"
-/// class="vlist"><span></span></span></span></span></span><span class="mclose
-/// nulldelimiter"></span></span></span><span class="mspace"
-/// style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span
-/// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-/// style="height:1.8011130000000004em;"><span style="top:-1.872331em;margin-left:0em;"><span
-/// class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span
-/// class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel
-/// mtight">=</span><span class="mord mtight">0</span></span></span></span><span
-/// style="top:-3.050005em;"><span style="height:3.05em;" class="pstrut"></span><span><span
-/// class="mop op-symbol large-op">∑</span></span></span><span
-/// style="top:-4.300005em;margin-left:0em;"><span class="pstrut"
+/// class="vlist-r"><span class="vlist"
+/// style="height:0.686em;"><span></span></span></span></span></span><span class="mclose
+/// nulldelimiter"></span></span></span><span style="margin-right:0.16666666666666666em;"
+/// class="mspace"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span style="height:1.8011130000000004em;" class="vlist"><span
+/// style="top:-1.872331em;margin-left:0em;"><span class="pstrut"
 /// style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-/// mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">−</span><span
-/// class="mord mtight">1</span></span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.277669em;"
-/// class="vlist"><span></span></span></span></span></span><span
+/// mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span
+/// class="mord mtight">0</span></span></span></span><span style="top:-3.050005em;"><span
+/// style="height:3.05em;" class="pstrut"></span><span><span class="mop op-symbol
+/// large-op">∑</span></span></span><span style="top:-4.300005em;margin-left:0em;"><span
+/// class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span
+/// class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin
+/// mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+/// style="height:1.277669em;"><span></span></span></span></span></span><span
 /// style="margin-right:0.16666666666666666em;" class="mspace"></span><span class="mord"><span
 /// class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 /// class="vlist-r"><span class="vlist" style="height:0.874664em;"><span
 /// style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+/// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+/// style="margin-right:0.10764em;" class="mord mathdefault mtight">f</span></span></span><span
+/// style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut"
 /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-/// mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span><span
-/// style="top:-3.1130000000000004em;margin-right:0.05em;"><span style="height:2.7em;"
-/// class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 /// mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span style="height:0.383108em;"
-/// class="vlist"><span></span></span></span></span></span></span><span class="mord"><span
-/// style="margin-right:0.03588em;" class="mord mathdefault">y</span><span class="msupsub"><span
-/// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.874664em;"
-/// class="vlist"><span
+/// class="vlist-r"><span class="vlist"
+/// style="height:0.383108em;"><span></span></span></span></span></span></span><span
+/// class="mord"><span style="margin-right:0.03588em;" class="mord mathdefault">y</span><span
+/// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+/// style="height:0.874664em;"><span
 /// style="top:-2.4085610000000006em;margin-left:-0.03588em;margin-right:0.05em;"><span
 /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
 /// style="margin-right:0.10764em;" class="mord mathdefault mtight">f</span></span></span><span
-/// style="top:-3.113em;margin-right:0.05em;"><span style="height:2.7em;"
-/// class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+/// style="top:-3.113em;margin-right:0.05em;"><span class="pstrut"
+/// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 /// mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">⊕</span><span
 /// class="mord mtight">1</span></span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.4275469999999999em;"
-/// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-/// style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
-/// class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
-/// style="height:1.3022109999999998em;vertical-align:-0.4275469999999999em;"
-/// class="strut"></span><span class="mord"><span class="mord mathdefault">x</span><span
-/// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-/// style="height:0.874664em;" class="vlist"><span
-/// style="top:-2.4085610000000006em;margin-left:0em;margin-right:0.05em;"><span
-/// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-/// style="margin-right:0.10764em;" class="mord mathdefault mtight">f</span></span></span><span
-/// style="top:-3.113em;margin-right:0.05em;"><span style="height:2.7em;"
-/// class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+/// class="vlist"><span></span></span></span></span></span></span><span
+/// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+/// class="mbin">−</span><span style="margin-right:0.2222222222222222em;"
+/// class="mspace"></span></span><span class="base"><span class="strut"
+/// style="height:1.3022109999999998em;vertical-align:-0.4275469999999999em;"></span><span
+/// class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t
+/// vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.874664em;"><span
+/// style="top:-2.4085610000000006em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+/// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+/// mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span><span
+/// style="top:-3.113em;margin-right:0.05em;"><span class="pstrut"
+/// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 /// mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">⊕</span><span
 /// class="mord mtight">1</span></span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.4275469999999999em;"
-/// class="vlist"><span></span></span></span></span></span></span><span class="mord"><span
-/// class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span
-/// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.874664em;"
-/// class="vlist"><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+/// style="height:0.4275469999999999em;"><span></span></span></span></span></span></span><span
+/// class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span
+/// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+/// style="height:0.874664em;"><span
 /// style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
 /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-/// class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span><span
-/// style="top:-3.1130000000000004em;margin-right:0.05em;"><span style="height:2.7em;"
-/// class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+/// style="margin-right:0.10764em;" class="mord mathdefault mtight">f</span></span></span><span
+/// style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut"
+/// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 /// mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span
 /// class="vlist-r"><span class="vlist"
 /// style="height:0.383108em;"><span></span></span></span></span></span></span></span></span></
-/// span>where <span class="katex"><span class="katex-html" aria-hidden="true"><span
-/// class="base"><span style="height:1.2438799999999999em;vertical-align:-0.4192159999999999em;"
-/// class="strut"></span><span class="mord"><span class="mord mathdefault">x</span><span
-/// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-/// style="height:0.824664em;"><span
-/// style="top:-2.4168920000000003em;margin-left:0em;margin-right:0.05em;"><span
-/// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-/// class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span><span
+/// span>where <span class="katex"><span aria-hidden="true" class="katex-html"><span
+/// class="base"><span class="strut"
+/// style="height:1.2438799999999999em;vertical-align:-0.4192159999999999em;"></span><span
+/// class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t
+/// vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span
+/// style="top:-2.4168920000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+/// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+/// style="margin-right:0.10764em;" class="mord mathdefault mtight">f</span></span></span><span
 /// style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
 /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 /// mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span
@@ -3013,7 +3034,7 @@ impl PolygonMode {
 /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
 /// style="height:0.824664em;"><span
 /// style="top:-2.4168920000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-/// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+/// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
 /// class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span><span
 /// style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
 /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
@@ -3053,6 +3074,7 @@ impl PolygonMode {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFrontFace")]
 #[doc(alias = "VkFrontFace")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -3142,6 +3164,7 @@ impl FrontFace {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBlendFactor")]
 #[doc(alias = "VkBlendFactor")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -3351,6 +3374,7 @@ impl BlendFactor {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBlendOp")]
 #[doc(alias = "VkBlendOp")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -3621,6 +3645,7 @@ impl BlendOp {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkStencilOp")]
+#[doc(alias = "VkStencilOp")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3733,6 +3758,7 @@ impl StencilOp {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkLogicOp")]
+#[doc(alias = "VkLogicOp")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3818,6 +3844,7 @@ impl LogicOp {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkInternalAllocationType")]
 #[doc(alias = "VkInternalAllocationType")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -3916,6 +3943,7 @@ impl InternalAllocationType {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSystemAllocationScope")]
+#[doc(alias = "VkSystemAllocationScope")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -4000,6 +4028,7 @@ impl SystemAllocationScope {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceType")]
+#[doc(alias = "VkPhysicalDeviceType")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -4070,6 +4099,7 @@ impl PhysicalDeviceType {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVertexInputRate")]
 #[doc(alias = "VkVertexInputRate")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -5095,24 +5125,24 @@ impl VertexInputRate {
 ///   the image dimensions, and each R and B component is shared with the G components for which
 ///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
 ///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
+///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-///   class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-///   class="mord">5</span><span style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span><span
-///   class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span
-///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
+///   delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+///   class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 ///   mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
@@ -5125,12 +5155,13 @@ impl VertexInputRate {
 ///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
 ///   class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.15em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span> and <span
 ///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
 ///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
 ///   mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
 ///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
@@ -5139,17 +5170,18 @@ impl VertexInputRate {
 ///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
-///   class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+///   style="top:0em;">⌋</span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+///   class="strut"></span><span class="mord"><span class="mord mathdefault"
+///   style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
@@ -5160,12 +5192,12 @@ impl VertexInputRate {
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
 ///   class="mrel">=</span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
-///   class="mord"><span style="margin-right:0.05724em;" class="mord mathdefault">j</span><span
+///   style="height:0.85396em;vertical-align:-0.19444em;" class="strut"></span><span
+///   class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
 ///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.00773em;">R</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
@@ -5178,27 +5210,28 @@ impl VertexInputRate {
 ///   8-bit G component in plane 0, and a two-component, 16-bit BR plane 1 consisting of an 8-bit B
 ///   component in byte 0 and an 8-bit R component in byte 1. The horizontal and vertical dimensions
 ///   of the BR plane are halved relative to the image dimensions, and each R and B value is shared
-///   with the G components for which <span class="katex"><span class="katex-html"
-///   aria-hidden="true"><span class="base"><span class="strut"
-///   style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen
-///   delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+///   with the G components for which <span class="katex"><span aria-hidden="true"
+///   class="katex-html"><span class="base"><span class="strut"
+///   style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span style="top:0em;"
+///   class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 ///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-///   class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-///   class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
-///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+///   style="top:0em;">⌋</span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
 ///   style="margin-right:0.05017em;" class="mord mathdefault
@@ -5206,58 +5239,59 @@ impl VertexInputRate {
 ///   class="vlist-r"><span style="height:0.15em;"
 ///   class="vlist"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span
-///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+///   class="mspace"></span></span><span class="base"><span class="strut"
+///   style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
 ///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-///   and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
+///   class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span> and <span
+///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span
 ///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
 ///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="vlist"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+///   style="top:0em;">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
-///   class="strut"></span><span class="mord"><span style="margin-right:0.05724em;" class="mord
-///   mathdefault">j</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span class="strut"
+///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+///   class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
 ///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
-///   class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.32833099999999993em;" class="vlist"><span
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+///   class="strut"></span><span class="mord"><span style="margin-right:0.05724em;" class="mord
+///   mathdefault">j</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
-///   location of each plane when this image is in linear layout can be determined via
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
+///   The location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
 ///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the BR plane. This format only supports images with a width
 ///   and height that is a multiple of two.
@@ -5265,8 +5299,8 @@ impl VertexInputRate {
 ///   8-bit G component in plane 0, an 8-bit B component in plane 1, and an 8-bit R component in
 ///   plane 2. The horizontal dimension of the R and B plane is halved relative to the image
 ///   dimensions, and each R and B value is shared with the G components for which <span
-///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
+///   class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
 ///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
@@ -5276,11 +5310,11 @@ impl VertexInputRate {
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
 ///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
-///   delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
 ///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
 ///   vlist-t2"><span class="vlist-r"><span class="vlist"
@@ -5289,19 +5323,19 @@ impl VertexInputRate {
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
 ///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
-///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+///   class="mspace"></span></span><span class="base"><span
+///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
+///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
 ///   The location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
@@ -5315,19 +5349,31 @@ impl VertexInputRate {
 ///   class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
 ///   class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
+///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+///   class="vlist"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+///   class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
+///   class="mord">5</span><span style="top:0em;" class="mclose delimcenter">⌋</span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+///   class="mrel">=</span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
+///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
+///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
-///   delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
 ///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
 ///   vlist-t2"><span class="vlist-r"><span class="vlist"
@@ -5335,18 +5381,7 @@ impl VertexInputRate {
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.05017em;">B</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span></span><span class="base"><span
-///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
-///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
+///   style="margin-right:0.00773em;">R</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
 ///   The location of each plane when this image is in linear layout can be determined via
@@ -5399,76 +5434,77 @@ impl VertexInputRate {
 ///   in the top 10 bits of each 16-bit word of plane 2, with the bottom 6 bits of each word unused.
 ///   The horizontal and vertical dimensions of the R and B planes are halved relative to the image
 ///   dimensions, and each R and B component is shared with the G components for which <span
-///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
 ///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
 ///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-///   class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
-///   delimcenter">⌋</span></span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span><span class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
-///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
+///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+///   class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
+///   class="mord">5</span><span style="top:0em;" class="mclose delimcenter">⌋</span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+///   class="mrel">=</span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+///   class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span
+///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.05017em;">B</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
 ///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
 ///   class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
 ///   and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
 ///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
+///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span
 ///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-///   class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
-///   class="strut"></span><span class="mord"><span class="mord mathdefault"
-///   style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
+///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+///   style="top:0em;">⌋</span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span class="strut"
+///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+///   class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
 ///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
 ///   class="base"><span class="strut"
 ///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+///   class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
 ///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
@@ -5488,38 +5524,38 @@ impl VertexInputRate {
 ///   with the bottom 6 bits of each word unused. The horizontal and vertical dimensions of the BR
 ///   plane are halved relative to the image dimensions, and each R and B value is shared with the G
 ///   components for which <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter">⌊</span><span
+///   class="base"><span style="height:1em;vertical-align:-0.25em;" class="strut"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
+///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+///   class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+///   class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
+///   class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+///   class="mrel">=</span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
+///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   style="margin-right:0.05017em;" class="mord mathdefault
+///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span></span><span class="base"><span class="strut"
-///   style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+///   class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
 ///   style="margin-right:0.00773em;" class="mord mathdefault
@@ -5528,45 +5564,44 @@ impl VertexInputRate {
 ///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
 ///   and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
 ///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
-///   mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span
+///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
 ///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
-///   style="top:0em;">⌋</span></span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span class="strut"
-///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-///   class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.05017em;">B</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
+///   delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
 ///   class="base"><span class="strut"
 ///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+///   class="vlist"><span
+///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
+///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+///   class="strut"></span><span class="mord"><span class="mord mathdefault"
+///   style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
 ///   The location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
@@ -5578,11 +5613,11 @@ impl VertexInputRate {
 ///   in the top 10 bits of each 16-bit word of plane 2, with the bottom 6 bits of each word unused.
 ///   The horizontal dimension of the R and B plane is halved relative to the image dimensions, and
 ///   each R and B value is shared with the G components for which <span class="katex"><span
-///   class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-///   style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen
-///   delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+///   class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
+///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 ///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
@@ -5590,25 +5625,25 @@ impl VertexInputRate {
 ///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
 ///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
 ///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
-///   delimcenter" style="top:0em;">⌋</span></span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span><span class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
-///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.05017em;">B</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
 ///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
 ///   class="mspace"></span></span><span class="base"><span class="strut"
 ///   style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 ///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
@@ -5626,18 +5661,19 @@ impl VertexInputRate {
 ///   relative to the image dimensions, and each R and B value is shared with the G components for
 ///   which <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
 ///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
+///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 ///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+///   class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
+///   delimcenter">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
 ///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
@@ -5648,14 +5684,14 @@ impl VertexInputRate {
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.05017em;">B</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
-///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+///   class="mrel">=</span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+///   class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span
+///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 ///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
@@ -5713,61 +5749,62 @@ impl VertexInputRate {
 ///   in the top 12 bits of each 16-bit word of plane 2, with the bottom 4 bits of each word unused.
 ///   The horizontal and vertical dimensions of the R and B planes are halved relative to the image
 ///   dimensions, and each R and B component is shared with the G components for which <span
-///   class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
 ///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span
+///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+///   class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
+///   class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
 ///   class="mrel">=</span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
+///   class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span
 ///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span></span><span class="base"><span class="strut"
-///   style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span> and <span
-///   class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
-///   mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+///   and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
+///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-///   class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-///   class="mord">5</span><span style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span></span><span class="base"><span class="strut"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+///   class="base"><span class="strut"
 ///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
 ///   class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
 ///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
@@ -5776,20 +5813,19 @@ impl VertexInputRate {
 ///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
 ///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
 ///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-///   class="base"><span class="strut"
-///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
+///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+///   class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+///   class="strut"></span><span class="mord"><span style="margin-right:0.05724em;" class="mord
+///   mathdefault">j</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
 ///   location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
@@ -5802,75 +5838,76 @@ impl VertexInputRate {
 ///   with the bottom 4 bits of each word unused. The horizontal and vertical dimensions of the BR
 ///   plane are halved relative to the image dimensions, and each R and B value is shared with the G
 ///   components for which <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter">⌊</span><span
+///   class="base"><span style="height:1em;vertical-align:-0.25em;" class="strut"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-///   class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-///   class="mord">5</span><span style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span></span><span class="base"><span
-///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
-///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+///   class="vlist"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+///   style="top:0em;">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
 ///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-///   and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
+///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span> and <span
+///   class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
 ///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
 ///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span
 ///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+///   class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
 ///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   style="height:0.85396em;vertical-align:-0.19444em;" class="strut"></span><span
-///   class="mord"><span style="margin-right:0.05724em;" class="mord mathdefault">j</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.32833099999999993em;" class="vlist"><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
+///   delimcenter" style="top:0em;">⌋</span></span><span style="margin-right:0.2777777777777778em;"
+///   class="mspace"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span class="strut"
+///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+///   class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.05017em;">B</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span></span><span class="base"><span
-///   style="height:0.85396em;vertical-align:-0.19444em;" class="strut"></span><span
+///   class="mrel">=</span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+///   class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
 ///   class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
 ///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
 ///   style="height:0.32833099999999993em;" class="vlist"><span
@@ -5878,9 +5915,9 @@ impl VertexInputRate {
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
-///   The location of each plane when this image is in linear layout can be determined via
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
+///   location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
 ///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the BR plane. This format only supports images with a width
 ///   and height that is a multiple of two.
@@ -5890,44 +5927,44 @@ impl VertexInputRate {
 ///   in the top 12 bits of each 16-bit word of plane 2, with the bottom 4 bits of each word unused.
 ///   The horizontal dimension of the R and B plane is halved relative to the image dimensions, and
 ///   each R and B value is shared with the G components for which <span class="katex"><span
-///   class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
+///   class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+///   style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen
+///   delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 ///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-///   class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-///   class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+///   class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
 ///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
 ///   class="mspace"></span></span><span class="base"><span class="strut"
 ///   style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   style="margin-right:0.05017em;" class="mord mathdefault
-///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
 ///   class="mrel">=</span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span
+///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
 ///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
-///   The location of each plane when this image is in linear layout can be determined via
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
+///   location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
 ///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the B plane, and `VK_IMAGE_ASPECT_PLANE_2_BIT` for the R
 ///   plane. This format only supports images with a width that is a multiple of two.
@@ -5941,39 +5978,39 @@ impl VertexInputRate {
 ///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
 ///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
-///   style="top:0em;">⌋</span></span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
-///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
 ///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
+///   delimcenter" style="top:0em;">⌋</span></span><span style="margin-right:0.2777777777777778em;"
+///   class="mspace"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
 ///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
 ///   class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   style="margin-right:0.05017em;" class="mord mathdefault
+///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+///   class="vlist"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
 ///   The location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
@@ -6013,137 +6050,50 @@ impl VertexInputRate {
 ///   plane 1, and a 16-bit R component in each 16-bit word of plane 2. The horizontal and vertical
 ///   dimensions of the R and B planes are halved relative to the image dimensions, and each R and B
 ///   component is shared with the G components for which <span class="katex"><span
-///   aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="katex-html" aria-hidden="true"><span class="base"><span
 ///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
 ///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
-///   delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+///   style="top:0em;">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
 ///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   style="margin-right:0.05017em;" class="mord mathdefault
-///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
-///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-///   and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
-///   mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
-///   delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span class="strut"
-///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-///   class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.05017em;">B</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
-///   class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.32833099999999993em;" class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
-///   location of each plane when this image is in linear layout can be determined via
-///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
-///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the B plane, and `VK_IMAGE_ASPECT_PLANE_2_BIT` for the R
-///   plane. This format only supports images with a width and height that is a multiple of two.
-/// - [`G16B16R162Plane420Unorm`] specifies an unsigned normalized *multi-planar format* that has a
-///   16-bit G component in each 16-bit word of plane 0, and a two-component, 32-bit BR plane 1
-///   consisting of a 16-bit B component in the word in bytes 0..1, and a 16-bit R component in the
-///   word in bytes 2..3. The horizontal and vertical dimensions of the BR plane are halved relative
-///   to the image dimensions, and each R and B value is shared with the G components for which
-///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+///   class="mspace"></span></span><span class="base"><span class="strut"
+///   style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
-///   delimcenter" style="top:0em;">⌋</span></span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span><span class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span
-///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.05017em;">B</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
-///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
 ///   and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
 ///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
-///   mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
+///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
+///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+///   class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
@@ -6155,48 +6105,87 @@ impl VertexInputRate {
 ///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+///   class="base"><span class="strut"
+///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
 ///   class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
 ///   class="strut"></span><span class="mord"><span class="mord mathdefault"
 ///   style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
+///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
+///   The location of each plane when this image is in linear layout can be determined via
+///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
+///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the B plane, and `VK_IMAGE_ASPECT_PLANE_2_BIT` for the R
+///   plane. This format only supports images with a width and height that is a multiple of two.
+/// - [`G16B16R162Plane420Unorm`] specifies an unsigned normalized *multi-planar format* that has a
+///   16-bit G component in each 16-bit word of plane 0, and a two-component, 32-bit BR plane 1
+///   consisting of a 16-bit B component in the word in bytes 0..1, and a 16-bit R component in the
+///   word in bytes 2..3. The horizontal and vertical dimensions of the BR plane are halved relative
+///   to the image dimensions, and each R and B value is shared with the G components for which
+///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
+///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+///   class="mrel">=</span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
+///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   style="margin-right:0.05017em;" class="mord mathdefault
 ///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   style="height:0.85396em;vertical-align:-0.19444em;" class="strut"></span><span
-///   class="mord"><span style="margin-right:0.05724em;" class="mord mathdefault">j</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.32833099999999993em;" class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
-///   location of each plane when this image is in linear layout can be determined via
-///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
-///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the BR plane. This format only supports images with a width
-///   and height that is a multiple of two.
-/// - [`G16B16R163Plane422Unorm`] specifies an unsigned normalized *multi-planar format* that has a
-///   16-bit G component in each 16-bit word of plane 0, a 16-bit B component in each 16-bit word of
-///   plane 1, and a 16-bit R component in each 16-bit word of plane 2. The horizontal dimension of
-///   the R and B plane is halved relative to the image dimensions, and each R and B value is shared
-///   with the G components for which <span class="katex"><span class="katex-html"
-///   aria-hidden="true"><span class="base"><span style="height:1em;vertical-align:-0.25em;"
-///   class="strut"></span><span class="minner"><span class="mopen delimcenter"
-///   style="top:0em;">⌊</span><span class="mord"><span class="mord mathdefault">i</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
+///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+///   class="mspace"></span></span><span class="base"><span class="strut"
+///   style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span> and <span
+///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
+///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
+///   mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
 ///   class="mbin">×</span><span class="mspace"
@@ -6205,40 +6194,43 @@ impl VertexInputRate {
 ///   delimcenter">⌋</span></span><span style="margin-right:0.2777777777777778em;"
 ///   class="mspace"></span><span class="mrel">=</span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span
-///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
+///   class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.05017em;">B</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
 ///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
-///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
-///   location of each plane when this image is in linear layout can be determined via
-///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
-///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the B plane, and `VK_IMAGE_ASPECT_PLANE_2_BIT` for the R
-///   plane. This format only supports images with a width that is a multiple of two.
-/// - [`G16B16R162Plane422Unorm`] specifies an unsigned normalized *multi-planar format* that has a
-///   16-bit G component in each 16-bit word of plane 0, and a two-component, 32-bit BR plane 1
-///   consisting of a 16-bit B component in the word in bytes 0..1, and a 16-bit R component in the
-///   word in bytes 2..3. The horizontal dimension of the BR plane is halved relative to the image
-///   dimensions, and each R and B value is shared with the G components for which <span
-///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
+///   class="base"><span class="strut"
+///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
+///   The location of each plane when this image is in linear layout can be determined via
+///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
+///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the BR plane. This format only supports images with a width
+///   and height that is a multiple of two.
+/// - [`G16B16R163Plane422Unorm`] specifies an unsigned normalized *multi-planar format* that has a
+///   16-bit G component in each 16-bit word of plane 0, a 16-bit B component in each 16-bit word of
+///   plane 1, and a 16-bit R component in each 16-bit word of plane 2. The horizontal dimension of
+///   the R and B plane is halved relative to the image dimensions, and each R and B value is shared
+///   with the G components for which <span class="katex"><span class="katex-html"
+///   aria-hidden="true"><span class="base"><span class="strut"
+///   style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen
+///   delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 ///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
@@ -6246,17 +6238,17 @@ impl VertexInputRate {
 ///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
 ///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
 ///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
-///   delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
 ///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
 ///   vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   style="margin-right:0.05017em;" class="mord mathdefault
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
 ///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
@@ -6266,13 +6258,59 @@ impl VertexInputRate {
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
 ///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
 ///   class="vlist"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
+///   The location of each plane when this image is in linear layout can be determined via
+///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
+///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the B plane, and `VK_IMAGE_ASPECT_PLANE_2_BIT` for the R
+///   plane. This format only supports images with a width that is a multiple of two.
+/// - [`G16B16R162Plane422Unorm`] specifies an unsigned normalized *multi-planar format* that has a
+///   16-bit G component in each 16-bit word of plane 0, and a two-component, 32-bit BR plane 1
+///   consisting of a 16-bit B component in the word in bytes 0..1, and a 16-bit R component in the
+///   word in bytes 2..3. The horizontal dimension of the BR plane is halved relative to the image
+///   dimensions, and each R and B value is shared with the G components for which <span
+///   class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
+///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+///   class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
+///   class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+///   class="mspace"></span></span><span class="base"><span
+///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
+///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
+///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+///   class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
-///   The location of each plane when this image is in linear layout can be determined via
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
+///   location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
 ///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the BR plane. This format only supports images with a width
 ///   that is a multiple of two.
@@ -6375,6 +6413,7 @@ impl VertexInputRate {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFormat")]
 #[doc(alias = "VkFormat")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -7260,26 +7299,25 @@ pub enum Format {
     ///relative to the image dimensions, and each R and B component is shared
     ///with the G components for which <span class="katex"><span aria-hidden="true"
     /// class="katex-html"><span class="base"><span class="strut"
-    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
+    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen
+    /// delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
     /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-    /// class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-    /// class="mord">5</span><span style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span><span
-    /// class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
-    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// class="base"><span class="strut"
+    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
     /// mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
@@ -7292,12 +7330,13 @@ pub enum Format {
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
     /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+    /// style="margin-right:0.00773em;" class="mord mathdefault
+    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span style="height:0.15em;"
     /// class="vlist"><span></span></span></span></span></span></span></span></span></span> and
     /// <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-    /// class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+    /// style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
     /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
     /// mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
@@ -7306,17 +7345,18 @@ pub enum Format {
     /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
-    /// class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mbin">×</span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+    /// style="top:0em;">⌋</span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault"
+    /// style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t
+    /// vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
@@ -7327,12 +7367,12 @@ pub enum Format {
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
     /// class="mrel">=</span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
-    /// class="mord"><span style="margin-right:0.05724em;" class="mord mathdefault">j</span><span
+    /// style="height:0.85396em;vertical-align:-0.19444em;" class="strut"></span><span
+    /// class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
     /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight"
     /// style="margin-right:0.00773em;">R</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
@@ -7353,28 +7393,28 @@ pub enum Format {
     ///component in byte 0 and an 8-bit R component in byte 1.
     ///The horizontal and vertical dimensions of the BR plane are halved
     ///relative to the image dimensions, and each R and B value is shared with
-    ///the G components for which <span class="katex"><span class="katex-html"
-    /// aria-hidden="true"><span class="base"><span class="strut"
-    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen
-    /// delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+    ///the G components for which <span class="katex"><span aria-hidden="true"
+    /// class="katex-html"><span class="base"><span class="strut"
+    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
     /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
     /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-    /// class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-    /// class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
-    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-    /// class="vlist"><span
+    /// class="mbin">×</span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+    /// style="top:0em;">⌋</span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
     /// style="margin-right:0.05017em;" class="mord mathdefault
@@ -7382,60 +7422,61 @@ pub enum Format {
     /// class="vlist-r"><span style="height:0.15em;"
     /// class="vlist"><span></span></span></span></span></span></span><span
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
-    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
+    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+    /// class="mspace"></span></span><span class="base"><span class="strut"
+    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
     /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-    /// and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-    /// style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
+    /// class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span></span></span></span> and
+    /// <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+    /// class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+    /// class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span
     /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+    /// class="vlist"><span></span></span></span></span></span></span><span
     /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
+    /// class="mbin">×</span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+    /// style="top:0em;">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
-    /// class="strut"></span><span class="mord"><span style="margin-right:0.05724em;" class="mord
-    /// mathdefault">j</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span class="strut"
+    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+    /// class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
     /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
     /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
-    /// class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-    /// style="height:0.32833099999999993em;" class="vlist"><span
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+    /// class="strut"></span><span class="mord"><span style="margin-right:0.05724em;" class="mord
+    /// mathdefault">j</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
-    /// location of each plane when this image is in linear layout can be determined via
-    /// [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
+    /// span>. The location of each plane when this image is in linear layout can be
+    ///determined via [`GetImageSubresourceLayout`], using
+    ///`VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
     ///`VK_IMAGE_ASPECT_PLANE_1_BIT` for the BR plane.
     ///This format only supports images with a width and height that is a
     ///multiple of two.
@@ -7447,8 +7488,8 @@ pub enum Format {
     ///0, an 8-bit B component in plane 1, and an 8-bit R component in plane 2.
     ///The horizontal dimension of the R and B plane is halved relative to the
     ///image dimensions, and each R and B value is shared with the G components
-    ///for which <span class="katex"><span class="katex-html" aria-hidden="true"><span
-    /// class="base"><span style="height:1em;vertical-align:-0.25em;" class="strut"></span><span
+    ///for which <span class="katex"><span aria-hidden="true" class="katex-html"><span
+    /// class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
     /// class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
@@ -7459,11 +7500,11 @@ pub enum Format {
     /// class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
     /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
     /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
+    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
     /// class="base"><span class="strut"
     /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
@@ -7472,19 +7513,20 @@ pub enum Format {
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
     /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
-    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-    /// style="height:0.32833099999999993em;" class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight"
-    /// style="margin-right:0.00773em;">R</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+    /// class="mspace"></span></span><span class="base"><span
+    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+    /// class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+    /// style="margin-right:0.00773em;" class="mord mathdefault
+    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
     /// span>. The location of each plane when this image is in linear layout can be
     ///determined via [`GetImageSubresourceLayout`], using
@@ -7505,19 +7547,32 @@ pub enum Format {
     /// class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
     /// class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+    /// class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+    /// class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
+    /// class="mord">5</span><span style="top:0em;" class="mclose delimcenter">⌋</span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
+    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
     /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
     /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
     /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
@@ -7525,19 +7580,7 @@ pub enum Format {
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight"
-    /// style="margin-right:0.05017em;">B</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span></span><span class="base"><span
-    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
-    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// style="margin-right:0.00773em;">R</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
     /// span>. The location of each plane when this image is in linear layout can be
@@ -7631,78 +7674,79 @@ pub enum Format {
     ///bottom 6 bits of each word unused.
     ///The horizontal and vertical dimensions of the R and B planes are halved
     ///relative to the image dimensions, and each R and B component is shared
-    ///with the G components for which <span class="katex"><span class="katex-html"
-    /// aria-hidden="true"><span class="base"><span style="height:1em;vertical-align:-0.25em;"
+    ///with the G components for which <span class="katex"><span aria-hidden="true"
+    /// class="katex-html"><span class="base"><span style="height:1em;vertical-align:-0.25em;"
     /// class="strut"></span><span class="minner"><span style="top:0em;" class="mopen
     /// delimcenter">⌊</span><span class="mord"><span class="mord mathdefault">i</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-    /// style="height:0.32833099999999993em;" class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-    /// class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
-    /// delimcenter">⌋</span></span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span><span class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
-    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
+    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+    /// class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
+    /// class="mord">5</span><span style="top:0em;" class="mclose delimcenter">⌋</span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+    /// class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.05017em;">B</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-    /// class="base"><span class="strut"
-    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
+    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+    /// style="height:0.32833099999999993em;" class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+    /// mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
     /// and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
     /// class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
+    /// class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span
     /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-    /// class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-    /// class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
-    /// class="strut"></span><span class="mord"><span class="mord mathdefault"
-    /// style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t
-    /// vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
+    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mbin">×</span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+    /// style="top:0em;">⌋</span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span class="strut"
+    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+    /// class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.05017em;">B</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
     /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
     /// class="base"><span class="strut"
     /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+    /// class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
@@ -7730,35 +7774,36 @@ pub enum Format {
     ///The horizontal and vertical dimensions of the BR plane are halved
     ///relative to the image dimensions, and each R and B value is shared with
     ///the G components for which <span class="katex"><span class="katex-html"
-    /// aria-hidden="true"><span class="base"><span class="strut"
-    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+    /// aria-hidden="true"><span class="base"><span style="height:1em;vertical-align:-0.25em;"
+    /// class="strut"></span><span class="minner"><span class="mopen delimcenter"
+    /// style="top:0em;">⌊</span><span class="mord"><span class="mord mathdefault">i</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+    /// style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+    /// class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
+    /// class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+    /// class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+    /// style="margin-right:0.05017em;" class="mord mathdefault
+    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
-    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span></span><span class="base"><span class="strut"
+    /// class="base"><span class="strut"
     /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
     /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
@@ -7770,45 +7815,44 @@ pub enum Format {
     /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
     /// and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
     /// class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-    /// class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
-    /// mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+    /// class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span
+    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
-    /// style="top:0em;">⌋</span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span class="strut"
-    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-    /// class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight"
-    /// style="margin-right:0.05017em;">B</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
     /// class="base"><span class="strut"
     /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+    /// class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+    /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
+    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault"
+    /// style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t
+    /// vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight"
-    /// style="margin-right:0.00773em;">R</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
+    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
     /// span>. The location of each plane when this image is in linear layout can be
     ///determined via [`GetImageSubresourceLayout`], using
@@ -7828,11 +7872,11 @@ pub enum Format {
     ///The horizontal dimension of the R and B plane is halved relative to the
     ///image dimensions, and each R and B value is shared with the G components
     ///for which <span class="katex"><span class="katex-html" aria-hidden="true"><span
-    /// class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+    /// class="base"><span style="height:1em;vertical-align:-0.25em;" class="strut"></span><span
     /// class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-    /// class="vlist"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
     /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
@@ -7841,23 +7885,21 @@ pub enum Format {
     /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
     /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
     /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
-    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-    /// class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight"
-    /// style="margin-right:0.05017em;">B</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
     /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
     /// class="mspace"></span></span><span class="base"><span class="strut"
+    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+    /// mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span class="strut"
     /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
     /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
@@ -7885,19 +7927,20 @@ pub enum Format {
     ///dimensions, and each R and B value is shared with the G components for
     ///which <span class="katex"><span class="katex-html" aria-hidden="true"><span
     /// class="base"><span style="height:1em;vertical-align:-0.25em;" class="strut"></span><span
-    /// class="minner"><span style="top:0em;" class="mopen delimcenter">⌊</span><span
+    /// class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
     /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
+    /// class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mbin">×</span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+    /// class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
+    /// delimcenter">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
     /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
@@ -7908,13 +7951,14 @@ pub enum Format {
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight"
     /// style="margin-right:0.05017em;">B</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
-    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+    /// class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
@@ -8015,63 +8059,64 @@ pub enum Format {
     ///bottom 4 bits of each word unused.
     ///The horizontal and vertical dimensions of the R and B planes are halved
     ///relative to the image dimensions, and each R and B component is shared
-    ///with the G components for which <span class="katex"><span aria-hidden="true"
-    /// class="katex-html"><span class="base"><span class="strut"
-    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen
-    /// delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+    ///with the G components for which <span class="katex"><span class="katex-html"
+    /// aria-hidden="true"><span class="base"><span class="strut"
+    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
     /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span
     /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span
+    /// class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+    /// class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
+    /// class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
     /// class="mrel">=</span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+    /// class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-    /// class="vlist"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span></span><span class="base"><span class="strut"
-    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span></span></span></span> and
-    /// <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-    /// style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
-    /// mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-    /// class="vlist"><span
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.05017em;">B</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+    /// and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+    /// class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
+    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-    /// class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-    /// class="mord">5</span><span style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span></span><span class="base"><span class="strut"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// class="base"><span class="strut"
     /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
     /// class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
@@ -8080,20 +8125,19 @@ pub enum Format {
     /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
     /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
     /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-    /// class="base"><span class="strut"
-    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
+    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+    /// class="strut"></span><span class="mord"><span style="margin-right:0.05724em;" class="mord
+    /// mathdefault">j</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
     /// class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
     /// location of each plane when this image is in linear layout can be determined via
     /// [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
@@ -8113,76 +8157,76 @@ pub enum Format {
     ///The horizontal and vertical dimensions of the BR plane are halved
     ///relative to the image dimensions, and each R and B value is shared with
     ///the G components for which <span class="katex"><span aria-hidden="true"
-    /// class="katex-html"><span class="base"><span class="strut"
-    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+    /// class="katex-html"><span class="base"><span style="height:1em;vertical-align:-0.25em;"
+    /// class="strut"></span><span class="minner"><span class="mopen delimcenter"
+    /// style="top:0em;">⌊</span><span class="mord"><span class="mord mathdefault">i</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-    /// class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-    /// class="mord">5</span><span style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span></span><span class="base"><span
-    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
-    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-    /// class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mbin">×</span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+    /// style="top:0em;">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
     /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
     /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-    /// style="height:0.32833099999999993em;" class="vlist"><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-    /// and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+    /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
+    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+    /// mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span></span></span></span> and
+    /// <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
     /// style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
     /// class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span
     /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+    /// class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
     /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
     /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span
+    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// style="height:0.85396em;vertical-align:-0.19444em;" class="strut"></span><span
-    /// class="mord"><span style="margin-right:0.05724em;" class="mord mathdefault">j</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-    /// style="height:0.32833099999999993em;" class="vlist"><span
+    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+    /// class="mspace"></span></span><span class="base"><span class="strut"
+    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+    /// class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight"
     /// style="margin-right:0.05017em;">B</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span></span><span class="base"><span
-    /// style="height:0.85396em;vertical-align:-0.19444em;" class="strut"></span><span
+    /// class="mrel">=</span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+    /// class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
     /// class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
     /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
     /// style="height:0.32833099999999993em;" class="vlist"><span
@@ -8190,11 +8234,10 @@ pub enum Format {
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight"
     /// style="margin-right:0.00773em;">R</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
-    /// span>. The location of each plane when this image is in linear layout can be
-    ///determined via [`GetImageSubresourceLayout`], using
-    ///`VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
+    /// location of each plane when this image is in linear layout can be determined via
+    /// [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
     ///`VK_IMAGE_ASPECT_PLANE_1_BIT` for the BR plane.
     ///This format only supports images with a width and height that is a
     ///multiple of two.
@@ -8210,47 +8253,46 @@ pub enum Format {
     ///The horizontal dimension of the R and B plane is halved relative to the
     ///image dimensions, and each R and B value is shared with the G components
     ///for which <span class="katex"><span class="katex-html" aria-hidden="true"><span
-    /// class="base"><span style="height:1em;vertical-align:-0.25em;" class="strut"></span><span
-    /// class="minner"><span style="top:0em;" class="mopen delimcenter">⌊</span><span
-    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-    /// class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-    /// class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span><span
-    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span></span><span class="base"><span class="strut"
-    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
-    /// style="margin-right:0.05017em;" class="mord mathdefault
-    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+    /// class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+    /// class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
     /// class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+    /// class="mspace"></span></span><span class="base"><span class="strut"
+    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+    /// mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
-    /// span>. The location of each plane when this image is in linear layout can be
-    ///determined via [`GetImageSubresourceLayout`], using
-    ///`VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+    /// class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
+    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
+    /// location of each plane when this image is in linear layout can be determined via
+    /// [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
     ///`VK_IMAGE_ASPECT_PLANE_1_BIT` for the B plane, and
     ///`VK_IMAGE_ASPECT_PLANE_2_BIT` for the R plane.
     ///This format only supports images with a width that is a multiple of two.
@@ -8269,40 +8311,40 @@ pub enum Format {
     /// class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
     /// class="minner"><span style="top:0em;" class="mopen delimcenter">⌊</span><span
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-    /// class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
-    /// style="top:0em;">⌋</span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
-    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
-    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-    /// style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight"
-    /// style="margin-right:0.00773em;">R</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+    /// class="mspace"></span></span><span class="base"><span class="strut"
+    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+    /// style="margin-right:0.05017em;" class="mord mathdefault
+    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span class="strut"
+    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+    /// style="margin-right:0.00773em;" class="mord mathdefault
+    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
     /// span>. The location of each plane when this image is in linear layout can be
     ///determined via [`GetImageSubresourceLayout`], using
@@ -8368,65 +8410,65 @@ pub enum Format {
     ///plane 1, and a 16-bit R component in each 16-bit word of plane 2.
     ///The horizontal and vertical dimensions of the R and B planes are halved
     ///relative to the image dimensions, and each R and B component is shared
-    ///with the G components for which <span class="katex"><span aria-hidden="true"
-    /// class="katex-html"><span class="base"><span style="height:1em;vertical-align:-0.25em;"
+    ///with the G components for which <span class="katex"><span class="katex-html"
+    /// aria-hidden="true"><span class="base"><span style="height:1em;vertical-align:-0.25em;"
     /// class="strut"></span><span class="minner"><span class="mopen delimcenter"
     /// style="top:0em;">⌊</span><span class="mord"><span class="mord mathdefault">i</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-    /// style="height:0.32833099999999993em;" class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
     /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
+    /// class="mbin">×</span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+    /// style="top:0em;">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
     /// class="base"><span class="strut"
     /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
-    /// style="margin-right:0.05017em;" class="mord mathdefault
-    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span class="strut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+    /// mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+    /// class="mspace"></span></span><span class="base"><span class="strut"
     /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
     /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
-    /// style="margin-right:0.00773em;" class="mord mathdefault
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
     /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
     /// class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-    /// and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-    /// class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-    /// class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
-    /// mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
+    /// and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+    /// style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
+    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
+    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+    /// class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
     /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
     /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
+    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
     /// class="base"><span class="strut"
     /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-    /// class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
@@ -8434,22 +8476,23 @@ pub enum Format {
     /// mtight"><span class="mord mathdefault mtight"
     /// style="margin-right:0.05017em;">B</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
-    /// class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-    /// style="height:0.32833099999999993em;" class="vlist"><span
+    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault"
+    /// style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t
+    /// vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
     /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
-    /// location of each plane when this image is in linear layout can be determined via
-    /// [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
+    /// class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
+    /// span>. The location of each plane when this image is in linear layout can be
+    ///determined via [`GetImageSubresourceLayout`], using
+    ///`VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
     ///`VK_IMAGE_ASPECT_PLANE_1_BIT` for the B plane, and
     ///`VK_IMAGE_ASPECT_PLANE_2_BIT` for the R plane.
     ///This format only supports images with a width and height that is a
@@ -8466,32 +8509,19 @@ pub enum Format {
     ///relative to the image dimensions, and each R and B value is shared with
     ///the G components for which <span class="katex"><span aria-hidden="true"
     /// class="katex-html"><span class="base"><span class="strut"
-    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen
-    /// delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
     /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
     /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
-    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight"
-    /// style="margin-right:0.05017em;">B</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
+    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
     /// class="mrel">=</span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
@@ -8499,13 +8529,25 @@ pub enum Format {
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight"
-    /// style="margin-right:0.00773em;">R</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-    /// and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+    /// style="margin-right:0.05017em;" class="mord mathdefault
+    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+    /// class="mspace"></span></span><span class="base"><span class="strut"
+    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+    /// style="margin-right:0.00773em;" class="mord mathdefault
+    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span></span></span></span> and
+    /// <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
     /// style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
     /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
     /// mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
@@ -8515,39 +8557,40 @@ pub enum Format {
     /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
-    /// class="strut"></span><span class="mord"><span class="mord mathdefault"
-    /// style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t
-    /// vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-    /// class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mbin">×</span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+    /// class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
+    /// delimcenter">⌋</span></span><span style="margin-right:0.2777777777777778em;"
+    /// class="mspace"></span><span class="mrel">=</span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// style="height:0.85396em;vertical-align:-0.19444em;" class="strut"></span><span
-    /// class="mord"><span style="margin-right:0.05724em;" class="mord mathdefault">j</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-    /// style="height:0.32833099999999993em;" class="vlist"><span
+    /// class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
+    /// class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight"
-    /// style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// style="margin-right:0.05017em;">B</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
-    /// location of each plane when this image is in linear layout can be determined via
-    /// [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
+    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// class="base"><span class="strut"
+    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
+    /// span>. The location of each plane when this image is in linear layout can be
+    ///determined via [`GetImageSubresourceLayout`], using
+    ///`VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
     ///`VK_IMAGE_ASPECT_PLANE_1_BIT` for the BR plane.
     ///This format only supports images with a width and height that is a
     ///multiple of two.
@@ -8561,46 +8604,46 @@ pub enum Format {
     ///The horizontal dimension of the R and B plane is halved relative to the
     ///image dimensions, and each R and B value is shared with the G components
     ///for which <span class="katex"><span class="katex-html" aria-hidden="true"><span
-    /// class="base"><span style="height:1em;vertical-align:-0.25em;" class="strut"></span><span
+    /// class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
     /// class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
-    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-    /// class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
-    /// delimcenter">⌋</span></span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span><span class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
     /// class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span style="height:0.15em;"
     /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
     /// class="base"><span class="strut"
     /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
+    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+    /// style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
-    /// style="margin-right:0.00773em;" class="mord mathdefault
-    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
-    /// location of each plane when this image is in linear layout can be determined via
-    /// [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+    /// mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
+    /// span>. The location of each plane when this image is in linear layout can be
+    ///determined via [`GetImageSubresourceLayout`], using
+    ///`VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
     ///`VK_IMAGE_ASPECT_PLANE_1_BIT` for the B plane, and
     ///`VK_IMAGE_ASPECT_PLANE_2_BIT` for the R plane.
     ///This format only supports images with a width that is a multiple of two.
@@ -8614,48 +8657,48 @@ pub enum Format {
     ///16-bit R component in the word in bytes 2..3.
     ///The horizontal dimension of the BR plane is halved relative to the image
     ///dimensions, and each R and B value is shared with the G components for
-    ///which <span class="katex"><span class="katex-html" aria-hidden="true"><span
-    /// class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
-    /// class="minner"><span style="top:0em;" class="mopen delimcenter">⌊</span><span
+    ///which <span class="katex"><span aria-hidden="true" class="katex-html"><span
+    /// class="base"><span style="height:1em;vertical-align:-0.25em;" class="strut"></span><span
+    /// class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+    /// class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
+    /// class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+    /// class="mspace"></span></span><span class="base"><span
+    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
+    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
     /// class="vlist-r"><span style="height:0.15em;"
     /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
     /// class="base"><span class="strut"
     /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
-    /// style="margin-right:0.05017em;" class="mord mathdefault
-    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
-    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-    /// style="height:0.32833099999999993em;" class="vlist"><span
+    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight"
     /// style="margin-right:0.00773em;">R</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
-    /// span>. The location of each plane when this image is in linear layout can be
-    ///determined via [`GetImageSubresourceLayout`], using
-    ///`VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
+    /// location of each plane when this image is in linear layout can be determined via
+    /// [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
     ///`VK_IMAGE_ASPECT_PLANE_1_BIT` for the BR plane.
     ///This format only supports images with a width that is a multiple of two.
     ///
@@ -11394,6 +11437,7 @@ impl Format {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkStructureType")]
+#[doc(alias = "VkStructureType")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -13892,6 +13936,7 @@ impl StructureType {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubpassContents")]
+#[doc(alias = "VkSubpassContents")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -14116,6 +14161,7 @@ impl SubpassContents {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkResult")]
 #[doc(alias = "VkResult")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -14567,6 +14613,7 @@ impl VulkanResultCodes {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDynamicState")]
+#[doc(alias = "VkDynamicState")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -15000,6 +15047,7 @@ impl DynamicState {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkObjectType")]
+#[doc(alias = "VkObjectType")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -15186,6 +15234,7 @@ impl ObjectType {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVendorId")]
 #[doc(alias = "VkVendorId")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -20351,6 +20400,7 @@ impl EventCreateFlagBits {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFramebufferCreateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -20652,6 +20702,7 @@ impl std::fmt::Debug for QueryPoolCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRenderPassCreateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -20938,6 +20989,7 @@ impl std::fmt::Debug for RenderPassCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSamplerCreateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -21296,6 +21348,7 @@ impl std::fmt::Debug for PipelineLayoutCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineCacheCreateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -21597,6 +21650,7 @@ impl std::fmt::Debug for PipelineCacheCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineDepthStencilStateCreateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -21933,6 +21987,7 @@ impl std::fmt::Debug for PipelineDynamicStateCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineColorBlendStateCreateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -22428,6 +22483,7 @@ impl std::fmt::Debug for PipelineVertexInputStateCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineShaderStageCreateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -22767,6 +22823,7 @@ impl std::fmt::Debug for PipelineShaderStageCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorSetLayoutCreateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -23204,6 +23261,7 @@ impl std::fmt::Debug for DeviceCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceQueueCreateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -23508,6 +23566,7 @@ impl std::fmt::Debug for DeviceQueueCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkQueueFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -23903,6 +23962,7 @@ impl std::fmt::Debug for QueueFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryPropertyFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -24293,6 +24353,7 @@ impl std::fmt::Debug for MemoryPropertyFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryHeapFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -24748,6 +24809,7 @@ impl std::fmt::Debug for MemoryHeapFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccessFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -25524,6 +25586,7 @@ impl std::fmt::Debug for AccessFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferUsageFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -26119,6 +26182,7 @@ impl std::fmt::Debug for BufferUsageFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferCreateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -26509,6 +26573,7 @@ impl std::fmt::Debug for BufferCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkShaderStageFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -27035,6 +27100,7 @@ impl std::fmt::Debug for ShaderStageFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageUsageFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -27689,6 +27755,7 @@ impl std::fmt::Debug for ImageUsageFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageCreateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -28245,6 +28312,7 @@ impl std::fmt::Debug for ImageCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageViewCreateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -28666,6 +28734,7 @@ impl std::fmt::Debug for ImageViewCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineCreateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -29304,6 +29373,7 @@ impl std::fmt::Debug for PipelineCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkColorComponentFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -29602,6 +29672,7 @@ impl std::fmt::Debug for ColorComponentFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFenceCreateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -30075,6 +30146,7 @@ impl std::fmt::Debug for SemaphoreCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFormatFeatureFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -30809,6 +30881,7 @@ impl std::fmt::Debug for FormatFeatureFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkQueryControlFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -31090,6 +31163,7 @@ impl std::fmt::Debug for QueryControlFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkQueryResultFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -31442,6 +31516,7 @@ impl std::fmt::Debug for ShaderModuleCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkEventCreateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -31718,6 +31793,7 @@ impl std::fmt::Debug for EventCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCommandPoolCreateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -32017,6 +32093,7 @@ impl std::fmt::Debug for CommandPoolCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCommandPoolResetFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -32294,6 +32371,7 @@ impl std::fmt::Debug for CommandPoolResetFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCommandBufferResetFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -32579,6 +32657,7 @@ impl std::fmt::Debug for CommandBufferResetFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCommandBufferUsageFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -32934,6 +33013,7 @@ impl std::fmt::Debug for CommandBufferUsageFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkQueryPipelineStatisticFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -33475,6 +33555,7 @@ impl std::fmt::Debug for MemoryMapFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageAspectFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -33872,6 +33953,7 @@ impl std::fmt::Debug for ImageAspectFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSparseMemoryBindFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -34146,6 +34228,7 @@ impl std::fmt::Debug for SparseMemoryBindFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSparseImageFormatFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -34474,6 +34557,7 @@ impl std::fmt::Debug for SparseImageFormatFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSubpassDescriptionFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -34950,6 +35034,7 @@ impl std::fmt::Debug for SubpassDescriptionFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineStageFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -35604,6 +35689,7 @@ impl std::fmt::Debug for PipelineStageFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSampleCountFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -35934,6 +36020,7 @@ impl std::fmt::Debug for SampleCountFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAttachmentDescriptionFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -36211,6 +36298,7 @@ impl std::fmt::Debug for AttachmentDescriptionFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkStencilFaceFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -36507,6 +36595,7 @@ impl std::fmt::Debug for StencilFaceFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCullModeFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -36821,6 +36910,7 @@ impl std::fmt::Debug for CullModeFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorPoolCreateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -37179,6 +37269,7 @@ impl std::fmt::Debug for DescriptorPoolResetFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDependencyFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -37472,17 +37563,18 @@ impl std::fmt::Debug for DependencyFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBaseOutStructure")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BaseOutStructure<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the structure type of the structure being iterated
     ///through.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`next`] is `NULL` or a pointer to the next structure in a structure
     ///chain.
-    next: *mut BaseOutStructure<'lt>,
+    pub next: *mut BaseOutStructure<'lt>,
 }
 impl<'lt> Default for BaseOutStructure<'lt> {
     fn default() -> Self {
@@ -37564,17 +37656,18 @@ impl<'lt> BaseOutStructure<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBaseInStructure")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BaseInStructure<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the structure type of the structure being iterated
     ///through.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`next`] is `NULL` or a pointer to the next structure in a structure
     ///chain.
-    next: *const BaseInStructure<'lt>,
+    pub next: *const BaseInStructure<'lt>,
 }
 impl<'lt> Default for BaseInStructure<'lt> {
     fn default() -> Self {
@@ -37651,15 +37744,16 @@ impl<'lt> BaseInStructure<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkOffset2D")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct Offset2D {
     ///[`x`] is the x offset.
-    x: i32,
+    pub x: i32,
     ///[`y`] is the y offset.
-    y: i32,
+    pub y: i32,
 }
 impl Default for Offset2D {
     fn default() -> Self {
@@ -37728,17 +37822,18 @@ impl Offset2D {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkOffset3D")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct Offset3D {
     ///[`x`] is the x offset.
-    x: i32,
+    pub x: i32,
     ///[`y`] is the y offset.
-    y: i32,
+    pub y: i32,
     ///[`z`] is the z offset.
-    z: i32,
+    pub z: i32,
 }
 impl Default for Offset3D {
     fn default() -> Self {
@@ -37839,15 +37934,16 @@ impl Offset3D {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExtent2D")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct Extent2D {
     ///[`width`] is the width of the extent.
-    width: u32,
+    pub width: u32,
     ///[`height`] is the height of the extent.
-    height: u32,
+    pub height: u32,
 }
 impl Default for Extent2D {
     fn default() -> Self {
@@ -37918,17 +38014,18 @@ impl Extent2D {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExtent3D")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct Extent3D {
     ///[`width`] is the width of the extent.
-    width: u32,
+    pub width: u32,
     ///[`height`] is the height of the extent.
-    height: u32,
+    pub height: u32,
     ///[`depth`] is the depth of the extent.
-    depth: u32,
+    pub depth: u32,
 }
 impl Default for Extent3D {
     fn default() -> Self {
@@ -38005,25 +38102,25 @@ impl Extent3D {
 ///attachment has a floating-point depth component.
 ///If an m-bit fixed-point representation is used, we assume that it
 ///represents each value <span class="katex"><span class="katex-html" aria-hidden="true"><span
-/// class="base"><span class="strut"
-/// style="height:1.283439em;vertical-align:-0.403331em;"></span><span class="mord"><span
-/// class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span class="vlist" style="height:0.8801079999999999em;"><span
-/// style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing
-/// reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord
-/// mtight">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span
-/// style="height:0.5935428571428571em;" class="vlist"><span
+/// class="base"><span style="height:1.283439em;vertical-align:-0.403331em;"
+/// class="strut"></span><span class="mord"><span class="mopen nulldelimiter"></span><span
+/// class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+/// style="height:0.8801079999999999em;" class="vlist"><span style="top:-2.655em;"><span
+/// class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+/// class="mord mtight"><span class="mord mtight"><span class="mord mtight">2</span><span
+/// class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+/// style="height:0.5935428571428571em;"><span
 /// style="top:-2.786em;margin-right:0.07142857142857144em;"><span style="height:2.5em;"
 /// class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
 /// mathdefault mtight">m</span></span></span></span></span></span></span></span><span class="mbin
 /// mtight">−</span><span class="mord mtight">1</span></span></span></span><span
-/// style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span
-/// style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-/// style="top:-3.394em;"><span style="height:3em;" class="pstrut"></span><span class="sizing
-/// reset-size6 size3 mtight"><span class="mord mtight"><span style="margin-right:0.03148em;"
-/// class="mord mathdefault mtight">k</span></span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.403331em;"
-/// class="vlist"><span></span></span></span></span></span><span class="mclose
+/// style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
+/// style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span
+/// class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+/// class="mord mtight"><span style="margin-right:0.03148em;" class="mord mathdefault
+/// mtight">k</span></span></span></span></span><span class="vlist-s">​</span></span><span
+/// class="vlist-r"><span class="vlist"
+/// style="height:0.403331em;"><span></span></span></span></span></span><span class="mclose
 /// nulldelimiter"></span></span></span></span></span>, where k ∈ {
 ///0, 1, …​, 2<sup>m</sup>-1 }, as k (e.g. 1.0 is represented in binary as a
 ///string of all ones).The viewport parameters shown in the above equations are found from these
@@ -38082,24 +38179,25 @@ impl Extent3D {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkViewport")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct Viewport {
     ///[`x`] and [`y`] are the viewport’s upper left corner (x,y).
-    x: f32,
+    pub x: f32,
     ///No documentation found
-    y: f32,
+    pub y: f32,
     ///[`width`] and [`height`] are the viewport’s width and height,
     ///respectively.
-    width: f32,
+    pub width: f32,
     ///No documentation found
-    height: f32,
+    pub height: f32,
     ///[`min_depth`] and [`max_depth`] are the depth range for the viewport.
-    min_depth: f32,
+    pub min_depth: f32,
     ///No documentation found
-    max_depth: f32,
+    pub max_depth: f32,
 }
 impl Default for Viewport {
     fn default() -> Self {
@@ -38238,15 +38336,16 @@ impl Viewport {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRect2D")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct Rect2D {
     ///[`offset`] is a [`Offset2D`] specifying the rectangle offset.
-    offset: Offset2D,
+    pub offset: Offset2D,
     ///[`extent`] is a [`Extent2D`] specifying the rectangle extent.
-    extent: Extent2D,
+    pub extent: Extent2D,
 }
 impl Default for Rect2D {
     fn default() -> Self {
@@ -38315,17 +38414,18 @@ impl Rect2D {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkClearRect")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ClearRect {
     ///[`rect`] is the two-dimensional region to be cleared.
-    rect: Rect2D,
+    pub rect: Rect2D,
     ///[`base_array_layer`] is the first layer to be cleared.
-    base_array_layer: u32,
+    pub base_array_layer: u32,
     ///[`layer_count`] is the number of layers to clear.
-    layer_count: u32,
+    pub layer_count: u32,
 }
 impl Default for ClearRect {
     fn default() -> Self {
@@ -38421,6 +38521,7 @@ impl ClearRect {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkComponentMapping")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -38428,16 +38529,16 @@ impl ClearRect {
 pub struct ComponentMapping {
     ///[`r`] is a [`ComponentSwizzle`] specifying the component value
     ///placed in the R component of the output vector.
-    r: ComponentSwizzle,
+    pub r: ComponentSwizzle,
     ///[`g`] is a [`ComponentSwizzle`] specifying the component value
     ///placed in the G component of the output vector.
-    g: ComponentSwizzle,
+    pub g: ComponentSwizzle,
     ///[`b`] is a [`ComponentSwizzle`] specifying the component value
     ///placed in the B component of the output vector.
-    b: ComponentSwizzle,
+    pub b: ComponentSwizzle,
     ///[`a`] is a [`ComponentSwizzle`] specifying the component value
     ///placed in the A component of the output vector.
-    a: ComponentSwizzle,
+    pub a: ComponentSwizzle,
 }
 impl Default for ComponentMapping {
     fn default() -> Self {
@@ -38575,6 +38676,7 @@ impl ComponentMapping {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceProperties")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -38582,33 +38684,33 @@ impl ComponentMapping {
 pub struct PhysicalDeviceProperties {
     ///[`api_version`] is the version of Vulkan supported by the device,
     ///encoded as described in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-coreversions-versionnumbers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-coreversions-versionnumbers).
-    api_version: u32,
+    pub api_version: u32,
     ///[`driver_version`] is the vendor-specified version of the driver.
-    driver_version: u32,
+    pub driver_version: u32,
     ///[`vendor_id`] is a unique identifier for the *vendor* (see below) of
     ///the physical device.
-    vendor_id: u32,
+    pub vendor_id: u32,
     ///[`device_id`] is a unique identifier for the physical device among
     ///devices available from the vendor.
-    device_id: u32,
+    pub device_id: u32,
     ///[`device_type`] is a [`PhysicalDeviceType`] specifying the type of
     ///device.
-    device_type: PhysicalDeviceType,
+    pub device_type: PhysicalDeviceType,
     ///[`device_name`] is an array of [`MAX_PHYSICAL_DEVICE_NAME_SIZE`]`char` containing a
     /// null-terminated UTF-8 string which is the name of the device.
-    device_name: [c_schar; MAX_PHYSICAL_DEVICE_NAME_SIZE],
+    pub device_name: [c_schar; MAX_PHYSICAL_DEVICE_NAME_SIZE],
     ///[`pipeline_cache_uuid`] is an array of [`UUID_SIZE`]`uint8_t`
     ///values representing a universally unique identifier for the device.
-    pipeline_cache_uuid: [u8; UUID_SIZE],
+    pub pipeline_cache_uuid: [u8; UUID_SIZE],
     ///[`limits`] is the [`PhysicalDeviceLimits`] structure specifying
     ///device-specific limits of the physical device.
     ///See [Limits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits) for details.
-    limits: PhysicalDeviceLimits,
+    pub limits: PhysicalDeviceLimits,
     ///[`sparse_properties`] is the [`PhysicalDeviceSparseProperties`]
     ///structure specifying various sparse related properties of the physical
     ///device.
     ///See [Sparse Properties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#sparsememory-physicalprops) for details.
-    sparse_properties: PhysicalDeviceSparseProperties,
+    pub sparse_properties: PhysicalDeviceSparseProperties,
 }
 impl Default for PhysicalDeviceProperties {
     fn default() -> Self {
@@ -38782,6 +38884,7 @@ impl PhysicalDeviceProperties {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExtensionProperties")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -38789,10 +38892,10 @@ impl PhysicalDeviceProperties {
 pub struct ExtensionProperties {
     ///[`extension_name`] is an array of [`MAX_EXTENSION_NAME_SIZE`]`char` containing a
     /// null-terminated UTF-8 string which is the name of the extension.
-    extension_name: [c_schar; MAX_EXTENSION_NAME_SIZE],
+    pub extension_name: [c_schar; MAX_EXTENSION_NAME_SIZE],
     ///[`spec_version`] is the version of this extension.
     ///It is an integer, incremented with backward compatible changes.
-    spec_version: u32,
+    pub spec_version: u32,
 }
 impl Default for ExtensionProperties {
     fn default() -> Self {
@@ -38867,6 +38970,7 @@ impl ExtensionProperties {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkLayerProperties")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -38877,17 +38981,17 @@ pub struct LayerProperties {
     ///Use this name in the `ppEnabledLayerNames` array passed in the
     ///[`InstanceCreateInfo`] structure to enable this layer for an
     ///instance.
-    layer_name: [c_schar; MAX_EXTENSION_NAME_SIZE],
+    pub layer_name: [c_schar; MAX_EXTENSION_NAME_SIZE],
     ///[`spec_version`] is the Vulkan version the layer was written to,
     ///encoded as described in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-coreversions-versionnumbers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-coreversions-versionnumbers).
-    spec_version: u32,
+    pub spec_version: u32,
     ///[`implementation_version`] is the version of this layer.
     ///It is an integer, increasing with backward compatible changes.
-    implementation_version: u32,
+    pub implementation_version: u32,
     ///[`description`] is an array of [`MAX_DESCRIPTION_SIZE`]`char`
     ///containing a null-terminated UTF-8 string which provides additional
     ///details that  **can**  be used by the application to identify the layer.
-    description: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub description: [c_schar; MAX_DESCRIPTION_SIZE],
 }
 impl Default for LayerProperties {
     fn default() -> Self {
@@ -39018,30 +39122,31 @@ impl LayerProperties {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkApplicationInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ApplicationInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`application_name`] is `NULL` or is a pointer to a null-terminated
     ///UTF-8 string containing the name of the application.
-    application_name: &'lt CStr,
+    pub application_name: &'lt CStr,
     ///[`application_version`] is an unsigned integer variable containing the
     ///developer-supplied version number of the application.
-    application_version: u32,
+    pub application_version: u32,
     ///[`engine_name`] is `NULL` or is a pointer to a null-terminated UTF-8
     ///string containing the name of the engine (if any) used to create the
     ///application.
-    engine_name: &'lt CStr,
+    pub engine_name: &'lt CStr,
     ///[`engine_version`] is an unsigned integer variable containing the
     ///developer-supplied version number of the engine used to create the
     ///application.
-    engine_version: u32,
+    pub engine_version: u32,
     ///[`api_version`] **must**  be the highest version of Vulkan that the
     ///application is designed to use, encoded as described in
     ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-coreversions-versionnumbers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-coreversions-versionnumbers).
@@ -39049,7 +39154,7 @@ pub struct ApplicationInfo<'lt> {
     ///creating an instance object.
     ///Only the major and minor versions of the instance  **must**  match those
     ///requested in [`api_version`].
-    api_version: u32,
+    pub api_version: u32,
 }
 impl<'lt> Default for ApplicationInfo<'lt> {
     fn default() -> Self {
@@ -39324,11 +39429,12 @@ impl<'lt> ApplicationInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAllocationCallbacks")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AllocationCallbacks<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`user_data`] is a value to be interpreted by the implementation of
     ///the callbacks.
     ///When any of the callbacks in [`AllocationCallbacks`] are called, the
@@ -39336,25 +39442,25 @@ pub struct AllocationCallbacks<'lt> {
     ///callback.
     ///This value  **can**  vary each time an allocator is passed into a command,
     ///even when the same object takes an allocator in multiple commands.
-    user_data: *mut c_void,
+    pub user_data: *mut c_void,
     ///[`pfn_allocation`] is a [`PFNAllocationFunction`] pointer to an
     ///application-defined memory allocation function.
-    pfn_allocation: PFNAllocationFunction<'lt>,
+    pub pfn_allocation: PFNAllocationFunction<'lt>,
     ///[`pfn_reallocation`] is a [`PFNReallocationFunction`] pointer to
     ///an application-defined memory reallocation function.
-    pfn_reallocation: PFNReallocationFunction<'lt>,
+    pub pfn_reallocation: PFNReallocationFunction<'lt>,
     ///[`pfn_free`] is a [`PFNFreeFunction`] pointer to an
     ///application-defined memory free function.
-    pfn_free: PFNFreeFunction<'lt>,
+    pub pfn_free: PFNFreeFunction<'lt>,
     ///[`pfn_internal_allocation`] is a
     ///[`PFNInternalAllocationNotification`] pointer to an
     ///application-defined function that is called by the implementation when
     ///the implementation makes internal allocations.
-    pfn_internal_allocation: PFNInternalAllocationNotification<'lt>,
+    pub pfn_internal_allocation: PFNInternalAllocationNotification<'lt>,
     ///[`pfn_internal_free`] is a [`PFNInternalFreeNotification`] pointer
     ///to an application-defined function that is called by the implementation
     ///when the implementation frees internal allocations.
-    pfn_internal_free: PFNInternalFreeNotification<'lt>,
+    pub pfn_internal_free: PFNInternalFreeNotification<'lt>,
 }
 impl<'lt> Default for AllocationCallbacks<'lt> {
     fn default() -> Self {
@@ -39527,32 +39633,33 @@ impl<'lt> AllocationCallbacks<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceQueueCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceQueueCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask indicating behavior of the queue.
-    flags: DeviceQueueCreateFlags,
+    pub flags: DeviceQueueCreateFlags,
     ///[`queue_family_index`] is an unsigned integer indicating the index of
     ///the queue family in which to create the queue on this device.
     ///This index corresponds to the index of an element of the
     ///`pQueueFamilyProperties` array that was returned by
     ///[`GetPhysicalDeviceQueueFamilyProperties`].
-    queue_family_index: u32,
+    pub queue_family_index: u32,
     ///[`queue_count`] is an unsigned integer specifying the number of queues
     ///to create in the queue family indicated by [`queue_family_index`].
-    queue_count: u32,
+    pub queue_count: u32,
     ///[`queue_priorities`] is a pointer to an array of [`queue_count`]
     ///normalized floating point values, specifying priorities of work that
     ///will be submitted to each created queue.
     ///See [Queue Priority](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-priority) for more information.
-    queue_priorities: *const f32,
+    pub queue_priorities: *const f32,
 }
 impl<'lt> Default for DeviceQueueCreateInfo<'lt> {
     fn default() -> Self {
@@ -39907,47 +40014,48 @@ impl<'lt> DeviceQueueCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: DeviceCreateFlags,
+    pub flags: DeviceCreateFlags,
     ///[`queue_create_info_count`] is the unsigned integer size of the
     ///[`queue_create_infos`] array.
     ///Refer to the [Queue Creation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-queue-creation) section
     ///below for further details.
-    queue_create_info_count: u32,
+    pub queue_create_info_count: u32,
     ///[`queue_create_infos`] is a pointer to an array of
     ///[`DeviceQueueCreateInfo`] structures describing the queues that are
     ///requested to be created along with the logical device.
     ///Refer to the [Queue Creation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-queue-creation) section
     ///below for further details.
-    queue_create_infos: *const DeviceQueueCreateInfo<'lt>,
+    pub queue_create_infos: *const DeviceQueueCreateInfo<'lt>,
     ///[`enabled_layer_count`] is deprecated and ignored.
-    enabled_layer_count: u32,
+    pub enabled_layer_count: u32,
     ///[`pp_enabled_layer_names`] is deprecated and ignored.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-layers-devicelayerdeprecation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-layers-devicelayerdeprecation).
-    pp_enabled_layer_names: *const &'lt CStr,
+    pub pp_enabled_layer_names: *const &'lt CStr,
     ///[`enabled_extension_count`] is the number of device extensions to
     ///enable.
-    enabled_extension_count: u32,
+    pub enabled_extension_count: u32,
     ///[`pp_enabled_extension_names`] is a pointer to an array of
     ///[`enabled_extension_count`] null-terminated UTF-8 strings containing the
     ///names of extensions to enable for the created device.
     ///See the [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-extensions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-extensions) section for further details.
-    pp_enabled_extension_names: *const &'lt CStr,
+    pub pp_enabled_extension_names: *const &'lt CStr,
     ///[`enabled_features`] is `NULL` or a pointer to a
     ///[`PhysicalDeviceFeatures`] structure containing boolean indicators
     ///of all the features to be enabled.
     ///Refer to the [Features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features) section for further details.
-    enabled_features: *const PhysicalDeviceFeatures,
+    pub enabled_features: *const PhysicalDeviceFeatures,
 }
 impl<'lt> Default for DeviceCreateInfo<'lt> {
     fn default() -> Self {
@@ -40230,26 +40338,27 @@ impl<'lt> DeviceCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkInstanceCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct InstanceCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: InstanceCreateFlags,
+    pub flags: InstanceCreateFlags,
     ///[`application_info`] is `NULL` or a pointer to a
     ///[`ApplicationInfo`] structure.
     ///If not `NULL`, this information helps implementations recognize behavior
     ///inherent to classes of applications.
     ///[`ApplicationInfo`] is defined in detail below.
-    application_info: *const ApplicationInfo<'lt>,
+    pub application_info: *const ApplicationInfo<'lt>,
     ///[`enabled_layer_count`] is the number of global layers to enable.
-    enabled_layer_count: u32,
+    pub enabled_layer_count: u32,
     ///[`pp_enabled_layer_names`] is a pointer to an array of
     ///[`enabled_layer_count`] null-terminated UTF-8 strings containing the
     ///names of layers to enable for the created instance.
@@ -40257,14 +40366,14 @@ pub struct InstanceCreateInfo<'lt> {
     ///the first array element being the closest to the application, and the
     ///last array element being the closest to the driver.
     ///See the [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-layers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-layers) section for further details.
-    pp_enabled_layer_names: *const &'lt CStr,
+    pub pp_enabled_layer_names: *const &'lt CStr,
     ///[`enabled_extension_count`] is the number of global extensions to
     ///enable.
-    enabled_extension_count: u32,
+    pub enabled_extension_count: u32,
     ///[`pp_enabled_extension_names`] is a pointer to an array of
     ///[`enabled_extension_count`] null-terminated UTF-8 strings containing the
     ///names of extensions to enable.
-    pp_enabled_extension_names: *const &'lt CStr,
+    pub pp_enabled_extension_names: *const &'lt CStr,
 }
 impl<'lt> Default for InstanceCreateInfo<'lt> {
     fn default() -> Self {
@@ -40493,6 +40602,7 @@ impl<'lt> InstanceCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkQueueFamilyProperties")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -40500,11 +40610,11 @@ impl<'lt> InstanceCreateInfo<'lt> {
 pub struct QueueFamilyProperties {
     ///[`queue_flags`] is a bitmask of [`QueueFlagBits`] indicating
     ///capabilities of the queues in this queue family.
-    queue_flags: QueueFlags,
+    pub queue_flags: QueueFlags,
     ///[`queue_count`] is the unsigned integer count of queues in this queue
     ///family.
     ///Each queue family  **must**  support at least one queue.
-    queue_count: u32,
+    pub queue_count: u32,
     ///[`timestamp_valid_bits`] is the unsigned integer count of meaningful
     ///bits in the timestamps written via
     ///[`CmdWriteTimestamp2`] or
@@ -40512,10 +40622,10 @@ pub struct QueueFamilyProperties {
     ///The valid range for the count is 36..64 bits, or a value of 0,
     ///indicating no support for timestamps.
     ///Bits outside the valid range are guaranteed to be zeros.
-    timestamp_valid_bits: u32,
+    pub timestamp_valid_bits: u32,
     ///[`min_image_transfer_granularity`] is the minimum granularity supported
     ///for image transfer operations on the queues in this queue family.
-    min_image_transfer_granularity: Extent3D,
+    pub min_image_transfer_granularity: Extent3D,
 }
 impl Default for QueueFamilyProperties {
     fn default() -> Self {
@@ -40742,6 +40852,7 @@ impl QueueFamilyProperties {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceMemoryProperties")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -40749,17 +40860,17 @@ impl QueueFamilyProperties {
 pub struct PhysicalDeviceMemoryProperties {
     ///[`memory_type_count`] is the number of valid elements in the
     ///[`memory_types`] array.
-    memory_type_count: u32,
+    pub memory_type_count: u32,
     ///[`memory_types`] is an array of [`MAX_MEMORY_TYPES`][`MemoryType`] structures describing the
     /// *memory types* that  **can**  be used to access memory allocated from the heaps
     /// specified by [`memory_heaps`].
-    memory_types: [MemoryType; MAX_MEMORY_TYPES],
+    pub memory_types: [MemoryType; MAX_MEMORY_TYPES],
     ///[`memory_heap_count`] is the number of valid elements in the
     ///[`memory_heaps`] array.
-    memory_heap_count: u32,
+    pub memory_heap_count: u32,
     ///[`memory_heaps`] is an array of [`MAX_MEMORY_HEAPS`][`MemoryHeap`] structures describing the
     /// *memory heaps* from which memory  **can**  be allocated.
-    memory_heaps: [MemoryHeap; MAX_MEMORY_HEAPS],
+    pub memory_heaps: [MemoryHeap; MAX_MEMORY_HEAPS],
 }
 impl Default for PhysicalDeviceMemoryProperties {
     fn default() -> Self {
@@ -41076,22 +41187,23 @@ impl PhysicalDeviceMemoryProperties {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryAllocateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryAllocateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`allocation_size`] is the size of the allocation in bytes.
-    allocation_size: DeviceSize,
+    pub allocation_size: DeviceSize,
     ///[`memory_type_index`] is an index identifying a memory type from the
     ///`memoryTypes` array of the [`PhysicalDeviceMemoryProperties`]
     ///structure.
-    memory_type_index: u32,
+    pub memory_type_index: u32,
 }
 impl<'lt> Default for MemoryAllocateInfo<'lt> {
     fn default() -> Self {
@@ -41199,6 +41311,7 @@ impl<'lt> MemoryAllocateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryRequirements")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -41206,16 +41319,16 @@ impl<'lt> MemoryAllocateInfo<'lt> {
 pub struct MemoryRequirements {
     ///[`size`] is the size, in bytes, of the memory allocation  **required**  for
     ///the resource.
-    size: DeviceSize,
+    pub size: DeviceSize,
     ///[`alignment`] is the alignment, in bytes, of the offset within the
     ///allocation  **required**  for the resource.
-    alignment: DeviceSize,
+    pub alignment: DeviceSize,
     ///[`memory_type_bits`] is a bitmask and contains one bit set for every
     ///supported memory type for the resource.
     ///Bit `i` is set if and only if the memory type `i` in the
     ///[`PhysicalDeviceMemoryProperties`] structure for the physical device
     ///is supported for the resource.
-    memory_type_bits: u32,
+    pub memory_type_bits: u32,
 }
 impl Default for MemoryRequirements {
     fn default() -> Self {
@@ -41301,6 +41414,7 @@ impl MemoryRequirements {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSparseImageFormatProperties")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -41308,13 +41422,13 @@ impl MemoryRequirements {
 pub struct SparseImageFormatProperties {
     ///[`aspect_mask`] is a bitmask [`ImageAspectFlagBits`] specifying
     ///which aspects of the image the properties apply to.
-    aspect_mask: ImageAspectFlags,
+    pub aspect_mask: ImageAspectFlags,
     ///[`image_granularity`] is the width, height, and depth of the sparse
     ///image block in texels or compressed texel blocks.
-    image_granularity: Extent3D,
+    pub image_granularity: Extent3D,
     ///[`flags`] is a bitmask of [`SparseImageFormatFlagBits`] specifying
     ///additional information about the sparse resource.
-    flags: SparseImageFormatFlags,
+    pub flags: SparseImageFormatFlags,
 }
 impl Default for SparseImageFormatProperties {
     fn default() -> Self {
@@ -41407,6 +41521,7 @@ impl SparseImageFormatProperties {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSparseImageMemoryRequirements")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -41414,10 +41529,10 @@ impl SparseImageFormatProperties {
 pub struct SparseImageMemoryRequirements {
     ///[`format_properties`] is a [`SparseImageFormatProperties`]
     ///structure specifying properties of the image format.
-    format_properties: SparseImageFormatProperties,
+    pub format_properties: SparseImageFormatProperties,
     ///[`image_mip_tail_first_lod`] is the first mip level at which image
     ///subresources are included in the mip tail region.
-    image_mip_tail_first_lod: u32,
+    pub image_mip_tail_first_lod: u32,
     ///[`image_mip_tail_size`] is the memory size (in bytes) of the mip tail
     ///region.
     ///If `formatProperties.flags` contains
@@ -41426,15 +41541,15 @@ pub struct SparseImageMemoryRequirements {
     ///array layer.
     ///This value is guaranteed to be a multiple of the sparse block size in
     ///bytes.
-    image_mip_tail_size: DeviceSize,
+    pub image_mip_tail_size: DeviceSize,
     ///[`image_mip_tail_offset`] is the opaque memory offset used with
     ///[`SparseImageOpaqueMemoryBindInfo`] to bind the mip tail region(s).
-    image_mip_tail_offset: DeviceSize,
+    pub image_mip_tail_offset: DeviceSize,
     ///[`image_mip_tail_stride`] is the offset stride between each array-layer’s
     ///mip tail, if `formatProperties.flags` does not contain
     ///`VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT` (otherwise the value is
     ///undefined).
-    image_mip_tail_stride: DeviceSize,
+    pub image_mip_tail_stride: DeviceSize,
 }
 impl Default for SparseImageMemoryRequirements {
     fn default() -> Self {
@@ -41541,6 +41656,7 @@ impl SparseImageMemoryRequirements {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryType")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -41548,11 +41664,11 @@ impl SparseImageMemoryRequirements {
 pub struct MemoryType {
     ///[`property_flags`] is a bitmask of [`MemoryPropertyFlagBits`] of
     ///properties for this memory type.
-    property_flags: MemoryPropertyFlags,
+    pub property_flags: MemoryPropertyFlags,
     ///[`heap_index`] describes which memory heap this memory type corresponds
     ///to, and  **must**  be less than `memoryHeapCount` from the
     ///[`PhysicalDeviceMemoryProperties`] structure.
-    heap_index: u32,
+    pub heap_index: u32,
 }
 impl Default for MemoryType {
     fn default() -> Self {
@@ -41616,16 +41732,17 @@ impl MemoryType {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryHeap")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct MemoryHeap {
     ///[`size`] is the total memory size in bytes in the heap.
-    size: DeviceSize,
+    pub size: DeviceSize,
     ///[`flags`] is a bitmask of [`MemoryHeapFlagBits`] specifying
     ///attribute flags for the heap.
-    flags: MemoryHeapFlags,
+    pub flags: MemoryHeapFlags,
 }
 impl Default for MemoryHeap {
     fn default() -> Self {
@@ -41717,25 +41834,26 @@ impl MemoryHeap {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMappedMemoryRange")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MappedMemoryRange<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`memory`] is the memory object to which this range belongs.
-    memory: DeviceMemory,
+    pub memory: DeviceMemory,
     ///[`offset`] is the zero-based byte offset from the beginning of the
     ///memory object.
-    offset: DeviceSize,
+    pub offset: DeviceSize,
     ///[`size`] is either the size of range, or [`WHOLE_SIZE`] to affect
     ///the range from [`offset`] to the end of the current mapping of the
     ///allocation.
-    size: DeviceSize,
+    pub size: DeviceSize,
 }
 impl<'lt> Default for MappedMemoryRange<'lt> {
     fn default() -> Self {
@@ -41860,6 +41978,7 @@ impl<'lt> MappedMemoryRange<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFormatProperties")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -41868,14 +41987,14 @@ pub struct FormatProperties {
     ///[`linear_tiling_features`] is a bitmask of [`FormatFeatureFlagBits`]
     ///specifying features supported by images created with a `tiling`
     ///parameter of `VK_IMAGE_TILING_LINEAR`.
-    linear_tiling_features: FormatFeatureFlags,
+    pub linear_tiling_features: FormatFeatureFlags,
     ///[`optimal_tiling_features`] is a bitmask of
     ///[`FormatFeatureFlagBits`] specifying features supported by images
     ///created with a `tiling` parameter of `VK_IMAGE_TILING_OPTIMAL`.
-    optimal_tiling_features: FormatFeatureFlags,
+    pub optimal_tiling_features: FormatFeatureFlags,
     ///[`buffer_features`] is a bitmask of [`FormatFeatureFlagBits`]
     ///specifying features supported by buffers.
-    buffer_features: FormatFeatureFlags,
+    pub buffer_features: FormatFeatureFlags,
 }
 impl Default for FormatProperties {
     fn default() -> Self {
@@ -41973,6 +42092,7 @@ impl FormatProperties {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageFormatProperties")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -41981,7 +42101,7 @@ pub struct ImageFormatProperties {
     ///[`max_extent`] are the maximum image dimensions.
     ///See the [Allowed Extent Values](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-extentperimagetype) section
     ///below for how these values are constrained by `type`.
-    max_extent: Extent3D,
+    pub max_extent: Extent3D,
     ///[`max_mip_levels`] is the maximum number of mipmap levels.
     ///[`max_mip_levels`] **must**  be equal to the number of levels in the
     ///complete mipmap chain based on the `maxExtent.width`,
@@ -41995,7 +42115,7 @@ pub struct ImageFormatProperties {
     ///   `handleTypes` member for which mipmap image support is not required
     /// - image `format` is one of the [formats that require a sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
     /// - `flags` contains `VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT`
-    max_mip_levels: u32,
+    pub max_mip_levels: u32,
     ///[`max_array_layers`] is the maximum number of array layers.
     ///[`max_array_layers`] **must**  be no less than
     ///[`PhysicalDeviceLimits`]::`maxImageArrayLayers`, except when one
@@ -42004,17 +42124,17 @@ pub struct ImageFormatProperties {
     /// - `tiling` is `VK_IMAGE_TILING_LINEAR`
     /// - `tiling` is `VK_IMAGE_TILING_OPTIMAL` and `type` is `VK_IMAGE_TYPE_3D`
     /// - `format` is one of the [formats that require a sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
-    max_array_layers: u32,
+    pub max_array_layers: u32,
     ///[`sample_counts`] is a bitmask of [`SampleCountFlagBits`]
     ///specifying all the supported sample counts for this image as described
     ///[below](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-supported-sample-counts).
-    sample_counts: SampleCountFlags,
+    pub sample_counts: SampleCountFlags,
     ///[`max_resource_size`] is an upper bound on the total image size in
     ///bytes, inclusive of all image subresources.
     ///Implementations  **may**  have an address space limit on total size of a
     ///resource, which is advertised by this property.
     ///[`max_resource_size`] **must**  be at least 2<sup>31</sup>.
-    max_resource_size: DeviceSize,
+    pub max_resource_size: DeviceSize,
 }
 impl Default for ImageFormatProperties {
     fn default() -> Self {
@@ -42142,6 +42262,7 @@ impl ImageFormatProperties {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorBufferInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
@@ -42149,15 +42270,15 @@ pub struct DescriptorBufferInfo {
     ///[`buffer`] is
     ///[`crate::utils::Handle::null`] or
     ///the buffer resource.
-    buffer: Buffer,
+    pub buffer: Buffer,
     ///[`offset`] is the offset in bytes from the start of [`buffer`].
     ///Access to buffer memory via this descriptor uses addressing that is
     ///relative to this starting offset.
-    offset: DeviceSize,
+    pub offset: DeviceSize,
     ///[`range`] is the size in bytes that is used for this descriptor
     ///update, or [`WHOLE_SIZE`] to use the range from [`offset`] to the
     ///end of the buffer.
-    range: DeviceSize,
+    pub range: DeviceSize,
 }
 impl Default for DescriptorBufferInfo {
     fn default() -> Self {
@@ -42267,6 +42388,7 @@ impl DescriptorBufferInfo {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorImageInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
@@ -42275,7 +42397,7 @@ pub struct DescriptorImageInfo {
     ///types `VK_DESCRIPTOR_TYPE_SAMPLER` and
     ///`VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER` if the binding being
     ///updated does not use immutable samplers.
-    sampler: Sampler,
+    pub sampler: Sampler,
     ///[`image_view`] is
     ///[`crate::utils::Handle::null`] or
     ///an image view handle, and is used in descriptor updates for types
@@ -42283,7 +42405,7 @@ pub struct DescriptorImageInfo {
     ///`VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`,
     ///`VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, and
     ///`VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT`.
-    image_view: ImageView,
+    pub image_view: ImageView,
     ///[`image_layout`] is the layout that the image subresources accessible
     ///from [`image_view`] will be in at the time this descriptor is accessed.
     ///[`image_layout`] is used in descriptor updates for types
@@ -42291,7 +42413,7 @@ pub struct DescriptorImageInfo {
     ///`VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`,
     ///`VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, and
     ///`VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT`.
-    image_layout: ImageLayout,
+    pub image_layout: ImageLayout,
 }
 impl Default for DescriptorImageInfo {
     fn default() -> Self {
@@ -42575,26 +42697,27 @@ impl DescriptorImageInfo {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkWriteDescriptorSet")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct WriteDescriptorSet<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`dst_set`] is the destination descriptor set to update.
-    dst_set: DescriptorSet,
+    pub dst_set: DescriptorSet,
     ///[`dst_binding`] is the descriptor binding within that set.
-    dst_binding: u32,
+    pub dst_binding: u32,
     ///[`dst_array_element`] is the starting element in that array.
     ///If the descriptor binding identified by [`dst_set`] and
     ///[`dst_binding`] has a descriptor type of
     ///`VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` then [`dst_array_element`]
     ///specifies the starting byte offset within the binding.
-    dst_array_element: u32,
+    pub dst_array_element: u32,
     ///[`descriptor_count`] is the number of descriptors to update.
     ///If the descriptor binding identified by [`dst_set`] and
     ///[`dst_binding`] has a descriptor type of
@@ -42609,7 +42732,7 @@ pub struct WriteDescriptorSet<'lt> {
     ///   structure in the [`p_next`] chain
     /// - a value matching the `accelerationStructureCount` of a
     ///   [`WriteDescriptorSetAccelerationStructureKHR`] structure in the [`p_next`] chain
-    descriptor_count: u32,
+    pub descriptor_count: u32,
     ///[`descriptor_type`] is a [`DescriptorType`] specifying the type of
     ///each descriptor in [`image_info`], [`buffer_info`], or
     ///[`texel_buffer_view`], as described below.
@@ -42620,13 +42743,13 @@ pub struct WriteDescriptorSet<'lt> {
     ///[`DescriptorSetLayoutBinding`] for [`dst_set`] at [`dst_binding`].
     ///The type of the descriptor also controls which array the descriptors are
     ///taken from.
-    descriptor_type: DescriptorType,
+    pub descriptor_type: DescriptorType,
     ///the number of elements in [`image_info`]
-    image_info: *const DescriptorImageInfo,
+    pub image_info: *const DescriptorImageInfo,
     ///the number of elements in [`buffer_info`]
-    buffer_info: *const DescriptorBufferInfo,
+    pub buffer_info: *const DescriptorBufferInfo,
     ///the number of elements in [`texel_buffer_view`]
-    texel_buffer_view: *const BufferView,
+    pub texel_buffer_view: *const BufferView,
 }
 impl<'lt> Default for WriteDescriptorSet<'lt> {
     fn default() -> Self {
@@ -42936,38 +43059,39 @@ impl<'lt> WriteDescriptorSet<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCopyDescriptorSet")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CopyDescriptorSet<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_set`], [`src_binding`], and [`src_array_element`] are the source
     ///set, binding, and array element, respectively.
     ///If the descriptor binding identified by [`src_set`] and
     ///[`src_binding`] has a descriptor type of
     ///`VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` then [`src_array_element`]
     ///specifies the starting byte offset within the binding to copy from.
-    src_set: DescriptorSet,
+    pub src_set: DescriptorSet,
     ///No documentation found
-    src_binding: u32,
+    pub src_binding: u32,
     ///No documentation found
-    src_array_element: u32,
+    pub src_array_element: u32,
     ///[`dst_set`], [`dst_binding`], and [`dst_array_element`] are the
     ///destination set, binding, and array element, respectively.
     ///If the descriptor binding identified by [`dst_set`] and
     ///[`dst_binding`] has a descriptor type of
     ///`VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` then [`dst_array_element`]
     ///specifies the starting byte offset within the binding to copy to.
-    dst_set: DescriptorSet,
+    pub dst_set: DescriptorSet,
     ///No documentation found
-    dst_binding: u32,
+    pub dst_binding: u32,
     ///No documentation found
-    dst_array_element: u32,
+    pub dst_array_element: u32,
     ///[`descriptor_count`] is the number of descriptors to copy from the
     ///source to destination.
     ///If [`descriptor_count`] is greater than the number of remaining array
@@ -42979,7 +43103,7 @@ pub struct CopyDescriptorSet<'lt> {
     ///specifies the number of bytes to copy and the remaining array elements
     ///in the source or destination binding refer to the remaining number of
     ///bytes in those.
-    descriptor_count: u32,
+    pub descriptor_count: u32,
 }
 impl<'lt> Default for CopyDescriptorSet<'lt> {
     fn default() -> Self {
@@ -43237,35 +43361,36 @@ impl<'lt> CopyDescriptorSet<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`BufferCreateFlagBits`] specifying
     ///additional parameters of the buffer.
-    flags: BufferCreateFlags,
+    pub flags: BufferCreateFlags,
     ///[`size`] is the size in bytes of the buffer to be created.
-    size: DeviceSize,
+    pub size: DeviceSize,
     ///[`usage`] is a bitmask of [`BufferUsageFlagBits`] specifying
     ///allowed usages of the buffer.
-    usage: BufferUsageFlags,
+    pub usage: BufferUsageFlags,
     ///[`sharing_mode`] is a [`SharingMode`] value specifying the sharing
     ///mode of the buffer when it will be accessed by multiple queue families.
-    sharing_mode: SharingMode,
+    pub sharing_mode: SharingMode,
     ///[`queue_family_index_count`] is the number of entries in the
     ///[`queue_family_indices`] array.
-    queue_family_index_count: u32,
+    pub queue_family_index_count: u32,
     ///[`queue_family_indices`] is a pointer to an array of queue families
     ///that will access this buffer.
     ///It is ignored if [`sharing_mode`] is not
     ///`VK_SHARING_MODE_CONCURRENT`.
-    queue_family_indices: *const u32,
+    pub queue_family_indices: *const u32,
 }
 impl<'lt> Default for BufferCreateInfo<'lt> {
     fn default() -> Self {
@@ -43497,34 +43622,35 @@ impl<'lt> BufferCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferViewCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferViewCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: BufferViewCreateFlags,
+    pub flags: BufferViewCreateFlags,
     ///[`buffer`] is a [`Buffer`] on which the view will be created.
-    buffer: Buffer,
+    pub buffer: Buffer,
     ///[`format`] is a [`Format`] describing the format of the data
     ///elements in the buffer.
-    format: Format,
+    pub format: Format,
     ///[`offset`] is an offset in bytes from the base address of the buffer.
     ///Accesses to the buffer view from shaders use addressing that is relative
     ///to this starting offset.
-    offset: DeviceSize,
+    pub offset: DeviceSize,
     ///[`range`] is a size in bytes of the buffer view.
     ///If [`range`] is equal to [`WHOLE_SIZE`], the range from
     ///[`offset`] to the end of the buffer is used.
     ///If [`WHOLE_SIZE`] is used and the remaining size of the buffer is
     ///not a multiple of the [texel block size](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#texel-block-size) of
     ///[`format`], the nearest smaller multiple is used.
-    range: DeviceSize,
+    pub range: DeviceSize,
 }
 impl<'lt> Default for BufferViewCreateInfo<'lt> {
     fn default() -> Self {
@@ -43673,6 +43799,7 @@ impl<'lt> BufferViewCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageSubresource")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -43680,11 +43807,11 @@ impl<'lt> BufferViewCreateInfo<'lt> {
 pub struct ImageSubresource {
     ///[`aspect_mask`] is a [`ImageAspectFlags`] value selecting the image
     ///*aspect*.
-    aspect_mask: ImageAspectFlags,
+    pub aspect_mask: ImageAspectFlags,
     ///[`mip_level`] selects the mipmap level.
-    mip_level: u32,
+    pub mip_level: u32,
     ///[`array_layer`] selects the array layer.
-    array_layer: u32,
+    pub array_layer: u32,
 }
 impl Default for ImageSubresource {
     fn default() -> Self {
@@ -43784,6 +43911,7 @@ impl ImageSubresource {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageSubresourceLayers")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -43791,14 +43919,14 @@ impl ImageSubresource {
 pub struct ImageSubresourceLayers {
     ///[`aspect_mask`] is a combination of [`ImageAspectFlagBits`],
     ///selecting the color, depth and/or stencil aspects to be copied.
-    aspect_mask: ImageAspectFlags,
+    pub aspect_mask: ImageAspectFlags,
     ///[`mip_level`] is the mipmap level to copy
-    mip_level: u32,
+    pub mip_level: u32,
     ///[`base_array_layer`] and [`layer_count`] are the starting layer and
     ///number of layers to copy.
-    base_array_layer: u32,
+    pub base_array_layer: u32,
     ///No documentation found
-    layer_count: u32,
+    pub layer_count: u32,
 }
 impl Default for ImageSubresourceLayers {
     fn default() -> Self {
@@ -43968,6 +44096,7 @@ impl ImageSubresourceLayers {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageSubresourceRange")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -43975,17 +44104,17 @@ impl ImageSubresourceLayers {
 pub struct ImageSubresourceRange {
     ///[`aspect_mask`] is a bitmask of [`ImageAspectFlagBits`] specifying
     ///which aspect(s) of the image are included in the view.
-    aspect_mask: ImageAspectFlags,
+    pub aspect_mask: ImageAspectFlags,
     ///[`base_mip_level`] is the first mipmap level accessible to the view.
-    base_mip_level: u32,
+    pub base_mip_level: u32,
     ///[`level_count`] is the number of mipmap levels (starting from
     ///[`base_mip_level`]) accessible to the view.
-    level_count: u32,
+    pub level_count: u32,
     ///[`base_array_layer`] is the first array layer accessible to the view.
-    base_array_layer: u32,
+    pub base_array_layer: u32,
     ///[`layer_count`] is the number of array layers (starting from
     ///[`base_array_layer`]) accessible to the view.
-    layer_count: u32,
+    pub layer_count: u32,
 }
 impl Default for ImageSubresourceRange {
     fn default() -> Self {
@@ -44107,22 +44236,23 @@ impl ImageSubresourceRange {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryBarrier")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryBarrier<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_access_mask`] is a bitmask of [`AccessFlagBits`] specifying a
     ///[source access mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-masks).
-    src_access_mask: AccessFlags,
+    pub src_access_mask: AccessFlags,
     ///[`dst_access_mask`] is a bitmask of [`AccessFlagBits`] specifying a
     ///[destination access mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-masks).
-    dst_access_mask: AccessFlags,
+    pub dst_access_mask: AccessFlags,
 }
 impl<'lt> Default for MemoryBarrier<'lt> {
     fn default() -> Self {
@@ -44289,39 +44419,40 @@ impl<'lt> MemoryBarrier<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferMemoryBarrier")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferMemoryBarrier<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_access_mask`] is a bitmask of [`AccessFlagBits`] specifying a
     ///[source access mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-masks).
-    src_access_mask: AccessFlags,
+    pub src_access_mask: AccessFlags,
     ///[`dst_access_mask`] is a bitmask of [`AccessFlagBits`] specifying a
     ///[destination access mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-masks).
-    dst_access_mask: AccessFlags,
+    pub dst_access_mask: AccessFlags,
     ///[`src_queue_family_index`] is the source queue family for a
     ///[queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).
-    src_queue_family_index: u32,
+    pub src_queue_family_index: u32,
     ///[`dst_queue_family_index`] is the destination queue family for a
     ///[queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).
-    dst_queue_family_index: u32,
+    pub dst_queue_family_index: u32,
     ///[`buffer`] is a handle to the buffer whose backing memory is affected
     ///by the barrier.
-    buffer: Buffer,
+    pub buffer: Buffer,
     ///[`offset`] is an offset in bytes into the backing memory for
     ///[`buffer`]; this is relative to the base offset as bound to the buffer
     ///(see [`BindBufferMemory`]).
-    offset: DeviceSize,
+    pub offset: DeviceSize,
     ///[`size`] is a size in bytes of the affected area of backing memory for
     ///[`buffer`], or [`WHOLE_SIZE`] to use the range from [`offset`]
     ///to the end of the buffer.
-    size: DeviceSize,
+    pub size: DeviceSize,
 }
 impl<'lt> Default for BufferMemoryBarrier<'lt> {
     fn default() -> Self {
@@ -44673,39 +44804,40 @@ impl<'lt> BufferMemoryBarrier<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageMemoryBarrier")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageMemoryBarrier<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_access_mask`] is a bitmask of [`AccessFlagBits`] specifying a
     ///[source access mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-masks).
-    src_access_mask: AccessFlags,
+    pub src_access_mask: AccessFlags,
     ///[`dst_access_mask`] is a bitmask of [`AccessFlagBits`] specifying a
     ///[destination access mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-masks).
-    dst_access_mask: AccessFlags,
+    pub dst_access_mask: AccessFlags,
     ///[`old_layout`] is the old layout in an
     ///[image layout transition](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions).
-    old_layout: ImageLayout,
+    pub old_layout: ImageLayout,
     ///[`new_layout`] is the new layout in an
     ///[image layout transition](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions).
-    new_layout: ImageLayout,
+    pub new_layout: ImageLayout,
     ///[`src_queue_family_index`] is the source queue family for a
     ///[queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).
-    src_queue_family_index: u32,
+    pub src_queue_family_index: u32,
     ///[`dst_queue_family_index`] is the destination queue family for a
     ///[queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).
-    dst_queue_family_index: u32,
+    pub dst_queue_family_index: u32,
     ///[`image`] is a handle to the image affected by this barrier.
-    image: Image,
+    pub image: Image,
     ///[`subresource_range`] describes the [image
     ///subresource range](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-views) within [`image`] that is affected by this barrier.
-    subresource_range: ImageSubresourceRange,
+    pub subresource_range: ImageSubresourceRange,
 }
 impl<'lt> Default for ImageMemoryBarrier<'lt> {
     fn default() -> Self {
@@ -45107,14 +45239,14 @@ impl<'lt> ImageMemoryBarrier<'lt> {
 ///   [`PhysicalDeviceLimits::max_framebuffer_height`]
 /// - If [`fragmentDensityMapOffset`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-fragmentDensityMapOffset)
 ///   is not enabled and [`usage`] includes `VK_IMAGE_USAGE_FRAGMENT_DENSITY_MAP_BIT_EXT`,
-///   `extent.width` **must**  be less than or equal to <span class="katex"><span class="katex-html"
-///   aria-hidden="true"><span class="base"><span class="strut"
-///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
-///   class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   `extent.width` **must**  be less than or equal to <span class="katex"><span aria-hidden="true"
+///   class="katex-html"><span class="base"><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">i</span><span class="mord
 ///   mathdefault mtight">n</span><span style="margin-right:0.13889em;" class="mord mathdefault
@@ -45132,67 +45264,67 @@ impl<'lt> ImageMemoryBarrier<'lt> {
 ///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord
 ///   mathdefault mtight" style="margin-right:0.01968em;">l</span><span
 ///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
-///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span
 ///   style="height:0.15122857142857138em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span
-///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-///   style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing
-///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">b</span><span class="mord mathdefault mtight">u</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">W</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.13889em;">F</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">m</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">b</span><span class="mord
+///   mathdefault mtight">u</span><span style="margin-right:0.10764em;" class="mord mathdefault
+///   mtight">f</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.13889em;">W</span><span class="mord mathdefault
+///   mtight">i</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault
+///   mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
 ///   style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose
 ///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
 ///   class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If [`fragmentDensityMapOffset`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-fragmentDensityMapOffset)
 ///   is not enabled and [`usage`] includes `VK_IMAGE_USAGE_FRAGMENT_DENSITY_MAP_BIT_EXT`,
 ///   `extent.height` **must**  be less than or equal to <span class="katex"><span
-///   class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
+///   style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
 ///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
+///   mathdefault mtight">n</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">F</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span><span style="margin-right:0.13889em;" class="mord
+///   mathdefault mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
 ///   mtight">i</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
@@ -45204,30 +45336,31 @@ impl<'lt> ImageMemoryBarrier<'lt> {
 ///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span
-///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-///   style="top:-3.446108em;"><span style="height:3em;" class="pstrut"></span><span class="sizing
-///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">b</span><span class="mord mathdefault mtight">u</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.08125em;">H</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">i</span><span style="margin-right:0.03588em;" class="mord
-///   mathdefault mtight">g</span><span class="mord mathdefault mtight">h</span><span class="mord
-///   mathdefault mtight">t</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.5480799999999999em;"
-///   class="vlist"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span><span
+///   style="margin-right:0.13889em;" class="mord mathdefault mtight">F</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">b</span><span class="mord mathdefault
+///   mtight">u</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span
+///   style="margin-right:0.08125em;" class="mord mathdefault mtight">H</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If [`usage`] includes `VK_IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT`, [`usage`] **must**  also
 ///   contain at least one of `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT`,
 ///   `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`, or `VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT`
@@ -45462,59 +45595,60 @@ impl<'lt> ImageMemoryBarrier<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`ImageCreateFlagBits`] describing
     ///additional parameters of the image.
-    flags: ImageCreateFlags,
+    pub flags: ImageCreateFlags,
     ///[`image_type`] is a [`ImageType`] value specifying the basic
     ///dimensionality of the image.
     ///Layers in array textures do not count as a dimension for the purposes of
     ///the image type.
-    image_type: ImageType,
+    pub image_type: ImageType,
     ///[`format`] is a [`Format`] describing the format and type of the
     ///texel blocks that will be contained in the image.
-    format: Format,
+    pub format: Format,
     ///[`extent`] is a [`Extent3D`] describing the number of data
     ///elements in each dimension of the base level.
-    extent: Extent3D,
+    pub extent: Extent3D,
     ///[`mip_levels`] describes the number of levels of detail available for
     ///minified sampling of the image.
-    mip_levels: u32,
+    pub mip_levels: u32,
     ///[`array_layers`] is the number of layers in the image.
-    array_layers: u32,
+    pub array_layers: u32,
     ///[`samples`] is a [`SampleCountFlagBits`] value specifying the
     ///number of [samples per texel](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling).
-    samples: SampleCountFlagBits,
+    pub samples: SampleCountFlagBits,
     ///[`tiling`] is a [`ImageTiling`] value specifying the tiling
     ///arrangement of the texel blocks in memory.
-    tiling: ImageTiling,
+    pub tiling: ImageTiling,
     ///[`usage`] is a bitmask of [`ImageUsageFlagBits`] describing the
     ///intended usage of the image.
-    usage: ImageUsageFlags,
+    pub usage: ImageUsageFlags,
     ///[`sharing_mode`] is a [`SharingMode`] value specifying the sharing
     ///mode of the image when it will be accessed by multiple queue families.
-    sharing_mode: SharingMode,
+    pub sharing_mode: SharingMode,
     ///[`queue_family_index_count`] is the number of entries in the
     ///[`queue_family_indices`] array.
-    queue_family_index_count: u32,
+    pub queue_family_index_count: u32,
     ///[`queue_family_indices`] is a pointer to an array of queue families
     ///that will access this image.
     ///It is ignored if [`sharing_mode`] is not
     ///`VK_SHARING_MODE_CONCURRENT`.
-    queue_family_indices: *const u32,
+    pub queue_family_indices: *const u32,
     ///[`initial_layout`] is a [`ImageLayout`] value specifying the
     ///initial [`ImageLayout`] of all image subresources of the image.
     ///See [Image Layouts](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-layouts).
-    initial_layout: ImageLayout,
+    pub initial_layout: ImageLayout,
 }
 impl<'lt> Default for ImageCreateInfo<'lt> {
     fn default() -> Self {
@@ -45863,6 +45997,7 @@ impl<'lt> ImageCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSubresourceLayout")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -45871,20 +46006,20 @@ pub struct SubresourceLayout {
     ///[`offset`] is the byte offset from the start of the image
     ///or the plane
     ///where the image subresource begins.
-    offset: DeviceSize,
+    pub offset: DeviceSize,
     ///[`size`] is the size in bytes of the image subresource.
     ///[`size`] includes any extra memory that is required based on
     ///[`row_pitch`].
-    size: DeviceSize,
+    pub size: DeviceSize,
     ///[`row_pitch`] describes the number of bytes between each row of texels
     ///in an image.
-    row_pitch: DeviceSize,
+    pub row_pitch: DeviceSize,
     ///[`array_pitch`] describes the number of bytes between each array layer
     ///of an image.
-    array_pitch: DeviceSize,
+    pub array_pitch: DeviceSize,
     ///[`depth_pitch`] describes the number of bytes between each slice of 3D
     ///image.
-    depth_pitch: DeviceSize,
+    pub depth_pitch: DeviceSize,
 }
 impl Default for SubresourceLayout {
     fn default() -> Self {
@@ -46282,35 +46417,36 @@ impl SubresourceLayout {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageViewCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageViewCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`ImageViewCreateFlagBits`] describing
     ///additional parameters of the image view.
-    flags: ImageViewCreateFlags,
+    pub flags: ImageViewCreateFlags,
     ///[`image`] is a [`Image`] on which the view will be created.
-    image: Image,
+    pub image: Image,
     ///[`view_type`] is a [`ImageViewType`] value specifying the type of
     ///the image view.
-    view_type: ImageViewType,
+    pub view_type: ImageViewType,
     ///[`format`] is a [`Format`] describing the format and type used to
     ///interpret texel blocks in the image.
-    format: Format,
+    pub format: Format,
     ///[`components`] is a [`ComponentMapping`] structure specifying a
     ///remapping of color components (or of depth or stencil components after
     ///they have been converted into color components).
-    components: ComponentMapping,
+    pub components: ComponentMapping,
     ///[`subresource_range`] is a [`ImageSubresourceRange`] structure
     ///selecting the set of mipmap levels and array layers to be accessible to
     ///the view.
-    subresource_range: ImageSubresourceRange,
+    pub subresource_range: ImageSubresourceRange,
 }
 impl<'lt> Default for ImageViewCreateInfo<'lt> {
     fn default() -> Self {
@@ -46471,6 +46607,7 @@ impl<'lt> ImageViewCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferCopy")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -46478,12 +46615,12 @@ impl<'lt> ImageViewCreateInfo<'lt> {
 pub struct BufferCopy {
     ///[`src_offset`] is the starting offset in bytes from the start of
     ///`srcBuffer`.
-    src_offset: DeviceSize,
+    pub src_offset: DeviceSize,
     ///[`dst_offset`] is the starting offset in bytes from the start of
     ///`dstBuffer`.
-    dst_offset: DeviceSize,
+    pub dst_offset: DeviceSize,
     ///[`size`] is the number of bytes to copy.
-    size: DeviceSize,
+    pub size: DeviceSize,
 }
 impl Default for BufferCopy {
     fn default() -> Self {
@@ -46613,25 +46750,26 @@ impl BufferCopy {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSparseMemoryBind")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SparseMemoryBind {
     ///[`resource_offset`] is the offset into the resource.
-    resource_offset: DeviceSize,
+    pub resource_offset: DeviceSize,
     ///[`size`] is the size of the memory region to be bound.
-    size: DeviceSize,
+    pub size: DeviceSize,
     ///[`memory`] is the [`DeviceMemory`] object that the range of the
     ///resource is bound to.
     ///If [`memory`] is [`crate::utils::Handle::null`], the range is unbound.
-    memory: DeviceMemory,
+    pub memory: DeviceMemory,
     ///[`memory_offset`] is the offset into the [`DeviceMemory`] object to
     ///bind the resource range to.
     ///If [`memory`] is [`crate::utils::Handle::null`], this value is ignored.
-    memory_offset: DeviceSize,
+    pub memory_offset: DeviceSize,
     ///[`flags`] is a bitmask of [`SparseMemoryBindFlagBits`] specifying
     ///usage of the binding operation.
-    flags: SparseMemoryBindFlags,
+    pub flags: SparseMemoryBindFlags,
 }
 impl Default for SparseMemoryBind {
     fn default() -> Self {
@@ -46786,16 +46924,17 @@ impl SparseMemoryBind {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSparseImageMemoryBind")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SparseImageMemoryBind {
     ///[`subresource`] is the image *aspect* and region of interest in the
     ///image.
-    subresource: ImageSubresource,
+    pub subresource: ImageSubresource,
     ///[`offset`] are the coordinates of the first texel within the image
     ///subresource to bind.
-    offset: Offset3D,
+    pub offset: Offset3D,
     ///[`extent`] is the size in texels of the region within the image
     ///subresource to bind.
     ///The extent  **must**  be a multiple of the sparse image block dimensions,
@@ -46803,17 +46942,17 @@ pub struct SparseImageMemoryBind {
     ///subresource it  **can**  instead be such that any coordinate of
     ///[`offset`] +  [`extent`] equals the corresponding
     ///dimensions of the image subresource.
-    extent: Extent3D,
+    pub extent: Extent3D,
     ///[`memory`] is the [`DeviceMemory`] object that the sparse image
     ///blocks of the image are bound to.
     ///If [`memory`] is [`crate::utils::Handle::null`], the sparse image blocks are
     ///unbound.
-    memory: DeviceMemory,
+    pub memory: DeviceMemory,
     ///[`memory_offset`] is an offset into [`DeviceMemory`] object.
     ///If [`memory`] is [`crate::utils::Handle::null`], this value is ignored.
-    memory_offset: DeviceSize,
+    pub memory_offset: DeviceSize,
     ///[`flags`] are sparse memory binding flags.
-    flags: SparseMemoryBindFlags,
+    pub flags: SparseMemoryBindFlags,
 }
 impl Default for SparseImageMemoryBind {
     fn default() -> Self {
@@ -46943,19 +47082,20 @@ impl SparseImageMemoryBind {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSparseBufferMemoryBindInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SparseBufferMemoryBindInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`buffer`] is the [`Buffer`] object to be bound.
-    buffer: Buffer,
+    pub buffer: Buffer,
     ///[`bind_count`] is the number of [`SparseMemoryBind`] structures in
     ///the [`binds`] array.
-    bind_count: u32,
+    pub bind_count: u32,
     ///[`binds`] is a pointer to an array of [`SparseMemoryBind`]
     ///structures.
-    binds: *const SparseMemoryBind,
+    pub binds: *const SparseMemoryBind,
 }
 impl<'lt> Default for SparseBufferMemoryBindInfo<'lt> {
     fn default() -> Self {
@@ -47059,19 +47199,20 @@ impl<'lt> SparseBufferMemoryBindInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSparseImageOpaqueMemoryBindInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SparseImageOpaqueMemoryBindInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`image`] is the [`Image`] object to be bound.
-    image: Image,
+    pub image: Image,
     ///[`bind_count`] is the number of [`SparseMemoryBind`] structures in
     ///the [`binds`] array.
-    bind_count: u32,
+    pub bind_count: u32,
     ///[`binds`] is a pointer to an array of [`SparseMemoryBind`]
     ///structures.
-    binds: *const SparseMemoryBind,
+    pub binds: *const SparseMemoryBind,
 }
 impl<'lt> Default for SparseImageOpaqueMemoryBindInfo<'lt> {
     fn default() -> Self {
@@ -47178,19 +47319,20 @@ impl<'lt> SparseImageOpaqueMemoryBindInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSparseImageMemoryBindInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SparseImageMemoryBindInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`image`] is the [`Image`] object to be bound
-    image: Image,
+    pub image: Image,
     ///[`bind_count`] is the number of [`SparseImageMemoryBind`]
     ///structures in [`binds`] array
-    bind_count: u32,
+    pub bind_count: u32,
     ///[`binds`] is a pointer to an array of [`SparseImageMemoryBind`]
     ///structures
-    binds: *const SparseImageMemoryBind,
+    pub binds: *const SparseImageMemoryBind,
 }
 impl<'lt> Default for SparseImageMemoryBindInfo<'lt> {
     fn default() -> Self {
@@ -47344,54 +47486,55 @@ impl<'lt> SparseImageMemoryBindInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBindSparseInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BindSparseInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`wait_semaphore_count`] is the number of semaphores upon which to wait
     ///before executing the sparse binding operations for the batch.
-    wait_semaphore_count: u32,
+    pub wait_semaphore_count: u32,
     ///[`wait_semaphores`] is a pointer to an array of semaphores upon which
     ///to wait on before the sparse binding operations for this batch begin
     ///execution.
     ///If semaphores to wait on are provided, they define a
     ///[semaphore wait operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-waiting).
-    wait_semaphores: *const Semaphore,
+    pub wait_semaphores: *const Semaphore,
     ///[`buffer_bind_count`] is the number of sparse buffer bindings to perform
     ///in the batch.
-    buffer_bind_count: u32,
+    pub buffer_bind_count: u32,
     ///[`buffer_binds`] is a pointer to an array of
     ///[`SparseBufferMemoryBindInfo`] structures.
-    buffer_binds: *const SparseBufferMemoryBindInfo<'lt>,
+    pub buffer_binds: *const SparseBufferMemoryBindInfo<'lt>,
     ///[`image_opaque_bind_count`] is the number of opaque sparse image bindings
     ///to perform.
-    image_opaque_bind_count: u32,
+    pub image_opaque_bind_count: u32,
     ///[`image_opaque_binds`] is a pointer to an array of
     ///[`SparseImageOpaqueMemoryBindInfo`] structures, indicating opaque
     ///sparse image bindings to perform.
-    image_opaque_binds: *const SparseImageOpaqueMemoryBindInfo<'lt>,
+    pub image_opaque_binds: *const SparseImageOpaqueMemoryBindInfo<'lt>,
     ///[`image_bind_count`] is the number of sparse image bindings to perform.
-    image_bind_count: u32,
+    pub image_bind_count: u32,
     ///[`image_binds`] is a pointer to an array of
     ///[`SparseImageMemoryBindInfo`] structures, indicating sparse image
     ///bindings to perform.
-    image_binds: *const SparseImageMemoryBindInfo<'lt>,
+    pub image_binds: *const SparseImageMemoryBindInfo<'lt>,
     ///[`signal_semaphore_count`] is the number of semaphores to be signaled
     ///once the sparse binding operations specified by the structure have
     ///completed execution.
-    signal_semaphore_count: u32,
+    pub signal_semaphore_count: u32,
     ///[`signal_semaphores`] is a pointer to an array of semaphores which
     ///will be signaled when the sparse binding operations for this batch have
     ///completed execution.
     ///If semaphores to be signaled are provided, they define a
     ///[semaphore signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling).
-    signal_semaphores: *const Semaphore,
+    pub signal_semaphores: *const Semaphore,
 }
 impl<'lt> Default for BindSparseInfo<'lt> {
     fn default() -> Self {
@@ -47695,6 +47838,7 @@ impl<'lt> BindSparseInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageCopy")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -47704,18 +47848,18 @@ pub struct ImageCopy {
     ///[`ImageSubresourceLayers`] structures specifying the image
     ///subresources of the images used for the source and destination image
     ///data, respectively.
-    src_subresource: ImageSubresourceLayers,
+    pub src_subresource: ImageSubresourceLayers,
     ///[`src_offset`] and [`dst_offset`] select the initial `x`, `y`,
     ///and `z` offsets in texels of the sub-regions of the source and
     ///destination image data.
-    src_offset: Offset3D,
+    pub src_offset: Offset3D,
     ///No documentation found
-    dst_subresource: ImageSubresourceLayers,
+    pub dst_subresource: ImageSubresourceLayers,
     ///No documentation found
-    dst_offset: Offset3D,
+    pub dst_offset: Offset3D,
     ///[`extent`] is the size in texels of the image to copy in `width`,
     ///`height` and `depth`.
-    extent: Extent3D,
+    pub extent: Extent3D,
 }
 impl Default for ImageCopy {
     fn default() -> Self {
@@ -47837,23 +47981,24 @@ impl ImageCopy {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageBlit")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ImageBlit {
     ///[`src_subresource`] is the subresource to blit from.
-    src_subresource: ImageSubresourceLayers,
+    pub src_subresource: ImageSubresourceLayers,
     ///[`src_offsets`] is a pointer to an array of two [`Offset3D`]
     ///structures specifying the bounds of the source region within
     ///[`src_subresource`].
-    src_offsets: [Offset3D; 2],
+    pub src_offsets: [Offset3D; 2],
     ///[`dst_subresource`] is the subresource to blit into.
-    dst_subresource: ImageSubresourceLayers,
+    pub dst_subresource: ImageSubresourceLayers,
     ///[`dst_offsets`] is a pointer to an array of two [`Offset3D`]
     ///structures specifying the bounds of the destination region within
     ///[`dst_subresource`].
-    dst_offsets: [Offset3D; 2],
+    pub dst_offsets: [Offset3D; 2],
 }
 impl Default for ImageBlit {
     fn default() -> Self {
@@ -48001,6 +48146,7 @@ impl ImageBlit {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferImageCopy")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -48008,25 +48154,25 @@ impl ImageBlit {
 pub struct BufferImageCopy {
     ///[`buffer_offset`] is the offset in bytes from the start of the buffer
     ///object where the image data is copied from or to.
-    buffer_offset: DeviceSize,
+    pub buffer_offset: DeviceSize,
     ///[`buffer_row_length`] and [`buffer_image_height`] specify in texels a
     ///subregion of a larger two- or three-dimensional image in buffer memory,
     ///and control the addressing calculations.
     ///If either of these values is zero, that aspect of the buffer memory is
     ///considered to be tightly packed according to the [`image_extent`].
-    buffer_row_length: u32,
+    pub buffer_row_length: u32,
     ///No documentation found
-    buffer_image_height: u32,
+    pub buffer_image_height: u32,
     ///[`image_subresource`] is a [`ImageSubresourceLayers`] used to
     ///specify the specific image subresources of the image used for the source
     ///or destination image data.
-    image_subresource: ImageSubresourceLayers,
+    pub image_subresource: ImageSubresourceLayers,
     ///[`image_offset`] selects the initial `x`, `y`, `z` offsets
     ///in texels of the sub-region of the source or destination image data.
-    image_offset: Offset3D,
+    pub image_offset: Offset3D,
     ///[`image_extent`] is the size in texels of the image to copy in
     ///`width`, `height` and `depth`.
-    image_extent: Extent3D,
+    pub image_extent: Extent3D,
 }
 impl Default for BufferImageCopy {
     fn default() -> Self {
@@ -48164,6 +48310,7 @@ impl BufferImageCopy {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageResolve")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -48174,18 +48321,18 @@ pub struct ImageResolve {
     ///subresources of the images used for the source and destination image
     ///data, respectively.
     ///Resolve of depth/stencil images is not supported.
-    src_subresource: ImageSubresourceLayers,
+    pub src_subresource: ImageSubresourceLayers,
     ///[`src_offset`] and [`dst_offset`] select the initial `x`, `y`,
     ///and `z` offsets in texels of the sub-regions of the source and
     ///destination image data.
-    src_offset: Offset3D,
+    pub src_offset: Offset3D,
     ///No documentation found
-    dst_subresource: ImageSubresourceLayers,
+    pub dst_subresource: ImageSubresourceLayers,
     ///No documentation found
-    dst_offset: Offset3D,
+    pub dst_offset: Offset3D,
     ///[`extent`] is the size in texels of the source image to resolve in
     ///`width`, `height` and `depth`.
-    extent: Extent3D,
+    pub extent: Extent3D,
 }
 impl Default for ImageResolve {
     fn default() -> Self {
@@ -48314,17 +48461,17 @@ impl ImageResolve {
 ///   aria-hidden="true" class="katex-html"><span class="base"><span class="strut"
 ///   style="height:1.2251079999999999em;vertical-align:-0.345em;"></span><span class="mord"><span
 ///   class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.8801079999999999em;" class="vlist"><span
+///   class="vlist-r"><span class="vlist" style="height:0.8801079999999999em;"><span
 ///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mtight">4</span></span></span></span><span style="top:-3.23em;"><span style="height:3em;"
-///   class="pstrut"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.394em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight">4</span></span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.394em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 ///   mtight"><span class="mord text mtight"><span class="mord textrm
 ///   mtight">codeSize</span></span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.345em;"
-///   class="vlist"><span></span></span></span></span></span><span class="mclose
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.345em;"><span></span></span></span></span></span><span class="mclose
 ///   nulldelimiter"></span></span></span></span></span>`uint32_t` values
 ///# Related
 /// - [`crate::vulkan1_0`]
@@ -48339,26 +48486,27 @@ impl ImageResolve {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkShaderModuleCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ShaderModuleCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: ShaderModuleCreateFlags,
+    pub flags: ShaderModuleCreateFlags,
     ///[`code_size`] is the size, in bytes, of the code pointed to by
     ///[`code`].
-    code_size: usize,
+    pub code_size: usize,
     ///[`code`] is a pointer to code that is used to create the shader
     ///module.
     ///The type and format of the code is determined from the content of the
     ///memory addressed by [`code`].
-    code: *const u32,
+    pub code: *const u32,
 }
 impl<'lt> Default for ShaderModuleCreateInfo<'lt> {
     fn default() -> Self {
@@ -48554,17 +48702,18 @@ impl<'lt> ShaderModuleCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorSetLayoutBinding")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorSetLayoutBinding<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`binding`] is the binding number of this entry and corresponds to a
     ///resource of the same binding number in the shader stages.
-    binding: u32,
+    pub binding: u32,
     ///[`descriptor_type`] is a [`DescriptorType`] specifying which type
     ///of resource descriptors are used for this binding.
-    descriptor_type: DescriptorType,
+    pub descriptor_type: DescriptorType,
     ///[`descriptor_count`] is the number of descriptors contained in the
     ///binding, accessed in a shader as an
     ///array, except if [`descriptor_type`] is
@@ -48573,7 +48722,7 @@ pub struct DescriptorSetLayoutBinding<'lt> {
     ///If [`descriptor_count`] is zero this binding entry is reserved and the
     ///resource  **must**  not be accessed from any stage via this binding within
     ///any pipeline using the set layout.
-    descriptor_count: u32,
+    pub descriptor_count: u32,
     ///[`stage_flags`] member is a bitmask of [`ShaderStageFlagBits`]
     ///specifying which pipeline shader stages  **can**  access a resource for this
     ///binding.
@@ -48586,9 +48735,9 @@ pub struct DescriptorSetLayoutBinding<'lt> {
     ///are no limitations on what combinations of stages  **can**  use a descriptor
     ///binding, and in particular a binding  **can**  be used by both graphics stages
     ///and the compute stage.
-    stage_flags: ShaderStageFlags,
+    pub stage_flags: ShaderStageFlags,
     ///No documentation found
-    immutable_samplers: *const Sampler,
+    pub immutable_samplers: *const Sampler,
 }
 impl<'lt> Default for DescriptorSetLayoutBinding<'lt> {
     fn default() -> Self {
@@ -48761,25 +48910,26 @@ impl<'lt> DescriptorSetLayoutBinding<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorSetLayoutCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorSetLayoutCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask
     ///of [`DescriptorSetLayoutCreateFlagBits`]
     ///specifying options for descriptor set layout creation.
-    flags: DescriptorSetLayoutCreateFlags,
+    pub flags: DescriptorSetLayoutCreateFlags,
     ///[`binding_count`] is the number of elements in [`bindings`].
-    binding_count: u32,
+    pub binding_count: u32,
     ///[`bindings`] is a pointer to an array of
     ///[`DescriptorSetLayoutBinding`] structures.
-    bindings: *const DescriptorSetLayoutBinding<'lt>,
+    pub bindings: *const DescriptorSetLayoutBinding<'lt>,
 }
 impl<'lt> Default for DescriptorSetLayoutCreateInfo<'lt> {
     fn default() -> Self {
@@ -48914,19 +49064,20 @@ impl<'lt> DescriptorSetLayoutCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorPoolSize")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct DescriptorPoolSize {
     ///[`type_`] is the type of descriptor.
-    type_: DescriptorType,
+    pub type_: DescriptorType,
     ///[`descriptor_count`] is the number of descriptors of that type to
     ///allocate.
     ///If [`type_`] is `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` then
     ///[`descriptor_count`] is the number of bytes to allocate for descriptors
     ///of this type.
-    descriptor_count: u32,
+    pub descriptor_count: u32,
 }
 impl Default for DescriptorPoolSize {
     fn default() -> Self {
@@ -49086,28 +49237,29 @@ impl DescriptorPoolSize {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorPoolCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorPoolCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`DescriptorPoolCreateFlagBits`]
     ///specifying certain supported operations on the pool.
-    flags: DescriptorPoolCreateFlags,
+    pub flags: DescriptorPoolCreateFlags,
     ///[`max_sets`] is the maximum number of descriptor sets that  **can**  be
     ///allocated from the pool.
-    max_sets: u32,
+    pub max_sets: u32,
     ///[`pool_size_count`] is the number of elements in [`pool_sizes`].
-    pool_size_count: u32,
+    pub pool_size_count: u32,
     ///[`pool_sizes`] is a pointer to an array of [`DescriptorPoolSize`]
     ///structures, each containing a descriptor type and number of descriptors
     ///of that type to be allocated in the pool.
-    pool_sizes: *const DescriptorPoolSize,
+    pub pool_sizes: *const DescriptorPoolSize,
 }
 impl<'lt> Default for DescriptorPoolCreateInfo<'lt> {
     fn default() -> Self {
@@ -49279,25 +49431,26 @@ impl<'lt> DescriptorPoolCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorSetAllocateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorSetAllocateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`descriptor_pool`] is the pool which the sets will be allocated from.
-    descriptor_pool: DescriptorPool,
+    pub descriptor_pool: DescriptorPool,
     ///[`descriptor_set_count`] determines the number of descriptor sets to be
     ///allocated from the pool.
-    descriptor_set_count: u32,
+    pub descriptor_set_count: u32,
     ///[`set_layouts`] is a pointer to an array of descriptor set layouts,
     ///with each member specifying how the corresponding descriptor set is
     ///allocated.
-    set_layouts: *const DescriptorSetLayout,
+    pub set_layouts: *const DescriptorSetLayout,
 }
 impl<'lt> Default for DescriptorSetAllocateInfo<'lt> {
     fn default() -> Self {
@@ -49432,19 +49585,20 @@ impl<'lt> DescriptorSetAllocateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSpecializationMapEntry")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct SpecializationMapEntry {
     ///[`constant_id`] is the ID of the specialization constant in SPIR-V.
-    constant_id: u32,
+    pub constant_id: u32,
     ///[`offset`] is the byte offset of the specialization constant value
     ///within the supplied data buffer.
-    offset: u32,
+    pub offset: u32,
     ///[`size`] is the byte size of the specialization constant value within
     ///the supplied data buffer.
-    size: usize,
+    pub size: usize,
 }
 impl Default for SpecializationMapEntry {
     fn default() -> Self {
@@ -49539,22 +49693,23 @@ impl SpecializationMapEntry {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSpecializationInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SpecializationInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`map_entry_count`] is the number of entries in the [`map_entries`]
     ///array.
-    map_entry_count: u32,
+    pub map_entry_count: u32,
     ///[`map_entries`] is a pointer to an array of
     ///[`SpecializationMapEntry`] structures which map constant IDs to
     ///offsets in [`data`].
-    map_entries: *const SpecializationMapEntry,
+    pub map_entries: *const SpecializationMapEntry,
     ///[`data_size`] is the byte size of the [`data`] buffer.
-    data_size: usize,
+    pub data_size: usize,
     ///[`data`] contains the actual constant values to specialize with.
-    data: *const c_void,
+    pub data: *const c_void,
 }
 impl<'lt> Default for SpecializationInfo<'lt> {
     fn default() -> Self {
@@ -49780,33 +49935,34 @@ impl<'lt> SpecializationInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineShaderStageCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineShaderStageCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`PipelineShaderStageCreateFlagBits`]
     ///specifying how the pipeline shader stage will be generated.
-    flags: PipelineShaderStageCreateFlags,
+    pub flags: PipelineShaderStageCreateFlags,
     ///[`stage`] is a [`ShaderStageFlagBits`] value specifying a single
     ///pipeline stage.
-    stage: ShaderStageFlagBits,
+    pub stage: ShaderStageFlagBits,
     ///[`module`] is a [`ShaderModule`] object containing the shader for
     ///this stage.
-    module: ShaderModule,
+    pub module: ShaderModule,
     ///[`name`] is a pointer to a null-terminated UTF-8 string specifying
     ///the entry point name of the shader for this stage.
-    name: &'lt CStr,
+    pub name: &'lt CStr,
     ///[`specialization_info`] is a pointer to a [`SpecializationInfo`]
     ///structure, as described in
     ///[Specialization Constants](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-specialization-constants), or
     ///`NULL`.
-    specialization_info: *const SpecializationInfo<'lt>,
+    pub specialization_info: *const SpecializationInfo<'lt>,
 }
 impl<'lt> Default for PipelineShaderStageCreateInfo<'lt> {
     fn default() -> Self {
@@ -50025,30 +50181,31 @@ impl<'lt> PipelineShaderStageCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkComputePipelineCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ComputePipelineCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`PipelineCreateFlagBits`] specifying
     ///how the pipeline will be generated.
-    flags: PipelineCreateFlags,
+    pub flags: PipelineCreateFlags,
     ///[`stage`] is a [`PipelineShaderStageCreateInfo`] structure
     ///describing the compute shader.
-    stage: PipelineShaderStageCreateInfo<'lt>,
+    pub stage: PipelineShaderStageCreateInfo<'lt>,
     ///[`layout`] is the description of binding locations used by both the
     ///pipeline and descriptor sets used with the pipeline.
-    layout: PipelineLayout,
+    pub layout: PipelineLayout,
     ///[`base_pipeline_handle`] is a pipeline to derive from
-    base_pipeline_handle: Pipeline,
+    pub base_pipeline_handle: Pipeline,
     ///[`base_pipeline_index`] is an index into the `pCreateInfos`
     ///parameter to use as a pipeline to derive from
-    base_pipeline_index: i32,
+    pub base_pipeline_index: i32,
 }
 impl<'lt> Default for ComputePipelineCreateInfo<'lt> {
     fn default() -> Self {
@@ -50205,20 +50362,21 @@ impl<'lt> ComputePipelineCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVertexInputBindingDescription")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct VertexInputBindingDescription {
     ///[`binding`] is the binding number that this structure describes.
-    binding: u32,
+    pub binding: u32,
     ///[`stride`] is the byte stride between consecutive elements within the
     ///buffer.
-    stride: u32,
+    pub stride: u32,
     ///[`input_rate`] is a [`VertexInputRate`] value specifying whether
     ///vertex attribute addressing is a function of the vertex index or of the
     ///instance index.
-    input_rate: VertexInputRate,
+    pub input_rate: VertexInputRate,
 }
 impl Default for VertexInputBindingDescription {
     fn default() -> Self {
@@ -50318,21 +50476,22 @@ impl VertexInputBindingDescription {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVertexInputAttributeDescription")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct VertexInputAttributeDescription {
     ///[`location`] is the shader input location number for this attribute.
-    location: u32,
+    pub location: u32,
     ///[`binding`] is the binding number which this attribute takes its data
     ///from.
-    binding: u32,
+    pub binding: u32,
     ///[`format`] is the size and type of the vertex attribute data.
-    format: Format,
+    pub format: Format,
     ///[`offset`] is a byte offset of this attribute relative to the start of
     ///an element in the vertex input binding.
-    offset: u32,
+    pub offset: u32,
 }
 impl Default for VertexInputAttributeDescription {
     fn default() -> Self {
@@ -50466,30 +50625,31 @@ impl VertexInputAttributeDescription {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineVertexInputStateCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineVertexInputStateCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: PipelineVertexInputStateCreateFlags,
+    pub flags: PipelineVertexInputStateCreateFlags,
     ///[`vertex_binding_description_count`] is the number of vertex binding
     ///descriptions provided in [`vertex_binding_descriptions`].
-    vertex_binding_description_count: u32,
+    pub vertex_binding_description_count: u32,
     ///[`vertex_binding_descriptions`] is a pointer to an array of
     ///[`VertexInputBindingDescription`] structures.
-    vertex_binding_descriptions: *const VertexInputBindingDescription,
+    pub vertex_binding_descriptions: *const VertexInputBindingDescription,
     ///[`vertex_attribute_description_count`] is the number of vertex attribute
     ///descriptions provided in [`vertex_attribute_descriptions`].
-    vertex_attribute_description_count: u32,
+    pub vertex_attribute_description_count: u32,
     ///[`vertex_attribute_descriptions`] is a pointer to an array of
     ///[`VertexInputAttributeDescription`] structures.
-    vertex_attribute_descriptions: *const VertexInputAttributeDescription,
+    pub vertex_attribute_descriptions: *const VertexInputAttributeDescription,
 }
 impl<'lt> Default for PipelineVertexInputStateCreateInfo<'lt> {
     fn default() -> Self {
@@ -50713,21 +50873,22 @@ impl<'lt> PipelineVertexInputStateCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineInputAssemblyStateCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineInputAssemblyStateCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: PipelineInputAssemblyStateCreateFlags,
+    pub flags: PipelineInputAssemblyStateCreateFlags,
     ///[`topology`] is a [`PrimitiveTopology`] defining the primitive
     ///topology, as described below.
-    topology: PrimitiveTopology,
+    pub topology: PrimitiveTopology,
     ///[`primitive_restart_enable`] controls whether a special vertex index
     ///value is treated as restarting the assembly of primitives.
     ///This enable only applies to indexed draws ([`CmdDrawIndexed`],
@@ -50743,7 +50904,7 @@ pub struct PipelineInputAssemblyStateCreateInfo<'lt> {
     ///(for `VK_PRIMITIVE_TOPOLOGY_PATCH_LIST`) or
     ///[`primitiveTopologyListRestart`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-primitiveTopologyListRestart)
     ///(for all other list topologies) is enabled.
-    primitive_restart_enable: Bool32,
+    pub primitive_restart_enable: Bool32,
 }
 impl<'lt> Default for PipelineInputAssemblyStateCreateInfo<'lt> {
     fn default() -> Self {
@@ -50897,20 +51058,21 @@ impl<'lt> PipelineInputAssemblyStateCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineTessellationStateCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineTessellationStateCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: PipelineTessellationStateCreateFlags,
+    pub flags: PipelineTessellationStateCreateFlags,
     ///[`patch_control_points`] is the number of control points per patch.
-    patch_control_points: u32,
+    pub patch_control_points: u32,
 }
 impl<'lt> Default for PipelineTessellationStateCreateInfo<'lt> {
     fn default() -> Self {
@@ -51064,32 +51226,33 @@ impl<'lt> PipelineTessellationStateCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineViewportStateCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineViewportStateCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: PipelineViewportStateCreateFlags,
+    pub flags: PipelineViewportStateCreateFlags,
     ///[`viewport_count`] is the number of viewports used by the pipeline.
-    viewport_count: u32,
+    pub viewport_count: u32,
     ///[`viewports`] is a pointer to an array of [`Viewport`]
     ///structures, defining the viewport transforms.
     ///If the viewport state is dynamic, this member is ignored.
-    viewports: *const Viewport,
+    pub viewports: *const Viewport,
     ///[`scissor_count`] is the number of [scissors](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-scissor) and
     /// **must**  match the number of viewports.
-    scissor_count: u32,
+    pub scissor_count: u32,
     ///[`scissors`] is a pointer to an array of [`Rect2D`] structures
     ///defining the rectangular bounds of the scissor for the corresponding
     ///viewport.
     ///If the scissor state is dynamic, this member is ignored.
-    scissors: *const Rect2D,
+    pub scissors: *const Rect2D,
 }
 impl<'lt> Default for PipelineViewportStateCreateInfo<'lt> {
     fn default() -> Self {
@@ -51321,18 +51484,19 @@ impl<'lt> PipelineViewportStateCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineRasterizationStateCreateInfo")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineRasterizationStateCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: PipelineRasterizationStateCreateFlags,
+    pub flags: PipelineRasterizationStateCreateFlags,
     ///[`depth_clamp_enable`] controls whether to clamp the fragment’s depth
     ///values as described in [Depth Test](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-depth).
     ///If the pipeline is not created with
@@ -51341,33 +51505,33 @@ pub struct PipelineRasterizationStateCreateInfo<'lt> {
     ///planes of the frustrum as described in [Primitive Clipping](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#vertexpostproc-clipping).
     ///Otherwise depth clipping is controlled by the state set in
     ///[`PipelineRasterizationDepthClipStateCreateInfoEXT`].
-    depth_clamp_enable: Bool32,
+    pub depth_clamp_enable: Bool32,
     ///[`rasterizer_discard_enable`] controls whether primitives are discarded
     ///immediately before the rasterization stage.
-    rasterizer_discard_enable: Bool32,
+    pub rasterizer_discard_enable: Bool32,
     ///[`polygon_mode`] is the triangle rendering mode.
     ///See [`PolygonMode`].
-    polygon_mode: PolygonMode,
+    pub polygon_mode: PolygonMode,
     ///[`cull_mode`] is the triangle facing direction used for primitive
     ///culling.
     ///See [`CullModeFlagBits`].
-    cull_mode: CullModeFlags,
+    pub cull_mode: CullModeFlags,
     ///[`front_face`] is a [`FrontFace`] value specifying the front-facing
     ///triangle orientation to be used for culling.
-    front_face: FrontFace,
+    pub front_face: FrontFace,
     ///[`depth_bias_enable`] controls whether to bias fragment depth values.
-    depth_bias_enable: Bool32,
+    pub depth_bias_enable: Bool32,
     ///[`depth_bias_constant_factor`] is a scalar factor controlling the
     ///constant depth value added to each fragment.
-    depth_bias_constant_factor: f32,
+    pub depth_bias_constant_factor: f32,
     ///[`depth_bias_clamp`] is the maximum (or minimum) depth bias of a
     ///fragment.
-    depth_bias_clamp: f32,
+    pub depth_bias_clamp: f32,
     ///[`depth_bias_slope_factor`] is a scalar factor applied to a fragment’s
     ///slope in depth bias calculations.
-    depth_bias_slope_factor: f32,
+    pub depth_bias_slope_factor: f32,
     ///[`line_width`] is the width of rasterized line segments.
-    line_width: f32,
+    pub line_width: f32,
 }
 impl<'lt> Default for PipelineRasterizationStateCreateInfo<'lt> {
     fn default() -> Self {
@@ -51700,16 +51864,16 @@ impl<'lt> PipelineRasterizationStateCreateInfo<'lt> {
 /// - [`rasterization_samples`] **must**  be a valid [`SampleCountFlagBits`] value
 /// - If [`sample_mask`] is not `NULL`, [`sample_mask`] **must**  be a valid pointer to an array of
 ///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   style="height:1.277216em;vertical-align:-0.345em;" class="strut"></span><span
+///   class="strut" style="height:1.277216em;vertical-align:-0.345em;"></span><span
 ///   class="mopen">⌈</span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mtight">3</span><span class="mord mtight">2</span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span
+///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span
 ///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-///   style="top:-3.446108em;"><span style="height:3em;" class="pstrut"></span><span class="sizing
+///   style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing
 ///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span
 ///   class="mord mathit mtight">r</span><span class="mord mathit mtight">a</span><span class="mord
 ///   mathit mtight">s</span><span class="mord mathit mtight">t</span><span class="mord mathit
@@ -51742,39 +51906,40 @@ impl<'lt> PipelineRasterizationStateCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineMultisampleStateCreateInfo")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineMultisampleStateCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: PipelineMultisampleStateCreateFlags,
+    pub flags: PipelineMultisampleStateCreateFlags,
     ///[`rasterization_samples`] is a [`SampleCountFlagBits`] value
     ///specifying the number of samples used in rasterization.
-    rasterization_samples: SampleCountFlagBits,
+    pub rasterization_samples: SampleCountFlagBits,
     ///[`sample_shading_enable`] **can**  be used to enable
     ///[Sample Shading](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-sampleshading).
-    sample_shading_enable: Bool32,
+    pub sample_shading_enable: Bool32,
     ///[`min_sample_shading`] specifies a minimum fraction of sample shading if
     ///[`sample_shading_enable`] is set to [`TRUE`].
-    min_sample_shading: f32,
+    pub min_sample_shading: f32,
     ///[`sample_mask`] is a pointer to an array of [`SampleMask`]
     ///values used in the [sample mask test](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-samplemask).
-    sample_mask: *const SampleMask,
+    pub sample_mask: *const SampleMask,
     ///[`alpha_to_coverage_enable`] controls whether a temporary coverage value
     ///is generated based on the alpha component of the fragment’s first color
     ///output as specified in the [Multisample Coverage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-covg)
     ///section.
-    alpha_to_coverage_enable: Bool32,
+    pub alpha_to_coverage_enable: Bool32,
     ///[`alpha_to_one_enable`] controls whether the alpha component of the
     ///fragment’s first color output is replaced with one as described in
     ///[Multisample Coverage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-covg).
-    alpha_to_one_enable: Bool32,
+    pub alpha_to_one_enable: Bool32,
 }
 impl<'lt> Default for PipelineMultisampleStateCreateInfo<'lt> {
     fn default() -> Self {
@@ -52102,6 +52267,7 @@ impl<'lt> PipelineMultisampleStateCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineColorBlendAttachmentState")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -52111,30 +52277,30 @@ pub struct PipelineColorBlendAttachmentState {
     ///corresponding color attachment.
     ///If blending is not enabled, the source fragment’s color for that
     ///attachment is passed through unmodified.
-    blend_enable: Bool32,
+    pub blend_enable: Bool32,
     ///[`src_color_blend_factor`] selects which blend factor is used to
     ///determine the source factors (S<sub>r</sub>,S<sub>g</sub>,S<sub>b</sub>).
-    src_color_blend_factor: BlendFactor,
+    pub src_color_blend_factor: BlendFactor,
     ///[`dst_color_blend_factor`] selects which blend factor is used to
     ///determine the destination factors (D<sub>r</sub>,D<sub>g</sub>,D<sub>b</sub>).
-    dst_color_blend_factor: BlendFactor,
+    pub dst_color_blend_factor: BlendFactor,
     ///[`color_blend_op`] selects which blend operation is used to calculate
     ///the RGB values to write to the color attachment.
-    color_blend_op: BlendOp,
+    pub color_blend_op: BlendOp,
     ///[`src_alpha_blend_factor`] selects which blend factor is used to
     ///determine the source factor S<sub>a</sub>.
-    src_alpha_blend_factor: BlendFactor,
+    pub src_alpha_blend_factor: BlendFactor,
     ///[`dst_alpha_blend_factor`] selects which blend factor is used to
     ///determine the destination factor D<sub>a</sub>.
-    dst_alpha_blend_factor: BlendFactor,
+    pub dst_alpha_blend_factor: BlendFactor,
     ///[`alpha_blend_op`] selects which blend operation is use to calculate the
     ///alpha values to write to the color attachment.
-    alpha_blend_op: BlendOp,
+    pub alpha_blend_op: BlendOp,
     ///[`color_write_mask`] is a bitmask of [`ColorComponentFlagBits`]
     ///specifying which of the R, G, B, and/or A components are enabled for
     ///writing, as described for the [Color Write
     ///Mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-color-write-mask).
-    color_write_mask: ColorComponentFlags,
+    pub color_write_mask: ColorComponentFlags,
 }
 impl Default for PipelineColorBlendAttachmentState {
     fn default() -> Self {
@@ -52343,36 +52509,37 @@ impl PipelineColorBlendAttachmentState {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineColorBlendStateCreateInfo")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineColorBlendStateCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of
     ///[`PipelineColorBlendStateCreateFlagBits`] specifying additional
     ///color blending information.
-    flags: PipelineColorBlendStateCreateFlags,
+    pub flags: PipelineColorBlendStateCreateFlags,
     ///[`logic_op_enable`] controls whether to apply [Logical Operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-logicop).
-    logic_op_enable: Bool32,
+    pub logic_op_enable: Bool32,
     ///[`logic_op`] selects which logical operation to apply.
-    logic_op: LogicOp,
+    pub logic_op: LogicOp,
     ///[`attachment_count`] is the number of
     ///[`PipelineColorBlendAttachmentState`] elements in
     ///[`attachments`].
-    attachment_count: u32,
+    pub attachment_count: u32,
     ///[`attachments`] is a pointer to an array of
     ///[`PipelineColorBlendAttachmentState`] structures defining blend
     ///state for each color attachment.
-    attachments: *const PipelineColorBlendAttachmentState,
+    pub attachments: *const PipelineColorBlendAttachmentState,
     ///[`blend_constants`] is a pointer to an array of four values used as the
     ///R, G, B, and A components of the blend constant that are used in
     ///blending, depending on the [blend factor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blendfactors).
-    blend_constants: [f32; 4],
+    pub blend_constants: [f32; 4],
 }
 impl<'lt> Default for PipelineColorBlendStateCreateInfo<'lt> {
     fn default() -> Self {
@@ -52583,26 +52750,27 @@ impl<'lt> PipelineColorBlendStateCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineDynamicStateCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineDynamicStateCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: PipelineDynamicStateCreateFlags,
+    pub flags: PipelineDynamicStateCreateFlags,
     ///[`dynamic_state_count`] is the number of elements in the
     ///[`dynamic_states`] array.
-    dynamic_state_count: u32,
+    pub dynamic_state_count: u32,
     ///[`dynamic_states`] is a pointer to an array of [`DynamicState`]
     ///values specifying which pieces of pipeline state will use the values
     ///from dynamic state commands rather than from pipeline state creation
     ///information.
-    dynamic_states: *const DynamicState,
+    pub dynamic_states: *const DynamicState,
 }
 impl<'lt> Default for PipelineDynamicStateCreateInfo<'lt> {
     fn default() -> Self {
@@ -52750,6 +52918,7 @@ impl<'lt> PipelineDynamicStateCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkStencilOpState")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -52757,25 +52926,25 @@ impl<'lt> PipelineDynamicStateCreateInfo<'lt> {
 pub struct StencilOpState {
     ///[`fail_op`] is a [`StencilOp`] value specifying the action
     ///performed on samples that fail the stencil test.
-    fail_op: StencilOp,
+    pub fail_op: StencilOp,
     ///[`pass_op`] is a [`StencilOp`] value specifying the action
     ///performed on samples that pass both the depth and stencil tests.
-    pass_op: StencilOp,
+    pub pass_op: StencilOp,
     ///[`depth_fail_op`] is a [`StencilOp`] value specifying the action
     ///performed on samples that pass the stencil test and fail the depth test.
-    depth_fail_op: StencilOp,
+    pub depth_fail_op: StencilOp,
     ///[`compare_op`] is a [`CompareOp`] value specifying the comparison
     ///operator used in the stencil test.
-    compare_op: CompareOp,
+    pub compare_op: CompareOp,
     ///[`compare_mask`] selects the bits of the unsigned integer stencil
     ///values participating in the stencil test.
-    compare_mask: u32,
+    pub compare_mask: u32,
     ///[`write_mask`] selects the bits of the unsigned integer stencil values
     ///updated by the stencil test in the stencil framebuffer attachment.
-    write_mask: u32,
+    pub write_mask: u32,
     ///[`reference`] is an integer reference value that is used in the
     ///unsigned stencil comparison.
-    reference: u32,
+    pub reference: u32,
 }
 impl Default for StencilOpState {
     fn default() -> Self {
@@ -52962,48 +53131,49 @@ impl StencilOpState {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineDepthStencilStateCreateInfo")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineDepthStencilStateCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of
     ///[`PipelineDepthStencilStateCreateFlagBits`] specifying additional
     ///depth/stencil state information.
-    flags: PipelineDepthStencilStateCreateFlags,
+    pub flags: PipelineDepthStencilStateCreateFlags,
     ///[`depth_test_enable`] controls whether [depth testing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-depth)
     ///is enabled.
-    depth_test_enable: Bool32,
+    pub depth_test_enable: Bool32,
     ///[`depth_write_enable`] controls whether [depth
     ///writes](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-depth-write) are enabled when [`depth_test_enable`] is [`TRUE`].
     ///Depth writes are always disabled when [`depth_test_enable`] is
     ///[`FALSE`].
-    depth_write_enable: Bool32,
+    pub depth_write_enable: Bool32,
     ///[`depth_compare_op`] is the comparison operator used in the
     ///[depth test](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-depth).
-    depth_compare_op: CompareOp,
+    pub depth_compare_op: CompareOp,
     ///[`depth_bounds_test_enable`] controls whether [depth bounds
     ///testing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-dbt) is enabled.
-    depth_bounds_test_enable: Bool32,
+    pub depth_bounds_test_enable: Bool32,
     ///[`stencil_test_enable`] controls whether [stencil
     ///testing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-stencil) is enabled.
-    stencil_test_enable: Bool32,
+    pub stencil_test_enable: Bool32,
     ///[`front`] and [`back`] control the parameters of the
     ///[stencil test](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-stencil).
-    front: StencilOpState,
+    pub front: StencilOpState,
     ///No documentation found
-    back: StencilOpState,
+    pub back: StencilOpState,
     ///[`min_depth_bounds`] is the minimum depth bound used in the
     ///[depth bounds test](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-dbt).
-    min_depth_bounds: f32,
+    pub min_depth_bounds: f32,
     ///[`max_depth_bounds`] is the maximum depth bound used in the
     ///[depth bounds test](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-dbt).
-    max_depth_bounds: f32,
+    pub max_depth_bounds: f32,
 }
 impl<'lt> Default for PipelineDepthStencilStateCreateInfo<'lt> {
     fn default() -> Self {
@@ -53899,84 +54069,85 @@ impl<'lt> PipelineDepthStencilStateCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkGraphicsPipelineCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GraphicsPipelineCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`PipelineCreateFlagBits`] specifying
     ///how the pipeline will be generated.
-    flags: PipelineCreateFlags,
+    pub flags: PipelineCreateFlags,
     ///[`stage_count`] is the number of entries in the [`stages`] array.
-    stage_count: u32,
+    pub stage_count: u32,
     ///[`stages`] is a pointer to an array of [`stage_count`][`PipelineShaderStageCreateInfo`]
     /// structures describing the set of the shader stages to be included in the graphics
     /// pipeline.
-    stages: *const PipelineShaderStageCreateInfo<'lt>,
+    pub stages: *const PipelineShaderStageCreateInfo<'lt>,
     ///[`vertex_input_state`] is a pointer to a
     ///[`PipelineVertexInputStateCreateInfo`] structure defining vertex
     ///input state for use with vertex shading.
-    vertex_input_state: *const PipelineVertexInputStateCreateInfo<'lt>,
+    pub vertex_input_state: *const PipelineVertexInputStateCreateInfo<'lt>,
     ///[`input_assembly_state`] is a pointer to a
     ///[`PipelineInputAssemblyStateCreateInfo`] structure which determines
     ///input assembly behavior for vertex shading, as described in [Drawing Commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing).
-    input_assembly_state: *const PipelineInputAssemblyStateCreateInfo<'lt>,
+    pub input_assembly_state: *const PipelineInputAssemblyStateCreateInfo<'lt>,
     ///[`tessellation_state`] is a pointer to a
     ///[`PipelineTessellationStateCreateInfo`] structure defining
     ///tessellation state used by tessellation shaders.
-    tessellation_state: *const PipelineTessellationStateCreateInfo<'lt>,
+    pub tessellation_state: *const PipelineTessellationStateCreateInfo<'lt>,
     ///[`viewport_state`] is a pointer to a
     ///[`PipelineViewportStateCreateInfo`] structure defining viewport
     ///state used when rasterization is enabled.
-    viewport_state: *const PipelineViewportStateCreateInfo<'lt>,
+    pub viewport_state: *const PipelineViewportStateCreateInfo<'lt>,
     ///[`rasterization_state`] is a pointer to a
     ///[`PipelineRasterizationStateCreateInfo`] structure defining
     ///rasterization state.
-    rasterization_state: *const PipelineRasterizationStateCreateInfo<'lt>,
+    pub rasterization_state: *const PipelineRasterizationStateCreateInfo<'lt>,
     ///[`multisample_state`] is a pointer to a
     ///[`PipelineMultisampleStateCreateInfo`] structure defining
     ///multisample state used when rasterization is enabled.
-    multisample_state: *const PipelineMultisampleStateCreateInfo<'lt>,
+    pub multisample_state: *const PipelineMultisampleStateCreateInfo<'lt>,
     ///[`depth_stencil_state`] is a pointer to a
     ///[`PipelineDepthStencilStateCreateInfo`] structure defining
     ///depth/stencil state used when rasterization is enabled for depth or
     ///stencil attachments accessed during rendering.
-    depth_stencil_state: *const PipelineDepthStencilStateCreateInfo<'lt>,
+    pub depth_stencil_state: *const PipelineDepthStencilStateCreateInfo<'lt>,
     ///[`color_blend_state`] is a pointer to a
     ///[`PipelineColorBlendStateCreateInfo`] structure defining color blend
     ///state used when rasterization is enabled for any color attachments
     ///accessed during rendering.
-    color_blend_state: *const PipelineColorBlendStateCreateInfo<'lt>,
+    pub color_blend_state: *const PipelineColorBlendStateCreateInfo<'lt>,
     ///[`dynamic_state`] is a pointer to a
     ///[`PipelineDynamicStateCreateInfo`] structure defining which
     ///properties of the pipeline state object are dynamic and  **can**  be changed
     ///independently of the pipeline state.
     ///This  **can**  be `NULL`, which means no state in the pipeline is considered
     ///dynamic.
-    dynamic_state: *const PipelineDynamicStateCreateInfo<'lt>,
+    pub dynamic_state: *const PipelineDynamicStateCreateInfo<'lt>,
     ///[`layout`] is the description of binding locations used by both the
     ///pipeline and descriptor sets used with the pipeline.
-    layout: PipelineLayout,
+    pub layout: PipelineLayout,
     ///[`render_pass`] is a handle to a render pass object describing the
     ///environment in which the pipeline will be used.
     ///The pipeline  **must**  only be used with a render pass instance compatible
     ///with the one provided.
     ///See [Render Pass Compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-compatibility) for more
     ///information.
-    render_pass: RenderPass,
+    pub render_pass: RenderPass,
     ///[`subpass`] is the index of the subpass in the render pass where this
     ///pipeline will be used.
-    subpass: u32,
+    pub subpass: u32,
     ///[`base_pipeline_handle`] is a pipeline to derive from.
-    base_pipeline_handle: Pipeline,
+    pub base_pipeline_handle: Pipeline,
     ///[`base_pipeline_index`] is an index into the `pCreateInfos`
     ///parameter to use as a pipeline to derive from.
-    base_pipeline_index: i32,
+    pub base_pipeline_index: i32,
 }
 impl<'lt> Default for GraphicsPipelineCreateInfo<'lt> {
     fn default() -> Self {
@@ -54429,29 +54600,30 @@ impl<'lt> GraphicsPipelineCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineCacheCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineCacheCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`PipelineCacheCreateFlagBits`]
     ///specifying the behavior of the pipeline cache.
-    flags: PipelineCacheCreateFlags,
+    pub flags: PipelineCacheCreateFlags,
     ///[`initial_data_size`] is the number of bytes in [`initial_data`].
     ///If [`initial_data_size`] is zero, the pipeline cache will initially be
     ///empty.
-    initial_data_size: usize,
+    pub initial_data_size: usize,
     ///[`initial_data`] is a pointer to previously retrieved pipeline cache
     ///data.
     ///If the pipeline cache data is incompatible (as defined below) with the
     ///device, the pipeline cache will be initially empty.
     ///If [`initial_data_size`] is zero, [`initial_data`] is ignored.
-    initial_data: *const c_void,
+    pub initial_data: *const c_void,
 }
 impl<'lt> Default for PipelineCacheCreateInfo<'lt> {
     fn default() -> Self {
@@ -54600,28 +54772,29 @@ impl<'lt> PipelineCacheCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineCacheHeaderVersionOne")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct PipelineCacheHeaderVersionOne {
     ///[`header_size`] is the length in bytes of the pipeline cache header.
-    header_size: u32,
+    pub header_size: u32,
     ///[`header_version`] is a [`PipelineCacheHeaderVersion`] enum value
     ///specifying the version of the header.
     ///A consumer of the pipeline cache  **should**  use the cache version to
     ///interpret the remainder of the cache header.
-    header_version: PipelineCacheHeaderVersion,
+    pub header_version: PipelineCacheHeaderVersion,
     ///[`vendor_id`] is the [`PhysicalDeviceProperties`]::[`vendor_id`]
     ///of the implementation.
-    vendor_id: u32,
+    pub vendor_id: u32,
     ///[`device_id`] is the [`PhysicalDeviceProperties`]::[`device_id`]
     ///of the implementation.
-    device_id: u32,
+    pub device_id: u32,
     ///[`pipeline_cache_uuid`] is the
     ///[`PhysicalDeviceProperties`]::[`pipeline_cache_uuid`] of the
     ///implementation.
-    pipeline_cache_uuid: [u8; UUID_SIZE],
+    pub pipeline_cache_uuid: [u8; UUID_SIZE],
 }
 impl Default for PipelineCacheHeaderVersionOne {
     fn default() -> Self {
@@ -54744,6 +54917,7 @@ impl PipelineCacheHeaderVersionOne {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPushConstantRange")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -54754,15 +54928,15 @@ pub struct PushConstantRange {
     ///If a particular stage is not included in the range, then accessing
     ///members of that range of push constants from the corresponding shader
     ///stage will return undefined values.
-    stage_flags: ShaderStageFlags,
+    pub stage_flags: ShaderStageFlags,
     ///[`offset`] and [`size`] are the start offset and size, respectively,
     ///consumed by the range.
     ///Both [`offset`] and [`size`] are in units of bytes and  **must**  be a
     ///multiple of 4.
     ///The layout of the push constant variables is specified in the shader.
-    offset: u32,
+    pub offset: u32,
     ///No documentation found
-    size: u32,
+    pub size: u32,
 }
 impl Default for PushConstantRange {
     fn default() -> Self {
@@ -55061,33 +55235,34 @@ impl PushConstantRange {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineLayoutCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineLayoutCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: PipelineLayoutCreateFlags,
+    pub flags: PipelineLayoutCreateFlags,
     ///[`set_layout_count`] is the number of descriptor sets included in the
     ///pipeline layout.
-    set_layout_count: u32,
+    pub set_layout_count: u32,
     ///[`set_layouts`] is a pointer to an array of
     ///[`DescriptorSetLayout`] objects.
-    set_layouts: *const DescriptorSetLayout,
+    pub set_layouts: *const DescriptorSetLayout,
     ///[`push_constant_range_count`] is the number of push constant ranges
     ///included in the pipeline layout.
-    push_constant_range_count: u32,
+    pub push_constant_range_count: u32,
     ///[`push_constant_ranges`] is a pointer to an array of
     ///[`PushConstantRange`] structures defining a set of push constant
     ///ranges for use in a single pipeline layout.
     ///In addition to descriptor set layouts, a pipeline layout also describes
     ///how many push constants  **can**  be accessed by each stage of the pipeline.
-    push_constant_ranges: *const PushConstantRange,
+    pub push_constant_ranges: *const PushConstantRange,
 }
 impl<'lt> Default for PipelineLayoutCreateInfo<'lt> {
     fn default() -> Self {
@@ -55406,70 +55581,71 @@ impl<'lt> PipelineLayoutCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSamplerCreateInfo")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SamplerCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`SamplerCreateFlagBits`] describing
     ///additional parameters of the sampler.
-    flags: SamplerCreateFlags,
+    pub flags: SamplerCreateFlags,
     ///[`mag_filter`] is a [`Filter`] value specifying the magnification
     ///filter to apply to lookups.
-    mag_filter: Filter,
+    pub mag_filter: Filter,
     ///[`min_filter`] is a [`Filter`] value specifying the minification
     ///filter to apply to lookups.
-    min_filter: Filter,
+    pub min_filter: Filter,
     ///[`mipmap_mode`] is a [`SamplerMipmapMode`] value specifying the
     ///mipmap filter to apply to lookups.
-    mipmap_mode: SamplerMipmapMode,
+    pub mipmap_mode: SamplerMipmapMode,
     ///[`address_mode_u`] is a [`SamplerAddressMode`] value specifying the
     ///addressing mode for U coordinates outside [0,1).
-    address_mode_u: SamplerAddressMode,
+    pub address_mode_u: SamplerAddressMode,
     ///[`address_mode_v`] is a [`SamplerAddressMode`] value specifying the
     ///addressing mode for V coordinates outside [0,1).
-    address_mode_v: SamplerAddressMode,
+    pub address_mode_v: SamplerAddressMode,
     ///[`address_mode_w`] is a [`SamplerAddressMode`] value specifying the
     ///addressing mode for W coordinates outside [0,1).
-    address_mode_w: SamplerAddressMode,
+    pub address_mode_w: SamplerAddressMode,
     ///[`mip_lod_bias`] is the bias to be added to
     ///mipmap LOD (level-of-detail) calculation and bias provided by image
     ///sampling functions in SPIR-V, as described in the
     ///[Level-of-Detail Operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-level-of-detail-operation)
     ///section.
-    mip_lod_bias: f32,
+    pub mip_lod_bias: f32,
     ///[`anisotropy_enable`] is [`TRUE`] to
     ///enable anisotropic filtering, as described in the
     ///[Texel Anisotropic Filtering](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-texel-anisotropic-filtering)
     ///section, or [`FALSE`] otherwise.
-    anisotropy_enable: Bool32,
+    pub anisotropy_enable: Bool32,
     ///[`max_anisotropy`] is the anisotropy value clamp used by the sampler
     ///when [`anisotropy_enable`] is [`TRUE`].
     ///If [`anisotropy_enable`] is [`FALSE`], [`max_anisotropy`] is
     ///ignored.
-    max_anisotropy: f32,
+    pub max_anisotropy: f32,
     ///[`compare_enable`] is [`TRUE`] to enable comparison against a
     ///reference value during lookups, or [`FALSE`] otherwise.
     /// - Note: Some implementations will default to shader state if this member does not match.
-    compare_enable: Bool32,
+    pub compare_enable: Bool32,
     ///[`compare_op`] is a [`CompareOp`] value specifying the comparison
     ///function to apply to fetched data before filtering as described in the
     ///[Depth Compare Operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-depth-compare-operation) section.
-    compare_op: CompareOp,
+    pub compare_op: CompareOp,
     ///[`min_lod`] is used to clamp the [minimum of the computed LOD value](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-level-of-detail-operation).
-    min_lod: f32,
+    pub min_lod: f32,
     ///[`max_lod`] is used to clamp the [maximum of the computed LOD value](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-level-of-detail-operation).
     ///To avoid clamping the maximum value, set [`max_lod`] to the constant
     ///[`LOD_CLAMP_NONE`].
-    max_lod: f32,
+    pub max_lod: f32,
     ///[`border_color`] is a [`BorderColor`] value specifying the
     ///predefined border color to use.
-    border_color: BorderColor,
+    pub border_color: BorderColor,
     ///[`unnormalized_coordinates`]
     ///controls whether to use unnormalized or normalized texel coordinates to
     ///address texels of the image.
@@ -55486,7 +55662,7 @@ pub struct SamplerCreateInfo<'lt> {
     ///requirements:
     /// - The functions  **must**  not use projection.
     /// - The functions  **must**  not use offsets.
-    unnormalized_coordinates: Bool32,
+    pub unnormalized_coordinates: Bool32,
 }
 impl<'lt> Default for SamplerCreateInfo<'lt> {
     fn default() -> Self {
@@ -55868,24 +56044,25 @@ impl<'lt> SamplerCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCommandPoolCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CommandPoolCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`CommandPoolCreateFlagBits`] indicating
     ///usage behavior for the pool and command buffers allocated from it.
-    flags: CommandPoolCreateFlags,
+    pub flags: CommandPoolCreateFlags,
     ///[`queue_family_index`] designates a queue family as described in section
     ///[Queue Family Properties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-queueprops).
     ///All command buffers allocated from this command pool  **must**  be submitted
     ///on queues from the same queue family.
-    queue_family_index: u32,
+    pub queue_family_index: u32,
 }
 impl<'lt> Default for CommandPoolCreateInfo<'lt> {
     fn default() -> Self {
@@ -55999,25 +56176,26 @@ impl<'lt> CommandPoolCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCommandBufferAllocateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CommandBufferAllocateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`command_pool`] is the command pool from which the command buffers are
     ///allocated.
-    command_pool: CommandPool,
+    pub command_pool: CommandPool,
     ///[`level`] is a [`CommandBufferLevel`] value specifying the command
     ///buffer level.
-    level: CommandBufferLevel,
+    pub level: CommandBufferLevel,
     ///[`command_buffer_count`] is the number of command buffers to allocate
     ///from the pool.
-    command_buffer_count: u32,
+    pub command_buffer_count: u32,
 }
 impl<'lt> Default for CommandBufferAllocateInfo<'lt> {
     fn default() -> Self {
@@ -56197,27 +56375,28 @@ impl<'lt> CommandBufferAllocateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCommandBufferInheritanceInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CommandBufferInheritanceInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`render_pass`] is a [`RenderPass`] object defining which render
     ///passes the [`CommandBuffer`] will be [compatible](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-compatibility) with and  **can**  be executed within.
-    render_pass: RenderPass,
+    pub render_pass: RenderPass,
     ///[`subpass`] is the index of the subpass within the render pass
     ///instance that the [`CommandBuffer`] will be executed within.
-    subpass: u32,
+    pub subpass: u32,
     ///[`framebuffer`] **can**  refer to the [`Framebuffer`] object that the
     ///[`CommandBuffer`] will be rendering to if it is executed within a
     ///render pass instance.
     ///It  **can**  be [`crate::utils::Handle::null`] if the framebuffer is not known.
-    framebuffer: Framebuffer,
+    pub framebuffer: Framebuffer,
     ///[`occlusion_query_enable`] specifies whether the command buffer  **can**  be
     ///executed while an occlusion query is active in the primary command
     ///buffer.
@@ -56225,7 +56404,7 @@ pub struct CommandBufferInheritanceInfo<'lt> {
     ///whether the primary command buffer has an occlusion query active or not.
     ///If this is [`FALSE`], then the primary command buffer  **must**  not
     ///have an occlusion query active.
-    occlusion_query_enable: Bool32,
+    pub occlusion_query_enable: Bool32,
     ///[`query_flags`] specifies the query flags that  **can**  be used by an
     ///active occlusion query in the primary command buffer when this secondary
     ///command buffer is executed.
@@ -56233,7 +56412,7 @@ pub struct CommandBufferInheritanceInfo<'lt> {
     ///the active query  **can**  return boolean results or actual sample counts.
     ///If this bit is not set, then the active query  **must**  not use the
     ///`VK_QUERY_CONTROL_PRECISE_BIT` bit.
-    query_flags: QueryControlFlags,
+    pub query_flags: QueryControlFlags,
     ///[`pipeline_statistics`] is a bitmask of
     ///[`QueryPipelineStatisticFlagBits`] specifying the set of pipeline
     ///statistics that  **can**  be counted by an active query in the primary
@@ -56243,7 +56422,7 @@ pub struct CommandBufferInheritanceInfo<'lt> {
     ///query active that includes this bit or not.
     ///If this value excludes a given bit, then the active pipeline statistics
     ///query  **must**  not be from a query pool that counts that statistic.
-    pipeline_statistics: QueryPipelineStatisticFlags,
+    pub pipeline_statistics: QueryPipelineStatisticFlags,
 }
 impl<'lt> Default for CommandBufferInheritanceInfo<'lt> {
     fn default() -> Self {
@@ -56459,24 +56638,25 @@ impl<'lt> CommandBufferInheritanceInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCommandBufferBeginInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CommandBufferBeginInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`CommandBufferUsageFlagBits`]
     ///specifying usage behavior for the command buffer.
-    flags: CommandBufferUsageFlags,
+    pub flags: CommandBufferUsageFlags,
     ///[`inheritance_info`] is a pointer to a
     ///[`CommandBufferInheritanceInfo`] structure, used if
     ///`commandBuffer` is a secondary command buffer.
     ///If this is a primary command buffer, then this value is ignored.
-    inheritance_info: *const CommandBufferInheritanceInfo<'lt>,
+    pub inheritance_info: *const CommandBufferInheritanceInfo<'lt>,
 }
 impl<'lt> Default for CommandBufferBeginInfo<'lt> {
     fn default() -> Self {
@@ -56736,26 +56916,27 @@ impl<'lt> CommandBufferBeginInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRenderPassBeginInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderPassBeginInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`render_pass`] is the render pass to begin an instance of.
-    render_pass: RenderPass,
+    pub render_pass: RenderPass,
     ///[`framebuffer`] is the framebuffer containing the attachments that are
     ///used with the render pass.
-    framebuffer: Framebuffer,
+    pub framebuffer: Framebuffer,
     ///[`render_area`] is the render area that is affected by the render pass
     ///instance, and is described in more detail below.
-    render_area: Rect2D,
+    pub render_area: Rect2D,
     ///[`clear_value_count`] is the number of elements in [`clear_values`].
-    clear_value_count: u32,
+    pub clear_value_count: u32,
     ///[`clear_values`] is a pointer to an array of [`clear_value_count`][`ClearValue`] structures
     /// containing clear values for each attachment, if the attachment uses a `loadOp` value of
     ///`VK_ATTACHMENT_LOAD_OP_CLEAR` or if the attachment has a
@@ -56764,7 +56945,7 @@ pub struct RenderPassBeginInfo<'lt> {
     ///The array is indexed by attachment number.
     ///Only elements corresponding to cleared attachments are used.
     ///Other elements of [`clear_values`] are ignored.
-    clear_values: *const ClearValue,
+    pub clear_values: *const ClearValue,
 }
 impl<'lt> Default for RenderPassBeginInfo<'lt> {
     fn default() -> Self {
@@ -56924,6 +57105,7 @@ impl<'lt> RenderPassBeginInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkClearDepthStencilValue")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -56933,12 +57115,12 @@ pub struct ClearDepthStencilValue {
     ///attachment.
     ///It is a floating-point value which is automatically converted to the
     ///attachment’s format.
-    depth: f32,
+    pub depth: f32,
     ///[`stencil`] is the clear value for the stencil aspect of the
     ///depth/stencil attachment.
     ///It is a 32-bit integer value which is converted to the attachment’s
     ///format by taking the appropriate number of LSBs.
-    stencil: u32,
+    pub stencil: u32,
 }
 impl Default for ClearDepthStencilValue {
     fn default() -> Self {
@@ -57015,20 +57197,21 @@ impl ClearDepthStencilValue {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkClearAttachment")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ClearAttachment {
     ///[`aspect_mask`] is a mask selecting the color, depth and/or stencil
     ///aspects of the attachment to be cleared.
-    aspect_mask: ImageAspectFlags,
+    pub aspect_mask: ImageAspectFlags,
     ///[`color_attachment`] is only meaningful if
     ///`VK_IMAGE_ASPECT_COLOR_BIT` is set in [`aspect_mask`], in which
     ///case it is an index into the currently bound color attachments.
-    color_attachment: u32,
+    pub color_attachment: u32,
     ///[`clear_value`] is the color or depth/stencil value to clear the
     ///attachment to, as described in [Clear Values](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#clears-values) below.
-    clear_value: ClearValue,
+    pub clear_value: ClearValue,
 }
 impl Default for ClearAttachment {
     fn default() -> Self {
@@ -57280,6 +57463,7 @@ impl ClearAttachment {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAttachmentDescription")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -57287,35 +57471,35 @@ impl ClearAttachment {
 pub struct AttachmentDescription {
     ///[`flags`] is a bitmask of [`AttachmentDescriptionFlagBits`]
     ///specifying additional properties of the attachment.
-    flags: AttachmentDescriptionFlags,
+    pub flags: AttachmentDescriptionFlags,
     ///[`format`] is a [`Format`] value specifying the format of the
     ///image view that will be used for the attachment.
-    format: Format,
+    pub format: Format,
     ///[`samples`] is a [`SampleCountFlagBits`] value specifying the
     ///number of samples of the image.
-    samples: SampleCountFlagBits,
+    pub samples: SampleCountFlagBits,
     ///[`load_op`] is a [`AttachmentLoadOp`] value specifying how the
     ///contents of color and depth components of the attachment are treated at
     ///the beginning of the subpass where it is first used.
-    load_op: AttachmentLoadOp,
+    pub load_op: AttachmentLoadOp,
     ///[`store_op`] is a [`AttachmentStoreOp`] value specifying how the
     ///contents of color and depth components of the attachment are treated at
     ///the end of the subpass where it is last used.
-    store_op: AttachmentStoreOp,
+    pub store_op: AttachmentStoreOp,
     ///[`stencil_load_op`] is a [`AttachmentLoadOp`] value specifying how
     ///the contents of stencil components of the attachment are treated at the
     ///beginning of the subpass where it is first used.
-    stencil_load_op: AttachmentLoadOp,
+    pub stencil_load_op: AttachmentLoadOp,
     ///[`stencil_store_op`] is a [`AttachmentStoreOp`] value specifying how
     ///the contents of stencil components of the attachment are treated at the
     ///end of the last subpass where it is used.
-    stencil_store_op: AttachmentStoreOp,
+    pub stencil_store_op: AttachmentStoreOp,
     ///[`initial_layout`] is the layout the attachment image subresource will
     ///be in when a render pass instance begins.
-    initial_layout: ImageLayout,
+    pub initial_layout: ImageLayout,
     ///[`final_layout`] is the layout the attachment image subresource will be
     ///transitioned to when a render pass instance ends.
-    final_layout: ImageLayout,
+    pub final_layout: ImageLayout,
 }
 impl Default for AttachmentDescription {
     fn default() -> Self {
@@ -57490,6 +57674,7 @@ impl AttachmentDescription {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAttachmentReference")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -57499,10 +57684,10 @@ pub struct AttachmentReference {
     ///the corresponding index in
     ///[`RenderPassCreateInfo`]::`pAttachments`, or
     ///[`ATTACHMENT_UNUSED`] to signify that this attachment is not used.
-    attachment: u32,
+    pub attachment: u32,
     ///[`layout`] is a [`ImageLayout`] value specifying the layout the
     ///attachment uses during the subpass.
-    layout: ImageLayout,
+    pub layout: ImageLayout,
 }
 impl Default for AttachmentReference {
     fn default() -> Self {
@@ -57747,44 +57932,45 @@ impl AttachmentReference {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSubpassDescription")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SubpassDescription<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`flags`] is a bitmask of [`SubpassDescriptionFlagBits`]
     ///specifying usage of the subpass.
-    flags: SubpassDescriptionFlags,
+    pub flags: SubpassDescriptionFlags,
     ///[`pipeline_bind_point`] is a [`PipelineBindPoint`] value specifying
     ///the pipeline type supported for this subpass.
-    pipeline_bind_point: PipelineBindPoint,
+    pub pipeline_bind_point: PipelineBindPoint,
     ///[`input_attachment_count`] is the number of input attachments.
-    input_attachment_count: u32,
+    pub input_attachment_count: u32,
     ///[`input_attachments`] is a pointer to an array of
     ///[`AttachmentReference`] structures defining the input attachments
     ///for this subpass and their layouts.
-    input_attachments: *const AttachmentReference,
+    pub input_attachments: *const AttachmentReference,
     ///[`color_attachment_count`] is the number of color attachments.
-    color_attachment_count: u32,
+    pub color_attachment_count: u32,
     ///[`color_attachments`] is a pointer to an array of
     ///[`color_attachment_count`][`AttachmentReference`] structures
     ///defining the color attachments for this subpass and their layouts.
-    color_attachments: *const AttachmentReference,
+    pub color_attachments: *const AttachmentReference,
     ///[`resolve_attachments`] is `NULL` or a pointer to an array of
     ///[`color_attachment_count`][`AttachmentReference`] structures
     ///defining the resolve attachments for this subpass and their layouts.
-    resolve_attachments: *const AttachmentReference,
+    pub resolve_attachments: *const AttachmentReference,
     ///[`depth_stencil_attachment`] is a pointer to a
     ///[`AttachmentReference`] structure specifying the depth/stencil
     ///attachment for this subpass and its layout.
-    depth_stencil_attachment: *const AttachmentReference,
+    pub depth_stencil_attachment: *const AttachmentReference,
     ///[`preserve_attachment_count`] is the number of preserved attachments.
-    preserve_attachment_count: u32,
+    pub preserve_attachment_count: u32,
     ///[`preserve_attachments`] is a pointer to an array of
     ///[`preserve_attachment_count`] render pass attachment indices identifying
     ///attachments that are not used by this subpass, but whose contents  **must**
     ///be preserved throughout the subpass.
-    preserve_attachments: *const u32,
+    pub preserve_attachments: *const u32,
 }
 impl<'lt> Default for SubpassDescription<'lt> {
     fn default() -> Self {
@@ -58152,6 +58338,7 @@ impl<'lt> SubpassDescription<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSubpassDependency")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -58159,26 +58346,26 @@ impl<'lt> SubpassDescription<'lt> {
 pub struct SubpassDependency {
     ///[`src_subpass`] is the subpass index of the first subpass in the
     ///dependency, or [`SUBPASS_EXTERNAL`].
-    src_subpass: u32,
+    pub src_subpass: u32,
     ///[`dst_subpass`] is the subpass index of the second subpass in the
     ///dependency, or [`SUBPASS_EXTERNAL`].
-    dst_subpass: u32,
+    pub dst_subpass: u32,
     ///[`src_stage_mask`] is a bitmask of [`PipelineStageFlagBits`]
     ///specifying the [source stage
     ///mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-masks).
-    src_stage_mask: PipelineStageFlags,
+    pub src_stage_mask: PipelineStageFlags,
     ///[`dst_stage_mask`] is a bitmask of [`PipelineStageFlagBits`]
     ///specifying the [destination
     ///stage mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-masks)
-    dst_stage_mask: PipelineStageFlags,
+    pub dst_stage_mask: PipelineStageFlags,
     ///[`src_access_mask`] is a bitmask of [`AccessFlagBits`] specifying a
     ///[source access mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-masks).
-    src_access_mask: AccessFlags,
+    pub src_access_mask: AccessFlags,
     ///[`dst_access_mask`] is a bitmask of [`AccessFlagBits`] specifying a
     ///[destination access mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-masks).
-    dst_access_mask: AccessFlags,
+    pub dst_access_mask: AccessFlags,
     ///[`dependency_flags`] is a bitmask of [`DependencyFlagBits`].
-    dependency_flags: DependencyFlags,
+    pub dependency_flags: DependencyFlags,
 }
 impl Default for SubpassDependency {
     fn default() -> Self {
@@ -58409,35 +58596,36 @@ impl SubpassDependency {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRenderPassCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderPassCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`RenderPassCreateFlagBits`]
-    flags: RenderPassCreateFlags,
+    pub flags: RenderPassCreateFlags,
     ///[`attachment_count`] is the number of attachments used by this render
     ///pass.
-    attachment_count: u32,
+    pub attachment_count: u32,
     ///[`attachments`] is a pointer to an array of [`attachment_count`][`AttachmentDescription`]
     /// structures describing the attachments used by the render pass.
-    attachments: *const AttachmentDescription,
+    pub attachments: *const AttachmentDescription,
     ///[`subpass_count`] is the number of subpasses to create.
-    subpass_count: u32,
+    pub subpass_count: u32,
     ///[`subpasses`] is a pointer to an array of [`subpass_count`][`SubpassDescription`] structures
     /// describing each subpass.
-    subpasses: *const SubpassDescription<'lt>,
+    pub subpasses: *const SubpassDescription<'lt>,
     ///[`dependency_count`] is the number of memory dependencies between pairs
     ///of subpasses.
-    dependency_count: u32,
+    pub dependency_count: u32,
     ///[`dependencies`] is a pointer to an array of [`dependency_count`][`SubpassDependency`]
     /// structures describing dependencies between pairs of subpasses.
-    dependencies: *const SubpassDependency,
+    pub dependencies: *const SubpassDependency,
 }
 impl<'lt> Default for RenderPassCreateInfo<'lt> {
     fn default() -> Self {
@@ -58648,19 +58836,20 @@ impl<'lt> RenderPassCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkEventCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct EventCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`EventCreateFlagBits`] defining
     ///additional creation parameters.
-    flags: EventCreateFlags,
+    pub flags: EventCreateFlags,
 }
 impl<'lt> Default for EventCreateInfo<'lt> {
     fn default() -> Self {
@@ -58758,19 +58947,20 @@ impl<'lt> EventCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFenceCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct FenceCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`FenceCreateFlagBits`] specifying the
     ///initial state and behavior of the fence.
-    flags: FenceCreateFlags,
+    pub flags: FenceCreateFlags,
 }
 impl<'lt> Default for FenceCreateInfo<'lt> {
     fn default() -> Self {
@@ -59194,6 +59384,7 @@ impl<'lt> FenceCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceFeatures")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -59201,7 +59392,7 @@ impl<'lt> FenceCreateInfo<'lt> {
 pub struct PhysicalDeviceFeatures {
     ///If [`robust_buffer_access`] is not enabled, applications  **must**  not
     ///perform out of bounds accesses.
-    robust_buffer_access: Bool32,
+    pub robust_buffer_access: Bool32,
     ///[`full_draw_index_uint_32`] specifies the
     ///full 32-bit range of indices is supported for indexed draw calls when
     ///using a [`IndexType`] of `VK_INDEX_TYPE_UINT32`.
@@ -59211,13 +59402,13 @@ pub struct PhysicalDeviceFeatures {
     ///If this feature is supported, `maxDrawIndexedIndexValue` **must**  be
     ///2<sup>32</sup>-1; otherwise it  **must**  be no smaller than 2<sup>24</sup>-1.
     ///See [maxDrawIndexedIndexValue](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxDrawIndexedIndexValue).
-    full_draw_index_uint_32: Bool32,
+    pub full_draw_index_uint_32: Bool32,
     ///[`image_cube_array`] specifies whether image
     ///views with a [`ImageViewType`] of
     ///`VK_IMAGE_VIEW_TYPE_CUBE_ARRAY` **can**  be created, and that the
     ///corresponding `SampledCubeArray` and `ImageCubeArray` SPIR-V
     ///capabilities  **can**  be used in shader code.
-    image_cube_array: Bool32,
+    pub image_cube_array: Bool32,
     ///[`independent_blend`] specifies whether
     ///the [`PipelineColorBlendAttachmentState`] settings are controlled
     ///independently per-attachment.
@@ -59226,7 +59417,7 @@ pub struct PhysicalDeviceFeatures {
     ///attachments  **must**  be identical.
     ///Otherwise, a different [`PipelineColorBlendAttachmentState`] **can**  be
     ///provided for each bound color attachment.
-    independent_blend: Bool32,
+    pub independent_blend: Bool32,
     ///[`geometry_shader`] specifies whether
     ///geometry shaders are supported.
     ///If this feature is not enabled, the `VK_SHADER_STAGE_GEOMETRY_BIT`
@@ -59234,7 +59425,7 @@ pub struct PhysicalDeviceFeatures {
     ///used.
     ///This also specifies whether shader modules  **can**  declare the
     ///`Geometry` capability.
-    geometry_shader: Bool32,
+    pub geometry_shader: Bool32,
     ///[`tessellation_shader`] specifies
     ///whether tessellation control and evaluation shaders are supported.
     ///If this feature is not enabled, the
@@ -59246,7 +59437,7 @@ pub struct PhysicalDeviceFeatures {
     ///values  **must**  not be used.
     ///This also specifies whether shader modules  **can**  declare the
     ///`Tessellation` capability.
-    tessellation_shader: Bool32,
+    pub tessellation_shader: Bool32,
     ///[`sample_rate_shading`] specifies whether
     ///[Sample Shading](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-sampleshading) and multisample interpolation
     ///are supported.
@@ -59255,7 +59446,7 @@ pub struct PhysicalDeviceFeatures {
     ///[`FALSE`] and the `minSampleShading` member is ignored.
     ///This also specifies whether shader modules  **can**  declare the
     ///`SampleRateShading` capability.
-    sample_rate_shading: Bool32,
+    pub sample_rate_shading: Bool32,
     ///[`dual_src_blend`] specifies whether blend
     ///operations which take two sources are supported.
     ///If this feature is not enabled, the `VK_BLEND_FACTOR_SRC1_COLOR`,
@@ -59264,13 +59455,13 @@ pub struct PhysicalDeviceFeatures {
     ///`VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA` enum values  **must**  not be used
     ///as source or destination blending factors.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-dsb](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-dsb).
-    dual_src_blend: Bool32,
+    pub dual_src_blend: Bool32,
     ///[`logic_op`] specifies whether logic operations
     ///are supported.
     ///If this feature is not enabled, the `logicOpEnable` member of the
     ///[`PipelineColorBlendStateCreateInfo`] structure  **must**  be set to
     ///[`FALSE`], and the [`logic_op`] member is ignored.
-    logic_op: Bool32,
+    pub logic_op: Bool32,
     ///[`multi_draw_indirect`] specifies whether
     ///multiple draw indirect is supported.
     ///If this feature is not enabled, the `drawCount` parameter to the
@@ -59280,7 +59471,7 @@ pub struct PhysicalDeviceFeatures {
     ///[`PhysicalDeviceLimits`] structure  **must**  also be 1 if this feature
     ///is not supported.
     ///See [maxDrawIndirectCount](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxDrawIndirectCount).
-    multi_draw_indirect: Bool32,
+    pub multi_draw_indirect: Bool32,
     ///[`draw_indirect_first_instance`]
     ///specifies whether indirect drawing calls support the `firstInstance`
     ///parameter.
@@ -59288,7 +59479,7 @@ pub struct PhysicalDeviceFeatures {
     ///[`DrawIndirectCommand`] and [`DrawIndexedIndirectCommand`]
     ///structures that are provided to the [`CmdDrawIndirect`] and
     ///[`CmdDrawIndexedIndirect`] commands  **must**  be 0.
-    draw_indirect_first_instance: Bool32,
+    pub draw_indirect_first_instance: Bool32,
     ///[`depth_clamp`] specifies whether depth
     ///clamping is supported.
     ///If this feature is not enabled, the `depthClampEnable` member of the
@@ -59296,7 +59487,7 @@ pub struct PhysicalDeviceFeatures {
     ///[`FALSE`].
     ///Otherwise, setting `depthClampEnable` to [`TRUE`] will enable
     ///depth clamping.
-    depth_clamp: Bool32,
+    pub depth_clamp: Bool32,
     ///[`depth_bias_clamp`] specifies whether depth
     ///bias clamping is supported.
     ///If this feature is not enabled, the [`depth_bias_clamp`] member of the
@@ -59304,12 +59495,12 @@ pub struct PhysicalDeviceFeatures {
     ///0.0 unless the `VK_DYNAMIC_STATE_DEPTH_BIAS` dynamic state is
     ///enabled, and the [`depth_bias_clamp`] parameter to
     ///[`CmdSetDepthBias`] **must**  be set to 0.0.
-    depth_bias_clamp: Bool32,
+    pub depth_bias_clamp: Bool32,
     ///[`fill_mode_non_solid`] specifies whether
     ///point and wireframe fill modes are supported.
     ///If this feature is not enabled, the `VK_POLYGON_MODE_POINT` and
     ///`VK_POLYGON_MODE_LINE` enum values  **must**  not be used.
-    fill_mode_non_solid: Bool32,
+    pub fill_mode_non_solid: Bool32,
     ///[`depth_bounds`] specifies whether depth
     ///bounds tests are supported.
     ///If this feature is not enabled, the `depthBoundsTestEnable` member
@@ -59318,7 +59509,7 @@ pub struct PhysicalDeviceFeatures {
     ///When `depthBoundsTestEnable` is set to [`FALSE`], the
     ///`minDepthBounds` and `maxDepthBounds` members of the
     ///[`PipelineDepthStencilStateCreateInfo`] structure are ignored.
-    depth_bounds: Bool32,
+    pub depth_bounds: Bool32,
     ///[`wide_lines`] specifies whether lines with
     ///width other than 1.0 are supported.
     ///If this feature is not enabled, the `lineWidth` member of the
@@ -59329,7 +59520,7 @@ pub struct PhysicalDeviceFeatures {
     ///line widths are indicated by the `lineWidthRange` and
     ///`lineWidthGranularity` members of the [`PhysicalDeviceLimits`]
     ///structure, respectively.
-    wide_lines: Bool32,
+    pub wide_lines: Bool32,
     ///[`large_points`] specifies whether points with
     ///size greater than 1.0 are supported.
     ///If this feature is not enabled, only a point size of 1.0 written by a
@@ -59337,7 +59528,7 @@ pub struct PhysicalDeviceFeatures {
     ///The range and granularity of supported point sizes are indicated by the
     ///`pointSizeRange` and `pointSizeGranularity` members of the
     ///[`PhysicalDeviceLimits`] structure, respectively.
-    large_points: Bool32,
+    pub large_points: Bool32,
     ///[`alpha_to_one`] specifies whether the
     ///implementation is able to replace the alpha value of the fragment shader
     ///color output in the [Multisample Coverage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-covg) fragment
@@ -59347,7 +59538,7 @@ pub struct PhysicalDeviceFeatures {
     ///to [`FALSE`].
     ///Otherwise setting `alphaToOneEnable` to [`TRUE`] will enable
     ///alpha-to-one behavior.
-    alpha_to_one: Bool32,
+    pub alpha_to_one: Bool32,
     ///[`multi_viewport`] specifies whether more
     ///than one viewport is supported.
     ///If this feature is not enabled:
@@ -59362,12 +59553,12 @@ pub struct PhysicalDeviceFeatures {
     ///   1.
     /// - The `firstExclusiveScissor` and `exclusiveScissorCount` parameters to the
     ///   [`CmdSetExclusiveScissorNV`] command  **must**  be set to 0 and 1, respectively.
-    multi_viewport: Bool32,
+    pub multi_viewport: Bool32,
     ///[`sampler_anisotropy`] specifies whether
     ///anisotropic filtering is supported.
     ///If this feature is not enabled, the `anisotropyEnable` member of the
     ///[`SamplerCreateInfo`] structure  **must**  be [`FALSE`].
-    sampler_anisotropy: Bool32,
+    pub sampler_anisotropy: Bool32,
     ///[`texture_compression_etc_2`]
     ///specifies whether all of the ETC2 and EAC compressed texture formats are
     ///supported.
@@ -59390,7 +59581,7 @@ pub struct PhysicalDeviceFeatures {
     ///[`GetPhysicalDeviceFormatProperties`] and
     ///[`GetPhysicalDeviceImageFormatProperties`] **can**  be used to check for
     ///supported properties of individual formats as normal.
-    texture_compression_etc_2: Bool32,
+    pub texture_compression_etc_2: Bool32,
     ///[`texture_compression_astc_ldr`]
     ///specifies whether all of the ASTC LDR compressed texture formats are
     ///supported.
@@ -59431,7 +59622,7 @@ pub struct PhysicalDeviceFeatures {
     ///[`GetPhysicalDeviceFormatProperties`] and
     ///[`GetPhysicalDeviceImageFormatProperties`] **can**  be used to check for
     ///supported properties of individual formats as normal.
-    texture_compression_astc_ldr: Bool32,
+    pub texture_compression_astc_ldr: Bool32,
     ///[`texture_compression_bc`] specifies
     ///whether all of the BC compressed texture formats are supported.
     ///If this feature is enabled, then the
@@ -59459,7 +59650,7 @@ pub struct PhysicalDeviceFeatures {
     ///[`GetPhysicalDeviceFormatProperties`] and
     ///[`GetPhysicalDeviceImageFormatProperties`] **can**  be used to check for
     ///supported properties of individual formats as normal.
-    texture_compression_bc: Bool32,
+    pub texture_compression_bc: Bool32,
     ///[`occlusion_query_precise`] specifies
     ///whether occlusion queries returning actual sample counts are supported.
     ///Occlusion queries are created in a [`QueryPool`] by specifying the
@@ -59475,7 +59666,7 @@ pub struct PhysicalDeviceFeatures {
     ///result value, otherwise a result value of zero is returned.
     ///When this feature is enabled and `VK_QUERY_CONTROL_PRECISE_BIT` is
     ///set, occlusion queries will report the actual number of samples passed.
-    occlusion_query_precise: Bool32,
+    pub occlusion_query_precise: Bool32,
     ///[`pipeline_statistics_query`]
     ///specifies whether the pipeline statistics queries are supported.
     ///If this feature is not enabled, queries of type
@@ -59483,7 +59674,7 @@ pub struct PhysicalDeviceFeatures {
     ///the [`QueryPipelineStatisticFlagBits`] bits  **can**  be set in the
     ///`pipelineStatistics` member of the [`QueryPoolCreateInfo`]
     ///structure.
-    pipeline_statistics_query: Bool32,
+    pub pipeline_statistics_query: Bool32,
     ///[`vertex_pipeline_stores_and_atomics`] specifies whether storage buffers
     ///and images support stores and atomic operations in the vertex,
     ///tessellation, and geometry shader stages.
@@ -59491,7 +59682,7 @@ pub struct PhysicalDeviceFeatures {
     ///and storage buffer variables used by these stages in shader modules
     /// **must**  be decorated with the `NonWritable` decoration (or the
     ///`readonly` memory qualifier in GLSL).
-    vertex_pipeline_stores_and_atomics: Bool32,
+    pub vertex_pipeline_stores_and_atomics: Bool32,
     ///[`fragment_stores_and_atomics`]
     ///specifies whether storage buffers and images support stores and atomic
     ///operations in the fragment shader stage.
@@ -59499,7 +59690,7 @@ pub struct PhysicalDeviceFeatures {
     ///and storage buffer variables used by the fragment stage in shader
     ///modules  **must**  be decorated with the `NonWritable` decoration (or the
     ///`readonly` memory qualifier in GLSL).
-    fragment_stores_and_atomics: Bool32,
+    pub fragment_stores_and_atomics: Bool32,
     ///[`shader_tessellation_and_geometry_point_size`] specifies whether the
     ///`PointSize` built-in decoration is available in the tessellation
     ///control, tessellation evaluation, and geometry shader stages.
@@ -59514,7 +59705,7 @@ pub struct PhysicalDeviceFeatures {
     ///An implementation supporting this feature  **must**  also support one or both
     ///of the [[`tessellation_shader`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-tessellationShader) or
     ///[[`geometry_shader`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-geometryShader) features.
-    shader_tessellation_and_geometry_point_size: Bool32,
+    pub shader_tessellation_and_geometry_point_size: Bool32,
     ///[`shader_image_gather_extended`]
     ///specifies whether the extended set of image gather instructions are
     ///available in shader code.
@@ -59522,7 +59713,7 @@ pub struct PhysicalDeviceFeatures {
     ///not support the `Offset` and `ConstOffsets` operands.
     ///This also specifies whether shader modules  **can**  declare the
     ///`ImageGatherExtended` capability.
-    shader_image_gather_extended: Bool32,
+    pub shader_image_gather_extended: Bool32,
     ///[`shader_storage_image_extended_formats`] specifies whether all the
     ///“storage image extended formats” below are supported; if this feature
     ///is supported, then the `VK_FORMAT_FEATURE_STORAGE_IMAGE_BIT` **must**
@@ -59550,7 +59741,7 @@ pub struct PhysicalDeviceFeatures {
     /// - `VK_FORMAT_R8G8_UINT`
     /// - `VK_FORMAT_R16_UINT`
     /// - `VK_FORMAT_R8_UINT`
-    shader_storage_image_extended_formats: Bool32,
+    pub shader_storage_image_extended_formats: Bool32,
     ///[`shader_storage_image_multisample`] specifies whether multisampled
     ///storage images are supported.
     ///If this feature is not enabled, images that are created with a
@@ -59558,19 +59749,19 @@ pub struct PhysicalDeviceFeatures {
     ///created with `samples` equal to `VK_SAMPLE_COUNT_1_BIT`.
     ///This also specifies whether shader modules  **can**  declare the
     ///`StorageImageMultisample` and `ImageMSArray` capabilities.
-    shader_storage_image_multisample: Bool32,
+    pub shader_storage_image_multisample: Bool32,
     ///[`shader_storage_image_read_without_format`] specifies whether storage
     ///images require a format qualifier to be specified when reading.
     ///[`shader_storage_image_read_without_format`] applies only to formats listed
     ///in the [storage without format](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-without-shader-storage-format)
     ///list.
-    shader_storage_image_read_without_format: Bool32,
+    pub shader_storage_image_read_without_format: Bool32,
     ///[`shader_storage_image_write_without_format`] specifies whether storage
     ///images require a format qualifier to be specified when writing.
     ///[`shader_storage_image_write_without_format`] applies only to formats
     ///listed in the [storage without
     ///format](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-without-shader-storage-format) list.
-    shader_storage_image_write_without_format: Bool32,
+    pub shader_storage_image_write_without_format: Bool32,
     ///[`shader_uniform_buffer_array_dynamic_indexing`] specifies whether arrays
     ///of uniform buffers  **can**  be indexed by *dynamically uniform* integer
     ///expressions in shader code.
@@ -59581,7 +59772,7 @@ pub struct PhysicalDeviceFeatures {
     ///code.
     ///This also specifies whether shader modules  **can**  declare the
     ///`UniformBufferArrayDynamicIndexing` capability.
-    shader_uniform_buffer_array_dynamic_indexing: Bool32,
+    pub shader_uniform_buffer_array_dynamic_indexing: Bool32,
     ///[`shader_sampled_image_array_dynamic_indexing`] specifies whether arrays of
     ///samplers or sampled images  **can**  be indexed by dynamically uniform
     ///integer expressions in shader code.
@@ -59592,7 +59783,7 @@ pub struct PhysicalDeviceFeatures {
     ///integral expressions when aggregated into arrays in shader code.
     ///This also specifies whether shader modules  **can**  declare the
     ///`SampledImageArrayDynamicIndexing` capability.
-    shader_sampled_image_array_dynamic_indexing: Bool32,
+    pub shader_sampled_image_array_dynamic_indexing: Bool32,
     ///[`shader_storage_buffer_array_dynamic_indexing`] specifies whether arrays
     ///of storage buffers  **can**  be indexed by dynamically uniform integer
     ///expressions in shader code.
@@ -59603,7 +59794,7 @@ pub struct PhysicalDeviceFeatures {
     ///code.
     ///This also specifies whether shader modules  **can**  declare the
     ///`StorageBufferArrayDynamicIndexing` capability.
-    shader_storage_buffer_array_dynamic_indexing: Bool32,
+    pub shader_storage_buffer_array_dynamic_indexing: Bool32,
     ///[`shader_storage_image_array_dynamic_indexing`] specifies whether arrays of
     ///storage images  **can**  be indexed by dynamically uniform integer
     ///expressions in shader code.
@@ -59612,7 +59803,7 @@ pub struct PhysicalDeviceFeatures {
     ///integral expressions when aggregated into arrays in shader code.
     ///This also specifies whether shader modules  **can**  declare the
     ///`StorageImageArrayDynamicIndexing` capability.
-    shader_storage_image_array_dynamic_indexing: Bool32,
+    pub shader_storage_image_array_dynamic_indexing: Bool32,
     ///[`shader_clip_distance`] specifies
     ///whether clip distances are supported in shader code.
     ///If this feature is not enabled, any members decorated with the
@@ -59620,7 +59811,7 @@ pub struct PhysicalDeviceFeatures {
     ///to in shader modules.
     ///This also specifies whether shader modules  **can**  declare the
     ///`ClipDistance` capability.
-    shader_clip_distance: Bool32,
+    pub shader_clip_distance: Bool32,
     ///[`shader_cull_distance`] specifies
     ///whether cull distances are supported in shader code.
     ///If this feature is not enabled, any members decorated with the
@@ -59628,7 +59819,7 @@ pub struct PhysicalDeviceFeatures {
     ///to in shader modules.
     ///This also specifies whether shader modules  **can**  declare the
     ///`CullDistance` capability.
-    shader_cull_distance: Bool32,
+    pub shader_cull_distance: Bool32,
     ///[`shader_float_64`] specifies whether 64-bit
     ///floats (doubles) are supported in shader code.
     ///If this feature is not enabled, 64-bit floating-point types  **must**  not be
@@ -59637,7 +59828,7 @@ pub struct PhysicalDeviceFeatures {
     ///capability.
     ///Declaring and using 64-bit floats is enabled for all storage classes
     ///that SPIR-V allows with the `Float64` capability.
-    shader_float_64: Bool32,
+    pub shader_float_64: Bool32,
     ///[`shader_int_64`] specifies whether 64-bit
     ///integers (signed and unsigned) are supported in shader code.
     ///If this feature is not enabled, 64-bit integer types  **must**  not be used
@@ -59646,7 +59837,7 @@ pub struct PhysicalDeviceFeatures {
     ///capability.
     ///Declaring and using 64-bit integers is enabled for all storage classes
     ///that SPIR-V allows with the `Int64` capability.
-    shader_int_64: Bool32,
+    pub shader_int_64: Bool32,
     ///[`shader_int_16`] specifies whether 16-bit
     ///integers (signed and unsigned) are supported in shader code.
     ///If this feature is not enabled, 16-bit integer types  **must**  not be used
@@ -59661,7 +59852,7 @@ pub struct PhysicalDeviceFeatures {
     ///the interface storage classes (e.g., `UniformConstant`, `Uniform`,
     ///`StorageBuffer`, `Input`, `Output`, and `PushConstant`) is
     ///not enabled.
-    shader_int_16: Bool32,
+    pub shader_int_16: Bool32,
     ///[`shader_resource_residency`]
     ///specifies whether image operations that return resource residency
     ///information are supported in shader code.
@@ -59671,7 +59862,7 @@ pub struct PhysicalDeviceFeatures {
     ///`SparseResidency` capability.
     ///The feature requires at least one of the `sparseResidency*` features
     ///to be supported.
-    shader_resource_residency: Bool32,
+    pub shader_resource_residency: Bool32,
     ///[`shader_resource_min_lod`] specifies
     ///whether image operations specifying the minimum resource LOD are
     ///supported in shader code.
@@ -59679,7 +59870,7 @@ pub struct PhysicalDeviceFeatures {
     ///be used in shader code.
     ///This also specifies whether shader modules  **can**  declare the `MinLod`
     ///capability.
-    shader_resource_min_lod: Bool32,
+    pub shader_resource_min_lod: Bool32,
     ///[`sparse_binding`] specifies whether
     ///resource memory  **can**  be managed at opaque sparse block level instead of
     ///at the object level.
@@ -59693,13 +59884,13 @@ pub struct PhysicalDeviceFeatures {
     ///respectively.
     ///Otherwise resource memory  **can**  be managed as described in
     ///[Sparse Resource Features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#sparsememory-sparseresourcefeatures).
-    sparse_binding: Bool32,
+    pub sparse_binding: Bool32,
     ///[`sparse_residency_buffer`] specifies
     ///whether the device  **can**  access partially resident buffers.
     ///If this feature is not enabled, buffers  **must**  not be created with
     ///`VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT` set in the `flags`
     ///member of the [`BufferCreateInfo`] structure.
-    sparse_residency_buffer: Bool32,
+    pub sparse_residency_buffer: Bool32,
     ///[`sparse_residency_image_2_d`]
     ///specifies whether the device  **can**  access partially resident 2D images
     ///with 1 sample per pixel.
@@ -59708,14 +59899,14 @@ pub struct PhysicalDeviceFeatures {
     ///`VK_SAMPLE_COUNT_1_BIT` **must**  not be created with
     ///`VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT` set in the `flags` member
     ///of the [`ImageCreateInfo`] structure.
-    sparse_residency_image_2_d: Bool32,
+    pub sparse_residency_image_2_d: Bool32,
     ///[`sparse_residency_image_3_d`]
     ///specifies whether the device  **can**  access partially resident 3D images.
     ///If this feature is not enabled, images with an `imageType` of
     ///`VK_IMAGE_TYPE_3D` **must**  not be created with
     ///`VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT` set in the `flags` member
     ///of the [`ImageCreateInfo`] structure.
-    sparse_residency_image_3_d: Bool32,
+    pub sparse_residency_image_3_d: Bool32,
     ///[`sparse_residency_2_samples`]
     ///specifies whether the physical device  **can**  access partially resident 2D
     ///images with 2 samples per pixel.
@@ -59724,7 +59915,7 @@ pub struct PhysicalDeviceFeatures {
     ///`VK_SAMPLE_COUNT_2_BIT` **must**  not be created with
     ///`VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT` set in the `flags` member
     ///of the [`ImageCreateInfo`] structure.
-    sparse_residency_2_samples: Bool32,
+    pub sparse_residency_2_samples: Bool32,
     ///[`sparse_residency_4_samples`]
     ///specifies whether the physical device  **can**  access partially resident 2D
     ///images with 4 samples per pixel.
@@ -59733,7 +59924,7 @@ pub struct PhysicalDeviceFeatures {
     ///`VK_SAMPLE_COUNT_4_BIT` **must**  not be created with
     ///`VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT` set in the `flags` member
     ///of the [`ImageCreateInfo`] structure.
-    sparse_residency_4_samples: Bool32,
+    pub sparse_residency_4_samples: Bool32,
     ///[`sparse_residency_8_samples`]
     ///specifies whether the physical device  **can**  access partially resident 2D
     ///images with 8 samples per pixel.
@@ -59742,7 +59933,7 @@ pub struct PhysicalDeviceFeatures {
     ///`VK_SAMPLE_COUNT_8_BIT` **must**  not be created with
     ///`VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT` set in the `flags` member
     ///of the [`ImageCreateInfo`] structure.
-    sparse_residency_8_samples: Bool32,
+    pub sparse_residency_8_samples: Bool32,
     ///[`sparse_residency_16_samples`]
     ///specifies whether the physical device  **can**  access partially resident 2D
     ///images with 16 samples per pixel.
@@ -59751,7 +59942,7 @@ pub struct PhysicalDeviceFeatures {
     ///`VK_SAMPLE_COUNT_16_BIT` **must**  not be created with
     ///`VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT` set in the `flags` member
     ///of the [`ImageCreateInfo`] structure.
-    sparse_residency_16_samples: Bool32,
+    pub sparse_residency_16_samples: Bool32,
     ///[`sparse_residency_aliased`]
     ///specifies whether the physical device  **can**  correctly access data aliased
     ///into multiple locations.
@@ -59760,7 +59951,7 @@ pub struct PhysicalDeviceFeatures {
     ///`VK_IMAGE_CREATE_SPARSE_ALIASED_BIT` enum values  **must**  not be used
     ///in `flags` members of the [`BufferCreateInfo`] and
     ///[`ImageCreateInfo`] structures, respectively.
-    sparse_residency_aliased: Bool32,
+    pub sparse_residency_aliased: Bool32,
     ///[`variable_multisample_rate`]
     ///specifies whether all pipelines that will be bound to a command buffer
     ///during a [subpass which uses no attachments](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-noattachments) **must**  have the same value for
@@ -59770,10 +59961,10 @@ pub struct PhysicalDeviceFeatures {
     ///If set to [`FALSE`], then all pipelines bound in such a subpass
     /// **must**  have the same multisample rate.
     ///This has no effect in situations where a subpass uses any attachments.
-    variable_multisample_rate: Bool32,
+    pub variable_multisample_rate: Bool32,
     ///[`inherited_queries`] specifies whether a
     ///secondary command buffer  **may**  be executed while a query is active.
-    inherited_queries: Bool32,
+    pub inherited_queries: Bool32,
 }
 impl Default for PhysicalDeviceFeatures {
     fn default() -> Self {
@@ -61862,6 +62053,7 @@ impl PhysicalDeviceFeatures {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceSparseProperties")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -61876,7 +62068,7 @@ pub struct PhysicalDeviceSparseProperties {
     ///`imageGranularity` member of the [`SparseImageFormatProperties`]
     ///structure for single-sample 2D images is not  **required**  to match the
     ///standard sparse image block dimensions listed in the table.
-    residency_standard_2_d_block_shape: Bool32,
+    pub residency_standard_2_d_block_shape: Bool32,
     ///[`residency_standard_2_d_multisample_block_shape`] is [`TRUE`] if the
     ///physical device will access all multisample 2D sparse resources using
     ///the standard sparse image block shapes (based on image format), as
@@ -61886,7 +62078,7 @@ pub struct PhysicalDeviceSparseProperties {
     ///`imageGranularity` member of the [`SparseImageFormatProperties`]
     ///structure for multisample 2D images is not  **required**  to match the
     ///standard sparse image block dimensions listed in the table.
-    residency_standard_2_d_multisample_block_shape: Bool32,
+    pub residency_standard_2_d_multisample_block_shape: Bool32,
     ///[`residency_standard_3_d_block_shape`] is [`TRUE`] if the physical
     ///device will access all 3D sparse resources using the standard sparse
     ///image block shapes (based on image format), as described in the
@@ -61896,7 +62088,7 @@ pub struct PhysicalDeviceSparseProperties {
     ///`imageGranularity` member of the [`SparseImageFormatProperties`]
     ///structure for 3D images is not  **required**  to match the standard sparse
     ///image block dimensions listed in the table.
-    residency_standard_3_d_block_shape: Bool32,
+    pub residency_standard_3_d_block_shape: Bool32,
     ///[`residency_aligned_mip_size`] is [`TRUE`] if images with mip level
     ///dimensions that are not integer multiples of the corresponding
     ///dimensions of the sparse image block  **may**  be placed in the mip tail.
@@ -61909,13 +62101,13 @@ pub struct PhysicalDeviceSparseProperties {
     ///member of [`SparseImageFormatProperties`], indicating that mip level
     ///dimensions that are not integer multiples of the corresponding
     ///dimensions of the sparse image block will be placed in the mip tail.
-    residency_aligned_mip_size: Bool32,
+    pub residency_aligned_mip_size: Bool32,
     ///[`residency_non_resident_strict`] specifies whether the physical device
     /// **can**  consistently access non-resident regions of a resource.
     ///If this property is [`TRUE`], access to non-resident regions of
     ///resources will be guaranteed to return values as if the resource was
     ///populated with 0; writes to non-resident regions will be discarded.
-    residency_non_resident_strict: Bool32,
+    pub residency_non_resident_strict: Bool32,
 }
 impl Default for PhysicalDeviceSparseProperties {
     fn default() -> Self {
@@ -62526,6 +62718,7 @@ impl PhysicalDeviceSparseProperties {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceLimits")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -62537,7 +62730,7 @@ pub struct PhysicalDeviceLimits {
     ///Some combinations of image parameters (format, usage, etc.)  **may**  allow
     ///support for larger dimensions, which  **can**  be queried using
     ///[`GetPhysicalDeviceImageFormatProperties`].
-    max_image_dimension_1_d: u32,
+    pub max_image_dimension_1_d: u32,
     ///[`max_image_dimension_2_d`] is the largest
     ///dimension (`width` or `height`) that is guaranteed to be
     ///supported for all images created with an `imageType` of
@@ -62546,7 +62739,7 @@ pub struct PhysicalDeviceLimits {
     ///Some combinations of image parameters (format, usage, etc.)  **may**  allow
     ///support for larger dimensions, which  **can**  be queried using
     ///[`GetPhysicalDeviceImageFormatProperties`].
-    max_image_dimension_2_d: u32,
+    pub max_image_dimension_2_d: u32,
     ///[`max_image_dimension_3_d`] is the largest
     ///dimension (`width`, `height`, or `depth`) that is guaranteed
     ///to be supported for all images created with an `imageType` of
@@ -62554,7 +62747,7 @@ pub struct PhysicalDeviceLimits {
     ///Some combinations of image parameters (format, usage, etc.)  **may**  allow
     ///support for larger dimensions, which  **can**  be queried using
     ///[`GetPhysicalDeviceImageFormatProperties`].
-    max_image_dimension_3_d: u32,
+    pub max_image_dimension_3_d: u32,
     ///[`max_image_dimension_cube`] is the
     ///largest dimension (`width` or `height`) that is guaranteed to be
     ///supported for all images created with an `imageType` of
@@ -62563,66 +62756,66 @@ pub struct PhysicalDeviceLimits {
     ///Some combinations of image parameters (format, usage, etc.)  **may**  allow
     ///support for larger dimensions, which  **can**  be queried using
     ///[`GetPhysicalDeviceImageFormatProperties`].
-    max_image_dimension_cube: u32,
+    pub max_image_dimension_cube: u32,
     ///[`max_image_array_layers`] is the maximum
     ///number of layers (`arrayLayers`) for an image.
-    max_image_array_layers: u32,
+    pub max_image_array_layers: u32,
     ///[`max_texel_buffer_elements`] is the
     ///maximum number of addressable texels for a buffer view created on a
     ///buffer which was created with the
     ///`VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT` or
     ///`VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT` set in the `usage`
     ///member of the [`BufferCreateInfo`] structure.
-    max_texel_buffer_elements: u32,
+    pub max_texel_buffer_elements: u32,
     ///[`max_uniform_buffer_range`] is the
     ///maximum value that  **can**  be specified in the `range` member of a
     ///[`DescriptorBufferInfo`] structure passed to
     ///[`UpdateDescriptorSets`] for descriptors of type
     ///`VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER` or
     ///`VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`.
-    max_uniform_buffer_range: u32,
+    pub max_uniform_buffer_range: u32,
     ///[`max_storage_buffer_range`] is the
     ///maximum value that  **can**  be specified in the `range` member of a
     ///[`DescriptorBufferInfo`] structure passed to
     ///[`UpdateDescriptorSets`] for descriptors of type
     ///`VK_DESCRIPTOR_TYPE_STORAGE_BUFFER` or
     ///`VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`.
-    max_storage_buffer_range: u32,
+    pub max_storage_buffer_range: u32,
     ///[`max_push_constants_size`] is the
     ///maximum size, in bytes, of the pool of push constant memory.
     ///For each of the push constant ranges indicated by the
     ///`pPushConstantRanges` member of the [`PipelineLayoutCreateInfo`]
     ///structure, (`offset` +  `size`) **must**  be less than or
     ///equal to this limit.
-    max_push_constants_size: u32,
+    pub max_push_constants_size: u32,
     ///[`max_memory_allocation_count`] is
     ///the maximum number of device memory allocations, as created by
     ///[`AllocateMemory`], which  **can**  simultaneously exist.
-    max_memory_allocation_count: u32,
+    pub max_memory_allocation_count: u32,
     ///[`max_sampler_allocation_count`] is
     ///the maximum number of sampler objects, as created by
     ///[`CreateSampler`], which  **can**  simultaneously exist on a device.
-    max_sampler_allocation_count: u32,
+    pub max_sampler_allocation_count: u32,
     ///[`buffer_image_granularity`] is the
     ///granularity, in bytes, at which buffer or linear image resources, and
     ///optimal image resources  **can**  be bound to adjacent offsets in the same
     ///[`DeviceMemory`] object without aliasing.
     ///See [Buffer-Image Granularity](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-bufferimagegranularity) for
     ///more details.
-    buffer_image_granularity: DeviceSize,
+    pub buffer_image_granularity: DeviceSize,
     ///[`sparse_address_space_size`] is the
     ///total amount of address space available, in bytes, for sparse memory
     ///resources.
     ///This is an upper bound on the sum of the sizes of all sparse resources,
     ///regardless of whether any memory is bound to them.
-    sparse_address_space_size: DeviceSize,
+    pub sparse_address_space_size: DeviceSize,
     ///[`max_bound_descriptor_sets`] is the
     ///maximum number of descriptor sets that  **can**  be simultaneously used by a
     ///pipeline.
     ///All [`DescriptorSet`] decorations in shader modules  **must**  have a value
     ///less than [`max_bound_descriptor_sets`].
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sets](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sets).
-    max_bound_descriptor_sets: u32,
+    pub max_bound_descriptor_sets: u32,
     ///[`max_per_stage_descriptor_samplers`] is the maximum number of samplers
     ///that  **can**  be accessible to a single shader stage in a pipeline layout.
     ///Descriptors with a type of `VK_DESCRIPTOR_TYPE_SAMPLER` or
@@ -62636,7 +62829,7 @@ pub struct PhysicalDeviceLimits {
     ///for that shader stage set.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sampler](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sampler) and
     ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-combinedimagesampler](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-combinedimagesampler).
-    max_per_stage_descriptor_samplers: u32,
+    pub max_per_stage_descriptor_samplers: u32,
     ///[`max_per_stage_descriptor_uniform_buffers`] is the maximum number of
     ///uniform buffers that  **can**  be accessible to a single shader stage in a
     ///pipeline layout.
@@ -62651,7 +62844,7 @@ pub struct PhysicalDeviceLimits {
     ///for that shader stage set.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformbuffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformbuffer) and
     ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformbufferdynamic](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformbufferdynamic).
-    max_per_stage_descriptor_uniform_buffers: u32,
+    pub max_per_stage_descriptor_uniform_buffers: u32,
     ///[`max_per_stage_descriptor_storage_buffers`] is the maximum number of
     ///storage buffers that  **can**  be accessible to a single shader stage in a
     ///pipeline layout.
@@ -62666,7 +62859,7 @@ pub struct PhysicalDeviceLimits {
     ///structure has the bit for that shader stage set.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagebuffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagebuffer) and
     ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagebufferdynamic](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagebufferdynamic).
-    max_per_stage_descriptor_storage_buffers: u32,
+    pub max_per_stage_descriptor_storage_buffers: u32,
     ///[`max_per_stage_descriptor_sampled_images`] is the maximum number of
     ///sampled images that  **can**  be accessible to a single shader stage in a
     ///pipeline layout.
@@ -62683,7 +62876,7 @@ pub struct PhysicalDeviceLimits {
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-combinedimagesampler](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-combinedimagesampler),
     ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sampledimage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sampledimage), and
     ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformtexelbuffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformtexelbuffer).
-    max_per_stage_descriptor_sampled_images: u32,
+    pub max_per_stage_descriptor_sampled_images: u32,
     ///[`max_per_stage_descriptor_storage_images`] is the maximum number of
     ///storage images that  **can**  be accessible to a single shader stage in a
     ///pipeline layout.
@@ -62697,7 +62890,7 @@ pub struct PhysicalDeviceLimits {
     ///structure has the bit for that shader stage set.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage), and
     ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagetexelbuffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagetexelbuffer).
-    max_per_stage_descriptor_storage_images: u32,
+    pub max_per_stage_descriptor_storage_images: u32,
     ///[`max_per_stage_descriptor_input_attachments`] is the maximum number of
     ///input attachments that  **can**  be accessible to a single shader stage in a
     ///pipeline layout.
@@ -62711,7 +62904,7 @@ pub struct PhysicalDeviceLimits {
     ///structure has the bit for that shader stage set.
     ///These are only supported for the fragment stage.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-inputattachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-inputattachment).
-    max_per_stage_descriptor_input_attachments: u32,
+    pub max_per_stage_descriptor_input_attachments: u32,
     ///[`max_per_stage_resources`] is the
     ///maximum number of resources that  **can**  be accessible to a single shader
     ///stage in a pipeline layout.
@@ -62731,7 +62924,7 @@ pub struct PhysicalDeviceLimits {
     ///count against this limit.
     ///For the fragment shader stage the framebuffer color attachments also
     ///count against this limit.
-    max_per_stage_resources: u32,
+    pub max_per_stage_resources: u32,
     ///[`max_descriptor_set_samplers`] is
     ///the maximum number of samplers that  **can**  be included in a pipeline
     ///layout.
@@ -62743,7 +62936,7 @@ pub struct PhysicalDeviceLimits {
     ///count against this limit.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sampler](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sampler) and
     ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-combinedimagesampler](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-combinedimagesampler).
-    max_descriptor_set_samplers: u32,
+    pub max_descriptor_set_samplers: u32,
     ///[`max_descriptor_set_uniform_buffers`] is the maximum number of uniform
     ///buffers that  **can**  be included in a pipeline layout.
     ///Descriptors with a type of `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER` or
@@ -62754,7 +62947,7 @@ pub struct PhysicalDeviceLimits {
     ///count against this limit.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformbuffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformbuffer) and
     ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformbufferdynamic](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformbufferdynamic).
-    max_descriptor_set_uniform_buffers: u32,
+    pub max_descriptor_set_uniform_buffers: u32,
     ///[`max_descriptor_set_uniform_buffers_dynamic`] is the maximum number of
     ///dynamic uniform buffers that  **can**  be included in a pipeline layout.
     ///Descriptors with a type of
@@ -62764,7 +62957,7 @@ pub struct PhysicalDeviceLimits {
     ///`VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set
     ///count against this limit.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformbufferdynamic](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformbufferdynamic).
-    max_descriptor_set_uniform_buffers_dynamic: u32,
+    pub max_descriptor_set_uniform_buffers_dynamic: u32,
     ///[`max_descriptor_set_storage_buffers`] is the maximum number of storage
     ///buffers that  **can**  be included in a pipeline layout.
     ///Descriptors with a type of `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER` or
@@ -62775,7 +62968,7 @@ pub struct PhysicalDeviceLimits {
     ///count against this limit.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagebuffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagebuffer) and
     ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagebufferdynamic](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagebufferdynamic).
-    max_descriptor_set_storage_buffers: u32,
+    pub max_descriptor_set_storage_buffers: u32,
     ///[`max_descriptor_set_storage_buffers_dynamic`] is the maximum number of
     ///dynamic storage buffers that  **can**  be included in a pipeline layout.
     ///Descriptors with a type of
@@ -62785,7 +62978,7 @@ pub struct PhysicalDeviceLimits {
     ///`VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set
     ///count against this limit.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagebufferdynamic](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagebufferdynamic).
-    max_descriptor_set_storage_buffers_dynamic: u32,
+    pub max_descriptor_set_storage_buffers_dynamic: u32,
     ///[`max_descriptor_set_sampled_images`] is the maximum number of sampled
     ///images that  **can**  be included in a pipeline layout.
     ///Descriptors with a type of
@@ -62798,7 +62991,7 @@ pub struct PhysicalDeviceLimits {
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-combinedimagesampler](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-combinedimagesampler),
     ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sampledimage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sampledimage), and
     ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformtexelbuffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformtexelbuffer).
-    max_descriptor_set_sampled_images: u32,
+    pub max_descriptor_set_sampled_images: u32,
     ///[`max_descriptor_set_storage_images`] is the maximum number of storage
     ///images that  **can**  be included in a pipeline layout.
     ///Descriptors with a type of `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`, or
@@ -62808,7 +63001,7 @@ pub struct PhysicalDeviceLimits {
     ///count against this limit.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage), and
     ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagetexelbuffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagetexelbuffer).
-    max_descriptor_set_storage_images: u32,
+    pub max_descriptor_set_storage_images: u32,
     ///[`max_descriptor_set_input_attachments`] is the maximum number of input
     ///attachments that  **can**  be included in a pipeline layout.
     ///Descriptors with a type of `VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT`
@@ -62817,7 +63010,7 @@ pub struct PhysicalDeviceLimits {
     ///`VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set
     ///count against this limit.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-inputattachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-inputattachment).
-    max_descriptor_set_input_attachments: u32,
+    pub max_descriptor_set_input_attachments: u32,
     ///[`max_vertex_input_attributes`] is
     ///the maximum number of vertex input attributes that  **can**  be specified for
     ///a graphics pipeline.
@@ -62827,7 +63020,7 @@ pub struct PhysicalDeviceLimits {
     ///`pVertexAttributeDescriptions` member of the
     ///[`PipelineVertexInputStateCreateInfo`] structure.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fxvertex-attrib](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fxvertex-attrib) and [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fxvertex-input](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fxvertex-input).
-    max_vertex_input_attributes: u32,
+    pub max_vertex_input_attributes: u32,
     ///[`max_vertex_input_bindings`] is the
     ///maximum number of vertex buffers that  **can**  be specified for providing
     ///vertex attributes to a graphics pipeline.
@@ -62838,30 +63031,30 @@ pub struct PhysicalDeviceLimits {
     ///The `binding` member of [`VertexInputBindingDescription`] **must**
     ///be less than this limit.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fxvertex-input](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fxvertex-input).
-    max_vertex_input_bindings: u32,
+    pub max_vertex_input_bindings: u32,
     ///[`max_vertex_input_attribute_offset`] is the maximum vertex input
     ///attribute offset that  **can**  be added to the vertex input binding stride.
     ///The `offset` member of the [`VertexInputAttributeDescription`]
     ///structure  **must**  be less than or equal to this limit.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fxvertex-input](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fxvertex-input).
-    max_vertex_input_attribute_offset: u32,
+    pub max_vertex_input_attribute_offset: u32,
     ///[`max_vertex_input_binding_stride`]
     ///is the maximum vertex input binding stride that  **can**  be specified in a
     ///vertex input binding.
     ///The `stride` member of the [`VertexInputBindingDescription`]
     ///structure  **must**  be less than or equal to this limit.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fxvertex-input](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fxvertex-input).
-    max_vertex_input_binding_stride: u32,
+    pub max_vertex_input_binding_stride: u32,
     ///[`max_vertex_output_components`] is
     ///the maximum number of components of output variables which  **can**  be
     ///output by a vertex shader.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shaders-vertex](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shaders-vertex).
-    max_vertex_output_components: u32,
+    pub max_vertex_output_components: u32,
     ///[`max_tessellation_generation_level`] is the maximum tessellation
     ///generation level supported by the fixed-function tessellation primitive
     ///generator.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#tessellation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#tessellation).
-    max_tessellation_generation_level: u32,
+    pub max_tessellation_generation_level: u32,
     ///[`max_tessellation_patch_size`] is
     ///the maximum patch size, in vertices, of patches that  **can**  be processed
     ///by the tessellation control shader and tessellation primitive generator.
@@ -62871,70 +63064,70 @@ pub struct PhysicalDeviceLimits {
     ///execution mode of shader modules  **must**  be less than or equal to this
     ///limit.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#tessellation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#tessellation).
-    max_tessellation_patch_size: u32,
+    pub max_tessellation_patch_size: u32,
     ///[`max_tessellation_control_per_vertex_input_components`] is the maximum
     ///number of components of input variables which  **can**  be provided as
     ///per-vertex inputs to the tessellation control shader stage.
-    max_tessellation_control_per_vertex_input_components: u32,
+    pub max_tessellation_control_per_vertex_input_components: u32,
     ///[`max_tessellation_control_per_vertex_output_components`] is the maximum
     ///number of components of per-vertex output variables which  **can**  be output
     ///from the tessellation control shader stage.
-    max_tessellation_control_per_vertex_output_components: u32,
+    pub max_tessellation_control_per_vertex_output_components: u32,
     ///[`max_tessellation_control_per_patch_output_components`] is the maximum
     ///number of components of per-patch output variables which  **can**  be output
     ///from the tessellation control shader stage.
-    max_tessellation_control_per_patch_output_components: u32,
+    pub max_tessellation_control_per_patch_output_components: u32,
     ///[`max_tessellation_control_total_output_components`] is the maximum total
     ///number of components of per-vertex and per-patch output variables which
     /// **can**  be output from the tessellation control shader stage.
-    max_tessellation_control_total_output_components: u32,
+    pub max_tessellation_control_total_output_components: u32,
     ///[`max_tessellation_evaluation_input_components`] is the maximum number of
     ///components of input variables which  **can**  be provided as per-vertex
     ///inputs to the tessellation evaluation shader stage.
-    max_tessellation_evaluation_input_components: u32,
+    pub max_tessellation_evaluation_input_components: u32,
     ///[`max_tessellation_evaluation_output_components`] is the maximum number of
     ///components of per-vertex output variables which  **can**  be output from the
     ///tessellation evaluation shader stage.
-    max_tessellation_evaluation_output_components: u32,
+    pub max_tessellation_evaluation_output_components: u32,
     ///[`max_geometry_shader_invocations`] is the maximum invocation count
     ///supported for instanced geometry shaders.
     ///The value provided in the `Invocations` execution mode of shader
     ///modules  **must**  be less than or equal to this limit.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#geometry](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#geometry).
-    max_geometry_shader_invocations: u32,
+    pub max_geometry_shader_invocations: u32,
     ///[`max_geometry_input_components`]
     ///is the maximum number of components of input variables which  **can**  be
     ///provided as inputs to the geometry shader stage.
-    max_geometry_input_components: u32,
+    pub max_geometry_input_components: u32,
     ///[`max_geometry_output_components`]
     ///is the maximum number of components of output variables which  **can**  be
     ///output from the geometry shader stage.
-    max_geometry_output_components: u32,
+    pub max_geometry_output_components: u32,
     ///[`max_geometry_output_vertices`] is
     ///the maximum number of vertices which  **can**  be emitted by any geometry
     ///shader.
-    max_geometry_output_vertices: u32,
+    pub max_geometry_output_vertices: u32,
     ///[`max_geometry_total_output_components`] is the maximum total number of
     ///components of output variables, across all emitted vertices, which  **can**
     ///be output from the geometry shader stage.
-    max_geometry_total_output_components: u32,
+    pub max_geometry_total_output_components: u32,
     ///[`max_fragment_input_components`]
     ///is the maximum number of components of input variables which  **can**  be
     ///provided as inputs to the fragment shader stage.
-    max_fragment_input_components: u32,
+    pub max_fragment_input_components: u32,
     ///[`max_fragment_output_attachments`] is the maximum number of output
     ///attachments which  **can**  be written to by the fragment shader stage.
-    max_fragment_output_attachments: u32,
+    pub max_fragment_output_attachments: u32,
     ///[`max_fragment_dual_src_attachments`] is the maximum number of output
     ///attachments which  **can**  be written to by the fragment shader stage when
     ///blending is enabled and one of the dual source blend modes is in use.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-dsb](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-dsb) and [dualSrcBlend](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-dualSrcBlend).
-    max_fragment_dual_src_attachments: u32,
+    pub max_fragment_dual_src_attachments: u32,
     ///[`max_fragment_combined_output_resources`] is the total number of storage
     ///buffers, storage images, and output `Location` decorated color
     ///attachments (described in [Fragment Output
     ///Interface](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#interfaces-fragmentoutput)) which  **can**  be used in the fragment shader stage.
-    max_fragment_combined_output_resources: u32,
+    pub max_fragment_combined_output_resources: u32,
     ///[`max_compute_shared_memory_size`]
     ///is the maximum total storage size, in bytes, available for variables
     ///declared with the `Workgroup` storage class in shader modules (or
@@ -62956,7 +63149,7 @@ pub struct PhysicalDeviceLimits {
     ///offset according to the [Standard
     ///Storage Buffer Layout](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#interfaces-resources-standard-layout) rules.
     ///(This is equivalent to using the GLSL std430 layout rules.)
-    max_compute_shared_memory_size: u32,
+    pub max_compute_shared_memory_size: u32,
     ///[`max_compute_work_group_count`][3] is
     ///the maximum number of local workgroups that  **can**  be dispatched by a
     ///single dispatching command.
@@ -62965,7 +63158,7 @@ pub struct PhysicalDeviceLimits {
     ///The workgroup count parameters to the dispatching commands  **must**  be less
     ///than or equal to the corresponding limit.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#dispatch](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#dispatch).
-    max_compute_work_group_count: [u32; 3],
+    pub max_compute_work_group_count: [u32; 3],
     ///[`max_compute_work_group_invocations`] is the maximum total number of
     ///    compute shader invocations in a single local workgroup.
     ///    The product of the X, Y, and Z sizes, as specified by the `LocalSize`
@@ -62973,7 +63166,7 @@ pub struct PhysicalDeviceLimits {
     ///    execution mode in shader modules or by the object decorated by the
     ///    `WorkgroupSize` decoration,  **must**  be less than or equal to this
     ///    limit.
-    max_compute_work_group_invocations: u32,
+    pub max_compute_work_group_invocations: u32,
     ///[`max_compute_work_group_size`][3] is
     ///    the maximum size of a local compute workgroup, per dimension.
     ///    These three values represent the maximum local workgroup size in the X,
@@ -62984,12 +63177,12 @@ pub struct PhysicalDeviceLimits {
     ///    execution mode or by the object decorated by the `WorkgroupSize`
     ///    decoration in shader modules,  **must**  be less than or equal to the
     ///    corresponding limit.
-    max_compute_work_group_size: [u32; 3],
+    pub max_compute_work_group_size: [u32; 3],
     ///[`sub_pixel_precision_bits`] is the
     ///number of bits of subpixel precision in framebuffer coordinates
     ///x<sub>f</sub> and y<sub>f</sub>.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast).
-    sub_pixel_precision_bits: u32,
+    pub sub_pixel_precision_bits: u32,
     ///[`sub_texel_precision_bits`] is the
     ///number of bits of precision in the division along an axis of an image
     ///used for minification and magnification filters.
@@ -62997,23 +63190,23 @@ pub struct PhysicalDeviceLimits {
     ///along each axis of the image represented.
     ///Sub-texel values calculated during image sampling will snap to these
     ///locations when generating the filtered results.
-    sub_texel_precision_bits: u32,
+    pub sub_texel_precision_bits: u32,
     ///[`mipmap_precision_bits`] is the number
     ///of bits of division that the LOD calculation for mipmap fetching get
     ///snapped to when determining the contribution from each mip level to the
     ///mip filtered results.
     ///2<sup>[`mipmap_precision_bits`]</sup> is the actual number of divisions.
-    mipmap_precision_bits: u32,
+    pub mipmap_precision_bits: u32,
     ///[`max_draw_indexed_index_value`] is
     ///the maximum index value that  **can**  be used for indexed draw calls when
     ///using 32-bit indices.
     ///This excludes the primitive restart index value of 0xFFFFFFFF.
     ///See [fullDrawIndexUint32](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-fullDrawIndexUint32).
-    max_draw_indexed_index_value: u32,
+    pub max_draw_indexed_index_value: u32,
     ///[`max_draw_indirect_count`] is the
     ///maximum draw count that is supported for indirect drawing calls.
     ///See [multiDrawIndirect](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiDrawIndirect).
-    max_draw_indirect_count: u32,
+    pub max_draw_indirect_count: u32,
     ///[`max_sampler_lod_bias`] is the maximum
     ///absolute sampler LOD bias.
     ///The sum of the `mipLodBias` member of the [`SamplerCreateInfo`]
@@ -63022,20 +63215,20 @@ pub struct PhysicalDeviceLimits {
     ///sampling operation) are clamped to the range
     ///[-[`max_sampler_lod_bias`],+[`max_sampler_lod_bias`]].
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-mipLodBias](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-mipLodBias).
-    max_sampler_lod_bias: f32,
+    pub max_sampler_lod_bias: f32,
     ///[`max_sampler_anisotropy`] is the
     ///maximum degree of sampler anisotropy.
     ///The maximum degree of anisotropic filtering used for an image sampling
     ///operation is the minimum of the `maxAnisotropy` member of the
     ///[`SamplerCreateInfo`] structure and this limit.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-maxAnisotropy](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-maxAnisotropy).
-    max_sampler_anisotropy: f32,
+    pub max_sampler_anisotropy: f32,
     ///[`max_viewports`] is the maximum number of
     ///active viewports.
     ///The `viewportCount` member of the
     ///[`PipelineViewportStateCreateInfo`] structure that is provided at
     ///pipeline creation  **must**  be less than or equal to this limit.
-    max_viewports: u32,
+    pub max_viewports: u32,
     ///[`max_viewport_dimensions`][2] are the
     ///maximum viewport dimensions in the X (width) and Y (height) dimensions,
     ///respectively.
@@ -63043,7 +63236,7 @@ pub struct PhysicalDeviceLimits {
     ///largest image which  **can**  be created and used as a framebuffer
     ///attachment.
     ///See [Controlling the Viewport](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#vertexpostproc-viewport).
-    max_viewport_dimensions: [u32; 2],
+    pub max_viewport_dimensions: [u32; 2],
     ///[`viewport_bounds_range`][2] is the
     ///[minimum, maximum] range that the corners of a viewport  **must**  be
     ///contained in.
@@ -63051,12 +63244,12 @@ pub struct PhysicalDeviceLimits {
     ///`size` - 1], where `size` =
     ///max([`max_viewport_dimensions`][0], [`max_viewport_dimensions`][1]).
     ///See [Controlling the Viewport](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#vertexpostproc-viewport).
-    viewport_bounds_range: [f32; 2],
+    pub viewport_bounds_range: [f32; 2],
     ///[`viewport_sub_pixel_bits`] is the number
     ///of bits of subpixel precision for viewport bounds.
     ///The subpixel precision that floating-point viewport bounds are
     ///interpreted at is given by this limit.
-    viewport_sub_pixel_bits: u32,
+    pub viewport_sub_pixel_bits: u32,
     ///[`min_memory_map_alignment`] is the
     ///minimum  **required**  alignment, in bytes, of host visible memory
     ///allocations within the host address space.
@@ -63065,7 +63258,7 @@ pub struct PhysicalDeviceLimits {
     ///integer multiple of this limit.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-device-hostaccess](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-device-hostaccess).
     ///The value  **must**  be a power of two.
-    min_memory_map_alignment: usize,
+    pub min_memory_map_alignment: usize,
     ///[`min_texel_buffer_offset_alignment`] is the minimum  **required**  alignment,
     ///in bytes, for the `offset` member of the
     ///[`BufferViewCreateInfo`] structure for texel buffers.
@@ -63082,7 +63275,7 @@ pub struct PhysicalDeviceLimits {
     ///enabled,
     ///[`BufferViewCreateInfo`]::`offset` **must**  be a multiple of this
     ///value.
-    min_texel_buffer_offset_alignment: DeviceSize,
+    pub min_texel_buffer_offset_alignment: DeviceSize,
     ///[`min_uniform_buffer_offset_alignment`] is the minimum  **required**
     ///alignment, in bytes, for the `offset` member of the
     ///[`DescriptorBufferInfo`] structure for uniform buffers.
@@ -63092,7 +63285,7 @@ pub struct PhysicalDeviceLimits {
     ///Similarly, dynamic offsets for uniform buffers  **must**  be multiples of
     ///this limit.
     ///The value  **must**  be a power of two.
-    min_uniform_buffer_offset_alignment: DeviceSize,
+    pub min_uniform_buffer_offset_alignment: DeviceSize,
     ///[`min_storage_buffer_offset_alignment`] is the minimum  **required**
     ///alignment, in bytes, for the `offset` member of the
     ///[`DescriptorBufferInfo`] structure for storage buffers.
@@ -63102,111 +63295,111 @@ pub struct PhysicalDeviceLimits {
     ///Similarly, dynamic offsets for storage buffers  **must**  be multiples of
     ///this limit.
     ///The value  **must**  be a power of two.
-    min_storage_buffer_offset_alignment: DeviceSize,
+    pub min_storage_buffer_offset_alignment: DeviceSize,
     ///[`min_texel_offset`] is the minimum offset
     ///value for the `ConstOffset` image operand of any of the
     ///`OpImageSample*` or `OpImageFetch*` image instructions.
-    min_texel_offset: i32,
+    pub min_texel_offset: i32,
     ///[`max_texel_offset`] is the maximum offset
     ///value for the `ConstOffset` image operand of any of the
     ///`OpImageSample*` or `OpImageFetch*` image instructions.
-    max_texel_offset: u32,
+    pub max_texel_offset: u32,
     ///[`min_texel_gather_offset`] is the
     ///minimum offset value for the `Offset`, `ConstOffset`, or
     ///`ConstOffsets` image operands of any of the `OpImage*Gather` image
     ///instructions.
-    min_texel_gather_offset: i32,
+    pub min_texel_gather_offset: i32,
     ///[`max_texel_gather_offset`] is the
     ///maximum offset value for the `Offset`, `ConstOffset`, or
     ///`ConstOffsets` image operands of any of the `OpImage*Gather` image
     ///instructions.
-    max_texel_gather_offset: u32,
+    pub max_texel_gather_offset: u32,
     ///[`min_interpolation_offset`] is the
     ///base minimum (inclusive) negative offset value for the `Offset`
     ///operand of the `InterpolateAtOffset` extended instruction.
-    min_interpolation_offset: f32,
+    pub min_interpolation_offset: f32,
     ///[`max_interpolation_offset`] is the
     ///base maximum (inclusive) positive offset value for the `Offset`
     ///operand of the `InterpolateAtOffset` extended instruction.
-    max_interpolation_offset: f32,
+    pub max_interpolation_offset: f32,
     ///[`sub_pixel_interpolation_offset_bits`] is the number of fractional bits
     ///that the `x` and `y` offsets to the `InterpolateAtOffset`
     ///extended instruction  **may**  be rounded to as fixed-point values.
-    sub_pixel_interpolation_offset_bits: u32,
+    pub sub_pixel_interpolation_offset_bits: u32,
     ///[`max_framebuffer_width`] is the maximum
     ///width for a framebuffer.
     ///The `width` member of the [`FramebufferCreateInfo`] structure
     /// **must**  be less than or equal to this limit.
-    max_framebuffer_width: u32,
+    pub max_framebuffer_width: u32,
     ///[`max_framebuffer_height`] is the
     ///maximum height for a framebuffer.
     ///The `height` member of the [`FramebufferCreateInfo`] structure
     /// **must**  be less than or equal to this limit.
-    max_framebuffer_height: u32,
+    pub max_framebuffer_height: u32,
     ///[`max_framebuffer_layers`] is the
     ///maximum layer count for a layered framebuffer.
     ///The `layers` member of the [`FramebufferCreateInfo`] structure
     /// **must**  be less than or equal to this limit.
-    max_framebuffer_layers: u32,
+    pub max_framebuffer_layers: u32,
     ///[`framebuffer_color_sample_counts`] is a bitmask<sup>1</sup> of
     ///[`SampleCountFlagBits`] indicating the color sample counts that are
     ///supported for all framebuffer color attachments with floating- or
     ///fixed-point formats.
     ///For color attachments with integer formats, see
     ///[`framebufferIntegerColorSampleCounts`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-framebufferIntegerColorSampleCounts).
-    framebuffer_color_sample_counts: SampleCountFlags,
+    pub framebuffer_color_sample_counts: SampleCountFlags,
     ///[`framebuffer_depth_sample_counts`] is a bitmask<sup>1</sup> of
     ///[`SampleCountFlagBits`] indicating the supported depth sample counts
     ///for all framebuffer depth/stencil attachments, when the format includes
     ///a depth component.
-    framebuffer_depth_sample_counts: SampleCountFlags,
+    pub framebuffer_depth_sample_counts: SampleCountFlags,
     ///[`framebuffer_stencil_sample_counts`] is a bitmask<sup>1</sup> of
     ///[`SampleCountFlagBits`] indicating the supported stencil sample
     ///counts for all framebuffer depth/stencil attachments, when the format
     ///includes a stencil component.
-    framebuffer_stencil_sample_counts: SampleCountFlags,
+    pub framebuffer_stencil_sample_counts: SampleCountFlags,
     ///[`framebuffer_no_attachments_sample_counts`] is a bitmask<sup>1</sup> of
     ///[`SampleCountFlagBits`] indicating the supported sample counts for a
     ///[subpass which uses no attachments](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-noattachments).
-    framebuffer_no_attachments_sample_counts: SampleCountFlags,
+    pub framebuffer_no_attachments_sample_counts: SampleCountFlags,
     ///[`max_color_attachments`] is the maximum
     ///number of color attachments that  **can**  be used by a subpass in a render
     ///pass.
     ///The `colorAttachmentCount` member of the [`SubpassDescription`]
     ///or [`SubpassDescription2`]
     ///structure  **must**  be less than or equal to this limit.
-    max_color_attachments: u32,
+    pub max_color_attachments: u32,
     ///[`sampled_image_color_sample_counts`] is a bitmask<sup>1</sup> of
     ///[`SampleCountFlagBits`] indicating the sample counts supported for
     ///all 2D images created with `VK_IMAGE_TILING_OPTIMAL`, `usage`
     ///containing `VK_IMAGE_USAGE_SAMPLED_BIT`, and a non-integer color
     ///format.
-    sampled_image_color_sample_counts: SampleCountFlags,
+    pub sampled_image_color_sample_counts: SampleCountFlags,
     ///[`sampled_image_integer_sample_counts`] is a bitmask<sup>1</sup> of
     ///[`SampleCountFlagBits`] indicating the sample counts supported for
     ///all 2D images created with `VK_IMAGE_TILING_OPTIMAL`, `usage`
     ///containing `VK_IMAGE_USAGE_SAMPLED_BIT`, and an integer color
     ///format.
-    sampled_image_integer_sample_counts: SampleCountFlags,
+    pub sampled_image_integer_sample_counts: SampleCountFlags,
     ///[`sampled_image_depth_sample_counts`] is a bitmask<sup>1</sup> of
     ///[`SampleCountFlagBits`] indicating the sample counts supported for
     ///all 2D images created with `VK_IMAGE_TILING_OPTIMAL`, `usage`
     ///containing `VK_IMAGE_USAGE_SAMPLED_BIT`, and a depth format.
-    sampled_image_depth_sample_counts: SampleCountFlags,
+    pub sampled_image_depth_sample_counts: SampleCountFlags,
     ///[`sampled_image_stencil_sample_counts`] is a bitmask<sup>1</sup> of
     ///[`SampleCountFlagBits`] indicating the sample counts supported for
     ///all 2D images created with `VK_IMAGE_TILING_OPTIMAL`, `usage`
     ///containing `VK_IMAGE_USAGE_SAMPLED_BIT`, and a stencil format.
-    sampled_image_stencil_sample_counts: SampleCountFlags,
+    pub sampled_image_stencil_sample_counts: SampleCountFlags,
     ///[`storage_image_sample_counts`] is a
     ///bitmask<sup>1</sup> of [`SampleCountFlagBits`] indicating the sample counts
     ///supported for all 2D images created with `VK_IMAGE_TILING_OPTIMAL`,
     ///and `usage` containing `VK_IMAGE_USAGE_STORAGE_BIT`.
-    storage_image_sample_counts: SampleCountFlags,
+    pub storage_image_sample_counts: SampleCountFlags,
     ///[`max_sample_mask_words`] is the maximum
     ///number of array elements of a variable decorated with the
     ///[`SampleMask`] built-in decoration.
-    max_sample_mask_words: u32,
+    pub max_sample_mask_words: u32,
     ///[`timestamp_compute_and_graphics`]
     ///specifies support for timestamps on all graphics and compute queues.
     ///If this limit is set to [`TRUE`], all queues that advertise the
@@ -63214,28 +63407,28 @@ pub struct PhysicalDeviceLimits {
     ///[`QueueFamilyProperties`]::`queueFlags` support
     ///[`QueueFamilyProperties`]::`timestampValidBits` of at least 36.
     ///See [Timestamp Queries](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#queries-timestamps).
-    timestamp_compute_and_graphics: Bool32,
+    pub timestamp_compute_and_graphics: Bool32,
     ///[`timestamp_period`] is the number of
     ///nanoseconds  **required**  for a timestamp query to be incremented by 1.
     ///See [Timestamp Queries](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#queries-timestamps).
-    timestamp_period: f32,
+    pub timestamp_period: f32,
     ///[`max_clip_distances`] is the maximum number
     ///of clip distances that  **can**  be used in a single shader stage.
     ///The size of any array declared with the `ClipDistance` built-in
     ///decoration in a shader module  **must**  be less than or equal to this limit.
-    max_clip_distances: u32,
+    pub max_clip_distances: u32,
     ///[`max_cull_distances`] is the maximum number
     ///of cull distances that  **can**  be used in a single shader stage.
     ///The size of any array declared with the `CullDistance` built-in
     ///decoration in a shader module  **must**  be less than or equal to this limit.
-    max_cull_distances: u32,
+    pub max_cull_distances: u32,
     ///[`max_combined_clip_and_cull_distances`] is the maximum combined number of
     ///clip and cull distances that  **can**  be used in a single shader stage.
     ///The sum of the sizes of any pair of arrays declared with the
     ///`ClipDistance` and `CullDistance` built-in decoration used by a
     ///single shader stage in a shader module  **must**  be less than or equal to
     ///this limit.
-    max_combined_clip_and_cull_distances: u32,
+    pub max_combined_clip_and_cull_distances: u32,
     ///[`discrete_queue_priorities`] is the
     ///number of discrete priorities that  **can**  be assigned to a queue based on
     ///the value of each member of
@@ -63243,32 +63436,32 @@ pub struct PhysicalDeviceLimits {
     ///This  **must**  be at least 2, and levels  **must**  be spread evenly over the
     ///range, with at least one level at 1.0, and another at 0.0.
     ///See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-priority](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-priority).
-    discrete_queue_priorities: u32,
+    pub discrete_queue_priorities: u32,
     ///[`point_size_range`][2] is the range
     ///[`minimum`,`maximum`] of supported sizes for points.
     ///Values written to variables decorated with the `PointSize` built-in
     ///decoration are clamped to this range.
-    point_size_range: [f32; 2],
+    pub point_size_range: [f32; 2],
     ///[`line_width_range`][2] is the range
     ///[`minimum`,`maximum`] of supported widths for lines.
     ///Values specified by the `lineWidth` member of the
     ///[`PipelineRasterizationStateCreateInfo`] or the `lineWidth`
     ///parameter to [`CmdSetLineWidth`] are clamped to this range.
-    line_width_range: [f32; 2],
+    pub line_width_range: [f32; 2],
     ///[`point_size_granularity`] is the
     ///granularity of supported point sizes.
     ///Not all point sizes in the range defined by [`point_size_range`] are
     ///supported.
     ///This limit specifies the granularity (or increment) between successive
     ///supported point sizes.
-    point_size_granularity: f32,
+    pub point_size_granularity: f32,
     ///[`line_width_granularity`] is the
     ///granularity of supported line widths.
     ///Not all line widths in the range defined by [`line_width_range`] are
     ///supported.
     ///This limit specifies the granularity (or increment) between successive
     ///supported line widths.
-    line_width_granularity: f32,
+    pub line_width_granularity: f32,
     ///[`strict_lines`] specifies whether lines are
     ///rasterized according to the preferred method of rasterization.
     ///If set to [`FALSE`], lines  **may**  be rasterized under a relaxed set
@@ -63276,7 +63469,7 @@ pub struct PhysicalDeviceLimits {
     ///If set to [`TRUE`], lines are rasterized as per the strict
     ///definition.
     ///See [Basic Line Segment Rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-basic).
-    strict_lines: Bool32,
+    pub strict_lines: Bool32,
     ///[`standard_sample_locations`]
     ///specifies whether rasterization uses the standard sample locations as
     ///documented in [Multisampling](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling).
@@ -63284,7 +63477,7 @@ pub struct PhysicalDeviceLimits {
     ///locations.
     ///If set to [`FALSE`], the implementation  **may**  use different sample
     ///locations.
-    standard_sample_locations: Bool32,
+    pub standard_sample_locations: Bool32,
     ///[`optimal_buffer_copy_offset_alignment`] is the optimal buffer offset
     ///alignment in bytes for
     ///[`CmdCopyBufferToImage2`], [`CmdCopyBufferToImage`],
@@ -63292,7 +63485,7 @@ pub struct PhysicalDeviceLimits {
     ///The per texel alignment requirements are enforced, but applications
     /// **should**  use the optimal alignment for optimal performance and power use.
     ///The value  **must**  be a power of two.
-    optimal_buffer_copy_offset_alignment: DeviceSize,
+    pub optimal_buffer_copy_offset_alignment: DeviceSize,
     ///[`optimal_buffer_copy_row_pitch_alignment`] is the optimal buffer row pitch
     ///alignment in bytes for
     ///[`CmdCopyBufferToImage2`], [`CmdCopyBufferToImage`],
@@ -63302,13 +63495,13 @@ pub struct PhysicalDeviceLimits {
     ///The per texel alignment requirements are enforced, but applications
     /// **should**  use the optimal alignment for optimal performance and power use.
     ///The value  **must**  be a power of two.
-    optimal_buffer_copy_row_pitch_alignment: DeviceSize,
+    pub optimal_buffer_copy_row_pitch_alignment: DeviceSize,
     ///[`non_coherent_atom_size`] is the size and
     ///alignment in bytes that bounds concurrent access to
     ///[host-mapped device memory](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-device-hostaccess).
     ///The value  **must**  be a power of two.
     /// * For all bitmasks of [`SampleCountFlagBits`], the sample count limits defined above represent the minimum supported sample counts for each image type. Individual images  **may**  support additional sample counts, which are queried using [`GetPhysicalDeviceImageFormatProperties`] as described in [Supported Sample Counts](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-supported-sample-counts).
-    non_coherent_atom_size: DeviceSize,
+    pub non_coherent_atom_size: DeviceSize,
 }
 impl Default for PhysicalDeviceLimits {
     fn default() -> Self {
@@ -64919,18 +65112,19 @@ impl PhysicalDeviceLimits {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSemaphoreCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SemaphoreCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: SemaphoreCreateFlags,
+    pub flags: SemaphoreCreateFlags,
 }
 impl<'lt> Default for SemaphoreCreateInfo<'lt> {
     fn default() -> Self {
@@ -65049,28 +65243,29 @@ impl<'lt> SemaphoreCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkQueryPoolCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct QueryPoolCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: QueryPoolCreateFlags,
+    pub flags: QueryPoolCreateFlags,
     ///[`query_type`] is a [`QueryType`] value specifying the type of
     ///queries managed by the pool.
-    query_type: QueryType,
+    pub query_type: QueryType,
     ///[`query_count`] is the number of queries managed by the pool.
-    query_count: u32,
+    pub query_count: u32,
     ///[`pipeline_statistics`] is a bitmask of
     ///[`QueryPipelineStatisticFlagBits`] specifying which counters will be
     ///returned in queries on the new pool, as described below in
     ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#queries-pipestats](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#queries-pipestats).
-    pipeline_statistics: QueryPipelineStatisticFlags,
+    pub pipeline_statistics: QueryPipelineStatisticFlags,
 }
 impl<'lt> Default for QueryPoolCreateInfo<'lt> {
     fn default() -> Self {
@@ -65294,58 +65489,58 @@ impl<'lt> QueryPoolCreateInfo<'lt> {
 /// - If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] does not include
 ///   `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, an element of [`attachments`] that is referenced by
 ///   `fragmentDensityMapAttachment` **must**  have a width at least as large as <span
-///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
 ///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.8801079999999999em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">F</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
-///   mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
 ///   mtight">y</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
-///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.3448em;" class="vlist"><span
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
 ///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.15122857142857138em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
+///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span
+///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
+///   style="top:-3.394em;"><span style="height:3em;" class="pstrut"></span><span class="sizing
+///   reset-size6 size3 mtight"><span class="mord mtight"><span style="margin-right:0.02691em;"
+///   class="mord mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.394em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span style="margin-right:0.02691em;" class="mord mathdefault mtight">w</span><span
-///   class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
 ///   style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
+///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
 ///   class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] does not include
 ///   `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, an element of [`attachments`] that is referenced by
 ///   `fragmentDensityMapAttachment` **must**  have a height at least as large as <span
-///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
 ///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
 ///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
@@ -65354,27 +65549,27 @@ impl<'lt> QueryPoolCreateInfo<'lt> {
 ///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">F</span><span class="mord mathdefault mtight"
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span><span style="margin-right:0.13889em;" class="mord
-///   mathdefault mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.01968em;">l</span><span style="margin-right:0.05764em;"
+///   class="mord mathdefault mtight">S</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.3448em;"
+///   class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
@@ -65382,19 +65577,19 @@ impl<'lt> QueryPoolCreateInfo<'lt> {
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.446108em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight">h</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
 ///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   class="vlist-r"><span style="height:0.5480799999999999em;"
+///   class="vlist"><span></span></span></span></span></span><span class="mclose
+///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
+///   class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// -    If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] does not include `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, and [`render_pass`] was specified with non-zero view masks, each element of [`attachments`] that is used as a [fragment shading rate attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment) by [`render_pass`] **must**  have a `layerCount` that is either `1`, or greater than the index of the most significant bit set in any of those view masks
 /// -    If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] does not include `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, and [`render_pass`] was not specified with non-zero view masks, each element of [`attachments`] that is used as a [fragment shading rate attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment) by [`render_pass`] **must**  have a `layerCount` that is either `1`, or greater than [`layers`]
 /// -    If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] does not include `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, an element of [`attachments`] that is used as a [fragment shading rate attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment) **must**  have a width at least as large as ⌈[`width`] / `texelWidth`⌉, where `texelWidth` is the largest value of `shadingRateAttachmentTexelSize.width` in a [`FragmentShadingRateAttachmentInfoKHR`] which references that attachment
@@ -65442,20 +65637,74 @@ impl<'lt> QueryPoolCreateInfo<'lt> {
 ///   style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.8801079999999999em;" class="vlist"><span
+///   class="vlist-r"><span class="vlist" style="height:0.8801079999999999em;"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
-///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
-///   mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight"
+///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">F</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">a</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span><span style="margin-right:0.13889em;" class="mord
+///   mathdefault mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span style="margin-right:0.02691em;" class="mord mathdefault
+///   mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.481108em;"
+///   class="vlist"><span></span></span></span></span></span><span class="mclose
+///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
+///   class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] includes
+///   `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, the [`height`] member of any element of the
+///   `pAttachmentImageInfos` member of a [`FramebufferAttachmentsCreateInfo`] structure included in
+///   the [`p_next`] chain that is referenced by
+///   [`RenderPassFragmentDensityMapCreateInfoEXT::fragment_density_map_attachment`] in
+///   [`render_pass`] **must**  be greater than or equal to <span class="katex"><span
+///   class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
+///   style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">F</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
@@ -65467,79 +65716,26 @@ impl<'lt> QueryPoolCreateInfo<'lt> {
 ///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
-///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span
-///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.481108em;"
-///   class="vlist"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] includes
-///   `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, the [`height`] member of any element of the
-///   `pAttachmentImageInfos` member of a [`FramebufferAttachmentsCreateInfo`] structure included in
-///   the [`p_next`] chain that is referenced by
-///   [`RenderPassFragmentDensityMapCreateInfoEXT::fragment_density_map_attachment`] in
-///   [`render_pass`] **must**  be greater than or equal to <span class="katex"><span
-///   class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span
-///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
-///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span
-///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-///   style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing
-///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">h</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">i</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">g</span><span class="mord mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
-///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight">h</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.5480799999999999em;"
+///   class="vlist"><span></span></span></span></span></span><span class="mclose
+///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
+///   class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// -    If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] includes `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, the [`width`] member of any element of the `pAttachmentImageInfos` member of a [`FramebufferAttachmentsCreateInfo`] structure in the [`p_next`] chain that is used as a [fragment shading rate attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment) **must**  be greater than or equal to ⌈[`width`] / `texelWidth`⌉, where `texelWidth` is the largest value of `shadingRateAttachmentTexelSize.width` in a [`FragmentShadingRateAttachmentInfoKHR`] which references that attachment
 /// -    If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] includes `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, the [`height`] member of any element of the `pAttachmentImageInfos` member of a [`FramebufferAttachmentsCreateInfo`] structure in the [`p_next`] chain that is used as a [fragment shading rate attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment) **must**  be greater than or equal to ⌈[`height`] / `texelHeight`⌉, where `texelHeight` is the largest value of `shadingRateAttachmentTexelSize.height` in a [`FragmentShadingRateAttachmentInfoKHR`] which references that attachment
 /// -    If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] includes `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, the `layerCount` member of any element of the `pAttachmentImageInfos` member of a [`FramebufferAttachmentsCreateInfo`] structure in the [`p_next`] chain that is used as a [fragment shading rate attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment) **must**  be either `1`, or greater than or equal to [`layers`]
@@ -65620,41 +65816,42 @@ impl<'lt> QueryPoolCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFramebufferCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct FramebufferCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`FramebufferCreateFlagBits`]
-    flags: FramebufferCreateFlags,
+    pub flags: FramebufferCreateFlags,
     ///[`render_pass`] is a render pass defining what render passes the
     ///framebuffer will be compatible with.
     ///See [Render Pass Compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-compatibility) for details.
-    render_pass: RenderPass,
+    pub render_pass: RenderPass,
     ///[`attachment_count`] is the number of attachments.
-    attachment_count: u32,
+    pub attachment_count: u32,
     ///[`attachments`] is a pointer to an array of [`ImageView`]
     ///handles, each of which will be used as the corresponding attachment in a
     ///render pass instance.
     ///If [`flags`] includes `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, this
     ///parameter is ignored.
-    attachments: *const ImageView,
+    pub attachments: *const ImageView,
     ///[`width`], [`height`] and [`layers`] define the dimensions of the
     ///framebuffer.
     ///If the render pass uses multiview, then [`layers`] **must**  be one and
     ///each attachment requires a number of layers that is greater than the
     ///maximum bit index set in the view mask in the subpasses in which it is
     ///used.
-    width: u32,
+    pub width: u32,
     ///No documentation found
-    height: u32,
+    pub height: u32,
     ///No documentation found
-    layers: u32,
+    pub layers: u32,
 }
 impl<'lt> Default for FramebufferCreateInfo<'lt> {
     fn default() -> Self {
@@ -65846,19 +66043,20 @@ impl<'lt> FramebufferCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDrawIndirectCommand")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct DrawIndirectCommand {
     ///[`vertex_count`] is the number of vertices to draw.
-    vertex_count: u32,
+    pub vertex_count: u32,
     ///[`instance_count`] is the number of instances to draw.
-    instance_count: u32,
+    pub instance_count: u32,
     ///[`first_vertex`] is the index of the first vertex to draw.
-    first_vertex: u32,
+    pub first_vertex: u32,
     ///[`first_instance`] is the instance ID of the first instance to draw.
-    first_instance: u32,
+    pub first_instance: u32,
 }
 impl Default for DrawIndirectCommand {
     fn default() -> Self {
@@ -65967,22 +66165,23 @@ impl DrawIndirectCommand {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDrawIndexedIndirectCommand")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct DrawIndexedIndirectCommand {
     ///[`index_count`] is the number of vertices to draw.
-    index_count: u32,
+    pub index_count: u32,
     ///[`instance_count`] is the number of instances to draw.
-    instance_count: u32,
+    pub instance_count: u32,
     ///[`first_index`] is the base index within the index buffer.
-    first_index: u32,
+    pub first_index: u32,
     ///[`vertex_offset`] is the value added to the vertex index before
     ///indexing into the vertex buffer.
-    vertex_offset: i32,
+    pub vertex_offset: i32,
     ///[`first_instance`] is the instance ID of the first instance to draw.
-    first_instance: u32,
+    pub first_instance: u32,
 }
 impl Default for DrawIndexedIndirectCommand {
     fn default() -> Self {
@@ -66098,6 +66297,7 @@ impl DrawIndexedIndirectCommand {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDispatchIndirectCommand")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -66105,13 +66305,13 @@ impl DrawIndexedIndirectCommand {
 pub struct DispatchIndirectCommand {
     ///[`x`] is the number of local workgroups to dispatch in the X
     ///dimension.
-    x: u32,
+    pub x: u32,
     ///[`y`] is the number of local workgroups to dispatch in the Y
     ///dimension.
-    y: u32,
+    pub y: u32,
     ///[`z`] is the number of local workgroups to dispatch in the Z
     ///dimension.
-    z: u32,
+    pub z: u32,
 }
 impl Default for DispatchIndirectCommand {
     fn default() -> Self {
@@ -66299,44 +66499,45 @@ impl DispatchIndirectCommand {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSubmitInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SubmitInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`wait_semaphore_count`] is the number of semaphores upon which to wait
     ///before executing the command buffers for the batch.
-    wait_semaphore_count: u32,
+    pub wait_semaphore_count: u32,
     ///[`wait_semaphores`] is a pointer to an array of [`Semaphore`]
     ///handles upon which to wait before the command buffers for this batch
     ///begin execution.
     ///If semaphores to wait on are provided, they define a
     ///[semaphore wait operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-waiting).
-    wait_semaphores: *const Semaphore,
+    pub wait_semaphores: *const Semaphore,
     ///[`wait_dst_stage_mask`] is a pointer to an array of pipeline stages at
     ///which each corresponding semaphore wait will occur.
-    wait_dst_stage_mask: *const PipelineStageFlags,
+    pub wait_dst_stage_mask: *const PipelineStageFlags,
     ///[`command_buffer_count`] is the number of command buffers to execute in
     ///the batch.
-    command_buffer_count: u32,
+    pub command_buffer_count: u32,
     ///[`command_buffers`] is a pointer to an array of [`CommandBuffer`]
     ///handles to execute in the batch.
-    command_buffers: *const CommandBuffer,
+    pub command_buffers: *const CommandBuffer,
     ///[`signal_semaphore_count`] is the number of semaphores to be signaled
     ///once the commands specified in [`command_buffers`] have completed
     ///execution.
-    signal_semaphore_count: u32,
+    pub signal_semaphore_count: u32,
     ///[`signal_semaphores`] is a pointer to an array of [`Semaphore`]
     ///handles which will be signaled when the command buffers for this batch
     ///have completed execution.
     ///If semaphores to be signaled are provided, they define a
     ///[semaphore signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling).
-    signal_semaphores: *const Semaphore,
+    pub signal_semaphores: *const Semaphore,
 }
 impl<'lt> Default for SubmitInfo<'lt> {
     fn default() -> Self {
@@ -66525,6 +66726,128 @@ impl<'lt> SubmitInfo<'lt> {
         self
     }
 }
+///[VkClearColorValue](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkClearColorValue.html) - Structure specifying a clear color value
+///# C Specifications
+///The [`ClearColorValue`] structure is defined as:
+///```c
+///// Provided by VK_VERSION_1_0
+///typedef union VkClearColorValue {
+///    float       float32[4];
+///    int32_t     int32[4];
+///    uint32_t    uint32[4];
+///} VkClearColorValue;
+///```
+///# Members
+/// - [`float_32`] are the color clear values when the format of the image or attachment is one of the formats in the [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-numericformat](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-numericformat) table other than signed integer (`SINT`) or unsigned integer (`UINT`). Floating point values are automatically converted to the format of the image, with the clear value being treated as linear if the image is sRGB.
+/// - [`int_32`] are the color clear values when the format of the image or attachment is signed
+///   integer (`SINT`). Signed integer values are converted to the format of the image by casting to
+///   the smaller type (with negative 32-bit values mapping to negative values in the smaller type).
+///   If the integer clear value is not representable in the target type (e.g. would overflow in
+///   conversion to that type), the clear value is undefined.
+/// - [`uint_32`] are the color clear values when the format of the image or attachment is unsigned
+///   integer (`UINT`). Unsigned integer values are converted to the format of the image by casting
+///   to the integer type with fewer bits.
+///# Description
+///The four array elements of the clear color map to R, G, B, and A components
+///of image formats, in order.If the image has more than one sample, the same value is written to
+/// all
+///samples for any pixels being cleared.
+///# Related
+/// - [`crate::vulkan1_0`]
+/// - [`ClearValue`]
+/// - [`SamplerCustomBorderColorCreateInfoEXT`]
+/// - [`CmdClearColorImage`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkClearColorValue")]
+#[derive(Clone, Copy)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(C)]
+pub union ClearColorValue {
+    ///[`float_32`] are the color clear values when the format of the image or
+    ///attachment is one of the formats in the [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-numericformat](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-numericformat) table
+    ///other than signed integer (`SINT`) or unsigned integer (`UINT`).
+    ///Floating point values are automatically converted to the format of the
+    ///image, with the clear value being treated as linear if the image is
+    ///sRGB.
+    pub float_32: [f32; 4],
+    ///[`int_32`] are the color clear values when the format of the image or
+    ///attachment is signed integer (`SINT`).
+    ///Signed integer values are converted to the format of the image by
+    ///casting to the smaller type (with negative 32-bit values mapping to
+    ///negative values in the smaller type).
+    ///If the integer clear value is not representable in the target type (e.g.
+    ///would overflow in conversion to that type), the clear value is
+    ///undefined.
+    pub int_32: [i32; 4],
+    ///[`uint_32`] are the color clear values when the format of the image or
+    ///attachment is unsigned integer (`UINT`).
+    ///Unsigned integer values are converted to the format of the image by
+    ///casting to the integer type with fewer bits.
+    pub uint_32: [u32; 4],
+}
+impl Default for ClearColorValue {
+    fn default() -> Self {
+        unsafe { std::mem::zeroed() }
+    }
+}
+///[VkClearValue](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkClearValue.html) - Structure specifying a clear value
+///# C Specifications
+///The [`ClearValue`] union is defined as:
+///```c
+///// Provided by VK_VERSION_1_0
+///typedef union VkClearValue {
+///    VkClearColorValue           color;
+///    VkClearDepthStencilValue    depthStencil;
+///} VkClearValue;
+///```
+///# Members
+/// - [`color`] specifies the color image clear values to use when clearing a color image or
+///   attachment.
+/// - [`depth_stencil`] specifies the depth and stencil clear values to use when clearing a
+///   depth/stencil image or attachment.
+///# Description
+///This union is used where part of the API requires either color or
+///depth/stencil clear values, depending on the attachment, and defines the
+///initial clear values in the [`RenderPassBeginInfo`] structure.
+///# Related
+/// - [`crate::vulkan1_0`]
+/// - [`ClearAttachment`]
+/// - [`ClearColorValue`]
+/// - [`ClearDepthStencilValue`]
+/// - [`RenderPassBeginInfo`]
+/// - [`RenderingAttachmentInfo`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkClearValue")]
+#[derive(Clone, Copy)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(C)]
+pub union ClearValue {
+    ///[`color`] specifies the color image clear values to use when clearing
+    ///a color image or attachment.
+    pub color: ClearColorValue,
+    ///[`depth_stencil`] specifies the depth and stencil clear values to use
+    ///when clearing a depth/stencil image or attachment.
+    pub depth_stencil: ClearDepthStencilValue,
+}
+impl Default for ClearValue {
+    fn default() -> Self {
+        unsafe { std::mem::zeroed() }
+    }
+}
 ///[VkInstance](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkInstance.html) - Opaque handle to an instance object
 ///# C Specifications
 ///There is no global state in Vulkan and all per-application state is stored
@@ -66574,6 +66897,7 @@ impl<'lt> SubmitInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkInstance")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -66711,6 +67035,7 @@ impl std::fmt::Debug for Instance {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDevice")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -67010,6 +67335,7 @@ impl std::fmt::Debug for PhysicalDevice {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDevice")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -67082,6 +67408,7 @@ impl std::fmt::Debug for Device {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkQueue")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -67330,6 +67657,7 @@ impl std::fmt::Debug for Queue {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCommandBuffer")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -67409,6 +67737,7 @@ impl std::fmt::Debug for CommandBuffer {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceMemory")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -67477,6 +67806,7 @@ impl std::fmt::Debug for DeviceMemory {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCommandPool")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -67588,6 +67918,7 @@ impl std::fmt::Debug for CommandPool {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBuffer")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -67653,6 +67984,7 @@ impl std::fmt::Debug for Buffer {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferView")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -67740,6 +68072,7 @@ impl std::fmt::Debug for BufferView {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImage")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -67812,6 +68145,7 @@ impl std::fmt::Debug for Image {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageView")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -67874,6 +68208,7 @@ impl std::fmt::Debug for ImageView {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkShaderModule")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -67953,6 +68288,7 @@ impl std::fmt::Debug for ShaderModule {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipeline")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -68029,6 +68365,7 @@ impl std::fmt::Debug for Pipeline {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineLayout")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -68090,6 +68427,7 @@ impl std::fmt::Debug for PipelineLayout {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSampler")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -68153,6 +68491,7 @@ impl std::fmt::Debug for Sampler {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorSet")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -68220,6 +68559,7 @@ impl std::fmt::Debug for DescriptorSet {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorSetLayout")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -68283,6 +68623,7 @@ impl std::fmt::Debug for DescriptorSetLayout {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorPool")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -68369,6 +68710,7 @@ impl std::fmt::Debug for DescriptorPool {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFence")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -68462,6 +68804,7 @@ impl std::fmt::Debug for Fence {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSemaphore")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -68541,6 +68884,7 @@ impl std::fmt::Debug for Semaphore {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkEvent")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -68613,6 +68957,7 @@ impl std::fmt::Debug for Event {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkQueryPool")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -68673,6 +69018,7 @@ impl std::fmt::Debug for QueryPool {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFramebuffer")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -68740,6 +69086,7 @@ impl std::fmt::Debug for Framebuffer {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRenderPass")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -68813,6 +69160,7 @@ impl std::fmt::Debug for RenderPass {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineCache")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]

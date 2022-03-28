@@ -115,22 +115,23 @@ pub const EXT_BORDER_COLOR_SWIZZLE_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSamplerBorderColorComponentMappingCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SamplerBorderColorComponentMappingCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`components`] is a [`ComponentMapping`] structure specifying a
     ///remapping of the border color components.
-    components: ComponentMapping,
+    pub components: ComponentMapping,
     ///[`srgb`] indicates that the sampler will be combined with an image
     ///view that has an image format which is sRGB encoded.
-    srgb: Bool32,
+    pub srgb: Bool32,
 }
 impl<'lt> Default for SamplerBorderColorComponentMappingCreateInfoEXT<'lt> {
     fn default() -> Self {
@@ -266,16 +267,17 @@ impl<'lt> SamplerBorderColorComponentMappingCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceBorderColorSwizzleFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceBorderColorSwizzleFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`border_color_swizzle`] indicates that
     ///defined values are returned by sampled image operations when used with a
     ///sampler that uses a `VK_BORDER_COLOR_FLOAT_OPAQUE_BLACK`,
@@ -286,7 +288,7 @@ pub struct PhysicalDeviceBorderColorSwizzleFeaturesEXT<'lt> {
     ///component mapping](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-views-identity-mappings), when either [`border_color_swizzle_from_image`] is
     ///enabled or the [`SamplerBorderColorComponentMappingCreateInfoEXT`]
     ///is specified.
-    border_color_swizzle: Bool32,
+    pub border_color_swizzle: Bool32,
     ///[`border_color_swizzle_from_image`] indicates that the implementation will
     ///return the correct border color values from sampled image operations
     ///under the conditions expressed above, without the application having to
@@ -299,7 +301,7 @@ pub struct PhysicalDeviceBorderColorSwizzleFeaturesEXT<'lt> {
     ///those samplers are combined with image views using the same component
     ///mapping, sampled image operations that use opaque black or custom border
     ///colors will return the correct border color values.
-    border_color_swizzle_from_image: Bool32,
+    pub border_color_swizzle_from_image: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceBorderColorSwizzleFeaturesEXT<'lt> {
     fn default() -> Self {

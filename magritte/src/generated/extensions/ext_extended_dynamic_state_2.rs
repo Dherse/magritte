@@ -112,30 +112,31 @@ pub const EXT_EXTENDED_DYNAMIC_STATE_2_EXTENSION_NAME: &'static CStr = crate::cs
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceExtendedDynamicState2FeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceExtendedDynamicState2FeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`extended_dynamic_state_2`] indicates
     ///that the implementation supports the following dynamic states:
     /// - `VK_DYNAMIC_STATE_DEPTH_BIAS_ENABLE`
     /// - `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE`
     /// - `VK_DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE`
-    extended_dynamic_state_2: Bool32,
+    pub extended_dynamic_state_2: Bool32,
     ///[`extended_dynamic_state_2_logic_op`] indicates that the implementation
     ///supports the following dynamic state:
     /// - `VK_DYNAMIC_STATE_LOGIC_OP_EXT`
-    extended_dynamic_state_2_logic_op: Bool32,
+    pub extended_dynamic_state_2_logic_op: Bool32,
     ///[`extended_dynamic_state_2_patch_control_points`] indicates that the
     ///implementation supports the following dynamic state:
     /// - `VK_DYNAMIC_STATE_PATCH_CONTROL_POINTS_EXT`
-    extended_dynamic_state_2_patch_control_points: Bool32,
+    pub extended_dynamic_state_2_patch_control_points: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'lt> {
     fn default() -> Self {

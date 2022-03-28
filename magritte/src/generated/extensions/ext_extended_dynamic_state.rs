@@ -131,16 +131,17 @@ pub const EXT_EXTENDED_DYNAMIC_STATE_EXTENSION_NAME: &'static CStr = crate::cstr
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceExtendedDynamicStateFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceExtendedDynamicStateFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`extended_dynamic_state`] indicates
     ///that the implementation supports the following dynamic states:
     /// - `VK_DYNAMIC_STATE_CULL_MODE`
@@ -155,7 +156,7 @@ pub struct PhysicalDeviceExtendedDynamicStateFeaturesEXT<'lt> {
     /// - `VK_DYNAMIC_STATE_DEPTH_BOUNDS_TEST_ENABLE`
     /// - `VK_DYNAMIC_STATE_STENCIL_TEST_ENABLE`
     /// - `VK_DYNAMIC_STATE_STENCIL_OP`
-    extended_dynamic_state: Bool32,
+    pub extended_dynamic_state: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceExtendedDynamicStateFeaturesEXT<'lt> {
     fn default() -> Self {

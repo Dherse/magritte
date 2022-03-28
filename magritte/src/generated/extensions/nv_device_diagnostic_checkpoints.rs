@@ -94,19 +94,20 @@ pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkQueueFamilyCheckpointPropertiesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct QueueFamilyCheckpointPropertiesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`checkpoint_execution_stage_mask`] is a mask indicating which pipeline
     ///stages the implementation can execute checkpoint markers in.
-    checkpoint_execution_stage_mask: PipelineStageFlags,
+    pub checkpoint_execution_stage_mask: PipelineStageFlags,
 }
 impl<'lt> Default for QueueFamilyCheckpointPropertiesNV<'lt> {
     fn default() -> Self {
@@ -213,22 +214,23 @@ impl<'lt> QueueFamilyCheckpointPropertiesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCheckpointDataNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CheckpointDataNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`stage`] is a [`PipelineStageFlagBits`] value specifying which
     ///pipeline stage the checkpoint marker data refers to.
-    stage: PipelineStageFlagBits,
+    pub stage: PipelineStageFlagBits,
     ///[`checkpoint_marker`] contains the value of the last checkpoint marker
     ///executed in the stage that [`stage`] refers to.
-    checkpoint_marker: *mut c_void,
+    pub checkpoint_marker: *mut c_void,
 }
 impl<'lt> Default for CheckpointDataNV<'lt> {
     fn default() -> Self {

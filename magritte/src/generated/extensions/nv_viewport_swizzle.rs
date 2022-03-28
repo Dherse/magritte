@@ -240,6 +240,7 @@ pub const NV_VIEWPORT_SWIZZLE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_N
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkViewportCoordinateSwizzleNV")]
+#[doc(alias = "VkViewportCoordinateSwizzleNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -358,6 +359,7 @@ impl std::fmt::Debug for PipelineViewportSwizzleStateCreateFlagsNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkViewportSwizzleNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -365,16 +367,16 @@ impl std::fmt::Debug for PipelineViewportSwizzleStateCreateFlagsNV {
 pub struct ViewportSwizzleNV {
     ///[`x`] is a [`ViewportCoordinateSwizzleNV`] value specifying the
     ///swizzle operation to apply to the x component of the primitive
-    x: ViewportCoordinateSwizzleNV,
+    pub x: ViewportCoordinateSwizzleNV,
     ///[`y`] is a [`ViewportCoordinateSwizzleNV`] value specifying the
     ///swizzle operation to apply to the y component of the primitive
-    y: ViewportCoordinateSwizzleNV,
+    pub y: ViewportCoordinateSwizzleNV,
     ///[`z`] is a [`ViewportCoordinateSwizzleNV`] value specifying the
     ///swizzle operation to apply to the z component of the primitive
-    z: ViewportCoordinateSwizzleNV,
+    pub z: ViewportCoordinateSwizzleNV,
     ///[`w`] is a [`ViewportCoordinateSwizzleNV`] value specifying the
     ///swizzle operation to apply to the w component of the primitive
-    w: ViewportCoordinateSwizzleNV,
+    pub w: ViewportCoordinateSwizzleNV,
 }
 impl Default for ViewportSwizzleNV {
     fn default() -> Self {
@@ -487,24 +489,25 @@ impl ViewportSwizzleNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineViewportSwizzleStateCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineViewportSwizzleStateCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: PipelineViewportSwizzleStateCreateFlagsNV,
+    pub flags: PipelineViewportSwizzleStateCreateFlagsNV,
     ///[`viewport_count`] is the number of viewport swizzles used by the
     ///pipeline.
-    viewport_count: u32,
+    pub viewport_count: u32,
     ///[`viewport_swizzles`] is a pointer to an array of
     ///[`ViewportSwizzleNV`] structures, defining the viewport swizzles.
-    viewport_swizzles: *const ViewportSwizzleNV,
+    pub viewport_swizzles: *const ViewportSwizzleNV,
 }
 impl<'lt> Default for PipelineViewportSwizzleStateCreateInfoNV<'lt> {
     fn default() -> Self {

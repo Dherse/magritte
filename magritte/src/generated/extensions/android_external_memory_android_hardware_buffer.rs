@@ -248,18 +248,19 @@ pub type AHardwareBuffer = c_void;
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImportAndroidHardwareBufferInfoANDROID")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImportAndroidHardwareBufferInfoANDROID<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`buffer`] is the Android hardware buffer to import.
-    buffer: *mut AHardwareBuffer,
+    pub buffer: *mut AHardwareBuffer,
 }
 impl<'lt> Default for ImportAndroidHardwareBufferInfoANDROID<'lt> {
     fn default() -> Self {
@@ -380,19 +381,20 @@ impl<'lt> ImportAndroidHardwareBufferInfoANDROID<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAndroidHardwareBufferUsageANDROID")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AndroidHardwareBufferUsageANDROID<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`android_hardware_buffer_usage`] returns the Android hardware buffer
     ///usage flags.
-    android_hardware_buffer_usage: u64,
+    pub android_hardware_buffer_usage: u64,
 }
 impl<'lt> Default for AndroidHardwareBufferUsageANDROID<'lt> {
     fn default() -> Self {
@@ -500,22 +502,23 @@ impl<'lt> AndroidHardwareBufferUsageANDROID<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAndroidHardwareBufferPropertiesANDROID")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AndroidHardwareBufferPropertiesANDROID<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`allocation_size`] is the size of the external memory
-    allocation_size: DeviceSize,
+    pub allocation_size: DeviceSize,
     ///[`memory_type_bits`] is a bitmask containing one bit set for every
     ///memory type which the specified Android hardware buffer  **can**  be imported
     ///as.
-    memory_type_bits: u32,
+    pub memory_type_bits: u32,
 }
 impl<'lt> Default for AndroidHardwareBufferPropertiesANDROID<'lt> {
     fn default() -> Self {
@@ -638,19 +641,20 @@ impl<'lt> AndroidHardwareBufferPropertiesANDROID<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryGetAndroidHardwareBufferInfoANDROID")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`memory`] is the memory object from which the Android hardware buffer
     ///will be exported.
-    memory: DeviceMemory,
+    pub memory: DeviceMemory,
 }
 impl<'lt> Default for MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
     fn default() -> Self {
@@ -815,42 +819,43 @@ impl<'lt> MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAndroidHardwareBufferFormatPropertiesANDROID")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`format`] is the Vulkan format corresponding to the Android hardware
     ///buffer’s format, or `VK_FORMAT_UNDEFINED` if there is not an
     ///equivalent Vulkan format.
-    format: Format,
+    pub format: Format,
     ///[`external_format`] is an implementation-defined external format
     ///identifier for use with [`ExternalFormatANDROID`].
     ///It  **must**  not be zero.
-    external_format: u64,
+    pub external_format: u64,
     ///[`format_features`] describes the capabilities of this external format
     ///when used with an image bound to memory imported from `buffer`.
-    format_features: FormatFeatureFlags,
+    pub format_features: FormatFeatureFlags,
     ///[`sampler_ycbcr_conversion_components`] is the component swizzle that
     /// **should**  be used in [`SamplerYcbcrConversionCreateInfo`].
-    sampler_ycbcr_conversion_components: ComponentMapping,
+    pub sampler_ycbcr_conversion_components: ComponentMapping,
     ///[`suggested_ycbcr_model`] is a suggested color model to use in the
     ///[`SamplerYcbcrConversionCreateInfo`].
-    suggested_ycbcr_model: SamplerYcbcrModelConversion,
+    pub suggested_ycbcr_model: SamplerYcbcrModelConversion,
     ///[`suggested_ycbcr_range`] is a suggested numerical value range to use in
     ///[`SamplerYcbcrConversionCreateInfo`].
-    suggested_ycbcr_range: SamplerYcbcrRange,
+    pub suggested_ycbcr_range: SamplerYcbcrRange,
     ///[`suggested_x_chroma_offset`] is a suggested X chroma offset to use in
     ///[`SamplerYcbcrConversionCreateInfo`].
-    suggested_x_chroma_offset: ChromaLocation,
+    pub suggested_x_chroma_offset: ChromaLocation,
     ///[`suggested_y_chroma_offset`] is a suggested Y chroma offset to use in
     ///[`SamplerYcbcrConversionCreateInfo`].
-    suggested_y_chroma_offset: ChromaLocation,
+    pub suggested_y_chroma_offset: ChromaLocation,
 }
 impl<'lt> Default for AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
     fn default() -> Self {
@@ -1057,19 +1062,20 @@ impl<'lt> AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalFormatANDROID")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExternalFormatANDROID<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`external_format`] is an implementation-defined identifier for the
     ///external format
-    external_format: u64,
+    pub external_format: u64,
 }
 impl<'lt> Default for ExternalFormatANDROID<'lt> {
     fn default() -> Self {
@@ -1205,42 +1211,43 @@ impl<'lt> ExternalFormatANDROID<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAndroidHardwareBufferFormatProperties2ANDROID")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AndroidHardwareBufferFormatProperties2ANDROID<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`format`] is the Vulkan format corresponding to the Android hardware
     ///buffer’s format, or `VK_FORMAT_UNDEFINED` if there is not an
     ///equivalent Vulkan format.
-    format: Format,
+    pub format: Format,
     ///[`external_format`] is an implementation-defined external format
     ///identifier for use with [`ExternalFormatANDROID`].
     ///It  **must**  not be zero.
-    external_format: u64,
+    pub external_format: u64,
     ///[`format_features`] describes the capabilities of this external format
     ///when used with an image bound to memory imported from `buffer`.
-    format_features: FormatFeatureFlags2,
+    pub format_features: FormatFeatureFlags2,
     ///[`sampler_ycbcr_conversion_components`] is the component swizzle that
     /// **should**  be used in [`SamplerYcbcrConversionCreateInfo`].
-    sampler_ycbcr_conversion_components: ComponentMapping,
+    pub sampler_ycbcr_conversion_components: ComponentMapping,
     ///[`suggested_ycbcr_model`] is a suggested color model to use in the
     ///[`SamplerYcbcrConversionCreateInfo`].
-    suggested_ycbcr_model: SamplerYcbcrModelConversion,
+    pub suggested_ycbcr_model: SamplerYcbcrModelConversion,
     ///[`suggested_ycbcr_range`] is a suggested numerical value range to use in
     ///[`SamplerYcbcrConversionCreateInfo`].
-    suggested_ycbcr_range: SamplerYcbcrRange,
+    pub suggested_ycbcr_range: SamplerYcbcrRange,
     ///[`suggested_x_chroma_offset`] is a suggested X chroma offset to use in
     ///[`SamplerYcbcrConversionCreateInfo`].
-    suggested_x_chroma_offset: ChromaLocation,
+    pub suggested_x_chroma_offset: ChromaLocation,
     ///[`suggested_y_chroma_offset`] is a suggested Y chroma offset to use in
     ///[`SamplerYcbcrConversionCreateInfo`].
-    suggested_y_chroma_offset: ChromaLocation,
+    pub suggested_y_chroma_offset: ChromaLocation,
 }
 impl<'lt> Default for AndroidHardwareBufferFormatProperties2ANDROID<'lt> {
     fn default() -> Self {

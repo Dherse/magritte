@@ -100,23 +100,24 @@ pub const EXT_SHADER_IMAGE_ATOMIC_INT64_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_image_int_64_atomics`]
     ///indicates whether shaders  **can**  support 64-bit unsigned and signed
     ///integer atomic operations on images.
-    shader_image_int_64_atomics: Bool32,
+    pub shader_image_int_64_atomics: Bool32,
     ///[`sparse_image_int_64_atomics`]
     ///indicates whether 64-bit integer atomics  **can**  be used on sparse images.
-    sparse_image_int_64_atomics: Bool32,
+    pub sparse_image_int_64_atomics: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'lt> {
     fn default() -> Self {

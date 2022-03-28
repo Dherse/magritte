@@ -100,30 +100,31 @@ pub const EXT_PHYSICAL_DEVICE_DRM_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceDrmPropertiesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDrmPropertiesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`has_primary`] is a boolean indicating whether the physical device has
     ///a DRM primary node.
-    has_primary: Bool32,
+    pub has_primary: Bool32,
     ///[`has_render`] is a boolean indicating whether the physical device has
     ///a DRM render node.
-    has_render: Bool32,
+    pub has_render: Bool32,
     ///[`primary_major`] is the DRM primary node major number, if any.
-    primary_major: i64,
+    pub primary_major: i64,
     ///[`primary_minor`] is the DRM primary node minor number, if any.
-    primary_minor: i64,
+    pub primary_minor: i64,
     ///[`render_major`] is the DRM render node major number, if any.
-    render_major: i64,
+    pub render_major: i64,
     ///[`render_minor`] is the DRM render node minor number, if any.
-    render_minor: i64,
+    pub render_minor: i64,
 }
 impl<'lt> Default for PhysicalDeviceDrmPropertiesEXT<'lt> {
     fn default() -> Self {

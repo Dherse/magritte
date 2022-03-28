@@ -141,16 +141,17 @@ pub const NV_INHERITED_VIEWPORT_SCISSOR_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceInheritedViewportScissorFeaturesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`inherited_viewport_scissor_2_d`] indicates whether secondary command
     ///buffers can inherit most of the dynamic state affected by
     ///`VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT`,
@@ -158,7 +159,7 @@ pub struct PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
     ///`VK_DYNAMIC_STATE_DISCARD_RECTANGLE_EXT`,
     ///`VK_DYNAMIC_STATE_VIEWPORT` or `VK_DYNAMIC_STATE_SCISSOR`,
     ///from a primary command buffer.
-    inherited_viewport_scissor_2_d: Bool32,
+    pub inherited_viewport_scissor_2_d: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
     fn default() -> Self {
@@ -342,27 +343,28 @@ impl<'lt> PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCommandBufferInheritanceViewportScissorInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CommandBufferInheritanceViewportScissorInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`viewport_scissor_2_d`] specifies whether the listed dynamic state is
     ///inherited.
-    viewport_scissor_2_d: Bool32,
+    pub viewport_scissor_2_d: Bool32,
     ///[`viewport_depth_count`] specifies the maximum number of viewports to
     ///inherit.
     ///When [`viewport_scissor_2_d`] is [`FALSE`], the behavior is as if
     ///this value is zero.
-    viewport_depth_count: u32,
+    pub viewport_depth_count: u32,
     ///[`viewport_depths`] is a pointer to a [`Viewport`] structure
     ///specifying the expected depth range for each inherited viewport.
-    viewport_depths: *const Viewport,
+    pub viewport_depths: *const Viewport,
 }
 impl<'lt> Default for CommandBufferInheritanceViewportScissorInfoNV<'lt> {
     fn default() -> Self {

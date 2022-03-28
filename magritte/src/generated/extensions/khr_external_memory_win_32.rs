@@ -159,24 +159,25 @@ pub const KHR_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImportMemoryWin32HandleInfoKHR")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImportMemoryWin32HandleInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value
     ///specifying the type of [`handle`] or [`name`].
-    handle_type: ExternalMemoryHandleTypeFlagBits,
+    pub handle_type: ExternalMemoryHandleTypeFlagBits,
     ///[`handle`] is `NULL` or the external handle to import.
-    handle: HANDLE,
+    pub handle: HANDLE,
     ///[`name`] is `NULL` or a null-terminated UTF-16 string naming the
     ///payload to import.
-    name: LPCWSTR,
+    pub name: LPCWSTR,
 }
 impl<'lt> Default for ImportMemoryWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
@@ -344,24 +345,25 @@ impl<'lt> ImportMemoryWin32HandleInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExportMemoryWin32HandleInfoKHR")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExportMemoryWin32HandleInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`attributes`] is a pointer to a Windows [`SECURITY_ATTRIBUTES`]
     ///structure specifying security attributes of the handle.
-    attributes: *const SECURITY_ATTRIBUTES,
+    pub attributes: *const SECURITY_ATTRIBUTES,
     ///[`dw_access`] is a [`DWORD`] specifying access rights of the handle.
-    dw_access: DWORD,
+    pub dw_access: DWORD,
     ///[`name`] is a null-terminated UTF-16 string to associate with the
     ///payload referenced by NT handles exported from the created memory.
-    name: LPCWSTR,
+    pub name: LPCWSTR,
 }
 impl<'lt> Default for ExportMemoryWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
@@ -499,19 +501,20 @@ impl<'lt> ExportMemoryWin32HandleInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryWin32HandlePropertiesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryWin32HandlePropertiesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`memory_type_bits`] is a bitmask containing one bit set for every
     ///memory type which the specified windows handle  **can**  be imported as.
-    memory_type_bits: u32,
+    pub memory_type_bits: u32,
 }
 impl<'lt> Default for MemoryWin32HandlePropertiesKHR<'lt> {
     fn default() -> Self {
@@ -628,22 +631,23 @@ impl<'lt> MemoryWin32HandlePropertiesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryGetWin32HandleInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryGetWin32HandleInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`memory`] is the memory object from which the handle will be
     ///exported.
-    memory: DeviceMemory,
+    pub memory: DeviceMemory,
     ///[`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value
     ///specifying the type of handle requested.
-    handle_type: ExternalMemoryHandleTypeFlagBits,
+    pub handle_type: ExternalMemoryHandleTypeFlagBits,
 }
 impl<'lt> Default for MemoryGetWin32HandleInfoKHR<'lt> {
     fn default() -> Self {

@@ -374,6 +374,7 @@ impl VideoEncodeRateControlModeFlagBitsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoEncodeFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -650,6 +651,7 @@ impl std::fmt::Debug for VideoEncodeFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoEncodeCapabilityFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -936,6 +938,7 @@ impl std::fmt::Debug for VideoEncodeCapabilityFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoEncodeRateControlFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1223,6 +1226,7 @@ impl std::fmt::Debug for VideoEncodeRateControlFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoEncodeRateControlModeFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1615,44 +1619,45 @@ impl std::fmt::Debug for VideoEncodeRateControlModeFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoEncodeInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is a pointer to a structure extending this structure.
     ///A codec-specific extension structure  **must**  be chained to specify what
     ///bitstream unit to generate with this encode operation.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`VideoEncodeFlagBitsKHR`] specifying
     ///encode flags, and is reserved for future versions of this specification.
-    flags: VideoEncodeFlagsKHR,
+    pub flags: VideoEncodeFlagsKHR,
     ///[`quality_level`] is the coding quality level of the encoding.
     ///It is defined by the codec-specific extensions.
-    quality_level: u32,
+    pub quality_level: u32,
     ///[`coded_extent`] is the coded size of the encode operations.
-    coded_extent: Extent2D,
+    pub coded_extent: Extent2D,
     ///[`dst_bitstream_buffer`] is the buffer where the encoded bitstream
     ///output will be produced.
-    dst_bitstream_buffer: Buffer,
+    pub dst_bitstream_buffer: Buffer,
     ///[`dst_bitstream_buffer_offset`] is the offset in the
     ///[`dst_bitstream_buffer`] where the encoded bitstream output will start.
     ///[`dst_bitstream_buffer_offset`]’s value  **must**  be aligned to
     ///[`VideoCapabilitiesKHR`]::`minBitstreamBufferOffsetAlignment`,
     ///as reported by the implementation.
-    dst_bitstream_buffer_offset: DeviceSize,
+    pub dst_bitstream_buffer_offset: DeviceSize,
     ///[`dst_bitstream_buffer_max_range`] is the maximum size of the
     ///[`dst_bitstream_buffer`] that can be used while the encoded bitstream
     ///output is produced.
     ///[`dst_bitstream_buffer_max_range`]’s value  **must**  be aligned to
     ///[`VideoCapabilitiesKHR`]::`minBitstreamBufferSizeAlignment`, as
     ///reported by the implementation.
-    dst_bitstream_buffer_max_range: DeviceSize,
+    pub dst_bitstream_buffer_max_range: DeviceSize,
     ///[`src_picture_resource`] is the Picture Resource of the
     ///[Input Picture](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#input-encode-picture) to be encoded by the operation.
-    src_picture_resource: VideoPictureResourceKHR<'lt>,
+    pub src_picture_resource: VideoPictureResourceKHR<'lt>,
     ///[`setup_reference_slot`] is a pointer to a
     ///[`VideoReferenceSlotKHR`] structure used for generating a
     ///reconstructed reference slot and Picture Resource.
@@ -1662,10 +1667,10 @@ pub struct VideoEncodeInfoKHR<'lt> {
     ///[`VideoBeginCodingInfoKHR`] via the [`reference_slots`] within the
     ///[`CmdBeginVideoCodingKHR`] command that established the Vulkan Video
     ///Encode Context for this command.
-    setup_reference_slot: *const VideoReferenceSlotKHR<'lt>,
+    pub setup_reference_slot: *const VideoReferenceSlotKHR<'lt>,
     ///[`reference_slot_count`] is the number of Reconstructed Reference
     ///Pictures that will be used when this encoding operation is executing.
-    reference_slot_count: u32,
+    pub reference_slot_count: u32,
     ///[`reference_slots`] is `NULL` or a pointer to an array of
     ///[`VideoReferenceSlotKHR`] structures that will be used when this
     ///encoding operation is executing.
@@ -1673,7 +1678,7 @@ pub struct VideoEncodeInfoKHR<'lt> {
     ///in [`VideoBeginCodingInfoKHR`] via the [`reference_slots`] within
     ///the [`CmdBeginVideoCodingKHR`] command that established the Vulkan
     ///Video Encode Context for this command.
-    reference_slots: *const VideoReferenceSlotKHR<'lt>,
+    pub reference_slots: *const VideoReferenceSlotKHR<'lt>,
     ///[`preceding_externally_encoded_bytes`] is the number of bytes externally
     ///encoded for insertion in the active video encode session overall
     ///bitstream prior to the bitstream that will be generated by the
@@ -1686,7 +1691,7 @@ pub struct VideoEncodeInfoKHR<'lt> {
     ///budget consumed by these externally encoded bytes.
     ///See [`VideoEncodeRateControlInfoKHR`] for additional information
     ///about encode rate control.
-    preceding_externally_encoded_bytes: u32,
+    pub preceding_externally_encoded_bytes: u32,
 }
 impl<'lt> Default for VideoEncodeInfoKHR<'lt> {
     fn default() -> Self {
@@ -1999,29 +2004,30 @@ impl<'lt> VideoEncodeInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoEncodeRateControlInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeRateControlInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`VideoEncodeRateControlFlagBitsKHR`]
     ///specifying encode rate control flags.
-    flags: VideoEncodeRateControlFlagsKHR,
+    pub flags: VideoEncodeRateControlFlagsKHR,
     ///[`rate_control_mode`] is a [`VideoEncodeRateControlModeFlagBitsKHR`]
     ///value specifying the encode stream rate control mode.
-    rate_control_mode: VideoEncodeRateControlModeFlagBitsKHR,
+    pub rate_control_mode: VideoEncodeRateControlModeFlagBitsKHR,
     ///[`layer_count`] specifies the number of rate control layers in the
     ///video encode stream.
-    layer_count: u8,
+    pub layer_count: u8,
     ///[`layer_configs`] is a pointer to an array of
     ///[`VideoEncodeRateControlLayerInfoKHR`] structures specifying the
     ///rate control configurations of [`layer_count`] rate control layers.
-    layer_configs: *const VideoEncodeRateControlLayerInfoKHR<'lt>,
+    pub layer_configs: *const VideoEncodeRateControlLayerInfoKHR<'lt>,
 }
 impl<'lt> Default for VideoEncodeRateControlInfoKHR<'lt> {
     fn default() -> Self {
@@ -2230,43 +2236,44 @@ impl<'lt> VideoEncodeRateControlInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoEncodeRateControlLayerInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeRateControlLayerInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is a pointer to a structure extending this structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`average_bitrate`] is the average bitrate in bits/second.
     ///Valid when rate control mode is not
     ///`VK_VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_BIT_KHR`.
-    average_bitrate: u32,
+    pub average_bitrate: u32,
     ///[`max_bitrate`] is the peak bitrate in bits/second.
     ///Valid when rate control mode is
     ///`VK_VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_BIT_KHR`.
-    max_bitrate: u32,
+    pub max_bitrate: u32,
     ///[`frame_rate_numerator`] is the numerator of the frame rate.
     ///Valid when rate control mode is not
     ///`VK_VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_BIT_KHR`.
-    frame_rate_numerator: u32,
+    pub frame_rate_numerator: u32,
     ///[`frame_rate_denominator`] is the denominator of the frame rate.
     ///Valid when rate control mode is not
     ///`VK_VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_BIT_KHR`.
-    frame_rate_denominator: u32,
+    pub frame_rate_denominator: u32,
     ///[`virtual_buffer_size_in_ms`] is the leaky bucket model virtual buffer
     ///size in milliseconds, with respect to peak bitrate.
     ///Valid when rate control mode is not
     ///`VK_VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_BIT_KHR`.
     ///For example, virtual buffer size is ([`virtual_buffer_size_in_ms`] *
     ///[`max_bitrate`] / 1000).
-    virtual_buffer_size_in_ms: u32,
+    pub virtual_buffer_size_in_ms: u32,
     ///[`initial_virtual_buffer_size_in_ms`] is the initial occupancy in
     ///milliseconds of the virtual buffer in the leaky bucket model.
     ///Valid when the rate control mode is not
     ///`VK_VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_BIT_KHR`.
-    initial_virtual_buffer_size_in_ms: u32,
+    pub initial_virtual_buffer_size_in_ms: u32,
 }
 impl<'lt> Default for VideoEncodeRateControlLayerInfoKHR<'lt> {
     fn default() -> Self {
@@ -2486,37 +2493,38 @@ impl<'lt> VideoEncodeRateControlLayerInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoEncodeCapabilitiesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEncodeCapabilitiesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`VideoEncodeCapabilityFlagBitsKHR`]
     ///describing supported encoding features.
-    flags: VideoEncodeCapabilityFlagsKHR,
+    pub flags: VideoEncodeCapabilityFlagsKHR,
     ///[`rate_control_modes`] is a bitmask of
     ///[`VideoEncodeRateControlModeFlagBitsKHR`] describing supported rate
     ///control modes.
     ///All implementations  **must**  support
     ///`VK_VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_BIT_KHR`.
-    rate_control_modes: VideoEncodeRateControlModeFlagsKHR,
+    pub rate_control_modes: VideoEncodeRateControlModeFlagsKHR,
     ///[`rate_control_layer_count`] reports the maximum number of rate control
     ///layers supported.
     ///Implementations  **must**  report at least 1.
-    rate_control_layer_count: u8,
+    pub rate_control_layer_count: u8,
     ///[`quality_level_count`] is the number of discrete quality levels
     ///supported.
     ///Implementations  **must**  report at least 1.
-    quality_level_count: u8,
+    pub quality_level_count: u8,
     ///[`input_image_data_fill_alignment`] reports alignment of data that should
     ///be filled in the input image horizontally and vertically in pixels
     ///before encode operations are performed on the input image.
-    input_image_data_fill_alignment: Extent2D,
+    pub input_image_data_fill_alignment: Extent2D,
 }
 impl<'lt> Default for VideoEncodeCapabilitiesKHR<'lt> {
     fn default() -> Self {

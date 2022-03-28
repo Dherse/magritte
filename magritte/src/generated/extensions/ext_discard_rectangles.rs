@@ -100,6 +100,7 @@ pub const EXT_DISCARD_RECTANGLES_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDiscardRectangleModeEXT")]
+#[doc(alias = "VkDiscardRectangleModeEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -205,19 +206,20 @@ impl std::fmt::Debug for PipelineDiscardRectangleStateCreateFlagsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceDiscardRectanglePropertiesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDiscardRectanglePropertiesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`max_discard_rectangles`] is the
     ///maximum number of active discard rectangles that  **can**  be specified.
-    max_discard_rectangles: u32,
+    pub max_discard_rectangles: u32,
 }
 impl<'lt> Default for PhysicalDeviceDiscardRectanglePropertiesEXT<'lt> {
     fn default() -> Self {
@@ -339,27 +341,28 @@ impl<'lt> PhysicalDeviceDiscardRectanglePropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineDiscardRectangleStateCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineDiscardRectangleStateCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: PipelineDiscardRectangleStateCreateFlagsEXT,
+    pub flags: PipelineDiscardRectangleStateCreateFlagsEXT,
     ///[`discard_rectangle_mode`] is a [`DiscardRectangleModeEXT`] value
     ///determining whether the discard rectangle test is inclusive or
     ///exclusive.
-    discard_rectangle_mode: DiscardRectangleModeEXT,
+    pub discard_rectangle_mode: DiscardRectangleModeEXT,
     ///[`discard_rectangle_count`] is the number of discard rectangles to use.
-    discard_rectangle_count: u32,
+    pub discard_rectangle_count: u32,
     ///[`discard_rectangles`] is a pointer to an array of [`Rect2D`]
     ///structures defining discard rectangles.
-    discard_rectangles: *const Rect2D,
+    pub discard_rectangles: *const Rect2D,
 }
 impl<'lt> Default for PipelineDiscardRectangleStateCreateInfoEXT<'lt> {
     fn default() -> Self {

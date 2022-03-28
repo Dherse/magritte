@@ -121,20 +121,21 @@ pub const AMD_SHADER_CORE_PROPERTIES_EXTENSION_NAME: &'static CStr = crate::cstr
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceShaderCorePropertiesAMD")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderCorePropertiesAMD<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_engine_count`] is an unsigned
     ///integer value indicating the number of shader engines found inside the
     ///shader core of the physical device.
-    shader_engine_count: u32,
+    pub shader_engine_count: u32,
     ///[`shader_arrays_per_engine_count`]
     ///is an unsigned integer value indicating the number of shader arrays
     ///inside a shader engine.
@@ -143,55 +144,55 @@ pub struct PhysicalDeviceShaderCorePropertiesAMD<'lt> {
     ///Shader arrays within a shader engine share shader processor input (wave
     ///launcher) and shader export (export buffer) units.
     ///Currently, a shader engine can have one or two shader arrays.
-    shader_arrays_per_engine_count: u32,
+    pub shader_arrays_per_engine_count: u32,
     ///[`compute_units_per_shader_array`]
     ///is an unsigned integer value indicating the physical number of compute
     ///units within a shader array.
     ///The active number of compute units in a shader array  **may**  be lower.
     ///A compute unit houses a set of SIMDs along with a sequencer module and a
     ///local data store.
-    compute_units_per_shader_array: u32,
+    pub compute_units_per_shader_array: u32,
     ///[`simd_per_compute_unit`] is an unsigned
     ///integer value indicating the number of SIMDs inside a compute unit.
     ///Each SIMD processes a single instruction at a time.
-    simd_per_compute_unit: u32,
+    pub simd_per_compute_unit: u32,
     ///No documentation found
-    wavefronts_per_simd: u32,
+    pub wavefronts_per_simd: u32,
     ///[`wavefront_size`] is an unsigned integer
     ///value indicating the maximum size of a subgroup.
-    wavefront_size: u32,
+    pub wavefront_size: u32,
     ///[`sgprs_per_simd`] is an unsigned integer value
     ///indicating the number of physical Scalar General Purpose Registers
     ///(SGPRs) per SIMD.
-    sgprs_per_simd: u32,
+    pub sgprs_per_simd: u32,
     ///[`min_sgpr_allocation`] is an unsigned
     ///integer value indicating the minimum number of SGPRs allocated for a
     ///wave.
-    min_sgpr_allocation: u32,
+    pub min_sgpr_allocation: u32,
     ///[`max_sgpr_allocation`] is an unsigned
     ///integer value indicating the maximum number of SGPRs allocated for a
     ///wave.
-    max_sgpr_allocation: u32,
+    pub max_sgpr_allocation: u32,
     ///[`sgpr_allocation_granularity`] is
     ///an unsigned integer value indicating the granularity of SGPR allocation
     ///for a wave.
-    sgpr_allocation_granularity: u32,
+    pub sgpr_allocation_granularity: u32,
     ///[`vgprs_per_simd`] is an unsigned integer value
     ///indicating the number of physical Vector General Purpose Registers
     ///(VGPRs) per SIMD.
-    vgprs_per_simd: u32,
+    pub vgprs_per_simd: u32,
     ///[`min_vgpr_allocation`] is an unsigned
     ///integer value indicating the minimum number of VGPRs allocated for a
     ///wave.
-    min_vgpr_allocation: u32,
+    pub min_vgpr_allocation: u32,
     ///[`max_vgpr_allocation`] is an unsigned
     ///integer value indicating the maximum number of VGPRs allocated for a
     ///wave.
-    max_vgpr_allocation: u32,
+    pub max_vgpr_allocation: u32,
     ///[`vgpr_allocation_granularity`] is
     ///an unsigned integer value indicating the granularity of VGPR allocation
     ///for a wave.
-    vgpr_allocation_granularity: u32,
+    pub vgpr_allocation_granularity: u32,
 }
 impl<'lt> Default for PhysicalDeviceShaderCorePropertiesAMD<'lt> {
     fn default() -> Self {

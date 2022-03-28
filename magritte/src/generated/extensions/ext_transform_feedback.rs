@@ -202,23 +202,24 @@ impl std::fmt::Debug for PipelineRasterizationStateStreamCreateFlagsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceTransformFeedbackFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`transform_feedback`] indicates whether
     ///the implementation supports transform feedback and shader modules  **can**
     ///declare the `TransformFeedback` capability.
-    transform_feedback: Bool32,
+    pub transform_feedback: Bool32,
     ///[`geometry_streams`] indicates whether the
     ///implementation supports the `GeometryStreams` SPIR-V capability.
-    geometry_streams: Bool32,
+    pub geometry_streams: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
     fn default() -> Self {
@@ -420,50 +421,51 @@ impl<'lt> PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceTransformFeedbackPropertiesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`max_transform_feedback_streams`]
     ///is the maximum number of vertex streams that can be output from geometry
     ///shaders declared with the `GeometryStreams` capability.
     ///If the implementation does not support
     ///[`PhysicalDeviceTransformFeedbackFeaturesEXT`]::`geometryStreams`
     ///then [`max_transform_feedback_streams`] **must**  be set to `1`.
-    max_transform_feedback_streams: u32,
+    pub max_transform_feedback_streams: u32,
     ///[`max_transform_feedback_buffers`]
     ///is the maximum number of transform feedback buffers that can be bound
     ///for capturing shader outputs from the last
     ///[pre-rasterization shader
     ///stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipeline-graphics-subsets-pre-rasterization).
-    max_transform_feedback_buffers: u32,
+    pub max_transform_feedback_buffers: u32,
     ///[`max_transform_feedback_buffer_size`] is the maximum size that can be
     ///specified when binding a buffer for transform feedback in
     ///[`CmdBindTransformFeedbackBuffersEXT`].
-    max_transform_feedback_buffer_size: DeviceSize,
+    pub max_transform_feedback_buffer_size: DeviceSize,
     ///[`max_transform_feedback_stream_data_size`] is the maximum amount of data
     ///in bytes for each vertex that captured to one or more transform feedback
     ///buffers associated with a specific vertex stream.
-    max_transform_feedback_stream_data_size: u32,
+    pub max_transform_feedback_stream_data_size: u32,
     ///[`max_transform_feedback_buffer_data_size`] is the maximum amount of data
     ///in bytes for each vertex that can be captured to a specific transform
     ///feedback buffer.
-    max_transform_feedback_buffer_data_size: u32,
+    pub max_transform_feedback_buffer_data_size: u32,
     ///[`max_transform_feedback_buffer_data_stride`] is the maximum stride between
     ///each capture of vertex data to the buffer.
-    max_transform_feedback_buffer_data_stride: u32,
+    pub max_transform_feedback_buffer_data_stride: u32,
     ///[`transform_feedback_queries`] is
     ///[`TRUE`] if the implementation supports the
     ///`VK_QUERY_TYPE_TRANSFORM_FEEDBACK_STREAM_EXT` query type.
     ///[`transform_feedback_queries`] is [`FALSE`] if queries of this type
     /// **cannot**  be created.
-    transform_feedback_queries: Bool32,
+    pub transform_feedback_queries: Bool32,
     ///[`transform_feedback_streams_lines_triangles`] is [`TRUE`] if the
     ///implementation supports the geometry shader `OpExecutionMode` of
     ///`OutputLineStrip` and `OutputTriangleStrip` in addition to
@@ -472,19 +474,19 @@ pub struct PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
     ///implementation only supports an `OpExecutionMode` of
     ///`OutputPoints` when more than one vertex stream is output from the
     ///geometry shader.
-    transform_feedback_streams_lines_triangles: Bool32,
+    pub transform_feedback_streams_lines_triangles: Bool32,
     ///[`transform_feedback_rasterization_stream_select`] is [`TRUE`] if the
     ///implementation supports the `GeometryStreams` SPIR-V capability and
     ///the application can use
     ///[`PipelineRasterizationStateStreamCreateInfoEXT`] to modify which
     ///vertex stream output is used for rasterization.
     ///Otherwise vertex stream `0` **must**  always be used for rasterization.
-    transform_feedback_rasterization_stream_select: Bool32,
+    pub transform_feedback_rasterization_stream_select: Bool32,
     ///[`transform_feedback_draw`] is
     ///[`TRUE`] if the implementation supports the
     ///[`CmdDrawIndirectByteCountEXT`] function otherwise the function
     /// **must**  not be called.
-    transform_feedback_draw: Bool32,
+    pub transform_feedback_draw: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
     fn default() -> Self {
@@ -820,21 +822,22 @@ impl<'lt> PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineRasterizationStateStreamCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineRasterizationStateStreamCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: PipelineRasterizationStateStreamCreateFlagsEXT,
+    pub flags: PipelineRasterizationStateStreamCreateFlagsEXT,
     ///[`rasterization_stream`] is the vertex stream selected for
     ///rasterization.
-    rasterization_stream: u32,
+    pub rasterization_stream: u32,
 }
 impl<'lt> Default for PipelineRasterizationStateStreamCreateInfoEXT<'lt> {
     fn default() -> Self {

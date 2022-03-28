@@ -137,6 +137,7 @@ pub const MAX_DEVICE_GROUP_SIZE: u32 = 32;
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorUpdateTemplateType")]
+#[doc(alias = "VkDescriptorUpdateTemplateType")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -217,6 +218,7 @@ impl DescriptorUpdateTemplateType {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPointClippingBehavior")]
+#[doc(alias = "VkPointClippingBehavior")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -291,6 +293,7 @@ impl PointClippingBehavior {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkTessellationDomainOrigin")]
 #[doc(alias = "VkTessellationDomainOrigin")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -399,6 +402,7 @@ impl TessellationDomainOrigin {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerYcbcrModelConversion")]
+#[doc(alias = "VkSamplerYcbcrModelConversion")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -497,6 +501,7 @@ impl SamplerYcbcrModelConversion {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerYcbcrRange")]
+#[doc(alias = "VkSamplerYcbcrRange")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -574,6 +579,7 @@ impl SamplerYcbcrRange {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkChromaLocation")]
 #[doc(alias = "VkChromaLocation")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2012,6 +2018,7 @@ impl MemoryAllocateFlagBits {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSubgroupFeatureFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2449,6 +2456,7 @@ impl std::fmt::Debug for DescriptorUpdateTemplateCreateFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPeerMemoryFeatureFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2773,6 +2781,7 @@ impl std::fmt::Debug for PeerMemoryFeatureFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryAllocateFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3208,6 +3217,7 @@ impl std::fmt::Debug for CommandPoolTrimFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalMemoryHandleTypeFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3739,6 +3749,7 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalMemoryFeatureFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -4113,6 +4124,7 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalSemaphoreHandleTypeFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -4530,6 +4542,7 @@ impl std::fmt::Debug for ExternalSemaphoreHandleTypeFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalSemaphoreFeatureFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -4826,6 +4839,7 @@ impl std::fmt::Debug for ExternalSemaphoreFeatureFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSemaphoreImportFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -5143,6 +5157,7 @@ impl std::fmt::Debug for SemaphoreImportFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalFenceHandleTypeFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -5521,6 +5536,7 @@ impl std::fmt::Debug for ExternalFenceHandleTypeFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalFenceFeatureFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -5815,6 +5831,7 @@ impl std::fmt::Debug for ExternalFenceFeatureFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFenceImportFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -6103,19 +6120,20 @@ impl std::fmt::Debug for FenceImportFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceFeatures2")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFeatures2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`features`] is a [`PhysicalDeviceFeatures`] structure describing
     ///the fine-grained features of the Vulkan 1.0 API.
-    features: PhysicalDeviceFeatures,
+    pub features: PhysicalDeviceFeatures,
 }
 impl<'lt> Default for PhysicalDeviceFeatures2<'lt> {
     fn default() -> Self {
@@ -6265,21 +6283,22 @@ impl<'lt> PhysicalDeviceFeatures2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceProperties2")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceProperties2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`properties`] is a [`PhysicalDeviceProperties`] structure
     ///describing properties of the physical device.
     ///This structure is written with the same values as if it were written by
     ///[`GetPhysicalDeviceProperties`].
-    properties: PhysicalDeviceProperties,
+    pub properties: PhysicalDeviceProperties,
 }
 impl<'lt> Default for PhysicalDeviceProperties2<'lt> {
     fn default() -> Self {
@@ -6391,19 +6410,20 @@ impl<'lt> PhysicalDeviceProperties2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFormatProperties2")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct FormatProperties2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`format_properties`] is a [`FormatProperties`] structure
     ///describing features supported by the requested format.
-    format_properties: FormatProperties,
+    pub format_properties: FormatProperties,
 }
 impl<'lt> Default for FormatProperties2<'lt> {
     fn default() -> Self {
@@ -6520,22 +6540,23 @@ impl<'lt> FormatProperties2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageFormatProperties2")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageFormatProperties2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     ///The [`p_next`] chain of [`ImageFormatProperties2`] is used to allow
     ///the specification of additional capabilities to be returned from
     ///[`GetPhysicalDeviceImageFormatProperties2`].
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`image_format_properties`] is a [`ImageFormatProperties`] structure
     ///in which capabilities are returned.
-    image_format_properties: ImageFormatProperties,
+    pub image_format_properties: ImageFormatProperties,
 }
 impl<'lt> Default for ImageFormatProperties2<'lt> {
     fn default() -> Self {
@@ -6681,36 +6702,37 @@ impl<'lt> ImageFormatProperties2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceImageFormatInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceImageFormatInfo2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     ///The [`p_next`] chain of [`PhysicalDeviceImageFormatInfo2`] is used
     ///to provide additional image parameters to
     ///[`GetPhysicalDeviceImageFormatProperties2`].
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`format`] is a [`Format`] value indicating the image format,
     ///corresponding to [`ImageCreateInfo`]::[`format`].
-    format: Format,
+    pub format: Format,
     ///[`type_`] is a [`ImageType`] value indicating the image type,
     ///corresponding to [`ImageCreateInfo`]::`imageType`.
-    type_: ImageType,
+    pub type_: ImageType,
     ///[`tiling`] is a [`ImageTiling`] value indicating the image tiling,
     ///corresponding to [`ImageCreateInfo`]::[`tiling`].
-    tiling: ImageTiling,
+    pub tiling: ImageTiling,
     ///[`usage`] is a bitmask of [`ImageUsageFlagBits`] indicating the
     ///intended usage of the image, corresponding to
     ///[`ImageCreateInfo`]::[`usage`].
-    usage: ImageUsageFlags,
+    pub usage: ImageUsageFlags,
     ///[`flags`] is a bitmask of [`ImageCreateFlagBits`] indicating
     ///additional parameters of the image, corresponding to
     ///[`ImageCreateInfo`]::[`flags`].
-    flags: ImageCreateFlags,
+    pub flags: ImageCreateFlags,
 }
 impl<'lt> Default for PhysicalDeviceImageFormatInfo2<'lt> {
     fn default() -> Self {
@@ -6870,20 +6892,21 @@ impl<'lt> PhysicalDeviceImageFormatInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkQueueFamilyProperties2")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct QueueFamilyProperties2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`queue_family_properties`] is a [`QueueFamilyProperties`] structure
     ///which is populated with the same values as in
     ///[`GetPhysicalDeviceQueueFamilyProperties`].
-    queue_family_properties: QueueFamilyProperties,
+    pub queue_family_properties: QueueFamilyProperties,
 }
 impl<'lt> Default for QueueFamilyProperties2<'lt> {
     fn default() -> Self {
@@ -6992,20 +7015,21 @@ impl<'lt> QueueFamilyProperties2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceMemoryProperties2")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMemoryProperties2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`memory_properties`] is a [`PhysicalDeviceMemoryProperties`]
     ///structure which is populated with the same values as in
     ///[`GetPhysicalDeviceMemoryProperties`].
-    memory_properties: PhysicalDeviceMemoryProperties,
+    pub memory_properties: PhysicalDeviceMemoryProperties,
 }
 impl<'lt> Default for PhysicalDeviceMemoryProperties2<'lt> {
     fn default() -> Self {
@@ -7112,20 +7136,21 @@ impl<'lt> PhysicalDeviceMemoryProperties2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSparseImageFormatProperties2")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SparseImageFormatProperties2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`properties`] is a [`SparseImageFormatProperties`] structure
     ///which is populated with the same values as in
     ///[`GetPhysicalDeviceSparseImageFormatProperties`].
-    properties: SparseImageFormatProperties,
+    pub properties: SparseImageFormatProperties,
 }
 impl<'lt> Default for SparseImageFormatProperties2<'lt> {
     fn default() -> Self {
@@ -7255,27 +7280,28 @@ impl<'lt> SparseImageFormatProperties2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceSparseImageFormatInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSparseImageFormatInfo2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`format`] is the image format.
-    format: Format,
+    pub format: Format,
     ///[`type_`] is the dimensionality of image.
-    type_: ImageType,
+    pub type_: ImageType,
     ///[`samples`] is a [`SampleCountFlagBits`] value specifying the
     ///number of samples per texel.
-    samples: SampleCountFlagBits,
+    pub samples: SampleCountFlagBits,
     ///[`usage`] is a bitmask describing the intended usage of the image.
-    usage: ImageUsageFlags,
+    pub usage: ImageUsageFlags,
     ///[`tiling`] is the tiling arrangement of the texel blocks in memory.
-    tiling: ImageTiling,
+    pub tiling: ImageTiling,
 }
 impl<'lt> Default for PhysicalDeviceSparseImageFormatInfo2<'lt> {
     fn default() -> Self {
@@ -7458,28 +7484,29 @@ impl<'lt> PhysicalDeviceSparseImageFormatInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceVariablePointersFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVariablePointersFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`variable_pointers_storage_buffer`] specifies whether the implementation
     ///supports the SPIR-V `VariablePointersStorageBuffer` capability.
     ///When this feature is not enabled, shader modules  **must**  not declare the
     ///`SPV_KHR_variable_pointers` extension or the
     ///`VariablePointersStorageBuffer` capability.
-    variable_pointers_storage_buffer: Bool32,
+    pub variable_pointers_storage_buffer: Bool32,
     ///[`variable_pointers`]
     ///specifies whether the implementation supports the SPIR-V
     ///`VariablePointers` capability.
     ///When this feature is not enabled, shader modules  **must**  not declare the
     ///`VariablePointers` capability.
-    variable_pointers: Bool32,
+    pub variable_pointers: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceVariablePointersFeatures<'lt> {
     fn default() -> Self {
@@ -7654,6 +7681,7 @@ impl<'lt> PhysicalDeviceVariablePointersFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalMemoryProperties")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -7662,16 +7690,16 @@ pub struct ExternalMemoryProperties {
     ///[`external_memory_features`] is a bitmask of
     ///[`ExternalMemoryFeatureFlagBits`] specifying the features of
     ///`handleType`.
-    external_memory_features: ExternalMemoryFeatureFlags,
+    pub external_memory_features: ExternalMemoryFeatureFlags,
     ///[`export_from_imported_handle_types`] is a bitmask of
     ///[`ExternalMemoryHandleTypeFlagBits`] specifying which types of
     ///imported handle `handleType` **can**  be exported from.
-    export_from_imported_handle_types: ExternalMemoryHandleTypeFlags,
+    pub export_from_imported_handle_types: ExternalMemoryHandleTypeFlags,
     ///[`compatible_handle_types`] is a bitmask of
     ///[`ExternalMemoryHandleTypeFlagBits`] specifying handle types which
     /// **can**  be specified at the same time as `handleType` when creating an
     ///image compatible with external memory.
-    compatible_handle_types: ExternalMemoryHandleTypeFlags,
+    pub compatible_handle_types: ExternalMemoryHandleTypeFlags,
 }
 impl Default for ExternalMemoryProperties {
     fn default() -> Self {
@@ -7777,20 +7805,21 @@ impl ExternalMemoryProperties {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceExternalImageFormatInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceExternalImageFormatInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value
     ///specifying the memory handle type that will be used with the memory
     ///associated with the image.
-    handle_type: ExternalMemoryHandleTypeFlagBits,
+    pub handle_type: ExternalMemoryHandleTypeFlagBits,
 }
 impl<'lt> Default for PhysicalDeviceExternalImageFormatInfo<'lt> {
     fn default() -> Self {
@@ -7888,20 +7917,21 @@ impl<'lt> PhysicalDeviceExternalImageFormatInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalImageFormatProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExternalImageFormatProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`external_memory_properties`] is a [`ExternalMemoryProperties`]
     ///structure specifying various capabilities of the external handle type
     ///when used with the specified image creation parameters.
-    external_memory_properties: ExternalMemoryProperties,
+    pub external_memory_properties: ExternalMemoryProperties,
 }
 impl<'lt> Default for ExternalImageFormatProperties<'lt> {
     fn default() -> Self {
@@ -8020,28 +8050,29 @@ impl<'lt> ExternalImageFormatProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceExternalBufferInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceExternalBufferInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`BufferCreateFlagBits`] describing
     ///additional parameters of the buffer, corresponding to
     ///[`BufferCreateInfo`]::[`flags`].
-    flags: BufferCreateFlags,
+    pub flags: BufferCreateFlags,
     ///[`usage`] is a bitmask of [`BufferUsageFlagBits`] describing the
     ///intended usage of the buffer, corresponding to
     ///[`BufferCreateInfo`]::[`usage`].
-    usage: BufferUsageFlags,
+    pub usage: BufferUsageFlags,
     ///[`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value
     ///specifying the memory handle type that will be used with the memory
     ///associated with the buffer.
-    handle_type: ExternalMemoryHandleTypeFlagBits,
+    pub handle_type: ExternalMemoryHandleTypeFlagBits,
 }
 impl<'lt> Default for PhysicalDeviceExternalBufferInfo<'lt> {
     fn default() -> Self {
@@ -8170,20 +8201,21 @@ impl<'lt> PhysicalDeviceExternalBufferInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalBufferProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExternalBufferProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`external_memory_properties`] is a [`ExternalMemoryProperties`]
     ///structure specifying various capabilities of the external handle type
     ///when used with the specified buffer creation parameters.
-    external_memory_properties: ExternalMemoryProperties,
+    pub external_memory_properties: ExternalMemoryProperties,
 }
 impl<'lt> Default for ExternalBufferProperties<'lt> {
     fn default() -> Self {
@@ -8330,26 +8362,27 @@ impl<'lt> ExternalBufferProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceIDProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceIdProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    device_uuid: [u8; UUID_SIZE],
+    pub device_uuid: [u8; UUID_SIZE],
     ///No documentation found
-    driver_uuid: [u8; UUID_SIZE],
+    pub driver_uuid: [u8; UUID_SIZE],
     ///No documentation found
-    device_luid: [u8; LUID_SIZE],
+    pub device_luid: [u8; LUID_SIZE],
     ///No documentation found
-    device_node_mask: u32,
+    pub device_node_mask: u32,
     ///No documentation found
-    device_luid_valid: Bool32,
+    pub device_luid_valid: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceIdProperties<'lt> {
     fn default() -> Self {
@@ -8537,20 +8570,21 @@ impl<'lt> PhysicalDeviceIdProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalMemoryImageCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExternalMemoryImageCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`handle_types`] is zero, or a bitmask of
     ///[`ExternalMemoryHandleTypeFlagBits`] specifying one or more external
     ///memory handle types.
-    handle_types: ExternalMemoryHandleTypeFlags,
+    pub handle_types: ExternalMemoryHandleTypeFlags,
 }
 impl<'lt> Default for ExternalMemoryImageCreateInfo<'lt> {
     fn default() -> Self {
@@ -8652,20 +8686,21 @@ impl<'lt> ExternalMemoryImageCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalMemoryBufferCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExternalMemoryBufferCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`handle_types`] is zero, or a bitmask of
     ///[`ExternalMemoryHandleTypeFlagBits`] specifying one or more external
     ///memory handle types.
-    handle_types: ExternalMemoryHandleTypeFlags,
+    pub handle_types: ExternalMemoryHandleTypeFlags,
 }
 impl<'lt> Default for ExternalMemoryBufferCreateInfo<'lt> {
     fn default() -> Self {
@@ -8773,22 +8808,23 @@ impl<'lt> ExternalMemoryBufferCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExportMemoryAllocateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExportMemoryAllocateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`handle_types`] is a bitmask of
     ///[`ExternalMemoryHandleTypeFlagBits`] specifying one or more memory
     ///handle types the application  **can**  export from the resulting allocation.
     ///The application  **can**  request multiple handle types for the same
     ///allocation.
-    handle_types: ExternalMemoryHandleTypeFlags,
+    pub handle_types: ExternalMemoryHandleTypeFlags,
 }
 impl<'lt> Default for ExportMemoryAllocateInfo<'lt> {
     fn default() -> Self {
@@ -8890,20 +8926,21 @@ impl<'lt> ExportMemoryAllocateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceExternalSemaphoreInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceExternalSemaphoreInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`handle_type`] is a [`ExternalSemaphoreHandleTypeFlagBits`] value
     ///specifying the external semaphore handle type for which capabilities
     ///will be returned.
-    handle_type: ExternalSemaphoreHandleTypeFlagBits,
+    pub handle_type: ExternalSemaphoreHandleTypeFlagBits,
 }
 impl<'lt> Default for PhysicalDeviceExternalSemaphoreInfo<'lt> {
     fn default() -> Self {
@@ -9014,29 +9051,30 @@ impl<'lt> PhysicalDeviceExternalSemaphoreInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalSemaphoreProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExternalSemaphoreProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`export_from_imported_handle_types`] is a bitmask of
     ///[`ExternalSemaphoreHandleTypeFlagBits`] specifying which types of
     ///imported handle `handleType` **can**  be exported from.
-    export_from_imported_handle_types: ExternalSemaphoreHandleTypeFlags,
+    pub export_from_imported_handle_types: ExternalSemaphoreHandleTypeFlags,
     ///[`compatible_handle_types`] is a bitmask of
     ///[`ExternalSemaphoreHandleTypeFlagBits`] specifying handle types
     ///which  **can**  be specified at the same time as `handleType` when
     ///creating a semaphore.
-    compatible_handle_types: ExternalSemaphoreHandleTypeFlags,
+    pub compatible_handle_types: ExternalSemaphoreHandleTypeFlags,
     ///[`external_semaphore_features`] is a bitmask of
     ///[`ExternalSemaphoreFeatureFlagBits`] describing the features of
     ///`handleType`.
-    external_semaphore_features: ExternalSemaphoreFeatureFlags,
+    pub external_semaphore_features: ExternalSemaphoreFeatureFlags,
 }
 impl<'lt> Default for ExternalSemaphoreProperties<'lt> {
     fn default() -> Self {
@@ -9187,23 +9225,24 @@ impl<'lt> ExternalSemaphoreProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExportSemaphoreCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExportSemaphoreCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`handle_types`] is a bitmask of
     ///[`ExternalSemaphoreHandleTypeFlagBits`] specifying one or more
     ///semaphore handle types the application  **can**  export from the resulting
     ///semaphore.
     ///The application  **can**  request multiple handle types for the same
     ///semaphore.
-    handle_types: ExternalSemaphoreHandleTypeFlags,
+    pub handle_types: ExternalSemaphoreHandleTypeFlags,
 }
 impl<'lt> Default for ExportSemaphoreCreateInfo<'lt> {
     fn default() -> Self {
@@ -9304,20 +9343,21 @@ impl<'lt> ExportSemaphoreCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceExternalFenceInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceExternalFenceInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`handle_type`] is a [`ExternalFenceHandleTypeFlagBits`] value
     ///specifying an external fence handle type for which capabilities will be
     ///returned.
-    handle_type: ExternalFenceHandleTypeFlagBits,
+    pub handle_type: ExternalFenceHandleTypeFlagBits,
 }
 impl<'lt> Default for PhysicalDeviceExternalFenceInfo<'lt> {
     fn default() -> Self {
@@ -9426,28 +9466,29 @@ impl<'lt> PhysicalDeviceExternalFenceInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExternalFenceProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExternalFenceProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///No documentation found
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///No documentation found
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`export_from_imported_handle_types`] is a bitmask of
     ///[`ExternalFenceHandleTypeFlagBits`] indicating which types of
     ///imported handle `handleType` **can**  be exported from.
-    export_from_imported_handle_types: ExternalFenceHandleTypeFlags,
+    pub export_from_imported_handle_types: ExternalFenceHandleTypeFlags,
     ///[`compatible_handle_types`] is a bitmask of
     ///[`ExternalFenceHandleTypeFlagBits`] specifying handle types which
     /// **can**  be specified at the same time as `handleType` when creating a
     ///fence.
-    compatible_handle_types: ExternalFenceHandleTypeFlags,
+    pub compatible_handle_types: ExternalFenceHandleTypeFlags,
     ///[`external_fence_features`] is a bitmask of
     ///[`ExternalFenceFeatureFlagBits`] indicating the features of
     ///`handleType`.
-    external_fence_features: ExternalFenceFeatureFlags,
+    pub external_fence_features: ExternalFenceFeatureFlags,
 }
 impl<'lt> Default for ExternalFenceProperties<'lt> {
     fn default() -> Self {
@@ -9592,21 +9633,22 @@ impl<'lt> ExternalFenceProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExportFenceCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExportFenceCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`handle_types`] is a bitmask of
     ///[`ExternalFenceHandleTypeFlagBits`] specifying one or more fence
     ///handle types the application  **can**  export from the resulting fence.
     ///The application  **can**  request multiple handle types for the same fence.
-    handle_types: ExternalFenceHandleTypeFlags,
+    pub handle_types: ExternalFenceHandleTypeFlags,
 }
 impl<'lt> Default for ExportFenceCreateInfo<'lt> {
     fn default() -> Self {
@@ -9720,34 +9762,35 @@ impl<'lt> ExportFenceCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceMultiviewFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMultiviewFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`multiview`] specifies whether
     ///the implementation supports multiview rendering within a render pass.
     ///If this feature is not enabled, the view mask of each subpass  **must**
     ///always be zero.
-    multiview: Bool32,
+    pub multiview: Bool32,
     ///[`multiview_geometry_shader`]
     ///specifies whether the implementation supports multiview rendering within
     ///a render pass, with [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#geometry).
     ///If this feature is not enabled, then a pipeline compiled against a
     ///subpass with a non-zero view mask  **must**  not include a geometry shader.
-    multiview_geometry_shader: Bool32,
+    pub multiview_geometry_shader: Bool32,
     ///[`multiview_tessellation_shader`] specifies whether the implementation
     ///supports multiview rendering within a render pass, with
     ///[tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#tessellation).
     ///If this feature is not enabled, then a pipeline compiled against a
     ///subpass with a non-zero view mask  **must**  not include any tessellation
     ///shaders.
-    multiview_tessellation_shader: Bool32,
+    pub multiview_tessellation_shader: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceMultiviewFeatures<'lt> {
     fn default() -> Self {
@@ -9955,20 +9998,21 @@ impl<'lt> PhysicalDeviceMultiviewFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceMultiviewProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMultiviewProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    max_multiview_view_count: u32,
+    pub max_multiview_view_count: u32,
     ///No documentation found
-    max_multiview_instance_index: u32,
+    pub max_multiview_instance_index: u32,
 }
 impl<'lt> Default for PhysicalDeviceMultiviewProperties<'lt> {
     fn default() -> Self {
@@ -10191,41 +10235,42 @@ impl<'lt> PhysicalDeviceMultiviewProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRenderPassMultiviewCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderPassMultiviewCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`subpass_count`] is zero or the number of subpasses in the render
     ///pass.
-    subpass_count: u32,
+    pub subpass_count: u32,
     ///[`view_masks`] is a pointer to an array of [`subpass_count`] view
     ///masks, where each mask is a bitfield of view indices describing which
     ///views rendering is broadcast to in each subpass, when multiview is
     ///enabled.
     ///If [`subpass_count`] is zero, each view mask is treated as zero.
-    view_masks: *const u32,
+    pub view_masks: *const u32,
     ///[`dependency_count`] is zero or the number of dependencies in the
     ///render pass.
-    dependency_count: u32,
+    pub dependency_count: u32,
     ///[`view_offsets`] is a pointer to an array of [`dependency_count`]
     ///view offsets, one for each dependency.
     ///If [`dependency_count`] is zero, each dependency’s view offset is
     ///treated as zero.
     ///Each view offset controls which views in the source subpass the views in
     ///the destination subpass depend on.
-    view_offsets: *const i32,
+    pub view_offsets: *const i32,
     ///[`correlation_mask_count`] is zero or the number of correlation masks.
-    correlation_mask_count: u32,
+    pub correlation_mask_count: u32,
     ///[`correlation_masks`] is a pointer to an array of
     ///[`correlation_mask_count`] view masks indicating sets of views that  **may**
     ///be more efficient to render concurrently.
-    correlation_masks: *const u32,
+    pub correlation_masks: *const u32,
 }
 impl<'lt> Default for RenderPassMultiviewCreateInfo<'lt> {
     fn default() -> Self {
@@ -10438,23 +10483,24 @@ impl<'lt> RenderPassMultiviewCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceGroupProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceGroupProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`physical_device_count`] is the number of physical devices in the
     ///group.
-    physical_device_count: u32,
+    pub physical_device_count: u32,
     ///[`physical_devices`] is an array of [`MAX_DEVICE_GROUP_SIZE`][`PhysicalDevice`] handles
     /// representing all physical devices in the group.
     ///The first [`physical_device_count`] elements of the array will be valid.
-    physical_devices: [PhysicalDevice; MAX_DEVICE_GROUP_SIZE],
+    pub physical_devices: [PhysicalDevice; MAX_DEVICE_GROUP_SIZE],
     ///[`subset_allocation`] specifies whether logical devices created from
     ///the group support allocating device memory on a subset of devices, via
     ///the `deviceMask` member of the [`MemoryAllocateFlagsInfo`].
@@ -10462,7 +10508,7 @@ pub struct PhysicalDeviceGroupProperties<'lt> {
     ///across all physical devices in the group.
     ///If [`physical_device_count`] is `1`, then [`subset_allocation`] **must**
     ///be [`FALSE`].
-    subset_allocation: Bool32,
+    pub subset_allocation: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceGroupProperties<'lt> {
     fn default() -> Self {
@@ -10646,23 +10692,24 @@ impl<'lt> PhysicalDeviceGroupProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryAllocateFlagsInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryAllocateFlagsInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`MemoryAllocateFlagBits`] controlling
     ///the allocation.
-    flags: MemoryAllocateFlags,
+    pub flags: MemoryAllocateFlags,
     ///[`device_mask`] is a mask of physical devices in the logical device,
     ///indicating that memory  **must**  be allocated on each device in the mask, if
     ///`VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT` is set in [`flags`].
-    device_mask: u32,
+    pub device_mask: u32,
 }
 impl<'lt> Default for MemoryAllocateFlagsInfo<'lt> {
     fn default() -> Self {
@@ -10844,27 +10891,28 @@ impl<'lt> MemoryAllocateFlagsInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBindBufferMemoryInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BindBufferMemoryInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`buffer`] is the buffer to be attached to memory.
-    buffer: Buffer,
+    pub buffer: Buffer,
     ///[`memory`] is a [`DeviceMemory`] object describing the device
     ///memory to attach.
-    memory: DeviceMemory,
+    pub memory: DeviceMemory,
     ///[`memory_offset`] is the start offset of the region of [`memory`]
     ///which is to be bound to the buffer.
     ///The number of bytes returned in the
     ///[`MemoryRequirements`]::`size` member in [`memory`], starting
     ///from [`memory_offset`] bytes, will be bound to the specified buffer.
-    memory_offset: DeviceSize,
+    pub memory_offset: DeviceSize,
 }
 impl<'lt> Default for BindBufferMemoryInfo<'lt> {
     fn default() -> Self {
@@ -11011,21 +11059,22 @@ impl<'lt> BindBufferMemoryInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBindBufferMemoryDeviceGroupInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BindBufferMemoryDeviceGroupInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`device_index_count`] is the number of elements in
     ///[`device_indices`].
-    device_index_count: u32,
+    pub device_index_count: u32,
     ///[`device_indices`] is a pointer to an array of device indices.
-    device_indices: *const u32,
+    pub device_indices: *const u32,
 }
 impl<'lt> Default for BindBufferMemoryDeviceGroupInfo<'lt> {
     fn default() -> Self {
@@ -11263,27 +11312,28 @@ impl<'lt> BindBufferMemoryDeviceGroupInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBindImageMemoryInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BindImageMemoryInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`image`] is the image to be attached to memory.
-    image: Image,
+    pub image: Image,
     ///[`memory`] is a [`DeviceMemory`] object describing the device
     ///memory to attach.
-    memory: DeviceMemory,
+    pub memory: DeviceMemory,
     ///[`memory_offset`] is the start offset of the region of [`memory`]
     ///which is to be bound to the image.
     ///The number of bytes returned in the
     ///[`MemoryRequirements`]::`size` member in [`memory`], starting
     ///from [`memory_offset`] bytes, will be bound to the specified image.
-    memory_offset: DeviceSize,
+    pub memory_offset: DeviceSize,
 }
 impl<'lt> Default for BindImageMemoryInfo<'lt> {
     fn default() -> Self {
@@ -11474,28 +11524,29 @@ impl<'lt> BindImageMemoryInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBindImageMemoryDeviceGroupInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BindImageMemoryDeviceGroupInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`device_index_count`] is the number of elements in
     ///[`device_indices`].
-    device_index_count: u32,
+    pub device_index_count: u32,
     ///[`device_indices`] is a pointer to an array of device indices.
-    device_indices: *const u32,
+    pub device_indices: *const u32,
     ///[`split_instance_bind_region_count`] is the number of elements in
     ///[`split_instance_bind_regions`].
-    split_instance_bind_region_count: u32,
+    pub split_instance_bind_region_count: u32,
     ///[`split_instance_bind_regions`] is a pointer to an array of
     ///[`Rect2D`] structures describing which regions of the image are
     ///attached to each instance of memory.
-    split_instance_bind_regions: *const Rect2D,
+    pub split_instance_bind_regions: *const Rect2D,
 }
 impl<'lt> Default for BindImageMemoryDeviceGroupInfo<'lt> {
     fn default() -> Self {
@@ -11705,24 +11756,25 @@ impl<'lt> BindImageMemoryDeviceGroupInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceGroupRenderPassBeginInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceGroupRenderPassBeginInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`device_mask`] is the device mask for the render pass instance.
-    device_mask: u32,
+    pub device_mask: u32,
     ///[`device_render_area_count`] is the number of elements in the
     ///[`device_render_areas`] array.
-    device_render_area_count: u32,
+    pub device_render_area_count: u32,
     ///[`device_render_areas`] is a pointer to an array of [`Rect2D`]
     ///structures defining the render area for each physical device.
-    device_render_areas: *const Rect2D,
+    pub device_render_areas: *const Rect2D,
 }
 impl<'lt> Default for DeviceGroupRenderPassBeginInfo<'lt> {
     fn default() -> Self {
@@ -11868,19 +11920,20 @@ impl<'lt> DeviceGroupRenderPassBeginInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceGroupCommandBufferBeginInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceGroupCommandBufferBeginInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`device_mask`] is the initial value of the command buffer’s device
     ///mask.
-    device_mask: u32,
+    pub device_mask: u32,
 }
 impl<'lt> Default for DeviceGroupCommandBufferBeginInfo<'lt> {
     fn default() -> Self {
@@ -12014,42 +12067,43 @@ impl<'lt> DeviceGroupCommandBufferBeginInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceGroupSubmitInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceGroupSubmitInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`wait_semaphore_count`] is the number of elements in the
     ///[`wait_semaphore_device_indices`] array.
-    wait_semaphore_count: u32,
+    pub wait_semaphore_count: u32,
     ///[`wait_semaphore_device_indices`] is a pointer to an array of
     ///[`wait_semaphore_count`] device indices indicating which physical device
     ///executes the semaphore wait operation in the corresponding element of
     ///[`SubmitInfo`]::`pWaitSemaphores`.
-    wait_semaphore_device_indices: *const u32,
+    pub wait_semaphore_device_indices: *const u32,
     ///[`command_buffer_count`] is the number of elements in the
     ///[`command_buffer_device_masks`] array.
-    command_buffer_count: u32,
+    pub command_buffer_count: u32,
     ///[`command_buffer_device_masks`] is a pointer to an array of
     ///[`command_buffer_count`] device masks indicating which physical devices
     ///execute the command buffer in the corresponding element of
     ///[`SubmitInfo`]::`pCommandBuffers`.
     ///A physical device executes the command buffer if the corresponding bit
     ///is set in the mask.
-    command_buffer_device_masks: *const u32,
+    pub command_buffer_device_masks: *const u32,
     ///[`signal_semaphore_count`] is the number of elements in the
     ///[`signal_semaphore_device_indices`] array.
-    signal_semaphore_count: u32,
+    pub signal_semaphore_count: u32,
     ///[`signal_semaphore_device_indices`] is a pointer to an array of
     ///[`signal_semaphore_count`] device indices indicating which physical
     ///device executes the semaphore signal operation in the corresponding
     ///element of [`SubmitInfo`]::`pSignalSemaphores`.
-    signal_semaphore_device_indices: *const u32,
+    pub signal_semaphore_device_indices: *const u32,
 }
 impl<'lt> Default for DeviceGroupSubmitInfo<'lt> {
     fn default() -> Self {
@@ -12268,22 +12322,23 @@ impl<'lt> DeviceGroupSubmitInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceGroupBindSparseInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceGroupBindSparseInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`resource_device_index`] is a device index indicating which instance of
     ///the resource is bound.
-    resource_device_index: u32,
+    pub resource_device_index: u32,
     ///[`memory_device_index`] is a device index indicating which instance of
     ///the memory the resource instance is bound to.
-    memory_device_index: u32,
+    pub memory_device_index: u32,
 }
 impl<'lt> Default for DeviceGroupBindSparseInfo<'lt> {
     fn default() -> Self {
@@ -12422,22 +12477,23 @@ impl<'lt> DeviceGroupBindSparseInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceGroupDeviceCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceGroupDeviceCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`physical_device_count`] is the number of elements in the
     ///[`physical_devices`] array.
-    physical_device_count: u32,
+    pub physical_device_count: u32,
     ///[`physical_devices`] is a pointer to an array of physical device
     ///handles belonging to the same device group.
-    physical_devices: *const PhysicalDevice,
+    pub physical_devices: *const PhysicalDevice,
 }
 impl<'lt> Default for DeviceGroupDeviceCreateInfo<'lt> {
     fn default() -> Self {
@@ -12590,6 +12646,7 @@ impl<'lt> DeviceGroupDeviceCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorUpdateTemplateEntry")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -12597,13 +12654,13 @@ impl<'lt> DeviceGroupDeviceCreateInfo<'lt> {
 pub struct DescriptorUpdateTemplateEntry {
     ///[`dst_binding`] is the descriptor binding to update when using this
     ///descriptor update template.
-    dst_binding: u32,
+    pub dst_binding: u32,
     ///[`dst_array_element`] is the starting element in the array belonging to
     ///[`dst_binding`].
     ///If the descriptor binding identified by [`dst_binding`] has a
     ///descriptor type of `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` then
     ///[`dst_array_element`] specifies the starting byte offset to update.
-    dst_array_element: u32,
+    pub dst_array_element: u32,
     ///[`descriptor_count`] is the number of descriptors to update.
     ///If [`descriptor_count`] is greater than the number of remaining array
     ///elements in the destination binding, those affect consecutive bindings
@@ -12613,13 +12670,13 @@ pub struct DescriptorUpdateTemplateEntry {
     ///[`descriptor_count`] specifies the number of bytes to update and the
     ///remaining array elements in the destination binding refer to the
     ///remaining number of bytes in it.
-    descriptor_count: u32,
+    pub descriptor_count: u32,
     ///[`descriptor_type`] is a [`DescriptorType`] specifying the type of
     ///the descriptor.
-    descriptor_type: DescriptorType,
+    pub descriptor_type: DescriptorType,
     ///[`offset`] is the offset in bytes of the first binding in the raw data
     ///structure.
-    offset: usize,
+    pub offset: usize,
     ///[`stride`] is the stride in bytes between two consecutive array
     ///elements of the descriptor update informations in the raw data
     ///structure.
@@ -12634,7 +12691,7 @@ pub struct DescriptorUpdateTemplateEntry {
     ///then the value of [`stride`] is ignored and the stride is assumed to be
     ///`1`, i.e. the descriptor update information for them is always specified as
     ///a contiguous range.
-    stride: usize,
+    pub stride: usize,
 }
 impl Default for DescriptorUpdateTemplateEntry {
     fn default() -> Self {
@@ -12824,25 +12881,26 @@ impl DescriptorUpdateTemplateEntry {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorUpdateTemplateCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorUpdateTemplateCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: DescriptorUpdateTemplateCreateFlags,
+    pub flags: DescriptorUpdateTemplateCreateFlags,
     ///[`descriptor_update_entry_count`] is the number of elements in the
     ///[`descriptor_update_entries`] array.
-    descriptor_update_entry_count: u32,
+    pub descriptor_update_entry_count: u32,
     ///[`descriptor_update_entries`] is a pointer to an array of
     ///[`DescriptorUpdateTemplateEntry`] structures describing the
     ///descriptors to be updated by the descriptor update template.
-    descriptor_update_entries: *const DescriptorUpdateTemplateEntry,
+    pub descriptor_update_entries: *const DescriptorUpdateTemplateEntry,
     ///[`template_type`] Specifies the type of the descriptor update template.
     ///If set to `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET` it
     /// **can**  only be used to update descriptor sets with a fixed
@@ -12850,7 +12908,7 @@ pub struct DescriptorUpdateTemplateCreateInfo<'lt> {
     ///If set to `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR`
     ///it  **can**  only be used to push descriptor sets using the provided
     ///[`pipeline_bind_point`], [`pipeline_layout`], and [`set`] number.
-    template_type: DescriptorUpdateTemplateType,
+    pub template_type: DescriptorUpdateTemplateType,
     ///[`descriptor_set_layout`] is the descriptor set layout used to build the
     ///descriptor update template.
     ///All descriptor sets which are going to be updated through the newly
@@ -12858,22 +12916,22 @@ pub struct DescriptorUpdateTemplateCreateInfo<'lt> {
     ///matches (is the same as, or defined identically to) this layout.
     ///This parameter is ignored if [`template_type`] is not
     ///`VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET`.
-    descriptor_set_layout: DescriptorSetLayout,
+    pub descriptor_set_layout: DescriptorSetLayout,
     ///[`pipeline_bind_point`] is a [`PipelineBindPoint`] indicating the
     ///type of the pipeline that will use the descriptors.
     ///This parameter is ignored if [`template_type`] is not
     ///`VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR`
-    pipeline_bind_point: PipelineBindPoint,
+    pub pipeline_bind_point: PipelineBindPoint,
     ///[`pipeline_layout`] is a [`PipelineLayout`] object used to program
     ///the bindings.
     ///This parameter is ignored if [`template_type`] is not
     ///`VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR`
-    pipeline_layout: PipelineLayout,
+    pub pipeline_layout: PipelineLayout,
     ///[`set`] is the set number of the descriptor set in the pipeline layout
     ///that will be updated.
     ///This parameter is ignored if [`template_type`] is not
     ///`VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR`
-    set: u32,
+    pub set: u32,
 }
 impl<'lt> Default for DescriptorUpdateTemplateCreateInfo<'lt> {
     fn default() -> Self {
@@ -13099,6 +13157,7 @@ impl<'lt> DescriptorUpdateTemplateCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkInputAttachmentAspectReference")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -13106,13 +13165,13 @@ impl<'lt> DescriptorUpdateTemplateCreateInfo<'lt> {
 pub struct InputAttachmentAspectReference {
     ///[`subpass`] is an index into the `pSubpasses` array of the parent
     ///[`RenderPassCreateInfo`] structure.
-    subpass: u32,
+    pub subpass: u32,
     ///[`input_attachment_index`] is an index into the `pInputAttachments`
     ///of the specified subpass.
-    input_attachment_index: u32,
+    pub input_attachment_index: u32,
     ///[`aspect_mask`] is a mask of which aspect(s)  **can**  be accessed within
     ///the specified subpass.
-    aspect_mask: ImageAspectFlags,
+    pub aspect_mask: ImageAspectFlags,
 }
 impl Default for InputAttachmentAspectReference {
     fn default() -> Self {
@@ -13216,24 +13275,25 @@ impl InputAttachmentAspectReference {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRenderPassInputAttachmentAspectCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderPassInputAttachmentAspectCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`aspect_reference_count`] is the number of elements in the
     ///[`aspect_references`] array.
-    aspect_reference_count: u32,
+    pub aspect_reference_count: u32,
     ///[`aspect_references`] is a pointer to an array of
     ///[`aspect_reference_count`][`InputAttachmentAspectReference`]
     ///structures containing a mask describing which aspect(s)  **can**  be accessed
     ///for a given input attachment within a given subpass.
-    aspect_references: *const InputAttachmentAspectReference,
+    pub aspect_references: *const InputAttachmentAspectReference,
 }
 impl<'lt> Default for RenderPassInputAttachmentAspectCreateInfo<'lt> {
     fn default() -> Self {
@@ -13389,16 +13449,17 @@ impl<'lt> RenderPassInputAttachmentAspectCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDevice16BitStorageFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevice16BitStorageFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`storage_buffer_16_bit_access`] specifies whether objects in the
     ///    `StorageBuffer`,
     ///`ShaderRecordBufferKHR`,
@@ -13409,7 +13470,7 @@ pub struct PhysicalDevice16BitStorageFeatures<'lt> {
     ///    members  **must**  not be used in such objects.
     ///    This also specifies whether shader modules  **can**  declare the
     ///    `StorageBuffer16BitAccess` capability.
-    storage_buffer_16_bit_access: Bool32,
+    pub storage_buffer_16_bit_access: Bool32,
     ///[`uniform_and_storage_buffer_16_bit_access`] specifies whether objects in
     ///the `Uniform` storage class with the `Block` decoration  **can**  have
     ///16-bit integer and 16-bit floating-point members.
@@ -13417,7 +13478,7 @@ pub struct PhysicalDevice16BitStorageFeatures<'lt> {
     ///members  **must**  not be used in such objects.
     ///This also specifies whether shader modules  **can**  declare the
     ///`UniformAndStorageBuffer16BitAccess` capability.
-    uniform_and_storage_buffer_16_bit_access: Bool32,
+    pub uniform_and_storage_buffer_16_bit_access: Bool32,
     ///[`storage_push_constant_16`] specifies whether objects in the
     ///`PushConstant` storage class  **can**  have 16-bit integer and 16-bit
     ///floating-point members.
@@ -13425,7 +13486,7 @@ pub struct PhysicalDevice16BitStorageFeatures<'lt> {
     /// **must**  not be used in such objects.
     ///This also specifies whether shader modules  **can**  declare the
     ///`StoragePushConstant16` capability.
-    storage_push_constant_16: Bool32,
+    pub storage_push_constant_16: Bool32,
     ///[`storage_input_output_16`] specifies whether objects in the `Input`
     ///and `Output` storage classes  **can**  have 16-bit integer and 16-bit
     ///floating-point members.
@@ -13433,7 +13494,7 @@ pub struct PhysicalDevice16BitStorageFeatures<'lt> {
     ///members  **must**  not be used in such objects.
     ///This also specifies whether shader modules  **can**  declare the
     ///`StorageInputOutput16` capability.
-    storage_input_output_16: Bool32,
+    pub storage_input_output_16: Bool32,
 }
 impl<'lt> Default for PhysicalDevice16BitStorageFeatures<'lt> {
     fn default() -> Self {
@@ -13682,24 +13743,25 @@ impl<'lt> PhysicalDevice16BitStorageFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceSubgroupProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSubgroupProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    subgroup_size: u32,
+    pub subgroup_size: u32,
     ///No documentation found
-    supported_stages: ShaderStageFlags,
+    pub supported_stages: ShaderStageFlags,
     ///No documentation found
-    supported_operations: SubgroupFeatureFlags,
+    pub supported_operations: SubgroupFeatureFlags,
     ///No documentation found
-    quad_operations_in_all_stages: Bool32,
+    pub quad_operations_in_all_stages: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceSubgroupProperties<'lt> {
     fn default() -> Self {
@@ -13871,18 +13933,19 @@ impl<'lt> PhysicalDeviceSubgroupProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferMemoryRequirementsInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferMemoryRequirementsInfo2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`buffer`] is the buffer to query.
-    buffer: Buffer,
+    pub buffer: Buffer,
 }
 impl<'lt> Default for BufferMemoryRequirementsInfo2<'lt> {
     fn default() -> Self {
@@ -14003,18 +14066,19 @@ impl<'lt> BufferMemoryRequirementsInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageMemoryRequirementsInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageMemoryRequirementsInfo2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`image`] is the image to query.
-    image: Image,
+    pub image: Image,
 }
 impl<'lt> Default for ImageMemoryRequirementsInfo2<'lt> {
     fn default() -> Self {
@@ -14114,18 +14178,19 @@ impl<'lt> ImageMemoryRequirementsInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageSparseMemoryRequirementsInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageSparseMemoryRequirementsInfo2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`image`] is the image to query.
-    image: Image,
+    pub image: Image,
 }
 impl<'lt> Default for ImageSparseMemoryRequirementsInfo2<'lt> {
     fn default() -> Self {
@@ -14235,19 +14300,20 @@ impl<'lt> ImageSparseMemoryRequirementsInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryRequirements2")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryRequirements2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`memory_requirements`] is a [`MemoryRequirements`] structure
     ///describing the memory requirements of the resource.
-    memory_requirements: MemoryRequirements,
+    pub memory_requirements: MemoryRequirements,
 }
 impl<'lt> Default for MemoryRequirements2<'lt> {
     fn default() -> Self {
@@ -14356,19 +14422,20 @@ impl<'lt> MemoryRequirements2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSparseImageMemoryRequirements2")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SparseImageMemoryRequirements2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`memory_requirements`] is a [`SparseImageMemoryRequirements`]
     ///structure describing the memory requirements of the sparse image.
-    memory_requirements: SparseImageMemoryRequirements,
+    pub memory_requirements: SparseImageMemoryRequirements,
 }
 impl<'lt> Default for SparseImageMemoryRequirements2<'lt> {
     fn default() -> Self {
@@ -14477,18 +14544,19 @@ impl<'lt> SparseImageMemoryRequirements2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDevicePointClippingProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePointClippingProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    point_clipping_behavior: PointClippingBehavior,
+    pub point_clipping_behavior: PointClippingBehavior,
 }
 impl<'lt> Default for PhysicalDevicePointClippingProperties<'lt> {
     fn default() -> Self {
@@ -14626,24 +14694,25 @@ impl<'lt> PhysicalDevicePointClippingProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryDedicatedRequirements")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryDedicatedRequirements<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`prefers_dedicated_allocation`] specifies that the implementation would
     ///prefer a dedicated allocation for this resource.
     ///The application is still free to suballocate the resource but it  **may**
     ///get better performance if a dedicated allocation is used.
-    prefers_dedicated_allocation: Bool32,
+    pub prefers_dedicated_allocation: Bool32,
     ///[`requires_dedicated_allocation`] specifies that a dedicated allocation
     ///is required for this resource.
-    requires_dedicated_allocation: Bool32,
+    pub requires_dedicated_allocation: Bool32,
 }
 impl<'lt> Default for MemoryDedicatedRequirements<'lt> {
     fn default() -> Self {
@@ -14871,22 +14940,23 @@ impl<'lt> MemoryDedicatedRequirements<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryDedicatedAllocateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryDedicatedAllocateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`image`] is [`crate::utils::Handle::null`] or a handle of an image which this
     ///memory will be bound to.
-    image: Image,
+    pub image: Image,
     ///[`buffer`] is [`crate::utils::Handle::null`] or a handle of a buffer which this
     ///memory will be bound to.
-    buffer: Buffer,
+    pub buffer: Buffer,
 }
 impl<'lt> Default for MemoryDedicatedAllocateInfo<'lt> {
     fn default() -> Self {
@@ -15005,19 +15075,20 @@ impl<'lt> MemoryDedicatedAllocateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageViewUsageCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageViewUsageCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`usage`] is a bitmask of [`ImageUsageFlagBits`] specifying
     ///allowed usages of the image view.
-    usage: ImageUsageFlags,
+    pub usage: ImageUsageFlags,
 }
 impl<'lt> Default for ImageViewUsageCreateInfo<'lt> {
     fn default() -> Self {
@@ -15124,19 +15195,20 @@ impl<'lt> ImageViewUsageCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineTessellationDomainOriginStateCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineTessellationDomainOriginStateCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`domain_origin`] is a [`TessellationDomainOrigin`] value
     ///controlling the origin of the tessellation domain space.
-    domain_origin: TessellationDomainOrigin,
+    pub domain_origin: TessellationDomainOrigin,
 }
 impl<'lt> Default for PipelineTessellationDomainOriginStateCreateInfo<'lt> {
     fn default() -> Self {
@@ -15248,19 +15320,20 @@ impl<'lt> PipelineTessellationDomainOriginStateCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSamplerYcbcrConversionInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SamplerYcbcrConversionInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`conversion`] is a [`SamplerYcbcrConversion`] handle created with
     ///[`CreateSamplerYcbcrConversion`].
-    conversion: SamplerYcbcrConversion,
+    pub conversion: SamplerYcbcrConversion,
 }
 impl<'lt> Default for SamplerYcbcrConversionInfo<'lt> {
     fn default() -> Self {
@@ -15440,45 +15513,46 @@ impl<'lt> SamplerYcbcrConversionInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSamplerYcbcrConversionCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SamplerYcbcrConversionCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`format`] is the format of the image from which color information
     ///will be retrieved.
-    format: Format,
+    pub format: Format,
     ///[`ycbcr_model`] describes the color matrix for conversion between color
     ///models.
-    ycbcr_model: SamplerYcbcrModelConversion,
+    pub ycbcr_model: SamplerYcbcrModelConversion,
     ///[`ycbcr_range`] describes whether the encoded values have headroom and
     ///foot room, or whether the encoding uses the full numerical range.
-    ycbcr_range: SamplerYcbcrRange,
+    pub ycbcr_range: SamplerYcbcrRange,
     ///[`components`] applies a *swizzle* based on [`ComponentSwizzle`]
     ///enums prior to range expansion and color model conversion.
-    components: ComponentMapping,
+    pub components: ComponentMapping,
     ///[`x_chroma_offset`] describes the
     ///[sample location](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-chroma-reconstruction) associated with
     ///downsampled chroma components in the x dimension.
     ///[`x_chroma_offset`] has no effect for formats in which chroma components
     ///are not downsampled horizontally.
-    x_chroma_offset: ChromaLocation,
+    pub x_chroma_offset: ChromaLocation,
     ///[`y_chroma_offset`] describes the
     ///[sample location](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-chroma-reconstruction) associated with
     ///downsampled chroma components in the y dimension.
     ///[`y_chroma_offset`] has no effect for formats in which the chroma
     ///components are not downsampled vertically.
-    y_chroma_offset: ChromaLocation,
+    pub y_chroma_offset: ChromaLocation,
     ///[`chroma_filter`] is the filter for chroma reconstruction.
-    chroma_filter: Filter,
+    pub chroma_filter: Filter,
     ///[`force_explicit_reconstruction`] **can**  be used to ensure that
     ///reconstruction is done explicitly, if supported.
-    force_explicit_reconstruction: Bool32,
+    pub force_explicit_reconstruction: Bool32,
 }
 impl<'lt> Default for SamplerYcbcrConversionCreateInfo<'lt> {
     fn default() -> Self {
@@ -15711,19 +15785,20 @@ impl<'lt> SamplerYcbcrConversionCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBindImagePlaneMemoryInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BindImagePlaneMemoryInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`plane_aspect`] is a [`ImageAspectFlagBits`] value specifying the
     ///aspect of the disjoint image plane to bind.
-    plane_aspect: ImageAspectFlagBits,
+    pub plane_aspect: ImageAspectFlagBits,
 }
 impl<'lt> Default for BindImagePlaneMemoryInfo<'lt> {
     fn default() -> Self {
@@ -15836,19 +15911,20 @@ impl<'lt> BindImagePlaneMemoryInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImagePlaneMemoryRequirementsInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImagePlaneMemoryRequirementsInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`plane_aspect`] is a [`ImageAspectFlagBits`] value specifying the
     ///aspect corresponding to the image plane to query.
-    plane_aspect: ImageAspectFlagBits,
+    pub plane_aspect: ImageAspectFlagBits,
 }
 impl<'lt> Default for ImagePlaneMemoryRequirementsInfo<'lt> {
     fn default() -> Self {
@@ -15957,22 +16033,23 @@ impl<'lt> ImagePlaneMemoryRequirementsInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceSamplerYcbcrConversionFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSamplerYcbcrConversionFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`sampler_ycbcr_conversion`] specifies whether the implementation
     ///supports [sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-YCbCr-conversion).
     ///If [`sampler_ycbcr_conversion`] is [`FALSE`], sampler Y′C<sub>B</sub>C<sub>R</sub>
     ///conversion is not supported, and samplers using sampler Y′C<sub>B</sub>C<sub>R</sub>
     ///conversion  **must**  not be used.
-    sampler_ycbcr_conversion: Bool32,
+    pub sampler_ycbcr_conversion: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceSamplerYcbcrConversionFeatures<'lt> {
     fn default() -> Self {
@@ -16104,20 +16181,21 @@ impl<'lt> PhysicalDeviceSamplerYcbcrConversionFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSamplerYcbcrConversionImageFormatProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SamplerYcbcrConversionImageFormatProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`combined_image_sampler_descriptor_count`] is the number of combined
     ///image sampler descriptors that the implementation uses to access the
     ///format.
-    combined_image_sampler_descriptor_count: u32,
+    pub combined_image_sampler_descriptor_count: u32,
 }
 impl<'lt> Default for SamplerYcbcrConversionImageFormatProperties<'lt> {
     fn default() -> Self {
@@ -16219,21 +16297,22 @@ impl<'lt> SamplerYcbcrConversionImageFormatProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkProtectedSubmitInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ProtectedSubmitInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///No documentation found
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///No documentation found
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`protected_submit`] specifies whether the batch is protected.
     ///If [`protected_submit`] is [`TRUE`], the batch is protected.
     ///If [`protected_submit`] is [`FALSE`], the batch is unprotected.
     ///If the [`SubmitInfo`]::[`p_next`] chain does not include this
     ///structure, the batch is unprotected.
-    protected_submit: Bool32,
+    pub protected_submit: Bool32,
 }
 impl<'lt> Default for ProtectedSubmitInfo<'lt> {
     fn default() -> Self {
@@ -16356,19 +16435,20 @@ impl<'lt> ProtectedSubmitInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceProtectedMemoryFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceProtectedMemoryFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`protected_memory`]
     ///specifies whether protected memory is supported.
-    protected_memory: Bool32,
+    pub protected_memory: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceProtectedMemoryFeatures<'lt> {
     fn default() -> Self {
@@ -16499,18 +16579,19 @@ impl<'lt> PhysicalDeviceProtectedMemoryFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceProtectedMemoryProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceProtectedMemoryProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    protected_no_fault: Bool32,
+    pub protected_no_fault: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceProtectedMemoryProperties<'lt> {
     fn default() -> Self {
@@ -16656,27 +16737,28 @@ impl<'lt> PhysicalDeviceProtectedMemoryProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceQueueInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceQueueInfo2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     ///The [`p_next`] chain of [`DeviceQueueInfo2`] **can**  be used to
     ///provide additional device queue parameters to [`GetDeviceQueue2`].
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a [`DeviceQueueCreateFlags`] value indicating the
     ///flags used to create the device queue.
-    flags: DeviceQueueCreateFlags,
+    pub flags: DeviceQueueCreateFlags,
     ///[`queue_family_index`] is the index of the queue family to which the
     ///queue belongs.
-    queue_family_index: u32,
+    pub queue_family_index: u32,
     ///[`queue_index`] is the index within this queue family of the queue to
     ///retrieve.
-    queue_index: u32,
+    pub queue_index: u32,
 }
 impl<'lt> Default for DeviceQueueInfo2<'lt> {
     fn default() -> Self {
@@ -16812,20 +16894,21 @@ impl<'lt> DeviceQueueInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceMaintenance3Properties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance3Properties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    max_per_set_descriptors: u32,
+    pub max_per_set_descriptors: u32,
     ///No documentation found
-    max_memory_allocation_size: DeviceSize,
+    pub max_memory_allocation_size: DeviceSize,
 }
 impl<'lt> Default for PhysicalDeviceMaintenance3Properties<'lt> {
     fn default() -> Self {
@@ -16950,19 +17033,20 @@ impl<'lt> PhysicalDeviceMaintenance3Properties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorSetLayoutSupport")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorSetLayoutSupport<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`supported`] specifies whether the descriptor set layout  **can**  be
     ///created.
-    supported: Bool32,
+    pub supported: Bool32,
 }
 impl<'lt> Default for DescriptorSetLayoutSupport<'lt> {
     fn default() -> Self {
@@ -17101,22 +17185,23 @@ impl<'lt> DescriptorSetLayoutSupport<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceShaderDrawParametersFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderDrawParametersFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_draw_parameters`] specifies whether the implementation supports
     ///the SPIR-V `DrawParameters` capability.
     ///When this feature is not enabled, shader modules  **must**  not declare the
     ///`SPV_KHR_shader_draw_parameters` extension or the `DrawParameters`
     ///capability.
-    shader_draw_parameters: Bool32,
+    pub shader_draw_parameters: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceShaderDrawParametersFeatures<'lt> {
     fn default() -> Self {
@@ -17241,6 +17326,7 @@ impl<'lt> PhysicalDeviceShaderDrawParametersFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorUpdateTemplate")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -17307,6 +17393,7 @@ impl std::fmt::Debug for DescriptorUpdateTemplate {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSamplerYcbcrConversion")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]

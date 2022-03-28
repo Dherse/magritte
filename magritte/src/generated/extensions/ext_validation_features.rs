@@ -111,6 +111,7 @@ pub const EXT_VALIDATION_FEATURES_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkValidationFeatureEnableEXT")]
+#[doc(alias = "VkValidationFeatureEnableEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -222,6 +223,7 @@ impl ValidationFeatureEnableEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkValidationFeatureDisableEXT")]
 #[doc(alias = "VkValidationFeatureDisableEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -343,29 +345,30 @@ impl ValidationFeatureDisableEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkValidationFeaturesEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ValidationFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`enabled_validation_feature_count`] is the number of features to enable.
-    enabled_validation_feature_count: u32,
+    pub enabled_validation_feature_count: u32,
     ///[`enabled_validation_features`] is a pointer to an array of
     ///[`ValidationFeatureEnableEXT`] values specifying the validation
     ///features to be enabled.
-    enabled_validation_features: *const ValidationFeatureEnableEXT,
+    pub enabled_validation_features: *const ValidationFeatureEnableEXT,
     ///[`disabled_validation_feature_count`] is the number of features to
     ///disable.
-    disabled_validation_feature_count: u32,
+    pub disabled_validation_feature_count: u32,
     ///[`disabled_validation_features`] is a pointer to an array of
     ///[`ValidationFeatureDisableEXT`] values specifying the validation
     ///features to be disabled.
-    disabled_validation_features: *const ValidationFeatureDisableEXT,
+    pub disabled_validation_features: *const ValidationFeatureDisableEXT,
 }
 impl<'lt> Default for ValidationFeaturesEXT<'lt> {
     fn default() -> Self {

@@ -92,23 +92,24 @@ pub const AMD_DISPLAY_NATIVE_HDR_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplayNativeHdrSurfaceCapabilitiesAMD")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DisplayNativeHdrSurfaceCapabilitiesAMD<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`local_dimming_support`] specifies whether the surface supports local
     ///dimming.
     ///If this is [`TRUE`], [`SwapchainDisplayNativeHdrCreateInfoAMD`] **can**  be used to
     /// explicitly enable or disable local dimming for the surface.
     ///Local dimming may also be overriden by [`SetLocalDimmingAMD`] during
     ///the lifetime of the swapchain.
-    local_dimming_support: Bool32,
+    pub local_dimming_support: Bool32,
 }
 impl<'lt> Default for DisplayNativeHdrSurfaceCapabilitiesAMD<'lt> {
     fn default() -> Self {
@@ -240,19 +241,20 @@ impl<'lt> DisplayNativeHdrSurfaceCapabilitiesAMD<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSwapchainDisplayNativeHdrCreateInfoAMD")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SwapchainDisplayNativeHdrCreateInfoAMD<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`local_dimming_enable`] specifies whether local dimming is enabled for
     ///the swapchain.
-    local_dimming_enable: Bool32,
+    pub local_dimming_enable: Bool32,
 }
 impl<'lt> Default for SwapchainDisplayNativeHdrCreateInfoAMD<'lt> {
     fn default() -> Self {

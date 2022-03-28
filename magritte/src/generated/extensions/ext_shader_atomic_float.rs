@@ -126,58 +126,59 @@ pub const EXT_SHADER_ATOMIC_FLOAT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceShaderAtomicFloatFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_buffer_float_32_atomics`]
     ///indicates whether shaders  **can**  perform 32-bit floating-point load, store
     ///and exchange atomic operations on storage buffers.
-    shader_buffer_float_32_atomics: Bool32,
+    pub shader_buffer_float_32_atomics: Bool32,
     ///[`shader_buffer_float_32_atomic_add`] indicates whether shaders  **can**
     ///perform 32-bit floating-point add atomic operations on storage buffers.
-    shader_buffer_float_32_atomic_add: Bool32,
+    pub shader_buffer_float_32_atomic_add: Bool32,
     ///[`shader_buffer_float_64_atomics`]
     ///indicates whether shaders  **can**  perform 64-bit floating-point load, store
     ///and exchange atomic operations on storage buffers.
-    shader_buffer_float_64_atomics: Bool32,
+    pub shader_buffer_float_64_atomics: Bool32,
     ///[`shader_buffer_float_64_atomic_add`] indicates whether shaders  **can**
     ///perform 64-bit floating-point add atomic operations on storage buffers.
-    shader_buffer_float_64_atomic_add: Bool32,
+    pub shader_buffer_float_64_atomic_add: Bool32,
     ///[`shader_shared_float_32_atomics`]
     ///indicates whether shaders  **can**  perform 32-bit floating-point load, store
     ///and exchange atomic operations on shared memory.
-    shader_shared_float_32_atomics: Bool32,
+    pub shader_shared_float_32_atomics: Bool32,
     ///[`shader_shared_float_32_atomic_add`] indicates whether shaders  **can**
     ///perform 32-bit floating-point add atomic operations on shared memory.
-    shader_shared_float_32_atomic_add: Bool32,
+    pub shader_shared_float_32_atomic_add: Bool32,
     ///[`shader_shared_float_64_atomics`]
     ///indicates whether shaders  **can**  perform 64-bit floating-point load, store
     ///and exchange atomic operations on shared memory.
-    shader_shared_float_64_atomics: Bool32,
+    pub shader_shared_float_64_atomics: Bool32,
     ///[`shader_shared_float_64_atomic_add`] indicates whether shaders  **can**
     ///perform 64-bit floating-point add atomic operations on shared memory.
-    shader_shared_float_64_atomic_add: Bool32,
+    pub shader_shared_float_64_atomic_add: Bool32,
     ///[`shader_image_float_32_atomics`]
     ///indicates whether shaders  **can**  perform 32-bit floating-point load, store
     ///and exchange atomic image operations.
-    shader_image_float_32_atomics: Bool32,
+    pub shader_image_float_32_atomics: Bool32,
     ///[`shader_image_float_32_atomic_add`] indicates whether shaders  **can**  perform
     ///32-bit floating-point add atomic image operations.
-    shader_image_float_32_atomic_add: Bool32,
+    pub shader_image_float_32_atomic_add: Bool32,
     ///[`sparse_image_float_32_atomics`]
     ///indicates whether 32-bit floating-point load, store and exchange atomic
     ///operations  **can**  be used on sparse images.
-    sparse_image_float_32_atomics: Bool32,
+    pub sparse_image_float_32_atomics: Bool32,
     ///[`sparse_image_float_32_atomic_add`] indicates whether 32-bit
     ///floating-point add atomic operations  **can**  be used on sparse images.
-    sparse_image_float_32_atomic_add: Bool32,
+    pub sparse_image_float_32_atomic_add: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
     fn default() -> Self {

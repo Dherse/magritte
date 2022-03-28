@@ -10,6 +10,7 @@ mod extensions;
 mod handles;
 mod structs;
 mod bitmasks;
+mod unions;
 pub mod ty;
 
 use ahash::AHashMap;
@@ -100,6 +101,16 @@ impl<'a> Source<'a> {
             let (imports, _, out) = per_origin.get_mut(struct_.origin()).unwrap();
 
             struct_.generate_raw_code(self, doc, imports, out);
+        }
+
+        for union_ in &self.unions {
+            if union_.origin().is_disabled() {
+                continue;
+            }
+
+            let (imports, _, out) = per_origin.get_mut(union_.origin()).unwrap();
+
+            union_.generate_code(self, doc, imports, out);
         }
 
         for handle in &self.handles {

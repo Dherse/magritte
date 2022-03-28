@@ -134,31 +134,32 @@ pub const EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceBufferDeviceAddressFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceBufferDeviceAddressFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`buffer_device_address`] indicates
     ///that the implementation supports accessing buffer memory in shaders as
     ///storage buffers via an address queried from
     ///[`GetBufferDeviceAddressEXT`].
-    buffer_device_address: Bool32,
+    pub buffer_device_address: Bool32,
     ///[`buffer_device_address_capture_replay`] indicates that the implementation
     ///supports saving and reusing buffer addresses, e.g. for trace capture and
     ///replay.
-    buffer_device_address_capture_replay: Bool32,
+    pub buffer_device_address_capture_replay: Bool32,
     ///[`buffer_device_address_multi_device`] indicates that the implementation
     ///supports the [`buffer_device_address`] feature for logical devices
     ///created with multiple physical devices.
     ///If this feature is not supported, buffer addresses  **must**  not be queried
     ///on a logical device created with more than one physical device.
-    buffer_device_address_multi_device: Bool32,
+    pub buffer_device_address_multi_device: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'lt> {
     fn default() -> Self {
@@ -365,18 +366,19 @@ impl<'lt> PhysicalDeviceBufferDeviceAddressFeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferDeviceAddressCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferDeviceAddressCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`device_address`] is the device address requested for the buffer.
-    device_address: DeviceAddress,
+    pub device_address: DeviceAddress,
 }
 impl<'lt> Default for BufferDeviceAddressCreateInfoEXT<'lt> {
     fn default() -> Self {

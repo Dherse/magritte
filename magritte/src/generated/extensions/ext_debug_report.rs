@@ -281,6 +281,7 @@ impl DebugReportFlagBitsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDebugReportFlagsEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -632,23 +633,24 @@ impl std::fmt::Debug for DebugReportFlagsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDebugReportCallbackCreateInfoEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugReportCallbackCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`DebugReportFlagBitsEXT`] specifying
     ///which event(s) will cause this callback to be called.
-    flags: DebugReportFlagsEXT,
+    pub flags: DebugReportFlagsEXT,
     ///[`pfn_callback`] is the application callback function to call.
-    pfn_callback: PFNDebugReportCallbackEXT<'lt>,
+    pub pfn_callback: PFNDebugReportCallbackEXT<'lt>,
     ///[`user_data`] is user data to be passed to the callback.
-    user_data: *mut c_void,
+    pub user_data: *mut c_void,
 }
 impl<'lt> Default for DebugReportCallbackCreateInfoEXT<'lt> {
     fn default() -> Self {
@@ -775,6 +777,7 @@ impl<'lt> DebugReportCallbackCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDebugReportCallbackEXT")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]

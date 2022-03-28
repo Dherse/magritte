@@ -168,30 +168,31 @@ pub const KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME: &'static CStr = crate::cs
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImportSemaphoreWin32HandleInfoKHR")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImportSemaphoreWin32HandleInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`semaphore`] is the semaphore into which the payload will be
     ///imported.
-    semaphore: Semaphore,
+    pub semaphore: Semaphore,
     ///[`flags`] is a bitmask of [`SemaphoreImportFlagBits`] specifying
     ///additional parameters for the semaphore payload import operation.
-    flags: SemaphoreImportFlags,
+    pub flags: SemaphoreImportFlags,
     ///[`handle_type`] is a [`ExternalSemaphoreHandleTypeFlagBits`] value
     ///specifying the type of [`handle`].
-    handle_type: ExternalSemaphoreHandleTypeFlagBits,
+    pub handle_type: ExternalSemaphoreHandleTypeFlagBits,
     ///[`handle`] is `NULL` or the external handle to import.
-    handle: HANDLE,
+    pub handle: HANDLE,
     ///[`name`] is `NULL` or a null-terminated UTF-16 string naming the
     ///underlying synchronization primitive to import.
-    name: LPCWSTR,
+    pub name: LPCWSTR,
 }
 impl<'lt> Default for ImportSemaphoreWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
@@ -390,25 +391,26 @@ impl<'lt> ImportSemaphoreWin32HandleInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExportSemaphoreWin32HandleInfoKHR")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExportSemaphoreWin32HandleInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`attributes`] is a pointer to a Windows [`SECURITY_ATTRIBUTES`]
     ///structure specifying security attributes of the handle.
-    attributes: *const SECURITY_ATTRIBUTES,
+    pub attributes: *const SECURITY_ATTRIBUTES,
     ///[`dw_access`] is a [`DWORD`] specifying access rights of the handle.
-    dw_access: DWORD,
+    pub dw_access: DWORD,
     ///[`name`] is a null-terminated UTF-16 string to associate with the
     ///underlying synchronization primitive referenced by NT handles exported
     ///from the created semaphore.
-    name: LPCWSTR,
+    pub name: LPCWSTR,
 }
 impl<'lt> Default for ExportSemaphoreWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
@@ -578,30 +580,31 @@ impl<'lt> ExportSemaphoreWin32HandleInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkD3D12FenceSubmitInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct D3D12FenceSubmitInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`wait_semaphore_values_count`] is the number of semaphore wait values
     ///specified in [`wait_semaphore_values`].
-    wait_semaphore_values_count: u32,
+    pub wait_semaphore_values_count: u32,
     ///[`wait_semaphore_values`] is a pointer to an array of
     ///[`wait_semaphore_values_count`] values for the corresponding semaphores
     ///in [`SubmitInfo`]::`pWaitSemaphores` to wait for.
-    wait_semaphore_values: *const u64,
+    pub wait_semaphore_values: *const u64,
     ///[`signal_semaphore_values_count`] is the number of semaphore signal
     ///values specified in [`signal_semaphore_values`].
-    signal_semaphore_values_count: u32,
+    pub signal_semaphore_values_count: u32,
     ///[`signal_semaphore_values`] is a pointer to an array of
     ///[`signal_semaphore_values_count`] values for the corresponding semaphores
     ///in [`SubmitInfo`]::`pSignalSemaphores` to set when signaled.
-    signal_semaphore_values: *const u64,
+    pub signal_semaphore_values: *const u64,
 }
 impl<'lt> Default for D3D12FenceSubmitInfoKHR<'lt> {
     fn default() -> Self {
@@ -782,21 +785,22 @@ impl<'lt> D3D12FenceSubmitInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSemaphoreGetWin32HandleInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SemaphoreGetWin32HandleInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`semaphore`] is the semaphore from which state will be exported.
-    semaphore: Semaphore,
+    pub semaphore: Semaphore,
     ///[`handle_type`] is a [`ExternalSemaphoreHandleTypeFlagBits`] value
     ///specifying the type of handle requested.
-    handle_type: ExternalSemaphoreHandleTypeFlagBits,
+    pub handle_type: ExternalSemaphoreHandleTypeFlagBits,
 }
 impl<'lt> Default for SemaphoreGetWin32HandleInfoKHR<'lt> {
     fn default() -> Self {

@@ -125,6 +125,7 @@ pub const EXT_PROVOKING_VERTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkProvokingVertexModeEXT")]
+#[doc(alias = "VkProvokingVertexModeEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -208,20 +209,21 @@ impl ProvokingVertexModeEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceProvokingVertexFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceProvokingVertexFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`provoking_vertex_last`] indicates
     ///whether the implementation supports the
     ///`VK_PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT`[`ProvokingVertexModeEXT`] for flat shading.
-    provoking_vertex_last: Bool32,
+    pub provoking_vertex_last: Bool32,
     ///[`transform_feedback_preserves_provoking_vertex`] indicates that the order
     ///of vertices within each primitive written by transform feedback will
     ///preserve the provoking vertex.
@@ -230,7 +232,7 @@ pub struct PhysicalDeviceProvokingVertexFeaturesEXT<'lt> {
     ///is [`FALSE`].
     ///[`transform_feedback_preserves_provoking_vertex`] **must**  be [`FALSE`]
     ///when the [`VK_EXT_transform_feedback`] extension is not supported.
-    transform_feedback_preserves_provoking_vertex: Bool32,
+    pub transform_feedback_preserves_provoking_vertex: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceProvokingVertexFeaturesEXT<'lt> {
     fn default() -> Self {
@@ -400,24 +402,25 @@ impl<'lt> PhysicalDeviceProvokingVertexFeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceProvokingVertexPropertiesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceProvokingVertexPropertiesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`provoking_vertex_mode_per_pipeline`] indicates whether the
     ///implementation supports graphics pipelines with different provoking
     ///vertex modes within the same render pass instance.
-    provoking_vertex_mode_per_pipeline: Bool32,
+    pub provoking_vertex_mode_per_pipeline: Bool32,
     ///[`transform_feedback_preserves_triangle_fan_provoking_vertex`] indicates
     ///whether the implementation can preserve the provoking vertex order when
     ///writing triangle fan vertices to transform feedback.
-    transform_feedback_preserves_triangle_fan_provoking_vertex: Bool32,
+    pub transform_feedback_preserves_triangle_fan_provoking_vertex: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceProvokingVertexPropertiesEXT<'lt> {
     fn default() -> Self {
@@ -594,19 +597,20 @@ impl<'lt> PhysicalDeviceProvokingVertexPropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineRasterizationProvokingVertexStateCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`provoking_vertex_mode`] is a [`ProvokingVertexModeEXT`] value
     ///selecting the provoking vertex mode.
-    provoking_vertex_mode: ProvokingVertexModeEXT,
+    pub provoking_vertex_mode: ProvokingVertexModeEXT,
 }
 impl<'lt> Default for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'lt> {
     fn default() -> Self {

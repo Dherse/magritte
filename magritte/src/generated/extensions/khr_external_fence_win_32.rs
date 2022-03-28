@@ -140,29 +140,30 @@ pub const KHR_EXTERNAL_FENCE_WIN32_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImportFenceWin32HandleInfoKHR")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImportFenceWin32HandleInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`fence`] is the fence into which the state will be imported.
-    fence: Fence,
+    pub fence: Fence,
     ///[`flags`] is a bitmask of [`FenceImportFlagBits`] specifying
     ///additional parameters for the fence payload import operation.
-    flags: FenceImportFlags,
+    pub flags: FenceImportFlags,
     ///[`handle_type`] is a [`ExternalFenceHandleTypeFlagBits`] value
     ///specifying the type of [`handle`].
-    handle_type: ExternalFenceHandleTypeFlagBits,
+    pub handle_type: ExternalFenceHandleTypeFlagBits,
     ///[`handle`] is `NULL` or the external handle to import.
-    handle: HANDLE,
+    pub handle: HANDLE,
     ///[`name`] is `NULL` or a null-terminated UTF-16 string naming the
     ///underlying synchronization primitive to import.
-    name: LPCWSTR,
+    pub name: LPCWSTR,
 }
 impl<'lt> Default for ImportFenceWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
@@ -356,25 +357,26 @@ impl<'lt> ImportFenceWin32HandleInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkExportFenceWin32HandleInfoKHR")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ExportFenceWin32HandleInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`attributes`] is a pointer to a Windows [`SECURITY_ATTRIBUTES`]
     ///structure specifying security attributes of the handle.
-    attributes: *const SECURITY_ATTRIBUTES,
+    pub attributes: *const SECURITY_ATTRIBUTES,
     ///[`dw_access`] is a [`DWORD`] specifying access rights of the handle.
-    dw_access: DWORD,
+    pub dw_access: DWORD,
     ///[`name`] is a null-terminated UTF-16 string to associate with the
     ///underlying synchronization primitive referenced by NT handles exported
     ///from the created fence.
-    name: LPCWSTR,
+    pub name: LPCWSTR,
 }
 impl<'lt> Default for ExportFenceWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
@@ -533,21 +535,22 @@ impl<'lt> ExportFenceWin32HandleInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFenceGetWin32HandleInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct FenceGetWin32HandleInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`fence`] is the fence from which state will be exported.
-    fence: Fence,
+    pub fence: Fence,
     ///[`handle_type`] is a [`ExternalFenceHandleTypeFlagBits`] value
     ///specifying the type of handle requested.
-    handle_type: ExternalFenceHandleTypeFlagBits,
+    pub handle_type: ExternalFenceHandleTypeFlagBits,
 }
 impl<'lt> Default for FenceGetWin32HandleInfoKHR<'lt> {
     fn default() -> Self {

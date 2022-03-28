@@ -375,6 +375,7 @@ impl DebugUtilsMessageTypeFlagBitsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDebugUtilsMessageSeverityFlagsEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -707,6 +708,7 @@ impl std::fmt::Debug for DebugUtilsMessageSeverityFlagsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDebugUtilsMessageTypeFlagsEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1107,24 +1109,25 @@ impl std::fmt::Debug for DebugUtilsMessengerCallbackDataFlagsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDebugUtilsObjectNameInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugUtilsObjectNameInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`object_type`] is a [`ObjectType`] specifying the type of the
     ///object to be named.
-    object_type: ObjectType,
+    pub object_type: ObjectType,
     ///[`object_handle`] is the object to be named.
-    object_handle: u64,
+    pub object_handle: u64,
     ///[`object_name`] is either `NULL` or a null-terminated UTF-8 string
     ///specifying the name to apply to [`object_handle`].
-    object_name: &'lt CStr,
+    pub object_name: &'lt CStr,
 }
 impl<'lt> Default for DebugUtilsObjectNameInfoEXT<'lt> {
     fn default() -> Self {
@@ -1264,28 +1267,29 @@ impl<'lt> DebugUtilsObjectNameInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDebugUtilsObjectTagInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugUtilsObjectTagInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`object_type`] is a [`ObjectType`] specifying the type of the
     ///object to be named.
-    object_type: ObjectType,
+    pub object_type: ObjectType,
     ///[`object_handle`] is the object to be tagged.
-    object_handle: u64,
+    pub object_handle: u64,
     ///[`tag_name`] is a numerical identifier of the tag.
-    tag_name: u64,
+    pub tag_name: u64,
     ///[`tag_size`] is the number of bytes of data to attach to the object.
-    tag_size: usize,
+    pub tag_size: usize,
     ///[`tag`] is a pointer to an array of [`tag_size`] bytes containing
     ///the data to be associated with the object.
-    tag: *const c_void,
+    pub tag: *const c_void,
 }
 impl<'lt> Default for DebugUtilsObjectTagInfoEXT<'lt> {
     fn default() -> Self {
@@ -1455,25 +1459,26 @@ impl<'lt> DebugUtilsObjectTagInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDebugUtilsLabelEXT")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugUtilsLabelEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`label_name`] is a pointer to a null-terminated UTF-8 string
     ///containing the name of the label.
-    label_name: &'lt CStr,
+    pub label_name: &'lt CStr,
     ///[`color`] is an optional RGBA color value that can be associated with
     ///the label.
     ///A particular implementation  **may**  choose to ignore this color value.
     ///The values contain RGBA values in order, in the range 0.0 to 1.0.
     ///If all elements in [`color`] are set to 0.0 then it is ignored.
-    color: [f32; 4],
+    pub color: [f32; 4],
 }
 impl<'lt> Default for DebugUtilsLabelEXT<'lt> {
     fn default() -> Self {
@@ -1624,30 +1629,31 @@ impl<'lt> DebugUtilsLabelEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDebugUtilsMessengerCreateInfoEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugUtilsMessengerCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is `0` and is reserved for future use.
-    flags: DebugUtilsMessengerCreateFlagsEXT,
+    pub flags: DebugUtilsMessengerCreateFlagsEXT,
     ///[`message_severity`] is a bitmask of
     ///[`DebugUtilsMessageSeverityFlagBitsEXT`] specifying which severity
     ///of event(s) will cause this callback to be called.
-    message_severity: DebugUtilsMessageSeverityFlagsEXT,
+    pub message_severity: DebugUtilsMessageSeverityFlagsEXT,
     ///[`message_type`] is a bitmask of
     ///[`DebugUtilsMessageTypeFlagBitsEXT`] specifying which type of
     ///event(s) will cause this callback to be called.
-    message_type: DebugUtilsMessageTypeFlagsEXT,
+    pub message_type: DebugUtilsMessageTypeFlagsEXT,
     ///[`pfn_user_callback`] is the application callback function to call.
-    pfn_user_callback: PFNDebugUtilsMessengerCallbackEXT<'lt>,
+    pub pfn_user_callback: PFNDebugUtilsMessengerCallbackEXT<'lt>,
     ///[`user_data`] is user data to be passed to the callback.
-    user_data: *mut c_void,
+    pub user_data: *mut c_void,
 }
 impl<'lt> Default for DebugUtilsMessengerCreateInfoEXT<'lt> {
     fn default() -> Self {
@@ -1866,58 +1872,59 @@ impl<'lt> DebugUtilsMessengerCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDebugUtilsMessengerCallbackDataEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugUtilsMessengerCallbackDataEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is `0` and is reserved for future use.
-    flags: DebugUtilsMessengerCallbackDataFlagsEXT,
+    pub flags: DebugUtilsMessengerCallbackDataFlagsEXT,
     ///[`message_id_name`] is a null-terminated string that identifies the
     ///particular message ID that is associated with the provided message.
     ///If the message corresponds to a validation layer message, then this
     ///string may contain the portion of the Vulkan specification that is
     ///believed to have been violated.
-    message_id_name: &'lt CStr,
+    pub message_id_name: &'lt CStr,
     ///[`message_id_number`] is the ID number of the triggering message.
     ///If the message corresponds to a validation layer message, then this
     ///number is related to the internal number associated with the message
     ///being triggered.
-    message_id_number: i32,
+    pub message_id_number: i32,
     ///[`message`] is a null-terminated string detailing the trigger
     ///conditions.
-    message: &'lt CStr,
+    pub message: &'lt CStr,
     ///[`queue_label_count`] is a count of items contained in the
     ///[`queue_labels`] array.
-    queue_label_count: u32,
+    pub queue_label_count: u32,
     ///[`queue_labels`] is `NULL` or a pointer to an array of
     ///[`DebugUtilsLabelEXT`] active in the current [`Queue`] at the
     ///time the callback was triggered.
     ///Refer to [Queue Labels](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-queue-labels) for more information.
-    queue_labels: *const DebugUtilsLabelEXT<'lt>,
+    pub queue_labels: *const DebugUtilsLabelEXT<'lt>,
     ///[`cmd_buf_label_count`] is a count of items contained in the
     ///[`cmd_buf_labels`] array.
-    cmd_buf_label_count: u32,
+    pub cmd_buf_label_count: u32,
     ///[`cmd_buf_labels`] is `NULL` or a pointer to an array of
     ///[`DebugUtilsLabelEXT`] active in the current [`CommandBuffer`]
     ///at the time the callback was triggered.
     ///Refer to [Command Buffer Labels](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-command-buffer-labels) for
     ///more information.
-    cmd_buf_labels: *const DebugUtilsLabelEXT<'lt>,
+    pub cmd_buf_labels: *const DebugUtilsLabelEXT<'lt>,
     ///[`object_count`] is a count of items contained in the [`objects`]
     ///array.
-    object_count: u32,
+    pub object_count: u32,
     ///[`objects`] is a pointer to an array of
     ///[`DebugUtilsObjectNameInfoEXT`] objects related to the detected
     ///issue.
     ///The array is roughly in order or importance, but the 0th element is
     ///always guaranteed to be the most important object for this message.
-    objects: *const DebugUtilsObjectNameInfoEXT<'lt>,
+    pub objects: *const DebugUtilsObjectNameInfoEXT<'lt>,
 }
 impl<'lt> Default for DebugUtilsMessengerCallbackDataEXT<'lt> {
     fn default() -> Self {
@@ -2167,6 +2174,7 @@ impl<'lt> DebugUtilsMessengerCallbackDataEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDebugUtilsMessengerEXT")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]

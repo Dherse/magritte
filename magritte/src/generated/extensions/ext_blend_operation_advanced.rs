@@ -188,6 +188,7 @@ pub const EXT_BLEND_OPERATION_ADVANCED_EXTENSION_NAME: &'static CStr = crate::cs
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBlendOverlapEXT")]
+#[doc(alias = "VkBlendOverlapEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -273,16 +274,17 @@ impl BlendOverlapEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`advanced_blend_coherent_operations`] specifies whether blending using
     ///[advanced blend operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blend-advanced) is guaranteed
     ///to execute atomically and in [primitive
@@ -294,7 +296,7 @@ pub struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
     ///If this is [`FALSE`], then memory dependencies are required to
     ///guarantee order between two advanced blending operations that occur on
     ///the same sample.
-    advanced_blend_coherent_operations: Bool32,
+    pub advanced_blend_coherent_operations: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
     fn default() -> Self {
@@ -441,42 +443,43 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`advanced_blend_max_color_attachments`] is one greater than the highest
     ///color attachment index that  **can**  be used in a subpass, for a pipeline
     ///that uses an [advanced blend operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blend-advanced).
-    advanced_blend_max_color_attachments: u32,
+    pub advanced_blend_max_color_attachments: u32,
     ///[`advanced_blend_independent_blend`] specifies whether advanced blend
     ///operations  **can**  vary per-attachment.
-    advanced_blend_independent_blend: Bool32,
+    pub advanced_blend_independent_blend: Bool32,
     ///[`advanced_blend_non_premultiplied_src_color`] specifies whether the source
     ///color  **can**  be treated as non-premultiplied.
     ///If this is [`FALSE`], then
     ///[`PipelineColorBlendAdvancedStateCreateInfoEXT`]::`srcPremultiplied` **must**  be [`TRUE`].
-    advanced_blend_non_premultiplied_src_color: Bool32,
+    pub advanced_blend_non_premultiplied_src_color: Bool32,
     ///[`advanced_blend_non_premultiplied_dst_color`] specifies whether the
     ///destination color  **can**  be treated as non-premultiplied.
     ///If this is [`FALSE`], then
     ///[`PipelineColorBlendAdvancedStateCreateInfoEXT`]::`dstPremultiplied` **must**  be [`TRUE`].
-    advanced_blend_non_premultiplied_dst_color: Bool32,
+    pub advanced_blend_non_premultiplied_dst_color: Bool32,
     ///[`advanced_blend_correlated_overlap`] specifies whether the overlap mode
     /// **can**  be treated as correlated.
     ///If this is [`FALSE`], then
     ///[`PipelineColorBlendAdvancedStateCreateInfoEXT`]::`blendOverlap` **must**  be `VK_BLEND_OVERLAP_UNCORRELATED_EXT`.
-    advanced_blend_correlated_overlap: Bool32,
+    pub advanced_blend_correlated_overlap: Bool32,
     ///[`advanced_blend_all_operations`]
     ///specifies whether all advanced blend operation enums are supported.
     ///See the valid usage of [`PipelineColorBlendAttachmentState`].
-    advanced_blend_all_operations: Bool32,
+    pub advanced_blend_all_operations: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
     fn default() -> Self {
@@ -787,25 +790,26 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineColorBlendAdvancedStateCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineColorBlendAdvancedStateCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_premultiplied`] specifies whether the source color of the blend
     ///operation is treated as premultiplied.
-    src_premultiplied: Bool32,
+    pub src_premultiplied: Bool32,
     ///[`dst_premultiplied`] specifies whether the destination color of the
     ///blend operation is treated as premultiplied.
-    dst_premultiplied: Bool32,
+    pub dst_premultiplied: Bool32,
     ///[`blend_overlap`] is a [`BlendOverlapEXT`] value specifying how the
     ///source and destination sample’s coverage is correlated.
-    blend_overlap: BlendOverlapEXT,
+    pub blend_overlap: BlendOverlapEXT,
 }
 impl<'lt> Default for PipelineColorBlendAdvancedStateCreateInfoEXT<'lt> {
     fn default() -> Self {

@@ -244,6 +244,7 @@ pub const NV_RAY_TRACING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_ray
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureMemoryRequirementsTypeNV")]
+#[doc(alias = "VkAccelerationStructureMemoryRequirementsTypeNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -358,45 +359,46 @@ impl AccelerationStructureMemoryRequirementsTypeNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRayTracingShaderGroupCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RayTracingShaderGroupCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`type_`] is the type of hit group specified in this structure.
-    type_: RayTracingShaderGroupTypeKHR,
+    pub type_: RayTracingShaderGroupTypeKHR,
     ///[`general_shader`] is the index of the ray generation, miss, or
     ///callable shader from
     ///[`RayTracingPipelineCreateInfoNV`]::`pStages` in the group if
     ///the shader group has [`type_`] of
     ///`VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV`, and
     ///[`SHADER_UNUSED_NV`] otherwise.
-    general_shader: u32,
+    pub general_shader: u32,
     ///[`closest_hit_shader`] is the optional index of the closest hit shader
     ///from [`RayTracingPipelineCreateInfoNV`]::`pStages` in the group
     ///if the shader group has [`type_`] of
     ///`VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_NV` or
     ///`VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV`, and
     ///[`SHADER_UNUSED_NV`] otherwise.
-    closest_hit_shader: u32,
+    pub closest_hit_shader: u32,
     ///[`any_hit_shader`] is the optional index of the any-hit shader from
     ///[`RayTracingPipelineCreateInfoNV`]::`pStages` in the group if
     ///the shader group has [`type_`] of
     ///`VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_NV` or
     ///`VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV`, and
     ///[`SHADER_UNUSED_NV`] otherwise.
-    any_hit_shader: u32,
+    pub any_hit_shader: u32,
     ///[`intersection_shader`] is the index of the intersection shader from
     ///[`RayTracingPipelineCreateInfoNV`]::`pStages` in the group if
     ///the shader group has [`type_`] of
     ///`VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV`, and
     ///[`SHADER_UNUSED_NV`] otherwise.
-    intersection_shader: u32,
+    pub intersection_shader: u32,
 }
 impl<'lt> Default for RayTracingShaderGroupCreateInfoNV<'lt> {
     fn default() -> Self {
@@ -633,43 +635,44 @@ impl<'lt> RayTracingShaderGroupCreateInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRayTracingPipelineCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RayTracingPipelineCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`PipelineCreateFlagBits`] specifying
     ///how the pipeline will be generated.
-    flags: PipelineCreateFlags,
+    pub flags: PipelineCreateFlags,
     ///[`stage_count`] is the number of entries in the [`stages`] array.
-    stage_count: u32,
+    pub stage_count: u32,
     ///[`stages`] is a pointer to an array of
     ///[`PipelineShaderStageCreateInfo`] structures specifying the set of
     ///the shader stages to be included in the ray tracing pipeline.
-    stages: *const PipelineShaderStageCreateInfo<'lt>,
+    pub stages: *const PipelineShaderStageCreateInfo<'lt>,
     ///[`group_count`] is the number of entries in the [`groups`] array.
-    group_count: u32,
+    pub group_count: u32,
     ///[`groups`] is a pointer to an array of
     ///[`RayTracingShaderGroupCreateInfoNV`] structures describing the set
     ///of the shader stages to be included in each shader group in the ray
     ///tracing pipeline.
-    groups: *const RayTracingShaderGroupCreateInfoNV<'lt>,
+    pub groups: *const RayTracingShaderGroupCreateInfoNV<'lt>,
     ///[`max_recursion_depth`] is the [maximum
     ///recursion depth](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-tracing-recursion-depth) of shaders executed by this pipeline.
-    max_recursion_depth: u32,
+    pub max_recursion_depth: u32,
     ///[`layout`] is the description of binding locations used by both the
     ///pipeline and descriptor sets used with the pipeline.
-    layout: PipelineLayout,
+    pub layout: PipelineLayout,
     ///[`base_pipeline_handle`] is a pipeline to derive from.
-    base_pipeline_handle: Pipeline,
+    pub base_pipeline_handle: Pipeline,
     ///[`base_pipeline_index`] is an index into the `pCreateInfos`
     ///parameter to use as a pipeline to derive from.
-    base_pipeline_index: i32,
+    pub base_pipeline_index: i32,
 }
 impl<'lt> Default for RayTracingPipelineCreateInfoNV<'lt> {
     fn default() -> Self {
@@ -961,45 +964,46 @@ impl<'lt> RayTracingPipelineCreateInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkGeometryTrianglesNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GeometryTrianglesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`vertex_data`] is the buffer containing vertex data for this geometry.
-    vertex_data: Buffer,
+    pub vertex_data: Buffer,
     ///[`vertex_offset`] is the offset in bytes within [`vertex_data`]
     ///containing vertex data for this geometry.
-    vertex_offset: DeviceSize,
+    pub vertex_offset: DeviceSize,
     ///[`vertex_count`] is the number of valid vertices.
-    vertex_count: u32,
+    pub vertex_count: u32,
     ///[`vertex_stride`] is the stride in bytes between each vertex.
-    vertex_stride: DeviceSize,
+    pub vertex_stride: DeviceSize,
     ///[`vertex_format`] is a [`Format`] describing the format of each
     ///vertex element.
-    vertex_format: Format,
+    pub vertex_format: Format,
     ///[`index_data`] is the buffer containing index data for this geometry.
-    index_data: Buffer,
+    pub index_data: Buffer,
     ///[`index_offset`] is the offset in bytes within [`index_data`]
     ///containing index data for this geometry.
-    index_offset: DeviceSize,
+    pub index_offset: DeviceSize,
     ///[`index_count`] is the number of indices to include in this geometry.
-    index_count: u32,
+    pub index_count: u32,
     ///[`index_type`] is a [`IndexType`] describing the format of each
     ///index.
-    index_type: IndexType,
+    pub index_type: IndexType,
     ///[`transform_data`] is an optional buffer containing an
     ///[`TransformMatrixNV`] structure defining a transformation to be
     ///applied to this geometry.
-    transform_data: Buffer,
+    pub transform_data: Buffer,
     ///[`transform_offset`] is the offset in bytes in [`transform_data`] of
     ///the transform information described above.
-    transform_offset: DeviceSize,
+    pub transform_offset: DeviceSize,
 }
 impl<'lt> Default for GeometryTrianglesNV<'lt> {
     fn default() -> Self {
@@ -1249,24 +1253,25 @@ impl<'lt> GeometryTrianglesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkGeometryAABBNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GeometryAabbNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`aabb_data`] is the buffer containing axis-aligned bounding box data.
-    aabb_data: Buffer,
+    pub aabb_data: Buffer,
     ///[`num_aab_bs`] is the number of AABBs in this geometry.
-    num_aab_bs: u32,
+    pub num_aab_bs: u32,
     ///[`stride`] is the stride in bytes between AABBs in [`aabb_data`].
-    stride: u32,
+    pub stride: u32,
     ///[`offset`] is the offset in bytes of the first AABB in [`aabb_data`].
-    offset: DeviceSize,
+    pub offset: DeviceSize,
 }
 impl<'lt> Default for GeometryAabbNV<'lt> {
     fn default() -> Self {
@@ -1402,19 +1407,20 @@ impl<'lt> GeometryAabbNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkGeometryDataNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GeometryDataNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`triangles`] contains triangle data if
     ///[`GeometryNV`]::`geometryType` is
     ///`VK_GEOMETRY_TYPE_TRIANGLES_NV`.
-    triangles: GeometryTrianglesNV<'lt>,
+    pub triangles: GeometryTrianglesNV<'lt>,
     ///[`aabbs`] contains axis-aligned bounding box data if
     ///[`GeometryNV`]::`geometryType` is
     ///`VK_GEOMETRY_TYPE_AABBS_NV`.
-    aabbs: GeometryAabbNV<'lt>,
+    pub aabbs: GeometryAabbNV<'lt>,
 }
 impl<'lt> Default for GeometryDataNV<'lt> {
     fn default() -> Self {
@@ -1498,25 +1504,26 @@ impl<'lt> GeometryDataNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkGeometryNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GeometryNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`geometry_type`] specifies the [`GeometryTypeKHR`] which this
     ///geometry refers to.
-    geometry_type: GeometryTypeKHR,
+    pub geometry_type: GeometryTypeKHR,
     ///[`geometry`] contains the geometry data as described in
     ///[`GeometryDataNV`].
-    geometry: GeometryDataNV<'lt>,
+    pub geometry: GeometryDataNV<'lt>,
     ///[`flags`] has [`GeometryFlagBitsKHR`] describing options for this
     ///geometry.
-    flags: GeometryFlagsKHR,
+    pub flags: GeometryFlagsKHR,
 }
 impl<'lt> Default for GeometryNV<'lt> {
     fn default() -> Self {
@@ -1685,31 +1692,32 @@ impl<'lt> GeometryNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`type_`] is a [`AccelerationStructureTypeNV`] value specifying the
     ///type of acceleration structure that will be created.
-    type_: AccelerationStructureTypeNV,
+    pub type_: AccelerationStructureTypeNV,
     ///[`flags`] is a bitmask of [`BuildAccelerationStructureFlagBitsNV`]
     ///specifying additional parameters of the acceleration structure.
-    flags: BuildAccelerationStructureFlagsNV,
+    pub flags: BuildAccelerationStructureFlagsNV,
     ///[`instance_count`] specifies the number of instances that will be in
     ///the new acceleration structure.
-    instance_count: u32,
+    pub instance_count: u32,
     ///[`geometry_count`] specifies the number of geometries that will be in
     ///the new acceleration structure.
-    geometry_count: u32,
+    pub geometry_count: u32,
     ///[`geometries`] is a pointer to an array of [`geometry_count`][`GeometryNV`] structures
     /// containing the scene data being passed into the acceleration structure.
-    geometries: *const GeometryNV<'lt>,
+    pub geometries: *const GeometryNV<'lt>,
 }
 impl<'lt> Default for AccelerationStructureInfoNV<'lt> {
     fn default() -> Self {
@@ -1883,23 +1891,24 @@ impl<'lt> AccelerationStructureInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`compacted_size`] is the size from the result of
     ///[`CmdWriteAccelerationStructuresPropertiesNV`] if this acceleration
     ///structure is going to be the target of a compacting copy.
-    compacted_size: DeviceSize,
+    pub compacted_size: DeviceSize,
     ///[`info`] is the [`AccelerationStructureInfoNV`] structure
     ///specifying further parameters of the created acceleration structure.
-    info: AccelerationStructureInfoNV<'lt>,
+    pub info: AccelerationStructureInfoNV<'lt>,
 }
 impl<'lt> Default for AccelerationStructureCreateInfoNV<'lt> {
     fn default() -> Self {
@@ -2044,34 +2053,35 @@ impl<'lt> AccelerationStructureCreateInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBindAccelerationStructureMemoryInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BindAccelerationStructureMemoryInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`acceleration_structure`] is the acceleration structure to be attached
     ///to memory.
-    acceleration_structure: AccelerationStructureNV,
+    pub acceleration_structure: AccelerationStructureNV,
     ///[`memory`] is a [`DeviceMemory`] object describing the device
     ///memory to attach.
-    memory: DeviceMemory,
+    pub memory: DeviceMemory,
     ///[`memory_offset`] is the start offset of the region of memory that is
     ///to be bound to the acceleration structure.
     ///The number of bytes returned in the
     ///[`MemoryRequirements`]::`size` member in [`memory`], starting
     ///from [`memory_offset`] bytes, will be bound to the specified
     ///acceleration structure.
-    memory_offset: DeviceSize,
+    pub memory_offset: DeviceSize,
     ///[`device_index_count`] is the number of elements in
     ///[`device_indices`].
-    device_index_count: u32,
+    pub device_index_count: u32,
     ///[`device_indices`] is a pointer to an array of device indices.
-    device_indices: *const u32,
+    pub device_indices: *const u32,
 }
 impl<'lt> Default for BindAccelerationStructureMemoryInfoNV<'lt> {
     fn default() -> Self {
@@ -2249,23 +2259,24 @@ impl<'lt> BindAccelerationStructureMemoryInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkWriteDescriptorSetAccelerationStructureNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct WriteDescriptorSetAccelerationStructureNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`acceleration_structure_count`] is the number of elements in
     ///[`acceleration_structures`].
-    acceleration_structure_count: u32,
+    pub acceleration_structure_count: u32,
     ///[`acceleration_structures`] is a pointer to an array of
     ///[`AccelerationStructureNV`] structures specifying the acceleration
     ///structures to update.
-    acceleration_structures: *const AccelerationStructureNV,
+    pub acceleration_structures: *const AccelerationStructureNV,
 }
 impl<'lt> Default for WriteDescriptorSetAccelerationStructureNV<'lt> {
     fn default() -> Self {
@@ -2398,16 +2409,17 @@ impl<'lt> WriteDescriptorSetAccelerationStructureNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureMemoryRequirementsInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureMemoryRequirementsInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`type_`] selects the type of memory requirement being queried.
     ///`VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_OBJECT_NV`
     ///returns the memory requirements for the object itself.
@@ -2417,10 +2429,10 @@ pub struct AccelerationStructureMemoryRequirementsInfoNV<'lt> {
     ///`VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_UPDATE_SCRATCH_NV`
     ///returns the memory requirements for the scratch memory when doing an
     ///update.
-    type_: AccelerationStructureMemoryRequirementsTypeNV,
+    pub type_: AccelerationStructureMemoryRequirementsTypeNV,
     ///[`acceleration_structure`] is the acceleration structure to be queried
     ///for memory requirements.
-    acceleration_structure: AccelerationStructureNV,
+    pub acceleration_structure: AccelerationStructureNV,
 }
 impl<'lt> Default for AccelerationStructureMemoryRequirementsInfoNV<'lt> {
     fn default() -> Self {
@@ -2562,39 +2574,40 @@ impl<'lt> AccelerationStructureMemoryRequirementsInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceRayTracingPropertiesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPropertiesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_group_handle_size`] is the size in bytes of the shader header.
-    shader_group_handle_size: u32,
+    pub shader_group_handle_size: u32,
     ///[`max_recursion_depth`] is the maximum
     ///number of levels of recursion allowed in a trace command.
-    max_recursion_depth: u32,
+    pub max_recursion_depth: u32,
     ///[`max_shader_group_stride`] is the maximum stride in bytes allowed
     ///between shader groups in the shader binding table.
-    max_shader_group_stride: u32,
+    pub max_shader_group_stride: u32,
     ///[`shader_group_base_alignment`] is the  **required**  alignment in bytes for
     ///the base of the shader binding table.
-    shader_group_base_alignment: u32,
+    pub shader_group_base_alignment: u32,
     ///[`max_geometry_count`] is the maximum number of geometries in the bottom
     ///level acceleration structure.
-    max_geometry_count: u64,
+    pub max_geometry_count: u64,
     ///[`max_instance_count`] is the maximum number of instances in the top
     ///level acceleration structure.
-    max_instance_count: u64,
+    pub max_instance_count: u64,
     ///[`max_triangle_count`] is the maximum number of triangles in all
     ///geometries in the bottom level acceleration structure.
-    max_triangle_count: u64,
+    pub max_triangle_count: u64,
     ///[`max_descriptor_set_acceleration_structures`] is the maximum number of
     ///acceleration structure descriptors that are allowed in a descriptor set.
-    max_descriptor_set_acceleration_structures: u32,
+    pub max_descriptor_set_acceleration_structures: u32,
 }
 impl<'lt> Default for PhysicalDeviceRayTracingPropertiesNV<'lt> {
     fn default() -> Self {
@@ -2788,6 +2801,7 @@ impl<'lt> PhysicalDeviceRayTracingPropertiesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureNV")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]

@@ -207,6 +207,7 @@ pub const EXT_DEVICE_MEMORY_REPORT_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceMemoryReportEventTypeEXT")]
+#[doc(alias = "VkDeviceMemoryReportEventTypeEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -329,20 +330,21 @@ impl std::fmt::Debug for DeviceMemoryReportFlagsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceDeviceMemoryReportFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`device_memory_report`] indicates
     ///whether the implementation supports the ability to register device
     ///memory report callbacks.
-    device_memory_report: Bool32,
+    pub device_memory_report: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
     fn default() -> Self {
@@ -477,22 +479,23 @@ impl<'lt> PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceDeviceMemoryReportCreateInfoEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is 0 and reserved for future use.
-    flags: DeviceMemoryReportFlagsEXT,
+    pub flags: DeviceMemoryReportFlagsEXT,
     ///[`pfn_user_callback`] is the application callback function to call.
-    pfn_user_callback: PFNDeviceMemoryReportCallbackEXT<'lt>,
+    pub pfn_user_callback: PFNDeviceMemoryReportCallbackEXT<'lt>,
     ///[`user_data`] is user data to be passed to the callback.
-    user_data: *mut c_void,
+    pub user_data: *mut c_void,
 }
 impl<'lt> Default for DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
     fn default() -> Self {
@@ -681,32 +684,33 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceMemoryReportCallbackDataEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceMemoryReportCallbackDataEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`flags`] is 0 and reserved for future use.
-    flags: DeviceMemoryReportFlagsEXT,
+    pub flags: DeviceMemoryReportFlagsEXT,
     ///[`type_`] is a [`DeviceMemoryReportEventTypeEXT`] type specifying
     ///the type of event reported in this
     ///[`DeviceMemoryReportCallbackDataEXT`] structure.
-    type_: DeviceMemoryReportEventTypeEXT,
+    pub type_: DeviceMemoryReportEventTypeEXT,
     ///[`memory_object_id`] is the unique id for the underlying memory object
     ///as described below.
-    memory_object_id: u64,
+    pub memory_object_id: u64,
     ///[`size`] is the size of the memory object in bytes.
     ///If [`type_`] is `VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATE_EXT`,
     ///`VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_IMPORT_EXT` or
     ///`VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATION_FAILED_EXT`,
     ///[`size`] is a valid [`DeviceSize`] value.
     ///Otherwise, [`size`] is undefined.
-    size: DeviceSize,
+    pub size: DeviceSize,
     ///[`object_type`] is a [`ObjectType`] value specifying the type of
     ///the object associated with this device memory report event.
     ///If [`type_`] is `VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATE_EXT`,
@@ -716,7 +720,7 @@ pub struct DeviceMemoryReportCallbackDataEXT<'lt> {
     ///`VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATION_FAILED_EXT`,
     ///[`object_type`] is a valid [`ObjectType`] enum.
     ///Otherwise, [`object_type`] is undefined.
-    object_type: ObjectType,
+    pub object_type: ObjectType,
     ///[`object_handle`] is the object this device memory report event is
     ///attributed to.
     ///If [`type_`] is `VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATE_EXT`,
@@ -726,7 +730,7 @@ pub struct DeviceMemoryReportCallbackDataEXT<'lt> {
     ///[`object_handle`] is a valid Vulkan handle of the type associated with
     ///[`object_type`] as defined in the [[`ObjectType`] and Vulkan Handle Relationship](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-object-types) table.
     ///Otherwise, [`object_handle`] is undefined.
-    object_handle: u64,
+    pub object_handle: u64,
     ///[`heap_index`] describes which memory heap this device memory
     ///allocation is made from.
     ///If [`type_`] is `VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATE_EXT`
@@ -734,7 +738,7 @@ pub struct DeviceMemoryReportCallbackDataEXT<'lt> {
     ///[`heap_index`] corresponds to one of the valid heaps from the
     ///[`PhysicalDeviceMemoryProperties`] structure.
     ///Otherwise, [`heap_index`] is undefined.
-    heap_index: u32,
+    pub heap_index: u32,
 }
 impl<'lt> Default for DeviceMemoryReportCallbackDataEXT<'lt> {
     fn default() -> Self {

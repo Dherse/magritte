@@ -176,25 +176,26 @@ pub const KHR_DYNAMIC_RENDERING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRenderingFragmentShadingRateAttachmentInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`image_view`] is the image view that will be used as a fragment
     ///shading rate attachment.
-    image_view: ImageView,
+    pub image_view: ImageView,
     ///[`image_layout`] is the layout that [`image_view`] will be in during
     ///rendering.
-    image_layout: ImageLayout,
+    pub image_layout: ImageLayout,
     ///[`shading_rate_attachment_texel_size`] specifies the number of pixels
     ///corresponding to each texel in [`image_view`].
-    shading_rate_attachment_texel_size: Extent2D,
+    pub shading_rate_attachment_texel_size: Extent2D,
 }
 impl<'lt> Default for RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
     fn default() -> Self {
@@ -332,22 +333,23 @@ impl<'lt> RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRenderingFragmentDensityMapAttachmentInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`image_view`] is the image view that will be used as a fragment
     ///shading rate attachment.
-    image_view: ImageView,
+    pub image_view: ImageView,
     ///[`image_layout`] is the layout that [`image_view`] will be in during
     ///rendering.
-    image_layout: ImageLayout,
+    pub image_layout: ImageLayout,
 }
 impl<'lt> Default for RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
     fn default() -> Self {
@@ -499,26 +501,27 @@ impl<'lt> RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAttachmentSampleCountInfoAMD")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AttachmentSampleCountInfoAMD<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`color_attachment_count`] is the number of color attachments specified
     ///in a render pass instance.
-    color_attachment_count: u32,
+    pub color_attachment_count: u32,
     ///[`color_attachment_samples`] is a pointer to an array of
     ///[`SampleCountFlagBits`] values defining the sample count of color
     ///attachments.
-    color_attachment_samples: *const SampleCountFlagBits,
+    pub color_attachment_samples: *const SampleCountFlagBits,
     ///[`depth_stencil_attachment_samples`] is a [`SampleCountFlagBits`]
     ///value defining the sample count of a depth/stencil attachment.
-    depth_stencil_attachment_samples: SampleCountFlagBits,
+    pub depth_stencil_attachment_samples: SampleCountFlagBits,
 }
 impl<'lt> Default for AttachmentSampleCountInfoAMD<'lt> {
     fn default() -> Self {
@@ -671,28 +674,29 @@ impl<'lt> AttachmentSampleCountInfoAMD<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMultiviewPerViewAttributesInfoNVX")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MultiviewPerViewAttributesInfoNVX<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`per_view_attributes`] specifies that shaders compiled for this
     ///pipeline write the attributes for all views in a single invocation of
     ///each vertex processing stage.
     ///All pipelines executed within a render pass instance that includes this
     ///bit  **must**  write per-view attributes to the `*PerViewNV[]` shader
     ///outputs, in addition to the non-per-view (e.g. `Position`) outputs.
-    per_view_attributes: Bool32,
+    pub per_view_attributes: Bool32,
     ///[`per_view_attributes_position_x_only`] specifies that shaders compiled for
     ///this pipeline use per-view positions which only differ in value in the x
     ///component.
     ///Per-view viewport mask  **can**  also be used.
-    per_view_attributes_position_x_only: Bool32,
+    pub per_view_attributes_position_x_only: Bool32,
 }
 impl<'lt> Default for MultiviewPerViewAttributesInfoNVX<'lt> {
     fn default() -> Self {

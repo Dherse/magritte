@@ -286,6 +286,7 @@ impl std::fmt::Debug for ImageFormatConstraintsFlagsFUCHSIA {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageConstraintsInfoFlagsFUCHSIA")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -625,20 +626,21 @@ impl std::fmt::Debug for ImageConstraintsInfoFlagsFUCHSIA {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImportMemoryBufferCollectionFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImportMemoryBufferCollectionFUCHSIA<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`collection`] is the [`BufferCollectionFUCHSIA`] handle
-    collection: BufferCollectionFUCHSIA,
+    pub collection: BufferCollectionFUCHSIA,
     ///[`index`] the index of the buffer to import from [`collection`]
-    index: u32,
+    pub index: u32,
 }
 impl<'lt> Default for ImportMemoryBufferCollectionFUCHSIA<'lt> {
     fn default() -> Self {
@@ -753,21 +755,22 @@ impl<'lt> ImportMemoryBufferCollectionFUCHSIA<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferCollectionImageCreateInfoFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCollectionImageCreateInfoFUCHSIA<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`collection`] is the [`BufferCollectionFUCHSIA`] handle
-    collection: BufferCollectionFUCHSIA,
+    pub collection: BufferCollectionFUCHSIA,
     ///[`index`] is the index of the buffer in the buffer collection from
     ///which the memory will be imported
-    index: u32,
+    pub index: u32,
 }
 impl<'lt> Default for BufferCollectionImageCreateInfoFUCHSIA<'lt> {
     fn default() -> Self {
@@ -882,21 +885,22 @@ impl<'lt> BufferCollectionImageCreateInfoFUCHSIA<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferCollectionBufferCreateInfoFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCollectionBufferCreateInfoFUCHSIA<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`collection`] is the [`BufferCollectionFUCHSIA`] handle
-    collection: BufferCollectionFUCHSIA,
+    pub collection: BufferCollectionFUCHSIA,
     ///[`index`] is the index of the buffer in the buffer collection from
     ///which the memory will be imported
-    index: u32,
+    pub index: u32,
 }
 impl<'lt> Default for BufferCollectionBufferCreateInfoFUCHSIA<'lt> {
     fn default() -> Self {
@@ -1011,19 +1015,20 @@ impl<'lt> BufferCollectionBufferCreateInfoFUCHSIA<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferCollectionCreateInfoFUCHSIA")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCollectionCreateInfoFUCHSIA<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`collection_token`] is a [`zx_handle_t`] containing the Sysmem
     ///client’s buffer collection token
-    collection_token: zx_handle_t,
+    pub collection_token: zx_handle_t,
 }
 impl<'lt> Default for BufferCollectionCreateInfoFUCHSIA<'lt> {
     fn default() -> Self {
@@ -1182,48 +1187,49 @@ impl<'lt> BufferCollectionCreateInfoFUCHSIA<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferCollectionPropertiesFUCHSIA")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCollectionPropertiesFUCHSIA<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`memory_type_bits`] is a bitmask containing one bit set for every
     ///memory type which the buffer collection can be imported as buffer
     ///collection
-    memory_type_bits: u32,
+    pub memory_type_bits: u32,
     ///[`buffer_count`] is the number of buffers in the collection
-    buffer_count: u32,
+    pub buffer_count: u32,
     ///[`create_info_index`] as described in [Sysmem chosen create infos](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#sysmem-chosen-create-infos)
-    create_info_index: u32,
+    pub create_info_index: u32,
     ///[`sysmem_pixel_format`] is the Sysmem `PixelFormatType` as defined in
     ///`fuchsia.sysmem/image_formats.fidl`
-    sysmem_pixel_format: u64,
+    pub sysmem_pixel_format: u64,
     ///[`format_features`] is a bitmask of [`FormatFeatureFlagBits`]
     ///shared by the buffer collection
-    format_features: FormatFeatureFlags,
+    pub format_features: FormatFeatureFlags,
     ///[`sysmem_color_space_index`] is a [`SysmemColorSpaceFUCHSIA`] struct
     ///specifying the color space
-    sysmem_color_space_index: SysmemColorSpaceFUCHSIA<'lt>,
+    pub sysmem_color_space_index: SysmemColorSpaceFUCHSIA<'lt>,
     ///[`sampler_ycbcr_conversion_components`] is a [`ComponentMapping`]
     ///struct specifying the component mapping
-    sampler_ycbcr_conversion_components: ComponentMapping,
+    pub sampler_ycbcr_conversion_components: ComponentMapping,
     ///[`suggested_ycbcr_model`] is a [`SamplerYcbcrModelConversion`] value
     ///specifying the suggested Y′C<sub>B</sub>C<sub>R</sub> model
-    suggested_ycbcr_model: SamplerYcbcrModelConversion,
+    pub suggested_ycbcr_model: SamplerYcbcrModelConversion,
     ///[`suggested_ycbcr_range`] is a [`SamplerYcbcrRange`] value
     ///specifying the suggested Y′C<sub>B</sub>C<sub>R</sub> range
-    suggested_ycbcr_range: SamplerYcbcrRange,
+    pub suggested_ycbcr_range: SamplerYcbcrRange,
     ///[`suggested_x_chroma_offset`] is a [`ChromaLocation`] value
     ///specifying the suggested X chroma offset
-    suggested_x_chroma_offset: ChromaLocation,
+    pub suggested_x_chroma_offset: ChromaLocation,
     ///[`suggested_y_chroma_offset`] is a [`ChromaLocation`] value
     ///specifying the suggested Y chroma offset
-    suggested_y_chroma_offset: ChromaLocation,
+    pub suggested_y_chroma_offset: ChromaLocation,
 }
 impl<'lt> Default for BufferCollectionPropertiesFUCHSIA<'lt> {
     fn default() -> Self {
@@ -1484,24 +1490,25 @@ impl<'lt> BufferCollectionPropertiesFUCHSIA<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferConstraintsInfoFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferConstraintsInfoFUCHSIA<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///No documentation found
-    create_info: BufferCreateInfo<'lt>,
+    pub create_info: BufferCreateInfo<'lt>,
     ///[`required_format_features`] bitmask of [`FormatFeatureFlagBits`]
     ///required features of the buffers in the buffer collection
-    required_format_features: FormatFeatureFlags,
+    pub required_format_features: FormatFeatureFlags,
     ///[`buffer_collection_constraints`] is used to supply parameters for the
     ///negotiation and allocation of the buffer collection
-    buffer_collection_constraints: BufferCollectionConstraintsInfoFUCHSIA<'lt>,
+    pub buffer_collection_constraints: BufferCollectionConstraintsInfoFUCHSIA<'lt>,
 }
 impl<'lt> Default for BufferConstraintsInfoFUCHSIA<'lt> {
     fn default() -> Self {
@@ -1629,18 +1636,19 @@ impl<'lt> BufferConstraintsInfoFUCHSIA<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSysmemColorSpaceFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SysmemColorSpaceFUCHSIA<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`color_space`] value of the Sysmem `ColorSpaceType`
-    color_space: u32,
+    pub color_space: u32,
 }
 impl<'lt> Default for SysmemColorSpaceFUCHSIA<'lt> {
     fn default() -> Self {
@@ -1758,34 +1766,35 @@ impl<'lt> SysmemColorSpaceFUCHSIA<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageFormatConstraintsInfoFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageFormatConstraintsInfoFUCHSIA<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`image_create_info`] is the [`ImageCreateInfo`] used to create a
     ///[`Image`] that is to use memory from the
     ///[`BufferCollectionFUCHSIA`]
-    image_create_info: ImageCreateInfo<'lt>,
+    pub image_create_info: ImageCreateInfo<'lt>,
     ///[`required_format_features`] is a bitmask of
     ///[`FormatFeatureFlagBits`] specifying required features of the
     ///buffers in the buffer collection
-    required_format_features: FormatFeatureFlags,
+    pub required_format_features: FormatFeatureFlags,
     ///[`flags`] is reserved for future use
-    flags: ImageFormatConstraintsFlagsFUCHSIA,
+    pub flags: ImageFormatConstraintsFlagsFUCHSIA,
     ///[`sysmem_pixel_format`] is a `PixelFormatType` value from the
     ///`fuchsia.sysmem/image_formats.fidl` FIDL interface
-    sysmem_pixel_format: u64,
+    pub sysmem_pixel_format: u64,
     ///[`color_space_count`] the element count of [`color_spaces`]
-    color_space_count: u32,
+    pub color_space_count: u32,
     ///[`color_spaces`] is a pointer to an array of
     ///[`SysmemColorSpaceFUCHSIA`] structs of size [`color_space_count`]
-    color_spaces: *const SysmemColorSpaceFUCHSIA<'lt>,
+    pub color_spaces: *const SysmemColorSpaceFUCHSIA<'lt>,
 }
 impl<'lt> Default for ImageFormatConstraintsInfoFUCHSIA<'lt> {
     fn default() -> Self {
@@ -2010,33 +2019,34 @@ impl<'lt> ImageFormatConstraintsInfoFUCHSIA<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageConstraintsInfoFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageConstraintsInfoFUCHSIA<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`format_constraints_count`] is the number of elements in
     ///[`format_constraints`].
-    format_constraints_count: u32,
+    pub format_constraints_count: u32,
     ///[`format_constraints`] is a pointer to an array of
     ///[`ImageFormatConstraintsInfoFUCHSIA`] structures of size
     ///[`format_constraints_count`] that is used to further constrain buffer
     ///collection format selection for image-based buffer collections.
-    format_constraints: *const ImageFormatConstraintsInfoFUCHSIA<'lt>,
+    pub format_constraints: *const ImageFormatConstraintsInfoFUCHSIA<'lt>,
     ///[`buffer_collection_constraints`] is a
     ///[`BufferCollectionConstraintsInfoFUCHSIA`] structure used to supply
     ///parameters for the negotiation and allocation for buffer-based buffer
     ///collections.
-    buffer_collection_constraints: BufferCollectionConstraintsInfoFUCHSIA<'lt>,
+    pub buffer_collection_constraints: BufferCollectionConstraintsInfoFUCHSIA<'lt>,
     ///[`flags`] is a [`ImageConstraintsInfoFlagBitsFUCHSIA`] value
     ///specifying hints about the type of memory Sysmem should allocate for the
     ///buffer collection.
-    flags: ImageConstraintsInfoFlagsFUCHSIA,
+    pub flags: ImageConstraintsInfoFlagsFUCHSIA,
 }
 impl<'lt> Default for ImageConstraintsInfoFUCHSIA<'lt> {
     fn default() -> Self {
@@ -2214,31 +2224,32 @@ impl<'lt> ImageConstraintsInfoFUCHSIA<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferCollectionConstraintsInfoFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCollectionConstraintsInfoFUCHSIA<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`min_buffer_count`] is the minimum number of buffers available in the
     ///collection
-    min_buffer_count: u32,
+    pub min_buffer_count: u32,
     ///[`max_buffer_count`] is the maximum number of buffers allowed in the
     ///collection
-    max_buffer_count: u32,
+    pub max_buffer_count: u32,
     ///[`min_buffer_count_for_camping`] is the per-participant minimum buffers
     ///for camping
-    min_buffer_count_for_camping: u32,
+    pub min_buffer_count_for_camping: u32,
     ///[`min_buffer_count_for_dedicated_slack`] is the per-participant minimum
     ///buffers for dedicated slack
-    min_buffer_count_for_dedicated_slack: u32,
+    pub min_buffer_count_for_dedicated_slack: u32,
     ///[`min_buffer_count_for_shared_slack`] is the per-participant minimum
     ///buffers for shared slack
-    min_buffer_count_for_shared_slack: u32,
+    pub min_buffer_count_for_shared_slack: u32,
 }
 impl<'lt> Default for BufferCollectionConstraintsInfoFUCHSIA<'lt> {
     fn default() -> Self {
@@ -2390,6 +2401,7 @@ impl<'lt> BufferCollectionConstraintsInfoFUCHSIA<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferCollectionFUCHSIA")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]

@@ -692,6 +692,7 @@ impl SwapchainCreateFlagBitsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSwapchainCreateFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1192,73 +1193,74 @@ impl std::fmt::Debug for SwapchainCreateFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSwapchainCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SwapchainCreateInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`SwapchainCreateFlagBitsKHR`]
     ///indicating parameters of the swapchain creation.
-    flags: SwapchainCreateFlagsKHR,
+    pub flags: SwapchainCreateFlagsKHR,
     ///[`surface`] is the surface onto which the swapchain will present
     ///images.
     ///If the creation succeeds, the swapchain becomes associated with
     ///[`surface`].
-    surface: SurfaceKHR,
+    pub surface: SurfaceKHR,
     ///[`min_image_count`] is the minimum number of presentable images that the
     ///application needs.
     ///The implementation will either create the swapchain with at least that
     ///many images, or it will fail to create the swapchain.
-    min_image_count: u32,
+    pub min_image_count: u32,
     ///[`image_format`] is a [`Format`] value specifying the format the
     ///swapchain image(s) will be created with.
-    image_format: Format,
+    pub image_format: Format,
     ///[`image_color_space`] is a [`ColorSpaceKHR`] value specifying the
     ///way the swapchain interprets image data.
-    image_color_space: ColorSpaceKHR,
+    pub image_color_space: ColorSpaceKHR,
     ///[`image_extent`] is the size (in pixels) of the swapchain image(s).
     ///The behavior is platform-dependent if the image extent does not match
     ///the surface’s `currentExtent` as returned by
     ///[`GetPhysicalDeviceSurfaceCapabilitiesKHR`].
-    image_extent: Extent2D,
+    pub image_extent: Extent2D,
     ///[`image_array_layers`] is the number of views in a multiview/stereo
     ///surface.
     ///For non-stereoscopic-3D applications, this value is 1.
-    image_array_layers: u32,
+    pub image_array_layers: u32,
     ///[`image_usage`] is a bitmask of [`ImageUsageFlagBits`] describing
     ///the intended usage of the (acquired) swapchain images.
-    image_usage: ImageUsageFlags,
+    pub image_usage: ImageUsageFlags,
     ///[`image_sharing_mode`] is the sharing mode used for the image(s) of the
     ///swapchain.
-    image_sharing_mode: SharingMode,
+    pub image_sharing_mode: SharingMode,
     ///[`queue_family_index_count`] is the number of queue families having
     ///access to the image(s) of the swapchain when [`image_sharing_mode`] is
     ///`VK_SHARING_MODE_CONCURRENT`.
-    queue_family_index_count: u32,
+    pub queue_family_index_count: u32,
     ///[`queue_family_indices`] is a pointer to an array of queue family
     ///indices having access to the images(s) of the swapchain when
     ///[`image_sharing_mode`] is `VK_SHARING_MODE_CONCURRENT`.
-    queue_family_indices: *const u32,
+    pub queue_family_indices: *const u32,
     ///[`pre_transform`] is a [`SurfaceTransformFlagBitsKHR`] value
     ///describing the transform, relative to the presentation engine’s natural
     ///orientation, applied to the image content prior to presentation.
     ///If it does not match the `currentTransform` value returned by
     ///[`GetPhysicalDeviceSurfaceCapabilitiesKHR`], the presentation engine
     ///will transform the image content as part of the presentation operation.
-    pre_transform: SurfaceTransformFlagBitsKHR,
+    pub pre_transform: SurfaceTransformFlagBitsKHR,
     ///[`composite_alpha`] is a [`CompositeAlphaFlagBitsKHR`] value
     ///indicating the alpha compositing mode to use when this surface is
     ///composited together with other surfaces on certain window systems.
-    composite_alpha: CompositeAlphaFlagBitsKHR,
+    pub composite_alpha: CompositeAlphaFlagBitsKHR,
     ///[`present_mode`] is the presentation mode the swapchain will use.
     ///A swapchain’s present mode determines how incoming present requests will
     ///be processed and queued internally.
-    present_mode: PresentModeKHR,
+    pub present_mode: PresentModeKHR,
     ///[`clipped`] specifies whether the Vulkan implementation is allowed to
     ///discard rendering operations that affect regions of the surface that are
     ///not visible.
@@ -1271,13 +1273,13 @@ pub struct SwapchainCreateInfoKHR<'lt> {
     ///   efficient presentation methods to be used on some platforms.
     /// - If set to [`FALSE`], presentable images associated with the swapchain will own all of the
     ///   pixels they contain.
-    clipped: Bool32,
+    pub clipped: Bool32,
     ///[`old_swapchain`] is [`crate::utils::Handle::null`], or the existing non-retired
     ///swapchain currently associated with [`surface`].
     ///Providing a valid [`old_swapchain`] **may**  aid in the resource reuse, and
     ///also allows the application to still present any images that are already
     ///acquired from it.
-    old_swapchain: SwapchainKHR,
+    pub old_swapchain: SwapchainKHR,
 }
 impl<'lt> Default for SwapchainCreateInfoKHR<'lt> {
     fn default() -> Self {
@@ -1669,37 +1671,38 @@ impl<'lt> SwapchainCreateInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPresentInfoKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PresentInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`wait_semaphore_count`] is the number of semaphores to wait for before
     ///issuing the present request.
     ///The number  **may**  be zero.
-    wait_semaphore_count: u32,
+    pub wait_semaphore_count: u32,
     ///[`wait_semaphores`] is `NULL` or a pointer to an array of
     ///[`Semaphore`] objects with [`wait_semaphore_count`] entries, and
     ///specifies the semaphores to wait for before issuing the present request.
-    wait_semaphores: *const Semaphore,
+    pub wait_semaphores: *const Semaphore,
     ///[`swapchain_count`] is the number of swapchains being presented to by
     ///this command.
-    swapchain_count: u32,
+    pub swapchain_count: u32,
     ///[`swapchains`] is a pointer to an array of [`SwapchainKHR`]
     ///objects with [`swapchain_count`] entries.
     ///A given swapchain  **must**  not appear in this list more than once.
-    swapchains: *const SwapchainKHR,
+    pub swapchains: *const SwapchainKHR,
     ///[`image_indices`] is a pointer to an array of indices into the array
     ///of each swapchain’s presentable images, with [`swapchain_count`]
     ///entries.
     ///Each entry in this array identifies the image to present on the
     ///corresponding entry in the [`swapchains`] array.
-    image_indices: *const u32,
+    pub image_indices: *const u32,
     ///[`results`] is a pointer to an array of [`VulkanResultCodes`] typed elements
     ///with [`swapchain_count`] entries.
     ///Applications that do not need per-swapchain results  **can**  use `NULL` for
@@ -1707,7 +1710,7 @@ pub struct PresentInfoKHR<'lt> {
     ///If non-`NULL`, each entry in [`results`] will be set to the
     ///[`VulkanResultCodes`] for presenting the swapchain corresponding to the same
     ///index in [`swapchains`].
-    results: *mut VulkanResultCodes,
+    pub results: *mut VulkanResultCodes,
 }
 impl<'lt> Default for PresentInfoKHR<'lt> {
     fn default() -> Self {
@@ -1928,6 +1931,7 @@ impl<'lt> PresentInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSwapchainKHR")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]

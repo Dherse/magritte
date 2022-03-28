@@ -163,57 +163,58 @@ pub const KHR_PORTABILITY_SUBSET_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDevicePortabilitySubsetFeaturesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`constant_alpha_color_blend_factors`] indicates whether this
     ///implementation supports constant *alpha*[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blendfactors](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blendfactors)
     ///used as source or destination *color*[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blending](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blending).
-    constant_alpha_color_blend_factors: Bool32,
+    pub constant_alpha_color_blend_factors: Bool32,
     ///[`events`] indicates whether this implementation
     ///supports synchronization using [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-events](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-events).
-    events: Bool32,
+    pub events: Bool32,
     ///[`image_view_format_reinterpretation`] indicates whether this
     ///implementation supports a [`ImageView`] being created with a texel
     ///format containing a different number of components, or a different
     ///number of bits in each component, than the texel format of the
     ///underlying [`Image`].
-    image_view_format_reinterpretation: Bool32,
+    pub image_view_format_reinterpretation: Bool32,
     ///[`image_view_format_swizzle`]
     ///indicates whether this implementation supports remapping format
     ///components using [`ImageViewCreateInfo`]::`components`.
-    image_view_format_swizzle: Bool32,
+    pub image_view_format_swizzle: Bool32,
     ///[`image_view_2_d_on_3_d_image`] indicates
     ///whether this implementation supports a [`Image`] being created with
     ///the `VK_IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT` flag set, permitting a
     ///2D or 2D array image view to be created on a 3D [`Image`].
-    image_view_2_d_on_3_d_image: Bool32,
+    pub image_view_2_d_on_3_d_image: Bool32,
     ///[`multisample_array_image`] indicates
     ///whether this implementation supports a [`Image`] being created as a
     ///2D array with multiple samples per texel.
-    multisample_array_image: Bool32,
+    pub multisample_array_image: Bool32,
     ///[`mutable_comparison_samplers`]
     ///indicates whether this implementation allows descriptors with comparison
     ///samplers to be [updated](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-updates).
-    mutable_comparison_samplers: Bool32,
+    pub mutable_comparison_samplers: Bool32,
     ///[`point_polygons`] indicates whether this
     ///implementation supports [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast) using a *point*[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-polygonmode](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-polygonmode).
-    point_polygons: Bool32,
+    pub point_polygons: Bool32,
     ///[`sampler_mip_lod_bias`] indicates whether
     ///this implementation supports setting a [mipmap LOD
     ///bias value](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-mipLodBias) when [creating a sampler](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers).
-    sampler_mip_lod_bias: Bool32,
+    pub sampler_mip_lod_bias: Bool32,
     ///[`separate_stencil_mask_ref`]
     ///indicates whether this implementation supports separate front and back
     ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-stencil](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-stencil) reference values.
-    separate_stencil_mask_ref: Bool32,
+    pub separate_stencil_mask_ref: Bool32,
     ///[`shader_sample_rate_interpolation_functions`] indicates whether this
     ///implementation supports fragment shaders which use the
     ///[`InterpolationFunction`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#spirvenv-capabilities-table-InterpolationFunction) capability and the extended instructions
@@ -221,27 +222,27 @@ pub struct PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
     ///`InterpolateAtSample` from the `GLSL.std.450` extended instruction set.
     ///This member is only meaningful if the
     ///[sampleRateShading](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-sampleRateShading) feature is supported.
-    shader_sample_rate_interpolation_functions: Bool32,
+    pub shader_sample_rate_interpolation_functions: Bool32,
     ///[`tessellation_isolines`] indicates
     ///whether this implementation supports
     ///[isoline output](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#tessellation-isoline-tessellation) from the
     ///[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#tessellation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#tessellation) stage of a graphics pipeline.
     ///This member is only meaningful if
     ///[tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-tessellationShader) are supported.
-    tessellation_isolines: Bool32,
+    pub tessellation_isolines: Bool32,
     ///[`tessellation_point_mode`] indicates
     ///whether this implementation supports [point
     ///output](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#tessellation-point-mode) from the [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#tessellation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#tessellation) stage of a graphics pipeline.
     ///This member is only meaningful if
     ///[tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-tessellationShader) are supported.
-    tessellation_point_mode: Bool32,
+    pub tessellation_point_mode: Bool32,
     ///[`triangle_fans`] indicates whether this
     ///implementation supports [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-fans](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-fans) primitive topology.
-    triangle_fans: Bool32,
+    pub triangle_fans: Bool32,
     ///[`vertex_attribute_access_beyond_stride`] indicates whether this
     ///implementation supports accessing a vertex input attribute beyond the
     ///stride of the corresponding vertex input binding.
-    vertex_attribute_access_beyond_stride: Bool32,
+    pub vertex_attribute_access_beyond_stride: Bool32,
 }
 impl<'lt> Default for PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
     fn default() -> Self {
@@ -885,22 +886,23 @@ impl<'lt> PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDevicePortabilitySubsetPropertiesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePortabilitySubsetPropertiesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`min_vertex_input_binding_stride_alignment`] indicates the minimum
     ///alignment for vertex input strides.
     ///[`VertexInputBindingDescription`]::`stride` **must**  be a multiple
     ///of, and at least as large as, this value.
     ///The value  **must**  be a power of two.
-    min_vertex_input_binding_stride_alignment: u32,
+    pub min_vertex_input_binding_stride_alignment: u32,
 }
 impl<'lt> Default for PhysicalDevicePortabilitySubsetPropertiesKHR<'lt> {
     fn default() -> Self {

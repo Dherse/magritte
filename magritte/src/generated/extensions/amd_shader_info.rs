@@ -91,6 +91,7 @@ pub const AMD_SHADER_INFO_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_AMD_s
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkShaderInfoTypeAMD")]
+#[doc(alias = "VkShaderInfoTypeAMD")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -162,6 +163,7 @@ impl ShaderInfoTypeAMD {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkShaderResourceUsageAMD")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -169,19 +171,19 @@ impl ShaderInfoTypeAMD {
 pub struct ShaderResourceUsageAMD {
     ///[`num_used_vgprs`] is the number of vector instruction general-purpose
     ///registers used by this shader.
-    num_used_vgprs: u32,
+    pub num_used_vgprs: u32,
     ///[`num_used_sgprs`] is the number of scalar instruction general-purpose
     ///registers used by this shader.
-    num_used_sgprs: u32,
+    pub num_used_sgprs: u32,
     ///[`lds_size_per_local_work_group`] is the maximum local data store size per
     ///work group in bytes.
-    lds_size_per_local_work_group: u32,
+    pub lds_size_per_local_work_group: u32,
     ///[`lds_usage_size_in_bytes`] is the LDS usage size in bytes per work group
     ///by this shader.
-    lds_usage_size_in_bytes: usize,
+    pub lds_usage_size_in_bytes: usize,
     ///[`scratch_mem_usage_in_bytes`] is the scratch memory usage in bytes by
     ///this shader.
-    scratch_mem_usage_in_bytes: usize,
+    pub scratch_mem_usage_in_bytes: usize,
 }
 impl Default for ShaderResourceUsageAMD {
     fn default() -> Self {
@@ -315,6 +317,7 @@ impl ShaderResourceUsageAMD {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkShaderStatisticsInfoAMD")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -322,25 +325,25 @@ impl ShaderResourceUsageAMD {
 pub struct ShaderStatisticsInfoAMD {
     ///[`shader_stage_mask`] are the combination of logical shader stages
     ///contained within this shader.
-    shader_stage_mask: ShaderStageFlags,
+    pub shader_stage_mask: ShaderStageFlags,
     ///[`resource_usage`] is a [`ShaderResourceUsageAMD`] structure
     ///describing internal physical device resources used by this shader.
-    resource_usage: ShaderResourceUsageAMD,
+    pub resource_usage: ShaderResourceUsageAMD,
     ///[`num_physical_vgprs`] is the maximum number of vector instruction
     ///general-purpose registers (VGPRs) available to the physical device.
-    num_physical_vgprs: u32,
+    pub num_physical_vgprs: u32,
     ///[`num_physical_sgprs`] is the maximum number of scalar instruction
     ///general-purpose registers (SGPRs) available to the physical device.
-    num_physical_sgprs: u32,
+    pub num_physical_sgprs: u32,
     ///[`num_available_vgprs`] is the maximum limit of VGPRs made available to
     ///the shader compiler.
-    num_available_vgprs: u32,
+    pub num_available_vgprs: u32,
     ///[`num_available_sgprs`] is the maximum limit of SGPRs made available to
     ///the shader compiler.
-    num_available_sgprs: u32,
+    pub num_available_sgprs: u32,
     ///[`compute_work_group_size`] is the local workgroup size of this shader in
     ///{ X, Y, Z } dimensions.
-    compute_work_group_size: [u32; 3],
+    pub compute_work_group_size: [u32; 3],
 }
 impl Default for ShaderStatisticsInfoAMD {
     fn default() -> Self {

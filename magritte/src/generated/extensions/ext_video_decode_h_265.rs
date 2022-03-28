@@ -139,19 +139,20 @@ impl std::fmt::Debug for VideoDecodeH265CreateFlagsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoDecodeH265ProfileEXT")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH265ProfileEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`std_profile_idc`] is a [`StdVideoH265ProfileIdc`] value specifying
     ///the H.265 codec profile IDC.
-    std_profile_idc: StdVideoH265ProfileIdc,
+    pub std_profile_idc: StdVideoH265ProfileIdc,
 }
 impl<'lt> Default for VideoDecodeH265ProfileEXT<'lt> {
     fn default() -> Self {
@@ -261,22 +262,23 @@ impl<'lt> VideoDecodeH265ProfileEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoDecodeH265CapabilitiesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH265CapabilitiesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`max_level`] is the maximum H.265 level supported by the device.
-    max_level: u32,
+    pub max_level: u32,
     ///[`std_extension_version`] is a [`ExtensionProperties`] structure
     ///specifying the H.265 extension name and version supported by this
     ///implementation.
-    std_extension_version: ExtensionProperties,
+    pub std_extension_version: ExtensionProperties,
 }
 impl<'lt> Default for VideoDecodeH265CapabilitiesEXT<'lt> {
     fn default() -> Self {
@@ -399,21 +401,22 @@ impl<'lt> VideoDecodeH265CapabilitiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoDecodeH265SessionCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH265SessionCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: VideoDecodeH265CreateFlagsEXT,
+    pub flags: VideoDecodeH265CreateFlagsEXT,
     ///[`std_extension_version`] is a pointer to a [`ExtensionProperties`]
     ///structure specifying H.265 codec extensions.
-    std_extension_version: *const ExtensionProperties,
+    pub std_extension_version: *const ExtensionProperties,
 }
 impl<'lt> Default for VideoDecodeH265SessionCreateInfoEXT<'lt> {
     fn default() -> Self {
@@ -573,35 +576,36 @@ impl<'lt> VideoDecodeH265SessionCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoDecodeH265SessionParametersAddInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`sps_std_count`] is the number of SPS elements in the [`sps_std`].
     ///Its value  **must**  be less than or equal to the value of
     ///`maxSpsStdCount`.
-    sps_std_count: u32,
+    pub sps_std_count: u32,
     ///[`sps_std`] is a pointer to an array of
     ///[`StdVideoH265SequenceParameterSet`] structures representing H.265
     ///sequence parameter sets.
     ///Each element of the array  **must**  have a unique H.265 VPS-SPS ID pair.
-    sps_std: *const StdVideoH265SequenceParameterSet,
+    pub sps_std: *const StdVideoH265SequenceParameterSet,
     ///[`pps_std_count`] is the number of PPS provided in [`pps_std`].
     ///Its value  **must**  be less than or equal to the value of
     ///`maxPpsStdCount`.
-    pps_std_count: u32,
+    pub pps_std_count: u32,
     ///[`pps_std`] is a pointer to an array of
     ///[`StdVideoH265PictureParameterSet`] structures representing H.265
     ///picture parameter sets.
     ///Each element of the array entry  **must**  have a unique H.265 VPS-SPS-PPS ID
     ///tuple.
-    pps_std: *const StdVideoH265PictureParameterSet,
+    pub pps_std: *const StdVideoH265PictureParameterSet,
 }
 impl<'lt> Default for VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
     fn default() -> Self {
@@ -758,26 +762,27 @@ impl<'lt> VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoDecodeH265SessionParametersCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`max_sps_std_count`] is the maximum number of SPS parameters that the
     ///[`VideoSessionParametersKHR`] can contain.
-    max_sps_std_count: u32,
+    pub max_sps_std_count: u32,
     ///[`max_pps_std_count`] is the maximum number of PPS parameters that the
     ///[`VideoSessionParametersKHR`] can contain.
-    max_pps_std_count: u32,
+    pub max_pps_std_count: u32,
     ///[`parameters_add_info`] is `NULL` or a pointer to a
     ///[`VideoDecodeH265SessionParametersAddInfoEXT`] structure specifying
     ///H.265 parameters to add upon object creation.
-    parameters_add_info: *const VideoDecodeH265SessionParametersAddInfoEXT<'lt>,
+    pub parameters_add_info: *const VideoDecodeH265SessionParametersAddInfoEXT<'lt>,
 }
 impl<'lt> Default for VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
     fn default() -> Self {
@@ -919,26 +924,27 @@ impl<'lt> VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoDecodeH265PictureInfoEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH265PictureInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`std_picture_info`] is a pointer to a
     ///[`StdVideoDecodeH265PictureInfo`] structure specifying codec standard
     ///specific picture information from the H.265 specification.
-    std_picture_info: *mut StdVideoDecodeH265PictureInfo,
+    pub std_picture_info: *mut StdVideoDecodeH265PictureInfo,
     ///[`slices_count`] is the number of slices in this picture.
-    slices_count: u32,
+    pub slices_count: u32,
     ///[`slices_data_offsets`] is a pointer to an array of [`slices_count`]
     ///offsets indicating the start offset of each slice within the bitstream
     ///buffer.
-    slices_data_offsets: *const u32,
+    pub slices_data_offsets: *const u32,
 }
 impl<'lt> Default for VideoDecodeH265PictureInfoEXT<'lt> {
     fn default() -> Self {
@@ -1077,21 +1083,22 @@ impl<'lt> VideoDecodeH265PictureInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoDecodeH265DpbSlotInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH265DpbSlotInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`std_reference_info`] is a pointer to a
     ///[`StdVideoDecodeH265ReferenceInfo`] structure specifying the codec
     ///standard specific picture reference information from the H.264
     ///specification.
-    std_reference_info: *const StdVideoDecodeH265ReferenceInfo,
+    pub std_reference_info: *const StdVideoDecodeH265ReferenceInfo,
 }
 impl<'lt> Default for VideoDecodeH265DpbSlotInfoEXT<'lt> {
     fn default() -> Self {

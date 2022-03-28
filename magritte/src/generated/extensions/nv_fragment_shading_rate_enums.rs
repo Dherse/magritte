@@ -171,6 +171,7 @@ pub const NV_FRAGMENT_SHADING_RATE_ENUMS_EXTENSION_NAME: &'static CStr =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFragmentShadingRateNV")]
+#[doc(alias = "VkFragmentShadingRateNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -275,6 +276,7 @@ impl FragmentShadingRateNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFragmentShadingRateTypeNV")]
+#[doc(alias = "VkFragmentShadingRateTypeNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -369,28 +371,29 @@ impl FragmentShadingRateTypeNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`fragment_shading_rate_enums`]
     ///indicates that the implementation supports specifying fragment shading
     ///rates using the [`FragmentShadingRateNV`] enumerated type.
-    fragment_shading_rate_enums: Bool32,
+    pub fragment_shading_rate_enums: Bool32,
     ///[`supersample_fragment_shading_rates`] indicates that the implementation
     ///supports fragment shading rate enum values indicating more than one
     ///invocation per fragment.
-    supersample_fragment_shading_rates: Bool32,
+    pub supersample_fragment_shading_rates: Bool32,
     ///[`no_invocation_fragment_shading_rates`] indicates that the implementation
     ///supports a fragment shading rate enum value indicating that no fragment
     ///shaders should be invoked when that shading rate is used.
-    no_invocation_fragment_shading_rates: Bool32,
+    pub no_invocation_fragment_shading_rates: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
     fn default() -> Self {
@@ -597,21 +600,22 @@ impl<'lt> PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`max_fragment_shading_rate_invocation_count`] is a
     ///[`SampleCountFlagBits`] value indicating the maximum number of
     ///fragment shader invocations per fragment supported in pipeline,
     ///primitive, and attachment fragment shading rates.
-    max_fragment_shading_rate_invocation_count: SampleCountFlagBits,
+    pub max_fragment_shading_rate_invocation_count: SampleCountFlagBits,
 }
 impl<'lt> Default for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
     fn default() -> Self {
@@ -740,23 +744,24 @@ impl<'lt> PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineFragmentShadingRateEnumStateCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`shading_rate_type`] specifies a [`FragmentShadingRateTypeNV`]
     ///value indicating whether fragment shading rates are specified using
     ///fragment sizes or [`FragmentShadingRateNV`] enums.
-    shading_rate_type: FragmentShadingRateTypeNV,
+    pub shading_rate_type: FragmentShadingRateTypeNV,
     ///[`shading_rate`] specifies a [`FragmentShadingRateNV`] value
     ///indicating the pipeline fragment shading rate.
-    shading_rate: FragmentShadingRateNV,
+    pub shading_rate: FragmentShadingRateNV,
     ///[`combiner_ops`] specifies [`FragmentShadingRateCombinerOpKHR`]
     ///values determining how the
     ///[pipeline](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-pipeline),
@@ -764,7 +769,7 @@ pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV<'lt> {
     ///[attachment shading rates](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment)
     ///are [combined](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-combining) for fragments
     ///generated by drawing commands using the created pipeline.
-    combiner_ops: [FragmentShadingRateCombinerOpKHR; 2],
+    pub combiner_ops: [FragmentShadingRateCombinerOpKHR; 2],
 }
 impl<'lt> Default for PipelineFragmentShadingRateEnumStateCreateInfoNV<'lt> {
     fn default() -> Self {

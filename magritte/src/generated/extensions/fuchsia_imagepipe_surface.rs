@@ -127,21 +127,22 @@ impl std::fmt::Debug for ImagePipeSurfaceCreateFlagsFUCHSIA {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImagePipeSurfaceCreateInfoFUCHSIA")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImagePipeSurfaceCreateInfoFUCHSIA<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: ImagePipeSurfaceCreateFlagsFUCHSIA,
+    pub flags: ImagePipeSurfaceCreateFlagsFUCHSIA,
     ///[`image_pipe_handle`] is a [`zx_handle_t`] referring to the ImagePipe
     ///to associate with the surface.
-    image_pipe_handle: zx_handle_t,
+    pub image_pipe_handle: zx_handle_t,
 }
 impl<'lt> Default for ImagePipeSurfaceCreateInfoFUCHSIA<'lt> {
     fn default() -> Self {

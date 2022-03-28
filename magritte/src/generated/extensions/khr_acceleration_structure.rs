@@ -503,7 +503,10 @@ use crate::vulkan1_0::{
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData};
+use std::{
+    ffi::{c_void, CStr},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_ACCELERATION_STRUCTURE_SPEC_VERSION")]
@@ -565,6 +568,7 @@ pub const KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME: &'static CStr = crate::cstr
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCopyAccelerationStructureModeKHR")]
 #[doc(alias = "VkCopyAccelerationStructureModeKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -648,6 +652,7 @@ impl CopyAccelerationStructureModeKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBuildAccelerationStructureModeKHR")]
 #[doc(alias = "VkBuildAccelerationStructureModeKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -733,6 +738,7 @@ impl BuildAccelerationStructureModeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureTypeKHR")]
+#[doc(alias = "VkAccelerationStructureTypeKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -813,6 +819,7 @@ impl AccelerationStructureTypeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeometryTypeKHR")]
+#[doc(alias = "VkGeometryTypeKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -882,6 +889,7 @@ impl GeometryTypeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureBuildTypeKHR")]
+#[doc(alias = "VkAccelerationStructureBuildTypeKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -948,6 +956,7 @@ impl AccelerationStructureBuildTypeKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureCompatibilityKHR")]
 #[doc(alias = "VkAccelerationStructureCompatibilityKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1412,6 +1421,7 @@ impl AccelerationStructureCreateFlagBitsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkGeometryFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1726,6 +1736,7 @@ impl std::fmt::Debug for GeometryFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkGeometryInstanceFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2092,6 +2103,7 @@ impl std::fmt::Debug for GeometryInstanceFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBuildAccelerationStructureFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2453,6 +2465,7 @@ impl std::fmt::Debug for BuildAccelerationStructureFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureCreateFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2766,23 +2779,24 @@ impl std::fmt::Debug for AccelerationStructureCreateFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkWriteDescriptorSetAccelerationStructureKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct WriteDescriptorSetAccelerationStructureKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`acceleration_structure_count`] is the number of elements in
     ///[`acceleration_structures`].
-    acceleration_structure_count: u32,
+    pub acceleration_structure_count: u32,
     ///[`acceleration_structures`] is a pointer to an array of
     ///[`AccelerationStructureKHR`] structures specifying the acceleration
     ///structures to update.
-    acceleration_structures: *const AccelerationStructureKHR,
+    pub acceleration_structures: *const AccelerationStructureKHR,
 }
 impl<'lt> Default for WriteDescriptorSetAccelerationStructureKHR<'lt> {
     fn default() -> Self {
@@ -2929,29 +2943,30 @@ impl<'lt> WriteDescriptorSetAccelerationStructureKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceAccelerationStructureFeaturesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceAccelerationStructureFeaturesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`acceleration_structure`] indicates
     ///whether the implementation supports the acceleration structure
     ///functionality.
     ///See [Acceleration Structures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure).
-    acceleration_structure: Bool32,
+    pub acceleration_structure: Bool32,
     ///[`acceleration_structure_capture_replay`] indicates whether the
     ///implementation supports saving and reusing acceleration structure device
     ///addresses, e.g. for trace capture and replay.
-    acceleration_structure_capture_replay: Bool32,
+    pub acceleration_structure_capture_replay: Bool32,
     ///[`acceleration_structure_indirect_build`] indicates whether the
     ///implementation supports indirect acceleration structure build commands,
     ///e.g. [`CmdBuildAccelerationStructuresIndirectKHR`].
-    acceleration_structure_indirect_build: Bool32,
+    pub acceleration_structure_indirect_build: Bool32,
     ///[`acceleration_structure_host_commands`] indicates whether the
     ///implementation supports host side acceleration structure commands, e.g.
     ///[`BuildAccelerationStructuresKHR`],
@@ -2959,14 +2974,14 @@ pub struct PhysicalDeviceAccelerationStructureFeaturesKHR<'lt> {
     ///[`CopyAccelerationStructureToMemoryKHR`],
     ///[`CopyMemoryToAccelerationStructureKHR`],
     ///[`WriteAccelerationStructuresPropertiesKHR`].
-    acceleration_structure_host_commands: Bool32,
+    pub acceleration_structure_host_commands: Bool32,
     ///[`descriptor_binding_acceleration_structure_update_after_bind`] indicates
     ///whether the implementation supports updating acceleration structure
     ///descriptors after a set is bound.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR`.
-    descriptor_binding_acceleration_structure_update_after_bind: Bool32,
+    pub descriptor_binding_acceleration_structure_update_after_bind: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceAccelerationStructureFeaturesKHR<'lt> {
     fn default() -> Self {
@@ -3284,26 +3299,27 @@ impl<'lt> PhysicalDeviceAccelerationStructureFeaturesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceAccelerationStructurePropertiesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`max_geometry_count`] is the maximum number
     ///of geometries in the bottom level acceleration structure.
-    max_geometry_count: u64,
+    pub max_geometry_count: u64,
     ///[`max_instance_count`] is the maximum number
     ///of instances in the top level acceleration structure.
-    max_instance_count: u64,
+    pub max_instance_count: u64,
     ///[`max_primitive_count`] is the maximum
     ///number of triangles or AABBs in all geometries in the bottom level
     ///acceleration structure.
-    max_primitive_count: u64,
+    pub max_primitive_count: u64,
     ///[`max_per_stage_descriptor_acceleration_structures`] is the maximum number
     ///of acceleration structure bindings that  **can**  be accessible to a single
     ///shader stage in a pipeline layout.
@@ -3313,13 +3329,13 @@ pub struct PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
     ///Only descriptor bindings in descriptor set layouts created without the
     ///`VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set
     ///count against this limit.
-    max_per_stage_descriptor_acceleration_structures: u32,
+    pub max_per_stage_descriptor_acceleration_structures: u32,
     ///[`max_per_stage_descriptor_update_after_bind_acceleration_structures`] is
     ///similar to [`max_per_stage_descriptor_acceleration_structures`] but counts
     ///descriptor bindings from descriptor sets created with or without the
     ///`VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit
     ///set.
-    max_per_stage_descriptor_update_after_bind_acceleration_structures: u32,
+    pub max_per_stage_descriptor_update_after_bind_acceleration_structures: u32,
     ///[`max_descriptor_set_acceleration_structures`] is the maximum number of
     ///acceleration structure descriptors that  **can**  be included in descriptor
     ///bindings in a pipeline layout across all pipeline shader stages and
@@ -3330,18 +3346,18 @@ pub struct PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
     ///Only descriptor bindings in descriptor set layouts created without the
     ///`VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set
     ///count against this limit.
-    max_descriptor_set_acceleration_structures: u32,
+    pub max_descriptor_set_acceleration_structures: u32,
     ///[`max_descriptor_set_update_after_bind_acceleration_structures`] is similar
     ///to [`max_descriptor_set_acceleration_structures`] but counts descriptor
     ///bindings from descriptor sets created with or without the
     ///`VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit
     ///set.
-    max_descriptor_set_update_after_bind_acceleration_structures: u32,
+    pub max_descriptor_set_update_after_bind_acceleration_structures: u32,
     ///[`min_acceleration_structure_scratch_offset_alignment`] is the minimum
     /// **required**  alignment, in bytes, for scratch data passed in to an
     ///acceleration structure build command.
     ///The value  **must**  be a power of two.
-    min_acceleration_structure_scratch_offset_alignment: u32,
+    pub min_acceleration_structure_scratch_offset_alignment: u32,
 }
 impl<'lt> Default for PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
     fn default() -> Self {
@@ -3581,37 +3597,38 @@ impl<'lt> PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureGeometryTrianglesDataKHR")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureGeometryTrianglesDataKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`vertex_format`] is the [`Format`] of each vertex element.
-    vertex_format: Format,
+    pub vertex_format: Format,
     ///[`vertex_data`] is a device or host address to memory containing vertex
     ///data for this geometry.
-    vertex_data: DeviceOrHostAddressConstKHR<'lt>,
+    pub vertex_data: DeviceOrHostAddressConstKHR<'lt>,
     ///[`vertex_stride`] is the stride in bytes between each vertex.
-    vertex_stride: DeviceSize,
+    pub vertex_stride: DeviceSize,
     ///[`max_vertex`] is the highest index of a vertex that will be addressed
     ///by a build command using this structure.
-    max_vertex: u32,
+    pub max_vertex: u32,
     ///[`index_type`] is the [`IndexType`] of each index element.
-    index_type: IndexType,
+    pub index_type: IndexType,
     ///[`index_data`] is a device or host address to memory containing index
     ///data for this geometry.
-    index_data: DeviceOrHostAddressConstKHR<'lt>,
+    pub index_data: DeviceOrHostAddressConstKHR<'lt>,
     ///[`transform_data`] is a device or host address to memory containing an
     ///optional reference to a [`TransformMatrixKHR`] structure describing
     ///a transformation from the space in which the vertices in this geometry
     ///are described to the space in which the acceleration structure is
     ///defined.
-    transform_data: DeviceOrHostAddressConstKHR<'lt>,
+    pub transform_data: DeviceOrHostAddressConstKHR<'lt>,
 }
 impl<'lt> Default for AccelerationStructureGeometryTrianglesDataKHR<'lt> {
     fn default() -> Self {
@@ -3807,23 +3824,24 @@ impl<'lt> AccelerationStructureGeometryTrianglesDataKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureGeometryAabbsDataKHR")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureGeometryAabbsDataKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`data`] is a device or host address to memory containing
     ///[`AabbPositionsKHR`] structures containing position data for each
     ///axis-aligned bounding box in the geometry.
-    data: DeviceOrHostAddressConstKHR<'lt>,
+    pub data: DeviceOrHostAddressConstKHR<'lt>,
     ///[`stride`] is the stride in bytes between each entry in [`data`].
     ///The stride  **must**  be a multiple of `8`.
-    stride: DeviceSize,
+    pub stride: DeviceSize,
 }
 impl<'lt> Default for AccelerationStructureGeometryAabbsDataKHR<'lt> {
     fn default() -> Self {
@@ -3938,19 +3956,20 @@ impl<'lt> AccelerationStructureGeometryAabbsDataKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureGeometryInstancesDataKHR")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureGeometryInstancesDataKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`array_of_pointers`] specifies whether [`data`] is used as an array
     ///of addresses or just an array.
-    array_of_pointers: Bool32,
+    pub array_of_pointers: Bool32,
     ///[`data`] is either the address of an array of device or host addresses
     ///referencing individual [`AccelerationStructureInstanceKHR`]
     ///structures
@@ -3964,7 +3983,7 @@ pub struct AccelerationStructureGeometryInstancesDataKHR<'lt> {
     ///tightly packed.
     ///[`AccelerationStructureMotionInstanceNV`] structures have a stride
     ///of 160 bytes.
-    data: DeviceOrHostAddressConstKHR<'lt>,
+    pub data: DeviceOrHostAddressConstKHR<'lt>,
 }
 impl<'lt> Default for AccelerationStructureGeometryInstancesDataKHR<'lt> {
     fn default() -> Self {
@@ -4114,25 +4133,26 @@ impl<'lt> AccelerationStructureGeometryInstancesDataKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureGeometryKHR")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureGeometryKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`geometry_type`] describes which type of geometry this
     ///[`AccelerationStructureGeometryKHR`] refers to.
-    geometry_type: GeometryTypeKHR,
+    pub geometry_type: GeometryTypeKHR,
     ///[`geometry`] is a [`AccelerationStructureGeometryDataKHR`] union
     ///describing the geometry data for the relevant geometry type.
-    geometry: AccelerationStructureGeometryDataKHR<'lt>,
+    pub geometry: AccelerationStructureGeometryDataKHR<'lt>,
     ///[`flags`] is a bitmask of [`GeometryFlagBitsKHR`] values
     ///describing additional properties of how the geometry should be built.
-    flags: GeometryFlagsKHR,
+    pub flags: GeometryFlagsKHR,
 }
 impl<'lt> Default for AccelerationStructureGeometryKHR<'lt> {
     fn default() -> Self {
@@ -4382,46 +4402,47 @@ impl<'lt> AccelerationStructureGeometryKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureBuildGeometryInfoKHR")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureBuildGeometryInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`type_`] is a [`AccelerationStructureTypeKHR`] value specifying
     ///the type of acceleration structure being built.
-    type_: AccelerationStructureTypeKHR,
+    pub type_: AccelerationStructureTypeKHR,
     ///[`flags`] is a bitmask of
     ///[`BuildAccelerationStructureFlagBitsKHR`] specifying additional
     ///parameters of the acceleration structure.
-    flags: BuildAccelerationStructureFlagsKHR,
+    pub flags: BuildAccelerationStructureFlagsKHR,
     ///[`mode`] is a [`BuildAccelerationStructureModeKHR`] value
     ///specifying the type of operation to perform.
-    mode: BuildAccelerationStructureModeKHR,
+    pub mode: BuildAccelerationStructureModeKHR,
     ///[`src_acceleration_structure`] is a pointer to an existing acceleration
     ///structure that is to be used to update the `dst` acceleration
     ///structure when [`mode`] is
     ///`VK_BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR`.
-    src_acceleration_structure: AccelerationStructureKHR,
+    pub src_acceleration_structure: AccelerationStructureKHR,
     ///[`dst_acceleration_structure`] is a pointer to the target acceleration
     ///structure for the build.
-    dst_acceleration_structure: AccelerationStructureKHR,
+    pub dst_acceleration_structure: AccelerationStructureKHR,
     ///[`geometry_count`] specifies the number of geometries that will be
     ///built into [`dst_acceleration_structure`].
-    geometry_count: u32,
+    pub geometry_count: u32,
     ///[`geometries`] is a pointer to an array of
     ///[`AccelerationStructureGeometryKHR`] structures.
-    geometries: *const AccelerationStructureGeometryKHR<'lt>,
+    pub geometries: *const AccelerationStructureGeometryKHR<'lt>,
     ///[`pp_geometries`] is a pointer to an array of pointers to
     ///[`AccelerationStructureGeometryKHR`] structures.
-    pp_geometries: *const *const AccelerationStructureGeometryKHR<'lt>,
+    pub pp_geometries: *const *const AccelerationStructureGeometryKHR<'lt>,
     ///[`scratch_data`] is the device or host address to memory that will be
     ///used as scratch memory for the build.
-    scratch_data: DeviceOrHostAddressKHR<'lt>,
+    pub scratch_data: DeviceOrHostAddressKHR<'lt>,
 }
 impl<'lt> Default for AccelerationStructureBuildGeometryInfoKHR<'lt> {
     fn default() -> Self {
@@ -4716,6 +4737,7 @@ impl<'lt> AccelerationStructureBuildGeometryInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureBuildRangeInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -4723,16 +4745,16 @@ impl<'lt> AccelerationStructureBuildGeometryInfoKHR<'lt> {
 pub struct AccelerationStructureBuildRangeInfoKHR {
     ///[`primitive_count`] defines the number of primitives for a
     ///corresponding acceleration structure geometry.
-    primitive_count: u32,
+    pub primitive_count: u32,
     ///[`primitive_offset`] defines an offset in bytes into the memory where
     ///primitive data is defined.
-    primitive_offset: u32,
+    pub primitive_offset: u32,
     ///[`first_vertex`] is the index of the first vertex to build from for
     ///triangle geometry.
-    first_vertex: u32,
+    pub first_vertex: u32,
     ///[`transform_offset`] defines an offset in bytes into the memory where a
     ///transform matrix is defined.
-    transform_offset: u32,
+    pub transform_offset: u32,
 }
 impl Default for AccelerationStructureBuildRangeInfoKHR {
     fn default() -> Self {
@@ -4897,35 +4919,36 @@ impl AccelerationStructureBuildRangeInfoKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureCreateInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`create_flags`] is a bitmask of
     ///[`AccelerationStructureCreateFlagBitsKHR`] specifying additional
     ///creation parameters of the acceleration structure.
-    create_flags: AccelerationStructureCreateFlagsKHR,
+    pub create_flags: AccelerationStructureCreateFlagsKHR,
     ///[`buffer`] is the buffer on which the acceleration structure will be
     ///stored.
-    buffer: Buffer,
+    pub buffer: Buffer,
     ///[`offset`] is an offset in bytes from the base address of the buffer
     ///at which the acceleration structure will be stored, and  **must**  be a
     ///multiple of `256`.
-    offset: DeviceSize,
+    pub offset: DeviceSize,
     ///[`size`] is the size required for the acceleration structure.
-    size: DeviceSize,
+    pub size: DeviceSize,
     ///[`type_`] is a [`AccelerationStructureTypeKHR`] value specifying
     ///the type of acceleration structure that will be created.
-    type_: AccelerationStructureTypeKHR,
+    pub type_: AccelerationStructureTypeKHR,
     ///[`device_address`] is the device address requested for the acceleration
     ///structure if the [`accelerationStructureCaptureReplay`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-accelerationStructureCaptureReplay) feature is being used.
-    device_address: DeviceAddress,
+    pub device_address: DeviceAddress,
 }
 impl<'lt> Default for AccelerationStructureCreateInfoKHR<'lt> {
     fn default() -> Self {
@@ -5104,26 +5127,27 @@ impl<'lt> AccelerationStructureCreateInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAabbPositionsKHR")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct AabbPositionsKHR {
     ///[`min_x`] is the x position of one opposing corner of a bounding box.
-    min_x: f32,
+    pub min_x: f32,
     ///[`min_y`] is the y position of one opposing corner of a bounding box.
-    min_y: f32,
+    pub min_y: f32,
     ///[`min_z`] is the z position of one opposing corner of a bounding box.
-    min_z: f32,
+    pub min_z: f32,
     ///[`max_x`] is the x position of the other opposing corner of a bounding
     ///box.
-    max_x: f32,
+    pub max_x: f32,
     ///[`max_y`] is the y position of the other opposing corner of a bounding
     ///box.
-    max_y: f32,
+    pub max_y: f32,
     ///[`max_z`] is the z position of the other opposing corner of a bounding
     ///box.
-    max_z: f32,
+    pub max_z: f32,
 }
 impl Default for AabbPositionsKHR {
     fn default() -> Self {
@@ -5249,13 +5273,14 @@ impl AabbPositionsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkTransformMatrixKHR")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct TransformMatrixKHR {
     ///[`matrix`] is a 3x4 row-major affine transformation matrix.
-    matrix: [f32; 3],
+    pub matrix: [f32; 3],
 }
 impl Default for TransformMatrixKHR {
     fn default() -> Self {
@@ -5349,6 +5374,7 @@ impl TransformMatrixKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureInstanceKHR")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -5356,26 +5382,26 @@ impl TransformMatrixKHR {
 pub struct AccelerationStructureInstanceKHR {
     ///[`transform`] is a [`TransformMatrixKHR`] structure describing a
     ///transformation to be applied to the acceleration structure.
-    transform: TransformMatrixKHR,
+    pub transform: TransformMatrixKHR,
     ///[`instance_custom_index`] is a 24-bit user-specified index value
     ///accessible to ray shaders in the `InstanceCustomIndexKHR` built-in.
-    instance_custom_index: u32,
+    pub instance_custom_index: u32,
     ///[`mask`] is an 8-bit visibility mask for the geometry.
     ///The instance  **may**  only be hit if `Cull Mask & instance.mask != 0`
-    mask: u32,
+    pub mask: u32,
     ///[`instance_shader_binding_table_record_offset`] is a 24-bit offset used in
     ///calculating the hit shader binding table index.
-    instance_shader_binding_table_record_offset: u32,
+    pub instance_shader_binding_table_record_offset: u32,
     ///[`flags`] is an 8-bit mask of [`GeometryInstanceFlagBitsKHR`]
     ///values to apply to this instance.
-    flags: GeometryInstanceFlagsKHR,
+    pub flags: GeometryInstanceFlagsKHR,
     ///[`acceleration_structure_reference`] is either:
     /// - a device address containing the value obtained from
     ///   [`GetAccelerationStructureDeviceAddressKHR`] or [`GetAccelerationStructureHandleNV`]
     ///   (used by device operations which reference acceleration structures) or,
     /// - a [`AccelerationStructureKHR`] object (used by host operations which reference
     ///   acceleration structures).
-    acceleration_structure_reference: u64,
+    pub acceleration_structure_reference: u64,
 }
 impl Default for AccelerationStructureInstanceKHR {
     fn default() -> Self {
@@ -5511,19 +5537,20 @@ impl AccelerationStructureInstanceKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureDeviceAddressInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureDeviceAddressInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`acceleration_structure`] specifies the acceleration structure whose
     ///address is being queried.
-    acceleration_structure: AccelerationStructureKHR,
+    pub acceleration_structure: AccelerationStructureKHR,
 }
 impl<'lt> Default for AccelerationStructureDeviceAddressInfoKHR<'lt> {
     fn default() -> Self {
@@ -5610,9 +5637,9 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 /// - [`version_data`] **must**  be a valid pointer to an array of <span class="katex"><span
 ///   aria-hidden="true" class="katex-html"><span class="base"><span class="strut"
 ///   style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+///   class="mspace"></span></span><span class="base"><span
 ///   style="height:0.70625em;vertical-align:-0.09514em;" class="strut"></span><span
 ///   class="mord"><span class="mord mathtt">V</span><span class="mord mathtt">K</span><span
 ///   class="mord mathtt">_</span><span class="mord mathtt">U</span><span class="mord
@@ -5632,19 +5659,20 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureVersionInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureVersionInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`version_data`] is a pointer to the version header of an acceleration
     ///structure as defined in [`CmdCopyAccelerationStructureToMemoryKHR`]
-    version_data: *const u8,
+    pub version_data: *const u8,
 }
 impl<'lt> Default for AccelerationStructureVersionInfoKHR<'lt> {
     fn default() -> Self {
@@ -5768,23 +5796,24 @@ impl<'lt> AccelerationStructureVersionInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCopyAccelerationStructureInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CopyAccelerationStructureInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src`] is the source acceleration structure for the copy.
-    src: AccelerationStructureKHR,
+    pub src: AccelerationStructureKHR,
     ///[`dst`] is the target acceleration structure for the copy.
-    dst: AccelerationStructureKHR,
+    pub dst: AccelerationStructureKHR,
     ///[`mode`] is a [`CopyAccelerationStructureModeKHR`] value
     ///specifying additional operations to perform during the copy.
-    mode: CopyAccelerationStructureModeKHR,
+    pub mode: CopyAccelerationStructureModeKHR,
 }
 impl<'lt> Default for CopyAccelerationStructureInfoKHR<'lt> {
     fn default() -> Self {
@@ -5932,24 +5961,25 @@ impl<'lt> CopyAccelerationStructureInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCopyAccelerationStructureToMemoryInfoKHR")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CopyAccelerationStructureToMemoryInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src`] is the source acceleration structure for the copy
-    src: AccelerationStructureKHR,
+    pub src: AccelerationStructureKHR,
     ///[`dst`] is the device or host address to memory which is the target
     ///for the copy
-    dst: DeviceOrHostAddressKHR<'lt>,
+    pub dst: DeviceOrHostAddressKHR<'lt>,
     ///[`mode`] is a [`CopyAccelerationStructureModeKHR`] value
     ///specifying additional operations to perform during the copy.
-    mode: CopyAccelerationStructureModeKHR,
+    pub mode: CopyAccelerationStructureModeKHR,
 }
 impl<'lt> Default for CopyAccelerationStructureToMemoryInfoKHR<'lt> {
     fn default() -> Self {
@@ -6100,24 +6130,25 @@ impl<'lt> CopyAccelerationStructureToMemoryInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCopyMemoryToAccelerationStructureInfoKHR")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CopyMemoryToAccelerationStructureInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src`] is the device or host address to memory containing the source
     ///data for the copy.
-    src: DeviceOrHostAddressConstKHR<'lt>,
+    pub src: DeviceOrHostAddressConstKHR<'lt>,
     ///[`dst`] is the target acceleration structure for the copy.
-    dst: AccelerationStructureKHR,
+    pub dst: AccelerationStructureKHR,
     ///[`mode`] is a [`CopyAccelerationStructureModeKHR`] value
     ///specifying additional operations to perform during the copy.
-    mode: CopyAccelerationStructureModeKHR,
+    pub mode: CopyAccelerationStructureModeKHR,
 }
 impl<'lt> Default for CopyMemoryToAccelerationStructureInfoKHR<'lt> {
     fn default() -> Self {
@@ -6256,25 +6287,26 @@ impl<'lt> CopyMemoryToAccelerationStructureInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureBuildSizesInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureBuildSizesInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`acceleration_structure_size`] is the size in bytes required in a
     ///[`AccelerationStructureKHR`] for a build or update operation.
-    acceleration_structure_size: DeviceSize,
+    pub acceleration_structure_size: DeviceSize,
     ///[`update_scratch_size`] is the size in bytes required in a scratch
     ///buffer for an update operation.
-    update_scratch_size: DeviceSize,
+    pub update_scratch_size: DeviceSize,
     ///[`build_scratch_size`] is the size in bytes required in a scratch buffer
     ///for a build operation.
-    build_scratch_size: DeviceSize,
+    pub build_scratch_size: DeviceSize,
 }
 impl<'lt> Default for AccelerationStructureBuildSizesInfoKHR<'lt> {
     fn default() -> Self {
@@ -6363,6 +6395,143 @@ impl<'lt> AccelerationStructureBuildSizesInfoKHR<'lt> {
         self
     }
 }
+///[VkDeviceOrHostAddressKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceOrHostAddressKHR.html) - Union specifying a device or host address
+///# C Specifications
+///The [`DeviceOrHostAddressKHR`] union is defined as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef union VkDeviceOrHostAddressKHR {
+///    VkDeviceAddress    deviceAddress;
+///    void*              hostAddress;
+///} VkDeviceOrHostAddressKHR;
+///```
+///# Members
+/// - [`device_address`] is a buffer device address as returned by the [`GetBufferDeviceAddressKHR`]
+///   command.
+/// - [`host_address`] is a host memory address.
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`AccelerationStructureBuildGeometryInfoKHR`]
+/// - [`CopyAccelerationStructureToMemoryInfoKHR`]
+/// - [`DeviceAddress`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceOrHostAddressKHR")]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(C)]
+pub union DeviceOrHostAddressKHR<'lt> {
+    ///[`device_address`] is a buffer device address as returned by the
+    ///[`GetBufferDeviceAddressKHR`] command.
+    pub device_address: DeviceAddress,
+    ///[`host_address`] is a host memory address.
+    pub host_address: *mut c_void,
+}
+impl Default for DeviceOrHostAddressKHR {
+    fn default() -> Self {
+        unsafe { std::mem::zeroed() }
+    }
+}
+///[VkDeviceOrHostAddressConstKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceOrHostAddressConstKHR.html) - Union specifying a const device or host address
+///# C Specifications
+///The [`DeviceOrHostAddressConstKHR`] union is defined as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef union VkDeviceOrHostAddressConstKHR {
+///    VkDeviceAddress    deviceAddress;
+///    const void*        hostAddress;
+///} VkDeviceOrHostAddressConstKHR;
+///```
+///# Members
+/// - [`device_address`] is a buffer device address as returned by the [`GetBufferDeviceAddressKHR`]
+///   command.
+/// - [`host_address`] is a const host memory address.
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`AccelerationStructureGeometryAabbsDataKHR`]
+/// - [`AccelerationStructureGeometryInstancesDataKHR`]
+/// - [`AccelerationStructureGeometryMotionTrianglesDataNV`]
+/// - [`AccelerationStructureGeometryTrianglesDataKHR`]
+/// - [`CopyMemoryToAccelerationStructureInfoKHR`]
+/// - [`DeviceAddress`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceOrHostAddressConstKHR")]
+#[derive(Clone, Copy)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(C)]
+pub union DeviceOrHostAddressConstKHR<'lt> {
+    ///[`device_address`] is a buffer device address as returned by the
+    ///[`GetBufferDeviceAddressKHR`] command.
+    pub device_address: DeviceAddress,
+    ///[`host_address`] is a const host memory address.
+    pub host_address: *const c_void,
+}
+impl Default for DeviceOrHostAddressConstKHR {
+    fn default() -> Self {
+        unsafe { std::mem::zeroed() }
+    }
+}
+///[VkAccelerationStructureGeometryDataKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureGeometryDataKHR.html) - Union specifying acceleration structure geometry data
+///# C Specifications
+///The [`AccelerationStructureGeometryDataKHR`] union is defined as:
+///```c
+///// Provided by VK_KHR_acceleration_structure
+///typedef union VkAccelerationStructureGeometryDataKHR {
+///    VkAccelerationStructureGeometryTrianglesDataKHR    triangles;
+///    VkAccelerationStructureGeometryAabbsDataKHR        aabbs;
+///    VkAccelerationStructureGeometryInstancesDataKHR    instances;
+///} VkAccelerationStructureGeometryDataKHR;
+///```
+///# Members
+/// - [`triangles`] is a [`AccelerationStructureGeometryTrianglesDataKHR`] structure.
+/// - [`aabbs`] is a [`AccelerationStructureGeometryAabbsDataKHR`] struture.
+/// - [`instances`] is a [`AccelerationStructureGeometryInstancesDataKHR`] structure.
+///# Related
+/// - [`VK_KHR_acceleration_structure`]
+/// - [`AccelerationStructureGeometryAabbsDataKHR`]
+/// - [`AccelerationStructureGeometryInstancesDataKHR`]
+/// - [`AccelerationStructureGeometryKHR`]
+/// - [`AccelerationStructureGeometryTrianglesDataKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureGeometryDataKHR")]
+#[derive(Clone, Copy)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(C)]
+pub union AccelerationStructureGeometryDataKHR<'lt> {
+    ///[`triangles`] is a
+    ///[`AccelerationStructureGeometryTrianglesDataKHR`] structure.
+    pub triangles: AccelerationStructureGeometryTrianglesDataKHR<'lt>,
+    ///[`aabbs`] is a [`AccelerationStructureGeometryAabbsDataKHR`]
+    ///struture.
+    pub aabbs: AccelerationStructureGeometryAabbsDataKHR<'lt>,
+    ///[`instances`] is a
+    ///[`AccelerationStructureGeometryInstancesDataKHR`] structure.
+    pub instances: AccelerationStructureGeometryInstancesDataKHR<'lt>,
+}
+impl Default for AccelerationStructureGeometryDataKHR {
+    fn default() -> Self {
+        unsafe { std::mem::zeroed() }
+    }
+}
 ///[VkAccelerationStructureKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureKHR.html) - Opaque handle to an acceleration structure object
 ///# C Specifications
 ///Acceleration structures are opaque data structures that are built by the
@@ -6403,6 +6572,7 @@ impl<'lt> AccelerationStructureBuildSizesInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAccelerationStructureKHR")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]

@@ -124,16 +124,17 @@ pub const EXT_FRAGMENT_DENSITY_MAP_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceFragmentDensityMapFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`fragment_density_map`] specifies
     ///whether the implementation supports render passes with a fragment
     ///density map attachment.
@@ -141,14 +142,14 @@ pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
     ///[`RenderPassCreateInfo`] includes a
     ///[`RenderPassFragmentDensityMapCreateInfoEXT`] structure,
     ///`fragmentDensityMapAttachment` **must**  be [`ATTACHMENT_UNUSED`].
-    fragment_density_map: Bool32,
+    pub fragment_density_map: Bool32,
     ///[`fragment_density_map_dynamic`]
     ///specifies whether the implementation supports dynamic fragment density
     ///map image views.
     ///If this feature is not enabled,
     ///`VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT` **must**
     ///not be included in [`ImageViewCreateInfo`]::`flags`.
-    fragment_density_map_dynamic: Bool32,
+    pub fragment_density_map_dynamic: Bool32,
     ///[`fragment_density_map_non_subsampled_images`] specifies whether the
     ///implementation supports regular non-subsampled image attachments with
     ///fragment density map render passes.
@@ -156,7 +157,7 @@ pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
     ///[fragment density map
     ///attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-fragmentdensitymapattachment) **must**  only have [subsampled
     ///attachments](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-subsamplesampler) bound.
-    fragment_density_map_non_subsampled_images: Bool32,
+    pub fragment_density_map_non_subsampled_images: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
     fn default() -> Self {
@@ -365,27 +366,28 @@ impl<'lt> PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceFragmentDensityMapPropertiesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`min_fragment_density_texel_size`]
     ///is the minimum [fragment density
     ///texel size](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary-fragment-density-texel-size).
-    min_fragment_density_texel_size: Extent2D,
+    pub min_fragment_density_texel_size: Extent2D,
     ///[`max_fragment_density_texel_size`]
     ///is the maximum fragment density texel size.
-    max_fragment_density_texel_size: Extent2D,
+    pub max_fragment_density_texel_size: Extent2D,
     ///[`fragment_density_invocations`]
     ///specifies whether the implementation  **may**  invoke additional fragment
     ///shader invocations for each covered sample.
-    fragment_density_invocations: Bool32,
+    pub fragment_density_invocations: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
     fn default() -> Self {
@@ -568,19 +570,20 @@ impl<'lt> PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRenderPassFragmentDensityMapCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderPassFragmentDensityMapCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`fragment_density_map_attachment`] is the fragment density map to use
     ///for the render pass.
-    fragment_density_map_attachment: AttachmentReference,
+    pub fragment_density_map_attachment: AttachmentReference,
 }
 impl<'lt> Default for RenderPassFragmentDensityMapCreateInfoEXT<'lt> {
     fn default() -> Self {

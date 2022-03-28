@@ -333,6 +333,7 @@ pub const NV_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME: &'static CStr = crate::cs
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectCommandsTokenTypeNV")]
+#[doc(alias = "VkIndirectCommandsTokenTypeNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -553,6 +554,7 @@ impl IndirectStateFlagBitsNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkIndirectCommandsLayoutUsageFlagsNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -862,6 +864,7 @@ impl std::fmt::Debug for IndirectCommandsLayoutUsageFlagsNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkIndirectStateFlagsNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1145,21 +1148,22 @@ impl std::fmt::Debug for IndirectStateFlagsNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`device_generated_commands`]
     ///indicates whether the implementation supports functionality to generate
     ///commands on the device.
     ///See [Device-Generated Commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-generated-commands).
-    device_generated_commands: Bool32,
+    pub device_generated_commands: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
     fn default() -> Self {
@@ -1312,47 +1316,48 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`max_graphics_shader_group_count`] is the maximum number of shader groups
     ///in [`GraphicsPipelineShaderGroupsCreateInfoNV`].
-    max_graphics_shader_group_count: u32,
+    pub max_graphics_shader_group_count: u32,
     ///[`max_indirect_sequence_count`] is the maximum number of sequences in
     ///[`GeneratedCommandsInfoNV`] and in
     ///[`GeneratedCommandsMemoryRequirementsInfoNV`].
-    max_indirect_sequence_count: u32,
+    pub max_indirect_sequence_count: u32,
     ///[`max_indirect_commands_token_count`] is the maximum number of tokens in
     ///[`IndirectCommandsLayoutCreateInfoNV`].
-    max_indirect_commands_token_count: u32,
+    pub max_indirect_commands_token_count: u32,
     ///[`max_indirect_commands_stream_count`] is the maximum number of streams in
     ///[`IndirectCommandsLayoutCreateInfoNV`].
-    max_indirect_commands_stream_count: u32,
+    pub max_indirect_commands_stream_count: u32,
     ///[`max_indirect_commands_token_offset`] is the maximum offset in
     ///[`IndirectCommandsLayoutTokenNV`].
-    max_indirect_commands_token_offset: u32,
+    pub max_indirect_commands_token_offset: u32,
     ///[`max_indirect_commands_stream_stride`] is the maximum stream stride in
     ///[`IndirectCommandsLayoutCreateInfoNV`].
-    max_indirect_commands_stream_stride: u32,
+    pub max_indirect_commands_stream_stride: u32,
     ///[`min_sequences_count_buffer_offset_alignment`] is the minimum alignment
     ///for memory addresses which  **can**  be used in
     ///[`GeneratedCommandsInfoNV`].
-    min_sequences_count_buffer_offset_alignment: u32,
+    pub min_sequences_count_buffer_offset_alignment: u32,
     ///[`min_sequences_index_buffer_offset_alignment`] is the minimum alignment
     ///for memory addresses which  **can**  be used in
     ///[`GeneratedCommandsInfoNV`].
-    min_sequences_index_buffer_offset_alignment: u32,
+    pub min_sequences_index_buffer_offset_alignment: u32,
     ///[`min_indirect_commands_buffer_offset_alignment`] is the minimum alignment
     ///for memory addresses used in [`IndirectCommandsStreamNV`], and as
     ///preprocess buffer in [`GeneratedCommandsInfoNV`].
-    min_indirect_commands_buffer_offset_alignment: u32,
+    pub min_indirect_commands_buffer_offset_alignment: u32,
 }
 impl<'lt> Default for PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
     fn default() -> Self {
@@ -1594,30 +1599,31 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkGraphicsShaderGroupCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GraphicsShaderGroupCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`stage_count`] is the number of entries in the [`stages`] array.
-    stage_count: u32,
+    pub stage_count: u32,
     ///[`stages`] is a pointer to an array
     ///[`PipelineShaderStageCreateInfo`] structures specifying the set of
     ///the shader stages to be included in this shader group.
-    stages: *const PipelineShaderStageCreateInfo<'lt>,
+    pub stages: *const PipelineShaderStageCreateInfo<'lt>,
     ///[`vertex_input_state`] is a pointer to a
     ///[`PipelineVertexInputStateCreateInfo`] structure.
-    vertex_input_state: *const PipelineVertexInputStateCreateInfo<'lt>,
+    pub vertex_input_state: *const PipelineVertexInputStateCreateInfo<'lt>,
     ///[`tessellation_state`] is a pointer to a
     ///[`PipelineTessellationStateCreateInfo`] structure, and is ignored if
     ///the shader group does not include a tessellation control shader stage
     ///and tessellation evaluation shader stage.
-    tessellation_state: *const PipelineTessellationStateCreateInfo<'lt>,
+    pub tessellation_state: *const PipelineTessellationStateCreateInfo<'lt>,
 }
 impl<'lt> Default for GraphicsShaderGroupCreateInfoNV<'lt> {
     fn default() -> Self {
@@ -1825,30 +1831,31 @@ impl<'lt> GraphicsShaderGroupCreateInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkGraphicsPipelineShaderGroupsCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GraphicsPipelineShaderGroupsCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`group_count`] is the number of elements in the [`groups`] array.
-    group_count: u32,
+    pub group_count: u32,
     ///[`groups`] is a pointer to an array of
     ///[`GraphicsShaderGroupCreateInfoNV`] structures specifying which
     ///state of the original [`GraphicsPipelineCreateInfo`] each shader
     ///group overrides.
-    groups: *const GraphicsShaderGroupCreateInfoNV<'lt>,
+    pub groups: *const GraphicsShaderGroupCreateInfoNV<'lt>,
     ///[`pipeline_count`] is the number of elements in the [`pipelines`]
     ///array.
-    pipeline_count: u32,
+    pub pipeline_count: u32,
     ///[`pipelines`] is a pointer to an array of graphics [`Pipeline`]
     ///structures which are referenced within the created pipeline, including
     ///all their shader groups.
-    pipelines: *const Pipeline,
+    pub pipelines: *const Pipeline,
 }
 impl<'lt> Default for GraphicsPipelineShaderGroupsCreateInfoNV<'lt> {
     fn default() -> Self {
@@ -2004,13 +2011,14 @@ impl<'lt> GraphicsPipelineShaderGroupsCreateInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBindShaderGroupIndirectCommandNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct BindShaderGroupIndirectCommandNV {
     ///No documentation found
-    group_index: u32,
+    pub group_index: u32,
 }
 impl Default for BindShaderGroupIndirectCommandNV {
     fn default() -> Self {
@@ -2074,6 +2082,7 @@ impl BindShaderGroupIndirectCommandNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBindIndexBufferIndirectCommandNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2081,17 +2090,17 @@ impl BindShaderGroupIndirectCommandNV {
 pub struct BindIndexBufferIndirectCommandNV {
     ///[`buffer_address`] specifies a physical address of the [`Buffer`]
     ///used as index buffer.
-    buffer_address: DeviceAddress,
+    pub buffer_address: DeviceAddress,
     ///[`size`] is the byte size range which is available for this operation
     ///from the provided address.
-    size: u32,
+    pub size: u32,
     ///[`index_type`] is a [`IndexType`] value specifying how indices are
     ///treated.
     ///Instead of the Vulkan enum values, a custom `uint32_t` value  **can**  be
     ///mapped to an [`IndexType`] by specifying the
     ///[`IndirectCommandsLayoutTokenNV`]::`pIndexTypes` and
     ///[`IndirectCommandsLayoutTokenNV`]::`pIndexTypeValues` arrays.
-    index_type: IndexType,
+    pub index_type: IndexType,
 }
 impl Default for BindIndexBufferIndirectCommandNV {
     fn default() -> Self {
@@ -2181,6 +2190,7 @@ impl BindIndexBufferIndirectCommandNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBindVertexBufferIndirectCommandNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2188,17 +2198,17 @@ impl BindIndexBufferIndirectCommandNV {
 pub struct BindVertexBufferIndirectCommandNV {
     ///[`buffer_address`] specifies a physical address of the [`Buffer`]
     ///used as vertex input binding.
-    buffer_address: DeviceAddress,
+    pub buffer_address: DeviceAddress,
     ///[`size`] is the byte size range which is available for this operation
     ///from the provided address.
-    size: u32,
+    pub size: u32,
     ///[`stride`] is the byte size stride for this vertex input binding as in
     ///[`VertexInputBindingDescription`]::[`stride`].
     ///It is only used if
     ///[`IndirectCommandsLayoutTokenNV`]::`vertexDynamicStride` was
     ///set, otherwise the stride is inherited from the current bound graphics
     ///pipeline.
-    stride: u32,
+    pub stride: u32,
 }
 impl Default for BindVertexBufferIndirectCommandNV {
     fn default() -> Self {
@@ -2275,6 +2285,7 @@ impl BindVertexBufferIndirectCommandNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSetStateFlagsIndirectCommandNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2283,7 +2294,7 @@ pub struct SetStateFlagsIndirectCommandNV {
     ///[`data`] encodes packed state that this command alters.
     /// - Bit `0`: If set represents `VK_FRONT_FACE_CLOCKWISE`, otherwise
     ///   `VK_FRONT_FACE_COUNTER_CLOCKWISE`
-    data: u32,
+    pub data: u32,
 }
 impl Default for SetStateFlagsIndirectCommandNV {
     fn default() -> Self {
@@ -2344,6 +2355,7 @@ impl SetStateFlagsIndirectCommandNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkIndirectCommandsStreamNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
@@ -2351,10 +2363,10 @@ pub struct IndirectCommandsStreamNV {
     ///[`buffer`] specifies the [`Buffer`] storing the functional
     ///arguments for each sequence.
     ///These arguments  **can**  be written by the device.
-    buffer: Buffer,
+    pub buffer: Buffer,
     ///[`offset`] specified an offset into [`buffer`] where the arguments
     ///start.
-    offset: DeviceSize,
+    pub offset: DeviceSize,
 }
 impl Default for IndirectCommandsStreamNV {
     fn default() -> Self {
@@ -2500,54 +2512,55 @@ impl IndirectCommandsStreamNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkIndirectCommandsLayoutTokenNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct IndirectCommandsLayoutTokenNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`token_type`] specifies the token command type.
-    token_type: IndirectCommandsTokenTypeNV,
+    pub token_type: IndirectCommandsTokenTypeNV,
     ///[`stream`] is the index of the input stream containing the token
     ///argument data.
-    stream: u32,
+    pub stream: u32,
     ///[`offset`] is a relative starting offset within the input stream
     ///memory for the token argument data.
-    offset: u32,
+    pub offset: u32,
     ///[`vertex_binding_unit`] is used for the vertex buffer binding command.
-    vertex_binding_unit: u32,
+    pub vertex_binding_unit: u32,
     ///[`vertex_dynamic_stride`] sets if the vertex buffer stride is provided
     ///by the binding command rather than the current bound graphics pipeline
     ///state.
-    vertex_dynamic_stride: Bool32,
+    pub vertex_dynamic_stride: Bool32,
     ///[`pushconstant_pipeline_layout`] is the [`PipelineLayout`] used for
     ///the push constant command.
-    pushconstant_pipeline_layout: PipelineLayout,
+    pub pushconstant_pipeline_layout: PipelineLayout,
     ///[`pushconstant_shader_stage_flags`] are the shader stage flags used for
     ///the push constant command.
-    pushconstant_shader_stage_flags: ShaderStageFlags,
+    pub pushconstant_shader_stage_flags: ShaderStageFlags,
     ///[`pushconstant_offset`] is the offset used for the push constant
     ///command.
-    pushconstant_offset: u32,
+    pub pushconstant_offset: u32,
     ///[`pushconstant_size`] is the size used for the push constant command.
-    pushconstant_size: u32,
+    pub pushconstant_size: u32,
     ///[`indirect_state_flags`] are the active states for the state flag
     ///command.
-    indirect_state_flags: IndirectStateFlagsNV,
+    pub indirect_state_flags: IndirectStateFlagsNV,
     ///[`index_type_count`] is the optional size of the [`index_types`] and
     ///[`index_type_values`] array pairings.
     ///If not zero, it allows to register a custom `uint32_t` value to be
     ///treated as specific [`IndexType`].
-    index_type_count: u32,
+    pub index_type_count: u32,
     ///[`index_types`] is the used [`IndexType`] for the corresponding
     ///`uint32_t` value entry in [`index_type_values`].
-    index_types: *const IndexType,
+    pub index_types: *const IndexType,
     ///No documentation found
-    index_type_values: *const u32,
+    pub index_type_values: *const u32,
 }
 impl<'lt> Default for IndirectCommandsLayoutTokenNV<'lt> {
     fn default() -> Self {
@@ -2925,35 +2938,36 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkIndirectCommandsLayoutCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct IndirectCommandsLayoutCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of
     ///[`IndirectCommandsLayoutUsageFlagBitsNV`] specifying usage hints of
     ///this layout.
-    flags: IndirectCommandsLayoutUsageFlagsNV,
+    pub flags: IndirectCommandsLayoutUsageFlagsNV,
     ///[`pipeline_bind_point`] is the [`PipelineBindPoint`] that this
     ///layout targets.
-    pipeline_bind_point: PipelineBindPoint,
+    pub pipeline_bind_point: PipelineBindPoint,
     ///[`token_count`] is the length of the individual command sequence.
-    token_count: u32,
+    pub token_count: u32,
     ///[`tokens`] is an array describing each command token in detail.
     ///See [`IndirectCommandsTokenTypeNV`] and
     ///[`IndirectCommandsLayoutTokenNV`] below for details.
-    tokens: *const IndirectCommandsLayoutTokenNV<'lt>,
+    pub tokens: *const IndirectCommandsLayoutTokenNV<'lt>,
     ///[`stream_count`] is the number of streams used to provide the token
     ///inputs.
-    stream_count: u32,
+    pub stream_count: u32,
     ///[`stream_strides`] is an array defining the byte stride for each input
     ///stream.
-    stream_strides: *const u32,
+    pub stream_strides: *const u32,
 }
 impl<'lt> Default for IndirectCommandsLayoutCreateInfoNV<'lt> {
     fn default() -> Self {
@@ -3250,59 +3264,60 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkGeneratedCommandsInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GeneratedCommandsInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`pipeline_bind_point`] is the [`PipelineBindPoint`] used for the
     ///[`pipeline`].
-    pipeline_bind_point: PipelineBindPoint,
+    pub pipeline_bind_point: PipelineBindPoint,
     ///[`pipeline`] is the [`Pipeline`] used in the generation and
     ///execution process.
-    pipeline: Pipeline,
+    pub pipeline: Pipeline,
     ///[`indirect_commands_layout`] is the [`IndirectCommandsLayoutNV`]
     ///that provides the command sequence to generate.
-    indirect_commands_layout: IndirectCommandsLayoutNV,
+    pub indirect_commands_layout: IndirectCommandsLayoutNV,
     ///[`stream_count`] defines the number of input streams
-    stream_count: u32,
+    pub stream_count: u32,
     ///[`streams`] is a pointer to an array of [`stream_count`][`IndirectCommandsStreamNV`]
     /// structures providing the input data for the tokens used in [`indirect_commands_layout`].
-    streams: *const IndirectCommandsStreamNV,
+    pub streams: *const IndirectCommandsStreamNV,
     ///[`sequences_count`] is the maximum number of sequences to reserve.
     ///If [`sequences_count_buffer`] is [`crate::utils::Handle::null`], this is also the
     ///actual number of sequences generated.
-    sequences_count: u32,
+    pub sequences_count: u32,
     ///[`preprocess_buffer`] is the [`Buffer`] that is used for
     ///preprocessing the input data for execution.
     ///If this structure is used with [`CmdExecuteGeneratedCommandsNV`]
     ///with its `isPreprocessed` set to [`TRUE`], then the preprocessing
     ///step is skipped and data is only read from this buffer.
-    preprocess_buffer: Buffer,
+    pub preprocess_buffer: Buffer,
     ///[`preprocess_offset`] is the byte offset into [`preprocess_buffer`]
     ///where the preprocessed data is stored.
-    preprocess_offset: DeviceSize,
+    pub preprocess_offset: DeviceSize,
     ///[`preprocess_size`] is the maximum byte size within the
     ///[`preprocess_buffer`] after the [`preprocess_offset`] that is
     ///available for preprocessing.
-    preprocess_size: DeviceSize,
+    pub preprocess_size: DeviceSize,
     ///[`sequences_count_buffer`] is a [`Buffer`] in which the actual
     ///number of sequences is provided as single `uint32_t` value.
-    sequences_count_buffer: Buffer,
+    pub sequences_count_buffer: Buffer,
     ///[`sequences_count_offset`] is the byte offset into
     ///[`sequences_count_buffer`] where the count value is stored.
-    sequences_count_offset: DeviceSize,
+    pub sequences_count_offset: DeviceSize,
     ///[`sequences_index_buffer`] is a [`Buffer`] that encodes the used
     ///sequence indices as `uint32_t` array.
-    sequences_index_buffer: Buffer,
+    pub sequences_index_buffer: Buffer,
     ///[`sequences_index_offset`] is the byte offset into
     ///[`sequences_index_buffer`] where the index values start.
-    sequences_index_offset: DeviceSize,
+    pub sequences_index_offset: DeviceSize,
 }
 impl<'lt> Default for GeneratedCommandsInfoNV<'lt> {
     fn default() -> Self {
@@ -3600,30 +3615,31 @@ impl<'lt> GeneratedCommandsInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkGeneratedCommandsMemoryRequirementsInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GeneratedCommandsMemoryRequirementsInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`pipeline_bind_point`] is the [`PipelineBindPoint`] of the
     ///[`pipeline`] that this buffer memory is intended to be used with
     ///during the execution.
-    pipeline_bind_point: PipelineBindPoint,
+    pub pipeline_bind_point: PipelineBindPoint,
     ///[`pipeline`] is the [`Pipeline`] that this buffer memory is
     ///intended to be used with during the execution.
-    pipeline: Pipeline,
+    pub pipeline: Pipeline,
     ///[`indirect_commands_layout`] is the [`IndirectCommandsLayoutNV`]
     ///that this buffer memory is intended to be used with.
-    indirect_commands_layout: IndirectCommandsLayoutNV,
+    pub indirect_commands_layout: IndirectCommandsLayoutNV,
     ///[`max_sequences_count`] is the maximum number of sequences that this
     ///buffer memory in combination with the other state provided  **can**  be used
     ///with.
-    max_sequences_count: u32,
+    pub max_sequences_count: u32,
 }
 impl<'lt> Default for GeneratedCommandsMemoryRequirementsInfoNV<'lt> {
     fn default() -> Self {
@@ -3751,6 +3767,7 @@ impl<'lt> GeneratedCommandsMemoryRequirementsInfoNV<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkIndirectCommandsLayoutNV")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]

@@ -117,6 +117,7 @@ pub const NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME: &'static CStr = crate::cs
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCoverageModulationModeNV")]
+#[doc(alias = "VkCoverageModulationModeNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -280,30 +281,31 @@ impl std::fmt::Debug for PipelineCoverageModulationStateCreateFlagsNV {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineCoverageModulationStateCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineCoverageModulationStateCreateInfoNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: PipelineCoverageModulationStateCreateFlagsNV,
+    pub flags: PipelineCoverageModulationStateCreateFlagsNV,
     ///[`coverage_modulation_mode`] is a [`CoverageModulationModeNV`] value
     ///controlling which color components are modulated.
-    coverage_modulation_mode: CoverageModulationModeNV,
+    pub coverage_modulation_mode: CoverageModulationModeNV,
     ///[`coverage_modulation_table_enable`] controls whether the modulation
     ///factor is looked up from a table in [`coverage_modulation_table`].
-    coverage_modulation_table_enable: Bool32,
+    pub coverage_modulation_table_enable: Bool32,
     ///[`coverage_modulation_table_count`] is the number of elements in
     ///[`coverage_modulation_table`].
-    coverage_modulation_table_count: u32,
+    pub coverage_modulation_table_count: u32,
     ///[`coverage_modulation_table`] is a table of modulation factors
     ///containing a value for each number of covered samples.
-    coverage_modulation_table: *const f32,
+    pub coverage_modulation_table: *const f32,
 }
 impl<'lt> Default for PipelineCoverageModulationStateCreateInfoNV<'lt> {
     fn default() -> Self {

@@ -143,16 +143,17 @@ pub const KHR_SHARED_PRESENTABLE_IMAGE_EXTENSION_NAME: &'static CStr = crate::cs
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSharedPresentSurfaceCapabilitiesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SharedPresentSurfaceCapabilitiesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shared_present_supported_usage_flags`] is a bitmask of
     ///[`ImageUsageFlagBits`] representing the ways the application  **can**
     ///use the shared presentable image from a swapchain created with
@@ -162,7 +163,7 @@ pub struct SharedPresentSurfaceCapabilitiesKHR<'lt> {
     ///the specified device.
     ///`VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT` **must**  be included in the set
     ///but implementations  **may**  support additional usages.
-    shared_present_supported_usage_flags: ImageUsageFlags,
+    pub shared_present_supported_usage_flags: ImageUsageFlags,
 }
 impl<'lt> Default for SharedPresentSurfaceCapabilitiesKHR<'lt> {
     fn default() -> Self {

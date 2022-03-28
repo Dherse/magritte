@@ -140,6 +140,7 @@ pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_EXTENSION_NAME: &'static CStr =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineExecutableStatisticFormatKHR")]
+#[doc(alias = "VkPipelineExecutableStatisticFormatKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -230,21 +231,22 @@ impl PipelineExecutableStatisticFormatKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`pipeline_executable_info`]
     ///indicates that the implementation supports reporting properties and
     ///statistics about the pipeline executables associated with a compiled
     ///pipeline.
-    pipeline_executable_info: Bool32,
+    pub pipeline_executable_info: Bool32,
 }
 impl<'lt> Default for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt> {
     fn default() -> Self {
@@ -368,18 +370,19 @@ impl<'lt> PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`pipeline`] is a [`Pipeline`] handle.
-    pipeline: Pipeline,
+    pub pipeline: Pipeline,
 }
 impl<'lt> Default for PipelineInfoKHR<'lt> {
     fn default() -> Self {
@@ -492,31 +495,32 @@ impl<'lt> PipelineInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineExecutablePropertiesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineExecutablePropertiesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`stages`] is a bitmask of zero or more [`ShaderStageFlagBits`]
     ///indicating which shader stages (if any) were principally used as inputs
     ///to compile this pipeline executable.
-    stages: ShaderStageFlags,
+    pub stages: ShaderStageFlags,
     ///[`name`] is an array of [`MAX_DESCRIPTION_SIZE`]`char`
     ///containing a null-terminated UTF-8 string which is a short human
     ///readable name for this pipeline executable.
-    name: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub name: [c_schar; MAX_DESCRIPTION_SIZE],
     ///[`description`] is an array of [`MAX_DESCRIPTION_SIZE`]`char`
     ///containing a null-terminated UTF-8 string which is a human readable
     ///description for this pipeline executable.
-    description: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub description: [c_schar; MAX_DESCRIPTION_SIZE],
     ///[`subgroup_size`] is the subgroup size with which this pipeline
     ///executable is dispatched.
-    subgroup_size: u32,
+    pub subgroup_size: u32,
 }
 impl<'lt> Default for PipelineExecutablePropertiesKHR<'lt> {
     fn default() -> Self {
@@ -668,22 +672,23 @@ impl<'lt> PipelineExecutablePropertiesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineExecutableInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineExecutableInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`pipeline`] is the pipeline to query.
-    pipeline: Pipeline,
+    pub pipeline: Pipeline,
     ///[`executable_index`] is the index of the pipeline executable to query
     ///in the array of executable properties returned by
     ///[`GetPipelineExecutablePropertiesKHR`].
-    executable_index: u32,
+    pub executable_index: u32,
 }
 impl<'lt> Default for PipelineExecutableInfoKHR<'lt> {
     fn default() -> Self {
@@ -800,29 +805,30 @@ impl<'lt> PipelineExecutableInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineExecutableStatisticKHR")]
 #[derive(Debug)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineExecutableStatisticKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`name`] is an array of [`MAX_DESCRIPTION_SIZE`]`char`
     ///containing a null-terminated UTF-8 string which is a short human
     ///readable name for this statistic.
-    name: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub name: [c_schar; MAX_DESCRIPTION_SIZE],
     ///[`description`] is an array of [`MAX_DESCRIPTION_SIZE`]`char`
     ///containing a null-terminated UTF-8 string which is a human readable
     ///description for this statistic.
-    description: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub description: [c_schar; MAX_DESCRIPTION_SIZE],
     ///[`format`] is a [`PipelineExecutableStatisticFormatKHR`] value
     ///specifying the format of the data found in [`value`].
-    format: PipelineExecutableStatisticFormatKHR,
+    pub format: PipelineExecutableStatisticFormatKHR,
     ///[`value`] is the value of this statistic.
-    value: PipelineExecutableStatisticValueKHR,
+    pub value: PipelineExecutableStatisticValueKHR,
 }
 impl<'lt> Default for PipelineExecutableStatisticKHR<'lt> {
     fn default() -> Self {
@@ -998,34 +1004,35 @@ impl<'lt> PipelineExecutableStatisticKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineExecutableInternalRepresentationKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineExecutableInternalRepresentationKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`name`] is an array of [`MAX_DESCRIPTION_SIZE`]`char`
     ///containing a null-terminated UTF-8 string which is a short human
     ///readable name for this internal representation.
-    name: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub name: [c_schar; MAX_DESCRIPTION_SIZE],
     ///[`description`] is an array of [`MAX_DESCRIPTION_SIZE`]`char`
     ///containing a null-terminated UTF-8 string which is a human readable
     ///description for this internal representation.
-    description: [c_schar; MAX_DESCRIPTION_SIZE],
+    pub description: [c_schar; MAX_DESCRIPTION_SIZE],
     ///[`is_text`] specifies whether the returned data is text or opaque data.
     ///If [`is_text`] is [`TRUE`] then the data returned in [`data`]
     ///is text and is guaranteed to be a null-terminated UTF-8 string.
-    is_text: Bool32,
+    pub is_text: Bool32,
     ///[`data_size`] is an integer related to the size, in bytes, of the
     ///internal representation’s data, as described below.
-    data_size: usize,
+    pub data_size: usize,
     ///[`data`] is either `NULL` or a pointer to a block of data into which
     ///the implementation will write the internal representation.
-    data: *mut c_void,
+    pub data: *mut c_void,
 }
 impl<'lt> Default for PipelineExecutableInternalRepresentationKHR<'lt> {
     fn default() -> Self {
@@ -1185,5 +1192,65 @@ impl<'lt> PipelineExecutableInternalRepresentationKHR<'lt> {
         self.data = value.as_mut_ptr();
         self.data_size = len_;
         self
+    }
+}
+///[VkPipelineExecutableStatisticValueKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineExecutableStatisticValueKHR.html) - A union describing a pipeline executable statistic
+///# C Specifications
+///The [`PipelineExecutableStatisticValueKHR`] union is defined as:
+///```c
+///// Provided by VK_KHR_pipeline_executable_properties
+///typedef union VkPipelineExecutableStatisticValueKHR {
+///    VkBool32    b32;
+///    int64_t     i64;
+///    uint64_t    u64;
+///    double      f64;
+///} VkPipelineExecutableStatisticValueKHR;
+///```
+///# Members
+/// - [`b_32`] is the 32-bit boolean value if the [`PipelineExecutableStatisticFormatKHR`] is
+///   `VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_BOOL32_KHR`.
+/// - [`i_64`] is the signed 64-bit integer value if the [`PipelineExecutableStatisticFormatKHR`] is
+///   `VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_INT64_KHR`.
+/// - [`u_64`] is the unsigned 64-bit integer value if the [`PipelineExecutableStatisticFormatKHR`]
+///   is `VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_UINT64_KHR`.
+/// - [`f_64`] is the 64-bit floating-point value if the [`PipelineExecutableStatisticFormatKHR`] is
+///   `VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_FLOAT64_KHR`.
+///# Related
+/// - [`VK_KHR_pipeline_executable_properties`]
+/// - [`Bool32`]
+/// - [`PipelineExecutableStatisticKHR`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineExecutableStatisticValueKHR")]
+#[derive(Clone, Copy)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(C)]
+pub union PipelineExecutableStatisticValueKHR {
+    ///[`b_32`] is the 32-bit boolean value if the
+    ///[`PipelineExecutableStatisticFormatKHR`] is
+    ///`VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_BOOL32_KHR`.
+    pub b_32: Bool32,
+    ///[`i_64`] is the signed 64-bit integer value if the
+    ///[`PipelineExecutableStatisticFormatKHR`] is
+    ///`VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_INT64_KHR`.
+    pub i_64: i64,
+    ///[`u_64`] is the unsigned 64-bit integer value if the
+    ///[`PipelineExecutableStatisticFormatKHR`] is
+    ///`VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_UINT64_KHR`.
+    pub u_64: u64,
+    ///[`f_64`] is the 64-bit floating-point value if the
+    ///[`PipelineExecutableStatisticFormatKHR`] is
+    ///`VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_FLOAT64_KHR`.
+    pub f_64: f64,
+}
+impl Default for PipelineExecutableStatisticValueKHR {
+    fn default() -> Self {
+        unsafe { std::mem::zeroed() }
     }
 }

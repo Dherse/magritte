@@ -130,16 +130,17 @@ pub const VALVE_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`mutable_descriptor_type`] indicates
     ///that the implementation  **must**  support using the [`DescriptorType`]
     ///of `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE` with at least the following
@@ -150,7 +151,7 @@ pub struct PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
     /// - `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`
     /// - `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER`
     /// - `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER`
-    mutable_descriptor_type: Bool32,
+    pub mutable_descriptor_type: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
     fn default() -> Self {
@@ -287,18 +288,19 @@ impl<'lt> PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMutableDescriptorTypeListVALVE")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MutableDescriptorTypeListVALVE<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`descriptor_type_count`] is the number of elements in
     ///[`descriptor_types`].
-    descriptor_type_count: u32,
+    pub descriptor_type_count: u32,
     ///[`descriptor_types`] is `NULL` or a pointer to an array of
     ///[`descriptor_type_count`][`DescriptorType`] values defining which
     ///descriptor types a given binding may mutate to.
-    descriptor_types: *const DescriptorType,
+    pub descriptor_types: *const DescriptorType,
 }
 impl<'lt> Default for MutableDescriptorTypeListVALVE<'lt> {
     fn default() -> Self {
@@ -397,22 +399,23 @@ impl<'lt> MutableDescriptorTypeListVALVE<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMutableDescriptorTypeCreateInfoVALVE")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MutableDescriptorTypeCreateInfoVALVE<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`mutable_descriptor_type_list_count`] is the number of elements in
     ///[`mutable_descriptor_type_lists`].
-    mutable_descriptor_type_list_count: u32,
+    pub mutable_descriptor_type_list_count: u32,
     ///[`mutable_descriptor_type_lists`] is a pointer to an array of
     ///[`MutableDescriptorTypeListVALVE`] structures.
-    mutable_descriptor_type_lists: *const MutableDescriptorTypeListVALVE<'lt>,
+    pub mutable_descriptor_type_lists: *const MutableDescriptorTypeListVALVE<'lt>,
 }
 impl<'lt> Default for MutableDescriptorTypeCreateInfoVALVE<'lt> {
     fn default() -> Self {

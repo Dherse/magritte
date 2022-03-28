@@ -206,6 +206,7 @@ pub const KHR_VIDEO_QUEUE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_v
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueryResultStatusKHR")]
+#[doc(alias = "VkQueryResultStatusKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -816,6 +817,7 @@ impl VideoCodingControlFlagBitsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoCodecOperationFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1158,6 +1160,7 @@ impl std::fmt::Debug for VideoCodecOperationFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoCapabilityFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1446,6 +1449,7 @@ impl std::fmt::Debug for VideoCapabilityFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoSessionCreateFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1801,6 +1805,7 @@ impl std::fmt::Debug for VideoEndCodingFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoCodingQualityPresetFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2117,6 +2122,7 @@ impl std::fmt::Debug for VideoCodingQualityPresetFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoCodingControlFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2411,6 +2417,7 @@ impl std::fmt::Debug for VideoCodingControlFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoChromaSubsamplingFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2749,6 +2756,7 @@ impl std::fmt::Debug for VideoChromaSubsamplingFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoComponentBitDepthFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3071,20 +3079,21 @@ impl std::fmt::Debug for VideoComponentBitDepthFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoQueueFamilyProperties2KHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoQueueFamilyProperties2KHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`video_codec_operations`] is a bitmask of
     ///[`VideoCodecOperationFlagBitsKHR`] specifying supported video codec
     ///operation(s).
-    video_codec_operations: VideoCodecOperationFlagsKHR,
+    pub video_codec_operations: VideoCodecOperationFlagsKHR,
 }
 impl<'lt> Default for VideoQueueFamilyProperties2KHR<'lt> {
     fn default() -> Self {
@@ -3187,20 +3196,21 @@ impl<'lt> VideoQueueFamilyProperties2KHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkQueueFamilyQueryResultStatusProperties2KHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct QueueFamilyQueryResultStatusProperties2KHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`supported`] reports [`TRUE`] if query type
     ///`VK_QUERY_TYPE_RESULT_STATUS_ONLY_KHR` and use of
     ///`VK_QUERY_RESULT_WITH_STATUS_BIT_KHR` are supported.
-    supported: Bool32,
+    pub supported: Bool32,
 }
 impl<'lt> Default for QueueFamilyQueryResultStatusProperties2KHR<'lt> {
     fn default() -> Self {
@@ -3330,24 +3340,25 @@ impl<'lt> QueueFamilyQueryResultStatusProperties2KHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoProfilesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoProfilesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`profile_count`] is an integer which holds the number of video
     ///profiles included in [`profiles`].
-    profile_count: u32,
+    pub profile_count: u32,
     ///[`profiles`] is a pointer to an array of [`VideoProfileKHR`]
     ///structures.
     ///Each [`VideoProfileKHR`] structure  **must**  chain the corresponding
     ///codec-operation specific extension video profile structure.
-    profiles: *const VideoProfileKHR<'lt>,
+    pub profiles: *const VideoProfileKHR<'lt>,
 }
 impl<'lt> Default for VideoProfilesKHR<'lt> {
     fn default() -> Self {
@@ -3483,19 +3494,20 @@ impl<'lt> VideoProfilesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceVideoFormatInfoKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVideoFormatInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`image_usage`] is a bitmask of [`ImageUsageFlagBits`] specifying
     ///intended video image usages.
-    image_usage: ImageUsageFlags,
+    pub image_usage: ImageUsageFlags,
     ///[`video_profiles`] is a pointer to a [`VideoProfilesKHR`]
     ///structure providing the video profile(s) of video session(s) that will
     ///use the image.
@@ -3505,7 +3517,7 @@ pub struct PhysicalDeviceVideoFormatInfoKHR<'lt> {
     /// **may**  be used as encode input for one or more encode sessions, multiple
     ///video profiles representing the video sessions that will share the image
     /// **may**  be provided.
-    video_profiles: *const VideoProfilesKHR<'lt>,
+    pub video_profiles: *const VideoProfilesKHR<'lt>,
 }
 impl<'lt> Default for PhysicalDeviceVideoFormatInfoKHR<'lt> {
     fn default() -> Self {
@@ -3634,19 +3646,20 @@ impl<'lt> PhysicalDeviceVideoFormatInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoFormatPropertiesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoFormatPropertiesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`format`] is one of the supported formats reported by the
     ///implementation.
-    format: Format,
+    pub format: Format,
 }
 impl<'lt> Default for VideoFormatPropertiesKHR<'lt> {
     fn default() -> Self {
@@ -3769,31 +3782,32 @@ impl<'lt> VideoFormatPropertiesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoProfileKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoProfileKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`video_codec_operation`] is a [`VideoCodecOperationFlagBitsKHR`]
     ///value specifying a video codec operation.
-    video_codec_operation: VideoCodecOperationFlagBitsKHR,
+    pub video_codec_operation: VideoCodecOperationFlagBitsKHR,
     ///[`chroma_subsampling`] is a bitmask of
     ///[`VideoChromaSubsamplingFlagBitsKHR`] specifying video chroma
     ///subsampling information.
-    chroma_subsampling: VideoChromaSubsamplingFlagsKHR,
+    pub chroma_subsampling: VideoChromaSubsamplingFlagsKHR,
     ///[`luma_bit_depth`] is a bitmask of
     ///[`VideoComponentBitDepthFlagBitsKHR`] specifying video luma bit
     ///depth information.
-    luma_bit_depth: VideoComponentBitDepthFlagsKHR,
+    pub luma_bit_depth: VideoComponentBitDepthFlagsKHR,
     ///[`chroma_bit_depth`] is a bitmask of
     ///[`VideoComponentBitDepthFlagBitsKHR`] specifying video chroma bit
     ///depth information.
-    chroma_bit_depth: VideoComponentBitDepthFlagsKHR,
+    pub chroma_bit_depth: VideoComponentBitDepthFlagsKHR,
 }
 impl<'lt> Default for VideoProfileKHR<'lt> {
     fn default() -> Self {
@@ -3972,42 +3986,43 @@ impl<'lt> VideoProfileKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoCapabilitiesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoCapabilitiesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`capability_flags`] is a bitmask of [`VideoCapabilityFlagBitsKHR`]
     ///specifying capability flags.
-    capability_flags: VideoCapabilityFlagsKHR,
+    pub capability_flags: VideoCapabilityFlagsKHR,
     ///[`min_bitstream_buffer_offset_alignment`] is the minimum alignment for the
     ///input or output bitstream buffer offset.
-    min_bitstream_buffer_offset_alignment: DeviceSize,
+    pub min_bitstream_buffer_offset_alignment: DeviceSize,
     ///[`min_bitstream_buffer_size_alignment`] is the minimum alignment for the
     ///input or output bitstream buffer size
-    min_bitstream_buffer_size_alignment: DeviceSize,
+    pub min_bitstream_buffer_size_alignment: DeviceSize,
     ///[`video_picture_extent_granularity`] is the minimum size alignment of the
     ///extent with the required padding for the decoded or encoded video
     ///images.
-    video_picture_extent_granularity: Extent2D,
+    pub video_picture_extent_granularity: Extent2D,
     ///[`min_extent`] is the minimum width and height of the decoded or
     ///encoded video.
-    min_extent: Extent2D,
+    pub min_extent: Extent2D,
     ///[`max_extent`] is the maximum width and height of the decoded or
     ///encoded video.
-    max_extent: Extent2D,
+    pub max_extent: Extent2D,
     ///[`max_reference_pictures_slots_count`] is the maximum number of DPB Slots
     ///supported by the implementation for a single video session instance.
-    max_reference_pictures_slots_count: u32,
+    pub max_reference_pictures_slots_count: u32,
     ///[`max_reference_pictures_active_count`] is the maximum slots that can be
     ///used as [Reference Pictures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#reference-picture) with a single decode or
     ///encode operation.
-    max_reference_pictures_active_count: u32,
+    pub max_reference_pictures_active_count: u32,
 }
 impl<'lt> Default for VideoCapabilitiesKHR<'lt> {
     fn default() -> Self {
@@ -4213,23 +4228,24 @@ impl<'lt> VideoCapabilitiesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoGetMemoryPropertiesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoGetMemoryPropertiesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`memory_bind_index`] is the memory bind index of the memory heap type
     ///described by the information returned in [`memory_requirements`].
-    memory_bind_index: u32,
+    pub memory_bind_index: u32,
     ///[`memory_requirements`] is a pointer to a [`MemoryRequirements2`]
     ///structure in which the requested memory heap requirements for the heap
     ///with index [`memory_bind_index`] are returned.
-    memory_requirements: *mut MemoryRequirements2<'lt>,
+    pub memory_requirements: *mut MemoryRequirements2<'lt>,
 }
 impl<'lt> Default for VideoGetMemoryPropertiesKHR<'lt> {
     fn default() -> Self {
@@ -4363,29 +4379,30 @@ impl<'lt> VideoGetMemoryPropertiesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoBindMemoryKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoBindMemoryKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`memory_bind_index`] is the index of the device memory heap returned in
     ///[`VideoGetMemoryPropertiesKHR`]::[`memory_bind_index`] from
     ///[`GetVideoSessionMemoryRequirementsKHR`].
-    memory_bind_index: u32,
+    pub memory_bind_index: u32,
     ///[`memory`] is the allocated device memory to be bound to the video
     ///session’s heap with index [`memory_bind_index`].
-    memory: DeviceMemory,
+    pub memory: DeviceMemory,
     ///[`memory_offset`] is the start offset of the region of [`memory`]
     ///which is to be bound.
-    memory_offset: DeviceSize,
+    pub memory_offset: DeviceSize,
     ///[`memory_size`] is the size in bytes of the region of [`memory`],
     ///starting from [`memory_offset`] bytes, to be bound.
-    memory_size: DeviceSize,
+    pub memory_size: DeviceSize,
 }
 impl<'lt> Default for VideoBindMemoryKHR<'lt> {
     fn default() -> Self {
@@ -4532,26 +4549,27 @@ impl<'lt> VideoBindMemoryKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoPictureResourceKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoPictureResourceKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`coded_offset`] is the offset to be used for the picture resource.
-    coded_offset: Offset2D,
+    pub coded_offset: Offset2D,
     ///[`coded_extent`] is the extent to be used for the picture resource.
-    coded_extent: Extent2D,
+    pub coded_extent: Extent2D,
     ///[`base_array_layer`] is the first array layer to be accessed for the
     ///Decode or Encode Operations.
-    base_array_layer: u32,
+    pub base_array_layer: u32,
     ///[`image_view_binding`] is a [`ImageView`] image view representing
     ///this picture resource.
-    image_view_binding: ImageView,
+    pub image_view_binding: ImageView,
 }
 impl<'lt> Default for VideoPictureResourceKHR<'lt> {
     fn default() -> Self {
@@ -4696,22 +4714,23 @@ impl<'lt> VideoPictureResourceKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoReferenceSlotKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoReferenceSlotKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`slot_index`] is the unique reference slot index used for the encode
     ///or decode operation.
-    slot_index: i8,
+    pub slot_index: i8,
     ///[`picture_resource`] is a pointer to a [`VideoPictureResourceKHR`]
     ///structure describing the picture resource bound to this slot index.
-    picture_resource: *const VideoPictureResourceKHR<'lt>,
+    pub picture_resource: *const VideoPictureResourceKHR<'lt>,
 }
 impl<'lt> Default for VideoReferenceSlotKHR<'lt> {
     fn default() -> Self {
@@ -4897,43 +4916,44 @@ impl<'lt> VideoReferenceSlotKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoSessionCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoSessionCreateInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`queue_family_index`] is the queue family of the created video session.
-    queue_family_index: u32,
+    pub queue_family_index: u32,
     ///[`flags`] is a bitmask of [`VideoSessionCreateFlagBitsKHR`]
     ///specifying creation flags.
-    flags: VideoSessionCreateFlagsKHR,
+    pub flags: VideoSessionCreateFlagsKHR,
     ///[`video_profile`] is a pointer to a [`VideoProfileKHR`] structure.
-    video_profile: *const VideoProfileKHR<'lt>,
+    pub video_profile: *const VideoProfileKHR<'lt>,
     ///[`picture_format`] is the format of the [image
     ///views](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-views) representing decoded [Output](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#decoded-output-picture) or
     ///encoded [Input](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#input-encode-picture) pictures.
-    picture_format: Format,
+    pub picture_format: Format,
     ///[`max_coded_extent`] is the maximum width and height of the coded
     ///pictures that this instance will be able to support.
-    max_coded_extent: Extent2D,
+    pub max_coded_extent: Extent2D,
     ///[`reference_pictures_format`] is the format of the [DPB](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#dpb) image
     ///views representing the [Reference Pictures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#reference-picture).
-    reference_pictures_format: Format,
+    pub reference_pictures_format: Format,
     ///[`max_reference_pictures_slots_count`] is the maximum number of
     ///[DPB Slots](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#dpb-slot) that can be activated with associated
     ///[Video Picture Resources](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for the created
     ///video session.
-    max_reference_pictures_slots_count: u32,
+    pub max_reference_pictures_slots_count: u32,
     ///[`max_reference_pictures_active_count`] is the maximum number of active
     ///[DPB Slots](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#dpb-slot) that can be used as Dpb or Reconstructed
     ///[Reference Pictures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#reference-picture) within a single decode or
     ///encode operation for the created video session.
-    max_reference_pictures_active_count: u32,
+    pub max_reference_pictures_active_count: u32,
 }
 impl<'lt> Default for VideoSessionCreateInfoKHR<'lt> {
     fn default() -> Self {
@@ -5164,16 +5184,17 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoSessionParametersCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoSessionParametersCreateInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`video_session_parameters_template`] is [`crate::utils::Handle::null`] or a valid
     ///handle to a [`VideoSessionParametersKHR`] object.
     ///If this parameter represents a valid handle, then the underlying Video
@@ -5184,10 +5205,10 @@ pub struct VideoSessionParametersCreateInfoKHR<'lt> {
     ///Optionally, some of the template’s parameters can be updated or new
     ///parameters added to the newly constructed object via the
     ///extension-specific parameters.
-    video_session_parameters_template: VideoSessionParametersKHR,
+    pub video_session_parameters_template: VideoSessionParametersKHR,
     ///[`video_session`] is the video session object against which the video
     ///session parameters object is going to be created.
-    video_session: VideoSessionKHR,
+    pub video_session: VideoSessionKHR,
 }
 impl<'lt> Default for VideoSessionParametersCreateInfoKHR<'lt> {
     fn default() -> Self {
@@ -5303,20 +5324,21 @@ impl<'lt> VideoSessionParametersCreateInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoSessionParametersUpdateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoSessionParametersUpdateInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`update_sequence_count`] is the sequence number of the object update
     ///with parameters, starting from `1` and incrementing the value by one
     ///with each subsequent update.
-    update_sequence_count: u32,
+    pub update_sequence_count: u32,
 }
 impl<'lt> Default for VideoSessionParametersUpdateInfoKHR<'lt> {
     fn default() -> Self {
@@ -5455,34 +5477,35 @@ impl<'lt> VideoSessionParametersUpdateInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoBeginCodingInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoBeginCodingInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: VideoBeginCodingFlagsKHR,
+    pub flags: VideoBeginCodingFlagsKHR,
     ///[`codec_quality_preset`] is a bitmask of
     ///[`VideoCodingQualityPresetFlagBitsKHR`] specifying the Video Decode
     ///or Encode quality preset.
-    codec_quality_preset: VideoCodingQualityPresetFlagsKHR,
+    pub codec_quality_preset: VideoCodingQualityPresetFlagsKHR,
     ///[`video_session`] is the video session object to be bound for the
     ///processing of the video commands.
-    video_session: VideoSessionKHR,
+    pub video_session: VideoSessionKHR,
     ///[`video_session_parameters`] is [`crate::utils::Handle::null`] or a handle of a
     ///[`VideoSessionParametersKHR`] object to be used for the processing
     ///of the video commands.
     ///If [`crate::utils::Handle::null`], then no video session parameters apply to this
     ///command buffer context.
-    video_session_parameters: VideoSessionParametersKHR,
+    pub video_session_parameters: VideoSessionParametersKHR,
     ///[`reference_slot_count`] is the number of reference slot entries
     ///provided in [`reference_slots`].
-    reference_slot_count: u32,
+    pub reference_slot_count: u32,
     ///[`reference_slots`] is a pointer to an array of
     ///[`VideoReferenceSlotKHR`] structures specifying reference slots,
     ///used within the video command context between this
@@ -5493,7 +5516,7 @@ pub struct VideoBeginCodingInfoKHR<'lt> {
     ///resource bound to this slot index.
     ///A slot index  **must**  not appear more than once in [`reference_slots`] in
     ///a given command.
-    reference_slots: *const VideoReferenceSlotKHR<'lt>,
+    pub reference_slots: *const VideoReferenceSlotKHR<'lt>,
 }
 impl<'lt> Default for VideoBeginCodingInfoKHR<'lt> {
     fn default() -> Self {
@@ -5677,18 +5700,19 @@ impl<'lt> VideoBeginCodingInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoEndCodingInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoEndCodingInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: VideoEndCodingFlagsKHR,
+    pub flags: VideoEndCodingFlagsKHR,
 }
 impl<'lt> Default for VideoEndCodingInfoKHR<'lt> {
     fn default() -> Self {
@@ -5791,19 +5815,20 @@ impl<'lt> VideoEndCodingInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoCodingControlInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoCodingControlInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`VideoCodingControlFlagsKHR`]
     ///specifying control flags.
-    flags: VideoCodingControlFlagsKHR,
+    pub flags: VideoCodingControlFlagsKHR,
 }
 impl<'lt> Default for VideoCodingControlInfoKHR<'lt> {
     fn default() -> Self {
@@ -5888,6 +5913,7 @@ impl<'lt> VideoCodingControlInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoSessionKHR")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -5948,6 +5974,7 @@ impl std::fmt::Debug for VideoSessionKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoSessionParametersKHR")]
 #[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]

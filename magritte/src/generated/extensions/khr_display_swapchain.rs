@@ -158,21 +158,22 @@ pub const KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDisplayPresentInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DisplayPresentInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_rect`] is a rectangular region of pixels to present.
     ///It  **must**  be a subset of the image being presented.
     ///If [`DisplayPresentInfoKHR`] is not specified, this region will be
     ///assumed to be the entire presentable image.
-    src_rect: Rect2D,
+    pub src_rect: Rect2D,
     ///[`dst_rect`] is a rectangular region within the visible region of the
     ///swapchain’s display mode.
     ///If [`DisplayPresentInfoKHR`] is not specified, this region will be
@@ -185,7 +186,7 @@ pub struct DisplayPresentInfoKHR<'lt> {
     ///If portions of the specified rectangle are outside of the display’s
     ///visible region, pixels mapping only to those portions of the rectangle
     ///will be discarded.
-    dst_rect: Rect2D,
+    pub dst_rect: Rect2D,
     ///[`persistent`]: If this is [`TRUE`], the display engine will
     ///enable buffered mode on displays that support it.
     ///This allows the display engine to stop sending content to the display
@@ -195,7 +196,7 @@ pub struct DisplayPresentInfoKHR<'lt> {
     ///latency.
     ///If [`DisplayPresentInfoKHR`] is not specified, persistent mode will
     ///not be used.
-    persistent: Bool32,
+    pub persistent: Bool32,
 }
 impl<'lt> Default for DisplayPresentInfoKHR<'lt> {
     fn default() -> Self {

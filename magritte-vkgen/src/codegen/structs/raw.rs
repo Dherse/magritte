@@ -7,7 +7,7 @@ use syn::{Ident, Token};
 use tracing::warn;
 
 use crate::{
-    codegen::ty::{lifetime_as_generic_argument, lifetime_as_lifetime},
+    codegen::{ty::{lifetime_as_generic_argument, lifetime_as_lifetime}, alias_of},
     doc::Documentation,
     expr::Expr,
     imports::Imports,
@@ -52,7 +52,7 @@ impl<'a> Struct<'a> {
 
             let lt = lifetime_as_lifetime();
             quote! {
-                _lifetime: PhantomData<&#lt ()>,
+                pub _lifetime: PhantomData<&#lt ()>,
             }
         });
 
@@ -93,6 +93,9 @@ impl<'a> Struct<'a> {
             .iter()
             .map(|field| field.generate_default(source, imports));
 
+        // creates a doc alias if the name has been changed
+        alias_of(self.original_name(), self.name(), out);
+
         quote_each_token! {
             out
 
@@ -128,7 +131,7 @@ impl<'a> Struct<'a> {
         }
     }
 
-    /// Generates the documentation for a constant
+    /// Generates the documentation for a raw struct
     fn generate_doc(
         &self,
         source: &Source<'a>,
@@ -172,7 +175,7 @@ impl<'a> Struct<'a> {
 
 impl<'a> Field<'a> {
     /// Generates the code for the raw C-compatible struct
-    pub(super) fn generate_raw_code(
+    pub fn generate_raw_code(
         &self,
         source: &Source<'a>,
         imports: &Imports,
@@ -192,7 +195,7 @@ impl<'a> Field<'a> {
 
         quote! {
             #doc
-            #name: #ty
+            pub #name: #ty
         }
     }
 

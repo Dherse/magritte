@@ -250,6 +250,7 @@ impl VideoDecodeFlagBitsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoDecodeCapabilityFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -556,6 +557,7 @@ impl std::fmt::Debug for VideoDecodeCapabilityFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoDecodeFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -843,19 +845,20 @@ impl std::fmt::Debug for VideoDecodeFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoDecodeCapabilitiesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeCapabilitiesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`flags`] is a bitmask of [`VideoDecodeCapabilityFlagBitsKHR`]
     ///describing supported decoding features.
-    flags: VideoDecodeCapabilityFlagsKHR,
+    pub flags: VideoDecodeCapabilityFlagsKHR,
 }
 impl<'lt> Default for VideoDecodeCapabilitiesKHR<'lt> {
     fn default() -> Self {
@@ -1013,48 +1016,49 @@ impl<'lt> VideoDecodeCapabilitiesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkVideoDecodeInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     ///All the codec specific structures related to each frame(picture
     ///parameters, quantization matrix, etc.)  **must**  be chained here and pass to
     ///decode session with the function call [`CmdDecodeVideoKHR`].
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`VideoDecodeFlagBitsKHR`] specifying
     ///decode flags, reserved for future versions of this specification.
-    flags: VideoDecodeFlagsKHR,
+    pub flags: VideoDecodeFlagsKHR,
     ///[`coded_offset`] is the coded offset of the decode operations.
     ///The purpose of this field is interpreted based on the codec extension.
     ///When decoding content in H.264 field mode, the [`coded_offset`]
     ///specifies the line or picture field’s offset within the image.
-    coded_offset: Offset2D,
+    pub coded_offset: Offset2D,
     ///[`coded_extent`] is the coded size of the decode operations.
-    coded_extent: Extent2D,
+    pub coded_extent: Extent2D,
     ///[`src_buffer`] is the source buffer that holds the encoded bitstream.
-    src_buffer: Buffer,
+    pub src_buffer: Buffer,
     ///[`src_buffer_offset`] is the buffer offset where the valid encoded
     ///bitstream starts in srcBuffer.
     ///It  **must**  meet the alignment requirement
     ///`minBitstreamBufferOffsetAlignment` within
     ///[`VideoCapabilitiesKHR`] queried with the
     ///[`GetPhysicalDeviceVideoCapabilitiesKHR`] function.
-    src_buffer_offset: DeviceSize,
+    pub src_buffer_offset: DeviceSize,
     ///[`src_buffer_range`] is the size of the srcBuffer with valid encoded
     ///bitstream, starting from [`src_buffer_offset`].
     ///It  **must**  meet the alignment requirement
     ///`minBitstreamBufferSizeAlignment` within
     ///[`VideoCapabilitiesKHR`] queried with the
     ///[`GetPhysicalDeviceVideoCapabilitiesKHR`] function.
-    src_buffer_range: DeviceSize,
+    pub src_buffer_range: DeviceSize,
     ///[`dst_picture_resource`] is the destination
     ///[Decoded Output Picture](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#decoded-output-picture) Resource.
-    dst_picture_resource: VideoPictureResourceKHR<'lt>,
+    pub dst_picture_resource: VideoPictureResourceKHR<'lt>,
     ///[`setup_reference_slot`] is `NULL` or a pointer to a
     ///[`VideoReferenceSlotKHR`] structure used for generating a DPB
     ///reference slot and Picture Resource.
@@ -1064,14 +1068,14 @@ pub struct VideoDecodeInfoKHR<'lt> {
     ///[`VideoBeginCodingInfoKHR`] via the [`reference_slots`] within the
     ///[`CmdBeginVideoCodingKHR`] command that established the Vulkan Video
     ///Decode Context for this command.
-    setup_reference_slot: *const VideoReferenceSlotKHR<'lt>,
+    pub setup_reference_slot: *const VideoReferenceSlotKHR<'lt>,
     ///[`reference_slot_count`] is the number of the DPB Reference Pictures
     ///that will be used when this decoding operation is executing.
-    reference_slot_count: u32,
+    pub reference_slot_count: u32,
     ///[`reference_slots`] is a pointer to an array of
     ///[`VideoReferenceSlotKHR`] structures specifying the DPB Reference
     ///pictures that will be used when this decoding operation is executing.
-    reference_slots: *const VideoReferenceSlotKHR<'lt>,
+    pub reference_slots: *const VideoReferenceSlotKHR<'lt>,
 }
 impl<'lt> Default for VideoDecodeInfoKHR<'lt> {
     fn default() -> Self {

@@ -116,22 +116,23 @@ pub const NV_CORNER_SAMPLED_IMAGE_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceCornerSampledImageFeaturesNV")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceCornerSampledImageFeaturesNV<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`corner_sampled_image`] specifies
     ///whether images can be created with a
     ///[`ImageCreateInfo`]::`flags` containing
     ///`VK_IMAGE_CREATE_CORNER_SAMPLED_BIT_NV`.
     ///See [Corner-Sampled Images](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-images-corner-sampled).
-    corner_sampled_image: Bool32,
+    pub corner_sampled_image: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceCornerSampledImageFeaturesNV<'lt> {
     fn default() -> Self {

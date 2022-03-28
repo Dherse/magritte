@@ -178,6 +178,7 @@ impl ConditionalRenderingFlagBitsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkConditionalRenderingFlagsEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -487,25 +488,26 @@ impl std::fmt::Debug for ConditionalRenderingFlagsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkConditionalRenderingBeginInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ConditionalRenderingBeginInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`buffer`] is a buffer containing the predicate for conditional
     ///rendering.
-    buffer: Buffer,
+    pub buffer: Buffer,
     ///[`offset`] is the byte offset into [`buffer`] where the predicate is
     ///located.
-    offset: DeviceSize,
+    pub offset: DeviceSize,
     ///[`flags`] is a bitmask of [`ConditionalRenderingFlagsEXT`]
     ///specifying the behavior of conditional rendering.
-    flags: ConditionalRenderingFlagsEXT,
+    pub flags: ConditionalRenderingFlagsEXT,
 }
 impl<'lt> Default for ConditionalRenderingBeginInfoEXT<'lt> {
     fn default() -> Self {
@@ -643,16 +645,17 @@ impl<'lt> ConditionalRenderingBeginInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkCommandBufferInheritanceConditionalRenderingInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`conditional_rendering_enable`] specifies whether the command buffer
     /// **can**  be executed while conditional rendering is active in the primary
     ///command buffer.
@@ -661,7 +664,7 @@ pub struct CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
     ///not.
     ///If this is [`FALSE`], then the primary command buffer  **must**  not
     ///have conditional rendering active.
-    conditional_rendering_enable: Bool32,
+    pub conditional_rendering_enable: Bool32,
 }
 impl<'lt> Default for CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
     fn default() -> Self {
@@ -788,23 +791,24 @@ impl<'lt> CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceConditionalRenderingFeaturesEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceConditionalRenderingFeaturesEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`conditional_rendering`] specifies
     ///whether conditional rendering is supported.
-    conditional_rendering: Bool32,
+    pub conditional_rendering: Bool32,
     ///[`inherited_conditional_rendering`] specifies whether a secondary
     ///command buffer  **can**  be executed while conditional rendering is active in
     ///the primary command buffer.
-    inherited_conditional_rendering: Bool32,
+    pub inherited_conditional_rendering: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceConditionalRenderingFeaturesEXT<'lt> {
     fn default() -> Self {

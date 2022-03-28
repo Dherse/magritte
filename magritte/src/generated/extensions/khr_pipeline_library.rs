@@ -88,22 +88,23 @@ pub const KHR_PIPELINE_LIBRARY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPipelineLibraryCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineLibraryCreateInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`library_count`] is the number of pipeline libraries in
     ///[`libraries`].
-    library_count: u32,
+    pub library_count: u32,
     ///[`libraries`] is a pointer to an array of [`Pipeline`] structures
     ///specifying pipeline libraries to use when creating a pipeline.
-    libraries: *const Pipeline,
+    pub libraries: *const Pipeline,
 }
 impl<'lt> Default for PipelineLibraryCreateInfoKHR<'lt> {
     fn default() -> Self {

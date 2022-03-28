@@ -270,6 +270,7 @@ impl DeviceGroupPresentModeFlagBitsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceGroupPresentModeFlagsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -619,25 +620,26 @@ impl std::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceGroupPresentCapabilitiesKHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceGroupPresentCapabilitiesKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`present_mask`] is an array of [`MAX_DEVICE_GROUP_SIZE`]`uint32_t` masks, where the mask at
     /// element i is non-zero if physical device i has a presentation engine, and where bit j
     ///is set in element i if physical device i **can**  present
     ///swapchain images from physical device j.
     ///If element i is non-zero, then bit i **must**  be set.
-    present_mask: [u32; MAX_DEVICE_GROUP_SIZE],
+    pub present_mask: [u32; MAX_DEVICE_GROUP_SIZE],
     ///[`modes`] is a bitmask of [`DeviceGroupPresentModeFlagBitsKHR`]
     ///indicating which device group presentation modes are supported.
-    modes: DeviceGroupPresentModeFlagsKHR,
+    pub modes: DeviceGroupPresentModeFlagsKHR,
 }
 impl<'lt> Default for DeviceGroupPresentCapabilitiesKHR<'lt> {
     fn default() -> Self {
@@ -763,19 +765,20 @@ impl<'lt> DeviceGroupPresentCapabilitiesKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageSwapchainCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageSwapchainCreateInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`swapchain`] is [`crate::utils::Handle::null`] or a handle of a swapchain that
     ///the image will be bound to.
-    swapchain: SwapchainKHR,
+    pub swapchain: SwapchainKHR,
 }
 impl<'lt> Default for ImageSwapchainCreateInfoKHR<'lt> {
     fn default() -> Self {
@@ -887,20 +890,21 @@ impl<'lt> ImageSwapchainCreateInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBindImageMemorySwapchainInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BindImageMemorySwapchainInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`swapchain`] is [`crate::utils::Handle::null`] or a swapchain handle.
-    swapchain: SwapchainKHR,
+    pub swapchain: SwapchainKHR,
     ///[`image_index`] is an image index within [`swapchain`].
-    image_index: u32,
+    pub image_index: u32,
 }
 impl<'lt> Default for BindImageMemorySwapchainInfoKHR<'lt> {
     fn default() -> Self {
@@ -1047,29 +1051,30 @@ impl<'lt> BindImageMemorySwapchainInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAcquireNextImageInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AcquireNextImageInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`swapchain`] is a non-retired swapchain from which an image is
     ///acquired.
-    swapchain: SwapchainKHR,
+    pub swapchain: SwapchainKHR,
     ///[`timeout`] specifies how long the function waits, in nanoseconds, if
     ///no image is available.
-    timeout: u64,
+    pub timeout: u64,
     ///[`semaphore`] is [`crate::utils::Handle::null`] or a semaphore to signal.
-    semaphore: Semaphore,
+    pub semaphore: Semaphore,
     ///[`fence`] is [`crate::utils::Handle::null`] or a fence to signal.
-    fence: Fence,
+    pub fence: Fence,
     ///[`device_mask`] is a mask of physical devices for which the swapchain
     ///image will be ready to use when the semaphore or fence is signaled.
-    device_mask: u32,
+    pub device_mask: u32,
 }
 impl<'lt> Default for AcquireNextImageInfoKHR<'lt> {
     fn default() -> Self {
@@ -1279,26 +1284,27 @@ impl<'lt> AcquireNextImageInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceGroupPresentInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceGroupPresentInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`swapchain_count`] is zero or the number of elements in
     ///[`device_masks`].
-    swapchain_count: u32,
+    pub swapchain_count: u32,
     ///[`device_masks`] is a pointer to an array of device masks, one for
     ///each element of [`PresentInfoKHR`]::pSwapchains.
-    device_masks: *const u32,
+    pub device_masks: *const u32,
     ///[`mode`] is a [`DeviceGroupPresentModeFlagBitsKHR`] value
     ///specifying the device group present mode that will be used for this
     ///present.
-    mode: DeviceGroupPresentModeFlagBitsKHR,
+    pub mode: DeviceGroupPresentModeFlagBitsKHR,
 }
 impl<'lt> Default for DeviceGroupPresentInfoKHR<'lt> {
     fn default() -> Self {
@@ -1440,18 +1446,19 @@ impl<'lt> DeviceGroupPresentInfoKHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceGroupSwapchainCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceGroupSwapchainCreateInfoKHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`modes`] is a bitfield of modes that the swapchain  **can**  be used with.
-    modes: DeviceGroupPresentModeFlagsKHR,
+    pub modes: DeviceGroupPresentModeFlagsKHR,
 }
 impl<'lt> Default for DeviceGroupSwapchainCreateInfoKHR<'lt> {
     fn default() -> Self {

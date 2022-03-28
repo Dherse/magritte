@@ -132,22 +132,23 @@ impl std::fmt::Debug for DirectFBSurfaceCreateFlagsEXT {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDirectFBSurfaceCreateInfoEXT")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DirectFBSurfaceCreateInfoEXT<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: DirectFBSurfaceCreateFlagsEXT,
+    pub flags: DirectFBSurfaceCreateFlagsEXT,
     ///[`dfb`] is a pointer to the [`IDirectFB`] main interface of DirectFB.
-    dfb: *mut IDirectFB,
+    pub dfb: *mut IDirectFB,
     ///[`surface`] is a pointer to a [`IDirectFBSurface`] surface interface.
-    surface: *mut IDirectFBSurface,
+    pub surface: *mut IDirectFBSurface,
 }
 impl<'lt> Default for DirectFBSurfaceCreateInfoEXT<'lt> {
     fn default() -> Self {

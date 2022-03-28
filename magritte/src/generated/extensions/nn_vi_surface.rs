@@ -139,21 +139,22 @@ impl std::fmt::Debug for ViSurfaceCreateFlagsNN {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkViSurfaceCreateInfoNN")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ViSurfaceCreateInfoNN<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: ViSurfaceCreateFlagsNN,
+    pub flags: ViSurfaceCreateFlagsNN,
     ///[`window`] is the `nn`::`vi`::`NativeWindowHandle` for the
     ///`nn`::`vi`::`Layer` with which to associate the surface.
-    window: *mut c_void,
+    pub window: *mut c_void,
 }
 impl<'lt> Default for ViSurfaceCreateInfoNN<'lt> {
     fn default() -> Self {

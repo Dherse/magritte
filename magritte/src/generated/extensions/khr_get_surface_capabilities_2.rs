@@ -153,18 +153,19 @@ pub const KHR_GET_SURFACE_CAPABILITIES_2_EXTENSION_NAME: &'static CStr =
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceSurfaceInfo2KHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSurfaceInfo2KHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`surface`] is the surface that will be associated with the swapchain.
-    surface: SurfaceKHR,
+    pub surface: SurfaceKHR,
 }
 impl<'lt> Default for PhysicalDeviceSurfaceInfo2KHR<'lt> {
     fn default() -> Self {
@@ -262,19 +263,20 @@ impl<'lt> PhysicalDeviceSurfaceInfo2KHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSurfaceCapabilities2KHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SurfaceCapabilities2KHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`surface_capabilities`] is a [`SurfaceCapabilitiesKHR`] structure
     ///describing the capabilities of the specified surface.
-    surface_capabilities: SurfaceCapabilitiesKHR,
+    pub surface_capabilities: SurfaceCapabilitiesKHR,
 }
 impl<'lt> Default for SurfaceCapabilities2KHR<'lt> {
     fn default() -> Self {
@@ -378,19 +380,20 @@ impl<'lt> SurfaceCapabilities2KHR<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSurfaceFormat2KHR")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SurfaceFormat2KHR<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`surface_format`] is a [`SurfaceFormatKHR`] structure describing a
     ///format-color space pair that is compatible with the specified surface.
-    surface_format: SurfaceFormatKHR,
+    pub surface_format: SurfaceFormatKHR,
 }
 impl<'lt> Default for SurfaceFormat2KHR<'lt> {
     fn default() -> Self {

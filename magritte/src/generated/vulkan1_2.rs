@@ -105,6 +105,7 @@ pub const MAX_DRIVER_INFO_SIZE: u32 = 256;
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreType")]
+#[doc(alias = "VkSemaphoreType")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -187,6 +188,7 @@ impl SemaphoreType {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSamplerReductionMode")]
 #[doc(alias = "VkSamplerReductionMode")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -303,6 +305,7 @@ impl SamplerReductionMode {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDriverId")]
 #[doc(alias = "VkDriverId")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -424,6 +427,7 @@ impl DriverId {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkShaderFloatControlsIndependence")]
 #[doc(alias = "VkShaderFloatControlsIndependence")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -827,6 +831,7 @@ impl ResolveModeFlagBits {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSemaphoreWaitFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1142,6 +1147,7 @@ impl std::fmt::Debug for SemaphoreWaitFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorBindingFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1534,6 +1540,7 @@ impl std::fmt::Debug for DescriptorBindingFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkResolveModeFlags")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1856,20 +1863,21 @@ impl std::fmt::Debug for ResolveModeFlags {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkConformanceVersion")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct ConformanceVersion {
     ///[`major`] is the major version number of the conformance test suite.
-    major: u8,
+    pub major: u8,
     ///[`minor`] is the minor version number of the conformance test suite.
-    minor: u8,
+    pub minor: u8,
     ///[`subminor`] is the subminor version number of the conformance test
     ///suite.
-    subminor: u8,
+    pub subminor: u8,
     ///[`patch`] is the patch version number of the conformance test suite.
-    patch: u8,
+    pub patch: u8,
 }
 impl Default for ConformanceVersion {
     fn default() -> Self {
@@ -1987,24 +1995,25 @@ impl ConformanceVersion {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceDriverProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDriverProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    driver_id: DriverId,
+    pub driver_id: DriverId,
     ///No documentation found
-    driver_name: [c_schar; MAX_DRIVER_NAME_SIZE],
+    pub driver_name: [c_schar; MAX_DRIVER_NAME_SIZE],
     ///No documentation found
-    driver_info: [c_schar; MAX_DRIVER_INFO_SIZE],
+    pub driver_info: [c_schar; MAX_DRIVER_INFO_SIZE],
     ///No documentation found
-    conformance_version: ConformanceVersion,
+    pub conformance_version: ConformanceVersion,
 }
 impl<'lt> Default for PhysicalDeviceDriverProperties<'lt> {
     fn default() -> Self {
@@ -2173,23 +2182,24 @@ impl<'lt> PhysicalDeviceDriverProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_subgroup_extended_types`] is a boolean specifying whether
     ///subgroup operations can use 8-bit integer, 16-bit integer, 64-bit
     ///integer, 16-bit floating-point, and vectors of these types in
     ///[group operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shaders-group-operations) with
     ///[subgroup scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shaders-scope-subgroup), if the implementation
     ///supports the types.
-    shader_subgroup_extended_types: Bool32,
+    pub shader_subgroup_extended_types: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'lt> {
     fn default() -> Self {
@@ -2357,20 +2367,21 @@ impl<'lt> PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceSamplerFilterMinmaxProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSamplerFilterMinmaxProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    filter_minmax_single_component_formats: Bool32,
+    pub filter_minmax_single_component_formats: Bool32,
     ///No documentation found
-    filter_minmax_image_component_mapping: Bool32,
+    pub filter_minmax_image_component_mapping: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceSamplerFilterMinmaxProperties<'lt> {
     fn default() -> Self {
@@ -2541,19 +2552,20 @@ impl<'lt> PhysicalDeviceSamplerFilterMinmaxProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSamplerReductionModeCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SamplerReductionModeCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`reduction_mode`] is a [`SamplerReductionMode`] value controlling
     ///how texture filtering combines texel values.
-    reduction_mode: SamplerReductionMode,
+    pub reduction_mode: SamplerReductionMode,
 }
 impl<'lt> Default for SamplerReductionModeCreateInfo<'lt> {
     fn default() -> Self {
@@ -2661,23 +2673,24 @@ impl<'lt> SamplerReductionModeCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageFormatListCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageFormatListCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`view_format_count`] is the number of entries in the [`view_formats`]
     ///array.
-    view_format_count: u32,
+    pub view_format_count: u32,
     ///[`view_formats`] is a pointer to an array of [`Format`] values
     ///specifying all formats which  **can**  be used when creating views of this
     ///image.
-    view_formats: *const Format,
+    pub view_formats: *const Format,
 }
 impl<'lt> Default for ImageFormatListCreateInfo<'lt> {
     fn default() -> Self {
@@ -2827,16 +2840,17 @@ impl<'lt> ImageFormatListCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceShaderFloat16Int8Features")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderFloat16Int8Features<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_float_16`] indicates
     ///whether 16-bit floats (halfs) are supported in shader code.
     ///This also indicates whether shader modules  **can**  declare the `Float16`
@@ -2849,7 +2863,7 @@ pub struct PhysicalDeviceShaderFloat16Int8Features<'lt> {
     ///the interface storage classes (e.g., `UniformConstant`, `Uniform`,
     ///`StorageBuffer`, `Input`, `Output`, and `PushConstant`) is
     ///not enabled.
-    shader_float_16: Bool32,
+    pub shader_float_16: Bool32,
     ///[`shader_int_8`] indicates
     ///whether 8-bit integers (signed and unsigned) are supported in shader
     ///code.
@@ -2863,7 +2877,7 @@ pub struct PhysicalDeviceShaderFloat16Int8Features<'lt> {
     ///the interface storage classes (e.g., `UniformConstant`, `Uniform`,
     ///`StorageBuffer`, `Input`, `Output`, and `PushConstant`) is
     ///not enabled.
-    shader_int_8: Bool32,
+    pub shader_int_8: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceShaderFloat16Int8Features<'lt> {
     fn default() -> Self {
@@ -3033,22 +3047,22 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float_16`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_32`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 64-bit floating-point types.
@@ -3115,50 +3129,51 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceFloatControlsProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFloatControlsProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    denorm_behavior_independence: ShaderFloatControlsIndependence,
+    pub denorm_behavior_independence: ShaderFloatControlsIndependence,
     ///No documentation found
-    rounding_mode_independence: ShaderFloatControlsIndependence,
+    pub rounding_mode_independence: ShaderFloatControlsIndependence,
     ///No documentation found
-    shader_signed_zero_inf_nan_preserve_float_16: Bool32,
+    pub shader_signed_zero_inf_nan_preserve_float_16: Bool32,
     ///No documentation found
-    shader_signed_zero_inf_nan_preserve_float_32: Bool32,
+    pub shader_signed_zero_inf_nan_preserve_float_32: Bool32,
     ///No documentation found
-    shader_signed_zero_inf_nan_preserve_float_64: Bool32,
+    pub shader_signed_zero_inf_nan_preserve_float_64: Bool32,
     ///No documentation found
-    shader_denorm_preserve_float_16: Bool32,
+    pub shader_denorm_preserve_float_16: Bool32,
     ///No documentation found
-    shader_denorm_preserve_float_32: Bool32,
+    pub shader_denorm_preserve_float_32: Bool32,
     ///No documentation found
-    shader_denorm_preserve_float_64: Bool32,
+    pub shader_denorm_preserve_float_64: Bool32,
     ///No documentation found
-    shader_denorm_flush_to_zero_float_16: Bool32,
+    pub shader_denorm_flush_to_zero_float_16: Bool32,
     ///No documentation found
-    shader_denorm_flush_to_zero_float_32: Bool32,
+    pub shader_denorm_flush_to_zero_float_32: Bool32,
     ///No documentation found
-    shader_denorm_flush_to_zero_float_64: Bool32,
+    pub shader_denorm_flush_to_zero_float_64: Bool32,
     ///No documentation found
-    shader_rounding_mode_rte_float_16: Bool32,
+    pub shader_rounding_mode_rte_float_16: Bool32,
     ///No documentation found
-    shader_rounding_mode_rte_float_32: Bool32,
+    pub shader_rounding_mode_rte_float_32: Bool32,
     ///No documentation found
-    shader_rounding_mode_rte_float_64: Bool32,
+    pub shader_rounding_mode_rte_float_64: Bool32,
     ///No documentation found
-    shader_rounding_mode_rtz_float_16: Bool32,
+    pub shader_rounding_mode_rtz_float_16: Bool32,
     ///No documentation found
-    shader_rounding_mode_rtz_float_32: Bool32,
+    pub shader_rounding_mode_rtz_float_32: Bool32,
     ///No documentation found
-    shader_rounding_mode_rtz_float_64: Bool32,
+    pub shader_rounding_mode_rtz_float_64: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceFloatControlsProperties<'lt> {
     fn default() -> Self {
@@ -3850,20 +3865,21 @@ impl<'lt> PhysicalDeviceFloatControlsProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceHostQueryResetFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceHostQueryResetFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`host_query_reset`]
     ///indicates that the implementation supports resetting queries from the
     ///host with [`ResetQueryPool`].
-    host_query_reset: Bool32,
+    pub host_query_reset: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceHostQueryResetFeatures<'lt> {
     fn default() -> Self {
@@ -4119,16 +4135,17 @@ impl<'lt> PhysicalDeviceHostQueryResetFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceDescriptorIndexingFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorIndexingFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_input_attachment_array_dynamic_indexing`] indicates whether arrays
     ///of input attachments  **can**  be indexed by dynamically uniform integer
     ///expressions in shader code.
@@ -4138,7 +4155,7 @@ pub struct PhysicalDeviceDescriptorIndexingFeatures<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`InputAttachmentArrayDynamicIndexing` capability.
-    shader_input_attachment_array_dynamic_indexing: Bool32,
+    pub shader_input_attachment_array_dynamic_indexing: Bool32,
     ///[`shader_uniform_texel_buffer_array_dynamic_indexing`] indicates whether
     ///arrays of uniform texel buffers  **can**  be indexed by dynamically uniform
     ///integer expressions in shader code.
@@ -4148,7 +4165,7 @@ pub struct PhysicalDeviceDescriptorIndexingFeatures<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`UniformTexelBufferArrayDynamicIndexing` capability.
-    shader_uniform_texel_buffer_array_dynamic_indexing: Bool32,
+    pub shader_uniform_texel_buffer_array_dynamic_indexing: Bool32,
     ///[`shader_storage_texel_buffer_array_dynamic_indexing`] indicates whether
     ///arrays of storage texel buffers  **can**  be indexed by dynamically uniform
     ///integer expressions in shader code.
@@ -4158,7 +4175,7 @@ pub struct PhysicalDeviceDescriptorIndexingFeatures<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`StorageTexelBufferArrayDynamicIndexing` capability.
-    shader_storage_texel_buffer_array_dynamic_indexing: Bool32,
+    pub shader_storage_texel_buffer_array_dynamic_indexing: Bool32,
     ///[`shader_uniform_buffer_array_non_uniform_indexing`] indicates whether
     ///arrays of uniform buffers  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
@@ -4169,7 +4186,7 @@ pub struct PhysicalDeviceDescriptorIndexingFeatures<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`UniformBufferArrayNonUniformIndexing` capability.
-    shader_uniform_buffer_array_non_uniform_indexing: Bool32,
+    pub shader_uniform_buffer_array_non_uniform_indexing: Bool32,
     ///[`shader_sampled_image_array_non_uniform_indexing`] indicates whether arrays
     ///of samplers or sampled images  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
@@ -4181,7 +4198,7 @@ pub struct PhysicalDeviceDescriptorIndexingFeatures<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`SampledImageArrayNonUniformIndexing` capability.
-    shader_sampled_image_array_non_uniform_indexing: Bool32,
+    pub shader_sampled_image_array_non_uniform_indexing: Bool32,
     ///[`shader_storage_buffer_array_non_uniform_indexing`] indicates whether
     ///arrays of storage buffers  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
@@ -4192,7 +4209,7 @@ pub struct PhysicalDeviceDescriptorIndexingFeatures<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`StorageBufferArrayNonUniformIndexing` capability.
-    shader_storage_buffer_array_non_uniform_indexing: Bool32,
+    pub shader_storage_buffer_array_non_uniform_indexing: Bool32,
     ///[`shader_storage_image_array_non_uniform_indexing`] indicates whether arrays
     ///of storage images  **can**  be indexed by non-uniform integer expressions in
     ///shader code.
@@ -4202,7 +4219,7 @@ pub struct PhysicalDeviceDescriptorIndexingFeatures<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`StorageImageArrayNonUniformIndexing` capability.
-    shader_storage_image_array_non_uniform_indexing: Bool32,
+    pub shader_storage_image_array_non_uniform_indexing: Bool32,
     ///[`shader_input_attachment_array_non_uniform_indexing`] indicates whether
     ///arrays of input attachments  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
@@ -4212,7 +4229,7 @@ pub struct PhysicalDeviceDescriptorIndexingFeatures<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`InputAttachmentArrayNonUniformIndexing` capability.
-    shader_input_attachment_array_non_uniform_indexing: Bool32,
+    pub shader_input_attachment_array_non_uniform_indexing: Bool32,
     ///[`shader_uniform_texel_buffer_array_non_uniform_indexing`] indicates whether
     ///arrays of uniform texel buffers  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
@@ -4222,7 +4239,7 @@ pub struct PhysicalDeviceDescriptorIndexingFeatures<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`UniformTexelBufferArrayNonUniformIndexing` capability.
-    shader_uniform_texel_buffer_array_non_uniform_indexing: Bool32,
+    pub shader_uniform_texel_buffer_array_non_uniform_indexing: Bool32,
     ///[`shader_storage_texel_buffer_array_non_uniform_indexing`] indicates whether
     ///arrays of storage texel buffers  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
@@ -4232,14 +4249,14 @@ pub struct PhysicalDeviceDescriptorIndexingFeatures<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`StorageTexelBufferArrayNonUniformIndexing` capability.
-    shader_storage_texel_buffer_array_non_uniform_indexing: Bool32,
+    pub shader_storage_texel_buffer_array_non_uniform_indexing: Bool32,
     ///[`descriptor_binding_uniform_buffer_update_after_bind`] indicates whether
     ///the implementation supports updating uniform buffer descriptors after a
     ///set is bound.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER`.
-    descriptor_binding_uniform_buffer_update_after_bind: Bool32,
+    pub descriptor_binding_uniform_buffer_update_after_bind: Bool32,
     ///[`descriptor_binding_sampled_image_update_after_bind`] indicates whether the
     ///implementation supports updating sampled image descriptors after a set
     ///is bound.
@@ -4248,59 +4265,59 @@ pub struct PhysicalDeviceDescriptorIndexingFeatures<'lt> {
     ///`VK_DESCRIPTOR_TYPE_SAMPLER`,
     ///`VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, or
     ///`VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE`.
-    descriptor_binding_sampled_image_update_after_bind: Bool32,
+    pub descriptor_binding_sampled_image_update_after_bind: Bool32,
     ///[`descriptor_binding_storage_image_update_after_bind`] indicates whether the
     ///implementation supports updating storage image descriptors after a set
     ///is bound.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`.
-    descriptor_binding_storage_image_update_after_bind: Bool32,
+    pub descriptor_binding_storage_image_update_after_bind: Bool32,
     ///[`descriptor_binding_storage_buffer_update_after_bind`] indicates whether
     ///the implementation supports updating storage buffer descriptors after a
     ///set is bound.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_STORAGE_BUFFER`.
-    descriptor_binding_storage_buffer_update_after_bind: Bool32,
+    pub descriptor_binding_storage_buffer_update_after_bind: Bool32,
     ///[`descriptor_binding_uniform_texel_buffer_update_after_bind`] indicates
     ///whether the implementation supports updating uniform texel buffer
     ///descriptors after a set is bound.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`.
-    descriptor_binding_uniform_texel_buffer_update_after_bind: Bool32,
+    pub descriptor_binding_uniform_texel_buffer_update_after_bind: Bool32,
     ///[`descriptor_binding_storage_texel_buffer_update_after_bind`] indicates
     ///whether the implementation supports updating storage texel buffer
     ///descriptors after a set is bound.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`.
-    descriptor_binding_storage_texel_buffer_update_after_bind: Bool32,
+    pub descriptor_binding_storage_texel_buffer_update_after_bind: Bool32,
     ///[`descriptor_binding_update_unused_while_pending`] indicates whether the
     ///implementation supports updating descriptors while the set is in use.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT` **must**  not be
     ///used.
-    descriptor_binding_update_unused_while_pending: Bool32,
+    pub descriptor_binding_update_unused_while_pending: Bool32,
     ///[`descriptor_binding_partially_bound`] indicates whether the
     ///implementation supports statically using a descriptor set binding in
     ///which some descriptors are not valid.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT` **must**  not be used.
-    descriptor_binding_partially_bound: Bool32,
+    pub descriptor_binding_partially_bound: Bool32,
     ///[`descriptor_binding_variable_descriptor_count`] indicates whether the
     ///implementation supports descriptor sets with a variable-sized last
     ///binding.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT` **must**  not be
     ///used.
-    descriptor_binding_variable_descriptor_count: Bool32,
+    pub descriptor_binding_variable_descriptor_count: Bool32,
     ///[`runtime_descriptor_array`] indicates whether the implementation
     ///supports the SPIR-V `RuntimeDescriptorArray` capability.
     ///If this feature is not enabled, descriptors  **must**  not be declared in
     ///runtime arrays.
-    runtime_descriptor_array: Bool32,
+    pub runtime_descriptor_array: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceDescriptorIndexingFeatures<'lt> {
     fn default() -> Self {
@@ -5265,62 +5282,63 @@ impl<'lt> PhysicalDeviceDescriptorIndexingFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceDescriptorIndexingProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorIndexingProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    max_update_after_bind_descriptors_in_all_pools: u32,
+    pub max_update_after_bind_descriptors_in_all_pools: u32,
     ///No documentation found
-    shader_uniform_buffer_array_non_uniform_indexing_native: Bool32,
+    pub shader_uniform_buffer_array_non_uniform_indexing_native: Bool32,
     ///No documentation found
-    shader_sampled_image_array_non_uniform_indexing_native: Bool32,
+    pub shader_sampled_image_array_non_uniform_indexing_native: Bool32,
     ///No documentation found
-    shader_storage_buffer_array_non_uniform_indexing_native: Bool32,
+    pub shader_storage_buffer_array_non_uniform_indexing_native: Bool32,
     ///No documentation found
-    shader_storage_image_array_non_uniform_indexing_native: Bool32,
+    pub shader_storage_image_array_non_uniform_indexing_native: Bool32,
     ///No documentation found
-    shader_input_attachment_array_non_uniform_indexing_native: Bool32,
+    pub shader_input_attachment_array_non_uniform_indexing_native: Bool32,
     ///No documentation found
-    robust_buffer_access_update_after_bind: Bool32,
+    pub robust_buffer_access_update_after_bind: Bool32,
     ///No documentation found
-    quad_divergent_implicit_lod: Bool32,
+    pub quad_divergent_implicit_lod: Bool32,
     ///No documentation found
-    max_per_stage_descriptor_update_after_bind_samplers: u32,
+    pub max_per_stage_descriptor_update_after_bind_samplers: u32,
     ///No documentation found
-    max_per_stage_descriptor_update_after_bind_uniform_buffers: u32,
+    pub max_per_stage_descriptor_update_after_bind_uniform_buffers: u32,
     ///No documentation found
-    max_per_stage_descriptor_update_after_bind_storage_buffers: u32,
+    pub max_per_stage_descriptor_update_after_bind_storage_buffers: u32,
     ///No documentation found
-    max_per_stage_descriptor_update_after_bind_sampled_images: u32,
+    pub max_per_stage_descriptor_update_after_bind_sampled_images: u32,
     ///No documentation found
-    max_per_stage_descriptor_update_after_bind_storage_images: u32,
+    pub max_per_stage_descriptor_update_after_bind_storage_images: u32,
     ///No documentation found
-    max_per_stage_descriptor_update_after_bind_input_attachments: u32,
+    pub max_per_stage_descriptor_update_after_bind_input_attachments: u32,
     ///No documentation found
-    max_per_stage_update_after_bind_resources: u32,
+    pub max_per_stage_update_after_bind_resources: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_samplers: u32,
+    pub max_descriptor_set_update_after_bind_samplers: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_uniform_buffers: u32,
+    pub max_descriptor_set_update_after_bind_uniform_buffers: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_uniform_buffers_dynamic: u32,
+    pub max_descriptor_set_update_after_bind_uniform_buffers_dynamic: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_storage_buffers: u32,
+    pub max_descriptor_set_update_after_bind_storage_buffers: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_storage_buffers_dynamic: u32,
+    pub max_descriptor_set_update_after_bind_storage_buffers_dynamic: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_sampled_images: u32,
+    pub max_descriptor_set_update_after_bind_sampled_images: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_storage_images: u32,
+    pub max_descriptor_set_update_after_bind_storage_images: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_input_attachments: u32,
+    pub max_descriptor_set_update_after_bind_input_attachments: u32,
 }
 impl<'lt> Default for PhysicalDeviceDescriptorIndexingProperties<'lt> {
     fn default() -> Self {
@@ -5993,23 +6011,24 @@ impl<'lt> PhysicalDeviceDescriptorIndexingProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorSetLayoutBindingFlagsCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorSetLayoutBindingFlagsCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`binding_count`] is zero or the number of elements in
     ///[`binding_flags`].
-    binding_count: u32,
+    pub binding_count: u32,
     ///[`binding_flags`] is a pointer to an array of
     ///[`DescriptorBindingFlags`] bitfields, one for each descriptor set
     ///layout binding.
-    binding_flags: *const DescriptorBindingFlags,
+    pub binding_flags: *const DescriptorBindingFlags,
 }
 impl<'lt> Default for DescriptorSetLayoutBindingFlagsCreateInfo<'lt> {
     fn default() -> Self {
@@ -6162,24 +6181,25 @@ impl<'lt> DescriptorSetLayoutBindingFlagsCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorSetVariableDescriptorCountAllocateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorSetVariableDescriptorCountAllocateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`descriptor_set_count`] is zero or the number of elements in
     ///[`descriptor_counts`].
-    descriptor_set_count: u32,
+    pub descriptor_set_count: u32,
     ///[`descriptor_counts`] is a pointer to an array of descriptor counts,
     ///with each member specifying the number of descriptors in a
     ///variable-sized descriptor binding in the corresponding descriptor set
     ///being allocated.
-    descriptor_counts: *const u32,
+    pub descriptor_counts: *const u32,
 }
 impl<'lt> Default for DescriptorSetVariableDescriptorCountAllocateInfo<'lt> {
     fn default() -> Self {
@@ -6327,16 +6347,17 @@ impl<'lt> DescriptorSetVariableDescriptorCountAllocateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDescriptorSetVariableDescriptorCountLayoutSupport")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`max_variable_descriptor_count`] indicates the maximum number of
     ///descriptors supported in the highest numbered binding of the layout, if
     ///that binding is variable-sized.
@@ -6344,7 +6365,7 @@ pub struct DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
     ///`VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` then
     ///[`max_variable_descriptor_count`] indicates the maximum byte size
     ///supported for the binding, if that binding is variable-sized.
-    max_variable_descriptor_count: u32,
+    pub max_variable_descriptor_count: u32,
 }
 impl<'lt> Default for DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
     fn default() -> Self {
@@ -6574,47 +6595,48 @@ impl<'lt> DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAttachmentDescription2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AttachmentDescription2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`AttachmentDescriptionFlagBits`]
     ///specifying additional properties of the attachment.
-    flags: AttachmentDescriptionFlags,
+    pub flags: AttachmentDescriptionFlags,
     ///[`format`] is a [`Format`] value specifying the format of the
     ///image that will be used for the attachment.
-    format: Format,
+    pub format: Format,
     ///[`samples`] is a [`SampleCountFlagBits`] value specifying the
     ///number of samples of the image.
-    samples: SampleCountFlagBits,
+    pub samples: SampleCountFlagBits,
     ///[`load_op`] is a [`AttachmentLoadOp`] value specifying how the
     ///contents of color and depth components of the attachment are treated at
     ///the beginning of the subpass where it is first used.
-    load_op: AttachmentLoadOp,
+    pub load_op: AttachmentLoadOp,
     ///[`store_op`] is a [`AttachmentStoreOp`] value specifying how the
     ///contents of color and depth components of the attachment are treated at
     ///the end of the subpass where it is last used.
-    store_op: AttachmentStoreOp,
+    pub store_op: AttachmentStoreOp,
     ///[`stencil_load_op`] is a [`AttachmentLoadOp`] value specifying how
     ///the contents of stencil components of the attachment are treated at the
     ///beginning of the subpass where it is first used.
-    stencil_load_op: AttachmentLoadOp,
+    pub stencil_load_op: AttachmentLoadOp,
     ///[`stencil_store_op`] is a [`AttachmentStoreOp`] value specifying how
     ///the contents of stencil components of the attachment are treated at the
     ///end of the last subpass where it is used.
-    stencil_store_op: AttachmentStoreOp,
+    pub stencil_store_op: AttachmentStoreOp,
     ///[`initial_layout`] is the layout the attachment image subresource will
     ///be in when a render pass instance begins.
-    initial_layout: ImageLayout,
+    pub initial_layout: ImageLayout,
     ///[`final_layout`] is the layout the attachment image subresource will be
     ///transitioned to when a render pass instance ends.
-    final_layout: ImageLayout,
+    pub final_layout: ImageLayout,
 }
 impl<'lt> Default for AttachmentDescription2<'lt> {
     fn default() -> Self {
@@ -6873,27 +6895,28 @@ impl<'lt> AttachmentDescription2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAttachmentReference2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AttachmentReference2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`attachment`] is either an integer value identifying an attachment at
     ///the corresponding index in
     ///[`RenderPassCreateInfo2`]::`pAttachments`, or
     ///[`ATTACHMENT_UNUSED`] to signify that this attachment is not used.
-    attachment: u32,
+    pub attachment: u32,
     ///[`layout`] is a [`ImageLayout`] value specifying the layout the
     ///attachment uses during the subpass.
-    layout: ImageLayout,
+    pub layout: ImageLayout,
     ///[`aspect_mask`] is a mask of which aspect(s)  **can**  be accessed within
     ///the specified subpass as an input attachment.
-    aspect_mask: ImageAspectFlags,
+    pub aspect_mask: ImageAspectFlags,
 }
 impl<'lt> Default for AttachmentReference2<'lt> {
     fn default() -> Self {
@@ -7138,52 +7161,53 @@ impl<'lt> AttachmentReference2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSubpassDescription2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SubpassDescription2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`SubpassDescriptionFlagBits`]
     ///specifying usage of the subpass.
-    flags: SubpassDescriptionFlags,
+    pub flags: SubpassDescriptionFlags,
     ///[`pipeline_bind_point`] is a [`PipelineBindPoint`] value specifying
     ///the pipeline type supported for this subpass.
-    pipeline_bind_point: PipelineBindPoint,
+    pub pipeline_bind_point: PipelineBindPoint,
     ///[`view_mask`] is a bitfield of view indices describing which views
     ///rendering is broadcast to in this subpass, when multiview is enabled.
-    view_mask: u32,
+    pub view_mask: u32,
     ///[`input_attachment_count`] is the number of input attachments.
-    input_attachment_count: u32,
+    pub input_attachment_count: u32,
     ///[`input_attachments`] is a pointer to an array of
     ///[`AttachmentReference2`] structures defining the input attachments
     ///for this subpass and their layouts.
-    input_attachments: *const AttachmentReference2<'lt>,
+    pub input_attachments: *const AttachmentReference2<'lt>,
     ///[`color_attachment_count`] is the number of color attachments.
-    color_attachment_count: u32,
+    pub color_attachment_count: u32,
     ///[`color_attachments`] is a pointer to an array of
     ///[`color_attachment_count`][`AttachmentReference2`] structures
     ///defining the color attachments for this subpass and their layouts.
-    color_attachments: *const AttachmentReference2<'lt>,
+    pub color_attachments: *const AttachmentReference2<'lt>,
     ///[`resolve_attachments`] is `NULL` or a pointer to an array of
     ///[`color_attachment_count`][`AttachmentReference2`] structures
     ///defining the resolve attachments for this subpass and their layouts.
-    resolve_attachments: *const AttachmentReference2<'lt>,
+    pub resolve_attachments: *const AttachmentReference2<'lt>,
     ///[`depth_stencil_attachment`] is a pointer to a
     ///[`AttachmentReference2`] structure specifying the depth/stencil
     ///attachment for this subpass and its layout.
-    depth_stencil_attachment: *const AttachmentReference2<'lt>,
+    pub depth_stencil_attachment: *const AttachmentReference2<'lt>,
     ///[`preserve_attachment_count`] is the number of preserved attachments.
-    preserve_attachment_count: u32,
+    pub preserve_attachment_count: u32,
     ///[`preserve_attachments`] is a pointer to an array of
     ///[`preserve_attachment_count`] render pass attachment indices identifying
     ///attachments that are not used by this subpass, but whose contents  **must**
     ///be preserved throughout the subpass.
-    preserve_attachments: *const u32,
+    pub preserve_attachments: *const u32,
 }
 impl<'lt> Default for SubpassDescription2<'lt> {
     fn default() -> Self {
@@ -7589,41 +7613,42 @@ impl<'lt> SubpassDescription2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSubpassDependency2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SubpassDependency2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`src_subpass`] is the subpass index of the first subpass in the
     ///dependency, or [`SUBPASS_EXTERNAL`].
-    src_subpass: u32,
+    pub src_subpass: u32,
     ///[`dst_subpass`] is the subpass index of the second subpass in the
     ///dependency, or [`SUBPASS_EXTERNAL`].
-    dst_subpass: u32,
+    pub dst_subpass: u32,
     ///[`src_stage_mask`] is a bitmask of [`PipelineStageFlagBits`]
     ///specifying the [source stage
     ///mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-masks).
-    src_stage_mask: PipelineStageFlags,
+    pub src_stage_mask: PipelineStageFlags,
     ///[`dst_stage_mask`] is a bitmask of [`PipelineStageFlagBits`]
     ///specifying the [destination
     ///stage mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-masks)
-    dst_stage_mask: PipelineStageFlags,
+    pub dst_stage_mask: PipelineStageFlags,
     ///[`src_access_mask`] is a bitmask of [`AccessFlagBits`] specifying a
     ///[source access mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-masks).
-    src_access_mask: AccessFlags,
+    pub src_access_mask: AccessFlags,
     ///[`dst_access_mask`] is a bitmask of [`AccessFlagBits`] specifying a
     ///[destination access mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-masks).
-    dst_access_mask: AccessFlags,
+    pub dst_access_mask: AccessFlags,
     ///[`dependency_flags`] is a bitmask of [`DependencyFlagBits`].
-    dependency_flags: DependencyFlags,
+    pub dependency_flags: DependencyFlags,
     ///[`view_offset`] controls which views in the source subpass the views in
     ///the destination subpass depend on.
-    view_offset: i32,
+    pub view_offset: i32,
 }
 impl<'lt> Default for SubpassDependency2<'lt> {
     fn default() -> Self {
@@ -7945,41 +7970,42 @@ impl<'lt> SubpassDependency2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRenderPassCreateInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderPassCreateInfo2<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is reserved for future use.
-    flags: RenderPassCreateFlags,
+    pub flags: RenderPassCreateFlags,
     ///[`attachment_count`] is the number of attachments used by this render
     ///pass.
-    attachment_count: u32,
+    pub attachment_count: u32,
     ///[`attachments`] is a pointer to an array of [`attachment_count`][`AttachmentDescription2`]
     /// structures describing the attachments used by the render pass.
-    attachments: *const AttachmentDescription2<'lt>,
+    pub attachments: *const AttachmentDescription2<'lt>,
     ///[`subpass_count`] is the number of subpasses to create.
-    subpass_count: u32,
+    pub subpass_count: u32,
     ///[`subpasses`] is a pointer to an array of [`subpass_count`][`SubpassDescription2`]
     /// structures describing each subpass.
-    subpasses: *const SubpassDescription2<'lt>,
+    pub subpasses: *const SubpassDescription2<'lt>,
     ///[`dependency_count`] is the number of dependencies between pairs of
     ///subpasses.
-    dependency_count: u32,
+    pub dependency_count: u32,
     ///[`dependencies`] is a pointer to an array of [`dependency_count`][`SubpassDependency2`]
     /// structures describing dependencies between pairs of subpasses.
-    dependencies: *const SubpassDependency2<'lt>,
+    pub dependencies: *const SubpassDependency2<'lt>,
     ///[`correlated_view_mask_count`] is the number of correlation masks.
-    correlated_view_mask_count: u32,
+    pub correlated_view_mask_count: u32,
     ///[`correlated_view_masks`] is a pointer to an array of view masks
     ///indicating sets of views that  **may**  be more efficient to render
     ///concurrently.
-    correlated_view_masks: *const u32,
+    pub correlated_view_masks: *const u32,
 }
 impl<'lt> Default for RenderPassCreateInfo2<'lt> {
     fn default() -> Self {
@@ -8239,19 +8265,20 @@ impl<'lt> RenderPassCreateInfo2<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSubpassBeginInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SubpassBeginInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`contents`] is a [`SubpassContents`] value specifying how the
     ///commands in the next subpass will be provided.
-    contents: SubpassContents,
+    pub contents: SubpassContents,
 }
 impl<'lt> Default for SubpassBeginInfo<'lt> {
     fn default() -> Self {
@@ -8352,16 +8379,17 @@ impl<'lt> SubpassBeginInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSubpassEndInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SubpassEndInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
 }
 impl<'lt> Default for SubpassEndInfo<'lt> {
     fn default() -> Self {
@@ -8454,20 +8482,21 @@ impl<'lt> SubpassEndInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceTimelineSemaphoreFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceTimelineSemaphoreFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`timeline_semaphore`]
     ///indicates whether semaphores created with a [`SemaphoreType`] of
     ///`VK_SEMAPHORE_TYPE_TIMELINE` are supported.
-    timeline_semaphore: Bool32,
+    pub timeline_semaphore: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceTimelineSemaphoreFeatures<'lt> {
     fn default() -> Self {
@@ -8602,18 +8631,19 @@ impl<'lt> PhysicalDeviceTimelineSemaphoreFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceTimelineSemaphoreProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceTimelineSemaphoreProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    max_timeline_semaphore_value_difference: u64,
+    pub max_timeline_semaphore_value_difference: u64,
 }
 impl<'lt> Default for PhysicalDeviceTimelineSemaphoreProperties<'lt> {
     fn default() -> Self {
@@ -8731,22 +8761,23 @@ impl<'lt> PhysicalDeviceTimelineSemaphoreProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSemaphoreTypeCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SemaphoreTypeCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`semaphore_type`] is a [`SemaphoreType`] value specifying the type
     ///of the semaphore.
-    semaphore_type: SemaphoreType,
+    pub semaphore_type: SemaphoreType,
     ///[`initial_value`] is the initial payload value if [`semaphore_type`]
     ///is `VK_SEMAPHORE_TYPE_TIMELINE`.
-    initial_value: u64,
+    pub initial_value: u64,
 }
 impl<'lt> Default for SemaphoreTypeCreateInfo<'lt> {
     fn default() -> Self {
@@ -8883,30 +8914,31 @@ impl<'lt> SemaphoreTypeCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkTimelineSemaphoreSubmitInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct TimelineSemaphoreSubmitInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`wait_semaphore_value_count`] is the number of semaphore wait values
     ///specified in [`wait_semaphore_values`].
-    wait_semaphore_value_count: u32,
+    pub wait_semaphore_value_count: u32,
     ///[`wait_semaphore_values`] is a pointer to an array of
     ///[`wait_semaphore_value_count`] values for the corresponding semaphores in
     ///[`SubmitInfo`]::`pWaitSemaphores` to wait for.
-    wait_semaphore_values: *const u64,
+    pub wait_semaphore_values: *const u64,
     ///[`signal_semaphore_value_count`] is the number of semaphore signal values
     ///specified in [`signal_semaphore_values`].
-    signal_semaphore_value_count: u32,
+    pub signal_semaphore_value_count: u32,
     ///[`signal_semaphore_values`] is a pointer to an array
     ///[`signal_semaphore_value_count`] values for the corresponding semaphores
     ///in [`SubmitInfo`]::`pSignalSemaphores` to set when signaled.
-    signal_semaphore_values: *const u64,
+    pub signal_semaphore_values: *const u64,
 }
 impl<'lt> Default for TimelineSemaphoreSubmitInfo<'lt> {
     fn default() -> Self {
@@ -9087,27 +9119,28 @@ impl<'lt> TimelineSemaphoreSubmitInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSemaphoreWaitInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SemaphoreWaitInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`SemaphoreWaitFlagBits`] specifying
     ///additional parameters for the semaphore wait operation.
-    flags: SemaphoreWaitFlags,
+    pub flags: SemaphoreWaitFlags,
     ///[`semaphore_count`] is the number of semaphores to wait on.
-    semaphore_count: u32,
+    pub semaphore_count: u32,
     ///[`semaphores`] is a pointer to an array of [`semaphore_count`]
     ///semaphore handles to wait on.
-    semaphores: *const Semaphore,
+    pub semaphores: *const Semaphore,
     ///[`values`] is a pointer to an array of [`semaphore_count`] timeline
     ///semaphore values.
-    values: *const u64,
+    pub values: *const u64,
 }
 impl<'lt> Default for SemaphoreWaitInfo<'lt> {
     fn default() -> Self {
@@ -9283,20 +9316,21 @@ impl<'lt> SemaphoreWaitInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSemaphoreSignalInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SemaphoreSignalInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`semaphore`] is the handle of the semaphore to signal.
-    semaphore: Semaphore,
+    pub semaphore: Semaphore,
     ///[`value`] is the value to signal.
-    value: u64,
+    pub value: u64,
 }
 impl<'lt> Default for SemaphoreSignalInfo<'lt> {
     fn default() -> Self {
@@ -9430,16 +9464,17 @@ impl<'lt> SemaphoreSignalInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDevice8BitStorageFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevice8BitStorageFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`storage_buffer_8_bit_access`] indicates whether objects in the
     ///    `StorageBuffer`,
     ///`ShaderRecordBufferKHR`,
@@ -9450,7 +9485,7 @@ pub struct PhysicalDevice8BitStorageFeatures<'lt> {
     ///    in such objects.
     ///    This also indicates whether shader modules  **can**  declare the
     ///    `StorageBuffer8BitAccess` capability.
-    storage_buffer_8_bit_access: Bool32,
+    pub storage_buffer_8_bit_access: Bool32,
     ///[`uniform_and_storage_buffer_8_bit_access`] indicates whether objects in the
     ///`Uniform` storage class with the `Block` decoration  **can**  have
     ///8-bit integer members.
@@ -9458,14 +9493,14 @@ pub struct PhysicalDevice8BitStorageFeatures<'lt> {
     ///in such objects.
     ///This also indicates whether shader modules  **can**  declare the
     ///`UniformAndStorageBuffer8BitAccess` capability.
-    uniform_and_storage_buffer_8_bit_access: Bool32,
+    pub uniform_and_storage_buffer_8_bit_access: Bool32,
     ///[`storage_push_constant_8`] indicates whether objects in the
     ///`PushConstant` storage class  **can**  have 8-bit integer members.
     ///If this feature is not enabled, 8-bit integer members  **must**  not be used
     ///in such objects.
     ///This also indicates whether shader modules  **can**  declare the
     ///`StoragePushConstant8` capability.
-    storage_push_constant_8: Bool32,
+    pub storage_push_constant_8: Bool32,
 }
 impl<'lt> Default for PhysicalDevice8BitStorageFeatures<'lt> {
     fn default() -> Self {
@@ -9680,30 +9715,31 @@ impl<'lt> PhysicalDevice8BitStorageFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceVulkanMemoryModelFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVulkanMemoryModelFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`vulkan_memory_model`]
     ///indicates whether the Vulkan Memory Model is supported, as defined in
     ///[Vulkan Memory Model](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-model).
     ///This also indicates whether shader modules  **can**  declare the
     ///`VulkanMemoryModel` capability.
-    vulkan_memory_model: Bool32,
+    pub vulkan_memory_model: Bool32,
     ///[`vulkan_memory_model_device_scope`] indicates whether the Vulkan Memory
     ///Model can use [`Device`] scope synchronization.
     ///This also indicates whether shader modules  **can**  declare the
     ///`VulkanMemoryModelDeviceScope` capability.
-    vulkan_memory_model_device_scope: Bool32,
+    pub vulkan_memory_model_device_scope: Bool32,
     ///[`vulkan_memory_model_availability_visibility_chains`] indicates whether
     ///the Vulkan Memory Model can use [availability and visibility chains](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-model-availability-visibility) with more than one element.
-    vulkan_memory_model_availability_visibility_chains: Bool32,
+    pub vulkan_memory_model_availability_visibility_chains: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceVulkanMemoryModelFeatures<'lt> {
     fn default() -> Self {
@@ -9918,22 +9954,23 @@ impl<'lt> PhysicalDeviceVulkanMemoryModelFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceShaderAtomicInt64Features")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderAtomicInt64Features<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`shader_buffer_int_64_atomics`] indicates whether shaders  **can**  perform
     ///64-bit unsigned and signed integer atomic operations on buffers.
-    shader_buffer_int_64_atomics: Bool32,
+    pub shader_buffer_int_64_atomics: Bool32,
     ///[`shader_shared_int_64_atomics`] indicates whether shaders  **can**  perform
     ///64-bit unsigned and signed integer atomic operations on shared memory.
-    shader_shared_int_64_atomics: Bool32,
+    pub shader_shared_int_64_atomics: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceShaderAtomicInt64Features<'lt> {
     fn default() -> Self {
@@ -10121,24 +10158,25 @@ impl<'lt> PhysicalDeviceShaderAtomicInt64Features<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceDepthStencilResolveProperties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDepthStencilResolveProperties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    supported_depth_resolve_modes: ResolveModeFlags,
+    pub supported_depth_resolve_modes: ResolveModeFlags,
     ///No documentation found
-    supported_stencil_resolve_modes: ResolveModeFlags,
+    pub supported_stencil_resolve_modes: ResolveModeFlags,
     ///No documentation found
-    independent_resolve_none: Bool32,
+    pub independent_resolve_none: Bool32,
     ///No documentation found
-    independent_resolve: Bool32,
+    pub independent_resolve: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceDepthStencilResolveProperties<'lt> {
     fn default() -> Self {
@@ -10390,26 +10428,27 @@ impl<'lt> PhysicalDeviceDepthStencilResolveProperties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkSubpassDescriptionDepthStencilResolve")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SubpassDescriptionDepthStencilResolve<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`depth_resolve_mode`] is a [`ResolveModeFlagBits`] value describing
     ///the depth resolve mode.
-    depth_resolve_mode: ResolveModeFlagBits,
+    pub depth_resolve_mode: ResolveModeFlagBits,
     ///[`stencil_resolve_mode`] is a [`ResolveModeFlagBits`] value
     ///describing the stencil resolve mode.
-    stencil_resolve_mode: ResolveModeFlagBits,
+    pub stencil_resolve_mode: ResolveModeFlagBits,
     ///[`depth_stencil_resolve_attachment`] is `NULL` or a pointer to a
     ///[`AttachmentReference2`] structure defining the depth/stencil
     ///resolve attachment for this subpass and its layout.
-    depth_stencil_resolve_attachment: *const AttachmentReference2<'lt>,
+    pub depth_stencil_resolve_attachment: *const AttachmentReference2<'lt>,
 }
 impl<'lt> Default for SubpassDescriptionDepthStencilResolve<'lt> {
     fn default() -> Self {
@@ -10575,19 +10614,20 @@ impl<'lt> SubpassDescriptionDepthStencilResolve<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageStencilUsageCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageStencilUsageCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`stencil_usage`] is a bitmask of [`ImageUsageFlagBits`] describing
     ///the intended usage of the stencil aspect of the image.
-    stencil_usage: ImageUsageFlags,
+    pub stencil_usage: ImageUsageFlags,
 }
 impl<'lt> Default for ImageStencilUsageCreateInfo<'lt> {
     fn default() -> Self {
@@ -10693,21 +10733,22 @@ impl<'lt> ImageStencilUsageCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceScalarBlockLayoutFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceScalarBlockLayoutFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`scalar_block_layout`]
     ///indicates that the implementation supports the layout of resource blocks
     ///in shaders using [scalar
     ///alignment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#interfaces-alignment-requirements).
-    scalar_block_layout: Bool32,
+    pub scalar_block_layout: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceScalarBlockLayoutFeatures<'lt> {
     fn default() -> Self {
@@ -10848,21 +10889,22 @@ impl<'lt> PhysicalDeviceScalarBlockLayoutFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceUniformBufferStandardLayoutFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceUniformBufferStandardLayoutFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`uniform_buffer_standard_layout`] indicates that the implementation
     ///supports the same layouts for uniform buffers as for storage and other
     ///kinds of buffers.
     ///See [Standard Buffer Layout](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#interfaces-resources-standard-layout).
-    uniform_buffer_standard_layout: Bool32,
+    pub uniform_buffer_standard_layout: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceUniformBufferStandardLayoutFeatures<'lt> {
     fn default() -> Self {
@@ -11011,24 +11053,25 @@ impl<'lt> PhysicalDeviceUniformBufferStandardLayoutFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceBufferDeviceAddressFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceBufferDeviceAddressFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`buffer_device_address`] indicates that the implementation supports
     ///accessing buffer memory in shaders as storage buffers via an address
     ///queried from [`GetBufferDeviceAddress`].
-    buffer_device_address: Bool32,
+    pub buffer_device_address: Bool32,
     ///[`buffer_device_address_capture_replay`] indicates that the implementation
     ///supports saving and reusing buffer and device addresses, e.g. for trace
     ///capture and replay.
-    buffer_device_address_capture_replay: Bool32,
+    pub buffer_device_address_capture_replay: Bool32,
     ///[`buffer_device_address_multi_device`] indicates that the implementation
     ///supports the [`buffer_device_address`]
     ///, `rayTracingPipeline` and `rayQuery` features
@@ -11037,7 +11080,7 @@ pub struct PhysicalDeviceBufferDeviceAddressFeatures<'lt> {
     ///and acceleration structure
     ///addresses  **must**  not be queried on a logical device created with more
     ///than one physical device.
-    buffer_device_address_multi_device: Bool32,
+    pub buffer_device_address_multi_device: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceBufferDeviceAddressFeatures<'lt> {
     fn default() -> Self {
@@ -11255,18 +11298,19 @@ impl<'lt> PhysicalDeviceBufferDeviceAddressFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferDeviceAddressInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferDeviceAddressInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`buffer`] specifies the buffer whose address is being queried.
-    buffer: Buffer,
+    pub buffer: Buffer,
 }
 impl<'lt> Default for BufferDeviceAddressInfo<'lt> {
     fn default() -> Self {
@@ -11373,19 +11417,20 @@ impl<'lt> BufferDeviceAddressInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkBufferOpaqueCaptureAddressCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferOpaqueCaptureAddressCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`opaque_capture_address`] is the opaque capture address requested for
     ///the buffer.
-    opaque_capture_address: u64,
+    pub opaque_capture_address: u64,
 }
 impl<'lt> Default for BufferOpaqueCaptureAddressCreateInfo<'lt> {
     fn default() -> Self {
@@ -11494,20 +11539,21 @@ impl<'lt> BufferOpaqueCaptureAddressCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceImagelessFramebufferFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceImagelessFramebufferFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`imageless_framebuffer`] indicates that the implementation supports
     ///specifying the image view for attachments at render pass begin time via
     ///[`RenderPassAttachmentBeginInfo`].
-    imageless_framebuffer: Bool32,
+    pub imageless_framebuffer: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceImagelessFramebufferFeatures<'lt> {
     fn default() -> Self {
@@ -11640,24 +11686,25 @@ impl<'lt> PhysicalDeviceImagelessFramebufferFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFramebufferAttachmentsCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct FramebufferAttachmentsCreateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`attachment_image_info_count`] is the number of attachments being
     ///described.
-    attachment_image_info_count: u32,
+    pub attachment_image_info_count: u32,
     ///[`attachment_image_infos`] is a pointer to an array of
     ///[`FramebufferAttachmentImageInfo`] structures, each structure
     ///describing a number of parameters of the corresponding attachment in a
     ///render pass instance.
-    attachment_image_infos: *const FramebufferAttachmentImageInfo<'lt>,
+    pub attachment_image_infos: *const FramebufferAttachmentImageInfo<'lt>,
 }
 impl<'lt> Default for FramebufferAttachmentsCreateInfo<'lt> {
     fn default() -> Self {
@@ -11814,42 +11861,43 @@ impl<'lt> FramebufferAttachmentsCreateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkFramebufferAttachmentImageInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct FramebufferAttachmentImageInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`flags`] is a bitmask of [`ImageCreateFlagBits`], matching the
     ///value of [`ImageCreateInfo`]::[`flags`] used to create an image
     ///that will be used with this framebuffer.
-    flags: ImageCreateFlags,
+    pub flags: ImageCreateFlags,
     ///[`usage`] is a bitmask of [`ImageUsageFlagBits`], matching the
     ///value of [`ImageCreateInfo`]::[`usage`] used to create an image
     ///used with this framebuffer.
-    usage: ImageUsageFlags,
+    pub usage: ImageUsageFlags,
     ///[`width`] is the width of the image view used for rendering.
-    width: u32,
+    pub width: u32,
     ///[`height`] is the height of the image view used for rendering.
-    height: u32,
+    pub height: u32,
     ///[`layer_count`] is the number of array layers of the image view used
     ///for rendering.
-    layer_count: u32,
+    pub layer_count: u32,
     ///[`view_format_count`] is the number of entries in the [`view_formats`]
     ///array, matching the value of
     ///[`ImageFormatListCreateInfo`]::[`view_format_count`] used to create
     ///an image used with this framebuffer.
-    view_format_count: u32,
+    pub view_format_count: u32,
     ///[`view_formats`] is a pointer to an array of [`Format`] values
     ///specifying all of the formats which  **can**  be used when creating views of
     ///the image, matching the value of
     ///[`ImageFormatListCreateInfo`]::[`view_formats`] used to create an
     ///image used with this framebuffer.
-    view_formats: *const Format,
+    pub view_formats: *const Format,
 }
 impl<'lt> Default for FramebufferAttachmentImageInfo<'lt> {
     fn default() -> Self {
@@ -12052,22 +12100,23 @@ impl<'lt> FramebufferAttachmentImageInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkRenderPassAttachmentBeginInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderPassAttachmentBeginInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`attachment_count`] is the number of attachments.
-    attachment_count: u32,
+    pub attachment_count: u32,
     ///[`attachments`] is a pointer to an array of [`ImageView`]
     ///handles, each of which will be used as the corresponding attachment in
     ///the render pass instance.
-    attachments: *const ImageView,
+    pub attachments: *const ImageView,
 }
 impl<'lt> Default for RenderPassAttachmentBeginInfo<'lt> {
     fn default() -> Self {
@@ -12206,16 +12255,17 @@ impl<'lt> RenderPassAttachmentBeginInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`separate_depth_stencil_layouts`] indicates whether the implementation
     ///supports a [`ImageMemoryBarrier`] for a depth/stencil image with
     ///only one of `VK_IMAGE_ASPECT_DEPTH_BIT` or
@@ -12224,7 +12274,7 @@ pub struct PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'lt> {
     ///`VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`,
     ///`VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL`, or
     ///`VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL` can be used.
-    separate_depth_stencil_layouts: Bool32,
+    pub separate_depth_stencil_layouts: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'lt> {
     fn default() -> Self {
@@ -12363,19 +12413,20 @@ impl<'lt> PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAttachmentReferenceStencilLayout")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AttachmentReferenceStencilLayout<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`stencil_layout`] is a [`ImageLayout`] value specifying the layout
     ///the stencil aspect of the attachment uses during the subpass.
-    stencil_layout: ImageLayout,
+    pub stencil_layout: ImageLayout,
 }
 impl<'lt> Default for AttachmentReferenceStencilLayout<'lt> {
     fn default() -> Self {
@@ -12501,24 +12552,25 @@ impl<'lt> AttachmentReferenceStencilLayout<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkAttachmentDescriptionStencilLayout")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AttachmentDescriptionStencilLayout<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`stencil_initial_layout`] is the layout the stencil aspect of the
     ///attachment image subresource will be in when a render pass instance
     ///begins.
-    stencil_initial_layout: ImageLayout,
+    pub stencil_initial_layout: ImageLayout,
     ///[`stencil_final_layout`] is the layout the stencil aspect of the
     ///attachment image subresource will be transitioned to when a render pass
     ///instance ends.
-    stencil_final_layout: ImageLayout,
+    pub stencil_final_layout: ImageLayout,
 }
 impl<'lt> Default for AttachmentDescriptionStencilLayout<'lt> {
     fn default() -> Self {
@@ -12644,19 +12696,20 @@ impl<'lt> AttachmentDescriptionStencilLayout<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkMemoryOpaqueCaptureAddressAllocateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryOpaqueCaptureAddressAllocateInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`opaque_capture_address`] is the opaque capture address requested for
     ///the memory allocation.
-    opaque_capture_address: u64,
+    pub opaque_capture_address: u64,
 }
 impl<'lt> Default for MemoryOpaqueCaptureAddressAllocateInfo<'lt> {
     fn default() -> Self {
@@ -12760,18 +12813,19 @@ impl<'lt> MemoryOpaqueCaptureAddressAllocateInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkDeviceMemoryOpaqueCaptureAddressInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceMemoryOpaqueCaptureAddressInfo<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *const BaseInStructure<'lt>,
+    pub p_next: *const BaseInStructure<'lt>,
     ///[`memory`] specifies the memory whose address is being queried.
-    memory: DeviceMemory,
+    pub memory: DeviceMemory,
 }
 impl<'lt> Default for DeviceMemoryOpaqueCaptureAddressInfo<'lt> {
     fn default() -> Self {
@@ -12927,16 +12981,17 @@ impl<'lt> DeviceMemoryOpaqueCaptureAddressInfo<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceVulkan11Features")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVulkan11Features<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`storage_buffer_16_bit_access`] specifies whether objects in the
     ///    `StorageBuffer`,
     ///`ShaderRecordBufferKHR`,
@@ -12947,7 +13002,7 @@ pub struct PhysicalDeviceVulkan11Features<'lt> {
     ///    members  **must**  not be used in such objects.
     ///    This also specifies whether shader modules  **can**  declare the
     ///    `StorageBuffer16BitAccess` capability.
-    storage_buffer_16_bit_access: Bool32,
+    pub storage_buffer_16_bit_access: Bool32,
     ///[`uniform_and_storage_buffer_16_bit_access`] specifies whether objects in
     ///the `Uniform` storage class with the `Block` decoration  **can**  have
     ///16-bit integer and 16-bit floating-point members.
@@ -12955,7 +13010,7 @@ pub struct PhysicalDeviceVulkan11Features<'lt> {
     ///members  **must**  not be used in such objects.
     ///This also specifies whether shader modules  **can**  declare the
     ///`UniformAndStorageBuffer16BitAccess` capability.
-    uniform_and_storage_buffer_16_bit_access: Bool32,
+    pub uniform_and_storage_buffer_16_bit_access: Bool32,
     ///[`storage_push_constant_16`] specifies whether objects in the
     ///`PushConstant` storage class  **can**  have 16-bit integer and 16-bit
     ///floating-point members.
@@ -12963,7 +13018,7 @@ pub struct PhysicalDeviceVulkan11Features<'lt> {
     /// **must**  not be used in such objects.
     ///This also specifies whether shader modules  **can**  declare the
     ///`StoragePushConstant16` capability.
-    storage_push_constant_16: Bool32,
+    pub storage_push_constant_16: Bool32,
     ///[`storage_input_output_16`] specifies whether objects in the `Input`
     ///and `Output` storage classes  **can**  have 16-bit integer and 16-bit
     ///floating-point members.
@@ -12971,52 +13026,52 @@ pub struct PhysicalDeviceVulkan11Features<'lt> {
     ///members  **must**  not be used in such objects.
     ///This also specifies whether shader modules  **can**  declare the
     ///`StorageInputOutput16` capability.
-    storage_input_output_16: Bool32,
+    pub storage_input_output_16: Bool32,
     ///[`multiview`] specifies whether
     ///the implementation supports multiview rendering within a render pass.
     ///If this feature is not enabled, the view mask of each subpass  **must**
     ///always be zero.
-    multiview: Bool32,
+    pub multiview: Bool32,
     ///[`multiview_geometry_shader`]
     ///specifies whether the implementation supports multiview rendering within
     ///a render pass, with [geometry shaders]().
     ///If this feature is not enabled, then a pipeline compiled against a
     ///subpass with a non-zero view mask  **must**  not include a geometry shader.
-    multiview_geometry_shader: Bool32,
+    pub multiview_geometry_shader: Bool32,
     ///[`multiview_tessellation_shader`] specifies whether the implementation
     ///supports multiview rendering within a render pass, with
     ///[tessellation shaders]().
     ///If this feature is not enabled, then a pipeline compiled against a
     ///subpass with a non-zero view mask  **must**  not include any tessellation
     ///shaders.
-    multiview_tessellation_shader: Bool32,
+    pub multiview_tessellation_shader: Bool32,
     ///[`variable_pointers_storage_buffer`] specifies whether the implementation
     ///supports the SPIR-V `VariablePointersStorageBuffer` capability.
     ///When this feature is not enabled, shader modules  **must**  not declare the
     ///`SPV_KHR_variable_pointers` extension or the
     ///`VariablePointersStorageBuffer` capability.
-    variable_pointers_storage_buffer: Bool32,
+    pub variable_pointers_storage_buffer: Bool32,
     ///[`variable_pointers`]
     ///specifies whether the implementation supports the SPIR-V
     ///`VariablePointers` capability.
     ///When this feature is not enabled, shader modules  **must**  not declare the
     ///`VariablePointers` capability.
-    variable_pointers: Bool32,
+    pub variable_pointers: Bool32,
     ///[`protected_memory`]
     ///specifies whether protected memory is supported.
-    protected_memory: Bool32,
+    pub protected_memory: Bool32,
     ///[`sampler_ycbcr_conversion`] specifies whether the implementation
     ///supports [sampler Y′C<sub>B</sub>C<sub>R</sub> conversion]().
     ///If [`sampler_ycbcr_conversion`] is [`FALSE`], sampler Y′C<sub>B</sub>C<sub>R</sub>
     ///conversion is not supported, and samplers using sampler Y′C<sub>B</sub>C<sub>R</sub>
     ///conversion  **must**  not be used.
-    sampler_ycbcr_conversion: Bool32,
+    pub sampler_ycbcr_conversion: Bool32,
     ///[`shader_draw_parameters`] specifies whether the implementation supports
     ///the SPIR-V `DrawParameters` capability.
     ///When this feature is not enabled, shader modules  **must**  not declare the
     ///`SPV_KHR_shader_draw_parameters` extension or the `DrawParameters`
     ///capability.
-    shader_draw_parameters: Bool32,
+    pub shader_draw_parameters: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceVulkan11Features<'lt> {
     fn default() -> Self {
@@ -13608,46 +13663,47 @@ impl<'lt> PhysicalDeviceVulkan11Features<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceVulkan11Properties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVulkan11Properties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    device_uuid: [u8; UUID_SIZE],
+    pub device_uuid: [u8; UUID_SIZE],
     ///No documentation found
-    driver_uuid: [u8; UUID_SIZE],
+    pub driver_uuid: [u8; UUID_SIZE],
     ///No documentation found
-    device_luid: [u8; LUID_SIZE],
+    pub device_luid: [u8; LUID_SIZE],
     ///No documentation found
-    device_node_mask: u32,
+    pub device_node_mask: u32,
     ///No documentation found
-    device_luid_valid: Bool32,
+    pub device_luid_valid: Bool32,
     ///No documentation found
-    subgroup_size: u32,
+    pub subgroup_size: u32,
     ///No documentation found
-    subgroup_supported_stages: ShaderStageFlags,
+    pub subgroup_supported_stages: ShaderStageFlags,
     ///No documentation found
-    subgroup_supported_operations: SubgroupFeatureFlags,
+    pub subgroup_supported_operations: SubgroupFeatureFlags,
     ///No documentation found
-    subgroup_quad_operations_in_all_stages: Bool32,
+    pub subgroup_quad_operations_in_all_stages: Bool32,
     ///No documentation found
-    point_clipping_behavior: PointClippingBehavior,
+    pub point_clipping_behavior: PointClippingBehavior,
     ///No documentation found
-    max_multiview_view_count: u32,
+    pub max_multiview_view_count: u32,
     ///No documentation found
-    max_multiview_instance_index: u32,
+    pub max_multiview_instance_index: u32,
     ///No documentation found
-    protected_no_fault: Bool32,
+    pub protected_no_fault: Bool32,
     ///No documentation found
-    max_per_set_descriptors: u32,
+    pub max_per_set_descriptors: u32,
     ///No documentation found
-    max_memory_allocation_size: DeviceSize,
+    pub max_memory_allocation_size: DeviceSize,
 }
 impl<'lt> Default for PhysicalDeviceVulkan11Properties<'lt> {
     fn default() -> Self {
@@ -14252,28 +14308,29 @@ impl<'lt> PhysicalDeviceVulkan11Properties<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceVulkan12Features")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVulkan12Features<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///[`sampler_mirror_clamp_to_edge`]
     ///indicates whether the implementation supports the
     ///`VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE` sampler address mode.
     ///If this feature is not enabled, the
     ///`VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE` sampler address mode
     /// **must**  not be used.
-    sampler_mirror_clamp_to_edge: Bool32,
+    pub sampler_mirror_clamp_to_edge: Bool32,
     ///[`draw_indirect_count`] indicates whether
     ///the implementation supports the [`CmdDrawIndirectCount`] and
     ///[`CmdDrawIndexedIndirectCount`] functions.
     ///If this feature is not enabled, these functions  **must**  not be used.
-    draw_indirect_count: Bool32,
+    pub draw_indirect_count: Bool32,
     ///[`storage_buffer_8_bit_access`] indicates whether objects in the
     ///    `StorageBuffer`,
     ///`ShaderRecordBufferKHR`,
@@ -14284,7 +14341,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///    in such objects.
     ///    This also indicates whether shader modules  **can**  declare the
     ///    `StorageBuffer8BitAccess` capability.
-    storage_buffer_8_bit_access: Bool32,
+    pub storage_buffer_8_bit_access: Bool32,
     ///[`uniform_and_storage_buffer_8_bit_access`] indicates whether objects in the
     ///`Uniform` storage class with the `Block` decoration  **can**  have
     ///8-bit integer members.
@@ -14292,20 +14349,20 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///in such objects.
     ///This also indicates whether shader modules  **can**  declare the
     ///`UniformAndStorageBuffer8BitAccess` capability.
-    uniform_and_storage_buffer_8_bit_access: Bool32,
+    pub uniform_and_storage_buffer_8_bit_access: Bool32,
     ///[`storage_push_constant_8`] indicates whether objects in the
     ///`PushConstant` storage class  **can**  have 8-bit integer members.
     ///If this feature is not enabled, 8-bit integer members  **must**  not be used
     ///in such objects.
     ///This also indicates whether shader modules  **can**  declare the
     ///`StoragePushConstant8` capability.
-    storage_push_constant_8: Bool32,
+    pub storage_push_constant_8: Bool32,
     ///[`shader_buffer_int_64_atomics`] indicates whether shaders  **can**  perform
     ///64-bit unsigned and signed integer atomic operations on buffers.
-    shader_buffer_int_64_atomics: Bool32,
+    pub shader_buffer_int_64_atomics: Bool32,
     ///[`shader_shared_int_64_atomics`] indicates whether shaders  **can**  perform
     ///64-bit unsigned and signed integer atomic operations on shared memory.
-    shader_shared_int_64_atomics: Bool32,
+    pub shader_shared_int_64_atomics: Bool32,
     ///[`shader_float_16`] indicates
     ///whether 16-bit floats (halfs) are supported in shader code.
     ///This also indicates whether shader modules  **can**  declare the `Float16`
@@ -14318,7 +14375,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///the interface storage classes (e.g., `UniformConstant`, `Uniform`,
     ///`StorageBuffer`, `Input`, `Output`, and `PushConstant`) is
     ///not enabled.
-    shader_float_16: Bool32,
+    pub shader_float_16: Bool32,
     ///[`shader_int_8`] indicates
     ///whether 8-bit integers (signed and unsigned) are supported in shader
     ///code.
@@ -14332,7 +14389,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///the interface storage classes (e.g., `UniformConstant`, `Uniform`,
     ///`StorageBuffer`, `Input`, `Output`, and `PushConstant`) is
     ///not enabled.
-    shader_int_8: Bool32,
+    pub shader_int_8: Bool32,
     ///[`descriptor_indexing`] indicates
     ///whether the implementation supports the minimum set of descriptor
     ///indexing features as described in the [Feature
@@ -14342,7 +14399,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///are also enabled.
     ///Those other descriptor indexing features  **must**  be enabled individually
     ///as needed by the application.
-    descriptor_indexing: Bool32,
+    pub descriptor_indexing: Bool32,
     ///[`shader_input_attachment_array_dynamic_indexing`] indicates whether arrays
     ///of input attachments  **can**  be indexed by dynamically uniform integer
     ///expressions in shader code.
@@ -14352,7 +14409,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`InputAttachmentArrayDynamicIndexing` capability.
-    shader_input_attachment_array_dynamic_indexing: Bool32,
+    pub shader_input_attachment_array_dynamic_indexing: Bool32,
     ///[`shader_uniform_texel_buffer_array_dynamic_indexing`] indicates whether
     ///arrays of uniform texel buffers  **can**  be indexed by dynamically uniform
     ///integer expressions in shader code.
@@ -14362,7 +14419,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`UniformTexelBufferArrayDynamicIndexing` capability.
-    shader_uniform_texel_buffer_array_dynamic_indexing: Bool32,
+    pub shader_uniform_texel_buffer_array_dynamic_indexing: Bool32,
     ///[`shader_storage_texel_buffer_array_dynamic_indexing`] indicates whether
     ///arrays of storage texel buffers  **can**  be indexed by dynamically uniform
     ///integer expressions in shader code.
@@ -14372,7 +14429,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`StorageTexelBufferArrayDynamicIndexing` capability.
-    shader_storage_texel_buffer_array_dynamic_indexing: Bool32,
+    pub shader_storage_texel_buffer_array_dynamic_indexing: Bool32,
     ///[`shader_uniform_buffer_array_non_uniform_indexing`] indicates whether
     ///arrays of uniform buffers  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
@@ -14383,7 +14440,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`UniformBufferArrayNonUniformIndexing` capability.
-    shader_uniform_buffer_array_non_uniform_indexing: Bool32,
+    pub shader_uniform_buffer_array_non_uniform_indexing: Bool32,
     ///[`shader_sampled_image_array_non_uniform_indexing`] indicates whether arrays
     ///of samplers or sampled images  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
@@ -14395,7 +14452,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`SampledImageArrayNonUniformIndexing` capability.
-    shader_sampled_image_array_non_uniform_indexing: Bool32,
+    pub shader_sampled_image_array_non_uniform_indexing: Bool32,
     ///[`shader_storage_buffer_array_non_uniform_indexing`] indicates whether
     ///arrays of storage buffers  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
@@ -14406,7 +14463,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`StorageBufferArrayNonUniformIndexing` capability.
-    shader_storage_buffer_array_non_uniform_indexing: Bool32,
+    pub shader_storage_buffer_array_non_uniform_indexing: Bool32,
     ///[`shader_storage_image_array_non_uniform_indexing`] indicates whether arrays
     ///of storage images  **can**  be indexed by non-uniform integer expressions in
     ///shader code.
@@ -14416,7 +14473,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`StorageImageArrayNonUniformIndexing` capability.
-    shader_storage_image_array_non_uniform_indexing: Bool32,
+    pub shader_storage_image_array_non_uniform_indexing: Bool32,
     ///[`shader_input_attachment_array_non_uniform_indexing`] indicates whether
     ///arrays of input attachments  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
@@ -14426,7 +14483,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`InputAttachmentArrayNonUniformIndexing` capability.
-    shader_input_attachment_array_non_uniform_indexing: Bool32,
+    pub shader_input_attachment_array_non_uniform_indexing: Bool32,
     ///[`shader_uniform_texel_buffer_array_non_uniform_indexing`] indicates whether
     ///arrays of uniform texel buffers  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
@@ -14436,7 +14493,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`UniformTexelBufferArrayNonUniformIndexing` capability.
-    shader_uniform_texel_buffer_array_non_uniform_indexing: Bool32,
+    pub shader_uniform_texel_buffer_array_non_uniform_indexing: Bool32,
     ///[`shader_storage_texel_buffer_array_non_uniform_indexing`] indicates whether
     ///arrays of storage texel buffers  **can**  be indexed by non-uniform integer
     ///expressions in shader code.
@@ -14446,14 +14503,14 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///code.
     ///This also indicates whether shader modules  **can**  declare the
     ///`StorageTexelBufferArrayNonUniformIndexing` capability.
-    shader_storage_texel_buffer_array_non_uniform_indexing: Bool32,
+    pub shader_storage_texel_buffer_array_non_uniform_indexing: Bool32,
     ///[`descriptor_binding_uniform_buffer_update_after_bind`] indicates whether
     ///the implementation supports updating uniform buffer descriptors after a
     ///set is bound.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER`.
-    descriptor_binding_uniform_buffer_update_after_bind: Bool32,
+    pub descriptor_binding_uniform_buffer_update_after_bind: Bool32,
     ///[`descriptor_binding_sampled_image_update_after_bind`] indicates whether the
     ///implementation supports updating sampled image descriptors after a set
     ///is bound.
@@ -14462,59 +14519,59 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///`VK_DESCRIPTOR_TYPE_SAMPLER`,
     ///`VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, or
     ///`VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE`.
-    descriptor_binding_sampled_image_update_after_bind: Bool32,
+    pub descriptor_binding_sampled_image_update_after_bind: Bool32,
     ///[`descriptor_binding_storage_image_update_after_bind`] indicates whether the
     ///implementation supports updating storage image descriptors after a set
     ///is bound.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`.
-    descriptor_binding_storage_image_update_after_bind: Bool32,
+    pub descriptor_binding_storage_image_update_after_bind: Bool32,
     ///[`descriptor_binding_storage_buffer_update_after_bind`] indicates whether
     ///the implementation supports updating storage buffer descriptors after a
     ///set is bound.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_STORAGE_BUFFER`.
-    descriptor_binding_storage_buffer_update_after_bind: Bool32,
+    pub descriptor_binding_storage_buffer_update_after_bind: Bool32,
     ///[`descriptor_binding_uniform_texel_buffer_update_after_bind`] indicates
     ///whether the implementation supports updating uniform texel buffer
     ///descriptors after a set is bound.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`.
-    descriptor_binding_uniform_texel_buffer_update_after_bind: Bool32,
+    pub descriptor_binding_uniform_texel_buffer_update_after_bind: Bool32,
     ///[`descriptor_binding_storage_texel_buffer_update_after_bind`] indicates
     ///whether the implementation supports updating storage texel buffer
     ///descriptors after a set is bound.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be used with
     ///`VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`.
-    descriptor_binding_storage_texel_buffer_update_after_bind: Bool32,
+    pub descriptor_binding_storage_texel_buffer_update_after_bind: Bool32,
     ///[`descriptor_binding_update_unused_while_pending`] indicates whether the
     ///implementation supports updating descriptors while the set is in use.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT` **must**  not be
     ///used.
-    descriptor_binding_update_unused_while_pending: Bool32,
+    pub descriptor_binding_update_unused_while_pending: Bool32,
     ///[`descriptor_binding_partially_bound`] indicates whether the
     ///implementation supports statically using a descriptor set binding in
     ///which some descriptors are not valid.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT` **must**  not be used.
-    descriptor_binding_partially_bound: Bool32,
+    pub descriptor_binding_partially_bound: Bool32,
     ///[`descriptor_binding_variable_descriptor_count`] indicates whether the
     ///implementation supports descriptor sets with a variable-sized last
     ///binding.
     ///If this feature is not enabled,
     ///`VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT` **must**  not be
     ///used.
-    descriptor_binding_variable_descriptor_count: Bool32,
+    pub descriptor_binding_variable_descriptor_count: Bool32,
     ///[`runtime_descriptor_array`] indicates whether the implementation
     ///supports the SPIR-V `RuntimeDescriptorArray` capability.
     ///If this feature is not enabled, descriptors  **must**  not be declared in
     ///runtime arrays.
-    runtime_descriptor_array: Bool32,
+    pub runtime_descriptor_array: Bool32,
     ///[`sampler_filter_minmax`] indicates
     ///whether the implementation supports a minimum set of required formats
     ///supporting min/max filtering as defined by the
@@ -14522,28 +14579,28 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///property minimum requirements.
     ///If this feature is not enabled, then no [`SamplerCreateInfo`][`p_next`] chain can include a
     /// [`SamplerReductionModeCreateInfo`] structure.
-    sampler_filter_minmax: Bool32,
+    pub sampler_filter_minmax: Bool32,
     ///[`scalar_block_layout`]
     ///indicates that the implementation supports the layout of resource blocks
     ///in shaders using [scalar
     ///alignment]().
-    scalar_block_layout: Bool32,
+    pub scalar_block_layout: Bool32,
     ///[`imageless_framebuffer`] indicates that the implementation supports
     ///specifying the image view for attachments at render pass begin time via
     ///[`RenderPassAttachmentBeginInfo`].
-    imageless_framebuffer: Bool32,
+    pub imageless_framebuffer: Bool32,
     ///[`uniform_buffer_standard_layout`] indicates that the implementation
     ///supports the same layouts for uniform buffers as for storage and other
     ///kinds of buffers.
     ///See [Standard Buffer Layout]().
-    uniform_buffer_standard_layout: Bool32,
+    pub uniform_buffer_standard_layout: Bool32,
     ///[`shader_subgroup_extended_types`] is a boolean specifying whether
     ///subgroup operations can use 8-bit integer, 16-bit integer, 64-bit
     ///integer, 16-bit floating-point, and vectors of these types in
     ///[group operations]() with
     ///[subgroup scope](), if the implementation
     ///supports the types.
-    shader_subgroup_extended_types: Bool32,
+    pub shader_subgroup_extended_types: Bool32,
     ///[`separate_depth_stencil_layouts`] indicates whether the implementation
     ///supports a [`ImageMemoryBarrier`] for a depth/stencil image with
     ///only one of `VK_IMAGE_ASPECT_DEPTH_BIT` or
@@ -14552,23 +14609,23 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///`VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`,
     ///`VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL`, or
     ///`VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL` can be used.
-    separate_depth_stencil_layouts: Bool32,
+    pub separate_depth_stencil_layouts: Bool32,
     ///[`host_query_reset`]
     ///indicates that the implementation supports resetting queries from the
     ///host with [`ResetQueryPool`].
-    host_query_reset: Bool32,
+    pub host_query_reset: Bool32,
     ///[`timeline_semaphore`]
     ///indicates whether semaphores created with a [`SemaphoreType`] of
     ///`VK_SEMAPHORE_TYPE_TIMELINE` are supported.
-    timeline_semaphore: Bool32,
+    pub timeline_semaphore: Bool32,
     ///[`buffer_device_address`] indicates that the implementation supports
     ///accessing buffer memory in shaders as storage buffers via an address
     ///queried from [`GetBufferDeviceAddress`].
-    buffer_device_address: Bool32,
+    pub buffer_device_address: Bool32,
     ///[`buffer_device_address_capture_replay`] indicates that the implementation
     ///supports saving and reusing buffer and device addresses, e.g. for trace
     ///capture and replay.
-    buffer_device_address_capture_replay: Bool32,
+    pub buffer_device_address_capture_replay: Bool32,
     ///[`buffer_device_address_multi_device`] indicates that the implementation
     ///supports the [`buffer_device_address`]
     ///, `rayTracingPipeline` and `rayQuery` features
@@ -14577,22 +14634,22 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///and acceleration structure
     ///addresses  **must**  not be queried on a logical device created with more
     ///than one physical device.
-    buffer_device_address_multi_device: Bool32,
+    pub buffer_device_address_multi_device: Bool32,
     ///[`vulkan_memory_model`]
     ///indicates whether the Vulkan Memory Model is supported, as defined in
     ///[Vulkan Memory Model]().
     ///This also indicates whether shader modules  **can**  declare the
     ///`VulkanMemoryModel` capability.
-    vulkan_memory_model: Bool32,
+    pub vulkan_memory_model: Bool32,
     ///[`vulkan_memory_model_device_scope`] indicates whether the Vulkan Memory
     ///Model can use [`Device`] scope synchronization.
     ///This also indicates whether shader modules  **can**  declare the
     ///`VulkanMemoryModelDeviceScope` capability.
-    vulkan_memory_model_device_scope: Bool32,
+    pub vulkan_memory_model_device_scope: Bool32,
     ///[`vulkan_memory_model_availability_visibility_chains`] indicates whether
     ///the Vulkan Memory Model can use [availability and visibility chains]() with more than one
     /// element.
-    vulkan_memory_model_availability_visibility_chains: Bool32,
+    pub vulkan_memory_model_availability_visibility_chains: Bool32,
     ///[`shader_output_viewport_index`]
     ///indicates whether the implementation supports the
     ///`ShaderViewportIndex` SPIR-V capability enabling variables decorated
@@ -14601,14 +14658,14 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///If this feature is not enabled, the `ViewportIndex` built-in
     ///decoration  **must**  not be used on outputs in vertex or tessellation
     ///evaluation shaders.
-    shader_output_viewport_index: Bool32,
+    pub shader_output_viewport_index: Bool32,
     ///[`shader_output_layer`] indicates whether
     ///the implementation supports the `ShaderLayer` SPIR-V capability
     ///enabling variables decorated with the `Layer` built-in to be exported
     ///from vertex or tessellation evaluation shaders.
     ///If this feature is not enabled, the `Layer` built-in decoration  **must**
     ///not be used on outputs in vertex or tessellation evaluation shaders.
-    shader_output_layer: Bool32,
+    pub shader_output_layer: Bool32,
     ///If
     ///[`subgroup_broadcast_dynamic_id`] is [`TRUE`], the “Id” operand of
     ///`OpGroupNonUniformBroadcast` **can**  be dynamically uniform within a
@@ -14616,7 +14673,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///`OpGroupNonUniformQuadBroadcast` **can**  be dynamically uniform within
     ///the derivative group.
     ///If it is [`FALSE`], these operands  **must**  be constants.
-    subgroup_broadcast_dynamic_id: Bool32,
+    pub subgroup_broadcast_dynamic_id: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceVulkan12Features<'lt> {
     fn default() -> Self {
@@ -16513,7 +16570,7 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_32`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
 ///   class="base"><span class="strut"
 ///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
@@ -16521,8 +16578,8 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 64-bit floating-point types.
@@ -16714,120 +16771,121 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkPhysicalDeviceVulkan12Properties")]
 #[derive(Debug, Eq, Ord, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVulkan12Properties<'lt> {
-    _lifetime: PhantomData<&'lt ()>,
+    pub _lifetime: PhantomData<&'lt ()>,
     ///[`s_type`] is the type of this structure.
-    s_type: StructureType,
+    pub s_type: StructureType,
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
-    p_next: *mut BaseOutStructure<'lt>,
+    pub p_next: *mut BaseOutStructure<'lt>,
     ///No documentation found
-    driver_id: DriverId,
+    pub driver_id: DriverId,
     ///No documentation found
-    driver_name: [c_schar; MAX_DRIVER_NAME_SIZE],
+    pub driver_name: [c_schar; MAX_DRIVER_NAME_SIZE],
     ///No documentation found
-    driver_info: [c_schar; MAX_DRIVER_INFO_SIZE],
+    pub driver_info: [c_schar; MAX_DRIVER_INFO_SIZE],
     ///No documentation found
-    conformance_version: ConformanceVersion,
+    pub conformance_version: ConformanceVersion,
     ///No documentation found
-    denorm_behavior_independence: ShaderFloatControlsIndependence,
+    pub denorm_behavior_independence: ShaderFloatControlsIndependence,
     ///No documentation found
-    rounding_mode_independence: ShaderFloatControlsIndependence,
+    pub rounding_mode_independence: ShaderFloatControlsIndependence,
     ///No documentation found
-    shader_signed_zero_inf_nan_preserve_float_16: Bool32,
+    pub shader_signed_zero_inf_nan_preserve_float_16: Bool32,
     ///No documentation found
-    shader_signed_zero_inf_nan_preserve_float_32: Bool32,
+    pub shader_signed_zero_inf_nan_preserve_float_32: Bool32,
     ///No documentation found
-    shader_signed_zero_inf_nan_preserve_float_64: Bool32,
+    pub shader_signed_zero_inf_nan_preserve_float_64: Bool32,
     ///No documentation found
-    shader_denorm_preserve_float_16: Bool32,
+    pub shader_denorm_preserve_float_16: Bool32,
     ///No documentation found
-    shader_denorm_preserve_float_32: Bool32,
+    pub shader_denorm_preserve_float_32: Bool32,
     ///No documentation found
-    shader_denorm_preserve_float_64: Bool32,
+    pub shader_denorm_preserve_float_64: Bool32,
     ///No documentation found
-    shader_denorm_flush_to_zero_float_16: Bool32,
+    pub shader_denorm_flush_to_zero_float_16: Bool32,
     ///No documentation found
-    shader_denorm_flush_to_zero_float_32: Bool32,
+    pub shader_denorm_flush_to_zero_float_32: Bool32,
     ///No documentation found
-    shader_denorm_flush_to_zero_float_64: Bool32,
+    pub shader_denorm_flush_to_zero_float_64: Bool32,
     ///No documentation found
-    shader_rounding_mode_rte_float_16: Bool32,
+    pub shader_rounding_mode_rte_float_16: Bool32,
     ///No documentation found
-    shader_rounding_mode_rte_float_32: Bool32,
+    pub shader_rounding_mode_rte_float_32: Bool32,
     ///No documentation found
-    shader_rounding_mode_rte_float_64: Bool32,
+    pub shader_rounding_mode_rte_float_64: Bool32,
     ///No documentation found
-    shader_rounding_mode_rtz_float_16: Bool32,
+    pub shader_rounding_mode_rtz_float_16: Bool32,
     ///No documentation found
-    shader_rounding_mode_rtz_float_32: Bool32,
+    pub shader_rounding_mode_rtz_float_32: Bool32,
     ///No documentation found
-    shader_rounding_mode_rtz_float_64: Bool32,
+    pub shader_rounding_mode_rtz_float_64: Bool32,
     ///No documentation found
-    max_update_after_bind_descriptors_in_all_pools: u32,
+    pub max_update_after_bind_descriptors_in_all_pools: u32,
     ///No documentation found
-    shader_uniform_buffer_array_non_uniform_indexing_native: Bool32,
+    pub shader_uniform_buffer_array_non_uniform_indexing_native: Bool32,
     ///No documentation found
-    shader_sampled_image_array_non_uniform_indexing_native: Bool32,
+    pub shader_sampled_image_array_non_uniform_indexing_native: Bool32,
     ///No documentation found
-    shader_storage_buffer_array_non_uniform_indexing_native: Bool32,
+    pub shader_storage_buffer_array_non_uniform_indexing_native: Bool32,
     ///No documentation found
-    shader_storage_image_array_non_uniform_indexing_native: Bool32,
+    pub shader_storage_image_array_non_uniform_indexing_native: Bool32,
     ///No documentation found
-    shader_input_attachment_array_non_uniform_indexing_native: Bool32,
+    pub shader_input_attachment_array_non_uniform_indexing_native: Bool32,
     ///No documentation found
-    robust_buffer_access_update_after_bind: Bool32,
+    pub robust_buffer_access_update_after_bind: Bool32,
     ///No documentation found
-    quad_divergent_implicit_lod: Bool32,
+    pub quad_divergent_implicit_lod: Bool32,
     ///No documentation found
-    max_per_stage_descriptor_update_after_bind_samplers: u32,
+    pub max_per_stage_descriptor_update_after_bind_samplers: u32,
     ///No documentation found
-    max_per_stage_descriptor_update_after_bind_uniform_buffers: u32,
+    pub max_per_stage_descriptor_update_after_bind_uniform_buffers: u32,
     ///No documentation found
-    max_per_stage_descriptor_update_after_bind_storage_buffers: u32,
+    pub max_per_stage_descriptor_update_after_bind_storage_buffers: u32,
     ///No documentation found
-    max_per_stage_descriptor_update_after_bind_sampled_images: u32,
+    pub max_per_stage_descriptor_update_after_bind_sampled_images: u32,
     ///No documentation found
-    max_per_stage_descriptor_update_after_bind_storage_images: u32,
+    pub max_per_stage_descriptor_update_after_bind_storage_images: u32,
     ///No documentation found
-    max_per_stage_descriptor_update_after_bind_input_attachments: u32,
+    pub max_per_stage_descriptor_update_after_bind_input_attachments: u32,
     ///No documentation found
-    max_per_stage_update_after_bind_resources: u32,
+    pub max_per_stage_update_after_bind_resources: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_samplers: u32,
+    pub max_descriptor_set_update_after_bind_samplers: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_uniform_buffers: u32,
+    pub max_descriptor_set_update_after_bind_uniform_buffers: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_uniform_buffers_dynamic: u32,
+    pub max_descriptor_set_update_after_bind_uniform_buffers_dynamic: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_storage_buffers: u32,
+    pub max_descriptor_set_update_after_bind_storage_buffers: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_storage_buffers_dynamic: u32,
+    pub max_descriptor_set_update_after_bind_storage_buffers_dynamic: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_sampled_images: u32,
+    pub max_descriptor_set_update_after_bind_sampled_images: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_storage_images: u32,
+    pub max_descriptor_set_update_after_bind_storage_images: u32,
     ///No documentation found
-    max_descriptor_set_update_after_bind_input_attachments: u32,
+    pub max_descriptor_set_update_after_bind_input_attachments: u32,
     ///No documentation found
-    supported_depth_resolve_modes: ResolveModeFlags,
+    pub supported_depth_resolve_modes: ResolveModeFlags,
     ///No documentation found
-    supported_stencil_resolve_modes: ResolveModeFlags,
+    pub supported_stencil_resolve_modes: ResolveModeFlags,
     ///No documentation found
-    independent_resolve_none: Bool32,
+    pub independent_resolve_none: Bool32,
     ///No documentation found
-    independent_resolve: Bool32,
+    pub independent_resolve: Bool32,
     ///No documentation found
-    filter_minmax_single_component_formats: Bool32,
+    pub filter_minmax_single_component_formats: Bool32,
     ///No documentation found
-    filter_minmax_image_component_mapping: Bool32,
+    pub filter_minmax_image_component_mapping: Bool32,
     ///No documentation found
-    max_timeline_semaphore_value_difference: u64,
+    pub max_timeline_semaphore_value_difference: u64,
     ///No documentation found
-    framebuffer_integer_color_sample_counts: SampleCountFlags,
+    pub framebuffer_integer_color_sample_counts: SampleCountFlags,
 }
 impl<'lt> Default for PhysicalDeviceVulkan12Properties<'lt> {
     fn default() -> Self {
