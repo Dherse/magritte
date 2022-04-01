@@ -188,3 +188,4 @@ Here are the following families that need to be implemented in the code generato
 - [x] ~Function/command aliases~ 
 - [ ] Functions
 - [ ] Commands & command buffers
+- [x] Conditional compilation
