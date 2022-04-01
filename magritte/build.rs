@@ -1,7 +1,10 @@
+#[cfg(feature = "video_bindgen")]
 extern crate bindgen;
 
-use std::{env, path::PathBuf};
+#[cfg(feature = "video_bindgen")]
+use std::path::PathBuf;
 
+#[cfg(feature = "video_bindgen")]
 fn main() {
     // Tell cargo to invalidate the built crate whenever the wrapper changes
     println!("cargo:rerun-if-changed=wrapper.h");
@@ -22,8 +25,12 @@ fn main() {
         .expect("Unable to generate bindings");
 
     // Write the bindings to the $OUT_DIR/bindings.rs file.
-    let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
+    let out_path = PathBuf::from("src/generated/video.rs");
     bindings
-        .write_to_file(out_path.join("bindings.rs"))
+        .write_to_file(out_path)
         .expect("Couldn't write bindings!");
 }
+
+
+#[cfg(not(feature = "video_bindgen"))]
+pub fn main() {}

@@ -357,11 +357,11 @@ impl std::fmt::Debug for PipelineCompilerControlFlagsAMD {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(PipelineCompilerControlFlagsAMD);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == PipelineCompilerControlFlagsAMD::empty() {
                     f.write_str("empty")?;
                 } else {
-                    let _first = true;
                 }
                 Ok(())
             }

@@ -19,6 +19,7 @@ use std::fmt::Write;
 
 use ahash::AHashMap;
 use proc_macro2::TokenStream;
+use quote::quote_each_token;
 
 use crate::{doc::Documentation, imports::Imports, origin::Origin, source::Source};
 
@@ -36,6 +37,19 @@ impl<'a> Source<'a> {
             .filter(|o| !o.is_disabled())
             .map(|o| (o, (Imports::new(o), TokenStream::new(), TokenStream::new())))
             .collect::<AHashMap<_, _>>();
+
+        {
+            let (_, out, _) = per_origin.get_mut(&Origin::Opaque).unwrap();
+
+            {
+                let mut out = out;
+                quote_each_token!{
+                    out
+    
+                    #![allow(non_camel_case_types)]
+                }
+            }
+        }
 
         for extension in &self.extensions {
             if extension.origin().is_disabled() {
@@ -209,7 +223,7 @@ impl<'a> Source<'a> {
 
 fn alias_of(original: &str, name: &str, mut out: &mut TokenStream) {
     if original != name {
-        quote::quote_each_token! {
+        quote_each_token! {
             out
 
             #[doc(alias = #original)]

@@ -454,6 +454,7 @@ impl std::fmt::Debug for VideoDecodeH264PictureLayoutFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoDecodeH264PictureLayoutFlagsEXT);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoDecodeH264PictureLayoutFlagsEXT::empty() {
                     f.write_str("empty")?;

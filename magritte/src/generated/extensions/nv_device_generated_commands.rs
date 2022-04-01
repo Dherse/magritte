@@ -799,6 +799,7 @@ impl std::fmt::Debug for IndirectCommandsLayoutUsageFlagsNV {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(IndirectCommandsLayoutUsageFlagsNV);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == IndirectCommandsLayoutUsageFlagsNV::empty() {
                     f.write_str("empty")?;
@@ -1086,6 +1087,7 @@ impl std::fmt::Debug for IndirectStateFlagsNV {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(IndirectStateFlagsNV);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == IndirectStateFlagsNV::empty() {
                     f.write_str("empty")?;

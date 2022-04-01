@@ -672,6 +672,7 @@ impl std::fmt::Debug for DebugUtilsMessageSeverityFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(DebugUtilsMessageSeverityFlagsEXT);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == DebugUtilsMessageSeverityFlagsEXT::empty() {
                     f.write_str("empty")?;
@@ -996,6 +997,7 @@ impl std::fmt::Debug for DebugUtilsMessageTypeFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(DebugUtilsMessageTypeFlagsEXT);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == DebugUtilsMessageTypeFlagsEXT::empty() {
                     f.write_str("empty")?;

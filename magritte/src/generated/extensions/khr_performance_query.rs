@@ -808,6 +808,7 @@ impl std::fmt::Debug for PerformanceCounterDescriptionFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(PerformanceCounterDescriptionFlagsKHR);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == PerformanceCounterDescriptionFlagsKHR::empty() {
                     f.write_str("empty")?;
@@ -1061,11 +1062,11 @@ impl std::fmt::Debug for AcquireProfilingLockFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(AcquireProfilingLockFlagsKHR);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == AcquireProfilingLockFlagsKHR::empty() {
                     f.write_str("empty")?;
                 } else {
-                    let _first = true;
                 }
                 Ok(())
             }

@@ -645,6 +645,7 @@ impl std::fmt::Debug for DisplayPlaneAlphaFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(DisplayPlaneAlphaFlagsKHR);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == DisplayPlaneAlphaFlagsKHR::empty() {
                     f.write_str("empty")?;
@@ -1034,6 +1035,7 @@ impl std::fmt::Debug for SurfaceTransformFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(SurfaceTransformFlagsKHR);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == SurfaceTransformFlagsKHR::empty() {
                     f.write_str("empty")?;

@@ -383,6 +383,7 @@ impl std::fmt::Debug for SurfaceCounterFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(SurfaceCounterFlagsEXT);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == SurfaceCounterFlagsEXT::empty() {
                     f.write_str("empty")?;

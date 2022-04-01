@@ -106,6 +106,8 @@ impl<'a> Bitmask<'a> {
 
         let bit_idents = bit_flag.bits().iter().map(Bit::as_flag_ident).collect::<Vec<_>>();
 
+        let first = if bit_idents.is_empty() { None } else { Some(quote! { let mut first = true; }) };
+
         // creates a doc alias if the name has been changed
         alias_of(self.original_name(), self.name(), out);
 
@@ -407,11 +409,12 @@ impl<'a> Bitmask<'a> {
                 fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                     struct Flags(#name);
                     impl std::fmt::Debug for Flags {
+                        #[allow(unused_assignments)]
                         fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                             if self.0 == #name::empty() {
                                 f.write_str("empty")?;
                             } else {
-                                let mut first = true;
+                                #first
                                 #(
                                     if self.0.contains(#name::#bit_idents) {
                                         if !first {

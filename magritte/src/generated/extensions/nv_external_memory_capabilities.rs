@@ -524,6 +524,7 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlagsNV {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ExternalMemoryHandleTypeFlagsNV);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ExternalMemoryHandleTypeFlagsNV::empty() {
                     f.write_str("empty")?;
@@ -843,6 +844,7 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlagsNV {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ExternalMemoryFeatureFlagsNV);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ExternalMemoryFeatureFlagsNV::empty() {
                     f.write_str("empty")?;

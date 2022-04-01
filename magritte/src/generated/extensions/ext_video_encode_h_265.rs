@@ -1314,6 +1314,7 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoEncodeH265CapabilityFlagsEXT);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoEncodeH265CapabilityFlagsEXT::empty() {
                     f.write_str("empty")?;
@@ -1789,6 +1790,7 @@ impl std::fmt::Debug for VideoEncodeH265InputModeFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoEncodeH265InputModeFlagsEXT);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoEncodeH265InputModeFlagsEXT::empty() {
                     f.write_str("empty")?;
@@ -2133,6 +2135,7 @@ impl std::fmt::Debug for VideoEncodeH265OutputModeFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoEncodeH265OutputModeFlagsEXT);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoEncodeH265OutputModeFlagsEXT::empty() {
                     f.write_str("empty")?;
@@ -2481,6 +2484,7 @@ impl std::fmt::Debug for VideoEncodeH265RateControlStructureFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoEncodeH265RateControlStructureFlagsEXT);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoEncodeH265RateControlStructureFlagsEXT::empty() {
                     f.write_str("empty")?;
@@ -2769,6 +2773,7 @@ impl std::fmt::Debug for VideoEncodeH265CtbSizeFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoEncodeH265CtbSizeFlagsEXT);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoEncodeH265CtbSizeFlagsEXT::empty() {
                     f.write_str("empty")?;
@@ -3089,6 +3094,7 @@ impl std::fmt::Debug for VideoEncodeH265TransformBlockSizeFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoEncodeH265TransformBlockSizeFlagsEXT);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoEncodeH265TransformBlockSizeFlagsEXT::empty() {
                     f.write_str("empty")?;

@@ -529,6 +529,7 @@ impl std::fmt::Debug for ImageConstraintsInfoFlagsFUCHSIA {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ImageConstraintsInfoFlagsFUCHSIA);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ImageConstraintsInfoFlagsFUCHSIA::empty() {
                     f.write_str("empty")?;

@@ -1066,6 +1066,7 @@ impl std::fmt::Debug for VideoCodecOperationFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoCodecOperationFlagsKHR);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoCodecOperationFlagsKHR::empty() {
                     f.write_str("empty")?;
@@ -1389,6 +1390,7 @@ impl std::fmt::Debug for VideoCapabilityFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoCapabilityFlagsKHR);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoCapabilityFlagsKHR::empty() {
                     f.write_str("empty")?;
@@ -1672,6 +1674,7 @@ impl std::fmt::Debug for VideoSessionCreateFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoSessionCreateFlagsKHR);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoSessionCreateFlagsKHR::empty() {
                     f.write_str("empty")?;
@@ -2035,6 +2038,7 @@ impl std::fmt::Debug for VideoCodingQualityPresetFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoCodingQualityPresetFlagsKHR);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoCodingQualityPresetFlagsKHR::empty() {
                     f.write_str("empty")?;
@@ -2344,6 +2348,7 @@ impl std::fmt::Debug for VideoCodingControlFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoCodingControlFlagsKHR);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoCodingControlFlagsKHR::empty() {
                     f.write_str("empty")?;
@@ -2659,6 +2664,7 @@ impl std::fmt::Debug for VideoChromaSubsamplingFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoChromaSubsamplingFlagsKHR);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoChromaSubsamplingFlagsKHR::empty() {
                     f.write_str("empty")?;
@@ -2988,6 +2994,7 @@ impl std::fmt::Debug for VideoComponentBitDepthFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoComponentBitDepthFlagsKHR);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoComponentBitDepthFlagsKHR::empty() {
                     f.write_str("empty")?;

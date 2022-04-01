@@ -2281,6 +2281,7 @@ impl std::fmt::Debug for SubgroupFeatureFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(SubgroupFeatureFlags);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == SubgroupFeatureFlags::empty() {
                     f.write_str("empty")?;
@@ -2689,6 +2690,7 @@ impl std::fmt::Debug for PeerMemoryFeatureFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(PeerMemoryFeatureFlags);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == PeerMemoryFeatureFlags::empty() {
                     f.write_str("empty")?;
@@ -3016,6 +3018,7 @@ impl std::fmt::Debug for MemoryAllocateFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(MemoryAllocateFlags);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == MemoryAllocateFlags::empty() {
                     f.write_str("empty")?;
@@ -3543,6 +3546,7 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ExternalMemoryHandleTypeFlags);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ExternalMemoryHandleTypeFlags::empty() {
                     f.write_str("empty")?;
@@ -3978,6 +3982,7 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ExternalMemoryFeatureFlags);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ExternalMemoryFeatureFlags::empty() {
                     f.write_str("empty")?;
@@ -4409,6 +4414,7 @@ impl std::fmt::Debug for ExternalSemaphoreHandleTypeFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ExternalSemaphoreHandleTypeFlags);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ExternalSemaphoreHandleTypeFlags::empty() {
                     f.write_str("empty")?;
@@ -4760,6 +4766,7 @@ impl std::fmt::Debug for ExternalSemaphoreFeatureFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ExternalSemaphoreFeatureFlags);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ExternalSemaphoreFeatureFlags::empty() {
                     f.write_str("empty")?;
@@ -5052,6 +5059,7 @@ impl std::fmt::Debug for SemaphoreImportFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(SemaphoreImportFlags);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == SemaphoreImportFlags::empty() {
                     f.write_str("empty")?;
@@ -5416,6 +5424,7 @@ impl std::fmt::Debug for ExternalFenceHandleTypeFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ExternalFenceHandleTypeFlags);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ExternalFenceHandleTypeFlags::empty() {
                     f.write_str("empty")?;
@@ -5746,6 +5755,7 @@ impl std::fmt::Debug for ExternalFenceFeatureFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ExternalFenceFeatureFlags);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ExternalFenceFeatureFlags::empty() {
                     f.write_str("empty")?;
@@ -6036,6 +6046,7 @@ impl std::fmt::Debug for FenceImportFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(FenceImportFlags);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == FenceImportFlags::empty() {
                     f.write_str("empty")?;

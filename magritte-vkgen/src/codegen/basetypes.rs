@@ -1,4 +1,5 @@
 use proc_macro2::TokenStream;
+use quote::quote_each_token;
 use tracing::warn;
 
 use crate::{
@@ -29,7 +30,7 @@ impl<'a> Basetype<'a> {
         // creates a doc alias if the name has been changed
         alias_of(self.original_name(), self.name(), out);
 
-        quote::quote_each_token! {
+        quote_each_token! {
             out
 
             pub type #name = #ty;

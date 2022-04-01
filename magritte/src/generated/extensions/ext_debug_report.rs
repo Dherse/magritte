@@ -602,6 +602,7 @@ impl std::fmt::Debug for DebugReportFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(DebugReportFlagsEXT);
         impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == DebugReportFlagsEXT::empty() {
                     f.write_str("empty")?;

@@ -10,7 +10,11 @@ categories = [ "api-bindings", "game-development", "graphics", "rendering" ]
 description = "A high performance, high level graphics API around Vulkan"
 build = "build.rs"
 
+[features]
+default = []
+video_bindgen = [ "bindgen"]
+
 [dependencies]
 
 [build-dependencies]
-bindgen = "0.59.2"
+bindgen = { version = "0.59.2", optional = true }

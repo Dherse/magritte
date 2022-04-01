@@ -9,4 +9,4 @@
 #![allow(non_snake_case)]
 #![allow(missing_docs)]
 
-include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
+include!("generated/video.rs");
