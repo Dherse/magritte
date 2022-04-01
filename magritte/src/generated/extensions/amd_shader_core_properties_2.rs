@@ -360,7 +360,7 @@ impl std::fmt::Debug for ShaderCorePropertiesFlagsAMD {
                 if self.0 == ShaderCorePropertiesFlagsAMD::empty() {
                     f.write_str("empty")?;
                 } else {
-                    let mut first = true;
+                    let _first = true;
                 }
                 Ok(())
             }

@@ -1065,7 +1065,7 @@ impl std::fmt::Debug for AcquireProfilingLockFlagsKHR {
                 if self.0 == AcquireProfilingLockFlagsKHR::empty() {
                     f.write_str("empty")?;
                 } else {
-                    let mut first = true;
+                    let _first = true;
                 }
                 Ok(())
             }

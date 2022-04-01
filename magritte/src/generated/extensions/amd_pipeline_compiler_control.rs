@@ -361,7 +361,7 @@ impl std::fmt::Debug for PipelineCompilerControlFlagsAMD {
                 if self.0 == PipelineCompilerControlFlagsAMD::empty() {
                     f.write_str("empty")?;
                 } else {
-                    let mut first = true;
+                    let _first = true;
                 }
                 Ok(())
             }
