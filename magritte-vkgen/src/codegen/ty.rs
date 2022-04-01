@@ -59,10 +59,10 @@ impl<'a> Ty<'a> {
     pub fn has_lifetime(&self, source: &Source<'a>, pointer_has_lifetime: bool) -> bool {
         match self {
             Ty::Pointer(_, ty) | Ty::Slice(_, ty, _) => pointer_has_lifetime && !ty.has_opaque(source),
-            Ty::NullTerminatedString(_) => true,
+            Ty::NullTerminatedString(_) => pointer_has_lifetime,
             Ty::Native(_) | Ty::StringArray(_) => false,
             Ty::Array(ty, _) => ty.has_lifetime(source, false),
-            Ty::Named(named) => source.resolve_type(named).expect("unknown type").has_lifetime(source),
+            Ty::Named(named) => source.resolve_type(named).expect("unknown type").has_lifetime(source, pointer_has_lifetime),
         }
     }
 
@@ -282,7 +282,7 @@ impl<'a> Ty<'a> {
                 if vars.is_empty() {
                     let len = len.as_const_expr(source, None);
                     quote! {
-                        assert_eq!(value.len(), #len);
+                        assert_eq!(value.len(), (#len) as usize);
 
                         #value_setter
                     }
@@ -566,7 +566,7 @@ impl<'a> Ty<'a> {
 impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     /// Turns a type reference into a tokenized type
     pub fn as_const_type(&self, source: &Source<'a>, imports: Option<&Imports>) -> Type {
-        assert!(!self.has_lifetime(source), "type cannot be made into static type");
+        assert!(!self.has_lifetime(source, false), "type cannot be made into static type");
 
         if let Some(imports) = imports {
             self.import(imports);
@@ -592,7 +592,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     /// Turns a type reference into a tokenized type and a boolean designating whether it
     /// has a lifetime
     pub fn as_type(&self, source: &Source<'a>, imports: Option<&Imports>) -> (Type, bool) {
-        let lt = self.has_lifetime(source) && !self.is_opaque();
+        let lt = self.has_lifetime(source, true) && !self.is_opaque();
 
         let mut path = if let Some(imports) = imports {
             self.import(imports);

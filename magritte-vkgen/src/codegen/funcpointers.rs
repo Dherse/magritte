@@ -25,16 +25,12 @@ impl<'a> FunctionPointer<'a> {
         self.generate_doc(source, doc, out);
 
         // creates the field list
-        let (args, has_lifetime) = self
+        let args = self
             .arguments()
             .iter()
-            .map(|field| field.generate_funcpointer_arg(source, imports))
-            .fold((Vec::new(), false), |(mut out_list, mut out_bool), (ts, lt)| {
-                out_list.push(ts);
-                out_bool |= lt;
+            .map(|field| field.generate_funcpointer_arg(source, imports).0);
 
-                (out_list, out_bool)
-            });
+        let has_lifetime = self.has_lifetime(source);
 
         // create the lifetime generic argument
         let lifetime = has_lifetime.then(|| {

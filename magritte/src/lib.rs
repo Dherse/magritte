@@ -7,6 +7,7 @@
 #![warn(clippy::pedantic, clippy::cargo)]
 // #![deny(missing_docs)]
 
+pub mod cstr;
 pub mod generated;
 pub mod video;
 

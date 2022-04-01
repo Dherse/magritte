@@ -113,7 +113,7 @@ pub fn bit_name<'a>(name: &'a str, parent_tag: Option<&Tag<'a>>, parent: Option<
 
     if let Some(parent) = parent {
         cases
-            .trim_start_matches(parent.trim_start_matches("Vk").trim_end_matches("FlagBits"))
+            .trim_start_matches(&parent.trim_start_matches("Vk").replace("FlagBits", ""))
             .to_string()
     } else {
         cases

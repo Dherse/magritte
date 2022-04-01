@@ -254,8 +254,6 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-#[cfg(feature = "VK_KHR_surface")]
-pub use crate::extensions::khr_surface::SurfaceTransformFlagBitsKHR;
 use crate::{
     extensions::khr_surface::SurfaceTransformFlagBitsKHR,
     vulkan1_0::{BaseInStructure, Bool32, Extent2D, Offset2D, StructureType},
@@ -770,7 +768,6 @@ impl const Default for SurfaceTransformFlagsKHR {
         Self(0)
     }
 }
-#[cfg(feature = "VK_KHR_surface")]
 impl From<SurfaceTransformFlagBitsKHR> for SurfaceTransformFlagsKHR {
     fn from(from: SurfaceTransformFlagBitsKHR) -> Self {
         unsafe { Self::from_bits_unchecked(from as u32) }
@@ -1012,7 +1009,6 @@ impl Extend<SurfaceTransformFlagsKHR> for SurfaceTransformFlagsKHR {
         }
     }
 }
-#[cfg(feature = "VK_KHR_surface")]
 impl Extend<SurfaceTransformFlagBitsKHR> for SurfaceTransformFlagsKHR {
     fn extend<T: IntoIterator<Item = SurfaceTransformFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
@@ -1027,7 +1023,6 @@ impl FromIterator<SurfaceTransformFlagsKHR> for SurfaceTransformFlagsKHR {
         out
     }
 }
-#[cfg(feature = "VK_KHR_surface")]
 impl FromIterator<SurfaceTransformFlagBitsKHR> for SurfaceTransformFlagsKHR {
     fn from_iter<T: IntoIterator<Item = SurfaceTransformFlagBitsKHR>>(iterator: T) -> SurfaceTransformFlagsKHR {
         let mut out = Self::empty();

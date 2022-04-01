@@ -463,32 +463,29 @@ impl PerformanceValueTypeINTEL {
 #[derive(Clone, Copy)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
-pub struct PerformanceValueINTEL<'lt> {
-    ///Lifetime field
-    pub _lifetime: PhantomData<&'lt ()>,
+pub struct PerformanceValueINTEL {
     ///[`type_`] is a [`PerformanceValueTypeINTEL`] value specifying the
     ///type of the returned data.
     pub type_: PerformanceValueTypeINTEL,
     ///[`data`] is a [`PerformanceValueDataINTEL`] union specifying the
     ///value of the returned data.
-    pub data: PerformanceValueDataINTEL<'lt>,
+    pub data: PerformanceValueDataINTEL,
 }
-impl<'lt> Default for PerformanceValueINTEL<'lt> {
+impl Default for PerformanceValueINTEL {
     fn default() -> Self {
         Self {
-            _lifetime: PhantomData,
             type_: Default::default(),
             data: Default::default(),
         }
     }
 }
-impl<'lt> PerformanceValueINTEL<'lt> {
+impl PerformanceValueINTEL {
     ///Gets the value of [`Self::type_`]
     pub fn type_(&self) -> PerformanceValueTypeINTEL {
         self.type_
     }
     ///Gets the value of [`Self::data`]
-    pub fn data(&self) -> PerformanceValueDataINTEL<'lt> {
+    pub fn data(&self) -> PerformanceValueDataINTEL {
         self.data
     }
     ///Gets a mutable reference to the value of [`Self::type_`]
@@ -496,7 +493,7 @@ impl<'lt> PerformanceValueINTEL<'lt> {
         &mut self.type_
     }
     ///Gets a mutable reference to the value of [`Self::data`]
-    pub fn data_mut(&mut self) -> &mut PerformanceValueDataINTEL<'lt> {
+    pub fn data_mut(&mut self) -> &mut PerformanceValueDataINTEL {
         &mut self.data
     }
     ///Sets the raw value of [`Self::type_`]
@@ -510,7 +507,7 @@ impl<'lt> PerformanceValueINTEL<'lt> {
     ///Sets the raw value of [`Self::data`]
     pub fn set_data(
         &mut self,
-        value: crate::extensions::intel_performance_query::PerformanceValueDataINTEL<'lt>,
+        value: crate::extensions::intel_performance_query::PerformanceValueDataINTEL,
     ) -> &mut Self {
         self.data = value;
         self
@@ -1291,7 +1288,7 @@ impl<'lt> PerformanceConfigurationAcquireInfoINTEL<'lt> {
 #[derive(Clone, Copy)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
-pub union PerformanceValueDataINTEL<'lt> {
+pub union PerformanceValueDataINTEL {
     ///No documentation found
     pub value_32: u32,
     ///No documentation found

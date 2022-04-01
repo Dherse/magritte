@@ -319,7 +319,7 @@ impl<'a> Origin<'a> {
 
     /// Generate the feature gate (if any) for this origin
     pub fn conditon(&self) -> Option<TokenStream> {
-        match self {
+        /*match self {
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
             Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
             Origin::Core => None,
@@ -335,12 +335,14 @@ impl<'a> Origin<'a> {
                 #[cfg(feature = "VULKAN_1_3")]
             }),
             Origin::Opaque => None,
-        }
+        }*/
+
+        None
     }
 
     /// Generate the feature gate (if any) for this origin
     pub fn feature_gate(&self) -> Option<String> {
-        match self {
+        /*match self {
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
             Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
             Origin::Core => None,
@@ -350,7 +352,9 @@ impl<'a> Origin<'a> {
             Origin::Vulkan1_2 => Some("#[cfg(feature = \"VULKAN_1_2\")]\n".to_string()),
             Origin::Vulkan1_3 => Some("#[cfg(feature = \"VULKAN_1_3\")]\n".to_string()),
             Origin::Opaque => None,
-        }
+        }*/
+
+        None
     }
 }
 

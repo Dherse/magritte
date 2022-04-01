@@ -3599,7 +3599,7 @@ pub struct AccelerationStructureGeometryTrianglesDataKHR<'lt> {
     pub vertex_format: Format,
     ///[`vertex_data`] is a device or host address to memory containing vertex
     ///data for this geometry.
-    pub vertex_data: DeviceOrHostAddressConstKHR<'lt>,
+    pub vertex_data: DeviceOrHostAddressConstKHR,
     ///[`vertex_stride`] is the stride in bytes between each vertex.
     pub vertex_stride: DeviceSize,
     ///[`max_vertex`] is the highest index of a vertex that will be addressed
@@ -3609,13 +3609,13 @@ pub struct AccelerationStructureGeometryTrianglesDataKHR<'lt> {
     pub index_type: IndexType,
     ///[`index_data`] is a device or host address to memory containing index
     ///data for this geometry.
-    pub index_data: DeviceOrHostAddressConstKHR<'lt>,
+    pub index_data: DeviceOrHostAddressConstKHR,
     ///[`transform_data`] is a device or host address to memory containing an
     ///optional reference to a [`TransformMatrixKHR`] structure describing
     ///a transformation from the space in which the vertices in this geometry
     ///are described to the space in which the acceleration structure is
     ///defined.
-    pub transform_data: DeviceOrHostAddressConstKHR<'lt>,
+    pub transform_data: DeviceOrHostAddressConstKHR,
 }
 impl<'lt> Default for AccelerationStructureGeometryTrianglesDataKHR<'lt> {
     fn default() -> Self {
@@ -3659,7 +3659,7 @@ impl<'lt> AccelerationStructureGeometryTrianglesDataKHR<'lt> {
         self.vertex_format
     }
     ///Gets the value of [`Self::vertex_data`]
-    pub fn vertex_data(&self) -> DeviceOrHostAddressConstKHR<'lt> {
+    pub fn vertex_data(&self) -> DeviceOrHostAddressConstKHR {
         self.vertex_data
     }
     ///Gets the value of [`Self::vertex_stride`]
@@ -3675,11 +3675,11 @@ impl<'lt> AccelerationStructureGeometryTrianglesDataKHR<'lt> {
         self.index_type
     }
     ///Gets the value of [`Self::index_data`]
-    pub fn index_data(&self) -> DeviceOrHostAddressConstKHR<'lt> {
+    pub fn index_data(&self) -> DeviceOrHostAddressConstKHR {
         self.index_data
     }
     ///Gets the value of [`Self::transform_data`]
-    pub fn transform_data(&self) -> DeviceOrHostAddressConstKHR<'lt> {
+    pub fn transform_data(&self) -> DeviceOrHostAddressConstKHR {
         self.transform_data
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
@@ -3691,7 +3691,7 @@ impl<'lt> AccelerationStructureGeometryTrianglesDataKHR<'lt> {
         &mut self.vertex_format
     }
     ///Gets a mutable reference to the value of [`Self::vertex_data`]
-    pub fn vertex_data_mut(&mut self) -> &mut DeviceOrHostAddressConstKHR<'lt> {
+    pub fn vertex_data_mut(&mut self) -> &mut DeviceOrHostAddressConstKHR {
         &mut self.vertex_data
     }
     ///Gets a mutable reference to the value of [`Self::vertex_stride`]
@@ -3707,11 +3707,11 @@ impl<'lt> AccelerationStructureGeometryTrianglesDataKHR<'lt> {
         &mut self.index_type
     }
     ///Gets a mutable reference to the value of [`Self::index_data`]
-    pub fn index_data_mut(&mut self) -> &mut DeviceOrHostAddressConstKHR<'lt> {
+    pub fn index_data_mut(&mut self) -> &mut DeviceOrHostAddressConstKHR {
         &mut self.index_data
     }
     ///Gets a mutable reference to the value of [`Self::transform_data`]
-    pub fn transform_data_mut(&mut self) -> &mut DeviceOrHostAddressConstKHR<'lt> {
+    pub fn transform_data_mut(&mut self) -> &mut DeviceOrHostAddressConstKHR {
         &mut self.transform_data
     }
     ///Sets the raw value of [`Self::s_type`]
@@ -3732,7 +3732,7 @@ impl<'lt> AccelerationStructureGeometryTrianglesDataKHR<'lt> {
     ///Sets the raw value of [`Self::vertex_data`]
     pub fn set_vertex_data(
         &mut self,
-        value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressConstKHR<'lt>,
+        value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressConstKHR,
     ) -> &mut Self {
         self.vertex_data = value;
         self
@@ -3755,7 +3755,7 @@ impl<'lt> AccelerationStructureGeometryTrianglesDataKHR<'lt> {
     ///Sets the raw value of [`Self::index_data`]
     pub fn set_index_data(
         &mut self,
-        value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressConstKHR<'lt>,
+        value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressConstKHR,
     ) -> &mut Self {
         self.index_data = value;
         self
@@ -3763,7 +3763,7 @@ impl<'lt> AccelerationStructureGeometryTrianglesDataKHR<'lt> {
     ///Sets the raw value of [`Self::transform_data`]
     pub fn set_transform_data(
         &mut self,
-        value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressConstKHR<'lt>,
+        value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressConstKHR,
     ) -> &mut Self {
         self.transform_data = value;
         self
@@ -3826,7 +3826,7 @@ pub struct AccelerationStructureGeometryAabbsDataKHR<'lt> {
     ///[`data`] is a device or host address to memory containing
     ///[`AabbPositionsKHR`] structures containing position data for each
     ///axis-aligned bounding box in the geometry.
-    pub data: DeviceOrHostAddressConstKHR<'lt>,
+    pub data: DeviceOrHostAddressConstKHR,
     ///[`stride`] is the stride in bytes between each entry in [`data`].
     ///The stride  **must**  be a multiple of `8`.
     pub stride: DeviceSize,
@@ -3864,7 +3864,7 @@ impl<'lt> AccelerationStructureGeometryAabbsDataKHR<'lt> {
         &*self.p_next
     }
     ///Gets the value of [`Self::data`]
-    pub fn data(&self) -> DeviceOrHostAddressConstKHR<'lt> {
+    pub fn data(&self) -> DeviceOrHostAddressConstKHR {
         self.data
     }
     ///Gets the value of [`Self::stride`]
@@ -3876,7 +3876,7 @@ impl<'lt> AccelerationStructureGeometryAabbsDataKHR<'lt> {
         &mut self.s_type
     }
     ///Gets a mutable reference to the value of [`Self::data`]
-    pub fn data_mut(&mut self) -> &mut DeviceOrHostAddressConstKHR<'lt> {
+    pub fn data_mut(&mut self) -> &mut DeviceOrHostAddressConstKHR {
         &mut self.data
     }
     ///Gets a mutable reference to the value of [`Self::stride`]
@@ -3896,7 +3896,7 @@ impl<'lt> AccelerationStructureGeometryAabbsDataKHR<'lt> {
     ///Sets the raw value of [`Self::data`]
     pub fn set_data(
         &mut self,
-        value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressConstKHR<'lt>,
+        value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressConstKHR,
     ) -> &mut Self {
         self.data = value;
         self
@@ -3972,7 +3972,7 @@ pub struct AccelerationStructureGeometryInstancesDataKHR<'lt> {
     ///tightly packed.
     ///[`AccelerationStructureMotionInstanceNV`] structures have a stride
     ///of 160 bytes.
-    pub data: DeviceOrHostAddressConstKHR<'lt>,
+    pub data: DeviceOrHostAddressConstKHR,
 }
 impl<'lt> Default for AccelerationStructureGeometryInstancesDataKHR<'lt> {
     fn default() -> Self {
@@ -4020,7 +4020,7 @@ impl<'lt> AccelerationStructureGeometryInstancesDataKHR<'lt> {
         unsafe { std::mem::transmute(self.array_of_pointers as u8) }
     }
     ///Gets the value of [`Self::data`]
-    pub fn data(&self) -> DeviceOrHostAddressConstKHR<'lt> {
+    pub fn data(&self) -> DeviceOrHostAddressConstKHR {
         self.data
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
@@ -4046,7 +4046,7 @@ impl<'lt> AccelerationStructureGeometryInstancesDataKHR<'lt> {
         }
     }
     ///Gets a mutable reference to the value of [`Self::data`]
-    pub fn data_mut(&mut self) -> &mut DeviceOrHostAddressConstKHR<'lt> {
+    pub fn data_mut(&mut self) -> &mut DeviceOrHostAddressConstKHR {
         &mut self.data
     }
     ///Sets the raw value of [`Self::s_type`]
@@ -4067,7 +4067,7 @@ impl<'lt> AccelerationStructureGeometryInstancesDataKHR<'lt> {
     ///Sets the raw value of [`Self::data`]
     pub fn set_data(
         &mut self,
-        value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressConstKHR<'lt>,
+        value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressConstKHR,
     ) -> &mut Self {
         self.data = value;
         self
@@ -4432,7 +4432,7 @@ pub struct AccelerationStructureBuildGeometryInfoKHR<'lt> {
     pub pp_geometries: *const *const AccelerationStructureGeometryKHR<'lt>,
     ///[`scratch_data`] is the device or host address to memory that will be
     ///used as scratch memory for the build.
-    pub scratch_data: DeviceOrHostAddressKHR<'lt>,
+    pub scratch_data: DeviceOrHostAddressKHR,
 }
 impl<'lt> Default for AccelerationStructureBuildGeometryInfoKHR<'lt> {
     fn default() -> Self {
@@ -4530,7 +4530,7 @@ impl<'lt> AccelerationStructureBuildGeometryInfoKHR<'lt> {
         std::slice::from_raw_parts(self.pp_geometries, self.geometry_count as usize)
     }
     ///Gets the value of [`Self::scratch_data`]
-    pub fn scratch_data(&self) -> &DeviceOrHostAddressKHR<'lt> {
+    pub fn scratch_data(&self) -> &DeviceOrHostAddressKHR {
         &self.scratch_data
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
@@ -4562,7 +4562,7 @@ impl<'lt> AccelerationStructureBuildGeometryInfoKHR<'lt> {
         &mut self.geometry_count
     }
     ///Gets a mutable reference to the value of [`Self::scratch_data`]
-    pub fn scratch_data_mut(&mut self) -> &mut DeviceOrHostAddressKHR<'lt> {
+    pub fn scratch_data_mut(&mut self) -> &mut DeviceOrHostAddressKHR {
         &mut self.scratch_data
     }
     ///Sets the raw value of [`Self::s_type`]
@@ -4645,7 +4645,7 @@ impl<'lt> AccelerationStructureBuildGeometryInfoKHR<'lt> {
     ///Sets the raw value of [`Self::scratch_data`]
     pub fn set_scratch_data(
         &mut self,
-        value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressKHR<'lt>,
+        value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressKHR,
     ) -> &mut Self {
         self.scratch_data = value;
         self
@@ -5629,17 +5629,17 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`version_data`] **must**  be a valid pointer to an array of <span class="katex"><span
-///   class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:0.72777em;vertical-align:-0.08333em;" class="strut"></span><span
-///   class="mord">2</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span></span><span
-///   class="base"><span style="height:0.70625em;vertical-align:-0.09514em;"
-///   class="strut"></span><span class="mord"><span class="mord mathtt">V</span><span class="mord
-///   mathtt">K</span><span class="mord mathtt">_</span><span class="mord mathtt">U</span><span
-///   class="mord mathtt">U</span><span class="mord mathtt">I</span><span class="mord
-///   mathtt">D</span><span class="mord mathtt">_</span><span class="mord mathtt">S</span><span
-///   class="mord mathtt">I</span><span class="mord mathtt">Z</span><span class="mord
+///   class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+///   style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+///   class="strut" style="height:0.70625em;vertical-align:-0.09514em;"></span><span
+///   class="mord"><span class="mord mathtt">V</span><span class="mord mathtt">K</span><span
+///   class="mord mathtt">_</span><span class="mord mathtt">U</span><span class="mord
+///   mathtt">U</span><span class="mord mathtt">I</span><span class="mord mathtt">D</span><span
+///   class="mord mathtt">_</span><span class="mord mathtt">S</span><span class="mord
+///   mathtt">I</span><span class="mord mathtt">Z</span><span class="mord
 ///   mathtt">E</span></span></span></span></span>`uint8_t` values
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
@@ -5732,7 +5732,7 @@ impl<'lt> AccelerationStructureVersionInfoKHR<'lt> {
     }
     ///Sets the raw value of [`Self::version_data`]
     pub fn set_version_data(&mut self, value: &'lt [u8]) -> &mut Self {
-        assert_eq!(value.len(), (2 * crate::core::UUID_SIZE));
+        assert_eq!(value.len(), (2 * crate::core::UUID_SIZE) as usize);
         self.version_data = value.as_ptr();
         self
     }
@@ -5972,7 +5972,7 @@ pub struct CopyAccelerationStructureToMemoryInfoKHR<'lt> {
     pub src: AccelerationStructureKHR,
     ///[`dst`] is the device or host address to memory which is the target
     ///for the copy
-    pub dst: DeviceOrHostAddressKHR<'lt>,
+    pub dst: DeviceOrHostAddressKHR,
     ///[`mode`] is a [`CopyAccelerationStructureModeKHR`] value
     ///specifying additional operations to perform during the copy.
     pub mode: CopyAccelerationStructureModeKHR,
@@ -6015,7 +6015,7 @@ impl<'lt> CopyAccelerationStructureToMemoryInfoKHR<'lt> {
         self.src
     }
     ///Gets the value of [`Self::dst`]
-    pub fn dst(&self) -> &DeviceOrHostAddressKHR<'lt> {
+    pub fn dst(&self) -> &DeviceOrHostAddressKHR {
         &self.dst
     }
     ///Gets the value of [`Self::mode`]
@@ -6031,7 +6031,7 @@ impl<'lt> CopyAccelerationStructureToMemoryInfoKHR<'lt> {
         &mut self.src
     }
     ///Gets a mutable reference to the value of [`Self::dst`]
-    pub fn dst_mut(&mut self) -> &mut DeviceOrHostAddressKHR<'lt> {
+    pub fn dst_mut(&mut self) -> &mut DeviceOrHostAddressKHR {
         &mut self.dst
     }
     ///Gets a mutable reference to the value of [`Self::mode`]
@@ -6059,7 +6059,7 @@ impl<'lt> CopyAccelerationStructureToMemoryInfoKHR<'lt> {
     ///Sets the raw value of [`Self::dst`]
     pub fn set_dst(
         &mut self,
-        value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressKHR<'lt>,
+        value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressKHR,
     ) -> &mut Self {
         self.dst = value;
         self
@@ -6140,7 +6140,7 @@ pub struct CopyMemoryToAccelerationStructureInfoKHR<'lt> {
     pub p_next: *const BaseInStructure<'lt>,
     ///[`src`] is the device or host address to memory containing the source
     ///data for the copy.
-    pub src: DeviceOrHostAddressConstKHR<'lt>,
+    pub src: DeviceOrHostAddressConstKHR,
     ///[`dst`] is the target acceleration structure for the copy.
     pub dst: AccelerationStructureKHR,
     ///[`mode`] is a [`CopyAccelerationStructureModeKHR`] value
@@ -6181,7 +6181,7 @@ impl<'lt> CopyMemoryToAccelerationStructureInfoKHR<'lt> {
         &*self.p_next
     }
     ///Gets the value of [`Self::src`]
-    pub fn src(&self) -> DeviceOrHostAddressConstKHR<'lt> {
+    pub fn src(&self) -> DeviceOrHostAddressConstKHR {
         self.src
     }
     ///Gets the value of [`Self::dst`]
@@ -6197,7 +6197,7 @@ impl<'lt> CopyMemoryToAccelerationStructureInfoKHR<'lt> {
         &mut self.s_type
     }
     ///Gets a mutable reference to the value of [`Self::src`]
-    pub fn src_mut(&mut self) -> &mut DeviceOrHostAddressConstKHR<'lt> {
+    pub fn src_mut(&mut self) -> &mut DeviceOrHostAddressConstKHR {
         &mut self.src
     }
     ///Gets a mutable reference to the value of [`Self::dst`]
@@ -6221,7 +6221,7 @@ impl<'lt> CopyMemoryToAccelerationStructureInfoKHR<'lt> {
     ///Sets the raw value of [`Self::src`]
     pub fn set_src(
         &mut self,
-        value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressConstKHR<'lt>,
+        value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressConstKHR,
     ) -> &mut Self {
         self.src = value;
         self
@@ -6423,7 +6423,7 @@ impl<'lt> AccelerationStructureBuildSizesInfoKHR<'lt> {
 #[doc(alias = "VkDeviceOrHostAddressKHR")]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
-pub union DeviceOrHostAddressKHR<'lt> {
+pub union DeviceOrHostAddressKHR {
     ///[`device_address`] is a buffer device address as returned by the
     ///[`GetBufferDeviceAddressKHR`] command.
     pub device_address: DeviceAddress,
@@ -6469,7 +6469,7 @@ impl Default for DeviceOrHostAddressKHR {
 #[derive(Clone, Copy)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
-pub union DeviceOrHostAddressConstKHR<'lt> {
+pub union DeviceOrHostAddressConstKHR {
     ///[`device_address`] is a buffer device address as returned by the
     ///[`GetBufferDeviceAddressKHR`] command.
     pub device_address: DeviceAddress,

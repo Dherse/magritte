@@ -424,12 +424,12 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     }
 
     /// Does the type have a lifetime
-    pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
+    pub fn has_lifetime(&self, source: &Source<'a>, pointer_has_lifetime: bool) -> bool {
         match self {
             TypeRef::Alias(alias) => source
                 .resolve_type(alias.of())
                 .expect("unknown alias")
-                .has_lifetime(source),
+                .has_lifetime(source, pointer_has_lifetime),
             TypeRef::Struct(struct_) => struct_.has_lifetime(source),
             TypeRef::Union(union_) => union_.has_lifetime(source),
 

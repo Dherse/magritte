@@ -113,7 +113,7 @@ impl<'a> Struct<'a> {
 
     /// Checks if this structure needs a lifetime
     pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
-        self.fields.iter().any(|f| f.has_lifetime(source))
+        self.fields.iter().any(|f| f.has_lifetime(source, true))
     }
 
     /// Checks if this structure is debug
@@ -328,8 +328,8 @@ impl<'a> Field<'a> {
     }
 
     /// Does this field has a lifetime
-    pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
-        self.ty().has_lifetime(source, true)
+    pub fn has_lifetime(&self, source: &Source<'a>, pointer_has_lifetime: bool) -> bool {
+        self.ty().has_lifetime(source, pointer_has_lifetime)
     }
 
     /// Checks if this field is debug

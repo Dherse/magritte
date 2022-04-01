@@ -7,7 +7,5 @@ pub mod extensions;
 pub mod native;
 pub mod vulkan1_0;
 pub mod vulkan1_1;
-#[cfg(feature = "VULKAN_1_2")]
 pub mod vulkan1_2;
-#[cfg(feature = "VULKAN_1_3")]
 pub mod vulkan1_3;
