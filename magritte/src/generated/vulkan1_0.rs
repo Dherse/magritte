@@ -48915,7 +48915,7 @@ impl<'lt> ShaderModuleCreateInfo<'lt> {
     ///Sets the raw value of [`Self::code`]
     pub fn set_code(&mut self, value: &'lt [u32]) -> &mut Self {
         let len_ = value.len() as usize;
-        let len_ = (4 * len_);
+        let len_ = 4 * len_;
         self.code = value.as_ptr();
         self.code_size = len_;
         self
