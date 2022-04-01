@@ -14,7 +14,7 @@
 //! and
 //!convert them to a known color space.
 //!# Revision
-//!4
+//!5
 //!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`VK_KHR_sampler_ycbcr_conversion`]`
@@ -125,7 +125,7 @@
 //!No new Vulkan features or implementation requirements can be added.
 //!The extension version number will be incremented when this additional
 //!documentation is added, but the version number does not indicate that an
-//!implementaiton supports Vulkan memory or resources that map to the new
+//!implementation supports Vulkan memory or resources that map to the new
 //![`AHardwareBuffer`] features: support for that must be queried with
 //![`GetPhysicalDeviceImageFormatProperties2`] or is implied by
 //!successfully allocating a [`AHardwareBuffer`] outside of Vulkan that
@@ -135,6 +135,7 @@
 //!The extension will only document how existing Vulkan features map to that
 //!new Android feature.
 //!# Version History
+//! - Revision 5, 2022-02-04 (Chris Forbes)  - Describe mapping of flags for storage image support
 //! - Revision 4, 2021-09-30 (Jon Leech)  - Add interaction with `[`VK_KHR_format_feature_flags2`]`
 //!   to `vk.xml`
 //! - Revision 3, 2019-08-27 (Jon Leech)  - Update revision history to correspond to XML version
@@ -180,7 +181,7 @@ use std::{
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_SPEC_VERSION")]
-pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_SPEC_VERSION: u32 = 4;
+pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_SPEC_VERSION: u32 = 5;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_EXTENSION_NAME")]

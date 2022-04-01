@@ -5,6 +5,8 @@ use smallvec::SmallVec;
 
 use crate::{origin::Origin, symbols::SymbolName};
 
+use super::Source;
+
 /// A Vulkan extension
 #[derive(Debug, Clone, PartialEq)]
 pub struct Extension<'a> {
@@ -102,6 +104,19 @@ impl<'a> Extension<'a> {
     #[inline]
     pub const fn origin(&self) -> &Origin<'a> {
         &self.origin
+    }
+
+    /// Is another extension required by this extension
+    pub fn requires(&self, source: &Source<'a>, other: &str) -> bool {
+        for required in self.required() {
+            if required.eq(other) {
+                return true;
+            } else if source.extensions.get_by_either(required).expect("unknown extension").requires(source, other) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 

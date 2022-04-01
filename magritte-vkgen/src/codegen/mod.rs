@@ -14,6 +14,7 @@ mod opaques;
 mod structs;
 pub mod ty;
 mod unions;
+mod functions;
 
 use std::{collections::BTreeMap, fmt::Write};
 

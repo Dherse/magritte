@@ -27,8 +27,8 @@ impl<'a> Bit<'a> {
     }
 
     /// Generate the conditional compilation tokens
-    pub fn condition(&self, parent: &Origin<'a>) -> Option<TokenStream> {
-        if parent != self.origin() {
+    pub fn condition(&self, source: &Source<'a>, parent: &Origin<'a>) -> Option<TokenStream> {
+        if parent != self.origin() && !parent.requires(source, self.origin()) {
             self.origin().condition()
         } else {
             None
@@ -36,7 +36,7 @@ impl<'a> Bit<'a> {
     }
 
     /// Generate the code for a Bitflag variant
-    fn generate_bitmask_variant(&self, parent: &Origin<'a>, doc: &AHashMap<String, String>) -> TokenStream {
+    fn generate_bitmask_variant(&self, source: &Source<'a>, parent: &Origin<'a>, doc: &AHashMap<String, String>) -> TokenStream {
         // get the doc of the bit
         let doc = doc.get(self.name()).map_or_else(
             || quote! { #[doc = "No documentation found"]},
@@ -57,7 +57,7 @@ impl<'a> Bit<'a> {
         let value = Literal::i64_unsuffixed(self.value());
 
         // feature flag support
-        let conditional_compilation = self.condition(parent);
+        let conditional_compilation = self.condition(source, parent);
 
         quote! {
             #doc
@@ -117,14 +117,14 @@ impl<'a> Bitmask<'a> {
             .bits()
             .iter()
             .filter(|bit| !bit.origin().is_disabled())
-            .map(|bit| bit.condition(self.origin()))
+            .map(|bit| bit.condition(source, self.origin()))
             .collect::<Vec<_>>();
 
         let bits = bit_flag
             .bits()
             .iter()
             .filter(|bit| !bit.origin().is_disabled())
-            .map(|bit| bit.generate_bitmask_variant(self.origin(), &variant_docs));
+            .map(|bit| bit.generate_bitmask_variant(source, self.origin(), &variant_docs));
 
         let bit_idents = bit_flag
             .bits()
@@ -147,7 +147,7 @@ impl<'a> Bitmask<'a> {
         imports.push("std::iter::IntoIterator");
 
         // dealing with conditional compilation of flag bits
-        let bits_conditional_compilation = if bit_flag.origin() != self.origin() {
+        let bits_conditional_compilation = if bit_flag.origin() != self.origin() && !self.origin().requires(source, bit_flag.origin()) {
             if let Some(condition) = bit_flag.origin().condition() {
                 imports.push_str(&format!(
                     r##"

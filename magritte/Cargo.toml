@@ -277,6 +277,7 @@ VK_KHR_multiview = ['VK_KHR_get_physical_device_properties2']
 VK_KHR_performance_query = ['VK_KHR_get_physical_device_properties2']
 VK_KHR_pipeline_executable_properties = ['VK_KHR_get_physical_device_properties2']
 VK_KHR_pipeline_library = []
+VK_KHR_portability_enumeration = []
 VK_KHR_portability_subset = ['VK_KHR_get_physical_device_properties2']
 VK_KHR_present_id = ['VK_KHR_swapchain']
 VK_KHR_present_wait = [
@@ -685,6 +686,7 @@ all = [
     'VK_EXT_global_priority_query',
     'VK_EXT_image_view_min_lod',
     'VK_EXT_multi_draw',
+    'VK_KHR_portability_enumeration',
     'VK_EXT_load_store_op_none',
     'VK_EXT_border_color_swizzle',
     'VK_EXT_pageable_device_local_memory',

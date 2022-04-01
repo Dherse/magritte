@@ -249,6 +249,11 @@ where
             }
         }
     }
+
+    /// Gets the last element
+    pub fn last(&self) -> Option<&'_ T> {
+        self.values.last()
+    }
 }
 
 impl<'a: 'b, 'b, T> Index<&'b str> for SymbolTable<'a, T>

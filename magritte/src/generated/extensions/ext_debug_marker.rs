@@ -195,162 +195,130 @@ pub enum DebugReportObjectTypeEXT {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeUnknownExt = 0,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeInstanceExt = 1,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypePhysicalDeviceExt = 2,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeDeviceExt = 3,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeQueueExt = 4,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeSemaphoreExt = 5,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeCommandBufferExt = 6,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeFenceExt = 7,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeDeviceMemoryExt = 8,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeBufferExt = 9,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeImageExt = 10,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeEventExt = 11,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeQueryPoolExt = 12,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeBufferViewExt = 13,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeImageViewExt = 14,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeShaderModuleExt = 15,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypePipelineCacheExt = 16,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypePipelineLayoutExt = 17,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeRenderPassExt = 18,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypePipelineExt = 19,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeDescriptorSetLayoutExt = 20,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeSamplerExt = 21,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeDescriptorPoolExt = 22,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeDescriptorSetExt = 23,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeFramebufferExt = 24,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeCommandPoolExt = 25,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeSurfaceKhrExt = 26,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeSwapchainKhrExt = 27,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeDebugReportCallbackExtExt = 28,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeDisplayKhrExt = 29,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeDisplayModeKhrExt = 30,
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeValidationCacheExtExt = 33,
     ///No documentation found
     ///
@@ -360,7 +328,6 @@ pub enum DebugReportObjectTypeEXT {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    #[cfg(feature = "VK_EXT_debug_report")]
     DebugReportObjectTypeDescriptorUpdateTemplateExt = 1000085000,
     ///No documentation found
     ///

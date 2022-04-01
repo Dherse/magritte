@@ -1,6 +1,6 @@
 //![VK_KHR_video_queue](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_video_queue.html) - device extension
 //!# Revision
-//!2
+//!3
 //!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`VK_KHR_get_physical_device_properties2`]`
@@ -97,8 +97,11 @@
 //!   [`VideoCapabilityFlagBitsKHR`] (along with the names of enumerants it defines) and
 //!   `VkVideoCapabilitiesFlagsKHR` to [`VideoCapabilityFlagsKHR`], following Vulkan naming
 //!   conventions.
+//! - Revision 3, 2022-03-16 (Ahmed Abdelkhalek)  - Relocate Std header version reporting/requesting
+//!   from codec-operation specific extensions to this extension.  - Make Std header versions
+//!   codec-operation specific instead of only codec-specific.
 //!# Other info
-//! * 2021-03-29
+//! * 2022-03-16
 //! * No known IP claims.
 //! * - Ahmed Abdelkhalek, AMD  - George Hao, AMD  - Jake Beju, AMD  - Piers Daniell, NVIDIA  -
 //!   Srinath Kumarapuram, NVIDIA  - Tobias Hector, AMD  - Tony Zlatinski, NVIDIA
@@ -161,8 +164,8 @@
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     vulkan1_0::{
-        BaseInStructure, BaseOutStructure, Bool32, DeviceMemory, DeviceSize, Extent2D, Format, ImageUsageFlags,
-        ImageView, Offset2D, StructureType,
+        BaseInStructure, BaseOutStructure, Bool32, DeviceMemory, DeviceSize, ExtensionProperties, Extent2D, Format,
+        ImageUsageFlags, ImageView, Offset2D, StructureType,
     },
     vulkan1_1::MemoryRequirements2,
 };
@@ -178,7 +181,7 @@ use std::{
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_VIDEO_QUEUE_SPEC_VERSION")]
-pub const KHR_VIDEO_QUEUE_SPEC_VERSION: u32 = 2;
+pub const KHR_VIDEO_QUEUE_SPEC_VERSION: u32 = 3;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_VIDEO_QUEUE_EXTENSION_NAME")]
@@ -4035,6 +4038,7 @@ impl<'lt> VideoProfileKHR<'lt> {
 ///    VkExtent2D                   maxExtent;
 ///    uint32_t                     maxReferencePicturesSlotsCount;
 ///    uint32_t                     maxReferencePicturesActiveCount;
+///    VkExtensionProperties        stdHeaderVersion;
 ///} VkVideoCapabilitiesKHR;
 ///```
 ///# Members
@@ -4054,6 +4058,9 @@ impl<'lt> VideoProfileKHR<'lt> {
 ///   implementation for a single video session instance.
 /// - [`max_reference_pictures_active_count`] is the maximum slots that can be used as [Reference Pictures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#reference-picture)
 ///   with a single decode or encode operation.
+/// - [`std_header_version`] is a [`ExtensionProperties`] structure reporting the Video Std header
+///   version supported for the `codecOperation` requested in
+///   [`GetPhysicalDeviceVideoCapabilitiesKHR`]`::pVideoProfile`.
 ///# Description
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_CAPABILITIES_KHR`
@@ -4064,6 +4071,7 @@ impl<'lt> VideoProfileKHR<'lt> {
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`DeviceSize`]
+/// - [`ExtensionProperties`]
 /// - [`Extent2D`]
 /// - [`StructureType`]
 /// - [`VideoCapabilityFlagsKHR`]
@@ -4114,6 +4122,11 @@ pub struct VideoCapabilitiesKHR<'lt> {
     ///used as [Reference Pictures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#reference-picture) with a single decode or
     ///encode operation.
     pub max_reference_pictures_active_count: u32,
+    ///[`std_header_version`] is a [`ExtensionProperties`] structure
+    ///reporting the Video Std header version supported for the
+    ///`codecOperation` requested in
+    ///[`GetPhysicalDeviceVideoCapabilitiesKHR`]::`pVideoProfile`.
+    pub std_header_version: ExtensionProperties,
 }
 impl<'lt> Default for VideoCapabilitiesKHR<'lt> {
     fn default() -> Self {
@@ -4129,6 +4142,7 @@ impl<'lt> Default for VideoCapabilitiesKHR<'lt> {
             max_extent: Default::default(),
             max_reference_pictures_slots_count: 0,
             max_reference_pictures_active_count: 0,
+            std_header_version: Default::default(),
         }
     }
 }
@@ -4185,6 +4199,10 @@ impl<'lt> VideoCapabilitiesKHR<'lt> {
     pub fn max_reference_pictures_active_count(&self) -> u32 {
         self.max_reference_pictures_active_count
     }
+    ///Gets the value of [`Self::std_header_version`]
+    pub fn std_header_version(&self) -> ExtensionProperties {
+        self.std_header_version
+    }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
         &mut self.s_type
@@ -4227,6 +4245,10 @@ impl<'lt> VideoCapabilitiesKHR<'lt> {
     ///Gets a mutable reference to the value of [`Self::max_reference_pictures_active_count`]
     pub fn max_reference_pictures_active_count_mut(&mut self) -> &mut u32 {
         &mut self.max_reference_pictures_active_count
+    }
+    ///Gets a mutable reference to the value of [`Self::std_header_version`]
+    pub fn std_header_version_mut(&mut self) -> &mut ExtensionProperties {
+        &mut self.std_header_version
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -4279,6 +4301,11 @@ impl<'lt> VideoCapabilitiesKHR<'lt> {
     ///Sets the raw value of [`Self::max_reference_pictures_active_count`]
     pub fn set_max_reference_pictures_active_count(&mut self, value: u32) -> &mut Self {
         self.max_reference_pictures_active_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::std_header_version`]
+    pub fn set_std_header_version(&mut self, value: crate::vulkan1_0::ExtensionProperties) -> &mut Self {
+        self.std_header_version = value;
         self
     }
 }
@@ -4927,6 +4954,7 @@ impl<'lt> VideoReferenceSlotKHR<'lt> {
 ///    VkFormat                        referencePicturesFormat;
 ///    uint32_t                        maxReferencePicturesSlotsCount;
 ///    uint32_t                        maxReferencePicturesActiveCount;
+///    const VkExtensionProperties*    pStdHeaderVersion;
 ///} VkVideoSessionCreateInfoKHR;
 ///```
 ///# Members
@@ -4949,6 +4977,8 @@ impl<'lt> VideoReferenceSlotKHR<'lt> {
 /// - [`max_reference_pictures_active_count`] is the maximum number of active [DPB Slots](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#dpb-slot)
 ///   that can be used as Dpb or Reconstructed [Reference Pictures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#reference-picture)
 ///   within a single decode or encode operation for the created video session.
+/// - [`std_header_version`] is a pointer to a [`ExtensionProperties`] structure requesting the
+///   Video Std header version to use for `codecOperation` in [`video_profile`].
 ///# Description
 ///## Valid Usage
 /// - [`video_profile`] **must**  be a pointer to a valid [`VideoProfileKHR`] structure whose
@@ -4986,17 +5016,16 @@ impl<'lt> VideoReferenceSlotKHR<'lt> {
 ///
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_SESSION_CREATE_INFO_KHR`
-/// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
-///   be either `NULL` or a pointer to a valid instance of [`VideoDecodeH264SessionCreateInfoEXT`],
-///   [`VideoDecodeH265SessionCreateInfoEXT`], [`VideoEncodeH264SessionCreateInfoEXT`], or
-///   [`VideoEncodeH265SessionCreateInfoEXT`]
-/// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
+/// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be a valid combination of [`VideoSessionCreateFlagBitsKHR`] values
 /// - [`video_profile`] **must**  be a valid pointer to a valid [`VideoProfileKHR`] structure
 /// - [`picture_format`] **must**  be a valid [`Format`] value
 /// - [`reference_pictures_format`] **must**  be a valid [`Format`] value
+/// - [`std_header_version`] **must**  be a valid pointer to a valid [`ExtensionProperties`]
+///   structure
 ///# Related
 /// - [`VK_KHR_video_queue`]
+/// - [`ExtensionProperties`]
 /// - [`Extent2D`]
 /// - [`Format`]
 /// - [`StructureType`]
@@ -5050,6 +5079,10 @@ pub struct VideoSessionCreateInfoKHR<'lt> {
     ///[Reference Pictures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#reference-picture) within a single decode or
     ///encode operation for the created video session.
     pub max_reference_pictures_active_count: u32,
+    ///[`std_header_version`] is a pointer to a [`ExtensionProperties`]
+    ///structure requesting the Video Std header version to use for
+    ///`codecOperation` in [`video_profile`].
+    pub std_header_version: *const ExtensionProperties,
 }
 impl<'lt> Default for VideoSessionCreateInfoKHR<'lt> {
     fn default() -> Self {
@@ -5065,6 +5098,7 @@ impl<'lt> Default for VideoSessionCreateInfoKHR<'lt> {
             reference_pictures_format: Default::default(),
             max_reference_pictures_slots_count: 0,
             max_reference_pictures_active_count: 0,
+            std_header_version: std::ptr::null(),
         }
     }
 }
@@ -5077,6 +5111,10 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
     pub fn video_profile_raw(&self) -> *const VideoProfileKHR<'lt> {
         self.video_profile
     }
+    ///Gets the raw value of [`Self::std_header_version`]
+    pub fn std_header_version_raw(&self) -> *const ExtensionProperties {
+        self.std_header_version
+    }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
@@ -5085,6 +5123,11 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
     ///Sets the raw value of [`Self::video_profile`]
     pub fn set_video_profile_raw(&mut self, value: *const VideoProfileKHR<'lt>) -> &mut Self {
         self.video_profile = value;
+        self
+    }
+    ///Sets the raw value of [`Self::std_header_version`]
+    pub fn set_std_header_version_raw(&mut self, value: *const ExtensionProperties) -> &mut Self {
+        self.std_header_version = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -5132,6 +5175,13 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
     ///Gets the value of [`Self::max_reference_pictures_active_count`]
     pub fn max_reference_pictures_active_count(&self) -> u32 {
         self.max_reference_pictures_active_count
+    }
+    ///Gets the value of [`Self::std_header_version`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn std_header_version(&self) -> &ExtensionProperties {
+        &*self.std_header_version
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -5216,6 +5266,11 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
     ///Sets the raw value of [`Self::max_reference_pictures_active_count`]
     pub fn set_max_reference_pictures_active_count(&mut self, value: u32) -> &mut Self {
         self.max_reference_pictures_active_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::std_header_version`]
+    pub fn set_std_header_version(&mut self, value: &'lt crate::vulkan1_0::ExtensionProperties) -> &mut Self {
+        self.std_header_version = value as *const _;
         self
     }
 }

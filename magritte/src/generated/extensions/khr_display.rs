@@ -254,9 +254,8 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-#[cfg(feature = "VK_KHR_surface")]
-pub use crate::extensions::khr_surface::SurfaceTransformFlagBitsKHR;
 use crate::{
+    extensions::khr_surface::SurfaceTransformFlagBitsKHR,
     vulkan1_0::{BaseInStructure, Bool32, Extent2D, Offset2D, StructureType},
 };
 #[cfg(feature = "bytemuck")]
@@ -780,7 +779,6 @@ impl const Default for SurfaceTransformFlagsKHR {
         Self(0)
     }
 }
-#[cfg(feature = "VK_KHR_surface")]
 impl From<SurfaceTransformFlagBitsKHR> for SurfaceTransformFlagsKHR {
     fn from(from: SurfaceTransformFlagBitsKHR) -> Self {
         unsafe { Self::from_bits_unchecked(from as u32) }
@@ -791,59 +789,50 @@ impl SurfaceTransformFlagsKHR {
     ///is presented without being transformed.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    #[cfg(feature = "VK_KHR_surface")]
     pub const SURFACE_TRANSFORM_IDENTITY_KHR: Self = Self(1);
     ///[`SurfaceTransformRotate90Khr`] specifies that image
     ///content is rotated 90 degrees clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    #[cfg(feature = "VK_KHR_surface")]
     pub const SURFACE_TRANSFORM_ROTATE_90_KHR: Self = Self(2);
     ///[`SurfaceTransformRotate180Khr`] specifies that image
     ///content is rotated 180 degrees clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    #[cfg(feature = "VK_KHR_surface")]
     pub const SURFACE_TRANSFORM_ROTATE_180_KHR: Self = Self(4);
     ///[`SurfaceTransformRotate270Khr`] specifies that image
     ///content is rotated 270 degrees clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    #[cfg(feature = "VK_KHR_surface")]
     pub const SURFACE_TRANSFORM_ROTATE_270_KHR: Self = Self(8);
     ///[`SurfaceTransformHorizontalMirrorKhr`] specifies that
     ///image content is mirrored horizontally.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    #[cfg(feature = "VK_KHR_surface")]
     pub const SURFACE_TRANSFORM_HORIZONTAL_MIRROR_KHR: Self = Self(16);
     ///[`SurfaceTransformHorizontalMirrorRotate90Khr`] specifies
     ///that image content is mirrored horizontally, then rotated 90 degrees
     ///clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    #[cfg(feature = "VK_KHR_surface")]
     pub const SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_KHR: Self = Self(32);
     ///[`SurfaceTransformHorizontalMirrorRotate180Khr`]
     ///specifies that image content is mirrored horizontally, then rotated 180
     ///degrees clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    #[cfg(feature = "VK_KHR_surface")]
     pub const SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_KHR: Self = Self(64);
     ///[`SurfaceTransformHorizontalMirrorRotate270Khr`]
     ///specifies that image content is mirrored horizontally, then rotated 270
     ///degrees clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    #[cfg(feature = "VK_KHR_surface")]
     pub const SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_KHR: Self = Self(128);
     ///[`SurfaceTransformInheritKhr`] specifies that the
     ///presentation transform is not specified, and is instead determined by
     ///platform-specific considerations and mechanisms outside Vulkan.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    #[cfg(feature = "VK_KHR_surface")]
     pub const SURFACE_TRANSFORM_INHERIT_KHR: Self = Self(256);
     ///Default empty flags
     #[inline]
@@ -855,39 +844,30 @@ impl SurfaceTransformFlagsKHR {
     #[allow(unused_mut)]
     pub const fn all() -> Self {
         let mut all = Self::empty();
-        #[cfg(feature = "VK_KHR_surface")]
         {
             all |= Self::SURFACE_TRANSFORM_IDENTITY_KHR;
         }
-        #[cfg(feature = "VK_KHR_surface")]
         {
             all |= Self::SURFACE_TRANSFORM_ROTATE_90_KHR;
         }
-        #[cfg(feature = "VK_KHR_surface")]
         {
             all |= Self::SURFACE_TRANSFORM_ROTATE_180_KHR;
         }
-        #[cfg(feature = "VK_KHR_surface")]
         {
             all |= Self::SURFACE_TRANSFORM_ROTATE_270_KHR;
         }
-        #[cfg(feature = "VK_KHR_surface")]
         {
             all |= Self::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_KHR;
         }
-        #[cfg(feature = "VK_KHR_surface")]
         {
             all |= Self::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_KHR;
         }
-        #[cfg(feature = "VK_KHR_surface")]
         {
             all |= Self::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_KHR;
         }
-        #[cfg(feature = "VK_KHR_surface")]
         {
             all |= Self::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_KHR;
         }
-        #[cfg(feature = "VK_KHR_surface")]
         {
             all |= Self::SURFACE_TRANSFORM_INHERIT_KHR;
         }
@@ -1060,7 +1040,6 @@ impl Extend<SurfaceTransformFlagsKHR> for SurfaceTransformFlagsKHR {
         }
     }
 }
-#[cfg(feature = "VK_KHR_surface")]
 impl Extend<SurfaceTransformFlagBitsKHR> for SurfaceTransformFlagsKHR {
     fn extend<T: IntoIterator<Item = SurfaceTransformFlagBitsKHR>>(&mut self, iterator: T) {
         for i in iterator {
@@ -1075,7 +1054,6 @@ impl FromIterator<SurfaceTransformFlagsKHR> for SurfaceTransformFlagsKHR {
         out
     }
 }
-#[cfg(feature = "VK_KHR_surface")]
 impl FromIterator<SurfaceTransformFlagBitsKHR> for SurfaceTransformFlagsKHR {
     fn from_iter<T: IntoIterator<Item = SurfaceTransformFlagBitsKHR>>(iterator: T) -> SurfaceTransformFlagsKHR {
         let mut out = Self::empty();
@@ -1093,7 +1071,6 @@ impl std::fmt::Debug for SurfaceTransformFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    #[cfg(feature = "VK_KHR_surface")]
                     if self
                         .0
                         .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_IDENTITY_KHR)
@@ -1104,7 +1081,6 @@ impl std::fmt::Debug for SurfaceTransformFlagsKHR {
                         }
                         f.write_str(stringify!(SURFACE_TRANSFORM_IDENTITY_KHR))?;
                     }
-                    #[cfg(feature = "VK_KHR_surface")]
                     if self
                         .0
                         .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_ROTATE_90_KHR)
@@ -1115,7 +1091,6 @@ impl std::fmt::Debug for SurfaceTransformFlagsKHR {
                         }
                         f.write_str(stringify!(SURFACE_TRANSFORM_ROTATE_90_KHR))?;
                     }
-                    #[cfg(feature = "VK_KHR_surface")]
                     if self
                         .0
                         .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_ROTATE_180_KHR)
@@ -1126,7 +1101,6 @@ impl std::fmt::Debug for SurfaceTransformFlagsKHR {
                         }
                         f.write_str(stringify!(SURFACE_TRANSFORM_ROTATE_180_KHR))?;
                     }
-                    #[cfg(feature = "VK_KHR_surface")]
                     if self
                         .0
                         .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_ROTATE_270_KHR)
@@ -1137,7 +1111,6 @@ impl std::fmt::Debug for SurfaceTransformFlagsKHR {
                         }
                         f.write_str(stringify!(SURFACE_TRANSFORM_ROTATE_270_KHR))?;
                     }
-                    #[cfg(feature = "VK_KHR_surface")]
                     if self
                         .0
                         .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_KHR)
@@ -1148,7 +1121,6 @@ impl std::fmt::Debug for SurfaceTransformFlagsKHR {
                         }
                         f.write_str(stringify!(SURFACE_TRANSFORM_HORIZONTAL_MIRROR_KHR))?;
                     }
-                    #[cfg(feature = "VK_KHR_surface")]
                     if self
                         .0
                         .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_KHR)
@@ -1159,7 +1131,6 @@ impl std::fmt::Debug for SurfaceTransformFlagsKHR {
                         }
                         f.write_str(stringify!(SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_KHR))?;
                     }
-                    #[cfg(feature = "VK_KHR_surface")]
                     if self
                         .0
                         .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_KHR)
@@ -1170,7 +1141,6 @@ impl std::fmt::Debug for SurfaceTransformFlagsKHR {
                         }
                         f.write_str(stringify!(SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_KHR))?;
                     }
-                    #[cfg(feature = "VK_KHR_surface")]
                     if self
                         .0
                         .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_KHR)
@@ -1181,7 +1151,6 @@ impl std::fmt::Debug for SurfaceTransformFlagsKHR {
                         }
                         f.write_str(stringify!(SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_KHR))?;
                     }
-                    #[cfg(feature = "VK_KHR_surface")]
                     if self.0.contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_INHERIT_KHR) {
                         if !first {
                             first = false;

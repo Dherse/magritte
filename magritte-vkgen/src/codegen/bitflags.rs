@@ -14,7 +14,7 @@ use super::alias_of;
 
 impl<'a> Bit<'a> {
     /// Generate the code for a Bitflag variant
-    fn generate_bitflag_variant(&self, parent: &Origin<'a>, doc: &AHashMap<String, String>) -> TokenStream {
+    fn generate_bitflag_variant(&self, source: &Source<'a>, parent: &Origin<'a>, doc: &AHashMap<String, String>) -> TokenStream {
         // get the doc of the bit
         let doc = doc.get(self.name()).map_or_else(
             || quote! { #[doc = "No documentation found"]},
@@ -35,7 +35,7 @@ impl<'a> Bit<'a> {
         let value = Literal::i64_unsuffixed(self.value());
 
         // conditional compilation for feature flags
-        let conditional_compilation = self.condition(parent);
+        let conditional_compilation = self.condition(source, parent);
 
         quote! {
             #doc
@@ -95,8 +95,7 @@ impl<'a> BitFlag<'a> {
             .bits()
             .iter()
             .filter(|v| !v.origin().is_disabled())
-            .filter(|v| !v.origin().is_disabled())
-            .map(|v| v.generate_bitflag_variant(self.origin(), &variant_docs));
+            .map(|v| v.generate_bitflag_variant(source, self.origin(), &variant_docs));
 
         // get the underlying bit type
         let ty = match self.width() {

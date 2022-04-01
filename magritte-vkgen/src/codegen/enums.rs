@@ -13,7 +13,7 @@ use crate::{
 use super::alias_of;
 
 impl<'a> Bit<'a> {
-    fn generate_enum_variant(&self, parent: &Origin<'a>, doc: &AHashMap<String, String>) -> TokenStream {
+    fn generate_enum_variant(&self, source: &Source<'a>, parent: &Origin<'a>, doc: &AHashMap<String, String>) -> TokenStream {
         // get the doc of the bit
         let doc = doc.get(self.name()).map_or_else(
             || quote! { #[doc = "No documentation found"]},
@@ -34,7 +34,7 @@ impl<'a> Bit<'a> {
         let value = Literal::i64_unsuffixed(self.value());
 
         // conditional compilation for feature flags
-        let conditional_compilation = self.condition(parent);
+        let conditional_compilation = self.condition(source, parent);
 
         quote! {
             #doc
@@ -91,7 +91,7 @@ impl<'a> Enum<'a> {
             .variants()
             .iter()
             .filter(|v| !v.origin().is_disabled())
-            .map(|v| v.generate_enum_variant(self.origin(), &variant_docs));
+            .map(|v| v.generate_enum_variant(source, self.origin(), &variant_docs));
 
         // creates a doc alias if the name has been changed
         alias_of(self.original_name(), self.name(), out);

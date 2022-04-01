@@ -2,7 +2,7 @@ use std::borrow::Cow;
 
 use proc_macro2::{Ident, Span};
 
-use crate::{doc::Queryable, origin::Origin, symbols::SymbolName};
+use crate::{doc::Queryable, origin::Origin, symbols::{SymbolName, SymbolTable}};
 
 use super::Source;
 
@@ -23,6 +23,12 @@ pub struct Handle<'a> {
 
     /// The origin (extension or Vulkan version)
     pub origin: Origin<'a>,
+
+    /// The functions defined on this handle (if any)
+    pub functions: SymbolTable<'a, Cow<'a, str>>,
+
+    /// The function that destroys one (or more) of this type of handle
+    pub destroyer: Option<Cow<'a, str>>,
 }
 
 impl<'a> Queryable<'a> for Handle<'a> {
@@ -47,6 +53,8 @@ impl<'a> Handle<'a> {
             parent,
             dispatchable,
             origin,
+            functions: SymbolTable::default(),
+            destroyer: None,
         }
     }
 
@@ -96,6 +104,27 @@ impl<'a> Handle<'a> {
     /// Set the handle's origin.
     pub fn set_origin(&mut self, origin: Origin<'a>) {
         self.origin = origin;
+    }
+
+    /// Gets the functions defined on this handle
+    #[inline]
+    pub const fn functions(&self) -> &SymbolTable<'a, Cow<'a, str>> {
+        &self.functions
+    }
+
+    /// Adds a function to this handle
+    pub fn add_function(&mut self, function: Cow<'a, str>) {
+        self.functions.push(function);
+    }
+
+    /// Gets the function that destroys one or more of this handle
+    pub fn destroyer(&self) -> Option<&str> {
+        self.destroyer.as_ref().map(|s| &**s)
+    }
+
+    /// Sets the destroyer of this handle
+    pub fn set_destroyer(&mut self, function: Cow<'a, str>) {
+        self.destroyer = Some(function)
     }
 }
 

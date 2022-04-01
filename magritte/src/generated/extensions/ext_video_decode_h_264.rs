@@ -1,6 +1,6 @@
 //![VK_EXT_video_decode_h264](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_video_decode_h264.html) - device extension
 //!# Revision
-//!3
+//!4
 //!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`VK_KHR_video_decode_queue`]`
@@ -16,7 +16,6 @@
 //!   [`ImageCreateInfo`], [`ImageViewCreateInfo`], [`BufferCreateInfo`]:  -
 //!   [`VideoDecodeH264ProfileEXT`]
 //! - Extending [`VideoReferenceSlotKHR`]:  - [`VideoDecodeH264DpbSlotInfoEXT`]
-//! - Extending [`VideoSessionCreateInfoKHR`]:  - [`VideoDecodeH264SessionCreateInfoEXT`]
 //! - Extending [`VideoSessionParametersCreateInfoKHR`]:  -
 //!   [`VideoDecodeH264SessionParametersCreateInfoEXT`]
 //! - Extending [`VideoSessionParametersUpdateInfoKHR`]:  -
@@ -24,7 +23,6 @@
 //!# New enums
 //! - [`VideoDecodeH264PictureLayoutFlagBitsEXT`]
 //!# New bitmasks
-//! - [`VideoDecodeH264CreateFlagsEXT`]
 //! - [`VideoDecodeH264PictureLayoutFlagsEXT`]
 //!# New constants
 //! - [`EXT_VIDEO_DECODE_H264_EXTENSION_NAME`]
@@ -34,7 +32,6 @@
 //!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_MVC_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_PICTURE_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_PROFILE_EXT`  -
-//!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_CREATE_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_PARAMETERS_ADD_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_EXT`
 //! - Extending [`VideoCodecOperationFlagBitsKHR`]:  -
@@ -47,21 +44,22 @@
 //!   `VkVideoDecodeH264FieldLayoutFlagBitsEXT` to [`VideoDecodeH264PictureLayoutFlagBitsEXT`]
 //!   (along with the names of enumerants it defines), and `VkVideoDecodeH264ProfileEXT.fieldLayout`
 //!   to `VkVideoDecodeH264ProfileEXT.pictureLayout`, following Vulkan naming conventions.
+//! - Revision 4, 2022-03-16 (Ahmed Abdelkhalek)  - Relocate Std header version reporting/requesting
+//!   from this extension to VK_KHR_video_queue extension.  - Remove the now empty
+//!   VkVideoDecodeH264SessionCreateInfoEXT.
 //!# Other info
-//! * 2021-03-29
+//! * 2022-03-16
 //! * No known IP claims.
-//! * - Chunbo Chen, Intel  - HoHin Lau, AMD  - Jake Beju, AMD  - Peter Fang, AMD  - Ping Liu, Intel
-//!   - Srinath Kumarapuram, NVIDIA  - Tony Zlatinski, NVIDIA
+//! * - Ahmed Abdelkhalek, AMD  - Chunbo Chen, Intel  - HoHin Lau, AMD  - Jake Beju, AMD  - Peter
+//!   Fang, AMD  - Ping Liu, Intel  - Srinath Kumarapuram, NVIDIA  - Tony Zlatinski, NVIDIA
 //!# Related
 //! - [`VideoDecodeH264CapabilitiesEXT`]
-//! - [`VideoDecodeH264CreateFlagsEXT`]
 //! - [`VideoDecodeH264DpbSlotInfoEXT`]
 //! - [`VideoDecodeH264MvcEXT`]
 //! - [`VideoDecodeH264PictureInfoEXT`]
 //! - [`VideoDecodeH264PictureLayoutFlagBitsEXT`]
 //! - [`VideoDecodeH264PictureLayoutFlagsEXT`]
 //! - [`VideoDecodeH264ProfileEXT`]
-//! - [`VideoDecodeH264SessionCreateInfoEXT`]
 //! - [`VideoDecodeH264SessionParametersAddInfoEXT`]
 //! - [`VideoDecodeH264SessionParametersCreateInfoEXT`]
 //!
@@ -77,7 +75,7 @@ use crate::{
         StdVideoDecodeH264Mvc, StdVideoDecodeH264PictureInfo, StdVideoDecodeH264ReferenceInfo,
         StdVideoH264PictureParameterSet, StdVideoH264ProfileIdc, StdVideoH264SequenceParameterSet,
     },
-    vulkan1_0::{BaseInStructure, BaseOutStructure, ExtensionProperties, Offset2D, StructureType},
+    vulkan1_0::{BaseInStructure, BaseOutStructure, Offset2D, StructureType},
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -91,7 +89,7 @@ use std::{
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_VIDEO_DECODE_H264_SPEC_VERSION")]
-pub const EXT_VIDEO_DECODE_H264_SPEC_VERSION: u32 = 3;
+pub const EXT_VIDEO_DECODE_H264_SPEC_VERSION: u32 = 4;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_VIDEO_DECODE_H264_EXTENSION_NAME")]
@@ -488,40 +486,6 @@ impl std::fmt::Debug for VideoDecodeH264PictureLayoutFlagsEXT {
             .finish()
     }
 }
-///[VkVideoDecodeH264CreateFlagsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeH264CreateFlagsEXT.html) - Reserved for future use
-///# C Specifications
-///```c
-///// Provided by VK_EXT_video_decode_h264
-///typedef VkFlags VkVideoDecodeH264CreateFlagsEXT;
-///```
-///# Related
-/// - [`VK_EXT_video_decode_h264`]
-/// - [`VideoDecodeH264SessionCreateInfoEXT`]
-///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-/// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(transparent)]
-pub struct VideoDecodeH264CreateFlagsEXT(u32);
-impl const Default for VideoDecodeH264CreateFlagsEXT {
-    fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for VideoDecodeH264CreateFlagsEXT {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple(stringify!(VideoDecodeH264CreateFlagsEXT))
-            .field(&self.0)
-            .finish()
-    }
-}
 ///[VkVideoDecodeH264ProfileEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeH264ProfileEXT.html) - Structure specifying H.264 decode profile
 ///# C Specifications
 ///The [`VideoDecodeH264ProfileEXT`] structure is defined as:
@@ -681,11 +645,10 @@ impl<'lt> VideoDecodeH264ProfileEXT<'lt> {
 ///```c
 ///// Provided by VK_EXT_video_decode_h264
 ///typedef struct VkVideoDecodeH264CapabilitiesEXT {
-///    VkStructureType          sType;
-///    void*                    pNext;
-///    uint32_t                 maxLevel;
-///    VkOffset2D               fieldOffsetGranularity;
-///    VkExtensionProperties    stdExtensionVersion;
+///    VkStructureType    sType;
+///    void*              pNext;
+///    uint32_t           maxLevel;
+///    VkOffset2D         fieldOffsetGranularity;
 ///} VkVideoDecodeH264CapabilitiesEXT;
 ///```
 ///# Members
@@ -702,14 +665,11 @@ impl<'lt> VideoDecodeH264ProfileEXT<'lt> {
 /// - [`max_level`] is the maximum H.264 level supported by the device.
 /// - [`field_offset_granularity`] - if Interlaced Video Content is suported, the maximum field
 ///   offset granularity supported for the picture resource.
-/// - [`std_extension_version`] is a [`ExtensionProperties`] structure specifying the H.264
-///   extension name and version supported by this implementation.
 ///
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_CAPABILITIES_EXT`
 ///# Related
 /// - [`VK_EXT_video_decode_h264`]
-/// - [`ExtensionProperties`]
 /// - [`Offset2D`]
 /// - [`StructureType`]
 ///
@@ -737,10 +697,6 @@ pub struct VideoDecodeH264CapabilitiesEXT<'lt> {
     ///[`field_offset_granularity`] - if Interlaced Video Content is suported,
     ///the maximum field offset granularity supported for the picture resource.
     pub field_offset_granularity: Offset2D,
-    ///[`std_extension_version`] is a [`ExtensionProperties`] structure
-    ///specifying the H.264 extension name and version supported by this
-    ///implementation.
-    pub std_extension_version: ExtensionProperties,
 }
 impl<'lt> Default for VideoDecodeH264CapabilitiesEXT<'lt> {
     fn default() -> Self {
@@ -750,7 +706,6 @@ impl<'lt> Default for VideoDecodeH264CapabilitiesEXT<'lt> {
             p_next: std::ptr::null_mut(),
             max_level: 0,
             field_offset_granularity: Default::default(),
-            std_extension_version: Default::default(),
         }
     }
 }
@@ -783,10 +738,6 @@ impl<'lt> VideoDecodeH264CapabilitiesEXT<'lt> {
     pub fn field_offset_granularity(&self) -> Offset2D {
         self.field_offset_granularity
     }
-    ///Gets the value of [`Self::std_extension_version`]
-    pub fn std_extension_version(&self) -> ExtensionProperties {
-        self.std_extension_version
-    }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
         &mut self.s_type
@@ -806,10 +757,6 @@ impl<'lt> VideoDecodeH264CapabilitiesEXT<'lt> {
     pub fn field_offset_granularity_mut(&mut self) -> &mut Offset2D {
         &mut self.field_offset_granularity
     }
-    ///Gets a mutable reference to the value of [`Self::std_extension_version`]
-    pub fn std_extension_version_mut(&mut self) -> &mut ExtensionProperties {
-        &mut self.std_extension_version
-    }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
@@ -828,156 +775,6 @@ impl<'lt> VideoDecodeH264CapabilitiesEXT<'lt> {
     ///Sets the raw value of [`Self::field_offset_granularity`]
     pub fn set_field_offset_granularity(&mut self, value: crate::vulkan1_0::Offset2D) -> &mut Self {
         self.field_offset_granularity = value;
-        self
-    }
-    ///Sets the raw value of [`Self::std_extension_version`]
-    pub fn set_std_extension_version(&mut self, value: crate::vulkan1_0::ExtensionProperties) -> &mut Self {
-        self.std_extension_version = value;
-        self
-    }
-}
-///[VkVideoDecodeH264SessionCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeH264SessionCreateInfoEXT.html) - Structure specifies H.264 decode session creation parameters
-///# C Specifications
-///The [`VideoDecodeH264SessionCreateInfoEXT`] structure is defined as:
-///```c
-///// Provided by VK_EXT_video_decode_h264
-///typedef struct VkVideoDecodeH264SessionCreateInfoEXT {
-///    VkStructureType                    sType;
-///    const void*                        pNext;
-///    VkVideoDecodeH264CreateFlagsEXT    flags;
-///    const VkExtensionProperties*       pStdExtensionVersion;
-///} VkVideoDecodeH264SessionCreateInfoEXT;
-///```
-///# Members
-///A [`VideoDecodeH264SessionCreateInfoEXT`] structure  **can**  be chained to
-///[`VideoSessionCreateInfoKHR`] when the function
-///[`CreateVideoSessionKHR`] is called to create a video session for H.264
-///decode.
-///# Description
-/// - [`s_type`] is the type of this structure.
-/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`flags`] is reserved for future use.
-/// - [`std_extension_version`] is a pointer to a [`ExtensionProperties`] structure specifying the
-///   H.264 codec extensions defined in `StdVideoH264Extensions`.
-///
-///## Valid Usage (Implicit)
-/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_CREATE_INFO_EXT`
-/// - [`flags`] **must**  be `0`
-/// - [`std_extension_version`] **must**  be a valid pointer to a valid [`ExtensionProperties`]
-///   structure
-///# Related
-/// - [`VK_EXT_video_decode_h264`]
-/// - [`ExtensionProperties`]
-/// - [`StructureType`]
-/// - [`VideoDecodeH264CreateFlagsEXT`]
-///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-/// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
-#[doc(alias = "VkVideoDecodeH264SessionCreateInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[repr(C)]
-pub struct VideoDecodeH264SessionCreateInfoEXT<'lt> {
-    ///Lifetime field
-    pub _lifetime: PhantomData<&'lt ()>,
-    ///[`s_type`] is the type of this structure.
-    pub s_type: StructureType,
-    ///[`p_next`] is `NULL` or a pointer to a structure extending this
-    ///structure.
-    pub p_next: *const BaseInStructure<'lt>,
-    ///[`flags`] is reserved for future use.
-    pub flags: VideoDecodeH264CreateFlagsEXT,
-    ///[`std_extension_version`] is a pointer to a [`ExtensionProperties`]
-    ///structure specifying the H.264 codec extensions defined in
-    ///`StdVideoH264Extensions`.
-    pub std_extension_version: *const ExtensionProperties,
-}
-impl<'lt> Default for VideoDecodeH264SessionCreateInfoEXT<'lt> {
-    fn default() -> Self {
-        Self {
-            _lifetime: PhantomData,
-            s_type: StructureType::VideoDecodeH264SessionCreateInfoExt,
-            p_next: std::ptr::null(),
-            flags: Default::default(),
-            std_extension_version: std::ptr::null(),
-        }
-    }
-}
-impl<'lt> VideoDecodeH264SessionCreateInfoEXT<'lt> {
-    ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
-        self.p_next
-    }
-    ///Gets the raw value of [`Self::std_extension_version`]
-    pub fn std_extension_version_raw(&self) -> *const ExtensionProperties {
-        self.std_extension_version
-    }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
-        self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::std_extension_version`]
-    pub fn set_std_extension_version_raw(&mut self, value: *const ExtensionProperties) -> &mut Self {
-        self.std_extension_version = value;
-        self
-    }
-    ///Gets the value of [`Self::s_type`]
-    pub fn s_type(&self) -> StructureType {
-        self.s_type
-    }
-    ///Gets the value of [`Self::p_next`]
-    ///# Safety
-    ///This function converts a pointer into a value which may be invalid, make sure
-    ///that the pointer is valid before dereferencing.
-    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
-        &*self.p_next
-    }
-    ///Gets the value of [`Self::flags`]
-    pub fn flags(&self) -> VideoDecodeH264CreateFlagsEXT {
-        self.flags
-    }
-    ///Gets the value of [`Self::std_extension_version`]
-    ///# Safety
-    ///This function converts a pointer into a value which may be invalid, make sure
-    ///that the pointer is valid before dereferencing.
-    pub unsafe fn std_extension_version(&self) -> &ExtensionProperties {
-        &*self.std_extension_version
-    }
-    ///Gets a mutable reference to the value of [`Self::s_type`]
-    pub fn s_type_mut(&mut self) -> &mut StructureType {
-        &mut self.s_type
-    }
-    ///Gets a mutable reference to the value of [`Self::flags`]
-    pub fn flags_mut(&mut self) -> &mut VideoDecodeH264CreateFlagsEXT {
-        &mut self.flags
-    }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
-        self.s_type = value;
-        self
-    }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
-        self.p_next = value as *const _;
-        self
-    }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(
-        &mut self,
-        value: crate::extensions::ext_video_decode_h_264::VideoDecodeH264CreateFlagsEXT,
-    ) -> &mut Self {
-        self.flags = value;
-        self
-    }
-    ///Sets the raw value of [`Self::std_extension_version`]
-    pub fn set_std_extension_version(&mut self, value: &'lt crate::vulkan1_0::ExtensionProperties) -> &mut Self {
-        self.std_extension_version = value as *const _;
         self
     }
 }

@@ -122,6 +122,9 @@ pub struct Source<'a> {
 
     /// The origins (versions & extensions) defined in the Vulkan specification
     pub origins: SymbolTable<'a, Origin<'a>>,
+
+    /// Functions defined on the base loader
+    pub loader_functions: SymbolTable<'a, Cow<'a, str>>,
 }
 
 impl<'a> Source<'a> {
@@ -341,6 +344,76 @@ impl<'a> Source<'a> {
                 idx,
             )
         }));
+
+        for function in this.functions.iter().chain(this.commands.iter().map(std::ops::Deref::deref)) {
+            let first_arg = &function.arguments()[0];
+
+            match first_arg.ty() {
+                Ty::Named(name) => {
+                    match this.resolve_type(name).expect("unknown type") {
+                        TypeRef::Handle(_) => {
+                            this.handles.get_by_name_mut(name).unwrap().add_function(function.original_name.clone());
+                        },
+                        other => {
+                            info!("First argument of type: {:?}, makes `{}` a global function", other.name(), function.original_name());
+        
+                            this.loader_functions.push(function.original_name.clone());
+                        }
+                    }
+                },
+                other => {
+                    info!("First argument of type: {:?}, makes `{}` a global function", other, function.original_name());
+
+                    this.loader_functions.push(function.original_name.clone());
+                }
+            }
+
+            const STARTS: &[&str] = &[ "vkFree", "vkDestroy", "vkRelease" ];
+            if !STARTS.iter().any(|start| function.original_name().starts_with(*start)) {
+                continue;
+            }
+
+            let len = function.arguments().len();
+            let before_last_arg = function.arguments().get(len.saturating_sub(2)).unwrap();
+            let last_arg = function.arguments().last().unwrap();
+
+            match last_arg.ty() {
+                Ty::Pointer(Mutability::Const, box Ty::Named(Cow::Borrowed("VkAllocationCallbacks"))) => {
+                    match before_last_arg.ty() {
+                        Ty::Named(name) | Ty::Slice(_, box Ty::Named(name), _) | Ty::Pointer(Mutability::Const, box Ty::Named(name)) => {
+                            match this.resolve_type(name).expect("unknown type") {
+                                TypeRef::Handle(_) => {
+                                    let handle = this.handles.get_by_name_mut(name).unwrap();
+                                    if let Some(name) = handle.destroyer() {
+                                        warn!("More than one destroyer for {}, was {} became {}", handle.original_name(), name, function.original_name());
+                                        continue;
+                                    }
+        
+                                    handle.set_destroyer(function.original_name.clone());
+                                },
+                                _ => {},
+                            }
+                        },
+                        _ => {},
+                    }
+                },
+                Ty::Named(name) | Ty::Slice(_, box Ty::Named(name), _) | Ty::Pointer(Mutability::Const, box Ty::Named(name)) => {
+                    match this.resolve_type(name).expect("unknown type") {
+                        TypeRef::Handle(_) => {
+                            let handle = this.handles.get_by_name_mut(name).unwrap();
+                            if let Some(name) = handle.destroyer() {
+                                warn!("More than one destroyer for {}, was {} became {}", handle.original_name(), name, function.original_name());
+                                continue;
+                            }
+
+                            handle.set_destroyer(function.original_name.clone());
+                        },
+                        _ => {},
+                    }
+                },
+                _ => {},
+            }
+        }
 
         this
     }

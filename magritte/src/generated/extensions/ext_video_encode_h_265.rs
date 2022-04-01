@@ -3,7 +3,7 @@
 //!This extension allows applications to compress a raw video sequence by using
 //!the H.265/HEVC video compression standard.
 //!# Revision
-//!5
+//!6
 //!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`VK_KHR_video_encode_queue`]`
@@ -28,7 +28,6 @@
 //! - Extending [`VideoProfileKHR`], [`QueryPoolCreateInfo`], [`FormatProperties2`],
 //!   [`ImageCreateInfo`], [`ImageViewCreateInfo`], [`BufferCreateInfo`]:  -
 //!   [`VideoEncodeH265ProfileEXT`]
-//! - Extending [`VideoSessionCreateInfoKHR`]:  - [`VideoEncodeH265SessionCreateInfoEXT`]
 //! - Extending [`VideoSessionParametersCreateInfoKHR`]:  -
 //!   [`VideoEncodeH265SessionParametersCreateInfoEXT`]
 //! - Extending [`VideoSessionParametersUpdateInfoKHR`]:  -
@@ -42,7 +41,6 @@
 //! - [`VideoEncodeH265TransformBlockSizeFlagBitsEXT`]
 //!# New bitmasks
 //! - [`VideoEncodeH265CapabilityFlagsEXT`]
-//! - [`VideoEncodeH265CreateFlagsEXT`]
 //! - [`VideoEncodeH265CtbSizeFlagsEXT`]
 //! - [`VideoEncodeH265InputModeFlagsEXT`]
 //! - [`VideoEncodeH265OutputModeFlagsEXT`]
@@ -59,7 +57,6 @@
 //!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_RATE_CONTROL_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_RATE_CONTROL_LAYER_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_REFERENCE_LISTS_EXT`  -
-//!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_CREATE_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_PARAMETERS_ADD_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_PARAMETERS_CREATE_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_VCL_FRAME_INFO_EXT`
@@ -76,8 +73,11 @@
 //! - Revision 4, 2022-01-11 (Ahmed Abdelkhalek)  - Replace occurrences of "slice" by "slice
 //!   segment" and rename structures/enums to reflect this.
 //! - Revision 5, 2022-02-10 (Ahmed Abdelkhalek)  - Updates to encode capability interface
+//! - Revision 6, 2022-03-16 (Ahmed Abdelkhalek)  - Relocate Std header version reporting/requesting
+//!   from this extension to VK_KHR_video_queue extension.  - Remove the now empty
+//!   VkVideoEncodeH265SessionCreateInfoEXT.
 //!# Other info
-//! * 2022-02-10
+//! * 2022-03-16
 //! * No known IP claims.
 //! * - Ahmed Abdelkhalek, AMD  - George Hao, AMD  - Jake Beju, AMD  - Chunbo Chen, Intel  - Ping
 //!   Liu, Intel  - Srinath Kumarapuram, NVIDIA  - Tony Zlatinski, NVIDIA
@@ -85,7 +85,6 @@
 //! - [`VideoEncodeH265CapabilitiesEXT`]
 //! - [`VideoEncodeH265CapabilityFlagBitsEXT`]
 //! - [`VideoEncodeH265CapabilityFlagsEXT`]
-//! - [`VideoEncodeH265CreateFlagsEXT`]
 //! - [`VideoEncodeH265CtbSizeFlagBitsEXT`]
 //! - [`VideoEncodeH265CtbSizeFlagsEXT`]
 //! - [`VideoEncodeH265DpbSlotInfoEXT`]
@@ -103,7 +102,6 @@
 //! - [`VideoEncodeH265RateControlStructureFlagBitsEXT`]
 //! - [`VideoEncodeH265RateControlStructureFlagsEXT`]
 //! - [`VideoEncodeH265ReferenceListsEXT`]
-//! - [`VideoEncodeH265SessionCreateInfoEXT`]
 //! - [`VideoEncodeH265SessionParametersAddInfoEXT`]
 //! - [`VideoEncodeH265SessionParametersCreateInfoEXT`]
 //! - [`VideoEncodeH265TransformBlockSizeFlagBitsEXT`]
@@ -123,7 +121,7 @@ use crate::{
         StdVideoEncodeH265SliceSegmentHeader, StdVideoH265PictureParameterSet, StdVideoH265ProfileIdc,
         StdVideoH265SequenceParameterSet, StdVideoH265VideoParameterSet,
     },
-    vulkan1_0::{BaseInStructure, Bool32, ExtensionProperties, StructureType},
+    vulkan1_0::{BaseInStructure, Bool32, StructureType},
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -137,7 +135,7 @@ use std::{
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_VIDEO_ENCODE_H265_SPEC_VERSION")]
-pub const EXT_VIDEO_ENCODE_H265_SPEC_VERSION: u32 = 5;
+pub const EXT_VIDEO_ENCODE_H265_SPEC_VERSION: u32 = 6;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_VIDEO_ENCODE_H265_EXTENSION_NAME")]
@@ -2246,40 +2244,6 @@ impl std::fmt::Debug for VideoEncodeH265OutputModeFlagsEXT {
             .finish()
     }
 }
-///[VkVideoEncodeH265CreateFlagsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265CreateFlagsEXT.html) - Reserved for future use
-///# C Specifications
-///```c
-///// Provided by VK_EXT_video_encode_h265
-///typedef VkFlags VkVideoEncodeH265CreateFlagsEXT;
-///```
-///# Related
-/// - [`VK_EXT_video_encode_h265`]
-/// - [`VideoEncodeH265SessionCreateInfoEXT`]
-///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-/// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(transparent)]
-pub struct VideoEncodeH265CreateFlagsEXT(u32);
-impl const Default for VideoEncodeH265CreateFlagsEXT {
-    fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for VideoEncodeH265CreateFlagsEXT {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple(stringify!(VideoEncodeH265CreateFlagsEXT))
-            .field(&self.0)
-            .finish()
-    }
-}
 ///[VkVideoEncodeH265RateControlStructureFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265RateControlStructureFlagBitsEXT.html) - Video encode H.265 rate control structure flags
 ///# C Specifications
 ///Possible values of
@@ -3271,7 +3235,6 @@ impl std::fmt::Debug for VideoEncodeH265TransformBlockSizeFlagsEXT {
 ///    uint8_t                                        maxDiffCuQpDeltaDepth;
 ///    uint8_t                                        minMaxNumMergeCand;
 ///    uint8_t                                        maxMaxNumMergeCand;
-///    VkExtensionProperties                          stdExtensionVersion;
 ///} VkVideoEncodeH265CapabilitiesEXT;
 ///```
 ///# Members
@@ -3318,8 +3281,6 @@ impl std::fmt::Debug for VideoEncodeH265TransformBlockSizeFlagsEXT {
 ///   StdVideoEncodeH265SliceHeader.
 /// - [`max_max_num_merge_cand`] reports the maximum value that may be set for MaxNumMergeCand in
 ///   StdVideoEncodeH265SliceHeader.
-/// - [`std_extension_version`] is a [`ExtensionProperties`] structure in which the H.265 extension
-///   name and version supported by the implementation are returned.
 ///# Description
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_CAPABILITIES_EXT`
@@ -3334,10 +3295,8 @@ impl std::fmt::Debug for VideoEncodeH265TransformBlockSizeFlagsEXT {
 /// - [`transform_block_sizes`] **must**  be a valid combination of
 ///   [`VideoEncodeH265TransformBlockSizeFlagBitsEXT`] values
 /// - [`transform_block_sizes`] **must**  not be `0`
-/// - [`std_extension_version`] **must**  be a valid [`ExtensionProperties`] structure
 ///# Related
 /// - [`VK_EXT_video_encode_h265`]
-/// - [`ExtensionProperties`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH265CapabilityFlagsEXT`]
 /// - [`VideoEncodeH265CtbSizeFlagsEXT`]
@@ -3440,10 +3399,6 @@ pub struct VideoEncodeH265CapabilitiesEXT<'lt> {
     ///[`max_max_num_merge_cand`] reports the maximum value that may be set for
     ///MaxNumMergeCand in StdVideoEncodeH265SliceHeader.
     pub max_max_num_merge_cand: u8,
-    ///[`std_extension_version`] is a [`ExtensionProperties`] structure in
-    ///which the H.265 extension name and version supported by the
-    ///implementation are returned.
-    pub std_extension_version: ExtensionProperties,
 }
 impl<'lt> Default for VideoEncodeH265CapabilitiesEXT<'lt> {
     fn default() -> Self {
@@ -3471,7 +3426,6 @@ impl<'lt> Default for VideoEncodeH265CapabilitiesEXT<'lt> {
             max_diff_cu_qp_delta_depth: 0,
             min_max_num_merge_cand: 0,
             max_max_num_merge_cand: 0,
-            std_extension_version: Default::default(),
         }
     }
 }
@@ -3576,10 +3530,6 @@ impl<'lt> VideoEncodeH265CapabilitiesEXT<'lt> {
     pub fn max_max_num_merge_cand(&self) -> u8 {
         self.max_max_num_merge_cand
     }
-    ///Gets the value of [`Self::std_extension_version`]
-    pub fn std_extension_version(&self) -> ExtensionProperties {
-        self.std_extension_version
-    }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
         &mut self.s_type
@@ -3667,10 +3617,6 @@ impl<'lt> VideoEncodeH265CapabilitiesEXT<'lt> {
     ///Gets a mutable reference to the value of [`Self::max_max_num_merge_cand`]
     pub fn max_max_num_merge_cand_mut(&mut self) -> &mut u8 {
         &mut self.max_max_num_merge_cand
-    }
-    ///Gets a mutable reference to the value of [`Self::std_extension_version`]
-    pub fn std_extension_version_mut(&mut self) -> &mut ExtensionProperties {
-        &mut self.std_extension_version
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -3795,157 +3741,6 @@ impl<'lt> VideoEncodeH265CapabilitiesEXT<'lt> {
     ///Sets the raw value of [`Self::max_max_num_merge_cand`]
     pub fn set_max_max_num_merge_cand(&mut self, value: u8) -> &mut Self {
         self.max_max_num_merge_cand = value;
-        self
-    }
-    ///Sets the raw value of [`Self::std_extension_version`]
-    pub fn set_std_extension_version(&mut self, value: crate::vulkan1_0::ExtensionProperties) -> &mut Self {
-        self.std_extension_version = value;
-        self
-    }
-}
-///[VkVideoEncodeH265SessionCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265SessionCreateInfoEXT.html) - Structure specifies H.265 encoder creation parameters
-///# C Specifications
-///When creating a Video Session object with
-///[`VideoSessionCreateInfoKHR`]::`pVideoProfile->videoCodecOperation`
-///specified as `VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_EXT`, add a
-///[`VideoEncodeH265SessionCreateInfoEXT`] structure to the [`p_next`]
-///chain of the [`VideoSessionCreateInfoKHR`] structure passed to
-///[`CreateVideoSessionKHR`] in order to specify the H.265-specific video
-///encoder session creation parameters.The [`VideoEncodeH265SessionCreateInfoEXT`] structure is
-/// defined as:
-///```c
-///// Provided by VK_EXT_video_encode_h265
-///typedef struct VkVideoEncodeH265SessionCreateInfoEXT {
-///    VkStructureType                    sType;
-///    const void*                        pNext;
-///    VkVideoEncodeH265CreateFlagsEXT    flags;
-///    const VkExtensionProperties*       pStdExtensionVersion;
-///} VkVideoEncodeH265SessionCreateInfoEXT;
-///```
-///# Members
-/// - [`s_type`] is the type of this structure.
-/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`flags`] is reserved for future use.
-/// - [`std_extension_version`] is a pointer to a [`ExtensionProperties`] structure specifying the
-///   H.265 codec extension version.
-///# Description
-///## Valid Usage (Implicit)
-/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_SESSION_CREATE_INFO_EXT`
-/// - [`flags`] **must**  be `0`
-/// - [`std_extension_version`] **must**  be a valid pointer to a valid [`ExtensionProperties`]
-///   structure
-///# Related
-/// - [`VK_EXT_video_encode_h265`]
-/// - [`ExtensionProperties`]
-/// - [`StructureType`]
-/// - [`VideoEncodeH265CreateFlagsEXT`]
-///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-/// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
-#[doc(alias = "VkVideoEncodeH265SessionCreateInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[repr(C)]
-pub struct VideoEncodeH265SessionCreateInfoEXT<'lt> {
-    ///Lifetime field
-    pub _lifetime: PhantomData<&'lt ()>,
-    ///[`s_type`] is the type of this structure.
-    pub s_type: StructureType,
-    ///[`p_next`] is `NULL` or a pointer to a structure extending this
-    ///structure.
-    pub p_next: *const BaseInStructure<'lt>,
-    ///[`flags`] is reserved for future use.
-    pub flags: VideoEncodeH265CreateFlagsEXT,
-    ///[`std_extension_version`] is a pointer to a [`ExtensionProperties`]
-    ///structure specifying the H.265 codec extension version.
-    pub std_extension_version: *const ExtensionProperties,
-}
-impl<'lt> Default for VideoEncodeH265SessionCreateInfoEXT<'lt> {
-    fn default() -> Self {
-        Self {
-            _lifetime: PhantomData,
-            s_type: StructureType::VideoEncodeH265SessionCreateInfoExt,
-            p_next: std::ptr::null(),
-            flags: Default::default(),
-            std_extension_version: std::ptr::null(),
-        }
-    }
-}
-impl<'lt> VideoEncodeH265SessionCreateInfoEXT<'lt> {
-    ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
-        self.p_next
-    }
-    ///Gets the raw value of [`Self::std_extension_version`]
-    pub fn std_extension_version_raw(&self) -> *const ExtensionProperties {
-        self.std_extension_version
-    }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
-        self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::std_extension_version`]
-    pub fn set_std_extension_version_raw(&mut self, value: *const ExtensionProperties) -> &mut Self {
-        self.std_extension_version = value;
-        self
-    }
-    ///Gets the value of [`Self::s_type`]
-    pub fn s_type(&self) -> StructureType {
-        self.s_type
-    }
-    ///Gets the value of [`Self::p_next`]
-    ///# Safety
-    ///This function converts a pointer into a value which may be invalid, make sure
-    ///that the pointer is valid before dereferencing.
-    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
-        &*self.p_next
-    }
-    ///Gets the value of [`Self::flags`]
-    pub fn flags(&self) -> VideoEncodeH265CreateFlagsEXT {
-        self.flags
-    }
-    ///Gets the value of [`Self::std_extension_version`]
-    ///# Safety
-    ///This function converts a pointer into a value which may be invalid, make sure
-    ///that the pointer is valid before dereferencing.
-    pub unsafe fn std_extension_version(&self) -> &ExtensionProperties {
-        &*self.std_extension_version
-    }
-    ///Gets a mutable reference to the value of [`Self::s_type`]
-    pub fn s_type_mut(&mut self) -> &mut StructureType {
-        &mut self.s_type
-    }
-    ///Gets a mutable reference to the value of [`Self::flags`]
-    pub fn flags_mut(&mut self) -> &mut VideoEncodeH265CreateFlagsEXT {
-        &mut self.flags
-    }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
-        self.s_type = value;
-        self
-    }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
-        self.p_next = value as *const _;
-        self
-    }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(
-        &mut self,
-        value: crate::extensions::ext_video_encode_h_265::VideoEncodeH265CreateFlagsEXT,
-    ) -> &mut Self {
-        self.flags = value;
-        self
-    }
-    ///Sets the raw value of [`Self::std_extension_version`]
-    pub fn set_std_extension_version(&mut self, value: &'lt crate::vulkan1_0::ExtensionProperties) -> &mut Self {
-        self.std_extension_version = value as *const _;
         self
     }
 }

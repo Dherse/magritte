@@ -12,7 +12,7 @@ use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, ToTokens};
 use syn::PathSegment;
 
-use crate::symbols::SymbolName;
+use crate::{symbols::SymbolName, source::Source};
 
 /// The origin of an element of the Vulkan spec
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
@@ -350,6 +350,16 @@ impl<'a> Origin<'a> {
             Origin::Vulkan1_2 => Some("#[cfg(feature = \"VULKAN_1_2\")]\n".to_string()),
             Origin::Vulkan1_3 => Some("#[cfg(feature = \"VULKAN_1_3\")]\n".to_string()),
             Origin::Opaque => None,*/
+        }
+    }
+
+    /// Is another origin required for this origin
+    pub fn requires(&self, source: &Source<'a>, other: &Origin) -> bool {
+        match (self, other) {
+            (Origin::Extension(name, _, _), Origin::Extension(other, _, _)) => {
+                source.extensions.get_by_either(name).expect("unknown extension").requires(source, other)
+            },
+            _ => false,
         }
     }
 }

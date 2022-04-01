@@ -14,7 +14,7 @@
 //!   supports respectively reading and writing a given [`Format`] through storage operations
 //!   without specifying the format in the shader.
 //! - `VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON_BIT_KHR` indicates that an implementation
-//!   supports depth comparison performed by `OpImage*Dref` instructions on a given [`Format`].
+//!   supports depth comparison performed by `OpImage*Dref*` instructions on a given [`Format`].
 //!   Previously the result of executing a `OpImage*Dref*` instruction on an image view, where the
 //!   `format` was not one of the depth/stencil formats with a depth component, was undefined. This
 //!   bit clarifies on which formats such instructions can be used.

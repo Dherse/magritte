@@ -3,7 +3,7 @@
 //!This extension allows applications to compress a raw video sequence by using
 //!the H.264/AVC video compression standard.
 //!# Revision
-//!5
+//!6
 //!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`VK_KHR_video_encode_queue`]`
@@ -28,20 +28,17 @@
 //! - Extending [`VideoProfileKHR`], [`QueryPoolCreateInfo`], [`FormatProperties2`],
 //!   [`ImageCreateInfo`], [`ImageViewCreateInfo`], [`BufferCreateInfo`]:  -
 //!   [`VideoEncodeH264ProfileEXT`]
-//! - Extending [`VideoSessionCreateInfoKHR`]:  - [`VideoEncodeH264SessionCreateInfoEXT`]
 //! - Extending [`VideoSessionParametersCreateInfoKHR`]:  -
 //!   [`VideoEncodeH264SessionParametersCreateInfoEXT`]
 //! - Extending [`VideoSessionParametersUpdateInfoKHR`]:  -
 //!   [`VideoEncodeH264SessionParametersAddInfoEXT`]
 //!# New enums
 //! - [`VideoEncodeH264CapabilityFlagBitsEXT`]
-//! - [`VideoEncodeH264CreateFlagBitsEXT`]
 //! - [`VideoEncodeH264InputModeFlagBitsEXT`]
 //! - [`VideoEncodeH264OutputModeFlagBitsEXT`]
 //! - [`VideoEncodeH264RateControlStructureFlagBitsEXT`]
 //!# New bitmasks
 //! - [`VideoEncodeH264CapabilityFlagsEXT`]
-//! - [`VideoEncodeH264CreateFlagsEXT`]
 //! - [`VideoEncodeH264InputModeFlagsEXT`]
 //! - [`VideoEncodeH264OutputModeFlagsEXT`]
 //! - [`VideoEncodeH264RateControlStructureFlagsEXT`]
@@ -56,7 +53,6 @@
 //!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_RATE_CONTROL_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_RATE_CONTROL_LAYER_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_REFERENCE_LISTS_EXT`  -
-//!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_CREATE_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_PARAMETERS_ADD_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_PARAMETERS_CREATE_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_VCL_FRAME_INFO_EXT`
@@ -76,8 +72,12 @@
 //! - Revision 4, 2022-02-04 (Ahmed Abdelkhalek)  - Align VkVideoEncodeH264VclFrameInfoEXT structure
 //!   to similar one in VK_EXT_video_encode_h265 extension
 //! - Revision 5, 2022-02-10 (Ahmed Abdelkhalek)  - Updates to encode capability interface
+//! - Revision 6, 2022-03-16 (Ahmed Abdelkhalek)  - Relocate Std header version reporting/requesting
+//!   from this extension to VK_KHR_video_queue extension.  - Remove redundant maxPictureSizeInMbs
+//!   from VkVideoEncodeH264SessionCreateInfoEXT.  - Remove the now empty
+//!   VkVideoEncodeH264SessionCreateInfoEXT.
 //!# Other info
-//! * 2022-02-10
+//! * 2022-03-16
 //! * No known IP claims.
 //! * - Ahmed Abdelkhalek, AMD  - Daniel Rakos, AMD  - George Hao, AMD  - Jake Beju, AMD  - Peter
 //!   Fang, AMD  - Ping Liu, Intel  - Srinath Kumarapuram, NVIDIA  - Tony Zlatinski, NVIDIA  - Yang
@@ -86,8 +86,6 @@
 //! - [`VideoEncodeH264CapabilitiesEXT`]
 //! - [`VideoEncodeH264CapabilityFlagBitsEXT`]
 //! - [`VideoEncodeH264CapabilityFlagsEXT`]
-//! - [`VideoEncodeH264CreateFlagBitsEXT`]
-//! - [`VideoEncodeH264CreateFlagsEXT`]
 //! - [`VideoEncodeH264DpbSlotInfoEXT`]
 //! - [`VideoEncodeH264EmitPictureParametersEXT`]
 //! - [`VideoEncodeH264FrameSizeEXT`]
@@ -103,7 +101,6 @@
 //! - [`VideoEncodeH264RateControlStructureFlagBitsEXT`]
 //! - [`VideoEncodeH264RateControlStructureFlagsEXT`]
 //! - [`VideoEncodeH264ReferenceListsEXT`]
-//! - [`VideoEncodeH264SessionCreateInfoEXT`]
 //! - [`VideoEncodeH264SessionParametersAddInfoEXT`]
 //! - [`VideoEncodeH264SessionParametersCreateInfoEXT`]
 //! - [`VideoEncodeH264VclFrameInfoEXT`]
@@ -121,7 +118,7 @@ use crate::{
         StdVideoEncodeH264SliceHeader, StdVideoH264PictureParameterSet, StdVideoH264ProfileIdc,
         StdVideoH264SequenceParameterSet,
     },
-    vulkan1_0::{BaseInStructure, Bool32, ExtensionProperties, Extent2D, StructureType},
+    vulkan1_0::{BaseInStructure, Bool32, StructureType},
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -135,7 +132,7 @@ use std::{
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_VIDEO_ENCODE_H264_SPEC_VERSION")]
-pub const EXT_VIDEO_ENCODE_H264_SPEC_VERSION: u32 = 5;
+pub const EXT_VIDEO_ENCODE_H264_SPEC_VERSION: u32 = 6;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_VIDEO_ENCODE_H264_EXTENSION_NAME")]
@@ -568,68 +565,6 @@ impl const Default for VideoEncodeH264OutputModeFlagBitsEXT {
     }
 }
 impl VideoEncodeH264OutputModeFlagBitsEXT {
-    ///Default empty value
-    #[inline]
-    pub const fn empty() -> Self {
-        Self::default()
-    }
-    ///Gets the raw underlying value
-    #[inline]
-    pub const fn bits(&self) -> u32 {
-        *self as u32
-    }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
-    #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
-    }
-}
-///[VkVideoEncodeH264CreateFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH264CreateFlagBitsEXT.html) - Video encode session creation flags
-///# C Specifications
-///Bits which  **can**  be set in
-///[`VideoEncodeH264SessionCreateInfoEXT::flags`] are:
-///```c
-///// Provided by VK_EXT_video_encode_h264
-///typedef enum VkVideoEncodeH264CreateFlagBitsEXT {
-///    VK_VIDEO_ENCODE_H264_CREATE_DEFAULT_EXT = 0,
-///    VK_VIDEO_ENCODE_H264_CREATE_RESERVED_0_BIT_EXT = 0x00000001,
-///} VkVideoEncodeH264CreateFlagBitsEXT;
-///```
-///# Description
-/// - [`VideoEncodeH264CreateDefaultExt`] is 0, and specifies no additional creation flags.
-/// - [`VideoEncodeH264CreateReserved0Ext`] The current version of the specification has reserved
-///   this value for future use.
-///# Related
-/// - [`VK_EXT_video_encode_h264`]
-/// - [`VideoEncodeH264CreateFlagsEXT`]
-///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-/// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
-#[doc(alias = "VkVideoEncodeH264CreateFlagBitsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
-#[repr(u32)]
-pub enum VideoEncodeH264CreateFlagBitsEXT {
-    ///[`VideoEncodeH264CreateDefaultExt`] is 0, and specifies no
-    ///additional creation flags.
-    VideoEncodeH264CreateDefaultExt = 0,
-    ///[`VideoEncodeH264CreateReserved0Ext`] The current version
-    ///of the specification has reserved this value for future use.
-    VideoEncodeH264CreateReserved0Ext = 1,
-}
-impl const Default for VideoEncodeH264CreateFlagBitsEXT {
-    fn default() -> Self {
-        Self::VideoEncodeH264CreateDefaultExt
-    }
-}
-impl VideoEncodeH264CreateFlagBitsEXT {
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -2124,302 +2059,6 @@ impl std::fmt::Debug for VideoEncodeH264OutputModeFlagsEXT {
             .finish()
     }
 }
-///[VkVideoEncodeH264CreateFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH264CreateFlagBitsEXT.html) - Video encode session creation flags
-///# C Specifications
-///Bits which  **can**  be set in
-///[`VideoEncodeH264SessionCreateInfoEXT::flags`] are:
-///```c
-///// Provided by VK_EXT_video_encode_h264
-///typedef enum VkVideoEncodeH264CreateFlagBitsEXT {
-///    VK_VIDEO_ENCODE_H264_CREATE_DEFAULT_EXT = 0,
-///    VK_VIDEO_ENCODE_H264_CREATE_RESERVED_0_BIT_EXT = 0x00000001,
-///} VkVideoEncodeH264CreateFlagBitsEXT;
-///```
-///# Description
-/// - [`VideoEncodeH264CreateDefaultExt`] is 0, and specifies no additional creation flags.
-/// - [`VideoEncodeH264CreateReserved0Ext`] The current version of the specification has reserved
-///   this value for future use.
-///# Related
-/// - [`VK_EXT_video_encode_h264`]
-/// - [`VideoEncodeH264CreateFlagsEXT`]
-///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-/// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
-#[doc(alias = "VkVideoEncodeH264CreateFlagsEXT")]
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(transparent)]
-pub struct VideoEncodeH264CreateFlagsEXT(u32);
-impl const Default for VideoEncodeH264CreateFlagsEXT {
-    fn default() -> Self {
-        Self(0)
-    }
-}
-impl From<VideoEncodeH264CreateFlagBitsEXT> for VideoEncodeH264CreateFlagsEXT {
-    fn from(from: VideoEncodeH264CreateFlagBitsEXT) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
-    }
-}
-impl VideoEncodeH264CreateFlagsEXT {
-    ///[`VideoEncodeH264CreateDefaultExt`] is 0, and specifies no
-    ///additional creation flags.
-    pub const VIDEO_ENCODE_H_264_CREATE_DEFAULT_EXT: Self = Self(0);
-    ///[`VideoEncodeH264CreateReserved0Ext`] The current version
-    ///of the specification has reserved this value for future use.
-    pub const VIDEO_ENCODE_H_264_CREATE_RESERVED_0_EXT: Self = Self(1);
-    ///Default empty flags
-    #[inline]
-    pub const fn empty() -> Self {
-        Self::default()
-    }
-    ///Returns a value with all of the flags enabled
-    #[inline]
-    #[allow(unused_mut)]
-    pub const fn all() -> Self {
-        let mut all = Self::empty();
-        {
-            all |= Self::VIDEO_ENCODE_H_264_CREATE_DEFAULT_EXT;
-        }
-        {
-            all |= Self::VIDEO_ENCODE_H_264_CREATE_RESERVED_0_EXT;
-        }
-        all
-    }
-    ///Returns the raw bits
-    #[inline]
-    pub const fn bits(&self) -> u32 {
-        self.0
-    }
-    ///Convert raw bits into a bit flags checking that only valid
-    ///bits are contained.
-    #[inline]
-    pub const fn from_bits(bits: u32) -> Option<Self> {
-        if (bits & !Self::all().bits()) == 0 {
-            Some(Self(bits))
-        } else {
-            None
-        }
-    }
-    ///Convert raw bits into a bit flags truncating all invalid
-    ///bits that may be contained.
-    #[inline]
-    pub const fn from_bits_truncate(bits: u32) -> Self {
-        Self(Self::all().0 & bits)
-    }
-    ///Convert raw bits into a bit preserving all bits
-    ///
-    ///# Safety
-    ///The caller of this function must ensure that all of the bits are valid.
-    #[inline]
-    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
-        Self(bits)
-    }
-    ///Returns `true` if no flags are currently set
-    #[inline]
-    pub const fn is_empty(&self) -> bool {
-        self.bits() == Self::empty().bits()
-    }
-    ///Returns `true` if all flags are currently set
-    #[inline]
-    pub const fn is_all(&self) -> bool {
-        self.bits() == Self::all().bits()
-    }
-    ///Returns `true` if there are flags in common to `self` and `other`
-    #[inline]
-    pub const fn intersects(&self, other: Self) -> bool {
-        !Self(self.bits() & other.bits()).is_empty()
-    }
-    ///Returns `true` if all of the flags in `other` are contained `self`
-    #[inline]
-    pub const fn contains(&self, other: Self) -> bool {
-        (self.bits() & other.bits()) == other.bits()
-    }
-    ///Inserts a set of flags in place
-    #[inline]
-    pub fn insert(&mut self, other: Self) {
-        self.0 |= other.bits()
-    }
-    ///Removes a set of flags in place
-    #[inline]
-    pub fn remove(&mut self, other: Self) {
-        self.0 &= !other.bits();
-    }
-    ///Toggles a set of flags in place
-    #[inline]
-    pub fn toggle(&mut self, other: Self) {
-        self.0 ^= other.bits();
-    }
-    ///Inserts or removes the specified flags depending on the value of `is_insert`
-    #[inline]
-    pub fn set(&mut self, other: Self, is_insert: bool) {
-        if is_insert {
-            self.insert(other);
-        } else {
-            self.remove(other);
-        }
-    }
-    ///Returns the intersection between `self` and `other`
-    #[inline]
-    pub const fn intersection(self, other: Self) -> Self {
-        Self(self.bits() & other.bits())
-    }
-    ///Returns the union between `self` and `other`
-    #[inline]
-    pub const fn union(self, other: Self) -> Self {
-        Self(self.bits() | other.bits())
-    }
-    ///Returns the difference between `self` and `other`
-    #[inline]
-    pub const fn difference(self, other: Self) -> Self {
-        Self(self.bits() & !other.bits())
-    }
-    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
-    ///
-    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
-    #[inline]
-    pub const fn symmetric_difference(self, other: Self) -> Self {
-        Self(self.bits() ^ other.bits())
-    }
-    ///Returns the complement of `self`.
-    #[inline]
-    pub const fn complement(self) -> Self {
-        Self::from_bits_truncate(!self.bits())
-    }
-}
-impl const std::ops::BitOr for VideoEncodeH264CreateFlagsEXT {
-    type Output = Self;
-    #[inline]
-    fn bitor(self, other: Self) -> Self {
-        self.union(other)
-    }
-}
-impl const std::ops::BitOrAssign for VideoEncodeH264CreateFlagsEXT {
-    #[inline]
-    fn bitor_assign(&mut self, other: Self) {
-        *self = *self | other;
-    }
-}
-impl const std::ops::BitXor for VideoEncodeH264CreateFlagsEXT {
-    type Output = Self;
-    #[inline]
-    fn bitxor(self, other: Self) -> Self {
-        self.symmetric_difference(other)
-    }
-}
-impl const std::ops::BitXorAssign for VideoEncodeH264CreateFlagsEXT {
-    #[inline]
-    fn bitxor_assign(&mut self, other: Self) {
-        *self = *self ^ other;
-    }
-}
-impl const std::ops::BitAnd for VideoEncodeH264CreateFlagsEXT {
-    type Output = Self;
-    #[inline]
-    fn bitand(self, other: Self) -> Self {
-        self.intersection(other)
-    }
-}
-impl const std::ops::BitAndAssign for VideoEncodeH264CreateFlagsEXT {
-    #[inline]
-    fn bitand_assign(&mut self, other: Self) {
-        *self = *self & other;
-    }
-}
-impl const std::ops::Sub for VideoEncodeH264CreateFlagsEXT {
-    type Output = Self;
-    #[inline]
-    fn sub(self, other: Self) -> Self {
-        self.difference(other)
-    }
-}
-impl const std::ops::SubAssign for VideoEncodeH264CreateFlagsEXT {
-    #[inline]
-    fn sub_assign(&mut self, other: Self) {
-        *self = *self - other;
-    }
-}
-impl const std::ops::Not for VideoEncodeH264CreateFlagsEXT {
-    type Output = Self;
-    #[inline]
-    fn not(self) -> Self {
-        self.complement()
-    }
-}
-impl Extend<VideoEncodeH264CreateFlagsEXT> for VideoEncodeH264CreateFlagsEXT {
-    fn extend<T: IntoIterator<Item = VideoEncodeH264CreateFlagsEXT>>(&mut self, iterator: T) {
-        for i in iterator {
-            Self::insert(self, i);
-        }
-    }
-}
-impl Extend<VideoEncodeH264CreateFlagBitsEXT> for VideoEncodeH264CreateFlagsEXT {
-    fn extend<T: IntoIterator<Item = VideoEncodeH264CreateFlagBitsEXT>>(&mut self, iterator: T) {
-        for i in iterator {
-            Self::insert(self, <Self as From<VideoEncodeH264CreateFlagBitsEXT>>::from(i));
-        }
-    }
-}
-impl FromIterator<VideoEncodeH264CreateFlagsEXT> for VideoEncodeH264CreateFlagsEXT {
-    fn from_iter<T: IntoIterator<Item = VideoEncodeH264CreateFlagsEXT>>(iterator: T) -> VideoEncodeH264CreateFlagsEXT {
-        let mut out = Self::empty();
-        <Self as Extend<VideoEncodeH264CreateFlagsEXT>>::extend(&mut out, iterator);
-        out
-    }
-}
-impl FromIterator<VideoEncodeH264CreateFlagBitsEXT> for VideoEncodeH264CreateFlagsEXT {
-    fn from_iter<T: IntoIterator<Item = VideoEncodeH264CreateFlagBitsEXT>>(
-        iterator: T,
-    ) -> VideoEncodeH264CreateFlagsEXT {
-        let mut out = Self::empty();
-        <Self as Extend<VideoEncodeH264CreateFlagBitsEXT>>::extend(&mut out, iterator);
-        out
-    }
-}
-impl std::fmt::Debug for VideoEncodeH264CreateFlagsEXT {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        struct Flags(VideoEncodeH264CreateFlagsEXT);
-        impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments, unused_mut, unused_variables)]
-            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-                if self.0 == VideoEncodeH264CreateFlagsEXT::empty() {
-                    f.write_str("empty")?;
-                } else {
-                    let mut first = true;
-                    if self
-                        .0
-                        .contains(VideoEncodeH264CreateFlagsEXT::VIDEO_ENCODE_H_264_CREATE_DEFAULT_EXT)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VIDEO_ENCODE_H_264_CREATE_DEFAULT_EXT))?;
-                    }
-                    if self
-                        .0
-                        .contains(VideoEncodeH264CreateFlagsEXT::VIDEO_ENCODE_H_264_CREATE_RESERVED_0_EXT)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VIDEO_ENCODE_H_264_CREATE_RESERVED_0_EXT))?;
-                    }
-                }
-                Ok(())
-            }
-        }
-        f.debug_tuple(stringify!(VideoEncodeH264CreateFlagsEXT))
-            .field(&Flags(*self))
-            .finish()
-    }
-}
 ///[VkVideoEncodeH264RateControlStructureFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH264RateControlStructureFlagBitsEXT.html) - Video encode H.264 rate control structure flags
 ///# C Specifications
 ///The `rateControlStructure` in [`VideoEncodeH264RateControlInfoEXT`]
@@ -2742,7 +2381,6 @@ impl std::fmt::Debug for VideoEncodeH264RateControlStructureFlagsEXT {
 ///    uint32_t                               maxBitsPerMbDenom;
 ///    uint32_t                               log2MaxMvLengthHorizontal;
 ///    uint32_t                               log2MaxMvLengthVertical;
-///    VkExtensionProperties                  stdExtensionVersion;
 ///} VkVideoEncodeH264CapabilitiesEXT;
 ///```
 ///# Members
@@ -2775,8 +2413,6 @@ impl std::fmt::Debug for VideoEncodeH264RateControlStructureFlagsEXT {
 /// - [`log_2_max_mv_length_vertical`] reports the value that will be used for
 ///   log2_max_mv_length_vertical if bitstream_restriction_flag is enabled in
 ///   StdVideoH264SpsVuiFlags.
-/// - [`std_extension_version`] is the specific H.264 extension name and version supported by this
-///   implementation.
 ///# Description
 ///When [`GetPhysicalDeviceVideoCapabilitiesKHR`] is called to query the
 ///capabilities with parameter `videoCodecOperation` specified as
@@ -2792,11 +2428,9 @@ impl std::fmt::Debug for VideoEncodeH264RateControlStructureFlagsEXT {
 /// - [`output_mode_flags`] **must**  be a valid combination of
 ///   [`VideoEncodeH264OutputModeFlagBitsEXT`] values
 /// - [`output_mode_flags`] **must**  not be `0`
-/// - [`std_extension_version`] **must**  be a valid [`ExtensionProperties`] structure
 ///# Related
 /// - [`VK_EXT_video_encode_h264`]
 /// - [`Bool32`]
-/// - [`ExtensionProperties`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264CapabilityFlagsEXT`]
 /// - [`VideoEncodeH264InputModeFlagsEXT`]
@@ -2866,9 +2500,6 @@ pub struct VideoEncodeH264CapabilitiesEXT<'lt> {
     ///log2_max_mv_length_vertical if bitstream_restriction_flag is enabled in
     ///StdVideoH264SpsVuiFlags.
     pub log_2_max_mv_length_vertical: u32,
-    ///[`std_extension_version`] is the specific H.264 extension name and
-    ///version supported by this implementation.
-    pub std_extension_version: ExtensionProperties,
 }
 impl<'lt> Default for VideoEncodeH264CapabilitiesEXT<'lt> {
     fn default() -> Self {
@@ -2887,7 +2518,6 @@ impl<'lt> Default for VideoEncodeH264CapabilitiesEXT<'lt> {
             max_bits_per_mb_denom: 0,
             log_2_max_mv_length_horizontal: 0,
             log_2_max_mv_length_vertical: 0,
-            std_extension_version: Default::default(),
         }
     }
 }
@@ -2965,10 +2595,6 @@ impl<'lt> VideoEncodeH264CapabilitiesEXT<'lt> {
     pub fn log_2_max_mv_length_vertical(&self) -> u32 {
         self.log_2_max_mv_length_vertical
     }
-    ///Gets the value of [`Self::std_extension_version`]
-    pub fn std_extension_version(&self) -> ExtensionProperties {
-        self.std_extension_version
-    }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
         &mut self.s_type
@@ -3030,10 +2656,6 @@ impl<'lt> VideoEncodeH264CapabilitiesEXT<'lt> {
     ///Gets a mutable reference to the value of [`Self::log_2_max_mv_length_vertical`]
     pub fn log_2_max_mv_length_vertical_mut(&mut self) -> &mut u32 {
         &mut self.log_2_max_mv_length_vertical
-    }
-    ///Gets a mutable reference to the value of [`Self::std_extension_version`]
-    pub fn std_extension_version_mut(&mut self) -> &mut ExtensionProperties {
-        &mut self.std_extension_version
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -3107,180 +2729,6 @@ impl<'lt> VideoEncodeH264CapabilitiesEXT<'lt> {
     ///Sets the raw value of [`Self::log_2_max_mv_length_vertical`]
     pub fn set_log_2_max_mv_length_vertical(&mut self, value: u32) -> &mut Self {
         self.log_2_max_mv_length_vertical = value;
-        self
-    }
-    ///Sets the raw value of [`Self::std_extension_version`]
-    pub fn set_std_extension_version(&mut self, value: crate::vulkan1_0::ExtensionProperties) -> &mut Self {
-        self.std_extension_version = value;
-        self
-    }
-}
-///[VkVideoEncodeH264SessionCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH264SessionCreateInfoEXT.html) - Structure specifies H.264 encoder creation parameters
-///# C Specifications
-///The [`VideoEncodeH264SessionCreateInfoEXT`] structure is defined as:
-///```c
-///// Provided by VK_EXT_video_encode_h264
-///typedef struct VkVideoEncodeH264SessionCreateInfoEXT {
-///    VkStructureType                    sType;
-///    const void*                        pNext;
-///    VkVideoEncodeH264CreateFlagsEXT    flags;
-///    VkExtent2D                         maxPictureSizeInMbs;
-///    const VkExtensionProperties*       pStdExtensionVersion;
-///} VkVideoEncodeH264SessionCreateInfoEXT;
-///```
-///# Members
-/// - [`s_type`] is the type of this structure.
-/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`flags`] is a bitmask of [`VideoEncodeH264CreateFlagsEXT`] specifying H.264 encoder creation
-///   flags.
-/// - [`max_picture_size_in_mbs`] specifies the syntax element pic_width_in_mbs_minus1 + 1 and the
-///   syntax element pic_height_in_map_units_minus1 + 1.
-/// - [`std_extension_version`] is a pointer to a [`ExtensionProperties`] structure specifying H.264
-///   codec extensions.
-///# Description
-///A [`VideoEncodeH264SessionCreateInfoEXT`] structure  **must**  be chained to
-///[`VideoSessionCreateInfoKHR`] when the function
-///[`CreateVideoSessionKHR`] is called with `videoCodecOperation` in
-///[`VideoSessionCreateInfoKHR`] set to
-///`VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_EXT`.
-///## Valid Usage (Implicit)
-/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_CREATE_INFO_EXT`
-/// - [`flags`] **must**  be a valid combination of [`VideoEncodeH264CreateFlagBitsEXT`] values
-/// - [`flags`] **must**  not be `0`
-/// - [`std_extension_version`] **must**  be a valid pointer to a valid [`ExtensionProperties`]
-///   structure
-///# Related
-/// - [`VK_EXT_video_encode_h264`]
-/// - [`ExtensionProperties`]
-/// - [`Extent2D`]
-/// - [`StructureType`]
-/// - [`VideoEncodeH264CreateFlagsEXT`]
-///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-/// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
-#[doc(alias = "VkVideoEncodeH264SessionCreateInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[repr(C)]
-pub struct VideoEncodeH264SessionCreateInfoEXT<'lt> {
-    ///Lifetime field
-    pub _lifetime: PhantomData<&'lt ()>,
-    ///[`s_type`] is the type of this structure.
-    pub s_type: StructureType,
-    ///[`p_next`] is `NULL` or a pointer to a structure extending this
-    ///structure.
-    pub p_next: *const BaseInStructure<'lt>,
-    ///[`flags`] is a bitmask of [`VideoEncodeH264CreateFlagsEXT`]
-    ///specifying H.264 encoder creation flags.
-    pub flags: VideoEncodeH264CreateFlagsEXT,
-    ///[`max_picture_size_in_mbs`] specifies the syntax element
-    ///pic_width_in_mbs_minus1 + 1 and the syntax element
-    ///pic_height_in_map_units_minus1 + 1.
-    pub max_picture_size_in_mbs: Extent2D,
-    ///[`std_extension_version`] is a pointer to a [`ExtensionProperties`]
-    ///structure specifying H.264 codec extensions.
-    pub std_extension_version: *const ExtensionProperties,
-}
-impl<'lt> Default for VideoEncodeH264SessionCreateInfoEXT<'lt> {
-    fn default() -> Self {
-        Self {
-            _lifetime: PhantomData,
-            s_type: StructureType::VideoEncodeH264SessionCreateInfoExt,
-            p_next: std::ptr::null(),
-            flags: Default::default(),
-            max_picture_size_in_mbs: Default::default(),
-            std_extension_version: std::ptr::null(),
-        }
-    }
-}
-impl<'lt> VideoEncodeH264SessionCreateInfoEXT<'lt> {
-    ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
-        self.p_next
-    }
-    ///Gets the raw value of [`Self::std_extension_version`]
-    pub fn std_extension_version_raw(&self) -> *const ExtensionProperties {
-        self.std_extension_version
-    }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
-        self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::std_extension_version`]
-    pub fn set_std_extension_version_raw(&mut self, value: *const ExtensionProperties) -> &mut Self {
-        self.std_extension_version = value;
-        self
-    }
-    ///Gets the value of [`Self::s_type`]
-    pub fn s_type(&self) -> StructureType {
-        self.s_type
-    }
-    ///Gets the value of [`Self::p_next`]
-    ///# Safety
-    ///This function converts a pointer into a value which may be invalid, make sure
-    ///that the pointer is valid before dereferencing.
-    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
-        &*self.p_next
-    }
-    ///Gets the value of [`Self::flags`]
-    pub fn flags(&self) -> VideoEncodeH264CreateFlagsEXT {
-        self.flags
-    }
-    ///Gets the value of [`Self::max_picture_size_in_mbs`]
-    pub fn max_picture_size_in_mbs(&self) -> Extent2D {
-        self.max_picture_size_in_mbs
-    }
-    ///Gets the value of [`Self::std_extension_version`]
-    ///# Safety
-    ///This function converts a pointer into a value which may be invalid, make sure
-    ///that the pointer is valid before dereferencing.
-    pub unsafe fn std_extension_version(&self) -> &ExtensionProperties {
-        &*self.std_extension_version
-    }
-    ///Gets a mutable reference to the value of [`Self::s_type`]
-    pub fn s_type_mut(&mut self) -> &mut StructureType {
-        &mut self.s_type
-    }
-    ///Gets a mutable reference to the value of [`Self::flags`]
-    pub fn flags_mut(&mut self) -> &mut VideoEncodeH264CreateFlagsEXT {
-        &mut self.flags
-    }
-    ///Gets a mutable reference to the value of [`Self::max_picture_size_in_mbs`]
-    pub fn max_picture_size_in_mbs_mut(&mut self) -> &mut Extent2D {
-        &mut self.max_picture_size_in_mbs
-    }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
-        self.s_type = value;
-        self
-    }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
-        self.p_next = value as *const _;
-        self
-    }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(
-        &mut self,
-        value: crate::extensions::ext_video_encode_h_264::VideoEncodeH264CreateFlagsEXT,
-    ) -> &mut Self {
-        self.flags = value;
-        self
-    }
-    ///Sets the raw value of [`Self::max_picture_size_in_mbs`]
-    pub fn set_max_picture_size_in_mbs(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
-        self.max_picture_size_in_mbs = value;
-        self
-    }
-    ///Sets the raw value of [`Self::std_extension_version`]
-    pub fn set_std_extension_version(&mut self, value: &'lt crate::vulkan1_0::ExtensionProperties) -> &mut Self {
-        self.std_extension_version = value as *const _;
         self
     }
 }

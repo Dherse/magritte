@@ -362,6 +362,8 @@ pub mod khr_performance_query;
 pub mod khr_pipeline_executable_properties;
 #[cfg(feature = "VK_KHR_pipeline_library")]
 pub mod khr_pipeline_library;
+#[cfg(feature = "VK_KHR_portability_enumeration")]
+pub mod khr_portability_enumeration;
 #[cfg(feature = "VK_KHR_portability_subset")]
 pub mod khr_portability_subset;
 #[cfg(feature = "VK_KHR_present_id")]

@@ -250,6 +250,8 @@ impl<'lt> PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
 ///   feature is not enabled, all elements of [`color_write_enables`] **must**  be [`TRUE`]
 /// - [`attachment_count`] **must**  be equal to the [`attachment_count`] member of the
 ///   [`PipelineColorBlendStateCreateInfo`] structure specified during pipeline creation
+/// - [`attachment_count`] **must**  be less than or equal to the `maxColorAttachments` member of
+///   [`PhysicalDeviceLimits`]
 ///
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_COLOR_WRITE_CREATE_INFO_EXT`

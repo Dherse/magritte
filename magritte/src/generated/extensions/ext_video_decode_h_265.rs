@@ -1,6 +1,6 @@
 //![VK_EXT_video_decode_h265](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_video_decode_h265.html) - device extension
 //!# Revision
-//!1
+//!2
 //!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`VK_KHR_video_decode_queue`]`
@@ -15,13 +15,10 @@
 //!   [`ImageCreateInfo`], [`ImageViewCreateInfo`], [`BufferCreateInfo`]:  -
 //!   [`VideoDecodeH265ProfileEXT`]
 //! - Extending [`VideoReferenceSlotKHR`]:  - [`VideoDecodeH265DpbSlotInfoEXT`]
-//! - Extending [`VideoSessionCreateInfoKHR`]:  - [`VideoDecodeH265SessionCreateInfoEXT`]
 //! - Extending [`VideoSessionParametersCreateInfoKHR`]:  -
 //!   [`VideoDecodeH265SessionParametersCreateInfoEXT`]
 //! - Extending [`VideoSessionParametersUpdateInfoKHR`]:  -
 //!   [`VideoDecodeH265SessionParametersAddInfoEXT`]
-//!# New bitmasks
-//! - [`VideoDecodeH265CreateFlagsEXT`]
 //!# New constants
 //! - [`EXT_VIDEO_DECODE_H265_EXTENSION_NAME`]
 //! - [`EXT_VIDEO_DECODE_H265_SPEC_VERSION`]
@@ -29,7 +26,6 @@
 //!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_DPB_SLOT_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_PICTURE_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_PROFILE_EXT`  -
-//!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_CREATE_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_ADD_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_EXT`
 //! - Extending [`VideoCodecOperationFlagBitsKHR`]:  -
@@ -37,18 +33,19 @@
 //!# Version History
 //! - Revision 1, 2018-6-11 (Peter Fang)  - Initial draft
 //! - Revision 1.6, March 29 2021 (Tony Zlatinski)  - Spec and API updates.
+//! - Revision 2, 2022-03-16 (Ahmed Abdelkhalek)  - Relocate Std header version reporting/requesting
+//!   from this extension to VK_KHR_video_queue extension.  - Remove the now empty
+//!   VkVideoDecodeH265SessionCreateInfoEXT.
 //!# Other info
-//! * 2021-03-29
+//! * 2022-03-16
 //! * No known IP claims.
-//! * - HoHin Lau, AMD  - Jake Beju, AMD  - Peter Fang, AMD  - Ping Liu, Intel  - Srinath
-//!   Kumarapuram, NVIDIA  - Tony Zlatinski, NVIDIA
+//! * - Ahmed Abdelkhalek, AMD  - HoHin Lau, AMD  - Jake Beju, AMD  - Peter Fang, AMD  - Ping Liu,
+//!   Intel  - Srinath Kumarapuram, NVIDIA  - Tony Zlatinski, NVIDIA
 //!# Related
 //! - [`VideoDecodeH265CapabilitiesEXT`]
-//! - [`VideoDecodeH265CreateFlagsEXT`]
 //! - [`VideoDecodeH265DpbSlotInfoEXT`]
 //! - [`VideoDecodeH265PictureInfoEXT`]
 //! - [`VideoDecodeH265ProfileEXT`]
-//! - [`VideoDecodeH265SessionCreateInfoEXT`]
 //! - [`VideoDecodeH265SessionParametersAddInfoEXT`]
 //! - [`VideoDecodeH265SessionParametersCreateInfoEXT`]
 //!
@@ -62,53 +59,19 @@
 use crate::{
     native::{
         StdVideoDecodeH265PictureInfo, StdVideoDecodeH265ReferenceInfo, StdVideoH265PictureParameterSet,
-        StdVideoH265ProfileIdc, StdVideoH265SequenceParameterSet,
+        StdVideoH265ProfileIdc, StdVideoH265SequenceParameterSet, StdVideoH265VideoParameterSet,
     },
-    vulkan1_0::{BaseInStructure, BaseOutStructure, ExtensionProperties, StructureType},
+    vulkan1_0::{BaseInStructure, BaseOutStructure, StructureType},
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_VIDEO_DECODE_H265_SPEC_VERSION")]
-pub const EXT_VIDEO_DECODE_H265_SPEC_VERSION: u32 = 1;
+pub const EXT_VIDEO_DECODE_H265_SPEC_VERSION: u32 = 2;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_VIDEO_DECODE_H265_EXTENSION_NAME")]
 pub const EXT_VIDEO_DECODE_H265_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_video_decode_h265");
-///[VkVideoDecodeH265CreateFlagsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeH265CreateFlagsEXT.html) - Reserved for future use
-///# C Specifications
-///```c
-///// Provided by VK_EXT_video_decode_h265
-///typedef VkFlags VkVideoDecodeH265CreateFlagsEXT;
-///```
-///# Related
-/// - [`VK_EXT_video_decode_h265`]
-/// - [`VideoDecodeH265SessionCreateInfoEXT`]
-///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-/// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
-#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[repr(transparent)]
-pub struct VideoDecodeH265CreateFlagsEXT(u32);
-impl const Default for VideoDecodeH265CreateFlagsEXT {
-    fn default() -> Self {
-        Self(0)
-    }
-}
-impl std::fmt::Debug for VideoDecodeH265CreateFlagsEXT {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.debug_tuple(stringify!(VideoDecodeH265CreateFlagsEXT))
-            .field(&self.0)
-            .finish()
-    }
-}
 ///[VkVideoDecodeH265ProfileEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeH265ProfileEXT.html) - Structure specifying H.265 decode profile
 ///# C Specifications
 ///The [`VideoDecodeH265ProfileEXT`] structure is defined as:
@@ -228,10 +191,9 @@ impl<'lt> VideoDecodeH265ProfileEXT<'lt> {
 ///```c
 ///// Provided by VK_EXT_video_decode_h265
 ///typedef struct VkVideoDecodeH265CapabilitiesEXT {
-///    VkStructureType          sType;
-///    void*                    pNext;
-///    uint32_t                 maxLevel;
-///    VkExtensionProperties    stdExtensionVersion;
+///    VkStructureType    sType;
+///    void*              pNext;
+///    uint32_t           maxLevel;
 ///} VkVideoDecodeH265CapabilitiesEXT;
 ///```
 ///# Members
@@ -245,14 +207,11 @@ impl<'lt> VideoDecodeH265ProfileEXT<'lt> {
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_level`] is the maximum H.265 level supported by the device.
-/// - [`std_extension_version`] is a [`ExtensionProperties`] structure specifying the H.265
-///   extension name and version supported by this implementation.
 ///
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_CAPABILITIES_EXT`
 ///# Related
 /// - [`VK_EXT_video_decode_h265`]
-/// - [`ExtensionProperties`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -276,10 +235,6 @@ pub struct VideoDecodeH265CapabilitiesEXT<'lt> {
     pub p_next: *mut BaseOutStructure<'lt>,
     ///[`max_level`] is the maximum H.265 level supported by the device.
     pub max_level: u32,
-    ///[`std_extension_version`] is a [`ExtensionProperties`] structure
-    ///specifying the H.265 extension name and version supported by this
-    ///implementation.
-    pub std_extension_version: ExtensionProperties,
 }
 impl<'lt> Default for VideoDecodeH265CapabilitiesEXT<'lt> {
     fn default() -> Self {
@@ -288,7 +243,6 @@ impl<'lt> Default for VideoDecodeH265CapabilitiesEXT<'lt> {
             s_type: StructureType::VideoDecodeH265CapabilitiesExt,
             p_next: std::ptr::null_mut(),
             max_level: 0,
-            std_extension_version: Default::default(),
         }
     }
 }
@@ -317,10 +271,6 @@ impl<'lt> VideoDecodeH265CapabilitiesEXT<'lt> {
     pub fn max_level(&self) -> u32 {
         self.max_level
     }
-    ///Gets the value of [`Self::std_extension_version`]
-    pub fn std_extension_version(&self) -> ExtensionProperties {
-        self.std_extension_version
-    }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
         &mut self.s_type
@@ -335,10 +285,6 @@ impl<'lt> VideoDecodeH265CapabilitiesEXT<'lt> {
     ///Gets a mutable reference to the value of [`Self::max_level`]
     pub fn max_level_mut(&mut self) -> &mut u32 {
         &mut self.max_level
-    }
-    ///Gets a mutable reference to the value of [`Self::std_extension_version`]
-    pub fn std_extension_version_mut(&mut self) -> &mut ExtensionProperties {
-        &mut self.std_extension_version
     }
     ///Sets the raw value of [`Self::s_type`]
     pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
@@ -355,154 +301,6 @@ impl<'lt> VideoDecodeH265CapabilitiesEXT<'lt> {
         self.max_level = value;
         self
     }
-    ///Sets the raw value of [`Self::std_extension_version`]
-    pub fn set_std_extension_version(&mut self, value: crate::vulkan1_0::ExtensionProperties) -> &mut Self {
-        self.std_extension_version = value;
-        self
-    }
-}
-///[VkVideoDecodeH265SessionCreateInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeH265SessionCreateInfoEXT.html) - Structure specifies H.265 decode session creation parameters
-///# C Specifications
-///The [`VideoDecodeH265SessionCreateInfoEXT`] structure is defined as:
-///```c
-///// Provided by VK_EXT_video_decode_h265
-///typedef struct VkVideoDecodeH265SessionCreateInfoEXT {
-///    VkStructureType                    sType;
-///    const void*                        pNext;
-///    VkVideoDecodeH265CreateFlagsEXT    flags;
-///    const VkExtensionProperties*       pStdExtensionVersion;
-///} VkVideoDecodeH265SessionCreateInfoEXT;
-///```
-///# Members
-/// - [`s_type`] is the type of this structure.
-/// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`flags`] is reserved for future use.
-/// - [`std_extension_version`] is a pointer to a [`ExtensionProperties`] structure specifying H.265
-///   codec extensions.
-///# Description
-///A [`VideoDecodeH265SessionCreateInfoEXT`] structure  **can**  be chained to
-///[`VideoSessionCreateInfoKHR`] when the function
-///[`CreateVideoSessionKHR`] is called to create a video session for H.265
-///decode operations.
-///## Valid Usage (Implicit)
-/// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_CREATE_INFO_EXT`
-/// - [`flags`] **must**  be `0`
-/// - [`std_extension_version`] **must**  be a valid pointer to a valid [`ExtensionProperties`]
-///   structure
-///# Related
-/// - [`VK_EXT_video_decode_h265`]
-/// - [`ExtensionProperties`]
-/// - [`StructureType`]
-/// - [`VideoDecodeH265CreateFlagsEXT`]
-///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
-///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
-/// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
-#[doc(alias = "VkVideoDecodeH265SessionCreateInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
-#[repr(C)]
-pub struct VideoDecodeH265SessionCreateInfoEXT<'lt> {
-    ///Lifetime field
-    pub _lifetime: PhantomData<&'lt ()>,
-    ///[`s_type`] is the type of this structure.
-    pub s_type: StructureType,
-    ///[`p_next`] is `NULL` or a pointer to a structure extending this
-    ///structure.
-    pub p_next: *const BaseInStructure<'lt>,
-    ///[`flags`] is reserved for future use.
-    pub flags: VideoDecodeH265CreateFlagsEXT,
-    ///[`std_extension_version`] is a pointer to a [`ExtensionProperties`]
-    ///structure specifying H.265 codec extensions.
-    pub std_extension_version: *const ExtensionProperties,
-}
-impl<'lt> Default for VideoDecodeH265SessionCreateInfoEXT<'lt> {
-    fn default() -> Self {
-        Self {
-            _lifetime: PhantomData,
-            s_type: StructureType::VideoDecodeH265SessionCreateInfoExt,
-            p_next: std::ptr::null(),
-            flags: Default::default(),
-            std_extension_version: std::ptr::null(),
-        }
-    }
-}
-impl<'lt> VideoDecodeH265SessionCreateInfoEXT<'lt> {
-    ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
-        self.p_next
-    }
-    ///Gets the raw value of [`Self::std_extension_version`]
-    pub fn std_extension_version_raw(&self) -> *const ExtensionProperties {
-        self.std_extension_version
-    }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
-        self.p_next = value;
-        self
-    }
-    ///Sets the raw value of [`Self::std_extension_version`]
-    pub fn set_std_extension_version_raw(&mut self, value: *const ExtensionProperties) -> &mut Self {
-        self.std_extension_version = value;
-        self
-    }
-    ///Gets the value of [`Self::s_type`]
-    pub fn s_type(&self) -> StructureType {
-        self.s_type
-    }
-    ///Gets the value of [`Self::p_next`]
-    ///# Safety
-    ///This function converts a pointer into a value which may be invalid, make sure
-    ///that the pointer is valid before dereferencing.
-    pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
-        &*self.p_next
-    }
-    ///Gets the value of [`Self::flags`]
-    pub fn flags(&self) -> VideoDecodeH265CreateFlagsEXT {
-        self.flags
-    }
-    ///Gets the value of [`Self::std_extension_version`]
-    ///# Safety
-    ///This function converts a pointer into a value which may be invalid, make sure
-    ///that the pointer is valid before dereferencing.
-    pub unsafe fn std_extension_version(&self) -> &ExtensionProperties {
-        &*self.std_extension_version
-    }
-    ///Gets a mutable reference to the value of [`Self::s_type`]
-    pub fn s_type_mut(&mut self) -> &mut StructureType {
-        &mut self.s_type
-    }
-    ///Gets a mutable reference to the value of [`Self::flags`]
-    pub fn flags_mut(&mut self) -> &mut VideoDecodeH265CreateFlagsEXT {
-        &mut self.flags
-    }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
-        self.s_type = value;
-        self
-    }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
-        self.p_next = value as *const _;
-        self
-    }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(
-        &mut self,
-        value: crate::extensions::ext_video_decode_h_265::VideoDecodeH265CreateFlagsEXT,
-    ) -> &mut Self {
-        self.flags = value;
-        self
-    }
-    ///Sets the raw value of [`Self::std_extension_version`]
-    pub fn set_std_extension_version(&mut self, value: &'lt crate::vulkan1_0::ExtensionProperties) -> &mut Self {
-        self.std_extension_version = value as *const _;
-        self
-    }
 }
 ///[VkVideoDecodeH265SessionParametersAddInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeH265SessionParametersAddInfoEXT.html) - Structure specifies H.265 decoder parameter set information
 ///# C Specifications
@@ -513,6 +311,8 @@ impl<'lt> VideoDecodeH265SessionCreateInfoEXT<'lt> {
 ///typedef struct VkVideoDecodeH265SessionParametersAddInfoEXT {
 ///    VkStructureType                            sType;
 ///    const void*                                pNext;
+///    uint32_t                                   vpsStdCount;
+///    const StdVideoH265VideoParameterSet*       pVpsStd;
 ///    uint32_t                                   spsStdCount;
 ///    const StdVideoH265SequenceParameterSet*    pSpsStd;
 ///    uint32_t                                   ppsStdCount;
@@ -522,6 +322,9 @@ impl<'lt> VideoDecodeH265SessionCreateInfoEXT<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`vps_std_count`] is the number of VPS elements in [`vps_std`].
+/// - [`vps_std`] is a pointer to an array of [`vps_std_count`][`StdVideoH265VideoParameterSet`]
+///   structures representing H.265 video parameter sets.
 /// - [`sps_std_count`] is the number of SPS elements in the [`sps_std`]. Its value  **must**  be
 ///   less than or equal to the value of `maxSpsStdCount`.
 /// - [`sps_std`] is a pointer to an array of [`StdVideoH265SequenceParameterSet`] structures
@@ -534,8 +337,9 @@ impl<'lt> VideoDecodeH265SessionCreateInfoEXT<'lt> {
 ///   unique H.265 VPS-SPS-PPS ID tuple.
 ///# Description
 ///## Valid Usage
-/// - The values of `vpsStdCount`, [`sps_std_count`] and [`pps_std_count`] **must**  be less than or
-///   equal to the values of `maxVpsStdCount`, `maxSpsStdCount` and `maxPpsStdCount`, respectively
+/// - The values of [`vps_std_count`], [`sps_std_count`] and [`pps_std_count`] **must**  be less
+///   than or equal to the values of `maxVpsStdCount`, `maxSpsStdCount` and `maxPpsStdCount`,
+///   respectively
 /// - When the `maxVpsStdCount` number of parameters of type StdVideoH265VideoParameterSet in the
 ///   Video Session Parameters object is reached, no additional parameters of that type can be added
 ///   to the object. `VK_ERROR_TOO_MANY_OBJECTS` will be returned if an attempt is made to add
@@ -560,10 +364,13 @@ impl<'lt> VideoDecodeH265SessionCreateInfoEXT<'lt> {
 ///
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_ADD_INFO_EXT`
+/// - If [`vps_std`] is not `NULL`, [`vps_std`] **must**  be a valid pointer to an array of
+///   [`vps_std_count`][`StdVideoH265VideoParameterSet`] values
 /// - If [`sps_std`] is not `NULL`, [`sps_std`] **must**  be a valid pointer to an array of
 ///   [`sps_std_count`][`StdVideoH265SequenceParameterSet`] values
 /// - If [`pps_std`] is not `NULL`, [`pps_std`] **must**  be a valid pointer to an array of
 ///   [`pps_std_count`][`StdVideoH265PictureParameterSet`] values
+/// - [`vps_std_count`] **must**  be greater than `0`
 /// - [`sps_std_count`] **must**  be greater than `0`
 /// - [`pps_std_count`] **must**  be greater than `0`
 ///# Related
@@ -590,6 +397,11 @@ pub struct VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     pub p_next: *const BaseInStructure<'lt>,
+    ///[`vps_std_count`] is the number of VPS elements in [`vps_std`].
+    pub vps_std_count: u32,
+    ///[`vps_std`] is a pointer to an array of [`vps_std_count`][`StdVideoH265VideoParameterSet`]
+    /// structures representing H.265 video parameter sets.
+    pub vps_std: *const StdVideoH265VideoParameterSet,
     ///[`sps_std_count`] is the number of SPS elements in the [`sps_std`].
     ///Its value  **must**  be less than or equal to the value of
     ///`maxSpsStdCount`.
@@ -616,6 +428,8 @@ impl<'lt> Default for VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
             _lifetime: PhantomData,
             s_type: StructureType::VideoDecodeH265SessionParametersAddInfoExt,
             p_next: std::ptr::null(),
+            vps_std_count: 0,
+            vps_std: std::ptr::null(),
             sps_std_count: 0,
             sps_std: std::ptr::null(),
             pps_std_count: 0,
@@ -644,6 +458,17 @@ impl<'lt> VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
     pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
         &*self.p_next
     }
+    ///Gets the value of [`Self::vps_std_count`]
+    pub fn vps_std_count(&self) -> u32 {
+        self.vps_std_count
+    }
+    ///Gets the value of [`Self::vps_std`]
+    ///# Safety
+    ///This function converts a pointer into a value which may be invalid, make sure
+    ///that the pointer is valid before dereferencing.
+    pub unsafe fn vps_std(&self) -> &[StdVideoH265VideoParameterSet] {
+        std::slice::from_raw_parts(self.vps_std, self.vps_std_count as usize)
+    }
     ///Gets the value of [`Self::sps_std_count`]
     pub fn sps_std_count(&self) -> u32 {
         self.sps_std_count
@@ -670,6 +495,10 @@ impl<'lt> VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
     pub fn s_type_mut(&mut self) -> &mut StructureType {
         &mut self.s_type
     }
+    ///Gets a mutable reference to the value of [`Self::vps_std_count`]
+    pub fn vps_std_count_mut(&mut self) -> &mut u32 {
+        &mut self.vps_std_count
+    }
     ///Gets a mutable reference to the value of [`Self::sps_std_count`]
     pub fn sps_std_count_mut(&mut self) -> &mut u32 {
         &mut self.sps_std_count
@@ -686,6 +515,19 @@ impl<'lt> VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::vps_std_count`]
+    pub fn set_vps_std_count(&mut self, value: u32) -> &mut Self {
+        self.vps_std_count = value;
+        self
+    }
+    ///Sets the raw value of [`Self::vps_std`]
+    pub fn set_vps_std(&mut self, value: &'lt [crate::native::StdVideoH265VideoParameterSet]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.vps_std = value.as_ptr();
+        self.vps_std_count = len_;
         self
     }
     ///Sets the raw value of [`Self::sps_std_count`]
@@ -724,6 +566,7 @@ impl<'lt> VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
 ///typedef struct VkVideoDecodeH265SessionParametersCreateInfoEXT {
 ///    VkStructureType                                        sType;
 ///    const void*                                            pNext;
+///    uint32_t                                               maxVpsStdCount;
 ///    uint32_t                                               maxSpsStdCount;
 ///    uint32_t                                               maxPpsStdCount;
 ///    const VkVideoDecodeH265SessionParametersAddInfoEXT*    pParametersAddInfo;
@@ -732,6 +575,8 @@ impl<'lt> VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
+/// - [`max_vps_std_count`] is the maximum number of entries of type
+///   [`StdVideoH265VideoParameterSet`] within [`VideoSessionParametersKHR`].
 /// - [`max_sps_std_count`] is the maximum number of SPS parameters that the
 ///   [`VideoSessionParametersKHR`] can contain.
 /// - [`max_pps_std_count`] is the maximum number of PPS parameters that the
@@ -740,13 +585,22 @@ impl<'lt> VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
 ///   [`VideoDecodeH265SessionParametersAddInfoEXT`] structure specifying H.265 parameters to add
 ///   upon object creation.
 ///# Description
-///A [`VideoDecodeH265SessionParametersCreateInfoEXT`] structure holding
-///one H.265 SPS and at least one H.265 PPS paramater set  **must**  be chained to
-///[`VideoSessionParametersCreateInfoKHR`] when calling
-///[`CreateVideoSessionParametersKHR`] to store these parameter set(s) with
-///the decoder parameter set object for later reference.
-///The provided H.265 SPS/PPS parameters  **must**  be within the limits specified
-///during decoder creation for the decoder specified in
+///When a [`VideoSessionParametersKHR`] object contains
+///[`max_vps_std_count`][`StdVideoH265VideoParameterSet`] entries, no
+///additional [`StdVideoH265VideoParameterSet`] entries can be added to it,
+///and `VK_ERROR_TOO_MANY_OBJECTS` will be returned if an attempt is made
+///to add these entries.
+///When a [`VideoSessionParametersKHR`] object contains
+///[`max_sps_std_count`][`StdVideoH265SequenceParameterSet`] entries, no
+///additional [`StdVideoH265SequenceParameterSet`] entries can be added to it,
+///and `VK_ERROR_TOO_MANY_OBJECTS` will be returned if an attempt is made
+///to add these entries.
+///When a [`VideoSessionParametersKHR`] object contains
+///[`max_pps_std_count`][`StdVideoH265PictureParameterSet`] entries, no
+///additional [`StdVideoH265PictureParameterSet`] entries can be added to it,
+///and `VK_ERROR_TOO_MANY_OBJECTS` will be returned if an attempt is made
+///to add these entries.The provided H.265 VPS/SPS/PPS parameters  **must**  be within the limits
+///specified during decoder creation for the decoder specified in
 ///[`VideoSessionParametersCreateInfoKHR`].
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
@@ -777,6 +631,10 @@ pub struct VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     pub p_next: *const BaseInStructure<'lt>,
+    ///[`max_vps_std_count`] is the maximum number of entries of type
+    ///[`StdVideoH265VideoParameterSet`] within
+    ///[`VideoSessionParametersKHR`].
+    pub max_vps_std_count: u32,
     ///[`max_sps_std_count`] is the maximum number of SPS parameters that the
     ///[`VideoSessionParametersKHR`] can contain.
     pub max_sps_std_count: u32,
@@ -794,6 +652,7 @@ impl<'lt> Default for VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
             _lifetime: PhantomData,
             s_type: StructureType::VideoDecodeH265SessionParametersCreateInfoExt,
             p_next: std::ptr::null(),
+            max_vps_std_count: 0,
             max_sps_std_count: 0,
             max_pps_std_count: 0,
             parameters_add_info: std::ptr::null(),
@@ -833,6 +692,10 @@ impl<'lt> VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
     pub unsafe fn p_next(&self) -> &BaseInStructure<'lt> {
         &*self.p_next
     }
+    ///Gets the value of [`Self::max_vps_std_count`]
+    pub fn max_vps_std_count(&self) -> u32 {
+        self.max_vps_std_count
+    }
     ///Gets the value of [`Self::max_sps_std_count`]
     pub fn max_sps_std_count(&self) -> u32 {
         self.max_sps_std_count
@@ -852,6 +715,10 @@ impl<'lt> VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
     pub fn s_type_mut(&mut self) -> &mut StructureType {
         &mut self.s_type
     }
+    ///Gets a mutable reference to the value of [`Self::max_vps_std_count`]
+    pub fn max_vps_std_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_vps_std_count
+    }
     ///Gets a mutable reference to the value of [`Self::max_sps_std_count`]
     pub fn max_sps_std_count_mut(&mut self) -> &mut u32 {
         &mut self.max_sps_std_count
@@ -868,6 +735,11 @@ impl<'lt> VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
+        self
+    }
+    ///Sets the raw value of [`Self::max_vps_std_count`]
+    pub fn set_max_vps_std_count(&mut self, value: u32) -> &mut Self {
+        self.max_vps_std_count = value;
         self
     }
     ///Sets the raw value of [`Self::max_sps_std_count`]
