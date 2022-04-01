@@ -323,8 +323,8 @@ impl<'a> Field<'a> {
     }
 
     /// Get a reference to the field's value.
-    pub fn value(&self) -> Option<&Cow<str>> {
-        self.value.as_ref()
+    pub fn value(&self) -> Option<&str> {
+        self.value.as_ref().map(|s| s as &str)
     }
 
     /// Does this field has a lifetime

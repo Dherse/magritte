@@ -169,13 +169,13 @@ impl<'lt> Default for ImportFenceWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImportFenceWin32HandleInfoKhr,
             p_next: std::ptr::null(),
             fence: Default::default(),
             flags: Default::default(),
             handle_type: Default::default(),
-            handle: Default::default(),
-            name: Default::default(),
+            handle: unsafe { std::mem::zeroed() },
+            name: unsafe { std::mem::zeroed() },
         }
     }
 }
@@ -382,11 +382,11 @@ impl<'lt> Default for ExportFenceWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ExportFenceWin32HandleInfoKhr,
             p_next: std::ptr::null(),
             attributes: std::ptr::null(),
-            dw_access: Default::default(),
-            name: Default::default(),
+            dw_access: unsafe { std::mem::zeroed() },
+            name: unsafe { std::mem::zeroed() },
         }
     }
 }
@@ -557,7 +557,7 @@ impl<'lt> Default for FenceGetWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::FenceGetWin32HandleInfoKhr,
             p_next: std::ptr::null(),
             fence: Default::default(),
             handle_type: Default::default(),

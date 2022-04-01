@@ -867,7 +867,7 @@ impl<'lt> Default for VideoDecodeCapabilitiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoDecodeCapabilitiesKhr,
             p_next: std::ptr::null_mut(),
             flags: Default::default(),
         }
@@ -1085,7 +1085,7 @@ impl<'lt> Default for VideoDecodeInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoDecodeInfoKhr,
             p_next: std::ptr::null(),
             flags: Default::default(),
             coded_offset: Default::default(),

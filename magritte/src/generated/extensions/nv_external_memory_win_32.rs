@@ -159,10 +159,10 @@ impl<'lt> Default for ImportMemoryWin32HandleInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImportMemoryWin32HandleInfoNv,
             p_next: std::ptr::null(),
             handle_type: Default::default(),
-            handle: Default::default(),
+            handle: unsafe { std::mem::zeroed() },
         }
     }
 }
@@ -308,10 +308,10 @@ impl<'lt> Default for ExportMemoryWin32HandleInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ExportMemoryWin32HandleInfoNv,
             p_next: std::ptr::null(),
             attributes: std::ptr::null(),
-            dw_access: Default::default(),
+            dw_access: unsafe { std::mem::zeroed() },
         }
     }
 }

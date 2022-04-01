@@ -128,7 +128,7 @@ impl<'lt> Default for CopyCommandTransformInfoQCOM<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::CopyCommandTransformInfoQcom,
             p_next: std::ptr::null(),
             transform: Default::default(),
         }

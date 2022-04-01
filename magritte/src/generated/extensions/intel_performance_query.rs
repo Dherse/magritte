@@ -475,7 +475,7 @@ impl Default for PerformanceValueINTEL {
     fn default() -> Self {
         Self {
             type_: Default::default(),
-            data: Default::default(),
+            data: unsafe { std::mem::zeroed() },
         }
     }
 }
@@ -563,7 +563,7 @@ impl<'lt> Default for InitializePerformanceApiInfoINTEL<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::InitializePerformanceApiInfoIntel,
             p_next: std::ptr::null(),
             user_data: std::ptr::null_mut(),
         }
@@ -696,7 +696,7 @@ impl<'lt> Default for QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::QueryPoolPerformanceQueryCreateInfoIntel,
             p_next: std::ptr::null(),
             performance_counters_sampling: Default::default(),
         }
@@ -805,7 +805,7 @@ impl<'lt> Default for PerformanceMarkerInfoINTEL<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PerformanceMarkerInfoIntel,
             p_next: std::ptr::null(),
             marker: 0,
         }
@@ -917,7 +917,7 @@ impl<'lt> Default for PerformanceStreamMarkerInfoINTEL<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PerformanceStreamMarkerInfoIntel,
             p_next: std::ptr::null(),
             marker: 0,
         }
@@ -1031,7 +1031,7 @@ impl<'lt> Default for PerformanceOverrideInfoINTEL<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PerformanceOverrideInfoIntel,
             p_next: std::ptr::null(),
             type_: Default::default(),
             enable: 0,
@@ -1192,7 +1192,7 @@ impl<'lt> Default for PerformanceConfigurationAcquireInfoINTEL<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PerformanceConfigurationAcquireInfoIntel,
             p_next: std::ptr::null(),
             type_: Default::default(),
         }

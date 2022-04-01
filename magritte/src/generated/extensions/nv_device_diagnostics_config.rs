@@ -508,7 +508,7 @@ impl<'lt> Default for PhysicalDeviceDiagnosticsConfigFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceDiagnosticsConfigFeaturesNv,
             p_next: std::ptr::null_mut(),
             diagnostics_config: 0,
         }
@@ -648,7 +648,7 @@ impl<'lt> Default for DeviceDiagnosticsConfigCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceDiagnosticsConfigCreateInfoNv,
             p_next: std::ptr::null(),
             flags: Default::default(),
         }

@@ -203,7 +203,7 @@ impl<'lt> Default for DisplayPresentInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DisplayPresentInfoKhr,
             p_next: std::ptr::null(),
             src_rect: Default::default(),
             dst_rect: Default::default(),

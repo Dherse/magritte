@@ -514,7 +514,7 @@ impl<'lt> Default for ConditionalRenderingBeginInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ConditionalRenderingBeginInfoExt,
             p_next: std::ptr::null(),
             buffer: Default::default(),
             offset: Default::default(),
@@ -672,7 +672,7 @@ impl<'lt> Default for CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::CommandBufferInheritanceConditionalRenderingInfoExt,
             p_next: std::ptr::null(),
             conditional_rendering_enable: 0,
         }
@@ -817,7 +817,7 @@ impl<'lt> Default for PhysicalDeviceConditionalRenderingFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceConditionalRenderingFeaturesExt,
             p_next: std::ptr::null_mut(),
             conditional_rendering: 0,
             inherited_conditional_rendering: 0,

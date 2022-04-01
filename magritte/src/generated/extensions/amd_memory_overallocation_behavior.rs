@@ -184,7 +184,7 @@ impl<'lt> Default for DeviceMemoryOverallocationCreateInfoAMD<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceMemoryOverallocationCreateInfoAmd,
             p_next: std::ptr::null(),
             overallocation_behavior: Default::default(),
         }

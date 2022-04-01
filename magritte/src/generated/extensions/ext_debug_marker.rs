@@ -445,7 +445,7 @@ impl<'lt> Default for DebugMarkerObjectNameInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DebugMarkerObjectNameInfoExt,
             p_next: std::ptr::null(),
             object_type: Default::default(),
             object: 0,
@@ -623,7 +623,7 @@ impl<'lt> Default for DebugMarkerObjectTagInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DebugMarkerObjectTagInfoExt,
             p_next: std::ptr::null(),
             object_type: Default::default(),
             object: 0,
@@ -813,7 +813,7 @@ impl<'lt> Default for DebugMarkerMarkerInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DebugMarkerMarkerInfoExt,
             p_next: std::ptr::null(),
             marker_name: std::ptr::null(),
             color: [0.0; 4 as usize],

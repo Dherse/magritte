@@ -252,7 +252,7 @@ impl<'lt> Default for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt>
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDevicePipelineExecutablePropertiesFeaturesKhr,
             p_next: std::ptr::null_mut(),
             pipeline_executable_info: 0,
         }
@@ -389,7 +389,7 @@ impl<'lt> Default for PipelineInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineInfoKhr,
             p_next: std::ptr::null(),
             pipeline: Default::default(),
         }
@@ -528,7 +528,7 @@ impl<'lt> Default for PipelineExecutablePropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineExecutablePropertiesKhr,
             p_next: std::ptr::null_mut(),
             stages: Default::default(),
             name: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
@@ -700,7 +700,7 @@ impl<'lt> Default for PipelineExecutableInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineExecutableInfoKhr,
             p_next: std::ptr::null(),
             pipeline: Default::default(),
             executable_index: 0,
@@ -840,12 +840,12 @@ impl<'lt> Default for PipelineExecutableStatisticKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineExecutableStatisticKhr,
             p_next: std::ptr::null_mut(),
             name: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
             description: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
             format: Default::default(),
-            value: Default::default(),
+            value: unsafe { std::mem::zeroed() },
         }
     }
 }
@@ -1048,7 +1048,7 @@ impl<'lt> Default for PipelineExecutableInternalRepresentationKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineExecutableInternalRepresentationKhr,
             p_next: std::ptr::null_mut(),
             name: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
             description: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],

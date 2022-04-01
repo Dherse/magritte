@@ -120,7 +120,7 @@ impl<'lt> Default for PhysicalDevicePciBusInfoPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDevicePciBusInfoPropertiesExt,
             p_next: std::ptr::null_mut(),
             pci_domain: 0,
             pci_bus: 0,

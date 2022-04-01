@@ -172,7 +172,7 @@ impl<'lt> Default for PhysicalDeviceSurfaceInfo2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceSurfaceInfo2Khr,
             p_next: std::ptr::null(),
             surface: Default::default(),
         }
@@ -284,7 +284,7 @@ impl<'lt> Default for SurfaceCapabilities2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SurfaceCapabilities2Khr,
             p_next: std::ptr::null_mut(),
             surface_capabilities: Default::default(),
         }
@@ -402,7 +402,7 @@ impl<'lt> Default for SurfaceFormat2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SurfaceFormat2Khr,
             p_next: std::ptr::null_mut(),
             surface_format: Default::default(),
         }

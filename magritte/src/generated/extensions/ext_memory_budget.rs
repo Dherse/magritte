@@ -144,7 +144,7 @@ impl<'lt> Default for PhysicalDeviceMemoryBudgetPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceMemoryBudgetPropertiesExt,
             p_next: std::ptr::null_mut(),
             heap_budget: [Default::default(); MAX_MEMORY_HEAPS as usize],
             heap_usage: [Default::default(); MAX_MEMORY_HEAPS as usize],

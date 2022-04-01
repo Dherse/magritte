@@ -183,11 +183,11 @@ impl<'lt> Default for ImportMemoryWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImportMemoryWin32HandleInfoKhr,
             p_next: std::ptr::null(),
             handle_type: Default::default(),
-            handle: Default::default(),
-            name: Default::default(),
+            handle: unsafe { std::mem::zeroed() },
+            name: unsafe { std::mem::zeroed() },
         }
     }
 }
@@ -369,11 +369,11 @@ impl<'lt> Default for ExportMemoryWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ExportMemoryWin32HandleInfoKhr,
             p_next: std::ptr::null(),
             attributes: std::ptr::null(),
-            dw_access: Default::default(),
-            name: Default::default(),
+            dw_access: unsafe { std::mem::zeroed() },
+            name: unsafe { std::mem::zeroed() },
         }
     }
 }
@@ -521,7 +521,7 @@ impl<'lt> Default for MemoryWin32HandlePropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MemoryWin32HandlePropertiesKhr,
             p_next: std::ptr::null_mut(),
             memory_type_bits: 0,
         }
@@ -655,7 +655,7 @@ impl<'lt> Default for MemoryGetWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MemoryGetWin32HandleInfoKhr,
             p_next: std::ptr::null(),
             memory: Default::default(),
             handle_type: Default::default(),

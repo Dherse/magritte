@@ -155,12 +155,12 @@ impl<'lt> Default for ImportSemaphoreZirconHandleInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImportSemaphoreZirconHandleInfoFuchsia,
             p_next: std::ptr::null(),
             semaphore: Default::default(),
             flags: Default::default(),
             handle_type: Default::default(),
-            zircon_handle: Default::default(),
+            zircon_handle: unsafe { std::mem::zeroed() },
         }
     }
 }
@@ -335,7 +335,7 @@ impl<'lt> Default for SemaphoreGetZirconHandleInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SemaphoreGetZirconHandleInfoFuchsia,
             p_next: std::ptr::null(),
             semaphore: Default::default(),
             handle_type: Default::default(),

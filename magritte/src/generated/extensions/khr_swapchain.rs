@@ -1288,7 +1288,7 @@ impl<'lt> Default for SwapchainCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SwapchainCreateInfoKhr,
             p_next: std::ptr::null(),
             flags: Default::default(),
             surface: Default::default(),
@@ -1720,7 +1720,7 @@ impl<'lt> Default for PresentInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PresentInfoKhr,
             p_next: std::ptr::null(),
             wait_semaphore_count: 0,
             wait_semaphores: std::ptr::null(),

@@ -109,7 +109,7 @@ impl<'lt> Default for PhysicalDeviceImageViewImageFormatInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceImageViewImageFormatInfoExt,
             p_next: std::ptr::null_mut(),
             image_view_type: Default::default(),
         }
@@ -242,7 +242,7 @@ impl<'lt> Default for FilterCubicImageViewImageFormatPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::FilterCubicImageViewImageFormatPropertiesExt,
             p_next: std::ptr::null_mut(),
             filter_cubic: 0,
             filter_cubic_minmax: 0,

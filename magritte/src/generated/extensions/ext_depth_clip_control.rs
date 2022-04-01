@@ -135,7 +135,7 @@ impl<'lt> Default for PhysicalDeviceDepthClipControlFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceDepthClipControlFeaturesExt,
             p_next: std::ptr::null_mut(),
             depth_clip_control: 0,
         }
@@ -276,7 +276,7 @@ impl<'lt> Default for PipelineViewportDepthClipControlCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineViewportDepthClipControlCreateInfoExt,
             p_next: std::ptr::null(),
             negative_one_to_one: 0,
         }

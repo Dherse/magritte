@@ -152,10 +152,10 @@ impl<'lt> Default for StreamDescriptorSurfaceCreateInfoGGP<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::StreamDescriptorSurfaceCreateInfoGgp,
             p_next: std::ptr::null(),
             flags: Default::default(),
-            stream_descriptor: Default::default(),
+            stream_descriptor: unsafe { std::mem::zeroed() },
         }
     }
 }

@@ -651,7 +651,7 @@ impl<'lt> Default for ImportMemoryBufferCollectionFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImportMemoryBufferCollectionFuchsia,
             p_next: std::ptr::null(),
             collection: Default::default(),
             index: 0,
@@ -782,7 +782,7 @@ impl<'lt> Default for BufferCollectionImageCreateInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BufferCollectionImageCreateInfoFuchsia,
             p_next: std::ptr::null(),
             collection: Default::default(),
             index: 0,
@@ -913,7 +913,7 @@ impl<'lt> Default for BufferCollectionBufferCreateInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BufferCollectionBufferCreateInfoFuchsia,
             p_next: std::ptr::null(),
             collection: Default::default(),
             index: 0,
@@ -1041,9 +1041,9 @@ impl<'lt> Default for BufferCollectionCreateInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BufferCollectionCreateInfoFuchsia,
             p_next: std::ptr::null(),
-            collection_token: Default::default(),
+            collection_token: unsafe { std::mem::zeroed() },
         }
     }
 }
@@ -1243,7 +1243,7 @@ impl<'lt> Default for BufferCollectionPropertiesFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BufferCollectionPropertiesFuchsia,
             p_next: std::ptr::null_mut(),
             memory_type_bits: 0,
             buffer_count: 0,
@@ -1523,7 +1523,7 @@ impl<'lt> Default for BufferConstraintsInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BufferConstraintsInfoFuchsia,
             p_next: std::ptr::null(),
             create_info: Default::default(),
             required_format_features: Default::default(),
@@ -1664,7 +1664,7 @@ impl<'lt> Default for SysmemColorSpaceFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SysmemColorSpaceFuchsia,
             p_next: std::ptr::null(),
             color_space: 0,
         }
@@ -1811,7 +1811,7 @@ impl<'lt> Default for ImageFormatConstraintsInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImageFormatConstraintsInfoFuchsia,
             p_next: std::ptr::null(),
             image_create_info: Default::default(),
             required_format_features: Default::default(),
@@ -2064,7 +2064,7 @@ impl<'lt> Default for ImageConstraintsInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImageConstraintsInfoFuchsia,
             p_next: std::ptr::null(),
             format_constraints_count: 0,
             format_constraints: std::ptr::null(),
@@ -2268,7 +2268,7 @@ impl<'lt> Default for BufferCollectionConstraintsInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BufferCollectionConstraintsInfoFuchsia,
             p_next: std::ptr::null(),
             min_buffer_count: 0,
             max_buffer_count: 0,

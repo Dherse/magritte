@@ -373,7 +373,7 @@ impl<'lt> Default for ValidationFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ValidationFeaturesExt,
             p_next: std::ptr::null(),
             enabled_validation_feature_count: 0,
             enabled_validation_features: std::ptr::null(),

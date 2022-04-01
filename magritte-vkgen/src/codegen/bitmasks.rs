@@ -1,6 +1,6 @@
 use ahash::AHashMap;
-use convert_case::{Casing, Case};
-use proc_macro2::{Literal, TokenStream, Span, Ident};
+use convert_case::{Case, Casing};
+use proc_macro2::{Ident, Literal, Span, TokenStream};
 use quote::quote;
 use tracing::warn;
 
@@ -14,13 +14,16 @@ use crate::{
 
 impl<'a> Bit<'a> {
     /// Generates an identifier for flags
-    fn as_flag_ident(&self) -> Ident {
+    pub fn as_flag_ident(&self) -> Ident {
         let name = self.name().to_case(Case::ScreamingSnake);
-        Ident::new(&if name.starts_with(char::is_numeric) {
-            format!("_{}", self.name().to_case(Case::ScreamingSnake))
-        } else {
-            self.name().to_case(Case::ScreamingSnake)
-        }, Span::call_site())
+        Ident::new(
+            &if name.starts_with(char::is_numeric) {
+                format!("_{}", self.name().to_case(Case::ScreamingSnake))
+            } else {
+                self.name().to_case(Case::ScreamingSnake)
+            },
+            Span::call_site(),
+        )
     }
 
     /// Generate the code for a Bitflag variant

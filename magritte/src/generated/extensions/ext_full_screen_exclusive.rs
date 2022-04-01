@@ -277,7 +277,7 @@ impl<'lt> Default for SurfaceFullScreenExclusiveInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SurfaceFullScreenExclusiveInfoExt,
             p_next: std::ptr::null_mut(),
             full_screen_exclusive: Default::default(),
         }
@@ -395,9 +395,9 @@ impl<'lt> Default for SurfaceFullScreenExclusiveWin32InfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SurfaceFullScreenExclusiveWin32InfoExt,
             p_next: std::ptr::null(),
-            hmonitor: Default::default(),
+            hmonitor: unsafe { std::mem::zeroed() },
         }
     }
 }
@@ -518,7 +518,7 @@ impl<'lt> Default for SurfaceCapabilitiesFullScreenExclusiveEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SurfaceCapabilitiesFullScreenExclusiveExt,
             p_next: std::ptr::null_mut(),
             full_screen_exclusive_supported: 0,
         }

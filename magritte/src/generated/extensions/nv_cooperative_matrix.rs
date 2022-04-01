@@ -322,7 +322,7 @@ impl<'lt> Default for PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceCooperativeMatrixFeaturesNv,
             p_next: std::ptr::null_mut(),
             cooperative_matrix: 0,
             cooperative_matrix_robust_buffer_access: 0,
@@ -507,7 +507,7 @@ impl<'lt> Default for PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceCooperativeMatrixPropertiesNv,
             p_next: std::ptr::null_mut(),
             cooperative_matrix_supported_stages: Default::default(),
         }
@@ -678,7 +678,7 @@ impl<'lt> Default for CooperativeMatrixPropertiesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::CooperativeMatrixPropertiesNv,
             p_next: std::ptr::null_mut(),
             m_size: 0,
             n_size: 0,

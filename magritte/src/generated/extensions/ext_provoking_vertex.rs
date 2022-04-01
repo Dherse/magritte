@@ -238,7 +238,7 @@ impl<'lt> Default for PhysicalDeviceProvokingVertexFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceProvokingVertexFeaturesExt,
             p_next: std::ptr::null_mut(),
             provoking_vertex_last: 0,
             transform_feedback_preserves_provoking_vertex: 0,
@@ -427,7 +427,7 @@ impl<'lt> Default for PhysicalDeviceProvokingVertexPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceProvokingVertexPropertiesExt,
             p_next: std::ptr::null_mut(),
             provoking_vertex_mode_per_pipeline: 0,
             transform_feedback_preserves_triangle_fan_provoking_vertex: 0,
@@ -618,7 +618,7 @@ impl<'lt> Default for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'lt
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineRasterizationProvokingVertexStateCreateInfoExt,
             p_next: std::ptr::null(),
             provoking_vertex_mode: Default::default(),
         }

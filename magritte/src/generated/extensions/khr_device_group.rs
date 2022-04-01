@@ -650,7 +650,7 @@ impl<'lt> Default for DeviceGroupPresentCapabilitiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceGroupPresentCapabilitiesKhr,
             p_next: std::ptr::null_mut(),
             present_mask: [0; MAX_DEVICE_GROUP_SIZE as usize],
             modes: Default::default(),
@@ -790,7 +790,7 @@ impl<'lt> Default for ImageSwapchainCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImageSwapchainCreateInfoKhr,
             p_next: std::ptr::null(),
             swapchain: Default::default(),
         }
@@ -917,7 +917,7 @@ impl<'lt> Default for BindImageMemorySwapchainInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BindImageMemorySwapchainInfoKhr,
             p_next: std::ptr::null(),
             swapchain: Default::default(),
             image_index: 0,
@@ -1088,7 +1088,7 @@ impl<'lt> Default for AcquireNextImageInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AcquireNextImageInfoKhr,
             p_next: std::ptr::null(),
             swapchain: Default::default(),
             timeout: 0,
@@ -1319,7 +1319,7 @@ impl<'lt> Default for DeviceGroupPresentInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceGroupPresentInfoKhr,
             p_next: std::ptr::null(),
             swapchain_count: 0,
             device_masks: std::ptr::null(),
@@ -1474,7 +1474,7 @@ impl<'lt> Default for DeviceGroupSwapchainCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceGroupSwapchainCreateInfoKhr,
             p_next: std::ptr::null(),
             modes: Default::default(),
         }

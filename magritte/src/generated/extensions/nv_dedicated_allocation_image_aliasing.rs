@@ -111,7 +111,7 @@ impl<'lt> Default for PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNv,
             p_next: std::ptr::null_mut(),
             dedicated_allocation_image_aliasing: 0,
         }

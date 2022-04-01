@@ -161,7 +161,7 @@ impl<'lt> Default for ViSurfaceCreateInfoNN<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ViSurfaceCreateInfoNn,
             p_next: std::ptr::null(),
             flags: Default::default(),
             window: std::ptr::null_mut(),

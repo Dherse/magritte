@@ -361,7 +361,7 @@ impl<'lt> Default for PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> 
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceConservativeRasterizationPropertiesExt,
             p_next: std::ptr::null_mut(),
             primitive_overestimation_size: 0.0,
             max_extra_primitive_overestimation_size: 0.0,
@@ -764,7 +764,7 @@ impl<'lt> Default for PipelineRasterizationConservativeStateCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineRasterizationConservativeStateCreateInfoExt,
             p_next: std::ptr::null(),
             flags: Default::default(),
             conservative_rasterization_mode: Default::default(),

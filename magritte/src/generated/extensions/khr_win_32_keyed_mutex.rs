@@ -169,7 +169,7 @@ impl<'lt> Default for Win32KeyedMutexAcquireReleaseInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::Win32KeyedMutexAcquireReleaseInfoKhr,
             p_next: std::ptr::null(),
             acquire_count: 0,
             acquire_syncs: std::ptr::null(),

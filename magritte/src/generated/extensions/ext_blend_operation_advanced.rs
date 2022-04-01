@@ -302,7 +302,7 @@ impl<'lt> Default for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceBlendOperationAdvancedFeaturesExt,
             p_next: std::ptr::null_mut(),
             advanced_blend_coherent_operations: 0,
         }
@@ -486,7 +486,7 @@ impl<'lt> Default for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceBlendOperationAdvancedPropertiesExt,
             p_next: std::ptr::null_mut(),
             advanced_blend_max_color_attachments: 0,
             advanced_blend_independent_blend: 0,
@@ -817,7 +817,7 @@ impl<'lt> Default for PipelineColorBlendAdvancedStateCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineColorBlendAdvancedStateCreateInfoExt,
             p_next: std::ptr::null(),
             src_premultiplied: 0,
             dst_premultiplied: 0,

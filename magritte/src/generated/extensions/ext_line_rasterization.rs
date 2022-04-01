@@ -259,7 +259,7 @@ impl<'lt> Default for PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceLineRasterizationFeaturesExt,
             p_next: std::ptr::null_mut(),
             rectangular_lines: 0,
             bresenham_lines: 0,
@@ -586,7 +586,7 @@ impl<'lt> Default for PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceLineRasterizationPropertiesExt,
             p_next: std::ptr::null_mut(),
             line_sub_pixel_precision_bits: 0,
         }
@@ -732,7 +732,7 @@ impl<'lt> Default for PipelineRasterizationLineStateCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineRasterizationLineStateCreateInfoExt,
             p_next: std::ptr::null(),
             line_rasterization_mode: Default::default(),
             stippled_line_enable: 0,

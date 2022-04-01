@@ -133,7 +133,7 @@ impl<'lt> Default for ImageViewHandleInfoNVX<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImageViewHandleInfoNvx,
             p_next: std::ptr::null(),
             image_view: Default::default(),
             descriptor_type: Default::default(),
@@ -272,7 +272,7 @@ impl<'lt> Default for ImageViewAddressPropertiesNVX<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImageViewAddressPropertiesNvx,
             p_next: std::ptr::null_mut(),
             device_address: Default::default(),
             size: Default::default(),

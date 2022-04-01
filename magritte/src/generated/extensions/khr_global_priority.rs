@@ -276,7 +276,7 @@ impl<'lt> Default for DeviceQueueGlobalPriorityCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceQueueGlobalPriorityCreateInfoKhr,
             p_next: std::ptr::null(),
             global_priority: Default::default(),
         }
@@ -403,7 +403,7 @@ impl<'lt> Default for PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceGlobalPriorityQueryFeaturesKhr,
             p_next: std::ptr::null_mut(),
             global_priority_query: 0,
         }
@@ -560,7 +560,7 @@ impl<'lt> Default for QueueFamilyGlobalPriorityPropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::QueueFamilyGlobalPriorityPropertiesKhr,
             p_next: std::ptr::null_mut(),
             priority_count: 0,
             priorities: [Default::default(); MAX_GLOBAL_PRIORITY_SIZE_KHR as usize],

@@ -115,7 +115,7 @@ impl<'lt> Default for PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKhr,
             p_next: std::ptr::null_mut(),
             shader_subgroup_uniform_control_flow: 0,
         }

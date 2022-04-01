@@ -55,7 +55,7 @@ impl<'a> FunctionPointer<'a> {
         quote::quote_each_token! {
             out
 
-            pub type #name = #lifetime Option<unsafe extern "system" fn(#(#args),*) #ret>;
+            pub type #name = Option<#lifetime unsafe extern "system" fn(#(#args),*) #ret>;
         }
     }
 

@@ -155,7 +155,7 @@ impl<'lt> Default for DirectFBSurfaceCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DirectfbSurfaceCreateInfoExt,
             p_next: std::ptr::null(),
             flags: Default::default(),
             dfb: std::ptr::null_mut(),

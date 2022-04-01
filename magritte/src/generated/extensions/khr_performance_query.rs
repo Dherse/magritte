@@ -1143,7 +1143,7 @@ impl<'lt> Default for PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDevicePerformanceQueryFeaturesKhr,
             p_next: std::ptr::null_mut(),
             performance_counter_query_pools: 0,
             performance_counter_multiple_query_pools: 0,
@@ -1322,7 +1322,7 @@ impl<'lt> Default for PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDevicePerformanceQueryPropertiesKhr,
             p_next: std::ptr::null_mut(),
             allow_command_buffer_query_copies: 0,
         }
@@ -1481,7 +1481,7 @@ impl<'lt> Default for PerformanceCounterKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PerformanceCounterKhr,
             p_next: std::ptr::null_mut(),
             unit: Default::default(),
             scope: Default::default(),
@@ -1668,7 +1668,7 @@ impl<'lt> Default for PerformanceCounterDescriptionKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PerformanceCounterDescriptionKhr,
             p_next: std::ptr::null_mut(),
             flags: Default::default(),
             name: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
@@ -1855,7 +1855,7 @@ impl<'lt> Default for QueryPoolPerformanceCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::QueryPoolPerformanceCreateInfoKhr,
             p_next: std::ptr::null(),
             queue_family_index: 0,
             counter_index_count: 0,
@@ -2011,7 +2011,7 @@ impl<'lt> Default for AcquireProfilingLockInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AcquireProfilingLockInfoKhr,
             p_next: std::ptr::null(),
             flags: Default::default(),
             timeout: 0,
@@ -2138,7 +2138,7 @@ impl<'lt> Default for PerformanceQuerySubmitInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PerformanceQuerySubmitInfoKhr,
             p_next: std::ptr::null(),
             counter_pass_index: 0,
         }

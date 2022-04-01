@@ -162,7 +162,7 @@ impl<'lt> Default for ImportSemaphoreFdInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImportSemaphoreFdInfoKhr,
             p_next: std::ptr::null(),
             semaphore: Default::default(),
             flags: Default::default(),
@@ -338,7 +338,7 @@ impl<'lt> Default for SemaphoreGetFdInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SemaphoreGetFdInfoKhr,
             p_next: std::ptr::null(),
             semaphore: Default::default(),
             handle_type: Default::default(),

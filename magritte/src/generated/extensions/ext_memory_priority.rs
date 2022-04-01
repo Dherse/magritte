@@ -112,7 +112,7 @@ impl<'lt> Default for PhysicalDeviceMemoryPriorityFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceMemoryPriorityFeaturesExt,
             p_next: std::ptr::null_mut(),
             memory_priority: 0,
         }
@@ -259,7 +259,7 @@ impl<'lt> Default for MemoryPriorityAllocateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MemoryPriorityAllocateInfoExt,
             p_next: std::ptr::null(),
             priority: 0.0,
         }

@@ -427,7 +427,7 @@ impl<'lt> Default for PipelineCompilerControlCreateInfoAMD<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineCompilerControlCreateInfoAmd,
             p_next: std::ptr::null(),
             compiler_control_flags: Default::default(),
         }

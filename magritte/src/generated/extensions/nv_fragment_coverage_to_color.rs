@@ -177,7 +177,7 @@ impl<'lt> Default for PipelineCoverageToColorStateCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineCoverageToColorStateCreateInfoNv,
             p_next: std::ptr::null(),
             flags: Default::default(),
             coverage_to_color_enable: 0,

@@ -105,7 +105,7 @@ impl<'lt> Default for PhysicalDeviceIndexTypeUint8FeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceIndexTypeUint8FeaturesExt,
             p_next: std::ptr::null_mut(),
             index_type_uint_8: 0,
         }

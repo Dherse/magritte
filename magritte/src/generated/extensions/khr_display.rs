@@ -1751,7 +1751,7 @@ impl<'lt> Default for DisplayModeCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DisplayModeCreateInfoKhr,
             p_next: std::ptr::null(),
             flags: Default::default(),
             parameters: Default::default(),
@@ -2189,7 +2189,7 @@ impl<'lt> Default for DisplaySurfaceCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DisplaySurfaceCreateInfoKhr,
             p_next: std::ptr::null(),
             flags: Default::default(),
             display_mode: Default::default(),

@@ -146,7 +146,7 @@ impl<'lt> Default for ImportFenceFdInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImportFenceFdInfoKhr,
             p_next: std::ptr::null(),
             fence: Default::default(),
             flags: Default::default(),
@@ -316,7 +316,7 @@ impl<'lt> Default for FenceGetFdInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::FenceGetFdInfoKhr,
             p_next: std::ptr::null(),
             fence: Default::default(),
             handle_type: Default::default(),

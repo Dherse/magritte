@@ -121,7 +121,7 @@ impl<'lt> Default for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceTexelBufferAlignmentFeaturesExt,
             p_next: std::ptr::null_mut(),
             texel_buffer_alignment: 0,
         }

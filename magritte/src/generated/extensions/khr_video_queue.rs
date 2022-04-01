@@ -3097,7 +3097,7 @@ impl<'lt> Default for VideoQueueFamilyProperties2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoQueueFamilyProperties2Khr,
             p_next: std::ptr::null_mut(),
             video_codec_operations: Default::default(),
         }
@@ -3215,7 +3215,7 @@ impl<'lt> Default for QueueFamilyQueryResultStatusProperties2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::QueueFamilyQueryResultStatusProperties2Khr,
             p_next: std::ptr::null_mut(),
             supported: 0,
         }
@@ -3364,7 +3364,7 @@ impl<'lt> Default for VideoProfilesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoProfilesKhr,
             p_next: std::ptr::null_mut(),
             profile_count: 0,
             profiles: std::ptr::null(),
@@ -3524,7 +3524,7 @@ impl<'lt> Default for PhysicalDeviceVideoFormatInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceVideoFormatInfoKhr,
             p_next: std::ptr::null_mut(),
             image_usage: Default::default(),
             video_profiles: std::ptr::null(),
@@ -3667,7 +3667,7 @@ impl<'lt> Default for VideoFormatPropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoFormatPropertiesKhr,
             p_next: std::ptr::null_mut(),
             format: Default::default(),
         }
@@ -3816,7 +3816,7 @@ impl<'lt> Default for VideoProfileKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoProfileKhr,
             p_next: std::ptr::null_mut(),
             video_codec_operation: Default::default(),
             chroma_subsampling: Default::default(),
@@ -4032,7 +4032,7 @@ impl<'lt> Default for VideoCapabilitiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoCapabilitiesKhr,
             p_next: std::ptr::null_mut(),
             capability_flags: Default::default(),
             min_bitstream_buffer_offset_alignment: Default::default(),
@@ -4256,7 +4256,7 @@ impl<'lt> Default for VideoGetMemoryPropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoGetMemoryPropertiesKhr,
             p_next: std::ptr::null(),
             memory_bind_index: 0,
             memory_requirements: std::ptr::null_mut(),
@@ -4414,7 +4414,7 @@ impl<'lt> Default for VideoBindMemoryKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoBindMemoryKhr,
             p_next: std::ptr::null(),
             memory_bind_index: 0,
             memory: Default::default(),
@@ -4582,7 +4582,7 @@ impl<'lt> Default for VideoPictureResourceKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoPictureResourceKhr,
             p_next: std::ptr::null(),
             coded_offset: Default::default(),
             coded_extent: Default::default(),
@@ -4744,7 +4744,7 @@ impl<'lt> Default for VideoReferenceSlotKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoReferenceSlotKhr,
             p_next: std::ptr::null(),
             slot_index: 0,
             picture_resource: std::ptr::null(),
@@ -4968,7 +4968,7 @@ impl<'lt> Default for VideoSessionCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoSessionCreateInfoKhr,
             p_next: std::ptr::null(),
             queue_family_index: 0,
             flags: Default::default(),
@@ -5224,7 +5224,7 @@ impl<'lt> Default for VideoSessionParametersCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoSessionParametersCreateInfoKhr,
             p_next: std::ptr::null(),
             video_session_parameters_template: Default::default(),
             video_session: Default::default(),
@@ -5355,7 +5355,7 @@ impl<'lt> Default for VideoSessionParametersUpdateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoSessionParametersUpdateInfoKhr,
             p_next: std::ptr::null(),
             update_sequence_count: 0,
         }
@@ -5534,7 +5534,7 @@ impl<'lt> Default for VideoBeginCodingInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoBeginCodingInfoKhr,
             p_next: std::ptr::null(),
             flags: Default::default(),
             codec_quality_preset: Default::default(),
@@ -5731,7 +5731,7 @@ impl<'lt> Default for VideoEndCodingInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoEndCodingInfoKhr,
             p_next: std::ptr::null(),
             flags: Default::default(),
         }
@@ -5848,7 +5848,7 @@ impl<'lt> Default for VideoCodingControlInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoCodingControlInfoKhr,
             p_next: std::ptr::null(),
             flags: Default::default(),
         }

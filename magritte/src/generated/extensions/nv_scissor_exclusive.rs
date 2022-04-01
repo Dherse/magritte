@@ -128,7 +128,7 @@ impl<'lt> Default for PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceExclusiveScissorFeaturesNv,
             p_next: std::ptr::null_mut(),
             exclusive_scissor: 0,
         }
@@ -286,7 +286,7 @@ impl<'lt> Default for PipelineViewportExclusiveScissorStateCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineViewportExclusiveScissorStateCreateInfoNv,
             p_next: std::ptr::null(),
             exclusive_scissor_count: 0,
             exclusive_scissors: std::ptr::null(),

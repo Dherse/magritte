@@ -128,10 +128,10 @@ impl<'lt> Default for ImportMemoryZirconHandleInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImportMemoryZirconHandleInfoFuchsia,
             p_next: std::ptr::null(),
             handle_type: Default::default(),
-            handle: Default::default(),
+            handle: unsafe { std::mem::zeroed() },
         }
     }
 }
@@ -258,7 +258,7 @@ impl<'lt> Default for MemoryZirconHandlePropertiesFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MemoryZirconHandlePropertiesFuchsia,
             p_next: std::ptr::null_mut(),
             memory_type_bits: 0,
         }
@@ -386,7 +386,7 @@ impl<'lt> Default for MemoryGetZirconHandleInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MemoryGetZirconHandleInfoFuchsia,
             p_next: std::ptr::null(),
             memory: Default::default(),
             handle_type: Default::default(),

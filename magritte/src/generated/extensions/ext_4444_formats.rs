@@ -134,7 +134,7 @@ impl<'lt> Default for PhysicalDevice4444FormatsFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDevice4444FormatsFeaturesExt,
             p_next: std::ptr::null_mut(),
             format_a_4_r_4_g_4_b_4: 0,
             format_a_4_b_4_g_4_r_4: 0,

@@ -171,7 +171,7 @@ impl<'lt> Default for MetalSurfaceCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MetalSurfaceCreateInfoExt,
             p_next: std::ptr::null(),
             flags: Default::default(),
             layer: std::ptr::null(),

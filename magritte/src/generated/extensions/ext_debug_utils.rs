@@ -210,7 +210,7 @@ pub const EXT_DEBUG_UTILS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_d
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "PFN_vkDebugUtilsMessengerCallbackEXT")]
 pub type PFNDebugUtilsMessengerCallbackEXT = Option<
-    unsafe extern "system" fn(
+    for<'lt> unsafe extern "system" fn(
         message_severity: DebugUtilsMessageSeverityFlagBitsEXT,
         message_types: DebugUtilsMessageTypeFlagsEXT,
         p_callback_data: *const DebugUtilsMessengerCallbackDataEXT<'lt>,
@@ -1182,7 +1182,7 @@ impl<'lt> Default for DebugUtilsObjectNameInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DebugUtilsObjectNameInfoExt,
             p_next: std::ptr::null(),
             object_type: Default::default(),
             object_handle: 0,
@@ -1354,7 +1354,7 @@ impl<'lt> Default for DebugUtilsObjectTagInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DebugUtilsObjectTagInfoExt,
             p_next: std::ptr::null(),
             object_type: Default::default(),
             object_handle: 0,
@@ -1544,7 +1544,7 @@ impl<'lt> Default for DebugUtilsLabelEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DebugUtilsLabelExt,
             p_next: std::ptr::null(),
             label_name: std::ptr::null(),
             color: [0.0; 4 as usize],
@@ -1728,12 +1728,12 @@ impl<'lt> Default for DebugUtilsMessengerCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DebugUtilsMessengerCreateInfoExt,
             p_next: std::ptr::null(),
             flags: Default::default(),
             message_severity: Default::default(),
             message_type: Default::default(),
-            pfn_user_callback: Default::default(),
+            pfn_user_callback: None,
             user_data: std::ptr::null_mut(),
         }
     }
@@ -2000,7 +2000,7 @@ impl<'lt> Default for DebugUtilsMessengerCallbackDataEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DebugUtilsMessengerCallbackDataExt,
             p_next: std::ptr::null(),
             flags: Default::default(),
             message_id_name: std::ptr::null(),

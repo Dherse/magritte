@@ -200,7 +200,10 @@ pub const EXT_DEVICE_MEMORY_REPORT_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "PFN_vkDeviceMemoryReportCallbackEXT")]
 pub type PFNDeviceMemoryReportCallbackEXT = Option<
-    unsafe extern "system" fn(p_callback_data: *const DeviceMemoryReportCallbackDataEXT<'lt>, p_user_data: *mut c_void),
+    for<'lt> unsafe extern "system" fn(
+        p_callback_data: *const DeviceMemoryReportCallbackDataEXT<'lt>,
+        p_user_data: *mut c_void,
+    ),
 >;
 ///[VkDeviceMemoryReportEventTypeEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemoryReportEventTypeEXT.html) - Events that can occur on a device memory object
 ///# C Specifications
@@ -383,7 +386,7 @@ impl<'lt> Default for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceDeviceMemoryReportFeaturesExt,
             p_next: std::ptr::null_mut(),
             device_memory_report: 0,
         }
@@ -534,10 +537,10 @@ impl<'lt> Default for DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceDeviceMemoryReportCreateInfoExt,
             p_next: std::ptr::null(),
             flags: Default::default(),
-            pfn_user_callback: Default::default(),
+            pfn_user_callback: None,
             user_data: std::ptr::null_mut(),
         }
     }
@@ -778,7 +781,7 @@ impl<'lt> Default for DeviceMemoryReportCallbackDataEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceMemoryReportCallbackDataExt,
             p_next: std::ptr::null_mut(),
             flags: Default::default(),
             type_: Default::default(),

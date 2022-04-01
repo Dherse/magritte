@@ -118,7 +118,7 @@ impl<'lt> Default for PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceShaderSmBuiltinsPropertiesNv,
             p_next: std::ptr::null_mut(),
             shader_sm_count: 0,
             shader_warps_per_sm: 0,
@@ -255,7 +255,7 @@ impl<'lt> Default for PhysicalDeviceShaderSmBuiltinsFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceShaderSmBuiltinsFeaturesNv,
             p_next: std::ptr::null_mut(),
             shader_sm_builtins: 0,
         }

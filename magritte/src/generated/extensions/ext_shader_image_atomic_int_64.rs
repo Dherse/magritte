@@ -124,7 +124,7 @@ impl<'lt> Default for PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceShaderImageAtomicInt64FeaturesExt,
             p_next: std::ptr::null_mut(),
             shader_image_int_64_atomics: 0,
             sparse_image_int_64_atomics: 0,

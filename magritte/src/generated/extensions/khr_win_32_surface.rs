@@ -210,11 +210,11 @@ impl<'lt> Default for Win32SurfaceCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::Win32SurfaceCreateInfoKhr,
             p_next: std::ptr::null(),
             flags: Default::default(),
-            hinstance: Default::default(),
-            hwnd: Default::default(),
+            hinstance: unsafe { std::mem::zeroed() },
+            hwnd: unsafe { std::mem::zeroed() },
         }
     }
 }

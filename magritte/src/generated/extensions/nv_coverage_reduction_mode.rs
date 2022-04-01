@@ -250,7 +250,7 @@ impl<'lt> Default for PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceCoverageReductionModeFeaturesNv,
             p_next: std::ptr::null_mut(),
             coverage_reduction_mode: 0,
         }
@@ -404,7 +404,7 @@ impl<'lt> Default for PipelineCoverageReductionStateCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineCoverageReductionStateCreateInfoNv,
             p_next: std::ptr::null(),
             flags: Default::default(),
             coverage_reduction_mode: Default::default(),
@@ -556,7 +556,7 @@ impl<'lt> Default for FramebufferMixedSamplesCombinationNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::FramebufferMixedSamplesCombinationNv,
             p_next: std::ptr::null_mut(),
             coverage_reduction_mode: Default::default(),
             rasterization_samples: Default::default(),

@@ -585,9 +585,9 @@ impl<'lt> Default for VideoDecodeH264ProfileEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoDecodeH264ProfileExt,
             p_next: std::ptr::null(),
-            std_profile_idc: Default::default(),
+            std_profile_idc: unsafe { std::mem::zeroed() },
             picture_layout: Default::default(),
         }
     }
@@ -737,7 +737,7 @@ impl<'lt> Default for VideoDecodeH264CapabilitiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoDecodeH264CapabilitiesExt,
             p_next: std::ptr::null_mut(),
             max_level: 0,
             field_offset_granularity: Default::default(),
@@ -892,7 +892,7 @@ impl<'lt> Default for VideoDecodeH264SessionCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoDecodeH264SessionCreateInfoExt,
             p_next: std::ptr::null(),
             flags: Default::default(),
             std_extension_version: std::ptr::null(),
@@ -1077,7 +1077,7 @@ impl<'lt> Default for VideoDecodeH264SessionParametersAddInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoDecodeH264SessionParametersAddInfoExt,
             p_next: std::ptr::null(),
             sps_std_count: 0,
             sps_std: std::ptr::null(),
@@ -1256,7 +1256,7 @@ impl<'lt> Default for VideoDecodeH264SessionParametersCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoDecodeH264SessionParametersCreateInfoExt,
             p_next: std::ptr::null(),
             max_sps_std_count: 0,
             max_pps_std_count: 0,
@@ -1421,7 +1421,7 @@ impl<'lt> Default for VideoDecodeH264PictureInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoDecodeH264PictureInfoExt,
             p_next: std::ptr::null(),
             std_picture_info: std::ptr::null(),
             slices_count: 0,
@@ -1568,7 +1568,7 @@ impl<'lt> Default for VideoDecodeH264DpbSlotInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoDecodeH264DpbSlotInfoExt,
             p_next: std::ptr::null(),
             std_reference_info: std::ptr::null(),
         }
@@ -1675,7 +1675,7 @@ impl<'lt> Default for VideoDecodeH264MvcEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoDecodeH264MvcExt,
             p_next: std::ptr::null(),
             std_mvc: std::ptr::null(),
         }

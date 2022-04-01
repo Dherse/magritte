@@ -547,7 +547,7 @@ impl<'lt> Default for PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineViewportShadingRateImageStateCreateInfoNv,
             p_next: std::ptr::null(),
             shading_rate_image_enable: 0,
             viewport_count: 0,
@@ -739,7 +739,7 @@ impl<'lt> Default for PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceShadingRateImageFeaturesNv,
             p_next: std::ptr::null_mut(),
             shading_rate_image: 0,
             shading_rate_coarse_sample_order: 0,
@@ -940,7 +940,7 @@ impl<'lt> Default for PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceShadingRateImagePropertiesNv,
             p_next: std::ptr::null_mut(),
             shading_rate_texel_size: Default::default(),
             shading_rate_palette_size: 0,
@@ -1393,7 +1393,7 @@ impl<'lt> Default for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineViewportCoarseSampleOrderStateCreateInfoNv,
             p_next: std::ptr::null(),
             sample_order_type: Default::default(),
             custom_sample_order_count: 0,

@@ -297,7 +297,7 @@ impl<'lt> Default for PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesAR
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesArm,
             p_next: std::ptr::null_mut(),
             rasterization_order_color_attachment_access: 0,
             rasterization_order_depth_attachment_access: 0,

@@ -76,7 +76,7 @@ impl<'a> Union<'a> {
     }
 
     /// Checks if this union needs a lifetime
-    pub fn has_lifetime(&self, source: &Source<'a>, ) -> bool {
+    pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
         self.fields.iter().any(|f| f.has_lifetime(source, false))
     }
 

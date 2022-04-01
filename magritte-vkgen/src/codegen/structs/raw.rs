@@ -452,7 +452,7 @@ impl<'a> Field<'a> {
     pub(super) fn generate_default(&self, source: &Source<'a>, imports: &Imports) -> TokenStream {
         let name = self.as_ident();
 
-        let default = self.ty().default_tokens(source, Some(imports));
+        let default = self.ty().default_tokens(source, Some(imports), self.value());
 
         quote! {
             #name: #default

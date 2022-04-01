@@ -198,13 +198,13 @@ impl<'lt> Default for ImportSemaphoreWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImportSemaphoreWin32HandleInfoKhr,
             p_next: std::ptr::null(),
             semaphore: Default::default(),
             flags: Default::default(),
             handle_type: Default::default(),
-            handle: Default::default(),
-            name: Default::default(),
+            handle: unsafe { std::mem::zeroed() },
+            name: unsafe { std::mem::zeroed() },
         }
     }
 }
@@ -416,11 +416,11 @@ impl<'lt> Default for ExportSemaphoreWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ExportSemaphoreWin32HandleInfoKhr,
             p_next: std::ptr::null(),
             attributes: std::ptr::null(),
-            dw_access: Default::default(),
-            name: Default::default(),
+            dw_access: unsafe { std::mem::zeroed() },
+            name: unsafe { std::mem::zeroed() },
         }
     }
 }
@@ -611,7 +611,7 @@ impl<'lt> Default for D3D12FenceSubmitInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::D3D12FenceSubmitInfoKhr,
             p_next: std::ptr::null(),
             wait_semaphore_values_count: 0,
             wait_semaphore_values: std::ptr::null(),
@@ -808,7 +808,7 @@ impl<'lt> Default for SemaphoreGetWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SemaphoreGetWin32HandleInfoKhr,
             p_next: std::ptr::null(),
             semaphore: Default::default(),
             handle_type: Default::default(),

@@ -139,7 +139,7 @@ impl<'lt> Default for DisplayProperties2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DisplayProperties2Khr,
             p_next: std::ptr::null_mut(),
             display_properties: Default::default(),
         }
@@ -256,7 +256,7 @@ impl<'lt> Default for DisplayPlaneProperties2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DisplayPlaneProperties2Khr,
             p_next: std::ptr::null_mut(),
             display_plane_properties: Default::default(),
         }
@@ -373,7 +373,7 @@ impl<'lt> Default for DisplayModeProperties2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DisplayModeProperties2Khr,
             p_next: std::ptr::null_mut(),
             display_mode_properties: Default::default(),
         }
@@ -502,7 +502,7 @@ impl<'lt> Default for DisplayPlaneInfo2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DisplayPlaneInfo2Khr,
             p_next: std::ptr::null(),
             mode: Default::default(),
             plane_index: 0,
@@ -622,7 +622,7 @@ impl<'lt> Default for DisplayPlaneCapabilities2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DisplayPlaneCapabilities2Khr,
             p_next: std::ptr::null_mut(),
             capabilities: Default::default(),
         }

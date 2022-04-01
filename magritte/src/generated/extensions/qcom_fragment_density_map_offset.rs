@@ -116,7 +116,7 @@ impl<'lt> Default for PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceFragmentDensityMapOffsetFeaturesQcom,
             p_next: std::ptr::null_mut(),
             fragment_density_map_offset: 0,
         }
@@ -258,7 +258,7 @@ impl<'lt> Default for PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> 
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceFragmentDensityMapOffsetPropertiesQcom,
             p_next: std::ptr::null_mut(),
             fragment_density_offset_granularity: Default::default(),
         }
@@ -431,7 +431,7 @@ impl<'lt> Default for SubpassFragmentDensityMapOffsetEndInfoQCOM<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SubpassFragmentDensityMapOffsetEndInfoQcom,
             p_next: std::ptr::null(),
             fragment_density_offset_count: 0,
             fragment_density_offsets: std::ptr::null(),

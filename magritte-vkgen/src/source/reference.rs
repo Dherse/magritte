@@ -1,8 +1,10 @@
 //! # Reference
 //! References for elements of a source
 
-use proc_macro2::Ident;
+use proc_macro2::{Ident, TokenStream};
+use quote::quote;
 use syn::{Path, PathSegment};
+use tracing::warn;
 
 use crate::{doc::Queryable, imports::Imports};
 
@@ -433,9 +435,8 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
             TypeRef::Struct(struct_) => struct_.has_lifetime(source),
             TypeRef::Union(union_) => union_.has_lifetime(source),
 
-            // in the case of function pointers, one of the fields may have a lifetime requiring the following
-            // notation: `for<'a> fn(this: &'a Value)`
-            TypeRef::FunctionPointer(func) => func.has_lifetime(source),
+            // in the case of function pointers, there is never a lifetime because they are defined internally
+            TypeRef::FunctionPointer(_) => false,
             TypeRef::OpaqueType(_)
             | TypeRef::Handle(_)
             | TypeRef::Basetype(_)
@@ -537,6 +538,74 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
             TypeRef::Struct(struct_) => struct_.is_serde(source),
             TypeRef::Basetype(_) | TypeRef::Bitmask(_) | TypeRef::BitFlag(_) | TypeRef::Enum(_) => true,
             TypeRef::Handle(_) | TypeRef::FunctionPointer(_) | TypeRef::Union(_) => false,
+        }
+    }
+
+    /// Creates the default value for this type
+    pub fn default_tokens(&self, source: &Source, imports: Option<&Imports>, value: Option<&str>) -> TokenStream {
+        match self {
+            TypeRef::OpaqueType(opaque) => {
+                warn!("Default value for opaque type: {}, {:?}", opaque.original_name(), value);
+
+                quote! {
+                    unsafe { std::mem::zeroed() }
+                }
+            },
+            TypeRef::Alias(alias) => source
+                .resolve_type(alias.of())
+                .expect("unknwon alias")
+                .default_tokens(source, imports, value),
+            TypeRef::Struct(_) | TypeRef::Handle(_) | TypeRef::Basetype(_) => quote! { Default::default() },
+            TypeRef::Enum(enum_) => {
+                if let Some(value) = value {
+                    let variant = enum_.variants().get_by_either(value).expect("unknown variant");
+                    let ident = enum_.as_ident();
+                    let variant = variant.as_ident();
+
+                    quote! {
+                        #ident::#variant
+                    }
+                } else {
+                    quote! { Default::default() }
+                }
+            },
+            TypeRef::BitFlag(bitflag) => {
+                if let Some(value) = value {
+                    let variant = bitflag.bits().get_by_either(value).expect("unknown variant");
+                    let ident = bitflag.as_ident();
+                    let variant = variant.as_ident();
+
+                    quote! {
+                        #ident::#variant
+                    }
+                } else {
+                    quote! { Default::default() }
+                }
+            },
+            TypeRef::Bitmask(bitmask) => {
+                if let Some(value) = value {
+                    let variant = source
+                        .resolve_type(bitmask.bits().expect("bitmask without bits"))
+                        .expect("unknown type")
+                        .as_bitflag()
+                        .expect("bits are not a bitflag")
+                        .bits()
+                        .get_by_either(value)
+                        .expect("unknown variant");
+                    let ident = bitmask.as_ident();
+                    let variant = variant.as_flag_ident();
+
+                    quote! {
+                        #ident::#variant
+                    }
+                } else {
+                    quote! { Default::default() }
+                }
+            },
+            TypeRef::Union(_) => quote! {
+                unsafe { std::mem::zeroed() }
+            },
+            TypeRef::FunctionPointer(_) => quote! { None },
         }
     }
 

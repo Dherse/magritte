@@ -1702,7 +1702,7 @@ impl<'lt> Default for VideoEncodeInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoEncodeInfoKhr,
             p_next: std::ptr::null(),
             flags: Default::default(),
             quality_level: 0,
@@ -2039,7 +2039,7 @@ impl<'lt> Default for VideoEncodeRateControlInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoEncodeRateControlInfoKhr,
             p_next: std::ptr::null(),
             flags: Default::default(),
             rate_control_mode: Default::default(),
@@ -2286,7 +2286,7 @@ impl<'lt> Default for VideoEncodeRateControlLayerInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoEncodeRateControlLayerInfoKhr,
             p_next: std::ptr::null(),
             average_bitrate: 0,
             max_bitrate: 0,
@@ -2538,7 +2538,7 @@ impl<'lt> Default for VideoEncodeCapabilitiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::VideoEncodeCapabilitiesKhr,
             p_next: std::ptr::null(),
             flags: Default::default(),
             rate_control_modes: Default::default(),

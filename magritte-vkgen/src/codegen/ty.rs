@@ -58,11 +58,14 @@ impl<'a> Ty<'a> {
     /// Does the type have a lifetime (with deep checking)
     pub fn has_lifetime(&self, source: &Source<'a>, pointer_has_lifetime: bool) -> bool {
         match self {
-            Ty::Pointer(_, ty) | Ty::Slice(_, ty, _) => pointer_has_lifetime && !ty.has_opaque(source),
+            Ty::Pointer(_, ty) | Ty::Slice(_, ty, _) => (pointer_has_lifetime && !ty.has_opaque(source)) || ty.has_lifetime(source, pointer_has_lifetime),
             Ty::NullTerminatedString(_) => pointer_has_lifetime,
             Ty::Native(_) | Ty::StringArray(_) => false,
             Ty::Array(ty, _) => ty.has_lifetime(source, false),
-            Ty::Named(named) => source.resolve_type(named).expect("unknown type").has_lifetime(source, pointer_has_lifetime),
+            Ty::Named(named) => source
+                .resolve_type(named)
+                .expect("unknown type")
+                .has_lifetime(source, pointer_has_lifetime),
         }
     }
 
@@ -186,7 +189,7 @@ impl<'a> Ty<'a> {
     }*/
 
     /// Default tokens for a type
-    pub fn default_tokens(&self, source: &Source<'a>, imports: Option<&Imports>) -> TokenStream {
+    pub fn default_tokens(&self, source: &Source<'a>, imports: Option<&Imports>, value: Option<&str>) -> TokenStream {
         match self {
             Ty::Pointer(mut_, _) | Ty::Slice(mut_, _, _) => match mut_ {
                 Mutability::Mutable => quote! { std::ptr::null_mut() },
@@ -194,9 +197,10 @@ impl<'a> Ty<'a> {
             },
             Ty::Native(native) => native.default_tokens(),
             Ty::Named(Cow::Borrowed("VkBool32")) => quote! { 0 },
-            Ty::Named(_) => {
-                quote! { Default::default() }
-            },
+            Ty::Named(name) => source
+                .resolve_type(name)
+                .expect("unknown type")
+                .default_tokens(source, imports, value),
             Ty::StringArray(len) => {
                 let len = len.as_const_expr(source, imports);
                 quote! { [0; #len as usize]}
@@ -212,7 +216,7 @@ impl<'a> Ty<'a> {
                 );
 
                 let len = len.as_const_expr(source, imports);
-                let default = ty.default_tokens(source, imports);
+                let default = ty.default_tokens(source, imports, None);
                 quote! {
                     [#default; #len as usize]
                 }
@@ -566,7 +570,10 @@ impl<'a> Ty<'a> {
 impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     /// Turns a type reference into a tokenized type
     pub fn as_const_type(&self, source: &Source<'a>, imports: Option<&Imports>) -> Type {
-        assert!(!self.has_lifetime(source, false), "type cannot be made into static type");
+        assert!(
+            !self.has_lifetime(source, false),
+            "type cannot be made into static type"
+        );
 
         if let Some(imports) = imports {
             self.import(imports);
@@ -592,6 +599,11 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     /// Turns a type reference into a tokenized type and a boolean designating whether it
     /// has a lifetime
     pub fn as_type(&self, source: &Source<'a>, imports: Option<&Imports>) -> (Type, bool) {
+        // special case for flattening aliases
+        if let Some(alias) = self.as_alias() {
+            return source.resolve_type(alias.of()).expect("unknown alias").as_type(source, imports);
+        }
+
         let lt = self.has_lifetime(source, true) && !self.is_opaque();
 
         let mut path = if let Some(imports) = imports {

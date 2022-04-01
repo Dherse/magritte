@@ -115,7 +115,7 @@ impl<'lt> Default for PhysicalDeviceImageViewMinLodFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceImageViewMinLodFeaturesExt,
             p_next: std::ptr::null_mut(),
             min_lod: 0,
         }
@@ -256,7 +256,7 @@ impl<'lt> Default for ImageViewMinLodCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImageViewMinLodCreateInfoExt,
             p_next: std::ptr::null(),
             min_lod: 0.0,
         }

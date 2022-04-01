@@ -255,7 +255,7 @@ impl<'lt> Default for PhysicalDeviceShaderImageFootprintFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceShaderImageFootprintFeaturesNv,
             p_next: std::ptr::null_mut(),
             image_footprint: 0,
         }

@@ -170,7 +170,7 @@ impl<'lt> Default for SharedPresentSurfaceCapabilitiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SharedPresentSurfaceCapabilitiesKhr,
             p_next: std::ptr::null_mut(),
             shared_present_supported_usage_flags: Default::default(),
         }

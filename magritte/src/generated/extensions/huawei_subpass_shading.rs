@@ -152,7 +152,7 @@ impl<'lt> Default for SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SubpassShadingPipelineCreateInfoHuawei,
             p_next: std::ptr::null_mut(),
             render_pass: Default::default(),
             subpass: 0,
@@ -291,7 +291,7 @@ impl<'lt> Default for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceSubpassShadingPropertiesHuawei,
             p_next: std::ptr::null_mut(),
             max_subpass_shading_workgroup_size_aspect_ratio: 0,
         }
@@ -413,7 +413,7 @@ impl<'lt> Default for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceSubpassShadingFeaturesHuawei,
             p_next: std::ptr::null_mut(),
             subpass_shading: 0,
         }

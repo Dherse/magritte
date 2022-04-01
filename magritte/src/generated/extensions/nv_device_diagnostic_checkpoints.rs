@@ -114,7 +114,7 @@ impl<'lt> Default for QueueFamilyCheckpointPropertiesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::QueueFamilyCheckpointPropertiesNv,
             p_next: std::ptr::null_mut(),
             checkpoint_execution_stage_mask: Default::default(),
         }
@@ -238,7 +238,7 @@ impl<'lt> Default for CheckpointDataNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::CheckpointDataNv,
             p_next: std::ptr::null_mut(),
             stage: Default::default(),
             checkpoint_marker: std::ptr::null_mut(),

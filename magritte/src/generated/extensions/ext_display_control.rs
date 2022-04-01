@@ -338,7 +338,7 @@ impl<'lt> Default for DisplayPowerInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DisplayPowerInfoExt,
             p_next: std::ptr::null(),
             power_state: Default::default(),
         }
@@ -448,7 +448,7 @@ impl<'lt> Default for DeviceEventInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceEventInfoExt,
             p_next: std::ptr::null(),
             device_event: Default::default(),
         }
@@ -556,7 +556,7 @@ impl<'lt> Default for DisplayEventInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DisplayEventInfoExt,
             p_next: std::ptr::null(),
             display_event: Default::default(),
         }
@@ -674,7 +674,7 @@ impl<'lt> Default for SwapchainCounterCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SwapchainCounterCreateInfoExt,
             p_next: std::ptr::null(),
             surface_counters: Default::default(),
         }

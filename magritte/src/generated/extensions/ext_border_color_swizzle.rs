@@ -138,7 +138,7 @@ impl<'lt> Default for SamplerBorderColorComponentMappingCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SamplerBorderColorComponentMappingCreateInfoExt,
             p_next: std::ptr::null(),
             components: Default::default(),
             srgb: 0,
@@ -309,7 +309,7 @@ impl<'lt> Default for PhysicalDeviceBorderColorSwizzleFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceBorderColorSwizzleFeaturesExt,
             p_next: std::ptr::null_mut(),
             border_color_swizzle: 0,
             border_color_swizzle_from_image: 0,

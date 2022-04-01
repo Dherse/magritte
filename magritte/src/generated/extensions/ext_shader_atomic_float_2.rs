@@ -202,7 +202,7 @@ impl<'lt> Default for PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceShaderAtomicFloat2FeaturesExt,
             p_next: std::ptr::null_mut(),
             shader_buffer_float_16_atomics: 0,
             shader_buffer_float_16_atomic_add: 0,

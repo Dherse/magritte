@@ -158,7 +158,7 @@ impl<'lt> Default for PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceMutableDescriptorTypeFeaturesValve,
             p_next: std::ptr::null_mut(),
             mutable_descriptor_type: 0,
         }
@@ -424,7 +424,7 @@ impl<'lt> Default for MutableDescriptorTypeCreateInfoVALVE<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MutableDescriptorTypeCreateInfoValve,
             p_next: std::ptr::null(),
             mutable_descriptor_type_list_count: 0,
             mutable_descriptor_type_lists: std::ptr::null(),

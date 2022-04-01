@@ -158,7 +158,7 @@ impl<'lt> Default for IosSurfaceCreateInfoMVK<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::IosSurfaceCreateInfoMvk,
             p_next: std::ptr::null(),
             flags: Default::default(),
             view: std::ptr::null(),

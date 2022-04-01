@@ -2023,7 +2023,7 @@ impl<'lt> Default for PhysicalDeviceDriverProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceDriverProperties,
             p_next: std::ptr::null_mut(),
             driver_id: Default::default(),
             driver_name: [b'\0' as i8; MAX_DRIVER_NAME_SIZE as usize],
@@ -2210,7 +2210,7 @@ impl<'lt> Default for PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceShaderSubgroupExtendedTypesFeatures,
             p_next: std::ptr::null_mut(),
             shader_subgroup_extended_types: 0,
         }
@@ -2393,7 +2393,7 @@ impl<'lt> Default for PhysicalDeviceSamplerFilterMinmaxProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceSamplerFilterMinmaxProperties,
             p_next: std::ptr::null_mut(),
             filter_minmax_single_component_formats: 0,
             filter_minmax_image_component_mapping: 0,
@@ -2578,7 +2578,7 @@ impl<'lt> Default for SamplerReductionModeCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SamplerReductionModeCreateInfo,
             p_next: std::ptr::null(),
             reduction_mode: Default::default(),
         }
@@ -2704,7 +2704,7 @@ impl<'lt> Default for ImageFormatListCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImageFormatListCreateInfo,
             p_next: std::ptr::null(),
             view_format_count: 0,
             view_formats: std::ptr::null(),
@@ -2892,7 +2892,7 @@ impl<'lt> Default for PhysicalDeviceShaderFloat16Int8Features<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceShaderFloat16Int8Features,
             p_next: std::ptr::null_mut(),
             shader_float_16: 0,
             shader_int_8: 0,
@@ -3055,23 +3055,23 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 /// - [`rounding_mode_independence`] is a [`ShaderFloatControlsIndependence`] value indicating
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float_16`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_32`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 64-bit floating-point types.
@@ -3189,7 +3189,7 @@ impl<'lt> Default for PhysicalDeviceFloatControlsProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceFloatControlsProperties,
             p_next: std::ptr::null_mut(),
             denorm_behavior_independence: Default::default(),
             rounding_mode_independence: Default::default(),
@@ -3896,7 +3896,7 @@ impl<'lt> Default for PhysicalDeviceHostQueryResetFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceHostQueryResetFeatures,
             p_next: std::ptr::null_mut(),
             host_query_reset: 0,
         }
@@ -4335,7 +4335,7 @@ impl<'lt> Default for PhysicalDeviceDescriptorIndexingFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceDescriptorIndexingFeatures,
             p_next: std::ptr::null_mut(),
             shader_input_attachment_array_dynamic_indexing: 0,
             shader_uniform_texel_buffer_array_dynamic_indexing: 0,
@@ -5357,7 +5357,7 @@ impl<'lt> Default for PhysicalDeviceDescriptorIndexingProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceDescriptorIndexingProperties,
             p_next: std::ptr::null_mut(),
             max_update_after_bind_descriptors_in_all_pools: 0,
             shader_uniform_buffer_array_non_uniform_indexing_native: 0,
@@ -6048,7 +6048,7 @@ impl<'lt> Default for DescriptorSetLayoutBindingFlagsCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DescriptorSetLayoutBindingFlagsCreateInfo,
             p_next: std::ptr::null(),
             binding_count: 0,
             binding_flags: std::ptr::null(),
@@ -6220,7 +6220,7 @@ impl<'lt> Default for DescriptorSetVariableDescriptorCountAllocateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DescriptorSetVariableDescriptorCountAllocateInfo,
             p_next: std::ptr::null(),
             descriptor_set_count: 0,
             descriptor_counts: std::ptr::null(),
@@ -6387,7 +6387,7 @@ impl<'lt> Default for DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DescriptorSetVariableDescriptorCountLayoutSupport,
             p_next: std::ptr::null_mut(),
             max_variable_descriptor_count: 0,
         }
@@ -6659,7 +6659,7 @@ impl<'lt> Default for AttachmentDescription2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AttachmentDescription2,
             p_next: std::ptr::null(),
             flags: Default::default(),
             format: Default::default(),
@@ -6940,7 +6940,7 @@ impl<'lt> Default for AttachmentReference2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AttachmentReference2,
             p_next: std::ptr::null(),
             attachment: 0,
             layout: Default::default(),
@@ -7232,7 +7232,7 @@ impl<'lt> Default for SubpassDescription2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SubpassDescription2,
             p_next: std::ptr::null(),
             flags: Default::default(),
             pipeline_bind_point: Default::default(),
@@ -7674,7 +7674,7 @@ impl<'lt> Default for SubpassDependency2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SubpassDependency2,
             p_next: std::ptr::null(),
             src_subpass: 0,
             dst_subpass: 0,
@@ -8032,7 +8032,7 @@ impl<'lt> Default for RenderPassCreateInfo2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::RenderPassCreateInfo2,
             p_next: std::ptr::null(),
             flags: Default::default(),
             attachment_count: 0,
@@ -8306,7 +8306,7 @@ impl<'lt> Default for SubpassBeginInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SubpassBeginInfo,
             p_next: std::ptr::null(),
             contents: Default::default(),
         }
@@ -8418,7 +8418,7 @@ impl<'lt> Default for SubpassEndInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SubpassEndInfo,
             p_next: std::ptr::null(),
         }
     }
@@ -8526,7 +8526,7 @@ impl<'lt> Default for PhysicalDeviceTimelineSemaphoreFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceTimelineSemaphoreFeatures,
             p_next: std::ptr::null_mut(),
             timeline_semaphore: 0,
         }
@@ -8674,7 +8674,7 @@ impl<'lt> Default for PhysicalDeviceTimelineSemaphoreProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceTimelineSemaphoreProperties,
             p_next: std::ptr::null_mut(),
             max_timeline_semaphore_value_difference: 0,
         }
@@ -8809,7 +8809,7 @@ impl<'lt> Default for SemaphoreTypeCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SemaphoreTypeCreateInfo,
             p_next: std::ptr::null(),
             semaphore_type: Default::default(),
             initial_value: 0,
@@ -8971,7 +8971,7 @@ impl<'lt> Default for TimelineSemaphoreSubmitInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::TimelineSemaphoreSubmitInfo,
             p_next: std::ptr::null(),
             wait_semaphore_value_count: 0,
             wait_semaphore_values: std::ptr::null(),
@@ -9174,7 +9174,7 @@ impl<'lt> Default for SemaphoreWaitInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SemaphoreWaitInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             semaphore_count: 0,
@@ -9365,7 +9365,7 @@ impl<'lt> Default for SemaphoreSignalInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SemaphoreSignalInfo,
             p_next: std::ptr::null(),
             semaphore: Default::default(),
             value: 0,
@@ -9536,7 +9536,7 @@ impl<'lt> Default for PhysicalDevice8BitStorageFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDevice8BitStorageFeatures,
             p_next: std::ptr::null_mut(),
             storage_buffer_8_bit_access: 0,
             uniform_and_storage_buffer_8_bit_access: 0,
@@ -9776,7 +9776,7 @@ impl<'lt> Default for PhysicalDeviceVulkanMemoryModelFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceVulkanMemoryModelFeatures,
             p_next: std::ptr::null_mut(),
             vulkan_memory_model: 0,
             vulkan_memory_model_device_scope: 0,
@@ -10008,7 +10008,7 @@ impl<'lt> Default for PhysicalDeviceShaderAtomicInt64Features<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceShaderAtomicInt64Features,
             p_next: std::ptr::null_mut(),
             shader_buffer_int_64_atomics: 0,
             shader_shared_int_64_atomics: 0,
@@ -10215,7 +10215,7 @@ impl<'lt> Default for PhysicalDeviceDepthStencilResolveProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceDepthStencilResolveProperties,
             p_next: std::ptr::null_mut(),
             supported_depth_resolve_modes: Default::default(),
             supported_stencil_resolve_modes: Default::default(),
@@ -10488,7 +10488,7 @@ impl<'lt> Default for SubpassDescriptionDepthStencilResolve<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SubpassDescriptionDepthStencilResolve,
             p_next: std::ptr::null(),
             depth_resolve_mode: Default::default(),
             stencil_resolve_mode: Default::default(),
@@ -10668,7 +10668,7 @@ impl<'lt> Default for ImageStencilUsageCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImageStencilUsageCreateInfo,
             p_next: std::ptr::null(),
             stencil_usage: Default::default(),
         }
@@ -10790,7 +10790,7 @@ impl<'lt> Default for PhysicalDeviceScalarBlockLayoutFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceScalarBlockLayoutFeatures,
             p_next: std::ptr::null_mut(),
             scalar_block_layout: 0,
         }
@@ -10947,7 +10947,7 @@ impl<'lt> Default for PhysicalDeviceUniformBufferStandardLayoutFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceUniformBufferStandardLayoutFeatures,
             p_next: std::ptr::null_mut(),
             uniform_buffer_standard_layout: 0,
         }
@@ -11124,7 +11124,7 @@ impl<'lt> Default for PhysicalDeviceBufferDeviceAddressFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceBufferDeviceAddressFeatures,
             p_next: std::ptr::null_mut(),
             buffer_device_address: 0,
             buffer_device_address_capture_replay: 0,
@@ -11355,7 +11355,7 @@ impl<'lt> Default for BufferDeviceAddressInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BufferDeviceAddressInfo,
             p_next: std::ptr::null(),
             buffer: Default::default(),
         }
@@ -11476,7 +11476,7 @@ impl<'lt> Default for BufferOpaqueCaptureAddressCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BufferOpaqueCaptureAddressCreateInfo,
             p_next: std::ptr::null(),
             opaque_capture_address: 0,
         }
@@ -11600,7 +11600,7 @@ impl<'lt> Default for PhysicalDeviceImagelessFramebufferFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceImagelessFramebufferFeatures,
             p_next: std::ptr::null_mut(),
             imageless_framebuffer: 0,
         }
@@ -11752,7 +11752,7 @@ impl<'lt> Default for FramebufferAttachmentsCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::FramebufferAttachmentsCreateInfo,
             p_next: std::ptr::null(),
             attachment_image_info_count: 0,
             attachment_image_infos: std::ptr::null(),
@@ -11946,7 +11946,7 @@ impl<'lt> Default for FramebufferAttachmentImageInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::FramebufferAttachmentImageInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             usage: Default::default(),
@@ -12166,7 +12166,7 @@ impl<'lt> Default for RenderPassAttachmentBeginInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::RenderPassAttachmentBeginInfo,
             p_next: std::ptr::null(),
             attachment_count: 0,
             attachments: std::ptr::null(),
@@ -12325,7 +12325,7 @@ impl<'lt> Default for PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceSeparateDepthStencilLayoutsFeatures,
             p_next: std::ptr::null_mut(),
             separate_depth_stencil_layouts: 0,
         }
@@ -12478,7 +12478,7 @@ impl<'lt> Default for AttachmentReferenceStencilLayout<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AttachmentReferenceStencilLayout,
             p_next: std::ptr::null_mut(),
             stencil_layout: Default::default(),
         }
@@ -12623,7 +12623,7 @@ impl<'lt> Default for AttachmentDescriptionStencilLayout<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AttachmentDescriptionStencilLayout,
             p_next: std::ptr::null_mut(),
             stencil_initial_layout: Default::default(),
             stencil_final_layout: Default::default(),
@@ -12763,7 +12763,7 @@ impl<'lt> Default for MemoryOpaqueCaptureAddressAllocateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MemoryOpaqueCaptureAddressAllocateInfo,
             p_next: std::ptr::null(),
             opaque_capture_address: 0,
         }
@@ -12880,7 +12880,7 @@ impl<'lt> Default for DeviceMemoryOpaqueCaptureAddressInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceMemoryOpaqueCaptureAddressInfo,
             p_next: std::ptr::null(),
             memory: Default::default(),
         }
@@ -13127,7 +13127,7 @@ impl<'lt> Default for PhysicalDeviceVulkan11Features<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceVulkan11Features,
             p_next: std::ptr::null_mut(),
             storage_buffer_16_bit_access: 0,
             uniform_and_storage_buffer_16_bit_access: 0,
@@ -13760,7 +13760,7 @@ impl<'lt> Default for PhysicalDeviceVulkan11Properties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceVulkan11Properties,
             p_next: std::ptr::null_mut(),
             device_uuid: [0; UUID_SIZE as usize],
             driver_uuid: [0; UUID_SIZE as usize],
@@ -14731,7 +14731,7 @@ impl<'lt> Default for PhysicalDeviceVulkan12Features<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceVulkan12Features,
             p_next: std::ptr::null_mut(),
             sampler_mirror_clamp_to_edge: 0,
             draw_indirect_count: 0,
@@ -16615,9 +16615,9 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 /// - [`rounding_mode_independence`] is a [`ShaderFloatControlsIndependence`] value indicating
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float_16`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
@@ -16630,8 +16630,8 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 64-bit floating-point types.
@@ -16944,7 +16944,7 @@ impl<'lt> Default for PhysicalDeviceVulkan12Properties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceVulkan12Properties,
             p_next: std::ptr::null_mut(),
             driver_id: Default::default(),
             driver_name: [b'\0' as i8; MAX_DRIVER_NAME_SIZE as usize],

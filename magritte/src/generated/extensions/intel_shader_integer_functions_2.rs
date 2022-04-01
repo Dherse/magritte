@@ -116,7 +116,7 @@ impl<'lt> Default for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceShaderIntegerFunctions2FeaturesIntel,
             p_next: std::ptr::null_mut(),
             shader_integer_functions_2: 0,
         }

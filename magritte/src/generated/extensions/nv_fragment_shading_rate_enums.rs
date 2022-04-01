@@ -398,7 +398,7 @@ impl<'lt> Default for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceFragmentShadingRateEnumsFeaturesNv,
             p_next: std::ptr::null_mut(),
             fragment_shading_rate_enums: 0,
             supersample_fragment_shading_rates: 0,
@@ -621,7 +621,7 @@ impl<'lt> Default for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceFragmentShadingRateEnumsPropertiesNv,
             p_next: std::ptr::null_mut(),
             max_fragment_shading_rate_invocation_count: Default::default(),
         }
@@ -776,7 +776,7 @@ impl<'lt> Default for PipelineFragmentShadingRateEnumStateCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineFragmentShadingRateEnumStateCreateInfoNv,
             p_next: std::ptr::null(),
             shading_rate_type: Default::default(),
             shading_rate: Default::default(),

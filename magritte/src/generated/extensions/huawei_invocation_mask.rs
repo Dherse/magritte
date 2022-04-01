@@ -118,7 +118,7 @@ impl<'lt> Default for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceInvocationMaskFeaturesHuawei,
             p_next: std::ptr::null_mut(),
             invocation_mask: 0,
         }

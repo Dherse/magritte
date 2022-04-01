@@ -164,7 +164,7 @@ impl<'lt> Default for PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceFragmentDensityMapFeaturesExt,
             p_next: std::ptr::null_mut(),
             fragment_density_map: 0,
             fragment_density_map_dynamic: 0,
@@ -395,7 +395,7 @@ impl<'lt> Default for PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceFragmentDensityMapPropertiesExt,
             p_next: std::ptr::null_mut(),
             min_fragment_density_texel_size: Default::default(),
             max_fragment_density_texel_size: Default::default(),
@@ -592,7 +592,7 @@ impl<'lt> Default for RenderPassFragmentDensityMapCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::RenderPassFragmentDensityMapCreateInfoExt,
             p_next: std::ptr::null(),
             fragment_density_map_attachment: Default::default(),
         }

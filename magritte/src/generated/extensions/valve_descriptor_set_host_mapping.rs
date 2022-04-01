@@ -106,7 +106,7 @@ impl<'lt> Default for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceDescriptorSetHostMappingFeaturesValve,
             p_next: std::ptr::null_mut(),
             descriptor_set_host_mapping: 0,
         }
@@ -243,7 +243,7 @@ impl<'lt> Default for DescriptorSetBindingReferenceVALVE<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DescriptorSetBindingReferenceValve,
             p_next: std::ptr::null(),
             descriptor_set_layout: Default::default(),
             binding: 0,
@@ -362,7 +362,7 @@ impl<'lt> Default for DescriptorSetLayoutHostMappingInfoVALVE<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DescriptorSetLayoutHostMappingInfoValve,
             p_next: std::ptr::null_mut(),
             descriptor_offset: 0,
             descriptor_size: 0,

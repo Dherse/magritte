@@ -731,10 +731,10 @@ impl<'lt> Default for DebugReportCallbackCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DebugReportCallbackCreateInfoExt,
             p_next: std::ptr::null(),
             flags: Default::default(),
-            pfn_callback: Default::default(),
+            pfn_callback: None,
             user_data: std::ptr::null_mut(),
         }
     }

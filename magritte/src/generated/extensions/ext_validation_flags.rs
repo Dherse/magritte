@@ -180,7 +180,7 @@ impl<'lt> Default for ValidationFlagsEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ValidationFlagsExt,
             p_next: std::ptr::null(),
             disabled_validation_check_count: 0,
             disabled_validation_checks: std::ptr::null(),

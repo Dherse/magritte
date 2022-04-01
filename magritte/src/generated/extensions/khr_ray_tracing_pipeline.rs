@@ -612,7 +612,7 @@ impl<'lt> Default for RayTracingShaderGroupCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::RayTracingShaderGroupCreateInfoKhr,
             p_next: std::ptr::null(),
             type_: Default::default(),
             general_shader: 0,
@@ -1010,7 +1010,7 @@ impl<'lt> Default for RayTracingPipelineCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::RayTracingPipelineCreateInfoKhr,
             p_next: std::ptr::null(),
             flags: Default::default(),
             stage_count: 0,
@@ -1377,7 +1377,7 @@ impl<'lt> Default for PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceRayTracingPipelineFeaturesKhr,
             p_next: std::ptr::null_mut(),
             ray_tracing_pipeline: 0,
             ray_tracing_pipeline_shader_group_handle_capture_replay: 0,
@@ -1719,7 +1719,7 @@ impl<'lt> Default for PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceRayTracingPipelinePropertiesKhr,
             p_next: std::ptr::null_mut(),
             shader_group_handle_size: 0,
             max_ray_recursion_depth: 0,
@@ -2156,7 +2156,7 @@ impl<'lt> Default for RayTracingPipelineInterfaceCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::RayTracingPipelineInterfaceCreateInfoKhr,
             p_next: std::ptr::null(),
             max_pipeline_ray_payload_size: 0,
             max_pipeline_ray_hit_attribute_size: 0,

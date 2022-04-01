@@ -121,7 +121,7 @@ impl<'lt> Default for PhysicalDeviceRgba10X6FormatsFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceRgba10X6FormatsFeaturesExt,
             p_next: std::ptr::null_mut(),
             format_rgba_10_x_6_without_y_cb_cr_sampler: 0,
         }

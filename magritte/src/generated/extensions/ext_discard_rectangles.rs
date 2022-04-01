@@ -225,7 +225,7 @@ impl<'lt> Default for PhysicalDeviceDiscardRectanglePropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceDiscardRectanglePropertiesExt,
             p_next: std::ptr::null_mut(),
             max_discard_rectangles: 0,
         }
@@ -369,7 +369,7 @@ impl<'lt> Default for PipelineDiscardRectangleStateCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineDiscardRectangleStateCreateInfoExt,
             p_next: std::ptr::null(),
             flags: Default::default(),
             discard_rectangle_mode: Default::default(),

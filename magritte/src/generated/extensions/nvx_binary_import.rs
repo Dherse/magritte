@@ -125,7 +125,7 @@ impl<'lt> Default for CuModuleCreateInfoNVX<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::CuModuleCreateInfoNvx,
             p_next: std::ptr::null(),
             data_size: 0,
             data: std::ptr::null(),
@@ -258,7 +258,7 @@ impl<'lt> Default for CuFunctionCreateInfoNVX<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::CuFunctionCreateInfoNvx,
             p_next: std::ptr::null(),
             module: Default::default(),
             name: std::ptr::null(),
@@ -423,7 +423,7 @@ impl<'lt> Default for CuLaunchInfoNVX<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::CuLaunchInfoNvx,
             p_next: std::ptr::null(),
             function: Default::default(),
             grid_dim_x: 0,

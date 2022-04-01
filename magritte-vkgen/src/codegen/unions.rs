@@ -56,7 +56,7 @@ impl<'a> Union<'a> {
                 #(#fields),*
             }
 
-            impl Default for #name {
+            impl #lifetime Default for #name #lifetime {
                 fn default() -> Self {
                     unsafe {
                         std::mem::zeroed()

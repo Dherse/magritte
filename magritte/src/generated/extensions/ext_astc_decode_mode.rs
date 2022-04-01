@@ -143,7 +143,7 @@ impl<'lt> Default for ImageViewAstcDecodeModeEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImageViewAstcDecodeModeExt,
             p_next: std::ptr::null(),
             decode_mode: Default::default(),
         }
@@ -258,7 +258,7 @@ impl<'lt> Default for PhysicalDeviceAstcDecodeFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceAstcDecodeFeaturesExt,
             p_next: std::ptr::null_mut(),
             decode_mode_shared_exponent: 0,
         }

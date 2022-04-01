@@ -267,7 +267,7 @@ impl<'lt> Default for ImportAndroidHardwareBufferInfoANDROID<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImportAndroidHardwareBufferInfoAndroid,
             p_next: std::ptr::null(),
             buffer: std::ptr::null_mut(),
         }
@@ -402,7 +402,7 @@ impl<'lt> Default for AndroidHardwareBufferUsageANDROID<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AndroidHardwareBufferUsageAndroid,
             p_next: std::ptr::null_mut(),
             android_hardware_buffer_usage: 0,
         }
@@ -527,7 +527,7 @@ impl<'lt> Default for AndroidHardwareBufferPropertiesANDROID<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AndroidHardwareBufferPropertiesAndroid,
             p_next: std::ptr::null_mut(),
             allocation_size: Default::default(),
             memory_type_bits: 0,
@@ -664,7 +664,7 @@ impl<'lt> Default for MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MemoryGetAndroidHardwareBufferInfoAndroid,
             p_next: std::ptr::null(),
             memory: Default::default(),
         }
@@ -866,7 +866,7 @@ impl<'lt> Default for AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AndroidHardwareBufferFormatPropertiesAndroid,
             p_next: std::ptr::null_mut(),
             format: Default::default(),
             external_format: 0,
@@ -1087,7 +1087,7 @@ impl<'lt> Default for ExternalFormatANDROID<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ExternalFormatAndroid,
             p_next: std::ptr::null_mut(),
             external_format: 0,
         }
@@ -1260,7 +1260,7 @@ impl<'lt> Default for AndroidHardwareBufferFormatProperties2ANDROID<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AndroidHardwareBufferFormatProperties2Android,
             p_next: std::ptr::null_mut(),
             format: Default::default(),
             external_format: 0,

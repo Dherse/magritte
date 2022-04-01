@@ -128,7 +128,7 @@ impl<'lt> Default for PhysicalDeviceExternalMemoryRdmaFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceExternalMemoryRdmaFeaturesNv,
             p_next: std::ptr::null_mut(),
             external_memory_rdma: 0,
         }
@@ -276,7 +276,7 @@ impl<'lt> Default for MemoryGetRemoteAddressInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MemoryGetRemoteAddressInfoNv,
             p_next: std::ptr::null(),
             memory: Default::default(),
             handle_type: Default::default(),

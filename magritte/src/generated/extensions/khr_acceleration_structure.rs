@@ -2786,7 +2786,7 @@ impl<'lt> Default for WriteDescriptorSetAccelerationStructureKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::WriteDescriptorSetAccelerationStructureKhr,
             p_next: std::ptr::null(),
             acceleration_structure_count: 0,
             acceleration_structures: std::ptr::null(),
@@ -2972,7 +2972,7 @@ impl<'lt> Default for PhysicalDeviceAccelerationStructureFeaturesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceAccelerationStructureFeaturesKhr,
             p_next: std::ptr::null_mut(),
             acceleration_structure: 0,
             acceleration_structure_capture_replay: 0,
@@ -3349,7 +3349,7 @@ impl<'lt> Default for PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceAccelerationStructurePropertiesKhr,
             p_next: std::ptr::null_mut(),
             max_geometry_count: 0,
             max_instance_count: 0,
@@ -3621,15 +3621,15 @@ impl<'lt> Default for AccelerationStructureGeometryTrianglesDataKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AccelerationStructureGeometryTrianglesDataKhr,
             p_next: std::ptr::null(),
             vertex_format: Default::default(),
-            vertex_data: Default::default(),
+            vertex_data: unsafe { std::mem::zeroed() },
             vertex_stride: Default::default(),
             max_vertex: 0,
             index_type: Default::default(),
-            index_data: Default::default(),
-            transform_data: Default::default(),
+            index_data: unsafe { std::mem::zeroed() },
+            transform_data: unsafe { std::mem::zeroed() },
         }
     }
 }
@@ -3835,9 +3835,9 @@ impl<'lt> Default for AccelerationStructureGeometryAabbsDataKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AccelerationStructureGeometryAabbsDataKhr,
             p_next: std::ptr::null(),
-            data: Default::default(),
+            data: unsafe { std::mem::zeroed() },
             stride: Default::default(),
         }
     }
@@ -3978,10 +3978,10 @@ impl<'lt> Default for AccelerationStructureGeometryInstancesDataKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AccelerationStructureGeometryInstancesDataKhr,
             p_next: std::ptr::null(),
             array_of_pointers: 0,
-            data: Default::default(),
+            data: unsafe { std::mem::zeroed() },
         }
     }
 }
@@ -4148,10 +4148,10 @@ impl<'lt> Default for AccelerationStructureGeometryKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AccelerationStructureGeometryKhr,
             p_next: std::ptr::null(),
             geometry_type: Default::default(),
-            geometry: Default::default(),
+            geometry: unsafe { std::mem::zeroed() },
             flags: Default::default(),
         }
     }
@@ -4438,7 +4438,7 @@ impl<'lt> Default for AccelerationStructureBuildGeometryInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AccelerationStructureBuildGeometryInfoKhr,
             p_next: std::ptr::null(),
             type_: Default::default(),
             flags: Default::default(),
@@ -4448,7 +4448,7 @@ impl<'lt> Default for AccelerationStructureBuildGeometryInfoKHR<'lt> {
             geometry_count: 0,
             geometries: std::ptr::null(),
             pp_geometries: std::ptr::null(),
-            scratch_data: Default::default(),
+            scratch_data: unsafe { std::mem::zeroed() },
         }
     }
 }
@@ -4945,7 +4945,7 @@ impl<'lt> Default for AccelerationStructureCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AccelerationStructureCreateInfoKhr,
             p_next: std::ptr::null(),
             create_flags: Default::default(),
             buffer: Default::default(),
@@ -5550,7 +5550,7 @@ impl<'lt> Default for AccelerationStructureDeviceAddressInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AccelerationStructureDeviceAddressInfoKhr,
             p_next: std::ptr::null(),
             acceleration_structure: Default::default(),
         }
@@ -5629,17 +5629,17 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`version_data`] **must**  be a valid pointer to an array of <span class="katex"><span
-///   class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+///   aria-hidden="true" class="katex-html"><span class="base"><span class="strut"
 ///   style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span
 ///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
-///   class="strut" style="height:0.70625em;vertical-align:-0.09514em;"></span><span
-///   class="mord"><span class="mord mathtt">V</span><span class="mord mathtt">K</span><span
-///   class="mord mathtt">_</span><span class="mord mathtt">U</span><span class="mord
-///   mathtt">U</span><span class="mord mathtt">I</span><span class="mord mathtt">D</span><span
-///   class="mord mathtt">_</span><span class="mord mathtt">S</span><span class="mord
-///   mathtt">I</span><span class="mord mathtt">Z</span><span class="mord
+///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+///   class="mspace"></span></span><span class="base"><span class="strut"
+///   style="height:0.70625em;vertical-align:-0.09514em;"></span><span class="mord"><span
+///   class="mord mathtt">V</span><span class="mord mathtt">K</span><span class="mord
+///   mathtt">_</span><span class="mord mathtt">U</span><span class="mord mathtt">U</span><span
+///   class="mord mathtt">I</span><span class="mord mathtt">D</span><span class="mord
+///   mathtt">_</span><span class="mord mathtt">S</span><span class="mord mathtt">I</span><span
+///   class="mord mathtt">Z</span><span class="mord
 ///   mathtt">E</span></span></span></span></span>`uint8_t` values
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
@@ -5673,7 +5673,7 @@ impl<'lt> Default for AccelerationStructureVersionInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AccelerationStructureVersionInfoKhr,
             p_next: std::ptr::null(),
             version_data: std::ptr::null(),
         }
@@ -5815,7 +5815,7 @@ impl<'lt> Default for CopyAccelerationStructureInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::CopyAccelerationStructureInfoKhr,
             p_next: std::ptr::null(),
             src: Default::default(),
             dst: Default::default(),
@@ -5981,10 +5981,10 @@ impl<'lt> Default for CopyAccelerationStructureToMemoryInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::CopyAccelerationStructureToMemoryInfoKhr,
             p_next: std::ptr::null(),
             src: Default::default(),
-            dst: Default::default(),
+            dst: unsafe { std::mem::zeroed() },
             mode: Default::default(),
         }
     }
@@ -6151,9 +6151,9 @@ impl<'lt> Default for CopyMemoryToAccelerationStructureInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::CopyMemoryToAccelerationStructureInfoKhr,
             p_next: std::ptr::null(),
-            src: Default::default(),
+            src: unsafe { std::mem::zeroed() },
             dst: Default::default(),
             mode: Default::default(),
         }
@@ -6310,7 +6310,7 @@ impl<'lt> Default for AccelerationStructureBuildSizesInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AccelerationStructureBuildSizesInfoKhr,
             p_next: std::ptr::null(),
             acceleration_structure_size: Default::default(),
             update_scratch_size: Default::default(),
@@ -6525,7 +6525,7 @@ pub union AccelerationStructureGeometryDataKHR<'lt> {
     ///[`AccelerationStructureGeometryInstancesDataKHR`] structure.
     pub instances: AccelerationStructureGeometryInstancesDataKHR<'lt>,
 }
-impl Default for AccelerationStructureGeometryDataKHR {
+impl<'lt> Default for AccelerationStructureGeometryDataKHR<'lt> {
     fn default() -> Self {
         unsafe { std::mem::zeroed() }
     }

@@ -139,7 +139,7 @@ impl<'lt> Default for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceFragmentShaderInterlockFeaturesExt,
             p_next: std::ptr::null_mut(),
             fragment_shader_sample_interlock: 0,
             fragment_shader_pixel_interlock: 0,

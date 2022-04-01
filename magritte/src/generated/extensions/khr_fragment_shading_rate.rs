@@ -283,7 +283,7 @@ impl<'lt> Default for FragmentShadingRateAttachmentInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::FragmentShadingRateAttachmentInfoKhr,
             p_next: std::ptr::null(),
             fragment_shading_rate_attachment: std::ptr::null(),
             shading_rate_attachment_texel_size: Default::default(),
@@ -440,7 +440,7 @@ impl<'lt> Default for PipelineFragmentShadingRateStateCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineFragmentShadingRateStateCreateInfoKhr,
             p_next: std::ptr::null(),
             fragment_size: Default::default(),
             combiner_ops: [Default::default(); 2 as usize],
@@ -585,7 +585,7 @@ impl<'lt> Default for PhysicalDeviceFragmentShadingRateFeaturesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceFragmentShadingRateFeaturesKhr,
             p_next: std::ptr::null_mut(),
             pipeline_fragment_shading_rate: 0,
             primitive_fragment_shading_rate: 0,
@@ -1007,7 +1007,7 @@ impl<'lt> Default for PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceFragmentShadingRatePropertiesKhr,
             p_next: std::ptr::null_mut(),
             min_fragment_shading_rate_attachment_texel_size: Default::default(),
             max_fragment_shading_rate_attachment_texel_size: Default::default(),
@@ -1605,7 +1605,7 @@ impl<'lt> Default for PhysicalDeviceFragmentShadingRateKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceFragmentShadingRateKhr,
             p_next: std::ptr::null_mut(),
             sample_counts: Default::default(),
             fragment_size: Default::default(),

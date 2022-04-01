@@ -3168,22 +3168,23 @@ impl PolygonMode {
 ///This determination is made based on the sign of the (clipped or unclipped)
 ///polygon’s area computed in framebuffer coordinates.
 ///One way to compute this area is:<span class="katex"><span class="katex-html"
-/// aria-hidden="true"><span class="base"><span style="height:0.43056em;vertical-align:0em;"
-/// class="strut"></span><span class="mord mathdefault">a</span><span class="mspace"
-/// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-/// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span class="base"><span
-/// class="strut" style="height:3.0787820000000004em;vertical-align:-1.277669em;"></span><span
+/// aria-hidden="true"><span class="base"><span class="strut"
+/// style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span
+/// class="mspace" style="margin-right:0.2777777777777778em;"></span><span
+/// class="mrel">=</span><span class="mspace"
+/// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut"
+/// style="height:3.0787820000000004em;vertical-align:-1.277669em;"></span><span
 /// class="mord">−</span><span class="mord"><span class="mord"><span class="mopen
 /// nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span
-/// style="height:3em;" class="pstrut"></span><span class="mord"><span
+/// class="vlist-r"><span style="height:1.32144em;" class="vlist"><span style="top:-2.314em;"><span
+/// class="pstrut" style="height:3em;"></span><span class="mord"><span
 /// class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut"
 /// style="height:3em;"></span><span style="border-bottom-width:0.04em;"
 /// class="frac-line"></span></span><span style="top:-3.677em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span
 /// class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span style="height:0.686em;"
-/// class="vlist"><span></span></span></span></span></span><span class="mclose
+/// class="vlist-r"><span class="vlist"
+/// style="height:0.686em;"><span></span></span></span></span></span><span class="mclose
 /// nulldelimiter"></span></span></span><span style="margin-right:0.16666666666666666em;"
 /// class="mspace"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span
 /// class="vlist-r"><span style="height:1.8011130000000004em;" class="vlist"><span
@@ -3191,67 +3192,67 @@ impl PolygonMode {
 /// style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 /// mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span
 /// class="mord mtight">0</span></span></span></span><span style="top:-3.050005em;"><span
-/// class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol
+/// style="height:3.05em;" class="pstrut"></span><span><span class="mop op-symbol
 /// large-op">∑</span></span></span><span style="top:-4.300005em;margin-left:0em;"><span
 /// style="height:3.05em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
 /// class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin
 /// mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.277669em;"
-/// class="vlist"><span></span></span></span></span></span><span class="mspace"
+/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+/// style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace"
 /// style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord
 /// mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span class="vlist" style="height:0.874664em;"><span
-/// style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-/// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-/// mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span><span
+/// class="vlist-r"><span style="height:0.874664em;" class="vlist"><span
+/// style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span
+/// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+/// class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span><span
 /// style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut"
 /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 /// mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span style="height:0.383108em;"
-/// class="vlist"><span></span></span></span></span></span></span><span class="mord"><span
-/// style="margin-right:0.03588em;" class="mord mathdefault">y</span><span class="msupsub"><span
-/// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.874664em;"
-/// class="vlist"><span
+/// class="vlist-r"><span class="vlist"
+/// style="height:0.383108em;"><span></span></span></span></span></span></span><span
+/// class="mord"><span style="margin-right:0.03588em;" class="mord mathdefault">y</span><span
+/// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+/// style="height:0.874664em;"><span
 /// style="top:-2.4085610000000006em;margin-left:-0.03588em;margin-right:0.05em;"><span
-/// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+/// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
 /// class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span><span
 /// style="top:-3.113em;margin-right:0.05em;"><span class="pstrut"
 /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 /// mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">⊕</span><span
 /// class="mord mtight">1</span></span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-/// style="height:0.4275469999999999em;"><span></span></span></span></span></span></span><span
-/// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-/// class="mbin">−</span><span style="margin-right:0.2222222222222222em;"
-/// class="mspace"></span></span><span class="base"><span
-/// style="height:1.3022109999999998em;vertical-align:-0.4275469999999999em;"
-/// class="strut"></span><span class="mord"><span class="mord mathdefault">x</span><span
-/// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-/// style="height:0.874664em;"><span
-/// style="top:-2.4085610000000006em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-/// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.4275469999999999em;"
+/// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+/// style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span
+/// class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+/// class="strut"
+/// style="height:1.3022109999999998em;vertical-align:-0.4275469999999999em;"></span><span
+/// class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t
+/// vlist-t2"><span class="vlist-r"><span style="height:0.874664em;" class="vlist"><span
+/// style="top:-2.4085610000000006em;margin-left:0em;margin-right:0.05em;"><span
+/// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
 /// style="margin-right:0.10764em;" class="mord mathdefault mtight">f</span></span></span><span
-/// style="top:-3.113em;margin-right:0.05em;"><span class="pstrut"
-/// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+/// style="top:-3.113em;margin-right:0.05em;"><span style="height:2.7em;"
+/// class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 /// mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">⊕</span><span
 /// class="mord mtight">1</span></span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 /// style="height:0.4275469999999999em;"><span></span></span></span></span></span></span><span
-/// class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span
-/// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-/// style="height:0.874664em;"><span
+/// class="mord"><span style="margin-right:0.03588em;" class="mord mathdefault">y</span><span
+/// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+/// style="height:0.874664em;" class="vlist"><span
 /// style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-/// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+/// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
 /// style="margin-right:0.10764em;" class="mord mathdefault mtight">f</span></span></span><span
 /// style="top:-3.1130000000000004em;margin-right:0.05em;"><span style="height:2.7em;"
 /// class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 /// mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span style="height:0.383108em;"
-/// class="vlist"><span></span></span></span></span></span></span></span></span></span>where <span
-/// class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-/// style="height:1.2438799999999999em;vertical-align:-0.4192159999999999em;"></span><span
-/// class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t
-/// vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span
+/// class="vlist-r"><span class="vlist"
+/// style="height:0.383108em;"><span></span></span></span></span></span></span></span></span></
+/// span>where <span class="katex"><span class="katex-html" aria-hidden="true"><span
+/// class="base"><span style="height:1.2438799999999999em;vertical-align:-0.4192159999999999em;"
+/// class="strut"></span><span class="mord"><span class="mord mathdefault">x</span><span
+/// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+/// style="height:0.824664em;"><span
 /// style="top:-2.4168920000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 /// mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span><span
@@ -3262,14 +3263,14 @@ impl PolygonMode {
 /// class="vlist"><span></span></span></span></span></span></span></span></span></span> and <span
 /// class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
 /// style="height:1.2438799999999999em;vertical-align:-0.4192159999999999em;"></span><span
-/// class="mord"><span style="margin-right:0.03588em;" class="mord mathdefault">y</span><span
+/// class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span
 /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
 /// style="height:0.824664em;"><span
 /// style="top:-2.4168920000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span
-/// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-/// class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span></span></span><span
-/// style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
-/// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+/// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+/// style="margin-right:0.10764em;" class="mord mathdefault mtight">f</span></span></span><span
+/// style="top:-3.063em;margin-right:0.05em;"><span style="height:2.7em;"
+/// class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 /// mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span
 /// class="vlist-r"><span class="vlist"
 /// style="height:0.4192159999999999em;"><span></span></span></span></span></span></span></span></
@@ -5346,27 +5347,25 @@ impl VertexInputRate {
 ///   8-bit G component in plane 0, an 8-bit B component in plane 1, and an 8-bit R component in
 ///   plane 2. The horizontal and vertical dimensions of the R and B planes are halved relative to
 ///   the image dimensions, and each R and B component is shared with the G components for which
-///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
+///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
+///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 ///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
-///   style="top:0em;">⌋</span></span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span><span class="mrel">=</span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
-///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
+///   delimcenter" style="top:0em;">⌋</span></span><span style="margin-right:0.2777777777777778em;"
+///   class="mspace"></span><span class="mrel">=</span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+///   class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span
+///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
 ///   style="margin-right:0.05017em;" class="mord mathdefault
@@ -5374,54 +5373,53 @@ impl VertexInputRate {
 ///   class="vlist-r"><span style="height:0.15em;"
 ///   class="vlist"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span></span><span class="base"><span class="strut"
-///   style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="mrel">=</span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
+///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 ///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-///   and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
+///   and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
 ///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
 ///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+///   class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
 ///   class="mbin">×</span><span class="mspace"
 ///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-///   class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
-///   delimcenter">⌋</span></span><span class="mspace"
+///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+///   style="top:0em;">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span class="strut"
-///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
+///   class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+///   class="strut"></span><span class="mord"><span style="margin-right:0.05724em;" class="mord
+///   mathdefault">j</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
 ///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span style="height:0.15em;"
 ///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span class="strut"
-///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
+///   class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+///   class="strut"></span><span class="mord"><span class="mord mathdefault"
+///   style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
 ///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
 ///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span style="height:0.15em;"
@@ -5435,21 +5433,20 @@ impl VertexInputRate {
 ///   component in byte 0 and an 8-bit R component in byte 1. The horizontal and vertical dimensions
 ///   of the BR plane are halved relative to the image dimensions, and each R and B value is shared
 ///   with the G components for which <span class="katex"><span class="katex-html"
-///   aria-hidden="true"><span class="base"><span style="height:1em;vertical-align:-0.25em;"
-///   class="strut"></span><span class="minner"><span class="mopen delimcenter"
-///   style="top:0em;">⌊</span><span class="mord"><span class="mord mathdefault">i</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-///   class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
-///   delimcenter">⌋</span></span><span class="mspace"
+///   aria-hidden="true"><span class="base"><span class="strut"
+///   style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen
+///   delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
 ///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
@@ -5458,24 +5455,25 @@ impl VertexInputRate {
 ///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
-///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-///   and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+///   and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
 ///   mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
 ///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
@@ -5485,34 +5483,34 @@ impl VertexInputRate {
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
 ///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
-///   delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
 ///   class="base"><span class="strut"
 ///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-///   class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span class="strut"
-///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-///   class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
 ///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
 ///   class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+///   class="base"><span class="strut"
+///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.15em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
 ///   location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
@@ -5524,42 +5522,44 @@ impl VertexInputRate {
 ///   dimensions, and each R and B value is shared with the G components for which <span
 ///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
 ///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
+///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 ///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
+///   class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-///   class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-///   class="mord">5</span><span style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
-///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+///   class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
+///   delimcenter">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
+///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+///   class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
-///   The location of each plane when this image is in linear layout can be determined via
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+///   class="mspace"></span></span><span class="base"><span class="strut"
+///   style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
+///   location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
 ///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the B plane, and `VK_IMAGE_ASPECT_PLANE_2_BIT` for the R
 ///   plane. This format only supports images with a width that is a multiple of two.
@@ -5569,42 +5569,42 @@ impl VertexInputRate {
 ///   plane is halved relative to the image dimensions, and each R and B value is shared with the G
 ///   components for which <span class="katex"><span class="katex-html" aria-hidden="true"><span
 ///   class="base"><span style="height:1em;vertical-align:-0.25em;" class="strut"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter">⌊</span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
 ///   vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
 ///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
 ///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
 ///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span
+///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+///   class="vlist"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span></span><span class="base"><span class="strut"
-///   style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   style="margin-right:0.05017em;" class="mord mathdefault
-///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span></span><span class="base"><span class="strut"
-///   style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="mrel">=</span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
+///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
 ///   The location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
@@ -5658,84 +5658,84 @@ impl VertexInputRate {
 ///   dimensions, and each R and B component is shared with the G components for which <span
 ///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
 ///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
-///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
+///   delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
 ///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
 ///   vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-///   and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span
-///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   style="margin-right:0.05017em;" class="mord mathdefault
+///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.15em;"
 ///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span></span><span class="base"><span class="strut"
-///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+///   and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+///   mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
 ///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+///   class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
+///   delimcenter">⌋</span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+///   class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+///   class="strut"></span><span class="mord"><span style="margin-right:0.05724em;" class="mord
+///   mathdefault">j</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.05017em;">B</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-///   class="base"><span class="strut"
-///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-///   class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+///   class="mrel">=</span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+///   style="height:0.85396em;vertical-align:-0.19444em;" class="strut"></span><span
+///   class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.32833099999999993em;" class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
-///   The location of each plane when this image is in linear layout can be determined via
+///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
+///   location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
 ///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the B plane, and `VK_IMAGE_ASPECT_PLANE_2_BIT` for the R
 ///   plane. This format only supports images with a width and height that is a multiple of two.
@@ -5746,33 +5746,35 @@ impl VertexInputRate {
 ///   with the bottom 6 bits of each word unused. The horizontal and vertical dimensions of the BR
 ///   plane are halved relative to the image dimensions, and each R and B value is shared with the G
 ///   components for which <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter">⌊</span><span
+///   class="base"><span style="height:1em;vertical-align:-0.25em;" class="strut"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
-///   delimcenter" style="top:0em;">⌋</span></span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span><span class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
-///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   class="vlist"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+///   style="top:0em;">⌋</span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
 ///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
 ///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
 ///   vlist-t2"><span class="vlist-r"><span class="vlist"
@@ -5783,28 +5785,28 @@ impl VertexInputRate {
 ///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-///   and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
-///   mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
+///   and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span
+///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span></span><span class="base"><span class="strut"
-///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-///   class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+///   style="top:0em;">⌋</span></span><span style="margin-right:0.2777777777777778em;"
+///   class="mspace"></span><span class="mrel">=</span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+///   class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
+///   class="mord"><span style="margin-right:0.05724em;" class="mord mathdefault">j</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.32833099999999993em;" class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
 ///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
@@ -5812,12 +5814,12 @@ impl VertexInputRate {
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
+///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+///   class="mspace"></span></span><span class="base"><span
+///   style="height:0.85396em;vertical-align:-0.19444em;" class="strut"></span><span
 ///   class="mord"><span style="margin-right:0.05724em;" class="mord mathdefault">j</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.32833099999999993em;" class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight"
@@ -5836,19 +5838,20 @@ impl VertexInputRate {
 ///   each R and B value is shared with the G components for which <span class="katex"><span
 ///   class="katex-html" aria-hidden="true"><span class="base"><span
 ///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
+///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
 ///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
 ///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
-///   delimcenter" style="top:0em;">⌋</span></span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span><span class="mrel">=</span><span class="mspace"
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+///   class="mrel">=</span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
 ///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
 ///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
@@ -5856,17 +5859,18 @@ impl VertexInputRate {
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 ///   mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
 ///   class="mrel">=</span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
 ///   class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span
 ///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
 ///   location of each plane when this image is in linear layout can be determined via
@@ -5881,19 +5885,29 @@ impl VertexInputRate {
 ///   relative to the image dimensions, and each R and B value is shared with the G components for
 ///   which <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
 ///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
+///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-///   class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
-///   delimcenter">⌋</span></span><span class="mspace"
+///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+///   class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
+///   class="mord">5</span><span style="top:0em;" class="mclose delimcenter">⌋</span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+///   class="mrel">=</span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+///   class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span
+///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
 ///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
@@ -5902,22 +5916,11 @@ impl VertexInputRate {
 ///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span></span><span class="base"><span class="strut"
-///   style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
-///   location of each plane when this image is in linear layout can be determined via
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
+///   The location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
 ///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the BR plane. This format only supports images with a width
 ///   that is a multiple of two.
@@ -5970,188 +5973,8 @@ impl VertexInputRate {
 ///   The horizontal and vertical dimensions of the R and B planes are halved relative to the image
 ///   dimensions, and each R and B component is shared with the G components for which <span
 ///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
-///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
-///   style="top:0em;">⌋</span></span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span><span class="mrel">=</span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
-///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
-///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-///   and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
-///   mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-///   class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-///   class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span><span
-///   class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   style="height:0.85396em;vertical-align:-0.19444em;" class="strut"></span><span
-///   class="mord"><span style="margin-right:0.05724em;" class="mord mathdefault">j</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.05017em;">B</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-///   class="base"><span class="strut"
-///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
-///   The location of each plane when this image is in linear layout can be determined via
-///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
-///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the B plane, and `VK_IMAGE_ASPECT_PLANE_2_BIT` for the R
-///   plane. This format only supports images with a width and height that is a multiple of two.
-/// - [`G12X4B12X4R12X42Plane420Unorm3Pack16`] specifies an unsigned normalized *multi-planar
-///   format* that has a 12-bit G component in the top 12 bits of each 16-bit word of plane 0, and a
-///   two-component, 32-bit BR plane 1 consisting of a 12-bit B component in the top 12 bits of the
-///   word in bytes 0..1, and a 12-bit R component in the top 12 bits of the word in bytes 2..3,
-///   with the bottom 4 bits of each word unused. The horizontal and vertical dimensions of the BR
-///   plane are halved relative to the image dimensions, and each R and B value is shared with the G
-///   components for which <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter">⌊</span><span
-///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
-///   style="top:0em;">⌋</span></span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span><span class="mrel">=</span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
-///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   style="margin-right:0.05017em;" class="mord mathdefault
-///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
-///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-///   and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
-///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-///   class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-///   class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span><span
-///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span></span><span class="base"><span class="strut"
-///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.05017em;">B</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
-///   class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.32833099999999993em;" class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
-///   location of each plane when this image is in linear layout can be determined via
-///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
-///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the BR plane. This format only supports images with a width
-///   and height that is a multiple of two.
-/// - [`G12X4B12X4R12X43Plane422Unorm3Pack16`] specifies an unsigned normalized *multi-planar
-///   format* that has a 12-bit G component in the top 12 bits of each 16-bit word of plane 0, a
-///   12-bit B component in the top 12 bits of each 16-bit word of plane 1, and a 12-bit R component
-///   in the top 12 bits of each 16-bit word of plane 2, with the bottom 4 bits of each word unused.
-///   The horizontal dimension of the R and B plane is halved relative to the image dimensions, and
-///   each R and B value is shared with the G components for which <span class="katex"><span
-///   aria-hidden="true" class="katex-html"><span class="base"><span class="strut"
-///   style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen
-///   delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
@@ -6164,14 +5987,104 @@ impl VertexInputRate {
 ///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
 ///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+///   class="vlist"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   style="margin-right:0.05017em;" class="mord mathdefault
+///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
 ///   vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+///   and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
+///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span
+///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+///   style="top:0em;">⌋</span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span class="strut"
+///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+///   class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+///   class="strut"></span><span class="mord"><span style="margin-right:0.05724em;" class="mord
+///   mathdefault">j</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
+///   location of each plane when this image is in linear layout can be determined via
+///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
+///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the B plane, and `VK_IMAGE_ASPECT_PLANE_2_BIT` for the R
+///   plane. This format only supports images with a width and height that is a multiple of two.
+/// - [`G12X4B12X4R12X42Plane420Unorm3Pack16`] specifies an unsigned normalized *multi-planar
+///   format* that has a 12-bit G component in the top 12 bits of each 16-bit word of plane 0, and a
+///   two-component, 32-bit BR plane 1 consisting of a 12-bit B component in the top 12 bits of the
+///   word in bytes 0..1, and a 12-bit R component in the top 12 bits of the word in bytes 2..3,
+///   with the bottom 4 bits of each word unused. The horizontal and vertical dimensions of the BR
+///   plane are halved relative to the image dimensions, and each R and B value is shared with the G
+///   components for which <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
+///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+///   class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
+///   class="mord">5</span><span style="top:0em;" class="mclose delimcenter">⌋</span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+///   class="mspace"></span></span><span class="base"><span class="strut"
+///   style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   style="margin-right:0.05017em;" class="mord mathdefault
 ///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
@@ -6179,12 +6092,100 @@ impl VertexInputRate {
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
 ///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+///   class="vlist"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span> and <span
+///   class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
+///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+///   style="top:0em;">⌋</span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+///   class="strut"></span><span class="mord"><span class="mord mathdefault"
+///   style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t
 ///   vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+///   class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+///   class="strut"></span><span class="mord"><span style="margin-right:0.05724em;" class="mord
+///   mathdefault">j</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
+///   The location of each plane when this image is in linear layout can be determined via
+///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
+///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the BR plane. This format only supports images with a width
+///   and height that is a multiple of two.
+/// - [`G12X4B12X4R12X43Plane422Unorm3Pack16`] specifies an unsigned normalized *multi-planar
+///   format* that has a 12-bit G component in the top 12 bits of each 16-bit word of plane 0, a
+///   12-bit B component in the top 12 bits of each 16-bit word of plane 1, and a 12-bit R component
+///   in the top 12 bits of each 16-bit word of plane 2, with the bottom 4 bits of each word unused.
+///   The horizontal dimension of the R and B plane is halved relative to the image dimensions, and
+///   each R and B value is shared with the G components for which <span class="katex"><span
+///   aria-hidden="true" class="katex-html"><span class="base"><span
+///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
+///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
+///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
+///   delimcenter" style="top:0em;">⌋</span></span><span style="margin-right:0.2777777777777778em;"
+///   class="mspace"></span><span class="mrel">=</span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+///   class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span
+///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
 ///   The location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
@@ -6196,31 +6197,32 @@ impl VertexInputRate {
 ///   word in bytes 0..1, and a 12-bit R component in the top 12 bits of the word in bytes 2..3,
 ///   with the bottom 4 bits of each word unused. The horizontal dimension of the BR plane is halved
 ///   relative to the image dimensions, and each R and B value is shared with the G components for
-///   which <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+///   which <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
 ///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
-///   delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+///   style="top:0em;">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
 ///   vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
 ///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
@@ -6229,10 +6231,9 @@ impl VertexInputRate {
 ///   vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
 ///   location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
@@ -6272,83 +6273,82 @@ impl VertexInputRate {
 ///   plane 1, and a 16-bit R component in each 16-bit word of plane 2. The horizontal and vertical
 ///   dimensions of the R and B planes are halved relative to the image dimensions, and each R and B
 ///   component is shared with the G components for which <span class="katex"><span
-///   aria-hidden="true" class="katex-html"><span class="base"><span class="strut"
-///   style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span style="top:0em;"
-///   class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
+///   class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
+///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
-///   style="top:0em;">⌋</span></span><span class="mspace"
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
+///   delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
-///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
 ///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
 ///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
 ///   class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+///   class="vlist"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
 ///   and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
-///   mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
+///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
+///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-///   class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
-///   style="top:0em;">⌋</span></span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
-///   class="strut"></span><span class="mord"><span class="mord mathdefault"
-///   style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.05017em;">B</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
+///   delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
 ///   class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
 ///   class="strut"></span><span class="mord"><span style="margin-right:0.05724em;" class="mord
 ///   mathdefault">j</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+///   class="base"><span class="strut"
+///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+///   class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
 ///   The location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
@@ -6363,80 +6363,82 @@ impl VertexInputRate {
 ///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
 ///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
 ///   class="mbin">×</span><span class="mspace"
 ///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
 ///   class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
-///   delimcenter">⌋</span></span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span><span class="mrel">=</span><span
+///   delimcenter">⌋</span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
 ///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
 ///   vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
-///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-///   and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
-///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span></span><span class="base"><span class="strut"
-///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-///   class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.32833099999999993em;"><span
-///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.05017em;">B</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
 ///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 ///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span class="strut"
-///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-///   class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span> and <span
+///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
+///   style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
+///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
 ///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
 ///   class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+///   class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+///   class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
+///   delimcenter">⌋</span></span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+///   class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+///   class="strut"></span><span class="mord"><span class="mord mathdefault"
+///   style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+///   class="mspace"></span></span><span class="base"><span class="strut"
+///   style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+///   style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
 ///   The location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
@@ -6456,36 +6458,34 @@ impl VertexInputRate {
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 ///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="vlist"><span></span></span></span></span></span></span><span
 ///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-///   style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+///   class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
+///   class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
+///   class="mspace" style="margin-right:0.2777777777777778em;"></span><span
 ///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span></span><span class="base"><span class="strut"
-///   style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="mspace"></span></span><span class="base"><span
+///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
+///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-///   style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-///   class="base"><span style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
-///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-///   class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span></span></span></span><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
-///   The location of each plane when this image is in linear layout can be determined via
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+///   class="mrel">=</span><span class="mspace"
+///   style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
+///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
+///   location of each plane when this image is in linear layout can be determined via
 ///   [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
 ///   `VK_IMAGE_ASPECT_PLANE_1_BIT` for the B plane, and `VK_IMAGE_ASPECT_PLANE_2_BIT` for the R
 ///   plane. This format only supports images with a width that is a multiple of two.
@@ -6494,42 +6494,41 @@ impl VertexInputRate {
 ///   consisting of a 16-bit B component in the word in bytes 0..1, and a 16-bit R component in the
 ///   word in bytes 2..3. The horizontal dimension of the BR plane is halved relative to the image
 ///   dimensions, and each R and B value is shared with the G components for which <span
-///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+///   class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
 ///   class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
 ///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
 ///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
 ///   mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.15em;"
-///   class="vlist"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-///   class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-///   class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
-///   class="mspace" style="margin-right:0.2777777777777778em;"></span><span
-///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span></span><span class="base"><span class="strut"
-///   style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-///   mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-///   mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
-///   style="height:0.15em;"><span></span></span></span></span></span></span><span
-///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-///   class="mspace"></span></span><span class="base"><span class="strut"
-///   style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-///   mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+///   style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mclose
+///   delimcenter" style="top:0em;">⌋</span></span><span style="margin-right:0.2777777777777778em;"
+///   class="mspace"></span><span class="mrel">=</span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+///   class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+///   class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.32833099999999993em;"><span
 ///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
 ///   style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
 ///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span></span></span></span><span
+///   style="margin-right:0.05017em;">B</span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+///   class="vlist"><span></span></span></span></span></span></span><span
+///   style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+///   class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+///   class="mspace"></span></span><span class="base"><span
+///   style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span class="mord"><span
+///   class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+///   style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+///   style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.
 ///   The location of each plane when this image is in linear layout can be determined via
@@ -7518,28 +7517,28 @@ pub enum Format {
     ///0, an 8-bit B component in plane 1, and an 8-bit R component in plane 2.
     ///The horizontal and vertical dimensions of the R and B planes are halved
     ///relative to the image dimensions, and each R and B component is shared
-    ///with the G components for which <span class="katex"><span aria-hidden="true"
-    /// class="katex-html"><span class="base"><span class="strut"
-    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+    ///with the G components for which <span class="katex"><span class="katex-html"
+    /// aria-hidden="true"><span class="base"><span style="height:1em;vertical-align:-0.25em;"
+    /// class="strut"></span><span class="minner"><span class="mopen delimcenter"
+    /// style="top:0em;">⌊</span><span class="mord"><span class="mord mathdefault">i</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
     /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
-    /// style="top:0em;">⌋</span></span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span><span class="mrel">=</span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-    /// class="base"><span class="strut"
-    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+    /// class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+    /// class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
     /// style="margin-right:0.05017em;" class="mord mathdefault
@@ -7547,54 +7546,54 @@ pub enum Format {
     /// class="vlist-r"><span style="height:0.15em;"
     /// class="vlist"><span></span></span></span></span></span></span><span
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span></span><span class="base"><span class="strut"
-    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+    /// class="mrel">=</span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+    /// class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
     /// mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-    /// and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-    /// style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
+    /// and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+    /// class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
     /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
     /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+    /// class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
     /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
     /// class="mbin">×</span><span class="mspace"
     /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-    /// class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
-    /// delimcenter">⌋</span></span><span class="mspace"
+    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+    /// style="top:0em;">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span class="strut"
-    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
+    /// class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+    /// class="strut"></span><span class="mord"><span style="margin-right:0.05724em;" class="mord
+    /// mathdefault">j</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
     /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
     /// class="vlist-r"><span style="height:0.15em;"
     /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span class="strut"
-    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-    /// class="vlist"><span
+    /// class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault"
+    /// style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t
+    /// vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
     /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
     /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
     /// class="vlist-r"><span style="height:0.15em;"
@@ -7615,21 +7614,20 @@ pub enum Format {
     ///The horizontal and vertical dimensions of the BR plane are halved
     ///relative to the image dimensions, and each R and B value is shared with
     ///the G components for which <span class="katex"><span class="katex-html"
-    /// aria-hidden="true"><span class="base"><span style="height:1em;vertical-align:-0.25em;"
-    /// class="strut"></span><span class="minner"><span class="mopen delimcenter"
-    /// style="top:0em;">⌊</span><span class="mord"><span class="mord mathdefault">i</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-    /// class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
-    /// delimcenter">⌋</span></span><span class="mspace"
+    /// aria-hidden="true"><span class="base"><span class="strut"
+    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen
+    /// delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
     /// class="base"><span class="strut"
@@ -7638,25 +7636,25 @@ pub enum Format {
     /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.05017em;">B</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
+    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
     /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
-    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-    /// class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-    /// and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-    /// style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-    /// class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+    /// and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+    /// class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
     /// mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
@@ -7666,34 +7664,34 @@ pub enum Format {
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
     /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
     /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
+    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
     /// class="base"><span class="strut"
     /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-    /// class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span class="strut"
-    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-    /// class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
     /// class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight"
-    /// style="margin-right:0.00773em;">R</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// style="margin-right:0.05017em;">B</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// class="base"><span class="strut"
+    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+    /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
+    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span style="height:0.15em;"
     /// class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
     /// location of each plane when this image is in linear layout can be determined via
     /// [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
@@ -7710,46 +7708,46 @@ pub enum Format {
     ///image dimensions, and each R and B value is shared with the G components
     ///for which <span class="katex"><span class="katex-html" aria-hidden="true"><span
     /// class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
-    /// class="minner"><span style="top:0em;" class="mopen delimcenter">⌊</span><span
+    /// class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
     /// class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
     /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
+    /// class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span
     /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-    /// class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-    /// class="mord">5</span><span style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
-    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-    /// class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// class="mbin">×</span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+    /// class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
+    /// delimcenter">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span class="strut"
-    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+    /// style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
-    /// span>. The location of each plane when this image is in linear layout can be
-    ///determined via [`GetImageSubresourceLayout`], using
-    ///`VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.05017em;">B</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+    /// class="mspace"></span></span><span class="base"><span class="strut"
+    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
+    /// location of each plane when this image is in linear layout can be determined via
+    /// [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
     ///`VK_IMAGE_ASPECT_PLANE_1_BIT` for the B plane, and
     ///`VK_IMAGE_ASPECT_PLANE_2_BIT` for the R plane.
     ///This format only supports images with a width that is a multiple of two.
@@ -7764,42 +7762,43 @@ pub enum Format {
     ///dimensions, and each R and B value is shared with the G components for
     ///which <span class="katex"><span class="katex-html" aria-hidden="true"><span
     /// class="base"><span style="height:1em;vertical-align:-0.25em;" class="strut"></span><span
-    /// class="minner"><span style="top:0em;" class="mopen delimcenter">⌊</span><span
+    /// class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
     /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
     /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
     /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span></span><span class="base"><span class="strut"
-    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
-    /// style="margin-right:0.05017em;" class="mord mathdefault
-    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span></span><span class="base"><span class="strut"
+    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span class="strut"
     /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
     /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.05017em;">B</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+    /// class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
     /// span>. The location of each plane when this image is in linear layout can be
     ///determined via [`GetImageSubresourceLayout`], using
@@ -7894,87 +7893,86 @@ pub enum Format {
     ///relative to the image dimensions, and each R and B component is shared
     ///with the G components for which <span class="katex"><span class="katex-html"
     /// aria-hidden="true"><span class="base"><span class="strut"
-    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen
-    /// delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
     /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
-    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
     /// class="base"><span class="strut"
     /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
     /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight"
-    /// style="margin-right:0.00773em;">R</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-    /// and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-    /// style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-    /// class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span
-    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-    /// class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+    /// style="margin-right:0.05017em;" class="mord mathdefault
+    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span style="height:0.15em;"
     /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span></span><span class="base"><span class="strut"
-    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+    /// style="margin-right:0.00773em;" class="mord mathdefault
+    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+    /// and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+    /// class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+    /// class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
+    /// mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mbin">×</span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+    /// class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
+    /// delimcenter">⌋</span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+    /// class="strut"></span><span class="mord"><span style="margin-right:0.05724em;" class="mord
+    /// mathdefault">j</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight"
     /// style="margin-right:0.05017em;">B</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-    /// class="base"><span class="strut"
-    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-    /// class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-    /// class="vlist"><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+    /// style="height:0.85396em;vertical-align:-0.19444em;" class="strut"></span><span
+    /// class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+    /// style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
-    /// span>. The location of each plane when this image is in linear layout can be
-    ///determined via [`GetImageSubresourceLayout`], using
-    ///`VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
+    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
+    /// location of each plane when this image is in linear layout can be determined via
+    /// [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
     ///`VK_IMAGE_ASPECT_PLANE_1_BIT` for the B plane, and
     ///`VK_IMAGE_ASPECT_PLANE_2_BIT` for the R plane.
     ///This format only supports images with a width and height that is a
@@ -7991,35 +7989,35 @@ pub enum Format {
     ///The horizontal and vertical dimensions of the BR plane are halved
     ///relative to the image dimensions, and each R and B value is shared with
     ///the G components for which <span class="katex"><span aria-hidden="true"
-    /// class="katex-html"><span class="base"><span class="strut"
-    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+    /// class="katex-html"><span class="base"><span style="height:1em;vertical-align:-0.25em;"
+    /// class="strut"></span><span class="minner"><span class="mopen delimcenter"
+    /// style="top:0em;">⌊</span><span class="mord"><span class="mord mathdefault">i</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
-    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
+    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mbin">×</span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+    /// style="top:0em;">⌋</span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span class="strut"
+    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
     /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
     /// class="base"><span class="strut"
     /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
@@ -8030,28 +8028,28 @@ pub enum Format {
     /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
     /// class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-    /// and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-    /// style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-    /// class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
-    /// mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-    /// class="vlist"><span
+    /// and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+    /// class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+    /// class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span
+    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span></span><span class="base"><span class="strut"
-    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-    /// class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mbin">×</span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+    /// style="top:0em;">⌋</span></span><span style="margin-right:0.2777777777777778em;"
+    /// class="mspace"></span><span class="mrel">=</span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+    /// class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
+    /// class="mord"><span style="margin-right:0.05724em;" class="mord mathdefault">j</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+    /// style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
     /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
@@ -8059,12 +8057,12 @@ pub enum Format {
     /// class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span><span
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
+    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+    /// class="mspace"></span></span><span class="base"><span
+    /// style="height:0.85396em;vertical-align:-0.19444em;" class="strut"></span><span
     /// class="mord"><span style="margin-right:0.05724em;" class="mord mathdefault">j</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+    /// style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight"
@@ -8090,19 +8088,19 @@ pub enum Format {
     ///image dimensions, and each R and B value is shared with the G components
     ///for which <span class="katex"><span class="katex-html" aria-hidden="true"><span
     /// class="base"><span style="height:1em;vertical-align:-0.25em;" class="strut"></span><span
-    /// class="minner"><span style="top:0em;" class="mopen delimcenter">⌊</span><span
+    /// class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
     /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
     /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
     /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span
+    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
     /// class="mrel">=</span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
@@ -8113,18 +8111,19 @@ pub enum Format {
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
     /// mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
     /// class="mrel">=</span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
     /// class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+    /// class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.00773em;">R</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
     /// class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
     /// location of each plane when this image is in linear layout can be determined via
@@ -8145,20 +8144,31 @@ pub enum Format {
     ///dimensions, and each R and B value is shared with the G components for
     ///which <span class="katex"><span class="katex-html" aria-hidden="true"><span
     /// class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
-    /// class="minner"><span style="top:0em;" class="mopen delimcenter">⌊</span><span
+    /// class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
     /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-    /// class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
-    /// delimcenter">⌋</span></span><span class="mspace"
+    /// class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+    /// class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
+    /// class="mord">5</span><span style="top:0em;" class="mclose delimcenter">⌋</span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+    /// class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+    /// mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
     /// class="base"><span class="strut"
@@ -8167,23 +8177,13 @@ pub enum Format {
     /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span></span><span class="base"><span class="strut"
-    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
-    /// location of each plane when this image is in linear layout can be determined via
-    /// [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
+    /// span>. The location of each plane when this image is in linear layout can be
+    ///determined via [`GetImageSubresourceLayout`], using
+    ///`VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
     ///`VK_IMAGE_ASPECT_PLANE_1_BIT` for the BR plane.
     ///This format only supports images with a width that is a multiple of two.
     ///
@@ -8276,88 +8276,87 @@ pub enum Format {
     ///The horizontal and vertical dimensions of the R and B planes are halved
     ///relative to the image dimensions, and each R and B component is shared
     ///with the G components for which <span class="katex"><span class="katex-html"
-    /// aria-hidden="true"><span class="base"><span style="height:1em;vertical-align:-0.25em;"
-    /// class="strut"></span><span class="minner"><span class="mopen delimcenter"
-    /// style="top:0em;">⌊</span><span class="mord"><span class="mord mathdefault">i</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
-    /// style="top:0em;">⌋</span></span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span><span class="mrel">=</span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-    /// class="base"><span class="strut"
-    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+    /// aria-hidden="true"><span class="base"><span class="strut"
+    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
     /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span class="strut"
-    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+    /// style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
-    /// style="margin-right:0.00773em;" class="mord mathdefault
-    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// style="margin-right:0.05017em;" class="mord mathdefault
+    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
     /// class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
     /// and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
     /// style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-    /// class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
-    /// mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-    /// class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-    /// class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span><span
-    /// class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// style="height:0.85396em;vertical-align:-0.19444em;" class="strut"></span><span
-    /// class="mord"><span style="margin-right:0.05724em;" class="mord mathdefault">j</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight"
-    /// style="margin-right:0.05017em;">B</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-    /// class="base"><span class="strut"
-    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+    /// class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span
     /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mbin">×</span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+    /// style="top:0em;">⌋</span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span class="strut"
+    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+    /// class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.05017em;">B</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+    /// class="strut"></span><span class="mord"><span style="margin-right:0.05724em;" class="mord
+    /// mathdefault">j</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight"
     /// style="margin-right:0.00773em;">R</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
-    /// span>. The location of each plane when this image is in linear layout can be
-    ///determined via [`GetImageSubresourceLayout`], using
-    ///`VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
+    /// location of each plane when this image is in linear layout can be determined via
+    /// [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
     ///`VK_IMAGE_ASPECT_PLANE_1_BIT` for the B plane, and
     ///`VK_IMAGE_ASPECT_PLANE_2_BIT` for the R plane.
     ///This format only supports images with a width and height that is a
@@ -8375,8 +8374,8 @@ pub enum Format {
     ///relative to the image dimensions, and each R and B value is shared with
     ///the G components for which <span class="katex"><span class="katex-html"
     /// aria-hidden="true"><span class="base"><span class="strut"
-    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
+    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen
+    /// delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
     /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
@@ -8385,77 +8384,77 @@ pub enum Format {
     /// class="vlist-r"><span style="height:0.15em;"
     /// class="vlist"><span></span></span></span></span></span></span><span
     /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
-    /// style="top:0em;">⌋</span></span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span><span class="mrel">=</span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
-    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-    /// style="height:0.32833099999999993em;" class="vlist"><span
+    /// class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+    /// class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
+    /// class="mord">5</span><span style="top:0em;" class="mclose delimcenter">⌋</span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+    /// class="mspace"></span></span><span class="base"><span class="strut"
+    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
     /// style="margin-right:0.05017em;" class="mord mathdefault
     /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
-    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-    /// style="height:0.32833099999999993em;" class="vlist"><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span class="strut"
+    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight"
     /// style="margin-right:0.00773em;">R</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-    /// and <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-    /// style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span></span></span></span> and
+    /// <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+    /// class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
     /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
     /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span><span
     /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-    /// class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-    /// class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span><span
-    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span></span><span class="base"><span class="strut"
-    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// class="mbin">×</span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+    /// style="top:0em;">⌋</span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault"
+    /// style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t
+    /// vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight"
     /// style="margin-right:0.05017em;">B</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span
-    /// class="mord"><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-    /// style="height:0.32833099999999993em;" class="vlist"><span
+    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+    /// class="strut"></span><span class="mord"><span style="margin-right:0.05724em;" class="mord
+    /// mathdefault">j</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
-    /// location of each plane when this image is in linear layout can be determined via
-    /// [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
+    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
+    /// span>. The location of each plane when this image is in linear layout can be
+    ///determined via [`GetImageSubresourceLayout`], using
+    ///`VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
     ///`VK_IMAGE_ASPECT_PLANE_1_BIT` for the BR plane.
     ///This format only supports images with a width and height that is a
     ///multiple of two.
@@ -8471,42 +8470,43 @@ pub enum Format {
     ///The horizontal dimension of the R and B plane is halved relative to the
     ///image dimensions, and each R and B value is shared with the G components
     ///for which <span class="katex"><span aria-hidden="true" class="katex-html"><span
-    /// class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+    /// class="base"><span style="height:1em;vertical-align:-0.25em;" class="strut"></span><span
     /// class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+    /// class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
     /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
     /// class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
     /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
     /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span class="strut"
-    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-    /// class="base"><span class="strut"
-    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+    /// class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span
+    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
+    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
     /// span>. The location of each plane when this image is in linear layout can be
     ///determined via [`GetImageSubresourceLayout`], using
@@ -8525,32 +8525,33 @@ pub enum Format {
     ///of the word in bytes 2..3, with the bottom 4 bits of each word unused.
     ///The horizontal dimension of the BR plane is halved relative to the image
     ///dimensions, and each R and B value is shared with the G components for
-    ///which <span class="katex"><span aria-hidden="true" class="katex-html"><span
-    /// class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+    ///which <span class="katex"><span class="katex-html" aria-hidden="true"><span
+    /// class="base"><span style="height:1em;vertical-align:-0.25em;" class="strut"></span><span
     /// class="minner"><span style="top:0em;" class="mopen delimcenter">⌊</span><span
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
     /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span class="strut"
-    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
     /// class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mbin">×</span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
+    /// style="top:0em;">⌋</span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.05017em;">B</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
     /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
@@ -8559,10 +8560,9 @@ pub enum Format {
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
     /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
-    /// style="margin-right:0.00773em;" class="mord mathdefault
-    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+    /// mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
     /// class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
     /// location of each plane when this image is in linear layout can be determined via
     /// [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane, and
@@ -8627,84 +8627,83 @@ pub enum Format {
     ///plane 1, and a 16-bit R component in each 16-bit word of plane 2.
     ///The horizontal and vertical dimensions of the R and B planes are halved
     ///relative to the image dimensions, and each R and B component is shared
-    ///with the G components for which <span class="katex"><span aria-hidden="true"
-    /// class="katex-html"><span class="base"><span class="strut"
-    /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
-    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+    ///with the G components for which <span class="katex"><span class="katex-html"
+    /// aria-hidden="true"><span class="base"><span style="height:1em;vertical-align:-0.25em;"
+    /// class="strut"></span><span class="minner"><span class="mopen delimcenter"
+    /// style="top:0em;">⌊</span><span class="mord"><span class="mord mathdefault">i</span><span
+    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+    /// style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
-    /// style="top:0em;">⌋</span></span><span class="mspace"
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span class="strut"
-    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
     /// class="base"><span class="strut"
     /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
     /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
+    /// class="base"><span class="strut"
+    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+    /// style="margin-right:0.00773em;" class="mord mathdefault
+    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
     /// and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-    /// style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-    /// class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mord
-    /// mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-    /// class="vlist"><span
+    /// class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
+    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
+    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
-    /// class="mord">.</span><span class="mord">5</span><span class="mclose delimcenter"
-    /// style="top:0em;">⌋</span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
-    /// class="strut"></span><span class="mord"><span class="mord mathdefault"
-    /// style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t
-    /// vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
-    /// class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight"
-    /// style="margin-right:0.05017em;">B</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span class="mspace"
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
     /// class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
     /// class="strut"></span><span class="mord"><span style="margin-right:0.05724em;" class="mord
     /// mathdefault">j</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.05017em;">B</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// class="base"><span class="strut"
+    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+    /// class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight"
-    /// style="margin-right:0.00773em;">R</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+    /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
+    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
     /// span>. The location of each plane when this image is in linear layout can be
     ///determined via [`GetImageSubresourceLayout`], using
@@ -8728,65 +8727,25 @@ pub enum Format {
     /// style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span
     /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span class="mord
     /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
+    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span
     /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
     /// class="mbin">×</span><span class="mspace"
     /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
     /// class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
-    /// delimcenter">⌋</span></span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span><span class="mrel">=</span><span
+    /// delimcenter">⌋</span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span
-    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
-    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
-    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-    /// mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
-    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
+    /// class="base"><span class="strut"
+    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight"
-    /// style="margin-right:0.00773em;">R</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
-    /// and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-    /// style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
-    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
-    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
-    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
-    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span></span><span class="base"><span class="strut"
-    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-    /// class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
-    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-    /// style="height:0.32833099999999993em;"><span
-    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
-    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight"
     /// style="margin-right:0.05017em;">B</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
@@ -8794,15 +8753,56 @@ pub enum Format {
     /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
     /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
     /// class="base"><span class="strut"
-    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
-    /// class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="msupsub"><span
+    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
+    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+    /// class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+    /// style="margin-right:0.00773em;" class="mord mathdefault
+    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
+    /// class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span></span></span></span> and
+    /// <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+    /// style="height:1em;vertical-align:-0.25em;" class="strut"></span><span class="minner"><span
+    /// style="top:0em;" class="mopen delimcenter">⌊</span><span class="mord"><span
+    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
     /// class="vlist"><span
     /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+    /// class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight">G</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+    /// class="mbin">×</span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span
+    /// class="mord">.</span><span class="mord">5</span><span style="top:0em;" class="mclose
+    /// delimcenter">⌋</span></span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
+    /// class="base"><span style="height:0.85396em;vertical-align:-0.19444em;"
+    /// class="strut"></span><span class="mord"><span class="mord mathdefault"
+    /// style="margin-right:0.05724em;">j</span><span class="msupsub"><span class="vlist-t
+    /// vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.00773em;" class="mord mathdefault
-    /// mtight">R</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span class="vlist"
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.05017em;">B</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+    /// class="mspace"></span></span><span class="base"><span class="strut"
+    /// style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span
+    /// style="margin-right:0.05724em;" class="mord mathdefault">j</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:-0.05724em;margin-right:0.05em;"><span
+    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
+    /// mtight"><span class="mord mathdefault mtight"
+    /// style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
     /// span>. The location of each plane when this image is in linear layout can be
     ///determined via [`GetImageSubresourceLayout`], using
@@ -8829,38 +8829,37 @@ pub enum Format {
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
     /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
     /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+    /// class="vlist"><span></span></span></span></span></span></span><span
     /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
-    /// style="top:0em;" class="mclose delimcenter">⌋</span></span><span
-    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+    /// class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
+    /// class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
+    /// class="mspace" style="margin-right:0.2777777777777778em;"></span><span
     /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span></span><span class="base"><span class="strut"
-    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span class="mspace"
-    /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span
-    /// class="base"><span style="height:0.80952em;vertical-align:-0.15em;"
-    /// class="strut"></span><span class="mord"><span class="mord mathdefault">i</span><span
-    /// class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-    /// style="height:0.32833099999999993em;" class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span class="mord mathdefault mtight"
-    /// style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="mspace"></span></span><span class="base"><span
+    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+    /// class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+    /// mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
-    /// span>. The location of each plane when this image is in linear layout can be
-    ///determined via [`GetImageSubresourceLayout`], using
-    ///`VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span class="mspace"
+    /// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+    /// style="height:0.32833099999999993em;"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+    /// mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span></span></span></span>. The
+    /// location of each plane when this image is in linear layout can be determined via
+    /// [`GetImageSubresourceLayout`], using `VK_IMAGE_ASPECT_PLANE_0_BIT` for the G plane,
     ///`VK_IMAGE_ASPECT_PLANE_1_BIT` for the B plane, and
     ///`VK_IMAGE_ASPECT_PLANE_2_BIT` for the R plane.
     ///This format only supports images with a width that is a multiple of two.
@@ -8874,8 +8873,8 @@ pub enum Format {
     ///16-bit R component in the word in bytes 2..3.
     ///The horizontal dimension of the BR plane is halved relative to the image
     ///dimensions, and each R and B value is shared with the G components for
-    ///which <span class="katex"><span class="katex-html" aria-hidden="true"><span
-    /// class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span
+    ///which <span class="katex"><span aria-hidden="true" class="katex-html"><span
+    /// class="base"><span style="height:1em;vertical-align:-0.25em;" class="strut"></span><span
     /// class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span
     /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
     /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
@@ -8883,24 +8882,12 @@ pub enum Format {
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
     /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
     /// mathdefault mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span
-    /// class="vlist-r"><span style="height:0.15em;"
-    /// class="vlist"><span></span></span></span></span></span></span><span
-    /// style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-    /// class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-    /// class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span
-    /// class="mord">5</span><span class="mclose delimcenter" style="top:0em;">⌋</span></span><span
-    /// class="mspace" style="margin-right:0.2777777777777778em;"></span><span
-    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
-    /// class="mspace"></span></span><span class="base"><span class="strut"
-    /// style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord
-    /// mathdefault">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-    /// class="vlist-r"><span style="height:0.32833099999999993em;" class="vlist"><span
-    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
-    /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
-    /// mtight"><span style="margin-right:0.05017em;" class="mord mathdefault
-    /// mtight">B</span></span></span></span><span class="vlist-s">​</span></span><span
     /// class="vlist-r"><span class="vlist"
-    /// style="height:0.15em;"><span></span></span></span></span></span></span><span
+    /// style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace"
+    /// style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+    /// class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+    /// class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span
+    /// class="mclose delimcenter" style="top:0em;">⌋</span></span><span
     /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
     /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
     /// class="mspace"></span></span><span class="base"><span class="strut"
@@ -8910,7 +8897,19 @@ pub enum Format {
     /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span
     /// style="height:2.7em;" class="pstrut"></span><span class="sizing reset-size6 size3
     /// mtight"><span class="mord mathdefault mtight"
-    /// style="margin-right:0.00773em;">R</span></span></span></span><span
+    /// style="margin-right:0.05017em;">B</span></span></span></span><span
+    /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.15em;"
+    /// class="vlist"><span></span></span></span></span></span></span><span
+    /// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+    /// class="mrel">=</span><span style="margin-right:0.2777777777777778em;"
+    /// class="mspace"></span></span><span class="base"><span
+    /// style="height:0.80952em;vertical-align:-0.15em;" class="strut"></span><span
+    /// class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span
+    /// class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.32833099999999993em;"
+    /// class="vlist"><span
+    /// style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+    /// style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+    /// mathdefault mtight" style="margin-right:0.00773em;">R</span></span></span></span><span
     /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
     /// style="height:0.15em;"><span></span></span></span></span></span></span></span></span></
     /// span>. The location of each plane when this image is in linear layout can be
@@ -38342,21 +38341,21 @@ impl Extent3D {
 ///attachment has a floating-point depth component.
 ///If an m-bit fixed-point representation is used, we assume that it
 ///represents each value <span class="katex"><span class="katex-html" aria-hidden="true"><span
-/// class="base"><span style="height:1.283439em;vertical-align:-0.403331em;"
-/// class="strut"></span><span class="mord"><span class="mopen nulldelimiter"></span><span
-/// class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-/// style="height:0.8801079999999999em;"><span style="top:-2.655em;"><span class="pstrut"
-/// style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-/// mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="msupsub"><span
-/// class="vlist-t"><span class="vlist-r"><span class="vlist"
-/// style="height:0.5935428571428571em;"><span
+/// class="base"><span class="strut"
+/// style="height:1.283439em;vertical-align:-0.403331em;"></span><span class="mord"><span
+/// class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span class="vlist" style="height:0.8801079999999999em;"><span
+/// style="top:-2.655em;"><span style="height:3em;" class="pstrut"></span><span class="sizing
+/// reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord
+/// mtight">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span
+/// class="vlist" style="height:0.5935428571428571em;"><span
 /// style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut"
 /// style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
 /// mathdefault mtight">m</span></span></span></span></span></span></span></span><span class="mbin
 /// mtight">−</span><span class="mord mtight">1</span></span></span></span><span
-/// style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span
+/// style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span
 /// style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-/// style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing
+/// style="top:-3.394em;"><span style="height:3em;" class="pstrut"></span><span class="sizing
 /// reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
 /// style="margin-right:0.03148em;">k</span></span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.403331em;"
@@ -39407,7 +39406,7 @@ impl<'lt> Default for ApplicationInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ApplicationInfo,
             p_next: std::ptr::null(),
             application_name: std::ptr::null(),
             application_version: 0,
@@ -39732,11 +39731,11 @@ impl<'lt> Default for AllocationCallbacks<'lt> {
         Self {
             _lifetime: PhantomData,
             user_data: std::ptr::null_mut(),
-            pfn_allocation: Default::default(),
-            pfn_reallocation: Default::default(),
-            pfn_free: Default::default(),
-            pfn_internal_allocation: Default::default(),
-            pfn_internal_free: Default::default(),
+            pfn_allocation: None,
+            pfn_reallocation: None,
+            pfn_free: None,
+            pfn_internal_allocation: None,
+            pfn_internal_free: None,
         }
     }
 }
@@ -39931,7 +39930,7 @@ impl<'lt> Default for DeviceQueueCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceQueueCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             queue_family_index: 0,
@@ -40328,7 +40327,7 @@ impl<'lt> Default for DeviceCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             queue_create_info_count: 0,
@@ -40647,7 +40646,7 @@ impl<'lt> Default for InstanceCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::InstanceCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             application_info: std::ptr::null(),
@@ -41478,7 +41477,7 @@ impl<'lt> Default for MemoryAllocateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MemoryAllocateInfo,
             p_next: std::ptr::null(),
             allocation_size: Default::default(),
             memory_type_index: 0,
@@ -42129,7 +42128,7 @@ impl<'lt> Default for MappedMemoryRange<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MappedMemoryRange,
             p_next: std::ptr::null(),
             memory: Default::default(),
             offset: Default::default(),
@@ -43026,7 +43025,7 @@ impl<'lt> Default for WriteDescriptorSet<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::WriteDescriptorSet,
             p_next: std::ptr::null(),
             dst_set: Default::default(),
             dst_binding: 0,
@@ -43381,7 +43380,7 @@ impl<'lt> Default for CopyDescriptorSet<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::CopyDescriptorSet,
             p_next: std::ptr::null(),
             src_set: Default::default(),
             src_binding: 0,
@@ -43669,7 +43668,7 @@ impl<'lt> Default for BufferCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BufferCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             size: Default::default(),
@@ -43930,7 +43929,7 @@ impl<'lt> Default for BufferViewCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BufferViewCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             buffer: Default::default(),
@@ -44533,7 +44532,7 @@ impl<'lt> Default for MemoryBarrier<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MemoryBarrier,
             p_next: std::ptr::null(),
             src_access_mask: Default::default(),
             dst_access_mask: Default::default(),
@@ -44734,7 +44733,7 @@ impl<'lt> Default for BufferMemoryBarrier<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BufferMemoryBarrier,
             p_next: std::ptr::null(),
             src_access_mask: Default::default(),
             dst_access_mask: Default::default(),
@@ -45120,7 +45119,7 @@ impl<'lt> Default for ImageMemoryBarrier<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImageMemoryBarrier,
             p_next: std::ptr::null(),
             src_access_mask: Default::default(),
             dst_access_mask: Default::default(),
@@ -45516,41 +45515,41 @@ impl<'lt> ImageMemoryBarrier<'lt> {
 ///   [`PhysicalDeviceLimits::max_framebuffer_height`]
 /// - If [`fragmentDensityMapOffset`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-fragmentDensityMapOffset)
 ///   is not enabled and [`usage`] includes `VK_IMAGE_USAGE_FRAGMENT_DENSITY_MAP_BIT_EXT`,
-///   `extent.width` **must**  be less than or equal to <span class="katex"><span class="katex-html"
-///   aria-hidden="true"><span class="base"><span class="strut"
-///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   `extent.width` **must**  be less than or equal to <span class="katex"><span aria-hidden="true"
+///   class="katex-html"><span class="base"><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">i</span><span class="mord
 ///   mathdefault mtight">n</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
 ///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
+///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
-///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">h</span></span></span></span></span><span
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
 ///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
@@ -45559,21 +45558,21 @@ impl<'lt> ImageMemoryBarrier<'lt> {
 ///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
 ///   class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord
 ///   mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span><span
-///   style="margin-right:0.13889em;" class="mord mathdefault mtight">F</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">m</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">b</span><span class="mord
-///   mathdefault mtight">u</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;" class="mord mathdefault mtight">F</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">b</span><span class="mord mathdefault
+///   mtight">u</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.10764em;">f</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span
 ///   style="margin-right:0.13889em;" class="mord mathdefault mtight">W</span><span class="mord
 ///   mathdefault mtight">i</span><span class="mord mathdefault mtight">d</span><span class="mord
 ///   mathdefault mtight">t</span><span class="mord mathdefault
 ///   mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span style="height:0.481108em;"
 ///   class="vlist"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
+///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
 ///   class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If [`fragmentDensityMapOffset`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-fragmentDensityMapOffset)
 ///   is not enabled and [`usage`] includes `VK_IMAGE_USAGE_FRAGMENT_DENSITY_MAP_BIT_EXT`,
@@ -45584,7 +45583,7 @@ impl<'lt> ImageMemoryBarrier<'lt> {
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">i</span><span class="mord
 ///   mathdefault mtight">n</span><span style="margin-right:0.13889em;" class="mord mathdefault
@@ -45596,18 +45595,18 @@ impl<'lt> ImageMemoryBarrier<'lt> {
 ///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
 ///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
+///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight"
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
 ///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
@@ -45615,19 +45614,19 @@ impl<'lt> ImageMemoryBarrier<'lt> {
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span style="height:0.29011428571428566em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span
+///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span
 ///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-///   style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing
+///   style="top:-3.446108em;"><span style="height:3em;" class="pstrut"></span><span class="sizing
 ///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault
 ///   mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault
-///   mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">b</span><span class="mord mathdefault mtight">u</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">b</span><span class="mord mathdefault mtight">u</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.10764em;">f</span><span
+///   style="margin-right:0.10764em;" class="mord mathdefault mtight">f</span><span class="mord
+///   mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
 ///   mtight">r</span><span style="margin-right:0.08125em;" class="mord mathdefault
 ///   mtight">H</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
 ///   mtight">i</span><span class="mord mathdefault mtight"
@@ -45635,7 +45634,7 @@ impl<'lt> ImageMemoryBarrier<'lt> {
 ///   class="mord mathdefault mtight">t</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.5480799999999999em;"
 ///   class="vlist"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
+///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
 ///   class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If [`usage`] includes `VK_IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT`, [`usage`] **must**  also
 ///   contain at least one of `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT`,
@@ -45931,7 +45930,7 @@ impl<'lt> Default for ImageCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImageCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             image_type: Default::default(),
@@ -46730,7 +46729,7 @@ impl<'lt> Default for ImageViewCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImageViewCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             image: Default::default(),
@@ -47822,7 +47821,7 @@ impl<'lt> Default for BindSparseInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BindSparseInfo,
             p_next: std::ptr::null(),
             wait_semaphore_count: 0,
             wait_semaphores: std::ptr::null(),
@@ -48752,8 +48751,8 @@ impl ImageResolve {
 ///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
 ///   class="mord mtight"><span class="mord text mtight"><span class="mord textrm
 ///   mtight">codeSize</span></span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.345em;"><span></span></span></span></span></span><span class="mclose
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.345em;"
+///   class="vlist"><span></span></span></span></span></span><span class="mclose
 ///   nulldelimiter"></span></span></span></span></span>`uint32_t` values
 ///# Related
 /// - [`crate::vulkan1_0`]
@@ -48795,7 +48794,7 @@ impl<'lt> Default for ShaderModuleCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ShaderModuleCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             code_size: 0,
@@ -49220,7 +49219,7 @@ impl<'lt> Default for DescriptorSetLayoutCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DescriptorSetLayoutCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             binding_count: 0,
@@ -49551,7 +49550,7 @@ impl<'lt> Default for DescriptorPoolCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DescriptorPoolCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             max_sets: 0,
@@ -49743,7 +49742,7 @@ impl<'lt> Default for DescriptorSetAllocateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DescriptorSetAllocateInfo,
             p_next: std::ptr::null(),
             descriptor_pool: Default::default(),
             descriptor_set_count: 0,
@@ -50257,7 +50256,7 @@ impl<'lt> Default for PipelineShaderStageCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineShaderStageCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             stage: Default::default(),
@@ -50510,7 +50509,7 @@ impl<'lt> Default for ComputePipelineCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ComputePipelineCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             stage: Default::default(),
@@ -50955,7 +50954,7 @@ impl<'lt> Default for PipelineVertexInputStateCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineVertexInputStateCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             vertex_binding_description_count: 0,
@@ -51211,7 +51210,7 @@ impl<'lt> Default for PipelineInputAssemblyStateCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineInputAssemblyStateCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             topology: Default::default(),
@@ -51380,7 +51379,7 @@ impl<'lt> Default for PipelineTessellationStateCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineTessellationStateCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             patch_control_points: 0,
@@ -51561,7 +51560,7 @@ impl<'lt> Default for PipelineViewportStateCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineViewportStateCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             viewport_count: 0,
@@ -51841,7 +51840,7 @@ impl<'lt> Default for PipelineRasterizationStateCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineRasterizationStateCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             depth_clamp_enable: 0,
@@ -52167,31 +52166,30 @@ impl<'lt> PipelineRasterizationStateCreateInfo<'lt> {
 /// - [`flags`] **must**  be `0`
 /// - [`rasterization_samples`] **must**  be a valid [`SampleCountFlagBits`] value
 /// - If [`sample_mask`] is not `NULL`, [`sample_mask`] **must**  be a valid pointer to an array of
-///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   style="height:1.277216em;vertical-align:-0.345em;" class="strut"></span><span
+///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="strut" style="height:1.277216em;vertical-align:-0.345em;"></span><span
 ///   class="mopen">⌈</span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
 ///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mtight">3</span><span class="mord mtight">2</span></span></span></span><span
-///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span
-///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-///   style="top:-3.446108em;"><span style="height:3em;" class="pstrut"></span><span class="sizing
-///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span
-///   class="mord mathit mtight">r</span><span class="mord mathit mtight">a</span><span class="mord
-///   mathit mtight">s</span><span class="mord mathit mtight">t</span><span class="mord mathit
-///   mtight">e</span><span class="mord mathit mtight">r</span><span class="mord mathit
-///   mtight">i</span><span class="mord mathit mtight">z</span><span class="mord mathit
-///   mtight">a</span><span class="mord mathit mtight">t</span><span class="mord mathit
-///   mtight">i</span><span class="mord mathit mtight">o</span><span class="mord mathit
-///   mtight">n</span><span class="mord mathit mtight">S</span><span class="mord mathit
-///   mtight">a</span><span class="mord mathit mtight">m</span><span class="mord mathit
-///   mtight">p</span><span class="mord mathit mtight">l</span><span class="mord mathit
-///   mtight">e</span><span class="mord mathit
+///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mtight"><span class="mord mathit mtight">r</span><span
+///   class="mord mathit mtight">a</span><span class="mord mathit mtight">s</span><span class="mord
+///   mathit mtight">t</span><span class="mord mathit mtight">e</span><span class="mord mathit
+///   mtight">r</span><span class="mord mathit mtight">i</span><span class="mord mathit
+///   mtight">z</span><span class="mord mathit mtight">a</span><span class="mord mathit
+///   mtight">t</span><span class="mord mathit mtight">i</span><span class="mord mathit
+///   mtight">o</span><span class="mord mathit mtight">n</span><span class="mord mathit
+///   mtight">S</span><span class="mord mathit mtight">a</span><span class="mord mathit
+///   mtight">m</span><span class="mord mathit mtight">p</span><span class="mord mathit
+///   mtight">l</span><span class="mord mathit mtight">e</span><span class="mord mathit
 ///   mtight">s</span></span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.345em;"
-///   class="vlist"><span></span></span></span></span></span><span class="mclose
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.345em;"><span></span></span></span></span></span><span class="mclose
 ///   nulldelimiter"></span></span></span><span
 ///   class="mclose">⌉</span></span></span></span>[`SampleMask`] values
 ///# Related
@@ -52250,7 +52248,7 @@ impl<'lt> Default for PipelineMultisampleStateCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineMultisampleStateCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             rasterization_samples: Default::default(),
@@ -52836,7 +52834,7 @@ impl<'lt> Default for PipelineColorBlendStateCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineColorBlendStateCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             logic_op_enable: 0,
@@ -53068,7 +53066,7 @@ impl<'lt> Default for PipelineDynamicStateCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineDynamicStateCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             dynamic_state_count: 0,
@@ -53472,7 +53470,7 @@ impl<'lt> Default for PipelineDepthStencilStateCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineDepthStencilStateCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             depth_test_enable: 0,
@@ -54447,7 +54445,7 @@ impl<'lt> Default for GraphicsPipelineCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::GraphicsPipelineCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             stage_count: 0,
@@ -54924,7 +54922,7 @@ impl<'lt> Default for PipelineCacheCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineCacheCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             initial_data_size: 0,
@@ -55564,7 +55562,7 @@ impl<'lt> Default for PipelineLayoutCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineLayoutCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             set_layout_count: 0,
@@ -55965,7 +55963,7 @@ impl<'lt> Default for SamplerCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SamplerCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             mag_filter: Default::default(),
@@ -56366,7 +56364,7 @@ impl<'lt> Default for CommandPoolCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::CommandPoolCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             queue_family_index: 0,
@@ -56500,7 +56498,7 @@ impl<'lt> Default for CommandBufferAllocateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::CommandBufferAllocateInfo,
             p_next: std::ptr::null(),
             command_pool: Default::default(),
             level: Default::default(),
@@ -56728,7 +56726,7 @@ impl<'lt> Default for CommandBufferInheritanceInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::CommandBufferInheritanceInfo,
             p_next: std::ptr::null(),
             render_pass: Default::default(),
             subpass: 0,
@@ -56963,7 +56961,7 @@ impl<'lt> Default for CommandBufferBeginInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::CommandBufferBeginInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             inheritance_info: std::ptr::null(),
@@ -57253,7 +57251,7 @@ impl<'lt> Default for RenderPassBeginInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::RenderPassBeginInfo,
             p_next: std::ptr::null(),
             render_pass: Default::default(),
             framebuffer: Default::default(),
@@ -57520,7 +57518,7 @@ impl Default for ClearAttachment {
         Self {
             aspect_mask: Default::default(),
             color_attachment: 0,
-            clear_value: Default::default(),
+            clear_value: unsafe { std::mem::zeroed() },
         }
     }
 }
@@ -58935,7 +58933,7 @@ impl<'lt> Default for RenderPassCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::RenderPassCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             attachment_count: 0,
@@ -59160,7 +59158,7 @@ impl<'lt> Default for EventCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::EventCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
         }
@@ -59272,7 +59270,7 @@ impl<'lt> Default for FenceCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::FenceCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
         }
@@ -65437,7 +65435,7 @@ impl<'lt> Default for SemaphoreCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SemaphoreCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
         }
@@ -65579,7 +65577,7 @@ impl<'lt> Default for QueryPoolCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::QueryPoolCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             query_type: Default::default(),
@@ -65797,19 +65795,19 @@ impl<'lt> QueryPoolCreateInfo<'lt> {
 /// - If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] does not include
 ///   `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, an element of [`attachments`] that is referenced by
 ///   `fragmentDensityMapAttachment` **must**  have a width at least as large as <span
-///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
 ///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.8801079999999999em;" class="vlist"><span
+///   class="vlist-r"><span class="vlist" style="height:0.8801079999999999em;"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
 ///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
 ///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
 ///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
@@ -65819,14 +65817,14 @@ impl<'lt> QueryPoolCreateInfo<'lt> {
 ///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
 ///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
 ///   mtight">i</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
@@ -65836,67 +65834,67 @@ impl<'lt> QueryPoolCreateInfo<'lt> {
 ///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
 ///   style="height:3em;"></span><span class="frac-line"
 ///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span
-///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span style="margin-right:0.02691em;" class="mord mathdefault
-///   mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.481108em;"
-///   class="vlist"><span></span></span></span></span></span><span class="mclose
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose
 ///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
 ///   class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] does not include
 ///   `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, an element of [`attachments`] that is referenced by
 ///   `fragmentDensityMapAttachment` **must**  have a height at least as large as <span
-///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
 ///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
 ///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
+///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
+///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">F</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">t</span><span
 ///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span><span class="mord mathdefault mtight"
+///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
 ///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
 ///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
 ///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
 ///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
 ///   style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span style="height:0.29011428571428566em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span
-///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-///   style="top:-3.446108em;"><span style="height:3em;" class="pstrut"></span><span class="sizing
-///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">h</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">i</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">g</span><span class="mord mathdefault mtight">h</span><span class="mord mathdefault
+///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight">h</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.5480799999999999em;"
-///   class="vlist"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// -    If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] does not include `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, and [`render_pass`] was specified with non-zero view masks, each element of [`attachments`] that is used as a [fragment shading rate attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment) by [`render_pass`] **must**  have a `layerCount` that is either `1`, or greater than the index of the most significant bit set in any of those view masks
 /// -    If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] does not include `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, and [`render_pass`] was not specified with non-zero view masks, each element of [`attachments`] that is used as a [fragment shading rate attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment) by [`render_pass`] **must**  have a `layerCount` that is either `1`, or greater than [`layers`]
 /// -    If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] does not include `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, an element of [`attachments`] that is used as a [fragment shading rate attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment) **must**  have a width at least as large as ⌈[`width`] / `texelWidth`⌉, where `texelWidth` is the largest value of `shadingRateAttachmentTexelSize.width` in a [`FragmentShadingRateAttachmentInfoKHR`] which references that attachment
@@ -65939,9 +65937,9 @@ impl<'lt> QueryPoolCreateInfo<'lt> {
 ///   [`p_next`] chain that is referenced by
 ///   [`RenderPassFragmentDensityMapCreateInfoEXT::fragment_density_map_attachment`] in
 ///   [`render_pass`] **must**  be greater than or equal to <span class="katex"><span
-///   class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.8801079999999999em;"><span
@@ -65949,9 +65947,9 @@ impl<'lt> QueryPoolCreateInfo<'lt> {
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
 ///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
-///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
 ///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
 ///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
@@ -65960,31 +65958,31 @@ impl<'lt> QueryPoolCreateInfo<'lt> {
 ///   mtight">t</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.03588em;">y</span><span style="margin-right:0.13889em;" class="mord
 ///   mathdefault mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
 ///   mtight">i</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
-///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">h</span></span></span></span></span><span
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.15122857142857138em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
+///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.394em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span style="margin-right:0.02691em;" class="mord mathdefault mtight">w</span><span
-///   class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.481108em;"
-///   class="vlist"><span></span></span></span></span></span><span class="mclose
+///   style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose
 ///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
 ///   class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] includes
@@ -65998,39 +65996,40 @@ impl<'lt> QueryPoolCreateInfo<'lt> {
 ///   style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">t</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
 ///   mtight">y</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
 ///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.3448em;" class="vlist"><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line"
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="frac-line"
 ///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
 ///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
 ///   class="mord mtight"><span class="mord mathdefault mtight">h</span><span class="mord
@@ -66038,10 +66037,10 @@ impl<'lt> QueryPoolCreateInfo<'lt> {
 ///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.5480799999999999em;"
-///   class="vlist"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// -    If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] includes `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, the [`width`] member of any element of the `pAttachmentImageInfos` member of a [`FramebufferAttachmentsCreateInfo`] structure in the [`p_next`] chain that is used as a [fragment shading rate attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment) **must**  be greater than or equal to ⌈[`width`] / `texelWidth`⌉, where `texelWidth` is the largest value of `shadingRateAttachmentTexelSize.width` in a [`FragmentShadingRateAttachmentInfoKHR`] which references that attachment
 /// -    If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] includes `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, the [`height`] member of any element of the `pAttachmentImageInfos` member of a [`FramebufferAttachmentsCreateInfo`] structure in the [`p_next`] chain that is used as a [fragment shading rate attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment) **must**  be greater than or equal to ⌈[`height`] / `texelHeight`⌉, where `texelHeight` is the largest value of `shadingRateAttachmentTexelSize.height` in a [`FragmentShadingRateAttachmentInfoKHR`] which references that attachment
 /// -    If `renderpass` is not [`crate::utils::Handle::null`] and [`flags`] includes `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT`, the `layerCount` member of any element of the `pAttachmentImageInfos` member of a [`FramebufferAttachmentsCreateInfo`] structure in the [`p_next`] chain that is used as a [fragment shading rate attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment) **must**  be either `1`, or greater than or equal to [`layers`]
@@ -66164,7 +66163,7 @@ impl<'lt> Default for FramebufferCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::FramebufferCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             render_pass: Default::default(),
@@ -66851,7 +66850,7 @@ impl<'lt> Default for SubmitInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SubmitInfo,
             p_next: std::ptr::null(),
             wait_semaphore_count: 0,
             wait_semaphores: std::ptr::null(),

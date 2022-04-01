@@ -6121,7 +6121,7 @@ impl<'lt> Default for PhysicalDeviceFeatures2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceFeatures2,
             p_next: std::ptr::null_mut(),
             features: Default::default(),
         }
@@ -6287,7 +6287,7 @@ impl<'lt> Default for PhysicalDeviceProperties2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceProperties2,
             p_next: std::ptr::null_mut(),
             properties: Default::default(),
         }
@@ -6413,7 +6413,7 @@ impl<'lt> Default for FormatProperties2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::FormatProperties2,
             p_next: std::ptr::null_mut(),
             format_properties: Default::default(),
         }
@@ -6547,7 +6547,7 @@ impl<'lt> Default for ImageFormatProperties2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImageFormatProperties2,
             p_next: std::ptr::null_mut(),
             image_format_properties: Default::default(),
         }
@@ -6724,7 +6724,7 @@ impl<'lt> Default for PhysicalDeviceImageFormatInfo2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceImageFormatInfo2,
             p_next: std::ptr::null(),
             format: Default::default(),
             type_: Default::default(),
@@ -6899,7 +6899,7 @@ impl<'lt> Default for QueueFamilyProperties2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::QueueFamilyProperties2,
             p_next: std::ptr::null_mut(),
             queue_family_properties: Default::default(),
         }
@@ -7023,7 +7023,7 @@ impl<'lt> Default for PhysicalDeviceMemoryProperties2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceMemoryProperties2,
             p_next: std::ptr::null_mut(),
             memory_properties: Default::default(),
         }
@@ -7145,7 +7145,7 @@ impl<'lt> Default for SparseImageFormatProperties2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SparseImageFormatProperties2,
             p_next: std::ptr::null_mut(),
             properties: Default::default(),
         }
@@ -7297,7 +7297,7 @@ impl<'lt> Default for PhysicalDeviceSparseImageFormatInfo2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceSparseImageFormatInfo2,
             p_next: std::ptr::null(),
             format: Default::default(),
             type_: Default::default(),
@@ -7503,7 +7503,7 @@ impl<'lt> Default for PhysicalDeviceVariablePointersFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceVariablePointersFeatures,
             p_next: std::ptr::null_mut(),
             variable_pointers_storage_buffer: 0,
             variable_pointers: 0,
@@ -7817,7 +7817,7 @@ impl<'lt> Default for PhysicalDeviceExternalImageFormatInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceExternalImageFormatInfo,
             p_next: std::ptr::null(),
             handle_type: Default::default(),
         }
@@ -7930,7 +7930,7 @@ impl<'lt> Default for ExternalImageFormatProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ExternalImageFormatProperties,
             p_next: std::ptr::null_mut(),
             external_memory_properties: Default::default(),
         }
@@ -8072,7 +8072,7 @@ impl<'lt> Default for PhysicalDeviceExternalBufferInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceExternalBufferInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             usage: Default::default(),
@@ -8216,7 +8216,7 @@ impl<'lt> Default for ExternalBufferProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ExternalBufferProperties,
             p_next: std::ptr::null_mut(),
             external_memory_properties: Default::default(),
         }
@@ -8384,7 +8384,7 @@ impl<'lt> Default for PhysicalDeviceIdProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceIdProperties,
             p_next: std::ptr::null_mut(),
             device_uuid: [0; UUID_SIZE as usize],
             driver_uuid: [0; UUID_SIZE as usize],
@@ -8587,7 +8587,7 @@ impl<'lt> Default for ExternalMemoryImageCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ExternalMemoryImageCreateInfo,
             p_next: std::ptr::null(),
             handle_types: Default::default(),
         }
@@ -8704,7 +8704,7 @@ impl<'lt> Default for ExternalMemoryBufferCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ExternalMemoryBufferCreateInfo,
             p_next: std::ptr::null(),
             handle_types: Default::default(),
         }
@@ -8829,7 +8829,7 @@ impl<'lt> Default for ExportMemoryAllocateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ExportMemoryAllocateInfo,
             p_next: std::ptr::null(),
             handle_types: Default::default(),
         }
@@ -8946,7 +8946,7 @@ impl<'lt> Default for PhysicalDeviceExternalSemaphoreInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceExternalSemaphoreInfo,
             p_next: std::ptr::null(),
             handle_type: Default::default(),
         }
@@ -9081,7 +9081,7 @@ impl<'lt> Default for ExternalSemaphoreProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ExternalSemaphoreProperties,
             p_next: std::ptr::null_mut(),
             export_from_imported_handle_types: Default::default(),
             compatible_handle_types: Default::default(),
@@ -9250,7 +9250,7 @@ impl<'lt> Default for ExportSemaphoreCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ExportSemaphoreCreateInfo,
             p_next: std::ptr::null(),
             handle_types: Default::default(),
         }
@@ -9366,7 +9366,7 @@ impl<'lt> Default for PhysicalDeviceExternalFenceInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceExternalFenceInfo,
             p_next: std::ptr::null(),
             handle_type: Default::default(),
         }
@@ -9498,7 +9498,7 @@ impl<'lt> Default for ExternalFenceProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ExternalFenceProperties,
             p_next: std::ptr::null_mut(),
             export_from_imported_handle_types: Default::default(),
             compatible_handle_types: Default::default(),
@@ -9659,7 +9659,7 @@ impl<'lt> Default for ExportFenceCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ExportFenceCreateInfo,
             p_next: std::ptr::null(),
             handle_types: Default::default(),
         }
@@ -9802,7 +9802,7 @@ impl<'lt> Default for PhysicalDeviceMultiviewFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceMultiviewFeatures,
             p_next: std::ptr::null_mut(),
             multiview: 0,
             multiview_geometry_shader: 0,
@@ -10025,7 +10025,7 @@ impl<'lt> Default for PhysicalDeviceMultiviewProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceMultiviewProperties,
             p_next: std::ptr::null_mut(),
             max_multiview_view_count: 0,
             max_multiview_instance_index: 0,
@@ -10284,7 +10284,7 @@ impl<'lt> Default for RenderPassMultiviewCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::RenderPassMultiviewCreateInfo,
             p_next: std::ptr::null(),
             subpass_count: 0,
             view_masks: std::ptr::null(),
@@ -10523,7 +10523,7 @@ impl<'lt> Default for PhysicalDeviceGroupProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceGroupProperties,
             p_next: std::ptr::null_mut(),
             physical_device_count: 0,
             physical_devices: [Default::default(); MAX_DEVICE_GROUP_SIZE as usize],
@@ -10725,7 +10725,7 @@ impl<'lt> Default for MemoryAllocateFlagsInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MemoryAllocateFlagsInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             device_mask: 0,
@@ -10929,7 +10929,7 @@ impl<'lt> Default for BindBufferMemoryInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BindBufferMemoryInfo,
             p_next: std::ptr::null(),
             buffer: Default::default(),
             memory: Default::default(),
@@ -11092,7 +11092,7 @@ impl<'lt> Default for BindBufferMemoryDeviceGroupInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BindBufferMemoryDeviceGroupInfo,
             p_next: std::ptr::null(),
             device_index_count: 0,
             device_indices: std::ptr::null(),
@@ -11352,7 +11352,7 @@ impl<'lt> Default for BindImageMemoryInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BindImageMemoryInfo,
             p_next: std::ptr::null(),
             image: Default::default(),
             memory: Default::default(),
@@ -11566,7 +11566,7 @@ impl<'lt> Default for BindImageMemoryDeviceGroupInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BindImageMemoryDeviceGroupInfo,
             p_next: std::ptr::null(),
             device_index_count: 0,
             device_indices: std::ptr::null(),
@@ -11795,7 +11795,7 @@ impl<'lt> Default for DeviceGroupRenderPassBeginInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceGroupRenderPassBeginInfo,
             p_next: std::ptr::null(),
             device_mask: 0,
             device_render_area_count: 0,
@@ -11955,7 +11955,7 @@ impl<'lt> Default for DeviceGroupCommandBufferBeginInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceGroupCommandBufferBeginInfo,
             p_next: std::ptr::null(),
             device_mask: 0,
         }
@@ -12126,7 +12126,7 @@ impl<'lt> Default for DeviceGroupSubmitInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceGroupSubmitInfo,
             p_next: std::ptr::null(),
             wait_semaphore_count: 0,
             wait_semaphore_device_indices: std::ptr::null(),
@@ -12362,7 +12362,7 @@ impl<'lt> Default for DeviceGroupBindSparseInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceGroupBindSparseInfo,
             p_next: std::ptr::null(),
             resource_device_index: 0,
             memory_device_index: 0,
@@ -12518,7 +12518,7 @@ impl<'lt> Default for DeviceGroupDeviceCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceGroupDeviceCreateInfo,
             p_next: std::ptr::null(),
             physical_device_count: 0,
             physical_devices: std::ptr::null(),
@@ -12957,7 +12957,7 @@ impl<'lt> Default for DescriptorUpdateTemplateCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DescriptorUpdateTemplateCreateInfo,
             p_next: std::ptr::null(),
             flags: Default::default(),
             descriptor_update_entry_count: 0,
@@ -13320,7 +13320,7 @@ impl<'lt> Default for RenderPassInputAttachmentAspectCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::RenderPassInputAttachmentAspectCreateInfo,
             p_next: std::ptr::null(),
             aspect_reference_count: 0,
             aspect_references: std::ptr::null(),
@@ -13522,7 +13522,7 @@ impl<'lt> Default for PhysicalDevice16BitStorageFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDevice16BitStorageFeatures,
             p_next: std::ptr::null_mut(),
             storage_buffer_16_bit_access: 0,
             uniform_and_storage_buffer_16_bit_access: 0,
@@ -13790,7 +13790,7 @@ impl<'lt> Default for PhysicalDeviceSubgroupProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceSubgroupProperties,
             p_next: std::ptr::null_mut(),
             subgroup_size: 0,
             supported_stages: Default::default(),
@@ -13975,7 +13975,7 @@ impl<'lt> Default for BufferMemoryRequirementsInfo2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BufferMemoryRequirementsInfo2,
             p_next: std::ptr::null(),
             buffer: Default::default(),
         }
@@ -14109,7 +14109,7 @@ impl<'lt> Default for ImageMemoryRequirementsInfo2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImageMemoryRequirementsInfo2,
             p_next: std::ptr::null(),
             image: Default::default(),
         }
@@ -14222,7 +14222,7 @@ impl<'lt> Default for ImageSparseMemoryRequirementsInfo2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImageSparseMemoryRequirementsInfo2,
             p_next: std::ptr::null(),
             image: Default::default(),
         }
@@ -14346,7 +14346,7 @@ impl<'lt> Default for MemoryRequirements2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MemoryRequirements2,
             p_next: std::ptr::null_mut(),
             memory_requirements: Default::default(),
         }
@@ -14469,7 +14469,7 @@ impl<'lt> Default for SparseImageMemoryRequirements2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SparseImageMemoryRequirements2,
             p_next: std::ptr::null_mut(),
             memory_requirements: Default::default(),
         }
@@ -14591,7 +14591,7 @@ impl<'lt> Default for PhysicalDevicePointClippingProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDevicePointClippingProperties,
             p_next: std::ptr::null_mut(),
             point_clipping_behavior: Default::default(),
         }
@@ -14748,7 +14748,7 @@ impl<'lt> Default for MemoryDedicatedRequirements<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MemoryDedicatedRequirements,
             p_next: std::ptr::null_mut(),
             prefers_dedicated_allocation: 0,
             requires_dedicated_allocation: 0,
@@ -14993,7 +14993,7 @@ impl<'lt> Default for MemoryDedicatedAllocateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MemoryDedicatedAllocateInfo,
             p_next: std::ptr::null(),
             image: Default::default(),
             buffer: Default::default(),
@@ -15126,7 +15126,7 @@ impl<'lt> Default for ImageViewUsageCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImageViewUsageCreateInfo,
             p_next: std::ptr::null(),
             usage: Default::default(),
         }
@@ -15247,7 +15247,7 @@ impl<'lt> Default for PipelineTessellationDomainOriginStateCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineTessellationDomainOriginStateCreateInfo,
             p_next: std::ptr::null(),
             domain_origin: Default::default(),
         }
@@ -15373,7 +15373,7 @@ impl<'lt> Default for SamplerYcbcrConversionInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SamplerYcbcrConversionInfo,
             p_next: std::ptr::null(),
             conversion: Default::default(),
         }
@@ -15593,7 +15593,7 @@ impl<'lt> Default for SamplerYcbcrConversionCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SamplerYcbcrConversionCreateInfo,
             p_next: std::ptr::null(),
             format: Default::default(),
             ycbcr_model: Default::default(),
@@ -15840,7 +15840,7 @@ impl<'lt> Default for BindImagePlaneMemoryInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BindImagePlaneMemoryInfo,
             p_next: std::ptr::null(),
             plane_aspect: Default::default(),
         }
@@ -15967,7 +15967,7 @@ impl<'lt> Default for ImagePlaneMemoryRequirementsInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImagePlaneMemoryRequirementsInfo,
             p_next: std::ptr::null(),
             plane_aspect: Default::default(),
         }
@@ -16093,7 +16093,7 @@ impl<'lt> Default for PhysicalDeviceSamplerYcbcrConversionFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceSamplerYcbcrConversionFeatures,
             p_next: std::ptr::null_mut(),
             sampler_ycbcr_conversion: 0,
         }
@@ -16240,7 +16240,7 @@ impl<'lt> Default for SamplerYcbcrConversionImageFormatProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SamplerYcbcrConversionImageFormatProperties,
             p_next: std::ptr::null_mut(),
             combined_image_sampler_descriptor_count: 0,
         }
@@ -16358,7 +16358,7 @@ impl<'lt> Default for ProtectedSubmitInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ProtectedSubmitInfo,
             p_next: std::ptr::null(),
             protected_submit: 0,
         }
@@ -16495,7 +16495,7 @@ impl<'lt> Default for PhysicalDeviceProtectedMemoryFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceProtectedMemoryFeatures,
             p_next: std::ptr::null_mut(),
             protected_memory: 0,
         }
@@ -16639,7 +16639,7 @@ impl<'lt> Default for PhysicalDeviceProtectedMemoryProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceProtectedMemoryProperties,
             p_next: std::ptr::null_mut(),
             protected_no_fault: 0,
         }
@@ -16807,7 +16807,7 @@ impl<'lt> Default for DeviceQueueInfo2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DeviceQueueInfo2,
             p_next: std::ptr::null(),
             flags: Default::default(),
             queue_family_index: 0,
@@ -16958,7 +16958,7 @@ impl<'lt> Default for PhysicalDeviceMaintenance3Properties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceMaintenance3Properties,
             p_next: std::ptr::null_mut(),
             max_per_set_descriptors: 0,
             max_memory_allocation_size: Default::default(),
@@ -17097,7 +17097,7 @@ impl<'lt> Default for DescriptorSetLayoutSupport<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::DescriptorSetLayoutSupport,
             p_next: std::ptr::null_mut(),
             supported: 0,
         }
@@ -17253,7 +17253,7 @@ impl<'lt> Default for PhysicalDeviceShaderDrawParametersFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceShaderDrawParametersFeatures,
             p_next: std::ptr::null_mut(),
             shader_draw_parameters: 0,
         }

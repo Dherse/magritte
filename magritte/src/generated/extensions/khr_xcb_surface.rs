@@ -185,11 +185,11 @@ impl<'lt> Default for XcbSurfaceCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::XcbSurfaceCreateInfoKhr,
             p_next: std::ptr::null(),
             flags: Default::default(),
             connection: std::ptr::null_mut(),
-            window: Default::default(),
+            window: unsafe { std::mem::zeroed() },
         }
     }
 }

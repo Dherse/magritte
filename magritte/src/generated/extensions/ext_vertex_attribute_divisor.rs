@@ -231,7 +231,7 @@ impl<'lt> Default for PipelineVertexInputDivisorStateCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PipelineVertexInputDivisorStateCreateInfoExt,
             p_next: std::ptr::null(),
             vertex_binding_divisor_count: 0,
             vertex_binding_divisors: std::ptr::null(),
@@ -375,7 +375,7 @@ impl<'lt> Default for PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceVertexAttributeDivisorPropertiesExt,
             p_next: std::ptr::null_mut(),
             max_vertex_attrib_divisor: 0,
         }
@@ -506,7 +506,7 @@ impl<'lt> Default for PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceVertexAttributeDivisorFeaturesExt,
             p_next: std::ptr::null_mut(),
             vertex_attribute_instance_rate_divisor: 0,
             vertex_attribute_instance_rate_zero_divisor: 0,

@@ -192,7 +192,9 @@
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     extensions::{
-        khr_acceleration_structure::{GeometryFlagsKHR, GeometryTypeKHR},
+        khr_acceleration_structure::{
+            AccelerationStructureTypeKHR, BuildAccelerationStructureFlagsKHR, GeometryFlagsKHR, GeometryTypeKHR,
+        },
         khr_ray_tracing_pipeline::RayTracingShaderGroupTypeKHR,
     },
     vulkan1_0::{
@@ -404,7 +406,7 @@ impl<'lt> Default for RayTracingShaderGroupCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::RayTracingShaderGroupCreateInfoNv,
             p_next: std::ptr::null(),
             type_: Default::default(),
             general_shader: 0,
@@ -679,7 +681,7 @@ impl<'lt> Default for RayTracingPipelineCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::RayTracingPipelineCreateInfoNv,
             p_next: std::ptr::null(),
             flags: Default::default(),
             stage_count: 0,
@@ -1011,7 +1013,7 @@ impl<'lt> Default for GeometryTrianglesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::GeometryTrianglesNv,
             p_next: std::ptr::null(),
             vertex_data: Default::default(),
             vertex_offset: Default::default(),
@@ -1280,7 +1282,7 @@ impl<'lt> Default for GeometryAabbNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::GeometryAabbNv,
             p_next: std::ptr::null(),
             aabb_data: Default::default(),
             num_aab_bs: 0,
@@ -1534,7 +1536,7 @@ impl<'lt> Default for GeometryNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::GeometryNv,
             p_next: std::ptr::null(),
             geometry_type: Default::default(),
             geometry: Default::default(),
@@ -1711,10 +1713,10 @@ pub struct AccelerationStructureInfoNV<'lt> {
     pub p_next: *const BaseInStructure<'lt>,
     ///[`type_`] is a [`AccelerationStructureTypeNV`] value specifying the
     ///type of acceleration structure that will be created.
-    pub type_: AccelerationStructureTypeNV,
+    pub type_: AccelerationStructureTypeKHR,
     ///[`flags`] is a bitmask of [`BuildAccelerationStructureFlagBitsNV`]
     ///specifying additional parameters of the acceleration structure.
-    pub flags: BuildAccelerationStructureFlagsNV,
+    pub flags: BuildAccelerationStructureFlagsKHR,
     ///[`instance_count`] specifies the number of instances that will be in
     ///the new acceleration structure.
     pub instance_count: u32,
@@ -1729,7 +1731,7 @@ impl<'lt> Default for AccelerationStructureInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AccelerationStructureInfoNv,
             p_next: std::ptr::null(),
             type_: Default::default(),
             flags: Default::default(),
@@ -1770,11 +1772,11 @@ impl<'lt> AccelerationStructureInfoNV<'lt> {
         &*self.p_next
     }
     ///Gets the value of [`Self::type_`]
-    pub fn type_(&self) -> AccelerationStructureTypeNV {
+    pub fn type_(&self) -> AccelerationStructureTypeKHR {
         self.type_
     }
     ///Gets the value of [`Self::flags`]
-    pub fn flags(&self) -> BuildAccelerationStructureFlagsNV {
+    pub fn flags(&self) -> BuildAccelerationStructureFlagsKHR {
         self.flags
     }
     ///Gets the value of [`Self::instance_count`]
@@ -1797,11 +1799,11 @@ impl<'lt> AccelerationStructureInfoNV<'lt> {
         &mut self.s_type
     }
     ///Gets a mutable reference to the value of [`Self::type_`]
-    pub fn type_mut(&mut self) -> &mut AccelerationStructureTypeNV {
+    pub fn type_mut(&mut self) -> &mut AccelerationStructureTypeKHR {
         &mut self.type_
     }
     ///Gets a mutable reference to the value of [`Self::flags`]
-    pub fn flags_mut(&mut self) -> &mut BuildAccelerationStructureFlagsNV {
+    pub fn flags_mut(&mut self) -> &mut BuildAccelerationStructureFlagsKHR {
         &mut self.flags
     }
     ///Gets a mutable reference to the value of [`Self::instance_count`]
@@ -1823,14 +1825,17 @@ impl<'lt> AccelerationStructureInfoNV<'lt> {
         self
     }
     ///Sets the raw value of [`Self::type_`]
-    pub fn set_type_(&mut self, value: crate::extensions::nv_ray_tracing::AccelerationStructureTypeNV) -> &mut Self {
+    pub fn set_type_(
+        &mut self,
+        value: crate::extensions::khr_acceleration_structure::AccelerationStructureTypeKHR,
+    ) -> &mut Self {
         self.type_ = value;
         self
     }
     ///Sets the raw value of [`Self::flags`]
     pub fn set_flags(
         &mut self,
-        value: crate::extensions::nv_ray_tracing::BuildAccelerationStructureFlagsNV,
+        value: crate::extensions::khr_acceleration_structure::BuildAccelerationStructureFlagsKHR,
     ) -> &mut Self {
         self.flags = value;
         self
@@ -1921,7 +1926,7 @@ impl<'lt> Default for AccelerationStructureCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AccelerationStructureCreateInfoNv,
             p_next: std::ptr::null(),
             compacted_size: Default::default(),
             info: Default::default(),
@@ -2095,7 +2100,7 @@ impl<'lt> Default for BindAccelerationStructureMemoryInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::BindAccelerationStructureMemoryInfoNv,
             p_next: std::ptr::null(),
             acceleration_structure: Default::default(),
             memory: Default::default(),
@@ -2291,7 +2296,7 @@ impl<'lt> Default for WriteDescriptorSetAccelerationStructureNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::WriteDescriptorSetAccelerationStructureNv,
             p_next: std::ptr::null(),
             acceleration_structure_count: 0,
             acceleration_structures: std::ptr::null(),
@@ -2448,7 +2453,7 @@ impl<'lt> Default for AccelerationStructureMemoryRequirementsInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::AccelerationStructureMemoryRequirementsInfoNv,
             p_next: std::ptr::null(),
             type_: Default::default(),
             acceleration_structure: Default::default(),
@@ -2624,7 +2629,7 @@ impl<'lt> Default for PhysicalDeviceRayTracingPropertiesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceRayTracingPropertiesNv,
             p_next: std::ptr::null_mut(),
             shader_group_handle_size: 0,
             max_recursion_depth: 0,

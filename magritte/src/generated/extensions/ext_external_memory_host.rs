@@ -188,7 +188,7 @@ impl<'lt> Default for ImportMemoryHostPointerInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImportMemoryHostPointerInfoExt,
             p_next: std::ptr::null(),
             handle_type: Default::default(),
             host_pointer: std::ptr::null_mut(),
@@ -326,7 +326,7 @@ impl<'lt> Default for MemoryHostPointerPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MemoryHostPointerPropertiesExt,
             p_next: std::ptr::null_mut(),
             memory_type_bits: 0,
         }
@@ -449,7 +449,7 @@ impl<'lt> Default for PhysicalDeviceExternalMemoryHostPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceExternalMemoryHostPropertiesExt,
             p_next: std::ptr::null_mut(),
             min_imported_host_pointer_alignment: Default::default(),
         }

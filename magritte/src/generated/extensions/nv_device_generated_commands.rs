@@ -1170,7 +1170,7 @@ impl<'lt> Default for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceDeviceGeneratedCommandsFeaturesNv,
             p_next: std::ptr::null_mut(),
             device_generated_commands: 0,
         }
@@ -1365,7 +1365,7 @@ impl<'lt> Default for PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceDeviceGeneratedCommandsPropertiesNv,
             p_next: std::ptr::null_mut(),
             max_graphics_shader_group_count: 0,
             max_indirect_sequence_count: 0,
@@ -1632,7 +1632,7 @@ impl<'lt> Default for GraphicsShaderGroupCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::GraphicsShaderGroupCreateInfoNv,
             p_next: std::ptr::null(),
             stage_count: 0,
             stages: std::ptr::null(),
@@ -1865,7 +1865,7 @@ impl<'lt> Default for GraphicsPipelineShaderGroupsCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::GraphicsPipelineShaderGroupsCreateInfoNv,
             p_next: std::ptr::null(),
             group_count: 0,
             groups: std::ptr::null(),
@@ -2571,7 +2571,7 @@ impl<'lt> Default for IndirectCommandsLayoutTokenNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::IndirectCommandsLayoutTokenNv,
             p_next: std::ptr::null(),
             token_type: Default::default(),
             stream: 0,
@@ -2979,7 +2979,7 @@ impl<'lt> Default for IndirectCommandsLayoutCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::IndirectCommandsLayoutCreateInfoNv,
             p_next: std::ptr::null(),
             flags: Default::default(),
             pipeline_bind_point: Default::default(),
@@ -3330,7 +3330,7 @@ impl<'lt> Default for GeneratedCommandsInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::GeneratedCommandsInfoNv,
             p_next: std::ptr::null(),
             pipeline_bind_point: Default::default(),
             pipeline: Default::default(),
@@ -3653,7 +3653,7 @@ impl<'lt> Default for GeneratedCommandsMemoryRequirementsInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::GeneratedCommandsMemoryRequirementsInfoNv,
             p_next: std::ptr::null(),
             pipeline_bind_point: Default::default(),
             pipeline: Default::default(),

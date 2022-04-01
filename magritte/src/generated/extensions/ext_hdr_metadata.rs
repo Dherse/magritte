@@ -236,7 +236,7 @@ impl<'lt> Default for HdrMetadataEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::HdrMetadataExt,
             p_next: std::ptr::null(),
             display_primary_red: Default::default(),
             display_primary_green: Default::default(),

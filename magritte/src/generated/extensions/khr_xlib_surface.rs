@@ -184,11 +184,11 @@ impl<'lt> Default for XlibSurfaceCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::XlibSurfaceCreateInfoKhr,
             p_next: std::ptr::null(),
             flags: Default::default(),
             dpy: std::ptr::null_mut(),
-            window: Default::default(),
+            window: unsafe { std::mem::zeroed() },
         }
     }
 }

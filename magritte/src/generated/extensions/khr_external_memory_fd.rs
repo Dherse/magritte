@@ -162,7 +162,7 @@ impl<'lt> Default for ImportMemoryFdInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::ImportMemoryFdInfoKhr,
             p_next: std::ptr::null(),
             handle_type: Default::default(),
             fd: 0,
@@ -283,7 +283,7 @@ impl<'lt> Default for MemoryFdPropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MemoryFdPropertiesKhr,
             p_next: std::ptr::null_mut(),
             memory_type_bits: 0,
         }
@@ -416,7 +416,7 @@ impl<'lt> Default for MemoryGetFdInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::MemoryGetFdInfoKhr,
             p_next: std::ptr::null(),
             memory: Default::default(),
             handle_type: Default::default(),

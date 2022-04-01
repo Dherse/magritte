@@ -110,7 +110,7 @@ impl<'lt> Default for TextureLodGatherFormatPropertiesAMD<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::TextureLodGatherFormatPropertiesAmd,
             p_next: std::ptr::null_mut(),
             supports_texture_gather_lod_bias_amd: 0,
         }

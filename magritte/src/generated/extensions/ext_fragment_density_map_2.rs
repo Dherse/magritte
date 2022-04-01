@@ -134,7 +134,7 @@ impl<'lt> Default for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceFragmentDensityMap2FeaturesExt,
             p_next: std::ptr::null_mut(),
             fragment_density_map_deferred: 0,
         }
@@ -302,7 +302,7 @@ impl<'lt> Default for PhysicalDeviceFragmentDensityMap2PropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::PhysicalDeviceFragmentDensityMap2PropertiesExt,
             p_next: std::ptr::null_mut(),
             subsampled_loads: 0,
             subsampled_coarse_reconstruction_early_access: 0,

@@ -194,7 +194,7 @@ impl<'lt> Default for WaylandSurfaceCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::WaylandSurfaceCreateInfoKhr,
             p_next: std::ptr::null(),
             flags: Default::default(),
             display: std::ptr::null_mut(),

@@ -216,7 +216,7 @@ impl<'lt> Default for RenderPassTransformBeginInfoQCOM<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::RenderPassTransformBeginInfoQcom,
             p_next: std::ptr::null_mut(),
             transform: Default::default(),
         }
@@ -356,7 +356,7 @@ impl<'lt> Default for CommandBufferInheritanceRenderPassTransformInfoQCOM<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::CommandBufferInheritanceRenderPassTransformInfoQcom,
             p_next: std::ptr::null_mut(),
             transform: Default::default(),
             render_area: Default::default(),

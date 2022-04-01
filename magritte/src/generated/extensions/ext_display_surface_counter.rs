@@ -576,7 +576,7 @@ impl<'lt> Default for SurfaceCapabilities2EXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: Default::default(),
+            s_type: StructureType::SurfaceCapabilities2Ext,
             p_next: std::ptr::null_mut(),
             min_image_count: 0,
             max_image_count: 0,
