@@ -252,11 +252,19 @@ impl VideoDecodeH264PictureLayoutFlagsEXT {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::VIDEO_DECODE_H_264_PICTURE_LAYOUT_PROGRESSIVE_EXT
-            | Self::VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_INTERLEAVED_LINES_EXT
-            | Self::VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_SEPARATE_PLANES_EXT
+        let mut all = Self::empty();
+        {
+            all |= Self::VIDEO_DECODE_H_264_PICTURE_LAYOUT_PROGRESSIVE_EXT;
+        }
+        {
+            all |= Self::VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_INTERLEAVED_LINES_EXT;
+        }
+        {
+            all |= Self::VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_SEPARATE_PLANES_EXT;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -366,7 +374,7 @@ impl const std::ops::BitOr for VideoDecodeH264PictureLayoutFlagsEXT {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for VideoDecodeH264PictureLayoutFlagsEXT {
+impl const std::ops::BitOrAssign for VideoDecodeH264PictureLayoutFlagsEXT {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -379,7 +387,7 @@ impl const std::ops::BitXor for VideoDecodeH264PictureLayoutFlagsEXT {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for VideoDecodeH264PictureLayoutFlagsEXT {
+impl const std::ops::BitXorAssign for VideoDecodeH264PictureLayoutFlagsEXT {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -392,7 +400,7 @@ impl const std::ops::BitAnd for VideoDecodeH264PictureLayoutFlagsEXT {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for VideoDecodeH264PictureLayoutFlagsEXT {
+impl const std::ops::BitAndAssign for VideoDecodeH264PictureLayoutFlagsEXT {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -405,7 +413,7 @@ impl const std::ops::Sub for VideoDecodeH264PictureLayoutFlagsEXT {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for VideoDecodeH264PictureLayoutFlagsEXT {
+impl const std::ops::SubAssign for VideoDecodeH264PictureLayoutFlagsEXT {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -454,7 +462,7 @@ impl std::fmt::Debug for VideoDecodeH264PictureLayoutFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoDecodeH264PictureLayoutFlagsEXT);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoDecodeH264PictureLayoutFlagsEXT::empty() {
                     f.write_str("empty")?;

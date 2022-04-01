@@ -33,9 +33,13 @@ impl<'a> Bit<'a> {
         let name = self.as_ident();
         let value = Literal::i64_unsuffixed(self.value());
 
+        // conditional compilation for feature flags
+        let conditional_compilation = self.condition(parent);
+
         quote! {
             #doc
             #provided_by
+            #conditional_compilation
             #name = #value,
         }
     }
@@ -60,7 +64,11 @@ impl<'a> Enum<'a> {
         // generate the doc for the enum
         let variant_docs = self.generate_doc(source, doc, out).unwrap_or_default();
 
-        let has_empty = self.variants().iter().any(|v| v.value() == 0);
+        let has_empty = self
+            .variants()
+            .iter()
+            .filter(|v| !v.origin().is_disabled())
+            .any(|v| v.value() == 0);
 
         // create an empty declaration if none exists
         let empty_decl = (!has_empty).then(|| {
@@ -74,6 +82,7 @@ impl<'a> Enum<'a> {
         let default = self
             .variants()
             .iter()
+            .filter(|v| !v.origin().is_disabled())
             .find(|v| v.value() == 0)
             .map_or_else(|| Ident::new("Empty", Span::call_site()), |v| v.as_ident());
 

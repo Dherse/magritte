@@ -15,7 +15,7 @@ mod structs;
 pub mod ty;
 mod unions;
 
-use std::fmt::Write;
+use std::{collections::BTreeMap, fmt::Write};
 
 use ahash::AHashMap;
 use proc_macro2::TokenStream;
@@ -43,9 +43,9 @@ impl<'a> Source<'a> {
 
             {
                 let mut out = out;
-                quote_each_token!{
+                quote_each_token! {
                     out
-    
+
                     #![allow(non_camel_case_types)]
                 }
             }
@@ -218,6 +218,29 @@ impl<'a> Source<'a> {
 
                 out
             })
+    }
+
+    /// Generate the feature set for a `Cargo.toml` file
+    pub fn generate_feature_set(&self, out: &mut BTreeMap<String, Vec<String>>) {
+        let mut all = Vec::new();
+        for extension in &self.extensions {
+            if extension.disabled() {
+                continue;
+            }
+
+            all.push(extension.name().to_string());
+
+            out.insert(
+                extension.name().to_string(),
+                extension
+                    .required()
+                    .into_iter()
+                    .map(|s| s.to_string())
+                    .collect::<Vec<_>>(),
+            );
+        }
+
+        out.insert("all".to_string(), all);
     }
 }
 

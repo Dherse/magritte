@@ -12,8 +12,4 @@ Execute the following commands:
 
 ## Low hanging fruits
 
-To fix the easily auto-fixed warnings in the generated code, using the following command:
-
-```sh
-    cargo fix --allow-dirty
-```
+Go in and manually fix the small number of remaining warnings (typically unused parens).

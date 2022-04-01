@@ -188,8 +188,13 @@ impl SurfaceCounterFlagsEXT {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty() | Self::SURFACE_COUNTER_VBLANK_EXT
+        let mut all = Self::empty();
+        {
+            all |= Self::SURFACE_COUNTER_VBLANK_EXT;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -299,7 +304,7 @@ impl const std::ops::BitOr for SurfaceCounterFlagsEXT {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for SurfaceCounterFlagsEXT {
+impl const std::ops::BitOrAssign for SurfaceCounterFlagsEXT {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -312,7 +317,7 @@ impl const std::ops::BitXor for SurfaceCounterFlagsEXT {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for SurfaceCounterFlagsEXT {
+impl const std::ops::BitXorAssign for SurfaceCounterFlagsEXT {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -325,7 +330,7 @@ impl const std::ops::BitAnd for SurfaceCounterFlagsEXT {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for SurfaceCounterFlagsEXT {
+impl const std::ops::BitAndAssign for SurfaceCounterFlagsEXT {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -338,7 +343,7 @@ impl const std::ops::Sub for SurfaceCounterFlagsEXT {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for SurfaceCounterFlagsEXT {
+impl const std::ops::SubAssign for SurfaceCounterFlagsEXT {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -383,7 +388,7 @@ impl std::fmt::Debug for SurfaceCounterFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(SurfaceCounterFlagsEXT);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == SurfaceCounterFlagsEXT::empty() {
                     f.write_str("empty")?;

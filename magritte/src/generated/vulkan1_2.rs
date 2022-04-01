@@ -866,8 +866,13 @@ impl SemaphoreWaitFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty() | Self::SEMAPHORE_WAIT_ANY
+        let mut all = Self::empty();
+        {
+            all |= Self::SEMAPHORE_WAIT_ANY;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -977,7 +982,7 @@ impl const std::ops::BitOr for SemaphoreWaitFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for SemaphoreWaitFlags {
+impl const std::ops::BitOrAssign for SemaphoreWaitFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -990,7 +995,7 @@ impl const std::ops::BitXor for SemaphoreWaitFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for SemaphoreWaitFlags {
+impl const std::ops::BitXorAssign for SemaphoreWaitFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -1003,7 +1008,7 @@ impl const std::ops::BitAnd for SemaphoreWaitFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for SemaphoreWaitFlags {
+impl const std::ops::BitAndAssign for SemaphoreWaitFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -1016,7 +1021,7 @@ impl const std::ops::Sub for SemaphoreWaitFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for SemaphoreWaitFlags {
+impl const std::ops::SubAssign for SemaphoreWaitFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -1061,7 +1066,7 @@ impl std::fmt::Debug for SemaphoreWaitFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(SemaphoreWaitFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == SemaphoreWaitFlags::empty() {
                     f.write_str("empty")?;
@@ -1217,10 +1222,6 @@ impl DescriptorBindingFlags {
     ///[`maxInlineUniformBlockSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformBlockSize) and [`maxInlineUniformTotalSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformTotalSize) limits
     ///instead.
     pub const DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT: Self = Self(8);
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::qcom_extension_369`]
-    pub const RESERVED_4_QCOM: Self = Self(16);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1228,13 +1229,22 @@ impl DescriptorBindingFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::DESCRIPTOR_BINDING_UPDATE_AFTER_BIND
-            | Self::DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING
-            | Self::DESCRIPTOR_BINDING_PARTIALLY_BOUND
-            | Self::DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT
-            | Self::RESERVED_4_QCOM
+        let mut all = Self::empty();
+        {
+            all |= Self::DESCRIPTOR_BINDING_UPDATE_AFTER_BIND;
+        }
+        {
+            all |= Self::DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING;
+        }
+        {
+            all |= Self::DESCRIPTOR_BINDING_PARTIALLY_BOUND;
+        }
+        {
+            all |= Self::DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -1344,7 +1354,7 @@ impl const std::ops::BitOr for DescriptorBindingFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for DescriptorBindingFlags {
+impl const std::ops::BitOrAssign for DescriptorBindingFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -1357,7 +1367,7 @@ impl const std::ops::BitXor for DescriptorBindingFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for DescriptorBindingFlags {
+impl const std::ops::BitXorAssign for DescriptorBindingFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -1370,7 +1380,7 @@ impl const std::ops::BitAnd for DescriptorBindingFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for DescriptorBindingFlags {
+impl const std::ops::BitAndAssign for DescriptorBindingFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -1383,7 +1393,7 @@ impl const std::ops::Sub for DescriptorBindingFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for DescriptorBindingFlags {
+impl const std::ops::SubAssign for DescriptorBindingFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -1428,7 +1438,7 @@ impl std::fmt::Debug for DescriptorBindingFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(DescriptorBindingFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == DescriptorBindingFlags::empty() {
                     f.write_str("empty")?;
@@ -1473,13 +1483,6 @@ impl std::fmt::Debug for DescriptorBindingFlags {
                             f.write_str(" | ")?;
                         }
                         f.write_str(stringify!(DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT))?;
-                    }
-                    if self.0.contains(DescriptorBindingFlags::RESERVED_4_QCOM) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(RESERVED_4_QCOM))?;
                     }
                 }
                 Ok(())
@@ -1583,13 +1586,25 @@ impl ResolveModeFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::RESOLVE_MODE_NONE
-            | Self::RESOLVE_MODE_SAMPLE_ZERO
-            | Self::RESOLVE_MODE_AVERAGE
-            | Self::RESOLVE_MODE_MIN
-            | Self::RESOLVE_MODE_MAX
+        let mut all = Self::empty();
+        {
+            all |= Self::RESOLVE_MODE_NONE;
+        }
+        {
+            all |= Self::RESOLVE_MODE_SAMPLE_ZERO;
+        }
+        {
+            all |= Self::RESOLVE_MODE_AVERAGE;
+        }
+        {
+            all |= Self::RESOLVE_MODE_MIN;
+        }
+        {
+            all |= Self::RESOLVE_MODE_MAX;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -1699,7 +1714,7 @@ impl const std::ops::BitOr for ResolveModeFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for ResolveModeFlags {
+impl const std::ops::BitOrAssign for ResolveModeFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -1712,7 +1727,7 @@ impl const std::ops::BitXor for ResolveModeFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for ResolveModeFlags {
+impl const std::ops::BitXorAssign for ResolveModeFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -1725,7 +1740,7 @@ impl const std::ops::BitAnd for ResolveModeFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for ResolveModeFlags {
+impl const std::ops::BitAndAssign for ResolveModeFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -1738,7 +1753,7 @@ impl const std::ops::Sub for ResolveModeFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for ResolveModeFlags {
+impl const std::ops::SubAssign for ResolveModeFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -1783,7 +1798,7 @@ impl std::fmt::Debug for ResolveModeFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ResolveModeFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ResolveModeFlags::empty() {
                     f.write_str("empty")?;
@@ -3058,16 +3073,16 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 /// - [`rounding_mode_independence`] is a [`ShaderFloatControlsIndependence`] value indicating
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float_16`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
 ///   class="base"><span class="strut"
 ///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_32`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
@@ -16633,8 +16648,8 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 64-bit floating-point types.

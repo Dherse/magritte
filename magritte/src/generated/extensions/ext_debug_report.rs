@@ -402,13 +402,25 @@ impl DebugReportFlagsEXT {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::DEBUG_REPORT_INFORMATION_EXT
-            | Self::DEBUG_REPORT_WARNING_EXT
-            | Self::DEBUG_REPORT_PERFORMANCE_WARNING_EXT
-            | Self::DEBUG_REPORT_ERROR_EXT
-            | Self::DEBUG_REPORT_DEBUG_EXT
+        let mut all = Self::empty();
+        {
+            all |= Self::DEBUG_REPORT_INFORMATION_EXT;
+        }
+        {
+            all |= Self::DEBUG_REPORT_WARNING_EXT;
+        }
+        {
+            all |= Self::DEBUG_REPORT_PERFORMANCE_WARNING_EXT;
+        }
+        {
+            all |= Self::DEBUG_REPORT_ERROR_EXT;
+        }
+        {
+            all |= Self::DEBUG_REPORT_DEBUG_EXT;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -518,7 +530,7 @@ impl const std::ops::BitOr for DebugReportFlagsEXT {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for DebugReportFlagsEXT {
+impl const std::ops::BitOrAssign for DebugReportFlagsEXT {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -531,7 +543,7 @@ impl const std::ops::BitXor for DebugReportFlagsEXT {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for DebugReportFlagsEXT {
+impl const std::ops::BitXorAssign for DebugReportFlagsEXT {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -544,7 +556,7 @@ impl const std::ops::BitAnd for DebugReportFlagsEXT {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for DebugReportFlagsEXT {
+impl const std::ops::BitAndAssign for DebugReportFlagsEXT {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -557,7 +569,7 @@ impl const std::ops::Sub for DebugReportFlagsEXT {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for DebugReportFlagsEXT {
+impl const std::ops::SubAssign for DebugReportFlagsEXT {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -602,7 +614,7 @@ impl std::fmt::Debug for DebugReportFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(DebugReportFlagsEXT);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == DebugReportFlagsEXT::empty() {
                     f.write_str("empty")?;

@@ -26,6 +26,15 @@ impl<'a> Bit<'a> {
         )
     }
 
+    /// Generate the conditional compilation tokens
+    pub fn condition(&self, parent: &Origin<'a>) -> Option<TokenStream> {
+        if parent != self.origin() {
+            self.origin().condition()
+        } else {
+            None
+        }
+    }
+
     /// Generate the code for a Bitflag variant
     fn generate_bitmask_variant(&self, parent: &Origin<'a>, doc: &AHashMap<String, String>) -> TokenStream {
         // get the doc of the bit
@@ -47,9 +56,13 @@ impl<'a> Bit<'a> {
         let name = self.as_flag_ident();
         let value = Literal::i64_unsuffixed(self.value());
 
+        // feature flag support
+        let conditional_compilation = self.condition(parent);
+
         quote! {
             #doc
             #provided_by
+            #conditional_compilation
             pub const #name: Self = Self(#value)
         }
     }
@@ -99,14 +112,32 @@ impl<'a> Bitmask<'a> {
             _ => unreachable!("unknown bit width for a mask: {:?}", self),
         };
 
+        // the conditional compilations if any
+        let conds = bit_flag
+            .bits()
+            .iter()
+            .filter(|bit| !bit.origin().is_disabled())
+            .map(|bit| bit.condition(self.origin()))
+            .collect::<Vec<_>>();
+
         let bits = bit_flag
             .bits()
             .iter()
+            .filter(|bit| !bit.origin().is_disabled())
             .map(|bit| bit.generate_bitmask_variant(self.origin(), &variant_docs));
 
-        let bit_idents = bit_flag.bits().iter().map(Bit::as_flag_ident).collect::<Vec<_>>();
+        let bit_idents = bit_flag
+            .bits()
+            .iter()
+            .filter(|bit| !bit.origin().is_disabled())
+            .map(Bit::as_flag_ident)
+            .collect::<Vec<_>>();
 
-        let first = if bit_idents.is_empty() { None } else { Some(quote! { let mut first = true; }) };
+        let first = if bit_idents.is_empty() {
+            None
+        } else {
+            Some(quote! { let mut first = true; })
+        };
 
         // creates a doc alias if the name has been changed
         alias_of(self.original_name(), self.name(), out);
@@ -117,7 +148,7 @@ impl<'a> Bitmask<'a> {
 
         // dealing with conditional compilation of flag bits
         let bits_conditional_compilation = if bit_flag.origin() != self.origin() {
-            if let Some(condition) = bit_flag.origin().conditon() {
+            if let Some(condition) = bit_flag.origin().condition() {
                 imports.push_str(&format!(
                     r##"
                     {}
@@ -174,9 +205,18 @@ impl<'a> Bitmask<'a> {
 
                 #[doc = "Returns a value with all of the flags enabled"]
                 #[inline]
+                #[allow(unused_mut)]
                 pub const fn all() -> Self {
-                    Self::empty()
-                        #( | Self::#bit_idents)*
+                    let mut all = Self::empty();
+
+                    #(
+                        #conds
+                        {
+                            all |= Self::#bit_idents;
+                        }
+                    )*
+
+                    all
                 }
 
                 #[doc = "Returns the raw bits"]
@@ -307,7 +347,7 @@ impl<'a> Bitmask<'a> {
                 }
             }
 
-            impl std::ops::BitOrAssign for #name {
+            impl const std::ops::BitOrAssign for #name {
                 #[inline]
                 fn bitor_assign(&mut self, other: Self) {
                     *self = *self | other;
@@ -323,7 +363,7 @@ impl<'a> Bitmask<'a> {
                 }
             }
 
-            impl std::ops::BitXorAssign  for #name {
+            impl const std::ops::BitXorAssign  for #name {
                 #[inline]
                 fn bitxor_assign(&mut self, other: Self) {
                     *self = *self ^ other;
@@ -339,7 +379,7 @@ impl<'a> Bitmask<'a> {
                 }
             }
 
-            impl std::ops::BitAndAssign  for #name {
+            impl const std::ops::BitAndAssign  for #name {
                 #[inline]
                 fn bitand_assign(&mut self, other: Self) {
                     *self = *self & other;
@@ -355,7 +395,7 @@ impl<'a> Bitmask<'a> {
                 }
             }
 
-            impl std::ops::SubAssign for #name {
+            impl const std::ops::SubAssign for #name {
                 #[inline]
                 fn sub_assign(&mut self, other: Self) {
                     *self = *self - other;
@@ -409,13 +449,14 @@ impl<'a> Bitmask<'a> {
                 fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                     struct Flags(#name);
                     impl std::fmt::Debug for Flags {
-                        #[allow(unused_assignments)]
+                        #[allow(unused_assignments, unused_mut, unused_variables)]
                         fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                             if self.0 == #name::empty() {
                                 f.write_str("empty")?;
                             } else {
                                 #first
                                 #(
+                                    #conds
                                     if self.0.contains(#name::#bit_idents) {
                                         if !first {
                                             first = false;

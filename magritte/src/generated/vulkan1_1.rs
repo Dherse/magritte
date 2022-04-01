@@ -155,6 +155,7 @@ pub enum DescriptorUpdateTemplateType {
     ///updates only.
     ///
     ///Provided by [`crate::extensions::khr_descriptor_update_template`]
+    #[cfg(feature = "VK_KHR_descriptor_update_template")]
     PushDescriptorsKhr = 1,
 }
 impl const Default for DescriptorUpdateTemplateType {
@@ -772,6 +773,7 @@ pub enum SubgroupFeatureFlagBits {
     ///`GroupNonUniformPartitionedNV` capability.
     ///
     ///Provided by [`crate::extensions::nv_shader_subgroup_partitioned`]
+    #[cfg(feature = "VK_NV_shader_subgroup_partitioned")]
     PartitionedNv = 256,
 }
 impl const Default for SubgroupFeatureFlagBits {
@@ -985,6 +987,7 @@ pub enum ExternalMemoryHandleTypeFlagBits {
     ///Vulkan memory object.
     ///
     ///Provided by [`crate::extensions::ext_external_memory_dma_buf`]
+    #[cfg(feature = "VK_EXT_external_memory_dma_buf")]
     DmaBufExt = 512,
     ///[`AndroidHardwareBufferAndroid`]
     ///specifies an [`AHardwareBuffer`] object defined by the Android NDK.
@@ -992,6 +995,7 @@ pub enum ExternalMemoryHandleTypeFlagBits {
     ///for more details of this handle type.
     ///
     ///Provided by [`crate::extensions::android_external_memory_android_hardware_buffer`]
+    #[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
     AndroidHardwareBufferAndroid = 1024,
     ///[`HostAllocationExt`] specifies a
     ///host pointer returned by a host memory allocation command.
@@ -999,6 +1003,7 @@ pub enum ExternalMemoryHandleTypeFlagBits {
     ///therefore become invalid if the host memory is freed.
     ///
     ///Provided by [`crate::extensions::ext_external_memory_host`]
+    #[cfg(feature = "VK_EXT_external_memory_host")]
     HostAllocationExt = 128,
     ///[`HostMappedForeignMemoryExt`]
     ///specifies a host pointer to *host mapped foreign memory*.
@@ -1007,11 +1012,13 @@ pub enum ExternalMemoryHandleTypeFlagBits {
     ///becomes no longer available.
     ///
     ///Provided by [`crate::extensions::ext_external_memory_host`]
+    #[cfg(feature = "VK_EXT_external_memory_host")]
     HostMappedForeignMemoryExt = 256,
     ///[`ZirconVmoFuchsia`] is a Zircon
     ///handle to a virtual memory object.
     ///
     ///Provided by [`crate::extensions::fuchsia_external_memory`]
+    #[cfg(feature = "VK_FUCHSIA_external_memory")]
     ZirconVmoFuchsia = 2048,
     ///[`RdmaAddressNv`] is a handle to
     ///an allocation accessible by remote devices.
@@ -1019,6 +1026,7 @@ pub enum ExternalMemoryHandleTypeFlagBits {
     ///Vulkan memory object.
     ///
     ///Provided by [`crate::extensions::nv_external_memory_rdma`]
+    #[cfg(feature = "VK_NV_external_memory_rdma")]
     RdmaAddressNv = 4096,
 }
 impl const Default for ExternalMemoryHandleTypeFlagBits {
@@ -1305,6 +1313,7 @@ pub enum ExternalSemaphoreHandleTypeFlagBits {
     ///waiting.
     ///
     ///Provided by [`crate::extensions::fuchsia_external_semaphore`]
+    #[cfg(feature = "VK_FUCHSIA_external_semaphore")]
     ZirconEventFuchsia = 128,
 }
 impl const Default for ExternalSemaphoreHandleTypeFlagBits {
@@ -2069,6 +2078,7 @@ impl SubgroupFeatureFlags {
     ///`GroupNonUniformPartitionedNV` capability.
     ///
     ///Provided by [`crate::extensions::nv_shader_subgroup_partitioned`]
+    #[cfg(feature = "VK_NV_shader_subgroup_partitioned")]
     pub const PARTITIONED_NV: Self = Self(256);
     ///Default empty flags
     #[inline]
@@ -2077,17 +2087,38 @@ impl SubgroupFeatureFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::SUBGROUP_FEATURE_BASIC
-            | Self::SUBGROUP_FEATURE_VOTE
-            | Self::SUBGROUP_FEATURE_ARITHMETIC
-            | Self::SUBGROUP_FEATURE_BALLOT
-            | Self::SUBGROUP_FEATURE_SHUFFLE
-            | Self::SUBGROUP_FEATURE_SHUFFLE_RELATIVE
-            | Self::SUBGROUP_FEATURE_CLUSTERED
-            | Self::SUBGROUP_FEATURE_QUAD
-            | Self::PARTITIONED_NV
+        let mut all = Self::empty();
+        {
+            all |= Self::SUBGROUP_FEATURE_BASIC;
+        }
+        {
+            all |= Self::SUBGROUP_FEATURE_VOTE;
+        }
+        {
+            all |= Self::SUBGROUP_FEATURE_ARITHMETIC;
+        }
+        {
+            all |= Self::SUBGROUP_FEATURE_BALLOT;
+        }
+        {
+            all |= Self::SUBGROUP_FEATURE_SHUFFLE;
+        }
+        {
+            all |= Self::SUBGROUP_FEATURE_SHUFFLE_RELATIVE;
+        }
+        {
+            all |= Self::SUBGROUP_FEATURE_CLUSTERED;
+        }
+        {
+            all |= Self::SUBGROUP_FEATURE_QUAD;
+        }
+        #[cfg(feature = "VK_NV_shader_subgroup_partitioned")]
+        {
+            all |= Self::PARTITIONED_NV;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -2197,7 +2228,7 @@ impl const std::ops::BitOr for SubgroupFeatureFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for SubgroupFeatureFlags {
+impl const std::ops::BitOrAssign for SubgroupFeatureFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -2210,7 +2241,7 @@ impl const std::ops::BitXor for SubgroupFeatureFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for SubgroupFeatureFlags {
+impl const std::ops::BitXorAssign for SubgroupFeatureFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -2223,7 +2254,7 @@ impl const std::ops::BitAnd for SubgroupFeatureFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for SubgroupFeatureFlags {
+impl const std::ops::BitAndAssign for SubgroupFeatureFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -2236,7 +2267,7 @@ impl const std::ops::Sub for SubgroupFeatureFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for SubgroupFeatureFlags {
+impl const std::ops::SubAssign for SubgroupFeatureFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -2281,7 +2312,7 @@ impl std::fmt::Debug for SubgroupFeatureFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(SubgroupFeatureFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == SubgroupFeatureFlags::empty() {
                     f.write_str("empty")?;
@@ -2343,6 +2374,7 @@ impl std::fmt::Debug for SubgroupFeatureFlags {
                         }
                         f.write_str(stringify!(SUBGROUP_FEATURE_QUAD))?;
                     }
+                    #[cfg(feature = "VK_NV_shader_subgroup_partitioned")]
                     if self.0.contains(SubgroupFeatureFlags::PARTITIONED_NV) {
                         if !first {
                             first = false;
@@ -2491,12 +2523,22 @@ impl PeerMemoryFeatureFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::PEER_MEMORY_FEATURE_COPY_SRC
-            | Self::PEER_MEMORY_FEATURE_COPY_DST
-            | Self::PEER_MEMORY_FEATURE_GENERIC_SRC
-            | Self::PEER_MEMORY_FEATURE_GENERIC_DST
+        let mut all = Self::empty();
+        {
+            all |= Self::PEER_MEMORY_FEATURE_COPY_SRC;
+        }
+        {
+            all |= Self::PEER_MEMORY_FEATURE_COPY_DST;
+        }
+        {
+            all |= Self::PEER_MEMORY_FEATURE_GENERIC_SRC;
+        }
+        {
+            all |= Self::PEER_MEMORY_FEATURE_GENERIC_DST;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -2606,7 +2648,7 @@ impl const std::ops::BitOr for PeerMemoryFeatureFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for PeerMemoryFeatureFlags {
+impl const std::ops::BitOrAssign for PeerMemoryFeatureFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -2619,7 +2661,7 @@ impl const std::ops::BitXor for PeerMemoryFeatureFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for PeerMemoryFeatureFlags {
+impl const std::ops::BitXorAssign for PeerMemoryFeatureFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -2632,7 +2674,7 @@ impl const std::ops::BitAnd for PeerMemoryFeatureFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for PeerMemoryFeatureFlags {
+impl const std::ops::BitAndAssign for PeerMemoryFeatureFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -2645,7 +2687,7 @@ impl const std::ops::Sub for PeerMemoryFeatureFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for PeerMemoryFeatureFlags {
+impl const std::ops::SubAssign for PeerMemoryFeatureFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -2690,7 +2732,7 @@ impl std::fmt::Debug for PeerMemoryFeatureFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(PeerMemoryFeatureFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == PeerMemoryFeatureFlags::empty() {
                     f.write_str("empty")?;
@@ -2823,8 +2865,19 @@ impl MemoryAllocateFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty() | Self::MEMORY_ALLOCATE_DEVICE_MASK | Self::DEVICE_ADDRESS | Self::DEVICE_ADDRESS_CAPTURE_REPLAY
+        let mut all = Self::empty();
+        {
+            all |= Self::MEMORY_ALLOCATE_DEVICE_MASK;
+        }
+        {
+            all |= Self::DEVICE_ADDRESS;
+        }
+        {
+            all |= Self::DEVICE_ADDRESS_CAPTURE_REPLAY;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -2934,7 +2987,7 @@ impl const std::ops::BitOr for MemoryAllocateFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for MemoryAllocateFlags {
+impl const std::ops::BitOrAssign for MemoryAllocateFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -2947,7 +3000,7 @@ impl const std::ops::BitXor for MemoryAllocateFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for MemoryAllocateFlags {
+impl const std::ops::BitXorAssign for MemoryAllocateFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -2960,7 +3013,7 @@ impl const std::ops::BitAnd for MemoryAllocateFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for MemoryAllocateFlags {
+impl const std::ops::BitAndAssign for MemoryAllocateFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -2973,7 +3026,7 @@ impl const std::ops::Sub for MemoryAllocateFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for MemoryAllocateFlags {
+impl const std::ops::SubAssign for MemoryAllocateFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -3018,7 +3071,7 @@ impl std::fmt::Debug for MemoryAllocateFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(MemoryAllocateFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == MemoryAllocateFlags::empty() {
                     f.write_str("empty")?;
@@ -3289,6 +3342,7 @@ impl ExternalMemoryHandleTypeFlags {
     ///Vulkan memory object.
     ///
     ///Provided by [`crate::extensions::ext_external_memory_dma_buf`]
+    #[cfg(feature = "VK_EXT_external_memory_dma_buf")]
     pub const DMA_BUF_EXT: Self = Self(512);
     ///[`AndroidHardwareBufferAndroid`]
     ///specifies an [`AHardwareBuffer`] object defined by the Android NDK.
@@ -3296,6 +3350,7 @@ impl ExternalMemoryHandleTypeFlags {
     ///for more details of this handle type.
     ///
     ///Provided by [`crate::extensions::android_external_memory_android_hardware_buffer`]
+    #[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
     pub const ANDROID_HARDWARE_BUFFER_ANDROID: Self = Self(1024);
     ///[`HostAllocationExt`] specifies a
     ///host pointer returned by a host memory allocation command.
@@ -3303,6 +3358,7 @@ impl ExternalMemoryHandleTypeFlags {
     ///therefore become invalid if the host memory is freed.
     ///
     ///Provided by [`crate::extensions::ext_external_memory_host`]
+    #[cfg(feature = "VK_EXT_external_memory_host")]
     pub const HOST_ALLOCATION_EXT: Self = Self(128);
     ///[`HostMappedForeignMemoryExt`]
     ///specifies a host pointer to *host mapped foreign memory*.
@@ -3311,11 +3367,13 @@ impl ExternalMemoryHandleTypeFlags {
     ///becomes no longer available.
     ///
     ///Provided by [`crate::extensions::ext_external_memory_host`]
+    #[cfg(feature = "VK_EXT_external_memory_host")]
     pub const HOST_MAPPED_FOREIGN_MEMORY_EXT: Self = Self(256);
     ///[`ZirconVmoFuchsia`] is a Zircon
     ///handle to a virtual memory object.
     ///
     ///Provided by [`crate::extensions::fuchsia_external_memory`]
+    #[cfg(feature = "VK_FUCHSIA_external_memory")]
     pub const ZIRCON_VMO_FUCHSIA: Self = Self(2048);
     ///[`RdmaAddressNv`] is a handle to
     ///an allocation accessible by remote devices.
@@ -3323,11 +3381,8 @@ impl ExternalMemoryHandleTypeFlags {
     ///Vulkan memory object.
     ///
     ///Provided by [`crate::extensions::nv_external_memory_rdma`]
+    #[cfg(feature = "VK_NV_external_memory_rdma")]
     pub const RDMA_ADDRESS_NV: Self = Self(4096);
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::nv_extension_375`]
-    pub const RESERVED_13_NV: Self = Self(8192);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -3335,22 +3390,55 @@ impl ExternalMemoryHandleTypeFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD
-            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32
-            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_KMT
-            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_TEXTURE
-            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_TEXTURE_KMT
-            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_12_HEAP
-            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_12_RESOURCE
-            | Self::DMA_BUF_EXT
-            | Self::ANDROID_HARDWARE_BUFFER_ANDROID
-            | Self::HOST_ALLOCATION_EXT
-            | Self::HOST_MAPPED_FOREIGN_MEMORY_EXT
-            | Self::ZIRCON_VMO_FUCHSIA
-            | Self::RDMA_ADDRESS_NV
-            | Self::RESERVED_13_NV
+        let mut all = Self::empty();
+        {
+            all |= Self::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD;
+        }
+        {
+            all |= Self::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32;
+        }
+        {
+            all |= Self::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_KMT;
+        }
+        {
+            all |= Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_TEXTURE;
+        }
+        {
+            all |= Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_TEXTURE_KMT;
+        }
+        {
+            all |= Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_12_HEAP;
+        }
+        {
+            all |= Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_12_RESOURCE;
+        }
+        #[cfg(feature = "VK_EXT_external_memory_dma_buf")]
+        {
+            all |= Self::DMA_BUF_EXT;
+        }
+        #[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
+        {
+            all |= Self::ANDROID_HARDWARE_BUFFER_ANDROID;
+        }
+        #[cfg(feature = "VK_EXT_external_memory_host")]
+        {
+            all |= Self::HOST_ALLOCATION_EXT;
+        }
+        #[cfg(feature = "VK_EXT_external_memory_host")]
+        {
+            all |= Self::HOST_MAPPED_FOREIGN_MEMORY_EXT;
+        }
+        #[cfg(feature = "VK_FUCHSIA_external_memory")]
+        {
+            all |= Self::ZIRCON_VMO_FUCHSIA;
+        }
+        #[cfg(feature = "VK_NV_external_memory_rdma")]
+        {
+            all |= Self::RDMA_ADDRESS_NV;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -3460,7 +3548,7 @@ impl const std::ops::BitOr for ExternalMemoryHandleTypeFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for ExternalMemoryHandleTypeFlags {
+impl const std::ops::BitOrAssign for ExternalMemoryHandleTypeFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -3473,7 +3561,7 @@ impl const std::ops::BitXor for ExternalMemoryHandleTypeFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for ExternalMemoryHandleTypeFlags {
+impl const std::ops::BitXorAssign for ExternalMemoryHandleTypeFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -3486,7 +3574,7 @@ impl const std::ops::BitAnd for ExternalMemoryHandleTypeFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for ExternalMemoryHandleTypeFlags {
+impl const std::ops::BitAndAssign for ExternalMemoryHandleTypeFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -3499,7 +3587,7 @@ impl const std::ops::Sub for ExternalMemoryHandleTypeFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for ExternalMemoryHandleTypeFlags {
+impl const std::ops::SubAssign for ExternalMemoryHandleTypeFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -3546,7 +3634,7 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ExternalMemoryHandleTypeFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ExternalMemoryHandleTypeFlags::empty() {
                     f.write_str("empty")?;
@@ -3622,6 +3710,7 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlags {
                         }
                         f.write_str(stringify!(EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_12_RESOURCE))?;
                     }
+                    #[cfg(feature = "VK_EXT_external_memory_dma_buf")]
                     if self.0.contains(ExternalMemoryHandleTypeFlags::DMA_BUF_EXT) {
                         if !first {
                             first = false;
@@ -3629,6 +3718,7 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlags {
                         }
                         f.write_str(stringify!(DMA_BUF_EXT))?;
                     }
+                    #[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
                     if self
                         .0
                         .contains(ExternalMemoryHandleTypeFlags::ANDROID_HARDWARE_BUFFER_ANDROID)
@@ -3639,6 +3729,7 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlags {
                         }
                         f.write_str(stringify!(ANDROID_HARDWARE_BUFFER_ANDROID))?;
                     }
+                    #[cfg(feature = "VK_EXT_external_memory_host")]
                     if self.0.contains(ExternalMemoryHandleTypeFlags::HOST_ALLOCATION_EXT) {
                         if !first {
                             first = false;
@@ -3646,6 +3737,7 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlags {
                         }
                         f.write_str(stringify!(HOST_ALLOCATION_EXT))?;
                     }
+                    #[cfg(feature = "VK_EXT_external_memory_host")]
                     if self
                         .0
                         .contains(ExternalMemoryHandleTypeFlags::HOST_MAPPED_FOREIGN_MEMORY_EXT)
@@ -3656,6 +3748,7 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlags {
                         }
                         f.write_str(stringify!(HOST_MAPPED_FOREIGN_MEMORY_EXT))?;
                     }
+                    #[cfg(feature = "VK_FUCHSIA_external_memory")]
                     if self.0.contains(ExternalMemoryHandleTypeFlags::ZIRCON_VMO_FUCHSIA) {
                         if !first {
                             first = false;
@@ -3663,19 +3756,13 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlags {
                         }
                         f.write_str(stringify!(ZIRCON_VMO_FUCHSIA))?;
                     }
+                    #[cfg(feature = "VK_NV_external_memory_rdma")]
                     if self.0.contains(ExternalMemoryHandleTypeFlags::RDMA_ADDRESS_NV) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
                         f.write_str(stringify!(RDMA_ADDRESS_NV))?;
-                    }
-                    if self.0.contains(ExternalMemoryHandleTypeFlags::RESERVED_13_NV) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(RESERVED_13_NV))?;
                     }
                 }
                 Ok(())
@@ -3784,11 +3871,19 @@ impl ExternalMemoryFeatureFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY
-            | Self::EXTERNAL_MEMORY_FEATURE_EXPORTABLE
-            | Self::EXTERNAL_MEMORY_FEATURE_IMPORTABLE
+        let mut all = Self::empty();
+        {
+            all |= Self::EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY;
+        }
+        {
+            all |= Self::EXTERNAL_MEMORY_FEATURE_EXPORTABLE;
+        }
+        {
+            all |= Self::EXTERNAL_MEMORY_FEATURE_IMPORTABLE;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -3898,7 +3993,7 @@ impl const std::ops::BitOr for ExternalMemoryFeatureFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for ExternalMemoryFeatureFlags {
+impl const std::ops::BitOrAssign for ExternalMemoryFeatureFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -3911,7 +4006,7 @@ impl const std::ops::BitXor for ExternalMemoryFeatureFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for ExternalMemoryFeatureFlags {
+impl const std::ops::BitXorAssign for ExternalMemoryFeatureFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -3924,7 +4019,7 @@ impl const std::ops::BitAnd for ExternalMemoryFeatureFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for ExternalMemoryFeatureFlags {
+impl const std::ops::BitAndAssign for ExternalMemoryFeatureFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -3937,7 +4032,7 @@ impl const std::ops::Sub for ExternalMemoryFeatureFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for ExternalMemoryFeatureFlags {
+impl const std::ops::SubAssign for ExternalMemoryFeatureFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -3982,7 +4077,7 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ExternalMemoryFeatureFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ExternalMemoryFeatureFlags::empty() {
                     f.write_str("empty")?;
@@ -4191,15 +4286,8 @@ impl ExternalSemaphoreHandleTypeFlags {
     ///waiting.
     ///
     ///Provided by [`crate::extensions::fuchsia_external_semaphore`]
+    #[cfg(feature = "VK_FUCHSIA_external_semaphore")]
     pub const ZIRCON_EVENT_FUCHSIA: Self = Self(128);
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::nv_extension_374`]
-    pub const RESERVED_5_NV: Self = Self(32);
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::nv_extension_374`]
-    pub const RESERVED_6_NV: Self = Self(64);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -4207,16 +4295,29 @@ impl ExternalSemaphoreHandleTypeFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD
-            | Self::EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN_32
-            | Self::EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN_32_KMT
-            | Self::EXTERNAL_SEMAPHORE_HANDLE_TYPE_D_3_D_12_FENCE
-            | Self::EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD
-            | Self::ZIRCON_EVENT_FUCHSIA
-            | Self::RESERVED_5_NV
-            | Self::RESERVED_6_NV
+        let mut all = Self::empty();
+        {
+            all |= Self::EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD;
+        }
+        {
+            all |= Self::EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN_32;
+        }
+        {
+            all |= Self::EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN_32_KMT;
+        }
+        {
+            all |= Self::EXTERNAL_SEMAPHORE_HANDLE_TYPE_D_3_D_12_FENCE;
+        }
+        {
+            all |= Self::EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD;
+        }
+        #[cfg(feature = "VK_FUCHSIA_external_semaphore")]
+        {
+            all |= Self::ZIRCON_EVENT_FUCHSIA;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -4326,7 +4427,7 @@ impl const std::ops::BitOr for ExternalSemaphoreHandleTypeFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for ExternalSemaphoreHandleTypeFlags {
+impl const std::ops::BitOrAssign for ExternalSemaphoreHandleTypeFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -4339,7 +4440,7 @@ impl const std::ops::BitXor for ExternalSemaphoreHandleTypeFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for ExternalSemaphoreHandleTypeFlags {
+impl const std::ops::BitXorAssign for ExternalSemaphoreHandleTypeFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -4352,7 +4453,7 @@ impl const std::ops::BitAnd for ExternalSemaphoreHandleTypeFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for ExternalSemaphoreHandleTypeFlags {
+impl const std::ops::BitAndAssign for ExternalSemaphoreHandleTypeFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -4365,7 +4466,7 @@ impl const std::ops::Sub for ExternalSemaphoreHandleTypeFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for ExternalSemaphoreHandleTypeFlags {
+impl const std::ops::SubAssign for ExternalSemaphoreHandleTypeFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -4414,7 +4515,7 @@ impl std::fmt::Debug for ExternalSemaphoreHandleTypeFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ExternalSemaphoreHandleTypeFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ExternalSemaphoreHandleTypeFlags::empty() {
                     f.write_str("empty")?;
@@ -4470,26 +4571,13 @@ impl std::fmt::Debug for ExternalSemaphoreHandleTypeFlags {
                         }
                         f.write_str(stringify!(EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD))?;
                     }
+                    #[cfg(feature = "VK_FUCHSIA_external_semaphore")]
                     if self.0.contains(ExternalSemaphoreHandleTypeFlags::ZIRCON_EVENT_FUCHSIA) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
                         f.write_str(stringify!(ZIRCON_EVENT_FUCHSIA))?;
-                    }
-                    if self.0.contains(ExternalSemaphoreHandleTypeFlags::RESERVED_5_NV) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(RESERVED_5_NV))?;
-                    }
-                    if self.0.contains(ExternalSemaphoreHandleTypeFlags::RESERVED_6_NV) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(RESERVED_6_NV))?;
                     }
                 }
                 Ok(())
@@ -4569,8 +4657,16 @@ impl ExternalSemaphoreFeatureFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty() | Self::EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE | Self::EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE
+        let mut all = Self::empty();
+        {
+            all |= Self::EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE;
+        }
+        {
+            all |= Self::EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -4680,7 +4776,7 @@ impl const std::ops::BitOr for ExternalSemaphoreFeatureFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for ExternalSemaphoreFeatureFlags {
+impl const std::ops::BitOrAssign for ExternalSemaphoreFeatureFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -4693,7 +4789,7 @@ impl const std::ops::BitXor for ExternalSemaphoreFeatureFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for ExternalSemaphoreFeatureFlags {
+impl const std::ops::BitXorAssign for ExternalSemaphoreFeatureFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -4706,7 +4802,7 @@ impl const std::ops::BitAnd for ExternalSemaphoreFeatureFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for ExternalSemaphoreFeatureFlags {
+impl const std::ops::BitAndAssign for ExternalSemaphoreFeatureFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -4719,7 +4815,7 @@ impl const std::ops::Sub for ExternalSemaphoreFeatureFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for ExternalSemaphoreFeatureFlags {
+impl const std::ops::SubAssign for ExternalSemaphoreFeatureFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -4766,7 +4862,7 @@ impl std::fmt::Debug for ExternalSemaphoreFeatureFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ExternalSemaphoreFeatureFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ExternalSemaphoreFeatureFlags::empty() {
                     f.write_str("empty")?;
@@ -4864,8 +4960,13 @@ impl SemaphoreImportFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty() | Self::SEMAPHORE_IMPORT_TEMPORARY
+        let mut all = Self::empty();
+        {
+            all |= Self::SEMAPHORE_IMPORT_TEMPORARY;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -4975,7 +5076,7 @@ impl const std::ops::BitOr for SemaphoreImportFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for SemaphoreImportFlags {
+impl const std::ops::BitOrAssign for SemaphoreImportFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -4988,7 +5089,7 @@ impl const std::ops::BitXor for SemaphoreImportFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for SemaphoreImportFlags {
+impl const std::ops::BitXorAssign for SemaphoreImportFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -5001,7 +5102,7 @@ impl const std::ops::BitAnd for SemaphoreImportFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for SemaphoreImportFlags {
+impl const std::ops::BitAndAssign for SemaphoreImportFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -5014,7 +5115,7 @@ impl const std::ops::Sub for SemaphoreImportFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for SemaphoreImportFlags {
+impl const std::ops::SubAssign for SemaphoreImportFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -5059,7 +5160,7 @@ impl std::fmt::Debug for SemaphoreImportFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(SemaphoreImportFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == SemaphoreImportFlags::empty() {
                     f.write_str("empty")?;
@@ -5208,14 +5309,6 @@ impl ExternalFenceHandleTypeFlags {
     ///any type of sync or fence FD supported by the native system they are
     ///running on.
     pub const EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD: Self = Self(8);
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::nv_extension_374`]
-    pub const RESERVED_4_NV: Self = Self(16);
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::nv_extension_374`]
-    pub const RESERVED_5_NV: Self = Self(32);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -5223,14 +5316,22 @@ impl ExternalFenceHandleTypeFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD
-            | Self::EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN_32
-            | Self::EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN_32_KMT
-            | Self::EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD
-            | Self::RESERVED_4_NV
-            | Self::RESERVED_5_NV
+        let mut all = Self::empty();
+        {
+            all |= Self::EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD;
+        }
+        {
+            all |= Self::EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN_32;
+        }
+        {
+            all |= Self::EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN_32_KMT;
+        }
+        {
+            all |= Self::EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -5340,7 +5441,7 @@ impl const std::ops::BitOr for ExternalFenceHandleTypeFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for ExternalFenceHandleTypeFlags {
+impl const std::ops::BitOrAssign for ExternalFenceHandleTypeFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -5353,7 +5454,7 @@ impl const std::ops::BitXor for ExternalFenceHandleTypeFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for ExternalFenceHandleTypeFlags {
+impl const std::ops::BitXorAssign for ExternalFenceHandleTypeFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -5366,7 +5467,7 @@ impl const std::ops::BitAnd for ExternalFenceHandleTypeFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for ExternalFenceHandleTypeFlags {
+impl const std::ops::BitAndAssign for ExternalFenceHandleTypeFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -5379,7 +5480,7 @@ impl const std::ops::Sub for ExternalFenceHandleTypeFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for ExternalFenceHandleTypeFlags {
+impl const std::ops::SubAssign for ExternalFenceHandleTypeFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -5424,7 +5525,7 @@ impl std::fmt::Debug for ExternalFenceHandleTypeFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ExternalFenceHandleTypeFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ExternalFenceHandleTypeFlags::empty() {
                     f.write_str("empty")?;
@@ -5469,20 +5570,6 @@ impl std::fmt::Debug for ExternalFenceHandleTypeFlags {
                             f.write_str(" | ")?;
                         }
                         f.write_str(stringify!(EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD))?;
-                    }
-                    if self.0.contains(ExternalFenceHandleTypeFlags::RESERVED_4_NV) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(RESERVED_4_NV))?;
-                    }
-                    if self.0.contains(ExternalFenceHandleTypeFlags::RESERVED_5_NV) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(RESERVED_5_NV))?;
                     }
                 }
                 Ok(())
@@ -5560,8 +5647,16 @@ impl ExternalFenceFeatureFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty() | Self::EXTERNAL_FENCE_FEATURE_EXPORTABLE | Self::EXTERNAL_FENCE_FEATURE_IMPORTABLE
+        let mut all = Self::empty();
+        {
+            all |= Self::EXTERNAL_FENCE_FEATURE_EXPORTABLE;
+        }
+        {
+            all |= Self::EXTERNAL_FENCE_FEATURE_IMPORTABLE;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -5671,7 +5766,7 @@ impl const std::ops::BitOr for ExternalFenceFeatureFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for ExternalFenceFeatureFlags {
+impl const std::ops::BitOrAssign for ExternalFenceFeatureFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -5684,7 +5779,7 @@ impl const std::ops::BitXor for ExternalFenceFeatureFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for ExternalFenceFeatureFlags {
+impl const std::ops::BitXorAssign for ExternalFenceFeatureFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -5697,7 +5792,7 @@ impl const std::ops::BitAnd for ExternalFenceFeatureFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for ExternalFenceFeatureFlags {
+impl const std::ops::BitAndAssign for ExternalFenceFeatureFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -5710,7 +5805,7 @@ impl const std::ops::Sub for ExternalFenceFeatureFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for ExternalFenceFeatureFlags {
+impl const std::ops::SubAssign for ExternalFenceFeatureFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -5755,7 +5850,7 @@ impl std::fmt::Debug for ExternalFenceFeatureFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ExternalFenceFeatureFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ExternalFenceFeatureFlags::empty() {
                     f.write_str("empty")?;
@@ -5851,8 +5946,13 @@ impl FenceImportFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty() | Self::FENCE_IMPORT_TEMPORARY
+        let mut all = Self::empty();
+        {
+            all |= Self::FENCE_IMPORT_TEMPORARY;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -5962,7 +6062,7 @@ impl const std::ops::BitOr for FenceImportFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for FenceImportFlags {
+impl const std::ops::BitOrAssign for FenceImportFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -5975,7 +6075,7 @@ impl const std::ops::BitXor for FenceImportFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for FenceImportFlags {
+impl const std::ops::BitXorAssign for FenceImportFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -5988,7 +6088,7 @@ impl const std::ops::BitAnd for FenceImportFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for FenceImportFlags {
+impl const std::ops::BitAndAssign for FenceImportFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -6001,7 +6101,7 @@ impl const std::ops::Sub for FenceImportFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for FenceImportFlags {
+impl const std::ops::SubAssign for FenceImportFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -6046,7 +6146,7 @@ impl std::fmt::Debug for FenceImportFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(FenceImportFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == FenceImportFlags::empty() {
                     f.write_str("empty")?;

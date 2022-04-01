@@ -325,13 +325,25 @@ impl ImageConstraintsInfoFlagsFUCHSIA {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::IMAGE_CONSTRAINTS_INFO_CPU_READ_RARELY_FUCHSIA
-            | Self::IMAGE_CONSTRAINTS_INFO_CPU_READ_OFTEN_FUCHSIA
-            | Self::IMAGE_CONSTRAINTS_INFO_CPU_WRITE_RARELY_FUCHSIA
-            | Self::IMAGE_CONSTRAINTS_INFO_CPU_WRITE_OFTEN_FUCHSIA
-            | Self::IMAGE_CONSTRAINTS_INFO_PROTECTED_OPTIONAL_FUCHSIA
+        let mut all = Self::empty();
+        {
+            all |= Self::IMAGE_CONSTRAINTS_INFO_CPU_READ_RARELY_FUCHSIA;
+        }
+        {
+            all |= Self::IMAGE_CONSTRAINTS_INFO_CPU_READ_OFTEN_FUCHSIA;
+        }
+        {
+            all |= Self::IMAGE_CONSTRAINTS_INFO_CPU_WRITE_RARELY_FUCHSIA;
+        }
+        {
+            all |= Self::IMAGE_CONSTRAINTS_INFO_CPU_WRITE_OFTEN_FUCHSIA;
+        }
+        {
+            all |= Self::IMAGE_CONSTRAINTS_INFO_PROTECTED_OPTIONAL_FUCHSIA;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -441,7 +453,7 @@ impl const std::ops::BitOr for ImageConstraintsInfoFlagsFUCHSIA {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for ImageConstraintsInfoFlagsFUCHSIA {
+impl const std::ops::BitOrAssign for ImageConstraintsInfoFlagsFUCHSIA {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -454,7 +466,7 @@ impl const std::ops::BitXor for ImageConstraintsInfoFlagsFUCHSIA {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for ImageConstraintsInfoFlagsFUCHSIA {
+impl const std::ops::BitXorAssign for ImageConstraintsInfoFlagsFUCHSIA {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -467,7 +479,7 @@ impl const std::ops::BitAnd for ImageConstraintsInfoFlagsFUCHSIA {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for ImageConstraintsInfoFlagsFUCHSIA {
+impl const std::ops::BitAndAssign for ImageConstraintsInfoFlagsFUCHSIA {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -480,7 +492,7 @@ impl const std::ops::Sub for ImageConstraintsInfoFlagsFUCHSIA {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for ImageConstraintsInfoFlagsFUCHSIA {
+impl const std::ops::SubAssign for ImageConstraintsInfoFlagsFUCHSIA {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -529,7 +541,7 @@ impl std::fmt::Debug for ImageConstraintsInfoFlagsFUCHSIA {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ImageConstraintsInfoFlagsFUCHSIA);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ImageConstraintsInfoFlagsFUCHSIA::empty() {
                     f.write_str("empty")?;

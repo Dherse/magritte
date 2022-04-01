@@ -220,6 +220,7 @@ pub enum ToolPurposeFlagBits {
     ///[`CreateDebugUtilsMessengerEXT`]
     ///
     ///Provided by [`crate::extensions::ext_tooling_info`]
+    #[cfg(feature = "VK_EXT_tooling_info")]
     DebugReportingExt = 32,
     ///[`DebugMarkersExt`] specifies that the tool
     ///consumes
@@ -230,6 +231,7 @@ pub enum ToolPurposeFlagBits {
     ///[command buffer labels](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-command-buffer-labels)
     ///
     ///Provided by [`crate::extensions::ext_tooling_info`]
+    #[cfg(feature = "VK_EXT_tooling_info")]
     DebugMarkersExt = 64,
 }
 impl const Default for ToolPurposeFlagBits {
@@ -630,6 +632,7 @@ pub enum AccessFlagBits2 {
     ///pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_video_decode_queue`]
+    #[cfg(feature = "VK_KHR_video_decode_queue")]
     VideoDecodeReadKhr = 34359738368,
     ///[`VideoDecodeWriteKhr`] specifies write access to
     ///an image or buffer resource as part of a [video decode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-decode-operations).
@@ -637,6 +640,7 @@ pub enum AccessFlagBits2 {
     ///pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_video_decode_queue`]
+    #[cfg(feature = "VK_KHR_video_decode_queue")]
     VideoDecodeWriteKhr = 68719476736,
     ///[`VideoEncodeReadKhr`] specifies read access to an
     ///image or buffer resource as part of a [video
@@ -645,6 +649,7 @@ pub enum AccessFlagBits2 {
     ///pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_video_encode_queue`]
+    #[cfg(feature = "VK_KHR_video_encode_queue")]
     VideoEncodeReadKhr = 137438953472,
     ///[`VideoEncodeWriteKhr`] specifies write access to
     ///an image or buffer resource as part of a [video encode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations).
@@ -652,6 +657,7 @@ pub enum AccessFlagBits2 {
     ///pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_video_encode_queue`]
+    #[cfg(feature = "VK_KHR_video_encode_queue")]
     VideoEncodeWriteKhr = 274877906944,
     ///[`TransformFeedbackWriteExt`] specifies write
     ///access to a transform feedback buffer made when transform feedback is
@@ -660,6 +666,7 @@ pub enum AccessFlagBits2 {
     ///`VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     TransformFeedbackWriteExt = 33554432,
     ///[`TransformFeedbackCounterReadExt`] specifies read
     ///access to a transform feedback counter buffer which is read when
@@ -668,6 +675,7 @@ pub enum AccessFlagBits2 {
     ///`VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     TransformFeedbackCounterReadExt = 67108864,
     ///[`TransformFeedbackCounterWriteExt`] specifies
     ///write access to a transform feedback counter buffer which is written
@@ -676,6 +684,7 @@ pub enum AccessFlagBits2 {
     ///`VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     TransformFeedbackCounterWriteExt = 134217728,
     ///[`ConditionalRenderingReadExt`] specifies read
     ///access to a predicate as part of conditional rendering.
@@ -683,6 +692,7 @@ pub enum AccessFlagBits2 {
     ///`VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     ConditionalRenderingReadExt = 1048576,
     ///[`CommandPreprocessReadNv`] specifies reads from
     ///buffer inputs to [`CmdPreprocessGeneratedCommandsNV`].
@@ -690,6 +700,7 @@ pub enum AccessFlagBits2 {
     ///`VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     CommandPreprocessReadNv = 131072,
     ///[`CommandPreprocessWriteNv`] specifies writes to
     ///the target command buffer preprocess outputs.
@@ -697,6 +708,7 @@ pub enum AccessFlagBits2 {
     ///`VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     CommandPreprocessWriteNv = 262144,
     ///[`FragmentShadingRateAttachmentReadKhr`]
     ///specifies read access to a fragment shading rate attachment during
@@ -706,6 +718,7 @@ pub enum AccessFlagBits2 {
     ///pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     FragmentShadingRateAttachmentReadKhr = 8388608,
     ///[`AccelerationStructureReadKhr`] specifies read
     ///access to an acceleration structure as part of a trace, build, or copy
@@ -717,6 +730,7 @@ pub enum AccessFlagBits2 {
     ///stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     AccelerationStructureReadKhr = 2097152,
     ///[`AccelerationStructureWriteKhr`] specifies write
     ///access to an acceleration structure or [acceleration structure scratch buffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-scratch) as part of a build or copy
@@ -726,6 +740,7 @@ pub enum AccessFlagBits2 {
     ///stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     AccelerationStructureWriteKhr = 4194304,
     ///[`FragmentDensityMapReadExt`] specifies read
     ///access to a [fragment density
@@ -736,6 +751,7 @@ pub enum AccessFlagBits2 {
     ///stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     FragmentDensityMapReadExt = 16777216,
     ///[`ColorAttachmentReadNoncoherentExt`] specifies
     ///read access to [color attachments](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass), including
@@ -744,12 +760,14 @@ pub enum AccessFlagBits2 {
     ///`VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     ColorAttachmentReadNoncoherentExt = 524288,
     ///[`InvocationMaskReadHuawei`] specifies read access
     ///to a invocation mask image in the
     ///`VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI` pipeline stage.
     ///
     ///Provided by [`crate::extensions::huawei_invocation_mask`]
+    #[cfg(feature = "VK_HUAWEI_invocation_mask")]
     InvocationMaskReadHuawei = 549755813888,
 }
 impl const Default for AccessFlagBits2 {
@@ -1123,26 +1141,31 @@ pub enum PipelineStageFlagBits2 {
     ///are performed.
     ///
     ///Provided by [`crate::extensions::khr_video_decode_queue`]
+    #[cfg(feature = "VK_KHR_video_decode_queue")]
     VideoDecodeKhr = 67108864,
     ///[`VideoEncodeKhr`] specifies the stage of
     ///the pipeline where [video encode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations)
     ///are performed.
     ///
     ///Provided by [`crate::extensions::khr_video_encode_queue`]
+    #[cfg(feature = "VK_KHR_video_encode_queue")]
     VideoEncodeKhr = 134217728,
     ///[`TransformFeedbackExt`]
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     TransformFeedbackExt = 16777216,
     ///[`ConditionalRenderingExt`]
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     ConditionalRenderingExt = 262144,
     ///[`CommandPreprocessNv`] specifies the stage
     ///of the pipeline where device-side generation of commands via
     ///[`CmdPreprocessGeneratedCommandsNV`] is handled.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     CommandPreprocessNv = 131072,
     ///[`FragmentShadingRateAttachmentKhr`]
     ///    specifies the stage of the pipeline where the
@@ -1154,40 +1177,48 @@ pub enum PipelineStageFlagBits2 {
     ///    rasterized primitive.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     FragmentShadingRateAttachmentKhr = 4194304,
     ///[`AccelerationStructureBuildKhr`] specifies
     ///the execution of [acceleration structure
     ///commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure).
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     AccelerationStructureBuildKhr = 33554432,
     ///[`RayTracingShaderKhr`] specifies the
     ///execution of the ray tracing shader stages.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     RayTracingShaderKhr = 2097152,
     ///[`FragmentDensityProcessExt`]
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     FragmentDensityProcessExt = 8388608,
     ///[`TaskShaderNv`] specifies the task shader
     ///stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     TaskShaderNv = 524288,
     ///[`MeshShaderNv`] specifies the mesh shader
     ///stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     MeshShaderNv = 1048576,
     ///[`SubpassShadingHuawei`] specifies the
     ///subpass shading shader stage.
     ///
     ///Provided by [`crate::extensions::huawei_subpass_shading`]
+    #[cfg(feature = "VK_HUAWEI_subpass_shading")]
     SubpassShadingHuawei = 549755813888,
     ///[`InvocationMaskHuawei`]
     ///
     ///Provided by [`crate::extensions::huawei_invocation_mask`]
+    #[cfg(feature = "VK_HUAWEI_invocation_mask")]
     InvocationMaskHuawei = 1099511627776,
 }
 impl const Default for PipelineStageFlagBits2 {
@@ -1698,12 +1729,14 @@ pub enum FormatFeatureFlagBits2 {
     ///[video decode operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-decode-operations)
     ///
     ///Provided by [`crate::extensions::khr_video_decode_queue`]
+    #[cfg(feature = "VK_KHR_video_decode_queue")]
     VideoDecodeOutputKhr = 33554432,
     ///[`VideoDecodeDpbKhr`] specifies that an
     ///image view with this format  **can**  be used as a DPB for
     ///[video decode operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-decode-operations)
     ///
     ///Provided by [`crate::extensions::khr_video_decode_queue`]
+    #[cfg(feature = "VK_KHR_video_decode_queue")]
     VideoDecodeDpbKhr = 67108864,
     ///[`AccelerationStructureVertexBufferKhr`]
     ///specifies that the format  **can**  be used as the vertex format when
@@ -1714,6 +1747,7 @@ pub enum FormatFeatureFlagBits2 {
     ///builds.
     ///
     ///Provided by [`crate::extensions::khr_acceleration_structure`]
+    #[cfg(feature = "VK_KHR_acceleration_structure")]
     AccelerationStructureVertexBufferKhr = 536870912,
     ///[`FragmentDensityMapExt`] specifies that an
     ///image view  **can**  be used as a
@@ -1721,6 +1755,7 @@ pub enum FormatFeatureFlagBits2 {
     ///attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-fragmentdensitymapattachment).
     ///
     ///Provided by [`crate::extensions::ext_fragment_density_map`]
+    #[cfg(feature = "VK_EXT_fragment_density_map")]
     FragmentDensityMapExt = 16777216,
     ///[`FragmentShadingRateAttachmentKhr`]
     ///specifies that an image view  **can**  be used as a
@@ -1730,18 +1765,21 @@ pub enum FormatFeatureFlagBits2 {
     ///type other than `*UINT`, or set it as a buffer feature.
     ///
     ///Provided by [`crate::extensions::khr_fragment_shading_rate`]
+    #[cfg(feature = "VK_KHR_fragment_shading_rate")]
     FragmentShadingRateAttachmentKhr = 1073741824,
     ///[`VideoEncodeInputKhr`] specifies that an
     ///image view with this format  **can**  be used as an input to
     ///[video encode operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations)
     ///
     ///Provided by [`crate::extensions::khr_video_encode_queue`]
+    #[cfg(feature = "VK_KHR_video_encode_queue")]
     VideoEncodeInputKhr = 134217728,
     ///[`VideoEncodeDpbKhr`] specifies that an
     ///image view with this format  **can**  be used as a DPB for
     ///[video encode operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations)
     ///
     ///Provided by [`crate::extensions::khr_video_encode_queue`]
+    #[cfg(feature = "VK_KHR_video_encode_queue")]
     VideoEncodeDpbKhr = 268435456,
     ///[`LinearColorAttachmentNv`] specifies that
     ///   the format is supported as a renderable [Linear Color
@@ -1752,6 +1790,7 @@ pub enum FormatFeatureFlagBits2 {
     ///`bufferFeatures` members.
     ///
     ///Provided by [`crate::extensions::nv_linear_color_attachment`]
+    #[cfg(feature = "VK_NV_linear_color_attachment")]
     LinearColorAttachmentNv = 274877906944,
 }
 impl const Default for FormatFeatureFlagBits2 {
@@ -2004,11 +2043,19 @@ impl PipelineCreationFeedbackFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::PIPELINE_CREATION_FEEDBACK_VALID
-            | Self::PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT
-            | Self::PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION
+        let mut all = Self::empty();
+        {
+            all |= Self::PIPELINE_CREATION_FEEDBACK_VALID;
+        }
+        {
+            all |= Self::PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT;
+        }
+        {
+            all |= Self::PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -2118,7 +2165,7 @@ impl const std::ops::BitOr for PipelineCreationFeedbackFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for PipelineCreationFeedbackFlags {
+impl const std::ops::BitOrAssign for PipelineCreationFeedbackFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -2131,7 +2178,7 @@ impl const std::ops::BitXor for PipelineCreationFeedbackFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for PipelineCreationFeedbackFlags {
+impl const std::ops::BitXorAssign for PipelineCreationFeedbackFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -2144,7 +2191,7 @@ impl const std::ops::BitAnd for PipelineCreationFeedbackFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for PipelineCreationFeedbackFlags {
+impl const std::ops::BitAndAssign for PipelineCreationFeedbackFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -2157,7 +2204,7 @@ impl const std::ops::Sub for PipelineCreationFeedbackFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for PipelineCreationFeedbackFlags {
+impl const std::ops::SubAssign for PipelineCreationFeedbackFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -2204,7 +2251,7 @@ impl std::fmt::Debug for PipelineCreationFeedbackFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(PipelineCreationFeedbackFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == PipelineCreationFeedbackFlags::empty() {
                     f.write_str("empty")?;
@@ -2634,6 +2681,7 @@ impl AccessFlags2 {
     ///pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_video_decode_queue`]
+    #[cfg(feature = "VK_KHR_video_decode_queue")]
     pub const VIDEO_DECODE_READ_KHR: Self = Self(34359738368);
     ///[`VideoDecodeWriteKhr`] specifies write access to
     ///an image or buffer resource as part of a [video decode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-decode-operations).
@@ -2641,6 +2689,7 @@ impl AccessFlags2 {
     ///pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_video_decode_queue`]
+    #[cfg(feature = "VK_KHR_video_decode_queue")]
     pub const VIDEO_DECODE_WRITE_KHR: Self = Self(68719476736);
     ///[`VideoEncodeReadKhr`] specifies read access to an
     ///image or buffer resource as part of a [video
@@ -2649,6 +2698,7 @@ impl AccessFlags2 {
     ///pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_video_encode_queue`]
+    #[cfg(feature = "VK_KHR_video_encode_queue")]
     pub const VIDEO_ENCODE_READ_KHR: Self = Self(137438953472);
     ///[`VideoEncodeWriteKhr`] specifies write access to
     ///an image or buffer resource as part of a [video encode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations).
@@ -2656,6 +2706,7 @@ impl AccessFlags2 {
     ///pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_video_encode_queue`]
+    #[cfg(feature = "VK_KHR_video_encode_queue")]
     pub const VIDEO_ENCODE_WRITE_KHR: Self = Self(274877906944);
     ///[`TransformFeedbackWriteExt`] specifies write
     ///access to a transform feedback buffer made when transform feedback is
@@ -2664,6 +2715,7 @@ impl AccessFlags2 {
     ///`VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const TRANSFORM_FEEDBACK_WRITE_EXT: Self = Self(33554432);
     ///[`TransformFeedbackCounterReadExt`] specifies read
     ///access to a transform feedback counter buffer which is read when
@@ -2672,6 +2724,7 @@ impl AccessFlags2 {
     ///`VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const TRANSFORM_FEEDBACK_COUNTER_READ_EXT: Self = Self(67108864);
     ///[`TransformFeedbackCounterWriteExt`] specifies
     ///write access to a transform feedback counter buffer which is written
@@ -2680,6 +2733,7 @@ impl AccessFlags2 {
     ///`VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT: Self = Self(134217728);
     ///[`ConditionalRenderingReadExt`] specifies read
     ///access to a predicate as part of conditional rendering.
@@ -2687,6 +2741,7 @@ impl AccessFlags2 {
     ///`VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const CONDITIONAL_RENDERING_READ_EXT: Self = Self(1048576);
     ///[`CommandPreprocessReadNv`] specifies reads from
     ///buffer inputs to [`CmdPreprocessGeneratedCommandsNV`].
@@ -2694,6 +2749,7 @@ impl AccessFlags2 {
     ///`VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const COMMAND_PREPROCESS_READ_NV: Self = Self(131072);
     ///[`CommandPreprocessWriteNv`] specifies writes to
     ///the target command buffer preprocess outputs.
@@ -2701,6 +2757,7 @@ impl AccessFlags2 {
     ///`VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const COMMAND_PREPROCESS_WRITE_NV: Self = Self(262144);
     ///[`FragmentShadingRateAttachmentReadKhr`]
     ///specifies read access to a fragment shading rate attachment during
@@ -2710,6 +2767,7 @@ impl AccessFlags2 {
     ///pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR: Self = Self(8388608);
     ///[`AccelerationStructureReadKhr`] specifies read
     ///access to an acceleration structure as part of a trace, build, or copy
@@ -2721,6 +2779,7 @@ impl AccessFlags2 {
     ///stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const ACCELERATION_STRUCTURE_READ_KHR: Self = Self(2097152);
     ///[`AccelerationStructureWriteKhr`] specifies write
     ///access to an acceleration structure or [acceleration structure scratch buffer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-scratch) as part of a build or copy
@@ -2730,6 +2789,7 @@ impl AccessFlags2 {
     ///stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const ACCELERATION_STRUCTURE_WRITE_KHR: Self = Self(4194304);
     ///[`FragmentDensityMapReadExt`] specifies read
     ///access to a [fragment density
@@ -2740,6 +2800,7 @@ impl AccessFlags2 {
     ///stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const FRAGMENT_DENSITY_MAP_READ_EXT: Self = Self(16777216);
     ///[`ColorAttachmentReadNoncoherentExt`] specifies
     ///read access to [color attachments](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass), including
@@ -2748,21 +2809,15 @@ impl AccessFlags2 {
     ///`VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT` pipeline stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const COLOR_ATTACHMENT_READ_NONCOHERENT_EXT: Self = Self(524288);
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::amd_extension_317`]
-    pub const RESERVED_41_AMD: Self = Self(2199023255552);
     ///[`InvocationMaskReadHuawei`] specifies read access
     ///to a invocation mask image in the
     ///`VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI` pipeline stage.
     ///
     ///Provided by [`crate::extensions::huawei_invocation_mask`]
+    #[cfg(feature = "VK_HUAWEI_invocation_mask")]
     pub const INVOCATION_MASK_READ_HUAWEI: Self = Self(549755813888);
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::khr_extension_387`]
-    pub const RESERVED_387_KHR: Self = Self(1099511627776);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2770,47 +2825,137 @@ impl AccessFlags2 {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::ACCESS_2_NONE
-            | Self::ACCESS_2_INDIRECT_COMMAND_READ
-            | Self::ACCESS_2_INDEX_READ
-            | Self::ACCESS_2_VERTEX_ATTRIBUTE_READ
-            | Self::ACCESS_2_UNIFORM_READ
-            | Self::ACCESS_2_INPUT_ATTACHMENT_READ
-            | Self::ACCESS_2_SHADER_READ
-            | Self::ACCESS_2_SHADER_WRITE
-            | Self::ACCESS_2_COLOR_ATTACHMENT_READ
-            | Self::ACCESS_2_COLOR_ATTACHMENT_WRITE
-            | Self::ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ
-            | Self::ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE
-            | Self::ACCESS_2_TRANSFER_READ
-            | Self::ACCESS_2_TRANSFER_WRITE
-            | Self::ACCESS_2_HOST_READ
-            | Self::ACCESS_2_HOST_WRITE
-            | Self::ACCESS_2_MEMORY_READ
-            | Self::ACCESS_2_MEMORY_WRITE
-            | Self::ACCESS_2_SHADER_SAMPLED_READ
-            | Self::ACCESS_2_SHADER_STORAGE_READ
-            | Self::ACCESS_2_SHADER_STORAGE_WRITE
-            | Self::VIDEO_DECODE_READ_KHR
-            | Self::VIDEO_DECODE_WRITE_KHR
-            | Self::VIDEO_ENCODE_READ_KHR
-            | Self::VIDEO_ENCODE_WRITE_KHR
-            | Self::TRANSFORM_FEEDBACK_WRITE_EXT
-            | Self::TRANSFORM_FEEDBACK_COUNTER_READ_EXT
-            | Self::TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT
-            | Self::CONDITIONAL_RENDERING_READ_EXT
-            | Self::COMMAND_PREPROCESS_READ_NV
-            | Self::COMMAND_PREPROCESS_WRITE_NV
-            | Self::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR
-            | Self::ACCELERATION_STRUCTURE_READ_KHR
-            | Self::ACCELERATION_STRUCTURE_WRITE_KHR
-            | Self::FRAGMENT_DENSITY_MAP_READ_EXT
-            | Self::COLOR_ATTACHMENT_READ_NONCOHERENT_EXT
-            | Self::RESERVED_41_AMD
-            | Self::INVOCATION_MASK_READ_HUAWEI
-            | Self::RESERVED_387_KHR
+        let mut all = Self::empty();
+        {
+            all |= Self::ACCESS_2_NONE;
+        }
+        {
+            all |= Self::ACCESS_2_INDIRECT_COMMAND_READ;
+        }
+        {
+            all |= Self::ACCESS_2_INDEX_READ;
+        }
+        {
+            all |= Self::ACCESS_2_VERTEX_ATTRIBUTE_READ;
+        }
+        {
+            all |= Self::ACCESS_2_UNIFORM_READ;
+        }
+        {
+            all |= Self::ACCESS_2_INPUT_ATTACHMENT_READ;
+        }
+        {
+            all |= Self::ACCESS_2_SHADER_READ;
+        }
+        {
+            all |= Self::ACCESS_2_SHADER_WRITE;
+        }
+        {
+            all |= Self::ACCESS_2_COLOR_ATTACHMENT_READ;
+        }
+        {
+            all |= Self::ACCESS_2_COLOR_ATTACHMENT_WRITE;
+        }
+        {
+            all |= Self::ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ;
+        }
+        {
+            all |= Self::ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE;
+        }
+        {
+            all |= Self::ACCESS_2_TRANSFER_READ;
+        }
+        {
+            all |= Self::ACCESS_2_TRANSFER_WRITE;
+        }
+        {
+            all |= Self::ACCESS_2_HOST_READ;
+        }
+        {
+            all |= Self::ACCESS_2_HOST_WRITE;
+        }
+        {
+            all |= Self::ACCESS_2_MEMORY_READ;
+        }
+        {
+            all |= Self::ACCESS_2_MEMORY_WRITE;
+        }
+        {
+            all |= Self::ACCESS_2_SHADER_SAMPLED_READ;
+        }
+        {
+            all |= Self::ACCESS_2_SHADER_STORAGE_READ;
+        }
+        {
+            all |= Self::ACCESS_2_SHADER_STORAGE_WRITE;
+        }
+        #[cfg(feature = "VK_KHR_video_decode_queue")]
+        {
+            all |= Self::VIDEO_DECODE_READ_KHR;
+        }
+        #[cfg(feature = "VK_KHR_video_decode_queue")]
+        {
+            all |= Self::VIDEO_DECODE_WRITE_KHR;
+        }
+        #[cfg(feature = "VK_KHR_video_encode_queue")]
+        {
+            all |= Self::VIDEO_ENCODE_READ_KHR;
+        }
+        #[cfg(feature = "VK_KHR_video_encode_queue")]
+        {
+            all |= Self::VIDEO_ENCODE_WRITE_KHR;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::TRANSFORM_FEEDBACK_WRITE_EXT;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::TRANSFORM_FEEDBACK_COUNTER_READ_EXT;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::CONDITIONAL_RENDERING_READ_EXT;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::COMMAND_PREPROCESS_READ_NV;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::COMMAND_PREPROCESS_WRITE_NV;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::ACCELERATION_STRUCTURE_READ_KHR;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::ACCELERATION_STRUCTURE_WRITE_KHR;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::FRAGMENT_DENSITY_MAP_READ_EXT;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::COLOR_ATTACHMENT_READ_NONCOHERENT_EXT;
+        }
+        #[cfg(feature = "VK_HUAWEI_invocation_mask")]
+        {
+            all |= Self::INVOCATION_MASK_READ_HUAWEI;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -2920,7 +3065,7 @@ impl const std::ops::BitOr for AccessFlags2 {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for AccessFlags2 {
+impl const std::ops::BitOrAssign for AccessFlags2 {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -2933,7 +3078,7 @@ impl const std::ops::BitXor for AccessFlags2 {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for AccessFlags2 {
+impl const std::ops::BitXorAssign for AccessFlags2 {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -2946,7 +3091,7 @@ impl const std::ops::BitAnd for AccessFlags2 {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for AccessFlags2 {
+impl const std::ops::BitAndAssign for AccessFlags2 {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -2959,7 +3104,7 @@ impl const std::ops::Sub for AccessFlags2 {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for AccessFlags2 {
+impl const std::ops::SubAssign for AccessFlags2 {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -3004,7 +3149,7 @@ impl std::fmt::Debug for AccessFlags2 {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(AccessFlags2);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == AccessFlags2::empty() {
                     f.write_str("empty")?;
@@ -3157,6 +3302,7 @@ impl std::fmt::Debug for AccessFlags2 {
                         }
                         f.write_str(stringify!(ACCESS_2_SHADER_STORAGE_WRITE))?;
                     }
+                    #[cfg(feature = "VK_KHR_video_decode_queue")]
                     if self.0.contains(AccessFlags2::VIDEO_DECODE_READ_KHR) {
                         if !first {
                             first = false;
@@ -3164,6 +3310,7 @@ impl std::fmt::Debug for AccessFlags2 {
                         }
                         f.write_str(stringify!(VIDEO_DECODE_READ_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_video_decode_queue")]
                     if self.0.contains(AccessFlags2::VIDEO_DECODE_WRITE_KHR) {
                         if !first {
                             first = false;
@@ -3171,6 +3318,7 @@ impl std::fmt::Debug for AccessFlags2 {
                         }
                         f.write_str(stringify!(VIDEO_DECODE_WRITE_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_video_encode_queue")]
                     if self.0.contains(AccessFlags2::VIDEO_ENCODE_READ_KHR) {
                         if !first {
                             first = false;
@@ -3178,6 +3326,7 @@ impl std::fmt::Debug for AccessFlags2 {
                         }
                         f.write_str(stringify!(VIDEO_ENCODE_READ_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_video_encode_queue")]
                     if self.0.contains(AccessFlags2::VIDEO_ENCODE_WRITE_KHR) {
                         if !first {
                             first = false;
@@ -3185,6 +3334,7 @@ impl std::fmt::Debug for AccessFlags2 {
                         }
                         f.write_str(stringify!(VIDEO_ENCODE_WRITE_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(AccessFlags2::TRANSFORM_FEEDBACK_WRITE_EXT) {
                         if !first {
                             first = false;
@@ -3192,6 +3342,7 @@ impl std::fmt::Debug for AccessFlags2 {
                         }
                         f.write_str(stringify!(TRANSFORM_FEEDBACK_WRITE_EXT))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(AccessFlags2::TRANSFORM_FEEDBACK_COUNTER_READ_EXT) {
                         if !first {
                             first = false;
@@ -3199,6 +3350,7 @@ impl std::fmt::Debug for AccessFlags2 {
                         }
                         f.write_str(stringify!(TRANSFORM_FEEDBACK_COUNTER_READ_EXT))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(AccessFlags2::TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT) {
                         if !first {
                             first = false;
@@ -3206,6 +3358,7 @@ impl std::fmt::Debug for AccessFlags2 {
                         }
                         f.write_str(stringify!(TRANSFORM_FEEDBACK_COUNTER_WRITE_EXT))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(AccessFlags2::CONDITIONAL_RENDERING_READ_EXT) {
                         if !first {
                             first = false;
@@ -3213,6 +3366,7 @@ impl std::fmt::Debug for AccessFlags2 {
                         }
                         f.write_str(stringify!(CONDITIONAL_RENDERING_READ_EXT))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(AccessFlags2::COMMAND_PREPROCESS_READ_NV) {
                         if !first {
                             first = false;
@@ -3220,6 +3374,7 @@ impl std::fmt::Debug for AccessFlags2 {
                         }
                         f.write_str(stringify!(COMMAND_PREPROCESS_READ_NV))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(AccessFlags2::COMMAND_PREPROCESS_WRITE_NV) {
                         if !first {
                             first = false;
@@ -3227,6 +3382,7 @@ impl std::fmt::Debug for AccessFlags2 {
                         }
                         f.write_str(stringify!(COMMAND_PREPROCESS_WRITE_NV))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(AccessFlags2::FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR) {
                         if !first {
                             first = false;
@@ -3234,6 +3390,7 @@ impl std::fmt::Debug for AccessFlags2 {
                         }
                         f.write_str(stringify!(FRAGMENT_SHADING_RATE_ATTACHMENT_READ_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(AccessFlags2::ACCELERATION_STRUCTURE_READ_KHR) {
                         if !first {
                             first = false;
@@ -3241,6 +3398,7 @@ impl std::fmt::Debug for AccessFlags2 {
                         }
                         f.write_str(stringify!(ACCELERATION_STRUCTURE_READ_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(AccessFlags2::ACCELERATION_STRUCTURE_WRITE_KHR) {
                         if !first {
                             first = false;
@@ -3248,6 +3406,7 @@ impl std::fmt::Debug for AccessFlags2 {
                         }
                         f.write_str(stringify!(ACCELERATION_STRUCTURE_WRITE_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(AccessFlags2::FRAGMENT_DENSITY_MAP_READ_EXT) {
                         if !first {
                             first = false;
@@ -3255,6 +3414,7 @@ impl std::fmt::Debug for AccessFlags2 {
                         }
                         f.write_str(stringify!(FRAGMENT_DENSITY_MAP_READ_EXT))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(AccessFlags2::COLOR_ATTACHMENT_READ_NONCOHERENT_EXT) {
                         if !first {
                             first = false;
@@ -3262,26 +3422,13 @@ impl std::fmt::Debug for AccessFlags2 {
                         }
                         f.write_str(stringify!(COLOR_ATTACHMENT_READ_NONCOHERENT_EXT))?;
                     }
-                    if self.0.contains(AccessFlags2::RESERVED_41_AMD) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(RESERVED_41_AMD))?;
-                    }
+                    #[cfg(feature = "VK_HUAWEI_invocation_mask")]
                     if self.0.contains(AccessFlags2::INVOCATION_MASK_READ_HUAWEI) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
                         f.write_str(stringify!(INVOCATION_MASK_READ_HUAWEI))?;
-                    }
-                    if self.0.contains(AccessFlags2::RESERVED_387_KHR) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(RESERVED_387_KHR))?;
                     }
                 }
                 Ok(())
@@ -3649,26 +3796,31 @@ impl PipelineStageFlags2 {
     ///are performed.
     ///
     ///Provided by [`crate::extensions::khr_video_decode_queue`]
+    #[cfg(feature = "VK_KHR_video_decode_queue")]
     pub const VIDEO_DECODE_KHR: Self = Self(67108864);
     ///[`VideoEncodeKhr`] specifies the stage of
     ///the pipeline where [video encode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations)
     ///are performed.
     ///
     ///Provided by [`crate::extensions::khr_video_encode_queue`]
+    #[cfg(feature = "VK_KHR_video_encode_queue")]
     pub const VIDEO_ENCODE_KHR: Self = Self(134217728);
     ///[`TransformFeedbackExt`]
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const TRANSFORM_FEEDBACK_EXT: Self = Self(16777216);
     ///[`ConditionalRenderingExt`]
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const CONDITIONAL_RENDERING_EXT: Self = Self(262144);
     ///[`CommandPreprocessNv`] specifies the stage
     ///of the pipeline where device-side generation of commands via
     ///[`CmdPreprocessGeneratedCommandsNV`] is handled.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const COMMAND_PREPROCESS_NV: Self = Self(131072);
     ///[`FragmentShadingRateAttachmentKhr`]
     ///    specifies the stage of the pipeline where the
@@ -3680,45 +3832,49 @@ impl PipelineStageFlags2 {
     ///    rasterized primitive.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(4194304);
     ///[`AccelerationStructureBuildKhr`] specifies
     ///the execution of [acceleration structure
     ///commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure).
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const ACCELERATION_STRUCTURE_BUILD_KHR: Self = Self(33554432);
     ///[`RayTracingShaderKhr`] specifies the
     ///execution of the ray tracing shader stages.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const RAY_TRACING_SHADER_KHR: Self = Self(2097152);
     ///[`FragmentDensityProcessExt`]
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const FRAGMENT_DENSITY_PROCESS_EXT: Self = Self(8388608);
     ///[`TaskShaderNv`] specifies the task shader
     ///stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const TASK_SHADER_NV: Self = Self(524288);
     ///[`MeshShaderNv`] specifies the mesh shader
     ///stage.
     ///
     ///Provided by [`crate::extensions::khr_synchronization_2`]
+    #[cfg(feature = "VK_KHR_synchronization2")]
     pub const MESH_SHADER_NV: Self = Self(1048576);
     ///[`SubpassShadingHuawei`] specifies the
     ///subpass shading shader stage.
     ///
     ///Provided by [`crate::extensions::huawei_subpass_shading`]
+    #[cfg(feature = "VK_HUAWEI_subpass_shading")]
     pub const SUBPASS_SHADING_HUAWEI: Self = Self(549755813888);
     ///[`InvocationMaskHuawei`]
     ///
     ///Provided by [`crate::extensions::huawei_invocation_mask`]
+    #[cfg(feature = "VK_HUAWEI_invocation_mask")]
     pub const INVOCATION_MASK_HUAWEI: Self = Self(1099511627776);
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::khr_extension_387`]
-    pub const RESERVED_387_KHR: Self = Self(268435456);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -3726,47 +3882,137 @@ impl PipelineStageFlags2 {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::PIPELINE_STAGE_2_NONE
-            | Self::PIPELINE_STAGE_2_TOP_OF_PIPE
-            | Self::PIPELINE_STAGE_2_DRAW_INDIRECT
-            | Self::PIPELINE_STAGE_2_VERTEX_INPUT
-            | Self::PIPELINE_STAGE_2_VERTEX_SHADER
-            | Self::PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER
-            | Self::PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER
-            | Self::PIPELINE_STAGE_2_GEOMETRY_SHADER
-            | Self::PIPELINE_STAGE_2_FRAGMENT_SHADER
-            | Self::PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS
-            | Self::PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS
-            | Self::PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT
-            | Self::PIPELINE_STAGE_2_COMPUTE_SHADER
-            | Self::PIPELINE_STAGE_2_ALL_TRANSFER
-            | Self::PIPELINE_STAGE_2_BOTTOM_OF_PIPE
-            | Self::PIPELINE_STAGE_2_HOST
-            | Self::PIPELINE_STAGE_2_ALL_GRAPHICS
-            | Self::PIPELINE_STAGE_2_ALL_COMMANDS
-            | Self::PIPELINE_STAGE_2_COPY
-            | Self::PIPELINE_STAGE_2_RESOLVE
-            | Self::PIPELINE_STAGE_2_BLIT
-            | Self::PIPELINE_STAGE_2_CLEAR
-            | Self::PIPELINE_STAGE_2_INDEX_INPUT
-            | Self::PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT
-            | Self::PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS
-            | Self::VIDEO_DECODE_KHR
-            | Self::VIDEO_ENCODE_KHR
-            | Self::TRANSFORM_FEEDBACK_EXT
-            | Self::CONDITIONAL_RENDERING_EXT
-            | Self::COMMAND_PREPROCESS_NV
-            | Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR
-            | Self::ACCELERATION_STRUCTURE_BUILD_KHR
-            | Self::RAY_TRACING_SHADER_KHR
-            | Self::FRAGMENT_DENSITY_PROCESS_EXT
-            | Self::TASK_SHADER_NV
-            | Self::MESH_SHADER_NV
-            | Self::SUBPASS_SHADING_HUAWEI
-            | Self::INVOCATION_MASK_HUAWEI
-            | Self::RESERVED_387_KHR
+        let mut all = Self::empty();
+        {
+            all |= Self::PIPELINE_STAGE_2_NONE;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_TOP_OF_PIPE;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_DRAW_INDIRECT;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_VERTEX_INPUT;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_VERTEX_SHADER;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_GEOMETRY_SHADER;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_FRAGMENT_SHADER;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_COMPUTE_SHADER;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_ALL_TRANSFER;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_BOTTOM_OF_PIPE;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_HOST;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_ALL_GRAPHICS;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_ALL_COMMANDS;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_COPY;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_RESOLVE;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_BLIT;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_CLEAR;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_INDEX_INPUT;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT;
+        }
+        {
+            all |= Self::PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS;
+        }
+        #[cfg(feature = "VK_KHR_video_decode_queue")]
+        {
+            all |= Self::VIDEO_DECODE_KHR;
+        }
+        #[cfg(feature = "VK_KHR_video_encode_queue")]
+        {
+            all |= Self::VIDEO_ENCODE_KHR;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::TRANSFORM_FEEDBACK_EXT;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::CONDITIONAL_RENDERING_EXT;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::COMMAND_PREPROCESS_NV;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::ACCELERATION_STRUCTURE_BUILD_KHR;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::RAY_TRACING_SHADER_KHR;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::FRAGMENT_DENSITY_PROCESS_EXT;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::TASK_SHADER_NV;
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        {
+            all |= Self::MESH_SHADER_NV;
+        }
+        #[cfg(feature = "VK_HUAWEI_subpass_shading")]
+        {
+            all |= Self::SUBPASS_SHADING_HUAWEI;
+        }
+        #[cfg(feature = "VK_HUAWEI_invocation_mask")]
+        {
+            all |= Self::INVOCATION_MASK_HUAWEI;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -3876,7 +4122,7 @@ impl const std::ops::BitOr for PipelineStageFlags2 {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for PipelineStageFlags2 {
+impl const std::ops::BitOrAssign for PipelineStageFlags2 {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -3889,7 +4135,7 @@ impl const std::ops::BitXor for PipelineStageFlags2 {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for PipelineStageFlags2 {
+impl const std::ops::BitXorAssign for PipelineStageFlags2 {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -3902,7 +4148,7 @@ impl const std::ops::BitAnd for PipelineStageFlags2 {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for PipelineStageFlags2 {
+impl const std::ops::BitAndAssign for PipelineStageFlags2 {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -3915,7 +4161,7 @@ impl const std::ops::Sub for PipelineStageFlags2 {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for PipelineStageFlags2 {
+impl const std::ops::SubAssign for PipelineStageFlags2 {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -3960,7 +4206,7 @@ impl std::fmt::Debug for PipelineStageFlags2 {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(PipelineStageFlags2);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == PipelineStageFlags2::empty() {
                     f.write_str("empty")?;
@@ -4162,6 +4408,7 @@ impl std::fmt::Debug for PipelineStageFlags2 {
                         }
                         f.write_str(stringify!(PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS))?;
                     }
+                    #[cfg(feature = "VK_KHR_video_decode_queue")]
                     if self.0.contains(PipelineStageFlags2::VIDEO_DECODE_KHR) {
                         if !first {
                             first = false;
@@ -4169,6 +4416,7 @@ impl std::fmt::Debug for PipelineStageFlags2 {
                         }
                         f.write_str(stringify!(VIDEO_DECODE_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_video_encode_queue")]
                     if self.0.contains(PipelineStageFlags2::VIDEO_ENCODE_KHR) {
                         if !first {
                             first = false;
@@ -4176,6 +4424,7 @@ impl std::fmt::Debug for PipelineStageFlags2 {
                         }
                         f.write_str(stringify!(VIDEO_ENCODE_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(PipelineStageFlags2::TRANSFORM_FEEDBACK_EXT) {
                         if !first {
                             first = false;
@@ -4183,6 +4432,7 @@ impl std::fmt::Debug for PipelineStageFlags2 {
                         }
                         f.write_str(stringify!(TRANSFORM_FEEDBACK_EXT))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(PipelineStageFlags2::CONDITIONAL_RENDERING_EXT) {
                         if !first {
                             first = false;
@@ -4190,6 +4440,7 @@ impl std::fmt::Debug for PipelineStageFlags2 {
                         }
                         f.write_str(stringify!(CONDITIONAL_RENDERING_EXT))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(PipelineStageFlags2::COMMAND_PREPROCESS_NV) {
                         if !first {
                             first = false;
@@ -4197,6 +4448,7 @@ impl std::fmt::Debug for PipelineStageFlags2 {
                         }
                         f.write_str(stringify!(COMMAND_PREPROCESS_NV))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self
                         .0
                         .contains(PipelineStageFlags2::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR)
@@ -4207,6 +4459,7 @@ impl std::fmt::Debug for PipelineStageFlags2 {
                         }
                         f.write_str(stringify!(FRAGMENT_SHADING_RATE_ATTACHMENT_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(PipelineStageFlags2::ACCELERATION_STRUCTURE_BUILD_KHR) {
                         if !first {
                             first = false;
@@ -4214,6 +4467,7 @@ impl std::fmt::Debug for PipelineStageFlags2 {
                         }
                         f.write_str(stringify!(ACCELERATION_STRUCTURE_BUILD_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(PipelineStageFlags2::RAY_TRACING_SHADER_KHR) {
                         if !first {
                             first = false;
@@ -4221,6 +4475,7 @@ impl std::fmt::Debug for PipelineStageFlags2 {
                         }
                         f.write_str(stringify!(RAY_TRACING_SHADER_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(PipelineStageFlags2::FRAGMENT_DENSITY_PROCESS_EXT) {
                         if !first {
                             first = false;
@@ -4228,6 +4483,7 @@ impl std::fmt::Debug for PipelineStageFlags2 {
                         }
                         f.write_str(stringify!(FRAGMENT_DENSITY_PROCESS_EXT))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(PipelineStageFlags2::TASK_SHADER_NV) {
                         if !first {
                             first = false;
@@ -4235,6 +4491,7 @@ impl std::fmt::Debug for PipelineStageFlags2 {
                         }
                         f.write_str(stringify!(TASK_SHADER_NV))?;
                     }
+                    #[cfg(feature = "VK_KHR_synchronization2")]
                     if self.0.contains(PipelineStageFlags2::MESH_SHADER_NV) {
                         if !first {
                             first = false;
@@ -4242,6 +4499,7 @@ impl std::fmt::Debug for PipelineStageFlags2 {
                         }
                         f.write_str(stringify!(MESH_SHADER_NV))?;
                     }
+                    #[cfg(feature = "VK_HUAWEI_subpass_shading")]
                     if self.0.contains(PipelineStageFlags2::SUBPASS_SHADING_HUAWEI) {
                         if !first {
                             first = false;
@@ -4249,19 +4507,13 @@ impl std::fmt::Debug for PipelineStageFlags2 {
                         }
                         f.write_str(stringify!(SUBPASS_SHADING_HUAWEI))?;
                     }
+                    #[cfg(feature = "VK_HUAWEI_invocation_mask")]
                     if self.0.contains(PipelineStageFlags2::INVOCATION_MASK_HUAWEI) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
                         f.write_str(stringify!(INVOCATION_MASK_HUAWEI))?;
-                    }
-                    if self.0.contains(PipelineStageFlags2::RESERVED_387_KHR) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(RESERVED_387_KHR))?;
                     }
                 }
                 Ok(())
@@ -4702,12 +4954,14 @@ impl FormatFeatureFlags2 {
     ///[video decode operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-decode-operations)
     ///
     ///Provided by [`crate::extensions::khr_video_decode_queue`]
+    #[cfg(feature = "VK_KHR_video_decode_queue")]
     pub const VIDEO_DECODE_OUTPUT_KHR: Self = Self(33554432);
     ///[`VideoDecodeDpbKhr`] specifies that an
     ///image view with this format  **can**  be used as a DPB for
     ///[video decode operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-decode-operations)
     ///
     ///Provided by [`crate::extensions::khr_video_decode_queue`]
+    #[cfg(feature = "VK_KHR_video_decode_queue")]
     pub const VIDEO_DECODE_DPB_KHR: Self = Self(67108864);
     ///[`AccelerationStructureVertexBufferKhr`]
     ///specifies that the format  **can**  be used as the vertex format when
@@ -4718,6 +4972,7 @@ impl FormatFeatureFlags2 {
     ///builds.
     ///
     ///Provided by [`crate::extensions::khr_acceleration_structure`]
+    #[cfg(feature = "VK_KHR_acceleration_structure")]
     pub const ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR: Self = Self(536870912);
     ///[`FragmentDensityMapExt`] specifies that an
     ///image view  **can**  be used as a
@@ -4725,6 +4980,7 @@ impl FormatFeatureFlags2 {
     ///attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-fragmentdensitymapattachment).
     ///
     ///Provided by [`crate::extensions::ext_fragment_density_map`]
+    #[cfg(feature = "VK_EXT_fragment_density_map")]
     pub const FRAGMENT_DENSITY_MAP_EXT: Self = Self(16777216);
     ///[`FragmentShadingRateAttachmentKhr`]
     ///specifies that an image view  **can**  be used as a
@@ -4734,18 +4990,21 @@ impl FormatFeatureFlags2 {
     ///type other than `*UINT`, or set it as a buffer feature.
     ///
     ///Provided by [`crate::extensions::khr_fragment_shading_rate`]
+    #[cfg(feature = "VK_KHR_fragment_shading_rate")]
     pub const FRAGMENT_SHADING_RATE_ATTACHMENT_KHR: Self = Self(1073741824);
     ///[`VideoEncodeInputKhr`] specifies that an
     ///image view with this format  **can**  be used as an input to
     ///[video encode operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations)
     ///
     ///Provided by [`crate::extensions::khr_video_encode_queue`]
+    #[cfg(feature = "VK_KHR_video_encode_queue")]
     pub const VIDEO_ENCODE_INPUT_KHR: Self = Self(134217728);
     ///[`VideoEncodeDpbKhr`] specifies that an
     ///image view with this format  **can**  be used as a DPB for
     ///[video encode operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations)
     ///
     ///Provided by [`crate::extensions::khr_video_encode_queue`]
+    #[cfg(feature = "VK_KHR_video_encode_queue")]
     pub const VIDEO_ENCODE_DPB_KHR: Self = Self(268435456);
     ///[`LinearColorAttachmentNv`] specifies that
     ///   the format is supported as a renderable [Linear Color
@@ -4756,23 +5015,8 @@ impl FormatFeatureFlags2 {
     ///`bufferFeatures` members.
     ///
     ///Provided by [`crate::extensions::nv_linear_color_attachment`]
+    #[cfg(feature = "VK_NV_linear_color_attachment")]
     pub const LINEAR_COLOR_ATTACHMENT_NV: Self = Self(274877906944);
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::qcom_extension_441`]
-    pub const RESERVED_34_QCOM: Self = Self(17179869184);
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::qcom_extension_441`]
-    pub const RESERVED_35_QCOM: Self = Self(34359738368);
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::qcom_extension_441`]
-    pub const RESERVED_36_QCOM: Self = Self(68719476736);
-    ///No documentation found
-    ///
-    ///Provided by [`crate::extensions::qcom_extension_441`]
-    pub const RESERVED_37_QCOM: Self = Self(137438953472);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -4780,47 +5024,123 @@ impl FormatFeatureFlags2 {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE
-            | Self::FORMAT_FEATURE_2_STORAGE_IMAGE
-            | Self::FORMAT_FEATURE_2_STORAGE_IMAGE_ATOMIC
-            | Self::FORMAT_FEATURE_2_UNIFORM_TEXEL_BUFFER
-            | Self::FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER
-            | Self::FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_ATOMIC
-            | Self::FORMAT_FEATURE_2_VERTEX_BUFFER
-            | Self::FORMAT_FEATURE_2_COLOR_ATTACHMENT
-            | Self::FORMAT_FEATURE_2_COLOR_ATTACHMENT_BLEND
-            | Self::FORMAT_FEATURE_2_DEPTH_STENCIL_ATTACHMENT
-            | Self::FORMAT_FEATURE_2_BLIT_SRC
-            | Self::FORMAT_FEATURE_2_BLIT_DST
-            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_LINEAR
-            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_CUBIC
-            | Self::FORMAT_FEATURE_2_TRANSFER_SRC
-            | Self::FORMAT_FEATURE_2_TRANSFER_DST
-            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_MINMAX
-            | Self::FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES
-            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER
-            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER
-            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT
-            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE
-            | Self::FORMAT_FEATURE_2_DISJOINT
-            | Self::FORMAT_FEATURE_2_COSITED_CHROMA_SAMPLES
-            | Self::FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT
-            | Self::FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT
-            | Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON
-            | Self::VIDEO_DECODE_OUTPUT_KHR
-            | Self::VIDEO_DECODE_DPB_KHR
-            | Self::ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR
-            | Self::FRAGMENT_DENSITY_MAP_EXT
-            | Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR
-            | Self::VIDEO_ENCODE_INPUT_KHR
-            | Self::VIDEO_ENCODE_DPB_KHR
-            | Self::LINEAR_COLOR_ATTACHMENT_NV
-            | Self::RESERVED_34_QCOM
-            | Self::RESERVED_35_QCOM
-            | Self::RESERVED_36_QCOM
-            | Self::RESERVED_37_QCOM
+        let mut all = Self::empty();
+        {
+            all |= Self::FORMAT_FEATURE_2_SAMPLED_IMAGE;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_STORAGE_IMAGE;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_STORAGE_IMAGE_ATOMIC;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_UNIFORM_TEXEL_BUFFER;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_ATOMIC;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_VERTEX_BUFFER;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_COLOR_ATTACHMENT;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_COLOR_ATTACHMENT_BLEND;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_DEPTH_STENCIL_ATTACHMENT;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_BLIT_SRC;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_BLIT_DST;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_LINEAR;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_CUBIC;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_TRANSFER_SRC;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_TRANSFER_DST;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_MINMAX;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_DISJOINT;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_COSITED_CHROMA_SAMPLES;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT;
+        }
+        {
+            all |= Self::FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON;
+        }
+        #[cfg(feature = "VK_KHR_video_decode_queue")]
+        {
+            all |= Self::VIDEO_DECODE_OUTPUT_KHR;
+        }
+        #[cfg(feature = "VK_KHR_video_decode_queue")]
+        {
+            all |= Self::VIDEO_DECODE_DPB_KHR;
+        }
+        #[cfg(feature = "VK_KHR_acceleration_structure")]
+        {
+            all |= Self::ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR;
+        }
+        #[cfg(feature = "VK_EXT_fragment_density_map")]
+        {
+            all |= Self::FRAGMENT_DENSITY_MAP_EXT;
+        }
+        #[cfg(feature = "VK_KHR_fragment_shading_rate")]
+        {
+            all |= Self::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR;
+        }
+        #[cfg(feature = "VK_KHR_video_encode_queue")]
+        {
+            all |= Self::VIDEO_ENCODE_INPUT_KHR;
+        }
+        #[cfg(feature = "VK_KHR_video_encode_queue")]
+        {
+            all |= Self::VIDEO_ENCODE_DPB_KHR;
+        }
+        #[cfg(feature = "VK_NV_linear_color_attachment")]
+        {
+            all |= Self::LINEAR_COLOR_ATTACHMENT_NV;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -4930,7 +5250,7 @@ impl const std::ops::BitOr for FormatFeatureFlags2 {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for FormatFeatureFlags2 {
+impl const std::ops::BitOrAssign for FormatFeatureFlags2 {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -4943,7 +5263,7 @@ impl const std::ops::BitXor for FormatFeatureFlags2 {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for FormatFeatureFlags2 {
+impl const std::ops::BitXorAssign for FormatFeatureFlags2 {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -4956,7 +5276,7 @@ impl const std::ops::BitAnd for FormatFeatureFlags2 {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for FormatFeatureFlags2 {
+impl const std::ops::BitAndAssign for FormatFeatureFlags2 {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -4969,7 +5289,7 @@ impl const std::ops::Sub for FormatFeatureFlags2 {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for FormatFeatureFlags2 {
+impl const std::ops::SubAssign for FormatFeatureFlags2 {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -5014,7 +5334,7 @@ impl std::fmt::Debug for FormatFeatureFlags2 {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(FormatFeatureFlags2);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == FormatFeatureFlags2::empty() {
                     f.write_str("empty")?;
@@ -5238,6 +5558,7 @@ impl std::fmt::Debug for FormatFeatureFlags2 {
                         }
                         f.write_str(stringify!(FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON))?;
                     }
+                    #[cfg(feature = "VK_KHR_video_decode_queue")]
                     if self.0.contains(FormatFeatureFlags2::VIDEO_DECODE_OUTPUT_KHR) {
                         if !first {
                             first = false;
@@ -5245,6 +5566,7 @@ impl std::fmt::Debug for FormatFeatureFlags2 {
                         }
                         f.write_str(stringify!(VIDEO_DECODE_OUTPUT_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_video_decode_queue")]
                     if self.0.contains(FormatFeatureFlags2::VIDEO_DECODE_DPB_KHR) {
                         if !first {
                             first = false;
@@ -5252,6 +5574,7 @@ impl std::fmt::Debug for FormatFeatureFlags2 {
                         }
                         f.write_str(stringify!(VIDEO_DECODE_DPB_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_acceleration_structure")]
                     if self
                         .0
                         .contains(FormatFeatureFlags2::ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR)
@@ -5262,6 +5585,7 @@ impl std::fmt::Debug for FormatFeatureFlags2 {
                         }
                         f.write_str(stringify!(ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR))?;
                     }
+                    #[cfg(feature = "VK_EXT_fragment_density_map")]
                     if self.0.contains(FormatFeatureFlags2::FRAGMENT_DENSITY_MAP_EXT) {
                         if !first {
                             first = false;
@@ -5269,6 +5593,7 @@ impl std::fmt::Debug for FormatFeatureFlags2 {
                         }
                         f.write_str(stringify!(FRAGMENT_DENSITY_MAP_EXT))?;
                     }
+                    #[cfg(feature = "VK_KHR_fragment_shading_rate")]
                     if self
                         .0
                         .contains(FormatFeatureFlags2::FRAGMENT_SHADING_RATE_ATTACHMENT_KHR)
@@ -5279,6 +5604,7 @@ impl std::fmt::Debug for FormatFeatureFlags2 {
                         }
                         f.write_str(stringify!(FRAGMENT_SHADING_RATE_ATTACHMENT_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_video_encode_queue")]
                     if self.0.contains(FormatFeatureFlags2::VIDEO_ENCODE_INPUT_KHR) {
                         if !first {
                             first = false;
@@ -5286,6 +5612,7 @@ impl std::fmt::Debug for FormatFeatureFlags2 {
                         }
                         f.write_str(stringify!(VIDEO_ENCODE_INPUT_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_video_encode_queue")]
                     if self.0.contains(FormatFeatureFlags2::VIDEO_ENCODE_DPB_KHR) {
                         if !first {
                             first = false;
@@ -5293,40 +5620,13 @@ impl std::fmt::Debug for FormatFeatureFlags2 {
                         }
                         f.write_str(stringify!(VIDEO_ENCODE_DPB_KHR))?;
                     }
+                    #[cfg(feature = "VK_NV_linear_color_attachment")]
                     if self.0.contains(FormatFeatureFlags2::LINEAR_COLOR_ATTACHMENT_NV) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
                         f.write_str(stringify!(LINEAR_COLOR_ATTACHMENT_NV))?;
-                    }
-                    if self.0.contains(FormatFeatureFlags2::RESERVED_34_QCOM) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(RESERVED_34_QCOM))?;
-                    }
-                    if self.0.contains(FormatFeatureFlags2::RESERVED_35_QCOM) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(RESERVED_35_QCOM))?;
-                    }
-                    if self.0.contains(FormatFeatureFlags2::RESERVED_36_QCOM) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(RESERVED_36_QCOM))?;
-                    }
-                    if self.0.contains(FormatFeatureFlags2::RESERVED_37_QCOM) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(RESERVED_37_QCOM))?;
                     }
                 }
                 Ok(())
@@ -5417,11 +5717,19 @@ impl RenderingFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS
-            | Self::RENDERING_SUSPENDING
-            | Self::RENDERING_RESUMING
+        let mut all = Self::empty();
+        {
+            all |= Self::RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS;
+        }
+        {
+            all |= Self::RENDERING_SUSPENDING;
+        }
+        {
+            all |= Self::RENDERING_RESUMING;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -5531,7 +5839,7 @@ impl const std::ops::BitOr for RenderingFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for RenderingFlags {
+impl const std::ops::BitOrAssign for RenderingFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -5544,7 +5852,7 @@ impl const std::ops::BitXor for RenderingFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for RenderingFlags {
+impl const std::ops::BitXorAssign for RenderingFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -5557,7 +5865,7 @@ impl const std::ops::BitAnd for RenderingFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for RenderingFlags {
+impl const std::ops::BitAndAssign for RenderingFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -5570,7 +5878,7 @@ impl const std::ops::Sub for RenderingFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for RenderingFlags {
+impl const std::ops::SubAssign for RenderingFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -5615,7 +5923,7 @@ impl std::fmt::Debug for RenderingFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(RenderingFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == RenderingFlags::empty() {
                     f.write_str("empty")?;
@@ -5754,6 +6062,7 @@ impl ToolPurposeFlags {
     ///[`CreateDebugUtilsMessengerEXT`]
     ///
     ///Provided by [`crate::extensions::ext_tooling_info`]
+    #[cfg(feature = "VK_EXT_tooling_info")]
     pub const DEBUG_REPORTING_EXT: Self = Self(32);
     ///[`DebugMarkersExt`] specifies that the tool
     ///consumes
@@ -5764,6 +6073,7 @@ impl ToolPurposeFlags {
     ///[command buffer labels](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-command-buffer-labels)
     ///
     ///Provided by [`crate::extensions::ext_tooling_info`]
+    #[cfg(feature = "VK_EXT_tooling_info")]
     pub const DEBUG_MARKERS_EXT: Self = Self(64);
     ///Default empty flags
     #[inline]
@@ -5772,15 +6082,33 @@ impl ToolPurposeFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::TOOL_PURPOSE_VALIDATION
-            | Self::TOOL_PURPOSE_PROFILING
-            | Self::TOOL_PURPOSE_TRACING
-            | Self::TOOL_PURPOSE_ADDITIONAL_FEATURES
-            | Self::TOOL_PURPOSE_MODIFYING_FEATURES
-            | Self::DEBUG_REPORTING_EXT
-            | Self::DEBUG_MARKERS_EXT
+        let mut all = Self::empty();
+        {
+            all |= Self::TOOL_PURPOSE_VALIDATION;
+        }
+        {
+            all |= Self::TOOL_PURPOSE_PROFILING;
+        }
+        {
+            all |= Self::TOOL_PURPOSE_TRACING;
+        }
+        {
+            all |= Self::TOOL_PURPOSE_ADDITIONAL_FEATURES;
+        }
+        {
+            all |= Self::TOOL_PURPOSE_MODIFYING_FEATURES;
+        }
+        #[cfg(feature = "VK_EXT_tooling_info")]
+        {
+            all |= Self::DEBUG_REPORTING_EXT;
+        }
+        #[cfg(feature = "VK_EXT_tooling_info")]
+        {
+            all |= Self::DEBUG_MARKERS_EXT;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -5890,7 +6218,7 @@ impl const std::ops::BitOr for ToolPurposeFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for ToolPurposeFlags {
+impl const std::ops::BitOrAssign for ToolPurposeFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -5903,7 +6231,7 @@ impl const std::ops::BitXor for ToolPurposeFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for ToolPurposeFlags {
+impl const std::ops::BitXorAssign for ToolPurposeFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -5916,7 +6244,7 @@ impl const std::ops::BitAnd for ToolPurposeFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for ToolPurposeFlags {
+impl const std::ops::BitAndAssign for ToolPurposeFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -5929,7 +6257,7 @@ impl const std::ops::Sub for ToolPurposeFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for ToolPurposeFlags {
+impl const std::ops::SubAssign for ToolPurposeFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -5974,7 +6302,7 @@ impl std::fmt::Debug for ToolPurposeFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ToolPurposeFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ToolPurposeFlags::empty() {
                     f.write_str("empty")?;
@@ -6015,6 +6343,7 @@ impl std::fmt::Debug for ToolPurposeFlags {
                         }
                         f.write_str(stringify!(TOOL_PURPOSE_MODIFYING_FEATURES))?;
                     }
+                    #[cfg(feature = "VK_EXT_tooling_info")]
                     if self.0.contains(ToolPurposeFlags::DEBUG_REPORTING_EXT) {
                         if !first {
                             first = false;
@@ -6022,6 +6351,7 @@ impl std::fmt::Debug for ToolPurposeFlags {
                         }
                         f.write_str(stringify!(DEBUG_REPORTING_EXT))?;
                     }
+                    #[cfg(feature = "VK_EXT_tooling_info")]
                     if self.0.contains(ToolPurposeFlags::DEBUG_MARKERS_EXT) {
                         if !first {
                             first = false;
@@ -6095,8 +6425,13 @@ impl SubmitFlags {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty() | Self::SUBMIT_PROTECTED
+        let mut all = Self::empty();
+        {
+            all |= Self::SUBMIT_PROTECTED;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -6206,7 +6541,7 @@ impl const std::ops::BitOr for SubmitFlags {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for SubmitFlags {
+impl const std::ops::BitOrAssign for SubmitFlags {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -6219,7 +6554,7 @@ impl const std::ops::BitXor for SubmitFlags {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for SubmitFlags {
+impl const std::ops::BitXorAssign for SubmitFlags {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -6232,7 +6567,7 @@ impl const std::ops::BitAnd for SubmitFlags {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for SubmitFlags {
+impl const std::ops::BitAndAssign for SubmitFlags {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -6245,7 +6580,7 @@ impl const std::ops::Sub for SubmitFlags {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for SubmitFlags {
+impl const std::ops::SubAssign for SubmitFlags {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -6290,7 +6625,7 @@ impl std::fmt::Debug for SubmitFlags {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(SubmitFlags);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == SubmitFlags::empty() {
                     f.write_str("empty")?;
@@ -21248,108 +21583,29 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or equal
 ///   to <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
 ///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
-///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.9019679999999999em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
-///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
-///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
-///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
-///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
-///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
-///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
-///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or equal
-///   to <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
 ///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   class="vlist-r"><span style="height:0.9019679999999999em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
 ///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
 ///   mtight">F</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
 ///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
 ///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
 ///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight"
+///   mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span><span style="margin-right:0.13889em;" class="mord
+///   mathdefault mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.01968em;">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
@@ -21363,44 +21619,33 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
 ///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
 ///   style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span class="mord mathdefault mtight"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.143em;"
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.143em;"
 ///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
 ///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.3448em;" class="vlist"><span
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
 ///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
 ///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
@@ -21409,19 +21654,18 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
 ///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
 ///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span> for
-///   each element of `pDeviceRenderAreas`
-/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
-///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
+///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
 ///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or equal
+///   not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or equal
 ///   to <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
 ///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
+///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
@@ -21430,20 +21674,146 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mtight">r</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault
 ///   mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
 ///   mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">t</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.446108em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">p</span><span style="margin-right:0.02778em;"
+///   class="mord mathdefault mtight">D</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">v</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285719em;"
+///   class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight">p</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span> for
+///   each element of `pDeviceRenderAreas`
+/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
+///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
+///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
+///   not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or equal
+///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">F</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">a</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
 ///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
 ///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
 ///   mtight">y</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
-///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
 ///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
 ///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.29011428571428566em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
+///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span
+///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
+///   style="top:-3.51308em;"><span class="pstrut" style="height:3em;"></span><span class="sizing
+///   reset-size6 size3 mtight"><span class="mord mtight"><span style="margin-right:0.02778em;"
+///   class="mord mathdefault mtight">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.16454285714285716em;" class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.2818857142857143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
@@ -21452,54 +21822,18 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span
-///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-///   style="top:-3.51308em;"><span class="pstrut" style="height:3em;"></span><span class="sizing
-///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.16454285714285716em;" class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.03588em;" class="mord
-///   mathdefault mtight">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.2818857142857143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
-///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
 ///   style="height:0.5480799999999999em;"
 ///   class="vlist"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
+///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
 ///   class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
 ///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
 ///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
 ///   not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or equal
-///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   to <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
 ///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
@@ -21508,26 +21842,26 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
 ///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span><span style="margin-right:0.13889em;" class="mord
-///   mathdefault mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.01968em;">l</span><span
-///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.05764em;">S</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.04398em;" class="mord mathdefault mtight">z</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.3448em;"
+///   class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
@@ -21536,27 +21870,27 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
 ///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.51308em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">D</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
-///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord mtight"><span
-///   class="mord mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.16454285714285716em;"><span
+///   style="height:3em;"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.16454285714285716em;" class="vlist"><span
 ///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
+///   mtight"><span class="mord mtight"><span style="margin-right:0.03588em;" class="mord
+///   mathdefault mtight">y</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
 ///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span
@@ -21564,17 +21898,17 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
 ///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
 ///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
 ///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
 ///   style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
@@ -21583,11 +21917,11 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
 ///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.5480799999999999em;"
-///   class="vlist"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span> for each element of
-///   `pDeviceRenderAreas`
+///   class="vlist"
+///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   for each element of `pDeviceRenderAreas`
 /// - If the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure
 ///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], it  **must**  not be
 ///   equal to the `imageView` or `resolveImageView` member of [`depth_attachment`],
@@ -21596,80 +21930,79 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
 ///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or
-///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   equal to <span class="katex"><span aria-hidden="true" class="katex-html"><span
 ///   class="base"><span class="strut"
 ///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
 ///   class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.9019679999999999em;"><span
+///   class="vlist-r"><span style="height:0.9019679999999999em;" class="vlist"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
 ///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
 ///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
 ///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
 ///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
 ///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
 ///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
 ///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
 ///   mtight">i</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span
 ///   style="height:0.15122857142857138em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
 ///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line"
 ///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
-///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
 ///   class="mord mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
-///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
 ///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
 ///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
+///   class="vlist-r"><span style="height:0.16454285714285719em;" class="vlist"><span
 ///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
 ///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
 ///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
 ///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
 ///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
 ///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
 ///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
@@ -21680,10 +22013,100 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
 ///   class="base"><span class="strut"
 ///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
+///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
+///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.446108em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">D</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285719em;"
+///   class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   for each element of `pDeviceRenderAreas`
+/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
+///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
+///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
+///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or
+///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span style="height:1.80002em;vertical-align:-0.65002em;"
+///   class="strut"></span><span class="minner"><span style="top:0em;" class="mopen
+///   delimcenter"><span class="delimsizing size2">⌈</span></span><span class="mord"><span
+///   class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
@@ -21700,89 +22123,81 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
+///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
 ///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
 ///   class="pstrut"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
-///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
 ///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.16454285714285719em;" class="vlist"><span
+///   style="height:0.16454285714285716em;" class="vlist"><span
 ///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
+///   class="mbin mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
 ///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
+///   class="vlist"
+///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
 ///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span> for
-///   each element of `pDeviceRenderAreas`
-/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
-///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
+///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
 ///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or
 ///   equal to <span class="katex"><span aria-hidden="true" class="katex-html"><span
 ///   class="base"><span class="strut"
 ///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
-///   class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
 ///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
 ///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
 ///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
@@ -21802,120 +22217,38 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span
-///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-///   style="top:-3.51308em;"><span class="pstrut" style="height:3em;"></span><span class="sizing
-///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285716em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.2818857142857143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
 ///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.5480799999999999em;"
-///   class="vlist"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
-///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
-///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
-///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or
-///   equal to <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span style="height:1.80002em;vertical-align:-0.65002em;"
-///   class="strut"></span><span class="minner"><span class="mopen delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌈</span></span><span class="mord"><span
-///   class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
-///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.05764em;">S</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord
-///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.3448em;"
-///   class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span
-///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-///   style="top:-3.51308em;"><span style="height:3em;" class="pstrut"></span><span class="sizing
-///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">p</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">D</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.03588em;">v</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.00773em;" class="mord mathdefault
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+///   class="pstrut"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.51308em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">p</span><span style="margin-right:0.02778em;"
+///   class="mord mathdefault mtight">D</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">v</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">e</span><span style="margin-right:0.00773em;" class="mord mathdefault
 ///   mtight">R</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
 ///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
 ///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285716em;"
-///   class="vlist"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.16454285714285716em;"><span
 ///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
 ///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
 ///   mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.2818857142857143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
+///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
 ///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
 ///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
 ///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
@@ -21928,7 +22261,7 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
 ///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord

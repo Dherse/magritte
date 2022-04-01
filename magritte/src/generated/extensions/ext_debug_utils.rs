@@ -469,12 +469,22 @@ impl DebugUtilsMessageSeverityFlagsEXT {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_EXT
-            | Self::DEBUG_UTILS_MESSAGE_SEVERITY_INFO_EXT
-            | Self::DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_EXT
-            | Self::DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_EXT
+        let mut all = Self::empty();
+        {
+            all |= Self::DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_EXT;
+        }
+        {
+            all |= Self::DEBUG_UTILS_MESSAGE_SEVERITY_INFO_EXT;
+        }
+        {
+            all |= Self::DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_EXT;
+        }
+        {
+            all |= Self::DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_EXT;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -584,7 +594,7 @@ impl const std::ops::BitOr for DebugUtilsMessageSeverityFlagsEXT {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for DebugUtilsMessageSeverityFlagsEXT {
+impl const std::ops::BitOrAssign for DebugUtilsMessageSeverityFlagsEXT {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -597,7 +607,7 @@ impl const std::ops::BitXor for DebugUtilsMessageSeverityFlagsEXT {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for DebugUtilsMessageSeverityFlagsEXT {
+impl const std::ops::BitXorAssign for DebugUtilsMessageSeverityFlagsEXT {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -610,7 +620,7 @@ impl const std::ops::BitAnd for DebugUtilsMessageSeverityFlagsEXT {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for DebugUtilsMessageSeverityFlagsEXT {
+impl const std::ops::BitAndAssign for DebugUtilsMessageSeverityFlagsEXT {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -623,7 +633,7 @@ impl const std::ops::Sub for DebugUtilsMessageSeverityFlagsEXT {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for DebugUtilsMessageSeverityFlagsEXT {
+impl const std::ops::SubAssign for DebugUtilsMessageSeverityFlagsEXT {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -672,7 +682,7 @@ impl std::fmt::Debug for DebugUtilsMessageSeverityFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(DebugUtilsMessageSeverityFlagsEXT);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == DebugUtilsMessageSeverityFlagsEXT::empty() {
                     f.write_str("empty")?;
@@ -797,11 +807,19 @@ impl DebugUtilsMessageTypeFlagsEXT {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::DEBUG_UTILS_MESSAGE_TYPE_GENERAL_EXT
-            | Self::DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_EXT
-            | Self::DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_EXT
+        let mut all = Self::empty();
+        {
+            all |= Self::DEBUG_UTILS_MESSAGE_TYPE_GENERAL_EXT;
+        }
+        {
+            all |= Self::DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_EXT;
+        }
+        {
+            all |= Self::DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_EXT;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -911,7 +929,7 @@ impl const std::ops::BitOr for DebugUtilsMessageTypeFlagsEXT {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for DebugUtilsMessageTypeFlagsEXT {
+impl const std::ops::BitOrAssign for DebugUtilsMessageTypeFlagsEXT {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -924,7 +942,7 @@ impl const std::ops::BitXor for DebugUtilsMessageTypeFlagsEXT {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for DebugUtilsMessageTypeFlagsEXT {
+impl const std::ops::BitXorAssign for DebugUtilsMessageTypeFlagsEXT {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -937,7 +955,7 @@ impl const std::ops::BitAnd for DebugUtilsMessageTypeFlagsEXT {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for DebugUtilsMessageTypeFlagsEXT {
+impl const std::ops::BitAndAssign for DebugUtilsMessageTypeFlagsEXT {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -950,7 +968,7 @@ impl const std::ops::Sub for DebugUtilsMessageTypeFlagsEXT {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for DebugUtilsMessageTypeFlagsEXT {
+impl const std::ops::SubAssign for DebugUtilsMessageTypeFlagsEXT {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -997,7 +1015,7 @@ impl std::fmt::Debug for DebugUtilsMessageTypeFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(DebugUtilsMessageTypeFlagsEXT);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == DebugUtilsMessageTypeFlagsEXT::empty() {
                     f.write_str("empty")?;

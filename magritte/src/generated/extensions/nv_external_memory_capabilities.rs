@@ -321,12 +321,22 @@ impl ExternalMemoryHandleTypeFlagsNV {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_NV
-            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_KMT_NV
-            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_NV
-            | Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_KMT_NV
+        let mut all = Self::empty();
+        {
+            all |= Self::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_NV;
+        }
+        {
+            all |= Self::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_KMT_NV;
+        }
+        {
+            all |= Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_NV;
+        }
+        {
+            all |= Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_KMT_NV;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -436,7 +446,7 @@ impl const std::ops::BitOr for ExternalMemoryHandleTypeFlagsNV {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for ExternalMemoryHandleTypeFlagsNV {
+impl const std::ops::BitOrAssign for ExternalMemoryHandleTypeFlagsNV {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -449,7 +459,7 @@ impl const std::ops::BitXor for ExternalMemoryHandleTypeFlagsNV {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for ExternalMemoryHandleTypeFlagsNV {
+impl const std::ops::BitXorAssign for ExternalMemoryHandleTypeFlagsNV {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -462,7 +472,7 @@ impl const std::ops::BitAnd for ExternalMemoryHandleTypeFlagsNV {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for ExternalMemoryHandleTypeFlagsNV {
+impl const std::ops::BitAndAssign for ExternalMemoryHandleTypeFlagsNV {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -475,7 +485,7 @@ impl const std::ops::Sub for ExternalMemoryHandleTypeFlagsNV {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for ExternalMemoryHandleTypeFlagsNV {
+impl const std::ops::SubAssign for ExternalMemoryHandleTypeFlagsNV {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -524,7 +534,7 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlagsNV {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ExternalMemoryHandleTypeFlagsNV);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ExternalMemoryHandleTypeFlagsNV::empty() {
                     f.write_str("empty")?;
@@ -646,11 +656,19 @@ impl ExternalMemoryFeatureFlagsNV {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_NV
-            | Self::EXTERNAL_MEMORY_FEATURE_EXPORTABLE_NV
-            | Self::EXTERNAL_MEMORY_FEATURE_IMPORTABLE_NV
+        let mut all = Self::empty();
+        {
+            all |= Self::EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_NV;
+        }
+        {
+            all |= Self::EXTERNAL_MEMORY_FEATURE_EXPORTABLE_NV;
+        }
+        {
+            all |= Self::EXTERNAL_MEMORY_FEATURE_IMPORTABLE_NV;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -760,7 +778,7 @@ impl const std::ops::BitOr for ExternalMemoryFeatureFlagsNV {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for ExternalMemoryFeatureFlagsNV {
+impl const std::ops::BitOrAssign for ExternalMemoryFeatureFlagsNV {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -773,7 +791,7 @@ impl const std::ops::BitXor for ExternalMemoryFeatureFlagsNV {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for ExternalMemoryFeatureFlagsNV {
+impl const std::ops::BitXorAssign for ExternalMemoryFeatureFlagsNV {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -786,7 +804,7 @@ impl const std::ops::BitAnd for ExternalMemoryFeatureFlagsNV {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for ExternalMemoryFeatureFlagsNV {
+impl const std::ops::BitAndAssign for ExternalMemoryFeatureFlagsNV {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -799,7 +817,7 @@ impl const std::ops::Sub for ExternalMemoryFeatureFlagsNV {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for ExternalMemoryFeatureFlagsNV {
+impl const std::ops::SubAssign for ExternalMemoryFeatureFlagsNV {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -844,7 +862,7 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlagsNV {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ExternalMemoryFeatureFlagsNV);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ExternalMemoryFeatureFlagsNV::empty() {
                     f.write_str("empty")?;

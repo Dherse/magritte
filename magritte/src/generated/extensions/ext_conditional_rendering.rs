@@ -212,8 +212,13 @@ impl ConditionalRenderingFlagsEXT {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty() | Self::CONDITIONAL_RENDERING_INVERTED_EXT
+        let mut all = Self::empty();
+        {
+            all |= Self::CONDITIONAL_RENDERING_INVERTED_EXT;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -323,7 +328,7 @@ impl const std::ops::BitOr for ConditionalRenderingFlagsEXT {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for ConditionalRenderingFlagsEXT {
+impl const std::ops::BitOrAssign for ConditionalRenderingFlagsEXT {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -336,7 +341,7 @@ impl const std::ops::BitXor for ConditionalRenderingFlagsEXT {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for ConditionalRenderingFlagsEXT {
+impl const std::ops::BitXorAssign for ConditionalRenderingFlagsEXT {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -349,7 +354,7 @@ impl const std::ops::BitAnd for ConditionalRenderingFlagsEXT {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for ConditionalRenderingFlagsEXT {
+impl const std::ops::BitAndAssign for ConditionalRenderingFlagsEXT {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -362,7 +367,7 @@ impl const std::ops::Sub for ConditionalRenderingFlagsEXT {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for ConditionalRenderingFlagsEXT {
+impl const std::ops::SubAssign for ConditionalRenderingFlagsEXT {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -407,7 +412,7 @@ impl std::fmt::Debug for ConditionalRenderingFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ConditionalRenderingFlagsEXT);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ConditionalRenderingFlagsEXT::empty() {
                     f.write_str("empty")?;

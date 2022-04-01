@@ -1286,6 +1286,7 @@ pub enum BuildAccelerationStructureFlagBitsKHR {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing_motion_blur`]
+    #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
     BuildAccelerationStructureMotionNv = 32,
 }
 impl const Default for BuildAccelerationStructureFlagBitsKHR {
@@ -1353,6 +1354,7 @@ pub enum AccelerationStructureCreateFlagBitsKHR {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing_motion_blur`]
+    #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
     AccelerationStructureCreateMotionNv = 4,
 }
 impl const Default for AccelerationStructureCreateFlagBitsKHR {
@@ -1449,8 +1451,16 @@ impl GeometryFlagsKHR {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty() | Self::GEOMETRY_OPAQUE_KHR | Self::GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_KHR
+        let mut all = Self::empty();
+        {
+            all |= Self::GEOMETRY_OPAQUE_KHR;
+        }
+        {
+            all |= Self::GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_KHR;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -1560,7 +1570,7 @@ impl const std::ops::BitOr for GeometryFlagsKHR {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for GeometryFlagsKHR {
+impl const std::ops::BitOrAssign for GeometryFlagsKHR {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -1573,7 +1583,7 @@ impl const std::ops::BitXor for GeometryFlagsKHR {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for GeometryFlagsKHR {
+impl const std::ops::BitXorAssign for GeometryFlagsKHR {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -1586,7 +1596,7 @@ impl const std::ops::BitAnd for GeometryFlagsKHR {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for GeometryFlagsKHR {
+impl const std::ops::BitAndAssign for GeometryFlagsKHR {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -1599,7 +1609,7 @@ impl const std::ops::Sub for GeometryFlagsKHR {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for GeometryFlagsKHR {
+impl const std::ops::SubAssign for GeometryFlagsKHR {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -1644,7 +1654,7 @@ impl std::fmt::Debug for GeometryFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(GeometryFlagsKHR);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == GeometryFlagsKHR::empty() {
                     f.write_str("empty")?;
@@ -1776,12 +1786,22 @@ impl GeometryInstanceFlagsKHR {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_KHR
-            | Self::GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_KHR
-            | Self::GEOMETRY_INSTANCE_FORCE_OPAQUE_KHR
-            | Self::GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_KHR
+        let mut all = Self::empty();
+        {
+            all |= Self::GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_KHR;
+        }
+        {
+            all |= Self::GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_KHR;
+        }
+        {
+            all |= Self::GEOMETRY_INSTANCE_FORCE_OPAQUE_KHR;
+        }
+        {
+            all |= Self::GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_KHR;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -1891,7 +1911,7 @@ impl const std::ops::BitOr for GeometryInstanceFlagsKHR {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for GeometryInstanceFlagsKHR {
+impl const std::ops::BitOrAssign for GeometryInstanceFlagsKHR {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -1904,7 +1924,7 @@ impl const std::ops::BitXor for GeometryInstanceFlagsKHR {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for GeometryInstanceFlagsKHR {
+impl const std::ops::BitXorAssign for GeometryInstanceFlagsKHR {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -1917,7 +1937,7 @@ impl const std::ops::BitAnd for GeometryInstanceFlagsKHR {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for GeometryInstanceFlagsKHR {
+impl const std::ops::BitAndAssign for GeometryInstanceFlagsKHR {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -1930,7 +1950,7 @@ impl const std::ops::Sub for GeometryInstanceFlagsKHR {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for GeometryInstanceFlagsKHR {
+impl const std::ops::SubAssign for GeometryInstanceFlagsKHR {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -1975,7 +1995,7 @@ impl std::fmt::Debug for GeometryInstanceFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(GeometryInstanceFlagsKHR);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == GeometryInstanceFlagsKHR::empty() {
                     f.write_str("empty")?;
@@ -2146,6 +2166,7 @@ impl BuildAccelerationStructureFlagsKHR {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing_motion_blur`]
+    #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
     pub const BUILD_ACCELERATION_STRUCTURE_MOTION_NV: Self = Self(32);
     ///Default empty flags
     #[inline]
@@ -2154,14 +2175,29 @@ impl BuildAccelerationStructureFlagsKHR {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_KHR
-            | Self::BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_KHR
-            | Self::BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_KHR
-            | Self::BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_KHR
-            | Self::BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_KHR
-            | Self::BUILD_ACCELERATION_STRUCTURE_MOTION_NV
+        let mut all = Self::empty();
+        {
+            all |= Self::BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_KHR;
+        }
+        {
+            all |= Self::BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_KHR;
+        }
+        {
+            all |= Self::BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_KHR;
+        }
+        {
+            all |= Self::BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_KHR;
+        }
+        {
+            all |= Self::BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_KHR;
+        }
+        #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
+        {
+            all |= Self::BUILD_ACCELERATION_STRUCTURE_MOTION_NV;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -2271,7 +2307,7 @@ impl const std::ops::BitOr for BuildAccelerationStructureFlagsKHR {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for BuildAccelerationStructureFlagsKHR {
+impl const std::ops::BitOrAssign for BuildAccelerationStructureFlagsKHR {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -2284,7 +2320,7 @@ impl const std::ops::BitXor for BuildAccelerationStructureFlagsKHR {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for BuildAccelerationStructureFlagsKHR {
+impl const std::ops::BitXorAssign for BuildAccelerationStructureFlagsKHR {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -2297,7 +2333,7 @@ impl const std::ops::BitAnd for BuildAccelerationStructureFlagsKHR {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for BuildAccelerationStructureFlagsKHR {
+impl const std::ops::BitAndAssign for BuildAccelerationStructureFlagsKHR {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -2310,7 +2346,7 @@ impl const std::ops::Sub for BuildAccelerationStructureFlagsKHR {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for BuildAccelerationStructureFlagsKHR {
+impl const std::ops::SubAssign for BuildAccelerationStructureFlagsKHR {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -2359,7 +2395,7 @@ impl std::fmt::Debug for BuildAccelerationStructureFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(BuildAccelerationStructureFlagsKHR);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == BuildAccelerationStructureFlagsKHR::empty() {
                     f.write_str("empty")?;
@@ -2413,6 +2449,7 @@ impl std::fmt::Debug for BuildAccelerationStructureFlagsKHR {
                         }
                         f.write_str(stringify!(BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_KHR))?;
                     }
+                    #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
                     if self
                         .0
                         .contains(BuildAccelerationStructureFlagsKHR::BUILD_ACCELERATION_STRUCTURE_MOTION_NV)
@@ -2483,6 +2520,7 @@ impl AccelerationStructureCreateFlagsKHR {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing_motion_blur`]
+    #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
     pub const ACCELERATION_STRUCTURE_CREATE_MOTION_NV: Self = Self(4);
     ///Default empty flags
     #[inline]
@@ -2491,10 +2529,17 @@ impl AccelerationStructureCreateFlagsKHR {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_KHR
-            | Self::ACCELERATION_STRUCTURE_CREATE_MOTION_NV
+        let mut all = Self::empty();
+        {
+            all |= Self::ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_KHR;
+        }
+        #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
+        {
+            all |= Self::ACCELERATION_STRUCTURE_CREATE_MOTION_NV;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -2604,7 +2649,7 @@ impl const std::ops::BitOr for AccelerationStructureCreateFlagsKHR {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for AccelerationStructureCreateFlagsKHR {
+impl const std::ops::BitOrAssign for AccelerationStructureCreateFlagsKHR {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -2617,7 +2662,7 @@ impl const std::ops::BitXor for AccelerationStructureCreateFlagsKHR {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for AccelerationStructureCreateFlagsKHR {
+impl const std::ops::BitXorAssign for AccelerationStructureCreateFlagsKHR {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -2630,7 +2675,7 @@ impl const std::ops::BitAnd for AccelerationStructureCreateFlagsKHR {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for AccelerationStructureCreateFlagsKHR {
+impl const std::ops::BitAndAssign for AccelerationStructureCreateFlagsKHR {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -2643,7 +2688,7 @@ impl const std::ops::Sub for AccelerationStructureCreateFlagsKHR {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for AccelerationStructureCreateFlagsKHR {
+impl const std::ops::SubAssign for AccelerationStructureCreateFlagsKHR {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -2692,13 +2737,14 @@ impl std::fmt::Debug for AccelerationStructureCreateFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(AccelerationStructureCreateFlagsKHR);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == AccelerationStructureCreateFlagsKHR::empty() {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
                     if self . 0 . contains (AccelerationStructureCreateFlagsKHR :: ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_KHR) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_KHR)) ? ; }
+                    #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
                     if self
                         .0
                         .contains(AccelerationStructureCreateFlagsKHR::ACCELERATION_STRUCTURE_CREATE_MOTION_NV)
@@ -5633,17 +5679,18 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`version_data`] **must**  be a valid pointer to an array of <span class="katex"><span
-///   aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="katex-html" aria-hidden="true"><span class="base"><span
 ///   style="height:0.72777em;vertical-align:-0.08333em;" class="strut"></span><span
-///   class="mord">2</span><span style="margin-right:0.2222222222222222em;"
-///   class="mspace"></span><span class="mbin">×</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
-///   class="strut" style="height:0.70625em;vertical-align:-0.09514em;"></span><span
-///   class="mord"><span class="mord mathtt">V</span><span class="mord mathtt">K</span><span
-///   class="mord mathtt">_</span><span class="mord mathtt">U</span><span class="mord
-///   mathtt">U</span><span class="mord mathtt">I</span><span class="mord mathtt">D</span><span
-///   class="mord mathtt">_</span><span class="mord mathtt">S</span><span class="mord
-///   mathtt">I</span><span class="mord mathtt">Z</span><span class="mord
+///   class="mord">2</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+///   class="base"><span class="strut"
+///   style="height:0.70625em;vertical-align:-0.09514em;"></span><span class="mord"><span
+///   class="mord mathtt">V</span><span class="mord mathtt">K</span><span class="mord
+///   mathtt">_</span><span class="mord mathtt">U</span><span class="mord mathtt">U</span><span
+///   class="mord mathtt">I</span><span class="mord mathtt">D</span><span class="mord
+///   mathtt">_</span><span class="mord mathtt">S</span><span class="mord mathtt">I</span><span
+///   class="mord mathtt">Z</span><span class="mord
 ///   mathtt">E</span></span></span></span></span>`uint8_t` values
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]

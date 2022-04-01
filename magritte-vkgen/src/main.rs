@@ -4,8 +4,9 @@
 #![warn(clippy::pedantic, clippy::cargo)]
 #![deny(missing_docs)]
 
-use std::{error::Error, fmt::Write, io::stderr, path::PathBuf};
+use std::{collections::BTreeMap, error::Error, fmt::Write, io::stderr, path::PathBuf};
 
+use cargo_toml::Manifest;
 use magritte_vkgen::{codegen::CodeOut, parse_documentation, parse_registry, rustmft::run_rustfmt, source::Source};
 use mimalloc::MiMalloc;
 use quote::ToTokens;
@@ -24,6 +25,9 @@ const DOC_IN_PATH: &str = "vendors/Vulkan-Docs/gen/out/man/html/";
 
 /// The path where the generated bindings will be written to.
 const BINDING_OUT_PATH: &str = "magritte/src/generated/";
+
+/// The path where the generated bindings will be written to.
+const CARGO_TOML_PATH: &str = "magritte/Cargo.toml";
 
 fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
     tracing_subscriber::fmt()
@@ -93,6 +97,23 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
 
         let code = run_rustfmt(source.generate_extension_mod()).unwrap();
         std::fs::write(&path, &code).unwrap();
+    }
+
+    {
+        let contents = std::fs::read(CARGO_TOML_PATH).unwrap();
+        let mut manifest = Manifest::from_slice(&contents).unwrap();
+
+        let mut features: BTreeMap<String, Vec<String>> = BTreeMap::default();
+
+        features.insert("default".to_string(), vec!["all".to_string()]);
+
+        source.generate_feature_set(&mut features);
+
+        manifest.features = features;
+
+        let out = toml::ser::to_string_pretty(&manifest).unwrap();
+
+        std::fs::write(CARGO_TOML_PATH, out.as_bytes()).unwrap();
     }
 
     Ok(())

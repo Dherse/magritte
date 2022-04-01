@@ -194,24 +194,28 @@ pub enum DeviceGroupPresentModeFlagBitsKHR {
     ///swapchain images.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
+    #[cfg(feature = "VK_KHR_swapchain")]
     DeviceGroupPresentModeLocalKhr = 1,
     ///[`DeviceGroupPresentModeRemoteKhr`] specifies that any
     ///physical device with a presentation engine  **can**  present swapchain images
     ///from any physical device in its `presentMask`.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
+    #[cfg(feature = "VK_KHR_swapchain")]
     DeviceGroupPresentModeRemoteKhr = 2,
     ///[`DeviceGroupPresentModeSumKhr`] specifies that any
     ///physical device with a presentation engine  **can**  present the sum of
     ///swapchain images from any physical devices in its `presentMask`.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
+    #[cfg(feature = "VK_KHR_swapchain")]
     DeviceGroupPresentModeSumKhr = 4,
     ///[`DeviceGroupPresentModeLocalMultiDeviceKhr`] specifies
     ///that multiple physical devices with a presentation engine  **can**  each
     ///present their own swapchain images.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
+    #[cfg(feature = "VK_KHR_swapchain")]
     DeviceGroupPresentModeLocalMultiDeviceKhr = 8,
 }
 impl const Default for DeviceGroupPresentModeFlagBitsKHR {
@@ -296,24 +300,28 @@ impl DeviceGroupPresentModeFlagsKHR {
     ///swapchain images.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
+    #[cfg(feature = "VK_KHR_swapchain")]
     pub const DEVICE_GROUP_PRESENT_MODE_LOCAL_KHR: Self = Self(1);
     ///[`DeviceGroupPresentModeRemoteKhr`] specifies that any
     ///physical device with a presentation engine  **can**  present swapchain images
     ///from any physical device in its `presentMask`.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
+    #[cfg(feature = "VK_KHR_swapchain")]
     pub const DEVICE_GROUP_PRESENT_MODE_REMOTE_KHR: Self = Self(2);
     ///[`DeviceGroupPresentModeSumKhr`] specifies that any
     ///physical device with a presentation engine  **can**  present the sum of
     ///swapchain images from any physical devices in its `presentMask`.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
+    #[cfg(feature = "VK_KHR_swapchain")]
     pub const DEVICE_GROUP_PRESENT_MODE_SUM_KHR: Self = Self(4);
     ///[`DeviceGroupPresentModeLocalMultiDeviceKhr`] specifies
     ///that multiple physical devices with a presentation engine  **can**  each
     ///present their own swapchain images.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
+    #[cfg(feature = "VK_KHR_swapchain")]
     pub const DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_KHR: Self = Self(8);
     ///Default empty flags
     #[inline]
@@ -322,12 +330,26 @@ impl DeviceGroupPresentModeFlagsKHR {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::DEVICE_GROUP_PRESENT_MODE_LOCAL_KHR
-            | Self::DEVICE_GROUP_PRESENT_MODE_REMOTE_KHR
-            | Self::DEVICE_GROUP_PRESENT_MODE_SUM_KHR
-            | Self::DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_KHR
+        let mut all = Self::empty();
+        #[cfg(feature = "VK_KHR_swapchain")]
+        {
+            all |= Self::DEVICE_GROUP_PRESENT_MODE_LOCAL_KHR;
+        }
+        #[cfg(feature = "VK_KHR_swapchain")]
+        {
+            all |= Self::DEVICE_GROUP_PRESENT_MODE_REMOTE_KHR;
+        }
+        #[cfg(feature = "VK_KHR_swapchain")]
+        {
+            all |= Self::DEVICE_GROUP_PRESENT_MODE_SUM_KHR;
+        }
+        #[cfg(feature = "VK_KHR_swapchain")]
+        {
+            all |= Self::DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_KHR;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -437,7 +459,7 @@ impl const std::ops::BitOr for DeviceGroupPresentModeFlagsKHR {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for DeviceGroupPresentModeFlagsKHR {
+impl const std::ops::BitOrAssign for DeviceGroupPresentModeFlagsKHR {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -450,7 +472,7 @@ impl const std::ops::BitXor for DeviceGroupPresentModeFlagsKHR {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for DeviceGroupPresentModeFlagsKHR {
+impl const std::ops::BitXorAssign for DeviceGroupPresentModeFlagsKHR {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -463,7 +485,7 @@ impl const std::ops::BitAnd for DeviceGroupPresentModeFlagsKHR {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for DeviceGroupPresentModeFlagsKHR {
+impl const std::ops::BitAndAssign for DeviceGroupPresentModeFlagsKHR {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -476,7 +498,7 @@ impl const std::ops::Sub for DeviceGroupPresentModeFlagsKHR {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for DeviceGroupPresentModeFlagsKHR {
+impl const std::ops::SubAssign for DeviceGroupPresentModeFlagsKHR {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -525,12 +547,13 @@ impl std::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(DeviceGroupPresentModeFlagsKHR);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == DeviceGroupPresentModeFlagsKHR::empty() {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
+                    #[cfg(feature = "VK_KHR_swapchain")]
                     if self
                         .0
                         .contains(DeviceGroupPresentModeFlagsKHR::DEVICE_GROUP_PRESENT_MODE_LOCAL_KHR)
@@ -541,6 +564,7 @@ impl std::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
                         }
                         f.write_str(stringify!(DEVICE_GROUP_PRESENT_MODE_LOCAL_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_swapchain")]
                     if self
                         .0
                         .contains(DeviceGroupPresentModeFlagsKHR::DEVICE_GROUP_PRESENT_MODE_REMOTE_KHR)
@@ -551,6 +575,7 @@ impl std::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
                         }
                         f.write_str(stringify!(DEVICE_GROUP_PRESENT_MODE_REMOTE_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_swapchain")]
                     if self
                         .0
                         .contains(DeviceGroupPresentModeFlagsKHR::DEVICE_GROUP_PRESENT_MODE_SUM_KHR)
@@ -561,6 +586,7 @@ impl std::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
                         }
                         f.write_str(stringify!(DEVICE_GROUP_PRESENT_MODE_SUM_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_swapchain")]
                     if self
                         .0
                         .contains(DeviceGroupPresentModeFlagsKHR::DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_KHR)

@@ -3,7 +3,7 @@
 //! Inspired by wgpu-rs but designed for native Desktop use instead of
 //! compatibility with `WebGPU`. The final API will be designed to enabled
 //! high performance graphics and compute applications with the latest features.
-#![feature(const_trait_impl)]
+#![feature(const_trait_impl, const_mut_refs)]
 #![warn(clippy::pedantic, clippy::cargo)]
 // #![deny(missing_docs)]
 

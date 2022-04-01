@@ -57,6 +57,10 @@ lazy_static = "1.4"
 # that are not needed for a code generator that is run manually once.
 mimalloc = { version = "0.1.27", default-features = false}
 
+# Parsing of the Cargo manifest for automatic feature generation
+cargo_toml = "0.11.5"
+toml = "0.5.8"
+
 # Python runtime to solve length equations
 [dependencies.pyo3]
 version = "0.16.2"

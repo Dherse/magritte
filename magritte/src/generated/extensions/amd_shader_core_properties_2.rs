@@ -161,8 +161,10 @@ impl ShaderCorePropertiesFlagsAMD {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
+        let mut all = Self::empty();
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -272,7 +274,7 @@ impl const std::ops::BitOr for ShaderCorePropertiesFlagsAMD {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for ShaderCorePropertiesFlagsAMD {
+impl const std::ops::BitOrAssign for ShaderCorePropertiesFlagsAMD {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -285,7 +287,7 @@ impl const std::ops::BitXor for ShaderCorePropertiesFlagsAMD {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for ShaderCorePropertiesFlagsAMD {
+impl const std::ops::BitXorAssign for ShaderCorePropertiesFlagsAMD {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -298,7 +300,7 @@ impl const std::ops::BitAnd for ShaderCorePropertiesFlagsAMD {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for ShaderCorePropertiesFlagsAMD {
+impl const std::ops::BitAndAssign for ShaderCorePropertiesFlagsAMD {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -311,7 +313,7 @@ impl const std::ops::Sub for ShaderCorePropertiesFlagsAMD {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for ShaderCorePropertiesFlagsAMD {
+impl const std::ops::SubAssign for ShaderCorePropertiesFlagsAMD {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -356,7 +358,7 @@ impl std::fmt::Debug for ShaderCorePropertiesFlagsAMD {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(ShaderCorePropertiesFlagsAMD);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == ShaderCorePropertiesFlagsAMD::empty() {
                     f.write_str("empty")?;

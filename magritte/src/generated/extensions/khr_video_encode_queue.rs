@@ -407,8 +407,16 @@ impl VideoEncodeFlagsKHR {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty() | Self::VIDEO_ENCODE_DEFAULT_KHR | Self::VIDEO_ENCODE_RESERVED_0_KHR
+        let mut all = Self::empty();
+        {
+            all |= Self::VIDEO_ENCODE_DEFAULT_KHR;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_RESERVED_0_KHR;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -518,7 +526,7 @@ impl const std::ops::BitOr for VideoEncodeFlagsKHR {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for VideoEncodeFlagsKHR {
+impl const std::ops::BitOrAssign for VideoEncodeFlagsKHR {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -531,7 +539,7 @@ impl const std::ops::BitXor for VideoEncodeFlagsKHR {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for VideoEncodeFlagsKHR {
+impl const std::ops::BitXorAssign for VideoEncodeFlagsKHR {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -544,7 +552,7 @@ impl const std::ops::BitAnd for VideoEncodeFlagsKHR {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for VideoEncodeFlagsKHR {
+impl const std::ops::BitAndAssign for VideoEncodeFlagsKHR {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -557,7 +565,7 @@ impl const std::ops::Sub for VideoEncodeFlagsKHR {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for VideoEncodeFlagsKHR {
+impl const std::ops::SubAssign for VideoEncodeFlagsKHR {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -602,7 +610,7 @@ impl std::fmt::Debug for VideoEncodeFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoEncodeFlagsKHR);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoEncodeFlagsKHR::empty() {
                     f.write_str("empty")?;
@@ -686,10 +694,16 @@ impl VideoEncodeCapabilityFlagsKHR {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::VIDEO_ENCODE_CAPABILITY_DEFAULT_KHR
-            | Self::VIDEO_ENCODE_CAPABILITY_PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR
+        let mut all = Self::empty();
+        {
+            all |= Self::VIDEO_ENCODE_CAPABILITY_DEFAULT_KHR;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_CAPABILITY_PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -799,7 +813,7 @@ impl const std::ops::BitOr for VideoEncodeCapabilityFlagsKHR {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for VideoEncodeCapabilityFlagsKHR {
+impl const std::ops::BitOrAssign for VideoEncodeCapabilityFlagsKHR {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -812,7 +826,7 @@ impl const std::ops::BitXor for VideoEncodeCapabilityFlagsKHR {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for VideoEncodeCapabilityFlagsKHR {
+impl const std::ops::BitXorAssign for VideoEncodeCapabilityFlagsKHR {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -825,7 +839,7 @@ impl const std::ops::BitAnd for VideoEncodeCapabilityFlagsKHR {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for VideoEncodeCapabilityFlagsKHR {
+impl const std::ops::BitAndAssign for VideoEncodeCapabilityFlagsKHR {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -838,7 +852,7 @@ impl const std::ops::Sub for VideoEncodeCapabilityFlagsKHR {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for VideoEncodeCapabilityFlagsKHR {
+impl const std::ops::SubAssign for VideoEncodeCapabilityFlagsKHR {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -885,7 +899,7 @@ impl std::fmt::Debug for VideoEncodeCapabilityFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoEncodeCapabilityFlagsKHR);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoEncodeCapabilityFlagsKHR::empty() {
                     f.write_str("empty")?;
@@ -972,8 +986,16 @@ impl VideoEncodeRateControlFlagsKHR {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty() | Self::VIDEO_ENCODE_RATE_CONTROL_DEFAULT_KHR | Self::VIDEO_ENCODE_RATE_CONTROL_RESERVED_0_KHR
+        let mut all = Self::empty();
+        {
+            all |= Self::VIDEO_ENCODE_RATE_CONTROL_DEFAULT_KHR;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_RATE_CONTROL_RESERVED_0_KHR;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -1083,7 +1105,7 @@ impl const std::ops::BitOr for VideoEncodeRateControlFlagsKHR {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for VideoEncodeRateControlFlagsKHR {
+impl const std::ops::BitOrAssign for VideoEncodeRateControlFlagsKHR {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -1096,7 +1118,7 @@ impl const std::ops::BitXor for VideoEncodeRateControlFlagsKHR {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for VideoEncodeRateControlFlagsKHR {
+impl const std::ops::BitXorAssign for VideoEncodeRateControlFlagsKHR {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -1109,7 +1131,7 @@ impl const std::ops::BitAnd for VideoEncodeRateControlFlagsKHR {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for VideoEncodeRateControlFlagsKHR {
+impl const std::ops::BitAndAssign for VideoEncodeRateControlFlagsKHR {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -1122,7 +1144,7 @@ impl const std::ops::Sub for VideoEncodeRateControlFlagsKHR {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for VideoEncodeRateControlFlagsKHR {
+impl const std::ops::SubAssign for VideoEncodeRateControlFlagsKHR {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -1171,7 +1193,7 @@ impl std::fmt::Debug for VideoEncodeRateControlFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoEncodeRateControlFlagsKHR);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoEncodeRateControlFlagsKHR::empty() {
                     f.write_str("empty")?;
@@ -1266,11 +1288,19 @@ impl VideoEncodeRateControlModeFlagsKHR {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_KHR
-            | Self::VIDEO_ENCODE_RATE_CONTROL_MODE_CBR_KHR
-            | Self::VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_KHR
+        let mut all = Self::empty();
+        {
+            all |= Self::VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_KHR;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_RATE_CONTROL_MODE_CBR_KHR;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_KHR;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -1380,7 +1410,7 @@ impl const std::ops::BitOr for VideoEncodeRateControlModeFlagsKHR {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for VideoEncodeRateControlModeFlagsKHR {
+impl const std::ops::BitOrAssign for VideoEncodeRateControlModeFlagsKHR {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -1393,7 +1423,7 @@ impl const std::ops::BitXor for VideoEncodeRateControlModeFlagsKHR {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for VideoEncodeRateControlModeFlagsKHR {
+impl const std::ops::BitXorAssign for VideoEncodeRateControlModeFlagsKHR {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -1406,7 +1436,7 @@ impl const std::ops::BitAnd for VideoEncodeRateControlModeFlagsKHR {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for VideoEncodeRateControlModeFlagsKHR {
+impl const std::ops::BitAndAssign for VideoEncodeRateControlModeFlagsKHR {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -1419,7 +1449,7 @@ impl const std::ops::Sub for VideoEncodeRateControlModeFlagsKHR {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for VideoEncodeRateControlModeFlagsKHR {
+impl const std::ops::SubAssign for VideoEncodeRateControlModeFlagsKHR {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -1468,7 +1498,7 @@ impl std::fmt::Debug for VideoEncodeRateControlModeFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoEncodeRateControlModeFlagsKHR);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoEncodeRateControlModeFlagsKHR::empty() {
                     f.write_str("empty")?;

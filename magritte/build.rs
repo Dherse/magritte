@@ -26,11 +26,8 @@ fn main() {
 
     // Write the bindings to the $OUT_DIR/bindings.rs file.
     let out_path = PathBuf::from("src/generated/video.rs");
-    bindings
-        .write_to_file(out_path)
-        .expect("Couldn't write bindings!");
+    bindings.write_to_file(out_path).expect("Couldn't write bindings!");
 }
-
 
 #[cfg(not(feature = "video_bindgen"))]
 pub fn main() {}

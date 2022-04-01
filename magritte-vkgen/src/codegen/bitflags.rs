@@ -34,9 +34,13 @@ impl<'a> Bit<'a> {
         let name = self.as_ident();
         let value = Literal::i64_unsuffixed(self.value());
 
+        // conditional compilation for feature flags
+        let conditional_compilation = self.condition(parent);
+
         quote! {
             #doc
             #provided_by
+            #conditional_compilation
             #name = #value,
         }
     }
@@ -64,7 +68,11 @@ impl<'a> BitFlag<'a> {
         // creates a doc alias if the name has been changed
         alias_of(self.original_name(), self.name(), out);
 
-        let has_empty = self.bits().iter().any(|v| v.value() == 0);
+        let has_empty = self
+            .bits()
+            .iter()
+            .filter(|v| !v.origin().is_disabled())
+            .any(|v| v.value() == 0);
 
         // create an empty declaration if none exists
         let empty_decl = (!has_empty).then(|| {
@@ -78,6 +86,7 @@ impl<'a> BitFlag<'a> {
         let default = self
             .bits()
             .iter()
+            .filter(|v| !v.origin().is_disabled())
             .find(|v| v.value() == 0)
             .map_or_else(|| Ident::new("Empty", Span::call_site()), |v| v.as_ident());
 
@@ -85,6 +94,7 @@ impl<'a> BitFlag<'a> {
         let bits = self
             .bits()
             .iter()
+            .filter(|v| !v.origin().is_disabled())
             .filter(|v| !v.origin().is_disabled())
             .map(|v| v.generate_bitflag_variant(self.origin(), &variant_docs));
 

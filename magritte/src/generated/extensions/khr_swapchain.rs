@@ -617,6 +617,7 @@ pub enum SwapchainCreateFlagBitsKHR {
     ///handle)  **must**  use `VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT`.
     ///
     ///Provided by [`crate::extensions::khr_device_group`]
+    #[cfg(feature = "VK_KHR_device_group")]
     SwapchainCreateSplitInstanceBindRegionsKhr = 1,
     ///[`SwapchainCreateProtectedKhr`] specifies that images
     ///created from the swapchain are protected images.
@@ -633,6 +634,7 @@ pub enum SwapchainCreateFlagBitsKHR {
     ///view formats.
     ///
     ///Provided by [`crate::extensions::khr_swapchain_mutable_format`]
+    #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
     SwapchainCreateMutableFormatKhr = 4,
 }
 impl const Default for SwapchainCreateFlagBitsKHR {
@@ -719,6 +721,7 @@ impl SwapchainCreateFlagsKHR {
     ///handle)  **must**  use `VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT`.
     ///
     ///Provided by [`crate::extensions::khr_device_group`]
+    #[cfg(feature = "VK_KHR_device_group")]
     pub const SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(1);
     ///[`SwapchainCreateProtectedKhr`] specifies that images
     ///created from the swapchain are protected images.
@@ -735,6 +738,7 @@ impl SwapchainCreateFlagsKHR {
     ///view formats.
     ///
     ///Provided by [`crate::extensions::khr_swapchain_mutable_format`]
+    #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
     pub const SWAPCHAIN_CREATE_MUTABLE_FORMAT_KHR: Self = Self(4);
     ///Default empty flags
     #[inline]
@@ -743,11 +747,21 @@ impl SwapchainCreateFlagsKHR {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_KHR
-            | Self::SWAPCHAIN_CREATE_PROTECTED_KHR
-            | Self::SWAPCHAIN_CREATE_MUTABLE_FORMAT_KHR
+        let mut all = Self::empty();
+        #[cfg(feature = "VK_KHR_device_group")]
+        {
+            all |= Self::SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_KHR;
+        }
+        {
+            all |= Self::SWAPCHAIN_CREATE_PROTECTED_KHR;
+        }
+        #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
+        {
+            all |= Self::SWAPCHAIN_CREATE_MUTABLE_FORMAT_KHR;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -857,7 +871,7 @@ impl const std::ops::BitOr for SwapchainCreateFlagsKHR {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for SwapchainCreateFlagsKHR {
+impl const std::ops::BitOrAssign for SwapchainCreateFlagsKHR {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -870,7 +884,7 @@ impl const std::ops::BitXor for SwapchainCreateFlagsKHR {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for SwapchainCreateFlagsKHR {
+impl const std::ops::BitXorAssign for SwapchainCreateFlagsKHR {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -883,7 +897,7 @@ impl const std::ops::BitAnd for SwapchainCreateFlagsKHR {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for SwapchainCreateFlagsKHR {
+impl const std::ops::BitAndAssign for SwapchainCreateFlagsKHR {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -896,7 +910,7 @@ impl const std::ops::Sub for SwapchainCreateFlagsKHR {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for SwapchainCreateFlagsKHR {
+impl const std::ops::SubAssign for SwapchainCreateFlagsKHR {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -941,12 +955,13 @@ impl std::fmt::Debug for SwapchainCreateFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(SwapchainCreateFlagsKHR);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == SwapchainCreateFlagsKHR::empty() {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
+                    #[cfg(feature = "VK_KHR_device_group")]
                     if self
                         .0
                         .contains(SwapchainCreateFlagsKHR::SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_KHR)
@@ -964,6 +979,7 @@ impl std::fmt::Debug for SwapchainCreateFlagsKHR {
                         }
                         f.write_str(stringify!(SWAPCHAIN_CREATE_PROTECTED_KHR))?;
                     }
+                    #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
                     if self
                         .0
                         .contains(SwapchainCreateFlagsKHR::SWAPCHAIN_CREATE_MUTABLE_FORMAT_KHR)

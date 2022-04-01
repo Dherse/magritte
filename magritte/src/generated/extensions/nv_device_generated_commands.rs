@@ -597,11 +597,19 @@ impl IndirectCommandsLayoutUsageFlagsNV {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_NV
-            | Self::INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_NV
-            | Self::INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_NV
+        let mut all = Self::empty();
+        {
+            all |= Self::INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_NV;
+        }
+        {
+            all |= Self::INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_NV;
+        }
+        {
+            all |= Self::INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_NV;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -711,7 +719,7 @@ impl const std::ops::BitOr for IndirectCommandsLayoutUsageFlagsNV {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for IndirectCommandsLayoutUsageFlagsNV {
+impl const std::ops::BitOrAssign for IndirectCommandsLayoutUsageFlagsNV {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -724,7 +732,7 @@ impl const std::ops::BitXor for IndirectCommandsLayoutUsageFlagsNV {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for IndirectCommandsLayoutUsageFlagsNV {
+impl const std::ops::BitXorAssign for IndirectCommandsLayoutUsageFlagsNV {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -737,7 +745,7 @@ impl const std::ops::BitAnd for IndirectCommandsLayoutUsageFlagsNV {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for IndirectCommandsLayoutUsageFlagsNV {
+impl const std::ops::BitAndAssign for IndirectCommandsLayoutUsageFlagsNV {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -750,7 +758,7 @@ impl const std::ops::Sub for IndirectCommandsLayoutUsageFlagsNV {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for IndirectCommandsLayoutUsageFlagsNV {
+impl const std::ops::SubAssign for IndirectCommandsLayoutUsageFlagsNV {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -799,7 +807,7 @@ impl std::fmt::Debug for IndirectCommandsLayoutUsageFlagsNV {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(IndirectCommandsLayoutUsageFlagsNV);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == IndirectCommandsLayoutUsageFlagsNV::empty() {
                     f.write_str("empty")?;
@@ -892,8 +900,13 @@ impl IndirectStateFlagsNV {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty() | Self::INDIRECT_STATE_FLAG_FRONTFACE_NV
+        let mut all = Self::empty();
+        {
+            all |= Self::INDIRECT_STATE_FLAG_FRONTFACE_NV;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -1003,7 +1016,7 @@ impl const std::ops::BitOr for IndirectStateFlagsNV {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for IndirectStateFlagsNV {
+impl const std::ops::BitOrAssign for IndirectStateFlagsNV {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -1016,7 +1029,7 @@ impl const std::ops::BitXor for IndirectStateFlagsNV {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for IndirectStateFlagsNV {
+impl const std::ops::BitXorAssign for IndirectStateFlagsNV {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -1029,7 +1042,7 @@ impl const std::ops::BitAnd for IndirectStateFlagsNV {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for IndirectStateFlagsNV {
+impl const std::ops::BitAndAssign for IndirectStateFlagsNV {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -1042,7 +1055,7 @@ impl const std::ops::Sub for IndirectStateFlagsNV {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for IndirectStateFlagsNV {
+impl const std::ops::SubAssign for IndirectStateFlagsNV {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -1087,7 +1100,7 @@ impl std::fmt::Debug for IndirectStateFlagsNV {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(IndirectStateFlagsNV);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == IndirectStateFlagsNV::empty() {
                     f.write_str("empty")?;

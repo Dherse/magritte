@@ -58,7 +58,9 @@ impl<'a> Ty<'a> {
     /// Does the type have a lifetime (with deep checking)
     pub fn has_lifetime(&self, source: &Source<'a>, pointer_has_lifetime: bool) -> bool {
         match self {
-            Ty::Pointer(_, ty) | Ty::Slice(_, ty, _) => (pointer_has_lifetime && !ty.has_opaque(source)) || ty.has_lifetime(source, pointer_has_lifetime),
+            Ty::Pointer(_, ty) | Ty::Slice(_, ty, _) => {
+                (pointer_has_lifetime && !ty.has_opaque(source)) || ty.has_lifetime(source, pointer_has_lifetime)
+            },
             Ty::NullTerminatedString(_) => pointer_has_lifetime,
             Ty::Native(_) | Ty::StringArray(_) => false,
             Ty::Array(ty, _) => ty.has_lifetime(source, false),
@@ -601,7 +603,10 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     pub fn as_type(&self, source: &Source<'a>, imports: Option<&Imports>) -> (Type, bool) {
         // special case for flattening aliases
         if let Some(alias) = self.as_alias() {
-            return source.resolve_type(alias.of()).expect("unknown alias").as_type(source, imports);
+            return source
+                .resolve_type(alias.of())
+                .expect("unknown alias")
+                .as_type(source, imports);
         }
 
         let lt = self.has_lifetime(source, true) && !self.is_opaque();

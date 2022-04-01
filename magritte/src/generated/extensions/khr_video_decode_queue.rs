@@ -290,11 +290,19 @@ impl VideoDecodeCapabilityFlagsKHR {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::VIDEO_DECODE_CAPABILITY_DEFAULT_KHR
-            | Self::VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_COINCIDE_KHR
-            | Self::VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_DISTINCT_KHR
+        let mut all = Self::empty();
+        {
+            all |= Self::VIDEO_DECODE_CAPABILITY_DEFAULT_KHR;
+        }
+        {
+            all |= Self::VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_COINCIDE_KHR;
+        }
+        {
+            all |= Self::VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_DISTINCT_KHR;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -404,7 +412,7 @@ impl const std::ops::BitOr for VideoDecodeCapabilityFlagsKHR {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for VideoDecodeCapabilityFlagsKHR {
+impl const std::ops::BitOrAssign for VideoDecodeCapabilityFlagsKHR {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -417,7 +425,7 @@ impl const std::ops::BitXor for VideoDecodeCapabilityFlagsKHR {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for VideoDecodeCapabilityFlagsKHR {
+impl const std::ops::BitXorAssign for VideoDecodeCapabilityFlagsKHR {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -430,7 +438,7 @@ impl const std::ops::BitAnd for VideoDecodeCapabilityFlagsKHR {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for VideoDecodeCapabilityFlagsKHR {
+impl const std::ops::BitAndAssign for VideoDecodeCapabilityFlagsKHR {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -443,7 +451,7 @@ impl const std::ops::Sub for VideoDecodeCapabilityFlagsKHR {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for VideoDecodeCapabilityFlagsKHR {
+impl const std::ops::SubAssign for VideoDecodeCapabilityFlagsKHR {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -490,7 +498,7 @@ impl std::fmt::Debug for VideoDecodeCapabilityFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoDecodeCapabilityFlagsKHR);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoDecodeCapabilityFlagsKHR::empty() {
                     f.write_str("empty")?;
@@ -589,8 +597,16 @@ impl VideoDecodeFlagsKHR {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty() | Self::VIDEO_DECODE_DEFAULT_KHR | Self::VIDEO_DECODE_RESERVED_0_KHR
+        let mut all = Self::empty();
+        {
+            all |= Self::VIDEO_DECODE_DEFAULT_KHR;
+        }
+        {
+            all |= Self::VIDEO_DECODE_RESERVED_0_KHR;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -700,7 +716,7 @@ impl const std::ops::BitOr for VideoDecodeFlagsKHR {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for VideoDecodeFlagsKHR {
+impl const std::ops::BitOrAssign for VideoDecodeFlagsKHR {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -713,7 +729,7 @@ impl const std::ops::BitXor for VideoDecodeFlagsKHR {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for VideoDecodeFlagsKHR {
+impl const std::ops::BitXorAssign for VideoDecodeFlagsKHR {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -726,7 +742,7 @@ impl const std::ops::BitAnd for VideoDecodeFlagsKHR {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for VideoDecodeFlagsKHR {
+impl const std::ops::BitAndAssign for VideoDecodeFlagsKHR {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -739,7 +755,7 @@ impl const std::ops::Sub for VideoDecodeFlagsKHR {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for VideoDecodeFlagsKHR {
+impl const std::ops::SubAssign for VideoDecodeFlagsKHR {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -784,7 +800,7 @@ impl std::fmt::Debug for VideoDecodeFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoDecodeFlagsKHR);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoDecodeFlagsKHR::empty() {
                     f.write_str("empty")?;

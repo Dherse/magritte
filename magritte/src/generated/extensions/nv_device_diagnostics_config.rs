@@ -203,11 +203,19 @@ impl DeviceDiagnosticsConfigFlagsNV {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_NV
-            | Self::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_NV
-            | Self::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_NV
+        let mut all = Self::empty();
+        {
+            all |= Self::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_NV;
+        }
+        {
+            all |= Self::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_NV;
+        }
+        {
+            all |= Self::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_NV;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -317,7 +325,7 @@ impl const std::ops::BitOr for DeviceDiagnosticsConfigFlagsNV {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for DeviceDiagnosticsConfigFlagsNV {
+impl const std::ops::BitOrAssign for DeviceDiagnosticsConfigFlagsNV {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -330,7 +338,7 @@ impl const std::ops::BitXor for DeviceDiagnosticsConfigFlagsNV {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for DeviceDiagnosticsConfigFlagsNV {
+impl const std::ops::BitXorAssign for DeviceDiagnosticsConfigFlagsNV {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -343,7 +351,7 @@ impl const std::ops::BitAnd for DeviceDiagnosticsConfigFlagsNV {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for DeviceDiagnosticsConfigFlagsNV {
+impl const std::ops::BitAndAssign for DeviceDiagnosticsConfigFlagsNV {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -356,7 +364,7 @@ impl const std::ops::Sub for DeviceDiagnosticsConfigFlagsNV {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for DeviceDiagnosticsConfigFlagsNV {
+impl const std::ops::SubAssign for DeviceDiagnosticsConfigFlagsNV {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -405,7 +413,7 @@ impl std::fmt::Debug for DeviceDiagnosticsConfigFlagsNV {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(DeviceDiagnosticsConfigFlagsNV);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == DeviceDiagnosticsConfigFlagsNV::empty() {
                     f.write_str("empty")?;

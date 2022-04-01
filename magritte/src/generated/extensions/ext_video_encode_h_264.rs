@@ -951,31 +951,79 @@ impl VideoEncodeH264CapabilityFlagsEXT {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_DIRECT_8_X_8_INFERENCE_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_SEPARATE_COLOUR_PLANE_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_QPPRIME_Y_ZERO_TRANSFORM_BYPASS_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_SCALING_LISTS_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_HRD_COMPLIANCE_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_CHROMA_QP_OFFSET_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_SECOND_CHROMA_QP_OFFSET_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_PIC_INIT_QP_MINUS_26_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_WEIGHTED_PRED_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_WEIGHTED_BIPRED_EXPLICIT_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_WEIGHTED_BIPRED_IMPLICIT_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_WEIGHTED_PRED_NO_TABLE_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_TRANSFORM_8_X_8_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_CABAC_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_CAVLC_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_DEBLOCKING_FILTER_DISABLED_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_DEBLOCKING_FILTER_ENABLED_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_DEBLOCKING_FILTER_PARTIAL_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_DISABLE_DIRECT_SPATIAL_MV_PRED_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_MULTIPLE_SLICE_PER_FRAME_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_SLICE_MB_COUNT_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_ROW_UNALIGNED_SLICE_EXT
-            | Self::VIDEO_ENCODE_H_264_CAPABILITY_DIFFERENT_SLICE_TYPE_EXT
+        let mut all = Self::empty();
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_DIRECT_8_X_8_INFERENCE_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_SEPARATE_COLOUR_PLANE_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_QPPRIME_Y_ZERO_TRANSFORM_BYPASS_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_SCALING_LISTS_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_HRD_COMPLIANCE_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_CHROMA_QP_OFFSET_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_SECOND_CHROMA_QP_OFFSET_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_PIC_INIT_QP_MINUS_26_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_WEIGHTED_PRED_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_WEIGHTED_BIPRED_EXPLICIT_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_WEIGHTED_BIPRED_IMPLICIT_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_WEIGHTED_PRED_NO_TABLE_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_TRANSFORM_8_X_8_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_CABAC_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_CAVLC_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_DEBLOCKING_FILTER_DISABLED_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_DEBLOCKING_FILTER_ENABLED_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_DEBLOCKING_FILTER_PARTIAL_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_DISABLE_DIRECT_SPATIAL_MV_PRED_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_MULTIPLE_SLICE_PER_FRAME_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_SLICE_MB_COUNT_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_ROW_UNALIGNED_SLICE_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CAPABILITY_DIFFERENT_SLICE_TYPE_EXT;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -1085,7 +1133,7 @@ impl const std::ops::BitOr for VideoEncodeH264CapabilityFlagsEXT {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for VideoEncodeH264CapabilityFlagsEXT {
+impl const std::ops::BitOrAssign for VideoEncodeH264CapabilityFlagsEXT {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -1098,7 +1146,7 @@ impl const std::ops::BitXor for VideoEncodeH264CapabilityFlagsEXT {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for VideoEncodeH264CapabilityFlagsEXT {
+impl const std::ops::BitXorAssign for VideoEncodeH264CapabilityFlagsEXT {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -1111,7 +1159,7 @@ impl const std::ops::BitAnd for VideoEncodeH264CapabilityFlagsEXT {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for VideoEncodeH264CapabilityFlagsEXT {
+impl const std::ops::BitAndAssign for VideoEncodeH264CapabilityFlagsEXT {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -1124,7 +1172,7 @@ impl const std::ops::Sub for VideoEncodeH264CapabilityFlagsEXT {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for VideoEncodeH264CapabilityFlagsEXT {
+impl const std::ops::SubAssign for VideoEncodeH264CapabilityFlagsEXT {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -1173,7 +1221,7 @@ impl std::fmt::Debug for VideoEncodeH264CapabilityFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoEncodeH264CapabilityFlagsEXT);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoEncodeH264CapabilityFlagsEXT::empty() {
                     f.write_str("empty")?;
@@ -1470,11 +1518,19 @@ impl VideoEncodeH264InputModeFlagsEXT {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::VIDEO_ENCODE_H_264_INPUT_MODE_FRAME_EXT
-            | Self::VIDEO_ENCODE_H_264_INPUT_MODE_SLICE_EXT
-            | Self::VIDEO_ENCODE_H_264_INPUT_MODE_NON_VCL_EXT
+        let mut all = Self::empty();
+        {
+            all |= Self::VIDEO_ENCODE_H_264_INPUT_MODE_FRAME_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_INPUT_MODE_SLICE_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_INPUT_MODE_NON_VCL_EXT;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -1584,7 +1640,7 @@ impl const std::ops::BitOr for VideoEncodeH264InputModeFlagsEXT {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for VideoEncodeH264InputModeFlagsEXT {
+impl const std::ops::BitOrAssign for VideoEncodeH264InputModeFlagsEXT {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -1597,7 +1653,7 @@ impl const std::ops::BitXor for VideoEncodeH264InputModeFlagsEXT {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for VideoEncodeH264InputModeFlagsEXT {
+impl const std::ops::BitXorAssign for VideoEncodeH264InputModeFlagsEXT {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -1610,7 +1666,7 @@ impl const std::ops::BitAnd for VideoEncodeH264InputModeFlagsEXT {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for VideoEncodeH264InputModeFlagsEXT {
+impl const std::ops::BitAndAssign for VideoEncodeH264InputModeFlagsEXT {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -1623,7 +1679,7 @@ impl const std::ops::Sub for VideoEncodeH264InputModeFlagsEXT {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for VideoEncodeH264InputModeFlagsEXT {
+impl const std::ops::SubAssign for VideoEncodeH264InputModeFlagsEXT {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -1672,7 +1728,7 @@ impl std::fmt::Debug for VideoEncodeH264InputModeFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoEncodeH264InputModeFlagsEXT);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoEncodeH264InputModeFlagsEXT::empty() {
                     f.write_str("empty")?;
@@ -1813,11 +1869,19 @@ impl VideoEncodeH264OutputModeFlagsEXT {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::VIDEO_ENCODE_H_264_OUTPUT_MODE_FRAME_EXT
-            | Self::VIDEO_ENCODE_H_264_OUTPUT_MODE_SLICE_EXT
-            | Self::VIDEO_ENCODE_H_264_OUTPUT_MODE_NON_VCL_EXT
+        let mut all = Self::empty();
+        {
+            all |= Self::VIDEO_ENCODE_H_264_OUTPUT_MODE_FRAME_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_OUTPUT_MODE_SLICE_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_OUTPUT_MODE_NON_VCL_EXT;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -1927,7 +1991,7 @@ impl const std::ops::BitOr for VideoEncodeH264OutputModeFlagsEXT {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for VideoEncodeH264OutputModeFlagsEXT {
+impl const std::ops::BitOrAssign for VideoEncodeH264OutputModeFlagsEXT {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -1940,7 +2004,7 @@ impl const std::ops::BitXor for VideoEncodeH264OutputModeFlagsEXT {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for VideoEncodeH264OutputModeFlagsEXT {
+impl const std::ops::BitXorAssign for VideoEncodeH264OutputModeFlagsEXT {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -1953,7 +2017,7 @@ impl const std::ops::BitAnd for VideoEncodeH264OutputModeFlagsEXT {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for VideoEncodeH264OutputModeFlagsEXT {
+impl const std::ops::BitAndAssign for VideoEncodeH264OutputModeFlagsEXT {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -1966,7 +2030,7 @@ impl const std::ops::Sub for VideoEncodeH264OutputModeFlagsEXT {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for VideoEncodeH264OutputModeFlagsEXT {
+impl const std::ops::SubAssign for VideoEncodeH264OutputModeFlagsEXT {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -2015,7 +2079,7 @@ impl std::fmt::Debug for VideoEncodeH264OutputModeFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoEncodeH264OutputModeFlagsEXT);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoEncodeH264OutputModeFlagsEXT::empty() {
                     f.write_str("empty")?;
@@ -2116,8 +2180,16 @@ impl VideoEncodeH264CreateFlagsEXT {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty() | Self::VIDEO_ENCODE_H_264_CREATE_DEFAULT_EXT | Self::VIDEO_ENCODE_H_264_CREATE_RESERVED_0_EXT
+        let mut all = Self::empty();
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CREATE_DEFAULT_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_CREATE_RESERVED_0_EXT;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -2227,7 +2299,7 @@ impl const std::ops::BitOr for VideoEncodeH264CreateFlagsEXT {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for VideoEncodeH264CreateFlagsEXT {
+impl const std::ops::BitOrAssign for VideoEncodeH264CreateFlagsEXT {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -2240,7 +2312,7 @@ impl const std::ops::BitXor for VideoEncodeH264CreateFlagsEXT {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for VideoEncodeH264CreateFlagsEXT {
+impl const std::ops::BitXorAssign for VideoEncodeH264CreateFlagsEXT {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -2253,7 +2325,7 @@ impl const std::ops::BitAnd for VideoEncodeH264CreateFlagsEXT {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for VideoEncodeH264CreateFlagsEXT {
+impl const std::ops::BitAndAssign for VideoEncodeH264CreateFlagsEXT {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -2266,7 +2338,7 @@ impl const std::ops::Sub for VideoEncodeH264CreateFlagsEXT {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for VideoEncodeH264CreateFlagsEXT {
+impl const std::ops::SubAssign for VideoEncodeH264CreateFlagsEXT {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -2313,7 +2385,7 @@ impl std::fmt::Debug for VideoEncodeH264CreateFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoEncodeH264CreateFlagsEXT);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoEncodeH264CreateFlagsEXT::empty() {
                     f.write_str("empty")?;
@@ -2406,11 +2478,19 @@ impl VideoEncodeH264RateControlStructureFlagsEXT {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::VIDEO_ENCODE_H_264_RATE_CONTROL_STRUCTURE_UNKNOWN_EXT
-            | Self::VIDEO_ENCODE_H_264_RATE_CONTROL_STRUCTURE_FLAT_EXT
-            | Self::VIDEO_ENCODE_H_264_RATE_CONTROL_STRUCTURE_DYADIC_EXT
+        let mut all = Self::empty();
+        {
+            all |= Self::VIDEO_ENCODE_H_264_RATE_CONTROL_STRUCTURE_UNKNOWN_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_RATE_CONTROL_STRUCTURE_FLAT_EXT;
+        }
+        {
+            all |= Self::VIDEO_ENCODE_H_264_RATE_CONTROL_STRUCTURE_DYADIC_EXT;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -2520,7 +2600,7 @@ impl const std::ops::BitOr for VideoEncodeH264RateControlStructureFlagsEXT {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for VideoEncodeH264RateControlStructureFlagsEXT {
+impl const std::ops::BitOrAssign for VideoEncodeH264RateControlStructureFlagsEXT {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -2533,7 +2613,7 @@ impl const std::ops::BitXor for VideoEncodeH264RateControlStructureFlagsEXT {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for VideoEncodeH264RateControlStructureFlagsEXT {
+impl const std::ops::BitXorAssign for VideoEncodeH264RateControlStructureFlagsEXT {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -2546,7 +2626,7 @@ impl const std::ops::BitAnd for VideoEncodeH264RateControlStructureFlagsEXT {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for VideoEncodeH264RateControlStructureFlagsEXT {
+impl const std::ops::BitAndAssign for VideoEncodeH264RateControlStructureFlagsEXT {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -2559,7 +2639,7 @@ impl const std::ops::Sub for VideoEncodeH264RateControlStructureFlagsEXT {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for VideoEncodeH264RateControlStructureFlagsEXT {
+impl const std::ops::SubAssign for VideoEncodeH264RateControlStructureFlagsEXT {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -2611,7 +2691,7 @@ impl std::fmt::Debug for VideoEncodeH264RateControlStructureFlagsEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(VideoEncodeH264RateControlStructureFlagsEXT);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == VideoEncodeH264RateControlStructureFlagsEXT::empty() {
                     f.write_str("empty")?;

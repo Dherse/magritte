@@ -326,6 +326,7 @@ pub enum PresentModeKHR {
     ///point, meaning this mode  **may**  result in visible tearing.
     ///
     ///Provided by [`crate::extensions::khr_shared_presentable_image`]
+    #[cfg(feature = "VK_KHR_shared_presentable_image")]
     PresentModeSharedDemandRefreshKhr = 1000111000,
     ///[`PresentModeSharedContinuousRefreshKhr`] specifies that the
     ///presentation engine and application have concurrent access to a single
@@ -342,6 +343,7 @@ pub enum PresentModeKHR {
     ///not timed correctly.
     ///
     ///Provided by [`crate::extensions::khr_shared_presentable_image`]
+    #[cfg(feature = "VK_KHR_shared_presentable_image")]
     PresentModeSharedContinuousRefreshKhr = 1000111001,
 }
 impl const Default for PresentModeKHR {
@@ -453,7 +455,7 @@ impl PresentModeKHR {
 ///This extension defines enums for [`ColorSpaceKHR`] that correspond to
 ///the following color spaces:The transfer functions are described in the “Transfer Functions”
 /// chapter
-///of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).Except Display-P3 OETF, which is:<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.30003em;vertical-align:-1.400015em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.900015em;" class="vlist"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.400015em;" class="vlist"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord"></span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9540200000000001em;"><span style="top:-3.363em;margin-right:0.05em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.8443142857142858em;" class="vlist"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">.</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.344em;" class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span><span class="mord">.</span><span class="mord">9</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord mathdefault">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.19em;" class="vlist"><span></span></span></span></span></span><span style="width:1em;" class="arraycolsep"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.69em;" class="vlist"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.400015em;"><span></span></span></span></span></span></span></span></span></span></span>where L is the linear value of a color component and E is the
+///of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).Except Display-P3 OETF, which is:<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:3.30003em;vertical-align:-1.400015em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.900015em;" class="vlist"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span style="margin-right:0.05764em;" class="mord mathdefault">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.400015em;" class="vlist"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span style="height:0.9540200000000001em;" class="vlist"><span style="top:-3.363em;margin-right:0.05em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443142857142858em;"><span style="top:-2.656em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">.</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span></span></span><span style="top:-2.25em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span><span class="mord">.</span><span class="mord">9</span><span class="mord">2</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span style="width:1em;" class="arraycolsep"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.400015em;"><span></span></span></span></span></span></span></span></span></span></span>where L is the linear value of a color component and E is the
 ///encoded value (as stored in the image in memory).
 ///# Related
 /// - [`VK_KHR_surface`]
@@ -482,16 +484,19 @@ pub enum ColorSpaceKHR {
     ///below).
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
+    #[cfg(feature = "VK_EXT_swapchain_colorspace")]
     ColorSpaceDisplayP3NonlinearExt = 1000104001,
     ///[`ColorSpaceExtendedSrgbLinearExt`] specifies support for the
     ///extended sRGB color space to be displayed using a linear EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
+    #[cfg(feature = "VK_EXT_swapchain_colorspace")]
     ColorSpaceExtendedSrgbLinearExt = 1000104002,
     ///[`ColorSpaceDisplayP3LinearExt`] specifies support for the
     ///Display-P3 color space to be displayed using a linear EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
+    #[cfg(feature = "VK_EXT_swapchain_colorspace")]
     ColorSpaceDisplayP3LinearExt = 1000104003,
     ///[`ColorSpaceDciP3NonlinearExt`] specifies support for the
     ///DCI-P3 color space to be displayed using the DCI-P3 EOTF.
@@ -499,49 +504,58 @@ pub enum ColorSpaceKHR {
     ///data by the presentation engine.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
+    #[cfg(feature = "VK_EXT_swapchain_colorspace")]
     ColorSpaceDciP3NonlinearExt = 1000104004,
     ///[`ColorSpaceBt709LinearExt`] specifies support for the BT709
     ///color space to be displayed using a linear EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
+    #[cfg(feature = "VK_EXT_swapchain_colorspace")]
     ColorSpaceBt709LinearExt = 1000104005,
     ///[`ColorSpaceBt709NonlinearExt`] specifies support for the BT709
     ///color space to be displayed using the SMPTE 170M EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
+    #[cfg(feature = "VK_EXT_swapchain_colorspace")]
     ColorSpaceBt709NonlinearExt = 1000104006,
     ///[`ColorSpaceBt2020LinearExt`] specifies support for the BT2020
     ///color space to be displayed using a linear EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
+    #[cfg(feature = "VK_EXT_swapchain_colorspace")]
     ColorSpaceBt2020LinearExt = 1000104007,
     ///[`ColorSpaceHdr10St2084Ext`] specifies support for the HDR10
     ///(BT2020 color) space to be displayed using the SMPTE ST2084 Perceptual
     ///Quantizer (PQ) EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
+    #[cfg(feature = "VK_EXT_swapchain_colorspace")]
     ColorSpaceHdr10St2084Ext = 1000104008,
     ///[`ColorSpaceDolbyvisionExt`] specifies support for the Dolby
     ///Vision (BT2020 color space), proprietary encoding, to be displayed using
     ///the SMPTE ST2084 EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
+    #[cfg(feature = "VK_EXT_swapchain_colorspace")]
     ColorSpaceDolbyvisionExt = 1000104009,
     ///[`ColorSpaceHdr10HlgExt`] specifies support for the HDR10
     ///(BT2020 color space) to be displayed using the Hybrid Log Gamma (HLG)
     ///EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
+    #[cfg(feature = "VK_EXT_swapchain_colorspace")]
     ColorSpaceHdr10HlgExt = 1000104010,
     ///[`ColorSpaceAdobergbLinearExt`] specifies support for the
     ///AdobeRGB color space to be displayed using a linear EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
+    #[cfg(feature = "VK_EXT_swapchain_colorspace")]
     ColorSpaceAdobergbLinearExt = 1000104011,
     ///[`ColorSpaceAdobergbNonlinearExt`] specifies support for the
     ///AdobeRGB color space to be displayed using the Gamma 2.2 EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
+    #[cfg(feature = "VK_EXT_swapchain_colorspace")]
     ColorSpaceAdobergbNonlinearExt = 1000104012,
     ///[`ColorSpacePassThroughExt`] specifies that color components
     ///are used “as is”.
@@ -549,11 +563,13 @@ pub enum ColorSpaceKHR {
     ///not described here.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
+    #[cfg(feature = "VK_EXT_swapchain_colorspace")]
     ColorSpacePassThroughExt = 1000104013,
     ///[`ColorSpaceExtendedSrgbNonlinearExt`] specifies support for
     ///the extended sRGB color space to be displayed using an sRGB EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
+    #[cfg(feature = "VK_EXT_swapchain_colorspace")]
     ColorSpaceExtendedSrgbNonlinearExt = 1000104014,
     ///[`ColorSpaceDisplayNativeAmd`] specifies support for the
     ///display’s native color space.
@@ -561,6 +577,7 @@ pub enum ColorSpaceKHR {
     ///for displays supporting it.
     ///
     ///Provided by [`crate::extensions::amd_display_native_hdr`]
+    #[cfg(feature = "VK_AMD_display_native_hdr")]
     ColorSpaceDisplayNativeAmd = 1000213000,
 }
 impl const Default for ColorSpaceKHR {
@@ -892,12 +909,22 @@ impl CompositeAlphaFlagsKHR {
     }
     ///Returns a value with all of the flags enabled
     #[inline]
+    #[allow(unused_mut)]
     pub const fn all() -> Self {
-        Self::empty()
-            | Self::COMPOSITE_ALPHA_OPAQUE_KHR
-            | Self::COMPOSITE_ALPHA_PRE_MULTIPLIED_KHR
-            | Self::COMPOSITE_ALPHA_POST_MULTIPLIED_KHR
-            | Self::COMPOSITE_ALPHA_INHERIT_KHR
+        let mut all = Self::empty();
+        {
+            all |= Self::COMPOSITE_ALPHA_OPAQUE_KHR;
+        }
+        {
+            all |= Self::COMPOSITE_ALPHA_PRE_MULTIPLIED_KHR;
+        }
+        {
+            all |= Self::COMPOSITE_ALPHA_POST_MULTIPLIED_KHR;
+        }
+        {
+            all |= Self::COMPOSITE_ALPHA_INHERIT_KHR;
+        }
+        all
     }
     ///Returns the raw bits
     #[inline]
@@ -1007,7 +1034,7 @@ impl const std::ops::BitOr for CompositeAlphaFlagsKHR {
         self.union(other)
     }
 }
-impl std::ops::BitOrAssign for CompositeAlphaFlagsKHR {
+impl const std::ops::BitOrAssign for CompositeAlphaFlagsKHR {
     #[inline]
     fn bitor_assign(&mut self, other: Self) {
         *self = *self | other;
@@ -1020,7 +1047,7 @@ impl const std::ops::BitXor for CompositeAlphaFlagsKHR {
         self.symmetric_difference(other)
     }
 }
-impl std::ops::BitXorAssign for CompositeAlphaFlagsKHR {
+impl const std::ops::BitXorAssign for CompositeAlphaFlagsKHR {
     #[inline]
     fn bitxor_assign(&mut self, other: Self) {
         *self = *self ^ other;
@@ -1033,7 +1060,7 @@ impl const std::ops::BitAnd for CompositeAlphaFlagsKHR {
         self.intersection(other)
     }
 }
-impl std::ops::BitAndAssign for CompositeAlphaFlagsKHR {
+impl const std::ops::BitAndAssign for CompositeAlphaFlagsKHR {
     #[inline]
     fn bitand_assign(&mut self, other: Self) {
         *self = *self & other;
@@ -1046,7 +1073,7 @@ impl const std::ops::Sub for CompositeAlphaFlagsKHR {
         self.difference(other)
     }
 }
-impl std::ops::SubAssign for CompositeAlphaFlagsKHR {
+impl const std::ops::SubAssign for CompositeAlphaFlagsKHR {
     #[inline]
     fn sub_assign(&mut self, other: Self) {
         *self = *self - other;
@@ -1091,7 +1118,7 @@ impl std::fmt::Debug for CompositeAlphaFlagsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         struct Flags(CompositeAlphaFlagsKHR);
         impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments)]
+            #[allow(unused_assignments, unused_mut, unused_variables)]
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
                 if self.0 == CompositeAlphaFlagsKHR::empty() {
                     f.write_str("empty")?;
